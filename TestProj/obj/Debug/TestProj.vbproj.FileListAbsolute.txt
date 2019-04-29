@@ -1,0 +1,2 @@
+C:\Users\GTN\AppData\Local\Temporary Projects\TestProj\bin\Debug\TestProj.exe.config
+C:\RTISProjects\TestProj\TestProj\bin\Debug\TestProj.exe.config
