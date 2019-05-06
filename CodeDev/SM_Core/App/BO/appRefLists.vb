@@ -1,0 +1,28 @@
+Imports RTIS.CommonVB
+
+Public Class appRefLists : Inherits colRefLists
+
+  Public Const None As Integer = 0
+  Public Const RefList As Integer = 1
+  Public Const YesNo As Integer = 2
+
+  'Optional
+  Public Const VATRateCodes As Integer = 3
+  Public Const Employees As Integer = 4
+  Public Const Roles As Integer = 5
+
+
+  Public Sub New()
+    MyBase.new()
+    Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
+    Me.AddRefList(RefList, "RefList", clsRefListItem.eLoadMode.Coded, "Description", "RefListType")
+    Me.AddRefList(YesNo, "YesNo", clsRefListItem.eLoadMode.Coded)
+
+    'Optional
+    Me.AddRefList(VATRateCodes, "VAT Rate Codes", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(Employees, "Employees", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(Roles, "Roles", clsRefListItem.eLoadMode.Unloaded)
+  End Sub
+
+
+End Class
