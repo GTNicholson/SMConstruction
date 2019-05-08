@@ -1,4 +1,6 @@
-﻿Public Class clsTimeSheetEntry
+﻿Imports System.ComponentModel
+
+Public Class clsTimeSheetEntry
   Private pStartTime As DateTime
   Private pTimeSheetEntryStringMonday As String
 
@@ -7,7 +9,7 @@
       Return pStartTime
     End Get
     Set(value As DateTime)
-
+      pStartTime = value
     End Set
   End Property
 
@@ -81,5 +83,33 @@
   Private Sub SetTimeSheetEntry(ByVal vDaysOffSet As Byte)
 
   End Sub
+
+End Class
+
+Public Class colTimeSheetEntrys : Inherits BindingList(Of clsTimeSheetEntry)
+
+  Public Function IndexFromTime(ByVal vTime As DateTime) As Integer
+    Dim mRetVal As Integer = -1
+    Dim mIndex As Integer = -1
+
+    For Each mTE As clsTimeSheetEntry In Me.Items
+      mIndex += 1
+      If mTE.StartTime = vTime Then
+        mRetVal = mIndex
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromTime(ByVal vTime As DateTime) As clsTimeSheetEntry
+    Dim mRetVal As clsTimeSheetEntry = Nothing
+    Dim mIndex As Integer
+    mIndex = IndexFromTime(vTime)
+    If mIndex <> -1 Then
+      mRetVal = Me.Items(mIndex)
+    End If
+    Return mRetVal
+  End Function
 
 End Class

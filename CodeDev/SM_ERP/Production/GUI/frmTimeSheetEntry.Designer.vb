@@ -23,14 +23,17 @@ Partial Class frmTimeSheetEntry
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-    Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+    Me.TimeEdit2 = New DevExpress.XtraEditors.TimeEdit()
+    Me.TimeEdit1 = New DevExpress.XtraEditors.TimeEdit()
+    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
     Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+    Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.grdTimeSheet = New DevExpress.XtraGrid.GridControl()
     Me.gvTimeSheet = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,21 +42,18 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.TimeEdit1 = New DevExpress.XtraEditors.TimeEdit()
-    Me.TimeEdit2 = New DevExpress.XtraEditors.TimeEdit()
-    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
     Me.TableLayoutPanel1.SuspendLayout()
-    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.PanelControl1.SuspendLayout()
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl2.SuspendLayout()
-    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.TimeEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.PanelControl1.SuspendLayout()
     CType(Me.grdTimeSheet, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheet, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TimeEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -71,15 +71,6 @@ Partial Class frmTimeSheetEntry
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(984, 690)
     Me.TableLayoutPanel1.TabIndex = 0
     '
-    'PanelControl1
-    '
-    Me.PanelControl1.Controls.Add(Me.grdTimeSheet)
-    Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(3, 64)
-    Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(978, 623)
-    Me.PanelControl1.TabIndex = 0
-    '
     'PanelControl2
     '
     Me.PanelControl2.Controls.Add(Me.LabelControl3)
@@ -95,15 +86,63 @@ Partial Class frmTimeSheetEntry
     Me.PanelControl2.Size = New System.Drawing.Size(978, 55)
     Me.PanelControl2.TabIndex = 1
     '
-    'ComboBoxEdit1
+    'LabelControl3
     '
-    Me.ComboBoxEdit1.Location = New System.Drawing.Point(106, 14)
-    Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
-    Me.ComboBoxEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ComboBoxEdit1.Properties.Appearance.Options.UseFont = True
-    Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.ComboBoxEdit1.Size = New System.Drawing.Size(276, 24)
-    Me.ComboBoxEdit1.TabIndex = 0
+    Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl3.Appearance.Options.UseFont = True
+    Me.LabelControl3.Appearance.Options.UseForeColor = True
+    Me.LabelControl3.Location = New System.Drawing.Point(843, 17)
+    Me.LabelControl3.Name = "LabelControl3"
+    Me.LabelControl3.Size = New System.Drawing.Size(8, 18)
+    Me.LabelControl3.TabIndex = 6
+    Me.LabelControl3.Text = "a"
+    '
+    'TimeEdit2
+    '
+    Me.TimeEdit2.EditValue = New Date(2019, 5, 8, 0, 0, 0, 0)
+    Me.TimeEdit2.Location = New System.Drawing.Point(865, 15)
+    Me.TimeEdit2.Name = "TimeEdit2"
+    Me.TimeEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TimeEdit2.Properties.Appearance.Options.UseFont = True
+    Me.TimeEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.TimeEdit2.Size = New System.Drawing.Size(108, 22)
+    Me.TimeEdit2.TabIndex = 5
+    '
+    'TimeEdit1
+    '
+    Me.TimeEdit1.EditValue = New Date(2019, 5, 8, 0, 0, 0, 0)
+    Me.TimeEdit1.Location = New System.Drawing.Point(724, 16)
+    Me.TimeEdit1.Name = "TimeEdit1"
+    Me.TimeEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TimeEdit1.Properties.Appearance.Options.UseFont = True
+    Me.TimeEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.TimeEdit1.Size = New System.Drawing.Size(108, 22)
+    Me.TimeEdit1.TabIndex = 4
+    '
+    'LabelControl2
+    '
+    Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl2.Appearance.Options.UseFont = True
+    Me.LabelControl2.Appearance.Options.UseForeColor = True
+    Me.LabelControl2.Location = New System.Drawing.Point(438, 17)
+    Me.LabelControl2.Name = "LabelControl2"
+    Me.LabelControl2.Size = New System.Drawing.Size(78, 18)
+    Me.LabelControl2.TabIndex = 3
+    Me.LabelControl2.Text = "Semana de"
+    '
+    'LabelControl1
+    '
+    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl1.Appearance.Options.UseFont = True
+    Me.LabelControl1.Appearance.Options.UseForeColor = True
+    Me.LabelControl1.Location = New System.Drawing.Point(10, 17)
+    Me.LabelControl1.Name = "LabelControl1"
+    Me.LabelControl1.Size = New System.Drawing.Size(70, 18)
+    Me.LabelControl1.TabIndex = 2
+    Me.LabelControl1.Text = "Empleado"
     '
     'DateEdit1
     '
@@ -116,6 +155,25 @@ Partial Class frmTimeSheetEntry
     Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.DateEdit1.Size = New System.Drawing.Size(126, 24)
     Me.DateEdit1.TabIndex = 1
+    '
+    'ComboBoxEdit1
+    '
+    Me.ComboBoxEdit1.Location = New System.Drawing.Point(106, 14)
+    Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
+    Me.ComboBoxEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxEdit1.Properties.Appearance.Options.UseFont = True
+    Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.ComboBoxEdit1.Size = New System.Drawing.Size(276, 24)
+    Me.ComboBoxEdit1.TabIndex = 0
+    '
+    'PanelControl1
+    '
+    Me.PanelControl1.Controls.Add(Me.grdTimeSheet)
+    Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PanelControl1.Location = New System.Drawing.Point(3, 64)
+    Me.PanelControl1.Name = "PanelControl1"
+    Me.PanelControl1.Size = New System.Drawing.Size(978, 623)
+    Me.PanelControl1.TabIndex = 0
     '
     'grdTimeSheet
     '
@@ -141,35 +199,14 @@ Partial Class frmTimeSheetEntry
     Me.gvTimeSheet.OptionsView.ShowIndicator = False
     Me.gvTimeSheet.RowHeight = 25
     '
-    'LabelControl1
-    '
-    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl1.Appearance.Options.UseFont = True
-    Me.LabelControl1.Appearance.Options.UseForeColor = True
-    Me.LabelControl1.Location = New System.Drawing.Point(10, 17)
-    Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(70, 18)
-    Me.LabelControl1.TabIndex = 2
-    Me.LabelControl1.Text = "Empleado"
-    '
-    'LabelControl2
-    '
-    Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl2.Appearance.Options.UseFont = True
-    Me.LabelControl2.Appearance.Options.UseForeColor = True
-    Me.LabelControl2.Location = New System.Drawing.Point(438, 17)
-    Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(78, 18)
-    Me.LabelControl2.TabIndex = 3
-    Me.LabelControl2.Text = "Semana de"
-    '
     'GridColumn1
     '
     Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
     Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn1.Caption = "Hora"
+    Me.GridColumn1.DisplayFormat.FormatString = "t"
+    Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.GridColumn1.FieldName = "StartTime"
     Me.GridColumn1.Name = "GridColumn1"
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
@@ -223,40 +260,6 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn8.Visible = True
     Me.GridColumn8.VisibleIndex = 7
     '
-    'TimeEdit1
-    '
-    Me.TimeEdit1.EditValue = New Date(2019, 5, 8, 0, 0, 0, 0)
-    Me.TimeEdit1.Location = New System.Drawing.Point(724, 16)
-    Me.TimeEdit1.Name = "TimeEdit1"
-    Me.TimeEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TimeEdit1.Properties.Appearance.Options.UseFont = True
-    Me.TimeEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.TimeEdit1.Size = New System.Drawing.Size(108, 22)
-    Me.TimeEdit1.TabIndex = 4
-    '
-    'TimeEdit2
-    '
-    Me.TimeEdit2.EditValue = New Date(2019, 5, 8, 0, 0, 0, 0)
-    Me.TimeEdit2.Location = New System.Drawing.Point(865, 15)
-    Me.TimeEdit2.Name = "TimeEdit2"
-    Me.TimeEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TimeEdit2.Properties.Appearance.Options.UseFont = True
-    Me.TimeEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.TimeEdit2.Size = New System.Drawing.Size(108, 22)
-    Me.TimeEdit2.TabIndex = 5
-    '
-    'LabelControl3
-    '
-    Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl3.Appearance.Options.UseFont = True
-    Me.LabelControl3.Appearance.Options.UseForeColor = True
-    Me.LabelControl3.Location = New System.Drawing.Point(843, 17)
-    Me.LabelControl3.Name = "LabelControl3"
-    Me.LabelControl3.Size = New System.Drawing.Size(8, 18)
-    Me.LabelControl3.TabIndex = 6
-    Me.LabelControl3.Text = "a"
-    '
     'frmTimeSheetEntry
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -266,18 +269,18 @@ Partial Class frmTimeSheetEntry
     Me.Name = "frmTimeSheetEntry"
     Me.Text = "Entrada de Horas Laborales"
     Me.TableLayoutPanel1.ResumeLayout(False)
-    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.PanelControl1.ResumeLayout(False)
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl2.ResumeLayout(False)
     Me.PanelControl2.PerformLayout()
-    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.TimeEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.PanelControl1.ResumeLayout(False)
     CType(Me.grdTimeSheet, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheet, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TimeEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub

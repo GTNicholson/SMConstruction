@@ -10,4 +10,9 @@
     mfrm.ShowDialog()
   End Sub
 
+  Private Sub frmTimeSheetEntry_Load(sender As Object, e As EventArgs) Handles Me.Load
+    pController.SetInitialDefaultValues()
+    pController.LoadTimeSheetEntrys
+    grdTimeSheet.DataSource = pController.TimeSheetEntrys
+  End Sub
 End Class

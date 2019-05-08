@@ -6,8 +6,11 @@
   Private pEndTime As DateTime
   Private pEmployee As dmEmployeeSM
 
+  Private pTimeSheetEntrys As colTimeSheetEntrys
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
+    pTimeSheetEntrys = New colTimeSheetEntrys
   End Sub
 
   Public Property WCDate As DateTime
@@ -47,6 +50,12 @@
   End Property
 
 
+  Public ReadOnly Property TimeSheetEntrys
+    Get
+      Return pTimeSheetEntrys
+    End Get
+  End Property
+
   Public Sub SetInitialDefaultValues()
     pWCDate = RTIS.CommonVB.libDateTime.MondayOfWeek(Now.Date)
     pStartTime = (New Date).AddHours(6)
@@ -55,10 +64,17 @@
 
   Public Sub LoadTimeSheetEntrys()
     Dim mTime As DateTime
+    Dim mEntry As clsTimeSheetEntry
 
     mTime = pStartTime
     Do While mTime <= pEndTime
       mTime = mTime.AddHours(1)
+      mEntry = pTimeSheetEntrys.ItemFromTime(mTime)
+      If mEntry Is Nothing Then
+        mEntry = New clsTimeSheetEntry
+        mEntry.StartTime = mTime
+        pTimeSheetEntrys.Add(mEntry)
+      End If
     Loop
   End Sub
 
