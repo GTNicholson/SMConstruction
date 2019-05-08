@@ -29,12 +29,17 @@ Partial Class frmTabbedMDI
     Me.bsmSystem = New DevExpress.XtraBars.BarSubItem()
     Me.bbiChangePassword = New DevExpress.XtraBars.BarButtonItem()
     Me.bbiCurrentUserLocks = New DevExpress.XtraBars.BarButtonItem()
+    Me.bbiClearAllLocks = New DevExpress.XtraBars.BarButtonItem()
     Me.bbiUserGroupAdmin = New DevExpress.XtraBars.BarButtonItem()
     Me.bbiPCSettings = New DevExpress.XtraBars.BarButtonItem()
     Me.bbiLocalConfig = New DevExpress.XtraBars.BarButtonItem()
     Me.bbiServerConfig = New DevExpress.XtraBars.BarButtonItem()
     Me.bsiScreenResolutionTest = New DevExpress.XtraBars.BarSubItem()
+    Me.BarSubItem2 = New DevExpress.XtraBars.BarSubItem()
+    Me.barbtnRefreshPhaseStatuses = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnDevUtilities = New DevExpress.XtraBars.BarButtonItem()
+    Me.barbtnReloadLists = New DevExpress.XtraBars.BarButtonItem()
+    Me.barStatic_TestVersion = New DevExpress.XtraBars.BarStaticItem()
     Me.bbtn_About = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -57,6 +62,7 @@ Partial Class frmTabbedMDI
     Me.bbtnSettings = New DevExpress.XtraBars.BarButtonItem()
     Me.bbiScreenResolutionTest = New DevExpress.XtraBars.BarButtonItem()
     Me.bsiDevUtilities = New DevExpress.XtraBars.BarSubItem()
+    Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
     Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
     Me.RepositorybarComboMDITabOrientation = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
     Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -65,25 +71,17 @@ Partial Class frmTabbedMDI
     Me.BarEditItem2 = New DevExpress.XtraBars.BarEditItem()
     Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
     Me.nbcSideMenu = New DevExpress.XtraNavBar.NavBarControl()
-    Me.nbgModuleOne = New DevExpress.XtraNavBar.NavBarGroup()
-    Me.nbi_ModuleOneOption01 = New DevExpress.XtraNavBar.NavBarItem()
-    Me.nbiTestBrowse = New DevExpress.XtraNavBar.NavBarItem()
-    Me.nbgOrdenTrabajo = New DevExpress.XtraNavBar.NavBarGroup()
-    Me.navbaritListaDeOrdeTrabajo = New DevExpress.XtraNavBar.NavBarItem()
-    Me.nbi_ModuleTwoOption02 = New DevExpress.XtraNavBar.NavBarItem()
-    Me.nbi_ModuleTwoOption03 = New DevExpress.XtraNavBar.NavBarItem()
-    Me.nbi_ModuleTwoOption04 = New DevExpress.XtraNavBar.NavBarItem()
-    Me.nbgAdministration = New DevExpress.XtraNavBar.NavBarGroup()
-    Me.nbi_UsersLoggedOn = New DevExpress.XtraNavBar.NavBarItem()
-    Me.navbaritSalesRegion = New DevExpress.XtraNavBar.NavBarItem()
-    Me.navbaritTipoContrato = New DevExpress.XtraNavBar.NavBarItem()
-    Me.navbaritWoodSpecie = New DevExpress.XtraNavBar.NavBarItem()
-    Me.navbaritPriceBracket = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarGroup1 = New DevExpress.XtraNavBar.NavBarGroup()
-    Me.navbaritListaDeClientes = New DevExpress.XtraNavBar.NavBarItem()
-    Me.navbarListaSalesOrder = New DevExpress.XtraNavBar.NavBarItem()
+    Me.NavBarGroupControlContainer1 = New DevExpress.XtraNavBar.NavBarGroupControlContainer()
+    Me.TreeList1 = New DevExpress.XtraTreeList.TreeList()
+    Me.TreeListColumn1 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+    Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
     Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
+    Me.nbi_ModuleOneOption01 = New DevExpress.XtraNavBar.NavBarItem()
+    Me.nbi_UsersLoggedOn = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarItem2 = New DevExpress.XtraNavBar.NavBarItem()
+    Me.nbi_ModuleTwoOption01 = New DevExpress.XtraNavBar.NavBarItem()
+    Me.nbi_ModuleTwoOption02 = New DevExpress.XtraNavBar.NavBarItem()
     Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,6 +93,10 @@ Partial Class frmTabbedMDI
     CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.nbcSideMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.nbcSideMenu.SuspendLayout()
+    Me.NavBarGroupControlContainer1.SuspendLayout()
+    CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -105,8 +107,8 @@ Partial Class frmTabbedMDI
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.barComboMDITabLocation, Me.barComboMDITabImage, Me.barComboMDITabOrientation, Me.barComboMDITabAutoFill, Me.BarMdiChildrenListItem1, Me.BarButtonAddForm, Me.BarSubItem1, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BarLargeButtonItem1, Me.BarLargeButtonItem2, Me.bbtn_About, Me.BarStaticItem1, Me.bbtnSettings, Me.bsmSystem, Me.bbiLocalConfig, Me.bbiServerConfig, Me.bbiPCSettings, Me.bbiCurrentUserLocks, Me.bbiChangePassword, Me.bbiScreenResolutionTest, Me.bsiScreenResolutionTest, Me.bbiUserGroupAdmin, Me.bbtnDevUtilities, Me.bsiDevUtilities})
-    Me.BarManager1.MaxItemId = 40
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.barComboMDITabLocation, Me.barComboMDITabImage, Me.barComboMDITabOrientation, Me.barComboMDITabAutoFill, Me.BarMdiChildrenListItem1, Me.BarButtonAddForm, Me.BarSubItem1, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BarLargeButtonItem1, Me.BarLargeButtonItem2, Me.bbtn_About, Me.BarStaticItem1, Me.bbtnSettings, Me.bsmSystem, Me.bbiLocalConfig, Me.bbiServerConfig, Me.bbiPCSettings, Me.bbiCurrentUserLocks, Me.bbiChangePassword, Me.bbiScreenResolutionTest, Me.bsiScreenResolutionTest, Me.bbiUserGroupAdmin, Me.bbtnDevUtilities, Me.bsiDevUtilities, Me.barbtnReloadLists, Me.barStatic_TestVersion, Me.BarButtonItem4, Me.BarSubItem2, Me.barbtnRefreshPhaseStatuses, Me.bbiClearAllLocks})
+    Me.BarManager1.MaxItemId = 46
     Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositorybarComboMDITabLocation, Me.RepositorybarComboMDITabOrientation, Me.RepositorybarComboMDITabImage, Me.RepositoryMDITabOrientation, Me.RepositoryMDITabAutoFill, Me.RepositoryItemTextEdit2})
     '
     'Bar1
@@ -115,7 +117,7 @@ Partial Class frmTabbedMDI
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarMdiChildrenListItem1, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bsmSystem, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtn_About, True)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarStaticItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarMdiChildrenListItem1, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bsmSystem, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barStatic_TestVersion, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtn_About, True)})
     Me.Bar1.OptionsBar.AllowQuickCustomization = False
     Me.Bar1.OptionsBar.DisableClose = True
     Me.Bar1.OptionsBar.DisableCustomization = True
@@ -147,7 +149,7 @@ Partial Class frmTabbedMDI
     '
     Me.bsmSystem.Caption = "System"
     Me.bsmSystem.Id = 22
-    Me.bsmSystem.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbiChangePassword), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiCurrentUserLocks), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiUserGroupAdmin), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiPCSettings, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiLocalConfig), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiServerConfig), New DevExpress.XtraBars.LinkPersistInfo(Me.bsiScreenResolutionTest, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnDevUtilities)})
+    Me.bsmSystem.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbiChangePassword), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiCurrentUserLocks), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiClearAllLocks), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiUserGroupAdmin), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiPCSettings, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiLocalConfig), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiServerConfig), New DevExpress.XtraBars.LinkPersistInfo(Me.bsiScreenResolutionTest, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnDevUtilities), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnReloadLists)})
     Me.bsmSystem.Name = "bsmSystem"
     '
     'bbiChangePassword
@@ -161,6 +163,12 @@ Partial Class frmTabbedMDI
     Me.bbiCurrentUserLocks.Caption = "Current User Locks"
     Me.bbiCurrentUserLocks.Id = 26
     Me.bbiCurrentUserLocks.Name = "bbiCurrentUserLocks"
+    '
+    'bbiClearAllLocks
+    '
+    Me.bbiClearAllLocks.Caption = "Clear All Locks"
+    Me.bbiClearAllLocks.Id = 45
+    Me.bbiClearAllLocks.Name = "bbiClearAllLocks"
     '
     'bbiUserGroupAdmin
     '
@@ -193,11 +201,45 @@ Partial Class frmTabbedMDI
     Me.bsiScreenResolutionTest.Name = "bsiScreenResolutionTest"
     Me.bsiScreenResolutionTest.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     '
+    'BarSubItem2
+    '
+    Me.BarSubItem2.Caption = "Tools"
+    Me.BarSubItem2.Id = 43
+    Me.BarSubItem2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRefreshPhaseStatuses)})
+    Me.BarSubItem2.Name = "BarSubItem2"
+    '
+    'barbtnRefreshPhaseStatuses
+    '
+    Me.barbtnRefreshPhaseStatuses.Caption = "Refresh Phase Statuses"
+    Me.barbtnRefreshPhaseStatuses.Id = 44
+    Me.barbtnRefreshPhaseStatuses.Name = "barbtnRefreshPhaseStatuses"
+    '
     'bbtnDevUtilities
     '
     Me.bbtnDevUtilities.Caption = "Dev Utilities"
     Me.bbtnDevUtilities.Id = 38
     Me.bbtnDevUtilities.Name = "bbtnDevUtilities"
+    '
+    'barbtnReloadLists
+    '
+    Me.barbtnReloadLists.Caption = "Reload Lists"
+    Me.barbtnReloadLists.Id = 40
+    Me.barbtnReloadLists.Name = "barbtnReloadLists"
+    '
+    'barStatic_TestVersion
+    '
+    Me.barStatic_TestVersion.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.barStatic_TestVersion.Caption = "***** RUNNING TEST VERSION *****"
+    Me.barStatic_TestVersion.Id = 41
+    Me.barStatic_TestVersion.ItemAppearance.Normal.BackColor = System.Drawing.Color.Lime
+    Me.barStatic_TestVersion.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold)
+    Me.barStatic_TestVersion.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red
+    Me.barStatic_TestVersion.ItemAppearance.Normal.Options.UseBackColor = True
+    Me.barStatic_TestVersion.ItemAppearance.Normal.Options.UseFont = True
+    Me.barStatic_TestVersion.ItemAppearance.Normal.Options.UseForeColor = True
+    Me.barStatic_TestVersion.Name = "barStatic_TestVersion"
+    Me.barStatic_TestVersion.TextAlignment = System.Drawing.StringAlignment.Center
+    Me.barStatic_TestVersion.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     '
     'bbtn_About
     '
@@ -349,6 +391,12 @@ Partial Class frmTabbedMDI
     Me.bsiDevUtilities.Id = 39
     Me.bsiDevUtilities.Name = "bsiDevUtilities"
     '
+    'BarButtonItem4
+    '
+    Me.BarButtonItem4.Caption = "Tools"
+    Me.BarButtonItem4.Id = 42
+    Me.BarButtonItem4.Name = "BarButtonItem4"
+    '
     'RepositoryItemTextEdit1
     '
     Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -367,6 +415,10 @@ Partial Class frmTabbedMDI
     '
     'XtraTabbedMdiManager1
     '
+    Me.XtraTabbedMdiManager1.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.XtraTabbedMdiManager1.AppearancePage.Header.Options.UseFont = True
+    Me.XtraTabbedMdiManager1.AppearancePage.HeaderActive.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.XtraTabbedMdiManager1.AppearancePage.HeaderActive.Options.UseFont = True
     Me.XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPagesAndTabControlHeader
     Me.XtraTabbedMdiManager1.MdiParent = Me
     '
@@ -394,11 +446,12 @@ Partial Class frmTabbedMDI
     '
     'nbcSideMenu
     '
-    Me.nbcSideMenu.ActiveGroup = Me.nbgModuleOne
+    Me.nbcSideMenu.ActiveGroup = Me.NavBarGroup1
     Me.nbcSideMenu.ContentButtonHint = Nothing
+    Me.nbcSideMenu.Controls.Add(Me.NavBarGroupControlContainer1)
     Me.nbcSideMenu.Dock = System.Windows.Forms.DockStyle.Left
-    Me.nbcSideMenu.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.nbgModuleOne, Me.nbgOrdenTrabajo, Me.nbgAdministration, Me.NavBarGroup1})
-    Me.nbcSideMenu.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.nbi_ModuleOneOption01, Me.nbi_UsersLoggedOn, Me.NavBarItem2, Me.navbaritListaDeOrdeTrabajo, Me.nbi_ModuleTwoOption02, Me.nbi_ModuleTwoOption03, Me.nbiTestBrowse, Me.nbi_ModuleTwoOption04, Me.navbaritListaDeClientes, Me.navbaritSalesRegion, Me.navbaritTipoContrato, Me.navbaritWoodSpecie, Me.navbaritPriceBracket, Me.navbarListaSalesOrder})
+    Me.nbcSideMenu.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup1})
+    Me.nbcSideMenu.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.nbi_ModuleOneOption01, Me.nbi_UsersLoggedOn, Me.NavBarItem2, Me.nbi_ModuleTwoOption01, Me.nbi_ModuleTwoOption02})
     Me.nbcSideMenu.Location = New System.Drawing.Point(0, 45)
     Me.nbcSideMenu.Name = "nbcSideMenu"
     Me.nbcSideMenu.OptionsNavPane.ExpandedWidth = 186
@@ -406,98 +459,88 @@ Partial Class frmTabbedMDI
     Me.nbcSideMenu.TabIndex = 5
     Me.nbcSideMenu.Text = "MainMenu"
     '
-    'nbgModuleOne
-    '
-    Me.nbgModuleOne.Caption = "Module One"
-    Me.nbgModuleOne.Expanded = True
-    Me.nbgModuleOne.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.nbi_ModuleOneOption01), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbiTestBrowse)})
-    Me.nbgModuleOne.Name = "nbgModuleOne"
-    '
-    'nbi_ModuleOneOption01
-    '
-    Me.nbi_ModuleOneOption01.Caption = "Item 1.1"
-    Me.nbi_ModuleOneOption01.Name = "nbi_ModuleOneOption01"
-    '
-    'nbiTestBrowse
-    '
-    Me.nbiTestBrowse.Caption = "Test Browse"
-    Me.nbiTestBrowse.Name = "nbiTestBrowse"
-    '
-    'nbgOrdenTrabajo
-    '
-    Me.nbgOrdenTrabajo.Caption = "Orden de Trabajo"
-    Me.nbgOrdenTrabajo.Expanded = True
-    Me.nbgOrdenTrabajo.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritListaDeOrdeTrabajo), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbi_ModuleTwoOption02), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbi_ModuleTwoOption03), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbi_ModuleTwoOption04)})
-    Me.nbgOrdenTrabajo.Name = "nbgOrdenTrabajo"
-    '
-    'navbaritListaDeOrdeTrabajo
-    '
-    Me.navbaritListaDeOrdeTrabajo.Caption = "Lista de Orden de Trabajo"
-    Me.navbaritListaDeOrdeTrabajo.Name = "navbaritListaDeOrdeTrabajo"
-    '
-    'nbi_ModuleTwoOption02
-    '
-    Me.nbi_ModuleTwoOption02.Caption = "Item 2.2"
-    Me.nbi_ModuleTwoOption02.Name = "nbi_ModuleTwoOption02"
-    '
-    'nbi_ModuleTwoOption03
-    '
-    Me.nbi_ModuleTwoOption03.Caption = "Item 2.3"
-    Me.nbi_ModuleTwoOption03.Name = "nbi_ModuleTwoOption03"
-    '
-    'nbi_ModuleTwoOption04
-    '
-    Me.nbi_ModuleTwoOption04.Caption = "NavBarItem1"
-    Me.nbi_ModuleTwoOption04.Name = "nbi_ModuleTwoOption04"
-    '
-    'nbgAdministration
-    '
-    Me.nbgAdministration.Caption = "Admin"
-    Me.nbgAdministration.Expanded = True
-    Me.nbgAdministration.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.nbi_UsersLoggedOn), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritSalesRegion), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritTipoContrato), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritWoodSpecie), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritPriceBracket)})
-    Me.nbgAdministration.Name = "nbgAdministration"
-    '
-    'nbi_UsersLoggedOn
-    '
-    Me.nbi_UsersLoggedOn.Caption = "Users Logged On"
-    Me.nbi_UsersLoggedOn.Name = "nbi_UsersLoggedOn"
-    '
-    'navbaritSalesRegion
-    '
-    Me.navbaritSalesRegion.Caption = "Region de Ventas"
-    Me.navbaritSalesRegion.Name = "navbaritSalesRegion"
-    '
-    'navbaritTipoContrato
-    '
-    Me.navbaritTipoContrato.Caption = "Tipo de Contrato"
-    Me.navbaritTipoContrato.Name = "navbaritTipoContrato"
-    '
-    'navbaritWoodSpecie
-    '
-    Me.navbaritWoodSpecie.Caption = "Especies de Madera"
-    Me.navbaritWoodSpecie.Name = "navbaritWoodSpecie"
-    '
-    'navbaritPriceBracket
-    '
-    Me.navbaritPriceBracket.Caption = "Rango de Precios"
-    Me.navbaritPriceBracket.Name = "navbaritPriceBracket"
-    '
     'NavBarGroup1
     '
-    Me.NavBarGroup1.Caption = "Ventas"
+    Me.NavBarGroup1.Caption = "NavBarGroup1"
+    Me.NavBarGroup1.ControlContainer = Me.NavBarGroupControlContainer1
     Me.NavBarGroup1.Expanded = True
-    Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritListaDeClientes), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarListaSalesOrder)})
+    Me.NavBarGroup1.GroupClientHeight = 80
+    Me.NavBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer
     Me.NavBarGroup1.Name = "NavBarGroup1"
+    Me.NavBarGroup1.Visible = False
     '
-    'navbaritListaDeClientes
+    'NavBarGroupControlContainer1
     '
-    Me.navbaritListaDeClientes.Caption = "Lista de Clientes"
-    Me.navbaritListaDeClientes.Name = "navbaritListaDeClientes"
+    Me.NavBarGroupControlContainer1.Appearance.BackColor = System.Drawing.SystemColors.Control
+    Me.NavBarGroupControlContainer1.Appearance.Options.UseBackColor = True
+    Me.NavBarGroupControlContainer1.Controls.Add(Me.TreeList1)
+    Me.NavBarGroupControlContainer1.Name = "NavBarGroupControlContainer1"
+    Me.NavBarGroupControlContainer1.Size = New System.Drawing.Size(184, 79)
+    Me.NavBarGroupControlContainer1.TabIndex = 0
     '
-    'navbarListaSalesOrder
+    'TreeList1
     '
-    Me.navbarListaSalesOrder.Caption = "Lista de Ventas"
-    Me.navbarListaSalesOrder.Name = "navbarListaSalesOrder"
+    Me.TreeList1.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TreeListColumn1})
+    Me.TreeList1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TreeList1.Location = New System.Drawing.Point(0, 0)
+    Me.TreeList1.Name = "TreeList1"
+    Me.TreeList1.BeginUnboundLoad()
+    Me.TreeList1.AppendNode(New Object() {Nothing}, -1)
+    Me.TreeList1.EndUnboundLoad()
+    Me.TreeList1.OptionsBehavior.Editable = False
+    Me.TreeList1.OptionsBehavior.PopulateServiceColumns = True
+    Me.TreeList1.OptionsLayout.AddNewColumns = False
+    Me.TreeList1.OptionsView.FocusRectStyle = DevExpress.XtraTreeList.DrawFocusRectStyle.RowFocus
+    Me.TreeList1.OptionsView.ShowColumns = False
+    Me.TreeList1.OptionsView.ShowHorzLines = False
+    Me.TreeList1.OptionsView.ShowIndicator = False
+    Me.TreeList1.OptionsView.ShowVertLines = False
+    Me.TreeList1.Size = New System.Drawing.Size(184, 79)
+    Me.TreeList1.StateImageList = Me.ImageCollection1
+    Me.TreeList1.TabIndex = 0
+    Me.TreeList1.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.Solid
+    '
+    'TreeListColumn1
+    '
+    Me.TreeListColumn1.Caption = "TreeListColumn1"
+    Me.TreeListColumn1.FieldName = "TreeListColumn1"
+    Me.TreeListColumn1.MinWidth = 52
+    Me.TreeListColumn1.Name = "TreeListColumn1"
+    Me.TreeListColumn1.Visible = True
+    Me.TreeListColumn1.VisibleIndex = 0
+    Me.TreeListColumn1.Width = 110
+    '
+    'ImageCollection1
+    '
+    Me.ImageCollection1.ImageStream = CType(resources.GetObject("ImageCollection1.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+    Me.ImageCollection1.InsertGalleryImage("bofolder_16x16.png", "images/business%20objects/bofolder_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/bofolder_16x16.png"), 0)
+    Me.ImageCollection1.Images.SetKeyName(0, "bofolder_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("open2_16x16.png", "images/actions/open2_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/open2_16x16.png"), 1)
+    Me.ImageCollection1.Images.SetKeyName(1, "open2_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("grid_16x16.png", "images/grid/grid_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/grid/grid_16x16.png"), 2)
+    Me.ImageCollection1.Images.SetKeyName(2, "grid_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("pivot_16x16.png", "images/grid/pivot_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/grid/pivot_16x16.png"), 3)
+    Me.ImageCollection1.Images.SetKeyName(3, "pivot_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("chart2_16x16.png", "images/toolbox%20items/chart2_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/toolbox%20items/chart2_16x16.png"), 4)
+    Me.ImageCollection1.Images.SetKeyName(4, "chart2_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("toplefthorizontaloutside_16x16.png", "images/chart/toplefthorizontaloutside_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/chart/toplefthorizontaloutside_16x16.png"), 5)
+    Me.ImageCollection1.Images.SetKeyName(5, "toplefthorizontaloutside_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("initialstate_16x16.png", "images/dashboards/initialstate_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/dashboards/initialstate_16x16.png"), 6)
+    Me.ImageCollection1.Images.SetKeyName(6, "initialstate_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("properties_16x16.png", "images/setup/properties_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/setup/properties_16x16.png"), 7)
+    Me.ImageCollection1.Images.SetKeyName(7, "properties_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("export_16x16.png", "images/export/export_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/export/export_16x16.png"), 8)
+    Me.ImageCollection1.Images.SetKeyName(8, "export_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("find_16x16.png", "images/find/find_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/find/find_16x16.png"), 9)
+    Me.ImageCollection1.Images.SetKeyName(9, "find_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("printarea_16x16.png", "images/print/printarea_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/print/printarea_16x16.png"), 10)
+    Me.ImageCollection1.Images.SetKeyName(10, "printarea_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("preview_16x16.png", "images/print/preview_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/print/preview_16x16.png"), 11)
+    Me.ImageCollection1.Images.SetKeyName(11, "preview_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("next_16x16.png", "images/arrows/next_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/arrows/next_16x16.png"), 12)
+    Me.ImageCollection1.Images.SetKeyName(12, "next_16x16.png")
+    Me.ImageCollection1.InsertGalleryImage("addgroupheader_16x16.png", "images/reports/addgroupheader_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/reports/addgroupheader_16x16.png"), 13)
+    Me.ImageCollection1.Images.SetKeyName(13, "addgroupheader_16x16.png")
     '
     'NavBarItem_Connection
     '
@@ -505,10 +548,30 @@ Partial Class frmTabbedMDI
     Me.NavBarItem_Connection.Name = "NavBarItem_Connection"
     Me.NavBarItem_Connection.Visible = False
     '
+    'nbi_ModuleOneOption01
+    '
+    Me.nbi_ModuleOneOption01.Caption = "Item 1.1"
+    Me.nbi_ModuleOneOption01.Name = "nbi_ModuleOneOption01"
+    '
+    'nbi_UsersLoggedOn
+    '
+    Me.nbi_UsersLoggedOn.Caption = "Users Logged On"
+    Me.nbi_UsersLoggedOn.Name = "nbi_UsersLoggedOn"
+    '
     'NavBarItem2
     '
     Me.NavBarItem2.Caption = "NavBarItem2"
     Me.NavBarItem2.Name = "NavBarItem2"
+    '
+    'nbi_ModuleTwoOption01
+    '
+    Me.nbi_ModuleTwoOption01.Caption = "Item 2.1"
+    Me.nbi_ModuleTwoOption01.Name = "nbi_ModuleTwoOption01"
+    '
+    'nbi_ModuleTwoOption02
+    '
+    Me.nbi_ModuleTwoOption02.Caption = "Item 2.2"
+    Me.nbi_ModuleTwoOption02.Name = "nbi_ModuleTwoOption02"
     '
     'SplitterControl1
     '
@@ -545,6 +608,10 @@ Partial Class frmTabbedMDI
     CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.nbcSideMenu, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.nbcSideMenu.ResumeLayout(False)
+    Me.NavBarGroupControlContainer1.ResumeLayout(False)
+    CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -588,9 +655,7 @@ Partial Class frmTabbedMDI
   Friend WithEvents bbtn_About As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents BarStaticItem1 As DevExpress.XtraBars.BarStaticItem
   Friend WithEvents bbtnSettings As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents nbgModuleOne As DevExpress.XtraNavBar.NavBarGroup
   Friend WithEvents nbi_ModuleOneOption01 As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents nbgAdministration As DevExpress.XtraNavBar.NavBarGroup
   Friend WithEvents nbi_UsersLoggedOn As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents NavBarItem2 As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents bsmSystem As DevExpress.XtraBars.BarSubItem
@@ -609,19 +674,19 @@ Partial Class frmTabbedMDI
   Friend WithEvents bbiScreenSize1680x1050 As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bbiScreenSize1920x1200 As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bbiUserGroupAdmin As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents nbgOrdenTrabajo As DevExpress.XtraNavBar.NavBarGroup
-  Friend WithEvents navbaritListaDeOrdeTrabajo As DevExpress.XtraNavBar.NavBarItem
+  Friend WithEvents nbi_ModuleTwoOption01 As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents nbi_ModuleTwoOption02 As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents bbtnDevUtilities As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bsiDevUtilities As DevExpress.XtraBars.BarSubItem
-  Friend WithEvents nbi_ModuleTwoOption03 As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents nbiTestBrowse As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents nbi_ModuleTwoOption04 As DevExpress.XtraNavBar.NavBarItem
+  Friend WithEvents NavBarGroupControlContainer1 As DevExpress.XtraNavBar.NavBarGroupControlContainer
+  Friend WithEvents TreeList1 As DevExpress.XtraTreeList.TreeList
+  Friend WithEvents ImageCollection1 As DevExpress.Utils.ImageCollection
   Friend WithEvents NavBarGroup1 As DevExpress.XtraNavBar.NavBarGroup
-  Friend WithEvents navbaritListaDeClientes As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents navbaritSalesRegion As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents navbaritTipoContrato As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents navbaritWoodSpecie As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents navbaritPriceBracket As DevExpress.XtraNavBar.NavBarItem
-  Friend WithEvents navbarListaSalesOrder As DevExpress.XtraNavBar.NavBarItem
+  Friend WithEvents TreeListColumn1 As DevExpress.XtraTreeList.Columns.TreeListColumn
+  Friend WithEvents barbtnReloadLists As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents barStatic_TestVersion As DevExpress.XtraBars.BarStaticItem
+  Friend WithEvents BarSubItem2 As DevExpress.XtraBars.BarSubItem
+  Friend WithEvents barbtnRefreshPhaseStatuses As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents bbiClearAllLocks As DevExpress.XtraBars.BarButtonItem
 End Class

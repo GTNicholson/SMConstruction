@@ -9,7 +9,9 @@ Public Enum eActivityCode
   OverideUserPassword = 3  'RTIS Project Start Standard
   ForceLockRemoval = 4     'RTIS Project Start Standard
 
-  ModuleOne = 101
+  Sales = 100
+
+  Production = 200
 
 End Enum
 
@@ -33,3 +35,10 @@ Public Enum eOTstatus
   <Description("Cancelada")> Cancelada = 3
 End Enum
 
+Public Enum eEmployeeTimeLogType
+  WorksOrder = 1
+  Maintenance = 2
+  Holiday = 3
+  Absent = 4
+  Other = 5
+End Enum

@@ -90,6 +90,10 @@ Public Class frmTabbedMDI
     'Load up menu options for all Modules
     Try
 
+
+      Dim mMenuManager As New clsMenuHandler(Me, Me.nbcSideMenu, Me.ImageCollection1, Me.TreeList1, AppRTISGlobal.GetInstance)
+      mMenuManager.PopulateNavBarMenu(MenuFactory.BuildMenu)
+
       mdso = New RTIS.Elements.dsoLookUpTable
       mdso.DBSource = rDBConn
       If mdso.LoadMenuOptions(mMenuOptions, New clsGetLookUpExtension) Then
@@ -102,6 +106,8 @@ Public Class frmTabbedMDI
       mAllOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+
+
 
     '' TODO Get User Reports Menu Group name
     ''mdsoReports = New RTIS.ManReportGUI.dsoManReportGUI
@@ -133,6 +139,19 @@ Public Class frmTabbedMDI
     SetupUserPermissions()
     ''MOved: Me.Text = My.Application.Info.Title & " (" & My.Application.RTISUserSession.UserName & ")"
 
+
+  End Sub
+
+  Private Sub InitHomeScreen(ByRef rDBConn As clsDBConnBase)
+    Dim mHomeFormID As Integer
+
+    mHomeFormID = My.Application.RTISUserSession.UserListItem.HomeFormID
+
+    'Select Case mHomeFormID
+    'Case eHomeScreen.Sales
+    frmHomeManagement.OpenFormAsMDIChild(Me, My.Application.RTISUserSession, AppRTISGlobal.GetInstance)
+    'End Select
+
   End Sub
 
   Private Sub SetupUserPermissions()
@@ -152,9 +171,9 @@ Public Class frmTabbedMDI
 
     '' Permissions for Side Menu
     ''Menu Group/Module One
-    mPermissionLevel = My.Application.RTISUserSession.ActivityPermissions.GetActivityPermission(eActivityCode.ModuleOne)
-    nbgModuleOne.Visible = (mPermissionLevel >= ePermissionCode.ePC_View)
-    nbgModuleOne.Expanded = (mPermissionLevel > ePermissionCode.ePC_View)
+    ''mPermissionLevel = My.Application.RTISUserSession.ActivityPermissions.GetActivityPermission(eActivityCode.Ventas)
+    'nbgModuleOne.Visible = (mPermissionLevel >= ePermissionCode.ePC_View)
+    'nbgModuleOne.Expanded = (mPermissionLevel > ePermissionCode.ePC_View)
 
     ''Menu Group/Module Two
     'mPermisionLevel = My.Application.RTISUserSession.ActivityPermissions.GetActivityPermission(eActivityCode.ModuleTwo)
@@ -163,10 +182,10 @@ Public Class frmTabbedMDI
 
     'nbgAdministration.Visible
     If My.Application.RTISUserSession.UserID = appInit.cDeveloperUserID Then
-      Me.nbgOrdenTrabajo.Visible = True
+      'Me.nbgOrdenTrabajo.Visible = True
       Me.bbtnDevUtilities.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
     Else
-      Me.nbgOrdenTrabajo.Visible = False
+      'Me.nbgOrdenTrabajo.Visible = False
       Me.bbtnDevUtilities.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End If
 
@@ -195,6 +214,7 @@ Public Class frmTabbedMDI
   Private Sub frmTabbedMDI_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
     ' Add any initialization after the InitializeComponent() call.
     InitStartUpForm()
+    InitHomeScreen(My.Application.RTISUserSession.CreateMainDBConn)
     InitWindows()
     InitComboBoxes()
   End Sub
@@ -328,20 +348,20 @@ Public Class frmTabbedMDI
 
 
 
-  Private Sub nbiTest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritListaDeOrdeTrabajo.LinkClicked
+  ''Private Sub nbiTest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritListaDeOrdeTrabajo.LinkClicked
 
-    ''"C:\RTISProjects\SFL2004\IMS\DocUserGuide"
-    ''"C:\RTISProjects\Emcor\Procurement\Docs_User"
-    'frmDocView.OpenFormAsModal(Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, "C:\RTISProjects\Emcor\Procurement\Docs_User", eFormMode.eFMFormModeView)
+  ''  ''"C:\RTISProjects\SFL2004\IMS\DocUserGuide"
+  ''  ''"C:\RTISProjects\Emcor\Procurement\Docs_User"
+  ''  'frmDocView.OpenFormAsModal(Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, "C:\RTISProjects\Emcor\Procurement\Docs_User", eFormMode.eFMFormModeView)
 
-    Dim mBrw As New brwWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
-    frmBrowseList.OpenFormAsMDIChild(Me, mBrw)
+  ''  Dim mBrw As New brwWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
+  ''  frmBrowseList.OpenFormAsMDIChild(Me, mBrw)
 
-  End Sub
+  ''End Sub
 
-  Private Sub nbiTest2_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbi_ModuleTwoOption02.LinkClicked
-        'frmDocLibraryView.OpenFormAsModal(Me, AppRTISGlobal.GetInstance, "C:\RTISProjects\Emcor\Procurement\Docs_User", eFormMode.eFMFormModeView)
-    End Sub
+  ''Private Sub nbiTest2_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbi_ModuleTwoOption02.LinkClicked
+  ''  'frmDocLibraryView.OpenFormAsModal(Me, AppRTISGlobal.GetInstance, "C:\RTISProjects\Emcor\Procurement\Docs_User", eFormMode.eFMFormModeView)
+  ''End Sub
 
   Private Sub bbtnDevUtilities_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnDevUtilities.ItemClick
     ''TestWrapper.TestTheEnumerator()
@@ -349,168 +369,166 @@ Public Class frmTabbedMDI
   End Sub
 
 
-  Private Sub nbi_ModuleTwoOption03_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbi_ModuleTwoOption03.LinkClicked
-    ''Dim mfrm As New frmRichTextRibbon
-    ''mfrm.RichTextCtrlRibbon1()
-    ''frmRichTextRibbon.OpenFormModal()
+  ''Private Sub nbi_ModuleTwoOption03_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbi_ModuleTwoOption03.LinkClicked
+  ''  ''Dim mfrm As New frmRichTextRibbon
+  ''  ''mfrm.RichTextCtrlRibbon1()
+  ''  ''frmRichTextRibbon.OpenFormModal()
 
-    ''Dim mVI As New colValueItems
-    ''mVI.AddNewItem(1, "ITEM-ONE")
-    ''mVI.AddNewItem(2, "ITEM-TWO")
-    ''mVI.AddNewItem(3, "ITEM-THREE")
-    ''RTIS.Elements.frmRichEdit.EditRichTextModal("szf  sdf dsf sd fsdf", "TEST", mVI)
+  ''  ''Dim mVI As New colValueItems
+  ''  ''mVI.AddNewItem(1, "ITEM-ONE")
+  ''  ''mVI.AddNewItem(2, "ITEM-TWO")
+  ''  ''mVI.AddNewItem(3, "ITEM-THREE")
+  ''  ''RTIS.Elements.frmRichEdit.EditRichTextModal("szf  sdf dsf sd fsdf", "TEST", mVI)
 
-    Dim UDPassword As String
-    Dim mrtisEncrypt As rtisEncrypt = New rtisEncrypt("Turning", "DC842E9CD6E46FD4")
-    UDPassword = mrtisEncrypt.XMLEncryptString("ActiveBusinessTraining;1/25/2014")
-    MsgBox(UDPassword)
-  End Sub
+  ''  Dim UDPassword As String
+  ''  Dim mrtisEncrypt As rtisEncrypt = New rtisEncrypt("Turning", "DC842E9CD6E46FD4")
+  ''  UDPassword = mrtisEncrypt.XMLEncryptString("ActiveBusinessTraining;1/25/2014")
+  ''  MsgBox(UDPassword)
+  ''End Sub
 
   Private Sub nbcSideMenu_Click(sender As Object, e As EventArgs) Handles nbcSideMenu.Click
 
   End Sub
 
-  Private Sub nbiTestBrowse_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbiTestBrowse.LinkClicked
-        'frmBrowseList.OpenFormAsMDIChild(Me, New brwTemplateList(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Undefined))
+  ''Private Sub nbiTestBrowse_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbiTestBrowse.LinkClicked
+  ''  'frmBrowseList.OpenFormAsMDIChild(Me, New brwTemplateList(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Undefined))
 
-    End Sub
+  ''End Sub
 
-  Private Sub nbi_ModuleTwoOption04_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbi_ModuleTwoOption04.LinkClicked
-    Dim mText As String
-    Dim mSig As String
-    Dim mSigFile As String = ""
-    Dim mRTDS As DevExpress.XtraRichEdit.RichEditDocumentServer
+  ''Private Sub nbi_ModuleTwoOption04_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbi_ModuleTwoOption04.LinkClicked
+  ''  Dim mText As String
+  ''  Dim mSig As String
+  ''  Dim mSigFile As String = ""
+  ''  Dim mRTDS As DevExpress.XtraRichEdit.RichEditDocumentServer
 
-    mText = "Dear X" & vbCrLf & vbCrLf & "From Me" & vbCrLf & "{OriginalText}" & vbCrLf & "[EmailSigA]"
-    mSigFile = Environ("appdata") & "\Microsoft\Signatures\"
-    If Dir(mSigFile, vbDirectory) <> vbNullString Then
-      mSigFile = mSigFile & Dir$(mSigFile & "*.rtf")  ' ".htm"
-    Else
-      mSigFile = ""
-    End If
-    If Not String.IsNullOrWhiteSpace(mSigFile) Then
-      mSig = IO.File.ReadAllText(mSigFile)
-      'mSig = "Replaced"
-      mText = mSig 'mText.Replace("[EmailSigA]", mSig)
-    End If
+  ''  mText = "Dear X" & vbCrLf & vbCrLf & "From Me" & vbCrLf & "{OriginalText}" & vbCrLf & "[EmailSigA]"
+  ''  mSigFile = Environ("appdata") & "\Microsoft\Signatures\"
+  ''  If Dir(mSigFile, vbDirectory) <> vbNullString Then
+  ''    mSigFile = mSigFile & Dir$(mSigFile & "*.rtf")  ' ".htm"
+  ''  Else
+  ''    mSigFile = ""
+  ''  End If
+  ''  If Not String.IsNullOrWhiteSpace(mSigFile) Then
+  ''    mSig = IO.File.ReadAllText(mSigFile)
+  ''    'mSig = "Replaced"
+  ''    mText = mSig 'mText.Replace("[EmailSigA]", mSig)
+  ''  End If
 
-    If RTIS.Elements.frmRichEdit.EditRichTextModal(mText, "Test Send Email") Then
+  ''  If RTIS.Elements.frmRichEdit.EditRichTextModal(mText, "Test Send Email") Then
 
-      mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
-      mRTDS.RtfText = mText
-      mRTDS.Document.ReplaceAll("{OriginalText}", "UpdatedText", DevExpress.XtraRichEdit.API.Native.SearchOptions.CaseSensitive)
-      mText = mRTDS.RtfText
-      mRTDS = Nothing
-      ''use  mText = RTIS.WorkflowCore.clsDocumentHelper.SearchReplaceRichText(mText, mDictionary)
+  ''    mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
+  ''    mRTDS.RtfText = mText
+  ''    mRTDS.Document.ReplaceAll("{OriginalText}", "UpdatedText", DevExpress.XtraRichEdit.API.Native.SearchOptions.CaseSensitive)
+  ''    mText = mRTDS.RtfText
+  ''    mRTDS = Nothing
+  ''    ''use  mText = RTIS.WorkflowCore.clsDocumentHelper.SearchReplaceRichText(mText, mDictionary)
 
-      If RTIS.WorkflowCore.clsSimpleEmailMessage.SendEmailRichTextAsHTML("johns@rtis.co.uk", "Subject-Test RTF AS HTML", mText) Then
-        MsgBox("Sent OK")
-      Else
-        MsgBox("Not Sent")
-      End If
-    End If
-
-
-
-    ''mText = "Dear X" & vbCrLf & vbCrLf & "From Me" & vbCrLf
-
-    ''Dim mRTDS As New DevExpress.XtraRichEdit.RichEditDocumentServer
-    ''mRTDS.Text = mText
-    ''mText = mRTDS.HtmlText
-
-
-    ''mSigFile = Environ("appdata") & "\Microsoft\Signatures\"
-    ''If Dir(mSigFile, vbDirectory) <> vbNullString Then
-    ''  mSigFile = mSigFile & Dir$(mSigFile & "*.htm")
-    ''Else
-    ''  mSigFile = ""
-    ''End If
-    ''If Not String.IsNullOrWhiteSpace(mSigFile) Then
-    ''  mSig = IO.File.ReadAllText(mSigFile)
-    ''  mText = mText & "<br>" & mSig
-    ''End If
-
-    ''If RTIS.Elements.frmRichEdit.EditHTMLTextModal(mText, "Test Send Email") Then
-
-    ''  mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
-    ''  mRTDS.Options.Export.Html.EmbedImages = True
-    ''  mRTDS.HtmlText = mText
-    ''  mText = mRTDS.RtfText
-    ''  If RTIS.WorkflowCore.clsSimpleEmailMessage.SendEmailRichTextAsHTML("johns@rtis.co.uk", "Subject-Test HTML", mText) Then
-    ''    MsgBox("Sent OK")
-    ''  Else
-    ''    MsgBox("Not Sent")
-    ''  End If
-    ''End If
+  ''    If RTIS.WorkflowCore.clsSimpleEmailMessage.SendEmailRichTextAsHTML("johns@rtis.co.uk", "Subject-Test RTF AS HTML", mText) Then
+  ''      MsgBox("Sent OK")
+  ''    Else
+  ''      MsgBox("Not Sent")
+  ''    End If
+  ''  End If
 
 
 
-    mText = "Dear X" & vbCrLf & vbCrLf & "From Me" & vbCrLf
+  ''mText = "Dear X" & vbCrLf & vbCrLf & "From Me" & vbCrLf
 
-    mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
-    mRTDS.Text = mText
-    mText = mRTDS.HtmlText
-
-    mSigFile = Environ("appdata") & "\Microsoft\Signatures\"
-    If Dir(mSigFile, vbDirectory) <> vbNullString Then
-      mSigFile = mSigFile & Dir$(mSigFile & "*.htm")
-    Else
-      mSigFile = ""
-    End If
-    If Not String.IsNullOrWhiteSpace(mSigFile) Then
-      mSig = IO.File.ReadAllText(mSigFile)
-      mText = mText & "<br>" & mSig
-    End If
-
-    If RTIS.Elements.frmRichEdit.EditHTMLTextModal(mText, "Test Send Email") Then
-
-      ''mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
-      ''mRTDS.HtmlText = mText
-      ''mRTDS.Document.ReplaceAll("{OriginalText}", "UpdatedText", DevExpress.XtraRichEdit.API.Native.SearchOptions.CaseSensitive)
-      ''mText = mRTDS.HtmlText
-      ''mRTDS = Nothing
-
-      Dim mDictionary As New Dictionary(Of String, String)
-      mDictionary.Add("{OriginalText}", "UpdatedText")
-      mText = RTIS.WorkflowCore.clsDocumentHelper.SearchReplaceHTML(mText, mDictionary)
+  ''Dim mRTDS As New DevExpress.XtraRichEdit.RichEditDocumentServer
+  ''mRTDS.Text = mText
+  ''mText = mRTDS.HtmlText
 
 
-      If RTIS.WorkflowCore.clsSimpleEmailMessage.SendEmailHTML("johns@rtis.co.uk", "Subject-Test HTML", mText) Then
-        MsgBox("Sent OK")
-      Else
-        MsgBox("Not Sent")
-      End If
-    End If
+  ''mSigFile = Environ("appdata") & "\Microsoft\Signatures\"
+  ''If Dir(mSigFile, vbDirectory) <> vbNullString Then
+  ''  mSigFile = mSigFile & Dir$(mSigFile & "*.htm")
+  ''Else
+  ''  mSigFile = ""
+  ''End If
+  ''If Not String.IsNullOrWhiteSpace(mSigFile) Then
+  ''  mSig = IO.File.ReadAllText(mSigFile)
+  ''  mText = mText & "<br>" & mSig
+  ''End If
 
-  End Sub
+  ''If RTIS.Elements.frmRichEdit.EditHTMLTextModal(mText, "Test Send Email") Then
 
-  Private Sub navbaritListaDeClientes_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritListaDeClientes.LinkClicked
-    Dim mBrw As New brwClientes(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
-    frmBrowseList.OpenFormAsMDIChild(Me, mBrw)
-  End Sub
+  ''  mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
+  ''  mRTDS.Options.Export.Html.EmbedImages = True
+  ''  mRTDS.HtmlText = mText
+  ''  mText = mRTDS.RtfText
+  ''  If RTIS.WorkflowCore.clsSimpleEmailMessage.SendEmailRichTextAsHTML("johns@rtis.co.uk", "Subject-Test HTML", mText) Then
+  ''    MsgBox("Sent OK")
+  ''  Else
+  ''    MsgBox("Not Sent")
+  ''  End If
+  ''End If
 
-  Private Sub navbaritSalesRegion_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritSalesRegion.LinkClicked
-    RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(9, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
-  End Sub
 
-  Private Sub navbaritTipoContrato_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritTipoContrato.LinkClicked
-    RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(10, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
 
-  End Sub
+  ''  mText = "Dear X" & vbCrLf & vbCrLf & "From Me" & vbCrLf
 
-  Private Sub navbaritWoodSpecie_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritWoodSpecie.LinkClicked
-    RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(11, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  ''  mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
+  ''  mRTDS.Text = mText
+  ''  mText = mRTDS.HtmlText
 
-  End Sub
+  ''  mSigFile = Environ("appdata") & "\Microsoft\Signatures\"
+  ''  If Dir(mSigFile, vbDirectory) <> vbNullString Then
+  ''    mSigFile = mSigFile & Dir$(mSigFile & "*.htm")
+  ''  Else
+  ''    mSigFile = ""
+  ''  End If
+  ''  If Not String.IsNullOrWhiteSpace(mSigFile) Then
+  ''    mSig = IO.File.ReadAllText(mSigFile)
+  ''    mText = mText & "<br>" & mSig
+  ''  End If
 
-  Private Sub navbaritPriceBracket_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritPriceBracket.LinkClicked
-    RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(12, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
-  End Sub
+  ''  If RTIS.Elements.frmRichEdit.EditHTMLTextModal(mText, "Test Send Email") Then
 
-  Private Sub navbarListaSalesOrder_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbarListaSalesOrder.LinkClicked
-    Dim mBrw As New brwSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
-    frmBrowseList.OpenFormAsMDIChild(Me, mBrw)
-  End Sub
+  ''    ''mRTDS = New DevExpress.XtraRichEdit.RichEditDocumentServer
+  ''    ''mRTDS.HtmlText = mText
+  ''    ''mRTDS.Document.ReplaceAll("{OriginalText}", "UpdatedText", DevExpress.XtraRichEdit.API.Native.SearchOptions.CaseSensitive)
+  ''    ''mText = mRTDS.HtmlText
+  ''    ''mRTDS = Nothing
+
+  ''    Dim mDictionary As New Dictionary(Of String, String)
+  ''    mDictionary.Add("{OriginalText}", "UpdatedText")
+  ''    mText = RTIS.WorkflowCore.clsDocumentHelper.SearchReplaceHTML(mText, mDictionary)
+
+
+  ''    If RTIS.WorkflowCore.clsSimpleEmailMessage.SendEmailHTML("johns@rtis.co.uk", "Subject-Test HTML", mText) Then
+  ''      MsgBox("Sent OK")
+  ''    Else
+  ''      MsgBox("Not Sent")
+  ''    End If
+  ''  End If
+
+  ''End Sub
+
+  ''Private Sub navbaritListaDeClientes_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritListaDeClientes.LinkClicked
+  ''  Dim mBrw As New brwClientes(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
+  ''  frmBrowseList.OpenFormAsMDIChild(Me, mBrw)
+  ''End Sub
+
+  ''Private Sub navbaritSalesRegion_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritSalesRegion.LinkClicked
+  ''  RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(9, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  ''End Sub
+
+  ''Private Sub navbaritTipoContrato_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritTipoContrato.LinkClicked
+  ''  RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(10, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  ''End Sub
+
+  ''Private Sub navbaritWoodSpecie_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritWoodSpecie.LinkClicked
+  ''  RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(11, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  ''End Sub
+
+  ''Private Sub navbaritPriceBracket_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritPriceBracket.LinkClicked
+  ''  RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(12, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  ''End Sub
+
+  ''Private Sub navbarListaSalesOrder_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbarListaSalesOrder.LinkClicked
+  ''  Dim mBrw As New brwSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
+  ''  frmBrowseList.OpenFormAsMDIChild(Me, mBrw)
+  ''End Sub
 
   ''Public Function DocTextSearchReplace()
   ''  Dim mRTDS As New DevExpress.XtraRichEdit.RichEditDocumentServer
