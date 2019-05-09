@@ -56,7 +56,7 @@ Partial Class frmCustomerDetail
     '
     'txtCustomerName
     '
-    Me.txtCustomerName.Location = New System.Drawing.Point(209, 57)
+    Me.txtCustomerName.Location = New System.Drawing.Point(351, 57)
     Me.txtCustomerName.Name = "txtCustomerName"
     Me.txtCustomerName.Size = New System.Drawing.Size(163, 20)
     Me.txtCustomerName.TabIndex = 0
@@ -227,9 +227,9 @@ Partial Class frmCustomerDetail
     Me.Label2.ForeColor = System.Drawing.Color.Maroon
     Me.Label2.Location = New System.Drawing.Point(80, 105)
     Me.Label2.Name = "Label2"
-    Me.Label2.Size = New System.Drawing.Size(51, 16)
+    Me.Label2.Size = New System.Drawing.Size(133, 16)
     Me.Label2.TabIndex = 13
-    Me.Label2.Text = "Label2"
+    Me.Label2.Text = "Should push on GIT"
     '
     'frmCustomerDetail
     '
