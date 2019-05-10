@@ -42,3 +42,7 @@ Public Enum eEmployeeTimeLogType
   Absent = 4
   Other = 5
 End Enum
+
+Public Enum eReportSource
+  WorkOrder = 1
+End Enum

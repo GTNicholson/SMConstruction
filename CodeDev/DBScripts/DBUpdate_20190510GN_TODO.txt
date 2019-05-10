@@ -1,0 +1,23 @@
+Create view vwWorkOrderInfo as 
+select
+WorkOrderID,
+ProductTypeID,
+Quantity,
+
+ProjectName,
+OrderTypeID,
+OrderStatusEnum,
+OrderNo,
+CustomerRef,
+ContractManagerID,
+BusinessSectorID,
+
+C.CompanyName,
+C.SalesAreaID
+
+
+from WorkOrder WO
+Inner Join SalesOrder SO on SO.SalesOrderID = WO.SalesOrderID
+Inner Join Customer C on C.CustomerID = SO.CustomerID
+
+GO

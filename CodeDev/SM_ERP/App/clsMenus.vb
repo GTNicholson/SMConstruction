@@ -11,7 +11,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.Sales, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Sales)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.Sales)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, Nothing, eActivityCode.Sales)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Sales)
 
     mLastGroup = mMenuList.AddNewGroup("Production", 0, eActivityCode.Production, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.Production)
@@ -77,6 +77,12 @@ Class clsMenuFunctions
 
   Public Shared Sub PriceBracket(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(12, rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  End Sub
+
+  Public Shared Sub WorkOrderInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewWorkOrder.CreateBIReportViewFactoryWorkOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
 End Class

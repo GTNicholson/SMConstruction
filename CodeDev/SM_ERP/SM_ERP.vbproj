@@ -80,6 +80,9 @@
     <Reference Include="DevExpress.XtraScheduler.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraSpreadsheet.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="RTIS.BIReport.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_17_1\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V17.1.dll</HintPath>
+    </Reference>
     <Reference Include="RTIS.CommonVB.V17.1">
       <HintPath>..\..\..\..\..\RTISFramework\SourceCode\Components\CommonVB\bin\Debug\RTIS.CommonVB.V17.1.dll</HintPath>
     </Reference>
@@ -160,6 +163,7 @@
     <Compile Include="App\GUI\frmTabbedMDI_DevUtil.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
