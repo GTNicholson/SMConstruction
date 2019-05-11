@@ -1,9 +1,13 @@
-﻿Public Class frmWorkOrderDetail
+﻿Imports RTIS.CommonVB
+
+Public Class frmWorkOrderDetail
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
 
   Private pFormController As fccWorkOrderDetail
+
+  Public ExitMode As Windows.Forms.DialogResult
 
   Public Sub New()
 
@@ -18,7 +22,7 @@
 
   End Sub
 
-  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rParentMDI As frmTabbedMDI)
+  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
     Dim mfrm As frmWorkOrderDetail = Nothing
 
     If vPrimaryKeyID <> 0 Then
@@ -26,7 +30,7 @@
     End If
     If mfrm Is Nothing Then
       mfrm = New frmWorkOrderDetail
-      mfrm.pFormController = New fccWorkOrderDetail(rDBConn)
+      mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.Show()
@@ -66,6 +70,52 @@
     RefreshControls()
   End Sub
 
+  Private Function CheckSave(ByVal rOption As Boolean) As Boolean
+    Dim mSaveRequired As Boolean
+    Dim mResponse As MsgBoxResult
+    Dim mRetVal As Boolean
+
+    UpdateObject()
+
+    If pFormController.IsDirty() Then
+      If rOption Then
+        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        Select Case mResponse
+          Case MsgBoxResult.Yes
+            mSaveRequired = True
+            mRetVal = False
+            ExitMode = Windows.Forms.DialogResult.Yes
+          Case MsgBoxResult.No
+            mSaveRequired = False
+            mRetVal = True
+            ExitMode = Windows.Forms.DialogResult.No
+          Case MsgBoxResult.Cancel
+            mSaveRequired = False
+            mRetVal = False
+        End Select
+      Else
+        ExitMode = Windows.Forms.DialogResult.Yes
+        mSaveRequired = True
+        mRetVal = False
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.Ignore
+      mSaveRequired = False
+      mRetVal = True
+    End If
+    If mSaveRequired Then
+      Dim mValidate As clsValidate
+      mValidate = pFormController.ValidateObject
+      If mValidate.ValOk Then
+        mRetVal = pFormController.SaveObjects()
+      Else
+        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+        mRetVal = False
+      End If
+    End If
+    CheckSave = mRetVal
+  End Function
+
 
   Private Sub RefreshControls()
     With pFormController.WorkOrder
@@ -74,9 +124,135 @@
     End With
   End Sub
 
+  Private Sub UpdateObject()
+
+  End Sub
+
   Private Sub frmWorkOrderDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
     ''FormController.ClearObjects()
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()
   End Sub
+
+  Private Sub btneWorkOrderDocument_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btneWorkOrderDocument.ButtonClick
+    Try
+      Dim mFilePath As String = String.Empty
+      UpdateObject()
+      Select Case e.Button.Kind
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
+          AddWorkOrderDocument()
+
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
+          DeleteWorkOrderDocument()
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
+          ViewWorkOrderDocument()
+      End Select
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub AddWorkOrderDocument()
+    Dim mValidate As clsValidate
+    Dim mReport As repWorkOrderDoc
+    Dim mFilePath As String
+
+    mValidate = pFormController.ValidateObject()
+    If mValidate.ValOk Then
+
+      CheckSave(False)
+
+      mReport = GetReport(eDocumentType.WorkOrderDoc)
+
+      CreateReportPDF(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, True, mReport)
+
+      CheckSave(False)
+
+      mFilePath = pFormController.WorkOrder.OutputDocuments.GetFilePath(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
+
+      RefreshControls()
+      If IO.File.Exists(mFilePath) Then
+        frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+      End If
+      '  End If
+    Else
+      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+    End If
+
+  End Sub
+
+  Public Sub DeleteWorkOrderDocument()
+
+    pFormController.WorkOrder.OutputDocuments.DeleteOutputDoc(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
+
+    RefreshControls()
+  End Sub
+
+  Public Sub ViewWorkOrderDocument()
+    Dim mFilePath As String
+    mFilePath = pFormController.WorkOrder.OutputDocuments.GetFilePath(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
+
+    If IO.File.Exists(mFilePath) Then
+      frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+    End If
+
+  End Sub
+
+  Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
+    Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+
+    Select Case vDocType
+      Case eDocumentType.WorkOrderDoc
+
+        If pFormController.WorkOrder IsNot Nothing Then
+          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder)
+        End If
+
+    End Select
+
+    Return mRetVal
+  End Function
+
+  Public Sub CreateReportPDF(ByVal vParentType As eParentType, ByVal vDocumentType As eDocumentType, ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport)
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
+    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
+
+    mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.WorkOrder.WorkOrderID
+
+    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolder, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderNo))
+
+    mFileName &= ".pdf"
+    mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+    mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+    If IO.Directory.Exists(mExportDirectory) = False Then
+      IO.Directory.CreateDirectory(mExportDirectory)
+    End If
+
+    mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+    If IO.File.Exists(mFilePath) Then
+      If vOverride = False Then If MsgBox("Please confirm you wish to recreate the PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+    End If
+
+    ' mReport = CreateReport(vDocumentType)
+    If vReport IsNot Nothing Then
+      mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
+      mExportOptions.ConvertImagesToJpeg = False
+
+      vReport.ExportToPdf(mFilePath, mExportOptions)
+
+
+      vReport.Dispose()
+      'vReport = Nothing
+
+      pFormController.WorkOrder.OutputDocuments.SetFilePath(eParentType.WorkOrder, vDocumentType, eFileType.PDF, mFilePath)
+
+    End If
+
+  End Sub
+
 End Class

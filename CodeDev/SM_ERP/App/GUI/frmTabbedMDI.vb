@@ -96,11 +96,11 @@ Public Class frmTabbedMDI
 
       mdso = New RTIS.Elements.dsoLookUpTable
       mdso.DBSource = rDBConn
-      If mdso.LoadMenuOptions(mMenuOptions, New clsGetLookUpExtension) Then
-      Else
-        mAllOK = False
+      ''If mdso.LoadMenuOptions(mMenuOptions, New clsGetLookUpExtension) Then
+      ''Else
+      ''  mAllOK = False
 
-      End If
+      ''End If
 
     Catch ex As Exception
       mAllOK = False

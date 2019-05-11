@@ -19,11 +19,8 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, Nothing, eActivityCode.Production)
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Region de Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesRegion, eActivityCode.Configuration)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tipo de Contrato", eMenuIconType.Grid, AddressOf clsMenuFunctions.ContractType, eActivityCode.Configuration)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Especie de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSpecies, eActivityCode.Configuration)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Rango de Precio", eMenuIconType.Grid, AddressOf clsMenuFunctions.PriceBracket, eActivityCode.Configuration)
-
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Empleados", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Employees, eActivityCode.Configuration)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tablas de Configuracion", eMenuIconType.Admin, AddressOf clsMenuFunctions.LookUpLists, eActivityCode.Configuration)
 
     ''mLastGroup = mMenuList.AddNewGroup("Contract Management", 0, eActivityCode.ContractManagement, True)
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Contracts / Orders", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.ContractManagement_ContractsOrders)
@@ -83,6 +80,15 @@ Class clsMenuFunctions
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewWorkOrder.CreateBIReportViewFactoryWorkOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub Employees(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mRoleList As IList = CType(rRTISGlobal, AppRTISGlobal).RefLists.RefIList(appRefLists.Roles)
+    frmAdminEmployeeOverride.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal, ePermissionCode.ePC_Full, mRoleList)
+  End Sub
+
+  Public Shared Sub LookUpLists(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmLookupTableList.OpenForm(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
   End Sub
 
 End Class

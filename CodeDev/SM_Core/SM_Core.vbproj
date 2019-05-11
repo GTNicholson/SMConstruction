@@ -307,14 +307,18 @@
     <Compile Include="App\appEnumConstants.vb" />
     <Compile Include="App\appGlobal.vb" />
     <Compile Include="App\BO\appRefLists.vb" />
+    <Compile Include="App\BO\dmOutputDocument.vb" />
     <Compile Include="App\clsLookupValidation.vb" />
     <Compile Include="App\clsRTISAppSettings.vb" />
     <Compile Include="App\dsoRTISGlobal.vb" />
     <Compile Include="App\DSO\dsoAppRefLists.vb" />
+    <Compile Include="App\DSO\dtoOutputDocument.vb" />
     <Compile Include="BIReports\DSO\dsoBIWorkOrder.vb" />
     <Compile Include="BIReports\DSO\dtoWorkOrderInfo.vb" />
     <Compile Include="Class1.vb" />
     <Compile Include="HR\BO\dmEmployeeSM.vb" />
+    <Compile Include="HR\DSO\dsoAdminEmployeeOverride.vb" />
+    <Compile Include="HR\DSO\dtoEmployeeDTM.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

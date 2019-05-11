@@ -35,7 +35,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("No row selected")
     Else
-      frmWorkOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, rForm.ParentForm)
+      frmWorkOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
 
       'Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag

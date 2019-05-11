@@ -58,6 +58,7 @@
     <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.1.UI, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -66,6 +67,7 @@
     <Reference Include="DevExpress.XtraCharts.v17.1.Extensions, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v17.1.UI, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -151,6 +153,12 @@
     <Compile Include="App\GUI\frmDisplayError.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="App\GUI\frmPDFViewer.designer.vb">
+      <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmPDFViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="App\GUI\frmTabbedMDI.designer.vb">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>
     </Compile>
@@ -171,12 +179,33 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HR\GUI\fccAdminEmployeeOverride.vb" />
     <Compile Include="General\GUI\fccHomeManagement.vb" />
+    <Compile Include="General\GUI\fccLookupTableList.vb" />
+    <Compile Include="HR\GUI\frmAdminEmployeeOverride.designer.vb">
+      <DependentUpon>frmAdminEmployeeOverride.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HR\GUI\frmAdminEmployeeOverride.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="General\GUI\frmHomeManagement.Designer.vb">
       <DependentUpon>frmHomeManagement.vb</DependentUpon>
     </Compile>
     <Compile Include="General\GUI\frmHomeManagement.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="General\GUI\frmLookupTableList.designer.vb">
+      <DependentUpon>frmLookupTableList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="General\GUI\frmLookupTableList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\GUI\uccEmployeeDetailsOverride.vb" />
+    <Compile Include="HR\GUI\uctEmployeeDetailsReplacement.designer.vb">
+      <DependentUpon>uctEmployeeDetailsReplacement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HR\GUI\uctEmployeeDetailsReplacement.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -231,11 +260,20 @@
     <Compile Include="Sales\GUI\frmWorkOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderDoc.Designer.vb">
+      <DependentUpon>repWorkOrderDoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderDoc.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App\GUI\frmDisplayError.resx">
       <DependentUpon>frmDisplayError.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmPDFViewer.resx">
+      <DependentUpon>frmPDFViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App\GUI\frmTabbedMDI.resx">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>
@@ -246,8 +284,17 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HR\GUI\frmAdminEmployeeOverride.resx">
+      <DependentUpon>frmAdminEmployeeOverride.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="General\GUI\frmHomeManagement.resx">
       <DependentUpon>frmHomeManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\GUI\frmLookupTableList.resx">
+      <DependentUpon>frmLookupTableList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR\GUI\uctEmployeeDetailsReplacement.resx">
+      <DependentUpon>uctEmployeeDetailsReplacement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -271,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
       <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderDoc.resx">
+      <DependentUpon>repWorkOrderDoc.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

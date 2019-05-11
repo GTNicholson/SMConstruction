@@ -192,4 +192,8 @@ Public Class frmTabbedMDI_DevUtil
     RTIS.DeveloperUtilities.frmDataCompareTest.DisplayAsModal(mRTISSettingFile.MainConn)
     mRTISSettingFile = Nothing
   End Sub
+
+  Private Sub navbaritLookUpConfig_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritLookUpConfig.LinkClicked
+    RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(3, Me, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, New clsGetLookUpExtension)
+  End Sub
 End Class
