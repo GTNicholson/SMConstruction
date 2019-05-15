@@ -4,8 +4,12 @@ Imports RTIS.CommonVB
 Public Class dmWorkOrder : Inherits dmBase
   Private pWorkOrderID As Int32
   Private pSalesOrderID As Int32
+  Private pWorkOrderNo As String
   Private pProductTypeID As Int32
   Private pQuantity As Double
+  Private pDateCreated As Date
+
+  Private pOutputDocuments As colOutputDocuments
 
   Public Sub New()
     MyBase.New()
@@ -13,6 +17,7 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pOutputDocuments = New colOutputDocuments
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -21,6 +26,7 @@ Public Class dmWorkOrder : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pOutputDocuments = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -41,9 +47,13 @@ Public Class dmWorkOrder : Inherits dmBase
     With CType(rNewItem, dmWorkOrder)
       .WorkOrderID = WorkOrderID
       .SalesOrderID = SalesOrderID
+      .WorkOrderNo = WorkOrderNo
       .ProductTypeID = ProductTypeID
       .Quantity = Quantity
+      .DateCreated = DateCreated
       'Add entries here for each collection and class property
+
+      .OutputDocuments = OutputDocuments.Clone
 
       'Entries for object management
 
@@ -91,6 +101,36 @@ Public Class dmWorkOrder : Inherits dmBase
       pQuantity = value
     End Set
   End Property
+
+  Public Property WorkOrderNo As String
+    Get
+      Return pWorkOrderNo
+    End Get
+    Set(value As String)
+      If pWorkOrderNo <> value Then IsDirty = True
+      pWorkOrderNo = value
+    End Set
+  End Property
+
+  Public Property DateCreated As Date
+    Get
+      Return pDateCreated
+    End Get
+    Set(value As Date)
+      If pDateCreated <> value Then IsDirty = True
+      pDateCreated = value
+    End Set
+  End Property
+
+  Public Property OutputDocuments As colOutputDocuments
+    Get
+      Return pOutputDocuments
+    End Get
+    Set(value As colOutputDocuments)
+      pOutputDocuments = value
+    End Set
+  End Property
+
 
 
 End Class

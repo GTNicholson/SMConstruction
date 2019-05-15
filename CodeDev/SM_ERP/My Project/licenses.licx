@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DevExpress.XtraEditors.DateEdit, DevExpress.XtraEditors.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraTabbedMdi.XtraTabbedMdiManager, DevExpress.XtraBars.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
@@ -9,3 +10,19 @@ DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v17.1, Version=17.1.4.0, Cu
 DevExpress.XtraBars.BarManager, DevExpress.XtraBars.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.Repository.RepositoryItemTextEdit, DevExpress.XtraEditors.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraTreeList.TreeList, DevExpress.XtraTreeList.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+=======
+DevExpress.XtraNavBar.NavBarControl, DevExpress.XtraNavBar.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.Repository.RepositoryItemTextEdit, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraTreeList.TreeList, DevExpress.XtraTreeList.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraBars.BarManager, DevExpress.XtraBars.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraCharts.ChartControl, DevExpress.XtraCharts.v17.1.UI, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraTabbedMdi.XtraTabbedMdiManager, DevExpress.XtraBars.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.ComboBoxEdit, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.DateEdit, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.ButtonEdit, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox, DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+>>>>>>> 30ee7cc877760d45f281347858407e86074664fd

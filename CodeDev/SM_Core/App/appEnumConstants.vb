@@ -42,3 +42,27 @@ Public Enum eEmployeeTimeLogType
   Absent = 4
   Other = 5
 End Enum
+
+Public Enum eReportSource
+  WorkOrder = 1
+End Enum
+
+Public Enum eParentType
+  WorkOrder = 1
+End Enum
+
+Public Enum eFileType
+  Excel = 1
+  PDF = 2
+  SNX = 3
+End Enum
+
+Public Enum eDocumentType
+  WorkOrderDoc = 1
+End Enum
+
+Public Class clsConstants
+
+  Public Const WorkOrderFileFolder As String = "OTArchivos"
+
+End Class

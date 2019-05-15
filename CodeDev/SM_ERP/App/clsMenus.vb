@@ -11,16 +11,16 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.Sales, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Sales)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.Sales)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Sales)
 
     mLastGroup = mMenuList.AddNewGroup("Production", 0, eActivityCode.Production, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.Production)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrad de Horas Laborales", eMenuIconType.Console, AddressOf clsMenuFunctions.TimeSheetEntry, eActivityCode.Production)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, Nothing, eActivityCode.Production)
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Region de Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesRegion, eActivityCode.Configuration)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tipo de Contrato", eMenuIconType.Grid, AddressOf clsMenuFunctions.ContractType, eActivityCode.Configuration)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Especie de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSpecies, eActivityCode.Configuration)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Rango de Precio", eMenuIconType.Grid, AddressOf clsMenuFunctions.PriceBracket, eActivityCode.Configuration)
-
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Empleados", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Employees, eActivityCode.Configuration)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tablas de Configuracion", eMenuIconType.Admin, AddressOf clsMenuFunctions.LookUpLists, eActivityCode.Configuration)
 
     ''mLastGroup = mMenuList.AddNewGroup("Contract Management", 0, eActivityCode.ContractManagement, True)
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Contracts / Orders", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.ContractManagement_ContractsOrders)
@@ -51,6 +51,11 @@ Class clsMenuFunctions
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
+  Public Shared Sub WorksOrderBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, 1)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+  End Sub
+
   Public Shared Sub TimeSheetEntry(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     frmTimeSheetEntry.OpenFormModal(My.Application.RTISUserSession.CreateMainDBConn)
   End Sub
@@ -69,6 +74,21 @@ Class clsMenuFunctions
 
   Public Shared Sub PriceBracket(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     RTIS.Elements.frmRTISLookUpTable.OpenLookUpTableDialogue(12, rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, Nothing)
+  End Sub
+
+  Public Shared Sub WorkOrderInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewWorkOrder.CreateBIReportViewFactoryWorkOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub Employees(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mRoleList As IList = CType(rRTISGlobal, AppRTISGlobal).RefLists.RefIList(appRefLists.Roles)
+    frmAdminEmployeeOverride.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal, ePermissionCode.ePC_Full, mRoleList)
+  End Sub
+
+  Public Shared Sub LookUpLists(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmLookupTableList.OpenForm(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
   End Sub
 
 End Class

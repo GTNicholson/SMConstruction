@@ -1,0 +1,43 @@
+Create view vwWorkOrderInfo as 
+select
+WorkOrderID,
+ProductTypeID,
+Quantity,
+
+ProjectName,
+OrderTypeID,
+OrderStatusEnum,
+OrderNo,
+CustomerRef,
+ContractManagerID,
+BusinessSectorID,
+
+C.CompanyName,
+C.SalesAreaID
+
+
+from WorkOrder WO
+Inner Join SalesOrder SO on SO.SalesOrderID = WO.SalesOrderID
+Inner Join Customer C on C.CustomerID = SO.CustomerID
+
+GO
+
+CREATE TABLE dbo.OutputDocument
+(
+OutputDocumentID                    INT IDENTITY(1,1) NOT NULL,
+ParentID                            INT,
+ParentTypeID                        TINYINT,
+DocumentTypeID                      TINYINT,
+FileTypeID                          TINYINT,
+FilePath                            VARCHAR(512),
+VersionRef                          VARCHAR(128),
+DateCreated                         DATETIME,
+CONSTRAINT PK_OutputDocument PRIMARY KEY CLUSTERED ( OutputDocumentID )
+)
+ON [PRIMARY]
+
+GO
+
+alter table workorder add WorkOrderNo Varchar(10)
+
+GO
