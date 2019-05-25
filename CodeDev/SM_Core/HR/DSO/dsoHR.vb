@@ -18,7 +18,7 @@ Public Class dsoHR
       pDBConn.Connect()
 
       mdto = New dtoTimeSheetEntry(pDBConn)
-      mWhere = String.Format("EmployeeID = {0} And StartTime >= '{1}' And StartTime < '{2}'", vEmployeeID, vWCDate.ToString("yyyy/MM/dd"), vWCDate.AddDays(7).ToString("yyyy/MM/dd"))
+      mWhere = String.Format("EmployeeID = {0} And StartTime >= '{1}' And StartTime < '{2}'", vEmployeeID, vWCDate.ToString("yyyyMMdd"), vWCDate.AddDays(7).ToString("yyyyMMdd"))
       mdto.LoadTimeSheetEntryCollectionByWhere(rTimeSheetEntrys, mWhere)
 
       mOK = True
