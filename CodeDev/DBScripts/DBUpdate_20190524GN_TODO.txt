@@ -1,0 +1,3 @@
+alter table TimeSheetEntry add Note Varchar(250)
+
+GO

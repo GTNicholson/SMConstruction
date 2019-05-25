@@ -23,8 +23,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
-    'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, 0, BrowseRefreshTracker,eFormMode.eFMFormModeAdd)
-    'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
+    frmWorkOrderDetail.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
     Return mReloadData
   End Function
 
@@ -84,16 +83,18 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
-    Dim mDataTable As DataTable
+    Dim mWOIs As New colWorkOrderInfos
+    Dim mDSO As New dsoWorkOrder(pDBConn)
+
+
     Dim mOK As Boolean
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
-      DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From WorkOrder Order By WorkOrderID")
+      mDSO.LoadWorkOrderInfos(mWOIs)
 
-      gridBrowseList.DataSource = mDataTable
+      gridBrowseList.DataSource = mWOIs
 
       '
       'mOK = mdsoSalesQuote.LoadCustomerTable(mDataTable) 'TODO - Restrict to Live quotes etc.
@@ -226,7 +227,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     Dim mOK As Boolean = True
     Try
       LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWorkOrder.xml")
-      ListTitle = "List Title"
+      ListTitle = "Ordenes de Trabajo"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 

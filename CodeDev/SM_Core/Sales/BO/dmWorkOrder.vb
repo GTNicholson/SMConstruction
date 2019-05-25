@@ -8,6 +8,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pProductTypeID As Int32
   Private pQuantity As Double
   Private pDateCreated As Date
+  Private pDescription As String
 
   Private pOutputDocuments As colOutputDocuments
 
@@ -51,6 +52,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .ProductTypeID = ProductTypeID
       .Quantity = Quantity
       .DateCreated = DateCreated
+      .pDescription = Description
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -131,6 +133,15 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property Description As String
+    Get
+      Return pDescription
+    End Get
+    Set(value As String)
+      If pDescription <> value Then IsDirty = True
+      pDescription = value
+    End Set
+  End Property
 
 
 End Class

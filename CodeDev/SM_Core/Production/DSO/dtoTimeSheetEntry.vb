@@ -58,8 +58,10 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TimeSheetEntryTypeID", .TimeSheetEntryTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeID", .EmployeeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkCentreID", .WorkCentreID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StartTime", DateToDBValue(.StartTime))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EndTime", DateToDBValue(.EndTime))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Note", StringToDBValue(.Note))
     End With
 
   End Sub
@@ -74,8 +76,10 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
         .TimeSheetEntryTypeID = DBReadInt32(rDataReader, "TimeSheetEntryTypeID")
         .EmployeeID = DBReadInt32(rDataReader, "EmployeeID")
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
+        .WorkCentreID = DBReadInt32(rDataReader, "WorkCentreID")
         .StartTime = DBReadDateTime(rDataReader, "StartTime")
         .EndTime = DBReadDateTime(rDataReader, "EndTime")
+        .Note = DBReadString(rDataReader, "Note")
         pTimeSheetEntry.IsDirty = False
       End With
       mOK = True
@@ -130,6 +134,15 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadTimeSheetEntryCollectionByWhere(ByRef rTimeSheetEntrys As colTimeSheetEntrys, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rTimeSheetEntrys, mParams, "TimeSheetEntryID", vWhere)
+    rTimeSheetEntrys.TrackDeleted = True
+    If mOK Then rTimeSheetEntrys.IsDirty = False
+    Return mOK
+  End Function
+
 
   Public Function SaveTimeSheetEntryCollection(ByRef rCollection As colTimeSheetEntrys, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
@@ -137,20 +150,7 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
-      ''Approach where delete items not found in the collection
-      ''If rCollection.SomeRemoved Then
-      ''  For Each Me.pTimeSheetEntry In rCollection
-      ''    If pTimeSheetEntry.TimeSheetEntryID <> 0 Then
-      ''      mCount = mCount + 1
-      ''      If mCount > 1 Then mIDs = mIDs & ", "
-      ''       mIDs = mIDs & pTimeSheetEntry.TimeSheetEntryID.ToString
-      ''    End If
-      ''  Next
-      ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
-      ''Else
-      ''   mAllOK = True
-      ''End If
+
 
       ''Alternative Approach - where maintain collection of deleted items
       If rCollection.SomeDeleted Then

@@ -1,0 +1,97 @@
+Alter table WorkOrder add Description Varchar(1000)
+
+GO
+
+ALTER view vwWorkOrderInfo as 
+select
+WorkOrderID,
+WorkOrderNo,
+ProductTypeID,
+Quantity,
+Description,
+
+ProjectName,
+OrderTypeID,
+OrderStatusEnum,
+OrderNo,
+CustomerRef,
+ContractManagerID,
+BusinessSectorID,
+
+C.CompanyName,
+C.SalesAreaID
+
+
+from WorkOrder WO
+Inner Join SalesOrder SO on SO.SalesOrderID = WO.SalesOrderID
+Inner Join Customer C on C.CustomerID = SO.CustomerID
+
+GO
+
+alter Table TimeSheetEntry Add WorkCentreID INT
+
+GO
+
+Create view vwTimeSheetEntryInfo as 
+select 
+
+TS.TimeSheetEntryID,
+TS.TimeSheetEntryTypeID,
+TS.EmployeeID,
+TS.WorkOrderID,
+TS.StartTime,
+TS.EndTime,
+TS.Note,
+TS.WorkCentreID,
+
+WO.WorkOrderNo,
+WO.Description
+
+from TimeSheetEntry TS
+Left Join WorkOrder WO on WO.WorkOrderID = TS.WorkOrderID
+
+GO
+
+drop table workorder
+
+GO
+
+CREATE TABLE dbo.WorkOrder
+(
+WorkOrderID                         INT Identity(1,1),
+SalesOrderID                        INT,
+ProductTypeID                       INT,
+Quantity                            FLOAT,
+WorkOrderNo                         VARCHAR(10),
+Description                         VARCHAR(1000),
+CONSTRAINT PK_WorkOrder PRIMARY KEY CLUSTERED ( WorkOrderID )
+)
+ON [PRIMARY]
+
+GO
+
+ALTER view vwWorkOrderInfo as 
+select
+WorkOrderID,
+WorkOrderNo,
+ProductTypeID,
+Quantity,
+Description,
+
+ProjectName,
+OrderTypeID,
+OrderStatusEnum,
+OrderNo,
+CustomerRef,
+ContractManagerID,
+BusinessSectorID,
+
+C.CompanyName,
+C.SalesAreaID
+
+
+from WorkOrder WO
+Left Join SalesOrder SO on SO.SalesOrderID = WO.SalesOrderID
+Left Join Customer C on C.CustomerID = SO.CustomerID
+
+GO

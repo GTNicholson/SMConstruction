@@ -1,4 +1,5 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraBars
+Imports RTIS.CommonVB
 
 Public Class frmWorkOrderDetail
   Private Shared sActiveForms As Collection
@@ -66,7 +67,13 @@ Public Class frmWorkOrderDetail
   End Property
 
   Private Sub frmWorkOrderDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     pFormController.LoadObjects()
+
+    LoadCombos
+
+    grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
+
     RefreshControls()
   End Sub
 
@@ -116,16 +123,30 @@ Public Class frmWorkOrderDetail
     CheckSave = mRetVal
   End Function
 
+  Private Sub LoadCombos()
+    Dim mVIs As colValueItems
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
+    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSArea, mVIs)
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
+    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSEmployee, mVIs)
+  End Sub
 
   Private Sub RefreshControls()
     With pFormController.WorkOrder
-      'txtCustomerID.Text = .CustomerID
-      'txtCustomerName.Text = .CompanyName
+      If .WorkOrderNo = "" Then
+        Me.Text = "O.T. Nuevo"
+      Else
+        Me.Text = "O.T. " & .WorkOrderNo
+      End If
+      btnWorkOrderNumber.EditValue = .WorkOrderNo
+      txtDescription.Text = .Description
     End With
   End Sub
 
   Private Sub UpdateObject()
-
+    With pFormController.WorkOrder
+      .Description = txtDescription.Text
+    End With
   End Sub
 
   Private Sub frmWorkOrderDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -255,4 +276,18 @@ Public Class frmWorkOrderDetail
 
   End Sub
 
+  Private Sub btnWorkOrderNumber_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnWorkOrderNumber.ButtonClick
+    pFormController.RaiseWorkOrderNo()
+    RefreshControls()
+  End Sub
+
+  Private Sub bbtnSave_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnSave.ItemClick
+    Try
+      UpdateObject()
+      CheckSave(False)
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class

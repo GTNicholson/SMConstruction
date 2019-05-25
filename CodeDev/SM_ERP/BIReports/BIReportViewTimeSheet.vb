@@ -1,11 +1,12 @@
-﻿
-Imports RTIS.BIReport
+﻿Imports RTIS.BIReport
 Imports RTIS.DataLayer
 
-Public Class BIReportViewWorkOrder
-  Private Enum eBIWorkOrderLayoutID
-    WorkOrderList = 1
-    WorkOrderSummary = 2
+
+
+Public Class BIReportViewTimeSheet
+  Private Enum eBITimeSheetLayoutID
+    TimeSheetList = 1
+    TimeSheetSummary = 2
   End Enum
 
   Private Enum eBIReportDefs
@@ -15,17 +16,16 @@ Public Class BIReportViewWorkOrder
   Public Enum eParameters
     StartDate = 1
     EndDate = 2
-    Status = 3
   End Enum
 
-  Public Shared Function CreateBIReportViewFactoryWorkOrder(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
+  Public Shared Function CreateBIReportViewFactoryTimeSheet(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
     Dim mBIReportView As New clsBIReportView
     Dim mLayoutLoader As New clsBILayoutLoaderFromFile
     Dim mConditionSetterList As clsBIConditionSetterList
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
-    mBIReportView.BIReportSource = WorkOrderReportSource()
-    mBIReportView.DataSourceLoader = New dsoBIWorkOrder(rDBConn, rRTISGlobal, mBIReportView)
+    mBIReportView.BIReportSource = TimeSheetReportSource()
+    mBIReportView.DataSourceLoader = New dsoBITimeSheet(rDBConn, rRTISGlobal, mBIReportView)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader
@@ -59,13 +59,13 @@ Public Class BIReportViewWorkOrder
     Return mBIReportView
   End Function
 
-  Public Shared Function WorkOrderReportSource() As dmBIReportSource
+  Public Shared Function TimeSheetReportSource() As dmBIReportSource
     Dim mRepSource As dmBIReportSource
     Dim mThreeMonthsAgo As DateTime = DateTime.Today.AddMonths(-3)
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.WorkOrder
-    mRepSource.Name = "Ordenes de Trabajo"
+    mRepSource.Name = "Hojas de Trabajo"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -83,19 +83,19 @@ Public Class BIReportViewWorkOrder
     Dim mRepLayout As New dmBIGridLayout
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.WorkOrderList
+    mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetList
     mRepLayout.InterfaceType = 1
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIWorkOrderList.xml"
-    mRepLayout.LayoutName = "Orden de Trabajo Lista"
+    mRepLayout.LayoutFileName = "BITimeSheetList.xml"
+    mRepLayout.LayoutName = "Hoja de Trabajo Lista"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.WorkOrderSummary
+    mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetSummary
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIWorkOrderSummary.xml"
-    mRepLayout.LayoutName = "Orden de Trabajo Resumen"
+    mRepLayout.LayoutFileName = "BITimeSheetSummary.xml"
+    mRepLayout.LayoutName = "Hoja de Trabajo Resumen"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 
@@ -146,9 +146,9 @@ Public Class BIReportViewWorkOrder
 
     mRepDef = New dmBIReportDef
     mRepDef.ReportName = "General"
-    mRepDef.Description = "Work Orders"
+    mRepDef.Description = "Hoja de Trabajo"
     mRepDef.BIReportDefID = eBIReportDefs.General
-    mRepDef.BIGridLayoutID = eBIWorkOrderLayoutID.WorkOrderList
+    mRepDef.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetList
     Return mRepDef
   End Function
 

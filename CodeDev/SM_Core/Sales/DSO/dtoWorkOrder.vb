@@ -58,6 +58,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID", .ProductTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderNo", StringToDBValue(.WorkOrderNo))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
     End With
 
   End Sub
@@ -73,6 +74,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .ProductTypeID = DBReadInt32(rDataReader, "ProductTypeID")
         .Quantity = DBReadDouble(rDataReader, "Quantity")
         .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+        .Description = DBReadString(rDataReader, "Description")
         pWorkOrder.IsDirty = False
       End With
       mOK = True

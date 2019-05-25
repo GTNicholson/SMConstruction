@@ -1,6 +1,6 @@
 ﻿Imports RTIS.DataLayer.clsDBConnBase
 
-Public Class dtoEmployeeDTM : Inherits RTIS.ERPCore.dtoEmployee
+Public Class dtoEmployeeSM : Inherits RTIS.ERPCore.dtoEmployee
   Public Sub New(ByVal vDBConn As RTIS.DataLayer.clsDBConnBase)
     MyBase.New(vDBConn)
   End Sub

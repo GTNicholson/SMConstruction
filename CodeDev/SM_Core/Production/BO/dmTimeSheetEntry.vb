@@ -6,8 +6,10 @@ Public Class dmTimeSheetEntry : Inherits dmBase
   Private pTimeSheetEntryTypeID As Int32
   Private pEmployeeID As Int32
   Private pWorkOrderID As Int32
+  Private pWorkCentreID As Int32
   Private pStartTime As DateTime
   Private pEndTime As DateTime
+  Private pNote As String
 
   Public Sub New()
     MyBase.New()
@@ -47,6 +49,7 @@ Public Class dmTimeSheetEntry : Inherits dmBase
       .WorkOrderID = WorkOrderID
       .StartTime = StartTime
       .EndTime = EndTime
+      .Note = Note
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -96,6 +99,16 @@ Public Class dmTimeSheetEntry : Inherits dmBase
     End Set
   End Property
 
+  Public Property WorkCentreID() As Int32
+    Get
+      Return pWorkCentreID
+    End Get
+    Set(ByVal value As Int32)
+      If pWorkCentreID <> value Then IsDirty = True
+      pWorkCentreID = value
+    End Set
+  End Property
+
   Public Property StartTime() As DateTime
     Get
       Return pStartTime
@@ -113,6 +126,26 @@ Public Class dmTimeSheetEntry : Inherits dmBase
     Set(ByVal value As DateTime)
       If pEndTime <> value Then IsDirty = True
       pEndTime = value
+    End Set
+  End Property
+
+  Public ReadOnly Property Duration As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      If pStartTime <> New Date And pEndTime <> New Date Then
+        mRetVal = Math.Round(DateDiff(DateInterval.Minute, pStartTime, pEndTime) / 60, 1)
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public Property Note() As String
+    Get
+      Return pNote
+    End Get
+    Set(ByVal value As String)
+      If pNote <> value Then IsDirty = True
+      pNote = value
     End Set
   End Property
 
@@ -153,6 +186,66 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
       End If
     Next
     Return mIndex
+  End Function
+
+  Public Function IndexFromStartDateTime(ByVal vDateTime As Date) As Integer
+    Dim mItem As dmTimeSheetEntry
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.StartTime <= vDateTime And mItem.EndTime > vDateTime Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+
+  Public Function ItemEarlierSameDay(ByVal vDateTime As Date) As dmTimeSheetEntry
+    Dim mRetVal As dmTimeSheetEntry = Nothing
+    For Each mItem In MyBase.Items
+      If mItem.EndTime.Date = vDateTime.Date Then
+        If mItem.EndTime < vDateTime Then
+          If mRetVal Is Nothing Then
+            mRetVal = mItem
+          Else
+            If mItem.EndTime > mRetVal.EndTime Then
+              mRetVal = mItem
+            End If
+          End If
+        End If
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function ItemLaterSameDay(ByVal vDateTime As Date) As dmTimeSheetEntry
+    Dim mRetVal As dmTimeSheetEntry = Nothing
+    For Each mItem In MyBase.Items
+      If mItem.EndTime.Date = vDateTime.Date Then
+        If mItem.StartTime > vDateTime Then
+          If mRetVal Is Nothing Then
+            mRetVal = mItem
+          Else
+            If mItem.EndTime < mRetVal.EndTime Then
+              mRetVal = mItem
+            End If
+          End If
+        End If
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromStartDateTime(ByVal vDateTime As Date) As dmTimeSheetEntry
+    Dim mRetVal As dmTimeSheetEntry = Nothing
+    Dim mIndex As Integer
+    mIndex = IndexFromStartDateTime(vDateTime)
+    If mIndex <> -1 Then
+      mRetVal = Me.Items(mIndex)
+    End If
+    Return mRetVal
   End Function
 
   Public Sub New()
