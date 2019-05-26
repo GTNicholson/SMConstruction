@@ -1,5 +1,31 @@
 ﻿<XtraSerializer version="1.0" application="PivotGrid">
   <property name="#LayoutVersion" />
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="Cell" iskey="true" value="Cell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="FieldValue" iskey="true" value="FieldValue">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial Rounded MT Bold, 8.25pt</property>
+    </property>
+    <property name="GrandTotalCell" iskey="true" value="GrandTotalCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="TotalCell" iskey="true" value="TotalCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+  </property>
   <property name="Fields" iskey="true" value="19">
     <property name="Item1" isnull="true" iskey="true">
       <property name="CustomTotals" iskey="true" value="0" />
@@ -354,6 +380,7 @@
       <property name="Name">fieldTimeSheetDateWC</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">TimeSheetDateWC</property>
+      <property name="Caption">Semana</property>
       <property name="Index">10</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -365,6 +392,14 @@
         <property name="DeferFilterString" />
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
+      </property>
+      <property name="CellFormat" isnull="true" iskey="true">
+        <property name="FormatString">dd/MM</property>
+        <property name="FormatType">None</property>
+      </property>
+      <property name="ValueFormat" isnull="true" iskey="true">
+        <property name="FormatString">dd/MM</property>
+        <property name="FormatType">DateTime</property>
       </property>
       <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
@@ -468,6 +503,10 @@
         <property name="DeferFilterString" />
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
+      </property>
+      <property name="CellFormat" isnull="true" iskey="true">
+        <property name="FormatString">N0</property>
+        <property name="FormatType">Numeric</property>
       </property>
       <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
@@ -664,6 +703,5 @@
     <property name="FieldValuesProvideMode">DisplayText</property>
   </property>
   <property name="Groups" iskey="true" value="0" />
-  <property name="FormatRules" iskey="true" value="0" />
   <property name="FormatConditions" iskey="true" value="0" />
 </XtraSerializer>
