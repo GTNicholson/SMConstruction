@@ -18,12 +18,12 @@ Public Class dsoAdminEmployeeOverride : Inherits dsoAdminEmployee
 
   Public Overrides Function LoadEmployees(ByRef rEmployees As colEmployees) As Boolean
     Dim mOk As Boolean
-    Dim mdto As dtoEmployeeDTM
+    Dim mdto As dtoEmployeeSM
 
     Try
 
       If pDBConn.Connect Then
-        mdto = New dtoEmployeeDTM(pDBConn)
+        mdto = New dtoEmployeeSM(pDBConn)
 
         mOk = mdto.LoadEmployeeCollection(rEmployees)
 
@@ -45,14 +45,14 @@ Public Class dsoAdminEmployeeOverride : Inherits dsoAdminEmployee
 
   Public Overrides Function SaveEmployee(ByRef rEmployee As dmEmployee) As Boolean
     Dim mOk As Boolean
-    Dim mdto As dtoEmployeeDTM
+    Dim mdto As dtoEmployeeSM
     'Dim mdtoEmployeeSERoles As New dtoEmployeeSERole(pDBConn)
 
 
     Try
 
       If pDBConn.Connect Then
-        mdto = New dtoEmployeeDTM(pDBConn)
+        mdto = New dtoEmployeeSM(pDBConn)
 
         mOk = mdto.SaveEmployee(rEmployee)
 

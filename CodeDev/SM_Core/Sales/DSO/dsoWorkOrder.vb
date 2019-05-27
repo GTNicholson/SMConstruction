@@ -1,4 +1,5 @@
-﻿Imports RTIS.DataLayer
+﻿Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class dsoWorkOrder
   Private pDBConn As clsDBConnBase
@@ -49,6 +50,27 @@ Public Class dsoWorkOrder
     'mRetVal = True
 
     'Return mRetVal
+  End Function
+
+  Public Function LoadWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoWorkOrderInfo
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderInfo(pDBConn)
+      mdto.LoadWorkOrderInfoCollectionByWhere(rWorkOrderInfos, "")
+
+      mRetVal = True
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
   End Function
 
 End Class

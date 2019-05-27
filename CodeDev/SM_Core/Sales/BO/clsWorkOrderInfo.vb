@@ -28,9 +28,21 @@
     End Get
   End Property
 
-  Public ReadOnly Property WorkOrderID
+  Public ReadOnly Property WorkOrderID As Integer
     Get
       Return pWorkOrder.WorkOrderID
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderNo As String
+    Get
+      Return pWorkOrder.WorkOrderNo
+    End Get
+  End Property
+
+  Public ReadOnly Property Description As String
+    Get
+      Return pWorkOrder.Description
     End Get
   End Property
 
@@ -40,7 +52,7 @@
     End Get
   End Property
 
-  Public ReadOnly Property ProductType As Integer
+  Public ReadOnly Property ProductTypeID As Integer
     Get
       Return pWorkOrder.ProductTypeID
     End Get
@@ -58,6 +70,31 @@
     End Get
   End Property
 
+  Public ReadOnly Property OrderTypeID As Integer
+    Get
+      Return pSalesOrder.OrderTypeID
+    End Get
+  End Property
+
+  Public ReadOnly Property OrderStatusENUM As Integer
+    Get
+      Return pSalesOrder.OrderStatusENUM
+    End Get
+  End Property
+
+  Public ReadOnly Property CustomerRef As String
+    Get
+      Return pSalesOrder.CustomerRef
+    End Get
+  End Property
+
+
+  Public ReadOnly Property ContractManagerID As Integer
+    Get
+      Return pSalesOrder.ContractManagerID
+    End Get
+  End Property
+
   Public ReadOnly Property ProjectName As String
     Get
       Return pSalesOrder.ProjectName
@@ -70,8 +107,59 @@
     End Get
   End Property
 
+  Public ReadOnly Property SalesAreaID As String
+    Get
+      Return pCustomer.SalesAreaID
+    End Get
+  End Property
+
 End Class
 
+
 Public Class colWorkOrderInfos : Inherits List(Of clsWorkOrderInfo)
+
+  Public Function IndexFromWorkOrderID(ByVal vWorkOrderID As Integer) As Integer
+    Dim mRetVal As Integer = -1
+    Dim mIndex As Integer = -1
+    For Each mWO As clsWorkOrderInfo In Me
+      mIndex += 1
+      If mWO.WorkOrder.WorkOrderID = vWorkOrderID Then
+        mRetVal = mIndex
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromWorkOrderID(ByVal vWorkOrderID As String) As clsWorkOrderInfo
+    Dim mRetVal As clsWorkOrderInfo = Nothing
+    Dim mIndex As Integer
+    mIndex = IndexFromWorkOrderID(vWorkOrderID)
+    If mIndex <> -1 Then
+      mRetVal = Me(mIndex)
+    End If
+    Return mRetVal
+  End Function
+
+  Public Function IndexFromWorkOrderNo(ByVal vWorkOrderNo As String) As Integer
+    Dim mRetVal As Integer = -1
+    Dim mIndex As Integer = -1
+    For Each mWO As clsWorkOrderInfo In Me
+      mIndex += 1
+      If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
+        mRetVal = mIndex
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromWorkOrderNo(ByVal vWorkOrderNo As String) As clsWorkOrderInfo
+    Dim mRetVal As clsWorkOrderInfo = Nothing
+    Dim mIndex As Integer
+    mIndex = IndexFromWorkOrderNo(vWorkOrderNo)
+    If mIndex <> -1 Then
+      mRetVal = Me(mIndex)
+    End If
+    Return mRetVal
+  End Function
 
 End Class

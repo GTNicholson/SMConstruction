@@ -77,7 +77,7 @@ Public Class dsoAppRefLists
           mOK = True
 
         Case appRefLists.Employees
-          'mItem.IList = LoadEmployees()
+          mItem.IList = LoadEmployees()
           mOK = True
 
         Case appRefLists.Roles
@@ -112,7 +112,7 @@ Public Class dsoAppRefLists
   End Function
 
   Public Function LoadEmployees() As IList
-    Dim mdtoEmployees As New RTIS.ERPCore.dtoEmployee(pDBConn)
+    Dim mdtoEmployees As New dtoEmployeeSM(pDBConn)
     Dim mEmployees As New RTIS.ERPCore.colEmployees
     ''Dim mdtoEmployeeSERoles As New dtoEmployeeSERole(pDBConn)
 

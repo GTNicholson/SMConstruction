@@ -7,9 +7,12 @@ Public Class fccWorkOrderDetail
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
 
+  Private pTimeSheetEntrys As colTimeSheetEntrys
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
+    pTimeSheetEntrys = New colTimeSheetEntrys
   End Sub
 
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
@@ -33,18 +36,35 @@ Public Class fccWorkOrderDetail
     End Get
   End Property
 
+  Public ReadOnly Property TimeSheetEntrys As colTimeSheetEntrys
+    Get
+      Return pTimeSheetEntrys
+    End Get
+  End Property
+
 
   Public Sub LoadObjects()
     Dim mdso As dsoWorkOrder
+    Dim mdsoHR As dsoHR
 
     pWorkOrder = New dmWorkOrder
+    If pPrimaryKeyID <> 0 Then
+      mdso = New dsoWorkOrder(pDBConn)
+      mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
 
-    mdso = New dsoWorkOrder(pDBConn)
-    mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
+      mdsoHR = New dsoHR(pDBConn)
+      pTimeSheetEntrys = New colTimeSheetEntrys
+      mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)
+    End If
   End Sub
 
   Public Function SaveObjects() As Boolean
     Dim mRetVal As Boolean
+    Dim mdso As dsoSales
+
+    mdso = New dsoSales(pDBConn)
+    mdso.SaveWorksOrderDown(pWorkOrder)
+
     mRetVal = True
     Return mRetVal
   End Function
@@ -62,6 +82,16 @@ Public Class fccWorkOrderDetail
     Return mRetVal
   End Function
 
+  Public Sub RaiseWorkOrderNo()
+    Dim mdso As dsoGeneral
+    Dim mWONo As Integer
+
+    mdso = New dsoGeneral(pDBConn)
+    mWONo = mdso.GetNextTallyWorkOrderNo()
+
+    pWorkOrder.WorkOrderNo = clsConstants.WorkOrderNoPrefix & mWONo.ToString("00000")
+
+  End Sub
 
 
 

@@ -54,7 +54,9 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
       With pWorkOrderInfo.WorkOrder
         .WorkOrderID = DBReadInteger(rDataReader, "WorkOrderID")
+        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
         .Quantity = DBReadDouble(rDataReader, "Quantity")
+        .Description = DBReadString(rDataReader, "Description")
       End With
 
       With pWorkOrderInfo.SalesOrder
