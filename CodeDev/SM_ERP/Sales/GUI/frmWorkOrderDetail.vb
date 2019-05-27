@@ -1,10 +1,13 @@
 ﻿Imports DevExpress.XtraBars
 Imports RTIS.CommonVB
+Imports RTIS.Elements
 
 Public Class frmWorkOrderDetail
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
+
+  Private pIsActive As Boolean
 
   Private pFormController As fccWorkOrderDetail
 
@@ -67,14 +70,15 @@ Public Class frmWorkOrderDetail
   End Property
 
   Private Sub frmWorkOrderDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    pIsActive = False
     pFormController.LoadObjects()
 
-    LoadCombos
+    LoadCombos()
 
     grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
-
+    RefreshProductTabPages()
     RefreshControls()
+    pIsActive = True
   End Sub
 
   Private Function CheckSave(ByVal rOption As Boolean) As Boolean
@@ -125,13 +129,27 @@ Public Class frmWorkOrderDetail
 
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
+    clsDEControlLoading.FillDEComboVI(cboProductType, mVIs)
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
-    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSArea, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSArea, mVIs)
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
-    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSEmployee, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSEmployee, mVIs)
+  End Sub
+
+  Private Sub RefreshProductTabPages()
+    tabProductSpec.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
+    For mLoop = tabProductSpec.TabPages.Count - 1 To 0 Step -1
+      If tabProductSpec.TabPages(mLoop).Tag <> pFormController.WorkOrder.ProductTypeID Then
+        tabProductSpec.TabPages(mLoop).PageVisible = False
+      End If
+    Next
   End Sub
 
   Private Sub RefreshControls()
+    Dim mIsActive As Boolean
+    mIsActive = pIsActive
+
     With pFormController.WorkOrder
       If .WorkOrderNo = "" Then
         Me.Text = "O.T. Nuevo"
@@ -140,13 +158,54 @@ Public Class frmWorkOrderDetail
       End If
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description
+
+      clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
+
+      RefreshProductControls()
+
     End With
+    pIsActive = mIsActive
+  End Sub
+
+  Private Sub RefreshProductControls()
+    Select Case pFormController.WorkOrder.ProductTypeID
+      Case eProductType.ProductFurniture
+        RefreshProductControlsFurniture()
+    End Select
+  End Sub
+
+  Private Sub RefreshProductControlsFurniture()
+    Dim mPF As dmProductFurniture
+    mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+    If mPF IsNot Nothing Then
+      With mPF
+        memPFNotes.EditValue = .Notes
+      End With
+    End If
   End Sub
 
   Private Sub UpdateObject()
     With pFormController.WorkOrder
       .Description = txtDescription.Text
     End With
+    UpdateProductControls()
+  End Sub
+
+  Private Sub UpdateProductControls()
+    Select Case pFormController.WorkOrder.ProductTypeID
+      Case eProductType.ProductFurniture
+        UpdateProductControlsFurniture()
+    End Select
+  End Sub
+
+  Private Sub UpdateProductControlsFurniture()
+    Dim mPF As dmProductFurniture
+    mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+    If mPF IsNot Nothing Then
+      With mPF
+        .Notes = memPFNotes.Text
+      End With
+    End If
   End Sub
 
   Private Sub frmWorkOrderDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -286,6 +345,19 @@ Public Class frmWorkOrderDetail
       UpdateObject()
       CheckSave(False)
       RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub cboProductType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboProductType.SelectedIndexChanged
+    Try
+      If pIsActive Then
+        UpdateObject()
+        pFormController.SetProductType(clsDEControlLoading.GetDEComboValue(cboProductType))
+        RefreshProductTabPages()
+        RefreshControls()
+      End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

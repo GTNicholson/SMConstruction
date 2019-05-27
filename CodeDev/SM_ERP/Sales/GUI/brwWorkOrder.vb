@@ -84,7 +84,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     Dim mWOIs As New colWorkOrderInfos
-    Dim mDSO As New dsoWorkOrder(pDBConn)
+    Dim mDSO As New dsoSales(pDBConn)
 
 
     Dim mOK As Boolean
@@ -92,7 +92,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
-      mDSO.LoadWorkOrderInfos(mWOIs)
+      mDSO.LoadWorkOrderInfos(mWOIs, "")
 
       gridBrowseList.DataSource = mWOIs
 
@@ -106,9 +106,6 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(libProductDefinition.PartType)))
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
-
-
-
 
       'gridBrowseList.Update()
       gridBrowseList.Refresh()

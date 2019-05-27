@@ -44,12 +44,12 @@ Public Class fccWorkOrderDetail
 
 
   Public Sub LoadObjects()
-    Dim mdso As dsoWorkOrder
+    Dim mdso As dsoSales
     Dim mdsoHR As dsoHR
 
     pWorkOrder = New dmWorkOrder
     If pPrimaryKeyID <> 0 Then
-      mdso = New dsoWorkOrder(pDBConn)
+      mdso = New dsoSales(pDBConn)
       mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
 
       mdsoHR = New dsoHR(pDBConn)
@@ -63,7 +63,7 @@ Public Class fccWorkOrderDetail
     Dim mdso As dsoSales
 
     mdso = New dsoSales(pDBConn)
-    mdso.SaveWorksOrderDown(pWorkOrder)
+    mdso.SaveWorkOrderDown(pWorkOrder)
 
     mRetVal = True
     Return mRetVal
@@ -93,6 +93,15 @@ Public Class fccWorkOrderDetail
 
   End Sub
 
-
+  Public Sub SetProductType(ByVal vNewProductType As Integer)
+    Try
+      If vNewProductType <> pWorkOrder.ProductTypeID Then
+        pWorkOrder.ProductTypeID = vNewProductType
+        pWorkOrder.Product = clsProductSharedFuncs.NewProductInstance(vNewProductType)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 
 End Class

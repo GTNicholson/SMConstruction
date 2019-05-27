@@ -220,17 +220,16 @@ Public Class clsTimeSheetEntryUI
         End If
       Else
         '//Check if the later one on the same day is the same type
-        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.StartTime)
+        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.EndTime)
         If mExistingTSEntry Is Nothing Then
           '// just add new entry for this hour
           pTimeSheetEntrys.Add(vNewTSEntry)
         Else
-          '//We have one later inthe day 
+          '//We have one later in the day 
           If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID Then
-            '// if types and workorderid match then extend existing
-            mExistingTSEntry.EndTime = vNewTSEntry.EndTime
+            '// if types and workorderid match then bring next entry startime forwards existing
+            mExistingTSEntry.StartTime = vNewTSEntry.StartTime
           Else
-            mExistingTSEntry.EndTime = vNewTSEntry.StartTime
             pTimeSheetEntrys.Add(vNewTSEntry)
           End If
         End If

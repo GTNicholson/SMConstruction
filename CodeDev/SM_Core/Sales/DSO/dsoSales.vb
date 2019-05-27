@@ -12,13 +12,23 @@ Public Class dsoSales
   Public Function LoadCustomerDown(ByRef rCustomer As dmCustomer, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoCustomer
+    Dim mdtoCC As dtoCustomerContact
 
-    pDBConn.Connect()
-    mdto = New dtoCustomer(pDBConn)
-    mdto.LoadCustomer(rCustomer, vID)
+    Try
 
-    pDBConn.Disconnect()
-    mRetVal = True
+      pDBConn.Connect()
+      mdto = New dtoCustomer(pDBConn)
+      mdto.LoadCustomer(rCustomer, vID)
+      mdtoCC = New dtoCustomerContact(pDBConn)
+      mdtoCC.LoadCustomerContactCollection(rCustomer.CustomerContacts, rCustomer.CustomerID)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
 
     Return mRetVal
   End Function
@@ -26,13 +36,23 @@ Public Class dsoSales
   Public Function SaveCustomerDown(ByRef rCustomer As dmCustomer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoCustomer
+    Dim mdtoCC As dtoCustomerContact
 
-    pDBConn.Connect()
-    mdto = New dtoCustomer(pDBConn)
-    mdto.SaveCustomer(rCustomer)
+    Try
 
-    pDBConn.Disconnect()
-    mRetVal = True
+      pDBConn.Connect()
+      mdto = New dtoCustomer(pDBConn)
+      mdto.SaveCustomer(rCustomer)
+      mdtoCC = New dtoCustomerContact(pDBConn)
+      mdtoCC.SaveCustomerContactCollection(rCustomer.CustomerContacts, rCustomer.CustomerID)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
 
     Return mRetVal
   End Function
@@ -64,32 +84,59 @@ Public Class dsoSales
     'Return mRetVal
   End Function
 
-  Public Function LoadWorksOrderDown(ByRef rWorksOrder As dmWorkOrder, ByVal vID As Integer) As Boolean
+
+  Public Function LoadWorkOrderDown(ByRef rWorkOrder As dmWorkOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoWorkOrder
+    Dim mdtoProduct As dtoProductBase
+    Try
 
-    pDBConn.Connect()
-    mdto = New dtoWorkOrder(pDBConn)
-    mdto.LoadWorkOrder(rWorksOrder, vID)
+      pDBConn.Connect()
+      mdto = New dtoWorkOrder(pDBConn)
+      mdto.LoadWorkOrder(rWorkOrder, vID)
 
-    pDBConn.Disconnect()
-    mRetVal = True
+      '// Instantiate and Load up the details for the specific product type
+      rWorkOrder.Product = clsProductSharedFuncs.NewProductInstance(rWorkOrder.ProductTypeID)
+      If rWorkOrder.Product IsNot Nothing Then
+        mdtoProduct = dtoProductBase.GetNewInstance(rWorkOrder.ProductTypeID, pDBConn)
+        mdtoProduct.LoadProduct(rWorkOrder.Product, rWorkOrder.ProductTypeID)
+      End If
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
 
     Return mRetVal
   End Function
 
-  Public Function SaveWorksOrderDown(ByRef rWorksOrder As dmWorkOrder) As Boolean
+
+  Public Function SaveWorkOrderDown(ByRef rWorkOrder As dmWorkOrder) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoWorkOrder
+    Dim mdtoProduct As dtoProductBase
 
-    pDBConn.Connect()
-    mdto = New dtoWorkOrder(pDBConn)
-    mdto.SaveWorkOrder(rWorksOrder)
+    Try
+      pDBConn.Connect()
+      mdto = New dtoWorkOrder(pDBConn)
+      mdto.SaveWorkOrder(rWorkOrder)
 
-    pDBConn.Disconnect()
-    mRetVal = True
+      If rWorkOrder.Product IsNot Nothing Then
+        mdtoProduct = dtoProductBase.GetNewInstance(rWorkOrder.ProductTypeID, pDBConn)
+        mdtoProduct.SaveProduct(rWorkOrder.Product)
+      End If
 
-    Return mRetVal
+      pDBConn.Disconnect()
+      mRetVal = True
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
   End Function
 
   Public Function LoadWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos, ByVal vWhere As String) As Boolean
@@ -108,5 +155,7 @@ Public Class dsoSales
     End Try
     Return mRetVal
   End Function
+
+
 
 End Class
