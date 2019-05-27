@@ -248,6 +248,19 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     Return mRetVal
   End Function
 
+  Public Function ItemSpanning(ByVal vDateTime As Date) As dmTimeSheetEntry
+    Dim mRetVal As dmTimeSheetEntry = Nothing
+    For Each mItem In MyBase.Items
+      If mItem.StartTime.Date = vDateTime.Date Then
+        If mItem.StartTime <= vDateTime And mItem.EndTime >= vDateTime Then
+          mRetVal = mItem
+          Exit For
+        End If
+      End If
+    Next
+    Return mRetVal
+  End Function
+
   Public Sub New()
     MyBase.New()
   End Sub
