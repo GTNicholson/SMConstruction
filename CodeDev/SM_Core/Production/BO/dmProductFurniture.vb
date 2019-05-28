@@ -1,10 +1,14 @@
 ﻿''Class Definition - ProductFurniture (to ProductFurniture)'Generated from Table:ProductFurniture
 Imports RTIS.CommonVB
+Imports RTIS.ERPCore
 
 Public Class dmProductFurniture : Inherits dmBase
+  Implements RTIS.ERPCore.intItemSpecCore
+
   Private pProductFurnitureID As Int32
   Private pDescription As String
   Private pFurnitureType As Int32
+  Private pNotes As String
 
   Public Sub New()
     MyBase.New()
@@ -23,7 +27,7 @@ Public Class dmProductFurniture : Inherits dmBase
     MyBase.Finalize()
   End Sub
 
-  Public Overrides ReadOnly Property IsAnyDirty() As Boolean
+  Public Overrides ReadOnly Property IsAnyDirty() As Boolean Implements intItemSpecCore.IsAnyDirty
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
@@ -40,6 +44,7 @@ Public Class dmProductFurniture : Inherits dmBase
     With CType(rNewItem, dmProductFurniture)
       .ProductFurnitureID = ProductFurnitureID
       .Description = Description
+      .Notes = Notes
       .FurnitureType = FurnitureType
       'Add entries here for each collection and class property
 
@@ -48,6 +53,18 @@ Public Class dmProductFurniture : Inherits dmBase
       .IsDirty = IsDirty
     End With
 
+  End Sub
+
+  Public Sub CalculateCostAndPrice() Implements intItemSpecCore.CalculateCostAndPrice
+    Throw New NotImplementedException()
+  End Sub
+
+  Private Function intItemSpecCore_Clone() As Object Implements intItemSpecCore.Clone
+    Throw New NotImplementedException()
+  End Function
+
+  Private Sub intItemSpecCore_ClearKeys() Implements intItemSpecCore.ClearKeys
+    Throw New NotImplementedException()
   End Sub
 
   Public Property ProductFurnitureID() As Int32
@@ -70,6 +87,16 @@ Public Class dmProductFurniture : Inherits dmBase
     End Set
   End Property
 
+  Public Property Notes() As String
+    Get
+      Return pNotes
+    End Get
+    Set(ByVal value As String)
+      If pNotes <> value Then IsDirty = True
+      pNotes = value
+    End Set
+  End Property
+
   Public Property FurnitureType() As Int32
     Get
       Return pFurnitureType
@@ -77,6 +104,68 @@ Public Class dmProductFurniture : Inherits dmBase
     Set(ByVal value As Int32)
       If pFurnitureType <> value Then IsDirty = True
       pFurnitureType = value
+    End Set
+  End Property
+
+  Public Property ItemType As Integer Implements intItemSpecCore.ItemType
+    Get
+      Return eProductType.ProductFurniture
+    End Get
+    Set(value As Integer)
+    End Set
+  End Property
+
+  Public Property MaterialCost As Decimal Implements intItemSpecCore.MaterialCost
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property ProcessCost As Decimal Implements intItemSpecCore.ProcessCost
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property SalesPrice As Decimal Implements intItemSpecCore.SalesPrice
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property Margin As Decimal Implements intItemSpecCore.Margin
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property ParentID As Integer Implements intItemSpecCore.ParentID
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
     End Set
   End Property
 

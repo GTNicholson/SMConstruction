@@ -35,12 +35,14 @@ Public Class dmCustomer : Inherits dmBase
   Private pCustomerNotes As String
   Private pSalesEmployeeID As Int32
 
+  Private pCustomerContacts As colCustomerContacts
   Public Sub New()
     MyBase.New()
   End Sub
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pCustomerContacts = New colCustomerContacts
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -49,6 +51,7 @@ Public Class dmCustomer : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pCustomerContacts = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -102,6 +105,7 @@ Public Class dmCustomer : Inherits dmBase
       'Add entries here for each collection and class property
 
       'Entries for object management
+      .CustomerContacts = CustomerContacts.Clone
 
       .IsDirty = IsDirty
     End With
@@ -428,6 +432,14 @@ Public Class dmCustomer : Inherits dmBase
     End Set
   End Property
 
+  Public Property CustomerContacts As colCustomerContacts
+    Get
+      Return pCustomerContacts
+    End Get
+    Set(value As colCustomerContacts)
+      pCustomerContacts = value
+    End Set
+  End Property
 
 End Class
 

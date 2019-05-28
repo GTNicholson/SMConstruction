@@ -6,9 +6,12 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pSalesOrderID As Int32
   Private pWorkOrderNo As String
   Private pProductTypeID As Int32
+  Private pProductID As Integer
   Private pQuantity As Double
   Private pDateCreated As Date
   Private pDescription As String
+
+  Private pProduct As RTIS.ERPCore.intItemSpecCore
 
   Private pOutputDocuments As colOutputDocuments
 
@@ -35,6 +38,9 @@ Public Class dmWorkOrder : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If pProduct IsNot Nothing Then
+        If mAnyDirty = False Then mAnyDirty = pProduct.IsAnyDirty
+      End If
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -52,12 +58,13 @@ Public Class dmWorkOrder : Inherits dmBase
       .ProductTypeID = ProductTypeID
       .Quantity = Quantity
       .DateCreated = DateCreated
-      .pDescription = Description
+      .Description = Description
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
 
       'Entries for object management
+      .Product = Product.Clone
 
       .IsDirty = IsDirty
     End With
@@ -81,6 +88,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderID <> value Then IsDirty = True
       pSalesOrderID = value
+    End Set
+  End Property
+
+  Public Property ProductID() As Int32
+    Get
+      Return pProductID
+    End Get
+    Set(ByVal value As Int32)
+      If pProductID <> value Then IsDirty = True
+      pProductID = value
     End Set
   End Property
 
@@ -140,6 +157,15 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As String)
       If pDescription <> value Then IsDirty = True
       pDescription = value
+    End Set
+  End Property
+
+  Public Property Product As RTIS.ERPCore.intItemSpecCore
+    Get
+      Return pProduct
+    End Get
+    Set(value As RTIS.ERPCore.intItemSpecCore)
+      pProduct = value
     End Set
   End Property
 

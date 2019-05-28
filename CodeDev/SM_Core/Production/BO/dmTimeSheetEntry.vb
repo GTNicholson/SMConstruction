@@ -206,7 +206,7 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     Dim mRetVal As dmTimeSheetEntry = Nothing
     For Each mItem In MyBase.Items
       If mItem.EndTime.Date = vDateTime.Date Then
-        If mItem.EndTime < vDateTime Then
+        If mItem.EndTime <= vDateTime Then
           If mRetVal Is Nothing Then
             mRetVal = mItem
           Else
@@ -223,8 +223,8 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
   Public Function ItemLaterSameDay(ByVal vDateTime As Date) As dmTimeSheetEntry
     Dim mRetVal As dmTimeSheetEntry = Nothing
     For Each mItem In MyBase.Items
-      If mItem.EndTime.Date = vDateTime.Date Then
-        If mItem.StartTime > vDateTime Then
+      If mItem.StartTime.Date = vDateTime.Date Then
+        If mItem.StartTime >= vDateTime Then
           If mRetVal Is Nothing Then
             mRetVal = mItem
           Else
@@ -245,6 +245,19 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     If mIndex <> -1 Then
       mRetVal = Me.Items(mIndex)
     End If
+    Return mRetVal
+  End Function
+
+  Public Function ItemSpanning(ByVal vDateTime As Date) As dmTimeSheetEntry
+    Dim mRetVal As dmTimeSheetEntry = Nothing
+    For Each mItem In MyBase.Items
+      If mItem.StartTime.Date = vDateTime.Date Then
+        If mItem.StartTime <= vDateTime And mItem.EndTime >= vDateTime Then
+          mRetVal = mItem
+          Exit For
+        End If
+      End If
+    Next
     Return mRetVal
   End Function
 

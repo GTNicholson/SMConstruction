@@ -1,0 +1,29 @@
+CREATE TABLE dbo.CustomerContact
+(
+CustomerContactID                   INT IDENTITY(1,1) NOT NULL,
+CustomerID                          INT,
+Title                               VARCHAR(8),
+FirstName                           VARCHAR(32),
+LastName                            VARCHAR(32),
+TelNo                               VARCHAR(32),
+Email                               VARCHAR(64),
+Mobile                              VARCHAR(32),
+ContactType                         INT,
+ContactOptions                      INT,
+IsActive                            BIT DEFAULT ((0)) NOT NULL,
+DateStart                           DATETIME DEFAULT (getdate()),
+DateEnd                             DATETIME,
+Position                            VARCHAR(32),
+CONSTRAINT PK_Contact PRIMARY KEY CLUSTERED ( CustomerContactID )
+)
+ON [PRIMARY]
+
+GO
+
+alter table workorder add ProductID int
+
+GO
+
+alter table ProductFurniture add Notes Varchar(1000)
+
+GO

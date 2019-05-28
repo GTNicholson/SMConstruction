@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraTab
 Imports RTIS.CommonVB
 Imports RTIS.Elements
 
@@ -25,7 +26,7 @@ Public Class frmTimeSheetEntry
       pController.LoadTimeSheetEntrys()
       pController.LoadTimeSheetEntryUIs()
       grdTimeSheet.DataSource = pController.TimeSheetEntryUIs
-
+      grdTimeSheetEntries.DataSource = pController.TimeSheetEntrys
       pController.LoadRefs()
       LoadCombos()
 
@@ -73,7 +74,7 @@ Public Class frmTimeSheetEntry
       pController.LoadTimeSheetEntrys()
       pController.LoadTimeSheetEntryUIs()
       grdTimeSheet.DataSource = pController.TimeSheetEntryUIs
-
+      grdTimeSheetEntries.DataSource = pController.TimeSheetEntrys
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -137,4 +138,7 @@ Public Class frmTimeSheetEntry
     pController.WorkCentreID = radgrpWorkCentreID.EditValue
   End Sub
 
+  Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
+    gvTimeSheetEntries.RefreshData()
+  End Sub
 End Class

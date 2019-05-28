@@ -164,12 +164,11 @@ Public Class clsTimeSheetEntryUI
   End Function
 
   Private Sub SetTimeSheetEntryStr(ByVal vDaysOffSet As Byte, ByVal vEnteredString As String, ByVal vWorkCentreID As Integer)
-    Dim mExistingTSEntry As dmTimeSheetEntry
     Dim mNewTSEntry As dmTimeSheetEntry
     Dim mStartTime As Date
 
-
     '//Create a new proposed one to resolve the detail
+
     mStartTime = pWeekCommencing.Date.AddDays(vDaysOffSet) + pStartTime.TimeOfDay
     mNewTSEntry = New dmTimeSheetEntry
     mNewTSEntry.StartTime = mStartTime
@@ -181,52 +180,91 @@ Public Class clsTimeSheetEntryUI
       EditTSEntryNonWorkOrder(mNewTSEntry, vEnteredString)
     End If
 
-    '//now see if we should be editting existing and/or adding new
-
-    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(mStartTime)
-
-
-    If mExistingTSEntry Is Nothing Then
-      '// if no match then check for previous in same day and if it is the same OT / type then extend previous Otherwise extend previous till this start and add new
-      mExistingTSEntry = pTimeSheetEntrys.ItemEarlierSameDay(mStartTime)
-
-      If mExistingTSEntry Is Nothing Then
-        '//Check if the next one on the same day is the same type
-        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(mStartTime)
-        If mExistingTSEntry Is Nothing Then
-          '// just add new entry for this hour
-          pTimeSheetEntrys.Add(mNewTSEntry)
-        Else
-          '//We have one later inthe day 
-          If mExistingTSEntry.TimeSheetEntryTypeID = mNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = mNewTSEntry.WorkOrderID Then
-            '// if types and workorderid match then extend existing
-            mExistingTSEntry.EndTime = mNewTSEntry.EndTime
-          Else
-            mExistingTSEntry.EndTime = mNewTSEntry.StartTime
-            pTimeSheetEntrys.Add(mNewTSEntry)
-          End If
-        End If
-      Else
-          '//We have one ealier in the day 
-          If mExistingTSEntry.TimeSheetEntryTypeID = mNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = mNewTSEntry.WorkOrderID Then
-          '// if types and workorderid match then extend existing
-          mExistingTSEntry.EndTime = mNewTSEntry.EndTime
-        Else
-          mExistingTSEntry.EndTime = mNewTSEntry.StartTime
-          pTimeSheetEntrys.Add(mNewTSEntry)
-        End If
-      End If
+    '// now see if we should be editting existing and/or adding new or deleting
+    If mNewTSEntry.TimeSheetEntryTypeID <> clsTimeSheetCode.cUnDefined Then
+      EditOrAddTSEntry(mNewTSEntry)
     Else
-      If mExistingTSEntry.StartTime = mNewTSEntry.StartTime Then
+      DeleteTSEntry(mNewTSEntry)
+    End If
+
+  End Sub
+
+  Private Sub EditOrAddTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry)
+    Dim mExistingTSEntry As dmTimeSheetEntry
+
+    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
+
+    If mExistingTSEntry IsNot Nothing Then
+      If mExistingTSEntry.StartTime = vNewTSEntry.StartTime Then
         '// if this is the initial time sheet entry (start times equal) then set this one to the new OT /  type
-        mExistingTSEntry.TimeSheetEntryTypeID = mNewTSEntry.TimeSheetEntryTypeID
-        mExistingTSEntry.WorkOrderID = mNewTSEntry.WorkOrderID
-        mExistingTSEntry.Note = mNewTSEntry.Note
+        mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID
+        mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID
+        mExistingTSEntry.Note = vNewTSEntry.Note
       Else
         '// if this is not the first entry (this time is later than the timesheet entry) we need to curtail the timesheet entry and add a new one till the end of it
-        mExistingTSEntry.EndTime = mNewTSEntry.StartTime
-        pTimeSheetEntrys.Add(mNewTSEntry)
+        mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+        pTimeSheetEntrys.Add(vNewTSEntry)
       End If
+    Else
+      '// if no match then check for previous in same day and if it is the same OT / type then extend previous Otherwise extend previous till this start and add new
+      mExistingTSEntry = pTimeSheetEntrys.ItemEarlierSameDay(vNewTSEntry.StartTime)
+
+      If mExistingTSEntry IsNot Nothing Then
+        '//We have one ealier in the day 
+        If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID Then
+          '// if types and workorderid match then extend existing
+          mExistingTSEntry.EndTime = vNewTSEntry.EndTime
+        Else
+          mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+          pTimeSheetEntrys.Add(vNewTSEntry)
+        End If
+      Else
+        '//Check if the later one on the same day is the same type
+        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.EndTime)
+        If mExistingTSEntry Is Nothing Then
+          '// just add new entry for this hour
+          pTimeSheetEntrys.Add(vNewTSEntry)
+        Else
+          '//We have one later in the day 
+          If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID Then
+            '// if types and workorderid match then bring next entry startime forwards existing
+            mExistingTSEntry.StartTime = vNewTSEntry.StartTime
+          Else
+            pTimeSheetEntrys.Add(vNewTSEntry)
+          End If
+        End If
+      End If
+
+    End If
+
+
+  End Sub
+
+  Private Sub DeleteTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry)
+    Dim mExistingTSEntry As dmTimeSheetEntry
+
+    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
+
+    If mExistingTSEntry IsNot Nothing Then
+      If mExistingTSEntry.StartTime = vNewTSEntry.StartTime Then
+
+        If mExistingTSEntry.EndTime <= vNewTSEntry.EndTime Then
+          '// if this is the whole entry, remove it
+          pTimeSheetEntrys.Remove(mExistingTSEntry)
+        Else
+          '// move the startime forwards
+          mExistingTSEntry.StartTime = vNewTSEntry.EndTime
+        End If
+      Else
+        '//look for an entry that spans the new entry
+        mExistingTSEntry = pTimeSheetEntrys.ItemSpanning(vNewTSEntry.StartTime)
+        If mExistingTSEntry IsNot Nothing Then
+          If mExistingTSEntry.EndTime > vNewTSEntry.StartTime Then
+            mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+          End If
+        End If
+      End If
+
     End If
 
 

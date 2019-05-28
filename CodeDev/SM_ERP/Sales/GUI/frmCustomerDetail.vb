@@ -63,7 +63,8 @@ Public Class frmCustomerDetail
 
   Private Sub frmCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     pFormController.LoadObjects()
-    RefreshControls
+    grdContacts.DataSource = pFormController.Customer.CustomerContacts
+    RefreshControls()
   End Sub
 
 

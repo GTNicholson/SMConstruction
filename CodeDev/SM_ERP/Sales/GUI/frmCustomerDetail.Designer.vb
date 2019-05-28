@@ -36,11 +36,16 @@ Partial Class frmCustomerDetail
     Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
     Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-    Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.grdContacts = New DevExpress.XtraGrid.GridControl()
+    Me.gvContacts = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
     Me.Label2 = New System.Windows.Forms.Label()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtCustomerID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,8 +54,8 @@ Partial Class frmCustomerDetail
     CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdContacts, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvContacts, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
@@ -171,31 +176,40 @@ Partial Class frmCustomerDetail
     Me.MemoEdit1.Size = New System.Drawing.Size(226, 96)
     Me.MemoEdit1.TabIndex = 9
     '
-    'GridControl1
+    'grdContacts
     '
-    Me.GridControl1.Location = New System.Drawing.Point(351, 137)
-    Me.GridControl1.MainView = Me.GridView1
-    Me.GridControl1.MenuManager = Me.BarManager1
-    Me.GridControl1.Name = "GridControl1"
-    Me.GridControl1.Size = New System.Drawing.Size(400, 200)
-    Me.GridControl1.TabIndex = 10
-    Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+    Me.grdContacts.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdContacts.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdContacts.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdContacts.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.grdContacts.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.grdContacts.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdContacts.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdContacts.Location = New System.Drawing.Point(351, 137)
+    Me.grdContacts.MainView = Me.gvContacts
+    Me.grdContacts.MenuManager = Me.BarManager1
+    Me.grdContacts.Name = "grdContacts"
+    Me.grdContacts.Size = New System.Drawing.Size(400, 200)
+    Me.grdContacts.TabIndex = 10
+    Me.grdContacts.UseEmbeddedNavigator = True
+    Me.grdContacts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvContacts})
     '
-    'GridView1
+    'gvContacts
     '
-    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView1.GridControl = Me.GridControl1
-    Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsView.ShowGroupPanel = False
-    Me.GridView1.OptionsView.ShowViewCaption = True
-    Me.GridView1.ViewCaption = "Contacts"
+    Me.gvContacts.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvContacts.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvContacts.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvContacts.Appearance.Row.Options.UseFont = True
+    Me.gvContacts.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvContacts.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvContacts.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvContacts.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvContacts.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+    Me.gvContacts.GridControl = Me.grdContacts
+    Me.gvContacts.Name = "gvContacts"
+    Me.gvContacts.OptionsView.ShowGroupPanel = False
+    Me.gvContacts.OptionsView.ShowViewCaption = True
+    Me.gvContacts.ViewCaption = "Contacts"
     '
     'Label1
     '
@@ -231,6 +245,46 @@ Partial Class frmCustomerDetail
     Me.Label2.TabIndex = 13
     Me.Label2.Text = "Should push on GIT"
     '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "Nombre"
+    Me.GridColumn1.FieldName = "FirstName"
+    Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.Visible = True
+    Me.GridColumn1.VisibleIndex = 0
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Appellido"
+    Me.GridColumn2.FieldName = "LastName"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 1
+    '
+    'GridColumn3
+    '
+    Me.GridColumn3.Caption = "Tel."
+    Me.GridColumn3.FieldName = "TelNo"
+    Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.Visible = True
+    Me.GridColumn3.VisibleIndex = 2
+    '
+    'GridColumn4
+    '
+    Me.GridColumn4.Caption = "EMail"
+    Me.GridColumn4.FieldName = "Email"
+    Me.GridColumn4.Name = "GridColumn4"
+    Me.GridColumn4.Visible = True
+    Me.GridColumn4.VisibleIndex = 3
+    '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "Cel."
+    Me.GridColumn5.FieldName = "Mobile"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 4
+    '
     'frmCustomerDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -239,7 +293,7 @@ Partial Class frmCustomerDetail
     Me.Controls.Add(Me.Label2)
     Me.Controls.Add(Me.GroupControl1)
     Me.Controls.Add(Me.Label1)
-    Me.Controls.Add(Me.GridControl1)
+    Me.Controls.Add(Me.grdContacts)
     Me.Controls.Add(Me.MemoEdit1)
     Me.Controls.Add(Me.ComboBoxEdit1)
     Me.Controls.Add(Me.DateEdit1)
@@ -261,8 +315,8 @@ Partial Class frmCustomerDetail
     CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdContacts, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvContacts, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
@@ -281,10 +335,15 @@ Partial Class frmCustomerDetail
   Friend WithEvents Label2 As Label
   Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents Label1 As Label
-  Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grdContacts As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvContacts As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
   Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

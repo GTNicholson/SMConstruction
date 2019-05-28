@@ -77,6 +77,11 @@ Public Enum eWorkCentre
 
 End Enum
 
+Public Enum eProductType
+  <Description("Mueble")> ProductFurniture = 1
+  <Description("Estructura")> Strucutre = 2
+End Enum
+
 
 
 Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of clsTimeSheetCode)

@@ -32,8 +32,11 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.cboProductType = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.Label14 = New System.Windows.Forms.Label()
     Me.Label13 = New System.Windows.Forms.Label()
     Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+    Me.DateEdit6 = New DevExpress.XtraEditors.DateEdit()
     Me.Label12 = New System.Windows.Forms.Label()
     Me.btnWorkOrderNumber = New DevExpress.XtraEditors.ButtonEdit()
     Me.Label11 = New System.Windows.Forms.Label()
@@ -44,26 +47,25 @@ Partial Class frmWorkOrderDetail
     Me.Label3 = New System.Windows.Forms.Label()
     Me.Label2 = New System.Windows.Forms.Label()
     Me.Label1 = New System.Windows.Forms.Label()
-    Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
     Me.txtDescription = New DevExpress.XtraEditors.TextEdit()
     Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
-    Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+    Me.tabProductSpec = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+    Me.ComboBoxEdit6 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.ComboBoxEdit5 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.ComboBoxEdit4 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.ComboBoxEdit3 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.Label10 = New System.Windows.Forms.Label()
-    Me.DateEdit6 = New DevExpress.XtraEditors.DateEdit()
     Me.Label8 = New System.Windows.Forms.Label()
-    Me.DateEdit4 = New DevExpress.XtraEditors.DateEdit()
     Me.Label9 = New System.Windows.Forms.Label()
-    Me.DateEdit5 = New DevExpress.XtraEditors.DateEdit()
     Me.Label7 = New System.Windows.Forms.Label()
-    Me.DateEdit3 = New DevExpress.XtraEditors.DateEdit()
     Me.Label6 = New System.Windows.Forms.Label()
-    Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
-    Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+    Me.memPFNotes = New DevExpress.XtraEditors.MemoEdit()
     Me.Label5 = New System.Windows.Forms.Label()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -83,35 +85,31 @@ Partial Class frmWorkOrderDetail
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.DateEdit6.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.DateEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btneWorkOrderDocument.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabControl2.SuspendLayout()
     Me.XtraTabPage3.SuspendLayout()
-    CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.XtraTabControl1.SuspendLayout()
+    CType(Me.tabProductSpec, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.tabProductSpec.SuspendLayout()
     Me.XtraTabPage1.SuspendLayout()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
+    CType(Me.ComboBoxEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ComboBoxEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ComboBoxEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit6.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit4.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit5.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage2.SuspendLayout()
@@ -204,8 +202,11 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.cboProductType)
+    Me.GroupControl1.Controls.Add(Me.Label14)
     Me.GroupControl1.Controls.Add(Me.Label13)
     Me.GroupControl1.Controls.Add(Me.TextEdit4)
+    Me.GroupControl1.Controls.Add(Me.DateEdit6)
     Me.GroupControl1.Controls.Add(Me.Label12)
     Me.GroupControl1.Controls.Add(Me.btnWorkOrderNumber)
     Me.GroupControl1.Controls.Add(Me.Label11)
@@ -216,7 +217,6 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.Label3)
     Me.GroupControl1.Controls.Add(Me.Label2)
     Me.GroupControl1.Controls.Add(Me.Label1)
-    Me.GroupControl1.Controls.Add(Me.DateEdit1)
     Me.GroupControl1.Controls.Add(Me.txtDescription)
     Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
@@ -225,12 +225,35 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
     '
+    'cboProductType
+    '
+    Me.cboProductType.Location = New System.Drawing.Point(113, 63)
+    Me.cboProductType.MenuManager = Me.BarManager1
+    Me.cboProductType.Name = "cboProductType"
+    Me.cboProductType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboProductType.Properties.Appearance.Options.UseFont = True
+    Me.cboProductType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboProductType.Size = New System.Drawing.Size(100, 20)
+    Me.cboProductType.TabIndex = 144
+    '
+    'Label14
+    '
+    Me.Label14.AutoSize = True
+    Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label14.Location = New System.Drawing.Point(573, 37)
+    Me.Label14.Name = "Label14"
+    Me.Label14.Size = New System.Drawing.Size(79, 14)
+    Me.Label14.TabIndex = 143
+    Me.Label14.Tag = "c"
+    Me.Label14.Text = "Fecha de Ent."
+    '
     'Label13
     '
     Me.Label13.AutoSize = True
     Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label13.Location = New System.Drawing.Point(740, 37)
+    Me.Label13.Location = New System.Drawing.Point(753, 37)
     Me.Label13.Name = "Label13"
     Me.Label13.Size = New System.Drawing.Size(56, 14)
     Me.Label13.TabIndex = 141
@@ -239,16 +262,29 @@ Partial Class frmWorkOrderDetail
     '
     'TextEdit4
     '
-    Me.TextEdit4.Location = New System.Drawing.Point(818, 34)
+    Me.TextEdit4.Location = New System.Drawing.Point(831, 34)
     Me.TextEdit4.MenuManager = Me.BarManager1
     Me.TextEdit4.Name = "TextEdit4"
     Me.TextEdit4.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.TextEdit4.Properties.Appearance.Options.UseBackColor = True
     Me.TextEdit4.Properties.Appearance.Options.UseFont = True
-    Me.TextEdit4.Size = New System.Drawing.Size(278, 20)
+    Me.TextEdit4.Size = New System.Drawing.Size(265, 20)
     Me.TextEdit4.TabIndex = 140
     Me.TextEdit4.Tag = "c"
+    '
+    'DateEdit6
+    '
+    Me.DateEdit6.EditValue = Nothing
+    Me.DateEdit6.Location = New System.Drawing.Point(658, 34)
+    Me.DateEdit6.MenuManager = Me.BarManager1
+    Me.DateEdit6.Name = "DateEdit6"
+    Me.DateEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.DateEdit6.Properties.Appearance.Options.UseFont = True
+    Me.DateEdit6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.DateEdit6.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.DateEdit6.Size = New System.Drawing.Size(89, 20)
+    Me.DateEdit6.TabIndex = 26
     '
     'Label12
     '
@@ -293,7 +329,7 @@ Partial Class frmWorkOrderDetail
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseBackColor = True
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseFont = True
     Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(255, 20)
+    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(227, 20)
     Me.btneWorkOrderDocument.TabIndex = 136
     '
     'TextEdit3
@@ -320,7 +356,7 @@ Partial Class frmWorkOrderDetail
     '
     'TextEdit2
     '
-    Me.TextEdit2.Location = New System.Drawing.Point(818, 63)
+    Me.TextEdit2.Location = New System.Drawing.Point(831, 63)
     Me.TextEdit2.MenuManager = Me.BarManager1
     Me.TextEdit2.Name = "TextEdit2"
     Me.TextEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -334,7 +370,7 @@ Partial Class frmWorkOrderDetail
     Me.Label3.AutoSize = True
     Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label3.Location = New System.Drawing.Point(740, 66)
+    Me.Label3.Location = New System.Drawing.Point(753, 66)
     Me.Label3.Name = "Label3"
     Me.Label3.Size = New System.Drawing.Size(55, 14)
     Me.Label3.TabIndex = 16
@@ -363,19 +399,6 @@ Partial Class frmWorkOrderDetail
     Me.Label1.TabIndex = 14
     Me.Label1.Text = "Tipo de Producto"
     '
-    'DateEdit1
-    '
-    Me.DateEdit1.EditValue = Nothing
-    Me.DateEdit1.Location = New System.Drawing.Point(113, 63)
-    Me.DateEdit1.MenuManager = Me.BarManager1
-    Me.DateEdit1.Name = "DateEdit1"
-    Me.DateEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit1.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit1.Size = New System.Drawing.Size(100, 20)
-    Me.DateEdit1.TabIndex = 13
-    '
     'txtDescription
     '
     Me.txtDescription.Location = New System.Drawing.Point(327, 63)
@@ -383,7 +406,7 @@ Partial Class frmWorkOrderDetail
     Me.txtDescription.Name = "txtDescription"
     Me.txtDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDescription.Properties.Appearance.Options.UseFont = True
-    Me.txtDescription.Size = New System.Drawing.Size(396, 20)
+    Me.txtDescription.Size = New System.Drawing.Size(420, 20)
     Me.txtDescription.TabIndex = 12
     Me.txtDescription.Tag = "c"
     '
@@ -401,26 +424,27 @@ Partial Class frmWorkOrderDetail
     '
     'XtraTabPage3
     '
-    Me.XtraTabPage3.Controls.Add(Me.XtraTabControl1)
+    Me.XtraTabPage3.Controls.Add(Me.tabProductSpec)
     Me.XtraTabPage3.Name = "XtraTabPage3"
     Me.XtraTabPage3.Size = New System.Drawing.Size(1100, 470)
     Me.XtraTabPage3.Text = "Especificacion de Producto"
     '
-    'XtraTabControl1
+    'tabProductSpec
     '
-    Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-    Me.XtraTabControl1.Name = "XtraTabControl1"
-    Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-    Me.XtraTabControl1.Size = New System.Drawing.Size(1100, 470)
-    Me.XtraTabControl1.TabIndex = 20
-    Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+    Me.tabProductSpec.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.tabProductSpec.Location = New System.Drawing.Point(0, 0)
+    Me.tabProductSpec.Name = "tabProductSpec"
+    Me.tabProductSpec.SelectedTabPage = Me.XtraTabPage1
+    Me.tabProductSpec.Size = New System.Drawing.Size(1100, 470)
+    Me.tabProductSpec.TabIndex = 20
+    Me.tabProductSpec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
     '
     'XtraTabPage1
     '
     Me.XtraTabPage1.Controls.Add(Me.GroupControl2)
     Me.XtraTabPage1.Name = "XtraTabPage1"
     Me.XtraTabPage1.Size = New System.Drawing.Size(1094, 442)
+    Me.XtraTabPage1.Tag = "1"
     Me.XtraTabPage1.Text = "XtraTabPage1"
     '
     'GroupControl2
@@ -429,18 +453,18 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl2.AppearanceCaption.Options.UseFont = True
     Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl2.Controls.Add(Me.ComboBoxEdit6)
+    Me.GroupControl2.Controls.Add(Me.ComboBoxEdit5)
+    Me.GroupControl2.Controls.Add(Me.ComboBoxEdit4)
+    Me.GroupControl2.Controls.Add(Me.ComboBoxEdit3)
+    Me.GroupControl2.Controls.Add(Me.ComboBoxEdit1)
     Me.GroupControl2.Controls.Add(Me.GridControl2)
     Me.GroupControl2.Controls.Add(Me.Label10)
-    Me.GroupControl2.Controls.Add(Me.DateEdit6)
     Me.GroupControl2.Controls.Add(Me.Label8)
-    Me.GroupControl2.Controls.Add(Me.DateEdit4)
     Me.GroupControl2.Controls.Add(Me.Label9)
-    Me.GroupControl2.Controls.Add(Me.DateEdit5)
     Me.GroupControl2.Controls.Add(Me.Label7)
-    Me.GroupControl2.Controls.Add(Me.DateEdit3)
     Me.GroupControl2.Controls.Add(Me.Label6)
-    Me.GroupControl2.Controls.Add(Me.DateEdit2)
-    Me.GroupControl2.Controls.Add(Me.MemoEdit1)
+    Me.GroupControl2.Controls.Add(Me.memPFNotes)
     Me.GroupControl2.Controls.Add(Me.Label5)
     Me.GroupControl2.Controls.Add(Me.GridControl1)
     Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -450,13 +474,68 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.TabIndex = 14
     Me.GroupControl2.Text = "Detalles de Mueble"
     '
+    'ComboBoxEdit6
+    '
+    Me.ComboBoxEdit6.Location = New System.Drawing.Point(325, 35)
+    Me.ComboBoxEdit6.MenuManager = Me.BarManager1
+    Me.ComboBoxEdit6.Name = "ComboBoxEdit6"
+    Me.ComboBoxEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxEdit6.Properties.Appearance.Options.UseFont = True
+    Me.ComboBoxEdit6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.ComboBoxEdit6.Size = New System.Drawing.Size(100, 20)
+    Me.ComboBoxEdit6.TabIndex = 33
+    '
+    'ComboBoxEdit5
+    '
+    Me.ComboBoxEdit5.Location = New System.Drawing.Point(325, 60)
+    Me.ComboBoxEdit5.MenuManager = Me.BarManager1
+    Me.ComboBoxEdit5.Name = "ComboBoxEdit5"
+    Me.ComboBoxEdit5.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxEdit5.Properties.Appearance.Options.UseFont = True
+    Me.ComboBoxEdit5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.ComboBoxEdit5.Size = New System.Drawing.Size(100, 20)
+    Me.ComboBoxEdit5.TabIndex = 32
+    '
+    'ComboBoxEdit4
+    '
+    Me.ComboBoxEdit4.Location = New System.Drawing.Point(111, 60)
+    Me.ComboBoxEdit4.MenuManager = Me.BarManager1
+    Me.ComboBoxEdit4.Name = "ComboBoxEdit4"
+    Me.ComboBoxEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxEdit4.Properties.Appearance.Options.UseFont = True
+    Me.ComboBoxEdit4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.ComboBoxEdit4.Size = New System.Drawing.Size(100, 20)
+    Me.ComboBoxEdit4.TabIndex = 31
+    '
+    'ComboBoxEdit3
+    '
+    Me.ComboBoxEdit3.Location = New System.Drawing.Point(111, 35)
+    Me.ComboBoxEdit3.MenuManager = Me.BarManager1
+    Me.ComboBoxEdit3.Name = "ComboBoxEdit3"
+    Me.ComboBoxEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxEdit3.Properties.Appearance.Options.UseFont = True
+    Me.ComboBoxEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.ComboBoxEdit3.Size = New System.Drawing.Size(100, 20)
+    Me.ComboBoxEdit3.TabIndex = 30
+    '
+    'ComboBoxEdit1
+    '
+    Me.ComboBoxEdit1.Location = New System.Drawing.Point(503, 35)
+    Me.ComboBoxEdit1.MenuManager = Me.BarManager1
+    Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
+    Me.ComboBoxEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ComboBoxEdit1.Properties.Appearance.Options.UseFont = True
+    Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.ComboBoxEdit1.Size = New System.Drawing.Size(88, 20)
+    Me.ComboBoxEdit1.TabIndex = 29
+    '
     'GridControl2
     '
-    Me.GridControl2.Location = New System.Drawing.Point(540, 103)
+    Me.GridControl2.Location = New System.Drawing.Point(533, 103)
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(523, 194)
+    Me.GridControl2.Size = New System.Drawing.Size(530, 194)
     Me.GridControl2.TabIndex = 28
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '
@@ -481,48 +560,22 @@ Partial Class frmWorkOrderDetail
     Me.Label10.AutoSize = True
     Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label10.Location = New System.Drawing.Point(472, 38)
+    Me.Label10.Location = New System.Drawing.Point(449, 38)
     Me.Label10.Name = "Label10"
     Me.Label10.Size = New System.Drawing.Size(48, 14)
     Me.Label10.TabIndex = 27
     Me.Label10.Text = "Modelo"
-    '
-    'DateEdit6
-    '
-    Me.DateEdit6.EditValue = Nothing
-    Me.DateEdit6.Location = New System.Drawing.Point(540, 35)
-    Me.DateEdit6.MenuManager = Me.BarManager1
-    Me.DateEdit6.Name = "DateEdit6"
-    Me.DateEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit6.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit6.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit6.Size = New System.Drawing.Size(89, 20)
-    Me.DateEdit6.TabIndex = 26
     '
     'Label8
     '
     Me.Label8.AutoSize = True
     Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label8.Location = New System.Drawing.Point(245, 63)
+    Me.Label8.Location = New System.Drawing.Point(227, 63)
     Me.Label8.Name = "Label8"
     Me.Label8.Size = New System.Drawing.Size(54, 14)
     Me.Label8.TabIndex = 25
     Me.Label8.Text = "Acabado"
-    '
-    'DateEdit4
-    '
-    Me.DateEdit4.EditValue = Nothing
-    Me.DateEdit4.Location = New System.Drawing.Point(343, 60)
-    Me.DateEdit4.MenuManager = Me.BarManager1
-    Me.DateEdit4.Name = "DateEdit4"
-    Me.DateEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit4.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit4.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit4.Size = New System.Drawing.Size(118, 20)
-    Me.DateEdit4.TabIndex = 24
     '
     'Label9
     '
@@ -535,42 +588,16 @@ Partial Class frmWorkOrderDetail
     Me.Label9.TabIndex = 23
     Me.Label9.Text = "Especie"
     '
-    'DateEdit5
-    '
-    Me.DateEdit5.EditValue = Nothing
-    Me.DateEdit5.Location = New System.Drawing.Point(106, 60)
-    Me.DateEdit5.MenuManager = Me.BarManager1
-    Me.DateEdit5.Name = "DateEdit5"
-    Me.DateEdit5.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit5.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit5.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit5.Size = New System.Drawing.Size(118, 20)
-    Me.DateEdit5.TabIndex = 22
-    '
     'Label7
     '
     Me.Label7.AutoSize = True
     Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label7.Location = New System.Drawing.Point(245, 37)
+    Me.Label7.Location = New System.Drawing.Point(227, 37)
     Me.Label7.Name = "Label7"
     Me.Label7.Size = New System.Drawing.Size(84, 14)
     Me.Label7.TabIndex = 21
     Me.Label7.Text = "Sub Categoria"
-    '
-    'DateEdit3
-    '
-    Me.DateEdit3.EditValue = Nothing
-    Me.DateEdit3.Location = New System.Drawing.Point(343, 34)
-    Me.DateEdit3.MenuManager = Me.BarManager1
-    Me.DateEdit3.Name = "DateEdit3"
-    Me.DateEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit3.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit3.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit3.Size = New System.Drawing.Size(118, 20)
-    Me.DateEdit3.TabIndex = 20
     '
     'Label6
     '
@@ -583,33 +610,20 @@ Partial Class frmWorkOrderDetail
     Me.Label6.TabIndex = 19
     Me.Label6.Text = "Categoria"
     '
-    'DateEdit2
+    'memPFNotes
     '
-    Me.DateEdit2.EditValue = Nothing
-    Me.DateEdit2.Location = New System.Drawing.Point(106, 34)
-    Me.DateEdit2.MenuManager = Me.BarManager1
-    Me.DateEdit2.Name = "DateEdit2"
-    Me.DateEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit2.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit2.Size = New System.Drawing.Size(118, 20)
-    Me.DateEdit2.TabIndex = 18
-    '
-    'MemoEdit1
-    '
-    Me.MemoEdit1.Location = New System.Drawing.Point(687, 35)
-    Me.MemoEdit1.MenuManager = Me.BarManager1
-    Me.MemoEdit1.Name = "MemoEdit1"
-    Me.MemoEdit1.Size = New System.Drawing.Size(376, 45)
-    Me.MemoEdit1.TabIndex = 17
+    Me.memPFNotes.Location = New System.Drawing.Point(713, 35)
+    Me.memPFNotes.MenuManager = Me.BarManager1
+    Me.memPFNotes.Name = "memPFNotes"
+    Me.memPFNotes.Size = New System.Drawing.Size(376, 45)
+    Me.memPFNotes.TabIndex = 17
     '
     'Label5
     '
     Me.Label5.AutoSize = True
     Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label5.Location = New System.Drawing.Point(643, 38)
+    Me.Label5.Location = New System.Drawing.Point(653, 37)
     Me.Label5.Name = "Label5"
     Me.Label5.Size = New System.Drawing.Size(38, 14)
     Me.Label5.TabIndex = 16
@@ -618,11 +632,11 @@ Partial Class frmWorkOrderDetail
     '
     'GridControl1
     '
-    Me.GridControl1.Location = New System.Drawing.Point(11, 103)
+    Me.GridControl1.Location = New System.Drawing.Point(7, 103)
     Me.GridControl1.MainView = Me.GridView1
     Me.GridControl1.MenuManager = Me.BarManager1
     Me.GridControl1.Name = "GridControl1"
-    Me.GridControl1.Size = New System.Drawing.Size(450, 194)
+    Me.GridControl1.Size = New System.Drawing.Size(414, 194)
     Me.GridControl1.TabIndex = 11
     Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
     '
@@ -647,6 +661,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
     Me.XtraTabPage2.Name = "XtraTabPage2"
     Me.XtraTabPage2.Size = New System.Drawing.Size(1094, 442)
+    Me.XtraTabPage2.Tag = "2"
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
     'GroupControl3
@@ -790,36 +805,32 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.DateEdit6.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.DateEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btneWorkOrderDocument.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabControl2.ResumeLayout(False)
     Me.XtraTabPage3.ResumeLayout(False)
-    CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.XtraTabControl1.ResumeLayout(False)
+    CType(Me.tabProductSpec, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.tabProductSpec.ResumeLayout(False)
     Me.XtraTabPage1.ResumeLayout(False)
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
     Me.GroupControl2.PerformLayout()
+    CType(Me.ComboBoxEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ComboBoxEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ComboBoxEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit6.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit4.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit5.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage2.ResumeLayout(False)
@@ -850,11 +861,10 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label3 As Label
   Friend WithEvents Label2 As Label
   Friend WithEvents Label1 As Label
-  Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
   Friend WithEvents txtDescription As DevExpress.XtraEditors.TextEdit
   Friend WithEvents XtraTabControl2 As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage3 As DevExpress.XtraTab.XtraTabPage
-  Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+  Friend WithEvents tabProductSpec As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
@@ -862,14 +872,10 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label10 As Label
   Friend WithEvents DateEdit6 As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label8 As Label
-  Friend WithEvents DateEdit4 As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label9 As Label
-  Friend WithEvents DateEdit5 As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label7 As Label
-  Friend WithEvents DateEdit3 As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label6 As Label
-  Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
-  Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+  Friend WithEvents memPFNotes As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents Label5 As Label
   Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -892,4 +898,11 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcTSEmployee As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcDuration As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents cboProductType As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents Label14 As Label
+  Friend WithEvents ComboBoxEdit6 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents ComboBoxEdit5 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents ComboBoxEdit4 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents ComboBoxEdit3 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
 End Class
