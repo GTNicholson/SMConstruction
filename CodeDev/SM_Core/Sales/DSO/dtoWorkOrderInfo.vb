@@ -79,7 +79,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pWorkOrderInfo = New clsWorkOrderInfo ' Or .NewBlankPurchaseInvoice
+    pWorkOrderInfo = New clsWorkOrderTracking ' Or .NewBlankPurchaseInvoice
     Return pWorkOrderInfo
 
   End Function
