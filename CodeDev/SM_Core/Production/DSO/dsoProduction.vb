@@ -14,7 +14,7 @@ Public Class dsoProduction
     Try
 
       pDBConn.Connect()
-      mdto = New dtoWorkOrderInfo(pDBConn)
+      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderTracking)
       mdto.LoadWorkOrderInfoCollectionByWhere(rWorkOrderTrackings, vWhere)
 
       ''For Each mWOI As clsWorkOrderInfo In mWorkOrderInfos

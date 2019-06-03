@@ -11,6 +11,7 @@ Public Class dtoWorkOrderMilestoneStatus : Inherits dtoBase
     MyBase.New(rDBSource)
   End Sub
 
+
   Protected Overrides Sub SetTableDetails()
     pTableName = "WorkOrderMilestoneStatus"
     pKeyFieldName = "WorkOrderMilestoneStatusID"
