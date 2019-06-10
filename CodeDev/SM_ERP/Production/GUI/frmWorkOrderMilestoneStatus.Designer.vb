@@ -24,19 +24,19 @@ Partial Class frmWorkOrderMilestoneStatus
   Private Sub InitializeComponent()
     Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
     Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.radgrpPUStatusSetting = New DevExpress.XtraEditors.RadioGroup()
+    Me.radgrpWOStatusSetting = New DevExpress.XtraEditors.RadioGroup()
     Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
     Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
     Me.txtNotes = New DevExpress.XtraEditors.MemoEdit()
     Me.lblTitle = New DevExpress.XtraEditors.LabelControl()
     Me.dtePlannedDate = New DevExpress.XtraEditors.DateEdit()
-    Me.txtLastDate = New DevExpress.XtraEditors.DateEdit()
-    CType(Me.radgrpPUStatusSetting.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.dteActualDate = New DevExpress.XtraEditors.DateEdit()
+    CType(Me.radgrpWOStatusSetting.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dtePlannedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dtePlannedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtLastDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtLastDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dteActualDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dteActualDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'LabelControl2
@@ -63,20 +63,20 @@ Partial Class frmWorkOrderMilestoneStatus
     Me.LabelControl1.TabIndex = 121
     Me.LabelControl1.Text = "Estatus"
     '
-    'radgrpPUStatusSetting
+    'radgrpWOStatusSetting
     '
-    Me.radgrpPUStatusSetting.EditValue = 0
-    Me.radgrpPUStatusSetting.Location = New System.Drawing.Point(72, 30)
-    Me.radgrpPUStatusSetting.Name = "radgrpPUStatusSetting"
-    Me.radgrpPUStatusSetting.Properties.AllowMouseWheel = False
-    Me.radgrpPUStatusSetting.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.radgrpPUStatusSetting.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.radgrpPUStatusSetting.Properties.Appearance.Options.UseFont = True
-    Me.radgrpPUStatusSetting.Properties.Appearance.Options.UseForeColor = True
-    Me.radgrpPUStatusSetting.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Pendiente"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "No Requerido"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "In Proceso"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Completo")})
-    Me.radgrpPUStatusSetting.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
-    Me.radgrpPUStatusSetting.Size = New System.Drawing.Size(328, 25)
-    Me.radgrpPUStatusSetting.TabIndex = 120
+    Me.radgrpWOStatusSetting.EditValue = 0
+    Me.radgrpWOStatusSetting.Location = New System.Drawing.Point(72, 30)
+    Me.radgrpWOStatusSetting.Name = "radgrpWOStatusSetting"
+    Me.radgrpWOStatusSetting.Properties.AllowMouseWheel = False
+    Me.radgrpWOStatusSetting.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.radgrpWOStatusSetting.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.radgrpWOStatusSetting.Properties.Appearance.Options.UseFont = True
+    Me.radgrpWOStatusSetting.Properties.Appearance.Options.UseForeColor = True
+    Me.radgrpWOStatusSetting.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Pendiente"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "No Requerido"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "In Proceso"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Completo")})
+    Me.radgrpWOStatusSetting.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
+    Me.radgrpWOStatusSetting.Size = New System.Drawing.Size(328, 25)
+    Me.radgrpWOStatusSetting.TabIndex = 120
     '
     'LabelControl21
     '
@@ -140,27 +140,29 @@ Partial Class frmWorkOrderMilestoneStatus
     Me.dtePlannedDate.Properties.EditFormat.FormatString = ""
     Me.dtePlannedDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
     Me.dtePlannedDate.Properties.Mask.UseMaskAsDisplayFormat = True
+    Me.dtePlannedDate.Properties.NullDate = "01/01/0001 00:00:00"
     Me.dtePlannedDate.Size = New System.Drawing.Size(94, 20)
     Me.dtePlannedDate.TabIndex = 123
     '
-    'txtLastDate
+    'dteActualDate
     '
-    Me.txtLastDate.EditValue = Nothing
-    Me.txtLastDate.Location = New System.Drawing.Point(519, 53)
-    Me.txtLastDate.Name = "txtLastDate"
-    Me.txtLastDate.Properties.Appearance.BackColor = System.Drawing.Color.White
-    Me.txtLastDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtLastDate.Properties.Appearance.Options.UseBackColor = True
-    Me.txtLastDate.Properties.Appearance.Options.UseFont = True
-    Me.txtLastDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.txtLastDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.txtLastDate.Properties.DisplayFormat.FormatString = ""
-    Me.txtLastDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-    Me.txtLastDate.Properties.EditFormat.FormatString = ""
-    Me.txtLastDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-    Me.txtLastDate.Properties.Mask.UseMaskAsDisplayFormat = True
-    Me.txtLastDate.Size = New System.Drawing.Size(94, 20)
-    Me.txtLastDate.TabIndex = 119
+    Me.dteActualDate.EditValue = Nothing
+    Me.dteActualDate.Location = New System.Drawing.Point(519, 53)
+    Me.dteActualDate.Name = "dteActualDate"
+    Me.dteActualDate.Properties.Appearance.BackColor = System.Drawing.Color.White
+    Me.dteActualDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.dteActualDate.Properties.Appearance.Options.UseBackColor = True
+    Me.dteActualDate.Properties.Appearance.Options.UseFont = True
+    Me.dteActualDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dteActualDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dteActualDate.Properties.DisplayFormat.FormatString = ""
+    Me.dteActualDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.dteActualDate.Properties.EditFormat.FormatString = ""
+    Me.dteActualDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.dteActualDate.Properties.Mask.UseMaskAsDisplayFormat = True
+    Me.dteActualDate.Properties.NullDate = "01/01/0001 00:00:00"
+    Me.dteActualDate.Size = New System.Drawing.Size(94, 20)
+    Me.dteActualDate.TabIndex = 119
     '
     'frmWorkOrderMilestoneStatus
     '
@@ -169,23 +171,23 @@ Partial Class frmWorkOrderMilestoneStatus
     Me.ClientSize = New System.Drawing.Size(620, 163)
     Me.Controls.Add(Me.LabelControl2)
     Me.Controls.Add(Me.LabelControl1)
-    Me.Controls.Add(Me.radgrpPUStatusSetting)
+    Me.Controls.Add(Me.radgrpWOStatusSetting)
     Me.Controls.Add(Me.LabelControl21)
     Me.Controls.Add(Me.LabelControl22)
     Me.Controls.Add(Me.txtNotes)
     Me.Controls.Add(Me.lblTitle)
     Me.Controls.Add(Me.dtePlannedDate)
-    Me.Controls.Add(Me.txtLastDate)
+    Me.Controls.Add(Me.dteActualDate)
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.Name = "frmWorkOrderMilestoneStatus"
     Me.Text = "Estatus de Orden de Trabajo"
-    CType(Me.radgrpPUStatusSetting.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.radgrpWOStatusSetting.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dtePlannedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dtePlannedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtLastDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtLastDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dteActualDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dteActualDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -193,11 +195,11 @@ Partial Class frmWorkOrderMilestoneStatus
 
   Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents radgrpPUStatusSetting As DevExpress.XtraEditors.RadioGroup
+  Friend WithEvents radgrpWOStatusSetting As DevExpress.XtraEditors.RadioGroup
   Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents txtNotes As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents lblTitle As DevExpress.XtraEditors.LabelControl
   Friend WithEvents dtePlannedDate As DevExpress.XtraEditors.DateEdit
-  Friend WithEvents txtLastDate As DevExpress.XtraEditors.DateEdit
+  Friend WithEvents dteActualDate As DevExpress.XtraEditors.DateEdit
 End Class

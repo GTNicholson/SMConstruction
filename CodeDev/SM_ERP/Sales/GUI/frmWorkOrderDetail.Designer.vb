@@ -36,7 +36,7 @@ Partial Class frmWorkOrderDetail
     Me.Label14 = New System.Windows.Forms.Label()
     Me.Label13 = New System.Windows.Forms.Label()
     Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-    Me.DateEdit6 = New DevExpress.XtraEditors.DateEdit()
+    Me.dtePlannedStartDate = New DevExpress.XtraEditors.DateEdit()
     Me.Label12 = New System.Windows.Forms.Label()
     Me.btnWorkOrderNumber = New DevExpress.XtraEditors.ButtonEdit()
     Me.Label11 = New System.Windows.Forms.Label()
@@ -87,8 +87,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.SuspendLayout()
     CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit6.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.DateEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dtePlannedStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dtePlannedStartDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btneWorkOrderDocument.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,7 +155,7 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1112, 29)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1138, 29)
     '
     'barDockControlBottom
     '
@@ -163,7 +163,7 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
     Me.barDockControlBottom.Location = New System.Drawing.Point(0, 633)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1112, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1138, 0)
     '
     'barDockControlLeft
     '
@@ -177,7 +177,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1112, 29)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1138, 29)
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 604)
     '
@@ -193,7 +193,7 @@ Partial Class frmWorkOrderDetail
     Me.TableLayoutPanel1.RowCount = 2
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1112, 604)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1138, 604)
     Me.TableLayoutPanel1.TabIndex = 4
     '
     'GroupControl1
@@ -206,7 +206,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.Label14)
     Me.GroupControl1.Controls.Add(Me.Label13)
     Me.GroupControl1.Controls.Add(Me.TextEdit4)
-    Me.GroupControl1.Controls.Add(Me.DateEdit6)
+    Me.GroupControl1.Controls.Add(Me.dtePlannedStartDate)
     Me.GroupControl1.Controls.Add(Me.Label12)
     Me.GroupControl1.Controls.Add(Me.btnWorkOrderNumber)
     Me.GroupControl1.Controls.Add(Me.Label11)
@@ -221,7 +221,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
     Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(1106, 91)
+    Me.GroupControl1.Size = New System.Drawing.Size(1132, 91)
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
     '
@@ -241,12 +241,12 @@ Partial Class frmWorkOrderDetail
     Me.Label14.AutoSize = True
     Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label14.Location = New System.Drawing.Point(573, 37)
+    Me.Label14.Location = New System.Drawing.Point(564, 37)
     Me.Label14.Name = "Label14"
-    Me.Label14.Size = New System.Drawing.Size(79, 14)
+    Me.Label14.Size = New System.Drawing.Size(88, 14)
     Me.Label14.TabIndex = 143
     Me.Label14.Tag = "c"
-    Me.Label14.Text = "Fecha de Ent."
+    Me.Label14.Text = "Fecha de Prod."
     '
     'Label13
     '
@@ -269,22 +269,23 @@ Partial Class frmWorkOrderDetail
     Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.TextEdit4.Properties.Appearance.Options.UseBackColor = True
     Me.TextEdit4.Properties.Appearance.Options.UseFont = True
-    Me.TextEdit4.Size = New System.Drawing.Size(265, 20)
+    Me.TextEdit4.Size = New System.Drawing.Size(291, 20)
     Me.TextEdit4.TabIndex = 140
     Me.TextEdit4.Tag = "c"
     '
-    'DateEdit6
+    'dtePlannedStartDate
     '
-    Me.DateEdit6.EditValue = Nothing
-    Me.DateEdit6.Location = New System.Drawing.Point(658, 34)
-    Me.DateEdit6.MenuManager = Me.BarManager1
-    Me.DateEdit6.Name = "DateEdit6"
-    Me.DateEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.DateEdit6.Properties.Appearance.Options.UseFont = True
-    Me.DateEdit6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit6.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.DateEdit6.Size = New System.Drawing.Size(89, 20)
-    Me.DateEdit6.TabIndex = 26
+    Me.dtePlannedStartDate.EditValue = Nothing
+    Me.dtePlannedStartDate.Location = New System.Drawing.Point(658, 34)
+    Me.dtePlannedStartDate.MenuManager = Me.BarManager1
+    Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
+    Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.dtePlannedStartDate.Properties.Appearance.Options.UseFont = True
+    Me.dtePlannedStartDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dtePlannedStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dtePlannedStartDate.Properties.NullDate = New Date(CType(0, Long))
+    Me.dtePlannedStartDate.Size = New System.Drawing.Size(89, 20)
+    Me.dtePlannedStartDate.TabIndex = 26
     '
     'Label12
     '
@@ -418,7 +419,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabControl2.Location = New System.Drawing.Point(3, 100)
     Me.XtraTabControl2.Name = "XtraTabControl2"
     Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage3
-    Me.XtraTabControl2.Size = New System.Drawing.Size(1106, 501)
+    Me.XtraTabControl2.Size = New System.Drawing.Size(1132, 501)
     Me.XtraTabControl2.TabIndex = 14
     Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3, Me.XtraTabPage4})
     '
@@ -426,7 +427,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage3.Controls.Add(Me.tabProductSpec)
     Me.XtraTabPage3.Name = "XtraTabPage3"
-    Me.XtraTabPage3.Size = New System.Drawing.Size(1100, 470)
+    Me.XtraTabPage3.Size = New System.Drawing.Size(1126, 470)
     Me.XtraTabPage3.Text = "Especificacion de Producto"
     '
     'tabProductSpec
@@ -435,7 +436,7 @@ Partial Class frmWorkOrderDetail
     Me.tabProductSpec.Location = New System.Drawing.Point(0, 0)
     Me.tabProductSpec.Name = "tabProductSpec"
     Me.tabProductSpec.SelectedTabPage = Me.XtraTabPage1
-    Me.tabProductSpec.Size = New System.Drawing.Size(1100, 470)
+    Me.tabProductSpec.Size = New System.Drawing.Size(1126, 470)
     Me.tabProductSpec.TabIndex = 20
     Me.tabProductSpec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
     '
@@ -443,7 +444,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage1.Controls.Add(Me.GroupControl2)
     Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1094, 442)
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1120, 442)
     Me.XtraTabPage1.Tag = "1"
     Me.XtraTabPage1.Text = "XtraTabPage1"
     '
@@ -470,7 +471,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(1094, 442)
+    Me.GroupControl2.Size = New System.Drawing.Size(1120, 442)
     Me.GroupControl2.TabIndex = 14
     Me.GroupControl2.Text = "Detalles de Mueble"
     '
@@ -792,7 +793,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1112, 633)
+    Me.ClientSize = New System.Drawing.Size(1138, 633)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
@@ -807,8 +808,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.PerformLayout()
     CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit6.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.DateEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dtePlannedStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dtePlannedStartDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btneWorkOrderDocument.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -870,7 +871,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents Label10 As Label
-  Friend WithEvents DateEdit6 As DevExpress.XtraEditors.DateEdit
+  Friend WithEvents dtePlannedStartDate As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label8 As Label
   Friend WithEvents Label9 As Label
   Friend WithEvents Label7 As Label

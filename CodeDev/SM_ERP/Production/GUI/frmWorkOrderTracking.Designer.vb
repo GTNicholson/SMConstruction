@@ -25,25 +25,31 @@ Partial Class frmWorkOrderTracking
     Me.components = New System.ComponentModel.Container()
     Me.grdWorksOrders = New DevExpress.XtraGrid.GridControl()
     Me.gvWorksOrders = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalValue = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcDiseno = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcInginiero = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcCompadeMateriales = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcCompradeMadera = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grdWorksOrders
@@ -52,6 +58,7 @@ Partial Class frmWorkOrderTracking
     Me.grdWorksOrders.Location = New System.Drawing.Point(0, 29)
     Me.grdWorksOrders.MainView = Me.gvWorksOrders
     Me.grdWorksOrders.Name = "grdWorksOrders"
+    Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
     Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 597)
     Me.grdWorksOrders.TabIndex = 0
     Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
@@ -67,68 +74,197 @@ Partial Class frmWorkOrderTracking
     Me.gvWorksOrders.Appearance.Row.Options.UseTextOptions = True
     Me.gvWorksOrders.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.gvWorksOrders.ColumnPanelRowHeight = 34
-    Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+    Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcTotalValue, Me.gcDiseno, Me.gcInginiero, Me.gcCompadeMateriales, Me.gcCompradeMadera})
     Me.gvWorksOrders.GridControl = Me.grdWorksOrders
+    Me.gvWorksOrders.GroupCount = 1
+    Me.gvWorksOrders.GroupRowHeight = 28
+    Me.gvWorksOrders.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalValue", Me.gcTotalValue, "{0:0.##}")})
     Me.gvWorksOrders.Name = "gvWorksOrders"
+    Me.gvWorksOrders.OptionsBehavior.AutoExpandAllGroups = True
     Me.gvWorksOrders.OptionsView.ColumnAutoWidth = False
+    Me.gvWorksOrders.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
     Me.gvWorksOrders.OptionsView.ShowAutoFilterRow = True
     Me.gvWorksOrders.OptionsView.ShowGroupPanel = False
     Me.gvWorksOrders.RowHeight = 34
+    Me.gvWorksOrders.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
+    '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "Semana de Produccion"
+    Me.GridColumn7.DisplayFormat.FormatString = "dd / MM"
+    Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.GridColumn7.FieldName = "PlannedStartDateWC"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 11
     '
     'GridColumn1
     '
+    Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn1.Caption = "Numero de O.T."
     Me.GridColumn1.FieldName = "WorkOrderNo"
     Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.OptionsColumn.ReadOnly = True
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
+    Me.GridColumn1.Width = 71
     '
     'GridColumn2
     '
+    Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn2.Caption = "Descripcion"
     Me.GridColumn2.FieldName = "Description"
     Me.GridColumn2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.OptionsColumn.ReadOnly = True
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 1
-    Me.GridColumn2.Width = 328
+    Me.GridColumn2.Width = 263
     '
     'GridColumn3
     '
+    Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn3.Caption = "Cantidad"
     Me.GridColumn3.FieldName = "Quantity"
     Me.GridColumn3.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.OptionsColumn.ReadOnly = True
     Me.GridColumn3.Visible = True
     Me.GridColumn3.VisibleIndex = 2
     Me.GridColumn3.Width = 62
     '
     'GridColumn6
     '
+    Me.GridColumn6.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn6.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn6.Caption = "Tipo de Producto"
     Me.GridColumn6.FieldName = "ProductType"
     Me.GridColumn6.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.OptionsColumn.ReadOnly = True
     Me.GridColumn6.Visible = True
     Me.GridColumn6.VisibleIndex = 3
     Me.GridColumn6.Width = 138
     '
     'GridColumn4
     '
+    Me.GridColumn4.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn4.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn4.Caption = "Orden"
     Me.GridColumn4.FieldName = "OrderNo"
     Me.GridColumn4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn4.Name = "GridColumn4"
+    Me.GridColumn4.OptionsColumn.ReadOnly = True
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 4
     '
+    'GridColumn10
+    '
+    Me.GridColumn10.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn10.AppearanceCell.Options.UseBackColor = True
+    Me.GridColumn10.Caption = "Proyecto"
+    Me.GridColumn10.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+    Me.GridColumn10.Name = "GridColumn10"
+    Me.GridColumn10.OptionsColumn.ReadOnly = True
+    Me.GridColumn10.Visible = True
+    Me.GridColumn10.VisibleIndex = 5
+    Me.GridColumn10.Width = 138
+    '
     'GridColumn5
     '
-    Me.GridColumn5.Caption = "Diseno"
+    Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
+    Me.GridColumn5.Caption = "Fecha de Prod."
+    Me.GridColumn5.ColumnEdit = Me.RepositoryItemDateEdit1
+    Me.GridColumn5.FieldName = "PlannedStartDate"
+    Me.GridColumn5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 6
+    '
+    'gcTotalValue
+    '
+    Me.gcTotalValue.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.gcTotalValue.AppearanceCell.Options.UseBackColor = True
+    Me.gcTotalValue.Caption = "Valor"
+    Me.gcTotalValue.FieldName = "TotalValue"
+    Me.gcTotalValue.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+    Me.gcTotalValue.Name = "gcTotalValue"
+    Me.gcTotalValue.Visible = True
+    Me.gcTotalValue.VisibleIndex = 7
+    Me.gcTotalValue.Width = 66
+    '
+    'gcDiseno
+    '
+    Me.gcDiseno.AppearanceCell.Options.UseTextOptions = True
+    Me.gcDiseno.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcDiseno.AppearanceHeader.Options.UseTextOptions = True
+    Me.gcDiseno.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcDiseno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gcDiseno.Caption = "Diseno"
+    Me.gcDiseno.FieldName = "GridColumn5"
+    Me.gcDiseno.Name = "gcDiseno"
+    Me.gcDiseno.OptionsColumn.AllowEdit = False
+    Me.gcDiseno.OptionsColumn.ReadOnly = True
+    Me.gcDiseno.Tag = 1
+    Me.gcDiseno.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcDiseno.Visible = True
+    Me.gcDiseno.VisibleIndex = 8
+    '
+    'gcInginiero
+    '
+    Me.gcInginiero.AppearanceCell.Options.UseTextOptions = True
+    Me.gcInginiero.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcInginiero.AppearanceHeader.Options.UseTextOptions = True
+    Me.gcInginiero.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcInginiero.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gcInginiero.Caption = "Inginiero"
+    Me.gcInginiero.FieldName = "GridColumn7"
+    Me.gcInginiero.Name = "gcInginiero"
+    Me.gcInginiero.OptionsColumn.AllowEdit = False
+    Me.gcInginiero.OptionsColumn.ReadOnly = True
+    Me.gcInginiero.Tag = 2
+    Me.gcInginiero.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcInginiero.Visible = True
+    Me.gcInginiero.VisibleIndex = 9
+    '
+    'gcCompadeMateriales
+    '
+    Me.gcCompadeMateriales.AppearanceCell.Options.UseTextOptions = True
+    Me.gcCompadeMateriales.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcCompadeMateriales.AppearanceHeader.Options.UseTextOptions = True
+    Me.gcCompadeMateriales.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcCompadeMateriales.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gcCompadeMateriales.Caption = "Compa de Materiales"
+    Me.gcCompadeMateriales.FieldName = "GridColumn8"
+    Me.gcCompadeMateriales.Name = "gcCompadeMateriales"
+    Me.gcCompadeMateriales.OptionsColumn.AllowEdit = False
+    Me.gcCompadeMateriales.OptionsColumn.ReadOnly = True
+    Me.gcCompadeMateriales.Tag = 3
+    Me.gcCompadeMateriales.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcCompadeMateriales.Visible = True
+    Me.gcCompadeMateriales.VisibleIndex = 10
+    '
+    'gcCompradeMadera
+    '
+    Me.gcCompradeMadera.AppearanceCell.Options.UseTextOptions = True
+    Me.gcCompradeMadera.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcCompradeMadera.AppearanceHeader.Options.UseTextOptions = True
+    Me.gcCompradeMadera.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcCompradeMadera.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gcCompradeMadera.Caption = "Compra de Madera"
+    Me.gcCompradeMadera.FieldName = "GridColumn9"
+    Me.gcCompradeMadera.Name = "gcCompradeMadera"
+    Me.gcCompradeMadera.OptionsColumn.AllowEdit = False
+    Me.gcCompradeMadera.OptionsColumn.ReadOnly = True
+    Me.gcCompradeMadera.Tag = 4
+    Me.gcCompradeMadera.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcCompradeMadera.Visible = True
+    Me.gcCompradeMadera.VisibleIndex = 11
     '
     'BarManager1
     '
@@ -180,35 +316,13 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 597)
     '
-    'GridColumn7
+    'RepositoryItemDateEdit1
     '
-    Me.GridColumn7.Caption = "Inginiero"
-    Me.GridColumn7.Name = "GridColumn7"
-    Me.GridColumn7.Visible = True
-    Me.GridColumn7.VisibleIndex = 7
-    '
-    'GridColumn8
-    '
-    Me.GridColumn8.Caption = "Compa de Materiales"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 8
-    '
-    'GridColumn9
-    '
-    Me.GridColumn9.Caption = "Compra de Madera"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 9
-    '
-    'GridColumn10
-    '
-    Me.GridColumn10.Caption = "Proyecto"
-    Me.GridColumn10.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-    Me.GridColumn10.Name = "GridColumn10"
-    Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 5
-    Me.GridColumn10.Width = 106
+    Me.RepositoryItemDateEdit1.AutoHeight = False
+    Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+    Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
     '
     'frmWorkOrderTracking
     '
@@ -225,6 +339,8 @@ Partial Class frmWorkOrderTracking
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -243,9 +359,13 @@ Partial Class frmWorkOrderTracking
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcDiseno As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcInginiero As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcCompadeMateriales As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcCompradeMadera As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcTotalValue As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class

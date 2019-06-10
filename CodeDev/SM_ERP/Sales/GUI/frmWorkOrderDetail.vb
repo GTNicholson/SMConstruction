@@ -159,6 +159,8 @@ Public Class frmWorkOrderDetail
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description
 
+      dtePlannedStartDate.DateTime = .PlannedStartDate
+
       clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
 
       RefreshProductControls()
@@ -187,6 +189,7 @@ Public Class frmWorkOrderDetail
   Private Sub UpdateObject()
     With pFormController.WorkOrder
       .Description = txtDescription.Text
+      .PlannedStartDate = dtePlannedStartDate.DateTime
     End With
     UpdateProductControls()
   End Sub

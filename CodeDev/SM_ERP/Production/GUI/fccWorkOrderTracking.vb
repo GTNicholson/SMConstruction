@@ -15,6 +15,14 @@ Public Class fccWorkOrderTracking
     End Get
   End Property
 
+  Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
+    Get
+      Return pDBConn
+    End Get
+  End Property
+
+
+
   Public Sub LoadObjects()
     Dim mdso As dsoProduction
     Try

@@ -60,6 +60,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderNo", StringToDBValue(.WorkOrderNo))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PlannedStartDate", DateToDBValue(.PlannedStartDate))
     End With
 
   End Sub
@@ -77,6 +78,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .Quantity = DBReadDouble(rDataReader, "Quantity")
         .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
         .Description = DBReadString(rDataReader, "Description")
+        .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
         pWorkOrder.IsDirty = False
       End With
       mOK = True

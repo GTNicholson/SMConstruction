@@ -10,6 +10,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pQuantity As Double
   Private pDateCreated As Date
   Private pDescription As String
+  Private pPlannedStartDate As DateTime
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
 
@@ -59,6 +60,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .Quantity = Quantity
       .DateCreated = DateCreated
       .Description = Description
+      .PlannedStartDate = PlannedStartDate
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -157,6 +159,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As String)
       If pDescription <> value Then IsDirty = True
       pDescription = value
+    End Set
+  End Property
+
+  Public Property PlannedStartDate As DateTime
+    Get
+      Return pPlannedStartDate
+    End Get
+    Set(value As DateTime)
+      If pPlannedStartDate <> value Then IsDirty = True
+      pPlannedStartDate = value
     End Set
   End Property
 
