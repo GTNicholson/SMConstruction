@@ -82,7 +82,20 @@ Public Enum eProductType
   <Description("Estructura")> Strucutre = 2
 End Enum
 
+Public Enum eMilestoneStatus
+  Pending = 0
+  NotRequired = 1
+  PartComplete = 2
+  Complete = 3
 
+End Enum
+
+Public Enum eWorkOrderMilestone
+  Design = 1
+  Specification = 2
+  MaterialPurchasing = 3
+  WoodPurchasing = 4
+End Enum
 
 Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of clsTimeSheetCode)
   Private Shared sTimeSheetCodes As colTimeSheetCodes

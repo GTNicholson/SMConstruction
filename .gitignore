@@ -2,6 +2,8 @@
 bin/
 obj/
 debug/
+InstallFiles/
+Setup/
 
 
 # Compiled source #

@@ -10,12 +10,15 @@ Public Class dmProductFurniture : Inherits dmBase
   Private pFurnitureType As Int32
   Private pNotes As String
 
+  Private pMaterialRequirements As colMaterialRequirements
+
   Public Sub New()
     MyBase.New()
   End Sub
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pMaterialRequirements = New colMaterialRequirements
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -46,6 +49,7 @@ Public Class dmProductFurniture : Inherits dmBase
       .Description = Description
       .Notes = Notes
       .FurnitureType = FurnitureType
+      .MaterialRequirments = MaterialRequirments.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -166,6 +170,15 @@ Public Class dmProductFurniture : Inherits dmBase
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property MaterialRequirments As colMaterialRequirements
+    Get
+      Return pMaterialRequirements
+    End Get
+    Set(value As colMaterialRequirements)
+      pMaterialRequirements = value
     End Set
   End Property
 

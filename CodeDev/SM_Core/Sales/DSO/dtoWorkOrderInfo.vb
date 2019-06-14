@@ -5,9 +5,16 @@ Imports RTIS.CommonVB
 
 Public Class dtoWorkOrderInfo : Inherits dtoBase
   Private pWorkOrderInfo As clsWorkOrderInfo
+  Private pMode As eMode
 
-  Public Sub New(ByRef rDBSource As clsDBConnBase)
+  Public Enum eMode
+    WorkOrderInfo = 1
+    WorkOrderTracking = 2
+  End Enum
+
+  Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vmode As eMode)
     MyBase.New(rDBSource)
+    pMode = vmode
   End Sub
 
   Protected Overrides Sub SetTableDetails()
@@ -57,6 +64,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
         .Quantity = DBReadDouble(rDataReader, "Quantity")
         .Description = DBReadString(rDataReader, "Description")
+        .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
       End With
 
       With pWorkOrderInfo.SalesOrder
@@ -79,7 +87,12 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pWorkOrderInfo = New clsWorkOrderInfo ' Or .NewBlankPurchaseInvoice
+    Select Case pMode
+      Case eMode.WorkOrderInfo
+        pWorkOrderInfo = New clsWorkOrderInfo
+      Case eMode.WorkOrderTracking
+        pWorkOrderInfo = New clsWorkOrderTracking
+    End Select
     Return pWorkOrderInfo
 
   End Function

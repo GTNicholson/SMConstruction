@@ -62,7 +62,7 @@ Public Class dsoBIWorkOrder
       pWorkOrderInfos = New colWorkOrderInfos
 
       pDBConn.Connect()
-      mdto = New dtoWorkOrderInfo(pDBConn)
+      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderInfo)
 
       mSQLWhere1 = pBIReportView.ConditionSetters(0).FilterSQL
       mSQLWhere2 = pBIReportView.ConditionSetters(1).FilterSQL

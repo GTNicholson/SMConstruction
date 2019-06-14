@@ -3,7 +3,6 @@
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
 
-
   Public Sub New()
     pWorkOrder = New dmWorkOrder
     pSalesOrder = New dmSalesOrder
@@ -55,6 +54,18 @@
   Public ReadOnly Property ProductTypeID As Integer
     Get
       Return pWorkOrder.ProductTypeID
+    End Get
+  End Property
+
+  Public ReadOnly Property PlannedStartDate As DateTime
+    Get
+      Return pWorkOrder.PlannedStartDate
+    End Get
+  End Property
+
+  Public ReadOnly Property PlannedStartDateWC As DateTime
+    Get
+      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pWorkOrder.PlannedStartDate)
     End Get
   End Property
 
