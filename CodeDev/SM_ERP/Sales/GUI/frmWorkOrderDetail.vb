@@ -284,12 +284,14 @@ Public Class frmWorkOrderDetail
 
   Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
     Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+    Dim mWOs As New colWorkOrders
 
     Select Case vDocType
       Case eDocumentType.WorkOrderDoc
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder)
+          mWOs.Add(pFormController.WorkOrder)
+          mRetVal = repWorkOrderDoc.GenerateReport(mWOs)
         End If
 
     End Select
