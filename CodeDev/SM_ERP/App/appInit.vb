@@ -320,7 +320,7 @@ Public Class appInit
             End If
           Else
             rRTISGlobal.AppSettingsPath = mRTISSettingFile.ServerSettingsPath.SettingValue
-            mServerFileFoundOK = False
+            mServerFileFoundOK = True
           End If
         Else
           mLocalSettings = True

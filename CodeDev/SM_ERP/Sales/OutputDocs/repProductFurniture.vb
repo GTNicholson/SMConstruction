@@ -16,8 +16,8 @@ Public Class repProductFurniture
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim msrepMats As New srepMaterials
 
-    ''msrepMats.DataSource = pProductFurniture.MaterialRequirements
-    subrepMaterials.ReportSource = New srepMaterials
+    msrepMats.DataSource = pProductFurniture.MaterialRequirments
+    subrepMaterials.ReportSource = msrepMats
 
   End Sub
 

@@ -120,10 +120,11 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
   End Function
 
 
-  Public Function LoadMaterialRequirementCollection(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vParentID As Integer) As Boolean
+  Public Function LoadMaterialRequirementCollection(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@ObjectType", vProductType)
+    mParams.Add("@ObjectID", vParentID)
     mOK = MyBase.LoadCollection(rMaterialRequirements, mParams, "MaterialRequirementID")
     rMaterialRequirements.TrackDeleted = True
     If mOK Then rMaterialRequirements.IsDirty = False
@@ -131,28 +132,11 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
   End Function
 
 
-  Public Function SaveMaterialRequirementCollection(ByRef rCollection As colMaterialRequirements, ByVal vParentID As Integer) As Boolean
-    Dim mParams As New Hashtable
+  Public Function SaveMaterialRequirementCollection(ByRef rCollection As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer) As Boolean
     Dim mAllOK As Boolean
-    Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
-      ''Approach where delete items not found in the collection
-      ''If rCollection.SomeRemoved Then
-      ''  For Each Me.pMaterialRequirement In rCollection
-      ''    If pMaterialRequirement.MaterialRequirementID <> 0 Then
-      ''      mCount = mCount + 1
-      ''      If mCount > 1 Then mIDs = mIDs & ", "
-      ''       mIDs = mIDs & pMaterialRequirement.MaterialRequirementID.ToString
-      ''    End If
-      ''  Next
-      ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
-      ''Else
-      ''   mAllOK = True
-      ''End If
 
-      ''Alternative Approach - where maintain collection of deleted items
       If rCollection.SomeDeleted Then
         mAllOK = True
         For Each Me.pMaterialRequirement In rCollection.DeletedItems
@@ -165,7 +149,9 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       End If
 
       For Each Me.pMaterialRequirement In rCollection
-        If pMaterialRequirement.IsDirty Or pMaterialRequirement.MaterialRequirementID = 0 Then 'Or pMaterialRequirement.MaterialRequirementID = 0
+        If pMaterialRequirement.IsDirty Or pMaterialRequirement.ObjectType = 0 Or pMaterialRequirement.ObjectID = 0 Or pMaterialRequirement.MaterialRequirementID = 0 Then 'Or pMaterialRequirement.MaterialRequirementID = 0
+          pMaterialRequirement.ObjectType = vProductType
+          pMaterialRequirement.ObjectID = vParentID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next
