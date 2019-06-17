@@ -48,6 +48,10 @@
     <AllowRollBack>FALSE</AllowRollBack>
   </CurrentVersion>
   <ExeFiles>
+    <Filename>RTISAlign.exe</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.BonusSkins.v17.1.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>

@@ -58,8 +58,8 @@ Partial Class frmWorkOrderDetail
     Me.ComboBoxEdit4 = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.ComboBoxEdit3 = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.grdMaterialRequirements = New DevExpress.XtraGrid.GridControl()
+    Me.gvMaterialRequirements = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.Label10 = New System.Windows.Forms.Label()
     Me.Label8 = New System.Windows.Forms.Label()
     Me.Label9 = New System.Windows.Forms.Label()
@@ -81,6 +81,9 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,8 +110,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.ComboBoxEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -459,7 +462,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.Controls.Add(Me.ComboBoxEdit4)
     Me.GroupControl2.Controls.Add(Me.ComboBoxEdit3)
     Me.GroupControl2.Controls.Add(Me.ComboBoxEdit1)
-    Me.GroupControl2.Controls.Add(Me.GridControl2)
+    Me.GroupControl2.Controls.Add(Me.grdMaterialRequirements)
     Me.GroupControl2.Controls.Add(Me.Label10)
     Me.GroupControl2.Controls.Add(Me.Label8)
     Me.GroupControl2.Controls.Add(Me.Label9)
@@ -530,31 +533,38 @@ Partial Class frmWorkOrderDetail
     Me.ComboBoxEdit1.Size = New System.Drawing.Size(88, 20)
     Me.ComboBoxEdit1.TabIndex = 29
     '
-    'GridControl2
+    'grdMaterialRequirements
     '
-    Me.GridControl2.Location = New System.Drawing.Point(533, 103)
-    Me.GridControl2.MainView = Me.GridView2
-    Me.GridControl2.MenuManager = Me.BarManager1
-    Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(530, 194)
-    Me.GridControl2.TabIndex = 28
-    Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+    Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirements.Location = New System.Drawing.Point(533, 103)
+    Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
+    Me.grdMaterialRequirements.MenuManager = Me.BarManager1
+    Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
+    Me.grdMaterialRequirements.Size = New System.Drawing.Size(530, 194)
+    Me.grdMaterialRequirements.TabIndex = 28
+    Me.grdMaterialRequirements.UseEmbeddedNavigator = True
+    Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements})
     '
-    'GridView2
+    'gvMaterialRequirements
     '
-    Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.Row.Options.UseFont = True
-    Me.GridView2.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView2.GridControl = Me.GridControl2
-    Me.GridView2.Name = "GridView2"
-    Me.GridView2.OptionsView.ShowGroupPanel = False
-    Me.GridView2.OptionsView.ShowViewCaption = True
-    Me.GridView2.ViewCaption = "Componentes"
+    Me.gvMaterialRequirements.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirements.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvMaterialRequirements.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvMaterialRequirements.Appearance.Row.Options.UseFont = True
+    Me.gvMaterialRequirements.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirements.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4})
+    Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
+    Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
+    Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
+    Me.gvMaterialRequirements.OptionsView.ShowViewCaption = True
+    Me.gvMaterialRequirements.ViewCaption = "Componentes"
     '
     'Label10
     '
@@ -661,7 +671,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1094, 442)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1120, 442)
     Me.XtraTabPage2.Tag = "2"
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
@@ -674,7 +684,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(1094, 442)
+    Me.GroupControl3.Size = New System.Drawing.Size(1120, 442)
     Me.GroupControl3.TabIndex = 14
     Me.GroupControl3.Text = "Detalles de Estructura"
     '
@@ -682,7 +692,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage4.Controls.Add(Me.PanelControl1)
     Me.XtraTabPage4.Name = "XtraTabPage4"
-    Me.XtraTabPage4.Size = New System.Drawing.Size(1100, 470)
+    Me.XtraTabPage4.Size = New System.Drawing.Size(1126, 470)
     Me.XtraTabPage4.Text = "Estatus y Costos"
     '
     'PanelControl1
@@ -692,7 +702,7 @@ Partial Class frmWorkOrderDetail
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1100, 470)
+    Me.PanelControl1.Size = New System.Drawing.Size(1126, 470)
     Me.PanelControl1.TabIndex = 0
     '
     'GridControl4
@@ -789,6 +799,33 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "Codigo"
+    Me.GridColumn1.FieldName = "StockCode"
+    Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.Visible = True
+    Me.GridColumn1.VisibleIndex = 0
+    Me.GridColumn1.Width = 362
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Descripcion"
+    Me.GridColumn2.FieldName = "Description"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 1
+    Me.GridColumn2.Width = 827
+    '
+    'GridColumn4
+    '
+    Me.GridColumn4.Caption = "Cantidad"
+    Me.GridColumn4.FieldName = "Quantity"
+    Me.GridColumn4.Name = "GridColumn4"
+    Me.GridColumn4.Visible = True
+    Me.GridColumn4.VisibleIndex = 2
+    Me.GridColumn4.Width = 433
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -829,8 +866,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.ComboBoxEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -868,8 +905,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents tabProductSpec As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grdMaterialRequirements As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvMaterialRequirements As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents Label10 As Label
   Friend WithEvents dtePlannedStartDate As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label8 As Label
@@ -906,4 +943,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents ComboBoxEdit4 As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents ComboBoxEdit3 As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

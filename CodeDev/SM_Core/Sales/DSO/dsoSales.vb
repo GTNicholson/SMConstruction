@@ -89,6 +89,8 @@ Public Class dsoSales
     Dim mRetVal As Boolean
     Dim mdto As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
+    Dim mdtoMaterialRequirement As dtoMaterialRequirement
+    Dim mProdFurniture As dmProductFurniture
     Try
 
       pDBConn.Connect()
@@ -100,6 +102,12 @@ Public Class dsoSales
       If rWorkOrder.Product IsNot Nothing Then
         mdtoProduct = dtoProductBase.GetNewInstance(rWorkOrder.ProductTypeID, pDBConn)
         mdtoProduct.LoadProduct(rWorkOrder.Product, rWorkOrder.ProductTypeID)
+        mProdFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
+        If mProdFurniture IsNot Nothing Then
+          mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID)
+        End If
+
       End If
 
       pDBConn.Disconnect()
@@ -118,6 +126,8 @@ Public Class dsoSales
     Dim mRetVal As Boolean
     Dim mdto As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
+    Dim mdtoMaterialRequirement As dtoMaterialRequirement
+    Dim mProductFurniture As dmProductFurniture
 
     Try
       pDBConn.Connect()
@@ -127,6 +137,11 @@ Public Class dsoSales
       If rWorkOrder.Product IsNot Nothing Then
         mdtoProduct = dtoProductBase.GetNewInstance(rWorkOrder.ProductTypeID, pDBConn)
         mdtoProduct.SaveProduct(rWorkOrder.Product)
+        mProductFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
+        If mProductFurniture IsNot Nothing Then
+          mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
+          mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID)
+        End If
       End If
 
       pDBConn.Disconnect()
