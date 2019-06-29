@@ -67,20 +67,21 @@ Public Class frmCustomerDetail
     RefreshControls()
   End Sub
 
-
+  'Here put the fields
   Private Sub RefreshControls()
     With pFormController.Customer
-      txtCustomerID.Text = .CustomerID
+      txtRucNumber.Text = .Rucnumber
       txtCustomerName.Text = .CompanyName
 
 
     End With
   End Sub
 
+  'Change the fields
   Private Sub UpdateObjects()
     With pFormController.Customer
       .CompanyName = txtCustomerName.Text
-
+      .Rucnumber = txtRucNumber.Text
 
 
     End With
