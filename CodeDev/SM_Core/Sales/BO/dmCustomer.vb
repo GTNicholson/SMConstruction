@@ -34,6 +34,7 @@ Public Class dmCustomer : Inherits dmBase
   Private pMainCountry As String
   Private pCustomerNotes As String
   Private pSalesEmployeeID As Int32
+  Private pRucnumber As String
 
   Private pCustomerContacts As colCustomerContacts
   Public Sub New()
@@ -102,6 +103,7 @@ Public Class dmCustomer : Inherits dmBase
       .MainCountry = MainCountry
       .CustomerNotes = CustomerNotes
       .SalesEmployeeID = SalesEmployeeID
+      .Rucnumber = Rucnumber
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -429,6 +431,16 @@ Public Class dmCustomer : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesEmployeeID <> value Then IsDirty = True
       pSalesEmployeeID = value
+    End Set
+  End Property
+
+  Public Property Rucnumber() As String
+    Get
+      Return pRucnumber
+    End Get
+    Set(ByVal value As String)
+      If pRucnumber <> value Then IsDirty = True
+      pRucnumber = value
     End Set
   End Property
 

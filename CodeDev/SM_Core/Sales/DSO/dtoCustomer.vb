@@ -85,6 +85,7 @@ Public Class dtoCustomer : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCountry", StringToDBValue(.MainCountry))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerNotes", StringToDBValue(.CustomerNotes))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesEmployeeID", .SalesEmployeeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Rucnumber", StringToDBValue(.Rucnumber))
     End With
 
   End Sub
@@ -127,6 +128,7 @@ Public Class dtoCustomer : Inherits dtoBase
         .MainCountry = DBReadString(rDataReader, "MainCountry")
         .CustomerNotes = DBReadString(rDataReader, "CustomerNotes")
         .SalesEmployeeID = DBReadInt32(rDataReader, "SalesEmployeeID")
+        .Rucnumber = DBReadString(rDataReader, "Rucnumber")
         pCustomer.IsDirty = False
       End With
       mOK = True

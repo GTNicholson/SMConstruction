@@ -1,0 +1,2 @@
+alter table customer add rucnumber varchar(25)
+GO
