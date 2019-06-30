@@ -16,6 +16,9 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   ''Private pAppExtensionDLLFile As String
   Private pAppExtFactory As clsAppExtensionFactory
   Private pRefLists As RTIS.CommonVB.colRefLists
+  Private pHostCompanys As colHostCompanys
+
+  ''Private pHostCompaiys As host
 
   Public Sub ProcessUnhandledException(ByRef rException As Exception, ByVal rLogError As Boolean, ByVal rDisplayError As Boolean)
     If rDisplayError Then
@@ -65,6 +68,12 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     Set(ByVal value As eSessionDataSet)
       pSessionDataSet = value
     End Set
+  End Property
+
+  Public ReadOnly Property HostCompanys As colHostCompanys
+    Get
+      Return pHostCompanys
+    End Get
   End Property
 
   Public ReadOnly Property RefLists() As RTIS.CommonVB.colRefLists Implements RTIS.CommonVB.iRefListHolder.RefLists
