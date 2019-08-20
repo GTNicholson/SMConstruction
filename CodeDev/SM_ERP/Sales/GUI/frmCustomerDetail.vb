@@ -70,21 +70,40 @@ Public Class frmCustomerDetail
   'Here put the fields
   Private Sub RefreshControls()
     With pFormController.Customer
-      txtRucNumber.Text = .Rucnumber
-      txtCustomerName.Text = .CompanyName
 
+            txtCustomerName.Text = .CompanyName
+            txtRazonSocial.Text = .RazonSocial
+            txtRucNumber.Text = .Rucnumber
+            txtMainAddress1.Text = .MainAddress1
+            txtTelNo.Text = .TelNo
+            txtEmail.Text = .Email
+            txtWebUrl.Text = .WebURL
+            txtAcountRef.Text = .AccountRef
+            txtBancoIntermediario.Text = .BancoIntermediario
+            txtSwift.Text = .Numero_SWIFT
+            txtABA.Text = .Numero_ABA
 
-    End With
+        End With
   End Sub
 
   'Change the fields
   Private Sub UpdateObjects()
     With pFormController.Customer
       .CompanyName = txtCustomerName.Text
-      .Rucnumber = txtRucNumber.Text
+            .CompanyName = txtCustomerName.Text
+            .RazonSocial = txtRazonSocial.Text
+            .Rucnumber = txtRucNumber.Text
+            .MainAddress1 = txtMainAddress1.Text
+            .TelNo = txtTelNo.Text
+            .Email = txtEmail.Text
+            .WebURL = txtWebUrl.Text
+            .AccountRef = txtAcountRef.Text
+            .BancoIntermediario = txtBancoIntermediario.Text
+            .Numero_SWIFT = txtSwift.Text
+            .Numero_ABA = txtABA.Text
 
 
-    End With
+        End With
   End Sub
 
   Private Sub frmCustomerDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -97,4 +116,6 @@ Public Class frmCustomerDetail
     UpdateObjects()
     pFormController.SaveObjects()
   End Sub
+
+
 End Class

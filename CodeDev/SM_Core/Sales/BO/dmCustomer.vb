@@ -34,10 +34,14 @@ Public Class dmCustomer : Inherits dmBase
   Private pMainCountry As String
   Private pCustomerNotes As String
   Private pSalesEmployeeID As Int32
-  Private pRucnumber As String
+    Private pRucnumber As String
+    Private pRazonSocial As String
+    Private pBancoIntermediario As String
+    Private pNumero_SWIFT As String
+    Private pNumero_ABA As String
+    Private pCustomerContacts As colCustomerContacts
 
-  Private pCustomerContacts As colCustomerContacts
-  Public Sub New()
+    Public Sub New()
     MyBase.New()
   End Sub
 
@@ -103,11 +107,15 @@ Public Class dmCustomer : Inherits dmBase
       .MainCountry = MainCountry
       .CustomerNotes = CustomerNotes
       .SalesEmployeeID = SalesEmployeeID
-      .Rucnumber = Rucnumber
-      'Add entries here for each collection and class property
+            .Rucnumber = Rucnumber
+            .RazonSocial = RazonSocial
+            .BancoIntermediario = BancoIntermediario
+            .Numero_SWIFT = Numero_SWIFT
+            .Numero_ABA = Numero_ABA
+            'Add entries here for each collection and class property
 
-      'Entries for object management
-      .CustomerContacts = CustomerContacts.Clone
+            'Entries for object management
+            .CustomerContacts = CustomerContacts.Clone
 
       .IsDirty = IsDirty
     End With
@@ -434,24 +442,68 @@ Public Class dmCustomer : Inherits dmBase
     End Set
   End Property
 
-  Public Property Rucnumber() As String
-    Get
-      Return pRucnumber
-    End Get
-    Set(ByVal value As String)
-      If pRucnumber <> value Then IsDirty = True
-      pRucnumber = value
-    End Set
-  End Property
+    Public Property Rucnumber() As String
+        Get
+            Return pRucnumber
+        End Get
+        Set(ByVal value As String)
+            If pRucnumber <> value Then IsDirty = True
+            pRucnumber = value
+        End Set
+    End Property
 
-  Public Property CustomerContacts As colCustomerContacts
-    Get
-      Return pCustomerContacts
-    End Get
-    Set(value As colCustomerContacts)
-      pCustomerContacts = value
-    End Set
-  End Property
+
+    Public Property RazonSocial() As String
+        Get
+            Return pRazonSocial
+        End Get
+        Set(ByVal value As String)
+            If pRazonSocial <> value Then IsDirty = True
+            pRazonSocial = value
+        End Set
+    End Property
+
+
+    Public Property BancoIntermediario As String
+        Get
+            Return pBancoIntermediario
+        End Get
+        Set(ByVal value As String)
+            If pBancoIntermediario <> value Then IsDirty = True
+            pBancoIntermediario = value
+        End Set
+    End Property
+
+    Public Property Numero_SWIFT As String
+        Get
+            Return pNumero_SWIFT
+        End Get
+        Set(ByVal value As String)
+            If pNumero_SWIFT <> value Then IsDirty = True
+            pNumero_SWIFT = value
+        End Set
+    End Property
+
+    Public Property Numero_ABA As String
+        Get
+            Return pNumero_ABA
+        End Get
+        Set(ByVal value As String)
+            If pNumero_ABA <> value Then IsDirty = True
+            pNumero_ABA = value
+        End Set
+    End Property
+
+    Public Property CustomerContacts As colCustomerContacts
+        Get
+            Return pCustomerContacts
+        End Get
+        Set(value As colCustomerContacts)
+            pCustomerContacts = value
+        End Set
+    End Property
+
+
 
 End Class
 
