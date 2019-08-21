@@ -85,12 +85,12 @@ Public Class dtoCustomer : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCountry", StringToDBValue(.MainCountry))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerNotes", StringToDBValue(.CustomerNotes))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesEmployeeID", .SalesEmployeeID)
-            DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RazonSocial", StringToDBValue(.RazonSocial))
-            DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BancoIntermediario", StringToDBValue(.BancoIntermediario))
-            DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_SWIFT", StringToDBValue(.Numero_SWIFT))
-            DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_ABA", StringToDBValue(.Numero_ABA))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RazonSocial", StringToDBValue(.RazonSocial))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BancoIntermediario", StringToDBValue(.BancoIntermediario))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_SWIFT", StringToDBValue(.Numero_SWIFT))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_ABA", StringToDBValue(.Numero_ABA))
 
-        End With
+    End With
 
   End Sub
 
@@ -132,14 +132,14 @@ Public Class dtoCustomer : Inherits dtoBase
         .MainCountry = DBReadString(rDataReader, "MainCountry")
         .CustomerNotes = DBReadString(rDataReader, "CustomerNotes")
         .SalesEmployeeID = DBReadInt32(rDataReader, "SalesEmployeeID")
-                .Rucnumber = DBReadString(rDataReader, "Rucnumber")
+        .Rucnumber = DBReadString(rDataReader, "Rucnumber")
 
-                .RazonSocial = DBReadString(rDataReader, "RazonSocial")
-                .BancoIntermediario = DBReadString(rDataReader, "BancoIntermediario")
-                .Numero_SWIFT = DBReadString(rDataReader, "Numero_SWIFT")
-                .Numero_ABA = DBReadString(rDataReader, "Numero_ABA")
+        .RazonSocial = DBReadString(rDataReader, "RazonSocial")
+        .BancoIntermediario = DBReadString(rDataReader, "BancoIntermediario")
+        .Numero_SWIFT = DBReadString(rDataReader, "Numero_SWIFT")
+        .Numero_ABA = DBReadString(rDataReader, "Numero_ABA")
 
-                pCustomer.IsDirty = False
+        pCustomer.IsDirty = False
       End With
       mOK = True
     Catch Ex As Exception

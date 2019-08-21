@@ -22,6 +22,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pBusinessSectorID As Int32
   Private pClientInfo As String
   Private pFinishDate As DateTime
+  Private pDueTime As DateTime
 
   Public Sub New()
     MyBase.New()
@@ -75,6 +76,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .BusinessSectorID = BusinessSectorID
       .ClientInfo = ClientInfo
       .FinishDate = FinishDate
+      .Duetime = Duetime
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -281,6 +283,16 @@ Public Class dmSalesOrder : Inherits dmBase
     Set(ByVal value As DateTime)
       If pFinishDate <> value Then IsDirty = True
       pFinishDate = value
+    End Set
+  End Property
+
+  Public Property DueTime() As DateTime
+    Get
+      Return pDueTime
+    End Get
+    Set(ByVal value As DateTime)
+      If pDueTime <> value Then IsDirty = True
+      pDueTime = value
     End Set
   End Property
 

@@ -11,6 +11,8 @@ Public Class appRefLists : Inherits colRefLists
   Public Const Employees As Integer = 4
   Public Const Roles As Integer = 5
 
+  Public Const Country As Integer = 6
+
 
   Public Sub New()
     MyBase.new()
@@ -22,6 +24,7 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(VATRateCodes, "VAT Rate Codes", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Employees, "Employees", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Roles, "Roles", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(Country, "Country", clsRefListItem.eLoadMode.Unloaded)
   End Sub
 
 

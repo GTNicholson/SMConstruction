@@ -34,14 +34,14 @@ Public Class dmCustomer : Inherits dmBase
   Private pMainCountry As String
   Private pCustomerNotes As String
   Private pSalesEmployeeID As Int32
-    Private pRucnumber As String
-    Private pRazonSocial As String
-    Private pBancoIntermediario As String
-    Private pNumero_SWIFT As String
-    Private pNumero_ABA As String
-    Private pCustomerContacts As colCustomerContacts
+  Private pRucnumber As String
+  Private pRazonSocial As String
+  Private pBancoIntermediario As String
+  Private pNumero_SWIFT As String
+  Private pNumero_ABA As String
+  Private pCustomerContacts As colCustomerContacts
 
-    Public Sub New()
+  Public Sub New()
     MyBase.New()
   End Sub
 

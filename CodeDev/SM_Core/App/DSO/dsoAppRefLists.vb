@@ -84,26 +84,10 @@ Public Class dsoAppRefLists
           mValueItems = New colValueItems
           'mOK = pDBConn.LoadValueItems(mValueItems, "SELECT RoleID,Role FROM Role ORDER BY Role", "RoleID", "Role")
           mOK = True
-          If mOK Then mItem.IList = mValueItems
-          ''Case From ENUM
-          ''  mItem.IList = clsEnumsConstants.EnumToVIs(GetType(eEnquiryStatus)) 
-          ''  mOK = True
-
-          ''Case From clsPropertyENUM
-          ''  mItem.IList = eEnquiryStatus.GetInstance() 'Possibly Sync Entries with a table
-          ''  mOK = True
-
-          'Case appRefLists.EmployeeRoles
-          '  'Could be loaded from a Table or ENUM
-          '  mValueItems = New colValueItems
-          '  mValueItems.AddNewItem(0, "(None)")
-          '  mItem.IList = mValueItems
-          '  mValueItems = Nothing
-          '  mOK = True
-
-
-
-          'Case xxxx
+        Case appRefLists.Country
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 1", "Value", "Description")
+          mItem.IList = mValueItems
       End Select
       mItem = Nothing
     Else

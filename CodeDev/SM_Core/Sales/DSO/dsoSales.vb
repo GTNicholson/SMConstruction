@@ -57,6 +57,28 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+
+  Public Function SaveSalesOrderDown(ByRef rSalesOrder As dmSalesOrder) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSalesOrder
+
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrder(pDBConn)
+      mdto.SaveSalesOrder(rSalesOrder)
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
   Public Function LoadSalesOrderDown(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder

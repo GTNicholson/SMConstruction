@@ -69,8 +69,12 @@
 
   Private Sub RefreshControls()
     With pFormController.SalesOrder
-      'txtCustomerID.Text = .CustomerID
-      'txtCustomerName.Text = .CompanyName
+      txtSalesOrderID.Text = .SalesOrderID
+      txtProjectName.Text = .ProjectName
+      dteDateEntered.Text = .DateEntered
+      dteDueTime.Text = .DueTime
+      txtVisibleNotes.Text = .VisibleNotes
+
     End With
   End Sub
 
@@ -78,5 +82,21 @@
     ''FormController.ClearObjects()
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()
+  End Sub
+
+  Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
+    UpdateObjects()
+    pFormController.SaveObjects()
+  End Sub
+
+  Private Sub UpdateObjects()
+    With pFormController.SalesOrder
+      .SalesOrderID = txtSalesOrderID.Text
+      .ProjectName = txtProjectName.Text
+      .DateEntered = dteDateEntered.DateTime
+      .DueTime = dteDueTime.DateTime
+      .VisibleNotes = txtVisibleNotes.Text
+
+    End With
   End Sub
 End Class

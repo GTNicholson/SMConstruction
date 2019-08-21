@@ -305,9 +305,9 @@ Partial Class frmHomeManagement
     Me.LabelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
     Me.LabelControl2.Location = New System.Drawing.Point(233, 14)
     Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(236, 20)
+    Me.LabelControl2.Size = New System.Drawing.Size(190, 20)
     Me.LabelControl2.TabIndex = 1
-    Me.LabelControl2.Text = "Management Home Screen"
+    Me.LabelControl2.Text = "Administración General"
     '
     'LabelControl1
     '
@@ -332,7 +332,7 @@ Partial Class frmHomeManagement
     Me.ControlBox = False
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Name = "frmHomeManagement"
-    Me.Text = "Management Home Screen"
+    Me.Text = "Pantalla Principal"
     Me.TableLayoutPanel1.ResumeLayout(False)
     CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl5.ResumeLayout(False)

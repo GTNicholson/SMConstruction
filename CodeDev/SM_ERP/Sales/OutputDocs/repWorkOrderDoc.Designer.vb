@@ -24,8 +24,8 @@ Partial Public Class repWorkOrderDoc
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-    Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
     Me.xrlWorkOrderNo = New DevExpress.XtraReports.UI.XRLabel()
+    Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
     '
     'Detail
@@ -38,9 +38,9 @@ Partial Public Class repWorkOrderDoc
     '
     'subrepProduct
     '
-    Me.subrepProduct.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+    Me.subrepProduct.LocationFloat = New DevExpress.Utils.PointFloat(0!, 123.9583!)
     Me.subrepProduct.Name = "subrepProduct"
-    Me.subrepProduct.SizeF = New System.Drawing.SizeF(650.0!, 311.4583!)
+    Me.subrepProduct.SizeF = New System.Drawing.SizeF(650.0!, 187.5!)
     '
     'TopMargin
     '
@@ -62,16 +62,6 @@ Partial Public Class repWorkOrderDoc
     Me.ReportHeader.HeightF = 48.95833!
     Me.ReportHeader.Name = "ReportHeader"
     '
-    'XrLabel1
-    '
-    Me.XrLabel1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-    Me.XrLabel1.Name = "XrLabel1"
-    Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel1.SizeF = New System.Drawing.SizeF(128.125!, 22.91667!)
-    Me.XrLabel1.StylePriority.UseFont = False
-    Me.XrLabel1.Text = "Orden de Trabajo"
-    '
     'xrlWorkOrderNo
     '
     Me.xrlWorkOrderNo.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
@@ -81,6 +71,16 @@ Partial Public Class repWorkOrderDoc
     Me.xrlWorkOrderNo.SizeF = New System.Drawing.SizeF(128.125!, 22.91667!)
     Me.xrlWorkOrderNo.StylePriority.UseFont = False
     Me.xrlWorkOrderNo.Text = "xrlWorkOrdeRNo"
+    '
+    'XrLabel1
+    '
+    Me.XrLabel1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+    Me.XrLabel1.Name = "XrLabel1"
+    Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+    Me.XrLabel1.SizeF = New System.Drawing.SizeF(128.125!, 22.91667!)
+    Me.XrLabel1.StylePriority.UseFont = False
+    Me.XrLabel1.Text = "Orden de Trabajo"
     '
     'repWorkOrderDoc
     '

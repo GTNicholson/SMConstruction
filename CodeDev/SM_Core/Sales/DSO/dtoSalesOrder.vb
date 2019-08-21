@@ -73,6 +73,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BusinessSectorID", .BusinessSectorID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ClientInfo", StringToDBValue(.ClientInfo))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FinishDate", DateToDBValue(.FinishDate))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DueTime", DateToDBValue(.DueTime))
+
     End With
 
   End Sub
@@ -103,6 +105,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .BusinessSectorID = DBReadInt32(rDataReader, "BusinessSectorID")
         .ClientInfo = DBReadString(rDataReader, "ClientInfo")
         .FinishDate = DBReadDateTime(rDataReader, "FinishDate")
+        .DueTime = DBReadDateTime(rDataReader, "DueTime")
         pSalesOrder.IsDirty = False
       End With
       mOK = True

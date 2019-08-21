@@ -25,6 +25,9 @@ Public Enum eBrowseList
   Undefined = 0
   CurrentUserLocks = 1
   CurrentUsersLoggedOn = 2
+  Customer = 3
+  SalesOrders = 4
+  WorkOrder = 5
 
 End Enum
 

@@ -64,46 +64,58 @@ Public Class frmCustomerDetail
   Private Sub frmCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     pFormController.LoadObjects()
     grdContacts.DataSource = pFormController.Customer.CustomerContacts
+    LoadCombos
     RefreshControls()
   End Sub
+
+  Private Sub LoadCombos()
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+  End Sub
+
 
   'Here put the fields
   Private Sub RefreshControls()
     With pFormController.Customer
 
-            txtCustomerName.Text = .CompanyName
-            txtRazonSocial.Text = .RazonSocial
-            txtRucNumber.Text = .Rucnumber
-            txtMainAddress1.Text = .MainAddress1
-            txtTelNo.Text = .TelNo
-            txtEmail.Text = .Email
-            txtWebUrl.Text = .WebURL
-            txtAcountRef.Text = .AccountRef
-            txtBancoIntermediario.Text = .BancoIntermediario
-            txtSwift.Text = .Numero_SWIFT
-            txtABA.Text = .Numero_ABA
+      txtCustomerName.Text = .CompanyName
+      txtRazonSocial.Text = .RazonSocial
+      txtRucNumber.Text = .Rucnumber
+      txtMainAddress1.Text = .MainAddress1
+      txtTelNo.Text = .TelNo
+      txtEmail.Text = .Email
+      txtWebUrl.Text = .WebURL
+      txtAcountRef.Text = .AccountRef
+      txtBancoIntermediario.Text = .BancoIntermediario
+      txtSwift.Text = .Numero_SWIFT
+      txtABA.Text = .Numero_ABA
+      txtMainTown.Text = .MainTown
+      txtMainPostCode.Text = .MainPostCode
 
-        End With
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
+
+    End With
   End Sub
 
   'Change the fields
   Private Sub UpdateObjects()
     With pFormController.Customer
       .CompanyName = txtCustomerName.Text
-            .CompanyName = txtCustomerName.Text
-            .RazonSocial = txtRazonSocial.Text
-            .Rucnumber = txtRucNumber.Text
-            .MainAddress1 = txtMainAddress1.Text
-            .TelNo = txtTelNo.Text
-            .Email = txtEmail.Text
-            .WebURL = txtWebUrl.Text
-            .AccountRef = txtAcountRef.Text
-            .BancoIntermediario = txtBancoIntermediario.Text
-            .Numero_SWIFT = txtSwift.Text
-            .Numero_ABA = txtABA.Text
+      .CompanyName = txtCustomerName.Text
+      .RazonSocial = txtRazonSocial.Text
+      .Rucnumber = txtRucNumber.Text
+      .MainAddress1 = txtMainAddress1.Text
+      .TelNo = txtTelNo.Text
+      .Email = txtEmail.Text
+      .WebURL = txtWebUrl.Text
+      .AccountRef = txtAcountRef.Text
+      .BancoIntermediario = txtBancoIntermediario.Text
+      .Numero_SWIFT = txtSwift.Text
+      .Numero_ABA = txtABA.Text
+      .MainTown = txtMainTown.Text
+      .MainPostCode = txtMainPostCode.Text
+      .SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
 
-
-        End With
+    End With
   End Sub
 
   Private Sub frmCustomerDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed

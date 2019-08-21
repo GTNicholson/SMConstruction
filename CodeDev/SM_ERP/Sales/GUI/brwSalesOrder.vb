@@ -23,6 +23,9 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
+
+    frmSalesOrderDetail.OpenFormMDI(0, pDBConn, rForm.ParentForm)
+
     'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, 0, BrowseRefreshTracker,eFormMode.eFMFormModeAdd)
     'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
     Return mReloadData
@@ -226,7 +229,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Dim mOK As Boolean = True
     Try
       LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-      ListTitle = "List Title"
+      ListTitle = "Lista de Ventas"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 

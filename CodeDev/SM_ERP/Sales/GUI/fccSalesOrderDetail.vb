@@ -34,7 +34,9 @@
   End Sub
 
   Public Sub SaveObjects()
-
+    Dim mdso As dsoSales
+    mdso = New dsoSales(pDBConn)
+    mdso.SaveSalesOrderDown(pSalesOrder)
   End Sub
 
 End Class
