@@ -26,7 +26,7 @@ Public Class repProductFurniture
   End Sub
 
   Private Sub SetUpBindings()
-    xrlNotes.DataBindings.Add("Text", pProductFurniture, "Notes")
+    '' xrlNotes.DataBindings.Add("Text", pProductFurniture, "Notes")
   End Sub
 
 End Class

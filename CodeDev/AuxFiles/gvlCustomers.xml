@@ -42,46 +42,123 @@
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="5">
+  <property name="Columns" iskey="true" value="15">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
       <property name="Caption">ID</property>
       <property name="FieldName">CustomerID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
     </property>
     <property name="Item2" isnull="true" iskey="true">
+      <property name="Name">GridColumn6</property>
+      <property name="Caption">Núm. Ref.</property>
+      <property name="FieldName">CustomerReference</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">4</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
       <property name="Caption">Nombre del Cliente</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">298</property>
     </property>
-    <property name="Item3" isnull="true" iskey="true">
-      <property name="Name">GridColumn3</property>
-      <property name="Caption">País</property>
-      <property name="FieldName">SalesAreaID</property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Name">rucnumber</property>
+      <property name="Caption">RUC/NIT</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item4" isnull="true" iskey="true">
+    <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
       <property name="Caption"># Cuenta</property>
       <property name="FieldName">AccountRef</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item5" isnull="true" iskey="true">
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Name">GridColumn3</property>
+      <property name="Caption">País</property>
+      <property name="FieldName">SalesAreaID</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">1</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Name">GridColumn12</property>
+      <property name="Caption">Ciudad</property>
+      <property name="FieldName">MainTown</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">11</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Name">GridColumn11</property>
+      <property name="Caption">Dirección</property>
+      <property name="FieldName">MainAddress1</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">10</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="Name">GridColumn7</property>
+      <property name="Caption">Tipo de Cliente</property>
+      <property name="FieldName">CustomerTypeID</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Name">GridColumn13</property>
+      <property name="Caption">Forma de Pago</property>
+      <property name="FieldName">PaymentTermsType</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">6</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="Caption">Estado</property>
       <property name="FieldName">CustomerStatusID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Name">GridColumn8</property>
+      <property name="Caption">Email</property>
+      <property name="FieldName">Email</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">7</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Name">GridColumn9</property>
+      <property name="Caption">Web</property>
+      <property name="FieldName">WebURL</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">8</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Name">GridColumn10</property>
+      <property name="Caption">Fecha de Creación</property>
+      <property name="FieldName">DateEntered</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">9</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Name">GridColumn14</property>
+      <property name="Caption">Número SWIFT</property>
+      <property name="FieldName">Numero_SWIFT</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
     </property>
   </property>

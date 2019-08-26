@@ -1,3 +1,5 @@
+Imports RTIS.CommonVB
+
 Public Class frmCustomerDetail
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
@@ -64,12 +66,18 @@ Public Class frmCustomerDetail
   Private Sub frmCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     pFormController.LoadObjects()
     grdContacts.DataSource = pFormController.Customer.CustomerContacts
-    LoadCombos
+    LoadCombos()
     RefreshControls()
   End Sub
 
   Private Sub LoadCombos()
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+    Try
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders))
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
 
@@ -77,6 +85,7 @@ Public Class frmCustomerDetail
   Private Sub RefreshControls()
     With pFormController.Customer
 
+      txtCustomerReference.Text = .CustomerReference
       txtCustomerName.Text = .CompanyName
       txtRazonSocial.Text = .RazonSocial
       txtRucNumber.Text = .Rucnumber
@@ -89,9 +98,10 @@ Public Class frmCustomerDetail
       txtSwift.Text = .Numero_SWIFT
       txtABA.Text = .Numero_ABA
       txtMainTown.Text = .MainTown
-      txtMainPostCode.Text = .MainPostCode
-
+      txtCustomerReference.Text = .CustomerReference
+      txtCustomerNotes.Text = .CustomerNotes
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
 
     End With
   End Sub
@@ -114,7 +124,9 @@ Public Class frmCustomerDetail
       .MainTown = txtMainTown.Text
       .MainPostCode = txtMainPostCode.Text
       .SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
-
+      .CustomerReference = txtCustomerReference.Text
+      .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
+      .CustomerNotes = txtCustomerNotes.Text
     End With
   End Sub
 
@@ -125,8 +137,14 @@ Public Class frmCustomerDetail
   End Sub
 
   Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
-    UpdateObjects()
-    pFormController.SaveObjects()
+
+    Try
+      UpdateObjects()
+      pFormController.SaveObjects()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
 

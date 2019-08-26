@@ -88,6 +88,17 @@ Public Class dsoAppRefLists
           mValueItems = New colValueItems
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 1", "Value", "Description")
           mItem.IList = mValueItems
+
+        Case appRefLists.OrderType
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 2", "Value", "Description")
+          mItem.IList = mValueItems
+
+        Case appRefLists.Tenders
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 4", "Value", "Description")
+          mItem.IList = mValueItems
+
       End Select
       mItem = Nothing
     Else

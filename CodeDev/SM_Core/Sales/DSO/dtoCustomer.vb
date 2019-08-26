@@ -89,6 +89,7 @@ Public Class dtoCustomer : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BancoIntermediario", StringToDBValue(.BancoIntermediario))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_SWIFT", StringToDBValue(.Numero_SWIFT))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_ABA", StringToDBValue(.Numero_ABA))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerReference", StringToDBValue(.CustomerReference))
 
     End With
 
@@ -133,12 +134,11 @@ Public Class dtoCustomer : Inherits dtoBase
         .CustomerNotes = DBReadString(rDataReader, "CustomerNotes")
         .SalesEmployeeID = DBReadInt32(rDataReader, "SalesEmployeeID")
         .Rucnumber = DBReadString(rDataReader, "Rucnumber")
-
         .RazonSocial = DBReadString(rDataReader, "RazonSocial")
         .BancoIntermediario = DBReadString(rDataReader, "BancoIntermediario")
         .Numero_SWIFT = DBReadString(rDataReader, "Numero_SWIFT")
         .Numero_ABA = DBReadString(rDataReader, "Numero_ABA")
-
+        .CustomerReference = DBReadString(rDataReader, "CustomerReference")
         pCustomer.IsDirty = False
       End With
       mOK = True
@@ -183,10 +183,10 @@ Public Class dtoCustomer : Inherits dtoBase
   End Function
 
 
-  Public Function LoadCustomerCollection(ByRef rCustomers As colCustomers, ByVal vParentID As Integer) As Boolean
+  Public Function LoadCustomerCollection(ByRef rCustomers As colCustomers) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    ''mParams.Add("@ParentID", vParentID)
     mOK = MyBase.LoadCollection(rCustomers, mParams, "CustomerID")
     rCustomers.TrackDeleted = True
     If mOK Then rCustomers.IsDirty = False

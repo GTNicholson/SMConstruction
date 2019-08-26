@@ -40,7 +40,7 @@ Public Class dmCustomer : Inherits dmBase
   Private pNumero_SWIFT As String
   Private pNumero_ABA As String
   Private pCustomerContacts As colCustomerContacts
-
+  Private pCustomerReferenceID As String
   Public Sub New()
     MyBase.New()
   End Sub
@@ -107,15 +107,16 @@ Public Class dmCustomer : Inherits dmBase
       .MainCountry = MainCountry
       .CustomerNotes = CustomerNotes
       .SalesEmployeeID = SalesEmployeeID
-            .Rucnumber = Rucnumber
-            .RazonSocial = RazonSocial
-            .BancoIntermediario = BancoIntermediario
-            .Numero_SWIFT = Numero_SWIFT
-            .Numero_ABA = Numero_ABA
-            'Add entries here for each collection and class property
+      .Rucnumber = Rucnumber
+      .RazonSocial = RazonSocial
+      .BancoIntermediario = BancoIntermediario
+      .Numero_SWIFT = Numero_SWIFT
+      .Numero_ABA = Numero_ABA
+      .CustomerReference = CustomerReference
+      'Add entries here for each collection and class property
 
-            'Entries for object management
-            .CustomerContacts = CustomerContacts.Clone
+      'Entries for object management
+      .CustomerContacts = CustomerContacts.Clone
 
       .IsDirty = IsDirty
     End With
@@ -503,7 +504,15 @@ Public Class dmCustomer : Inherits dmBase
         End Set
     End Property
 
-
+  Public Property CustomerReference As String
+    Get
+      Return pCustomerReferenceID
+    End Get
+    Set(ByVal value As String)
+      If pCustomerReferenceID <> value Then IsDirty = True
+      pCustomerReferenceID = value
+    End Set
+  End Property
 
 End Class
 

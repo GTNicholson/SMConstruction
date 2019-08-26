@@ -31,6 +31,14 @@ Public Enum eBrowseList
 
 End Enum
 
+
+Public Enum eSalesOrderstatus
+  <Description("Abierto")> Abierto = 0
+  <Description("En Progreso")> EnProgreso = 1
+  <Description("Completada")> Completed = 2
+  <Description("Cancelada")> Cancelada = 3
+End Enum
+
 Public Enum eOTstatus
   <Description("Abierto")> Abierto = 0
   <Description("En Progreso")> EnProgreso = 1

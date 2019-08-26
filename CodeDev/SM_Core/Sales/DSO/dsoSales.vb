@@ -33,6 +33,28 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadCustomers(ByRef rCustomers As colCustomers) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoCustomer
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoCustomer(pDBConn)
+      mdto.LoadCustomerCollection(rCustomers)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+
   Public Function SaveCustomerDown(ByRef rCustomer As dmCustomer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoCustomer

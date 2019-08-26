@@ -32,7 +32,7 @@ Public Class brwClientes : Inherits brwBrowserListBase
     Dim mReloadData As Boolean = False
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Ninguna fila seleccionada")
     Else
       frmCustomerDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), pDBConn, rForm.ParentForm)
     End If
@@ -44,7 +44,7 @@ Public Class brwClientes : Inherits brwBrowserListBase
     'frmPartConfig.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("PartID")), eFormMode.eFMFormModeEdit)
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Ninguna fila seleccionad")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeView)
     End If
@@ -166,11 +166,11 @@ Public Class brwClientes : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("Add", "Edit", "View", "Delete", "Refresh", "Lists", "Select", "Process", "Print", "Export", "Options")
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Active Customers", eListOption.DefaultListOption)
-        .AddListOption("New Customers", eListOption.DefaultListOption)
-        .AddListOption("Lapsed Customers", eListOption.DefaultListOption)
+        .AddListOption("Activar Clientes", eListOption.DefaultListOption)
+        .AddListOption("Nuevo Cliente", eListOption.DefaultListOption)
+        .AddListOption("Clientes Caducados", eListOption.DefaultListOption)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
@@ -342,7 +342,7 @@ Public Class brwClientes : Inherits brwBrowserListBase
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlCustomers.xml")
-    ListTitle = "List Title"
+    ListTitle = "Lista de Clientes"
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"
 

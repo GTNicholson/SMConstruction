@@ -12,6 +12,7 @@ Public Class fccLookupTableList
   Public Enum eSelectionCode
     <Description("General")> General = 5
     <Description("Especification de Producto")> Specification = 6
+    <Description("Finanzas")> Tender = 7
   End Enum
 
   Public Property LookUpListDT As DataTable

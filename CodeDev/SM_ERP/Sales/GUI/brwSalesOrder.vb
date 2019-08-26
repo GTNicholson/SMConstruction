@@ -36,7 +36,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Dim mReloadData As Boolean = False
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Ninguna fila seleccionada")
     Else
       frmSalesOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, rForm.ParentForm)
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
@@ -54,7 +54,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     'frmPartConfig.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("PartID")), eFormMode.eFMFormModeEdit)
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Ninguna fila seleccionad")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeView)
     End If
@@ -176,11 +176,11 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("Add", "Edit", "View", "Delete", "Refresh", "Lists", "Select", "Process", "Print", "Export", "Options")
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Active SalesOrder", eListOption.DefaultListOption)
-        .AddListOption("New SalesOrder", eListOption.DefaultListOption)
-        .AddListOption("Lapsed SalesOrder", eListOption.DefaultListOption)
+        .AddListOption("Activar Órden de Venta", eListOption.DefaultListOption)
+        .AddListOption("Nueva Órden de Venta", eListOption.DefaultListOption)
+        .AddListOption("Orden de Venta caducada", eListOption.DefaultListOption)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
@@ -238,7 +238,8 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
       mGridView = gridBrowseList.MainView
       ''Set lookup columns
 
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(ePartType)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderStatusENUM"), clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
       ' gridBrowseList.Refresh()
@@ -352,7 +353,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-    ListTitle = "List Title"
+    ListTitle = "Lista de Ventas"
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"
 

@@ -1,4 +1,6 @@
-﻿Public Class frmSalesOrderDetail
+﻿Imports RTIS.CommonVB
+
+Public Class frmSalesOrderDetail
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
@@ -63,17 +65,26 @@
 
   Private Sub frmCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     pFormController.LoadObjects()
+    LoadCombos()
     RefreshControls()
   End Sub
 
+  Private Sub LoadCombos()
+    Dim mVIs As colValueItems
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
+    mVIs = clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus))
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
+  End Sub
 
   Private Sub RefreshControls()
     With pFormController.SalesOrder
-      txtSalesOrderID.Text = .SalesOrderID
+      txtSalesOrderID.Text = .OrderNo
       txtProjectName.Text = .ProjectName
-      dteDateEntered.Text = .DateEntered
-      dteDueTime.Text = .DueTime
+      dteDateEntered.EditValue = .DateEntered
+      dteDueTime.EditValue = .DueTime
       txtVisibleNotes.Text = .VisibleNotes
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
 
     End With
   End Sub
@@ -85,18 +96,42 @@
   End Sub
 
   Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
-    UpdateObjects()
-    pFormController.SaveObjects()
+    Try
+
+      UpdateObjects()
+      pFormController.SaveObjects()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 
   Private Sub UpdateObjects()
     With pFormController.SalesOrder
-      .SalesOrderID = txtSalesOrderID.Text
+      .OrderNo = txtSalesOrderID.Text
       .ProjectName = txtProjectName.Text
       .DateEntered = dteDateEntered.DateTime
       .DueTime = dteDueTime.DateTime
       .VisibleNotes = txtVisibleNotes.Text
 
+      .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
+      .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
+
     End With
+  End Sub
+
+  Private Sub btnedCustomer_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnedCustomer.ButtonClick
+    Try
+      Dim mCustomerPicker As clsPickerCustomer
+      Dim mcustomer As dmCustomer
+      mCustomerPicker = New clsPickerCustomer(pFormController.GetCustomerList)
+      mcustomer = frmPickerCustomer.OpenPickerSingle(mCustomerPicker)
+      If mcustomer Is Nothing Then
+        pFormController.SalesOrder.CustomerID = 0
+      Else
+        pFormController.SalesOrder.CustomerID = mcustomer.CustomerID
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

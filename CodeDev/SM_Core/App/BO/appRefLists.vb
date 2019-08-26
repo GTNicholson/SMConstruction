@@ -10,8 +10,9 @@ Public Class appRefLists : Inherits colRefLists
   Public Const VATRateCodes As Integer = 3
   Public Const Employees As Integer = 4
   Public Const Roles As Integer = 5
-
   Public Const Country As Integer = 6
+  Public Const OrderType As Integer = 7
+  Public Const Tenders As Integer = 8
 
 
   Public Sub New()
@@ -25,6 +26,9 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(Employees, "Employees", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Roles, "Roles", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Country, "Country", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(OrderType, "OrderType", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(Tenders, "Tenders", clsRefListItem.eLoadMode.Unloaded)
+
   End Sub
 
 
