@@ -4,3 +4,4 @@ go
 alter table Customer
 add CustomerReferenceID varchar (15);
 go
+go

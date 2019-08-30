@@ -13,6 +13,8 @@ Public Class appRefLists : Inherits colRefLists
   Public Const Country As Integer = 6
   Public Const OrderType As Integer = 7
   Public Const Tenders As Integer = 8
+  Public Const WorkOrderType As Integer = 9
+
 
 
   Public Sub New()
@@ -28,6 +30,7 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(Country, "Country", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(OrderType, "OrderType", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Tenders, "Tenders", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(WorkOrderType, "WorkOrderType", clsRefListItem.eLoadMode.Unloaded)
 
   End Sub
 

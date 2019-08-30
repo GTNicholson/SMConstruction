@@ -1,27 +1,27 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmCustomerDetail
-    Inherits System.Windows.Forms.Form
+  Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
-    End Sub
+  'Form overrides dispose to clean up the component list.
+  <System.Diagnostics.DebuggerNonUserCode()>
+  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+    Try
+      If disposing AndAlso components IsNot Nothing Then
+        components.Dispose()
+      End If
+    Finally
+      MyBase.Dispose(disposing)
+    End Try
+  End Sub
 
-    'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+  'Required by the Windows Form Designer
+  Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
-    Private Sub InitializeComponent()
+  'NOTE: The following procedure is required by the Windows Form Designer
+  'It can be modified using the Windows Form Designer.  
+  'Do not modify it using the code editor.
+  <System.Diagnostics.DebuggerStepThrough()>
+  Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
     Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -33,14 +33,14 @@ Partial Class frmCustomerDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.txtMainPostCode = New DevExpress.XtraEditors.TextEdit()
+    Me.Label15 = New System.Windows.Forms.Label()
     Me.txtCustomerReference = New DevExpress.XtraEditors.TextEdit()
     Me.Label12 = New System.Windows.Forms.Label()
     Me.txtMainTown = New DevExpress.XtraEditors.TextEdit()
     Me.Label5 = New System.Windows.Forms.Label()
-    Me.RadioGroup2 = New DevExpress.XtraEditors.RadioGroup()
+    Me.rgEstatus = New DevExpress.XtraEditors.RadioGroup()
     Me.Label11 = New System.Windows.Forms.Label()
-    Me.RadioGroup1 = New DevExpress.XtraEditors.RadioGroup()
-    Me.Label10 = New System.Windows.Forms.Label()
     Me.txtWebUrl = New DevExpress.XtraEditors.TextEdit()
     Me.Label9 = New System.Windows.Forms.Label()
     Me.txtMainAddress1 = New DevExpress.XtraEditors.TextEdit()
@@ -80,16 +80,14 @@ Partial Class frmCustomerDetail
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.txtMainPostCode = New DevExpress.XtraEditors.TextEdit()
-    Me.Label15 = New System.Windows.Forms.Label()
     CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtCustomerReference.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtMainTown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.RadioGroup2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.RadioGroup1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.rgEstatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtWebUrl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtMainAddress1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboCountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +109,6 @@ Partial Class frmCustomerDetail
     CType(Me.txtCustomerNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'txtCustomerName
@@ -203,10 +200,8 @@ Partial Class frmCustomerDetail
     Me.GroupControl1.Controls.Add(Me.Label12)
     Me.GroupControl1.Controls.Add(Me.txtMainTown)
     Me.GroupControl1.Controls.Add(Me.Label5)
-    Me.GroupControl1.Controls.Add(Me.RadioGroup2)
+    Me.GroupControl1.Controls.Add(Me.rgEstatus)
     Me.GroupControl1.Controls.Add(Me.Label11)
-    Me.GroupControl1.Controls.Add(Me.RadioGroup1)
-    Me.GroupControl1.Controls.Add(Me.Label10)
     Me.GroupControl1.Controls.Add(Me.txtWebUrl)
     Me.GroupControl1.Controls.Add(Me.Label9)
     Me.GroupControl1.Controls.Add(Me.txtMainAddress1)
@@ -225,9 +220,27 @@ Partial Class frmCustomerDetail
     Me.GroupControl1.Controls.Add(Me.Label1)
     Me.GroupControl1.Location = New System.Drawing.Point(12, 39)
     Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(774, 395)
+    Me.GroupControl1.Size = New System.Drawing.Size(774, 341)
     Me.GroupControl1.TabIndex = 1
     Me.GroupControl1.Text = "Detalles del Cliente"
+    '
+    'txtMainPostCode
+    '
+    Me.txtMainPostCode.Location = New System.Drawing.Point(539, 228)
+    Me.txtMainPostCode.Name = "txtMainPostCode"
+    Me.txtMainPostCode.Size = New System.Drawing.Size(230, 20)
+    Me.txtMainPostCode.TabIndex = 10
+    '
+    'Label15
+    '
+    Me.Label15.AutoSize = True
+    Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label15.Location = New System.Drawing.Point(425, 231)
+    Me.Label15.Name = "Label15"
+    Me.Label15.Size = New System.Drawing.Size(83, 14)
+    Me.Label15.TabIndex = 25
+    Me.Label15.Text = "Código Postal"
     '
     'txtCustomerReference
     '
@@ -265,53 +278,31 @@ Partial Class frmCustomerDetail
     Me.Label5.TabIndex = 16
     Me.Label5.Text = "Ciudad"
     '
-    'RadioGroup2
+    'rgEstatus
     '
-    Me.RadioGroup2.Location = New System.Drawing.Point(524, 272)
-    Me.RadioGroup2.MenuManager = Me.BarManager1
-    Me.RadioGroup2.Name = "RadioGroup2"
-    Me.RadioGroup2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
-    Me.RadioGroup2.Properties.Appearance.Options.UseBackColor = True
-    Me.RadioGroup2.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Activo"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Desactivado")})
-    Me.RadioGroup2.Size = New System.Drawing.Size(230, 31)
-    Me.RadioGroup2.TabIndex = 12
+    Me.rgEstatus.Location = New System.Drawing.Point(539, 272)
+    Me.rgEstatus.MenuManager = Me.BarManager1
+    Me.rgEstatus.Name = "rgEstatus"
+    Me.rgEstatus.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
+    Me.rgEstatus.Properties.Appearance.Options.UseBackColor = True
+    Me.rgEstatus.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Activo"), New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Inactivo")})
+    Me.rgEstatus.Size = New System.Drawing.Size(230, 31)
+    Me.rgEstatus.TabIndex = 12
     '
     'Label11
     '
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(433, 280)
+    Me.Label11.Location = New System.Drawing.Point(425, 280)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(44, 14)
     Me.Label11.TabIndex = 23
     Me.Label11.Text = "Estado"
     '
-    'RadioGroup1
-    '
-    Me.RadioGroup1.Location = New System.Drawing.Point(524, 223)
-    Me.RadioGroup1.MenuManager = Me.BarManager1
-    Me.RadioGroup1.Name = "RadioGroup1"
-    Me.RadioGroup1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
-    Me.RadioGroup1.Properties.Appearance.Options.UseBackColor = True
-    Me.RadioGroup1.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Aplica"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "No Aplica")})
-    Me.RadioGroup1.Size = New System.Drawing.Size(230, 31)
-    Me.RadioGroup1.TabIndex = 11
-    '
-    'Label10
-    '
-    Me.Label10.AutoSize = True
-    Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label10.Location = New System.Drawing.Point(433, 231)
-    Me.Label10.Name = "Label10"
-    Me.Label10.Size = New System.Drawing.Size(25, 14)
-    Me.Label10.TabIndex = 22
-    Me.Label10.Text = "IVA"
-    '
     'txtWebUrl
     '
-    Me.txtWebUrl.Location = New System.Drawing.Point(524, 130)
+    Me.txtWebUrl.Location = New System.Drawing.Point(539, 179)
     Me.txtWebUrl.Name = "txtWebUrl"
     Me.txtWebUrl.Size = New System.Drawing.Size(230, 20)
     Me.txtWebUrl.TabIndex = 9
@@ -321,7 +312,7 @@ Partial Class frmCustomerDetail
     Me.Label9.AutoSize = True
     Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label9.Location = New System.Drawing.Point(433, 133)
+    Me.Label9.Location = New System.Drawing.Point(425, 182)
     Me.Label9.Name = "Label9"
     Me.Label9.Size = New System.Drawing.Size(70, 14)
     Me.Label9.TabIndex = 21
@@ -329,7 +320,7 @@ Partial Class frmCustomerDetail
     '
     'txtMainAddress1
     '
-    Me.txtMainAddress1.Location = New System.Drawing.Point(148, 326)
+    Me.txtMainAddress1.Location = New System.Drawing.Point(539, 32)
     Me.txtMainAddress1.Name = "txtMainAddress1"
     Me.txtMainAddress1.Size = New System.Drawing.Size(230, 20)
     Me.txtMainAddress1.TabIndex = 6
@@ -339,7 +330,7 @@ Partial Class frmCustomerDetail
     Me.Label8.AutoSize = True
     Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label8.Location = New System.Drawing.Point(5, 329)
+    Me.Label8.Location = New System.Drawing.Point(425, 35)
     Me.Label8.Name = "Label8"
     Me.Label8.Size = New System.Drawing.Size(108, 14)
     Me.Label8.TabIndex = 17
@@ -403,7 +394,7 @@ Partial Class frmCustomerDetail
     '
     'txtEmail
     '
-    Me.txtEmail.Location = New System.Drawing.Point(524, 81)
+    Me.txtEmail.Location = New System.Drawing.Point(539, 130)
     Me.txtEmail.Name = "txtEmail"
     Me.txtEmail.Size = New System.Drawing.Size(230, 20)
     Me.txtEmail.TabIndex = 8
@@ -413,7 +404,7 @@ Partial Class frmCustomerDetail
     Me.Label2.AutoSize = True
     Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label2.Location = New System.Drawing.Point(433, 84)
+    Me.Label2.Location = New System.Drawing.Point(425, 133)
     Me.Label2.Name = "Label2"
     Me.Label2.Size = New System.Drawing.Size(36, 14)
     Me.Label2.TabIndex = 20
@@ -421,7 +412,7 @@ Partial Class frmCustomerDetail
     '
     'txtTelNo
     '
-    Me.txtTelNo.Location = New System.Drawing.Point(524, 32)
+    Me.txtTelNo.Location = New System.Drawing.Point(539, 81)
     Me.txtTelNo.Name = "txtTelNo"
     Me.txtTelNo.Size = New System.Drawing.Size(230, 20)
     Me.txtTelNo.TabIndex = 7
@@ -431,7 +422,7 @@ Partial Class frmCustomerDetail
     Me.Label3.AutoSize = True
     Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label3.Location = New System.Drawing.Point(433, 35)
+    Me.Label3.Location = New System.Drawing.Point(425, 84)
     Me.Label3.Name = "Label3"
     Me.Label3.Size = New System.Drawing.Size(55, 14)
     Me.Label3.TabIndex = 19
@@ -531,7 +522,7 @@ Partial Class frmCustomerDetail
     Me.GroupControl2.Controls.Add(Me.Label20)
     Me.GroupControl2.Location = New System.Drawing.Point(792, 39)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(491, 234)
+    Me.GroupControl2.Size = New System.Drawing.Size(491, 222)
     Me.GroupControl2.TabIndex = 2
     Me.GroupControl2.Text = "Detalles de la Cuenta"
     '
@@ -635,9 +626,9 @@ Partial Class frmCustomerDetail
     Me.GroupControl3.AppearanceCaption.Options.UseFont = True
     Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl3.Controls.Add(Me.txtCustomerNotes)
-    Me.GroupControl3.Location = New System.Drawing.Point(792, 290)
+    Me.GroupControl3.Location = New System.Drawing.Point(792, 267)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(491, 144)
+    Me.GroupControl3.Size = New System.Drawing.Size(491, 113)
     Me.GroupControl3.TabIndex = 3
     Me.GroupControl3.Text = "Notas del Cliente"
     '
@@ -646,7 +637,7 @@ Partial Class frmCustomerDetail
     Me.txtCustomerNotes.Location = New System.Drawing.Point(5, 26)
     Me.txtCustomerNotes.MenuManager = Me.BarManager1
     Me.txtCustomerNotes.Name = "txtCustomerNotes"
-    Me.txtCustomerNotes.Size = New System.Drawing.Size(388, 113)
+    Me.txtCustomerNotes.Size = New System.Drawing.Size(481, 76)
     Me.txtCustomerNotes.TabIndex = 0
     '
     'grdSalesOrder
@@ -709,24 +700,6 @@ Partial Class frmCustomerDetail
     Me.GridColumn8.Visible = True
     Me.GridColumn8.VisibleIndex = 2
     '
-    'txtMainPostCode
-    '
-    Me.txtMainPostCode.Location = New System.Drawing.Point(524, 179)
-    Me.txtMainPostCode.Name = "txtMainPostCode"
-    Me.txtMainPostCode.Size = New System.Drawing.Size(230, 20)
-    Me.txtMainPostCode.TabIndex = 10
-    '
-    'Label15
-    '
-    Me.Label15.AutoSize = True
-    Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label15.Location = New System.Drawing.Point(433, 182)
-    Me.Label15.Name = "Label15"
-    Me.Label15.Size = New System.Drawing.Size(83, 14)
-    Me.Label15.TabIndex = 25
-    Me.Label15.Text = "Código Postal"
-    '
     'frmCustomerDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -749,10 +722,10 @@ Partial Class frmCustomerDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtCustomerReference.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtMainTown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.RadioGroup2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.RadioGroup1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.rgEstatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtWebUrl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtMainAddress1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboCountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -775,56 +748,53 @@ Partial Class frmCustomerDetail
     CType(Me.txtCustomerNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
   End Sub
 
   Friend WithEvents txtCustomerName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
-    Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
-    Friend WithEvents bbtnSave As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents Label1 As Label
-    Friend WithEvents txtRazonSocial As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label4 As Label
-    Friend WithEvents txtEmail As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label2 As Label
-    Friend WithEvents txtTelNo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label3 As Label
-    Friend WithEvents grdContacts As DevExpress.XtraGrid.GridControl
-    Friend WithEvents gvContacts As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Label10 As Label
-    Friend WithEvents txtWebUrl As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label9 As Label
-    Friend WithEvents txtMainAddress1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label8 As Label
-    Friend WithEvents cboCountry As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents Label7 As Label
-    Friend WithEvents txtRucNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label6 As Label
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents txtABA As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label14 As Label
-    Friend WithEvents txtSwift As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label16 As Label
-    Friend WithEvents txtBancoIntermediario As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label17 As Label
-    Friend WithEvents txtAcountRef As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label20 As Label
-    Friend WithEvents RadioGroup2 As DevExpress.XtraEditors.RadioGroup
-    Friend WithEvents Label11 As Label
-    Friend WithEvents RadioGroup1 As DevExpress.XtraEditors.RadioGroup
+  Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+  Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
+  Friend WithEvents bbtnSave As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents Label1 As Label
+  Friend WithEvents txtRazonSocial As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label4 As Label
+  Friend WithEvents txtEmail As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label2 As Label
+  Friend WithEvents txtTelNo As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label3 As Label
+  Friend WithEvents grdContacts As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvContacts As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents txtWebUrl As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label9 As Label
+  Friend WithEvents txtMainAddress1 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label8 As Label
+  Friend WithEvents cboCountry As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents Label7 As Label
+  Friend WithEvents txtRucNumber As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label6 As Label
+  Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents txtABA As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label14 As Label
+  Friend WithEvents txtSwift As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label16 As Label
+  Friend WithEvents txtBancoIntermediario As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label17 As Label
+  Friend WithEvents txtAcountRef As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label20 As Label
+  Friend WithEvents rgEstatus As DevExpress.XtraEditors.RadioGroup
+  Friend WithEvents Label11 As Label
   Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents txtCustomerNotes As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents cboPaymentTermsType As DevExpress.XtraEditors.ComboBoxEdit

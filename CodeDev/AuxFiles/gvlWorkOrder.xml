@@ -54,103 +54,104 @@
       <property name="ColumnEditName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
+      <property name="Name">GridColumn6</property>
+      <property name="Caption"># Orden de Compra</property>
+      <property name="FieldName">OrderNo</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">0</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Name">GridColumn10</property>
+      <property name="Caption">Cliente</property>
+      <property name="FieldName">CompanyName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">1</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Name">GridColumn3</property>
+      <property name="Caption">Descripcion</property>
+      <property name="FieldName">Description</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">3</property>
+      <property name="Visible">true</property>
+      <property name="Width">178</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Name">Quantity</property>
+      <property name="Caption">Cantidad</property>
+      <property name="FieldName">Quantity</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">4</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
       <property name="Caption"># Orden de Trabajo</property>
       <property name="FieldName">WorkOrderNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">87</property>
     </property>
-    <property name="Item3" isnull="true" iskey="true">
+    <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="Caption">Tipo de Producto</property>
-      <property name="FieldName">ProductTypeID</property>
+      <property name="Caption">Tipo de OT</property>
+      <property name="FieldName">WorkOrderType</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">178</property>
     </property>
-    <property name="Item4" isnull="true" iskey="true">
-      <property name="Name">Quantity</property>
-      <property name="Caption">Cantidad</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item5" isnull="true" iskey="true">
-      <property name="Name">GridColumn3</property>
-      <property name="Caption">Descripcion</property>
-      <property name="FieldName">Description</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
-      <property name="Visible">true</property>
-      <property name="Width">178</property>
-    </property>
-    <property name="Item6" isnull="true" iskey="true">
+    <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
       <property name="Caption">Proyecto</property>
       <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">176</property>
     </property>
-    <property name="Item7" isnull="true" iskey="true">
-      <property name="Name">GridColumn5</property>
-      <property name="Caption">Estatus</property>
-      <property name="FieldName">OrderStatusEnum</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item8" isnull="true" iskey="true">
-      <property name="Name">GridColumn6</property>
-      <property name="Caption">Numero Orden</property>
-      <property name="FieldName">OrderNo</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
-      <property name="Visible">true</property>
-    </property>
     <property name="Item9" isnull="true" iskey="true">
-      <property name="Name">GridColumn7</property>
-      <property name="Caption">Ref. del Cliente</property>
-      <property name="FieldName">CustomerRef</property>
+      <property name="Name">GridColumn8</property>
+      <property name="Caption">Responsable</property>
+      <property name="FieldName">EmployeeName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">8</property>
+      <property name="Visible">true</property>
+      <property name="Width">80</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Name">GridColumn13</property>
+      <property name="Caption">Precio</property>
+      <property name="FieldName">UnitPrice</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="Name">GridColumn16</property>
+      <property name="Caption">Fecha Ingresada</property>
+      <property name="FieldName">PlannedStartDate</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">9</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Name">GridColumn17</property>
+      <property name="Caption">Fecha de Compromiso</property>
+      <property name="FieldName">DueTime</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item10" isnull="true" iskey="true">
-      <property name="Name">GridColumn8</property>
-      <property name="Caption">Responsable</property>
-      <property name="FieldName">ContractManagerID</property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Name">GridColumn18</property>
+      <property name="Caption">Fecha Despachada</property>
+      <property name="FieldName">FinishDate</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">11</property>
-      <property name="Visible">true</property>
-      <property name="Width">80</property>
-    </property>
-    <property name="Item11" isnull="true" iskey="true">
-      <property name="Name">GridColumn9</property>
-      <property name="Caption">Sector</property>
-      <property name="FieldName">BusinessSectorID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item12" isnull="true" iskey="true">
-      <property name="Name">GridColumn10</property>
-      <property name="Caption">Cliente</property>
-      <property name="FieldName">CompanyName</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item13" isnull="true" iskey="true">
-      <property name="Name">GridColumn11</property>
-      <property name="Caption">Region</property>
-      <property name="FieldName">SalesAreaID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
     </property>
   </property>

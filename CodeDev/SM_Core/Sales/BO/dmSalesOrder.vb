@@ -24,6 +24,8 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pFinishDate As DateTime
   Private pDueTime As DateTime
 
+  Private pCustomer As dmCustomer
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -296,6 +298,14 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property Customer As dmCustomer
+    Get
+      Return pCustomer
+    End Get
+    Set(value As dmCustomer)
+      pCustomer = value
+    End Set
+  End Property
 
 End Class
 

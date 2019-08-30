@@ -44,7 +44,7 @@ Public Class brwClientes : Inherits brwBrowserListBase
     'frmPartConfig.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("PartID")), eFormMode.eFMFormModeEdit)
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("Ninguna fila seleccionad")
+      MsgBox("Ninguna fila seleccionada")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeView)
     End If
@@ -232,6 +232,12 @@ Public Class brwClientes : Inherits brwBrowserListBase
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
       ' gridBrowseList.Refresh()
+
+
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("CustomerStatusID"), clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+
 
       Me.SaveButton = eActiveVisibleState.Invisible
 

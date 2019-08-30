@@ -15,6 +15,11 @@ Public Enum eActivityCode
 
 End Enum
 
+Public Enum eCustomerStatus
+  <Description("Activo")> Active = 1
+  <Description("Inactivo")> Inactive = 0
+End Enum
+
 Public Enum eGridViewType
   Grid = 1
   Card = 2
@@ -106,6 +111,11 @@ Public Enum eWorkOrderMilestone
   Specification = 2
   MaterialPurchasing = 3
   WoodPurchasing = 4
+End Enum
+
+Public Enum eIVAType
+  Aplica = 1
+  NoAplica = 2
 End Enum
 
 Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of clsTimeSheetCode)

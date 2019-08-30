@@ -103,6 +103,8 @@ Public Class frmCustomerDetail
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
 
+      rgEstatus.EditValue = .CustomerStatusID
+
     End With
   End Sub
 
@@ -127,6 +129,8 @@ Public Class frmCustomerDetail
       .CustomerReference = txtCustomerReference.Text
       .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
       .CustomerNotes = txtCustomerNotes.Text
+      .CustomerStatusID = rgEstatus.EditValue
+
     End With
   End Sub
 
@@ -144,6 +148,10 @@ Public Class frmCustomerDetail
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+
+  End Sub
+
+  Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
 
   End Sub
 

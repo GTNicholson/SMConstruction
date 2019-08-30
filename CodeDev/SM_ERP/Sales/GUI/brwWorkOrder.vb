@@ -231,6 +231,9 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
       gridBrowseList.RepositoryItems.Clear()
       gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
       mGridView = gridBrowseList.MainView
+
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("WorkOrderType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WorkOrderType))
+
       ''Set lookup columns
 
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(ePartType)))

@@ -1,0 +1,33 @@
+Use SMConstruction
+go
+Alter View vwWorkOrderInfo
+as
+
+Alter View vwWorkOrderInfo
+as
+
+SELECT      WO.WorkOrderID,  WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, 
+			WO.Description, WO.PlannedStartDate, SO.ProjectName, SO.OrderTypeID,
+			SO.OrderStatusENUM, SO.OrderNo, SO.CustomerRef, SO.ContractManagerID, 
+            SO.BusinessSectorID, C.CompanyName, C.SalesAreaID, WO.unitPrice,Concat(emp.FirstName, ' ',emp.LastName) as EmployeeName
+			,so.DueTime,So.FinishDate,wo.workordertype
+			
+
+FROM        dbo.WorkOrder AS WO LEFT OUTER JOIN dbo.SalesOrder AS SO 
+			ON SO.SalesOrderID = WO.SalesOrderID
+			LEFT OUTER JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID
+			LEFT OUTER JOIN dbo.Employee AS Emp ON emp.EmployeeID = wo.employeeID
+Alter Table WorkOrder
+add UnitPrice decimal(9,3)
+
+go
+
+Alter table WorkOrder
+add WorkOrderType int
+go
+
+
+Alter table WorkOrder
+add EmployeeID int
+go
+

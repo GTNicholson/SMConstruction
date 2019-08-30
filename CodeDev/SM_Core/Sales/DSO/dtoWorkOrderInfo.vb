@@ -65,10 +65,15 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .Quantity = DBReadDouble(rDataReader, "Quantity")
         .Description = DBReadString(rDataReader, "Description")
         .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
+        .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
+        .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
+        .EmployeeName = DBReadString(rDataReader, "EmployeeName")
       End With
 
       With pWorkOrderInfo.SalesOrder
         .OrderNo = DBReadString(rDataReader, "OrderNo")
+        .ProjectName = DBReadString(rDataReader, "ProjectName")
+        .DueTime = DBReadDate(rDataReader, "DueTime")
       End With
 
       With pWorkOrderInfo.Customer

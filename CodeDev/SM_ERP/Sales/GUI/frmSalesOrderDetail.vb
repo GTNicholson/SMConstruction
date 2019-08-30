@@ -77,17 +77,33 @@ Public Class frmSalesOrderDetail
   End Sub
 
   Private Sub RefreshControls()
-    With pFormController.SalesOrder
-      txtSalesOrderID.Text = .OrderNo
-      txtProjectName.Text = .ProjectName
-      dteDateEntered.EditValue = .DateEntered
-      dteDueTime.EditValue = .DueTime
-      txtVisibleNotes.Text = .VisibleNotes
-      RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
-      RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
+    Try
 
-    End With
+      With pFormController.SalesOrder
+        txtSalesOrderID.Text = .OrderNo
+        txtProjectName.Text = .ProjectName
+        dteDateEntered.EditValue = .DateEntered
+        dteFinishDate.EditValue = .FinishDate
+        dteDueTime.EditValue = .DueTime
+        txtVisibleNotes.Text = .VisibleNotes
+
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
+
+        If .Customer Is Nothing Then
+          btnedCustomer.Text = ""
+        Else
+          FillCustomerDetail()
+
+        End If
+
+      End With
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
   End Sub
+
+
 
   Private Sub frmCustomerDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
     ''FormController.ClearObjects()
@@ -111,8 +127,8 @@ Public Class frmSalesOrderDetail
       .ProjectName = txtProjectName.Text
       .DateEntered = dteDateEntered.DateTime
       .DueTime = dteDueTime.DateTime
+      .FinishDate = dteFinishDate.DateTime
       .VisibleNotes = txtVisibleNotes.Text
-
       .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
       .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
 
@@ -123,15 +139,41 @@ Public Class frmSalesOrderDetail
     Try
       Dim mCustomerPicker As clsPickerCustomer
       Dim mcustomer As dmCustomer
+      UpdateObjects()
       mCustomerPicker = New clsPickerCustomer(pFormController.GetCustomerList)
       mcustomer = frmPickerCustomer.OpenPickerSingle(mCustomerPicker)
       If mcustomer Is Nothing Then
         pFormController.SalesOrder.CustomerID = 0
+        pFormController.SalesOrder.Customer = Nothing
       Else
         pFormController.SalesOrder.CustomerID = mcustomer.CustomerID
+        pFormController.SalesOrder.Customer = mcustomer
+        FillCustomerDetail()
+
       End If
+      RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub FillCustomerDetail()
+
+    Try
+      With pFormController.SalesOrder
+        btnedCustomer.Text = .Customer.CompanyName
+        txtAccountRef.Text = .Customer.AccountRef
+        txtMainTown.Text = .Customer.MainTown
+        txtPaymentTermsType.Text = .Customer.PaymentTermsType
+        txtSalesAreaID.Text = .Customer.SalesAreaID
+        CustomerStatusID.Text = .Customer.CustomerStatusID
+
+      End With
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
 End Class

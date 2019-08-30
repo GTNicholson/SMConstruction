@@ -54,7 +54,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     'frmPartConfig.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("PartID")), eFormMode.eFMFormModeEdit)
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("Ninguna fila seleccionad")
+      MsgBox("Ninguna fila seleccionada")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeView)
     End If
@@ -240,6 +240,8 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderStatusENUM"), clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
       ' gridBrowseList.Refresh()

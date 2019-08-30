@@ -41,6 +41,9 @@ Public Class dmCustomer : Inherits dmBase
   Private pNumero_ABA As String
   Private pCustomerContacts As colCustomerContacts
   Private pCustomerReferenceID As String
+  Private pIVAType As Integer
+
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -511,6 +514,16 @@ Public Class dmCustomer : Inherits dmBase
     Set(ByVal value As String)
       If pCustomerReferenceID <> value Then IsDirty = True
       pCustomerReferenceID = value
+    End Set
+  End Property
+
+  Public Property IVAType As Byte
+    Get
+      Return pIVAType
+    End Get
+    Set(ByVal value As Byte)
+      If pIVAType <> value Then IsDirty = True
+      pIVAType = value
     End Set
   End Property
 
