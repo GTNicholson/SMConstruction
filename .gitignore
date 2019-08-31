@@ -4,6 +4,8 @@ obj/
 debug/
 InstallFiles/
 Setup/
+SystemFiles/
+Docs/
 
 
 # Compiled source #
