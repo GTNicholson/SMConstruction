@@ -23,6 +23,8 @@ Partial Class frmSalesOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
@@ -62,12 +64,20 @@ Partial Class frmSalesOrderDetail
     Me.Label2 = New System.Windows.Forms.Label()
     Me.txtSalesOrderID = New DevExpress.XtraEditors.TextEdit()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+    Me.grpWorkOrders = New DevExpress.XtraEditors.GroupControl()
+    Me.grdWorkOrders = New DevExpress.XtraGrid.GridControl()
+    Me.gvWorkOrders = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.repitbtWorkOrder = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.Quantity = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
     Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,12 +103,15 @@ Partial Class frmSalesOrderDetail
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
+    CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.grpWorkOrders.SuspendLayout()
+    CType(Me.grdWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repitbtWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -546,14 +559,115 @@ Partial Class frmSalesOrderDetail
     '
     'PanelControl1
     '
+    Me.PanelControl1.Controls.Add(Me.grpWorkOrders)
     Me.PanelControl1.Controls.Add(Me.GridControl3)
     Me.PanelControl1.Controls.Add(Me.GridControl2)
-    Me.PanelControl1.Controls.Add(Me.GridControl1)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(3, 301)
     Me.PanelControl1.Name = "PanelControl1"
     Me.PanelControl1.Size = New System.Drawing.Size(1185, 402)
     Me.PanelControl1.TabIndex = 14
+    '
+    'grpWorkOrders
+    '
+    Me.grpWorkOrders.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.grpWorkOrders.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.grpWorkOrders.AppearanceCaption.Options.UseFont = True
+    Me.grpWorkOrders.AppearanceCaption.Options.UseForeColor = True
+    Me.grpWorkOrders.Controls.Add(Me.grdWorkOrders)
+    Me.grpWorkOrders.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+    Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+    Me.grpWorkOrders.Location = New System.Drawing.Point(0, 5)
+    Me.grpWorkOrders.Name = "grpWorkOrders"
+    Me.grpWorkOrders.Size = New System.Drawing.Size(1180, 150)
+    Me.grpWorkOrders.TabIndex = 14
+    Me.grpWorkOrders.Text = "Ordenes de Trabajo"
+    '
+    'grdWorkOrders
+    '
+    Me.grdWorkOrders.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdWorkOrders.Location = New System.Drawing.Point(2, 26)
+    Me.grdWorkOrders.MainView = Me.gvWorkOrders
+    Me.grdWorkOrders.MenuManager = Me.BarManager1
+    Me.grdWorkOrders.Name = "grdWorkOrders"
+    Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
+    Me.grdWorkOrders.Size = New System.Drawing.Size(1176, 122)
+    Me.grdWorkOrders.TabIndex = 11
+    Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders})
+    '
+    'gvWorkOrders
+    '
+    Me.gvWorkOrders.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvWorkOrders.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvWorkOrders.Appearance.HeaderPanel.Options.UseTextOptions = True
+    Me.gvWorkOrders.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gvWorkOrders.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvWorkOrders.Appearance.Row.Options.UseFont = True
+    Me.gvWorkOrders.ColumnPanelRowHeight = 34
+    Me.gvWorkOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.Quantity, Me.GridColumn13})
+    Me.gvWorkOrders.GridControl = Me.grdWorkOrders
+    Me.gvWorkOrders.Name = "gvWorkOrders"
+    Me.gvWorkOrders.OptionsView.ShowAutoFilterRow = True
+    Me.gvWorkOrders.OptionsView.ShowGroupPanel = False
+    '
+    'GridColumn12
+    '
+    Me.GridColumn12.Caption = "ID"
+    Me.GridColumn12.FieldName = "WorkOrderID"
+    Me.GridColumn12.Name = "GridColumn12"
+    '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "# Orden de Trabajo"
+    Me.GridColumn1.ColumnEdit = Me.repitbtWorkOrder
+    Me.GridColumn1.FieldName = "WorkOrderNo"
+    Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+    Me.GridColumn1.Visible = True
+    Me.GridColumn1.VisibleIndex = 0
+    Me.GridColumn1.Width = 111
+    '
+    'repitbtWorkOrder
+    '
+    Me.repitbtWorkOrder.AutoHeight = False
+    Me.repitbtWorkOrder.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.repitbtWorkOrder.Name = "repitbtWorkOrder"
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Tipo de OT"
+    Me.GridColumn2.FieldName = "WorkOrderType"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 1
+    Me.GridColumn2.Width = 159
+    '
+    'GridColumn3
+    '
+    Me.GridColumn3.Caption = "Descripcion"
+    Me.GridColumn3.FieldName = "Description"
+    Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.Visible = True
+    Me.GridColumn3.VisibleIndex = 2
+    Me.GridColumn3.Width = 567
+    '
+    'Quantity
+    '
+    Me.Quantity.Caption = "Cantidad"
+    Me.Quantity.FieldName = "Quantity"
+    Me.Quantity.Name = "Quantity"
+    Me.Quantity.Visible = True
+    Me.Quantity.VisibleIndex = 3
+    Me.Quantity.Width = 167
+    '
+    'GridColumn13
+    '
+    Me.GridColumn13.Caption = "Precio"
+    Me.GridColumn13.FieldName = "UnitPrice"
+    Me.GridColumn13.Name = "GridColumn13"
+    Me.GridColumn13.Visible = True
+    Me.GridColumn13.VisibleIndex = 4
+    Me.GridColumn13.Width = 156
     '
     'GridControl3
     '
@@ -607,32 +721,6 @@ Partial Class frmSalesOrderDetail
     Me.GridView2.OptionsView.ShowViewCaption = True
     Me.GridView2.ViewCaption = "Despachos"
     '
-    'GridControl1
-    '
-    Me.GridControl1.Location = New System.Drawing.Point(9, 5)
-    Me.GridControl1.MainView = Me.GridView1
-    Me.GridControl1.MenuManager = Me.BarManager1
-    Me.GridControl1.Name = "GridControl1"
-    Me.GridControl1.Size = New System.Drawing.Size(1175, 150)
-    Me.GridControl1.TabIndex = 11
-    Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-    '
-    'GridView1
-    '
-    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView1.GridControl = Me.GridControl1
-    Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsView.ShowGroupPanel = False
-    Me.GridView1.OptionsView.ShowViewCaption = True
-    Me.GridView1.ViewCaption = "Ordenes de Trabajo"
-    '
     'frmSalesOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -672,12 +760,15 @@ Partial Class frmSalesOrderDetail
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
+    CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.grpWorkOrders.ResumeLayout(False)
+    CType(Me.grdWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repitbtWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -714,8 +805,8 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grdWorkOrders As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvWorkOrders As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents btnedCustomer As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents txtAccountRef As DevExpress.XtraEditors.TextEdit
@@ -728,4 +819,12 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents Label13 As Label
   Friend WithEvents CustomerStatusID As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label12 As Label
+  Friend WithEvents grpWorkOrders As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents repitbtWorkOrder As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents Quantity As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

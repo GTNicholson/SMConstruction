@@ -44,6 +44,18 @@ Public Class frmWorkOrderDetail
 
   End Sub
 
+  Public Shared Sub OpenFormModal(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+    Dim mfrm As frmWorkOrderDetail = Nothing
+
+
+    mfrm = New frmWorkOrderDetail
+    mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
+    mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
+    ''mfrm.ParentForm = rParent
+    mfrm.ShowDialog()
+
+  End Sub
+
   Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmWorkOrderDetail
     Dim mfrmWanted As frmWorkOrderDetail = Nothing
     Dim mFound As Boolean = False

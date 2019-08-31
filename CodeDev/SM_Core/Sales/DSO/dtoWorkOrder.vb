@@ -132,7 +132,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
   Public Function LoadWorkOrderCollection(ByRef rWorkOrders As colWorkOrders, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@SalesOrderID", vParentID)
     mOK = MyBase.LoadCollection(rWorkOrders, mParams, "WorkOrderID")
     rWorkOrders.TrackDeleted = True
     If mOK Then rWorkOrders.IsDirty = False
@@ -146,20 +146,6 @@ Public Class dtoWorkOrder : Inherits dtoBase
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
-      ''Approach where delete items not found in the collection
-      ''If rCollection.SomeRemoved Then
-      ''  For Each Me.pWorkOrder In rCollection
-      ''    If pWorkOrder.WorkOrderID <> 0 Then
-      ''      mCount = mCount + 1
-      ''      If mCount > 1 Then mIDs = mIDs & ", "
-      ''       mIDs = mIDs & pWorkOrder.WorkOrderID.ToString
-      ''    End If
-      ''  Next
-      ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
-      ''Else
-      ''   mAllOK = True
-      ''End If
 
       ''Alternative Approach - where maintain collection of deleted items
       If rCollection.SomeDeleted Then

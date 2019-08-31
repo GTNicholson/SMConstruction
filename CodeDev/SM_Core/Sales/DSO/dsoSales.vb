@@ -83,13 +83,25 @@ Public Class dsoSales
   Public Function SaveSalesOrderDown(ByRef rSalesOrder As dmSalesOrder) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
-
+    Dim mdtoWO As dtoWorkOrder
+    Dim mdtoProduct As dtoProductBase
 
     Try
 
       pDBConn.Connect()
       mdto = New dtoSalesOrder(pDBConn)
       mdto.SaveSalesOrder(rSalesOrder)
+
+      mdtoWO = New dtoWorkOrder(pDBConn)
+      mdtoWO.SaveWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
+
+      '// Ensure any product details are also saved
+      For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
+        mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
+        mdtoProduct.SaveProduct(mWO.Product)
+      Next
+
+
       pDBConn.Disconnect()
       mRetVal = True
     Catch ex As Exception
@@ -105,6 +117,8 @@ Public Class dsoSales
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
     Dim mdtoCust As dtoCustomer
+    Dim mdtoWOs As dtoWorkOrder
+    Dim mdtoProduct As dtoProductBase
 
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
@@ -114,24 +128,23 @@ Public Class dsoSales
     mdtoCust = New dtoCustomer(pDBConn)
     mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
 
+    mdtoWOs = New dtoWorkOrder(pDBConn)
+    mdtoWOs.LoadWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
+
+    For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
+      '// Instantiate and Load up the details for the specific product type
+      mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
+      If mWO.Product IsNot Nothing Then
+        mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
+        mdtoProduct.LoadProduct(mWO.Product, mWO.ProductTypeID)
+      End If
+    Next
+
     pDBConn.Disconnect()
 
     mRetVal = True
 
     Return mRetVal
-  End Function
-  Public Function LoadSalesOrderDown(ByRef rCustomer As dmCustomer, ByVal vID As Integer) As Boolean
-    'Dim mRetVal As Boolean
-    'Dim mdto As dtoCustomer
-
-    'pDBConn.Connect()
-    'mdto = New dtoCustomer(pDBConn)
-    'mdto.LoadCustomer(rCustomer, vID)
-
-    'pDBConn.Disconnect()
-    'mRetVal = True
-
-    'Return mRetVal
   End Function
 
 

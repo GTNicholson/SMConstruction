@@ -6,9 +6,17 @@ Public Class fccSalesOrderDetail
   Private pSalesOrder As dmSalesOrder
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
 
+  Private pSalesOrderHandler As clsSalesOrderHandler
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
   End Sub
+
+  Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
+    Get
+      Return pDBConn
+    End Get
+  End Property
 
   Public Property PrimaryKeyID As Integer
     Get
@@ -37,6 +45,7 @@ Public Class fccSalesOrderDetail
       mdso = New dsoSales(pDBConn)
       mdso.LoadSalesOrderDown(pSalesOrder, pPrimaryKeyID)
     End If
+    pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
   End Sub
 
   Public Sub SaveObjects()
@@ -61,5 +70,21 @@ Public Class fccSalesOrderDetail
     End Try
     Return mRetVal
   End Function
+
+  Public Sub AddWorkOrder(ByVal vProductType As eProductType)
+    Try
+      pSalesOrderHandler.AddWorkOrder(vProductType)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub DeleteWorkOrder(ByRef rWorkOrder As dmWorkOrder)
+    Try
+      pSalesOrderHandler.RemoveWorkOrder(rWorkOrder)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 
 End Class
