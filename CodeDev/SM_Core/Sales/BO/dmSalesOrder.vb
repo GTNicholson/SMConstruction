@@ -25,6 +25,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pDueTime As DateTime
 
   Private pCustomer As dmCustomer
+  Private pWorkOrders As colWorkOrders
 
   Public Sub New()
     MyBase.New()
@@ -32,6 +33,7 @@ Public Class dmSalesOrder : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pWorkOrders = New colWorkOrders
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -78,10 +80,11 @@ Public Class dmSalesOrder : Inherits dmBase
       .BusinessSectorID = BusinessSectorID
       .ClientInfo = ClientInfo
       .FinishDate = FinishDate
-      .Duetime = Duetime
+      .Duetime = DueTime
       'Add entries here for each collection and class property
 
       'Entries for object management
+      .WorkOrders = WorkOrders.Clone
 
       .IsDirty = IsDirty
     End With
@@ -304,6 +307,15 @@ Public Class dmSalesOrder : Inherits dmBase
     End Get
     Set(value As dmCustomer)
       pCustomer = value
+    End Set
+  End Property
+
+  Public Property WorkOrders As colWorkOrders
+    Get
+      Return pWorkOrders
+    End Get
+    Set(value As colWorkOrders)
+      pWorkOrders = value
     End Set
   End Property
 

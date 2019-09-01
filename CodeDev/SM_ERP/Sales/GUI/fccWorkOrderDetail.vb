@@ -115,4 +115,35 @@ Public Class fccWorkOrderDetail
     End Try
   End Sub
 
+  Public Sub CreateWorkOrderPack(ByRef rReport As repWorkOrderDoc, ByVal vFilePath As String)
+    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
+    Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
+    Dim mFilePath As String
+
+    mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
+    mExportOptions.ConvertImagesToJpeg = False
+
+    rReport.ExportToPdf(vFilePath, mExportOptions)
+
+    mPDFAmalg.PDFFileName = vFilePath
+    mPDFAmalg.CreateNewDocument()
+
+    If IO.File.Exists(vFilePath) Then
+      mPDFAmalg.ImportPDFDocument(vFilePath)
+    End If
+
+    For Each mFileTracker In pWorkOrder.WOFiles
+      If mFileTracker.IncludeInPack Then
+        mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pWorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderNo), mFileTracker.FileName)
+
+        If IO.File.Exists(mFilePath) Then
+          mPDFAmalg.ImportPDFDocument(mFilePath)
+        End If
+      End If
+    Next
+
+    mPDFAmalg.SavePDFDocument()
+
+  End Sub
+
 End Class

@@ -83,25 +83,13 @@ Public Class dsoSales
   Public Function SaveSalesOrderDown(ByRef rSalesOrder As dmSalesOrder) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
-    Dim mdtoWO As dtoWorkOrder
-    Dim mdtoProduct As dtoProductBase
+
 
     Try
 
       pDBConn.Connect()
       mdto = New dtoSalesOrder(pDBConn)
       mdto.SaveSalesOrder(rSalesOrder)
-
-      mdtoWO = New dtoWorkOrder(pDBConn)
-      mdtoWO.SaveWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
-
-      '// Ensure any product details are also saved
-      For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
-        mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-        mdtoProduct.SaveProduct(mWO.Product)
-      Next
-
-
       pDBConn.Disconnect()
       mRetVal = True
     Catch ex As Exception
@@ -113,12 +101,10 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
-  Public Function LoadSalesOrderDown(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
+  Public Function LoadSalesOrderAndCustomer(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
     Dim mdtoCust As dtoCustomer
-    Dim mdtoWOs As dtoWorkOrder
-    Dim mdtoProduct As dtoProductBase
 
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
@@ -128,18 +114,6 @@ Public Class dsoSales
     mdtoCust = New dtoCustomer(pDBConn)
     mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
 
-    mdtoWOs = New dtoWorkOrder(pDBConn)
-    mdtoWOs.LoadWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
-
-    For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
-      '// Instantiate and Load up the details for the specific product type
-      mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
-      If mWO.Product IsNot Nothing Then
-        mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-        mdtoProduct.LoadProduct(mWO.Product, mWO.ProductTypeID)
-      End If
-    Next
-
     pDBConn.Disconnect()
 
     mRetVal = True
@@ -148,14 +122,13 @@ Public Class dsoSales
   End Function
 
 
+
   Public Function LoadWorkOrderDown(ByRef rWorkOrder As dmWorkOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
-    Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
-    Dim mdtoOutputDocs As dtoOutputDocument
     Try
 
       pDBConn.Connect()
@@ -171,11 +144,8 @@ Public Class dsoSales
         If mProdFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID)
-          mdtoWOFiles = New dtoFileTracker(pDBConn)
-          mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
-        mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-        mdtoOutputDocs.LoadOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID, eParentType.WorkOrder)
+
       End If
 
       pDBConn.Disconnect()
@@ -196,8 +166,6 @@ Public Class dsoSales
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Dim mProductFurniture As dmProductFurniture
-    Dim mdtoWOFiles As dtoFileTracker
-    Dim mdtoOutputDocs As dtoOutputDocument
 
     Try
       pDBConn.Connect()
@@ -211,11 +179,7 @@ Public Class dsoSales
         If mProductFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID)
-          mdtoWOFiles = New dtoFileTracker(pDBConn)
-          mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
-        mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-        mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
       End If
 
       pDBConn.Disconnect()

@@ -1,4 +1,6 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraEditors.Controls
+Imports RTIS.CommonVB
 
 Public Class frmSalesOrderDetail
   Private Shared sActiveForms As Collection
@@ -6,6 +8,11 @@ Public Class frmSalesOrderDetail
   Private pMySharedIndex As Integer
 
   Private pFormController As fccSalesOrderDetail
+
+  Private Enum eWorkOrderGroupButtonTags
+    Add = 1
+    Delete = 2
+  End Enum
 
   Public Sub New()
 
@@ -65,6 +72,7 @@ Public Class frmSalesOrderDetail
 
   Private Sub frmCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     pFormController.LoadObjects()
+    grdWorkOrders.DataSource = pFormController.SalesOrder.WorkOrders
     LoadCombos()
     RefreshControls()
   End Sub
@@ -183,4 +191,31 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
+  Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
+    Dim mWO As dmWorkOrder
+    Select Case e.Button.Properties.Tag
+      Case eWorkOrderGroupButtonTags.Add
+        pFormController.AddWorkOrder(eProductType.ProductFurniture)
+      Case eWorkOrderGroupButtonTags.Delete
+        mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
+        If mWO IsNot Nothing Then
+          If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
+            pFormController.DeleteWorkOrder(mWO)
+          End If
+        End If
+    End Select
+    gvWorkOrders.RefreshData()
+  End Sub
+
+  Private Sub repitbtWorkOrder_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repitbtWorkOrder.ButtonClick
+    Dim mWO As dmWorkOrder
+    Try
+      mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
+      If mWO IsNot Nothing Then
+        frmWorkOrderDetail.OpenFormModal(mWO.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class

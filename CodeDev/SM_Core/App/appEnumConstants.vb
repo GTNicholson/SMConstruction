@@ -1,5 +1,3 @@
-
-
 Imports System.ComponentModel
 
 Public Enum eActivityCode
@@ -13,6 +11,11 @@ Public Enum eActivityCode
 
   Production = 200
 
+End Enum
+
+Public Enum eObjectType
+  SalesOrder = 1
+  WorkOrder = 2
 End Enum
 
 Public Enum eCustomerStatus
@@ -184,7 +187,8 @@ End Class
 
 Public Class clsConstants
 
-  Public Const WorkOrderFileFolder As String = "OTArchivos"
+  Public Const WorkOrderFileFolderSys As String = "OTArchivosSys"
+  Public Const WorkOrderFileFolderUsr As String = "OTArchivosUsr"
 
   Public Const WorkOrderNoPrefix = "OT"
 
