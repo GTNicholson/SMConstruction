@@ -132,6 +132,9 @@ Public Class frmSalesOrderDetail
       .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
       .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
 
+
+
+
     End With
   End Sub
 
@@ -165,8 +168,12 @@ Public Class frmSalesOrderDetail
         txtAccountRef.Text = .Customer.AccountRef
         txtMainTown.Text = .Customer.MainTown
         txtPaymentTermsType.Text = .Customer.PaymentTermsType
-        txtSalesAreaID.Text = .Customer.SalesAreaID
-        CustomerStatusID.Text = .Customer.CustomerStatusID
+        'txtSalesAreaID.Text = .Customer.SalesAreaID
+        txtSalesAreaID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country).ItemValueToDisplayValue(.Customer.SalesAreaID)
+        CustomerStatusID.Text = clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)).ItemValueToDisplayValue(.Customer.CustomerStatusID)
+
+
+        'CustomerStatusID.Text = .Customer.CustomerStatusID
 
       End With
 

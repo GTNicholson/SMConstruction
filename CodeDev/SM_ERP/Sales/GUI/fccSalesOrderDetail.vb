@@ -35,7 +35,7 @@ Public Class fccSalesOrderDetail
     Else
       pSalesOrder = New dmSalesOrder
       mdso = New dsoSales(pDBConn)
-      mdso.LoadSalesOrderDown(pSalesOrder, pPrimaryKeyID)
+      mdso.LoadSalesOrderAndCustomer(pSalesOrder, pPrimaryKeyID)
     End If
   End Sub
 

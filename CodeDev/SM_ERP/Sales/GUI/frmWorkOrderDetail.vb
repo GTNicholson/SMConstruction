@@ -294,7 +294,7 @@ Public Class frmWorkOrderDetail
       Case eDocumentType.WorkOrderDoc
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder)
+          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
         End If
 
     End Select

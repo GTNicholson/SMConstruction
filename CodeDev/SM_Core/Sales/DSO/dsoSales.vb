@@ -101,7 +101,7 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
-  Public Function LoadSalesOrderDown(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
+  Public Function LoadSalesOrderAndCustomer(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
     Dim mdtoCust As dtoCustomer
@@ -120,19 +120,7 @@ Public Class dsoSales
 
     Return mRetVal
   End Function
-  Public Function LoadSalesOrderDown(ByRef rCustomer As dmCustomer, ByVal vID As Integer) As Boolean
-    'Dim mRetVal As Boolean
-    'Dim mdto As dtoCustomer
 
-    'pDBConn.Connect()
-    'mdto = New dtoCustomer(pDBConn)
-    'mdto.LoadCustomer(rCustomer, vID)
-
-    'pDBConn.Disconnect()
-    'mRetVal = True
-
-    'Return mRetVal
-  End Function
 
 
   Public Function LoadWorkOrderDown(ByRef rWorkOrder As dmWorkOrder, ByVal vID As Integer) As Boolean

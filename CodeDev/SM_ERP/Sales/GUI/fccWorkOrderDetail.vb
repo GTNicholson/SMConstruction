@@ -4,6 +4,7 @@ Public Class fccWorkOrderDetail
   Private pPrimaryKeyID As Integer
 
   Private pWorkOrder As dmWorkOrder
+  Private pSalesOrder As dmSalesOrder
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
 
@@ -36,6 +37,12 @@ Public Class fccWorkOrderDetail
     End Get
   End Property
 
+  Public ReadOnly Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+  End Property
+
   Public ReadOnly Property TimeSheetEntrys As colTimeSheetEntrys
     Get
       Return pTimeSheetEntrys
@@ -52,9 +59,13 @@ Public Class fccWorkOrderDetail
       mdso = New dsoSales(pDBConn)
       mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
 
+      pSalesOrder = New dmSalesOrder
+      mdso.LoadSalesOrderAndCustomer(pSalesOrder, pWorkOrder.SalesOrderID)
+
       mdsoHR = New dsoHR(pDBConn)
       pTimeSheetEntrys = New colTimeSheetEntrys
       mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)
+
     End If
   End Sub
 
