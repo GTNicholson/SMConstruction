@@ -122,11 +122,11 @@ Public Class dtoOutputDocument : Inherits dtoBase
   End Function
 
 
-  Public Function LoadOutputDocumentCollection(ByRef rOutputDocuments As colOutputDocuments, ByVal vParentID As Integer, ByVal vParenetTypeID As eParentType) As Boolean
+  Public Function LoadOutputDocumentCollection(ByRef rOutputDocuments As colOutputDocuments, ByVal vParentID As Integer, ByVal vParentTypeID As eParentType) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mParams.Add("@ParentID", vParentID)
-    mParams.Add("@ParentTypeID", vParenetTypeID)
+    mParams.Add("@ParentTypeID", vParentTypeID)
     mOK = MyBase.LoadCollection(rOutputDocuments, mParams, "OutputDocumentID")
     If mOK Then rOutputDocuments.IsDirty = False
     Return mOK

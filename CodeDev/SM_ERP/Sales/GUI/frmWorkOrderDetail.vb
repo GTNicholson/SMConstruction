@@ -85,12 +85,26 @@ Public Class frmWorkOrderDetail
     pIsActive = False
     pFormController.LoadObjects()
 
+    ConfigureFileControl
+
     LoadCombos()
+
 
     grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
     RefreshProductTabPages()
     RefreshControls()
     pIsActive = True
+  End Sub
+
+  Private Sub ConfigureFileControl()
+    Dim mFileDirectory As String
+    mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderNo))
+
+    UctFileControl1.UserController = New uccFileControl(Me)
+    UctFileControl1.UserController.Directory = mFileDirectory
+    UctFileControl1.UserController.FileTrackers = pFormController.WorkOrder.WOFiles
+    UctFileControl1.UserController.ConfigSystemWatcher()
+
   End Sub
 
   Private Function CheckSave(ByVal rOption As Boolean) As Boolean
@@ -175,6 +189,10 @@ Public Class frmWorkOrderDetail
 
       clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
 
+      btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
+
+      UctFileControl1.LoadControls()
+      UctFileControl1.RefreshControls()
       RefreshProductControls()
 
     End With
@@ -240,9 +258,10 @@ Public Class frmWorkOrderDetail
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
           AddWorkOrderDocument()
-
+          RefreshControls()
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
           DeleteWorkOrderDocument()
+          RefreshControls()
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
           ViewWorkOrderDocument()
       End Select
@@ -319,11 +338,10 @@ Public Class frmWorkOrderDetail
     Dim mFileName As String
     Dim mExportDirectory As String = String.Empty
     ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
-    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
 
     mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.WorkOrder.WorkOrderID
 
-    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolder, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderNo))
+    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderNo))
 
     mFileName &= ".pdf"
     mFileName = clsGeneralA.GetFileSafeName(mFileName)
@@ -340,11 +358,10 @@ Public Class frmWorkOrderDetail
 
     ' mReport = CreateReport(vDocumentType)
     If vReport IsNot Nothing Then
-      mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
-      mExportOptions.ConvertImagesToJpeg = False
 
-      vReport.ExportToPdf(mFilePath, mExportOptions)
 
+      ''vReport.ExportToPdf(mFilePath, mExportOptions)
+      pFormController.CreateWorkOrderPack(vReport, mFilePath)
 
       vReport.Dispose()
       'vReport = Nothing

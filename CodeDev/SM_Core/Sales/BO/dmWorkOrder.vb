@@ -19,6 +19,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pProduct As RTIS.ERPCore.intItemSpecCore
 
   Private pOutputDocuments As colOutputDocuments
+  Private pWOFiles As colFileTrackers
 
   Public Sub New()
     MyBase.New()
@@ -27,6 +28,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pOutputDocuments = New colOutputDocuments
+    pWOFiles = New colFileTrackers
+    pWOFiles.TrackDeleted = True
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -45,6 +48,8 @@ Public Class dmWorkOrder : Inherits dmBase
       '' Check Objects and Collections
       If pProduct IsNot Nothing Then
         If mAnyDirty = False Then mAnyDirty = pProduct.IsAnyDirty
+        If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
+        If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
       End If
       IsAnyDirty = mAnyDirty
     End Get
@@ -71,6 +76,7 @@ Public Class dmWorkOrder : Inherits dmBase
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
+      .WOFiles = WOFiles.Clone
 
       'Entries for object management
       .Product = Product.Clone
@@ -226,6 +232,14 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property WOFiles As colFileTrackers
+    Get
+      Return pWOFiles
+    End Get
+    Set(value As colFileTrackers)
+      pWOFiles = value
+    End Set
+  End Property
 
 End Class
 

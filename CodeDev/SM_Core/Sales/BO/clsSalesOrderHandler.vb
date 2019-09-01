@@ -13,7 +13,7 @@ Public Class clsSalesOrderHandler
       mNewWO = New dmWorkOrder
       mNewWO.SalesOrderID = pSalesOrder.SalesOrderID
       mNewWO.ProductTypeID = vProductType
-
+      mNewWO.DateCreated = Now.Date
       mNewWO.Product = clsProductSharedFuncs.NewProductInstance(mNewWO.ProductTypeID)
 
       pSalesOrder.WorkOrders.Add(mNewWO)

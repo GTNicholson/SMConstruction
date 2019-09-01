@@ -153,7 +153,9 @@ Public Class dsoSales
     Dim mdto As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
+    Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
+    Dim mdtoOutputDocs As dtoOutputDocument
     Try
 
       pDBConn.Connect()
@@ -169,8 +171,11 @@ Public Class dsoSales
         If mProdFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID)
+          mdtoWOFiles = New dtoFileTracker(pDBConn)
+          mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
-
+        mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+        mdtoOutputDocs.LoadOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID, eParentType.WorkOrder)
       End If
 
       pDBConn.Disconnect()
@@ -191,6 +196,8 @@ Public Class dsoSales
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Dim mProductFurniture As dmProductFurniture
+    Dim mdtoWOFiles As dtoFileTracker
+    Dim mdtoOutputDocs As dtoOutputDocument
 
     Try
       pDBConn.Connect()
@@ -204,7 +211,11 @@ Public Class dsoSales
         If mProductFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID)
+          mdtoWOFiles = New dtoFileTracker(pDBConn)
+          mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
+        mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+        mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
       End If
 
       pDBConn.Disconnect()
