@@ -60,6 +60,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
+      <property name="Width">124</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
@@ -68,22 +69,23 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
+      <property name="Width">143</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
       <property name="Caption">Descripcion</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">178</property>
+      <property name="Width">196</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">Quantity</property>
       <property name="Caption">Cantidad</property>
       <property name="FieldName">Quantity</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
@@ -91,9 +93,9 @@
       <property name="Caption"># Orden de Trabajo</property>
       <property name="FieldName">WorkOrderNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">87</property>
+      <property name="Width">122</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
@@ -102,7 +104,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">178</property>
+      <property name="Width">106</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
@@ -120,14 +122,14 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
-      <property name="Width">80</property>
+      <property name="Width">97</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
       <property name="Caption">Precio</property>
       <property name="FieldName">UnitPrice</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
@@ -137,6 +139,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
+      <property name="Width">100</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn17</property>
@@ -145,6 +148,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
+      <property name="Width">135</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn18</property>
@@ -153,6 +157,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
+      <property name="Width">111</property>
     </property>
   </property>
   <property name="ViewCaption" />

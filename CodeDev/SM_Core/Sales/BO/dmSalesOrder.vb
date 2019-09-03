@@ -27,6 +27,9 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pCustomer As dmCustomer
   Private pWorkOrders As colWorkOrders
 
+  Private pOutputDocuments As colOutputDocuments
+  Private pSOFiles As colFileTrackers
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -45,6 +48,14 @@ Public Class dmSalesOrder : Inherits dmBase
     MyBase.Finalize()
   End Sub
 
+  Public Property SOFiles As colFileTrackers
+    Get
+      Return pSOFiles
+    End Get
+    Set(value As colFileTrackers)
+      pSOFiles = value
+    End Set
+  End Property
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
     Get
       Dim mAnyDirty = IsDirty
@@ -316,6 +327,15 @@ Public Class dmSalesOrder : Inherits dmBase
     End Get
     Set(value As colWorkOrders)
       pWorkOrders = value
+    End Set
+  End Property
+
+  Public Property OutputDocuments As colOutputDocuments
+    Get
+      Return pOutputDocuments
+    End Get
+    Set(value As colOutputDocuments)
+      pOutputDocuments = value
     End Set
   End Property
 

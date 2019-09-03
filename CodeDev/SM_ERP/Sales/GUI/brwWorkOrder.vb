@@ -244,6 +244,8 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
       Me.SaveButton = eActiveVisibleState.Invisible
 
       Me.AddButton = eActiveVisibleState.Active
+      Me.AddButton = eActiveVisibleState.Invisible
+
       Me.ViewButton = eActiveVisibleState.Active
       Me.EditButton = eActiveVisibleState.Active
       If My.Application.RTISUserSession.ActivityPermission(eActivityCode.ForceLockRemoval) >= ePermissionCode.ePC_Full Then

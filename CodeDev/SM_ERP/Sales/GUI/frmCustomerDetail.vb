@@ -1,11 +1,19 @@
 Imports RTIS.CommonVB
 
 Public Class frmCustomerDetail
+  Public FormMode As eFormMode
+  Public ExitMode As Windows.Forms.DialogResult
+
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
 
   Private pFormController As fccCustomerDetail
+
+  Private pIsActive As Boolean
+  Private pLoadError As Boolean
+  Private pForceExit As Boolean = False
+
 
   Public Sub New()
 
@@ -57,6 +65,12 @@ Public Class frmCustomerDetail
     Return mfrmWanted
   End Function
 
+
+  Private Sub CloseForm() 'Needs exit mode set first
+    pForceExit = True
+    Me.Close()
+  End Sub
+
   Public ReadOnly Property FormController As fccCustomerDetail
     Get
       Return pFormController
@@ -64,11 +78,46 @@ Public Class frmCustomerDetail
   End Property
 
   Private Sub frmCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    pFormController.LoadObjects()
-    grdContacts.DataSource = pFormController.Customer.CustomerContacts
-    LoadCombos()
-    RefreshControls()
+    Dim mOK As Boolean = True
+    Dim mMsg As String = ""
+    Dim mErrorDisplayed As Boolean = False
+
+    ''Resize if required
+
+    pIsActive = False
+    pLoadError = False
+
+    Try
+
+
+      pFormController.LoadObjects()
+      grdContacts.DataSource = pFormController.Customer.CustomerContacts
+      LoadCombos()
+
+      If mOK Then RefreshControls()
+
+      ''If mOK Then SetupUserPermissions()
+
+    Catch ex As Exception
+      mMsg = ex.Message
+      mOK = False
+      mErrorDisplayed = True
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    If Not mOK Then
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      pLoadError = True
+      ExitMode = Windows.Forms.DialogResult.Abort
+      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
+
+    End If
+
+    pIsActive = True
+
+
   End Sub
+
 
   Private Sub LoadCombos()
     Try
@@ -80,10 +129,57 @@ Public Class frmCustomerDetail
 
   End Sub
 
+  Private Function CheckSave(ByVal rOption As Boolean) As Boolean
+    Dim mSaveRequired As Boolean
+    Dim mResponse As MsgBoxResult
+    Dim mRetVal As Boolean
+
+    UpdateObjects()
+    pFormController.SaveObjects()
+    If pFormController.IsDirty() Then
+      If rOption Then
+        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        Select Case mResponse
+          Case MsgBoxResult.Yes
+            mSaveRequired = True
+            mRetVal = False
+            ExitMode = Windows.Forms.DialogResult.Yes
+          Case MsgBoxResult.No
+            mSaveRequired = False
+            mRetVal = True
+            ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
+          Case MsgBoxResult.Cancel
+            mSaveRequired = False
+            mRetVal = False
+        End Select
+      Else
+        ExitMode = Windows.Forms.DialogResult.Yes
+        mSaveRequired = True
+        mRetVal = False
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.Ignore
+      mSaveRequired = False
+      mRetVal = True
+    End If
+    If mSaveRequired Then
+      ''Dim mValidate As clsValidate
+      ''mValidate = pFormController.ValidateObject
+      ''If mValidate.ValOk Then
+      pFormController.SaveObjects()
+      ''Else
+      '' MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+      ''mRetVal = False
+      ''End If
+    End If
+    CheckSave = mRetVal
+  End Function
 
   'Here put the fields
   Private Sub RefreshControls()
     With pFormController.Customer
+
+      lblCustomerID.Text = "ID:" & .CustomerID.ToString("00000")
 
       txtCustomerReference.Text = .CustomerReference
       txtCustomerName.Text = .CompanyName
@@ -102,7 +198,7 @@ Public Class frmCustomerDetail
       txtCustomerNotes.Text = .CustomerNotes
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
-
+      txtMainPostCode.Text = .MainPostCode
       rgEstatus.EditValue = .CustomerStatusID
 
     End With
@@ -130,6 +226,8 @@ Public Class frmCustomerDetail
       .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
       .CustomerNotes = txtCustomerNotes.Text
       .CustomerStatusID = rgEstatus.EditValue
+      gvContacts.CloseEditor()
+      gvContacts.UpdateCurrentRow()
 
     End With
   End Sub
@@ -145,15 +243,64 @@ Public Class frmCustomerDetail
     Try
       UpdateObjects()
       pFormController.SaveObjects()
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
-  End Sub
-
-  Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
 
   End Sub
 
+  Private Sub frmCustomerDetail_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    If Not pForceExit Then
+      If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
+        e.Cancel = Not CheckSave(True)
+      End If
+    End If
 
+
+
+  End Sub
+
+  Private Sub btnSaveAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
+    Try
+      InitiateSaveExit()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+
+  End Sub
+
+  Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
+
+    If CheckSave(False) Then
+      CloseForm()
+    End If
+
+  End Sub
+
+  Private Sub btnClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnClose.ItemClick
+    Try
+      InitiateCloseExit(True)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub InitiateCloseExit(ByVal vWithCheck As Boolean) 'User initiated request to save - Call from buttons/menu/toolbar etc.
+    If vWithCheck Then
+      If CheckSave(True) Then 'Changed from False 20150206 !!!
+        CloseForm()
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.No
+      CloseForm()
+    End If
+
+  End Sub
+
+  Private Sub frmCustomerDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
+  End Sub
 End Class

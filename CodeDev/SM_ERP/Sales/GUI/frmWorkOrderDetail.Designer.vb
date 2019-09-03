@@ -25,13 +25,16 @@ Partial Class frmWorkOrderDetail
     Me.components = New System.ComponentModel.Container()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
+    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
+    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.lblWorkOrderID = New System.Windows.Forms.Label()
     Me.cboProductType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label14 = New System.Windows.Forms.Label()
     Me.Label13 = New System.Windows.Forms.Label()
@@ -138,8 +141,8 @@ Partial Class frmWorkOrderDetail
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave})
-    Me.BarManager1.MaxItemId = 1
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave, Me.btnSaveAndClose, Me.btnClose})
+    Me.BarManager1.MaxItemId = 3
     '
     'Bar1
     '
@@ -147,8 +150,14 @@ Partial Class frmWorkOrderDetail
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.btnClose)})
     Me.Bar1.Text = "Tools"
+    '
+    'btnSaveAndClose
+    '
+    Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
+    Me.btnSaveAndClose.Id = 1
+    Me.btnSaveAndClose.Name = "btnSaveAndClose"
     '
     'bbtnSave
     '
@@ -156,37 +165,43 @@ Partial Class frmWorkOrderDetail
     Me.bbtnSave.Id = 0
     Me.bbtnSave.Name = "bbtnSave"
     '
+    'btnClose
+    '
+    Me.btnClose.Caption = "Cerrar"
+    Me.btnClose.Id = 2
+    Me.btnClose.Name = "btnClose"
+    '
     'barDockControlTop
     '
     Me.barDockControlTop.CausesValidation = False
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1264, 29)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1350, 26)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 633)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1264, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1350, 0)
     '
     'barDockControlLeft
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 26)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 604)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 703)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1264, 29)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1350, 26)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 604)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 703)
     '
     'TableLayoutPanel1
     '
@@ -195,12 +210,12 @@ Partial Class frmWorkOrderDetail
     Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.XtraTabControl2, 0, 1)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 29)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 26)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 2
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1264, 604)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1350, 703)
     Me.TableLayoutPanel1.TabIndex = 4
     '
     'GroupControl1
@@ -209,6 +224,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.lblWorkOrderID)
     Me.GroupControl1.Controls.Add(Me.cboProductType)
     Me.GroupControl1.Controls.Add(Me.Label14)
     Me.GroupControl1.Controls.Add(Me.Label13)
@@ -228,9 +244,23 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
     Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(1258, 91)
+    Me.GroupControl1.Size = New System.Drawing.Size(1344, 91)
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
+    '
+    'lblWorkOrderID
+    '
+    Me.lblWorkOrderID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.lblWorkOrderID.AutoSize = True
+    Me.lblWorkOrderID.BackColor = System.Drawing.Color.Transparent
+    Me.lblWorkOrderID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.lblWorkOrderID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.lblWorkOrderID.Location = New System.Drawing.Point(1284, 2)
+    Me.lblWorkOrderID.Name = "lblWorkOrderID"
+    Me.lblWorkOrderID.Size = New System.Drawing.Size(50, 14)
+    Me.lblWorkOrderID.TabIndex = 145
+    Me.lblWorkOrderID.Text = "ID:00000"
+    Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
     '
     'cboProductType
     '
@@ -426,7 +456,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabControl2.Location = New System.Drawing.Point(3, 100)
     Me.XtraTabControl2.Name = "XtraTabControl2"
     Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage3
-    Me.XtraTabControl2.Size = New System.Drawing.Size(1258, 501)
+    Me.XtraTabControl2.Size = New System.Drawing.Size(1344, 600)
     Me.XtraTabControl2.TabIndex = 14
     Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3, Me.XtraTabPage4})
     '
@@ -434,7 +464,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage3.Controls.Add(Me.tabProductSpec)
     Me.XtraTabPage3.Name = "XtraTabPage3"
-    Me.XtraTabPage3.Size = New System.Drawing.Size(1252, 470)
+    Me.XtraTabPage3.Size = New System.Drawing.Size(1336, 568)
     Me.XtraTabPage3.Text = "Especificacion de Producto"
     '
     'tabProductSpec
@@ -443,7 +473,7 @@ Partial Class frmWorkOrderDetail
     Me.tabProductSpec.Location = New System.Drawing.Point(0, 0)
     Me.tabProductSpec.Name = "tabProductSpec"
     Me.tabProductSpec.SelectedTabPage = Me.XtraTabPage1
-    Me.tabProductSpec.Size = New System.Drawing.Size(1252, 470)
+    Me.tabProductSpec.Size = New System.Drawing.Size(1336, 568)
     Me.tabProductSpec.TabIndex = 20
     Me.tabProductSpec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
     '
@@ -451,7 +481,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage1.Controls.Add(Me.grpWOFiles)
     Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1246, 442)
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1328, 539)
     Me.XtraTabPage1.Tag = "1"
     Me.XtraTabPage1.Text = "XtraTabPage1"
     '
@@ -479,7 +509,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpWOFiles.Location = New System.Drawing.Point(0, 0)
     Me.grpWOFiles.Name = "grpWOFiles"
-    Me.grpWOFiles.Size = New System.Drawing.Size(1246, 442)
+    Me.grpWOFiles.Size = New System.Drawing.Size(1328, 539)
     Me.grpWOFiles.TabIndex = 14
     Me.grpWOFiles.Text = "Detalles de Mueble"
     '
@@ -725,7 +755,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1246, 442)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1330, 537)
     Me.XtraTabPage2.Tag = "2"
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
@@ -738,7 +768,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(1246, 442)
+    Me.GroupControl3.Size = New System.Drawing.Size(1330, 537)
     Me.GroupControl3.TabIndex = 14
     Me.GroupControl3.Text = "Detalles de Estructura"
     '
@@ -746,7 +776,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage4.Controls.Add(Me.PanelControl1)
     Me.XtraTabPage4.Name = "XtraTabPage4"
-    Me.XtraTabPage4.Size = New System.Drawing.Size(1252, 470)
+    Me.XtraTabPage4.Size = New System.Drawing.Size(1336, 565)
     Me.XtraTabPage4.Text = "Estatus y Costos"
     '
     'PanelControl1
@@ -756,7 +786,7 @@ Partial Class frmWorkOrderDetail
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1252, 470)
+    Me.PanelControl1.Size = New System.Drawing.Size(1336, 565)
     Me.PanelControl1.TabIndex = 0
     '
     'GridControl4
@@ -857,7 +887,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1264, 633)
+    Me.ClientSize = New System.Drawing.Size(1350, 729)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
@@ -978,4 +1008,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents UctFileControl1 As uctFileControl
+  Friend WithEvents lblWorkOrderID As Label
+  Friend WithEvents btnSaveAndClose As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents btnClose As DevExpress.XtraBars.BarButtonItem
 End Class

@@ -42,4 +42,16 @@
     mdso.SaveCustomerDown(pCustomer)
   End Sub
 
+  Public Function IsDirty() As Boolean
+    Dim mIsDirty As Boolean = True
+    mIsDirty = pCustomer.IsAnyDirty
+    Return mIsDirty
+  End Function
+
+  Public Sub ClearObjects()
+
+    'Me.MainObject = Nothing
+
+  End Sub
+
 End Class

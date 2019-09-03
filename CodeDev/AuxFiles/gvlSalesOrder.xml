@@ -60,6 +60,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
+      <property name="Width">86</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
@@ -68,6 +69,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
+      <property name="Width">161</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
@@ -76,6 +78,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
+      <property name="Width">129</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcOrderStatusEnum</property>
@@ -84,46 +87,52 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
+      <property name="Width">109</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
       <property name="Caption">Tipo de Venta</property>
       <property name="FieldName">OrderTypeID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
+      <property name="Width">100</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
       <property name="Caption">Fecha de Ingreso</property>
       <property name="FieldName">DateEntered</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
+      <property name="Width">129</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
       <property name="Caption">Fecha Requerida</property>
       <property name="FieldName">DueTime</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
+      <property name="Width">116</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
-      <property name="Caption">Área de Ventas</property>
+      <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
+      <property name="Width">107</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
       <property name="Caption">Referencia de Cuenta</property>
       <property name="FieldName">AccountRef</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
+      <property name="Width">139</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
@@ -132,6 +141,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
+      <property name="Width">106</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
@@ -140,6 +150,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
+      <property name="Width">131</property>
     </property>
   </property>
   <property name="ViewCaption" />

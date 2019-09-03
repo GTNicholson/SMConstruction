@@ -26,7 +26,9 @@ Partial Class frmCustomerDetail
     Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
+    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
+    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -63,6 +65,7 @@ Partial Class frmCustomerDetail
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdContacts = New DevExpress.XtraGrid.GridControl()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+    Me.lblCustomerID = New System.Windows.Forms.Label()
     Me.cboPaymentTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label13 = New System.Windows.Forms.Label()
     Me.txtABA = New DevExpress.XtraEditors.TextEdit()
@@ -126,8 +129,8 @@ Partial Class frmCustomerDetail
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave})
-    Me.BarManager1.MaxItemId = 1
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave, Me.btnClose, Me.btnSaveAndClose})
+    Me.BarManager1.MaxItemId = 3
     '
     'Bar1
     '
@@ -135,8 +138,15 @@ Partial Class frmCustomerDetail
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.btnClose)})
     Me.Bar1.Text = "Herramientas"
+    '
+    'btnSaveAndClose
+    '
+    Me.btnSaveAndClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
+    Me.btnSaveAndClose.Id = 2
+    Me.btnSaveAndClose.Name = "btnSaveAndClose"
     '
     'bbtnSave
     '
@@ -145,13 +155,20 @@ Partial Class frmCustomerDetail
     Me.bbtnSave.Id = 0
     Me.bbtnSave.Name = "bbtnSave"
     '
+    'btnClose
+    '
+    Me.btnClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.btnClose.Caption = "Cerrar"
+    Me.btnClose.Id = 1
+    Me.btnClose.Name = "btnClose"
+    '
     'barDockControlTop
     '
     Me.barDockControlTop.CausesValidation = False
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1344, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1350, 33)
     '
     'barDockControlBottom
     '
@@ -159,7 +176,7 @@ Partial Class frmCustomerDetail
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
     Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1344, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1350, 0)
     '
     'barDockControlLeft
     '
@@ -173,7 +190,7 @@ Partial Class frmCustomerDetail
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1344, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1350, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
     '
@@ -510,6 +527,7 @@ Partial Class frmCustomerDetail
     Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl2.AppearanceCaption.Options.UseFont = True
     Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl2.Controls.Add(Me.lblCustomerID)
     Me.GroupControl2.Controls.Add(Me.cboPaymentTermsType)
     Me.GroupControl2.Controls.Add(Me.Label13)
     Me.GroupControl2.Controls.Add(Me.txtABA)
@@ -520,11 +538,25 @@ Partial Class frmCustomerDetail
     Me.GroupControl2.Controls.Add(Me.Label17)
     Me.GroupControl2.Controls.Add(Me.txtAcountRef)
     Me.GroupControl2.Controls.Add(Me.Label20)
-    Me.GroupControl2.Location = New System.Drawing.Point(792, 39)
+    Me.GroupControl2.Location = New System.Drawing.Point(798, 39)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(491, 222)
+    Me.GroupControl2.Size = New System.Drawing.Size(477, 222)
     Me.GroupControl2.TabIndex = 2
     Me.GroupControl2.Text = "Detalles de la Cuenta"
+    '
+    'lblCustomerID
+    '
+    Me.lblCustomerID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.lblCustomerID.AutoSize = True
+    Me.lblCustomerID.BackColor = System.Drawing.Color.Transparent
+    Me.lblCustomerID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.lblCustomerID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.lblCustomerID.Location = New System.Drawing.Point(415, 0)
+    Me.lblCustomerID.Name = "lblCustomerID"
+    Me.lblCustomerID.Size = New System.Drawing.Size(47, 14)
+    Me.lblCustomerID.TabIndex = 19
+    Me.lblCustomerID.Text = "ID: 0000"
+    Me.lblCustomerID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'cboPaymentTermsType
     '
@@ -626,7 +658,7 @@ Partial Class frmCustomerDetail
     Me.GroupControl3.AppearanceCaption.Options.UseFont = True
     Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl3.Controls.Add(Me.txtCustomerNotes)
-    Me.GroupControl3.Location = New System.Drawing.Point(792, 267)
+    Me.GroupControl3.Location = New System.Drawing.Point(798, 267)
     Me.GroupControl3.Name = "GroupControl3"
     Me.GroupControl3.Size = New System.Drawing.Size(491, 113)
     Me.GroupControl3.TabIndex = 3
@@ -637,7 +669,7 @@ Partial Class frmCustomerDetail
     Me.txtCustomerNotes.Location = New System.Drawing.Point(5, 26)
     Me.txtCustomerNotes.MenuManager = Me.BarManager1
     Me.txtCustomerNotes.Name = "txtCustomerNotes"
-    Me.txtCustomerNotes.Size = New System.Drawing.Size(481, 76)
+    Me.txtCustomerNotes.Size = New System.Drawing.Size(472, 76)
     Me.txtCustomerNotes.TabIndex = 0
     '
     'grdSalesOrder
@@ -650,7 +682,7 @@ Partial Class frmCustomerDetail
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdSalesOrder.Location = New System.Drawing.Point(693, 454)
+    Me.grdSalesOrder.Location = New System.Drawing.Point(699, 454)
     Me.grdSalesOrder.MainView = Me.GridView1
     Me.grdSalesOrder.MenuManager = Me.BarManager1
     Me.grdSalesOrder.Name = "grdSalesOrder"
@@ -704,7 +736,7 @@ Partial Class frmCustomerDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1344, 729)
+    Me.ClientSize = New System.Drawing.Size(1350, 729)
     Me.Controls.Add(Me.grdSalesOrder)
     Me.Controls.Add(Me.GroupControl3)
     Me.Controls.Add(Me.GroupControl2)
@@ -810,4 +842,7 @@ Partial Class frmCustomerDetail
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents txtMainPostCode As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label15 As Label
+  Friend WithEvents btnClose As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents btnSaveAndClose As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents lblCustomerID As Label
 End Class

@@ -97,8 +97,10 @@ Public Class dsoSales
 
       '// Ensure any product details are also saved
       For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
-        mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-        mdtoProduct.SaveProduct(mWO.Product)
+        If mWO.Product IsNot nothing Then
+          mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
+          mdtoProduct.SaveProduct(mWO.Product)
+        End If
       Next
 
 
@@ -113,7 +115,7 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
-  Public Function LoadSalesOrderDown(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
+  Public Function LoadSalesOrderAndCustomer(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
     Dim mdtoCust As dtoCustomer

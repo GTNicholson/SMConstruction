@@ -7,7 +7,7 @@ Public Class clsSalesOrderHandler
     pSalesOrder = rSalesOrder
   End Sub
 
-  Public Sub AddWorkOrder(ByVal vProductType As eProductType)
+  Public Function AddWorkOrder(ByVal vProductType As eProductType) As dmWorkOrder
     Dim mNewWO As dmWorkOrder
     Try
       mNewWO = New dmWorkOrder
@@ -17,10 +17,12 @@ Public Class clsSalesOrderHandler
       mNewWO.Product = clsProductSharedFuncs.NewProductInstance(mNewWO.ProductTypeID)
 
       pSalesOrder.WorkOrders.Add(mNewWO)
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
-  End Sub
+    Return mNewWO
+  End Function
 
   Public Sub RemoveWorkOrder(ByRef rWorkOrder As dmWorkOrder)
     Try

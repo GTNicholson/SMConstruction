@@ -98,7 +98,7 @@ Public Class frmWorkOrderDetail
 
   Private Sub ConfigureFileControl()
     Dim mFileDirectory As String
-    mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderNo))
+    mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
 
     UctFileControl1.UserController = New uccFileControl(Me)
     UctFileControl1.UserController.Directory = mFileDirectory
@@ -177,6 +177,7 @@ Public Class frmWorkOrderDetail
     mIsActive = pIsActive
 
     With pFormController.WorkOrder
+      lblWorkOrderID.Text = "ID:" & .WorkOrderID.ToString("00000")
       If .WorkOrderNo = "" Then
         Me.Text = "O.T. Nuevo"
       Else
@@ -341,7 +342,7 @@ Public Class frmWorkOrderDetail
 
     mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.WorkOrder.WorkOrderID
 
-    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderNo))
+    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
 
     mFileName &= ".pdf"
     mFileName = clsGeneralA.GetFileSafeName(mFileName)
@@ -398,5 +399,17 @@ Public Class frmWorkOrderDetail
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub btnSaveAndClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
+
+  End Sub
+
+  Private Sub btnClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnClose.ItemClick
+
+  End Sub
+
+  Private Sub btneWorkOrderDocument_EditValueChanged(sender As Object, e As EventArgs) Handles btneWorkOrderDocument.EditValueChanged
+
   End Sub
 End Class

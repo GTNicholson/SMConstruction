@@ -13,6 +13,12 @@ Public Class repWorkOrderDoc
     mRep.pSalesOrder = rSalesOrder
     mRep.DataSource = mRep.pFurniture.MaterialRequirments
     mRep.CreateDocument()
+
+    Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
+    mpt = New DevExpress.XtraReports.UI.ReportPrintTool(mRep)
+    mpt.ShowPreviewDialog()
+
+
     Return mRep
   End Function
 
@@ -31,6 +37,14 @@ Public Class repWorkOrderDoc
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     SetUpDataBindings()
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName
+    xrSalesOrderID.Text = pSalesOrder.OrderNo
+    xrlProjectName.Text = pSalesOrder.ProjectName
+    xrlDateEntered.Text = pSalesOrder.DateEntered
+    xrlDueTime.Text = pSalesOrder.DueTime
+    xrNotes.Text = pSalesOrder.VisibleNotes
+    xrlCantidad.Text = "Hay que agregar este campo"
+    xrProjectType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
+
 
   End Sub
 

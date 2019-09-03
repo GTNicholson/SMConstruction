@@ -2,6 +2,7 @@
 
 Public Class fccSalesOrderDetail
   Private pPrimaryKeyID As Integer
+  Private pRTISGlobal As AppRTISGlobal
 
   Private pSalesOrder As dmSalesOrder
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
@@ -59,6 +60,43 @@ Public Class fccSalesOrderDetail
 
   End Sub
 
+  Public ReadOnly Property RTISGlobal As AppRTISGlobal
+    Get
+      Return pRTISGlobal
+    End Get
+  End Property
+
+  Public Sub CreateWorkOrderPack(ByRef rReport As repWorkOrderDoc, ByVal vFilePath As String)
+    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
+    Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
+    Dim mFilePath As String
+
+    mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
+    mExportOptions.ConvertImagesToJpeg = False
+
+    rReport.ExportToPdf(vFilePath, mExportOptions)
+
+    mPDFAmalg.PDFFileName = vFilePath
+    mPDFAmalg.CreateNewDocument()
+
+    If IO.File.Exists(vFilePath) Then
+      mPDFAmalg.ImportPDFDocument(vFilePath)
+    End If
+
+    For Each mFileTracker In pSalesOrder.SOFiles
+      If mFileTracker.IncludeInPack Then
+        mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.SalesOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pSalesOrder.SalesOrderID.ToString("00000")), mFileTracker.FileName)
+
+        If IO.File.Exists(mFilePath) Then
+          mPDFAmalg.ImportPDFDocument(mFilePath)
+        End If
+      End If
+    Next
+
+    mPDFAmalg.SavePDFDocument()
+
+  End Sub
+
   Public Function GetCustomerList() As colCustomers
     Dim mRetVal As New colCustomers
     Dim mdso As dsoSales
@@ -72,8 +110,12 @@ Public Class fccSalesOrderDetail
   End Function
 
   Public Sub AddWorkOrder(ByVal vProductType As eProductType)
+    Dim mdso As dsoSales
+    Dim mWO As dmWorkOrder
     Try
-      pSalesOrderHandler.AddWorkOrder(vProductType)
+      mWO = pSalesOrderHandler.AddWorkOrder(vProductType)
+      mdso = New dsoSales(pDBConn)
+      mdso.SaveWorkOrderDown(mWO)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -87,4 +129,22 @@ Public Class fccSalesOrderDetail
     End Try
   End Sub
 
+  Public Function IsDirty() As Boolean
+    Dim mIsDirty As Boolean = True
+    mIsDirty = pSalesOrder.IsAnyDirty
+    Return mIsDirty
+  End Function
+
+  Public Sub ClearObjects()
+
+    'Me.MainObject = Nothing
+
+  End Sub
+
+  Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
+    Dim mRetVal As New clsValWarn
+    mRetVal.ValOk = True
+    mRetVal.HasWarning = False
+    Return mRetVal
+  End Function
 End Class

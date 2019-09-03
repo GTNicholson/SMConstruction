@@ -69,6 +69,7 @@ End Enum
 
 Public Enum eParentType
   WorkOrder = 1
+  SalesOrder = 2
 End Enum
 
 Public Enum eFileType
@@ -79,6 +80,7 @@ End Enum
 
 Public Enum eDocumentType
   WorkOrderDoc = 1
+  SalesOrder = 2
 End Enum
 
 Public Enum eTallyIDs
@@ -190,6 +192,10 @@ Public Class clsConstants
   Public Const WorkOrderFileFolderSys As String = "OTArchivosSys"
   Public Const WorkOrderFileFolderUsr As String = "OTArchivosUsr"
 
+  Public Const SalesOrderFileFolderSys As String = "SOArchivosSys"
+  Public Const SalesOrderFileFolderUsr As String = "SOArchivosUsr"
+
   Public Const WorkOrderNoPrefix = "OT"
+  Public Const SalesOrderPrefix = "SO"
 
 End Class
