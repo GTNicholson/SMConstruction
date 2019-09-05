@@ -146,9 +146,13 @@ Public Class frmSalesOrderDetail
         dteFinishDate.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
         dteDueTime.EditValue = clsGeneralA.DateToDBValue(.DueTime)
         txtVisibleNotes.Text = .VisibleNotes
+        btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
+
 
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
+
+
 
         If .Customer Is Nothing Then
           btnedCustomer.Text = ""
@@ -457,7 +461,7 @@ Public Class frmSalesOrderDetail
 
     mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.SalesOrder.SalesOrderID
 
-    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.SalesOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.SalesOrder.SalesOrderID.ToString("00000")))
+    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.SalesOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.SalesOrder.SalesOrderID.ToString("00000")))
 
     mFileName &= ".pdf"
     mFileName = clsGeneralA.GetFileSafeName(mFileName)
@@ -477,7 +481,7 @@ Public Class frmSalesOrderDetail
 
 
       ''vReport.ExportToPdf(mFilePath, mExportOptions)
-      pFormController.CreateWorkOrderPack(vReport, mFilePath)
+      pFormController.CreateSalesOrderPack(vReport, mFilePath)
 
       vReport.Dispose()
       'vReport = Nothing

@@ -66,7 +66,7 @@ Public Class fccSalesOrderDetail
     End Get
   End Property
 
-  Public Sub CreateWorkOrderPack(ByRef rReport As repWorkOrderDoc, ByVal vFilePath As String)
+  Public Sub CreateSalesOrderPack(ByRef rReport As repSalesOrder, ByVal vFilePath As String)
     Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
     Dim mFilePath As String
@@ -76,24 +76,24 @@ Public Class fccSalesOrderDetail
 
     rReport.ExportToPdf(vFilePath, mExportOptions)
 
-    mPDFAmalg.PDFFileName = vFilePath
-    mPDFAmalg.CreateNewDocument()
+    ''mPDFAmalg.PDFFileName = vFilePath
+    ''mPDFAmalg.CreateNewDocument()
 
-    If IO.File.Exists(vFilePath) Then
-      mPDFAmalg.ImportPDFDocument(vFilePath)
-    End If
+    ''If IO.File.Exists(vFilePath) Then
+    ''  mPDFAmalg.ImportPDFDocument(vFilePath)
+    ''End If
 
-    For Each mFileTracker In pSalesOrder.SOFiles
-      If mFileTracker.IncludeInPack Then
-        mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.SalesOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pSalesOrder.SalesOrderID.ToString("00000")), mFileTracker.FileName)
+    ''For Each mFileTracker In pSalesOrder.SOFiles
+    ''  If mFileTracker.IncludeInPack Then
+    ''    mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.SalesOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pSalesOrder.SalesOrderID.ToString("00000")), mFileTracker.FileName)
 
-        If IO.File.Exists(mFilePath) Then
-          mPDFAmalg.ImportPDFDocument(mFilePath)
-        End If
-      End If
-    Next
+    ''    If IO.File.Exists(mFilePath) Then
+    ''      mPDFAmalg.ImportPDFDocument(mFilePath)
+    ''    End If
+    ''  End If
+    ''Next
 
-    mPDFAmalg.SavePDFDocument()
+    ''mPDFAmalg.SavePDFDocument()
 
   End Sub
 

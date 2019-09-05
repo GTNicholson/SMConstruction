@@ -37,6 +37,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pWorkOrders = New colWorkOrders
+    pOutputDocuments = New colOutputDocuments
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -56,6 +57,8 @@ Public Class dmSalesOrder : Inherits dmBase
       pSOFiles = value
     End Set
   End Property
+
+
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
     Get
       Dim mAnyDirty = IsDirty

@@ -85,6 +85,8 @@ Public Class dsoSales
     Dim mdto As dtoSalesOrder
     Dim mdtoWO As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
+    Dim mdtoOutputDocs As dtoOutputDocument
+    Dim mdtoSOFiles As dtoFileTracker
 
     Try
 
@@ -97,11 +99,17 @@ Public Class dsoSales
 
       '// Ensure any product details are also saved
       For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
-        If mWO.Product IsNot nothing Then
+        If mWO.Product IsNot Nothing Then
           mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
           mdtoProduct.SaveProduct(mWO.Product)
+
         End If
       Next
+
+      ''mdtoSOFiles = New dtoFileTracker(pDBConn)
+      ''mdtoSOFiles.SaveFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
+      ''mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+      ''mdtoOutputDocs.SaveOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID)
 
 
       pDBConn.Disconnect()
@@ -121,6 +129,8 @@ Public Class dsoSales
     Dim mdtoCust As dtoCustomer
     Dim mdtoWOs As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
+    Dim mdtoOutputDocs As dtoOutputDocument
+    Dim mdtoSOFiles As dtoFileTracker
 
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
@@ -139,8 +149,15 @@ Public Class dsoSales
       If mWO.Product IsNot Nothing Then
         mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
         mdtoProduct.LoadProduct(mWO.Product, mWO.ProductTypeID)
+        ''mdtoSOFiles = New dtoFileTracker(pDBConn)
+        ''mdtoSOFiles.LoadFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
+
+
       End If
     Next
+
+    mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+    mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
 
     pDBConn.Disconnect()
 
