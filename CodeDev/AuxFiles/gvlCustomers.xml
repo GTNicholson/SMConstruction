@@ -45,111 +45,149 @@
   <property name="Columns" iskey="true" value="14">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">ID</property>
       <property name="FieldName">CustomerID</property>
       <property name="ColumnEditName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Núm. Ref.</property>
       <property name="FieldName">CustomerReference</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
-      <property name="Width">93</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Nombre del Cliente</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">179</property>
+      <property name="Width">127</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">rucnumber</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">RUC/NIT</property>
       <property name="FieldName">rucnumber</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
-      <property name="Width">100</property>
+      <property name="Width">88</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption"># Cuenta</property>
       <property name="FieldName">AccountRef</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">109</property>
+      <property name="Width">80</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">100</property>
+      <property name="Width">87</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Ciudad</property>
       <property name="FieldName">MainTown</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">100</property>
+      <property name="Width">84</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Dirección</property>
       <property name="FieldName">MainAddress1</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">147</property>
+      <property name="Width">128</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Forma de Pago</property>
       <property name="FieldName">PaymentTermsType</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">99</property>
+      <property name="Width">92</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Estado</property>
       <property name="FieldName">CustomerStatusID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
-      <property name="Width">78</property>
+      <property name="Width">54</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Email</property>
       <property name="FieldName">Email</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">123</property>
+      <property name="Width">93</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Web</property>
       <property name="FieldName">WebURL</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">123</property>
+      <property name="Width">95</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Fecha de Creación</property>
       <property name="FieldName">DateEntered</property>
       <property name="ColumnEditName" />
@@ -159,12 +197,15 @@
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Número SWIFT</property>
       <property name="FieldName">Numero_SWIFT</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
-      <property name="Width">100</property>
+      <property name="Width">93</property>
     </property>
   </property>
   <property name="ViewCaption" />

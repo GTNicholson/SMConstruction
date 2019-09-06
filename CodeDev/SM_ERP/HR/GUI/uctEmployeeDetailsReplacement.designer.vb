@@ -22,6 +22,8 @@ Partial Class uctEmployeeDetailsReplacement
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.grpDetails = New DevExpress.XtraEditors.GroupControl()
+    Me.cboSalesArea = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
     Me.grdEmployeeShiftPatternOptions = New DevExpress.XtraGrid.GridControl()
     Me.gvEmployeeShiftPatternOptions = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -59,12 +61,11 @@ Partial Class uctEmployeeDetailsReplacement
     Me.txtMobile = New DevExpress.XtraEditors.TextEdit()
     Me.txtLastName = New DevExpress.XtraEditors.TextEdit()
     Me.txtFirstName = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboSalesArea = New DevExpress.XtraEditors.ComboBoxEdit()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
     CType(Me.grpDetails, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpDetails.SuspendLayout()
+    CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
     CType(Me.grdEmployeeShiftPatternOptions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +90,6 @@ Partial Class uctEmployeeDetailsReplacement
     CType(Me.txtMobile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtLastName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtFirstName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'PanelControl1
@@ -139,7 +139,29 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpDetails.Name = "grpDetails"
     Me.grpDetails.Size = New System.Drawing.Size(1155, 286)
     Me.grpDetails.TabIndex = 6
-    Me.grpDetails.Text = "Employee Details"
+    Me.grpDetails.Text = "Detalles de Empleado"
+    '
+    'cboSalesArea
+    '
+    Me.cboSalesArea.Location = New System.Drawing.Point(322, 123)
+    Me.cboSalesArea.Name = "cboSalesArea"
+    Me.cboSalesArea.Properties.AllowMouseWheel = False
+    Me.cboSalesArea.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!)
+    Me.cboSalesArea.Properties.Appearance.Options.UseFont = True
+    Me.cboSalesArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboSalesArea.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+    Me.cboSalesArea.Size = New System.Drawing.Size(99, 22)
+    Me.cboSalesArea.TabIndex = 40
+    '
+    'LabelControl8
+    '
+    Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.Maroon
+    Me.LabelControl8.Appearance.Options.UseForeColor = True
+    Me.LabelControl8.Location = New System.Drawing.Point(297, 128)
+    Me.LabelControl8.Name = "LabelControl8"
+    Me.LabelControl8.Size = New System.Drawing.Size(19, 13)
+    Me.LabelControl8.TabIndex = 39
+    Me.LabelControl8.Text = "País"
     '
     'GroupControl1
     '
@@ -150,16 +172,16 @@ Partial Class uctEmployeeDetailsReplacement
     Me.GroupControl1.Name = "GroupControl1"
     Me.GroupControl1.Size = New System.Drawing.Size(393, 201)
     Me.GroupControl1.TabIndex = 37
-    Me.GroupControl1.Text = "Shift Details"
+    Me.GroupControl1.Text = "Detalles de Turno"
     '
     'grdEmployeeShiftPatternOptions
     '
     Me.grdEmployeeShiftPatternOptions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdEmployeeShiftPatternOptions.Location = New System.Drawing.Point(2, 21)
+    Me.grdEmployeeShiftPatternOptions.Location = New System.Drawing.Point(2, 22)
     Me.grdEmployeeShiftPatternOptions.MainView = Me.gvEmployeeShiftPatternOptions
     Me.grdEmployeeShiftPatternOptions.Name = "grdEmployeeShiftPatternOptions"
     Me.grdEmployeeShiftPatternOptions.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitchkcboShiftOptions})
-    Me.grdEmployeeShiftPatternOptions.Size = New System.Drawing.Size(389, 178)
+    Me.grdEmployeeShiftPatternOptions.Size = New System.Drawing.Size(389, 177)
     Me.grdEmployeeShiftPatternOptions.TabIndex = 36
     Me.grdEmployeeShiftPatternOptions.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvEmployeeShiftPatternOptions})
     '
@@ -178,7 +200,7 @@ Partial Class uctEmployeeDetailsReplacement
     '
     'GridColumn2
     '
-    Me.GridColumn2.Caption = "Commencing"
+    Me.GridColumn2.Caption = "Comenzando"
     Me.GridColumn2.FieldName = "StartDate"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
@@ -187,7 +209,7 @@ Partial Class uctEmployeeDetailsReplacement
     '
     'GridColumn4
     '
-    Me.GridColumn4.Caption = "Shift Options"
+    Me.GridColumn4.Caption = "Opciones de Turno"
     Me.GridColumn4.ColumnEdit = Me.repitchkcboShiftOptions
     Me.GridColumn4.FieldName = "ShiftPatternOptions"
     Me.GridColumn4.Name = "GridColumn4"
@@ -215,13 +237,13 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpRoles.Name = "grpRoles"
     Me.grpRoles.Size = New System.Drawing.Size(309, 201)
     Me.grpRoles.TabIndex = 7
-    Me.grpRoles.Text = "Employee Roles"
+    Me.grpRoles.Text = "Roles del Empleado"
     '
     'radPaymentType
     '
     Me.radPaymentType.Location = New System.Drawing.Point(163, 26)
     Me.radPaymentType.Name = "radPaymentType"
-    Me.radPaymentType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Salaried"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Hourly")})
+    Me.radPaymentType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Asalariado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Horario")})
     Me.radPaymentType.Size = New System.Drawing.Size(139, 23)
     Me.radPaymentType.TabIndex = 30
     '
@@ -229,7 +251,7 @@ Partial Class uctEmployeeDetailsReplacement
     '
     Me.radEmployeeGrouop.Location = New System.Drawing.Point(5, 26)
     Me.radEmployeeGrouop.Name = "radEmployeeGrouop"
-    Me.radEmployeeGrouop.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Office"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Factory")})
+    Me.radEmployeeGrouop.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Oficina"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Fabrica")})
     Me.radEmployeeGrouop.Size = New System.Drawing.Size(143, 23)
     Me.radEmployeeGrouop.TabIndex = 29
     '
@@ -255,7 +277,7 @@ Partial Class uctEmployeeDetailsReplacement
     '
     'GridColumn1
     '
-    Me.GridColumn1.Caption = "Role"
+    Me.GridColumn1.Caption = "Rol"
     Me.GridColumn1.FieldName = "DisplayValue"
     Me.GridColumn1.Name = "GridColumn1"
     Me.GridColumn1.Visible = True
@@ -286,32 +308,32 @@ Partial Class uctEmployeeDetailsReplacement
     Me.lblMainRole.Appearance.Options.UseForeColor = True
     Me.lblMainRole.Location = New System.Drawing.Point(5, 58)
     Me.lblMainRole.Name = "lblMainRole"
-    Me.lblMainRole.Size = New System.Drawing.Size(46, 13)
+    Me.lblMainRole.Size = New System.Drawing.Size(57, 13)
     Me.lblMainRole.TabIndex = 28
-    Me.lblMainRole.Text = "Main Role"
+    Me.lblMainRole.Text = "Rol Principal"
     '
     'memNotes
     '
     Me.memNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.memNotes.Location = New System.Drawing.Point(103, 240)
+    Me.memNotes.Location = New System.Drawing.Point(122, 242)
     Me.memNotes.Name = "memNotes"
-    Me.memNotes.Size = New System.Drawing.Size(318, 36)
+    Me.memNotes.Size = New System.Drawing.Size(247, 36)
     Me.memNotes.TabIndex = 8
     '
     'LabelControl11
     '
     Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl11.Appearance.Options.UseForeColor = True
-    Me.LabelControl11.Location = New System.Drawing.Point(66, 239)
+    Me.LabelControl11.Location = New System.Drawing.Point(88, 239)
     Me.LabelControl11.Name = "LabelControl11"
     Me.LabelControl11.Size = New System.Drawing.Size(28, 13)
     Me.LabelControl11.TabIndex = 35
-    Me.LabelControl11.Text = "Notes"
+    Me.LabelControl11.Text = "Notas"
     '
     'txtRefNo
     '
-    Me.txtRefNo.Location = New System.Drawing.Point(103, 148)
+    Me.txtRefNo.Location = New System.Drawing.Point(122, 147)
     Me.txtRefNo.Name = "txtRefNo"
     Me.txtRefNo.Size = New System.Drawing.Size(156, 20)
     Me.txtRefNo.TabIndex = 4
@@ -320,25 +342,25 @@ Partial Class uctEmployeeDetailsReplacement
     '
     Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl10.Appearance.Options.UseForeColor = True
-    Me.LabelControl10.Location = New System.Drawing.Point(7, 151)
+    Me.LabelControl10.Location = New System.Drawing.Point(30, 151)
     Me.LabelControl10.Name = "LabelControl10"
-    Me.LabelControl10.Size = New System.Drawing.Size(90, 13)
+    Me.LabelControl10.Size = New System.Drawing.Size(86, 13)
     Me.LabelControl10.TabIndex = 33
-    Me.LabelControl10.Text = "Employee Ref. No."
+    Me.LabelControl10.Text = "No. Ref Empleado"
     '
     'LabelControl9
     '
     Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl9.Appearance.Options.UseForeColor = True
-    Me.LabelControl9.Location = New System.Drawing.Point(15, 128)
+    Me.LabelControl9.Location = New System.Drawing.Point(8, 128)
     Me.LabelControl9.Name = "LabelControl9"
-    Me.LabelControl9.Size = New System.Drawing.Size(81, 13)
+    Me.LabelControl9.Size = New System.Drawing.Size(108, 13)
     Me.LabelControl9.TabIndex = 32
-    Me.LabelControl9.Text = "Position/Job Title"
+    Me.LabelControl9.Text = "Posición/Título Trabajo"
     '
     'txtPosition
     '
-    Me.txtPosition.Location = New System.Drawing.Point(103, 125)
+    Me.txtPosition.Location = New System.Drawing.Point(122, 124)
     Me.txtPosition.Name = "txtPosition"
     Me.txtPosition.Size = New System.Drawing.Size(156, 20)
     Me.txtPosition.TabIndex = 3
@@ -365,26 +387,26 @@ Partial Class uctEmployeeDetailsReplacement
     '
     Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl7.Appearance.Options.UseForeColor = True
-    Me.LabelControl7.Location = New System.Drawing.Point(24, 105)
+    Me.LabelControl7.Location = New System.Drawing.Point(41, 105)
     Me.LabelControl7.Name = "LabelControl7"
-    Me.LabelControl7.Size = New System.Drawing.Size(63, 13)
+    Me.LabelControl7.Size = New System.Drawing.Size(75, 13)
     Me.LabelControl7.TabIndex = 24
-    Me.LabelControl7.Text = "Leaving Date"
+    Me.LabelControl7.Text = "Fecha de Salida"
     '
     'LabelControl6
     '
     Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl6.Appearance.Options.UseForeColor = True
-    Me.LabelControl6.Location = New System.Drawing.Point(46, 82)
+    Me.LabelControl6.Location = New System.Drawing.Point(59, 82)
     Me.LabelControl6.Name = "LabelControl6"
-    Me.LabelControl6.Size = New System.Drawing.Size(50, 13)
+    Me.LabelControl6.Size = New System.Drawing.Size(57, 13)
     Me.LabelControl6.TabIndex = 23
-    Me.LabelControl6.Text = "Start Date"
+    Me.LabelControl6.Text = "Fecha Inicio"
     '
     'datDateEnd
     '
     Me.datDateEnd.EditValue = Nothing
-    Me.datDateEnd.Location = New System.Drawing.Point(103, 102)
+    Me.datDateEnd.Location = New System.Drawing.Point(122, 101)
     Me.datDateEnd.Name = "datDateEnd"
     Me.datDateEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.datDateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -395,7 +417,7 @@ Partial Class uctEmployeeDetailsReplacement
     'datDateStart
     '
     Me.datDateStart.EditValue = Nothing
-    Me.datDateStart.Location = New System.Drawing.Point(103, 79)
+    Me.datDateStart.Location = New System.Drawing.Point(122, 78)
     Me.datDateStart.Name = "datDateStart"
     Me.datDateStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.datDateStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -407,27 +429,27 @@ Partial Class uctEmployeeDetailsReplacement
     '
     Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl5.Appearance.Options.UseForeColor = True
-    Me.LabelControl5.Location = New System.Drawing.Point(66, 220)
+    Me.LabelControl5.Location = New System.Drawing.Point(83, 220)
     Me.LabelControl5.Name = "LabelControl5"
-    Me.LabelControl5.Size = New System.Drawing.Size(30, 13)
+    Me.LabelControl5.Size = New System.Drawing.Size(33, 13)
     Me.LabelControl5.TabIndex = 20
-    Me.LabelControl5.Text = "Mobile"
+    Me.LabelControl5.Text = "Celular"
     '
     'LabelControl4
     '
     Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl4.Appearance.Options.UseForeColor = True
-    Me.LabelControl4.Location = New System.Drawing.Point(47, 197)
+    Me.LabelControl4.Location = New System.Drawing.Point(74, 197)
     Me.LabelControl4.Name = "LabelControl4"
-    Me.LabelControl4.Size = New System.Drawing.Size(50, 13)
+    Me.LabelControl4.Size = New System.Drawing.Size(42, 13)
     Me.LabelControl4.TabIndex = 19
-    Me.LabelControl4.Text = "Telephone"
+    Me.LabelControl4.Text = "Teléfono"
     '
     'LabelControl3
     '
     Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl3.Appearance.Options.UseForeColor = True
-    Me.LabelControl3.Location = New System.Drawing.Point(72, 174)
+    Me.LabelControl3.Location = New System.Drawing.Point(92, 174)
     Me.LabelControl3.Name = "LabelControl3"
     Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
     Me.LabelControl3.TabIndex = 18
@@ -437,11 +459,11 @@ Partial Class uctEmployeeDetailsReplacement
     '
     Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.Maroon
     Me.LabelControl2.Appearance.Options.UseForeColor = True
-    Me.LabelControl2.Location = New System.Drawing.Point(46, 59)
+    Me.LabelControl2.Location = New System.Drawing.Point(79, 59)
     Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(50, 13)
+    Me.LabelControl2.Size = New System.Drawing.Size(37, 13)
     Me.LabelControl2.TabIndex = 17
-    Me.LabelControl2.Text = "Last Name"
+    Me.LabelControl2.Text = "Apellido"
     '
     'LabelControl1
     '
@@ -449,66 +471,44 @@ Partial Class uctEmployeeDetailsReplacement
     Me.LabelControl1.Appearance.Options.UseForeColor = True
     Me.LabelControl1.Location = New System.Drawing.Point(46, 36)
     Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(51, 13)
+    Me.LabelControl1.Size = New System.Drawing.Size(70, 13)
     Me.LabelControl1.TabIndex = 16
-    Me.LabelControl1.Text = "First Name"
+    Me.LabelControl1.Text = "Primer Nombre"
     '
     'txtEmail
     '
-    Me.txtEmail.Location = New System.Drawing.Point(103, 171)
+    Me.txtEmail.Location = New System.Drawing.Point(122, 170)
     Me.txtEmail.Name = "txtEmail"
     Me.txtEmail.Size = New System.Drawing.Size(156, 20)
     Me.txtEmail.TabIndex = 5
     '
     'txtTelephone
     '
-    Me.txtTelephone.Location = New System.Drawing.Point(103, 194)
+    Me.txtTelephone.Location = New System.Drawing.Point(122, 193)
     Me.txtTelephone.Name = "txtTelephone"
     Me.txtTelephone.Size = New System.Drawing.Size(156, 20)
     Me.txtTelephone.TabIndex = 6
     '
     'txtMobile
     '
-    Me.txtMobile.Location = New System.Drawing.Point(103, 217)
+    Me.txtMobile.Location = New System.Drawing.Point(122, 216)
     Me.txtMobile.Name = "txtMobile"
     Me.txtMobile.Size = New System.Drawing.Size(156, 20)
     Me.txtMobile.TabIndex = 7
     '
     'txtLastName
     '
-    Me.txtLastName.Location = New System.Drawing.Point(103, 56)
+    Me.txtLastName.Location = New System.Drawing.Point(122, 55)
     Me.txtLastName.Name = "txtLastName"
     Me.txtLastName.Size = New System.Drawing.Size(156, 20)
     Me.txtLastName.TabIndex = 2
     '
     'txtFirstName
     '
-    Me.txtFirstName.Location = New System.Drawing.Point(103, 33)
+    Me.txtFirstName.Location = New System.Drawing.Point(122, 32)
     Me.txtFirstName.Name = "txtFirstName"
     Me.txtFirstName.Size = New System.Drawing.Size(156, 20)
     Me.txtFirstName.TabIndex = 0
-    '
-    'LabelControl8
-    '
-    Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.Maroon
-    Me.LabelControl8.Appearance.Options.UseForeColor = True
-    Me.LabelControl8.Location = New System.Drawing.Point(265, 128)
-    Me.LabelControl8.Name = "LabelControl8"
-    Me.LabelControl8.Size = New System.Drawing.Size(51, 13)
-    Me.LabelControl8.TabIndex = 39
-    Me.LabelControl8.Text = "Sales Area"
-    '
-    'cboSalesArea
-    '
-    Me.cboSalesArea.Location = New System.Drawing.Point(322, 123)
-    Me.cboSalesArea.Name = "cboSalesArea"
-    Me.cboSalesArea.Properties.AllowMouseWheel = False
-    Me.cboSalesArea.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!)
-    Me.cboSalesArea.Properties.Appearance.Options.UseFont = True
-    Me.cboSalesArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboSalesArea.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-    Me.cboSalesArea.Size = New System.Drawing.Size(99, 22)
-    Me.cboSalesArea.TabIndex = 40
     '
     'uctEmployeeDetailsReplacement
     '
@@ -522,6 +522,7 @@ Partial Class uctEmployeeDetailsReplacement
     CType(Me.grpDetails, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpDetails.ResumeLayout(False)
     Me.grpDetails.PerformLayout()
+    CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     CType(Me.grdEmployeeShiftPatternOptions, System.ComponentModel.ISupportInitialize).EndInit()
@@ -547,7 +548,6 @@ Partial Class uctEmployeeDetailsReplacement
     CType(Me.txtMobile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtLastName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtFirstName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub

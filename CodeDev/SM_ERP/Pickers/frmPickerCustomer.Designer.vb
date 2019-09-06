@@ -78,41 +78,42 @@ Partial Class frmPickerCustomer
     '
     'gcCompanyName
     '
+    Me.gcCompanyName.Caption = "Nombre de Compañía"
     Me.gcCompanyName.FieldName = "CompanyName"
     Me.gcCompanyName.Name = "gcCompanyName"
     Me.gcCompanyName.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
     Me.gcCompanyName.Visible = True
     Me.gcCompanyName.VisibleIndex = 1
-    Me.gcCompanyName.Width = 210
+    Me.gcCompanyName.Width = 208
     '
     'gcCustomerType
     '
-    Me.gcCustomerType.Caption = "Type"
+    Me.gcCustomerType.Caption = "Tipo de Cliente"
     Me.gcCustomerType.FieldName = "CustomerTypeID"
     Me.gcCustomerType.Name = "gcCustomerType"
     Me.gcCustomerType.Visible = True
     Me.gcCustomerType.VisibleIndex = 2
-    Me.gcCustomerType.Width = 76
+    Me.gcCustomerType.Width = 105
     '
     'gcAddress
     '
-    Me.gcAddress.Caption = "Address"
+    Me.gcAddress.Caption = "Dirección"
     Me.gcAddress.FieldName = "MainAddress.FullAddress"
     Me.gcAddress.Name = "gcAddress"
     Me.gcAddress.Visible = True
     Me.gcAddress.VisibleIndex = 3
-    Me.gcAddress.Width = 343
+    Me.gcAddress.Width = 311
     '
     'gcAccountCode
     '
-    Me.gcAccountCode.Caption = "Account Code"
+    Me.gcAccountCode.Caption = "Código de Cuenta"
     Me.gcAccountCode.ColumnEdit = Me.repItemSelect
     Me.gcAccountCode.FieldName = "AccountCode"
     Me.gcAccountCode.Name = "gcAccountCode"
     Me.gcAccountCode.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
     Me.gcAccountCode.Visible = True
     Me.gcAccountCode.VisibleIndex = 0
-    Me.gcAccountCode.Width = 91
+    Me.gcAccountCode.Width = 90
     '
     'repItemSelect
     '
@@ -127,7 +128,7 @@ Partial Class frmPickerCustomer
     Me.ClientSize = New System.Drawing.Size(733, 400)
     Me.Controls.Add(Me.grdItemList)
     Me.Name = "frmPickerCustomer"
-    Me.Text = "frmPickerCustomer"
+    Me.Text = "Selección de Cliente"
     CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repItemSelect, System.ComponentModel.ISupportInitialize).EndInit()

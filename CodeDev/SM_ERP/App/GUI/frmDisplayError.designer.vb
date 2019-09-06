@@ -51,7 +51,7 @@ Partial Class frmDisplayError
     Me.btnCopyToClipboard.Name = "btnCopyToClipboard"
     Me.btnCopyToClipboard.Size = New System.Drawing.Size(106, 22)
     Me.btnCopyToClipboard.TabIndex = 2
-    Me.btnCopyToClipboard.Text = "Copy to clipboard"
+    Me.btnCopyToClipboard.Text = "Copiar el Error"
     Me.btnCopyToClipboard.UseVisualStyleBackColor = True
     '
     'lblContext
@@ -93,9 +93,9 @@ Partial Class frmDisplayError
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.btnInformrealtime.Location = New System.Drawing.Point(296, 357)
     Me.btnInformrealtime.Name = "btnInformrealtime"
-    Me.btnInformrealtime.Size = New System.Drawing.Size(99, 21)
+    Me.btnInformrealtime.Size = New System.Drawing.Size(122, 21)
     Me.btnInformrealtime.TabIndex = 6
-    Me.btnInformrealtime.Text = "Inform realtime"
+    Me.btnInformrealtime.Text = "Informar a Realtime"
     Me.btnInformrealtime.UseVisualStyleBackColor = True
     Me.btnInformrealtime.Visible = False
     '
@@ -141,7 +141,7 @@ Partial Class frmDisplayError
     Me.MinimizeBox = False
     Me.Name = "frmDisplayError"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "Appliction Issue"
+    Me.Text = "Problema de la Aplicación"
     Me.ResumeLayout(False)
     Me.PerformLayout()
 

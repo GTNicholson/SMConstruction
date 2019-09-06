@@ -74,7 +74,7 @@ Partial Class frmLookupTableList
     '
     'gcLookUpTableID
     '
-    Me.gcLookUpTableID.Caption = "Edit"
+    Me.gcLookUpTableID.Caption = "Editar"
     Me.gcLookUpTableID.ColumnEdit = Me.RepItemButtonEdit
     Me.gcLookUpTableID.FieldName = "LookUpTableID"
     Me.gcLookUpTableID.Name = "gcLookUpTableID"
@@ -100,7 +100,7 @@ Partial Class frmLookupTableList
     '
     'gcLookUpDesc
     '
-    Me.gcLookUpDesc.Caption = "Description"
+    Me.gcLookUpDesc.Caption = "Descripción"
     Me.gcLookUpDesc.FieldName = "LookUpTableDescription"
     Me.gcLookUpDesc.Name = "gcLookUpDesc"
     Me.gcLookUpDesc.Visible = True
@@ -109,14 +109,14 @@ Partial Class frmLookupTableList
     '
     'gcLookUpTableName
     '
-    Me.gcLookUpTableName.Caption = "Table"
+    Me.gcLookUpTableName.Caption = "Tabla"
     Me.gcLookUpTableName.FieldName = "TableName"
     Me.gcLookUpTableName.Name = "gcLookUpTableName"
     Me.gcLookUpTableName.Width = 188
     '
     'gcLookupSectionCode
     '
-    Me.gcLookupSectionCode.Caption = "Group"
+    Me.gcLookupSectionCode.Caption = "Grupo"
     Me.gcLookupSectionCode.FieldName = "SelectionCode"
     Me.gcLookupSectionCode.Name = "gcLookupSectionCode"
     Me.gcLookupSectionCode.Visible = True
@@ -130,7 +130,7 @@ Partial Class frmLookupTableList
     Me.Controls.Add(Me.grdLookUpList)
     Me.Name = "frmLookupTableList"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-    Me.Text = "Options List"
+    Me.Text = "Lista de Opciones"
     CType(Me.grdLookUpList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvLookUpTable, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepItemButtonEdit, System.ComponentModel.ISupportInitialize).EndInit()

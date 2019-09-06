@@ -116,9 +116,9 @@ Partial Class frmCustomerDetail
     '
     'txtCustomerName
     '
-    Me.txtCustomerName.Location = New System.Drawing.Point(148, 81)
+    Me.txtCustomerName.Location = New System.Drawing.Point(141, 78)
     Me.txtCustomerName.Name = "txtCustomerName"
-    Me.txtCustomerName.Size = New System.Drawing.Size(230, 20)
+    Me.txtCustomerName.Size = New System.Drawing.Size(155, 20)
     Me.txtCustomerName.TabIndex = 1
     '
     'BarManager1
@@ -168,7 +168,7 @@ Partial Class frmCustomerDetail
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1350, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 33)
     '
     'barDockControlBottom
     '
@@ -176,7 +176,7 @@ Partial Class frmCustomerDetail
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
     Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1350, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1164, 0)
     '
     'barDockControlLeft
     '
@@ -190,7 +190,7 @@ Partial Class frmCustomerDetail
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1350, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
     '
@@ -199,7 +199,7 @@ Partial Class frmCustomerDetail
     Me.Label1.AutoSize = True
     Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label1.Location = New System.Drawing.Point(5, 84)
+    Me.Label1.Location = New System.Drawing.Point(5, 81)
     Me.Label1.Name = "Label1"
     Me.Label1.Size = New System.Drawing.Size(126, 14)
     Me.Label1.TabIndex = 12
@@ -237,15 +237,15 @@ Partial Class frmCustomerDetail
     Me.GroupControl1.Controls.Add(Me.Label1)
     Me.GroupControl1.Location = New System.Drawing.Point(12, 39)
     Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(774, 341)
+    Me.GroupControl1.Size = New System.Drawing.Size(620, 314)
     Me.GroupControl1.TabIndex = 1
     Me.GroupControl1.Text = "Detalles del Cliente"
     '
     'txtMainPostCode
     '
-    Me.txtMainPostCode.Location = New System.Drawing.Point(539, 228)
+    Me.txtMainPostCode.Location = New System.Drawing.Point(456, 225)
     Me.txtMainPostCode.Name = "txtMainPostCode"
-    Me.txtMainPostCode.Size = New System.Drawing.Size(230, 20)
+    Me.txtMainPostCode.Size = New System.Drawing.Size(155, 20)
     Me.txtMainPostCode.TabIndex = 10
     '
     'Label15
@@ -253,7 +253,7 @@ Partial Class frmCustomerDetail
     Me.Label15.AutoSize = True
     Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label15.Location = New System.Drawing.Point(425, 231)
+    Me.Label15.Location = New System.Drawing.Point(342, 228)
     Me.Label15.Name = "Label15"
     Me.Label15.Size = New System.Drawing.Size(83, 14)
     Me.Label15.TabIndex = 25
@@ -261,9 +261,9 @@ Partial Class frmCustomerDetail
     '
     'txtCustomerReference
     '
-    Me.txtCustomerReference.Location = New System.Drawing.Point(148, 32)
+    Me.txtCustomerReference.Location = New System.Drawing.Point(141, 29)
     Me.txtCustomerReference.Name = "txtCustomerReference"
-    Me.txtCustomerReference.Size = New System.Drawing.Size(230, 20)
+    Me.txtCustomerReference.Size = New System.Drawing.Size(155, 20)
     Me.txtCustomerReference.TabIndex = 0
     '
     'Label12
@@ -271,7 +271,7 @@ Partial Class frmCustomerDetail
     Me.Label12.AutoSize = True
     Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label12.Location = New System.Drawing.Point(5, 35)
+    Me.Label12.Location = New System.Drawing.Point(5, 32)
     Me.Label12.Name = "Label12"
     Me.Label12.Size = New System.Drawing.Size(75, 14)
     Me.Label12.TabIndex = 18
@@ -279,9 +279,9 @@ Partial Class frmCustomerDetail
     '
     'txtMainTown
     '
-    Me.txtMainTown.Location = New System.Drawing.Point(148, 277)
+    Me.txtMainTown.Location = New System.Drawing.Point(141, 274)
     Me.txtMainTown.Name = "txtMainTown"
-    Me.txtMainTown.Size = New System.Drawing.Size(230, 20)
+    Me.txtMainTown.Size = New System.Drawing.Size(155, 20)
     Me.txtMainTown.TabIndex = 5
     '
     'Label5
@@ -289,7 +289,7 @@ Partial Class frmCustomerDetail
     Me.Label5.AutoSize = True
     Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label5.Location = New System.Drawing.Point(5, 280)
+    Me.Label5.Location = New System.Drawing.Point(5, 277)
     Me.Label5.Name = "Label5"
     Me.Label5.Size = New System.Drawing.Size(45, 14)
     Me.Label5.TabIndex = 16
@@ -297,13 +297,13 @@ Partial Class frmCustomerDetail
     '
     'rgEstatus
     '
-    Me.rgEstatus.Location = New System.Drawing.Point(539, 272)
+    Me.rgEstatus.Location = New System.Drawing.Point(456, 269)
     Me.rgEstatus.MenuManager = Me.BarManager1
     Me.rgEstatus.Name = "rgEstatus"
     Me.rgEstatus.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
     Me.rgEstatus.Properties.Appearance.Options.UseBackColor = True
     Me.rgEstatus.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Activo"), New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Inactivo")})
-    Me.rgEstatus.Size = New System.Drawing.Size(230, 31)
+    Me.rgEstatus.Size = New System.Drawing.Size(155, 31)
     Me.rgEstatus.TabIndex = 12
     '
     'Label11
@@ -311,7 +311,7 @@ Partial Class frmCustomerDetail
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(425, 280)
+    Me.Label11.Location = New System.Drawing.Point(342, 277)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(44, 14)
     Me.Label11.TabIndex = 23
@@ -319,9 +319,9 @@ Partial Class frmCustomerDetail
     '
     'txtWebUrl
     '
-    Me.txtWebUrl.Location = New System.Drawing.Point(539, 179)
+    Me.txtWebUrl.Location = New System.Drawing.Point(456, 176)
     Me.txtWebUrl.Name = "txtWebUrl"
-    Me.txtWebUrl.Size = New System.Drawing.Size(230, 20)
+    Me.txtWebUrl.Size = New System.Drawing.Size(155, 20)
     Me.txtWebUrl.TabIndex = 9
     '
     'Label9
@@ -329,7 +329,7 @@ Partial Class frmCustomerDetail
     Me.Label9.AutoSize = True
     Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label9.Location = New System.Drawing.Point(425, 182)
+    Me.Label9.Location = New System.Drawing.Point(342, 179)
     Me.Label9.Name = "Label9"
     Me.Label9.Size = New System.Drawing.Size(70, 14)
     Me.Label9.TabIndex = 21
@@ -337,9 +337,9 @@ Partial Class frmCustomerDetail
     '
     'txtMainAddress1
     '
-    Me.txtMainAddress1.Location = New System.Drawing.Point(539, 32)
+    Me.txtMainAddress1.Location = New System.Drawing.Point(456, 29)
     Me.txtMainAddress1.Name = "txtMainAddress1"
-    Me.txtMainAddress1.Size = New System.Drawing.Size(230, 20)
+    Me.txtMainAddress1.Size = New System.Drawing.Size(155, 20)
     Me.txtMainAddress1.TabIndex = 6
     '
     'Label8
@@ -347,7 +347,7 @@ Partial Class frmCustomerDetail
     Me.Label8.AutoSize = True
     Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label8.Location = New System.Drawing.Point(425, 35)
+    Me.Label8.Location = New System.Drawing.Point(342, 32)
     Me.Label8.Name = "Label8"
     Me.Label8.Size = New System.Drawing.Size(108, 14)
     Me.Label8.TabIndex = 17
@@ -355,11 +355,11 @@ Partial Class frmCustomerDetail
     '
     'cboCountry
     '
-    Me.cboCountry.Location = New System.Drawing.Point(148, 228)
+    Me.cboCountry.Location = New System.Drawing.Point(141, 225)
     Me.cboCountry.MenuManager = Me.BarManager1
     Me.cboCountry.Name = "cboCountry"
     Me.cboCountry.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboCountry.Size = New System.Drawing.Size(230, 20)
+    Me.cboCountry.Size = New System.Drawing.Size(155, 20)
     Me.cboCountry.TabIndex = 4
     '
     'Label7
@@ -367,7 +367,7 @@ Partial Class frmCustomerDetail
     Me.Label7.AutoSize = True
     Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label7.Location = New System.Drawing.Point(5, 231)
+    Me.Label7.Location = New System.Drawing.Point(5, 228)
     Me.Label7.Name = "Label7"
     Me.Label7.Size = New System.Drawing.Size(87, 14)
     Me.Label7.TabIndex = 15
@@ -375,9 +375,9 @@ Partial Class frmCustomerDetail
     '
     'txtRucNumber
     '
-    Me.txtRucNumber.Location = New System.Drawing.Point(148, 179)
+    Me.txtRucNumber.Location = New System.Drawing.Point(141, 176)
     Me.txtRucNumber.Name = "txtRucNumber"
-    Me.txtRucNumber.Size = New System.Drawing.Size(230, 20)
+    Me.txtRucNumber.Size = New System.Drawing.Size(155, 20)
     Me.txtRucNumber.TabIndex = 3
     '
     'Label6
@@ -385,7 +385,7 @@ Partial Class frmCustomerDetail
     Me.Label6.AutoSize = True
     Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label6.Location = New System.Drawing.Point(5, 182)
+    Me.Label6.Location = New System.Drawing.Point(5, 179)
     Me.Label6.Name = "Label6"
     Me.Label6.Size = New System.Drawing.Size(96, 14)
     Me.Label6.TabIndex = 14
@@ -393,9 +393,9 @@ Partial Class frmCustomerDetail
     '
     'txtRazonSocial
     '
-    Me.txtRazonSocial.Location = New System.Drawing.Point(148, 130)
+    Me.txtRazonSocial.Location = New System.Drawing.Point(141, 127)
     Me.txtRazonSocial.Name = "txtRazonSocial"
-    Me.txtRazonSocial.Size = New System.Drawing.Size(230, 20)
+    Me.txtRazonSocial.Size = New System.Drawing.Size(155, 20)
     Me.txtRazonSocial.TabIndex = 2
     '
     'Label4
@@ -403,7 +403,7 @@ Partial Class frmCustomerDetail
     Me.Label4.AutoSize = True
     Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label4.Location = New System.Drawing.Point(5, 133)
+    Me.Label4.Location = New System.Drawing.Point(5, 130)
     Me.Label4.Name = "Label4"
     Me.Label4.Size = New System.Drawing.Size(75, 14)
     Me.Label4.TabIndex = 13
@@ -411,9 +411,9 @@ Partial Class frmCustomerDetail
     '
     'txtEmail
     '
-    Me.txtEmail.Location = New System.Drawing.Point(539, 130)
+    Me.txtEmail.Location = New System.Drawing.Point(456, 127)
     Me.txtEmail.Name = "txtEmail"
-    Me.txtEmail.Size = New System.Drawing.Size(230, 20)
+    Me.txtEmail.Size = New System.Drawing.Size(155, 20)
     Me.txtEmail.TabIndex = 8
     '
     'Label2
@@ -421,7 +421,7 @@ Partial Class frmCustomerDetail
     Me.Label2.AutoSize = True
     Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label2.Location = New System.Drawing.Point(425, 133)
+    Me.Label2.Location = New System.Drawing.Point(342, 130)
     Me.Label2.Name = "Label2"
     Me.Label2.Size = New System.Drawing.Size(36, 14)
     Me.Label2.TabIndex = 20
@@ -429,9 +429,9 @@ Partial Class frmCustomerDetail
     '
     'txtTelNo
     '
-    Me.txtTelNo.Location = New System.Drawing.Point(539, 81)
+    Me.txtTelNo.Location = New System.Drawing.Point(456, 78)
     Me.txtTelNo.Name = "txtTelNo"
-    Me.txtTelNo.Size = New System.Drawing.Size(230, 20)
+    Me.txtTelNo.Size = New System.Drawing.Size(155, 20)
     Me.txtTelNo.TabIndex = 7
     '
     'Label3
@@ -439,7 +439,7 @@ Partial Class frmCustomerDetail
     Me.Label3.AutoSize = True
     Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label3.Location = New System.Drawing.Point(425, 84)
+    Me.Label3.Location = New System.Drawing.Point(342, 81)
     Me.Label3.Name = "Label3"
     Me.Label3.Size = New System.Drawing.Size(55, 14)
     Me.Label3.TabIndex = 19
@@ -511,18 +511,17 @@ Partial Class frmCustomerDetail
     Me.grdContacts.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdContacts.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdContacts.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdContacts.Location = New System.Drawing.Point(12, 454)
+    Me.grdContacts.Location = New System.Drawing.Point(12, 398)
     Me.grdContacts.MainView = Me.gvContacts
     Me.grdContacts.MenuManager = Me.BarManager1
     Me.grdContacts.Name = "grdContacts"
-    Me.grdContacts.Size = New System.Drawing.Size(620, 263)
+    Me.grdContacts.Size = New System.Drawing.Size(620, 319)
     Me.grdContacts.TabIndex = 3
     Me.grdContacts.UseEmbeddedNavigator = True
     Me.grdContacts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvContacts})
     '
     'GroupControl2
     '
-    Me.GroupControl2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl2.AppearanceCaption.Options.UseFont = True
@@ -538,7 +537,7 @@ Partial Class frmCustomerDetail
     Me.GroupControl2.Controls.Add(Me.Label17)
     Me.GroupControl2.Controls.Add(Me.txtAcountRef)
     Me.GroupControl2.Controls.Add(Me.Label20)
-    Me.GroupControl2.Location = New System.Drawing.Point(798, 39)
+    Me.GroupControl2.Location = New System.Drawing.Point(660, 39)
     Me.GroupControl2.Name = "GroupControl2"
     Me.GroupControl2.Size = New System.Drawing.Size(477, 222)
     Me.GroupControl2.TabIndex = 2
@@ -652,15 +651,14 @@ Partial Class frmCustomerDetail
     '
     'GroupControl3
     '
-    Me.GroupControl3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl3.AppearanceCaption.Options.UseFont = True
     Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl3.Controls.Add(Me.txtCustomerNotes)
-    Me.GroupControl3.Location = New System.Drawing.Point(798, 267)
+    Me.GroupControl3.Location = New System.Drawing.Point(660, 267)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(491, 113)
+    Me.GroupControl3.Size = New System.Drawing.Size(477, 86)
     Me.GroupControl3.TabIndex = 3
     Me.GroupControl3.Text = "Notas del Cliente"
     '
@@ -669,12 +667,11 @@ Partial Class frmCustomerDetail
     Me.txtCustomerNotes.Location = New System.Drawing.Point(5, 26)
     Me.txtCustomerNotes.MenuManager = Me.BarManager1
     Me.txtCustomerNotes.Name = "txtCustomerNotes"
-    Me.txtCustomerNotes.Size = New System.Drawing.Size(472, 76)
+    Me.txtCustomerNotes.Size = New System.Drawing.Size(472, 55)
     Me.txtCustomerNotes.TabIndex = 0
     '
     'grdSalesOrder
     '
-    Me.grdSalesOrder.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.EndEdit.Visible = False
@@ -682,11 +679,11 @@ Partial Class frmCustomerDetail
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdSalesOrder.Location = New System.Drawing.Point(699, 454)
+    Me.grdSalesOrder.Location = New System.Drawing.Point(660, 398)
     Me.grdSalesOrder.MainView = Me.GridView1
     Me.grdSalesOrder.MenuManager = Me.BarManager1
     Me.grdSalesOrder.Name = "grdSalesOrder"
-    Me.grdSalesOrder.Size = New System.Drawing.Size(620, 263)
+    Me.grdSalesOrder.Size = New System.Drawing.Size(477, 319)
     Me.grdSalesOrder.TabIndex = 4
     Me.grdSalesOrder.UseEmbeddedNavigator = True
     Me.grdSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -736,7 +733,7 @@ Partial Class frmCustomerDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1350, 729)
+    Me.ClientSize = New System.Drawing.Size(1164, 729)
     Me.Controls.Add(Me.grdSalesOrder)
     Me.Controls.Add(Me.GroupControl3)
     Me.Controls.Add(Me.GroupControl2)

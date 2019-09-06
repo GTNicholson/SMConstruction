@@ -25,9 +25,6 @@ Partial Class frmPDFViewer
     Me.components = New System.ComponentModel.Container()
     Me.PdfViewer1 = New DevExpress.XtraPdfViewer.PdfViewer()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.PdfCommandBar1 = New DevExpress.XtraPdfViewer.Bars.PdfCommandBar()
     Me.PdfFileOpenBarItem1 = New DevExpress.XtraPdfViewer.Bars.PdfFileOpenBarItem()
@@ -52,6 +49,9 @@ Partial Class frmPDFViewer
     Me.PdfSetPageLevelZoomModeCheckItem1 = New DevExpress.XtraPdfViewer.Bars.PdfSetPageLevelZoomModeCheckItem()
     Me.PdfSetFitWidthZoomModeCheckItem1 = New DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem()
     Me.PdfSetFitVisibleZoomModeCheckItem1 = New DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem()
+    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.PdfBarController1 = New DevExpress.XtraPdfViewer.Bars.PdfBarController()
     Me.PdfViewer1.SuspendLayout()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,30 +77,6 @@ Partial Class frmPDFViewer
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
     Me.barDockControlLeft.Manager = Me.BarManager1
     Me.barDockControlLeft.Size = New System.Drawing.Size(0, 781)
-    '
-    'barDockControlRight
-    '
-    Me.barDockControlRight.CausesValidation = False
-    Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1135, 31)
-    Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 781)
-    '
-    'barDockControlBottom
-    '
-    Me.barDockControlBottom.CausesValidation = False
-    Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 812)
-    Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1135, 0)
-    '
-    'barDockControlTop
-    '
-    Me.barDockControlTop.CausesValidation = False
-    Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-    Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-    Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1135, 31)
     '
     'BarManager1
     '
@@ -238,6 +214,30 @@ Partial Class frmPDFViewer
     Me.PdfSetFitVisibleZoomModeCheckItem1.Id = 20
     Me.PdfSetFitVisibleZoomModeCheckItem1.Name = "PdfSetFitVisibleZoomModeCheckItem1"
     '
+    'barDockControlTop
+    '
+    Me.barDockControlTop.CausesValidation = False
+    Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+    Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+    Me.barDockControlTop.Manager = Me.BarManager1
+    Me.barDockControlTop.Size = New System.Drawing.Size(1135, 31)
+    '
+    'barDockControlBottom
+    '
+    Me.barDockControlBottom.CausesValidation = False
+    Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 812)
+    Me.barDockControlBottom.Manager = Me.BarManager1
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1135, 0)
+    '
+    'barDockControlRight
+    '
+    Me.barDockControlRight.CausesValidation = False
+    Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+    Me.barDockControlRight.Location = New System.Drawing.Point(1135, 31)
+    Me.barDockControlRight.Manager = Me.BarManager1
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 781)
+    '
     'PdfBarController1
     '
     Me.PdfBarController1.BarItems.Add(Me.PdfFileOpenBarItem1)
@@ -271,7 +271,7 @@ Partial Class frmPDFViewer
     Me.Controls.Add(Me.PdfViewer1)
     Me.Name = "frmPDFViewer"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-    Me.Text = "PDF Viewer"
+    Me.Text = "Visualizador de PDF"
     Me.PdfViewer1.ResumeLayout(False)
     Me.PdfViewer1.PerformLayout()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()

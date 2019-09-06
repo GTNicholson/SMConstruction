@@ -21,12 +21,14 @@ Partial Class frmAdminEmployeeOverride
   Private Sub InitializeComponent()
     Me.SuspendLayout()
     '
-    'frmAdminEmployeeStandard
+    'frmAdminEmployeeOverride
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.ClientSize = New System.Drawing.Size(906, 620)
-    Me.Name = "frmAdminEmployeeStandard"
+    Me.Name = "frmAdminEmployeeOverride"
+    Me.Text = "Administración de Empleados"
     Me.ResumeLayout(False)
+    Me.PerformLayout()
 
   End Sub
 

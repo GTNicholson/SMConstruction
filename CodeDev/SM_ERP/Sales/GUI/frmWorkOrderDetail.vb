@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraBars
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraBars
 Imports RTIS.CommonVB
 Imports RTIS.Elements
 
@@ -6,11 +7,10 @@ Public Class frmWorkOrderDetail
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
-
+  Private pForceExit As Boolean = False
+  Private pLoadError As Boolean
   Private pIsActive As Boolean
-
   Private pFormController As fccWorkOrderDetail
-
   Public ExitMode As Windows.Forms.DialogResult
 
   Public Sub New()
@@ -82,17 +82,43 @@ Public Class frmWorkOrderDetail
   End Property
 
   Private Sub frmWorkOrderDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim mOK As Boolean = True
+    Dim mMsg As String = ""
+    Dim mErrorDisplayed As Boolean = False
+
+    ''Resize if required
+    pLoadError = False
     pIsActive = False
-    pFormController.LoadObjects()
 
-    ConfigureFileControl
+    Try
 
-    LoadCombos()
+      pFormController.LoadObjects()
+      ConfigureFileControl()
+      LoadCombos()
+      grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
+      RefreshProductTabPages()
+      RefreshControls()
+      pIsActive = True
 
+      If mOK Then RefreshControls()
 
-    grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
-    RefreshProductTabPages()
-    RefreshControls()
+      ''If mOK Then SetupUserPermissions()
+
+    Catch ex As Exception
+      mMsg = ex.Message
+      mOK = False
+      mErrorDisplayed = True
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    If Not mOK Then
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      pLoadError = True
+      ExitMode = Windows.Forms.DialogResult.Abort
+      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
+
+    End If
+
     pIsActive = True
   End Sub
 
@@ -402,14 +428,54 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub btnSaveAndClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
-
+    Try
+      InitiateSaveExit()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 
   Private Sub btnClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnClose.ItemClick
-
+    Try
+      InitiateCloseExit(True)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 
   Private Sub btneWorkOrderDocument_EditValueChanged(sender As Object, e As EventArgs) Handles btneWorkOrderDocument.EditValueChanged
 
+  End Sub
+
+  Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
+
+    If CheckSave(False) Then
+      CloseForm()
+    End If
+
+  End Sub
+
+  Private Sub InitiateCloseExit(ByVal vWithCheck As Boolean) 'User initiated request to save - Call from buttons/menu/toolbar etc.
+    If vWithCheck Then
+      If CheckSave(True) Then 'Changed from False 20150206 !!!
+        CloseForm()
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.No
+      CloseForm()
+    End If
+  End Sub
+
+  Private Sub CloseForm() 'Needs exit mode set first
+    pForceExit = True
+    Me.Close()
+  End Sub
+
+  Private Sub frmWorkOrderDetail_Closing(sender As Object, e As FormClosingEventArgs) Handles Me.Closing
+    If Not pForceExit Then
+      If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
+        e.Cancel = Not CheckSave(True)
+      End If
+    End If
   End Sub
 End Class
