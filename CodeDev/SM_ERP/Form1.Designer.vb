@@ -28,11 +28,11 @@ Partial Class Form1
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.Quantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.Quantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -103,6 +103,15 @@ Partial Class Form1
     Me.GridColumn3.VisibleIndex = 4
     Me.GridColumn3.Width = 117
     '
+    'Quantity
+    '
+    Me.Quantity.Caption = "Cantidad"
+    Me.Quantity.FieldName = "Quantity"
+    Me.Quantity.Name = "Quantity"
+    Me.Quantity.OptionsColumn.ReadOnly = True
+    Me.Quantity.Visible = True
+    Me.Quantity.VisibleIndex = 5
+    '
     'GridColumn1
     '
     Me.GridColumn1.Caption = "# Orden de Trabajo"
@@ -123,25 +132,6 @@ Partial Class Form1
     Me.GridColumn2.VisibleIndex = 7
     Me.GridColumn2.Width = 74
     '
-    'GridColumn8
-    '
-    Me.GridColumn8.Caption = "Responsable"
-    Me.GridColumn8.FieldName = "EmployeeName"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.OptionsColumn.ReadOnly = True
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 8
-    Me.GridColumn8.Width = 88
-    '
-    'Quantity
-    '
-    Me.Quantity.Caption = "Cantidad"
-    Me.Quantity.FieldName = "Quantity"
-    Me.Quantity.Name = "Quantity"
-    Me.Quantity.OptionsColumn.ReadOnly = True
-    Me.Quantity.Visible = True
-    Me.Quantity.VisibleIndex = 5
-    '
     'GridColumn4
     '
     Me.GridColumn4.Caption = "Proyecto"
@@ -151,6 +141,16 @@ Partial Class Form1
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 2
     Me.GridColumn4.Width = 118
+    '
+    'GridColumn8
+    '
+    Me.GridColumn8.Caption = "Responsable"
+    Me.GridColumn8.FieldName = "EmployeeName"
+    Me.GridColumn8.Name = "GridColumn8"
+    Me.GridColumn8.OptionsColumn.ReadOnly = True
+    Me.GridColumn8.Visible = True
+    Me.GridColumn8.VisibleIndex = 8
+    Me.GridColumn8.Width = 88
     '
     'GridColumn13
     '

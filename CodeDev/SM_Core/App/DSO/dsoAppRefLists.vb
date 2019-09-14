@@ -103,6 +103,16 @@ Public Class dsoAppRefLists
           mValueItems = New colValueItems
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 5", "Value", "Description")
           mItem.IList = mValueItems
+
+        Case appRefLists.WoodSpecie
+          mItem.IList = LoadWoodSpecie()
+          mOK = True
+
+        Case appRefLists.WoodFinish
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 6", "Value", "Description")
+          mItem.IList = mValueItems
+
       End Select
       mItem = Nothing
     Else
@@ -122,6 +132,15 @@ Public Class dsoAppRefLists
     ''Next
 
     Return mEmployees
+  End Function
+
+  Public Function LoadWoodSpecie() As IList
+    Dim mdto As New dtoWoodSpecie(pDBConn)
+    Dim mRetVal As New colWoodSpecies
+
+    mdto.LoadWoodSpecieCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadVATList() As IList

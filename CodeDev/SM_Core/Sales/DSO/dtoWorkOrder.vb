@@ -62,6 +62,9 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PlannedStartDate", DateToDBValue(.PlannedStartDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderType", .WorkOrderType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecieID", .WoodSpecieID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
+
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
 
     End With
@@ -84,6 +87,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
         .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
+        .WoodSpecieID = DBReadInt32(rDataReader, "WoodSpecieID")
+        .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False
       End With

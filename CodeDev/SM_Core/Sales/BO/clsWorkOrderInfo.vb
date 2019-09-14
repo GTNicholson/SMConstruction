@@ -148,6 +148,15 @@
       Return pSalesOrder.DueTime
     End Get
   End Property
+
+
+  Public ReadOnly Property WoodSpecieID As Int32
+    Get
+      Return pWorkOrder.WoodSpecieID
+    End Get
+  End Property
+
+
 End Class
 
 

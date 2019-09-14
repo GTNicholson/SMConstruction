@@ -129,7 +129,6 @@ Public Class dtoProductFurnitureComponent : Inherits dtoBase
     Return mOK
   End Function
 
-
   Public Function SaveProductFurnitureComponentCollection(ByRef rCollection As colProductFurnitureComponents, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mAllOK As Boolean

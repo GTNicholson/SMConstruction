@@ -172,6 +172,7 @@ Public Class dsoSales
     Dim mdto As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
+
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoOutputDocs As dtoOutputDocument
@@ -190,6 +191,11 @@ Public Class dsoSales
         If mProdFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID)
+
+
+
+
+
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If

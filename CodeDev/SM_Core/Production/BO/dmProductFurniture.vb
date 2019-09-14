@@ -12,6 +12,9 @@ Public Class dmProductFurniture : Inherits dmBase
 
   Private pMaterialRequirements As colMaterialRequirements
 
+  Private pProductFurnitureComponent As colProductFurnitureComponents
+
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -19,6 +22,8 @@ Public Class dmProductFurniture : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pMaterialRequirements = New colMaterialRequirements
+
+    pProductFurnitureComponent = New colProductFurnitureComponents
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -31,12 +36,21 @@ Public Class dmProductFurniture : Inherits dmBase
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean Implements intItemSpecCore.IsAnyDirty
+    ''Get
+    ''  Dim mAnyDirty = IsDirty
+    ''  '' Check Objects and Collections
+    ''  If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
+    ''  IsAnyDirty = mAnyDirty
+    ''End Get
+
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
-      If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pProductFurnitureComponent.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
+
+
   End Property
 
   Public Overrides Sub ClearKeys()
@@ -51,6 +65,9 @@ Public Class dmProductFurniture : Inherits dmBase
       .Notes = Notes
       .FurnitureType = FurnitureType
       .MaterialRequirments = MaterialRequirments.Clone
+      '.ProductFurnitureComponents = ProductFurnitureComponents.Clone
+
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -180,6 +197,15 @@ Public Class dmProductFurniture : Inherits dmBase
     End Get
     Set(value As colMaterialRequirements)
       pMaterialRequirements = value
+    End Set
+  End Property
+
+  Public Property ProductFurnitureComponents As colProductFurnitureComponents
+    Get
+      Return pProductFurnitureComponent
+    End Get
+    Set(value As colProductFurnitureComponents)
+      pProductFurnitureComponent = value
     End Set
   End Property
 

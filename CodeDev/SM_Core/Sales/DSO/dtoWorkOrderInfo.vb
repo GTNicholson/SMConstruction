@@ -50,6 +50,8 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
   Overrides Sub ObjectToSQLInfo(ByRef rFieldList As String, ByRef rParamList As String, ByRef rParameterValues As System.Data.IDataParameterCollection, ByVal vSetList As Boolean)
 
+
+
   End Sub
 
 
@@ -68,6 +70,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
         .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
         .EmployeeName = DBReadString(rDataReader, "EmployeeName")
+
       End With
 
       With pWorkOrderInfo.SalesOrder

@@ -181,12 +181,22 @@ Public Class frmWorkOrderDetail
 
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
+
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
     clsDEControlLoading.FillDEComboVI(cboProductType, mVIs)
+
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSArea, mVIs)
+
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSEmployee, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
+    clsDEControlLoading.FillDEComboVI(cboWoodSpecie, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
+    clsDEControlLoading.FillDEComboVI(cboWoodFinish, mVIs)
+
   End Sub
 
   Private Sub RefreshProductTabPages()
@@ -209,21 +219,40 @@ Public Class frmWorkOrderDetail
       Else
         Me.Text = "O.T. " & .WorkOrderNo
       End If
+
+
+
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description
 
       dtePlannedStartDate.DateTime = .PlannedStartDate
 
       clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
+      clsDEControlLoading.SetDECombo(cboWoodSpecie, .WoodSpecieID)
+      clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
 
       btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
 
       UctFileControl1.LoadControls()
       UctFileControl1.RefreshControls()
       RefreshProductControls()
+      RefreshSalesControls()
 
     End With
+
+
+
+
     pIsActive = mIsActive
+  End Sub
+
+  Private Sub RefreshSalesControls()
+    With pFormController.SalesOrder
+      txtSalesOrderID.Text = .OrderNo
+      txtProjectName.Text = .ProjectName
+      txtDueTime.Text = .DueTime
+      txtCompanyName.Text = .Customer.CompanyName
+    End With
   End Sub
 
   Private Sub RefreshProductControls()
@@ -251,6 +280,9 @@ Public Class frmWorkOrderDetail
     With pFormController.WorkOrder
       .Description = txtDescription.Text
       .PlannedStartDate = dtePlannedStartDate.DateTime
+
+      .WoodSpecieID = clsDEControlLoading.GetDEComboValue(cboWoodSpecie)
+      .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
     End With
     UpdateProductControls()
   End Sub
