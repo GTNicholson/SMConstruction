@@ -6,4 +6,5 @@ go
 
 alter table SalesOrder
 add CustomerDelContacID int
-go
+go  
+go  

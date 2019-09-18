@@ -20,6 +20,7 @@ Partial Public Class repSalesOrder
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repSalesOrder))
+    Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
     Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -467,6 +468,8 @@ Partial Public Class repSalesOrder
     Me.XrLabel40.SizeF = New System.Drawing.SizeF(128.7614!, 16.74998!)
     Me.XrLabel40.StylePriority.UseFont = False
     Me.XrLabel40.StylePriority.UseTextAlignment = False
+    XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
+    Me.XrLabel40.Summary = XrSummary1
     Me.XrLabel40.Text = "SUBTOTAL:"
     Me.XrLabel40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
     '
