@@ -23,6 +23,8 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pClientInfo As String
   Private pFinishDate As DateTime
   Private pDueTime As DateTime
+  Private pSalesDelAreaID As Int32
+  Private pCustomerDelContactID As Int32
 
   Private pCustomer As dmCustomer
   Private pWorkOrders As colWorkOrders
@@ -94,7 +96,10 @@ Public Class dmSalesOrder : Inherits dmBase
       .BusinessSectorID = BusinessSectorID
       .ClientInfo = ClientInfo
       .FinishDate = FinishDate
-      .Duetime = DueTime
+      .DueTime = DueTime
+      .SalesDelAreaID = SalesDelAreaID
+      .CustomerDelContactID = CustomerDelContactID
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -125,6 +130,16 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property SalesDelAreaID() As Int32
+    Get
+      Return pSalesDelAreaID
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesDelAreaID <> value Then IsDirty = True
+      pSalesDelAreaID = value
+    End Set
+  End Property
+
   Public Property CustomerContactID() As Int32
     Get
       Return pCustomerContactID
@@ -132,6 +147,16 @@ Public Class dmSalesOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pCustomerContactID <> value Then IsDirty = True
       pCustomerContactID = value
+    End Set
+  End Property
+
+  Public Property CustomerDelContactID() As Int32
+    Get
+      Return pCustomerDelContactID
+    End Get
+    Set(ByVal value As Int32)
+      If pCustomerDelContactID <> value Then IsDirty = True
+      pCustomerDelContactID = value
     End Set
   End Property
 

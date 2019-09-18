@@ -127,6 +127,7 @@ Public Class dsoSales
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
     Dim mdtoCust As dtoCustomer
+    Dim mdtoCustContacts As dtoCustomerContact
     Dim mdtoWOs As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
     Dim mdtoOutputDocs As dtoOutputDocument
@@ -139,6 +140,9 @@ Public Class dsoSales
 
     mdtoCust = New dtoCustomer(pDBConn)
     mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
+
+    mdtoCustContacts = New dtoCustomerContact(pDBConn)
+    mdtoCustContacts.LoadCustomerContactCollection(rSalesOrder.Customer.CustomerContacts, rSalesOrder.Customer.CustomerID)
 
     mdtoWOs = New dtoWorkOrder(pDBConn)
     mdtoWOs.LoadWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)

@@ -43,7 +43,7 @@ Public Class repWorkOrderDoc
     xrlDueTime.Text = pSalesOrder.DueTime
     xrNotes.Text = pSalesOrder.VisibleNotes
     xrlCantidad.Text = "Hay que agregar este campo"
-    xrProjectType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
+    xrProjectType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
 
 
   End Sub

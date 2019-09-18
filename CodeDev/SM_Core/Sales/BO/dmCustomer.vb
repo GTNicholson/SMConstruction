@@ -42,6 +42,7 @@ Public Class dmCustomer : Inherits dmBase
   Private pCustomerContacts As colCustomerContacts
   Private pCustomerReferenceID As String
   Private pIVAType As Integer
+  Private pSalesTermsType As Integer
 
 
   Public Sub New()
@@ -116,6 +117,8 @@ Public Class dmCustomer : Inherits dmBase
       .Numero_SWIFT = Numero_SWIFT
       .Numero_ABA = Numero_ABA
       .CustomerReference = CustomerReference
+      .SalesTermsType = SalesTermsType
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -153,6 +156,16 @@ Public Class dmCustomer : Inherits dmBase
     Set(ByVal value As Int32)
       If pCustomerStatusID <> value Then IsDirty = True
       pCustomerStatusID = value
+    End Set
+  End Property
+
+  Public Property SalesTermsType() As Int32
+    Get
+      Return pSalesTermsType
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesTermsType <> value Then IsDirty = True
+      pSalesTermsType = value
     End Set
   End Property
 

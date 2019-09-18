@@ -65,6 +65,8 @@ Partial Class frmCustomerDetail
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdContacts = New DevExpress.XtraGrid.GridControl()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+    Me.cboSalesTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.Label10 = New System.Windows.Forms.Label()
     Me.lblCustomerID = New System.Windows.Forms.Label()
     Me.cboPaymentTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label13 = New System.Windows.Forms.Label()
@@ -102,6 +104,7 @@ Partial Class frmCustomerDetail
     CType(Me.grdContacts, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
+    CType(Me.cboSalesTermsType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboPaymentTermsType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtABA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtSwift.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,7 +177,7 @@ Partial Class frmCustomerDetail
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 521)
     Me.barDockControlBottom.Manager = Me.BarManager1
     Me.barDockControlBottom.Size = New System.Drawing.Size(1164, 0)
     '
@@ -184,7 +187,7 @@ Partial Class frmCustomerDetail
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 488)
     '
     'barDockControlRight
     '
@@ -192,7 +195,7 @@ Partial Class frmCustomerDetail
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
     Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 488)
     '
     'Label1
     '
@@ -504,6 +507,8 @@ Partial Class frmCustomerDetail
     '
     'grdContacts
     '
+    Me.grdContacts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.grdContacts.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdContacts.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdContacts.EmbeddedNavigator.Buttons.EndEdit.Visible = False
@@ -511,11 +516,11 @@ Partial Class frmCustomerDetail
     Me.grdContacts.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdContacts.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdContacts.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdContacts.Location = New System.Drawing.Point(12, 398)
+    Me.grdContacts.Location = New System.Drawing.Point(12, 369)
     Me.grdContacts.MainView = Me.gvContacts
     Me.grdContacts.MenuManager = Me.BarManager1
     Me.grdContacts.Name = "grdContacts"
-    Me.grdContacts.Size = New System.Drawing.Size(620, 319)
+    Me.grdContacts.Size = New System.Drawing.Size(620, 146)
     Me.grdContacts.TabIndex = 3
     Me.grdContacts.UseEmbeddedNavigator = True
     Me.grdContacts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvContacts})
@@ -526,6 +531,8 @@ Partial Class frmCustomerDetail
     Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl2.AppearanceCaption.Options.UseFont = True
     Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl2.Controls.Add(Me.cboSalesTermsType)
+    Me.GroupControl2.Controls.Add(Me.Label10)
     Me.GroupControl2.Controls.Add(Me.lblCustomerID)
     Me.GroupControl2.Controls.Add(Me.cboPaymentTermsType)
     Me.GroupControl2.Controls.Add(Me.Label13)
@@ -537,11 +544,31 @@ Partial Class frmCustomerDetail
     Me.GroupControl2.Controls.Add(Me.Label17)
     Me.GroupControl2.Controls.Add(Me.txtAcountRef)
     Me.GroupControl2.Controls.Add(Me.Label20)
-    Me.GroupControl2.Location = New System.Drawing.Point(660, 39)
+    Me.GroupControl2.Location = New System.Drawing.Point(638, 39)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(477, 222)
+    Me.GroupControl2.Size = New System.Drawing.Size(514, 196)
     Me.GroupControl2.TabIndex = 2
     Me.GroupControl2.Text = "Detalles de la Cuenta"
+    '
+    'cboSalesTermsType
+    '
+    Me.cboSalesTermsType.Location = New System.Drawing.Point(403, 71)
+    Me.cboSalesTermsType.MenuManager = Me.BarManager1
+    Me.cboSalesTermsType.Name = "cboSalesTermsType"
+    Me.cboSalesTermsType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboSalesTermsType.Size = New System.Drawing.Size(106, 20)
+    Me.cboSalesTermsType.TabIndex = 32
+    '
+    'Label10
+    '
+    Me.Label10.AutoSize = True
+    Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label10.Location = New System.Drawing.Point(278, 74)
+    Me.Label10.Name = "Label10"
+    Me.Label10.Size = New System.Drawing.Size(119, 14)
+    Me.Label10.TabIndex = 31
+    Me.Label10.Text = "Términos de Ventas"
     '
     'lblCustomerID
     '
@@ -550,7 +577,7 @@ Partial Class frmCustomerDetail
     Me.lblCustomerID.BackColor = System.Drawing.Color.Transparent
     Me.lblCustomerID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.lblCustomerID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.lblCustomerID.Location = New System.Drawing.Point(415, 0)
+    Me.lblCustomerID.Location = New System.Drawing.Point(452, 0)
     Me.lblCustomerID.Name = "lblCustomerID"
     Me.lblCustomerID.Size = New System.Drawing.Size(47, 14)
     Me.lblCustomerID.TabIndex = 19
@@ -559,11 +586,11 @@ Partial Class frmCustomerDetail
     '
     'cboPaymentTermsType
     '
-    Me.cboPaymentTermsType.Location = New System.Drawing.Point(148, 188)
+    Me.cboPaymentTermsType.Location = New System.Drawing.Point(403, 32)
     Me.cboPaymentTermsType.MenuManager = Me.BarManager1
     Me.cboPaymentTermsType.Name = "cboPaymentTermsType"
     Me.cboPaymentTermsType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboPaymentTermsType.Size = New System.Drawing.Size(131, 20)
+    Me.cboPaymentTermsType.Size = New System.Drawing.Size(106, 20)
     Me.cboPaymentTermsType.TabIndex = 4
     '
     'Label13
@@ -571,7 +598,7 @@ Partial Class frmCustomerDetail
     Me.Label13.AutoSize = True
     Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label13.Location = New System.Drawing.Point(16, 191)
+    Me.Label13.Location = New System.Drawing.Point(278, 35)
     Me.Label13.Name = "Label13"
     Me.Label13.Size = New System.Drawing.Size(108, 14)
     Me.Label13.TabIndex = 29
@@ -581,7 +608,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtABA.Location = New System.Drawing.Point(148, 149)
     Me.txtABA.Name = "txtABA"
-    Me.txtABA.Size = New System.Drawing.Size(131, 20)
+    Me.txtABA.Size = New System.Drawing.Size(106, 20)
     Me.txtABA.TabIndex = 3
     '
     'Label14
@@ -599,7 +626,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtSwift.Location = New System.Drawing.Point(148, 110)
     Me.txtSwift.Name = "txtSwift"
-    Me.txtSwift.Size = New System.Drawing.Size(131, 20)
+    Me.txtSwift.Size = New System.Drawing.Size(106, 20)
     Me.txtSwift.TabIndex = 2
     '
     'Label16
@@ -617,7 +644,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtBancoIntermediario.Location = New System.Drawing.Point(148, 71)
     Me.txtBancoIntermediario.Name = "txtBancoIntermediario"
-    Me.txtBancoIntermediario.Size = New System.Drawing.Size(131, 20)
+    Me.txtBancoIntermediario.Size = New System.Drawing.Size(106, 20)
     Me.txtBancoIntermediario.TabIndex = 1
     '
     'Label17
@@ -635,7 +662,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtAcountRef.Location = New System.Drawing.Point(148, 32)
     Me.txtAcountRef.Name = "txtAcountRef"
-    Me.txtAcountRef.Size = New System.Drawing.Size(131, 20)
+    Me.txtAcountRef.Size = New System.Drawing.Size(106, 20)
     Me.txtAcountRef.TabIndex = 0
     '
     'Label20
@@ -656,9 +683,9 @@ Partial Class frmCustomerDetail
     Me.GroupControl3.AppearanceCaption.Options.UseFont = True
     Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl3.Controls.Add(Me.txtCustomerNotes)
-    Me.GroupControl3.Location = New System.Drawing.Point(660, 267)
+    Me.GroupControl3.Location = New System.Drawing.Point(638, 250)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(477, 86)
+    Me.GroupControl3.Size = New System.Drawing.Size(514, 103)
     Me.GroupControl3.TabIndex = 3
     Me.GroupControl3.Text = "Notas del Cliente"
     '
@@ -667,11 +694,13 @@ Partial Class frmCustomerDetail
     Me.txtCustomerNotes.Location = New System.Drawing.Point(5, 26)
     Me.txtCustomerNotes.MenuManager = Me.BarManager1
     Me.txtCustomerNotes.Name = "txtCustomerNotes"
-    Me.txtCustomerNotes.Size = New System.Drawing.Size(472, 55)
+    Me.txtCustomerNotes.Size = New System.Drawing.Size(504, 72)
     Me.txtCustomerNotes.TabIndex = 0
     '
     'grdSalesOrder
     '
+    Me.grdSalesOrder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.EndEdit.Visible = False
@@ -679,11 +708,11 @@ Partial Class frmCustomerDetail
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdSalesOrder.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdSalesOrder.Location = New System.Drawing.Point(660, 398)
+    Me.grdSalesOrder.Location = New System.Drawing.Point(643, 369)
     Me.grdSalesOrder.MainView = Me.GridView1
     Me.grdSalesOrder.MenuManager = Me.BarManager1
     Me.grdSalesOrder.Name = "grdSalesOrder"
-    Me.grdSalesOrder.Size = New System.Drawing.Size(477, 319)
+    Me.grdSalesOrder.Size = New System.Drawing.Size(509, 146)
     Me.grdSalesOrder.TabIndex = 4
     Me.grdSalesOrder.UseEmbeddedNavigator = True
     Me.grdSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -733,7 +762,7 @@ Partial Class frmCustomerDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1164, 729)
+    Me.ClientSize = New System.Drawing.Size(1164, 521)
     Me.Controls.Add(Me.grdSalesOrder)
     Me.Controls.Add(Me.GroupControl3)
     Me.Controls.Add(Me.GroupControl2)
@@ -767,6 +796,7 @@ Partial Class frmCustomerDetail
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
     Me.GroupControl2.PerformLayout()
+    CType(Me.cboSalesTermsType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboPaymentTermsType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtABA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtSwift.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -842,4 +872,6 @@ Partial Class frmCustomerDetail
   Friend WithEvents btnClose As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents btnSaveAndClose As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents lblCustomerID As Label
+  Friend WithEvents cboSalesTermsType As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents Label10 As Label
 End Class

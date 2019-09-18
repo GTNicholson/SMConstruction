@@ -1,0 +1,9 @@
+use smconstruction
+alter table SalesOrder
+add SalesDelAreaID integer
+go
+
+
+alter table SalesOrder
+add CustomerDelContacID int
+go

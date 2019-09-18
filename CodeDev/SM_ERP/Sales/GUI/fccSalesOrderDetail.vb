@@ -147,4 +147,16 @@ Public Class fccSalesOrderDetail
     mRetVal.HasWarning = False
     Return mRetVal
   End Function
+
+
+  Public Sub ReloadCustomer()
+    Dim mdso As dsoSales
+    Try
+      mdso = New dsoSales(pDBConn)
+      mdso.LoadCustomerDown(pSalesOrder.Customer, pSalesOrder.CustomerID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
 End Class

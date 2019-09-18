@@ -189,8 +189,10 @@ Public Class colWorkOrderInfos : Inherits List(Of clsWorkOrderInfo)
     Dim mIndex As Integer = -1
     For Each mWO As clsWorkOrderInfo In Me
       mIndex += 1
-      If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
-        mRetVal = mIndex
+      If mWO.WorkOrderNo.Length > 2 Then
+        If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
+          mRetVal = mIndex
+        End If
       End If
     Next
     Return mRetVal

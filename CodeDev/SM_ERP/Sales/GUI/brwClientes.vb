@@ -235,8 +235,9 @@ Public Class brwClientes : Inherits brwBrowserListBase
 
 
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("CustomerStatusID"), clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)))
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
 
 
       Me.SaveButton = eActiveVisibleState.Invisible

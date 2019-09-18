@@ -132,6 +132,13 @@ Public Class frmSalesOrderDetail
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus))
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
+
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+
+    If pFormController.SalesOrder.Customer IsNot Nothing Then
+      RTIS.Elements.clsDEControlLoading.FillDEComboVIi(cboCustomerDelContacID, pFormController.SalesOrder.Customer.CustomerContacts)
+    End If
+
   End Sub
 
   Private Sub RefreshControls()
@@ -146,12 +153,26 @@ Public Class frmSalesOrderDetail
         dteFinishDate.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
         dteDueTime.EditValue = clsGeneralA.DateToDBValue(.DueTime)
         txtVisibleNotes.Text = .VisibleNotes
+        txtDelAddress1.Text = .DelAddress1
         btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
+        txtDelAddress2.Text = .DelAddress2
+        txtCustomerContact.Text = .CustomerContactID
 
+        If pFormController.SalesOrder.Customer IsNot Nothing Then
+
+          If pFormController.SalesOrder.Customer.CustomerContacts.Count > 0 Then
+            txtCustomerContact.Text = pFormController.SalesOrder.Customer.CustomerContacts(0).FirstName & " " & pFormController.SalesOrder.Customer.CustomerContacts(0).LastName
+          Else
+            txtCustomerContact.Text = ""
+          End If
+        Else
+          txtCustomerContact.Text = ""
+        End If
 
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
-
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesDelAreaID, .SalesDelAreaID)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboCustomerDelContacID, .CustomerDelContactID)
 
 
         If .Customer Is Nothing Then
@@ -191,8 +212,14 @@ Public Class frmSalesOrderDetail
       .DueTime = dteDueTime.DateTime
       .FinishDate = dteFinishDate.DateTime
       .VisibleNotes = txtVisibleNotes.Text
+      .DelAddress1 = txtDelAddress1.Text
+      .DelAddress2 = txtDelAddress2.Text
       .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
       .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
+      .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
+      .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
+
+
       gvWorkOrders.CloseEditor()
       gvWorkOrders.UpdateCurrentRow()
 
@@ -203,20 +230,26 @@ Public Class frmSalesOrderDetail
 
   Private Sub btnedCustomer_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnedCustomer.ButtonClick
     Try
-      Dim mCustomerPicker As clsPickerCustomer
-      Dim mcustomer As dmCustomer
-      UpdateObjects()
-      mCustomerPicker = New clsPickerCustomer(pFormController.GetCustomerList)
-      mcustomer = frmPickerCustomer.OpenPickerSingle(mCustomerPicker)
-      If mcustomer Is Nothing Then
-        pFormController.SalesOrder.CustomerID = 0
-        pFormController.SalesOrder.Customer = Nothing
-      Else
-        pFormController.SalesOrder.CustomerID = mcustomer.CustomerID
-        pFormController.SalesOrder.Customer = mcustomer
-        FillCustomerDetail()
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Combo
+          Dim mCustomerPicker As clsPickerCustomer
+          Dim mcustomer As dmCustomer
+          UpdateObjects()
+          mCustomerPicker = New clsPickerCustomer(pFormController.GetCustomerList, pFormController.DBConn)
+          mcustomer = frmPickerCustomer.OpenPickerSingle(mCustomerPicker)
+          If mcustomer IsNot Nothing Then
+            pFormController.SalesOrder.CustomerID = mcustomer.CustomerID
+            pFormController.SalesOrder.Customer = mcustomer
+            FillCustomerDetail()
 
-      End If
+          End If
+        Case ButtonPredefines.Ellipsis
+          frmCustomerDetail.OpenFormModal(pFormController.SalesOrder.CustomerID, pFormController.DBConn)
+          If pFormController.SalesOrder.CustomerID <> 0 Then
+            pFormController.ReloadCustomer()
+          End If
+      End Select
+
       RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -233,7 +266,7 @@ Public Class frmSalesOrderDetail
         txtPaymentTermsType.Text = .Customer.PaymentTermsType
         'txtSalesAreaID.Text = .Customer.SalesAreaID
         txtSalesAreaID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country).ItemValueToDisplayValue(.Customer.SalesAreaID)
-        txtPaymentTermsType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders).ItemValueToDisplayValue(.Customer.PaymentTermsType)
+        txtPaymentTermsType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(.Customer.PaymentTermsType)
 
         'CustomerStatusID.Text = clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)).ItemValueToDisplayValue(.Customer.CustomerStatusID)
         CustomerStatusID.Text = clsEnumsConstants.GetEnumDescription(GetType(eCustomerStatus), CType(.Customer.CustomerStatusID, eCustomerStatus))
@@ -489,6 +522,10 @@ Public Class frmSalesOrderDetail
       pFormController.SalesOrder.OutputDocuments.SetFilePath(eParentType.SalesOrder, vDocumentType, eFileType.PDF, mFilePath)
 
     End If
+
+  End Sub
+
+  Private Sub btnedCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles btnedCustomer.EditValueChanged
 
   End Sub
 End Class

@@ -22,6 +22,7 @@ Partial Class frmPickerCustomer
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+    Me.components = New System.ComponentModel.Container()
     Me.grdItemList = New DevExpress.XtraGrid.GridControl()
     Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,19 +31,27 @@ Partial Class frmPickerCustomer
     Me.gcAddress = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+    Me.Bar1 = New DevExpress.XtraBars.Bar()
+    Me.bbtnNewCustomer = New DevExpress.XtraBars.BarButtonItem()
     CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repItemSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grdItemList
     '
     Me.grdItemList.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdItemList.Location = New System.Drawing.Point(0, 0)
+    Me.grdItemList.Location = New System.Drawing.Point(0, 33)
     Me.grdItemList.MainView = Me.gvItemList
     Me.grdItemList.Name = "grdItemList"
     Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repItemSelect})
-    Me.grdItemList.Size = New System.Drawing.Size(733, 400)
+    Me.grdItemList.Size = New System.Drawing.Size(733, 367)
     Me.grdItemList.TabIndex = 0
     Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
     '
@@ -121,18 +130,86 @@ Partial Class frmPickerCustomer
     Me.repItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
     Me.repItemSelect.Name = "repItemSelect"
     '
+    'BarManager1
+    '
+    Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
+    Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+    Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+    Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+    Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+    Me.BarManager1.Form = Me
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnNewCustomer})
+    Me.BarManager1.MaxItemId = 1
+    '
+    'barDockControlTop
+    '
+    Me.barDockControlTop.CausesValidation = False
+    Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+    Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+    Me.barDockControlTop.Manager = Me.BarManager1
+    Me.barDockControlTop.Size = New System.Drawing.Size(733, 33)
+    '
+    'barDockControlBottom
+    '
+    Me.barDockControlBottom.CausesValidation = False
+    Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 400)
+    Me.barDockControlBottom.Manager = Me.BarManager1
+    Me.barDockControlBottom.Size = New System.Drawing.Size(733, 0)
+    '
+    'barDockControlLeft
+    '
+    Me.barDockControlLeft.CausesValidation = False
+    Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+    Me.barDockControlLeft.Manager = Me.BarManager1
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 367)
+    '
+    'barDockControlRight
+    '
+    Me.barDockControlRight.CausesValidation = False
+    Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+    Me.barDockControlRight.Location = New System.Drawing.Point(733, 33)
+    Me.barDockControlRight.Manager = Me.BarManager1
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 367)
+    '
+    'Bar1
+    '
+    Me.Bar1.BarAppearance.Normal.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.Bar1.BarAppearance.Normal.Options.UseFont = True
+    Me.Bar1.BarName = "Herramientas"
+    Me.Bar1.DockCol = 0
+    Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnNewCustomer)})
+    Me.Bar1.Text = "Herramientas"
+    '
+    'bbtnNewCustomer
+    '
+    Me.bbtnNewCustomer.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnNewCustomer.Caption = "Nuevo Cliente"
+    Me.bbtnNewCustomer.Id = 0
+    Me.bbtnNewCustomer.Name = "bbtnNewCustomer"
+    '
     'frmPickerCustomer
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(733, 400)
     Me.Controls.Add(Me.grdItemList)
+    Me.Controls.Add(Me.barDockControlLeft)
+    Me.Controls.Add(Me.barDockControlRight)
+    Me.Controls.Add(Me.barDockControlBottom)
+    Me.Controls.Add(Me.barDockControlTop)
+    Me.MaximizeBox = False
+    Me.MinimizeBox = False
     Me.Name = "frmPickerCustomer"
     Me.Text = "Selección de Cliente"
     CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repItemSelect, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
+    Me.PerformLayout()
 
   End Sub
 
@@ -144,4 +221,11 @@ Partial Class frmPickerCustomer
   Friend WithEvents gcAddress As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcAccountCode As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+  Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+  Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
+  Friend WithEvents bbtnNewCustomer As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+  Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class

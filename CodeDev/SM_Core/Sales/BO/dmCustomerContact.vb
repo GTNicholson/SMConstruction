@@ -2,6 +2,8 @@
 Imports RTIS.CommonVB
 
 Public Class dmCustomerContact : Inherits dmBase
+  Implements iValueItem
+
   Private pCustomerContactID As Int32
   Private pCustomerID As Int32
   Private pTitle As String
@@ -212,7 +214,29 @@ Public Class dmCustomerContact : Inherits dmBase
     End Set
   End Property
 
+  Public Property ItemValue As Integer Implements iValueItem.ItemValue
+    Get
+      Return pCustomerContactID
+    End Get
+    Set(value As Integer)
+    End Set
+  End Property
 
+  Public Property DisplayValue As String Implements iValueItem.DisplayValue
+    Get
+      Return pFirstName & " " & pLastName
+    End Get
+    Set(value As String)
+
+    End Set
+  End Property
+
+  Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
+    Get
+    End Get
+    Set(value As Boolean)
+    End Set
+  End Property
 End Class
 
 

@@ -94,7 +94,7 @@ Public Class dsoAppRefLists
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 2", "Value", "Description")
           mItem.IList = mValueItems
 
-        Case appRefLists.Tenders
+        Case appRefLists.PaymentTermsType
           mValueItems = New colValueItems
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 4", "Value", "Description")
           mItem.IList = mValueItems
@@ -111,6 +111,11 @@ Public Class dsoAppRefLists
         Case appRefLists.WoodFinish
           mValueItems = New colValueItems
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 6", "Value", "Description")
+          mItem.IList = mValueItems
+
+        Case appRefLists.SalesTermType
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 7", "Value", "Description")
           mItem.IList = mValueItems
 
       End Select

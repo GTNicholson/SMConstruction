@@ -91,6 +91,7 @@ Public Class dtoCustomer : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_SWIFT", StringToDBValue(.Numero_SWIFT))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_ABA", StringToDBValue(.Numero_ABA))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerReference", StringToDBValue(.CustomerReference))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesTermsType", .SalesTermsType)
 
     End With
 
@@ -140,6 +141,7 @@ Public Class dtoCustomer : Inherits dtoBase
         .Numero_SWIFT = DBReadString(rDataReader, "Numero_SWIFT")
         .Numero_ABA = DBReadString(rDataReader, "Numero_ABA")
         .CustomerReference = DBReadString(rDataReader, "CustomerReference")
+        .SalesTermsType = DBReadInt32(rDataReader, "SalesTermsType")
         pCustomer.IsDirty = False
       End With
       mOK = True

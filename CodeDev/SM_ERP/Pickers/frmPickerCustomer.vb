@@ -58,4 +58,18 @@ Public Class frmPickerCustomer
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub bbtnNewCustomer_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnNewCustomer.ItemClick
+    Dim mRetVal As dmCustomer
+
+    Try
+      mRetVal = frmCustomerDetail.GetNewcustomer(pPickerCustomer.DBConn)
+      If mRetVal IsNot Nothing Then
+        pPickerCustomer.SelectedObjects.Add(mRetVal)
+        Me.Close()
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class

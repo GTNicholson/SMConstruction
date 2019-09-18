@@ -46,6 +46,32 @@ Public Class frmCustomerDetail
 
   End Sub
 
+
+  Public Shared Sub OpenFormModal(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+    Dim mfrm As frmCustomerDetail = Nothing
+
+    mfrm = New frmCustomerDetail
+    mfrm.pFormController = New fccCustomerDetail(rDBConn)
+    mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
+    mfrm.ShowDialog()
+
+  End Sub
+
+  Public Shared Function GetNewcustomer(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase) As dmCustomer
+    Dim mfrm As frmCustomerDetail = Nothing
+    Dim mRetVal As dmCustomer = Nothing
+    mfrm = New frmCustomerDetail
+    mfrm.pFormController = New fccCustomerDetail(rDBConn)
+    mfrm.FormController.PrimaryKeyID = 0
+    mfrm.ShowDialog()
+
+    If mfrm.FormController.Customer.CustomerID <> 0 Then
+      mRetVal = mfrm.pFormController.Customer
+    End If
+
+    Return mRetVal
+  End Function
+
   Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmCustomerDetail
     Dim mfrmWanted As frmCustomerDetail = Nothing
     Dim mFound As Boolean = False
@@ -122,7 +148,10 @@ Public Class frmCustomerDetail
   Private Sub LoadCombos()
     Try
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
-      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Tenders))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -198,6 +227,7 @@ Public Class frmCustomerDetail
       txtCustomerNotes.Text = .CustomerNotes
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesTermsType, .SalesTermsType)
       txtMainPostCode.Text = .MainPostCode
       rgEstatus.EditValue = .CustomerStatusID
 
@@ -224,8 +254,10 @@ Public Class frmCustomerDetail
       .SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .CustomerReference = txtCustomerReference.Text
       .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
+      .SalesTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesTermsType)
       .CustomerNotes = txtCustomerNotes.Text
       .CustomerStatusID = rgEstatus.EditValue
+
       gvContacts.CloseEditor()
       gvContacts.UpdateCurrentRow()
 
