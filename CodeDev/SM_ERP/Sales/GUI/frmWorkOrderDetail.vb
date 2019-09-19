@@ -251,7 +251,9 @@ Public Class frmWorkOrderDetail
       txtSalesOrderID.Text = .OrderNo
       txtProjectName.Text = .ProjectName
       txtDueTime.Text = .DueTime
-      txtCompanyName.Text = .Customer.CompanyName
+      If .Customer IsNot Nothing Then
+        txtCompanyName.Text = .Customer.CompanyName
+      End If
     End With
   End Sub
 

@@ -142,7 +142,9 @@ Public Class dsoSales
     mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
 
     mdtoCustContacts = New dtoCustomerContact(pDBConn)
-    mdtoCustContacts.LoadCustomerContactCollection(rSalesOrder.Customer.CustomerContacts, rSalesOrder.Customer.CustomerID)
+    If rSalesOrder.Customer IsNot Nothing Then
+      mdtoCustContacts.LoadCustomerContactCollection(rSalesOrder.Customer.CustomerContacts, rSalesOrder.Customer.CustomerID)
+    End If
 
     mdtoWOs = New dtoWorkOrder(pDBConn)
     mdtoWOs.LoadWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
@@ -190,15 +192,11 @@ Public Class dsoSales
       rWorkOrder.Product = clsProductSharedFuncs.NewProductInstance(rWorkOrder.ProductTypeID)
       If rWorkOrder.Product IsNot Nothing Then
         mdtoProduct = dtoProductBase.GetNewInstance(rWorkOrder.ProductTypeID, pDBConn)
-        mdtoProduct.LoadProduct(rWorkOrder.Product, rWorkOrder.ProductTypeID)
+        mdtoProduct.LoadProduct(rWorkOrder.Product, rWorkOrder.ProductID)
         mProdFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
         If mProdFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID)
-
-
-
-
 
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
@@ -236,6 +234,13 @@ Public Class dsoSales
       If rWorkOrder.Product IsNot Nothing Then
         mdtoProduct = dtoProductBase.GetNewInstance(rWorkOrder.ProductTypeID, pDBConn)
         mdtoProduct.SaveProduct(rWorkOrder.Product)
+
+        '// Now record the the productID in the workorder in case it was a new product
+        If rWorkOrder.ProductID = 0 Then
+          rWorkOrder.ProductID = CType(rWorkOrder.Product, dmProductFurniture).ProductFurnitureID
+          mdto.SaveWorkOrder(rWorkOrder)
+        End If
+
         mProductFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
         If mProductFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
