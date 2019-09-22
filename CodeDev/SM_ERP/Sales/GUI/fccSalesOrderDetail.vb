@@ -113,9 +113,11 @@ Public Class fccSalesOrderDetail
     Dim mdso As dsoSales
     Dim mWO As dmWorkOrder
     Try
+      SaveObjects()
       mWO = pSalesOrderHandler.AddWorkOrder(vProductType)
       mdso = New dsoSales(pDBConn)
       mdso.SaveWorkOrderDown(mWO)
+      SaveObjects()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

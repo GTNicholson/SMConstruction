@@ -24,7 +24,7 @@ Partial Class frmAdminEmployeeOverride
     'frmAdminEmployeeOverride
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-    Me.ClientSize = New System.Drawing.Size(906, 620)
+    Me.ClientSize = New System.Drawing.Size(906, 521)
     Me.Name = "frmAdminEmployeeOverride"
     Me.Text = "Administración de Empleados"
     Me.ResumeLayout(False)

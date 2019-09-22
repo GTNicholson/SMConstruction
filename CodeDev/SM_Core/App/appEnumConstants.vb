@@ -89,12 +89,15 @@ End Enum
 
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
-  <Description("Preparacion")> Preparacion = 1
-  <Description("Carpinteria")> Carpinteria = 2
-  <Description("Lija")> Lija = 3
-  <Description("Acabado")> Acabado = 4
-  <Description("Distribucion")> Distribucion = 5
-  <Description("Instalacion")> Instalacion = 6
+  <Description("Optimización")> Optimizacion = 1
+  <Description("Maquinado")> Maquinado = 2
+  <Description("Ensamble")> Ensamble = 3
+  <Description("Lija")> Lija = 4
+  <Description("Metal")> Metal = 5
+  <Description("Tapizado")> Tapizado = 6
+  <Description("Pintura")> Pintura = 7
+  <Description("Empaque")> Empaque = 8
+  <Description("Despacho")> Despacho = 9
 
 End Enum
 

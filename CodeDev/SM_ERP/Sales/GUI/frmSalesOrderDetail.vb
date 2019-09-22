@@ -135,11 +135,17 @@ Public Class frmSalesOrderDetail
 
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
 
+    LoadCustomerContactCombo()
+
+  End Sub
+  Private Sub LoadCustomerContactCombo()
+
     If pFormController.SalesOrder.Customer IsNot Nothing Then
       RTIS.Elements.clsDEControlLoading.FillDEComboVIi(cboCustomerDelContacID, pFormController.SalesOrder.Customer.CustomerContacts)
     End If
-
   End Sub
+
+
 
   Private Sub RefreshControls()
     Try
@@ -240,13 +246,16 @@ Public Class frmSalesOrderDetail
           If mcustomer IsNot Nothing Then
             pFormController.SalesOrder.CustomerID = mcustomer.CustomerID
             pFormController.SalesOrder.Customer = mcustomer
+            pFormController.ReloadCustomer()
             FillCustomerDetail()
-
+            LoadCustomerContactCombo()
           End If
         Case ButtonPredefines.Ellipsis
           frmCustomerDetail.OpenFormModal(pFormController.SalesOrder.CustomerID, pFormController.DBConn)
           If pFormController.SalesOrder.CustomerID <> 0 Then
             pFormController.ReloadCustomer()
+            FillCustomerDetail()
+            LoadCustomerContactCombo()
           End If
       End Select
 
@@ -285,12 +294,16 @@ Public Class frmSalesOrderDetail
     Dim mWO As dmWorkOrder
     Select Case e.Button.Properties.Tag
       Case eWorkOrderGroupButtonTags.Add
+        UpdateObjects()
         pFormController.AddWorkOrder(eProductType.ProductFurniture)
+        RefreshControls()
       Case eWorkOrderGroupButtonTags.Delete
         mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
         If mWO IsNot Nothing Then
           If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
+            UpdateObjects()
             pFormController.DeleteWorkOrder(mWO)
+            RefreshControls()
           End If
         End If
     End Select
@@ -302,7 +315,10 @@ Public Class frmSalesOrderDetail
     Try
       mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
       If mWO IsNot Nothing Then
+        UpdateObjects()
+        pFormController.SaveObjects()
         frmWorkOrderDetail.OpenFormModal(mWO.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
+        RefreshControls()
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

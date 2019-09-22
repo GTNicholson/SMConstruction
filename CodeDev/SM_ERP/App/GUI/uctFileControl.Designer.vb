@@ -96,7 +96,7 @@ Partial Class uctFileControl
     '
     'gcDescription
     '
-    Me.gcDescription.Caption = "Description"
+    Me.gcDescription.Caption = "Descripción"
     Me.gcDescription.ColumnEdit = Me.repDescription
     Me.gcDescription.FieldName = "Description"
     Me.gcDescription.Name = "gcDescription"

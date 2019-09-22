@@ -67,16 +67,16 @@ Partial Class frmPDFViewer
     Me.PdfViewer1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PdfViewer1.Location = New System.Drawing.Point(0, 0)
     Me.PdfViewer1.Name = "PdfViewer1"
-    Me.PdfViewer1.Size = New System.Drawing.Size(1135, 812)
+    Me.PdfViewer1.Size = New System.Drawing.Size(1135, 741)
     Me.PdfViewer1.TabIndex = 0
     '
     'barDockControlLeft
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 781)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 713)
     '
     'BarManager1
     '
@@ -220,13 +220,13 @@ Partial Class frmPDFViewer
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1135, 31)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1135, 28)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 812)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 741)
     Me.barDockControlBottom.Manager = Me.BarManager1
     Me.barDockControlBottom.Size = New System.Drawing.Size(1135, 0)
     '
@@ -234,9 +234,9 @@ Partial Class frmPDFViewer
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1135, 31)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1135, 28)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 781)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 713)
     '
     'PdfBarController1
     '
@@ -267,7 +267,7 @@ Partial Class frmPDFViewer
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1135, 812)
+    Me.ClientSize = New System.Drawing.Size(1135, 741)
     Me.Controls.Add(Me.PdfViewer1)
     Me.Name = "frmPDFViewer"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

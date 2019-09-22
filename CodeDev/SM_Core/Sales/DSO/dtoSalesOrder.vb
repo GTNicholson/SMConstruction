@@ -55,6 +55,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
     End If
     With pSalesOrder
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerID", .CustomerID)
+      'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", StringToDBValue(.ProjectName))
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerContactID", .CustomerContactID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProjectName", StringToDBValue(.ProjectName))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EstimatorEmployeeID", .EstimatorEmployeeID)
@@ -76,8 +78,6 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DueTime", DateToDBValue(.DueTime))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesDelAreaID", .SalesDelAreaID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerDelContacID", .CustomerDelContactID)
-
-
 
     End With
 

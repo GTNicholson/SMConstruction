@@ -221,6 +221,8 @@ Public Class frmWorkOrderDetail
       End If
 
 
+      txtPrice.Text = .UnitPrice
+      txtQuantity.Text = .Quantity
 
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description
@@ -282,7 +284,7 @@ Public Class frmWorkOrderDetail
     With pFormController.WorkOrder
       .Description = txtDescription.Text
       .PlannedStartDate = dtePlannedStartDate.DateTime
-
+      .UnitPrice = Val(txtPrice.Text)
       .WoodSpecieID = clsDEControlLoading.GetDEComboValue(cboWoodSpecie)
       .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
     End With

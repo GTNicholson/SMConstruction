@@ -11,7 +11,6 @@ Public Class repWorkOrderDoc
     mRep.pWorkOrder = rWorkOrder
     mRep.pFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
     mRep.pSalesOrder = rSalesOrder
-    mRep.DataSource = mRep.pFurniture.MaterialRequirments
     mRep.CreateDocument()
 
     Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
@@ -28,10 +27,10 @@ Public Class repWorkOrderDoc
 
     '// Head informatio from pWorkOrder
     xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
+    xrlDescription.DataBindings.Add("Text", pWorkOrder, "Description")
+    xrtCantidad.DataBindings.Add("Text", pWorkOrder, "Quantity")
 
 
-    '// Detail information from Datasorce (MaterialRequirements)
-    xrtcStockCode.DataBindings.Add("Text", Me.DataSource, "StockCode")
   End Sub
 
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
@@ -42,7 +41,6 @@ Public Class repWorkOrderDoc
     xrlDateEntered.Text = pSalesOrder.DateEntered
     xrlDueTime.Text = pSalesOrder.DueTime
     xrNotes.Text = pSalesOrder.VisibleNotes
-    xrlCantidad.Text = "Hay que agregar este campo"
     xrProjectType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
 
 

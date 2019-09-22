@@ -141,76 +141,76 @@ Partial Class frmTabbedMDI
     '
     'BarMdiChildrenListItem1
     '
-    Me.BarMdiChildrenListItem1.Caption = "Open Tabs"
+    Me.BarMdiChildrenListItem1.Caption = "Abrir pestañas"
     Me.BarMdiChildrenListItem1.Id = 7
     Me.BarMdiChildrenListItem1.Name = "BarMdiChildrenListItem1"
     '
     'bsmSystem
     '
-    Me.bsmSystem.Caption = "System"
+    Me.bsmSystem.Caption = "Sistema"
     Me.bsmSystem.Id = 22
     Me.bsmSystem.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbiChangePassword), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiCurrentUserLocks), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiClearAllLocks), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiUserGroupAdmin), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiPCSettings, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiLocalConfig), New DevExpress.XtraBars.LinkPersistInfo(Me.bbiServerConfig), New DevExpress.XtraBars.LinkPersistInfo(Me.bsiScreenResolutionTest, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnDevUtilities), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnReloadLists)})
     Me.bsmSystem.Name = "bsmSystem"
     '
     'bbiChangePassword
     '
-    Me.bbiChangePassword.Caption = "Change Password"
+    Me.bbiChangePassword.Caption = "Cambiar Contraseña"
     Me.bbiChangePassword.Id = 27
     Me.bbiChangePassword.Name = "bbiChangePassword"
     '
     'bbiCurrentUserLocks
     '
-    Me.bbiCurrentUserLocks.Caption = "Current User Locks"
+    Me.bbiCurrentUserLocks.Caption = "Bloqueo de Usuario Actual"
     Me.bbiCurrentUserLocks.Id = 26
     Me.bbiCurrentUserLocks.Name = "bbiCurrentUserLocks"
     '
     'bbiClearAllLocks
     '
-    Me.bbiClearAllLocks.Caption = "Clear All Locks"
+    Me.bbiClearAllLocks.Caption = "Limpiar Todos los Bloqueos"
     Me.bbiClearAllLocks.Id = 45
     Me.bbiClearAllLocks.Name = "bbiClearAllLocks"
     '
     'bbiUserGroupAdmin
     '
-    Me.bbiUserGroupAdmin.Caption = "User/Group Admin"
+    Me.bbiUserGroupAdmin.Caption = "Admin. Usuario/Grupo"
     Me.bbiUserGroupAdmin.Id = 37
     Me.bbiUserGroupAdmin.Name = "bbiUserGroupAdmin"
     '
     'bbiPCSettings
     '
-    Me.bbiPCSettings.Caption = "PC Settings"
+    Me.bbiPCSettings.Caption = "Conf. PC"
     Me.bbiPCSettings.Id = 25
     Me.bbiPCSettings.Name = "bbiPCSettings"
     '
     'bbiLocalConfig
     '
-    Me.bbiLocalConfig.Caption = "Local Configuration File"
+    Me.bbiLocalConfig.Caption = "Archivo de Conf. Local "
     Me.bbiLocalConfig.Id = 23
     Me.bbiLocalConfig.Name = "bbiLocalConfig"
     '
     'bbiServerConfig
     '
-    Me.bbiServerConfig.Caption = "Server Configuration File"
+    Me.bbiServerConfig.Caption = "Archivo de Conf. de Servidor "
     Me.bbiServerConfig.Id = 24
     Me.bbiServerConfig.Name = "bbiServerConfig"
     '
     'bsiScreenResolutionTest
     '
-    Me.bsiScreenResolutionTest.Caption = "Screen Size Test"
+    Me.bsiScreenResolutionTest.Caption = "Prueba de Tamaño de Pantalla"
     Me.bsiScreenResolutionTest.Id = 29
     Me.bsiScreenResolutionTest.Name = "bsiScreenResolutionTest"
     Me.bsiScreenResolutionTest.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     '
     'BarSubItem2
     '
-    Me.BarSubItem2.Caption = "Tools"
+    Me.BarSubItem2.Caption = "Herramientas"
     Me.BarSubItem2.Id = 43
     Me.BarSubItem2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRefreshPhaseStatuses)})
     Me.BarSubItem2.Name = "BarSubItem2"
     '
     'barbtnRefreshPhaseStatuses
     '
-    Me.barbtnRefreshPhaseStatuses.Caption = "Refresh Phase Statuses"
+    Me.barbtnRefreshPhaseStatuses.Caption = "Refrescar Estatus de Fases"
     Me.barbtnRefreshPhaseStatuses.Id = 44
     Me.barbtnRefreshPhaseStatuses.Name = "barbtnRefreshPhaseStatuses"
     '
@@ -222,7 +222,7 @@ Partial Class frmTabbedMDI
     '
     'barbtnReloadLists
     '
-    Me.barbtnReloadLists.Caption = "Reload Lists"
+    Me.barbtnReloadLists.Caption = "Recargar Listas"
     Me.barbtnReloadLists.Id = 40
     Me.barbtnReloadLists.Name = "barbtnReloadLists"
     '
@@ -243,7 +243,7 @@ Partial Class frmTabbedMDI
     '
     'bbtn_About
     '
-    Me.bbtn_About.Caption = "About"
+    Me.bbtn_About.Caption = "Acerca De"
     Me.bbtn_About.Id = 19
     Me.bbtn_About.Name = "bbtn_About"
     '

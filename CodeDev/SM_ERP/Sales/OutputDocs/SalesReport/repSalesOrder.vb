@@ -13,9 +13,9 @@ Public Class repSalesOrder
 
     mRep.CreateDocument()
 
-    Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
-    mpt = New DevExpress.XtraReports.UI.ReportPrintTool(mRep)
-    mpt.ShowPreviewDialog()
+    ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
+    ''mpt = New DevExpress.XtraReports.UI.ReportPrintTool(mRep)
+    ''mpt.ShowPreviewDialog()
 
 
     Return mRep
@@ -98,9 +98,11 @@ Public Class repSalesOrder
 
     mWorkOrder = Me.GetCurrentRow
 
-    mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
-    mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
-    xrtWood.Text = mText
+    If mWorkOrder IsNot Nothing Then
+      mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
+      mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
+      xrtWood.Text = mText
+    End If
 
   End Sub
 End Class
