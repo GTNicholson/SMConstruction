@@ -34,6 +34,10 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
+    Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.ComboBoxEdit2 = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label18 = New System.Windows.Forms.Label()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
@@ -65,6 +69,7 @@ Partial Class frmWorkOrderDetail
     Me.tabProductSpec = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
     Me.grpWOFiles = New DevExpress.XtraEditors.GroupControl()
+    Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
     Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
     Me.UctFileControl1 = New SimplementeMadera.uctFileControl()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -98,10 +103,16 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.CheckEdit2 = New DevExpress.XtraEditors.CheckEdit()
+    Me.CheckEdit3 = New DevExpress.XtraEditors.CheckEdit()
+    Me.CheckEdit4 = New DevExpress.XtraEditors.CheckEdit()
+    Me.Label19 = New System.Windows.Forms.Label()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
@@ -125,6 +136,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage1.SuspendLayout()
     CType(Me.grpWOFiles, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpWOFiles.SuspendLayout()
+    CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl4.SuspendLayout()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,6 +158,9 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.CheckEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -242,6 +257,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.GridControl2)
     Me.GroupControl1.Controls.Add(Me.ComboBoxEdit2)
     Me.GroupControl1.Controls.Add(Me.Label18)
     Me.GroupControl1.Controls.Add(Me.GroupControl2)
@@ -267,6 +283,64 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
     '
+    'GridControl2
+    '
+    Me.GridControl2.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.Next.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.Prev.Visible = False
+    Me.GridControl2.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.GridControl2.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
+    Me.GridControl2.Location = New System.Drawing.Point(685, 37)
+    Me.GridControl2.MainView = Me.GridView2
+    Me.GridControl2.MenuManager = Me.BarManager1
+    Me.GridControl2.Name = "GridControl2"
+    Me.GridControl2.Size = New System.Drawing.Size(163, 143)
+    Me.GridControl2.TabIndex = 149
+    Me.GridControl2.UseEmbeddedNavigator = True
+    Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+    '
+    'GridView2
+    '
+    Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
+    Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.GridView2.Appearance.Row.Options.UseFont = True
+    Me.GridView2.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView2.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
+    Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7})
+    Me.GridView2.GridControl = Me.GridControl2
+    Me.GridView2.Name = "GridView2"
+    Me.GridView2.OptionsView.ShowColumnHeaders = False
+    Me.GridView2.OptionsView.ShowGroupPanel = False
+    Me.GridView2.OptionsView.ShowIndicator = False
+    Me.GridView2.OptionsView.ShowViewCaption = True
+    Me.GridView2.ViewCaption = "Lotes"
+    '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "Codigo"
+    Me.GridColumn5.FieldName = "StockCode"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 0
+    Me.GridColumn5.Width = 362
+    '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "Cantidad"
+    Me.GridColumn7.FieldName = "Quantity"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 1
+    Me.GridColumn7.Width = 433
+    '
     'ComboBoxEdit2
     '
     Me.ComboBoxEdit2.Location = New System.Drawing.Point(113, 106)
@@ -291,6 +365,10 @@ Partial Class frmWorkOrderDetail
     '
     'GroupControl2
     '
+    Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl2.Controls.Add(Me.txtDueTime)
     Me.GroupControl2.Controls.Add(Me.Label17)
     Me.GroupControl2.Controls.Add(Me.txtSalesOrderID)
@@ -299,9 +377,9 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.Controls.Add(Me.Label15)
     Me.GroupControl2.Controls.Add(Me.Label13)
     Me.GroupControl2.Controls.Add(Me.txtProjectName)
-    Me.GroupControl2.Location = New System.Drawing.Point(824, 26)
+    Me.GroupControl2.Location = New System.Drawing.Point(858, 37)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(329, 143)
+    Me.GroupControl2.Size = New System.Drawing.Size(295, 143)
     Me.GroupControl2.TabIndex = 146
     Me.GroupControl2.Text = "Detalles de la Orden de Venta"
     '
@@ -314,7 +392,7 @@ Partial Class frmWorkOrderDetail
     Me.txtDueTime.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDueTime.Properties.Appearance.Options.UseBackColor = True
     Me.txtDueTime.Properties.Appearance.Options.UseFont = True
-    Me.txtDueTime.Size = New System.Drawing.Size(182, 20)
+    Me.txtDueTime.Size = New System.Drawing.Size(163, 20)
     Me.txtDueTime.TabIndex = 152
     Me.txtDueTime.Tag = "c"
     '
@@ -323,7 +401,7 @@ Partial Class frmWorkOrderDetail
     Me.Label17.AutoSize = True
     Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label17.Location = New System.Drawing.Point(6, 115)
+    Me.Label17.Location = New System.Drawing.Point(6, 117)
     Me.Label17.Name = "Label17"
     Me.Label17.Size = New System.Drawing.Size(98, 14)
     Me.Label17.TabIndex = 151
@@ -339,7 +417,7 @@ Partial Class frmWorkOrderDetail
     Me.txtSalesOrderID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtSalesOrderID.Properties.Appearance.Options.UseBackColor = True
     Me.txtSalesOrderID.Properties.Appearance.Options.UseFont = True
-    Me.txtSalesOrderID.Size = New System.Drawing.Size(182, 20)
+    Me.txtSalesOrderID.Size = New System.Drawing.Size(163, 20)
     Me.txtSalesOrderID.TabIndex = 150
     Me.txtSalesOrderID.Tag = "c"
     '
@@ -348,7 +426,7 @@ Partial Class frmWorkOrderDetail
     Me.Label16.AutoSize = True
     Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label16.Location = New System.Drawing.Point(6, 31)
+    Me.Label16.Location = New System.Drawing.Point(6, 33)
     Me.Label16.Name = "Label16"
     Me.Label16.Size = New System.Drawing.Size(101, 14)
     Me.Label16.TabIndex = 149
@@ -364,7 +442,7 @@ Partial Class frmWorkOrderDetail
     Me.txtCompanyName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtCompanyName.Properties.Appearance.Options.UseBackColor = True
     Me.txtCompanyName.Properties.Appearance.Options.UseFont = True
-    Me.txtCompanyName.Size = New System.Drawing.Size(182, 20)
+    Me.txtCompanyName.Size = New System.Drawing.Size(163, 20)
     Me.txtCompanyName.TabIndex = 148
     Me.txtCompanyName.Tag = "c"
     '
@@ -373,7 +451,7 @@ Partial Class frmWorkOrderDetail
     Me.Label15.AutoSize = True
     Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label15.Location = New System.Drawing.Point(6, 59)
+    Me.Label15.Location = New System.Drawing.Point(6, 61)
     Me.Label15.Name = "Label15"
     Me.Label15.Size = New System.Drawing.Size(46, 14)
     Me.Label15.TabIndex = 147
@@ -385,7 +463,7 @@ Partial Class frmWorkOrderDetail
     Me.Label13.AutoSize = True
     Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label13.Location = New System.Drawing.Point(6, 87)
+    Me.Label13.Location = New System.Drawing.Point(6, 89)
     Me.Label13.Name = "Label13"
     Me.Label13.Size = New System.Drawing.Size(56, 14)
     Me.Label13.TabIndex = 141
@@ -401,7 +479,7 @@ Partial Class frmWorkOrderDetail
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseBackColor = True
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
-    Me.txtProjectName.Size = New System.Drawing.Size(182, 20)
+    Me.txtProjectName.Size = New System.Drawing.Size(163, 20)
     Me.txtProjectName.TabIndex = 140
     Me.txtProjectName.Tag = "c"
     '
@@ -435,7 +513,7 @@ Partial Class frmWorkOrderDetail
     Me.Label14.AutoSize = True
     Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label14.Location = New System.Drawing.Point(480, 73)
+    Me.Label14.Location = New System.Drawing.Point(466, 73)
     Me.Label14.Name = "Label14"
     Me.Label14.Size = New System.Drawing.Size(88, 14)
     Me.Label14.TabIndex = 143
@@ -445,7 +523,7 @@ Partial Class frmWorkOrderDetail
     'dtePlannedStartDate
     '
     Me.dtePlannedStartDate.EditValue = Nothing
-    Me.dtePlannedStartDate.Location = New System.Drawing.Point(574, 70)
+    Me.dtePlannedStartDate.Location = New System.Drawing.Point(560, 70)
     Me.dtePlannedStartDate.MenuManager = Me.BarManager1
     Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
     Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -504,7 +582,7 @@ Partial Class frmWorkOrderDetail
     '
     'TextEdit3
     '
-    Me.TextEdit3.Location = New System.Drawing.Point(419, 70)
+    Me.TextEdit3.Location = New System.Drawing.Point(410, 70)
     Me.TextEdit3.MenuManager = Me.BarManager1
     Me.TextEdit3.Name = "TextEdit3"
     Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -518,7 +596,7 @@ Partial Class frmWorkOrderDetail
     Me.Label4.AutoSize = True
     Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label4.Location = New System.Drawing.Point(371, 73)
+    Me.Label4.Location = New System.Drawing.Point(362, 73)
     Me.Label4.Name = "Label4"
     Me.Label4.Size = New System.Drawing.Size(42, 14)
     Me.Label4.TabIndex = 18
@@ -576,7 +654,7 @@ Partial Class frmWorkOrderDetail
     Me.txtDescription.Name = "txtDescription"
     Me.txtDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDescription.Properties.Appearance.Options.UseFont = True
-    Me.txtDescription.Size = New System.Drawing.Size(373, 20)
+    Me.txtDescription.Size = New System.Drawing.Size(359, 20)
     Me.txtDescription.TabIndex = 12
     Me.txtDescription.Tag = "c"
     '
@@ -623,6 +701,11 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpWOFiles.AppearanceCaption.Options.UseFont = True
     Me.grpWOFiles.AppearanceCaption.Options.UseForeColor = True
+    Me.grpWOFiles.Controls.Add(Me.Label19)
+    Me.grpWOFiles.Controls.Add(Me.CheckEdit4)
+    Me.grpWOFiles.Controls.Add(Me.CheckEdit3)
+    Me.grpWOFiles.Controls.Add(Me.CheckEdit2)
+    Me.grpWOFiles.Controls.Add(Me.CheckEdit1)
     Me.grpWOFiles.Controls.Add(Me.GroupControl4)
     Me.grpWOFiles.Controls.Add(Me.GridControl1)
     Me.grpWOFiles.Controls.Add(Me.ComboBoxEdit6)
@@ -644,6 +727,17 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Size = New System.Drawing.Size(1146, 439)
     Me.grpWOFiles.TabIndex = 14
     Me.grpWOFiles.Text = "Detalles de Mueble"
+    '
+    'CheckEdit1
+    '
+    Me.CheckEdit1.Location = New System.Drawing.Point(111, 94)
+    Me.CheckEdit1.MenuManager = Me.BarManager1
+    Me.CheckEdit1.Name = "CheckEdit1"
+    Me.CheckEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.CheckEdit1.Properties.Appearance.Options.UseFont = True
+    Me.CheckEdit1.Properties.Caption = "Carpinteria"
+    Me.CheckEdit1.Size = New System.Drawing.Size(73, 19)
+    Me.CheckEdit1.TabIndex = 35
     '
     'GroupControl4
     '
@@ -865,10 +959,10 @@ Partial Class frmWorkOrderDetail
     '
     'memPFNotes
     '
-    Me.memPFNotes.Location = New System.Drawing.Point(111, 93)
+    Me.memPFNotes.Location = New System.Drawing.Point(111, 119)
     Me.memPFNotes.MenuManager = Me.BarManager1
     Me.memPFNotes.Name = "memPFNotes"
-    Me.memPFNotes.Size = New System.Drawing.Size(460, 102)
+    Me.memPFNotes.Size = New System.Drawing.Size(460, 74)
     Me.memPFNotes.TabIndex = 17
     '
     'Label5
@@ -876,7 +970,7 @@ Partial Class frmWorkOrderDetail
     Me.Label5.AutoSize = True
     Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label5.Location = New System.Drawing.Point(8, 94)
+    Me.Label5.Location = New System.Drawing.Point(8, 119)
     Me.Label5.Name = "Label5"
     Me.Label5.Size = New System.Drawing.Size(38, 14)
     Me.Label5.TabIndex = 16
@@ -1015,6 +1109,51 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'CheckEdit2
+    '
+    Me.CheckEdit2.Location = New System.Drawing.Point(226, 94)
+    Me.CheckEdit2.MenuManager = Me.BarManager1
+    Me.CheckEdit2.Name = "CheckEdit2"
+    Me.CheckEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.CheckEdit2.Properties.Appearance.Options.UseFont = True
+    Me.CheckEdit2.Properties.Caption = "Metal"
+    Me.CheckEdit2.Size = New System.Drawing.Size(73, 19)
+    Me.CheckEdit2.TabIndex = 36
+    '
+    'CheckEdit3
+    '
+    Me.CheckEdit3.Location = New System.Drawing.Point(325, 94)
+    Me.CheckEdit3.MenuManager = Me.BarManager1
+    Me.CheckEdit3.Name = "CheckEdit3"
+    Me.CheckEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.CheckEdit3.Properties.Appearance.Options.UseFont = True
+    Me.CheckEdit3.Properties.Caption = "Tela"
+    Me.CheckEdit3.Size = New System.Drawing.Size(73, 19)
+    Me.CheckEdit3.TabIndex = 37
+    '
+    'CheckEdit4
+    '
+    Me.CheckEdit4.Location = New System.Drawing.Point(440, 94)
+    Me.CheckEdit4.MenuManager = Me.BarManager1
+    Me.CheckEdit4.Name = "CheckEdit4"
+    Me.CheckEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.CheckEdit4.Properties.Appearance.Options.UseFont = True
+    Me.CheckEdit4.Properties.Caption = "Otra (Sub-Con)"
+    Me.CheckEdit4.Size = New System.Drawing.Size(73, 19)
+    Me.CheckEdit4.TabIndex = 38
+    '
+    'Label19
+    '
+    Me.Label19.AutoSize = True
+    Me.Label19.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label19.Location = New System.Drawing.Point(8, 96)
+    Me.Label19.Name = "Label19"
+    Me.Label19.Size = New System.Drawing.Size(82, 14)
+    Me.Label19.TabIndex = 39
+    Me.Label19.Tag = "c"
+    Me.Label19.Text = "Areas de Fab."
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1033,6 +1172,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
@@ -1058,6 +1199,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.grpWOFiles, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpWOFiles.ResumeLayout(False)
     Me.grpWOFiles.PerformLayout()
+    CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl4.ResumeLayout(False)
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1079,6 +1221,9 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.CheckEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1159,4 +1304,13 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label17 As Label
   Friend WithEvents ComboBoxEdit2 As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label18 As Label
+  Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
+  Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents Label19 As Label
+  Friend WithEvents CheckEdit4 As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents CheckEdit3 As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents CheckEdit2 As DevExpress.XtraEditors.CheckEdit
 End Class
