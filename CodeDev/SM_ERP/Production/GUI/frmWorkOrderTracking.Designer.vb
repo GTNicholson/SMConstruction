@@ -33,6 +33,7 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     Me.gcTotalValue = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDiseno = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcInginiero = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,22 +45,21 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grdWorksOrders
     '
     Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 29)
+    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 24)
     Me.grdWorksOrders.MainView = Me.gvWorksOrders
     Me.grdWorksOrders.Name = "grdWorksOrders"
     Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 597)
+    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 602)
     Me.grdWorksOrders.TabIndex = 0
     Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
     '
@@ -186,6 +186,14 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 6
     '
+    'RepositoryItemDateEdit1
+    '
+    Me.RepositoryItemDateEdit1.AutoHeight = False
+    Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+    Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+    '
     'gcTotalValue
     '
     Me.gcTotalValue.AppearanceCell.BackColor = System.Drawing.Color.Lavender
@@ -290,7 +298,7 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 29)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 24)
     '
     'barDockControlBottom
     '
@@ -304,25 +312,17 @@ Partial Class frmWorkOrderTracking
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 24)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 597)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 602)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 29)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 24)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 597)
-    '
-    'RepositoryItemDateEdit1
-    '
-    Me.RepositoryItemDateEdit1.AutoHeight = False
-    Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
-    Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 602)
     '
     'frmWorkOrderTracking
     '
@@ -338,9 +338,9 @@ Partial Class frmWorkOrderTracking
     Me.Text = "Progreso de los O,T.s"
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 

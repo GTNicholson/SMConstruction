@@ -22,11 +22,11 @@ Partial Class frmLookupTableList
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
     Me.grdLookUpList = New DevExpress.XtraGrid.GridControl()
     Me.gvLookUpTable = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcLookUpTableID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,7 +46,7 @@ Partial Class frmLookupTableList
     Me.grdLookUpList.MainView = Me.gvLookUpTable
     Me.grdLookUpList.Name = "grdLookUpList"
     Me.grdLookUpList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepItemButtonEdit})
-    Me.grdLookUpList.Size = New System.Drawing.Size(679, 853)
+    Me.grdLookUpList.Size = New System.Drawing.Size(664, 521)
     Me.grdLookUpList.TabIndex = 77
     Me.grdLookUpList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvLookUpTable})
     '
@@ -86,15 +86,15 @@ Partial Class frmLookupTableList
     'RepItemButtonEdit
     '
     Me.RepItemButtonEdit.AutoHeight = False
-    SerializableAppearanceObject1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    SerializableAppearanceObject1.Options.UseFont = True
-    SerializableAppearanceObject2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    SerializableAppearanceObject2.Options.UseFont = True
-    SerializableAppearanceObject3.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    SerializableAppearanceObject3.Options.UseFont = True
-    SerializableAppearanceObject4.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    SerializableAppearanceObject4.Options.UseFont = True
-    Me.RepItemButtonEdit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "  Edit  ", 50, True, True, True, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing)})
+    SerializableAppearanceObject5.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    SerializableAppearanceObject5.Options.UseFont = True
+    SerializableAppearanceObject6.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    SerializableAppearanceObject6.Options.UseFont = True
+    SerializableAppearanceObject7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    SerializableAppearanceObject7.Options.UseFont = True
+    SerializableAppearanceObject8.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    SerializableAppearanceObject8.Options.UseFont = True
+    Me.RepItemButtonEdit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "  Edit  ", 50, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing)})
     Me.RepItemButtonEdit.Name = "RepItemButtonEdit"
     Me.RepItemButtonEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
     '
@@ -126,7 +126,7 @@ Partial Class frmLookupTableList
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(679, 853)
+    Me.ClientSize = New System.Drawing.Size(664, 521)
     Me.Controls.Add(Me.grdLookUpList)
     Me.Name = "frmLookupTableList"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
