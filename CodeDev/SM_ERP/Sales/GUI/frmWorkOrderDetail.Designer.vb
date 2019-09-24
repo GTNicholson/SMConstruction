@@ -582,7 +582,7 @@ Partial Class frmWorkOrderDetail
     '
     'txtPrice
     '
-    Me.TextEdit3.Location = New System.Drawing.Point(410, 70)
+    Me.txtPrice.Location = New System.Drawing.Point(410, 70)
     Me.txtPrice.MenuManager = Me.BarManager1
     Me.txtPrice.Name = "txtPrice"
     Me.txtPrice.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

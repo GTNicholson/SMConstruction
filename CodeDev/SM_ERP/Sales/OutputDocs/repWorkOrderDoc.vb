@@ -13,9 +13,9 @@ Public Class repWorkOrderDoc
     mRep.pSalesOrder = rSalesOrder
     mRep.CreateDocument()
 
-    Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
-    mpt = New DevExpress.XtraReports.UI.ReportPrintTool(mRep)
-    mpt.ShowPreviewDialog()
+    ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
+    ''mpt = New DevExpress.XtraReports.UI.ReportPrintTool(mRep)
+    ''mpt.ShowPreviewDialog()
 
 
     Return mRep
@@ -35,13 +35,15 @@ Public Class repWorkOrderDoc
 
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     SetUpDataBindings()
-    xrlCustomerName.Text = pSalesOrder.Customer.CompanyName
+    xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrSalesOrderID.Text = pSalesOrder.OrderNo
-    xrlProjectName.Text = pSalesOrder.ProjectName
+
     xrlDateEntered.Text = pSalesOrder.DateEntered
-    xrlDueTime.Text = pSalesOrder.DueTime
+    xrtDueTime.Text = pSalesOrder.DueTime
+    xrtDate.Text = pWorkOrder.DateCreated
+
     xrNotes.Text = pSalesOrder.VisibleNotes
-    xrProjectType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
+    xrSalesOrderID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
 
 
   End Sub
