@@ -34,6 +34,8 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+    Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -260,6 +262,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.SimpleButton2)
+    Me.GroupControl1.Controls.Add(Me.SimpleButton1)
     Me.GroupControl1.Controls.Add(Me.GridControl2)
     Me.GroupControl1.Controls.Add(Me.ComboBoxEdit2)
     Me.GroupControl1.Controls.Add(Me.Label18)
@@ -285,6 +289,22 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Size = New System.Drawing.Size(1158, 160)
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
+    '
+    'SimpleButton2
+    '
+    Me.SimpleButton2.Location = New System.Drawing.Point(425, 135)
+    Me.SimpleButton2.Name = "SimpleButton2"
+    Me.SimpleButton2.Size = New System.Drawing.Size(90, 20)
+    Me.SimpleButton2.TabIndex = 151
+    Me.SimpleButton2.Text = "SimpleButton2"
+    '
+    'SimpleButton1
+    '
+    Me.SimpleButton1.Location = New System.Drawing.Point(310, 135)
+    Me.SimpleButton1.Name = "SimpleButton1"
+    Me.SimpleButton1.Size = New System.Drawing.Size(90, 20)
+    Me.SimpleButton1.TabIndex = 150
+    Me.SimpleButton1.Text = "SimpleButton1"
     '
     'GridControl2
     '
@@ -1357,4 +1377,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+  Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

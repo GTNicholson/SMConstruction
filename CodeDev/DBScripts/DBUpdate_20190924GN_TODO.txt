@@ -1,0 +1,16 @@
+CREATE TABLE dbo.WorkOrderBatch
+(
+WorkOrderBatchID                         INT IDENTITY(1,1) NOT NULL,
+WorkOrderID                        INT,
+Quantity                            INT,
+Ref									Varchar(5),
+PlannedStartDate                    DATETIME,
+CONSTRAINT PK_WorkOrderBatch PRIMARY KEY CLUSTERED ( WorkOrderBatchID )
+)
+ON [PRIMARY]
+
+GO
+
+Alter Table WorkOrder Alter Column Quantity Int
+
+GO

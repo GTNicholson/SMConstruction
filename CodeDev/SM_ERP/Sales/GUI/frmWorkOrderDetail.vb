@@ -514,4 +514,11 @@ Public Class frmWorkOrderDetail
       End If
     End If
   End Sub
+
+  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Dim mMatReqInfos As New colMaterialRequirementInfos
+    mMatReqInfos = pFormController.GetMaterialRequirementInfos
+
+    repTempMR.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+  End Sub
 End Class

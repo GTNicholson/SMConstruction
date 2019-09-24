@@ -146,4 +146,21 @@ Public Class fccWorkOrderDetail
 
   End Sub
 
+  Public Function GetMaterialRequirementInfos() As colMaterialRequirementInfos
+    Dim mMatReqInfos As New colMaterialRequirementInfos
+    Dim mMRI As clsMaterialRequirementInfo
+    Dim mPF As dmProductFurniture
+
+    mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
+
+    If mPF IsNot Nothing Then
+      For Each mMR As dmMaterialRequirement In mPF.MaterialRequirments
+        mMRI = New clsMaterialRequirementInfo(mMR)
+        mMatReqInfos.Add(mMRI)
+      Next
+    End If
+
+    Return mMatReqInfos
+  End Function
+
 End Class
