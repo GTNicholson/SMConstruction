@@ -518,7 +518,13 @@ Public Class frmWorkOrderDetail
   Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
     Dim mMatReqInfos As New colMaterialRequirementInfos
     mMatReqInfos = pFormController.GetMaterialRequirementInfos
+    repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
 
-    repTempMR.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+  End Sub
+
+  Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+    Dim mMatReqInfos As New colMaterialRequirementInfos
+    mMatReqInfos = pFormController.GetMaterialRequirementInfos
+    repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
   End Sub
 End Class

@@ -61,6 +61,12 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockCode", StringToDBValue(.StockCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPiece", .UnitPiece)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetThickness", .NetThickness)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetWidth", .NetWidth)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetLenght", .NetLenght)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QualityType", .QualityType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialTypeID", .MaterialTypeID)
     End With
 
   End Sub
@@ -78,6 +84,15 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .StockCode = DBReadString(rDataReader, "StockCode")
         .Description = DBReadString(rDataReader, "Description")
         .Quantity = DBReadDecimal(rDataReader, "Quantity")
+        .UnitPiece = DBReadInt32(rDataReader, "UnitPiece")
+        .NetThickness = DBReadDecimal(rDataReader, "NetThickness")
+        .NetWidth = DBReadDecimal(rDataReader, "NetWidth")
+        .NetLenght = DBReadDecimal(rDataReader, "NetLenght")
+        .QualityType = DBReadInt32(rDataReader, "QualityType")
+        .MaterialTypeID = DBReadInt32(rDataReader, "MaterialTypeID")
+
+
+
         pMaterialRequirement.IsDirty = False
       End With
       mOK = True

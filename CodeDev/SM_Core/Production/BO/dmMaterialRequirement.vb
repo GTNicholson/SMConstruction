@@ -9,6 +9,12 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pStockCode As String
   Private pDescription As String
   Private pQuantity As Decimal
+  Private pUnitPiece As Int32
+  Private pNetThickness As Decimal
+  Private pNetWidth As Decimal
+  Private pNetLenght As Decimal
+  Private pQualityType As Int32
+  Private pMaterialTypeID As Int32
 
   Public Sub New()
     MyBase.New()
@@ -49,6 +55,13 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .StockCode = StockCode
       .Description = Description
       .Quantity = Quantity
+      .UnitPiece = UnitPiece
+      .NetThickness = NetThickness
+      .NetWidth = NetWidth
+      .NetLenght = NetLenght
+      .QualityType = QualityType
+      .MaterialTypeID = MaterialTypeID
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -65,6 +78,66 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(ByVal value As Int32)
       If pMaterialRequirementID <> value Then IsDirty = True
       pMaterialRequirementID = value
+    End Set
+  End Property
+
+  Public Property UnitPiece() As Int32
+    Get
+      Return pUnitPiece
+    End Get
+    Set(ByVal value As Int32)
+      If pUnitPiece <> value Then IsDirty = True
+      pUnitPiece = value
+    End Set
+  End Property
+
+  Public Property NetThickness() As Decimal
+    Get
+      Return pNetThickness
+    End Get
+    Set(ByVal value As Decimal)
+      If pNetThickness <> value Then IsDirty = True
+      pNetThickness = value
+    End Set
+  End Property
+
+  Public Property NetWidth() As Decimal
+    Get
+      Return pNetWidth
+    End Get
+    Set(ByVal value As Decimal)
+      If pNetWidth <> value Then IsDirty = True
+      pNetWidth = value
+    End Set
+  End Property
+
+  Public Property NetLenght() As Decimal
+    Get
+      Return pNetLenght
+    End Get
+    Set(ByVal value As Decimal)
+      If pNetLenght <> value Then IsDirty = True
+      pNetLenght = value
+    End Set
+  End Property
+
+  Public Property QualityType() As Int32
+    Get
+      Return pQualityType
+    End Get
+    Set(ByVal value As Int32)
+      If pQualityType <> value Then IsDirty = True
+      pQualityType = value
+    End Set
+  End Property
+
+  Public Property MaterialTypeID() As Int32
+    Get
+      Return pMaterialTypeID
+    End Get
+    Set(ByVal value As Int32)
+      If pMaterialTypeID <> value Then IsDirty = True
+      pMaterialTypeID = value
     End Set
   End Property
 
