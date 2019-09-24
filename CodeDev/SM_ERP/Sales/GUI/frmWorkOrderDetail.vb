@@ -273,8 +273,8 @@ Public Class frmWorkOrderDetail
       With mPF
         memPFNotes.EditValue = .Notes
 
-
         grdMaterialRequirements.DataSource = mPF.MaterialRequirments
+        grdMaterialRequirementOthers.DataSource = mPF.MaterialRequirmentOthers
 
       End With
     End If

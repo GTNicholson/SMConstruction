@@ -57,6 +57,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
     With pMaterialRequirement
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ObjectType", .ObjectType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ObjectID", .ObjectID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialRequirementType", .MaterialRequirementType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockCode", StringToDBValue(.StockCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
@@ -73,6 +74,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
         .ObjectType = DBReadByte(rDataReader, "ObjectType")
         .ObjectID = DBReadInt32(rDataReader, "ObjectID")
+        .MaterialRequirementType = DBReadByte(rDataReader, "MaterialRequirementType")
         .StockCode = DBReadString(rDataReader, "StockCode")
         .Description = DBReadString(rDataReader, "Description")
         .Quantity = DBReadDecimal(rDataReader, "Quantity")
@@ -120,11 +122,12 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
   End Function
 
 
-  Public Function LoadMaterialRequirementCollection(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer) As Boolean
+  Public Function LoadMaterialRequirementCollection(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mParams.Add("@ObjectType", vProductType)
     mParams.Add("@ObjectID", vParentID)
+    mParams.Add("@MaterialRequirementType", vMatReqType)
     mOK = MyBase.LoadCollection(rMaterialRequirements, mParams, "MaterialRequirementID")
     rMaterialRequirements.TrackDeleted = True
     If mOK Then rMaterialRequirements.IsDirty = False
@@ -132,7 +135,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
   End Function
 
 
-  Public Function SaveMaterialRequirementCollection(ByRef rCollection As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer) As Boolean
+  Public Function SaveMaterialRequirementCollection(ByRef rCollection As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
     Dim mAllOK As Boolean
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
@@ -152,6 +155,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         If pMaterialRequirement.IsDirty Or pMaterialRequirement.ObjectType = 0 Or pMaterialRequirement.ObjectID = 0 Or pMaterialRequirement.MaterialRequirementID = 0 Then 'Or pMaterialRequirement.MaterialRequirementID = 0
           pMaterialRequirement.ObjectType = vProductType
           pMaterialRequirement.ObjectID = vParentID
+          pMaterialRequirement.MaterialRequirementType = vMatReqType
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next

@@ -196,7 +196,8 @@ Public Class dsoSales
         mProdFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
         If mProdFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
-          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID)
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
 
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
@@ -244,7 +245,8 @@ Public Class dsoSales
         mProductFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
         If mProductFurniture IsNot Nothing Then
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
-          mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID)
+          mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
+          mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If

@@ -5,6 +5,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pMaterialRequirementID As Int32
   Private pObjectType As Byte
   Private pObjectID As Int32
+  Private pMaterialRequirementType As Int32
   Private pStockCode As String
   Private pDescription As String
   Private pQuantity As Decimal
@@ -44,6 +45,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .MaterialRequirementID = MaterialRequirementID
       .ObjectType = ObjectType
       .ObjectID = ObjectID
+      .MaterialRequirementType = MaterialRequirementType
       .StockCode = StockCode
       .Description = Description
       .Quantity = Quantity
@@ -83,6 +85,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(ByVal value As Int32)
       If pObjectID <> value Then IsDirty = True
       pObjectID = value
+    End Set
+  End Property
+
+  Public Property MaterialRequirementType() As Int32
+    Get
+      Return pMaterialRequirementType
+    End Get
+    Set(ByVal value As Int32)
+      If pMaterialRequirementType <> value Then IsDirty = True
+      pMaterialRequirementType = value
     End Set
   End Property
 

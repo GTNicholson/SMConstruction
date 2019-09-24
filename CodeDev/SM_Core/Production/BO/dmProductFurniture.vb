@@ -11,6 +11,7 @@ Public Class dmProductFurniture : Inherits dmBase
   Private pNotes As String
 
   Private pMaterialRequirements As colMaterialRequirements
+  Private pMaterialRequirementOthers As colMaterialRequirements
 
   Private pProductFurnitureComponent As colProductFurnitureComponents
 
@@ -22,6 +23,7 @@ Public Class dmProductFurniture : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pMaterialRequirements = New colMaterialRequirements
+    pMaterialRequirementOthers = New colMaterialRequirements
 
     pProductFurnitureComponent = New colProductFurnitureComponents
   End Sub
@@ -47,6 +49,7 @@ Public Class dmProductFurniture : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pMaterialRequirementOthers.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
 
@@ -65,6 +68,7 @@ Public Class dmProductFurniture : Inherits dmBase
       .Notes = Notes
       .FurnitureType = FurnitureType
       .MaterialRequirments = MaterialRequirments.Clone
+      .MaterialRequirmentOthers = MaterialRequirmentOthers
       '.ProductFurnitureComponents = ProductFurnitureComponents.Clone
 
 
@@ -197,6 +201,15 @@ Public Class dmProductFurniture : Inherits dmBase
     End Get
     Set(value As colMaterialRequirements)
       pMaterialRequirements = value
+    End Set
+  End Property
+
+  Public Property MaterialRequirmentOthers As colMaterialRequirements
+    Get
+      Return pMaterialRequirementOthers
+    End Get
+    Set(value As colMaterialRequirements)
+      pMaterialRequirementOthers = value
     End Set
   End Property
 

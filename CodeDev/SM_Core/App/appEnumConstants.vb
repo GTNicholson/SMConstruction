@@ -106,6 +106,12 @@ Public Enum eProductType
   <Description("Estructura")> Strucutre = 2
 End Enum
 
+
+Public Enum eMaterialRequirementType
+  Wood = 1
+  Other = 2
+End Enum
+
 Public Enum eMilestoneStatus
   Pending = 0
   NotRequired = 1
