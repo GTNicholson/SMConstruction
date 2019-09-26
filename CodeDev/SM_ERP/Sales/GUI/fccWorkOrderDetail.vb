@@ -163,4 +163,49 @@ Public Class fccWorkOrderDetail
     Return mMatReqInfos
   End Function
 
+  Public Function GetImageFileName() As String
+    Dim mRetVal As String
+    Dim mExportDirectory As String = String.Empty
+
+    mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
+    mRetVal = IO.Path.Combine(mExportDirectory, pWorkOrder.ImageFile)
+
+    Return mRetVal
+  End Function
+
+
+  Public Function CreateWOImageFile(ByVal vSourceFile As String) As Boolean
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    Dim mRetVal As Boolean = False
+
+    Try
+      If IO.File.Exists(vSourceFile) Then
+        mFileName = "WorkOrderImg" & "_" & WorkOrder.WorkOrderID
+
+        mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
+
+        mFileName &= ".pdf"
+        mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+        mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+        If IO.Directory.Exists(mExportDirectory) = False Then
+          IO.Directory.CreateDirectory(mExportDirectory)
+        End If
+
+        mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+
+        IO.File.Copy(vSourceFile, mFileName, True)
+
+        mRetVal = IO.Directory.Exists(mExportDirectory) = False
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mRetVal
+  End Function
+
 End Class

@@ -17,6 +17,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pEmployeeName As String
   Private pWoodSpecieID As Int32
   Private pWoodFinish As Int32
+  Private pImageFile As String
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
 
@@ -76,6 +77,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .WorkOrderType = WorkOrderType
       .WoodSpecieID = WoodSpecieID
       .WoodFinish = WoodFinish
+      .ImageFile = ImageFile
 
       'Add entries here for each collection and class property
 
@@ -238,6 +240,7 @@ Public Class dmWorkOrder : Inherits dmBase
       pWorkOrderType = value
     End Set
   End Property
+
   Public Property EmployeeName As String
     Get
       Return pEmployeeName
@@ -245,6 +248,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As String)
       If pEmployeeName <> value Then IsDirty = True
       pEmployeeName = value
+    End Set
+  End Property
+
+  Public Property ImageFile As String
+    Get
+      Return pImageFile
+    End Get
+    Set(ByVal value As String)
+      If pImageFile <> value Then IsDirty = True
+      pImageFile = value
     End Set
   End Property
 

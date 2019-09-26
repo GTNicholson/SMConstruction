@@ -65,6 +65,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecieID", .WoodSpecieID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", .UnitPrice)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
 
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
 
@@ -90,6 +91,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
         .WoodSpecieID = DBReadInt32(rDataReader, "WoodSpecieID")
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
+        .ImageFile = DBReadString(rDataReader, "ImageFile")
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False
       End With
