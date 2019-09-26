@@ -1,0 +1,10 @@
+use SMConstruction
+go
+alter table MaterialRequirement
+add UnitPiece int,
+ NetThickness decimal,
+ NetWidth decimal,
+ NetLenght decimal,
+ QualityType int,
+ MaterialTypeID int
+ go
