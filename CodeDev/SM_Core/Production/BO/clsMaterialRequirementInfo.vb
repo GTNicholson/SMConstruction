@@ -17,6 +17,31 @@
     End Get
   End Property
 
+  Public ReadOnly Property InitialThickness As Decimal
+    Get
+      Return clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialThicknessFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness))
+    End Get
+  End Property
+
+  ''Public ReadOnly Property InitialThickness As Decimal
+  ''  Get
+  ''    Return clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetThickness)
+  ''  End Get
+  ''End Property
+
+
+  ''Public ReadOnly Property InitialThicknessFraction As String
+  ''  Get
+  ''    Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetThickness))
+  ''  End Get
+  ''End Property
 
   Public ReadOnly Property NetWidth As Decimal
     Get

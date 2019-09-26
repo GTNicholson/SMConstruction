@@ -26,7 +26,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtComponentDescription = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtUnitPiece = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtGrossThickness = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtNetThickness = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtNetWidth = New DevExpress.XtraReports.UI.XRTableCell()
@@ -182,7 +182,7 @@ Partial Public Class repWorkOrderMatReqsWood
     '
     'XrTableRow2
     '
-    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtComponentDescription, Me.xrtUnitPiece, Me.xrtcQuantity, Me.XrTableCell4, Me.xrtNetThickness, Me.XrTableCell6, Me.xrtNetWidth, Me.XrTableCell13, Me.xrtNetLenght, Me.XrTableCell17, Me.XrTableCell20, Me.xrtMaterialTypeID, Me.xrtWoodSpecieID, Me.xrtQualityType})
+    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtComponentDescription, Me.xrtUnitPiece, Me.xrtcQuantity, Me.xrtGrossThickness, Me.xrtNetThickness, Me.XrTableCell6, Me.xrtNetWidth, Me.XrTableCell13, Me.xrtNetLenght, Me.XrTableCell17, Me.XrTableCell20, Me.xrtMaterialTypeID, Me.xrtWoodSpecieID, Me.xrtQualityType})
     Me.XrTableRow2.Name = "XrTableRow2"
     Me.XrTableRow2.Weight = 1.0R
     '
@@ -208,13 +208,13 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtcQuantity.Text = "xrtcQuantity"
     Me.xrtcQuantity.Weight = 0.42366320239726118R
     '
-    'XrTableCell4
+    'xrtGrossThickness
     '
-    Me.XrTableCell4.BackColor = System.Drawing.Color.RosyBrown
-    Me.XrTableCell4.Name = "XrTableCell4"
-    Me.XrTableCell4.StylePriority.UseBackColor = False
-    Me.XrTableCell4.Text = "XrTableCell4"
-    Me.XrTableCell4.Weight = 0.54880429136567421R
+    Me.xrtGrossThickness.BackColor = System.Drawing.Color.RosyBrown
+    Me.xrtGrossThickness.Name = "xrtGrossThickness"
+    Me.xrtGrossThickness.StylePriority.UseBackColor = False
+    Me.xrtGrossThickness.Text = "xrtGrossThickness"
+    Me.xrtGrossThickness.Weight = 0.54880429136567421R
     '
     'xrtNetThickness
     '
@@ -1280,7 +1280,7 @@ Partial Public Class repWorkOrderMatReqsWood
   Friend WithEvents xrtComponentDescription As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtUnitPiece As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtcQuantity As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtGrossThickness As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtNetThickness As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtNetWidth As DevExpress.XtraReports.UI.XRTableCell

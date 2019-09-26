@@ -73,14 +73,14 @@ Partial Class frmWorkOrderDetail
     Me.tabProductSpec = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
     Me.grpWOFiles = New DevExpress.XtraEditors.GroupControl()
-    Me.CheckEdit7 = New DevExpress.XtraEditors.CheckEdit()
-    Me.CheckEdit6 = New DevExpress.XtraEditors.CheckEdit()
-    Me.CheckEdit5 = New DevExpress.XtraEditors.CheckEdit()
+    Me.ceSub = New DevExpress.XtraEditors.CheckEdit()
+    Me.ceCostura = New DevExpress.XtraEditors.CheckEdit()
+    Me.ceMetal = New DevExpress.XtraEditors.CheckEdit()
     Me.Label19 = New System.Windows.Forms.Label()
-    Me.CheckEdit4 = New DevExpress.XtraEditors.CheckEdit()
-    Me.CheckEdit3 = New DevExpress.XtraEditors.CheckEdit()
-    Me.CheckEdit2 = New DevExpress.XtraEditors.CheckEdit()
-    Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+    Me.cePintura = New DevExpress.XtraEditors.CheckEdit()
+    Me.ceLija = New DevExpress.XtraEditors.CheckEdit()
+    Me.ceEnsamble = New DevExpress.XtraEditors.CheckEdit()
+    Me.ceMaquinado = New DevExpress.XtraEditors.CheckEdit()
     Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
     Me.UctFileControl1 = New SimplementeMadera.uctFileControl()
     Me.ComboBoxEdit6 = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -157,13 +157,13 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage1.SuspendLayout()
     CType(Me.grpWOFiles, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpWOFiles.SuspendLayout()
-    CType(Me.CheckEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.CheckEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.CheckEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.CheckEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ceSub.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ceCostura.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ceMetal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cePintura.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ceLija.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ceEnsamble.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.ceMaquinado.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl4.SuspendLayout()
     CType(Me.ComboBoxEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -770,14 +770,14 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpWOFiles.AppearanceCaption.Options.UseFont = True
     Me.grpWOFiles.AppearanceCaption.Options.UseForeColor = True
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit7)
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit6)
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit5)
+    Me.grpWOFiles.Controls.Add(Me.ceSub)
+    Me.grpWOFiles.Controls.Add(Me.ceCostura)
+    Me.grpWOFiles.Controls.Add(Me.ceMetal)
     Me.grpWOFiles.Controls.Add(Me.Label19)
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit4)
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit3)
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit2)
-    Me.grpWOFiles.Controls.Add(Me.CheckEdit1)
+    Me.grpWOFiles.Controls.Add(Me.cePintura)
+    Me.grpWOFiles.Controls.Add(Me.ceLija)
+    Me.grpWOFiles.Controls.Add(Me.ceEnsamble)
+    Me.grpWOFiles.Controls.Add(Me.ceMaquinado)
     Me.grpWOFiles.Controls.Add(Me.GroupControl4)
     Me.grpWOFiles.Controls.Add(Me.ComboBoxEdit6)
     Me.grpWOFiles.Controls.Add(Me.cboWoodFinish)
@@ -798,38 +798,41 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.TabIndex = 14
     Me.grpWOFiles.Text = "Detalles de Mueble"
     '
-    'CheckEdit7
+    'ceSub
     '
-    Me.CheckEdit7.Location = New System.Drawing.Point(325, 119)
-    Me.CheckEdit7.MenuManager = Me.BarManager1
-    Me.CheckEdit7.Name = "CheckEdit7"
-    Me.CheckEdit7.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit7.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit7.Properties.Caption = "Sub contratación"
-    Me.CheckEdit7.Size = New System.Drawing.Size(109, 19)
-    Me.CheckEdit7.TabIndex = 42
+    Me.ceSub.Location = New System.Drawing.Point(325, 119)
+    Me.ceSub.MenuManager = Me.BarManager1
+    Me.ceSub.Name = "ceSub"
+    Me.ceSub.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ceSub.Properties.Appearance.Options.UseFont = True
+    Me.ceSub.Properties.Caption = "Sub contratación"
+    Me.ceSub.Properties.ValueChecked = 7
+    Me.ceSub.Size = New System.Drawing.Size(109, 19)
+    Me.ceSub.TabIndex = 42
     '
-    'CheckEdit6
+    'ceCostura
     '
-    Me.CheckEdit6.Location = New System.Drawing.Point(226, 119)
-    Me.CheckEdit6.MenuManager = Me.BarManager1
-    Me.CheckEdit6.Name = "CheckEdit6"
-    Me.CheckEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit6.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit6.Properties.Caption = "Costura"
-    Me.CheckEdit6.Size = New System.Drawing.Size(73, 19)
-    Me.CheckEdit6.TabIndex = 41
+    Me.ceCostura.Location = New System.Drawing.Point(226, 119)
+    Me.ceCostura.MenuManager = Me.BarManager1
+    Me.ceCostura.Name = "ceCostura"
+    Me.ceCostura.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ceCostura.Properties.Appearance.Options.UseFont = True
+    Me.ceCostura.Properties.Caption = "Costura"
+    Me.ceCostura.Properties.ValueChecked = 6
+    Me.ceCostura.Size = New System.Drawing.Size(73, 19)
+    Me.ceCostura.TabIndex = 41
     '
-    'CheckEdit5
+    'ceMetal
     '
-    Me.CheckEdit5.Location = New System.Drawing.Point(111, 119)
-    Me.CheckEdit5.MenuManager = Me.BarManager1
-    Me.CheckEdit5.Name = "CheckEdit5"
-    Me.CheckEdit5.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit5.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit5.Properties.Caption = "Metal"
-    Me.CheckEdit5.Size = New System.Drawing.Size(73, 19)
-    Me.CheckEdit5.TabIndex = 40
+    Me.ceMetal.Location = New System.Drawing.Point(111, 119)
+    Me.ceMetal.MenuManager = Me.BarManager1
+    Me.ceMetal.Name = "ceMetal"
+    Me.ceMetal.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ceMetal.Properties.Appearance.Options.UseFont = True
+    Me.ceMetal.Properties.Caption = "Metal"
+    Me.ceMetal.Properties.ValueChecked = 5
+    Me.ceMetal.Size = New System.Drawing.Size(73, 19)
+    Me.ceMetal.TabIndex = 40
     '
     'Label19
     '
@@ -843,49 +846,53 @@ Partial Class frmWorkOrderDetail
     Me.Label19.Tag = "c"
     Me.Label19.Text = "Areas de Fab."
     '
-    'CheckEdit4
+    'cePintura
     '
-    Me.CheckEdit4.Location = New System.Drawing.Point(440, 94)
-    Me.CheckEdit4.MenuManager = Me.BarManager1
-    Me.CheckEdit4.Name = "CheckEdit4"
-    Me.CheckEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit4.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit4.Properties.Caption = "Pintura"
-    Me.CheckEdit4.Size = New System.Drawing.Size(112, 19)
-    Me.CheckEdit4.TabIndex = 38
+    Me.cePintura.Location = New System.Drawing.Point(440, 94)
+    Me.cePintura.MenuManager = Me.BarManager1
+    Me.cePintura.Name = "cePintura"
+    Me.cePintura.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cePintura.Properties.Appearance.Options.UseFont = True
+    Me.cePintura.Properties.Caption = "Pintura"
+    Me.cePintura.Properties.ValueChecked = 4
+    Me.cePintura.Size = New System.Drawing.Size(112, 19)
+    Me.cePintura.TabIndex = 38
     '
-    'CheckEdit3
+    'ceLija
     '
-    Me.CheckEdit3.Location = New System.Drawing.Point(325, 94)
-    Me.CheckEdit3.MenuManager = Me.BarManager1
-    Me.CheckEdit3.Name = "CheckEdit3"
-    Me.CheckEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit3.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit3.Properties.Caption = "Lija"
-    Me.CheckEdit3.Size = New System.Drawing.Size(73, 19)
-    Me.CheckEdit3.TabIndex = 37
+    Me.ceLija.Location = New System.Drawing.Point(325, 94)
+    Me.ceLija.MenuManager = Me.BarManager1
+    Me.ceLija.Name = "ceLija"
+    Me.ceLija.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ceLija.Properties.Appearance.Options.UseFont = True
+    Me.ceLija.Properties.Caption = "Lija"
+    Me.ceLija.Properties.ValueChecked = 3
+    Me.ceLija.Size = New System.Drawing.Size(73, 19)
+    Me.ceLija.TabIndex = 37
     '
-    'CheckEdit2
+    'ceEnsamble
     '
-    Me.CheckEdit2.Location = New System.Drawing.Point(226, 94)
-    Me.CheckEdit2.MenuManager = Me.BarManager1
-    Me.CheckEdit2.Name = "CheckEdit2"
-    Me.CheckEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit2.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit2.Properties.Caption = "Ensamble"
-    Me.CheckEdit2.Size = New System.Drawing.Size(73, 19)
-    Me.CheckEdit2.TabIndex = 36
+    Me.ceEnsamble.Location = New System.Drawing.Point(226, 94)
+    Me.ceEnsamble.MenuManager = Me.BarManager1
+    Me.ceEnsamble.Name = "ceEnsamble"
+    Me.ceEnsamble.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ceEnsamble.Properties.Appearance.Options.UseFont = True
+    Me.ceEnsamble.Properties.Caption = "Ensamble"
+    Me.ceEnsamble.Properties.ValueChecked = 2
+    Me.ceEnsamble.Size = New System.Drawing.Size(73, 19)
+    Me.ceEnsamble.TabIndex = 36
     '
-    'CheckEdit1
+    'ceMaquinado
     '
-    Me.CheckEdit1.Location = New System.Drawing.Point(111, 94)
-    Me.CheckEdit1.MenuManager = Me.BarManager1
-    Me.CheckEdit1.Name = "CheckEdit1"
-    Me.CheckEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.CheckEdit1.Properties.Appearance.Options.UseFont = True
-    Me.CheckEdit1.Properties.Caption = "Maquinado"
-    Me.CheckEdit1.Size = New System.Drawing.Size(73, 19)
-    Me.CheckEdit1.TabIndex = 35
+    Me.ceMaquinado.Location = New System.Drawing.Point(111, 94)
+    Me.ceMaquinado.MenuManager = Me.BarManager1
+    Me.ceMaquinado.Name = "ceMaquinado"
+    Me.ceMaquinado.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.ceMaquinado.Properties.Appearance.Options.UseFont = True
+    Me.ceMaquinado.Properties.Caption = "Maquinado"
+    Me.ceMaquinado.Properties.ValueChecked = 1
+    Me.ceMaquinado.Size = New System.Drawing.Size(73, 19)
+    Me.ceMaquinado.TabIndex = 35
     '
     'GroupControl4
     '
@@ -1425,13 +1432,13 @@ Partial Class frmWorkOrderDetail
     CType(Me.grpWOFiles, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpWOFiles.ResumeLayout(False)
     Me.grpWOFiles.PerformLayout()
-    CType(Me.CheckEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.CheckEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.CheckEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.CheckEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ceSub.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ceCostura.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ceMetal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cePintura.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ceLija.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ceEnsamble.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.ceMaquinado.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl4.ResumeLayout(False)
     CType(Me.ComboBoxEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1531,11 +1538,11 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceMaquinado As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents Label19 As Label
-  Friend WithEvents CheckEdit4 As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents CheckEdit3 As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents CheckEdit2 As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents cePintura As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceLija As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceEnsamble As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents XtraTabPage5 As DevExpress.XtraTab.XtraTabPage
@@ -1556,9 +1563,9 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label20 As Label
   Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
-  Friend WithEvents CheckEdit7 As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents CheckEdit6 As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents CheckEdit5 As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceSub As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceCostura As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceMetal As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn

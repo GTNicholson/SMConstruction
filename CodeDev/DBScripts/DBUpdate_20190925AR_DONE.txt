@@ -1,0 +1,5 @@
+use SMConstruction
+
+alter table WorkOrder
+add WorkcentreID int
+go

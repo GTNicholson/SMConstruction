@@ -282,15 +282,28 @@ Public Class frmWorkOrderDetail
 
   Private Sub UpdateObject()
     With pFormController.WorkOrder
+      .Quantity = txtQuantity.Text
       .Description = txtDescription.Text
+
       .PlannedStartDate = dtePlannedStartDate.DateTime
       .UnitPrice = Val(txtPrice.Text)
       .WoodSpecieID = clsDEControlLoading.GetDEComboValue(cboWoodSpecie)
       .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
+      .WorkcentreID = getCheckValue()
+
+
     End With
     UpdateProductControls()
   End Sub
 
+
+  Private Function getCheckValue() As Int32
+    Dim mVal As Int32
+
+
+
+    Return mVal
+  End Function
   Private Sub UpdateProductControls()
     Select Case pFormController.WorkOrder.ProductTypeID
       Case eProductType.ProductFurniture
