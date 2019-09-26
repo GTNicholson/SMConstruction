@@ -235,6 +235,8 @@ Public Class frmWorkOrderDetail
 
       btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
 
+      bteImage.Text = .ImageFile
+
       UctFileControl1.LoadControls()
       UctFileControl1.RefreshControls()
       RefreshProductControls()
@@ -539,5 +541,19 @@ Public Class frmWorkOrderDetail
     Dim mMatReqInfos As New colMaterialRequirementInfos
     mMatReqInfos = pFormController.GetMaterialRequirementInfos
     repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+  End Sub
+
+  Private Sub bteImage_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles bteImage.ButtonClick
+    Try
+      Dim mFileName As String = ""
+      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Seleciona Imagen") = DialogResult.OK Then
+        If pFormController.CreateWOImageFile(mFileName) = False Then
+          MsgBox("No Funciono!")
+        End If
+      End If
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

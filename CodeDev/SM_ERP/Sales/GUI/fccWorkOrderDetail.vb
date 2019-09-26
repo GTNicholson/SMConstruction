@@ -186,7 +186,7 @@ Public Class fccWorkOrderDetail
 
         mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
 
-        mFileName &= ".pdf"
+        mFileName &= IO.Path.GetExtension(vSourceFile)
         mFileName = clsGeneralA.GetFileSafeName(mFileName)
 
         mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
@@ -196,9 +196,15 @@ Public Class fccWorkOrderDetail
 
         mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
 
-        IO.File.Copy(vSourceFile, mFileName, True)
+        IO.File.Copy(vSourceFile, mFilePath, True)
 
-        mRetVal = IO.Directory.Exists(mExportDirectory) = False
+        If IO.File.Exists(mFilePath) = True Then
+          pWorkOrder.ImageFile = IO.Path.GetFileName(mFilePath)
+          mRetVal = True
+        Else
+          pWorkOrder.ImageFile = ""
+          mRetVal = False
+        End If
       End If
 
     Catch ex As Exception

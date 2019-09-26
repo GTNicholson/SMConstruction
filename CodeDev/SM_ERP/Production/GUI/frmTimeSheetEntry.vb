@@ -56,14 +56,25 @@ Public Class frmTimeSheetEntry
 
   Private Sub RefreshControls()
     datWeekCommencing.DateTime = pController.WCDate.Date
-    timTimeStart.EditValue = pController.StartTime.TimeOfDay
-    timTimeEnd.EditValue = pController.EndTime.TimeOfDay
+    timTimeStart.EditValue = New Date(1, 1, 1, pController.StartTime.Hour, pController.StartTime.Minute, pController.StartTime.Second)
+    timTimeEnd.EditValue = New Date(1, 1, 1, pController.EndTime.Hour, pController.EndTime.Minute, pController.EndTime.Second)
     radgrpWorkCentreID.EditValue = pController.WorkCentreID
   End Sub
 
   Private Sub UpdateObjects()
+    Dim mTime As DateTime
     pController.WCDate = datWeekCommencing.DateTime.Date
-    pController.StartTime = New Date + timTimeStart.EditValue
+    mTime = New Date
+    mTime = mTime.AddHours(timTimeStart.Time.Hour)
+    mTime = mTime.AddMinutes(timTimeStart.Time.Minute)
+    mTime = mTime.AddSeconds(timTimeStart.Time.Second)
+    pController.StartTime = mTime
+    mTime = New Date
+    mTime = mTime.AddHours(timTimeEnd.Time.Hour)
+    mTime = mTime.AddMinutes(timTimeEnd.Time.Minute)
+    mTime = mTime.AddSeconds(timTimeEnd.Time.Second)
+    pController.EndTime = mTime
+
   End Sub
 
   Private Sub btnReload_Click(sender As Object, e As EventArgs) Handles btnReload.Click
