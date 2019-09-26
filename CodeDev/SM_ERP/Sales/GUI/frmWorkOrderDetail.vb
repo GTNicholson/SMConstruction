@@ -233,6 +233,15 @@ Public Class frmWorkOrderDetail
       clsDEControlLoading.SetDECombo(cboWoodSpecie, .WoodSpecieID)
       clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
 
+
+      ceMaquinado.Checked = .Machining
+      ceCostura.Checked = .Upholstery
+      ceEnsamble.Checked = .Assembley
+      ceLija.Checked = .Sanding
+      ceMetal.Checked = .MetalWork
+      ceSub.Checked = .SubContract
+      cePintura.Checked = .Painting
+
       btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
 
       bteImage.Text = .ImageFile
@@ -293,6 +302,13 @@ Public Class frmWorkOrderDetail
       .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
       .WorkcentreID = getCheckValue()
 
+      .Machining = ceMaquinado.Checked
+      .Upholstery = ceCostura.Checked
+      .Assembley = ceEnsamble.Checked
+      .Sanding = ceLija.Checked
+      .MetalWork = ceMetal.Checked
+      .SubContract = ceSub.Checked
+      .Painting = cePintura.Checked
 
     End With
     UpdateProductControls()

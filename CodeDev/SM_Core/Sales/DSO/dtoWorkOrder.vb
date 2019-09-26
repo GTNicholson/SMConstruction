@@ -68,6 +68,14 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkcentreID", .WorkcentreID)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Machining", .Machining)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Assembley", .Assembley)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Sanding", .Sanding)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Painting", .Painting)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MetalWork", .MetalWork)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Upholstery", .Upholstery)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubContract", .SubContract)
+
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
 
     End With
@@ -94,6 +102,13 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WorkcentreID = DBReadInt32(rDataReader, "WorkcentreID")
+        .Machining = DBReadBoolean(rDataReader, "Machining")
+        .Assembley = DBReadBoolean(rDataReader, "Assembley")
+        .Sanding = DBReadBoolean(rDataReader, "Sanding")
+        .Painting = DBReadBoolean(rDataReader, "Painting")
+        .MetalWork = DBReadBoolean(rDataReader, "MetalWork")
+        .Upholstery = DBReadBoolean(rDataReader, "Upholstery")
+        .SubContract = DBReadBoolean(rDataReader, "SubContract")
 
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False

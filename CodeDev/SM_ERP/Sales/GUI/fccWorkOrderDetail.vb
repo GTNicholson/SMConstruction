@@ -163,15 +163,7 @@ Public Class fccWorkOrderDetail
     Return mMatReqInfos
   End Function
 
-  Public Function GetImageFileName() As String
-    Dim mRetVal As String
-    Dim mExportDirectory As String = String.Empty
 
-    mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
-    mRetVal = IO.Path.Combine(mExportDirectory, pWorkOrder.ImageFile)
-
-    Return mRetVal
-  End Function
 
 
   Public Function CreateWOImageFile(ByVal vSourceFile As String) As Boolean
