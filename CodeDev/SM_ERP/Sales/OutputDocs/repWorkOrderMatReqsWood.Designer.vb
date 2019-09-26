@@ -28,11 +28,11 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtGrossThickness = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtNetThickness = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtGrossWidth = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtNetWidth = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtGrossLenght = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtNetLenght = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtGrossLenghtFeet = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtMaterialTypeID = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtWoodSpecieID = New DevExpress.XtraReports.UI.XRTableCell()
@@ -182,7 +182,7 @@ Partial Public Class repWorkOrderMatReqsWood
     '
     'XrTableRow2
     '
-    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtComponentDescription, Me.xrtUnitPiece, Me.xrtcQuantity, Me.xrtGrossThickness, Me.xrtNetThickness, Me.XrTableCell6, Me.xrtNetWidth, Me.XrTableCell13, Me.xrtNetLenght, Me.XrTableCell17, Me.XrTableCell20, Me.xrtMaterialTypeID, Me.xrtWoodSpecieID, Me.xrtQualityType})
+    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtComponentDescription, Me.xrtUnitPiece, Me.xrtcQuantity, Me.xrtGrossThickness, Me.xrtNetThickness, Me.xrtGrossWidth, Me.xrtNetWidth, Me.xrtGrossLenght, Me.xrtNetLenght, Me.xrtGrossLenghtFeet, Me.XrTableCell20, Me.xrtMaterialTypeID, Me.xrtWoodSpecieID, Me.xrtQualityType})
     Me.XrTableRow2.Name = "XrTableRow2"
     Me.XrTableRow2.Weight = 1.0R
     '
@@ -222,13 +222,13 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtNetThickness.Text = "XrTableCell9"
     Me.xrtNetThickness.Weight = 0.54058226272896381R
     '
-    'XrTableCell6
+    'xrtGrossWidth
     '
-    Me.XrTableCell6.BackColor = System.Drawing.Color.MediumPurple
-    Me.XrTableCell6.Name = "XrTableCell6"
-    Me.XrTableCell6.StylePriority.UseBackColor = False
-    Me.XrTableCell6.Text = "XrTableCell10"
-    Me.XrTableCell6.Weight = 0.53053368170500836R
+    Me.xrtGrossWidth.BackColor = System.Drawing.Color.MediumPurple
+    Me.xrtGrossWidth.Name = "xrtGrossWidth"
+    Me.xrtGrossWidth.StylePriority.UseBackColor = False
+    Me.xrtGrossWidth.Text = "XrTableCell10"
+    Me.xrtGrossWidth.Weight = 0.53053368170500836R
     '
     'xrtNetWidth
     '
@@ -236,13 +236,13 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtNetWidth.Text = "xrtNetWidth"
     Me.xrtNetWidth.Weight = 0.5999609572963196R
     '
-    'XrTableCell13
+    'xrtGrossLenght
     '
-    Me.XrTableCell13.BackColor = System.Drawing.Color.MediumPurple
-    Me.XrTableCell13.Name = "XrTableCell13"
-    Me.XrTableCell13.StylePriority.UseBackColor = False
-    Me.XrTableCell13.Text = "XrTableCell13"
-    Me.XrTableCell13.Weight = 0.50769730490733112R
+    Me.xrtGrossLenght.BackColor = System.Drawing.Color.MediumPurple
+    Me.xrtGrossLenght.Name = "xrtGrossLenght"
+    Me.xrtGrossLenght.StylePriority.UseBackColor = False
+    Me.xrtGrossLenght.Text = "xrtGrossLenght"
+    Me.xrtGrossLenght.Weight = 0.50769730490733112R
     '
     'xrtNetLenght
     '
@@ -250,13 +250,13 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtNetLenght.Text = "xrtNetLenght"
     Me.xrtNetLenght.Weight = 0.48557803679824446R
     '
-    'XrTableCell17
+    'xrtGrossLenghtFeet
     '
-    Me.XrTableCell17.BackColor = System.Drawing.Color.MediumPurple
-    Me.XrTableCell17.Name = "XrTableCell17"
-    Me.XrTableCell17.StylePriority.UseBackColor = False
-    Me.XrTableCell17.Text = "XrTableCell17"
-    Me.XrTableCell17.Weight = 0.48851420817253094R
+    Me.xrtGrossLenghtFeet.BackColor = System.Drawing.Color.MediumPurple
+    Me.xrtGrossLenghtFeet.Name = "xrtGrossLenghtFeet"
+    Me.xrtGrossLenghtFeet.StylePriority.UseBackColor = False
+    Me.xrtGrossLenghtFeet.Text = "xrtGrossLenghtFeet"
+    Me.xrtGrossLenghtFeet.Weight = 0.48851420817253094R
     '
     'XrTableCell20
     '
@@ -1282,11 +1282,11 @@ Partial Public Class repWorkOrderMatReqsWood
   Friend WithEvents xrtcQuantity As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtGrossThickness As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtNetThickness As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtGrossWidth As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtNetWidth As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtGrossLenght As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtNetLenght As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtGrossLenghtFeet As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
   Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell

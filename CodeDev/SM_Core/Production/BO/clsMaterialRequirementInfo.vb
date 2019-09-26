@@ -30,18 +30,7 @@
     End Get
   End Property
 
-  ''Public ReadOnly Property InitialThickness As Decimal
-  ''  Get
-  ''    Return clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetThickness)
-  ''  End Get
-  ''End Property
 
-
-  ''Public ReadOnly Property InitialThicknessFraction As String
-  ''  Get
-  ''    Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetThickness))
-  ''  End Get
-  ''End Property
 
   Public ReadOnly Property NetWidth As Decimal
     Get
@@ -50,9 +39,43 @@
   End Property
 
 
+  Public ReadOnly Property InitialWidth As Decimal
+    Get
+      Return clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth)
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialWidthFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInchesSMM(pMaterialRequirement.NetWidth))
+    End Get
+  End Property
+
+
   Public ReadOnly Property NetLenght As Decimal
     Get
       Return pMaterialRequirement.NetLenght
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialLenght As Decimal
+    Get
+      Return clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetLenght)
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialLenghtFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInchesLenght(pMaterialRequirement.NetLenght))
+    End Get
+  End Property
+
+  Public ReadOnly Property InitialLenghtFractionFeet As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght))
     End Get
   End Property
 

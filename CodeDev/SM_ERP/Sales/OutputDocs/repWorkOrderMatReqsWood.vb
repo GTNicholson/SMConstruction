@@ -24,7 +24,12 @@ Public Class repWorkOrderMatReqsWood
     xrtNetLenght.DataBindings.Add("Text", Me.DataSource, "NetLenght")
     xrtMaterialTypeID.DataBindings.Add("Text", Me.DataSource, "MaterialTypeID")
     xrtQualityType.DataBindings.Add("Text", Me.DataSource, "QualityType")
+
+    ''Function Area
     xrtGrossThickness.DataBindings.Add("Text", Me.DataSource, "InitialThicknessFraction")
+    xrtGrossWidth.DataBindings.Add("Text", Me.DataSource, "InitialWidthFraction")
+    xrtGrossLenght.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFraction")
+    xrtGrossLenghtFeet.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFractionFeet")
 
     'xrlMatReqDesc.DataBindings.Add("Text", Me.DataSource, "Description")
   End Sub

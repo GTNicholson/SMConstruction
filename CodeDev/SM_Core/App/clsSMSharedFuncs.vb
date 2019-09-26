@@ -35,6 +35,24 @@
     Return mRetVal
   End Function
 
+  Public Shared Function CMToQuaterInchesSMM(ByVal vCM As Decimal) As Decimal
+    Dim mRetVal As Decimal
+
+    mRetVal = vCM / 2.54
+    mRetVal = Math.Truncate(mRetVal * 4) / 4
+    mRetVal += 0.5
+    Return mRetVal
+  End Function
+
+  Public Shared Function CMToQuaterInchesLenght(ByVal vCM As Decimal) As Decimal
+    Dim mRetVal As Decimal
+
+    mRetVal = vCM / 2.54
+    mRetVal = Math.Truncate(mRetVal * 4) / 4
+    mRetVal += 2.25
+    Return mRetVal
+  End Function
+
   Public Shared Function DecToFraction(ByVal vDecimal As Decimal) As String
     Dim mRetVal As String
     Dim mRemainder As Decimal
@@ -52,5 +70,26 @@
 
     Return mRetVal
   End Function
+
+
+  Public Shared Function WOTotalPieces(ByVal vDecimal As Decimal) As Int32
+
+    Dim mRemainder As Decimal
+
+    mRetVal = Math.Truncate(vDecimal)
+    mRemainder = vDecimal - mRetVal
+    Select Case mRemainder
+      Case 0.25
+        mRetVal = mRetVal & " 1/4"
+      Case 0.5
+        mRetVal = mRetVal & " 1/2"
+      Case 0.75
+        mRetVal = mRetVal & " 3/4"
+    End Select
+
+    Return mRetVal
+  End Function
+
+
 
 End Class
