@@ -17,7 +17,8 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.Production)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de los O.T.s", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderTracking, eActivityCode.Production)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Horas Laborales", eMenuIconType.Console, AddressOf clsMenuFunctions.TimeSheetEntry, eActivityCode.Production)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, Nothing, eActivityCode.Production)
+
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.Production)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Production)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Hojas de Tiempo", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetEntryInfoBI, eActivityCode.Production)
 

@@ -4,6 +4,7 @@ Imports RTIS.CommonVB
 Public Class dmWorkOrder : Inherits dmBase
   Private pWorkOrderID As Int32
   Private pSalesOrderID As Int32
+  Private pSalesOrderItemID As Int32
   Private pWorkOrderNo As String
   Private pProductTypeID As Int32
   Private pProductID As Integer
@@ -77,6 +78,7 @@ Public Class dmWorkOrder : Inherits dmBase
     With CType(rNewItem, dmWorkOrder)
       .WorkOrderID = WorkOrderID
       .SalesOrderID = SalesOrderID
+      .SalesOrderItemID = SalesOrderItemID
       .WorkOrderNo = WorkOrderNo
       .ProductTypeID = ProductTypeID
       .Quantity = Quantity
@@ -161,6 +163,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderID <> value Then IsDirty = True
       pSalesOrderID = value
+    End Set
+  End Property
+
+  Public Property SalesOrderItemID() As Int32
+    Get
+      Return pSalesOrderItemID
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesOrderItemID <> value Then IsDirty = True
+      pSalesOrderItemID = value
     End Set
   End Property
 

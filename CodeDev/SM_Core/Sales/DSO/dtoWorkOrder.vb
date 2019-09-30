@@ -55,6 +55,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
     End If
     With pWorkOrder
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderItemID", .SalesOrderItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID", .ProductID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID", .ProductTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
@@ -90,6 +91,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       With pWorkOrder
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
+        .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
         .ProductID = DBReadInt32(rDataReader, "ProductID")
         .ProductTypeID = DBReadInt32(rDataReader, "ProductTypeID")
         .Quantity = DBReadInt32(rDataReader, "Quantity")
