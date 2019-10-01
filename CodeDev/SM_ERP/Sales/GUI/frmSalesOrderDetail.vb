@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 
 Public Class frmSalesOrderDetail
@@ -15,7 +16,10 @@ Public Class frmSalesOrderDetail
   Private pForceExit As Boolean = False
 
 
-
+  Private Enum eOrderItemGroupButtonTags
+    Add = 1
+    Delete = 2
+  End Enum
 
   Private Enum eWorkOrderGroupButtonTags
     Add = 1
@@ -93,7 +97,8 @@ Public Class frmSalesOrderDetail
 
 
       pFormController.LoadObjects()
-      grdWorkOrders.DataSource = pFormController.SalesOrder.WorkOrders
+      grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
+      grdWorkOrders.DataSource = pFormController.SOWorkOrders
       LoadCombos()
       RefreshControls()
       If mOK Then RefreshControls()
@@ -226,6 +231,9 @@ Public Class frmSalesOrderDetail
       .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
 
 
+      gvOrderItem.CloseEditor()
+      gvOrderItem.UpdateCurrentRow()
+
       gvWorkOrders.CloseEditor()
       gvWorkOrders.UpdateCurrentRow()
 
@@ -290,36 +298,49 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
-  Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
-    Dim mWO As dmWorkOrder
-    Select Case e.Button.Properties.Tag
-      Case eWorkOrderGroupButtonTags.Add
-        UpdateObjects()
-        pFormController.AddWorkOrder(eProductType.ProductFurniture)
-        RefreshControls()
-      Case eWorkOrderGroupButtonTags.Delete
-        mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
-        If mWO IsNot Nothing Then
-          If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
-            UpdateObjects()
-            pFormController.DeleteWorkOrder(mWO)
-            RefreshControls()
-          End If
-        End If
-    End Select
-    gvWorkOrders.RefreshData()
-  End Sub
+  ''Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
+  ''  Dim mWO As dmWorkOrder
+  ''  Select Case e.Button.Properties.Tag
+  ''    Case eWorkOrderGroupButtonTags.Add
+  ''      UpdateObjects()
+  ''      pFormController.AddWorkOrder(eProductType.ProductFurniture)
+  ''      RefreshControls()
+  ''    Case eWorkOrderGroupButtonTags.Delete
+  ''      mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
+  ''      If mWO IsNot Nothing Then
+  ''        If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
+  ''          UpdateObjects()
+  ''          pFormController.DeleteWorkOrder(mWO)
+  ''          RefreshControls()
+  ''        End If
+  ''      End If
+  ''  End Select
+  ''  gvWorkOrders.RefreshData()
+  ''End Sub
 
   Private Sub repitbtWorkOrder_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repitbtWorkOrder.ButtonClick
-    Dim mWO As dmWorkOrder
+    Dim mWOI As clsWorkOrderInfo
     Try
-      mWO = TryCast(gvWorkOrders.GetFocusedRow, dmWorkOrder)
-      If mWO IsNot Nothing Then
-        UpdateObjects()
-        pFormController.SaveObjects()
-        frmWorkOrderDetail.OpenFormModal(mWO.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
-        RefreshControls()
-      End If
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Ellipsis
+          mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+          If mWOI IsNot Nothing Then
+            UpdateObjects()
+            pFormController.SaveObjects()
+            frmWorkOrderDetail.OpenFormModal(mWOI.WorkOrder.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
+            RefreshControls()
+          End If
+        Case ButtonPredefines.Plus
+          Dim mWOSOI As dmSalesOrderItem = Nothing
+          Dim mFound As Boolean = False
+          mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+          mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
+          If mWOSOI IsNot Nothing Then
+            pFormController.AddWorkOrder(mWOSOI, eProductType.ProductFurniture)
+            pFormController.RefreshSOWorkOrders()
+            gvWorkOrders.RefreshData()
+          End If
+      End Select
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -544,4 +565,42 @@ Public Class frmSalesOrderDetail
   Private Sub btnedCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles btnedCustomer.EditValueChanged
 
   End Sub
+
+  Private Sub grpOrderItem_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpOrderItem.CustomButtonClick
+    Dim mSOI As dmSalesOrderItem
+    Select Case e.Button.Properties.Tag
+      Case eOrderItemGroupButtonTags.Add
+        UpdateObjects()
+        pFormController.AddSalesOrderItem(eProductType.ProductFurniture)
+        pFormController.RefreshSOWorkOrders()
+        gvWorkOrders.RefreshData()
+        RefreshControls()
+      Case eOrderItemGroupButtonTags.Delete
+        mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+        If mSOI IsNot Nothing Then
+          If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
+            UpdateObjects()
+            pFormController.DeleteSalesOrderItem(mSOI)
+            RefreshControls()
+          End If
+        End If
+    End Select
+    gvWorkOrders.RefreshData()
+  End Sub
+
+  Private Sub gvWorkOrders_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWorkOrders.CustomUnboundColumnData
+    Dim mWOI As clsWorkOrderInfo
+    Dim mFound As Boolean = False
+    Select Case e.Column.Name
+      Case "gcWOSOItemNumber"
+        If e.IsGetData Then
+          mWOI = TryCast(e.Row, clsWorkOrderInfo)
+          If mWOI IsNot Nothing Then
+            e.Value = mWOI.WorkOrder.ParentSalesOrderItem.SalesOrderItemID
+          End If
+        End If
+    End Select
+  End Sub
+
+
 End Class

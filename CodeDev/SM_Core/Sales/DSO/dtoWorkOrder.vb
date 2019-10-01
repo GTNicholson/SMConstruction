@@ -160,7 +160,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
   Public Function LoadWorkOrderCollection(ByRef rWorkOrders As colWorkOrders, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@SalesOrderID", vParentID)
+    mParams.Add("@SalesOrderItemID", vParentID)
     mOK = MyBase.LoadCollection(rWorkOrders, mParams, "WorkOrderID")
     rWorkOrders.TrackDeleted = True
     If mOK Then rWorkOrders.IsDirty = False
@@ -188,8 +188,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
       End If
 
       For Each Me.pWorkOrder In rCollection
-        If pWorkOrder.IsDirty Or pWorkOrder.WorkOrderID = 0 Then 'Or pWorkOrder.WorkOrderID = 0
-
+        If pWorkOrder.IsDirty Or pWorkOrder.WorkOrderID = 0 Or pWorkOrder.SalesOrderItemID = 0 Then
+          pWorkOrder.SalesOrderItemID = vParentID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next

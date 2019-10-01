@@ -5,6 +5,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pWorkOrderID As Int32
   Private pSalesOrderID As Int32
   Private pSalesOrderItemID As Int32
+  Private pParentSalesOrderItem As dmSalesOrderItem '// Not in clone and not in samespec  
   Private pWorkOrderNo As String
   Private pProductTypeID As Int32
   Private pProductID As Integer
@@ -173,6 +174,15 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderItemID <> value Then IsDirty = True
       pSalesOrderItemID = value
+    End Set
+  End Property
+
+  Public Property ParentSalesOrderItem As dmSalesOrderItem
+    Get
+      Return pParentSalesOrderItem
+    End Get
+    Set(value As dmSalesOrderItem)
+      pParentSalesOrderItem = value
     End Set
   End Property
 
@@ -416,6 +426,15 @@ End Class
 '    If Not mAnyDirty Then mAnyDirty = WorkOrders.IsDirty 'Add to IsAnyDirty
 
 Public Class colWorkOrders : Inherits colBase(Of dmWorkOrder)
+  Implements System.ICloneable
+
+  Private pParentSalesOrderItem As dmSalesOrderItem
+
+
+  Public Sub New(ByRef rParentSalesOrderItem As dmSalesOrderItem)
+    MyBase.New()
+    pParentSalesOrderItem = rParentSalesOrderItem
+  End Sub
 
   Public Overrides Function IndexFromKey(ByVal vWorkOrderID As Integer) As Integer
     Dim mItem As dmWorkOrder
@@ -431,13 +450,24 @@ Public Class colWorkOrders : Inherits colBase(Of dmWorkOrder)
     Return mIndex
   End Function
 
-  Public Sub New()
-    MyBase.New()
-  End Sub
-
   Public Sub New(ByVal vList As List(Of dmWorkOrder))
     MyBase.New(vList)
   End Sub
+
+  Protected Overrides Sub InsertItem(index As Integer, item As dmWorkOrder)
+    MyBase.InsertItem(index, item)
+    If pParentSalesOrderItem IsNot Nothing Then item.ParentSalesOrderItem = pParentSalesOrderItem
+  End Sub
+
+  Public Overridable Function Clone() As Object Implements System.ICloneable.Clone
+    Dim mCol As New colWorkOrders(pParentSalesOrderItem)
+
+    For Each mItem As ICloneable In MyBase.Items
+      mCol.Add(CType(mItem.Clone, dmWorkOrder))
+    Next
+
+    Return mCol
+  End Function
 
 End Class
 

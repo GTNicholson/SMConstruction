@@ -83,6 +83,7 @@ Public Class dsoSales
   Public Function SaveSalesOrderDown(ByRef rSalesOrder As dmSalesOrder) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
+    Dim mdtoSOI As dtoSalesOrderItem
     Dim mdtoWO As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
     Dim mdtoOutputDocs As dtoOutputDocument
@@ -94,17 +95,24 @@ Public Class dsoSales
       mdto = New dtoSalesOrder(pDBConn)
       mdto.SaveSalesOrder(rSalesOrder)
 
-      mdtoWO = New dtoWorkOrder(pDBConn)
-      mdtoWO.SaveWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
+      mdtoSOI = New dtoSalesOrderItem(pDBConn)
+      mdtoSOI.SaveSalesOrderItemCollection(rSalesOrder.SalesOrderItems, rSalesOrder.SalesOrderID)
 
-      '// Ensure any product details are also saved
-      For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
-        If mWO.Product IsNot Nothing Then
-          mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-          mdtoProduct.SaveProduct(mWO.Product)
+      For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
+        mdtoWO = New dtoWorkOrder(pDBConn)
+        mdtoWO.SaveWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
 
-        End If
+        '// Ensure any product details are also saved
+        For Each mWO As dmWorkOrder In mSOI.WorkOrders
+          If mWO.Product IsNot Nothing Then
+            mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
+            mdtoProduct.SaveProduct(mWO.Product)
+
+          End If
+        Next
+
       Next
+
 
       ''mdtoSOFiles = New dtoFileTracker(pDBConn)
       ''mdtoSOFiles.SaveFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
@@ -123,12 +131,13 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
-  Public Function LoadSalesOrderAndCustomer(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
+  Public Function LoadSalesOrderDown(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSalesOrder
     Dim mdtoCust As dtoCustomer
     Dim mdtoCustContacts As dtoCustomerContact
     Dim mdtoWOs As dtoWorkOrder
+    Dim mdtoSOIs As dtoSalesOrderItem
     Dim mdtoProduct As dtoProductBase
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
@@ -146,20 +155,26 @@ Public Class dsoSales
       mdtoCustContacts.LoadCustomerContactCollection(rSalesOrder.Customer.CustomerContacts, rSalesOrder.Customer.CustomerID)
     End If
 
-    mdtoWOs = New dtoWorkOrder(pDBConn)
-    mdtoWOs.LoadWorkOrderCollection(rSalesOrder.WorkOrders, rSalesOrder.SalesOrderID)
-
-    For Each mWO As dmWorkOrder In rSalesOrder.WorkOrders
-      '// Instantiate and Load up the details for the specific product type
-      mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
-      If mWO.Product IsNot Nothing Then
-        mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-        mdtoProduct.LoadProduct(mWO.Product, mWO.ProductTypeID)
-        ''mdtoSOFiles = New dtoFileTracker(pDBConn)
-        ''mdtoSOFiles.LoadFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
+    mdtoSOIs = New dtoSalesOrderItem(pDBConn)
+    mdtoSOIs.LoadSalesOrderItemCollection(rSalesOrder.SalesOrderItems, rSalesOrder.SalesOrderID)
 
 
-      End If
+    For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
+      mdtoWOs = New dtoWorkOrder(pDBConn)
+      mdtoWOs.LoadWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
+
+      For Each mWO As dmWorkOrder In mSOI.WorkOrders
+        '// Instantiate and Load up the details for the specific product type
+        mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
+        If mWO.Product IsNot Nothing Then
+          mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
+          mdtoProduct.LoadProduct(mWO.Product, mWO.ProductTypeID)
+          ''mdtoSOFiles = New dtoFileTracker(pDBConn)
+          ''mdtoSOFiles.LoadFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
+
+        End If
+      Next
+
     Next
 
     mdtoOutputDocs = New dtoOutputDocument(pDBConn)

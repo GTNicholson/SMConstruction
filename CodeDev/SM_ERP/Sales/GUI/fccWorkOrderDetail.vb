@@ -60,7 +60,7 @@ Public Class fccWorkOrderDetail
       mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
 
       pSalesOrder = New dmSalesOrder
-      mdso.LoadSalesOrderAndCustomer(pSalesOrder, pWorkOrder.SalesOrderID)
+      mdso.LoadSalesOrderDown(pSalesOrder, pWorkOrder.SalesOrderID)
 
       mdsoHR = New dsoHR(pDBConn)
       pTimeSheetEntrys = New colTimeSheetEntrys

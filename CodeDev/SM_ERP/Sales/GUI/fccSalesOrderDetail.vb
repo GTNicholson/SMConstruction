@@ -9,8 +9,11 @@ Public Class fccSalesOrderDetail
 
   Private pSalesOrderHandler As clsSalesOrderHandler
 
+  Private pSOWorkOrderInfos As colWorkOrderInfos
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
+    pSOWorkOrderInfos = New colWorkOrderInfos
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -34,6 +37,12 @@ Public Class fccSalesOrderDetail
     End Get
   End Property
 
+  Public ReadOnly Property SOWorkOrders As colWorkOrderInfos
+    Get
+      Return pSOWorkOrderInfos
+    End Get
+  End Property
+
 
   Public Sub LoadObjects()
     Dim mdso As dsoSales
@@ -44,9 +53,10 @@ Public Class fccSalesOrderDetail
     Else
       pSalesOrder = New dmSalesOrder
       mdso = New dsoSales(pDBConn)
-      mdso.LoadSalesOrderAndCustomer(pSalesOrder, pPrimaryKeyID)
+      mdso.LoadSalesOrderDown(pSalesOrder, pPrimaryKeyID)
     End If
     pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
+    RefreshSOWorkOrders()
   End Sub
 
   Public Sub SaveObjects()
@@ -109,12 +119,35 @@ Public Class fccSalesOrderDetail
     Return mRetVal
   End Function
 
-  Public Sub AddWorkOrder(ByVal vProductType As eProductType)
+  Public Sub AddSalesOrderItem(ByVal vProductType As eProductType)
+    Dim mdso As dsoSales
+    Dim mSOI As dmSalesOrderItem
+    Try
+      SaveObjects()
+      mSOI = pSalesOrderHandler.AddSalesOrderItem(vProductType)
+      mdso = New dsoSales(pDBConn)
+      mdso.SaveSalesOrderDown(pSalesOrder)
+      SaveObjects()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub DeleteSalesOrderItem(ByRef rSOI As dmSalesOrderItem)
+    Try
+      pSalesOrderHandler.RemoveSalesOrderItem(rSOI)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub AddWorkOrder(ByRef rSOI As dmSalesOrderItem, ByVal vProductType As eProductType)
     Dim mdso As dsoSales
     Dim mWO As dmWorkOrder
     Try
       SaveObjects()
-      mWO = pSalesOrderHandler.AddWorkOrder(vProductType)
+      mWO = pSalesOrderHandler.AddWorkOrder(rSOI, vProductType)
       mdso = New dsoSales(pDBConn)
       mdso.SaveWorkOrderDown(mWO)
       SaveObjects()
@@ -159,6 +192,20 @@ Public Class fccSalesOrderDetail
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+  End Sub
+
+  Public Sub RefreshSOWorkOrders()
+    Dim mWOI As clsWorkOrderInfo
+    pSOWorkOrderInfos.Clear()
+    For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+      For Each mWO As dmWorkOrder In mSOI.WorkOrders
+        mWOI = New clsWorkOrderInfo
+        mWOI.WorkOrder = mWO
+        mWOI.SalesOrder = pSalesOrder
+        mWOI.Customer = pSalesOrder.Customer
+        pSOWorkOrderInfos.Add(mWOI)
+      Next
+    Next
   End Sub
 
 End Class

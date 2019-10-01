@@ -9,12 +9,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pQuantity As Int32
   Private pUnitPrice As Decimal
 
+  Private pWorkOrders As colWorkOrders
+
   Public Sub New()
     MyBase.New()
   End Sub
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pWorkOrders = New colWorkOrders(Me)
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -48,6 +52,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .Quantity = Quantity
       .UnitPrice = UnitPrice
       'Add entries here for each collection and class property
+      .WorkOrders = WorkOrders.Clone
 
       'Entries for object management
 
@@ -117,6 +122,15 @@ Public Class dmSalesOrderItem : Inherits dmBase
   End Property
 
 
+  Public Property WorkOrders As colWorkOrders
+    Get
+      Return pWorkOrders
+    End Get
+    Set(value As colWorkOrders)
+      pWorkOrders = value
+    End Set
+  End Property
+
 End Class
 
 
@@ -162,6 +176,15 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
   Public Sub New(ByVal vList As List(Of dmSalesOrderItem))
     MyBase.New(vList)
   End Sub
+
+  Public Function GetNextItemNumber() As Integer
+    Dim mRetVal As Integer = 0
+    For Each mItem As dmSalesOrderItem In Me.Items
+      If mItem.ItemNumber > mRetVal Then mRetVal = mItem.ItemNumber
+    Next
+    mRetVal = mRetVal + 1
+    Return mRetVal
+  End Function
 
 End Class
 
