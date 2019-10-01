@@ -25,7 +25,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.xrtComponentDescription = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtUnitPiece = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.xrtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtcTotalPieces = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtGrossThickness = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtNetThickness = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtGrossWidth = New DevExpress.XtraReports.UI.XRTableCell()
@@ -50,7 +50,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.xrlCustomerName = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrlProductDescription = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.xrtStockCode = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtQuantity = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
     Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -182,7 +182,7 @@ Partial Public Class repWorkOrderMatReqsWood
     '
     'XrTableRow2
     '
-    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtComponentDescription, Me.xrtUnitPiece, Me.xrtcQuantity, Me.xrtGrossThickness, Me.xrtNetThickness, Me.xrtGrossWidth, Me.xrtNetWidth, Me.xrtGrossLenght, Me.xrtNetLenght, Me.xrtGrossLenghtFeet, Me.XrTableCell20, Me.xrtMaterialTypeID, Me.xrtWoodSpecieID, Me.xrtQualityType})
+    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtComponentDescription, Me.xrtUnitPiece, Me.xrtcTotalPieces, Me.xrtGrossThickness, Me.xrtNetThickness, Me.xrtGrossWidth, Me.xrtNetWidth, Me.xrtGrossLenght, Me.xrtNetLenght, Me.xrtGrossLenghtFeet, Me.XrTableCell20, Me.xrtMaterialTypeID, Me.xrtWoodSpecieID, Me.xrtQualityType})
     Me.XrTableRow2.Name = "XrTableRow2"
     Me.XrTableRow2.Weight = 1.0R
     '
@@ -200,13 +200,13 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtUnitPiece.Text = "xrtUnitPiece"
     Me.xrtUnitPiece.Weight = 0.42000654500470086R
     '
-    'xrtcQuantity
+    'xrtcTotalPieces
     '
-    Me.xrtcQuantity.BackColor = System.Drawing.Color.MediumPurple
-    Me.xrtcQuantity.Name = "xrtcQuantity"
-    Me.xrtcQuantity.StylePriority.UseBackColor = False
-    Me.xrtcQuantity.Text = "xrtcQuantity"
-    Me.xrtcQuantity.Weight = 0.42366320239726118R
+    Me.xrtcTotalPieces.BackColor = System.Drawing.Color.MediumPurple
+    Me.xrtcTotalPieces.Name = "xrtcTotalPieces"
+    Me.xrtcTotalPieces.StylePriority.UseBackColor = False
+    Me.xrtcTotalPieces.Text = "xrtcTotalPieces"
+    Me.xrtcTotalPieces.Weight = 0.42366320239726118R
     '
     'xrtGrossThickness
     '
@@ -410,7 +410,7 @@ Partial Public Class repWorkOrderMatReqsWood
     '
     'XrTableRow3
     '
-    Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrlCustomerName, Me.xrlProductDescription, Me.xrtStockCode})
+    Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrlCustomerName, Me.xrlProductDescription, Me.xrtQuantity})
     Me.XrTableRow3.Name = "XrTableRow3"
     Me.XrTableRow3.Weight = 1.0R
     '
@@ -436,16 +436,16 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrlProductDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlProductDescription.Weight = 1.753357693605897R
     '
-    'xrtStockCode
+    'xrtQuantity
     '
-    Me.xrtStockCode.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+    Me.xrtQuantity.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-    Me.xrtStockCode.Name = "xrtStockCode"
-    Me.xrtStockCode.StylePriority.UseBorders = False
-    Me.xrtStockCode.StylePriority.UseTextAlignment = False
-    Me.xrtStockCode.Text = "xrtStockCode"
-    Me.xrtStockCode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtStockCode.Weight = 0.733655025400152R
+    Me.xrtQuantity.Name = "xrtQuantity"
+    Me.xrtQuantity.StylePriority.UseBorders = False
+    Me.xrtQuantity.StylePriority.UseTextAlignment = False
+    Me.xrtQuantity.Text = "xrtQuantity"
+    Me.xrtQuantity.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrtQuantity.Weight = 0.733655025400152R
     '
     'XrLabel2
     '
@@ -1279,7 +1279,7 @@ Partial Public Class repWorkOrderMatReqsWood
   Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents xrtComponentDescription As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtUnitPiece As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtcQuantity As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtcTotalPieces As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtGrossThickness As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtNetThickness As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtGrossWidth As DevExpress.XtraReports.UI.XRTableCell
@@ -1305,7 +1305,7 @@ Partial Public Class repWorkOrderMatReqsWood
   Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents xrlCustomerName As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrlProductDescription As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtStockCode As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtQuantity As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel

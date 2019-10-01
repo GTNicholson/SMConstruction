@@ -1,8 +1,10 @@
 ﻿Public Class clsMaterialRequirementInfo
   Private pMaterialRequirement As dmMaterialRequirement
+  Private pWorkOrder As dmWorkOrder
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
+    pWorkOrder = New dmWorkOrder
   End Sub
 
   Public ReadOnly Property Description As String
@@ -48,7 +50,7 @@
 
   Public ReadOnly Property InitialWidthFraction As String
     Get
-      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInchesSMM(pMaterialRequirement.NetWidth))
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth))
     End Get
   End Property
 
@@ -103,6 +105,13 @@
   Public ReadOnly Property Quantity As Decimal
     Get
       Return pMaterialRequirement.Quantity
+    End Get
+  End Property
+
+
+  Public ReadOnly Property TotalPieces As Int32
+    Get
+      Return clsSMSharedFuncs.WOTotalPieces(pWorkOrder.Quantity, pMaterialRequirement.UnitPiece)
     End Get
   End Property
 

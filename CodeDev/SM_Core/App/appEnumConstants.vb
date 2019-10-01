@@ -142,6 +142,7 @@ Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of cls
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vaccacion", "V", System.Drawing.Color.Lavender))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenamiento", "M", System.Drawing.Color.PaleGreen))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfremo", "E", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.Lavender))
   End Sub
 
   Public Shared ReadOnly Property GetInstance As colTimeSheetCodes
@@ -175,6 +176,7 @@ Public Class clsTimeSheetCode : Inherits RTIS.ERPCore.clsPropertyENUM
   Public Const cHoliday = 3
   Public Const cMaintenance = 4
   Public Const cSick = 5
+  Public Const cCleaning = 6
 
   Public Sub New(ByVal vID As Integer, vDescription As String, vKeyCode As String, vColour As System.Drawing.Color)
     MyBase.New(vID, vDescription)

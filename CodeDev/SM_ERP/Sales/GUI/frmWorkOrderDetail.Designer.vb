@@ -114,7 +114,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMaterialTypeID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
@@ -1188,7 +1188,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirements.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.GridColumn15, Me.GridColumn16})
     Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
     Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
     Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
@@ -1202,7 +1202,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn1.Name = "GridColumn1"
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
-    Me.GridColumn1.Width = 53
+    Me.GridColumn1.Width = 93
     '
     'GridColumn2
     '
@@ -1211,7 +1211,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 1
-    Me.GridColumn2.Width = 90
+    Me.GridColumn2.Width = 158
     '
     'GridColumn4
     '
@@ -1219,8 +1219,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn4.FieldName = "UnitPiece"
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 2
-    Me.GridColumn4.Width = 90
+    Me.GridColumn4.VisibleIndex = 3
+    Me.GridColumn4.Width = 80
     '
     'GridColumn10
     '
@@ -1228,8 +1228,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.FieldName = "NetThickness"
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 3
-    Me.GridColumn10.Width = 81
+    Me.GridColumn10.VisibleIndex = 4
+    Me.GridColumn10.Width = 91
     '
     'GridColumn11
     '
@@ -1237,8 +1237,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.FieldName = "NetWidth"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 4
-    Me.GridColumn11.Width = 74
+    Me.GridColumn11.VisibleIndex = 5
+    Me.GridColumn11.Width = 80
     '
     'GridColumn12
     '
@@ -1246,17 +1246,17 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.FieldName = "NetLenght"
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
-    Me.GridColumn12.VisibleIndex = 5
-    Me.GridColumn12.Width = 71
+    Me.GridColumn12.VisibleIndex = 6
+    Me.GridColumn12.Width = 172
     '
-    'GridColumn14
+    'gcMaterialTypeID
     '
-    Me.GridColumn14.Caption = "Material"
-    Me.GridColumn14.FieldName = "MaterialTypeID"
-    Me.GridColumn14.Name = "GridColumn14"
-    Me.GridColumn14.Visible = True
-    Me.GridColumn14.VisibleIndex = 6
-    Me.GridColumn14.Width = 54
+    Me.gcMaterialTypeID.Caption = "Material"
+    Me.gcMaterialTypeID.FieldName = "MaterialTypeID"
+    Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
+    Me.gcMaterialTypeID.Visible = True
+    Me.gcMaterialTypeID.VisibleIndex = 2
+    Me.gcMaterialTypeID.Width = 131
     '
     'GridColumn15
     '
@@ -1264,7 +1264,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn15.Name = "GridColumn15"
     Me.GridColumn15.Visible = True
     Me.GridColumn15.VisibleIndex = 7
-    Me.GridColumn15.Width = 53
+    Me.GridColumn15.Width = 128
     '
     'GridColumn16
     '
@@ -1273,7 +1273,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn16.Name = "GridColumn16"
     Me.GridColumn16.Visible = True
     Me.GridColumn16.VisibleIndex = 8
-    Me.GridColumn16.Width = 76
+    Me.GridColumn16.Width = 198
     '
     'XtraTabPage4
     '
@@ -1558,7 +1558,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMaterialTypeID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label20 As Label

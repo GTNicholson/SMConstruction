@@ -37,6 +37,7 @@ Public Class repWorkOrderDoc
     SetUpDataBindings()
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrSalesOrderID.Text = pSalesOrder.OrderNo
+    xrlOT2.Text = pSalesOrder.OrderNo
 
     xrlDateEntered.Text = pSalesOrder.DateEntered
     xrtDueTime.Text = pSalesOrder.DueTime
@@ -49,5 +50,17 @@ Public Class repWorkOrderDoc
   End Sub
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
+    Dim mFileName As String
+    Dim mImage As Image
+
+    mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrder, pWorkOrder)
+
+    If IO.File.Exists(mFileName) Then
+      mImage = Drawing.Image.FromFile(mFileName)
+    End If
+
+    xrPic.Image = mImage
+
+
   End Sub
 End Class

@@ -20,6 +20,14 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pImageFile As String
   Private pWorkcentreID As Int32
 
+  Private pMachining As Boolean
+  Private pAssembley As Boolean
+  Private pSanding As Boolean
+  Private pPainting As Boolean
+  Private pMetalWork As Boolean
+  Private pUpholstery As Boolean
+  Private pSubContract As Boolean
+
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
 
@@ -81,6 +89,15 @@ Public Class dmWorkOrder : Inherits dmBase
       .WoodFinish = WoodFinish
       .ImageFile = ImageFile
       .WorkcentreID = WorkcentreID
+
+
+      .Machining = Machining
+      .Assembley = Assembley
+      .Sanding = Sanding
+      .Painting = Painting
+      .MetalWork = MetalWork
+      .Upholstery = Upholstery
+      .SubContract = SubContract
 
       'Add entries here for each collection and class property
 
@@ -293,7 +310,76 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property Machining As Boolean
+    Get
+      Return pMachining
+    End Get
+    Set(value As Boolean)
+      If pMachining <> value Then IsDirty = True
+      pMachining = value
+    End Set
+  End Property
 
+
+  Public Property Assembley As Boolean
+    Get
+      Return pAssembley
+    End Get
+    Set(value As Boolean)
+      If pAssembley <> value Then IsDirty = True
+      pAssembley = value
+    End Set
+  End Property
+
+  Public Property Sanding As Boolean
+    Get
+      Return pSanding
+    End Get
+    Set(value As Boolean)
+      If pSanding <> value Then IsDirty = True
+      pSanding = value
+    End Set
+  End Property
+
+  Public Property Painting As Boolean
+    Get
+      Return pPainting
+    End Get
+    Set(value As Boolean)
+      If pPainting <> value Then IsDirty = True
+      pPainting = value
+    End Set
+  End Property
+
+  Public Property MetalWork As Boolean
+    Get
+      Return pMetalWork
+    End Get
+    Set(value As Boolean)
+      If pMetalWork <> value Then IsDirty = True
+      pMetalWork = value
+    End Set
+  End Property
+
+  Public Property Upholstery As Boolean
+    Get
+      Return pUpholstery
+    End Get
+    Set(value As Boolean)
+      If pUpholstery <> value Then IsDirty = True
+      pUpholstery = value
+    End Set
+  End Property
+
+  Public Property SubContract As Boolean
+    Get
+      Return pSubContract
+    End Get
+    Set(value As Boolean)
+      If pSubContract <> value Then IsDirty = True
+      pSubContract = value
+    End Set
+  End Property
 
 End Class
 

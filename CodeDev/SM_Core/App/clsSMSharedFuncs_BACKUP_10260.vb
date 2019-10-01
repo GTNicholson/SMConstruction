@@ -51,7 +51,7 @@ Public Class clsSMSharedFuncs
 
     mRetVal = vCM / 2.54
     mRetVal = Math.Truncate(mRetVal * 4) / 4
-    mRetVal += 2
+    mRetVal += 2.25
     Return mRetVal
   End Function
 
@@ -73,23 +73,37 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+<<<<<<< HEAD
 
-  Public Shared Function WOTotalPieces(ByVal vUnitPiece As Int32, ByVal vQuantity As Int32) As Int32
-    Dim mRetVal As Int32
+  Public Shared Function WOTotalPieces(ByVal vDecimal As Decimal) As Int32
 
-    mRetVal = vUnitPiece * vQuantity
+    Dim mRemainder As Decimal
 
-    Return mRetVal
-  End Function
-
+    mRetVal = Math.Truncate(vDecimal)
+    mRemainder = vDecimal - mRetVal
+    Select Case mRemainder
+      Case 0.25
+        mRetVal = mRetVal & " 1/4"
+      Case 0.5
+        mRetVal = mRetVal & " 1/2"
+      Case 0.75
+        mRetVal = mRetVal & " 3/4"
+    End Select
+=======
   Public Shared Function GetWOImageFileName(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder) As String
     Dim mRetVal As String
     Dim mExportDirectory As String = String.Empty
 
     mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
     mRetVal = IO.Path.Combine(mExportDirectory, rWorkOrder.ImageFile)
+>>>>>>> 5629e82715b7e70b9490fd7ec33911f5871b99e2
 
     Return mRetVal
   End Function
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 5629e82715b7e70b9490fd7ec33911f5871b99e2
 End Class

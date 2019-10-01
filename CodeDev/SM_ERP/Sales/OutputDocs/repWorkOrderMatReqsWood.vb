@@ -11,7 +11,7 @@ Public Class repWorkOrderMatReqsWood
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrlProductDescription.Text = pWorkOrder.Description
     xrtDateEntered.Text = pWorkOrder.PlannedStartDate
-
+    xrtQuantity.Text = pWorkOrder.Quantity
     SetUpBindings()
   End Sub
 
@@ -30,6 +30,8 @@ Public Class repWorkOrderMatReqsWood
     xrtGrossWidth.DataBindings.Add("Text", Me.DataSource, "InitialWidthFraction")
     xrtGrossLenght.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFraction")
     xrtGrossLenghtFeet.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFractionFeet")
+    xrtcTotalPieces.DataBindings.Add("Text", Me.DataSource, "TotalPieces")
+
 
     'xrlMatReqDesc.DataBindings.Add("Text", Me.DataSource, "Description")
   End Sub

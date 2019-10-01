@@ -1,6 +1,4 @@
-﻿Imports RTIS.CommonVB
-
-Public Class clsSMSharedFuncs
+﻿Public Class clsSMSharedFuncs
 
   Public Shared Function GrosWoodThickness(ByVal vCM As Decimal) As Decimal
     Dim mRetVal As Decimal
@@ -37,24 +35,6 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
-  Public Shared Function CMToQuaterInchesSMM(ByVal vCM As Decimal) As Decimal
-    Dim mRetVal As Decimal
-
-    mRetVal = vCM / 2.54
-    mRetVal = Math.Truncate(mRetVal * 4) / 4
-    mRetVal += 0.5
-    Return mRetVal
-  End Function
-
-  Public Shared Function CMToQuaterInchesLenght(ByVal vCM As Decimal) As Decimal
-    Dim mRetVal As Decimal
-
-    mRetVal = vCM / 2.54
-    mRetVal = Math.Truncate(mRetVal * 4) / 4
-    mRetVal += 2
-    Return mRetVal
-  End Function
-
   Public Shared Function DecToFraction(ByVal vDecimal As Decimal) As String
     Dim mRetVal As String
     Dim mRemainder As Decimal
@@ -69,25 +49,6 @@ Public Class clsSMSharedFuncs
       Case 0.75
         mRetVal = mRetVal & " 3/4"
     End Select
-
-    Return mRetVal
-  End Function
-
-
-  Public Shared Function WOTotalPieces(ByVal vUnitPiece As Int32, ByVal vQuantity As Int32) As Int32
-    Dim mRetVal As Int32
-
-    mRetVal = vUnitPiece * vQuantity
-
-    Return mRetVal
-  End Function
-
-  Public Shared Function GetWOImageFileName(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder) As String
-    Dim mRetVal As String
-    Dim mExportDirectory As String = String.Empty
-
-    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
-    mRetVal = IO.Path.Combine(mExportDirectory, rWorkOrder.ImageFile)
 
     Return mRetVal
   End Function
