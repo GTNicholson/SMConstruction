@@ -9,22 +9,31 @@
     pCustomer = New dmCustomer
   End Sub
 
-  Public ReadOnly Property WorkOrder As dmWorkOrder
+  Public Property WorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
     End Get
+    Set(value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
   End Property
 
-  Public ReadOnly Property SalesOrder As dmSalesOrder
+  Public Property SalesOrder As dmSalesOrder
     Get
       Return pSalesOrder
     End Get
+    Set(value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
   End Property
 
-  Public ReadOnly Property Customer As dmCustomer
+  Public Property Customer As dmCustomer
     Get
       Return pCustomer
     End Get
+    Set(value As dmCustomer)
+      pCustomer = value
+    End Set
   End Property
 
   Public ReadOnly Property WorkOrderID As Integer

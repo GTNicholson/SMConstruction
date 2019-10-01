@@ -27,7 +27,8 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pCustomerDelContactID As Int32
 
   Private pCustomer As dmCustomer
-  Private pWorkOrders As colWorkOrders
+  Private pSalesOrderItems As colSalesOrderItems
+  ''Private pWorkOrders As colWorkOrders
 
   Private pOutputDocuments As colOutputDocuments
   Private pSOFiles As colFileTrackers
@@ -38,7 +39,8 @@ Public Class dmSalesOrder : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
-    pWorkOrders = New colWorkOrders
+    ''pWorkOrders = New colWorkOrders
+    pSalesOrderItems = New colSalesOrderItems
     pOutputDocuments = New colOutputDocuments
   End Sub
 
@@ -103,8 +105,8 @@ Public Class dmSalesOrder : Inherits dmBase
       'Add entries here for each collection and class property
 
       'Entries for object management
-      .WorkOrders = WorkOrders.Clone
-
+      ''.WorkOrders = WorkOrders.Clone
+      .SalesOrderItems = SalesOrderItems.Clone
       .IsDirty = IsDirty
     End With
 
@@ -349,12 +351,21 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
-  Public Property WorkOrders As colWorkOrders
+  ''Public Property WorkOrders As colWorkOrders
+  ''  Get
+  ''    Return pWorkOrders
+  ''  End Get
+  ''  Set(value As colWorkOrders)
+  ''    pWorkOrders = value
+  ''  End Set
+  ''End Property
+
+  Public Property SalesOrderItems As colSalesOrderItems
     Get
-      Return pWorkOrders
+      Return pSalesOrderItems
     End Get
-    Set(value As colWorkOrders)
-      pWorkOrders = value
+    Set(value As colSalesOrderItems)
+      pSalesOrderItems = value
     End Set
   End Property
 

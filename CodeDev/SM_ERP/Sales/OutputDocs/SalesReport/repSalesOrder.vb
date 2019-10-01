@@ -9,7 +9,7 @@ Public Class repSalesOrder
   Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder) As repSalesOrder
     Dim mRep As New repSalesOrder
     mRep.pSalesOrder = rSalesOrder
-    mRep.DataSource = mRep.pSalesOrder.WorkOrders
+    mRep.DataSource = mRep.pSalesOrder.SalesOrderItems
 
     mRep.CreateDocument()
 

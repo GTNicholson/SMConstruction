@@ -55,6 +55,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
     End If
     With pWorkOrder
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderItemID", .SalesOrderItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID", .ProductID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID", .ProductTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
@@ -90,6 +91,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       With pWorkOrder
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
+        .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
         .ProductID = DBReadInt32(rDataReader, "ProductID")
         .ProductTypeID = DBReadInt32(rDataReader, "ProductTypeID")
         .Quantity = DBReadInt32(rDataReader, "Quantity")
@@ -158,7 +160,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
   Public Function LoadWorkOrderCollection(ByRef rWorkOrders As colWorkOrders, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@SalesOrderID", vParentID)
+    mParams.Add("@SalesOrderItemID", vParentID)
     mOK = MyBase.LoadCollection(rWorkOrders, mParams, "WorkOrderID")
     rWorkOrders.TrackDeleted = True
     If mOK Then rWorkOrders.IsDirty = False
@@ -186,8 +188,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
       End If
 
       For Each Me.pWorkOrder In rCollection
-        If pWorkOrder.IsDirty Or pWorkOrder.WorkOrderID = 0 Then 'Or pWorkOrder.WorkOrderID = 0
-
+        If pWorkOrder.IsDirty Or pWorkOrder.WorkOrderID = 0 Or pWorkOrder.SalesOrderItemID = 0 Then
+          pWorkOrder.SalesOrderItemID = vParentID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next
