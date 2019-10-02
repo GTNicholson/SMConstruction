@@ -258,6 +258,7 @@ Public Class frmSalesOrderDetail
             FillCustomerDetail()
             LoadCustomerContactCombo()
           End If
+          RefreshControls()
         Case ButtonPredefines.Ellipsis
           frmCustomerDetail.OpenFormModal(pFormController.SalesOrder.CustomerID, pFormController.DBConn)
           If pFormController.SalesOrder.CustomerID <> 0 Then
@@ -265,6 +266,7 @@ Public Class frmSalesOrderDetail
             FillCustomerDetail()
             LoadCustomerContactCombo()
           End If
+          RefreshControls()
       End Select
 
       RefreshControls()
@@ -330,6 +332,7 @@ Public Class frmSalesOrderDetail
             frmWorkOrderDetail.OpenFormModal(mWOI.WorkOrder.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
             RefreshControls()
           End If
+          gvWorkOrders.RefreshData()
         Case ButtonPredefines.Plus
           Dim mWOSOI As dmSalesOrderItem = Nothing
           Dim mFound As Boolean = False
@@ -340,6 +343,8 @@ Public Class frmSalesOrderDetail
             pFormController.RefreshSOWorkOrders()
             gvWorkOrders.RefreshData()
           End If
+          gvWorkOrders.RefreshData()
+          RefreshControls()
       End Select
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -455,6 +460,7 @@ Public Class frmSalesOrderDetail
           RefreshControls()
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
           ViewSalesOrderDocument()
+          RefreshControls()
       End Select
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

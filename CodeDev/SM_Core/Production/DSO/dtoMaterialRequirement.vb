@@ -67,6 +67,8 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetLenght", .NetLenght)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QualityType", .QualityType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialTypeID", .MaterialTypeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecie", .WoodSpecie)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
     End With
 
   End Sub
@@ -90,8 +92,8 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .NetLenght = DBReadDecimal(rDataReader, "NetLenght")
         .QualityType = DBReadInt32(rDataReader, "QualityType")
         .MaterialTypeID = DBReadInt32(rDataReader, "MaterialTypeID")
-
-
+        .WoodSpecie = DBReadInt32(rDataReader, "WoodSpecie")
+        .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
 
         pMaterialRequirement.IsDirty = False
       End With

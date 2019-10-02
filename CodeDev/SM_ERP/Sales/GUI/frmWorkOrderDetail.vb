@@ -186,8 +186,20 @@ Public Class frmWorkOrderDetail
     clsDEControlLoading.FillDEComboVI(cboProductType, mVIs)
 
 
-    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
+    clsDEControlLoading.FillDEComboVI(cboEmployee, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.FurnitureCategory)
+    clsDEControlLoading.FillDEComboVI(cboFurnitureCategory, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirements, gcMaterialTypeID, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirements, gcWoodSpecie, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Quality)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirements, gcQuality, mVIs)
 
 
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
@@ -195,9 +207,6 @@ Public Class frmWorkOrderDetail
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSEmployee, mVIs)
-
-    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
-    clsDEControlLoading.FillDEComboVI(cboWoodSpecie, mVIs)
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
     clsDEControlLoading.FillDEComboVI(cboWoodFinish, mVIs)
@@ -235,9 +244,9 @@ Public Class frmWorkOrderDetail
       dtePlannedStartDate.DateTime = .PlannedStartDate
 
       clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
-      clsDEControlLoading.SetDECombo(cboWoodSpecie, .WoodSpecieID)
       clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
-
+      clsDEControlLoading.SetDECombo(cboFurnitureCategory, .FurnitureCategoryID)
+      clsDEControlLoading.SetDECombo(cboEmployee, .EmployeeID)
 
       ceMaquinado.Checked = .Machining
       ceCostura.Checked = .Upholstery
@@ -303,8 +312,11 @@ Public Class frmWorkOrderDetail
 
       .PlannedStartDate = dtePlannedStartDate.DateTime
       .UnitPrice = Val(txtPrice.Text)
-      .WoodSpecieID = clsDEControlLoading.GetDEComboValue(cboWoodSpecie)
+
       .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
+      .FurnitureCategoryID = clsDEControlLoading.GetDEComboValue(cboFurnitureCategory)
+      .EmployeeID = clsDEControlLoading.GetDEComboValue(cboEmployee)
+
       .WorkcentreID = getCheckValue()
 
       .Machining = ceMaquinado.Checked

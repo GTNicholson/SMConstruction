@@ -55,6 +55,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
     End If
     With pWorkOrder
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeID", .EmployeeID)
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderItemID", .SalesOrderItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID", .ProductID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID", .ProductTypeID)
@@ -68,6 +70,9 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", .UnitPrice)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkcentreID", .WorkcentreID)
+
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FurnitureCategoryID", .FurnitureCategoryID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubFurnitureCategoryID", .SubFurnitureCategoryID)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Machining", .Machining)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Assembley", .Assembley)
@@ -104,6 +109,13 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WorkcentreID = DBReadInt32(rDataReader, "WorkcentreID")
+
+        .FurnitureCategoryID = DBReadInt32(rDataReader, "FurnitureCategoryID")
+        .SubFurnitureCategoryID = DBReadInt32(rDataReader, "SubFurnitureCategoryID")
+
+        .EmployeeID = DBReadInt32(rDataReader, "EmployeeID")
+
+
         .Machining = DBReadBoolean(rDataReader, "Machining")
         .Assembley = DBReadBoolean(rDataReader, "Assembley")
         .Sanding = DBReadBoolean(rDataReader, "Sanding")

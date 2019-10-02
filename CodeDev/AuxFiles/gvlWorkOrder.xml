@@ -145,7 +145,7 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Responsable</property>
-      <property name="FieldName">EmployeeName</property>
+      <property name="FieldName">EmployeeID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>

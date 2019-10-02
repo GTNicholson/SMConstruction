@@ -6,6 +6,20 @@
     pMaterialRequirement = rMaterialRequirement
     pWorkOrder = New dmWorkOrder
   End Sub
+  Public Property WorkOrder As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+    Set(ByVal value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
+  End Property
+
+  Public ReadOnly Property WorkOrderQuantity As Integer
+    Get
+      Return pWorkOrder.Quantity
+    End Get
+  End Property
 
   Public ReadOnly Property Description As String
     Get
@@ -111,7 +125,7 @@
 
   Public ReadOnly Property TotalPieces As Int32
     Get
-      Return clsSMSharedFuncs.WOTotalPieces(pWorkOrder.Quantity, pMaterialRequirement.UnitPiece)
+      Return WorkOrderQuantity * pMaterialRequirement.UnitPiece
     End Get
   End Property
 

@@ -16,11 +16,13 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pUnitPrice As Decimal
   Private pProjectName As String
   Private pWorkOrderType As Int32
-  Private pEmployeeName As String
+  Private pEmployeeID As Int32
   Private pWoodSpecieID As Int32
   Private pWoodFinish As Int32
   Private pImageFile As String
   Private pWorkcentreID As Int32
+  Private pFurnitureCategoryID As Int32
+  Private pSubFurnitureCategoryID As Int32
 
   Private pMachining As Boolean
   Private pAssembley As Boolean
@@ -92,8 +94,8 @@ Public Class dmWorkOrder : Inherits dmBase
       .WoodFinish = WoodFinish
       .ImageFile = ImageFile
       .WorkcentreID = WorkcentreID
-
-
+      .FurnitureCategoryID = FurnitureCategoryID
+      .SubFurnitureCategoryID = SubFurnitureCategoryID
       .Machining = Machining
       .Assembley = Assembley
       .Sanding = Sanding
@@ -101,7 +103,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .MetalWork = MetalWork
       .Upholstery = Upholstery
       .SubContract = SubContract
-
+      .EmployeeID = EmployeeID
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -122,6 +124,26 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pWorkcentreID <> value Then IsDirty = True
       pWorkcentreID = value
+    End Set
+  End Property
+
+  Public Property FurnitureCategoryID() As Int32
+    Get
+      Return pFurnitureCategoryID
+    End Get
+    Set(ByVal value As Int32)
+      If pFurnitureCategoryID <> value Then IsDirty = True
+      pFurnitureCategoryID = value
+    End Set
+  End Property
+
+  Public Property SubFurnitureCategoryID() As Int32
+    Get
+      Return pSubFurnitureCategoryID
+    End Get
+    Set(ByVal value As Int32)
+      If pSubFurnitureCategoryID <> value Then IsDirty = True
+      pSubFurnitureCategoryID = value
     End Set
   End Property
 
@@ -294,13 +316,13 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
-  Public Property EmployeeName As String
+  Public Property EmployeeID As Int32
     Get
-      Return pEmployeeName
+      Return pEmployeeID
     End Get
-    Set(ByVal value As String)
-      If pEmployeeName <> value Then IsDirty = True
-      pEmployeeName = value
+    Set(ByVal value As Int32)
+      If pEmployeeID <> value Then IsDirty = True
+      pEmployeeID = value
     End Set
   End Property
 

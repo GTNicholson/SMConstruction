@@ -118,6 +118,25 @@ Public Class dsoAppRefLists
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 7", "Value", "Description")
           mItem.IList = mValueItems
 
+        Case appRefLists.Material
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 8", "Value", "Description")
+          mItem.IList = mValueItems
+
+        Case appRefLists.Quality
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 9", "Value", "Description")
+          mItem.IList = mValueItems
+
+        Case appRefLists.FurnitureCategory
+          mItem.IList = LoadFurnitureCategory()
+          mOK = True
+
+        Case appRefLists.Quality
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 9", "Value", "Description")
+          mItem.IList = mValueItems
+
       End Select
       mItem = Nothing
     Else
@@ -144,6 +163,15 @@ Public Class dsoAppRefLists
     Dim mRetVal As New colWoodSpecies
 
     mdto.LoadWoodSpecieCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+  Public Function LoadFurnitureCategory() As IList
+    Dim mdto As New dtoFurnitureCategory(pDBConn)
+    Dim mRetVal As New colFurnitureCategorys
+
+    mdto.LoadFurnitureCategoryCollection(mRetVal)
 
     Return mRetVal
   End Function

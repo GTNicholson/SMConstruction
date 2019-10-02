@@ -156,6 +156,7 @@ Public Class fccWorkOrderDetail
     If mPF IsNot Nothing Then
       For Each mMR As dmMaterialRequirement In mPF.MaterialRequirments
         mMRI = New clsMaterialRequirementInfo(mMR)
+        mMRI.WorkOrder = pWorkOrder
         mMatReqInfos.Add(mMRI)
       Next
     End If

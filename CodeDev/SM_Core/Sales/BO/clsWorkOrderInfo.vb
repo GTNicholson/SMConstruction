@@ -145,9 +145,9 @@
     End Get
   End Property
 
-  Public ReadOnly Property EmployeeName As String
+  Public ReadOnly Property EmployeeID As Int32
     Get
-      Return pWorkOrder.EmployeeName
+      Return pWorkOrder.EmployeeID
     End Get
   End Property
 

@@ -42,7 +42,7 @@ Partial Class frmWorkOrderDetail
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.ComboBoxEdit2 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.cboEmployee = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label18 = New System.Windows.Forms.Label()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
     Me.txtDueTime = New DevExpress.XtraEditors.TextEdit()
@@ -83,14 +83,10 @@ Partial Class frmWorkOrderDetail
     Me.ceMaquinado = New DevExpress.XtraEditors.CheckEdit()
     Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
     Me.UctFileControl1 = New SimplementeMadera.uctFileControl()
-    Me.ComboBoxEdit6 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.cboSubFurnitureCategory = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.cboWoodFinish = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.cboWoodSpecie = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.ComboBoxEdit3 = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.Label10 = New System.Windows.Forms.Label()
+    Me.cboFurnitureCategory = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label8 = New System.Windows.Forms.Label()
-    Me.Label9 = New System.Windows.Forms.Label()
     Me.Label7 = New System.Windows.Forms.Label()
     Me.Label6 = New System.Windows.Forms.Label()
     Me.memPFNotes = New DevExpress.XtraEditors.MemoEdit()
@@ -115,8 +111,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcMaterialTypeID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcWoodSpecie = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQuality = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -134,7 +130,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
     CType(Me.txtDueTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,11 +162,9 @@ Partial Class frmWorkOrderDetail
     CType(Me.ceMaquinado.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl4.SuspendLayout()
-    CType(Me.ComboBoxEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cboSubFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboWoodFinish.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.cboWoodSpecie.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cboFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage2.SuspendLayout()
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -287,7 +281,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.SimpleButton2)
     Me.GroupControl1.Controls.Add(Me.SimpleButton1)
     Me.GroupControl1.Controls.Add(Me.GridControl2)
-    Me.GroupControl1.Controls.Add(Me.ComboBoxEdit2)
+    Me.GroupControl1.Controls.Add(Me.cboEmployee)
     Me.GroupControl1.Controls.Add(Me.Label18)
     Me.GroupControl1.Controls.Add(Me.GroupControl2)
     Me.GroupControl1.Controls.Add(Me.lblWorkOrderID)
@@ -410,16 +404,16 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn7.VisibleIndex = 1
     Me.GridColumn7.Width = 433
     '
-    'ComboBoxEdit2
+    'cboEmployee
     '
-    Me.ComboBoxEdit2.Location = New System.Drawing.Point(113, 106)
-    Me.ComboBoxEdit2.MenuManager = Me.BarManager1
-    Me.ComboBoxEdit2.Name = "ComboBoxEdit2"
-    Me.ComboBoxEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ComboBoxEdit2.Properties.Appearance.Options.UseFont = True
-    Me.ComboBoxEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.ComboBoxEdit2.Size = New System.Drawing.Size(100, 20)
-    Me.ComboBoxEdit2.TabIndex = 148
+    Me.cboEmployee.Location = New System.Drawing.Point(113, 106)
+    Me.cboEmployee.MenuManager = Me.BarManager1
+    Me.cboEmployee.Name = "cboEmployee"
+    Me.cboEmployee.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboEmployee.Properties.Appearance.Options.UseFont = True
+    Me.cboEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboEmployee.Size = New System.Drawing.Size(100, 20)
+    Me.cboEmployee.TabIndex = 148
     '
     'Label18
     '
@@ -600,7 +594,7 @@ Partial Class frmWorkOrderDetail
     Me.dtePlannedStartDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dtePlannedStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dtePlannedStartDate.Properties.NullDate = New Date(CType(0, Long))
-    Me.dtePlannedStartDate.Size = New System.Drawing.Size(106, 20)
+    Me.dtePlannedStartDate.Size = New System.Drawing.Size(100, 20)
     Me.dtePlannedStartDate.TabIndex = 26
     '
     'Label12
@@ -779,14 +773,10 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.ceEnsamble)
     Me.grpWOFiles.Controls.Add(Me.ceMaquinado)
     Me.grpWOFiles.Controls.Add(Me.GroupControl4)
-    Me.grpWOFiles.Controls.Add(Me.ComboBoxEdit6)
+    Me.grpWOFiles.Controls.Add(Me.cboSubFurnitureCategory)
     Me.grpWOFiles.Controls.Add(Me.cboWoodFinish)
-    Me.grpWOFiles.Controls.Add(Me.cboWoodSpecie)
-    Me.grpWOFiles.Controls.Add(Me.ComboBoxEdit3)
-    Me.grpWOFiles.Controls.Add(Me.ComboBoxEdit1)
-    Me.grpWOFiles.Controls.Add(Me.Label10)
+    Me.grpWOFiles.Controls.Add(Me.cboFurnitureCategory)
     Me.grpWOFiles.Controls.Add(Me.Label8)
-    Me.grpWOFiles.Controls.Add(Me.Label9)
     Me.grpWOFiles.Controls.Add(Me.Label7)
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
@@ -916,20 +906,20 @@ Partial Class frmWorkOrderDetail
     Me.UctFileControl1.TabIndex = 0
     Me.UctFileControl1.UserController = Nothing
     '
-    'ComboBoxEdit6
+    'cboSubFurnitureCategory
     '
-    Me.ComboBoxEdit6.Location = New System.Drawing.Point(325, 35)
-    Me.ComboBoxEdit6.MenuManager = Me.BarManager1
-    Me.ComboBoxEdit6.Name = "ComboBoxEdit6"
-    Me.ComboBoxEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ComboBoxEdit6.Properties.Appearance.Options.UseFont = True
-    Me.ComboBoxEdit6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.ComboBoxEdit6.Size = New System.Drawing.Size(100, 20)
-    Me.ComboBoxEdit6.TabIndex = 33
+    Me.cboSubFurnitureCategory.Location = New System.Drawing.Point(288, 34)
+    Me.cboSubFurnitureCategory.MenuManager = Me.BarManager1
+    Me.cboSubFurnitureCategory.Name = "cboSubFurnitureCategory"
+    Me.cboSubFurnitureCategory.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboSubFurnitureCategory.Properties.Appearance.Options.UseFont = True
+    Me.cboSubFurnitureCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboSubFurnitureCategory.Size = New System.Drawing.Size(100, 20)
+    Me.cboSubFurnitureCategory.TabIndex = 33
     '
     'cboWoodFinish
     '
-    Me.cboWoodFinish.Location = New System.Drawing.Point(325, 60)
+    Me.cboWoodFinish.Location = New System.Drawing.Point(466, 34)
     Me.cboWoodFinish.MenuManager = Me.BarManager1
     Me.cboWoodFinish.Name = "cboWoodFinish"
     Me.cboWoodFinish.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -938,78 +928,34 @@ Partial Class frmWorkOrderDetail
     Me.cboWoodFinish.Size = New System.Drawing.Size(100, 20)
     Me.cboWoodFinish.TabIndex = 32
     '
-    'cboWoodSpecie
+    'cboFurnitureCategory
     '
-    Me.cboWoodSpecie.Location = New System.Drawing.Point(111, 60)
-    Me.cboWoodSpecie.MenuManager = Me.BarManager1
-    Me.cboWoodSpecie.Name = "cboWoodSpecie"
-    Me.cboWoodSpecie.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cboWoodSpecie.Properties.Appearance.Options.UseFont = True
-    Me.cboWoodSpecie.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboWoodSpecie.Size = New System.Drawing.Size(100, 20)
-    Me.cboWoodSpecie.TabIndex = 31
-    '
-    'ComboBoxEdit3
-    '
-    Me.ComboBoxEdit3.Location = New System.Drawing.Point(111, 35)
-    Me.ComboBoxEdit3.MenuManager = Me.BarManager1
-    Me.ComboBoxEdit3.Name = "ComboBoxEdit3"
-    Me.ComboBoxEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ComboBoxEdit3.Properties.Appearance.Options.UseFont = True
-    Me.ComboBoxEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.ComboBoxEdit3.Size = New System.Drawing.Size(100, 20)
-    Me.ComboBoxEdit3.TabIndex = 30
-    '
-    'ComboBoxEdit1
-    '
-    Me.ComboBoxEdit1.Location = New System.Drawing.Point(491, 35)
-    Me.ComboBoxEdit1.MenuManager = Me.BarManager1
-    Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
-    Me.ComboBoxEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ComboBoxEdit1.Properties.Appearance.Options.UseFont = True
-    Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.ComboBoxEdit1.Size = New System.Drawing.Size(80, 20)
-    Me.ComboBoxEdit1.TabIndex = 29
-    '
-    'Label10
-    '
-    Me.Label10.AutoSize = True
-    Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label10.Location = New System.Drawing.Point(437, 38)
-    Me.Label10.Name = "Label10"
-    Me.Label10.Size = New System.Drawing.Size(48, 14)
-    Me.Label10.TabIndex = 27
-    Me.Label10.Text = "Modelo"
+    Me.cboFurnitureCategory.Location = New System.Drawing.Point(80, 34)
+    Me.cboFurnitureCategory.MenuManager = Me.BarManager1
+    Me.cboFurnitureCategory.Name = "cboFurnitureCategory"
+    Me.cboFurnitureCategory.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboFurnitureCategory.Properties.Appearance.Options.UseFont = True
+    Me.cboFurnitureCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboFurnitureCategory.Size = New System.Drawing.Size(100, 20)
+    Me.cboFurnitureCategory.TabIndex = 30
     '
     'Label8
     '
     Me.Label8.AutoSize = True
     Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label8.Location = New System.Drawing.Point(227, 63)
+    Me.Label8.Location = New System.Drawing.Point(400, 37)
     Me.Label8.Name = "Label8"
     Me.Label8.Size = New System.Drawing.Size(54, 14)
     Me.Label8.TabIndex = 25
     Me.Label8.Text = "Acabado"
-    '
-    'Label9
-    '
-    Me.Label9.AutoSize = True
-    Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label9.Location = New System.Drawing.Point(8, 63)
-    Me.Label9.Name = "Label9"
-    Me.Label9.Size = New System.Drawing.Size(50, 14)
-    Me.Label9.TabIndex = 23
-    Me.Label9.Text = "Especie"
     '
     'Label7
     '
     Me.Label7.AutoSize = True
     Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label7.Location = New System.Drawing.Point(227, 37)
+    Me.Label7.Location = New System.Drawing.Point(192, 37)
     Me.Label7.Name = "Label7"
     Me.Label7.Size = New System.Drawing.Size(84, 14)
     Me.Label7.TabIndex = 21
@@ -1114,8 +1060,6 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn6.Caption = "Código"
     Me.GridColumn6.FieldName = "StockCode"
     Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 0
     Me.GridColumn6.Width = 54
     '
     'GridColumn8
@@ -1124,7 +1068,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn8.FieldName = "Description"
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 1
+    Me.GridColumn8.VisibleIndex = 0
     Me.GridColumn8.Width = 194
     '
     'GridColumn17
@@ -1132,7 +1076,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn17.Caption = "UdM"
     Me.GridColumn17.Name = "GridColumn17"
     Me.GridColumn17.Visible = True
-    Me.GridColumn17.VisibleIndex = 2
+    Me.GridColumn17.VisibleIndex = 1
     Me.GridColumn17.Width = 48
     '
     'GridColumn18
@@ -1141,7 +1085,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn18.FieldName = "Quantity"
     Me.GridColumn18.Name = "GridColumn18"
     Me.GridColumn18.Visible = True
-    Me.GridColumn18.VisibleIndex = 3
+    Me.GridColumn18.VisibleIndex = 2
     Me.GridColumn18.Width = 117
     '
     'GridColumn19
@@ -1149,7 +1093,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn19.Caption = "Área"
     Me.GridColumn19.Name = "GridColumn19"
     Me.GridColumn19.Visible = True
-    Me.GridColumn19.VisibleIndex = 4
+    Me.GridColumn19.VisibleIndex = 3
     Me.GridColumn19.Width = 92
     '
     'GridColumn20
@@ -1157,7 +1101,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn20.Caption = "Código"
     Me.GridColumn20.Name = "GridColumn20"
     Me.GridColumn20.Visible = True
-    Me.GridColumn20.VisibleIndex = 5
+    Me.GridColumn20.VisibleIndex = 4
     Me.GridColumn20.Width = 119
     '
     'grdMaterialRequirements
@@ -1188,7 +1132,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirements.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.GridColumn15, Me.GridColumn16})
+    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality})
     Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
     Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
     Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
@@ -1200,9 +1144,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn1.Caption = "Código"
     Me.GridColumn1.FieldName = "StockCode"
     Me.GridColumn1.Name = "GridColumn1"
-    Me.GridColumn1.Visible = True
-    Me.GridColumn1.VisibleIndex = 0
-    Me.GridColumn1.Width = 93
+    Me.GridColumn1.Width = 58
     '
     'GridColumn2
     '
@@ -1210,8 +1152,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn2.FieldName = "Description"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
-    Me.GridColumn2.VisibleIndex = 1
-    Me.GridColumn2.Width = 158
+    Me.GridColumn2.VisibleIndex = 0
+    Me.GridColumn2.Width = 172
     '
     'GridColumn4
     '
@@ -1219,8 +1161,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn4.FieldName = "UnitPiece"
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 3
-    Me.GridColumn4.Width = 80
+    Me.GridColumn4.VisibleIndex = 1
+    Me.GridColumn4.Width = 73
     '
     'GridColumn10
     '
@@ -1228,8 +1170,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.FieldName = "NetThickness"
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 4
-    Me.GridColumn10.Width = 91
+    Me.GridColumn10.VisibleIndex = 2
+    Me.GridColumn10.Width = 72
     '
     'GridColumn11
     '
@@ -1237,8 +1179,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.FieldName = "NetWidth"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 5
-    Me.GridColumn11.Width = 80
+    Me.GridColumn11.VisibleIndex = 3
+    Me.GridColumn11.Width = 77
     '
     'GridColumn12
     '
@@ -1246,8 +1188,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.FieldName = "NetLenght"
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
-    Me.GridColumn12.VisibleIndex = 6
-    Me.GridColumn12.Width = 172
+    Me.GridColumn12.VisibleIndex = 4
+    Me.GridColumn12.Width = 74
     '
     'gcMaterialTypeID
     '
@@ -1255,25 +1197,26 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID.FieldName = "MaterialTypeID"
     Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
     Me.gcMaterialTypeID.Visible = True
-    Me.gcMaterialTypeID.VisibleIndex = 2
-    Me.gcMaterialTypeID.Width = 131
+    Me.gcMaterialTypeID.VisibleIndex = 5
+    Me.gcMaterialTypeID.Width = 57
     '
-    'GridColumn15
+    'gcWoodSpecie
     '
-    Me.GridColumn15.Caption = "Especie"
-    Me.GridColumn15.Name = "GridColumn15"
-    Me.GridColumn15.Visible = True
-    Me.GridColumn15.VisibleIndex = 7
-    Me.GridColumn15.Width = 128
+    Me.gcWoodSpecie.Caption = "Especie"
+    Me.gcWoodSpecie.FieldName = "WoodSpecie"
+    Me.gcWoodSpecie.Name = "gcWoodSpecie"
+    Me.gcWoodSpecie.Visible = True
+    Me.gcWoodSpecie.VisibleIndex = 6
+    Me.gcWoodSpecie.Width = 56
     '
-    'GridColumn16
+    'gcQuality
     '
-    Me.GridColumn16.Caption = "Calidad"
-    Me.GridColumn16.FieldName = "QualityType"
-    Me.GridColumn16.Name = "GridColumn16"
-    Me.GridColumn16.Visible = True
-    Me.GridColumn16.VisibleIndex = 8
-    Me.GridColumn16.Width = 198
+    Me.gcQuality.Caption = "Calidad"
+    Me.gcQuality.FieldName = "QualityType"
+    Me.gcQuality.Name = "gcQuality"
+    Me.gcQuality.Visible = True
+    Me.gcQuality.VisibleIndex = 7
+    Me.gcQuality.Width = 53
     '
     'XtraTabPage4
     '
@@ -1407,7 +1350,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
     Me.GroupControl2.PerformLayout()
@@ -1441,11 +1384,9 @@ Partial Class frmWorkOrderDetail
     CType(Me.ceMaquinado.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl4.ResumeLayout(False)
-    CType(Me.ComboBoxEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cboSubFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboWoodFinish.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.cboWoodSpecie.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cboFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage2.ResumeLayout(False)
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1486,10 +1427,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents tabProductSpec As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents grpWOFiles As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents Label10 As Label
   Friend WithEvents dtePlannedStartDate As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label8 As Label
-  Friend WithEvents Label9 As Label
   Friend WithEvents Label7 As Label
   Friend WithEvents Label6 As Label
   Friend WithEvents memPFNotes As DevExpress.XtraEditors.MemoEdit
@@ -1515,11 +1454,9 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcDuration As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents cboProductType As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label14 As Label
-  Friend WithEvents ComboBoxEdit6 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents cboSubFurnitureCategory As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents cboWoodFinish As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents cboWoodSpecie As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents ComboBoxEdit3 As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents cboFurnitureCategory As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents UctFileControl1 As uctFileControl
   Friend WithEvents lblWorkOrderID As Label
@@ -1532,7 +1469,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label16 As Label
   Friend WithEvents txtDueTime As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label17 As Label
-  Friend WithEvents ComboBoxEdit2 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents cboEmployee As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label18 As Label
   Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1559,8 +1496,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcMaterialTypeID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcWoodSpecie As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcQuality As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label20 As Label
   Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents ceSub As DevExpress.XtraEditors.CheckEdit

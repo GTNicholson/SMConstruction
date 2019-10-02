@@ -15,6 +15,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pNetLenght As Decimal
   Private pQualityType As Int32
   Private pMaterialTypeID As Int32
+  Private pWoodSpecie As Int32
+  Private pWoodFinish As Int32
 
   Public Sub New()
     MyBase.New()
@@ -61,6 +63,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .NetLenght = NetLenght
       .QualityType = QualityType
       .MaterialTypeID = MaterialTypeID
+      .WoodFinish = WoodFinish
+      .WoodSpecie = WoodSpecie
 
       'Add entries here for each collection and class property
 
@@ -78,6 +82,26 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(ByVal value As Int32)
       If pMaterialRequirementID <> value Then IsDirty = True
       pMaterialRequirementID = value
+    End Set
+  End Property
+
+  Public Property WoodSpecie() As Int32
+    Get
+      Return pWoodSpecie
+    End Get
+    Set(ByVal value As Int32)
+      If pWoodSpecie <> value Then IsDirty = True
+      pWoodSpecie = value
+    End Set
+  End Property
+
+  Public Property WoodFinish() As Int32
+    Get
+      Return pWoodFinish
+    End Get
+    Set(ByVal value As Int32)
+      If pWoodFinish <> value Then IsDirty = True
+      pWoodFinish = value
     End Set
   End Property
 
