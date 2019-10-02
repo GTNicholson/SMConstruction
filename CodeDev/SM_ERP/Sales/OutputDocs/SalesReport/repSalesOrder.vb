@@ -47,6 +47,9 @@ Public Class repSalesOrder
     Dim mcust As dmCustomer
     Dim mCustCont As dmCustomerContact
     Dim mEmp As dmEmployeeSM
+    Dim mImage As Image
+    Dim mFileName As String
+
 
     xrlCompanyName.Text = pSalesOrder.Customer.CompanyName
     xrlMainAddress1.Text = pSalesOrder.Customer.MainAddress1
@@ -76,8 +79,8 @@ Public Class repSalesOrder
 
       If mcust.CustomerContacts.Count <> 0 Then
           XrlCompanyContact.Text = mcust.CustomerContacts(0).FirstName & " " & mcust.CustomerContacts(0).LastName
-
-        End If
+        xrtEmailContact.Text = mcust.CustomerContacts(0).Email
+      End If
       End If
 
     mCustCont = mcust.CustomerContacts.ItemFromKey(pSalesOrder.CustomerDelContactID)
@@ -85,7 +88,13 @@ Public Class repSalesOrder
       xrtCustomerDelContactID.Text = mCustCont.FirstName & " " & mCustCont.LastName
     End If
 
+    ''mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrder, pSalesOrder.)
 
+    ''If IO.File.Exists(mFileName) Then
+    ''  mImage = Drawing.Image.FromFile(mFileName)
+    ''End If
+
+    ''xrPic.Image = mImage
 
 
 
@@ -94,14 +103,14 @@ Public Class repSalesOrder
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim mText As String
-    Dim mWorkOrder As dmWorkOrder
+    Dim mSOI As dmSalesOrderItem
 
-    mWorkOrder = Me.GetCurrentRow
+    mSOI = Me.GetCurrentRow
 
-    If mWorkOrder IsNot Nothing Then
-      mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
-      mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
-      xrtWood.Text = mText
+    If mSOI IsNot Nothing Then
+      ''mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
+      ''mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
+      ''xrtWood.Text = mText
     End If
 
   End Sub

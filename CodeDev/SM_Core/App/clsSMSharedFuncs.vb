@@ -92,4 +92,12 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function TotalAmount(ByVal vUnitPrice As Decimal, ByVal vQuantity As Int32) As Decimal
+    Dim mRetVal As Decimal
+
+    mRetVal = vUnitPrice * vQuantity
+
+    Return mRetVal
+  End Function
+
 End Class

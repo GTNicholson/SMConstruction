@@ -608,5 +608,13 @@ Public Class frmSalesOrderDetail
     End Select
   End Sub
 
+  Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
+    Dim mSOI As dmSalesOrderItem
 
+    mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+    If mSOI IsNot Nothing Then
+      '// get explorer for file name
+      ''mSOI.ImageFile = 
+    End If
+  End Sub
 End Class

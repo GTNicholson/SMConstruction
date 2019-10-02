@@ -97,7 +97,7 @@ Partial Public Class repSalesOrder
     Me.XrTable12 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow12 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtEmailContact = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTable7 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow7 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -861,7 +861,7 @@ Partial Public Class repSalesOrder
     '
     'XrTableRow12
     '
-    Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell27, Me.XrTableCell28})
+    Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell27, Me.xrtEmailContact})
     Me.XrTableRow12.Name = "XrTableRow12"
     Me.XrTableRow12.Weight = 1.0R
     '
@@ -873,11 +873,11 @@ Partial Public Class repSalesOrder
     Me.XrTableCell27.Text = "Email:"
     Me.XrTableCell27.Weight = 0.55905468171757733R
     '
-    'XrTableCell28
+    'xrtEmailContact
     '
-    Me.XrTableCell28.Name = "XrTableCell28"
-    Me.XrTableCell28.Text = "xrlEmail"
-    Me.XrTableCell28.Weight = 1.4409453182824228R
+    Me.xrtEmailContact.Name = "xrtEmailContact"
+    Me.xrtEmailContact.Text = "xrlEmail"
+    Me.xrtEmailContact.Weight = 1.4409453182824228R
     '
     'XrTable7
     '
@@ -1248,7 +1248,7 @@ Partial Public Class repSalesOrder
   Friend WithEvents XrTable12 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow12 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell28 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtEmailContact As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTable7 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow7 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
