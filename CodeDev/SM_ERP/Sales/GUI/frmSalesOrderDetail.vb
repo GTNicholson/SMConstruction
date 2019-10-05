@@ -587,6 +587,8 @@ Public Class frmSalesOrderDetail
           If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
             UpdateObjects()
             pFormController.DeleteSalesOrderItem(mSOI)
+            pFormController.RefreshSOWorkOrders()
+            gvWorkOrders.RefreshData()
             RefreshControls()
           End If
         End If
@@ -602,7 +604,7 @@ Public Class frmSalesOrderDetail
         If e.IsGetData Then
           mWOI = TryCast(e.Row, clsWorkOrderInfo)
           If mWOI IsNot Nothing Then
-            e.Value = mWOI.WorkOrder.ParentSalesOrderItem.SalesOrderItemID
+            e.Value = mWOI.WorkOrder.ParentSalesOrderItem.ItemNumber
           End If
         End If
     End Select

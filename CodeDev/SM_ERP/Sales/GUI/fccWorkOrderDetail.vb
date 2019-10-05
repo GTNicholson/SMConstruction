@@ -94,13 +94,20 @@ Public Class fccWorkOrderDetail
   End Function
 
   Public Sub RaiseWorkOrderNo()
-    Dim mdso As dsoGeneral
-    Dim mWONo As Integer
+    Dim mSOI As New dmSalesOrderItem
+    Dim mDSO As New dsoSales(pDBConn)
+    Dim mWO As dmWorkOrder
 
-    mdso = New dsoGeneral(pDBConn)
-    mWONo = mdso.GetNextTallyWorkOrderNo()
+    '// because we can relate Work Orders across a sales order item, we need to load the Sales Order Item and the related work orders 
+    mDSO.LoadSalesOrderItemWithWOs(mSOI, pWorkOrder.SalesOrderItemID)
+    mDSO.RaiseWorkOrderNo(mSOI, pDBConn)
+    mDSO.SaveSalesOrderItemWithWOs(mSOI)
 
-    pWorkOrder.WorkOrderNo = clsConstants.WorkOrderNoPrefix & mWONo.ToString("00000")
+
+    '// Retreive this wo's number to refresh in this form
+    mWO = mSOI.WorkOrders.ItemFromKey(pWorkOrder.WorkOrderID)
+    pWorkOrder.WorkOrderNo = mWO.WorkOrderNo
+
 
   End Sub
 

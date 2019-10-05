@@ -38,8 +38,8 @@ Partial Class frmWorkOrderDetail
     Me.bteImage = New DevExpress.XtraEditors.ButtonEdit()
     Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
     Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-    Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.grdWorkOrderBatches = New DevExpress.XtraGrid.GridControl()
+    Me.gvWorkOrderBatches = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.cboEmployee = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -128,8 +128,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdWorkOrderBatches, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvWorkOrderBatches, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
@@ -280,7 +280,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.bteImage)
     Me.GroupControl1.Controls.Add(Me.SimpleButton2)
     Me.GroupControl1.Controls.Add(Me.SimpleButton1)
-    Me.GroupControl1.Controls.Add(Me.GridControl2)
+    Me.GroupControl1.Controls.Add(Me.grdWorkOrderBatches)
     Me.GroupControl1.Controls.Add(Me.cboEmployee)
     Me.GroupControl1.Controls.Add(Me.Label18)
     Me.GroupControl1.Controls.Add(Me.GroupControl2)
@@ -346,51 +346,51 @@ Partial Class frmWorkOrderDetail
     Me.SimpleButton1.TabIndex = 150
     Me.SimpleButton1.Text = "Generar LMP"
     '
-    'GridControl2
+    'grdWorkOrderBatches
     '
-    Me.GridControl2.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.Edit.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.First.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.Last.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.Next.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.NextPage.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.Prev.Visible = False
-    Me.GridControl2.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.GridControl2.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
-    Me.GridControl2.Location = New System.Drawing.Point(542, 31)
-    Me.GridControl2.MainView = Me.GridView2
-    Me.GridControl2.MenuManager = Me.BarManager1
-    Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(310, 129)
-    Me.GridControl2.TabIndex = 149
-    Me.GridControl2.UseEmbeddedNavigator = True
-    Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.Next.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.Prev.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdWorkOrderBatches.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
+    Me.grdWorkOrderBatches.Location = New System.Drawing.Point(588, 31)
+    Me.grdWorkOrderBatches.MainView = Me.gvWorkOrderBatches
+    Me.grdWorkOrderBatches.MenuManager = Me.BarManager1
+    Me.grdWorkOrderBatches.Name = "grdWorkOrderBatches"
+    Me.grdWorkOrderBatches.Size = New System.Drawing.Size(195, 124)
+    Me.grdWorkOrderBatches.TabIndex = 149
+    Me.grdWorkOrderBatches.UseEmbeddedNavigator = True
+    Me.grdWorkOrderBatches.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderBatches})
     '
-    'GridView2
+    'gvWorkOrderBatches
     '
-    Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.GridView2.Appearance.Row.Options.UseFont = True
-    Me.GridView2.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7})
-    Me.GridView2.GridControl = Me.GridControl2
-    Me.GridView2.Name = "GridView2"
-    Me.GridView2.OptionsView.ShowColumnHeaders = False
-    Me.GridView2.OptionsView.ShowGroupPanel = False
-    Me.GridView2.OptionsView.ShowIndicator = False
-    Me.GridView2.OptionsView.ShowViewCaption = True
-    Me.GridView2.ViewCaption = "Lotes"
+    Me.gvWorkOrderBatches.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvWorkOrderBatches.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvWorkOrderBatches.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvWorkOrderBatches.Appearance.Row.Options.UseFont = True
+    Me.gvWorkOrderBatches.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvWorkOrderBatches.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvWorkOrderBatches.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvWorkOrderBatches.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvWorkOrderBatches.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7})
+    Me.gvWorkOrderBatches.GridControl = Me.grdWorkOrderBatches
+    Me.gvWorkOrderBatches.Name = "gvWorkOrderBatches"
+    Me.gvWorkOrderBatches.OptionsView.ShowColumnHeaders = False
+    Me.gvWorkOrderBatches.OptionsView.ShowGroupPanel = False
+    Me.gvWorkOrderBatches.OptionsView.ShowViewCaption = True
+    Me.gvWorkOrderBatches.ViewCaption = "Lotes"
     '
     'GridColumn5
     '
-    Me.GridColumn5.Caption = "Codigo"
-    Me.GridColumn5.FieldName = "StockCode"
+    Me.GridColumn5.Caption = "Ref"
+    Me.GridColumn5.FieldName = "Ref"
     Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.OptionsColumn.ReadOnly = True
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 0
     Me.GridColumn5.Width = 362
@@ -672,6 +672,7 @@ Partial Class frmWorkOrderDetail
     Me.txtQuantity.Name = "txtQuantity"
     Me.txtQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtQuantity.Properties.Appearance.Options.UseFont = True
+    Me.txtQuantity.Properties.ReadOnly = True
     Me.txtQuantity.Size = New System.Drawing.Size(53, 20)
     Me.txtQuantity.TabIndex = 17
     Me.txtQuantity.Tag = "c"
@@ -1348,8 +1349,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdWorkOrderBatches, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvWorkOrderBatches, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
@@ -1471,8 +1472,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label17 As Label
   Friend WithEvents cboEmployee As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label18 As Label
-  Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grdWorkOrderBatches As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvWorkOrderBatches As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents ceMaquinado As DevExpress.XtraEditors.CheckEdit

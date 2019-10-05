@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports DevExpress.XtraBars
+Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 Imports RTIS.Elements
 
@@ -95,6 +96,7 @@ Public Class frmWorkOrderDetail
       pFormController.LoadObjects()
       ConfigureFileControl()
       LoadCombos()
+      grdWorkOrderBatches.DataSource = pFormController.WorkOrder.WorkOrderBatches
       grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
       RefreshProductTabPages()
       RefreshControls()
@@ -584,6 +586,29 @@ Public Class frmWorkOrderDetail
         End If
       End If
       RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub gvWorkOrderBatches_RowCountChanged(sender As Object, e As EventArgs) Handles gvWorkOrderBatches.RowCountChanged
+    Try
+      Dim mWOH As clsWorkOrderHandler
+      mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
+      mWOH.AssignWOBatchRefs()
+      mWOH.RefreshQty()
+      txtQuantity.Text = pFormController.WorkOrder.Quantity
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub gvWorkOrderBatches_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles gvWorkOrderBatches.ValidateRow
+    Try
+      Dim mWOH As clsWorkOrderHandler
+      mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
+      mWOH.RefreshQty()
+      txtQuantity.Text = pFormController.WorkOrder.Quantity
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

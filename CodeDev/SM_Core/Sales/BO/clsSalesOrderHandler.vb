@@ -9,20 +9,12 @@ Public Class clsSalesOrderHandler
 
   Public Function AddSalesOrderItem(ByVal vProductType As eProductType) As dmSalesOrderItem
     Dim mNewSOI As dmSalesOrderItem = Nothing
-    Dim mNewWO As dmWorkOrder
     Try
       mNewSOI = New dmSalesOrderItem
       mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
       mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
 
-      mNewWO = New dmWorkOrder
-      mNewWO.SalesOrderID = pSalesOrder.SalesOrderID
-      mNewWO.ProductTypeID = vProductType
-      mNewWO.DateCreated = Now.Date
-      mNewWO.Product = clsProductSharedFuncs.NewProductInstance(mNewWO.ProductTypeID)
-
-      ''pSalesOrder.WorkOrders.Add(mNewWO)
-      mNewSOI.WorkOrders.Add(mNewWO)
+      AddWorkOrder(mNewSOI, vProductType)
 
       pSalesOrder.SalesOrderItems.Add(mNewSOI)
 
@@ -34,6 +26,9 @@ Public Class clsSalesOrderHandler
 
   Public Function AddWorkOrder(ByRef rSOI As dmSalesOrderItem, ByVal vProductType As eProductType) As dmWorkOrder
     Dim mNewWO As dmWorkOrder = Nothing
+    Dim mWOB As dmWorkOrderBatch
+    Dim mWOHandler As clsWorkOrderHandler
+
     Try
       mNewWO = New dmWorkOrder
       mNewWO.SalesOrderID = pSalesOrder.SalesOrderID
@@ -41,7 +36,11 @@ Public Class clsSalesOrderHandler
       mNewWO.DateCreated = Now.Date
       mNewWO.Product = clsProductSharedFuncs.NewProductInstance(mNewWO.ProductTypeID)
 
-      'pSalesOrder.WorkOrders.Add(mNewWO)
+      mWOB = New dmWorkOrderBatch
+      mNewWO.WorkOrderBatches.Add(mWOB)
+
+      mWOHandler = New clsWorkOrderHandler(mNewWO)
+      mWOHandler.AssignWOBatchRefs()
 
       rSOI.WorkOrders.Add(mNewWO)
 
@@ -70,5 +69,7 @@ Public Class clsSalesOrderHandler
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
   End Sub
+
+
 
 End Class

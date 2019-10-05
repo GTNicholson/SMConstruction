@@ -86,6 +86,7 @@ Public Class dsoSales
     Dim mdtoSOI As dtoSalesOrderItem
     Dim mdtoWO As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
+    Dim mdtoWOBatches As dtoWorkOrderBatch
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
 
@@ -107,10 +108,10 @@ Public Class dsoSales
           If mWO.Product IsNot Nothing Then
             mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
             mdtoProduct.SaveProduct(mWO.Product)
-
+            mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
+            mdtoWOBatches.SaveWorkOrderBatchCollection(mWO.WorkOrderBatches, mWO.WorkOrderID)
           End If
         Next
-
       Next
 
 
@@ -195,6 +196,7 @@ Public Class dsoSales
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
 
     Dim mdtoWOFiles As dtoFileTracker
+    Dim mdtoWOBatches As dtoWorkOrderBatch
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoOutputDocs As dtoOutputDocument
     Try
@@ -213,10 +215,11 @@ Public Class dsoSales
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
-
-          mdtoWOFiles = New dtoFileTracker(pDBConn)
-          mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
+        mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
+        mdtoWOBatches.LoadWorkOrderBatchCollection(rWorkOrder.WorkOrderBatches, rWorkOrder.WorkOrderID)
+        mdtoWOFiles = New dtoFileTracker(pDBConn)
+        mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
         mdtoOutputDocs.LoadOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID, eParentType.WorkOrder)
       End If
@@ -239,6 +242,7 @@ Public Class dsoSales
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Dim mProductFurniture As dmProductFurniture
+    Dim mdtoWOBatch As dtoWorkOrderBatch
     Dim mdtoWOFiles As dtoFileTracker
     Dim mdtoOutputDocs As dtoOutputDocument
 
@@ -265,6 +269,8 @@ Public Class dsoSales
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
+        mdtoWOBatch = New dtoWorkOrderBatch(pDBConn)
+        mdtoWOBatch.SaveWorkOrderBatchCollection(rWorkOrder.WorkOrderBatches, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
         mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
       End If
@@ -296,6 +302,85 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadSalesOrderItemWithWOs(ByRef rSalesOrderItem As dmSalesOrderItem, vID As Integer) As Boolean
+    Dim mdto As dtoSalesOrderItem
+    Dim mdtoWO As dtoWorkOrder
 
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderItem(pDBConn)
+      mdto.LoadSalesOrderItem(rSalesOrderItem, vID)
+
+      mdtoWO = New dtoWorkOrder(pDBConn)
+      mdtoWO.LoadWorkOrderCollection(rSalesOrderItem.WorkOrders, rSalesOrderItem.SalesOrderItemID)
+
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function SaveSalesOrderItemWithWOs(ByRef rSalesOrderItem As dmSalesOrderItem) As Boolean
+    Dim mdto As dtoSalesOrderItem
+    Dim mdtoWO As dtoWorkOrder
+
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderItem(pDBConn)
+      mdto.SaveSalesOrderItem(rSalesOrderItem)
+
+      mdtoWO = New dtoWorkOrder(pDBConn)
+      mdtoWO.SaveWorkOrderCollection(rSalesOrderItem.WorkOrders, rSalesOrderItem.SalesOrderItemID)
+
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+
+  Public Sub RaiseWorkOrderNo(ByRef rSalesOrderItem As dmSalesOrderItem, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+    Dim mWONo As Integer
+    Dim mWONostr As String = ""
+    Dim mdso As dsoGeneral
+    Dim mWONoSuffix As Integer = 0
+
+    '// See if the first Work Order Parent Sales Order Item has 
+
+    If rSalesOrderItem.WorkOrders.Count > 0 Then
+      mWONostr = rSalesOrderItem.WorkOrders(0).WorkOrderNo
+      If mWONostr.Contains("-") Then
+        mWONostr = mWONostr.Substring(0, mWONostr.IndexOf("-"))
+      End If
+    End If
+
+    If mWONostr = "" Then
+      mdso = New dsoGeneral(rDBConn)
+      mWONo = mdso.GetNextTallyWorkOrderNo()
+      mWONostr = clsConstants.WorkOrderNoPrefix & mWONo.ToString("00000")
+    End If
+
+    If rSalesOrderItem.WorkOrders.Count = 1 Then
+      rSalesOrderItem.WorkOrders(0).WorkOrderNo = mWONostr
+    Else
+      For Each mWO As dmWorkOrder In rSalesOrderItem.WorkOrders
+        mWONoSuffix += 1
+        mWO.WorkOrderNo = mWONostr & "-" & mWONoSuffix
+      Next
+    End If
+
+  End Sub
 
 End Class
