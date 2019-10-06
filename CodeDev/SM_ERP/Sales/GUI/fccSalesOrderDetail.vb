@@ -208,4 +208,16 @@ Public Class fccSalesOrderDetail
     Next
   End Sub
 
+
+  Public Sub RefreshWorkOrderNos(ByRef rSalesOrderItem As dmSalesOrderItem)
+    Dim mDSO As dsoSales
+    Dim mWONo As String
+    mDSO = New dsoSales(pDBConn)
+    For Each mWO As dmWorkOrder In rSalesOrderItem.WorkOrders
+      mWONo = mDSO.WorkOrderNoFromID(mWO.WorkOrderID)
+      mWO.WorkOrderNo = mWONo
+    Next
+  End Sub
+
+
 End Class
