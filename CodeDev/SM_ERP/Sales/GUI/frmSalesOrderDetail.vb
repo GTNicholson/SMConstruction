@@ -493,7 +493,8 @@ Public Class frmSalesOrderDetail
       If IO.File.Exists(mFilePath) Then
         frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
       End If
-      '  End If
+      mReport.ClearImages
+      mReport.Dispose()
     Else
       MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
     End If

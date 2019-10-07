@@ -4,7 +4,18 @@ Public Class repSalesOrder
 
 
   Private pSalesOrder As dmSalesOrder
+  Private pImageList As List(Of Image)
 
+  Public Sub New()
+
+    ' This call is required by the designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+
+    pImageList = New List(Of Image)
+
+  End Sub
 
   Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder) As repSalesOrder
     Dim mRep As New repSalesOrder
@@ -25,8 +36,6 @@ Public Class repSalesOrder
     ''Dim m As dmMaterialRequirement
     ''m.StockCode
 
-    Dim mWO As dmWorkOrder
-
     '// Head informatio from pWorkOrder
     'XrSalesNo.DataBindings.Add("Text", pSalesOrder, "SalesOrderID")
     xrlSalesOrderNo.DataBindings.Add("Text", pSalesOrder, "OrderNo")
@@ -43,13 +52,11 @@ Public Class repSalesOrder
   End Sub
 
   Private Sub repSalesOrder_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-    SetUpDataBindings()
     Dim mcust As dmCustomer
     Dim mCustCont As dmCustomerContact
     Dim mEmp As dmEmployeeSM
-    Dim mImage As Image
-    Dim mFileName As String
 
+    SetUpDataBindings()
 
     xrlCompanyName.Text = pSalesOrder.Customer.CompanyName
     xrlMainAddress1.Text = pSalesOrder.Customer.MainAddress1
@@ -109,10 +116,25 @@ Public Class repSalesOrder
 
       If IO.File.Exists(mFileName) Then
         mImage = Drawing.Image.FromFile(mFileName)
+        pImageList.Add(mImage)
+        xrtImageFile.Image = mImage
+      Else
+        xrtImageFile.Image = Nothing
       End If
 
-      xrtImageFile.Image = mImage
+
     End If
 
+  End Sub
+
+  Public Sub ClearImages()
+    For Each mImage As Image In pImageList
+      mImage.Dispose()
+    Next
+  End Sub
+
+  Protected Overrides Sub Finalize()
+    ClearImages()
+    MyBase.Finalize()
   End Sub
 End Class
