@@ -11,9 +11,10 @@ Public Class fccSalesOrderDetail
 
   Private pSOWorkOrderInfos As colWorkOrderInfos
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pSOWorkOrderInfos = New colWorkOrderInfos
+    pRTISGlobal = rRTISGlobal
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -207,5 +208,50 @@ Public Class fccSalesOrderDetail
       Next
     Next
   End Sub
+
+  Public Function CreateSOItemImageFile(ByRef rSalesOrderItem As dmSalesOrderItem, ByVal vSourceFile As String) As Boolean
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    Dim mRetVal As Boolean = False
+
+    Try
+
+
+      If IO.File.Exists(vSourceFile) Then
+        mFileName = "SalesOrderImg" & "_" & pSalesOrder.OrderNo
+
+        mExportDirectory = IO.Path.Combine("", clsConstants.SalesOrderFileFolderSys,
+                                         pSalesOrder.DateEntered.Year,
+                                         clsGeneralA.GetFileSafeName(pSalesOrder.OrderNo.ToString("00000")))
+
+        mFileName &= IO.Path.GetExtension(vSourceFile)
+        mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+        mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+        If IO.Directory.Exists(mExportDirectory) = False Then
+          IO.Directory.CreateDirectory(mExportDirectory)
+        End If
+
+        mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+
+        IO.File.Copy(vSourceFile, mFilePath, True)
+
+        If IO.File.Exists(mFilePath) = True Then
+          rSalesOrderItem.ImageFile = IO.Path.GetFileName(mFilePath)
+          mRetVal = True
+        Else
+          rSalesOrderItem.ImageFile = ""
+          mRetVal = False
+        End If
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mRetVal
+
+  End Function
+
 
 End Class

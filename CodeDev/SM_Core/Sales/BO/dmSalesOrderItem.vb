@@ -8,6 +8,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pDescription As String
   Private pQuantity As Int32
   Private pUnitPrice As Decimal
+  Private pImageFile As String
 
   Private pWorkOrders As colWorkOrders
 
@@ -51,6 +52,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .Description = Description
       .Quantity = Quantity
       .UnitPrice = UnitPrice
+      .ImageFile = ImageFile
       'Add entries here for each collection and class property
       .WorkOrders = WorkOrders.Clone
 
@@ -68,6 +70,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderItemID <> value Then IsDirty = True
       pSalesOrderItemID = value
+    End Set
+  End Property
+
+  Public Property ImageFile() As String
+    Get
+      Return pImageFile
+    End Get
+    Set(ByVal value As String)
+      If pImageFile <> value Then IsDirty = True
+      pImageFile = value
     End Set
   End Property
 

@@ -60,6 +60,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", .UnitPrice)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", .ImageFile)
     End With
 
   End Sub
@@ -76,6 +77,8 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .Description = DBReadString(rDataReader, "Description")
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
+        .ImageFile = DBReadString(rDataReader, "ImageFile")
+
         pSalesOrderItem.IsDirty = False
       End With
       mOK = True

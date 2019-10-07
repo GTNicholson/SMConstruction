@@ -39,7 +39,7 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
-  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rParentMDI As frmTabbedMDI)
+  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
     Dim mfrm As frmSalesOrderDetail = Nothing
 
     If vPrimaryKeyID <> 0 Then
@@ -47,7 +47,7 @@ Public Class frmSalesOrderDetail
     End If
     If mfrm Is Nothing Then
       mfrm = New frmSalesOrderDetail
-      mfrm.pFormController = New fccSalesOrderDetail(rDBConn)
+      mfrm.pFormController = New fccSalesOrderDetail(rDBConn, rRTISGlobal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.Show()
@@ -612,11 +612,46 @@ Public Class frmSalesOrderDetail
 
   Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
     Dim mSOI As dmSalesOrderItem
+    '// get explorer for file name
+    ''mSOI.ImageFile = 
 
-    mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
-    If mSOI IsNot Nothing Then
-      '// get explorer for file name
-      ''mSOI.ImageFile = 
-    End If
+    Try
+
+      mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+      If mSOI IsNot Nothing Then
+
+
+        Dim mFileName As String = ""
+        If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Seleciona Imagen") = DialogResult.OK Then
+
+          If pFormController.CreateSOItemImageFile(mSOI, mFileName) = False Then
+            MsgBox("No Funciono!")
+          End If
+        End If
+        RefreshControls()
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+
+
+    ''Try
+    ''  Dim mFileName As String = ""
+    ''  If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Seleciona Imagen") = DialogResult.OK Then
+    ''    If pFormController.CreateWOImageFile(mFileName) = False Then
+    ''      MsgBox("No Funciono!")
+    ''    End If
+    ''  End If
+    ''  RefreshControls()
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    ''End Try
+
+
+
   End Sub
+
+
 End Class

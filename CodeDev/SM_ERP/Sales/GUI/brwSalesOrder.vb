@@ -24,7 +24,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
 
-    frmSalesOrderDetail.OpenFormMDI(0, pDBConn, rForm.ParentForm)
+    frmSalesOrderDetail.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
 
     'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, 0, BrowseRefreshTracker,eFormMode.eFMFormModeAdd)
     'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
@@ -38,7 +38,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmSalesOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, rForm.ParentForm)
+      frmSalesOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
 
       'Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
