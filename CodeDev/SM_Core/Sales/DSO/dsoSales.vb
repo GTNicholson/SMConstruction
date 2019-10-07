@@ -383,4 +383,22 @@ Public Class dsoSales
 
   End Sub
 
+  Public Function WorkOrderNoFromID(ByVal vID As Integer) As String
+    Dim mRetVal As String = ""
+    Dim mSQL As String
+    Try
+
+      mSQL = "Select WorkOrderNo From WorkOrder Where WorkOrderID = " & vID
+      pDBConn.Connect()
+      mRetVal = clsGeneralA.DBValueToString(pDBConn.ExecuteScalar(mSQL))
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
 End Class

@@ -330,6 +330,8 @@ Public Class frmSalesOrderDetail
             UpdateObjects()
             pFormController.SaveObjects()
             frmWorkOrderDetail.OpenFormModal(mWOI.WorkOrder.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
+            '// in one work order form it is possible
+            pFormController.RefreshWorkOrderNos(mWOI.WorkOrder.ParentSalesOrderItem)
             RefreshControls()
           End If
           gvWorkOrders.RefreshData()
@@ -343,6 +345,8 @@ Public Class frmSalesOrderDetail
             pFormController.RefreshSOWorkOrders()
             gvWorkOrders.RefreshData()
           End If
+          '// in one work order form it is possible
+          pFormController.RefreshWorkOrderNos(mWOSOI)
           gvWorkOrders.RefreshData()
           RefreshControls()
       End Select
