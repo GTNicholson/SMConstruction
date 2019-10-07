@@ -1,0 +1,6 @@
+use SMConstruction
+
+alter table SalesOrderItem
+add ImageFile varchar(255)
+
+go 

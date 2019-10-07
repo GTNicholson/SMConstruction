@@ -209,6 +209,7 @@ Public Class fccSalesOrderDetail
     Next
   End Sub
 
+<<<<<<< HEAD
   Public Function CreateSOItemImageFile(ByRef rSalesOrderItem As dmSalesOrderItem, ByVal vSourceFile As String) As Boolean
     Dim mFilePath As String
     Dim mFileName As String
@@ -221,9 +222,9 @@ Public Class fccSalesOrderDetail
       If IO.File.Exists(vSourceFile) Then
         mFileName = "SalesOrderImg" & "_" & pSalesOrder.OrderNo
 
-        mExportDirectory = IO.Path.Combine(pRTISGlobal.DefaultExportPath, clsConstants.SalesOrderFileFolderSys,
+        mExportDirectory = IO.Path.Combine("", clsConstants.SalesOrderFileFolderSys,
                                          pSalesOrder.DateEntered.Year,
-                                         clsGeneralA.GetFileSafeName(pSalesOrder.OrderNo))
+                                         clsGeneralA.GetFileSafeName(pSalesOrder.OrderNo.ToString("00000")))
 
         mFileName &= IO.Path.GetExtension(vSourceFile)
         mFileName = clsGeneralA.GetFileSafeName(mFileName)
@@ -252,8 +253,7 @@ Public Class fccSalesOrderDetail
     Return mRetVal
 
   End Function
-
-
+=======
 
   Public Sub RefreshWorkOrderNos(ByRef rSalesOrderItem As dmSalesOrderItem)
     Dim mDSO As dsoSales
@@ -264,6 +264,7 @@ Public Class fccSalesOrderDetail
       mWO.WorkOrderNo = mWONo
     Next
   End Sub
+>>>>>>> 6eea23ff71ad5207f749927ea9af31a871aca714
 
 
 End Class

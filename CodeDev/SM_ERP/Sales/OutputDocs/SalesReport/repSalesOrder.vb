@@ -38,7 +38,7 @@ Public Class repSalesOrder
     xrtQuantity.DataBindings.Add("Text", DataSource, "Quantity")
     xrtUnitPrice.DataBindings.Add("Text", DataSource, "UnitPrice")
 
-
+    xrtImageFile.DataBindings.Add("Text", DataSource, "ImageFile")
 
   End Sub
 
@@ -88,14 +88,6 @@ Public Class repSalesOrder
       xrtCustomerDelContactID.Text = mCustCont.FirstName & " " & mCustCont.LastName
     End If
 
-    ''mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrder, pSalesOrder.)
-
-    ''If IO.File.Exists(mFileName) Then
-    ''  mImage = Drawing.Image.FromFile(mFileName)
-    ''End If
-
-    ''xrPic.Image = mImage
-
 
 
 
@@ -104,6 +96,8 @@ Public Class repSalesOrder
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim mText As String
     Dim mSOI As dmSalesOrderItem
+    Dim mFileName As String
+    Dim mImage As Image
 
     mSOI = Me.GetCurrentRow
 
@@ -111,6 +105,13 @@ Public Class repSalesOrder
       ''mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
       ''mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
       ''xrtWood.Text = mText
+      mFileName = clsSMSharedFuncs.GetSOItemImageFileName(pSalesOrder, mSOI)
+
+      If IO.File.Exists(mFileName) Then
+        mImage = Drawing.Image.FromFile(mFileName)
+      End If
+
+      xrtImageFile.Image = mImage
     End If
 
   End Sub

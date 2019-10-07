@@ -86,6 +86,8 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,8 +106,6 @@ Partial Class frmSalesOrderDetail
     Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,6 +143,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.SuspendLayout()
     CType(Me.grdOrderItem, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvOrderItem, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpWorkOrders.SuspendLayout()
@@ -153,7 +154,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -859,7 +859,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 0
-    Me.GridColumn5.Width = 44
+    Me.GridColumn5.Width = 49
     '
     'GridColumn7
     '
@@ -868,7 +868,24 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn7.Name = "GridColumn7"
     Me.GridColumn7.Visible = True
     Me.GridColumn7.VisibleIndex = 1
-    Me.GridColumn7.Width = 303
+    Me.GridColumn7.Width = 205
+    '
+    'GridColumn10
+    '
+    Me.GridColumn10.Caption = "Imagen"
+    Me.GridColumn10.ColumnEdit = Me.RepositoryItemButtonEdit2
+    Me.GridColumn10.FieldName = "ImageFile"
+    Me.GridColumn10.Name = "GridColumn10"
+    Me.GridColumn10.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+    Me.GridColumn10.Visible = True
+    Me.GridColumn10.VisibleIndex = 5
+    Me.GridColumn10.Width = 128
+    '
+    'RepositoryItemButtonEdit2
+    '
+    Me.RepositoryItemButtonEdit2.AutoHeight = False
+    Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
     '
     'GridColumn8
     '
@@ -877,7 +894,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
     Me.GridColumn8.VisibleIndex = 2
-    Me.GridColumn8.Width = 59
+    Me.GridColumn8.Width = 94
     '
     'GridColumn9
     '
@@ -886,7 +903,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
     Me.GridColumn9.VisibleIndex = 3
-    Me.GridColumn9.Width = 57
+    Me.GridColumn9.Width = 89
     '
     'GridColumn6
     '
@@ -895,7 +912,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn6.Name = "GridColumn6"
     Me.GridColumn6.Visible = True
     Me.GridColumn6.VisibleIndex = 4
-    Me.GridColumn6.Width = 80
+    Me.GridColumn6.Width = 127
     '
     'RepositoryItemButtonEdit1
     '
@@ -1069,21 +1086,6 @@ Partial Class frmSalesOrderDetail
     Me.GridView2.OptionsView.ShowViewCaption = True
     Me.GridView2.ViewCaption = "Despachos"
     '
-    'GridColumn10
-    '
-    Me.GridColumn10.Caption = "GridColumn10"
-    Me.GridColumn10.ColumnEdit = Me.RepositoryItemButtonEdit2
-    Me.GridColumn10.Name = "GridColumn10"
-    Me.GridColumn10.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
-    Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 5
-    '
-    'RepositoryItemButtonEdit2
-    '
-    Me.RepositoryItemButtonEdit2.AutoHeight = False
-    Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
-    '
     'frmSalesOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1136,6 +1138,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.ResumeLayout(False)
     CType(Me.grdOrderItem, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvOrderItem, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpWorkOrders.ResumeLayout(False)
@@ -1146,7 +1149,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
