@@ -378,11 +378,7 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
-  Public ReadOnly Property TotalAmount As Decimal
-    Get
-      Return clsSMSharedFuncs.TotalAmount(SalesOrderItems(1).UnitPrice, SalesOrderItems(1).Quantity)
-    End Get
-  End Property
+
 
 
 End Class

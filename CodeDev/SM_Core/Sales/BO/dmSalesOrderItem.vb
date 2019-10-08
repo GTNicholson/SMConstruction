@@ -9,8 +9,11 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pQuantity As Int32
   Private pUnitPrice As Decimal
   Private pImageFile As String
+  Private pWoodSpecieID As Int32
+  Private pWoodFinish As Int32
 
   Private pWorkOrders As colWorkOrders
+  Private pSalesOrderItem As dmSalesOrderItem
 
   Public Sub New()
     MyBase.New()
@@ -19,6 +22,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pWorkOrders = New colWorkOrders(Me)
+    pSalesOrderItem = Me
 
   End Sub
 
@@ -55,6 +59,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .ImageFile = ImageFile
       'Add entries here for each collection and class property
       .WorkOrders = WorkOrders.Clone
+      .WoodFinish = WoodFinish
+      .WoodSpecieID = WoodSpecieID
 
       'Entries for object management
 
@@ -70,6 +76,26 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderItemID <> value Then IsDirty = True
       pSalesOrderItemID = value
+    End Set
+  End Property
+
+  Public Property WoodSpecieID() As Int32
+    Get
+      Return pWoodSpecieID
+    End Get
+    Set(ByVal value As Int32)
+      If pWoodSpecieID <> value Then IsDirty = True
+      pWoodSpecieID = value
+    End Set
+  End Property
+
+  Public Property WoodFinish() As Int32
+    Get
+      Return pWoodFinish
+    End Get
+    Set(ByVal value As Int32)
+      If pWoodFinish <> value Then IsDirty = True
+      pWoodFinish = value
     End Set
   End Property
 
@@ -142,6 +168,12 @@ Public Class dmSalesOrderItem : Inherits dmBase
       pWorkOrders = value
     End Set
   End Property
+
+  Public Function TotalAmount() As Decimal
+
+    Return UnitPrice * Quantity
+
+  End Function
 
 End Class
 

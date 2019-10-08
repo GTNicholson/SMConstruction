@@ -36,6 +36,8 @@ Partial Class frmSalesOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.cboContractManagerID = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.Label19 = New System.Windows.Forms.Label()
     Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
     Me.cboSalesDelAreaID = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.cboCustomerDelContacID = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -91,6 +93,10 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcWoodSpecie = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+    Me.gcWoodFinish = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
     Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.grpWorkOrders = New DevExpress.XtraEditors.GroupControl()
     Me.grdWorkOrders = New DevExpress.XtraGrid.GridControl()
@@ -110,6 +116,7 @@ Partial Class frmSalesOrderDetail
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl3.SuspendLayout()
     CType(Me.cboSalesDelAreaID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +151,8 @@ Partial Class frmSalesOrderDetail
     CType(Me.grdOrderItem, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvOrderItem, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpWorkOrders.SuspendLayout()
@@ -240,7 +249,7 @@ Partial Class frmSalesOrderDetail
     Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 2
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 283.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 696)
     Me.TableLayoutPanel1.TabIndex = 4
@@ -251,6 +260,8 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.cboContractManagerID)
+    Me.GroupControl1.Controls.Add(Me.Label19)
     Me.GroupControl1.Controls.Add(Me.GroupControl3)
     Me.GroupControl1.Controls.Add(Me.Label15)
     Me.GroupControl1.Controls.Add(Me.btneSalesOrderDocument)
@@ -274,9 +285,30 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl1.Controls.Add(Me.txtSalesOrderID)
     Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
     Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(1149, 275)
+    Me.GroupControl1.Size = New System.Drawing.Size(1149, 298)
     Me.GroupControl1.TabIndex = 0
     Me.GroupControl1.Text = "Detalles Generales"
+    '
+    'cboContractManagerID
+    '
+    Me.cboContractManagerID.Location = New System.Drawing.Point(131, 242)
+    Me.cboContractManagerID.MenuManager = Me.BarManager1
+    Me.cboContractManagerID.Name = "cboContractManagerID"
+    Me.cboContractManagerID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboContractManagerID.Size = New System.Drawing.Size(130, 20)
+    Me.cboContractManagerID.TabIndex = 8
+    '
+    'Label19
+    '
+    Me.Label19.AutoSize = True
+    Me.Label19.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label19.Location = New System.Drawing.Point(9, 245)
+    Me.Label19.Name = "Label19"
+    Me.Label19.Size = New System.Drawing.Size(70, 14)
+    Me.Label19.TabIndex = 39
+    Me.Label19.Tag = "c"
+    Me.Label19.Text = "Enc. Ventas"
     '
     'GroupControl3
     '
@@ -292,34 +324,34 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl3.Controls.Add(Me.Label21)
     Me.GroupControl3.Location = New System.Drawing.Point(578, 28)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(222, 243)
-    Me.GroupControl3.TabIndex = 38
+    Me.GroupControl3.Size = New System.Drawing.Size(241, 265)
+    Me.GroupControl3.TabIndex = 11
     Me.GroupControl3.Text = "Detalles de Envio del Cliente"
     '
     'cboSalesDelAreaID
     '
-    Me.cboSalesDelAreaID.Location = New System.Drawing.Point(67, 68)
+    Me.cboSalesDelAreaID.Location = New System.Drawing.Point(87, 214)
     Me.cboSalesDelAreaID.MenuManager = Me.BarManager1
     Me.cboSalesDelAreaID.Name = "cboSalesDelAreaID"
     Me.cboSalesDelAreaID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.cboSalesDelAreaID.Size = New System.Drawing.Size(130, 20)
-    Me.cboSalesDelAreaID.TabIndex = 18
+    Me.cboSalesDelAreaID.TabIndex = 4
     '
     'cboCustomerDelContacID
     '
-    Me.cboCustomerDelContacID.Location = New System.Drawing.Point(67, 134)
+    Me.cboCustomerDelContacID.Location = New System.Drawing.Point(87, 34)
     Me.cboCustomerDelContacID.MenuManager = Me.BarManager1
     Me.cboCustomerDelContacID.Name = "cboCustomerDelContacID"
     Me.cboCustomerDelContacID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.cboCustomerDelContacID.Size = New System.Drawing.Size(130, 20)
-    Me.cboCustomerDelContacID.TabIndex = 17
+    Me.cboCustomerDelContacID.TabIndex = 1
     '
     'Label18
     '
     Me.Label18.AutoSize = True
     Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label18.Location = New System.Drawing.Point(5, 137)
+    Me.Label18.Location = New System.Drawing.Point(7, 37)
     Me.Label18.Name = "Label18"
     Me.Label18.Size = New System.Drawing.Size(56, 14)
     Me.Label18.TabIndex = 16
@@ -328,24 +360,24 @@ Partial Class frmSalesOrderDetail
     '
     'txtDelAddress2
     '
-    Me.txtDelAddress2.Location = New System.Drawing.Point(67, 101)
+    Me.txtDelAddress2.Location = New System.Drawing.Point(87, 154)
     Me.txtDelAddress2.MenuManager = Me.BarManager1
     Me.txtDelAddress2.Name = "txtDelAddress2"
     Me.txtDelAddress2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDelAddress2.Properties.Appearance.Options.UseFont = True
     Me.txtDelAddress2.Size = New System.Drawing.Size(130, 20)
-    Me.txtDelAddress2.TabIndex = 5
+    Me.txtDelAddress2.TabIndex = 3
     Me.txtDelAddress2.Tag = "c"
     '
     'txtDelAddress1
     '
-    Me.txtDelAddress1.Location = New System.Drawing.Point(67, 35)
+    Me.txtDelAddress1.Location = New System.Drawing.Point(87, 94)
     Me.txtDelAddress1.MenuManager = Me.BarManager1
     Me.txtDelAddress1.Name = "txtDelAddress1"
     Me.txtDelAddress1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDelAddress1.Properties.Appearance.Options.UseFont = True
     Me.txtDelAddress1.Size = New System.Drawing.Size(130, 20)
-    Me.txtDelAddress1.TabIndex = 15
+    Me.txtDelAddress1.TabIndex = 2
     Me.txtDelAddress1.Tag = "c"
     '
     'Label17
@@ -353,7 +385,7 @@ Partial Class frmSalesOrderDetail
     Me.Label17.AutoSize = True
     Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label17.Location = New System.Drawing.Point(5, 104)
+    Me.Label17.Location = New System.Drawing.Point(7, 157)
     Me.Label17.Name = "Label17"
     Me.Label17.Size = New System.Drawing.Size(45, 14)
     Me.Label17.TabIndex = 4
@@ -365,7 +397,7 @@ Partial Class frmSalesOrderDetail
     Me.Label16.AutoSize = True
     Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label16.Location = New System.Drawing.Point(5, 38)
+    Me.Label16.Location = New System.Drawing.Point(7, 97)
     Me.Label16.Name = "Label16"
     Me.Label16.Size = New System.Drawing.Size(58, 14)
     Me.Label16.TabIndex = 14
@@ -377,7 +409,7 @@ Partial Class frmSalesOrderDetail
     Me.Label21.AutoSize = True
     Me.Label21.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label21.Location = New System.Drawing.Point(5, 71)
+    Me.Label21.Location = New System.Drawing.Point(7, 217)
     Me.Label21.Name = "Label21"
     Me.Label21.Size = New System.Drawing.Size(30, 14)
     Me.Label21.TabIndex = 2
@@ -389,7 +421,7 @@ Partial Class frmSalesOrderDetail
     Me.Label15.AutoSize = True
     Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label15.Location = New System.Drawing.Point(9, 245)
+    Me.Label15.Location = New System.Drawing.Point(9, 275)
     Me.Label15.Name = "Label15"
     Me.Label15.Size = New System.Drawing.Size(78, 14)
     Me.Label15.TabIndex = 16
@@ -398,7 +430,7 @@ Partial Class frmSalesOrderDetail
     '
     'btneSalesOrderDocument
     '
-    Me.btneSalesOrderDocument.Location = New System.Drawing.Point(131, 242)
+    Me.btneSalesOrderDocument.Location = New System.Drawing.Point(131, 272)
     Me.btneSalesOrderDocument.MenuManager = Me.BarManager1
     Me.btneSalesOrderDocument.Name = "btneSalesOrderDocument"
     Me.btneSalesOrderDocument.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -407,7 +439,7 @@ Partial Class frmSalesOrderDetail
     Me.btneSalesOrderDocument.Properties.Appearance.Options.UseFont = True
     Me.btneSalesOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
     Me.btneSalesOrderDocument.Size = New System.Drawing.Size(130, 20)
-    Me.btneSalesOrderDocument.TabIndex = 17
+    Me.btneSalesOrderDocument.TabIndex = 9
     '
     'lblSalesOrderID
     '
@@ -444,20 +476,20 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl2.Controls.Add(Me.Label1)
     Me.GroupControl2.Location = New System.Drawing.Point(293, 28)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(270, 243)
-    Me.GroupControl2.TabIndex = 20
+    Me.GroupControl2.Size = New System.Drawing.Size(270, 265)
+    Me.GroupControl2.TabIndex = 10
     Me.GroupControl2.Text = "Detalles de Facturación del Cliente"
     '
     'txtCustomerContact
     '
-    Me.txtCustomerContact.Location = New System.Drawing.Point(102, 208)
+    Me.txtCustomerContact.Location = New System.Drawing.Point(102, 232)
     Me.txtCustomerContact.MenuManager = Me.BarManager1
     Me.txtCustomerContact.Name = "txtCustomerContact"
     Me.txtCustomerContact.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtCustomerContact.Properties.Appearance.Options.UseFont = True
     Me.txtCustomerContact.Properties.ReadOnly = True
     Me.txtCustomerContact.Size = New System.Drawing.Size(130, 20)
-    Me.txtCustomerContact.TabIndex = 19
+    Me.txtCustomerContact.TabIndex = 7
     Me.txtCustomerContact.Tag = "c"
     '
     'Label20
@@ -465,7 +497,7 @@ Partial Class frmSalesOrderDetail
     Me.Label20.AutoSize = True
     Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label20.Location = New System.Drawing.Point(9, 211)
+    Me.Label20.Location = New System.Drawing.Point(9, 235)
     Me.Label20.Name = "Label20"
     Me.Label20.Size = New System.Drawing.Size(56, 14)
     Me.Label20.TabIndex = 18
@@ -474,14 +506,14 @@ Partial Class frmSalesOrderDetail
     '
     'txtMainTown
     '
-    Me.txtMainTown.Location = New System.Drawing.Point(102, 88)
+    Me.txtMainTown.Location = New System.Drawing.Point(102, 96)
     Me.txtMainTown.MenuManager = Me.BarManager1
     Me.txtMainTown.Name = "txtMainTown"
     Me.txtMainTown.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtMainTown.Properties.Appearance.Options.UseFont = True
     Me.txtMainTown.Properties.ReadOnly = True
     Me.txtMainTown.Size = New System.Drawing.Size(130, 20)
-    Me.txtMainTown.TabIndex = 5
+    Me.txtMainTown.TabIndex = 3
     Me.txtMainTown.Tag = "c"
     '
     'Label14
@@ -489,7 +521,7 @@ Partial Class frmSalesOrderDetail
     Me.Label14.AutoSize = True
     Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label14.Location = New System.Drawing.Point(9, 91)
+    Me.Label14.Location = New System.Drawing.Point(9, 99)
     Me.Label14.Name = "Label14"
     Me.Label14.Size = New System.Drawing.Size(45, 14)
     Me.Label14.TabIndex = 4
@@ -498,14 +530,14 @@ Partial Class frmSalesOrderDetail
     '
     'txtPaymentTermsType
     '
-    Me.txtPaymentTermsType.Location = New System.Drawing.Point(102, 118)
+    Me.txtPaymentTermsType.Location = New System.Drawing.Point(102, 130)
     Me.txtPaymentTermsType.MenuManager = Me.BarManager1
     Me.txtPaymentTermsType.Name = "txtPaymentTermsType"
     Me.txtPaymentTermsType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtPaymentTermsType.Properties.Appearance.Options.UseFont = True
     Me.txtPaymentTermsType.Properties.ReadOnly = True
     Me.txtPaymentTermsType.Size = New System.Drawing.Size(130, 20)
-    Me.txtPaymentTermsType.TabIndex = 7
+    Me.txtPaymentTermsType.TabIndex = 4
     Me.txtPaymentTermsType.Tag = "c"
     '
     'Label13
@@ -513,7 +545,7 @@ Partial Class frmSalesOrderDetail
     Me.Label13.AutoSize = True
     Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label13.Location = New System.Drawing.Point(9, 121)
+    Me.Label13.Location = New System.Drawing.Point(9, 133)
     Me.Label13.Name = "Label13"
     Me.Label13.Size = New System.Drawing.Size(87, 14)
     Me.Label13.TabIndex = 6
@@ -522,14 +554,14 @@ Partial Class frmSalesOrderDetail
     '
     'CustomerStatusID
     '
-    Me.CustomerStatusID.Location = New System.Drawing.Point(102, 178)
+    Me.CustomerStatusID.Location = New System.Drawing.Point(102, 198)
     Me.CustomerStatusID.MenuManager = Me.BarManager1
     Me.CustomerStatusID.Name = "CustomerStatusID"
     Me.CustomerStatusID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.CustomerStatusID.Properties.Appearance.Options.UseFont = True
     Me.CustomerStatusID.Properties.ReadOnly = True
     Me.CustomerStatusID.Size = New System.Drawing.Size(130, 20)
-    Me.CustomerStatusID.TabIndex = 11
+    Me.CustomerStatusID.TabIndex = 6
     Me.CustomerStatusID.Tag = "c"
     '
     'Label12
@@ -537,7 +569,7 @@ Partial Class frmSalesOrderDetail
     Me.Label12.AutoSize = True
     Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label12.Location = New System.Drawing.Point(9, 181)
+    Me.Label12.Location = New System.Drawing.Point(9, 201)
     Me.Label12.Name = "Label12"
     Me.Label12.Size = New System.Drawing.Size(48, 14)
     Me.Label12.TabIndex = 10
@@ -546,14 +578,14 @@ Partial Class frmSalesOrderDetail
     '
     'txtAccountRef
     '
-    Me.txtAccountRef.Location = New System.Drawing.Point(102, 148)
+    Me.txtAccountRef.Location = New System.Drawing.Point(102, 164)
     Me.txtAccountRef.MenuManager = Me.BarManager1
     Me.txtAccountRef.Name = "txtAccountRef"
     Me.txtAccountRef.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtAccountRef.Properties.Appearance.Options.UseFont = True
     Me.txtAccountRef.Properties.ReadOnly = True
     Me.txtAccountRef.Size = New System.Drawing.Size(130, 20)
-    Me.txtAccountRef.TabIndex = 9
+    Me.txtAccountRef.TabIndex = 5
     Me.txtAccountRef.Tag = "c"
     '
     'Label11
@@ -561,7 +593,7 @@ Partial Class frmSalesOrderDetail
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(9, 151)
+    Me.Label11.Location = New System.Drawing.Point(9, 167)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(55, 14)
     Me.Label11.TabIndex = 8
@@ -570,14 +602,14 @@ Partial Class frmSalesOrderDetail
     '
     'txtSalesAreaID
     '
-    Me.txtSalesAreaID.Location = New System.Drawing.Point(102, 58)
+    Me.txtSalesAreaID.Location = New System.Drawing.Point(102, 62)
     Me.txtSalesAreaID.MenuManager = Me.BarManager1
     Me.txtSalesAreaID.Name = "txtSalesAreaID"
     Me.txtSalesAreaID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtSalesAreaID.Properties.Appearance.Options.UseFont = True
     Me.txtSalesAreaID.Properties.ReadOnly = True
     Me.txtSalesAreaID.Size = New System.Drawing.Size(130, 20)
-    Me.txtSalesAreaID.TabIndex = 3
+    Me.txtSalesAreaID.TabIndex = 2
     Me.txtSalesAreaID.Tag = "c"
     '
     'Label10
@@ -585,7 +617,7 @@ Partial Class frmSalesOrderDetail
     Me.Label10.AutoSize = True
     Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label10.Location = New System.Drawing.Point(9, 61)
+    Me.Label10.Location = New System.Drawing.Point(9, 65)
     Me.Label10.Name = "Label10"
     Me.Label10.Size = New System.Drawing.Size(30, 14)
     Me.Label10.TabIndex = 2
@@ -618,7 +650,7 @@ Partial Class frmSalesOrderDetail
     Me.Label9.AutoSize = True
     Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label9.Location = New System.Drawing.Point(825, 141)
+    Me.Label9.Location = New System.Drawing.Point(837, 153)
     Me.Label9.Name = "Label9"
     Me.Label9.Size = New System.Drawing.Size(38, 14)
     Me.Label9.TabIndex = 18
@@ -627,11 +659,11 @@ Partial Class frmSalesOrderDetail
     '
     'txtVisibleNotes
     '
-    Me.txtVisibleNotes.Location = New System.Drawing.Point(881, 38)
+    Me.txtVisibleNotes.Location = New System.Drawing.Point(881, 35)
     Me.txtVisibleNotes.MenuManager = Me.BarManager1
     Me.txtVisibleNotes.Name = "txtVisibleNotes"
-    Me.txtVisibleNotes.Size = New System.Drawing.Size(263, 221)
-    Me.txtVisibleNotes.TabIndex = 19
+    Me.txtVisibleNotes.Size = New System.Drawing.Size(263, 251)
+    Me.txtVisibleNotes.TabIndex = 12
     '
     'dteDueTime
     '
@@ -642,7 +674,7 @@ Partial Class frmSalesOrderDetail
     Me.dteDueTime.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteDueTime.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteDueTime.Size = New System.Drawing.Size(130, 20)
-    Me.dteDueTime.TabIndex = 9
+    Me.dteDueTime.TabIndex = 5
     '
     'Label8
     '
@@ -665,7 +697,7 @@ Partial Class frmSalesOrderDetail
     Me.dteFinishDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteFinishDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteFinishDate.Size = New System.Drawing.Size(130, 20)
-    Me.dteFinishDate.TabIndex = 7
+    Me.dteFinishDate.TabIndex = 4
     '
     'Label7
     '
@@ -688,7 +720,7 @@ Partial Class frmSalesOrderDetail
     Me.dteDateEntered.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteDateEntered.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteDateEntered.Size = New System.Drawing.Size(130, 20)
-    Me.dteDateEntered.TabIndex = 5
+    Me.dteDateEntered.TabIndex = 3
     '
     'Label6
     '
@@ -709,7 +741,7 @@ Partial Class frmSalesOrderDetail
     Me.cboEstatusENUM.Name = "cboEstatusENUM"
     Me.cboEstatusENUM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.cboEstatusENUM.Size = New System.Drawing.Size(130, 20)
-    Me.cboEstatusENUM.TabIndex = 13
+    Me.cboEstatusENUM.TabIndex = 7
     '
     'Label5
     '
@@ -730,7 +762,7 @@ Partial Class frmSalesOrderDetail
     Me.cboOrderTypeID.Name = "cboOrderTypeID"
     Me.cboOrderTypeID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.cboOrderTypeID.Size = New System.Drawing.Size(130, 20)
-    Me.cboOrderTypeID.TabIndex = 11
+    Me.cboOrderTypeID.TabIndex = 6
     '
     'Label4
     '
@@ -752,7 +784,7 @@ Partial Class frmSalesOrderDetail
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
     Me.txtProjectName.Size = New System.Drawing.Size(130, 20)
-    Me.txtProjectName.TabIndex = 3
+    Me.txtProjectName.TabIndex = 2
     Me.txtProjectName.Tag = "c"
     '
     'Label3
@@ -797,9 +829,9 @@ Partial Class frmSalesOrderDetail
     Me.PanelControl1.Controls.Add(Me.GridControl3)
     Me.PanelControl1.Controls.Add(Me.GridControl2)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(3, 286)
+    Me.PanelControl1.Location = New System.Drawing.Point(3, 307)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1158, 407)
+    Me.PanelControl1.Size = New System.Drawing.Size(1158, 386)
     Me.PanelControl1.TabIndex = 14
     '
     'grpOrderItem
@@ -813,8 +845,8 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(0, 5)
     Me.grpOrderItem.Name = "grpOrderItem"
-    Me.grpOrderItem.Size = New System.Drawing.Size(563, 201)
-    Me.grpOrderItem.TabIndex = 3
+    Me.grpOrderItem.Size = New System.Drawing.Size(608, 169)
+    Me.grpOrderItem.TabIndex = 0
     Me.grpOrderItem.Text = "Articulos"
     '
     'grdOrderItem
@@ -824,8 +856,8 @@ Partial Class frmSalesOrderDetail
     Me.grdOrderItem.MainView = Me.gvOrderItem
     Me.grdOrderItem.MenuManager = Me.BarManager1
     Me.grdOrderItem.Name = "grdOrderItem"
-    Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2})
-    Me.grdOrderItem.Size = New System.Drawing.Size(559, 173)
+    Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2})
+    Me.grdOrderItem.Size = New System.Drawing.Size(604, 141)
     Me.grdOrderItem.TabIndex = 0
     Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem})
     '
@@ -838,7 +870,7 @@ Partial Class frmSalesOrderDetail
     Me.gvOrderItem.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvOrderItem.Appearance.Row.Options.UseFont = True
     Me.gvOrderItem.ColumnPanelRowHeight = 34
-    Me.gvOrderItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9, Me.GridColumn6})
+    Me.gvOrderItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9, Me.GridColumn6, Me.gcWoodSpecie, Me.gcWoodFinish})
     Me.gvOrderItem.GridControl = Me.grdOrderItem
     Me.gvOrderItem.Name = "gvOrderItem"
     Me.gvOrderItem.OptionsDetail.EnableMasterViewMode = False
@@ -859,7 +891,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 0
-    Me.GridColumn5.Width = 49
+    Me.GridColumn5.Width = 33
     '
     'GridColumn7
     '
@@ -868,7 +900,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn7.Name = "GridColumn7"
     Me.GridColumn7.Visible = True
     Me.GridColumn7.VisibleIndex = 1
-    Me.GridColumn7.Width = 205
+    Me.GridColumn7.Width = 118
     '
     'GridColumn10
     '
@@ -878,8 +910,8 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 5
-    Me.GridColumn10.Width = 128
+    Me.GridColumn10.VisibleIndex = 7
+    Me.GridColumn10.Width = 131
     '
     'RepositoryItemButtonEdit2
     '
@@ -893,8 +925,8 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn8.FieldName = "Quantity"
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 2
-    Me.GridColumn8.Width = 94
+    Me.GridColumn8.VisibleIndex = 4
+    Me.GridColumn8.Width = 66
     '
     'GridColumn9
     '
@@ -902,17 +934,49 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn9.FieldName = "UnitPrice"
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 3
-    Me.GridColumn9.Width = 89
+    Me.GridColumn9.VisibleIndex = 5
+    Me.GridColumn9.Width = 63
     '
     'GridColumn6
     '
     Me.GridColumn6.Caption = "Total"
-    Me.GridColumn6.FieldName = "TotalPrice"
+    Me.GridColumn6.FieldName = "TotalAmount"
     Me.GridColumn6.Name = "GridColumn6"
     Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 4
-    Me.GridColumn6.Width = 127
+    Me.GridColumn6.VisibleIndex = 6
+    Me.GridColumn6.Width = 57
+    '
+    'gcWoodSpecie
+    '
+    Me.gcWoodSpecie.Caption = "Madera"
+    Me.gcWoodSpecie.ColumnEdit = Me.RepositoryItemLookUpEdit1
+    Me.gcWoodSpecie.FieldName = "WoodSpecieID"
+    Me.gcWoodSpecie.Name = "gcWoodSpecie"
+    Me.gcWoodSpecie.Visible = True
+    Me.gcWoodSpecie.VisibleIndex = 2
+    Me.gcWoodSpecie.Width = 61
+    '
+    'RepositoryItemLookUpEdit1
+    '
+    Me.RepositoryItemLookUpEdit1.AutoHeight = False
+    Me.RepositoryItemLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
+    '
+    'gcWoodFinish
+    '
+    Me.gcWoodFinish.Caption = "Acabado"
+    Me.gcWoodFinish.ColumnEdit = Me.RepositoryItemLookUpEdit2
+    Me.gcWoodFinish.FieldName = "WoodFinish"
+    Me.gcWoodFinish.Name = "gcWoodFinish"
+    Me.gcWoodFinish.Visible = True
+    Me.gcWoodFinish.VisibleIndex = 3
+    Me.gcWoodFinish.Width = 59
+    '
+    'RepositoryItemLookUpEdit2
+    '
+    Me.RepositoryItemLookUpEdit2.AutoHeight = False
+    Me.RepositoryItemLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemLookUpEdit2.Name = "RepositoryItemLookUpEdit2"
     '
     'RepositoryItemButtonEdit1
     '
@@ -928,10 +992,10 @@ Partial Class frmSalesOrderDetail
     Me.grpWorkOrders.AppearanceCaption.Options.UseForeColor = True
     Me.grpWorkOrders.Controls.Add(Me.grdWorkOrders)
     Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-    Me.grpWorkOrders.Location = New System.Drawing.Point(578, 5)
+    Me.grpWorkOrders.Location = New System.Drawing.Point(614, 5)
     Me.grpWorkOrders.Name = "grpWorkOrders"
-    Me.grpWorkOrders.Size = New System.Drawing.Size(571, 201)
-    Me.grpWorkOrders.TabIndex = 0
+    Me.grpWorkOrders.Size = New System.Drawing.Size(535, 169)
+    Me.grpWorkOrders.TabIndex = 1
     Me.grpWorkOrders.Text = "Ordenes de Trabajo"
     '
     'grdWorkOrders
@@ -942,7 +1006,7 @@ Partial Class frmSalesOrderDetail
     Me.grdWorkOrders.MenuManager = Me.BarManager1
     Me.grdWorkOrders.Name = "grdWorkOrders"
     Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-    Me.grdWorkOrders.Size = New System.Drawing.Size(567, 176)
+    Me.grdWorkOrders.Size = New System.Drawing.Size(531, 144)
     Me.grdWorkOrders.TabIndex = 0
     Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders})
     '
@@ -1034,12 +1098,12 @@ Partial Class frmSalesOrderDetail
     '
     Me.GridControl3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl3.Location = New System.Drawing.Point(578, 212)
+    Me.GridControl3.Location = New System.Drawing.Point(614, 180)
     Me.GridControl3.MainView = Me.GridView3
     Me.GridControl3.MenuManager = Me.BarManager1
     Me.GridControl3.Name = "GridControl3"
-    Me.GridControl3.Size = New System.Drawing.Size(571, 186)
-    Me.GridControl3.TabIndex = 2
+    Me.GridControl3.Size = New System.Drawing.Size(535, 197)
+    Me.GridControl3.TabIndex = 3
     Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
     '
     'GridView3
@@ -1062,12 +1126,12 @@ Partial Class frmSalesOrderDetail
     '
     Me.GridControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl2.Location = New System.Drawing.Point(0, 212)
+    Me.GridControl2.Location = New System.Drawing.Point(0, 180)
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(563, 186)
-    Me.GridControl2.TabIndex = 1
+    Me.GridControl2.Size = New System.Drawing.Size(608, 197)
+    Me.GridControl2.TabIndex = 2
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '
     'GridView2
@@ -1103,6 +1167,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl3.ResumeLayout(False)
     Me.GroupControl3.PerformLayout()
@@ -1139,6 +1204,8 @@ Partial Class frmSalesOrderDetail
     CType(Me.grdOrderItem, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvOrderItem, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpWorkOrders.ResumeLayout(False)
@@ -1235,4 +1302,10 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents gcWOSOItemNumber As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+  Friend WithEvents cboContractManagerID As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents Label19 As Label
+  Friend WithEvents gcWoodSpecie As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcWoodFinish As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents RepositoryItemLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+  Friend WithEvents RepositoryItemLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

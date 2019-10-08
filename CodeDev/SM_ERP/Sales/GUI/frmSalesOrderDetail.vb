@@ -136,9 +136,17 @@ Public Class frmSalesOrderDetail
     Dim mVIs As colValueItems
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus))
+
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
 
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboContractManagerID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
+    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodSpecie, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
+    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
 
     LoadCustomerContactCombo()
 
@@ -184,7 +192,7 @@ Public Class frmSalesOrderDetail
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesDelAreaID, .SalesDelAreaID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCustomerDelContacID, .CustomerDelContactID)
-
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboContractManagerID, .ContractManagerID)
 
         If .Customer Is Nothing Then
           btnedCustomer.Text = ""
@@ -229,7 +237,7 @@ Public Class frmSalesOrderDetail
       .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
       .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
       .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
-
+      .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
 
       gvOrderItem.CloseEditor()
       gvOrderItem.UpdateCurrentRow()

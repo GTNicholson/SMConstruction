@@ -2,15 +2,16 @@
 
 Public Class repSalesOrder
 
-
+  Private i As Integer = 0
   Private pSalesOrder As dmSalesOrder
   Private pImageList As List(Of Image)
+  Private pTotalAmount As Decimal
 
   Public Sub New()
 
     ' This call is required by the designer.
     InitializeComponent()
-
+    pTotalAmount = 0
     ' Add any initialization after the InitializeComponent() call.
 
     pImageList = New List(Of Image)
@@ -49,6 +50,10 @@ Public Class repSalesOrder
 
     xrtImageFile.DataBindings.Add("Text", DataSource, "ImageFile")
 
+    xrtStockCode.DataBindings.Add("Text", DataSource, "ItemNumber")
+
+
+
   End Sub
 
   Private Sub repSalesOrder_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
@@ -58,6 +63,7 @@ Public Class repSalesOrder
 
     SetUpDataBindings()
 
+    xrlNotes.Text = pSalesOrder.VisibleNotes
     xrlCompanyName.Text = pSalesOrder.Customer.CompanyName
     xrlMainAddress1.Text = pSalesOrder.Customer.MainAddress1
     XrlEmail.Text = pSalesOrder.Customer.Email
@@ -75,11 +81,15 @@ Public Class repSalesOrder
     xrlSalesOrderNo.Text = pSalesOrder.OrderNo
     XrSalesNo.Text = pSalesOrder.OrderNo
     xrlProjectName.Text = pSalesOrder.ProjectName
+
+
+
     If pSalesOrder.Customer IsNot Nothing Then
       mcust = pSalesOrder.Customer
       xrlDelCompanyName.Text = mcust.CompanyName
 
-      mEmp = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Employees), RTIS.ERPCore.colEmployees).ItemFromKey(pSalesOrder.Customer.SalesEmployeeID)
+      mEmp = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Employees), RTIS.ERPCore.colEmployees).ItemFromKey(pSalesOrder.ContractManagerID)
+
       If mEmp IsNot Nothing Then
         xrlSalesPerson.Text = mEmp.FullName
       End If
@@ -87,6 +97,7 @@ Public Class repSalesOrder
       If mcust.CustomerContacts.Count <> 0 Then
           XrlCompanyContact.Text = mcust.CustomerContacts(0).FirstName & " " & mcust.CustomerContacts(0).LastName
         xrtEmailContact.Text = mcust.CustomerContacts(0).Email
+        xrtPhoneDelCustomerContact.Text = mcust.CustomerContacts(0).TelNo
       End If
       End If
 
@@ -97,33 +108,48 @@ Public Class repSalesOrder
 
 
 
-
   End Sub
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
-    Dim mText As String
+    Dim mWoodAndFinish As String
     Dim mSOI As dmSalesOrderItem
     Dim mFileName As String
     Dim mImage As Image
 
     mSOI = Me.GetCurrentRow
+    xrtAmount.Text = mSOI.TotalAmount
+    pTotalAmount += Val(xrtAmount.Text)
+    xrtSubTotalAmount.Text = pTotalAmount
+
 
     If mSOI IsNot Nothing Then
       ''mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
       ''mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
       ''xrtWood.Text = mText
       mFileName = clsSMSharedFuncs.GetSOItemImageFileName(pSalesOrder, mSOI)
+      mWoodAndFinish = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
+                                        ItemValueToDisplayValue(mSOI.WoodSpecieID) & " / " &
+                                        AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).
+                                        ItemValueToDisplayValue(mSOI.WoodFinish)
+
+
+
+      xrtWoodSpecieAndFinish.Text = mWoodAndFinish
+
 
       If IO.File.Exists(mFileName) Then
         mImage = Drawing.Image.FromFile(mFileName)
         pImageList.Add(mImage)
         xrtImageFile.Image = mImage
+
       Else
         xrtImageFile.Image = Nothing
       End If
 
 
     End If
+
+
 
   End Sub
 
@@ -136,5 +162,9 @@ Public Class repSalesOrder
   Protected Overrides Sub Finalize()
     ClearImages()
     MyBase.Finalize()
+  End Sub
+
+  Private Sub XrTableCell12_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrTableCell12.BeforePrint
+
   End Sub
 End Class

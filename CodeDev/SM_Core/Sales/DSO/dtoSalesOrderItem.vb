@@ -61,6 +61,10 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", .UnitPrice)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecieID", .WoodSpecieID)
+
+
     End With
 
   End Sub
@@ -78,6 +82,8 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
+        .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
+        .WoodSpecieID = DBReadInt32(rDataReader, "WoodSpecieID")
 
         pSalesOrderItem.IsDirty = False
       End With
