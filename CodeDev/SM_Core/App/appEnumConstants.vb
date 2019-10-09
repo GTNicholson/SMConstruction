@@ -138,11 +138,13 @@ Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of cls
   Private Sub New()
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cUnDefined, "Sin Def", " ", System.Drawing.Color.White))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkOrder, "OT", "", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Absencia", "A", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vaccacion", "V", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenamiento", "M", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfremo", "E", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Ausencia", "A", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vacaciones", "V", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.PaleGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfermo", "E", System.Drawing.Color.Lavender))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Parada", "P", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkAllowance, "Subsidio", "S", System.Drawing.Color.Lavender))
   End Sub
 
   Public Shared ReadOnly Property GetInstance As colTimeSheetCodes
@@ -177,6 +179,8 @@ Public Class clsTimeSheetCode : Inherits RTIS.ERPCore.clsPropertyENUM
   Public Const cMaintenance = 4
   Public Const cSick = 5
   Public Const cCleaning = 6
+  Public Const cStop = 7
+  Public Const cWorkAllowance = 8
 
   Public Sub New(ByVal vID As Integer, vDescription As String, vKeyCode As String, vColour As System.Drawing.Color)
     MyBase.New(vID, vDescription)

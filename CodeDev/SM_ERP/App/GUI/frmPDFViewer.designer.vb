@@ -74,9 +74,9 @@ Partial Class frmPDFViewer
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 713)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 710)
     '
     'BarManager1
     '
@@ -105,7 +105,7 @@ Partial Class frmPDFViewer
     '
     'barbtSaveAs
     '
-    Me.barbtSaveAs.Caption = "Save As"
+    Me.barbtSaveAs.Caption = "Guardar Coo"
     Me.barbtSaveAs.Id = 21
     Me.barbtSaveAs.Name = "barbtSaveAs"
     '
@@ -220,7 +220,7 @@ Partial Class frmPDFViewer
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1135, 28)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1135, 31)
     '
     'barDockControlBottom
     '
@@ -234,9 +234,9 @@ Partial Class frmPDFViewer
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1135, 28)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1135, 31)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 713)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 710)
     '
     'PdfBarController1
     '

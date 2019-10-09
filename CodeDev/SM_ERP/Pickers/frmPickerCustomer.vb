@@ -34,7 +34,7 @@ Public Class frmPickerCustomer
 
     If Not mOK Then
       'MsgBox("Problem loading the form... Please try again" & vbCrLf & mMsg, vbExclamation)
-      MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, ""), vbExclamation)
+      MsgBox(String.Format("Problema cargado el formulario... Por favor intente de nuevo{0}{1}", vbCrLf, ""), vbExclamation)
     End If
   End Sub
 

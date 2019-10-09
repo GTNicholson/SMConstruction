@@ -113,7 +113,7 @@ Public Class frmSalesOrderDetail
     End Try
 
     If Not mOK Then
-      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problema cargando el formulario... Por favor intente de nuevo{0}{1}", vbCrLf, mMsg), vbExclamation)
       pLoadError = True
       ExitMode = Windows.Forms.DialogResult.Abort
       BeginInvoke(New MethodInvoker(AddressOf CloseForm))
@@ -131,6 +131,7 @@ Public Class frmSalesOrderDetail
     pForceExit = True
     Me.Close()
   End Sub
+
 
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
@@ -377,10 +378,10 @@ Public Class frmSalesOrderDetail
     Dim mRetVal As Boolean
 
     UpdateObjects()
-    pFormController.SaveObjects()
+    'pFormController.SaveObjects()
     If pFormController.IsDirty() Then
       If rOption Then
-        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
         Select Case mResponse
           Case MsgBoxResult.Yes
             mSaveRequired = True
@@ -404,17 +405,31 @@ Public Class frmSalesOrderDetail
       mSaveRequired = False
       mRetVal = True
     End If
+
     If mSaveRequired Then
-      ''Dim mValidate As clsValidate
-      ''mValidate = pFormController.ValidateObject
-      ''If mValidate.ValOk Then
-      pFormController.SaveObjects()
-      ''Else
-      '' MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
-      ''mRetVal = False
-      ''End If
+      Dim mValidate As clsValidate
+      mValidate = pFormController.ValidateObject
+      If mValidate.ValOk Then
+        pFormController.SaveObjects()
+        mRetVal = True
+      Else
+        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
+        mRetVal = False
+      End If
     End If
     CheckSave = mRetVal
+
+    ''If mSaveRequired Then
+    ''  ''Dim mValidate As clsValidate
+    ''  ''mValidate = pFormController.ValidateObject
+    ''  ''If mValidate.ValOk Then
+    ''  pFormController.SaveObjects()
+    ''  ''Else
+    ''  '' MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+    ''  ''mRetVal = False
+    ''  ''End If
+    ''End If
+    ''CheckSave = mRetVal
   End Function
 
   Private Sub btnSaveAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
@@ -449,6 +464,7 @@ Public Class frmSalesOrderDetail
   End Sub
 
   Private Sub InitiateCloseExit(ByVal vWithCheck As Boolean) 'User initiated request to save - Call from buttons/menu/toolbar etc.
+
     If vWithCheck Then
       If CheckSave(True) Then 'Changed from False 20150206 !!!
         CloseForm()
@@ -504,7 +520,7 @@ Public Class frmSalesOrderDetail
       mReport.ClearImages
       mReport.Dispose()
     Else
-      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
     End If
 
   End Sub
@@ -562,7 +578,7 @@ Public Class frmSalesOrderDetail
 
     mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
     If IO.File.Exists(mFilePath) Then
-      If vOverride = False Then If MsgBox("Please confirm you wish to recreate the PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+      If vOverride = False Then If MsgBox("Por favor, confirme que desea volver a crear el PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
     End If
 
     ' mReport = CreateReport(vDocumentType)
@@ -635,10 +651,10 @@ Public Class frmSalesOrderDetail
 
 
         Dim mFileName As String = ""
-        If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Seleciona Imagen") = DialogResult.OK Then
+        If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
 
           If pFormController.CreateSOItemImageFile(mSOI, mFileName) = False Then
-            MsgBox("No Funciono!")
+            MsgBox("¡No Funcionó!")
           End If
         End If
         RefreshControls()

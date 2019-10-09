@@ -86,7 +86,7 @@ Public Class frmPDFViewer
     End Try
 
     If Not mOK Then
-      MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      MsgBox(String.Format("Problema cargando el formulario... Por favor intente de nuevo {0}{1}", vbCrLf, mMsg), vbExclamation)
       pLoadError = True
       ExitMode = Windows.Forms.DialogResult.Abort
       BeginInvoke(New MethodInvoker(AddressOf CloseForm))

@@ -132,7 +132,7 @@ Public Class frmCustomerDetail
     End Try
 
     If Not mOK Then
-      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problema cargando el formulario... Por favor intente de nuevo{0}{1}", vbCrLf, mMsg), vbExclamation)
       pLoadError = True
       ExitMode = Windows.Forms.DialogResult.Abort
       BeginInvoke(New MethodInvoker(AddressOf CloseForm))
@@ -164,10 +164,10 @@ Public Class frmCustomerDetail
     Dim mRetVal As Boolean
 
     UpdateObjects()
-    pFormController.SaveObjects()
+    'pFormController.SaveObjects()
     If pFormController.IsDirty() Then
       If rOption Then
-        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
         Select Case mResponse
           Case MsgBoxResult.Yes
             mSaveRequired = True
@@ -191,15 +191,17 @@ Public Class frmCustomerDetail
       mSaveRequired = False
       mRetVal = True
     End If
+
     If mSaveRequired Then
-      ''Dim mValidate As clsValidate
-      ''mValidate = pFormController.ValidateObject
-      ''If mValidate.ValOk Then
-      pFormController.SaveObjects()
-      ''Else
-      '' MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
-      ''mRetVal = False
-      ''End If
+      Dim mValidate As clsValidate
+      mValidate = pFormController.ValidateObject
+      If mValidate.ValOk Then
+        pFormController.SaveObjects()
+        mRetVal = True
+      Else
+        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
+        mRetVal = False
+      End If
     End If
     CheckSave = mRetVal
   End Function

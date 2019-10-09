@@ -14,7 +14,7 @@ Public Class clsRTISAppSettings : Inherits rtisSettingsFile
   ''Private pAppExtensionDLL As clsStringSetting
   Private pDataSetID As clsIntegerSetting
 
-  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")> _
+  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")>
   Public Property MainConn() As clsConnInfo
     Get
       MainConn = pMainConn
@@ -45,8 +45,8 @@ Public Class clsRTISAppSettings : Inherits rtisSettingsFile
   ''  End Property
 
 
-  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")> _
-Public Property UpdateManifestFilePath() As clsStringSetting
+  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")>
+  Public Property UpdateManifestFilePath() As clsStringSetting
     Get
       UpdateManifestFilePath = pUpdateManifestFilePath
     End Get
@@ -55,7 +55,7 @@ Public Property UpdateManifestFilePath() As clsStringSetting
     End Set
   End Property
 
-  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")> _
+  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")>
   Public Property DefaultErrorLogPath() As clsStringSetting
     Get
       DefaultErrorLogPath = pDefaultErrorLogPath
@@ -65,7 +65,7 @@ Public Property UpdateManifestFilePath() As clsStringSetting
     End Set
   End Property
 
-  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")> _
+  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")>
   Public Property ServerSettingsPath() As clsStringSetting
     Get
       ServerSettingsPath = pServerSettingsPath
@@ -75,7 +75,7 @@ Public Property UpdateManifestFilePath() As clsStringSetting
     End Set
   End Property
 
-  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")> _
+  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")>
   Public Property DatasetName() As clsStringSetting
     Get
       DatasetName = pDatasetName
@@ -85,8 +85,8 @@ Public Property UpdateManifestFilePath() As clsStringSetting
     End Set
   End Property
 
-  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Edit")> _
-   Public Property DataSetID() As clsIntegerSetting
+  <[Browsable](True)> <[ReadOnly](False)> <[Category]("Editar")>
+  Public Property DataSetID() As clsIntegerSetting
     Get
       DataSetID = pDataSetID
     End Get

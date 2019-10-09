@@ -106,9 +106,9 @@ Partial Class frmDisplayError
     Me.Label1.ForeColor = System.Drawing.Color.Gainsboro
     Me.Label1.Location = New System.Drawing.Point(12, 28)
     Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(75, 13)
+    Me.Label1.Size = New System.Drawing.Size(87, 13)
     Me.Label1.TabIndex = 7
-    Me.Label1.Text = "Error Message"
+    Me.Label1.Text = "Mensaje de Error"
     '
     'Label2
     '

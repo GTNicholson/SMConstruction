@@ -114,7 +114,7 @@ Public Class frmWorkOrderDetail
     End Try
 
     If Not mOK Then
-      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problema cargando el formulario... Por favor intente de nuevo{0}{1}", vbCrLf, mMsg), vbExclamation)
       pLoadError = True
       ExitMode = Windows.Forms.DialogResult.Abort
       BeginInvoke(New MethodInvoker(AddressOf CloseForm))
@@ -144,7 +144,7 @@ Public Class frmWorkOrderDetail
 
     If pFormController.IsDirty() Then
       If rOption Then
-        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
         Select Case mResponse
           Case MsgBoxResult.Yes
             mSaveRequired = True
@@ -174,7 +174,7 @@ Public Class frmWorkOrderDetail
       If mValidate.ValOk Then
         mRetVal = pFormController.SaveObjects()
       Else
-        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
         mRetVal = False
       End If
     End If
@@ -408,7 +408,7 @@ Public Class frmWorkOrderDetail
       End If
       '  End If
     Else
-      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
     End If
 
   End Sub
@@ -465,7 +465,7 @@ Public Class frmWorkOrderDetail
 
     mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
     If IO.File.Exists(mFilePath) Then
-      If vOverride = False Then If MsgBox("Please confirm you wish to recreate the PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+      If vOverride = False Then If MsgBox("Por favor, confirme que desea volver a crear el PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
     End If
 
     ' mReport = CreateReport(vDocumentType)
@@ -580,9 +580,9 @@ Public Class frmWorkOrderDetail
   Private Sub bteImage_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles bteImage.ButtonClick
     Try
       Dim mFileName As String = ""
-      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Seleciona Imagen") = DialogResult.OK Then
+      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
         If pFormController.CreateWOImageFile(mFileName) = False Then
-          MsgBox("No Funciono!")
+          MsgBox("¡No Funcionó!")
         End If
       End If
       RefreshControls()
@@ -612,5 +612,13 @@ Public Class frmWorkOrderDetail
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub frmWorkOrderDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+
+  End Sub
+
+  Private Sub frmWorkOrderDetail_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
   End Sub
 End Class

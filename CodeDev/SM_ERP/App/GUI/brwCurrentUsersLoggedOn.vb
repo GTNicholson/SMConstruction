@@ -18,7 +18,7 @@ Public Class brwCurrentUsersLoggedOn : Inherits brwBrowserListBase
   Public Overrides Function EditButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.EditButtonClicked
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Sin fila seleccionada")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
     End If
@@ -29,7 +29,7 @@ Public Class brwCurrentUsersLoggedOn : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Sin fila seleccionada")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeView)
     End If
@@ -122,7 +122,7 @@ Public Class brwCurrentUsersLoggedOn : Inherits brwBrowserListBase
     ' Dim mCheckEdit As RepositoryItemCheckEdit
     Try
       LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlCurrentUsersLoggedOn.xml")
-      ListTitle = "Current Users Logged On"
+      ListTitle = "Usuarios actuales Ingresados"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 

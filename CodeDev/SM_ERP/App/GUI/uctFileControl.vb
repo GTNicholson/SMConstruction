@@ -78,7 +78,7 @@ Public Class uctFileControl
 
         If pUserController.FileAlreadyExists(mFilePath) Then
 
-          If MsgBox("A file with this name already exists do you wish to override?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+          If MsgBox("Ya existe un archvivo con este nombre, ¿desea sobreescribirlo?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             pUserController.CopyFile(mFilePath)
           End If
 
@@ -108,7 +108,7 @@ Public Class uctFileControl
 
       If mFileTracker IsNot Nothing Then
 
-        If MsgBox("Deleting will also delete the attached file, do you wish to continue?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+        If MsgBox("La eliminación además borrará el archivo adjunto, ¿Desea continuar?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
           pUserController.DeleteFile(mFileTracker.FileName)
         End If
 

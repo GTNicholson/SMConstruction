@@ -193,7 +193,7 @@ Public Class uccFileControl
 
       If Not IO.File.Exists(mFileName) Then
         mVal.ValOk = False
-        mVal.AddMsgLine("File could not be found")
+        mVal.AddMsgLine("Archivo no encontrado")
       End If
 
       If mVal.ValOk Then

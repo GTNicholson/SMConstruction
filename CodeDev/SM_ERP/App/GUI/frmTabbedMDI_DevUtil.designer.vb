@@ -58,6 +58,7 @@ Partial Class frmTabbedMDI_DevUtil
     Me.navbarSQLiteUtil = New DevExpress.XtraNavBar.NavBarItem()
     Me.navbarConnLockTest = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarDataCompare = New DevExpress.XtraNavBar.NavBarItem()
+    Me.navbaritLookUpConfig = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarGroup_Utilities = New DevExpress.XtraNavBar.NavBarGroup()
     Me.navbaritemCodeGendmBase = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarItem_CodeGenerator = New DevExpress.XtraNavBar.NavBarItem()
@@ -70,7 +71,6 @@ Partial Class frmTabbedMDI_DevUtil
     Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
     Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
     Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
-    Me.navbaritLookUpConfig = New DevExpress.XtraNavBar.NavBarItem()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,19 +119,19 @@ Partial Class frmTabbedMDI_DevUtil
     'BarStaticItem1
     '
     Me.BarStaticItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-    Me.BarStaticItem1.Caption = "Version:"
+    Me.BarStaticItem1.Caption = "Versión:"
     Me.BarStaticItem1.Id = 20
     Me.BarStaticItem1.Name = "BarStaticItem1"
     '
     'BarMdiChildrenListItem1
     '
-    Me.BarMdiChildrenListItem1.Caption = "Open Tabs"
+    Me.BarMdiChildrenListItem1.Caption = "Abrir Pestañas"
     Me.BarMdiChildrenListItem1.Id = 7
     Me.BarMdiChildrenListItem1.Name = "BarMdiChildrenListItem1"
     '
     'bbtn_About
     '
-    Me.bbtn_About.Caption = "About"
+    Me.bbtn_About.Caption = "Acerca"
     Me.bbtn_About.Id = 19
     Me.bbtn_About.Name = "bbtn_About"
     '
@@ -147,7 +147,7 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 725)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 435)
     Me.barDockControlBottom.Manager = Me.BarManager1
     Me.barDockControlBottom.Size = New System.Drawing.Size(1168, 0)
     '
@@ -157,7 +157,7 @@ Partial Class frmTabbedMDI_DevUtil
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 45)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 680)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 390)
     '
     'barDockControlRight
     '
@@ -165,7 +165,7 @@ Partial Class frmTabbedMDI_DevUtil
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
     Me.barDockControlRight.Location = New System.Drawing.Point(1168, 45)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 680)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 390)
     '
     'barComboMDITabLocation
     '
@@ -316,7 +316,7 @@ Partial Class frmTabbedMDI_DevUtil
     Me.NavBarControl1.Location = New System.Drawing.Point(0, 45)
     Me.NavBarControl1.Name = "NavBarControl1"
     Me.NavBarControl1.OptionsNavPane.ExpandedWidth = 231
-    Me.NavBarControl1.Size = New System.Drawing.Size(231, 680)
+    Me.NavBarControl1.Size = New System.Drawing.Size(231, 390)
     Me.NavBarControl1.TabIndex = 5
     Me.NavBarControl1.Text = "NavBarControl1"
     '
@@ -346,6 +346,11 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.NavBarDataCompare.Caption = "Data Comparison Testing"
     Me.NavBarDataCompare.Name = "NavBarDataCompare"
+    '
+    'navbaritLookUpConfig
+    '
+    Me.navbaritLookUpConfig.Caption = "Look Up Table Config"
+    Me.navbaritLookUpConfig.Name = "navbaritLookUpConfig"
     '
     'NavBarGroup_Utilities
     '
@@ -407,7 +412,7 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.SplitterControl1.Location = New System.Drawing.Point(231, 45)
     Me.SplitterControl1.Name = "SplitterControl1"
-    Me.SplitterControl1.Size = New System.Drawing.Size(8, 680)
+    Me.SplitterControl1.Size = New System.Drawing.Size(8, 390)
     Me.SplitterControl1.TabIndex = 6
     Me.SplitterControl1.TabStop = False
     '
@@ -415,16 +420,11 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
     '
-    'navbaritLookUpConfig
-    '
-    Me.navbaritLookUpConfig.Caption = "Look Up Table Config"
-    Me.navbaritLookUpConfig.Name = "navbaritLookUpConfig"
-    '
     'frmTabbedMDI_DevUtil
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1168, 725)
+    Me.ClientSize = New System.Drawing.Size(1168, 435)
     Me.Controls.Add(Me.SplitterControl1)
     Me.Controls.Add(Me.NavBarControl1)
     Me.Controls.Add(Me.barDockControlLeft)

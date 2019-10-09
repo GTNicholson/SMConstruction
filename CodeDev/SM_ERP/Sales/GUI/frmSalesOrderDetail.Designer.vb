@@ -90,14 +90,15 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcUnitPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalAmount = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcWoodSpecie = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
     Me.gcWoodFinish = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
     Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.RepositoryItemCalcEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit()
     Me.grpWorkOrders = New DevExpress.XtraEditors.GroupControl()
     Me.grdWorkOrders = New DevExpress.XtraGrid.GridControl()
     Me.gvWorkOrders = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -154,6 +155,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpWorkOrders.SuspendLayout()
     CType(Me.grdWorkOrders, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,7 +214,7 @@ Partial Class frmSalesOrderDetail
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 30)
     '
     'barDockControlBottom
     '
@@ -226,17 +228,17 @@ Partial Class frmSalesOrderDetail
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 699)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 30)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 699)
     '
     'TableLayoutPanel1
     '
@@ -246,12 +248,12 @@ Partial Class frmSalesOrderDetail
     Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.PanelControl1, 0, 1)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 2
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 696)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 699)
     Me.TableLayoutPanel1.TabIndex = 4
     '
     'GroupControl1
@@ -831,7 +833,7 @@ Partial Class frmSalesOrderDetail
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(3, 307)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1158, 386)
+    Me.PanelControl1.Size = New System.Drawing.Size(1158, 389)
     Me.PanelControl1.TabIndex = 14
     '
     'grpOrderItem
@@ -852,12 +854,12 @@ Partial Class frmSalesOrderDetail
     'grdOrderItem
     '
     Me.grdOrderItem.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdOrderItem.Location = New System.Drawing.Point(2, 26)
+    Me.grdOrderItem.Location = New System.Drawing.Point(2, 24)
     Me.grdOrderItem.MainView = Me.gvOrderItem
     Me.grdOrderItem.MenuManager = Me.BarManager1
     Me.grdOrderItem.Name = "grdOrderItem"
-    Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2})
-    Me.grdOrderItem.Size = New System.Drawing.Size(604, 141)
+    Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
+    Me.grdOrderItem.Size = New System.Drawing.Size(604, 143)
     Me.grdOrderItem.TabIndex = 0
     Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem})
     '
@@ -870,8 +872,9 @@ Partial Class frmSalesOrderDetail
     Me.gvOrderItem.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvOrderItem.Appearance.Row.Options.UseFont = True
     Me.gvOrderItem.ColumnPanelRowHeight = 34
-    Me.gvOrderItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn10, Me.GridColumn8, Me.GridColumn9, Me.GridColumn6, Me.gcWoodSpecie, Me.gcWoodFinish})
+    Me.gvOrderItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn10, Me.gcQuantity, Me.gcUnitPrice, Me.gcTotalAmount, Me.gcWoodSpecie, Me.gcWoodFinish})
     Me.gvOrderItem.GridControl = Me.grdOrderItem
+    Me.gvOrderItem.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UnitPrice", Me.gcTotalAmount, "(Precio: SUMA={0:#.##})")})
     Me.gvOrderItem.Name = "gvOrderItem"
     Me.gvOrderItem.OptionsDetail.EnableMasterViewMode = False
     Me.gvOrderItem.OptionsView.ShowGroupPanel = False
@@ -919,32 +922,34 @@ Partial Class frmSalesOrderDetail
     Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
     Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
     '
-    'GridColumn8
+    'gcQuantity
     '
-    Me.GridColumn8.Caption = "Cantidad"
-    Me.GridColumn8.FieldName = "Quantity"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 4
-    Me.GridColumn8.Width = 66
+    Me.gcQuantity.Caption = "Cantidad"
+    Me.gcQuantity.FieldName = "Quantity"
+    Me.gcQuantity.Name = "gcQuantity"
+    Me.gcQuantity.Visible = True
+    Me.gcQuantity.VisibleIndex = 4
+    Me.gcQuantity.Width = 66
     '
-    'GridColumn9
+    'gcUnitPrice
     '
-    Me.GridColumn9.Caption = "Precio"
-    Me.GridColumn9.FieldName = "UnitPrice"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 5
-    Me.GridColumn9.Width = 63
+    Me.gcUnitPrice.Caption = "Precio"
+    Me.gcUnitPrice.FieldName = "UnitPrice"
+    Me.gcUnitPrice.Name = "gcUnitPrice"
+    Me.gcUnitPrice.Visible = True
+    Me.gcUnitPrice.VisibleIndex = 5
+    Me.gcUnitPrice.Width = 63
     '
-    'GridColumn6
+    'gcTotalAmount
     '
-    Me.GridColumn6.Caption = "Total"
-    Me.GridColumn6.FieldName = "TotalAmount"
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 6
-    Me.GridColumn6.Width = 57
+    Me.gcTotalAmount.Caption = "Total"
+    Me.gcTotalAmount.FieldName = "gcTotalAmount"
+    Me.gcTotalAmount.Name = "gcTotalAmount"
+    Me.gcTotalAmount.UnboundExpression = "[Quantity] * [UnitPrice]"
+    Me.gcTotalAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcTotalAmount.Visible = True
+    Me.gcTotalAmount.VisibleIndex = 6
+    Me.gcTotalAmount.Width = 57
     '
     'gcWoodSpecie
     '
@@ -983,6 +988,12 @@ Partial Class frmSalesOrderDetail
     Me.RepositoryItemButtonEdit1.AutoHeight = False
     Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
     Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
+    '
+    'RepositoryItemCalcEdit1
+    '
+    Me.RepositoryItemCalcEdit1.AutoHeight = False
+    Me.RepositoryItemCalcEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemCalcEdit1.Name = "RepositoryItemCalcEdit1"
     '
     'grpWorkOrders
     '
@@ -1102,7 +1113,7 @@ Partial Class frmSalesOrderDetail
     Me.GridControl3.MainView = Me.GridView3
     Me.GridControl3.MenuManager = Me.BarManager1
     Me.GridControl3.Name = "GridControl3"
-    Me.GridControl3.Size = New System.Drawing.Size(535, 197)
+    Me.GridControl3.Size = New System.Drawing.Size(535, 200)
     Me.GridControl3.TabIndex = 3
     Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
     '
@@ -1130,7 +1141,7 @@ Partial Class frmSalesOrderDetail
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(608, 197)
+    Me.GridControl2.Size = New System.Drawing.Size(608, 200)
     Me.GridControl2.TabIndex = 2
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '
@@ -1207,6 +1218,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grpWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpWorkOrders.ResumeLayout(False)
     CType(Me.grdWorkOrders, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1295,9 +1307,9 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcQuantity As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcUnitPrice As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcTotalAmount As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents gcWOSOItemNumber As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1308,4 +1320,5 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents gcWoodFinish As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
   Friend WithEvents RepositoryItemLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+  Friend WithEvents RepositoryItemCalcEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit
 End Class

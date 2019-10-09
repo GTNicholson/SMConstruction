@@ -57,7 +57,7 @@ Public Class clsMDISystemAdmin : Inherits clsMDIShellContextBase
     Dim mEeesLocked As Boolean = False
     Dim mUsersLocked As Boolean = False
     Try
-      pTitle = "System Admin: Employees and Users"
+      pTitle = "Administración del Sistema: Empleados y Usuarios"
       mPermissionCode = pDBConn.RTISUser.ActivityPermission(eActivityCode.UserConfig)
       If mPermissionCode > ePermissionCode.ePC_None Then
         If mPermissionCode > ePermissionCode.ePC_View Then

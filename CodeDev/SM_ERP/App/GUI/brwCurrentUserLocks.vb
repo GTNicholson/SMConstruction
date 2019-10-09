@@ -23,7 +23,7 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
   Public Overrides Function EditButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.EditButtonClicked
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Ninguna fila seleccionada")
     Else
 
       'MsgBox(CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag)
@@ -36,7 +36,7 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-      MsgBox("No row selected")
+      MsgBox("Ninguna fila seleccionada")
     Else
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeView)
     End If
@@ -52,22 +52,22 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
     Try
       ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
       If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-        MsgBox("No row selected")
+        MsgBox("Ninguna fila seleccionada")
       Else
         mRow = mGridView.GetFocusedDataRow()
         mLock = Me.DBConn.dsoUserLogin.ReadLockDetailsFromDataRow(mRow)
 
         '' TODO - ?? Add a method to message user to come out of locked item ??
         'Check with user
-        If MsgBox("Delete the user lock on table: " & mLock.TableName & " Record: " & mLock.PrimaryID & " " & mLock.LockRefDetails & vbCrLf _
-                & "Locked at: " & Format(mLock.TimeLocked, "dd/MM/yyyy hh:mm") & " by: " & mLock.UserName & " on PC:" & mLock.HostPC, MsgBoxStyle.OkCancel, "Force Lock Removal") = MsgBoxResult.Ok Then
+        If MsgBox("Elimar el bloqueo del usuario en la tabla: " & mLock.TableName & " Record: " & mLock.PrimaryID & " " & mLock.LockRefDetails & vbCrLf _
+                & "Bloqueado el: " & Format(mLock.TimeLocked, "dd/MM/yyyy hh:mm") & " Por: " & mLock.UserName & " en PC:" & mLock.HostPC, MsgBoxStyle.OkCancel, "Force Lock Removal") = MsgBoxResult.Ok Then
 
           If Me.DBConn.dsoUserLogin.ForceRemoveLockFromDB(mLock, mLock.ConcurrentUserID) Then
-            MsgBox("Lock removed")
+            MsgBox("Bloqueo Eliminado")
             'Inform user (network command ?? or something built into our application)
 
           Else
-            MsgBox("Problem removing lock")
+            MsgBox("Problema en removel el bloqueo")
           End If
 
           'In either case refresh grid
@@ -208,13 +208,13 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
         Case eListOption.CurrentLocksNoSelect
           LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlCurrentUserLocks.xml")
           Me.SelectColumnActive = False
-          ListTitle = "Current User Locks (No Select)"
+          ListTitle = "Bloqueos de Usuario actual (Sin seleccionar)"
           ' CType(Me.BrowseForm, frmBrowseList).AddEditOption("Edxit 2", 2)
           mNewLayoutOption = 1
         Case eListOption.CurrentLocksWithSelect
           LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlCurrentUserLocksSelect.xml")
           Me.SelectColumnActive = True
-          ListTitle = "Current User Locks (With Select)"
+          ListTitle = "Bloqueos de Usuario actual (Con seleccionar)"
           mNewLayoutOption = 2
           ' CType(Me.BrowseForm, frmBrowseList).RemoveEditOption(2)
       End Select
@@ -256,11 +256,11 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
 
       If Me.SelectColumnActive And Me.DeleteButton = eActiveVisibleState.Active Then
         With CType(Me.BrowseForm, frmBrowseList)
-          .AddProcessOption("Example Process", AddressOf BatchProcessRemoveLock)
+          .AddProcessOption("Procesos de Ejemplos", AddressOf BatchProcessRemoveLock)
         End With
 
       Else
-        CType(Me.BrowseForm, frmBrowseList).ClearProcessOption("Example Process")
+        CType(Me.BrowseForm, frmBrowseList).ClearProcessOption("Procesos de Ejemplo")
       End If
       mOK = True
     Catch ex As Exception
@@ -317,9 +317,9 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
 
     Dim mRows() As DataRow = CType(gridBrowseList.DataSource, DataTable).Select("IncludeRow = 1")
     If mRows.Length = 0 Then
-      MsgBox("There are no rows selected/visible, therefore nothing to process")
+      MsgBox("No hay filas seleccionads / visibles, nada para procesar...")
     Else
-      If MsgBox("Clear " & mRows.Length & " selected locks?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok Then
+      If MsgBox("Limpiar " & mRows.Length & " bloqueos seleccionados?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok Then
         For Each mRow In mRows
           mLock = Me.DBConn.dsoUserLogin.ReadLockDetailsFromDataRow(mRow)
 
@@ -329,7 +329,7 @@ Public Class brwCurrentUserLocks : Inherits brwBrowserListBase
             mNumNotRemoved += 1
           End If
         Next
-        MsgBox(mNumRemoved & " Locks removed. " & mNumNotRemoved & " Locks not removed.")
+        MsgBox(mNumRemoved & " Bloqueos eliminados. " & mNumNotRemoved & " Bloqueos no eliminados.")
         LoadData()
       End If
     End If

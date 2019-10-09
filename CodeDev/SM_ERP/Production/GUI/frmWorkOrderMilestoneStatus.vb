@@ -42,7 +42,7 @@ Public Class frmWorkOrderMilestoneStatus
     End Try
 
     If Not mOK Then
-      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problema cargando el formulario... Por favor intente de nuevo{0}{1}", vbCrLf, mMsg), vbExclamation)
       BeginInvoke(New MethodInvoker(AddressOf CloseForm))
     End If
   End Sub

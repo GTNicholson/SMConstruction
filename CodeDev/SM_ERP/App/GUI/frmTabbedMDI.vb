@@ -231,11 +231,11 @@ Public Class frmTabbedMDI
     mConn = My.Application.RTISUserSession.CreateAdHocDBConn(My.Application.RTISUserSession.SessionMainConn)
     mConn.Connect()
     If mConn.IsConnected Then
-      MsgBox("Connection OK")
+      MsgBox("Conexi[on OK")
       mConn.Disconnect()
     Else
 
-      MsgBox("NOT CONNECTED", MsgBoxStyle.Exclamation)
+      MsgBox("NO EST[A CONECTADO", MsgBoxStyle.Exclamation)
     End If
     mConn = Nothing
 

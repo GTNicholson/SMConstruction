@@ -34,7 +34,7 @@ Public Class BIReportViewTimeSheet
 
     mConditionSetterList = New clsBIConditionSetterList()
     mConditionSetterList.FilterGroup = 0
-    mConditionSetterList.Title = "Report Parameters"
+    mConditionSetterList.Title = "Parámetros de Reporte"
     mConditionSetterList.DBConn = rDBConn
     mConditionSetterList.RefLists = rRTISGlobal.RefLists
     mConditionSetterList.BIReportParameters = mBIReportView.BIReportSource.ColManRepParameter.GetParameterGroup(mConditionSetterList.FilterGroup)
@@ -44,7 +44,7 @@ Public Class BIReportViewTimeSheet
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'filter coding
     mConditionSetterfilter.FilterGroup = 1
-    mConditionSetterfilter.Title = "Report Filter"
+    mConditionSetterfilter.Title = "Filtro de Reporte"
     mConditionSetterfilter.DBConn = rDBConn
     mConditionSetterfilter.RefLists = rRTISGlobal.RefLists
     mConditionSetterfilter.BIReportParameters = mBIReportView.BIReportSource.ColManRepParameter.GetParameterGroup(mConditionSetterfilter.FilterGroup)

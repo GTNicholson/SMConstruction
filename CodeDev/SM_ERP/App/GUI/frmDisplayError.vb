@@ -7,7 +7,7 @@ Public Class frmDisplayError
 
   Public Shared Sub DisplayErrorDetails(ByRef rException As Exception, ByVal rContext As String)
     Dim mFrm As New frmDisplayError
-    mFrm.Text = "Application Error"
+    mFrm.Text = "Error de Aplicación"
     mFrm.lblErrorMessage.Text = rException.Message
     If rException.InnerException IsNot Nothing Then
       mFrm.textErrorDetails.Text = rException.Source & Environment.NewLine & rException.StackTrace & Environment.NewLine & Environment.NewLine & rException.InnerException.ToString
@@ -31,4 +31,7 @@ Public Class frmDisplayError
     Me.Close()
   End Sub
 
+  Private Sub frmDisplayError_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+  End Sub
 End Class

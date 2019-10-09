@@ -258,4 +258,7 @@ Public Class uctEmployeeDetailsReplacement
     'gvEmployeeShiftPatternOptions.PopulateColumns()
   End Sub
 
+  Private Sub grpDetails_Paint(sender As Object, e As PaintEventArgs) Handles grpDetails.Paint
+
+  End Sub
 End Class

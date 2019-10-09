@@ -92,14 +92,14 @@ Namespace My
             End Try
 
             If mGiveUserOption Then
-                If MsgBox("An unexpected error has occurred. Would you the application to attempt to retain your session (Yes)?" & vbCrLf _
-        & "Select 'No' to close the application." & vbCrLf _
-        & "(If you have received this message a number of times in quick succession please select 'No' to close down the application.)" & vbCrLf & vbCrLf _
-        & "(Error details: " & e.Exception.Message & ")", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, "RTIS") = MsgBoxResult.Yes Then
-                    e.ExitApplication = False
-                Else
-                    'TODO Generate a log file
-                    e.ExitApplication = True
+        If MsgBox("Un error no esperado ha ocurrido. ¿Le gustaría que la aplicación intente recuperar su sesión (Yes)?" & vbCrLf _
+        & "Selecciona 'No' para cerrar la aplicación." & vbCrLf _
+        & "(Si has recibido este mensaje un número de veces en sucesiones repetidas, por favor seleccione 'No' para cerrar la aplicación.)" & vbCrLf & vbCrLf _
+        & "(Detalles del Error: " & e.Exception.Message & ")", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, "RTIS") = MsgBoxResult.Yes Then
+          e.ExitApplication = False
+        Else
+          'TODO Generate a log file
+          e.ExitApplication = True
                 End If
             Else
                 e.ExitApplication = True

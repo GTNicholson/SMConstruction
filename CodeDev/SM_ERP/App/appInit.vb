@@ -170,7 +170,7 @@ Public Class appInit
       End If
     Catch ex As Exception
       mIsLoggedOn = False
-      MsgBox("Unable to start the application." & vbCrLf & ex.ToString, MsgBoxStyle.Exclamation, "Error in Start-Up routine")
+      MsgBox("No se pudo iniciar la aplicación." & vbCrLf & ex.ToString, MsgBoxStyle.Exclamation, "Error en la rutina de Start-Up")
     End Try
     Return mIsLoggedOn
   End Function
@@ -287,12 +287,13 @@ Public Class appInit
           '' check file can be found ??
           If Not System.IO.File.Exists(Path.Combine(mRTISSettingFile.ServerSettingsPath.SettingValue, rRTISGlobal.ConnInfoFileName)) Then
             mPath = "" 'InputBox("Please enter server settings path (or 'local')", "RTIS_BI Set-Up")
-            If MsgBox("The settings file cannot be opened - would you like to change the server settings file being used?" & vbCrLf & "(Note: You should only do this if you are sure the settings for your server have changed, otherwise please cancel and check you are connected to the network.)", MsgBoxStyle.YesNoCancel) = MsgBoxResult.Yes Then
+            If MsgBox("El archivo de configuración no puede ser abierto - ¿Le gustaría cambiar las configuraciones del servidor que se está utilizando?" & vbCrLf & "(Nota:
+Únicamente se debe de hacer esto si estás seguro que las configuraciones del servidor han cambiado, de lo contrario, por favor cancele y verifique que estás conectado a la red.)", MsgBoxStyle.YesNoCancel) = MsgBoxResult.Yes Then
               ''If MsgBox("Change to local settings?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
               ''  mRTISSettingFile.ServerSettingsPath.SettingValue = "local"
               ''  mRTISSettingFile.WriteDetails()
               ''Else
-              If RTIS.CommonVB.clsGeneralA.GetFolderName(mPath, "Please select the server settings folder", "C:\") = DialogResult.OK Then
+              If RTIS.CommonVB.clsGeneralA.GetFolderName(mPath, "Por favor, seleccione la carpeta de las configuraciones del servidor", "C:\") = DialogResult.OK Then
                 'If mPath.Length > 0 Then
 
                 If System.IO.File.Exists(Path.Combine(mPath, rRTISGlobal.ConnInfoFileName)) Then
@@ -328,10 +329,10 @@ Public Class appInit
       Else
         '' New Local Settings File
         mRTISSettingFile.ServerSettingsPath.SettingValue = "\\SERVER\RTIS\RTIS_BI\SETTINGS"
-        If MsgBox("Would you like to link to an existing set-up? (Yes)" & vbCrLf & "(Enter 'No' if this is a new or local/test installation.)", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+        If MsgBox("¿Le gustaría enlazar una configuración existente? (Yes)" & vbCrLf & "(Ingrese 'No' Si esta es una nueva instalación o es local/prueba.)", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
           mPath = "" ' InputBox("Please enter server settings path (or 'local')", "RTIS_BI Set-Up")
           'If mPath.Length > 0 Then
-          If RTIS.CommonVB.clsGeneralA.GetFolderName(mPath, "Please enter server settings path (or 'local')", "C:\") = DialogResult.OK Then
+          If RTIS.CommonVB.clsGeneralA.GetFolderName(mPath, "Por favor, ingrese la ruta de las configuraciones del servidor (o 'local')", "C:\") = DialogResult.OK Then
             If System.IO.File.Exists(Path.Combine(mPath, rRTISGlobal.ConnInfoFileName)) Then
               mRTISSettingFile.ServerSettingsPath.SettingValue = mPath
               If mPath.Trim.ToLower <> "local" Then
@@ -383,13 +384,13 @@ Public Class appInit
           Else
             mReadOK = False
             '' TODO - prompt to check the server path ??
-            MsgBox("Unable to read the connection details from the server connection file.", MsgBoxStyle.Exclamation, "Error in initialisation routine")
+            MsgBox("Incapar de leer los detalles de conexión del archivo de conexión del servidor.", MsgBoxStyle.Exclamation, "Error en la rutina de inicialización")
           End If
         Else
           mRTISSettingFile.ServerSettingsPath.SettingValue = "(Server Details)"
           mReadOK = False
           '' TODO - prompt to check the server path ??
-          MsgBox("Unable to read the server connection file, please check you are connected to the network.", MsgBoxStyle.Exclamation, "Error in initialisation routine")
+          MsgBox("Incapaz de leer el archivo de conexión del servidor, por favor, verifique que se encuentra conectado en red.", MsgBoxStyle.Exclamation, "Error en la rutina de inicialización")
 
         End If
       End If
@@ -496,7 +497,7 @@ Public Class appInit
     mRTISSettingFile.ReadDetails(Path.Combine(rRTISGlobal.LocalSettingsPath, rRTISGlobal.ConnInfoFileName))
     If Not mRTISSettingFile.AreSettingsLocal Then
       If My.Application.RTISUserSession.ActivityPermission(eActivityCode.Configuration) >= ePermissionCode.ePC_Full Then
-        mResult = MsgBox("View/edit local file (Y) or Server file (N)?", MsgBoxStyle.YesNoCancel)
+        mResult = MsgBox("Ver/editar arhivo local (Y) o Archivo de Servidor (N)?", MsgBoxStyle.YesNoCancel)
         If mResult = MsgBoxResult.No Then
           '' TODO - Check credential or prompt for a password
 
@@ -539,7 +540,7 @@ Public Class appInit
         mRTISSettingFile.WriteDetails()
       End If
     Else
-      MsgBox("Setting are currently configured locally")
+      MsgBox("Las configuraciones están configuradas localmente")
     End If
     mRTISSettingFile = Nothing
   End Sub

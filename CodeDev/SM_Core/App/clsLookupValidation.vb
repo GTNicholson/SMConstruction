@@ -38,7 +38,7 @@ Public Class clsGetLookUpExtension : Inherits clsGetLookUpExtensionBase
           OverrideUserPassword(rDBConn, vLinkID)
       End Select
     Else
-      MsgBox("You do not have sufficient user permissions for this function", MsgBoxStyle.Exclamation)
+      MsgBox("No tienes suficientes permisos de usuario para esta función", MsgBoxStyle.Exclamation)
     End If
   End Function
 
@@ -95,9 +95,9 @@ Public Class clsLookUpRowValidation_UserList : Inherits clsLookUpRowValidation
       ''    mOK = False
       ''  End If
       Case eLookupValidationType.eLUV_Edit, eLookupValidationType.eLUV_Add
-        If mGridView.GetRowCellValue(vRowHandle, "UserName").ToString.Length = 0 Then
+        If mGridView.GetRowCellValue(vRowHandle, "Nombre de Usuario").ToString.Length = 0 Then
           mOK = False
-          rValidationMsg = rValidationMsg & "UserName must not be blank" & vbCrLf
+          rValidationMsg = rValidationMsg & "El Nombre de Usuario no debe estar vacío" & vbCrLf
         End If
         'If mGridView.GetRowCellValue(vRowHandle, "FullName").ToString.Length = 0 Then
         '  mOK = False
@@ -105,7 +105,7 @@ Public Class clsLookUpRowValidation_UserList : Inherits clsLookUpRowValidation
         'End If
       Case eLookupValidationType.eLUV_Delete
         mOK = False
-        rValidationMsg = "Delete not available"
+        rValidationMsg = "Elimación no disponible"
     End Select
 
     Return mOK
@@ -137,11 +137,11 @@ Public Class clsLookUpRowValidation_LookUpTable : Inherits clsLookUpRowValidatio
       Case eLookupValidationType.eLUV_Edit, eLookupValidationType.eLUV_Add
         If mGridView.GetRowCellValue(vRowHandle, "TableName").ToString.Length = 0 Then
           mOK = False
-          rValidationMsg = rValidationMsg & "TableName must not be blank" & vbCrLf
+          rValidationMsg = rValidationMsg & "TableName no debe de estar vacío" & vbCrLf
         End If
         If mGridView.GetRowCellValue(vRowHandle, "KeyIDFieldName").ToString.Length = 0 Then
           mOK = False
-          rValidationMsg = rValidationMsg & "KeyIDFieldName must not be blank" & vbCrLf
+          rValidationMsg = rValidationMsg & "KeyIDFieldName no debe de estar vacío" & vbCrLf
         End If
     End Select
 

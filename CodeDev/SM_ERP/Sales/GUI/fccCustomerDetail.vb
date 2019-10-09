@@ -1,4 +1,6 @@
-﻿Public Class fccCustomerDetail
+﻿Imports RTIS.CommonVB
+
+Public Class fccCustomerDetail
   Private pPrimaryKeyID As Integer
 
   Private pCustomer As dmCustomer
@@ -41,6 +43,12 @@
     mdso = New dsoSales(pDBConn)
     mdso.SaveCustomerDown(pCustomer)
   End Sub
+  Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
+    Dim mRetVal As New clsValWarn
+    mRetVal.ValOk = True
+    mRetVal.HasWarning = False
+    Return mRetVal
+  End Function
 
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean = True

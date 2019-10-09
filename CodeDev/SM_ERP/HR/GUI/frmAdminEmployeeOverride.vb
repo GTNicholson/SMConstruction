@@ -78,7 +78,7 @@ Public Class frmAdminEmployeeOverride
     Dim mRefreshButton As DevExpress.XtraBars.BarButtonItem
     mRefreshButton = New DevExpress.XtraBars.BarButtonItem
     mRefreshButton.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    mRefreshButton.Caption = "Refresh Employees List"
+    mRefreshButton.Caption = "Refrescar Lista de Empleados"
 
     AddHandler mRefreshButton.ItemClick, AddressOf RefreshEmployees
     Me.Bar1.AddItem(mRefreshButton)
