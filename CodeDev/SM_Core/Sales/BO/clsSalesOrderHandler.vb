@@ -70,6 +70,14 @@ Public Class clsSalesOrderHandler
     End Try
   End Sub
 
+  Public Function GetTotalValue() As Decimal
+    Dim mRetVal As Decimal
+    For Each mSalesOrderOrderItem In pSalesOrder.SalesOrderItems
+      mRetVal = mRetVal + (mSalesOrderOrderItem.Quantity * mSalesOrderOrderItem.UnitPrice)
+
+    Next
+    Return mRetVal
+  End Function
 
 
 End Class

@@ -62,6 +62,7 @@ Partial Public Class repWorkOrderDoc
     Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+    Me.xrlOT2 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.xrtDueTime = New DevExpress.XtraReports.UI.XRTableCell()
@@ -93,7 +94,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.xrlOT2 = New DevExpress.XtraReports.UI.XRLabel()
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -386,7 +386,6 @@ Partial Public Class repWorkOrderDoc
     Me.xrNotes.SizeF = New System.Drawing.SizeF(757.4039!, 329.8958!)
     Me.xrNotes.StylePriority.UseBorders = False
     Me.xrNotes.StylePriority.UseFont = False
-    Me.xrNotes.Text = "xrNotes"
     '
     'XrLabel12
     '
@@ -445,6 +444,25 @@ Partial Public Class repWorkOrderDoc
     Me.ReportHeader.HeightF = 153.9167!
     Me.ReportHeader.Name = "ReportHeader"
     '
+    'xrlOT2
+    '
+    Me.xrlOT2.BackColor = System.Drawing.Color.Black
+    Me.xrlOT2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+    Me.xrlOT2.Font = New System.Drawing.Font("Arial", 30.0!, System.Drawing.FontStyle.Bold)
+    Me.xrlOT2.ForeColor = System.Drawing.Color.White
+    Me.xrlOT2.LocationFloat = New DevExpress.Utils.PointFloat(365.1164!, 49.0!)
+    Me.xrlOT2.Name = "xrlOT2"
+    Me.xrlOT2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+    Me.xrlOT2.SizeF = New System.Drawing.SizeF(261.2375!, 80.79156!)
+    Me.xrlOT2.StylePriority.UseBackColor = False
+    Me.xrlOT2.StylePriority.UseBorders = False
+    Me.xrlOT2.StylePriority.UseFont = False
+    Me.xrlOT2.StylePriority.UseForeColor = False
+    Me.xrlOT2.Text = "CÓDIGO"
+    Me.xrlOT2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    '
     'XrTable1
     '
     Me.XrTable1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
@@ -470,7 +488,6 @@ Partial Public Class repWorkOrderDoc
     Me.xrtDueTime.Name = "xrtDueTime"
     Me.xrtDueTime.StylePriority.UseFont = False
     Me.xrtDueTime.StylePriority.UseTextAlignment = False
-    Me.xrtDueTime.Text = "xrlDateEntered"
     Me.xrtDueTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrtDueTime.Weight = 0.84993773586521215R
     '
@@ -573,7 +590,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.xrlDateEntered.Name = "xrlDateEntered"
     Me.xrlDateEntered.StylePriority.UseTextAlignment = False
-    Me.xrlDateEntered.Text = "xrlDateEntered"
     Me.xrlDateEntered.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlDateEntered.Weight = 0.84993773586521215R
     '
@@ -581,7 +597,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.xrlDueTime.Name = "xrlDueTime"
     Me.xrlDueTime.StylePriority.UseTextAlignment = False
-    Me.xrlDueTime.Text = "xrlDueTime"
     Me.xrlDueTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlDueTime.Weight = 0.98544844180735613R
     '
@@ -589,7 +604,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.xrtDate.Name = "xrtDate"
     Me.xrtDate.StylePriority.UseTextAlignment = False
-    Me.xrtDate.Text = "xrtDate"
     Me.xrtDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrtDate.Weight = 0.66726380498615656R
     '
@@ -597,7 +611,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.XrTableCell3.Name = "XrTableCell3"
     Me.XrTableCell3.StylePriority.UseTextAlignment = False
-    Me.XrTableCell3.Text = "XrTableCell3"
     Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.XrTableCell3.Weight = 1.0909017917988755R
     '
@@ -624,7 +637,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.xrlDescription.Name = "xrlDescription"
     Me.xrlDescription.StylePriority.UseTextAlignment = False
-    Me.xrlDescription.Text = "xrlDescription"
     Me.xrlDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlDescription.Weight = 1.0352926305759975R
     '
@@ -632,7 +644,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.xrtCantidad.Name = "xrtCantidad"
     Me.xrtCantidad.StylePriority.UseTextAlignment = False
-    Me.xrtCantidad.Text = "xrtCantidad"
     Me.xrtCantidad.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrtCantidad.Weight = 0.45174260430494556R
     '
@@ -640,7 +651,6 @@ Partial Public Class repWorkOrderDoc
     '
     Me.xrSalesOrderID.Name = "xrSalesOrderID"
     Me.xrSalesOrderID.StylePriority.UseTextAlignment = False
-    Me.xrSalesOrderID.Text = "xrSalesOrderID"
     Me.xrSalesOrderID.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrSalesOrderID.Weight = 0.49983512914877387R
     '
@@ -667,7 +677,6 @@ Partial Public Class repWorkOrderDoc
     Me.xrlCustomerName.Name = "xrlCustomerName"
     Me.xrlCustomerName.StylePriority.UseBorders = False
     Me.xrlCustomerName.StylePriority.UseTextAlignment = False
-    Me.xrlCustomerName.Text = "xrlCustomerName"
     Me.xrlCustomerName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlCustomerName.Weight = 1.8743525772339504R
     '
@@ -678,7 +687,6 @@ Partial Public Class repWorkOrderDoc
     Me.xrlWorkOrderNo.Name = "xrlWorkOrderNo"
     Me.xrlWorkOrderNo.StylePriority.UseBorders = False
     Me.xrlWorkOrderNo.StylePriority.UseTextAlignment = False
-    Me.xrlWorkOrderNo.Text = "xrlWorkOrderNo"
     Me.xrlWorkOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlWorkOrderNo.Weight = 0.82560484883572849R
     '
@@ -689,7 +697,6 @@ Partial Public Class repWorkOrderDoc
     Me.xrtStockCode.Name = "xrtStockCode"
     Me.xrtStockCode.StylePriority.UseBorders = False
     Me.xrtStockCode.StylePriority.UseTextAlignment = False
-    Me.xrtStockCode.Text = "xrtStockCode"
     Me.xrtStockCode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrtStockCode.Weight = 0.90753301897444671R
     '
@@ -839,25 +846,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel29.StylePriority.UseForeColor = False
     Me.XrLabel29.Text = "OT"
     Me.XrLabel29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    '
-    'xrlOT2
-    '
-    Me.xrlOT2.BackColor = System.Drawing.Color.Black
-    Me.xrlOT2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-    Me.xrlOT2.Font = New System.Drawing.Font("Arial", 30.0!, System.Drawing.FontStyle.Bold)
-    Me.xrlOT2.ForeColor = System.Drawing.Color.White
-    Me.xrlOT2.LocationFloat = New DevExpress.Utils.PointFloat(365.1164!, 49.0!)
-    Me.xrlOT2.Name = "xrlOT2"
-    Me.xrlOT2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrlOT2.SizeF = New System.Drawing.SizeF(261.2375!, 80.79156!)
-    Me.xrlOT2.StylePriority.UseBackColor = False
-    Me.xrlOT2.StylePriority.UseBorders = False
-    Me.xrlOT2.StylePriority.UseFont = False
-    Me.xrlOT2.StylePriority.UseForeColor = False
-    Me.xrlOT2.Text = "CÓDIGO"
-    Me.xrlOT2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
     'repWorkOrderDoc
     '

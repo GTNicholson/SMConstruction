@@ -219,7 +219,7 @@ Public Class fccSalesOrderDetail
 
 
       If IO.File.Exists(vSourceFile) Then
-        mFileName = "SalesOrderImg" & "_" & pSalesOrder.OrderNo
+        mFileName = "SalesOrderImg" & "_" & pSalesOrder.OrderNo & "_" & rSalesOrderItem.ItemNumber
 
         mExportDirectory = IO.Path.Combine(pRTISGlobal.DefaultExportPath, clsConstants.SalesOrderFileFolderSys,
                                          pSalesOrder.DateEntered.Year,

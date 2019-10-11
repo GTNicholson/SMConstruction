@@ -1,9 +1,11 @@
 ﻿Imports System.Drawing.Printing
+Imports DevExpress.XtraReports.UI
 
 Public Class repWorkOrderMatReqsWood
 
   Private pSalesOrder As dmSalesOrder
   Private pWorkOrder As dmWorkOrder
+  Private pQuantity As Int32
 
   Private Sub repWorkOrderMatReqsWood_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
 
@@ -12,7 +14,11 @@ Public Class repWorkOrderMatReqsWood
     xrlProductDescription.Text = pWorkOrder.Description
     xrtDateEntered.Text = pWorkOrder.PlannedStartDate
     xrtQuantity.Text = pWorkOrder.Quantity
+    pQuantity = Val(xrtQuantity.Text)
+
     SetUpBindings()
+
+
   End Sub
 
   Private Sub SetUpBindings()
@@ -30,7 +36,8 @@ Public Class repWorkOrderMatReqsWood
     xrtGrossWidth.DataBindings.Add("Text", Me.DataSource, "InitialWidthFraction")
     xrtGrossLenght.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFraction")
     xrtGrossLenghtFeet.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFractionFeet")
-    xrtcTotalPieces.DataBindings.Add("Text", Me.DataSource, "TotalPieces")
+    xrtBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetFromCM")
+
 
 
     'xrlMatReqDesc.DataBindings.Add("Text", Me.DataSource, "Description")
@@ -55,7 +62,29 @@ Public Class repWorkOrderMatReqsWood
 
   End Function
 
+  Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
+    'xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
+
+  End Sub
+
+  Private Sub Detail_AfterPrint(sender As Object, e As EventArgs) Handles Detail.AfterPrint
 
 
+  End Sub
 
+  Private Sub Detail_TextChanged(sender As Object, e As EventArgs) Handles Detail.TextChanged
+
+  End Sub
+
+  Private Sub repWorkOrderMatReqsWood_AfterPrint(sender As Object, e As EventArgs) Handles Me.AfterPrint
+
+  End Sub
+
+  Private Sub repWorkOrderMatReqsWood_PrintOnPage(sender As Object, e As PrintOnPageEventArgs) Handles Me.PrintOnPage
+    xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
+  End Sub
+
+  Private Sub Detail_PrintOnPage(sender As Object, e As PrintOnPageEventArgs) Handles Detail.PrintOnPage
+    xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
+  End Sub
 End Class

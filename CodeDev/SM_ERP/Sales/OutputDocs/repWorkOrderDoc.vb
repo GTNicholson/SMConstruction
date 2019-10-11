@@ -37,7 +37,7 @@ Public Class repWorkOrderDoc
     SetUpDataBindings()
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrSalesOrderID.Text = pSalesOrder.OrderNo
-    xrlOT2.Text = pSalesOrder.OrderNo
+    xrlOT2.Text = pWorkOrder.WorkOrderNo
 
     xrlDateEntered.Text = pSalesOrder.DateEntered
     xrtDueTime.Text = pSalesOrder.DueTime

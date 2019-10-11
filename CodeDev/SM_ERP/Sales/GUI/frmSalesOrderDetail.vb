@@ -476,6 +476,11 @@ Public Class frmSalesOrderDetail
   End Sub
 
   Private Sub btneSalesOrderDocument_Click(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btneSalesOrderDocument.ButtonClick
+    If IsNothing(pFormController.SalesOrder.Customer) Then
+      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+      Return
+    End If
+
     Try
       Dim mFilePath As String = String.Empty
       UpdateObjects()

@@ -997,7 +997,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1144, 313)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1142, 315)
     Me.XtraTabPage2.Tag = "2"
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
@@ -1010,7 +1010,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(1144, 313)
+    Me.GroupControl3.Size = New System.Drawing.Size(1142, 315)
     Me.GroupControl3.TabIndex = 14
     Me.GroupControl3.Text = "Detalles de Estructura"
     '
@@ -1019,7 +1019,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirementOthers)
     Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirements)
     Me.XtraTabPage5.Name = "XtraTabPage5"
-    Me.XtraTabPage5.Size = New System.Drawing.Size(1150, 341)
+    Me.XtraTabPage5.Size = New System.Drawing.Size(1150, 344)
     Me.XtraTabPage5.Text = "Lista de Materiales de Producción"
     '
     'grdMaterialRequirementOthers
@@ -1223,7 +1223,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage4.Controls.Add(Me.PanelControl1)
     Me.XtraTabPage4.Name = "XtraTabPage4"
-    Me.XtraTabPage4.Size = New System.Drawing.Size(1150, 341)
+    Me.XtraTabPage4.Size = New System.Drawing.Size(1150, 344)
     Me.XtraTabPage4.Text = "Estatus y Costos"
     '
     'PanelControl1
@@ -1233,7 +1233,7 @@ Partial Class frmWorkOrderDetail
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1150, 341)
+    Me.PanelControl1.Size = New System.Drawing.Size(1150, 344)
     Me.PanelControl1.TabIndex = 0
     '
     'GridControl4

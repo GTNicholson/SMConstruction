@@ -110,4 +110,21 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function BoardFeetFromCM(ByVal vLength As Decimal, ByVal vWidth As Decimal, ByVal vThickness As Decimal) As Decimal
+    Dim mLengthInInches As Decimal
+    Dim mWidthInInches As Decimal
+    Dim mThicknessInInches As Decimal
+    Dim mRetVal As Decimal
+
+    mLengthInInches = WoodLengthFeet(vLength) / 12
+    mWidthInInches = CMToQuaterInches(vWidth)
+    mThicknessInInches = GrosWoodThickness(vThickness)
+
+    mRetVal = mLengthInInches * mWidthInInches * mThicknessInInches
+
+    mRetVal = mRetVal / 144
+
+    Return mRetVal
+  End Function
+
 End Class

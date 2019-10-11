@@ -1,10 +1,12 @@
 ﻿Public Class clsMaterialRequirementInfo
   Private pMaterialRequirement As dmMaterialRequirement
   Private pWorkOrder As dmWorkOrder
+  Private pSalesOrderItem As dmSalesOrderItem
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
     pWorkOrder = New dmWorkOrder
+    pSalesOrderItem = New dmSalesOrderItem
   End Sub
   Public Property WorkOrder As dmWorkOrder
     Get
@@ -12,6 +14,15 @@
     End Get
     Set(ByVal value As dmWorkOrder)
       pWorkOrder = value
+    End Set
+  End Property
+
+  Public Property SalesOrderItem As dmSalesOrderItem
+    Get
+      Return pSalesOrderItem
+    End Get
+    Set(ByVal value As dmSalesOrderItem)
+      pSalesOrderItem = value
     End Set
   End Property
 
@@ -125,10 +136,28 @@
 
   Public ReadOnly Property TotalPieces As Int32
     Get
-      Return WorkOrderQuantity * pMaterialRequirement.UnitPiece
+      Dim mRetVal As Int32
+
+      mRetVal = pMaterialRequirement.UnitPiece * pSalesOrderItem.Quantity
+
+
+      Return mRetVal
+
     End Get
+
+
   End Property
 
+
+
+
+  Public ReadOnly Property TotalBoardFeetFromCM As Decimal
+    Get
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCM(clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
+                                              clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth),
+                                              clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3)
+    End Get
+  End Property
 
 End Class
 

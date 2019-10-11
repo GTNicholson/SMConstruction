@@ -6,6 +6,7 @@ Public Class repSalesOrder
   Private pSalesOrder As dmSalesOrder
   Private pImageList As List(Of Image)
   Private pTotalAmount As Decimal
+  Private pHandler As clsSalesOrderHandler
 
   Public Sub New()
 
@@ -21,6 +22,7 @@ Public Class repSalesOrder
   Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder) As repSalesOrder
     Dim mRep As New repSalesOrder
     mRep.pSalesOrder = rSalesOrder
+    mRep.pHandler = New clsSalesOrderHandler(rSalesOrder)
     mRep.DataSource = mRep.pSalesOrder.SalesOrderItems
 
     mRep.CreateDocument()
@@ -166,5 +168,11 @@ Public Class repSalesOrder
 
   Private Sub XrTableCell12_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrTableCell12.BeforePrint
 
+  End Sub
+
+  Private Sub ReportFooter_BeforePrint(sender As Object, e As PrintEventArgs) Handles ReportFooter.BeforePrint
+    xrtSubTotalAmount.Text = pHandler.GetTotalValue
+    'tax = clsConstants.TaxRate * pHandler.GetTotalValue
+    'total =( 1+clsConstants.TaxRate) * pHandler.GetTotalValue
   End Sub
 End Class

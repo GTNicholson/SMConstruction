@@ -365,6 +365,12 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub btneWorkOrderDocument_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btneWorkOrderDocument.ButtonClick
+
+    If IsNothing(pFormController.SalesOrder.Customer) Then
+      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+      Return
+
+    End If
     Try
       Dim mFilePath As String = String.Empty
       UpdateObject()
@@ -566,6 +572,11 @@ Public Class frmWorkOrderDetail
 
   Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
     Dim mMatReqInfos As New colMaterialRequirementInfos
+    If IsNothing(pFormController.SalesOrder.Customer) Then
+      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+      Return
+    End If
+
     mMatReqInfos = pFormController.GetMaterialRequirementInfos
     repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
 
@@ -573,6 +584,12 @@ Public Class frmWorkOrderDetail
 
   Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
     Dim mMatReqInfos As New colMaterialRequirementInfos
+
+    If IsNothing(pFormController.SalesOrder.Customer) Then
+      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+      Return
+    End If
+
     mMatReqInfos = pFormController.GetMaterialRequirementInfos
     repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
   End Sub

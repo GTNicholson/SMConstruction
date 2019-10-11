@@ -213,4 +213,6 @@ Public Class clsConstants
   Public Const WorkOrderNoPrefix = "OT"
   Public Const SalesOrderPrefix = "SO"
 
+  Public Const TaxRate = 0.15
+
 End Class
