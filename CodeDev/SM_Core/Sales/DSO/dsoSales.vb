@@ -108,10 +108,18 @@ Public Class dsoSales
           If mWO.Product IsNot Nothing Then
             mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
             mdtoProduct.SaveProduct(mWO.Product)
+            Select Case mWO.Product.ItemType
+              Case eProductType.ProductFurniture
+                mWO.ProductID = CType(mWO.Product, dmProductFurniture).ProductFurnitureID
+            End Select
             mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
             mdtoWOBatches.SaveWorkOrderBatchCollection(mWO.WorkOrderBatches, mWO.WorkOrderID)
           End If
         Next
+
+        'make sure the product id ends up in the work order
+        mdtoWO.SaveWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
+
       Next
 
 
@@ -142,6 +150,10 @@ Public Class dsoSales
     Dim mdtoProduct As dtoProductBase
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
+    Dim mdtoMaterialRequirement As dtoMaterialRequirement
+    Dim mdtoWOBatches As dtoWorkOrderBatch
+    Dim mdtoWOFiles As dtoFileTracker
+    Dim mProdFurniture As dmProductFurniture
 
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
@@ -169,17 +181,27 @@ Public Class dsoSales
         mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
         If mWO.Product IsNot Nothing Then
           mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-          mdtoProduct.LoadProduct(mWO.Product, mWO.ProductTypeID)
-          ''mdtoSOFiles = New dtoFileTracker(pDBConn)
-          ''mdtoSOFiles.LoadFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
+          mdtoProduct.LoadProduct(mWO.Product, mWO.ProductID)
+          mProdFurniture = TryCast(mWO.Product, dmProductFurniture)
+          If mProdFurniture IsNot Nothing Then
+            mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
+            mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
+            mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+          End If
+          mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
+          mdtoWOBatches.LoadWorkOrderBatchCollection(mWO.WorkOrderBatches, mWO.WorkOrderID)
+          mdtoWOFiles = New dtoFileTracker(pDBConn)
+          mdtoWOFiles.LoadFileTrackerCollection(mWO.WOFiles, eObjectType.WorkOrder, mWO.WorkOrderID)
+          mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+          mdtoOutputDocs.LoadOutputDocumentCollection(mWO.OutputDocuments, mWO.WorkOrderID, eParentType.WorkOrder)
 
         End If
       Next
 
     Next
 
-    mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-    mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
+    ''mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+    ''mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
 
     pDBConn.Disconnect()
 
@@ -389,6 +411,24 @@ Public Class dsoSales
     Try
 
       mSQL = "Select WorkOrderNo From WorkOrder Where WorkOrderID = " & vID
+      pDBConn.Connect()
+      mRetVal = clsGeneralA.DBValueToString(pDBConn.ExecuteScalar(mSQL))
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function GetSalesOrderIDFromWorkOrderID(ByVal vID As Integer) As Integer
+    Dim mRetVal As String = ""
+    Dim mSQL As String
+    Try
+
+      mSQL = "Select SalesOrderItem.SalesOrderID From WorkOrder Inner Join SalesOrderItem on WorkOrder.SalesOrderItemID = SalesOrderItem.SalesOrderItemID Where WorkOrderID = " & vID
       pDBConn.Connect()
       mRetVal = clsGeneralA.DBValueToString(pDBConn.ExecuteScalar(mSQL))
 

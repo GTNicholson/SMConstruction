@@ -2,7 +2,17 @@
 
 Public Class repProductFurniture
 
+  Private pWorkOrder As dmWorkOrder
   Private pProductFurniture As dmProductFurniture
+
+  Public Property WorkOrder As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+    Set(value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
+  End Property
 
   Public Property ProductFurniture As dmProductFurniture
     Get
@@ -16,6 +26,7 @@ Public Class repProductFurniture
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim msrepMats As New srepMaterials
 
+    msrepMats.WorkOrder = pWorkOrder
     msrepMats.DataSource = pProductFurniture.MaterialRequirments
     subrepMaterials.ReportSource = msrepMats
 

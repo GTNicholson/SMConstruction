@@ -9,7 +9,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pWorkOrderNo As String
   Private pProductTypeID As Int32
   Private pProductID As Integer
-  Private pQuantity As Double
+  Private pQuantity As Integer
   Private pDateCreated As Date
   Private pDescription As String
   Private pPlannedStartDate As DateTime
@@ -31,6 +31,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pMetalWork As Boolean
   Private pUpholstery As Boolean
   Private pSubContract As Boolean
+
+  Private pQtyPerSalesItem As Integer
 
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
@@ -107,6 +109,9 @@ Public Class dmWorkOrder : Inherits dmBase
       .Upholstery = Upholstery
       .SubContract = SubContract
       .EmployeeID = EmployeeID
+      .QtyPerSalesItem = QtyPerSalesItem
+
+
       'Add entries here for each collection and class property
 
       .WorkOrderBatches = WorkOrderBatches.Clone
@@ -248,6 +253,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Double)
       If pQuantity <> value Then IsDirty = True
       pQuantity = value
+    End Set
+  End Property
+
+  Public Property QtyPerSalesItem() As Integer
+    Get
+      Return pQtyPerSalesItem
+    End Get
+    Set(ByVal value As Integer)
+      If pQtyPerSalesItem <> value Then IsDirty = True
+      pQtyPerSalesItem = value
     End Set
   End Property
 

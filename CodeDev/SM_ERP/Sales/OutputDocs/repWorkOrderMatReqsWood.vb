@@ -63,8 +63,11 @@ Public Class repWorkOrderMatReqsWood
   End Function
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
-    'xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
-
+    Dim mMatReq As clsMaterialRequirementInfo
+    mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
+    If mMatReq IsNot Nothing Then
+      xrtcTotalPieces.Text = mMatReq.UnitPiece * pWorkOrder.Quantity
+    End If
   End Sub
 
   Private Sub Detail_AfterPrint(sender As Object, e As EventArgs) Handles Detail.AfterPrint

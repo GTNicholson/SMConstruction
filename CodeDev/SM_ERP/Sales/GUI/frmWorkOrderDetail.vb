@@ -45,13 +45,15 @@ Public Class frmWorkOrderDetail
 
   End Sub
 
-  Public Shared Sub OpenFormModal(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Shared Sub OpenFormModalWithObjects(ByRef rWorkOrder As dmWorkOrder, ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mfrm As frmWorkOrderDetail = Nothing
 
 
     mfrm = New frmWorkOrderDetail
     mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
-    mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
+    mfrm.pFormController.WorkOrder = rWorkOrder
+    mfrm.pFormController.SalesOrder = rSalesOrder
+    mfrm.FormController.PrimaryKeyID = rWorkOrder.WorkOrderID
     ''mfrm.ParentForm = rParent
     mfrm.ShowDialog()
 
@@ -238,6 +240,7 @@ Public Class frmWorkOrderDetail
 
 
       txtPrice.Text = .UnitPrice
+      txtQtyPerSalesItem.Text = .QtyPerSalesItem
       txtQuantity.Text = .Quantity
 
       btnWorkOrderNumber.EditValue = .WorkOrderNo
@@ -309,7 +312,7 @@ Public Class frmWorkOrderDetail
 
   Private Sub UpdateObject()
     With pFormController.WorkOrder
-      .Quantity = txtQuantity.Text
+      ''.Quantity = txtQuantity.Text
       .Description = txtDescription.Text
 
       .PlannedStartDate = dtePlannedStartDate.DateTime
@@ -613,7 +616,6 @@ Public Class frmWorkOrderDetail
       Dim mWOH As clsWorkOrderHandler
       mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
       mWOH.AssignWOBatchRefs()
-      mWOH.RefreshQty()
       txtQuantity.Text = pFormController.WorkOrder.Quantity
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -624,7 +626,6 @@ Public Class frmWorkOrderDetail
     Try
       Dim mWOH As clsWorkOrderHandler
       mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
-      mWOH.RefreshQty()
       txtQuantity.Text = pFormController.WorkOrder.Quantity
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -637,5 +638,10 @@ Public Class frmWorkOrderDetail
 
   Private Sub frmWorkOrderDetail_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
+  End Sub
+
+  Private Sub txtQtyPerSalesItem_Validated(sender As Object, e As EventArgs) Handles txtQtyPerSalesItem.Validated
+    pFormController.UpdateWorkOrderQtyPerSalesItem(Val(txtQtyPerSalesItem.Text))
+    RefreshControls()
   End Sub
 End Class
