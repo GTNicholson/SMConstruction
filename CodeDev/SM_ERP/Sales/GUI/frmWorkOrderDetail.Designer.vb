@@ -115,6 +115,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcWoodSpecie = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcQuality = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -125,6 +126,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -408,6 +410,7 @@ Partial Class frmWorkOrderDetail
     Me.gvWorkOrderBatches.GridControl = Me.grdWorkOrderBatches
     Me.gvWorkOrderBatches.Name = "gvWorkOrderBatches"
     Me.gvWorkOrderBatches.OptionsView.ShowColumnHeaders = False
+    Me.gvWorkOrderBatches.OptionsView.ShowFooter = True
     Me.gvWorkOrderBatches.OptionsView.ShowGroupPanel = False
     Me.gvWorkOrderBatches.OptionsView.ShowViewCaption = True
     Me.gvWorkOrderBatches.ViewCaption = "Lotes"
@@ -427,6 +430,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn7.Caption = "Cantidad"
     Me.GridColumn7.FieldName = "Quantity"
     Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Quantity", "{0:0.##}")})
     Me.GridColumn7.Visible = True
     Me.GridColumn7.VisibleIndex = 1
     Me.GridColumn7.Width = 433
@@ -1161,7 +1165,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirements.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality})
+    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.gcTotalQuantity, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality, Me.gcQtyBoardFeet})
     Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
     Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
     Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
@@ -1199,7 +1203,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.FieldName = "NetThickness"
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 2
+    Me.GridColumn10.VisibleIndex = 3
     Me.GridColumn10.Width = 72
     '
     'GridColumn11
@@ -1208,7 +1212,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.FieldName = "NetWidth"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 3
+    Me.GridColumn11.VisibleIndex = 4
     Me.GridColumn11.Width = 77
     '
     'GridColumn12
@@ -1217,7 +1221,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.FieldName = "NetLenght"
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
-    Me.GridColumn12.VisibleIndex = 4
+    Me.GridColumn12.VisibleIndex = 5
     Me.GridColumn12.Width = 74
     '
     'gcMaterialTypeID
@@ -1226,7 +1230,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID.FieldName = "MaterialTypeID"
     Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
     Me.gcMaterialTypeID.Visible = True
-    Me.gcMaterialTypeID.VisibleIndex = 5
+    Me.gcMaterialTypeID.VisibleIndex = 6
     Me.gcMaterialTypeID.Width = 57
     '
     'gcWoodSpecie
@@ -1235,7 +1239,7 @@ Partial Class frmWorkOrderDetail
     Me.gcWoodSpecie.FieldName = "WoodSpecie"
     Me.gcWoodSpecie.Name = "gcWoodSpecie"
     Me.gcWoodSpecie.Visible = True
-    Me.gcWoodSpecie.VisibleIndex = 6
+    Me.gcWoodSpecie.VisibleIndex = 7
     Me.gcWoodSpecie.Width = 56
     '
     'gcQuality
@@ -1244,8 +1248,17 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality.FieldName = "QualityType"
     Me.gcQuality.Name = "gcQuality"
     Me.gcQuality.Visible = True
-    Me.gcQuality.VisibleIndex = 7
+    Me.gcQuality.VisibleIndex = 8
     Me.gcQuality.Width = 53
+    '
+    'gcQtyBoardFeet
+    '
+    Me.gcQtyBoardFeet.Caption = "Pies Tabla"
+    Me.gcQtyBoardFeet.FieldName = "ub_QtyBoardFeet"
+    Me.gcQtyBoardFeet.Name = "gcQtyBoardFeet"
+    Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcQtyBoardFeet.Visible = True
+    Me.gcQtyBoardFeet.VisibleIndex = 9
     '
     'XtraTabPage4
     '
@@ -1357,6 +1370,15 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.Visible = True
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
+    '
+    'gcTalaQuantity
+    '
+    Me.gcTotalQuantity.Caption = "Piezas Total"
+    Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
+    Me.gcTotalQuantity.Name = "gcTalaQuantity"
+    Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+    Me.gcTotalQuantity.Visible = True
+    Me.gcTotalQuantity.VisibleIndex = 2
     '
     'frmWorkOrderDetail
     '
@@ -1539,4 +1561,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label9 As Label
   Friend WithEvents txtQtyPerSalesItem As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents gcQtyBoardFeet As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcTotalQuantity As DevExpress.XtraGrid.Columns.GridColumn
 End Class

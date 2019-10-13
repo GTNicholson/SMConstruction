@@ -346,7 +346,6 @@ Public Class frmSalesOrderDetail
           gvWorkOrders.RefreshData()
         Case ButtonPredefines.Plus
           Dim mWOSOI As dmSalesOrderItem = Nothing
-          Dim mFound As Boolean = False
           If MsgBox("Agregar un OT addicional por este articulo?", vbYesNo) = vbYes Then
             mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
             mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
@@ -360,6 +359,21 @@ Public Class frmSalesOrderDetail
             gvWorkOrders.RefreshData()
             RefreshControls()
           End If
+        Case ButtonPredefines.Delete
+          Dim mWOSOI As dmSalesOrderItem = Nothing
+          mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+          mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
+          If mWOSOI.WorkOrders.Count <= 1 Then
+            MsgBox("No se puede eliminar el ultimo O.T por un articulo")
+          Else
+            If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
+              mWOSOI.WorkOrders.Remove(mWOI.WorkOrder)
+              pFormController.RefreshSOWorkOrders()
+              gvWorkOrders.RefreshData()
+              RefreshControls()
+            End If
+          End If
+
       End Select
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

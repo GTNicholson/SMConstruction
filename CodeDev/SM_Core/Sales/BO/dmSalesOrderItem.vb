@@ -22,6 +22,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pWorkOrders = New colWorkOrders(Me)
+    pWorkOrders.TrackDeleted = True
     pSalesOrderItem = Me
 
   End Sub
@@ -39,6 +40,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pWorkOrders.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property

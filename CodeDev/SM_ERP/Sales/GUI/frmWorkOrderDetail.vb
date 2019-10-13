@@ -311,6 +311,14 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub UpdateObject()
+
+    Dim mActiveControl As Control = Me.ActiveControl
+    lblWorkOrderID.Focus()
+    If mActiveControl IsNot Nothing Then
+      mActiveControl.Focus()
+    End If
+
+
     With pFormController.WorkOrder
       ''.Quantity = txtQuantity.Text
       .Description = txtDescription.Text
@@ -663,5 +671,28 @@ Public Class frmWorkOrderDetail
   Private Sub txtQtyPerSalesItem_Validated(sender As Object, e As EventArgs) Handles txtQtyPerSalesItem.Validated
     pFormController.UpdateWorkOrderQtyPerSalesItem(Val(txtQtyPerSalesItem.Text))
     RefreshControls()
+  End Sub
+
+  Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirements.CustomUnboundColumnData
+    Dim mMatReq As dmMaterialRequirement
+
+    mMatReq = TryCast(e.Row, dmMaterialRequirement)
+    If mMatReq IsNot Nothing Then
+      Select Case e.Column.Name
+        Case gcTotalQuantity.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.UnitPiece * pFormController.WorkOrder.Quantity
+          End If
+        Case gcQtyBoardFeet.Name
+          Dim mValue As Decimal
+          Dim mQty As Integer
+          If e.IsGetData Then
+            mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity)
+            mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+            mValue = mValue
+            e.Value = mValue
+          End If
+      End Select
+    End If
   End Sub
 End Class
