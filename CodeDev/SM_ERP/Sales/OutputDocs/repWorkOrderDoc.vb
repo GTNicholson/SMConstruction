@@ -34,6 +34,9 @@ Public Class repWorkOrderDoc
   End Sub
 
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
+    Dim mPF As dmProductFurniture
+    mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
+
     SetUpDataBindings()
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrSalesOrderID.Text = pSalesOrder.OrderNo
@@ -43,7 +46,7 @@ Public Class repWorkOrderDoc
     xrtDueTime.Text = pSalesOrder.DueTime
     xrtDate.Text = pWorkOrder.DateCreated
 
-    xrNotes.Text = pSalesOrder.VisibleNotes
+    xrNotes.Text = mPF.Notes
     xrSalesOrderID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
 
 

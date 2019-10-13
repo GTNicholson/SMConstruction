@@ -28,8 +28,8 @@ Public Class repWorkOrderMatReqsWood
     xrtNetThickness.DataBindings.Add("Text", Me.DataSource, "NetThickness")
     xrtNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth")
     xrtNetLenght.DataBindings.Add("Text", Me.DataSource, "NetLenght")
-    xrtMaterialTypeID.DataBindings.Add("Text", Me.DataSource, "MaterialTypeID")
-    xrtQualityType.DataBindings.Add("Text", Me.DataSource, "QualityType")
+
+
 
     ''Function Area
     xrtGrossThickness.DataBindings.Add("Text", Me.DataSource, "InitialThicknessFraction")
@@ -63,7 +63,26 @@ Public Class repWorkOrderMatReqsWood
   End Function
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
-    'xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
+
+    Dim mMatReqInf As clsMaterialRequirementInfo
+    mMatReqInf = Me.GetCurrentRow
+    Dim WoodSpecieID As String
+    Dim Quality As String
+    Dim MaterialID As String
+
+    WoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
+                                      ItemValueToDisplayValue(mMatReqInf.WoodSpecieID)
+
+    Quality = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Quality).
+                                      ItemValueToDisplayValue(mMatReqInf.QualityType)
+
+    MaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
+                                      ItemValueToDisplayValue(mMatReqInf.Material)
+
+    xrtWoodSpecieID.Text = WoodSpecieID
+    xrtQualityType.Text = Quality
+    xrtMaterialTypeID.Text = MaterialID
+
 
   End Sub
 
@@ -81,10 +100,14 @@ Public Class repWorkOrderMatReqsWood
   End Sub
 
   Private Sub repWorkOrderMatReqsWood_PrintOnPage(sender As Object, e As PrintOnPageEventArgs) Handles Me.PrintOnPage
-    xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
+
   End Sub
 
   Private Sub Detail_PrintOnPage(sender As Object, e As PrintOnPageEventArgs) Handles Detail.PrintOnPage
-    xrtcTotalPieces.Text = pQuantity * Val(xrtUnitPiece.Text)
+
+  End Sub
+
+  Private Sub ReportFooter_BeforePrint(sender As Object, e As PrintEventArgs) Handles ReportFooter.BeforePrint
+
   End Sub
 End Class

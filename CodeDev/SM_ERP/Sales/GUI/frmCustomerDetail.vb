@@ -196,7 +196,11 @@ Public Class frmCustomerDetail
       Dim mValidate As clsValidate
       mValidate = pFormController.ValidateObject
       If mValidate.ValOk Then
+
+
         pFormController.SaveObjects()
+
+
         mRetVal = True
       Else
         MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")

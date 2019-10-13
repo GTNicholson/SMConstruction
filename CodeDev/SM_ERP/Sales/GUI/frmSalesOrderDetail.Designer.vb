@@ -23,8 +23,8 @@ Partial Class frmSalesOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -214,7 +214,7 @@ Partial Class frmSalesOrderDetail
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 30)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 33)
     '
     'barDockControlBottom
     '
@@ -228,17 +228,17 @@ Partial Class frmSalesOrderDetail
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 699)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 30)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 699)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
     '
     'TableLayoutPanel1
     '
@@ -248,12 +248,12 @@ Partial Class frmSalesOrderDetail
     Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
     Me.TableLayoutPanel1.Controls.Add(Me.PanelControl1, 0, 1)
     Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
+    Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 2
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 699)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 696)
     Me.TableLayoutPanel1.TabIndex = 4
     '
     'GroupControl1
@@ -367,6 +367,7 @@ Partial Class frmSalesOrderDetail
     Me.txtDelAddress2.Name = "txtDelAddress2"
     Me.txtDelAddress2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDelAddress2.Properties.Appearance.Options.UseFont = True
+    Me.txtDelAddress2.Properties.MaxLength = 100
     Me.txtDelAddress2.Size = New System.Drawing.Size(130, 20)
     Me.txtDelAddress2.TabIndex = 3
     Me.txtDelAddress2.Tag = "c"
@@ -378,6 +379,7 @@ Partial Class frmSalesOrderDetail
     Me.txtDelAddress1.Name = "txtDelAddress1"
     Me.txtDelAddress1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDelAddress1.Properties.Appearance.Options.UseFont = True
+    Me.txtDelAddress1.Properties.MaxLength = 100
     Me.txtDelAddress1.Size = New System.Drawing.Size(130, 20)
     Me.txtDelAddress1.TabIndex = 2
     Me.txtDelAddress1.Tag = "c"
@@ -785,6 +787,7 @@ Partial Class frmSalesOrderDetail
     Me.txtProjectName.Name = "txtProjectName"
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
+    Me.txtProjectName.Properties.MaxLength = 200
     Me.txtProjectName.Size = New System.Drawing.Size(130, 20)
     Me.txtProjectName.TabIndex = 2
     Me.txtProjectName.Tag = "c"
@@ -820,6 +823,7 @@ Partial Class frmSalesOrderDetail
     Me.txtSalesOrderID.Name = "txtSalesOrderID"
     Me.txtSalesOrderID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtSalesOrderID.Properties.Appearance.Options.UseFont = True
+    Me.txtSalesOrderID.Properties.MaxLength = 16
     Me.txtSalesOrderID.Size = New System.Drawing.Size(130, 20)
     Me.txtSalesOrderID.TabIndex = 1
     Me.txtSalesOrderID.Tag = "c"
@@ -833,7 +837,7 @@ Partial Class frmSalesOrderDetail
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(3, 307)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1158, 389)
+    Me.PanelControl1.Size = New System.Drawing.Size(1158, 386)
     Me.PanelControl1.TabIndex = 14
     '
     'grpOrderItem
@@ -843,7 +847,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.AppearanceCaption.Options.UseFont = True
     Me.grpOrderItem.AppearanceCaption.Options.UseForeColor = True
     Me.grpOrderItem.Controls.Add(Me.grdOrderItem)
-    Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+    Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(0, 5)
     Me.grpOrderItem.Name = "grpOrderItem"
@@ -1113,7 +1117,7 @@ Partial Class frmSalesOrderDetail
     Me.GridControl3.MainView = Me.GridView3
     Me.GridControl3.MenuManager = Me.BarManager1
     Me.GridControl3.Name = "GridControl3"
-    Me.GridControl3.Size = New System.Drawing.Size(535, 200)
+    Me.GridControl3.Size = New System.Drawing.Size(535, 197)
     Me.GridControl3.TabIndex = 3
     Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
     '
@@ -1141,7 +1145,7 @@ Partial Class frmSalesOrderDetail
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(608, 200)
+    Me.GridControl2.Size = New System.Drawing.Size(608, 197)
     Me.GridControl2.TabIndex = 2
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '

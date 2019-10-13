@@ -121,6 +121,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtCustomerName.Location = New System.Drawing.Point(141, 78)
     Me.txtCustomerName.Name = "txtCustomerName"
+    Me.txtCustomerName.Properties.MaxLength = 64
     Me.txtCustomerName.Size = New System.Drawing.Size(155, 20)
     Me.txtCustomerName.TabIndex = 1
     '
@@ -171,7 +172,7 @@ Partial Class frmCustomerDetail
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 30)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 33)
     '
     'barDockControlBottom
     '
@@ -185,17 +186,17 @@ Partial Class frmCustomerDetail
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 491)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 488)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 30)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 491)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 488)
     '
     'Label1
     '
@@ -266,6 +267,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtCustomerReference.Location = New System.Drawing.Point(141, 29)
     Me.txtCustomerReference.Name = "txtCustomerReference"
+    Me.txtCustomerReference.Properties.MaxLength = 15
     Me.txtCustomerReference.Size = New System.Drawing.Size(155, 20)
     Me.txtCustomerReference.TabIndex = 0
     '
@@ -284,6 +286,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtMainTown.Location = New System.Drawing.Point(141, 274)
     Me.txtMainTown.Name = "txtMainTown"
+    Me.txtMainTown.Properties.MaxLength = 64
     Me.txtMainTown.Size = New System.Drawing.Size(155, 20)
     Me.txtMainTown.TabIndex = 5
     '
@@ -324,6 +327,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtWebUrl.Location = New System.Drawing.Point(456, 176)
     Me.txtWebUrl.Name = "txtWebUrl"
+    Me.txtWebUrl.Properties.MaxLength = 64
     Me.txtWebUrl.Size = New System.Drawing.Size(155, 20)
     Me.txtWebUrl.TabIndex = 9
     '
@@ -342,6 +346,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtMainAddress1.Location = New System.Drawing.Point(456, 29)
     Me.txtMainAddress1.Name = "txtMainAddress1"
+    Me.txtMainAddress1.Properties.MaxLength = 100
     Me.txtMainAddress1.Size = New System.Drawing.Size(155, 20)
     Me.txtMainAddress1.TabIndex = 6
     '
@@ -416,6 +421,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtEmail.Location = New System.Drawing.Point(456, 127)
     Me.txtEmail.Name = "txtEmail"
+    Me.txtEmail.Properties.MaxLength = 64
     Me.txtEmail.Size = New System.Drawing.Size(155, 20)
     Me.txtEmail.TabIndex = 8
     '
@@ -434,6 +440,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtTelNo.Location = New System.Drawing.Point(456, 78)
     Me.txtTelNo.Name = "txtTelNo"
+    Me.txtTelNo.Properties.MaxLength = 32
     Me.txtTelNo.Size = New System.Drawing.Size(155, 20)
     Me.txtTelNo.TabIndex = 7
     '
@@ -608,6 +615,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtABA.Location = New System.Drawing.Point(148, 149)
     Me.txtABA.Name = "txtABA"
+    Me.txtABA.Properties.MaxLength = 15
     Me.txtABA.Size = New System.Drawing.Size(106, 20)
     Me.txtABA.TabIndex = 3
     '
@@ -626,6 +634,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtSwift.Location = New System.Drawing.Point(148, 110)
     Me.txtSwift.Name = "txtSwift"
+    Me.txtSwift.Properties.MaxLength = 15
     Me.txtSwift.Size = New System.Drawing.Size(106, 20)
     Me.txtSwift.TabIndex = 2
     '
@@ -644,6 +653,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtBancoIntermediario.Location = New System.Drawing.Point(148, 71)
     Me.txtBancoIntermediario.Name = "txtBancoIntermediario"
+    Me.txtBancoIntermediario.Properties.MaxLength = 100
     Me.txtBancoIntermediario.Size = New System.Drawing.Size(106, 20)
     Me.txtBancoIntermediario.TabIndex = 1
     '
@@ -662,6 +672,7 @@ Partial Class frmCustomerDetail
     '
     Me.txtAcountRef.Location = New System.Drawing.Point(148, 32)
     Me.txtAcountRef.Name = "txtAcountRef"
+    Me.txtAcountRef.Properties.MaxLength = 25
     Me.txtAcountRef.Size = New System.Drawing.Size(106, 20)
     Me.txtAcountRef.TabIndex = 0
     '

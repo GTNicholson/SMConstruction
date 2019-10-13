@@ -26,6 +26,27 @@
     End Set
   End Property
 
+  Public ReadOnly Property WoodSpecieID As Int32
+    Get
+      Return pMaterialRequirement.WoodSpecie
+    End Get
+
+  End Property
+
+  Public ReadOnly Property Quality As Int32
+    Get
+      Return pMaterialRequirement.QualityType
+    End Get
+
+  End Property
+
+  Public ReadOnly Property Material As Int32
+    Get
+      Return pMaterialRequirement.MaterialTypeID
+    End Get
+
+  End Property
+
   Public ReadOnly Property WorkOrderQuantity As Integer
     Get
       Return pWorkOrder.Quantity

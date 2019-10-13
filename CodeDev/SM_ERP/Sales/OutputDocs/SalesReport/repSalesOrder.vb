@@ -48,7 +48,8 @@ Public Class repSalesOrder
     xrtStockCode.DataBindings.Add("Text", DataSource, "Species")
 
     xrtQuantity.DataBindings.Add("Text", DataSource, "Quantity")
-    xrtUnitPrice.DataBindings.Add("Text", DataSource, "UnitPrice")
+    'xrtUnitPrice.DataBindings.Add("Text", DataSource, "UnitPrice")
+
 
     xrtImageFile.DataBindings.Add("Text", DataSource, "ImageFile")
 
@@ -84,8 +85,6 @@ Public Class repSalesOrder
     XrSalesNo.Text = pSalesOrder.OrderNo
     xrlProjectName.Text = pSalesOrder.ProjectName
 
-
-
     If pSalesOrder.Customer IsNot Nothing Then
       mcust = pSalesOrder.Customer
       xrlDelCompanyName.Text = mcust.CompanyName
@@ -97,15 +96,17 @@ Public Class repSalesOrder
       End If
 
       If mcust.CustomerContacts.Count <> 0 Then
-          XrlCompanyContact.Text = mcust.CustomerContacts(0).FirstName & " " & mcust.CustomerContacts(0).LastName
-        xrtEmailContact.Text = mcust.CustomerContacts(0).Email
-        xrtPhoneDelCustomerContact.Text = mcust.CustomerContacts(0).TelNo
+        XrlCompanyContact.Text = mcust.CustomerContacts(0).FirstName & " " & mcust.CustomerContacts(0).LastName
+
+
       End If
-      End If
+    End If
 
     mCustCont = mcust.CustomerContacts.ItemFromKey(pSalesOrder.CustomerDelContactID)
     If mCustCont IsNot Nothing Then
       xrtCustomerDelContactID.Text = mCustCont.FirstName & " " & mCustCont.LastName
+      xrtPhoneDelCustomerContact.Text = mCustCont.TelNo
+      xrtEmailContact.Text = mCustCont.Email
     End If
 
 
@@ -119,9 +120,10 @@ Public Class repSalesOrder
     Dim mImage As Image
 
     mSOI = Me.GetCurrentRow
-    xrtAmount.Text = mSOI.TotalAmount
+    xrtAmount.Text = mSOI.TotalAmount.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtUnitPrice.Text = mSOI.UnitPrice.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
     pTotalAmount += Val(xrtAmount.Text)
-    xrtSubTotalAmount.Text = pTotalAmount
+
 
 
     If mSOI IsNot Nothing Then
@@ -166,13 +168,13 @@ Public Class repSalesOrder
     MyBase.Finalize()
   End Sub
 
-  Private Sub XrTableCell12_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrTableCell12.BeforePrint
+  Private Sub XrTableCell12_BeforePrint(sender As Object, e As PrintEventArgs) Handles xrtTotalAmount.BeforePrint
 
   End Sub
 
   Private Sub ReportFooter_BeforePrint(sender As Object, e As PrintEventArgs) Handles ReportFooter.BeforePrint
-    xrtSubTotalAmount.Text = pHandler.GetTotalValue
-    'tax = clsConstants.TaxRate * pHandler.GetTotalValue
-    'total =( 1+clsConstants.TaxRate) * pHandler.GetTotalValue
+    xrtSubTotalAmount.Text = pHandler.GetTotalValue.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtTax.Text = (clsConstants.TaxRate * pHandler.GetTotalValue).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtTotalAmount.Text = ((1 + clsConstants.TaxRate) * pHandler.GetTotalValue).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
   End Sub
 End Class
