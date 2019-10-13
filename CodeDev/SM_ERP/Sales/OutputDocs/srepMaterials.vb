@@ -1,6 +1,16 @@
 ﻿Imports System.Drawing.Printing
 
 Public Class srepMaterials
+  Private pWorkOrder As dmWorkOrder
+
+  Public Property WorkOrder As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+    Set(value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
+  End Property
 
   Private Sub SetBindings()
     xrtcStockCode.DataBindings.Add("Text", Me.DataSource, "StockCode")

@@ -5,6 +5,7 @@ Public Class fccWorkOrderDetail
 
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrder As dmSalesOrder
+  Private pSalesOrderItem As dmSalesOrderItem
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
 
@@ -31,16 +32,22 @@ Public Class fccWorkOrderDetail
     End Set
   End Property
 
-  Public ReadOnly Property WorkOrder As dmWorkOrder
+  Public Property WorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
     End Get
+    Set(value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
   End Property
 
-  Public ReadOnly Property SalesOrder As dmSalesOrder
+  Public Property SalesOrder As dmSalesOrder
     Get
       Return pSalesOrder
     End Get
+    Set(value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
   End Property
 
   Public ReadOnly Property TimeSheetEntrys As colTimeSheetEntrys
@@ -53,14 +60,31 @@ Public Class fccWorkOrderDetail
   Public Sub LoadObjects()
     Dim mdso As dsoSales
     Dim mdsoHR As dsoHR
+    Dim mSOID As Integer
 
-    pWorkOrder = New dmWorkOrder
     If pPrimaryKeyID <> 0 Then
-      mdso = New dsoSales(pDBConn)
-      mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
+      If pWorkOrder Is Nothing Then
+        mdso = New dsoSales(pDBConn)
 
-      pSalesOrder = New dmSalesOrder
-      mdso.LoadSalesOrderDown(pSalesOrder, pWorkOrder.SalesOrderID)
+        mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
+
+        pSalesOrder = New dmSalesOrder
+        mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
+
+        For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+          For Each mWO As dmWorkOrder In mSOI.WorkOrders
+            If mWO.WorkOrderID = pPrimaryKeyID Then
+              pWorkOrder = mWO
+              pSalesOrderItem = mSOI
+              Exit For
+            End If
+          Next
+          If pWorkOrder IsNot Nothing Then Exit For
+        Next
+      Else
+        '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
+        pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
+      End If
 
       mdsoHR = New dsoHR(pDBConn)
       pTimeSheetEntrys = New colTimeSheetEntrys
@@ -213,5 +237,10 @@ Public Class fccWorkOrderDetail
 
     Return mRetVal
   End Function
+
+  Public Sub UpdateWorkOrderQtyPerSalesItem(ByVal vNewValue As Integer)
+    pWorkOrder.QtyPerSalesItem = vNewValue
+    pWorkOrder.Quantity = pWorkOrder.QtyPerSalesItem * pWorkOrder.ParentSalesOrderItem.Quantity
+  End Sub
 
 End Class

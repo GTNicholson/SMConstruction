@@ -338,7 +338,7 @@ Public Class frmSalesOrderDetail
           If mWOI IsNot Nothing Then
             UpdateObjects()
             pFormController.SaveObjects()
-            frmWorkOrderDetail.OpenFormModal(mWOI.WorkOrder.WorkOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance)
+            frmWorkOrderDetail.OpenFormModalWithObjects(mWOI.WorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance)
             '// in one work order form it is possible
             pFormController.RefreshWorkOrderNos(mWOI.WorkOrder.ParentSalesOrderItem)
             RefreshControls()
@@ -347,17 +347,19 @@ Public Class frmSalesOrderDetail
         Case ButtonPredefines.Plus
           Dim mWOSOI As dmSalesOrderItem = Nothing
           Dim mFound As Boolean = False
-          mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
-          mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
-          If mWOSOI IsNot Nothing Then
-            pFormController.AddWorkOrder(mWOSOI, eProductType.ProductFurniture)
-            pFormController.RefreshSOWorkOrders()
+          If MsgBox("Agregar un OT addicional por este articulo?", vbYesNo) = vbYes Then
+            mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+            mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
+            If mWOSOI IsNot Nothing Then
+              pFormController.AddWorkOrder(mWOSOI, eProductType.ProductFurniture)
+              pFormController.RefreshSOWorkOrders()
+              gvWorkOrders.RefreshData()
+            End If
+            '// in one work order form it is possible to affect the wo numbers of it's sister wo's
+            pFormController.RefreshWorkOrderNos(mWOSOI)
             gvWorkOrders.RefreshData()
+            RefreshControls()
           End If
-          '// in one work order form it is possible
-          pFormController.RefreshWorkOrderNos(mWOSOI)
-          gvWorkOrders.RefreshData()
-          RefreshControls()
       End Select
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -608,26 +610,33 @@ Public Class frmSalesOrderDetail
 
   Private Sub grpOrderItem_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpOrderItem.CustomButtonClick
     Dim mSOI As dmSalesOrderItem
-    Select Case e.Button.Properties.Tag
-      Case eOrderItemGroupButtonTags.Add
-        UpdateObjects()
-        pFormController.AddSalesOrderItem(eProductType.ProductFurniture)
-        pFormController.RefreshSOWorkOrders()
-        gvWorkOrders.RefreshData()
-        RefreshControls()
-      Case eOrderItemGroupButtonTags.Delete
-        mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
-        If mSOI IsNot Nothing Then
-          If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
-            UpdateObjects()
-            pFormController.DeleteSalesOrderItem(mSOI)
-            pFormController.RefreshSOWorkOrders()
-            gvWorkOrders.RefreshData()
-            RefreshControls()
+    Try
+
+
+      Select Case e.Button.Properties.Tag
+        Case eOrderItemGroupButtonTags.Add
+          UpdateObjects()
+          pFormController.AddSalesOrderItem(eProductType.ProductFurniture)
+          pFormController.RefreshSOWorkOrders()
+          gvWorkOrders.RefreshData()
+          RefreshControls()
+        Case eOrderItemGroupButtonTags.Delete
+          mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+          If mSOI IsNot Nothing Then
+            If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
+              UpdateObjects()
+              pFormController.DeleteSalesOrderItem(mSOI)
+              pFormController.RefreshSOWorkOrders()
+              gvWorkOrders.RefreshData()
+              RefreshControls()
+            End If
           End If
-        End If
-    End Select
-    gvWorkOrders.RefreshData()
+      End Select
+      gvWorkOrders.RefreshData()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
   Private Sub gvWorkOrders_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWorkOrders.CustomUnboundColumnData

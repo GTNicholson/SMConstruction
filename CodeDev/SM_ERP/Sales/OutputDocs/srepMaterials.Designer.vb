@@ -25,6 +25,13 @@ Partial Public Class srepMaterials
     Me.xrtcStockCode = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtcDescription = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtcTotalQty = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -33,20 +40,13 @@ Partial Public Class srepMaterials
     Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
     CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +74,7 @@ Partial Public Class srepMaterials
     '
     'XrTableRow2
     '
-    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtcStockCode, Me.xrtcDescription, Me.xrtcQuantity, Me.XrTableCell4, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15, Me.XrTableCell17})
+    Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtcStockCode, Me.xrtcDescription, Me.xrtcQuantity, Me.xrtcTotalQty, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell13, Me.XrTableCell15, Me.XrTableCell17})
     Me.XrTableRow2.Name = "XrTableRow2"
     Me.XrTableRow2.Weight = 1.0R
     '
@@ -97,6 +97,48 @@ Partial Public Class srepMaterials
     Me.xrtcQuantity.Name = "xrtcQuantity"
     Me.xrtcQuantity.Text = "xrtcQuantity"
     Me.xrtcQuantity.Weight = 0.55063066036282382R
+    '
+    'xrtcTotalQty
+    '
+    Me.xrtcTotalQty.Name = "xrtcTotalQty"
+    Me.xrtcTotalQty.Text = "xrtcTotalQty"
+    Me.xrtcTotalQty.Weight = 0.71140241521868575R
+    '
+    'XrTableCell9
+    '
+    Me.XrTableCell9.Name = "XrTableCell9"
+    Me.XrTableCell9.Text = "XrTableCell9"
+    Me.XrTableCell9.Weight = 0.85207922792806079R
+    '
+    'XrTableCell10
+    '
+    Me.XrTableCell10.Name = "XrTableCell10"
+    Me.XrTableCell10.Text = "XrTableCell10"
+    Me.XrTableCell10.Weight = 0.831982077798201R
+    '
+    'XrTableCell11
+    '
+    Me.XrTableCell11.Name = "XrTableCell11"
+    Me.XrTableCell11.Text = "XrTableCell11"
+    Me.XrTableCell11.Weight = 0.77169202572210416R
+    '
+    'XrTableCell13
+    '
+    Me.XrTableCell13.Name = "XrTableCell13"
+    Me.XrTableCell13.Text = "XrTableCell13"
+    Me.XrTableCell13.Weight = 0.77169202572210416R
+    '
+    'XrTableCell15
+    '
+    Me.XrTableCell15.Name = "XrTableCell15"
+    Me.XrTableCell15.Text = "XrTableCell15"
+    Me.XrTableCell15.Weight = 0.70135362685472213R
+    '
+    'XrTableCell17
+    '
+    Me.XrTableCell17.Name = "XrTableCell17"
+    Me.XrTableCell17.Text = "XrTableCell17"
+    Me.XrTableCell17.Weight = 0.70135362685472213R
     '
     'TopMargin
     '
@@ -167,12 +209,6 @@ Partial Public Class srepMaterials
     Me.XrTableCell3.Text = "Piezas Un"
     Me.XrTableCell3.Weight = 0.550631256404663R
     '
-    'XrTableCell4
-    '
-    Me.XrTableCell4.Name = "XrTableCell4"
-    Me.XrTableCell4.Text = "XrTableCell4"
-    Me.XrTableCell4.Weight = 0.71140241521868575R
-    '
     'XrTableCell5
     '
     Me.XrTableCell5.CanGrow = False
@@ -201,36 +237,12 @@ Partial Public Class srepMaterials
     Me.XrTableCell8.Text = "Largo N (cm)"
     Me.XrTableCell8.Weight = 0.7716918818649755R
     '
-    'XrTableCell9
-    '
-    Me.XrTableCell9.Name = "XrTableCell9"
-    Me.XrTableCell9.Text = "XrTableCell9"
-    Me.XrTableCell9.Weight = 0.85207922792806079R
-    '
-    'XrTableCell10
-    '
-    Me.XrTableCell10.Name = "XrTableCell10"
-    Me.XrTableCell10.Text = "XrTableCell10"
-    Me.XrTableCell10.Weight = 0.831982077798201R
-    '
-    'XrTableCell11
-    '
-    Me.XrTableCell11.Name = "XrTableCell11"
-    Me.XrTableCell11.Text = "XrTableCell11"
-    Me.XrTableCell11.Weight = 0.77169202572210416R
-    '
     'XrTableCell12
     '
     Me.XrTableCell12.CanGrow = False
     Me.XrTableCell12.Name = "XrTableCell12"
     Me.XrTableCell12.Text = "PT Neto"
     Me.XrTableCell12.Weight = 0.7716918818649755R
-    '
-    'XrTableCell13
-    '
-    Me.XrTableCell13.Name = "XrTableCell13"
-    Me.XrTableCell13.Text = "XrTableCell13"
-    Me.XrTableCell13.Weight = 0.77169202572210416R
     '
     'XrTableCell14
     '
@@ -239,24 +251,12 @@ Partial Public Class srepMaterials
     Me.XrTableCell14.Text = "Especie"
     Me.XrTableCell14.Weight = 0.70135406974793435R
     '
-    'XrTableCell15
-    '
-    Me.XrTableCell15.Name = "XrTableCell15"
-    Me.XrTableCell15.Text = "XrTableCell15"
-    Me.XrTableCell15.Weight = 0.70135362685472213R
-    '
     'XrTableCell16
     '
     Me.XrTableCell16.CanGrow = False
     Me.XrTableCell16.Name = "XrTableCell16"
     Me.XrTableCell16.Text = "Calidad"
     Me.XrTableCell16.Weight = 0.70135406974793435R
-    '
-    'XrTableCell17
-    '
-    Me.XrTableCell17.Name = "XrTableCell17"
-    Me.XrTableCell17.Text = "XrTableCell17"
-    Me.XrTableCell17.Weight = 0.70135362685472213R
     '
     'srepMaterials
     '
@@ -282,7 +282,7 @@ Partial Public Class srepMaterials
   Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtcTotalQty As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell

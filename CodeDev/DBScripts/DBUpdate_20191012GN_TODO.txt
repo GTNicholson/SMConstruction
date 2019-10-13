@@ -1,0 +1,3 @@
+alter table WorkOrder Add QtyPerSalesItem Int
+
+GO

@@ -54,9 +54,15 @@
     End Get
   End Property
 
-  Public ReadOnly Property Quantity As Decimal
+  Public ReadOnly Property Quantity As Integer
     Get
       Return pWorkOrder.Quantity
+    End Get
+  End Property
+
+  Public ReadOnly Property QtyPerSalesItem As Integer
+    Get
+      Return pWorkOrder.QtyPerSalesItem
     End Get
   End Property
 

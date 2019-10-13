@@ -63,11 +63,12 @@ Public Class repWorkOrderMatReqsWood
   End Function
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
-    Dim mMatReq As clsMaterialRequirementInfo
-    mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
-    If mMatReq IsNot Nothing Then
-      xrtcTotalPieces.Text = mMatReq.UnitPiece * pWorkOrder.Quantity
-    End If
+<<<<<<< HEAD
+
+    Dim mMatReqInf As clsMaterialRequirementInfo
+    mMatReqInf = Me.GetCurrentRow
+    Dim WoodSpecieID As String
+    Dim Quality As String
     Dim MaterialID As String
 
     WoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
@@ -83,6 +84,14 @@ Public Class repWorkOrderMatReqsWood
     xrtQualityType.Text = Quality
     xrtMaterialTypeID.Text = MaterialID
 
+
+=======
+    Dim mMatReq As clsMaterialRequirementInfo
+    mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
+    If mMatReq IsNot Nothing Then
+      xrtcTotalPieces.Text = mMatReq.UnitPiece * pWorkOrder.Quantity
+    End If
+>>>>>>> adbd1f8314b6ce92491ce300d89029485ce147c4
   End Sub
 
   Private Sub Detail_AfterPrint(sender As Object, e As EventArgs) Handles Detail.AfterPrint

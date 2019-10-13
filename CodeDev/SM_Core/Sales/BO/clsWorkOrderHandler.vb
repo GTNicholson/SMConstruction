@@ -24,12 +24,5 @@ Public Class clsWorkOrderHandler
 
   End Sub
 
-  Public Sub RefreshQty()
-    Dim mQty As Integer = 0
-    For Each mWOB As dmWorkOrderBatch In pWorkOrder.WorkOrderBatches
-      mQty += mWOB.Quantity
-    Next
-    pWorkOrder.Quantity = mQty
-  End Sub
 
 End Class

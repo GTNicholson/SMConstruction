@@ -108,6 +108,7 @@ Partial Class frmSalesOrderDetail
     Me.repitbtWorkOrder = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.Quantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
     Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -367,7 +368,6 @@ Partial Class frmSalesOrderDetail
     Me.txtDelAddress2.Name = "txtDelAddress2"
     Me.txtDelAddress2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDelAddress2.Properties.Appearance.Options.UseFont = True
-    Me.txtDelAddress2.Properties.MaxLength = 100
     Me.txtDelAddress2.Size = New System.Drawing.Size(130, 20)
     Me.txtDelAddress2.TabIndex = 3
     Me.txtDelAddress2.Tag = "c"
@@ -379,7 +379,6 @@ Partial Class frmSalesOrderDetail
     Me.txtDelAddress1.Name = "txtDelAddress1"
     Me.txtDelAddress1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDelAddress1.Properties.Appearance.Options.UseFont = True
-    Me.txtDelAddress1.Properties.MaxLength = 100
     Me.txtDelAddress1.Size = New System.Drawing.Size(130, 20)
     Me.txtDelAddress1.TabIndex = 2
     Me.txtDelAddress1.Tag = "c"
@@ -787,7 +786,6 @@ Partial Class frmSalesOrderDetail
     Me.txtProjectName.Name = "txtProjectName"
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
-    Me.txtProjectName.Properties.MaxLength = 200
     Me.txtProjectName.Size = New System.Drawing.Size(130, 20)
     Me.txtProjectName.TabIndex = 2
     Me.txtProjectName.Tag = "c"
@@ -823,7 +821,6 @@ Partial Class frmSalesOrderDetail
     Me.txtSalesOrderID.Name = "txtSalesOrderID"
     Me.txtSalesOrderID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtSalesOrderID.Properties.Appearance.Options.UseFont = True
-    Me.txtSalesOrderID.Properties.MaxLength = 16
     Me.txtSalesOrderID.Size = New System.Drawing.Size(130, 20)
     Me.txtSalesOrderID.TabIndex = 1
     Me.txtSalesOrderID.Tag = "c"
@@ -851,7 +848,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(0, 5)
     Me.grpOrderItem.Name = "grpOrderItem"
-    Me.grpOrderItem.Size = New System.Drawing.Size(608, 169)
+    Me.grpOrderItem.Size = New System.Drawing.Size(563, 169)
     Me.grpOrderItem.TabIndex = 0
     Me.grpOrderItem.Text = "Articulos"
     '
@@ -863,7 +860,7 @@ Partial Class frmSalesOrderDetail
     Me.grdOrderItem.MenuManager = Me.BarManager1
     Me.grdOrderItem.Name = "grdOrderItem"
     Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-    Me.grdOrderItem.Size = New System.Drawing.Size(604, 141)
+    Me.grdOrderItem.Size = New System.Drawing.Size(559, 141)
     Me.grdOrderItem.TabIndex = 0
     Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem})
     '
@@ -1007,9 +1004,9 @@ Partial Class frmSalesOrderDetail
     Me.grpWorkOrders.AppearanceCaption.Options.UseForeColor = True
     Me.grpWorkOrders.Controls.Add(Me.grdWorkOrders)
     Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-    Me.grpWorkOrders.Location = New System.Drawing.Point(614, 5)
+    Me.grpWorkOrders.Location = New System.Drawing.Point(578, 5)
     Me.grpWorkOrders.Name = "grpWorkOrders"
-    Me.grpWorkOrders.Size = New System.Drawing.Size(535, 169)
+    Me.grpWorkOrders.Size = New System.Drawing.Size(571, 169)
     Me.grpWorkOrders.TabIndex = 1
     Me.grpWorkOrders.Text = "Ordenes de Trabajo"
     '
@@ -1021,7 +1018,7 @@ Partial Class frmSalesOrderDetail
     Me.grdWorkOrders.MenuManager = Me.BarManager1
     Me.grdWorkOrders.Name = "grdWorkOrders"
     Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-    Me.grdWorkOrders.Size = New System.Drawing.Size(531, 144)
+    Me.grdWorkOrders.Size = New System.Drawing.Size(567, 144)
     Me.grdWorkOrders.TabIndex = 0
     Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders})
     '
@@ -1034,7 +1031,7 @@ Partial Class frmSalesOrderDetail
     Me.gvWorkOrders.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvWorkOrders.Appearance.Row.Options.UseFont = True
     Me.gvWorkOrders.ColumnPanelRowHeight = 34
-    Me.gvWorkOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.gcWOSOItemNumber, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.Quantity})
+    Me.gvWorkOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.gcWOSOItemNumber, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.Quantity})
     Me.gvWorkOrders.GridControl = Me.grdWorkOrders
     Me.gvWorkOrders.Name = "gvWorkOrders"
     Me.gvWorkOrders.OptionsDetail.EnableMasterViewMode = False
@@ -1060,7 +1057,7 @@ Partial Class frmSalesOrderDetail
     Me.gcWOSOItemNumber.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcWOSOItemNumber.Visible = True
     Me.gcWOSOItemNumber.VisibleIndex = 0
-    Me.gcWOSOItemNumber.Width = 54
+    Me.gcWOSOItemNumber.Width = 47
     '
     'GridColumn1
     '
@@ -1072,7 +1069,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn1.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 1
-    Me.GridColumn1.Width = 115
+    Me.GridColumn1.Width = 101
     '
     'repitbtWorkOrder
     '
@@ -1088,7 +1085,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 2
-    Me.GridColumn2.Width = 78
+    Me.GridColumn2.Width = 68
     '
     'GridColumn3
     '
@@ -1098,26 +1095,37 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
     Me.GridColumn3.Visible = True
     Me.GridColumn3.VisibleIndex = 3
-    Me.GridColumn3.Width = 229
+    Me.GridColumn3.Width = 201
+    '
+    'GridColumn6
+    '
+    Me.GridColumn6.Caption = "Cantidad Por Articulo"
+    Me.GridColumn6.FieldName = "QtyPerSalesItem"
+    Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+    Me.GridColumn6.Visible = True
+    Me.GridColumn6.VisibleIndex = 4
+    Me.GridColumn6.Width = 74
     '
     'Quantity
     '
-    Me.Quantity.Caption = "Cantidad"
+    Me.Quantity.Caption = "Cantidad Total"
     Me.Quantity.FieldName = "Quantity"
     Me.Quantity.Name = "Quantity"
     Me.Quantity.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
     Me.Quantity.Visible = True
-    Me.Quantity.VisibleIndex = 4
+    Me.Quantity.VisibleIndex = 5
+    Me.Quantity.Width = 60
     '
     'GridControl3
     '
     Me.GridControl3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl3.Location = New System.Drawing.Point(614, 180)
+    Me.GridControl3.Location = New System.Drawing.Point(580, 180)
     Me.GridControl3.MainView = Me.GridView3
     Me.GridControl3.MenuManager = Me.BarManager1
     Me.GridControl3.Name = "GridControl3"
-    Me.GridControl3.Size = New System.Drawing.Size(535, 197)
+    Me.GridControl3.Size = New System.Drawing.Size(569, 197)
     Me.GridControl3.TabIndex = 3
     Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
     '
@@ -1145,7 +1153,7 @@ Partial Class frmSalesOrderDetail
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(608, 197)
+    Me.GridControl2.Size = New System.Drawing.Size(563, 197)
     Me.GridControl2.TabIndex = 2
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '
@@ -1325,4 +1333,5 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents RepositoryItemLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
   Friend WithEvents RepositoryItemLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
   Friend WithEvents RepositoryItemCalcEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit
+  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
