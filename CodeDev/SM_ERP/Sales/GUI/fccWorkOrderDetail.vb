@@ -146,7 +146,7 @@ Public Class fccWorkOrderDetail
     End Try
   End Sub
 
-  Public Sub CreateWorkOrderPack(ByRef rReport As repWorkOrderDoc, ByVal vFilePath As String)
+  Public Sub CreateWorkOrderPack(ByRef rReport As DevExpress.XtraReports.UI.XtraReport, ByVal vFilePath As String)
     Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
     Dim mFilePath As String

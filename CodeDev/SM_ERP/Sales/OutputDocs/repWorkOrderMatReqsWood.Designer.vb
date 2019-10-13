@@ -20,6 +20,7 @@ Partial Public Class repWorkOrderMatReqsWood
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repWorkOrderMatReqsWood))
+    Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
     Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -503,6 +504,8 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrlTotalBoardFeet.StylePriority.UseBorders = False
     Me.xrlTotalBoardFeet.StylePriority.UseFont = False
     Me.xrlTotalBoardFeet.StylePriority.UseForeColor = False
+    XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
+    Me.xrlTotalBoardFeet.Summary = XrSummary1
     Me.xrlTotalBoardFeet.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
     'XrLabel10

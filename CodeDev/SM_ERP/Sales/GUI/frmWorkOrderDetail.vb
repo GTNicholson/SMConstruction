@@ -396,7 +396,16 @@ Public Class frmWorkOrderDetail
   Public Sub AddWorkOrderDocument()
     Dim mValidate As clsValidate
     Dim mReport As repWorkOrderDoc
+    Dim mReportMRP As repWorkOrderMatReqsWood
     Dim mFilePath As String
+    Dim mRepMerge As New DevExpress.XtraReports.UI.XtraReport
+
+    Dim mMatReqInfos As New colMaterialRequirementInfos
+
+    If IsNothing(pFormController.SalesOrder.Customer) Then
+      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+      Return
+    End If
 
     mValidate = pFormController.ValidateObject()
     If mValidate.ValOk Then
@@ -405,7 +414,18 @@ Public Class frmWorkOrderDetail
 
       mReport = GetReport(eDocumentType.WorkOrderDoc)
 
-      CreateReportPDF(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, True, mReport)
+      For Each mRepPage As DevExpress.XtraPrinting.Page In mReport.Pages
+        mRepMerge.Pages.Add(mRepPage)
+      Next
+
+      mMatReqInfos = pFormController.GetMaterialRequirementInfos
+      mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+
+      For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
+        mRepMerge.Pages.Add(mRepPage)
+      Next
+
+      CreateReportPDF(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, True, mRepMerge)
 
       CheckSave(False)
 

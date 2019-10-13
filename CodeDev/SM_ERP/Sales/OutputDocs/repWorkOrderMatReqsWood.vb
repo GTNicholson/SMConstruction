@@ -22,6 +22,10 @@ Public Class repWorkOrderMatReqsWood
   End Sub
 
   Private Sub SetUpBindings()
+
+    xrlTotalBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetFromCM")
+
+
     ''xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xrtComponentDescription.DataBindings.Add("Text", Me.DataSource, "Description")
     xrtUnitPiece.DataBindings.Add("Text", Me.DataSource, "UnitPiece")
@@ -54,34 +58,38 @@ Public Class repWorkOrderMatReqsWood
 
     mRetVal.CreateDocument()
 
-    Dim mTool As DevExpress.XtraReports.UI.ReportPrintTool
-    mTool = New DevExpress.XtraReports.UI.ReportPrintTool(mRetVal)
-    mTool.ShowPreviewDialog()
+    'Dim mTool As DevExpress.XtraReports.UI.ReportPrintTool
+    'mTool = New DevExpress.XtraReports.UI.ReportPrintTool(mRetVal)
+    'mTool.ShowPreviewDialog()
 
     Return mRetVal
 
   End Function
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
+    Dim mWoodSpecieID As String
+    Dim mQuality As String
+    Dim mMaterialID As String
+
+
+
     Dim mMatReq As clsMaterialRequirementInfo
     mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
     If mMatReq IsNot Nothing Then
       xrtcTotalPieces.Text = mMatReq.UnitPiece * pWorkOrder.Quantity
     End If
-    Dim MaterialID As String
+    mWoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
+                                      ItemValueToDisplayValue(mMatReq.WoodSpecieID)
 
-    WoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
-                                      ItemValueToDisplayValue(mMatReqInf.WoodSpecieID)
+    mQuality = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Quality).
+                                      ItemValueToDisplayValue(mMatReq.QualityType)
 
-    Quality = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Quality).
-                                      ItemValueToDisplayValue(mMatReqInf.QualityType)
+    mMaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
+                                      ItemValueToDisplayValue(mMatReq.Material)
 
-    MaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
-                                      ItemValueToDisplayValue(mMatReqInf.Material)
-
-    xrtWoodSpecieID.Text = WoodSpecieID
-    xrtQualityType.Text = Quality
-    xrtMaterialTypeID.Text = MaterialID
+    xrtWoodSpecieID.Text = mWoodSpecieID
+    xrtQualityType.Text = mQuality
+    xrtMaterialTypeID.Text = mMaterialID
 
   End Sub
 
