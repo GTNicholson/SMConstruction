@@ -37,17 +37,29 @@ Public Class repWorkOrderDoc
     Dim mPF As dmProductFurniture
     mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
 
+
+
     SetUpDataBindings()
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrSalesOrderID.Text = pSalesOrder.OrderNo
     xrlOT2.Text = pWorkOrder.WorkOrderNo
-
     xrlDateEntered.Text = pSalesOrder.DateEntered
     xrtDueTime.Text = pSalesOrder.DueTime
     xrtDate.Text = pWorkOrder.DateCreated
+    xrtEmployeeID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
+    xrtEmployee2.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
+
+    xrSalesOrderID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
+
+
+    If IsNothing(mPF) Then
+      MessageBox.Show("Error, no existe ningún producto / componente ligado a esta Orden de Trabajo", "Error")
+
+      Return
+
+    End If
 
     xrNotes.Text = mPF.Notes
-    xrSalesOrderID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
 
 
   End Sub

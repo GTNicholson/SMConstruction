@@ -21,6 +21,7 @@ Partial Public Class repWorkOrderDoc
   Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repWorkOrderDoc))
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+    Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel44 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel45 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLine21 = New DevExpress.XtraReports.UI.XRLine()
@@ -44,7 +45,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLine9 = New DevExpress.XtraReports.UI.XRLine()
     Me.XrLine7 = New DevExpress.XtraReports.UI.XRLine()
     Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
     Me.xrNotes = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
     Me.xrPic = New DevExpress.XtraReports.UI.XRPictureBox()
@@ -64,9 +64,9 @@ Partial Public Class repWorkOrderDoc
     Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.xrlDateEntered = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.xrlDueTime = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtEmployeeID = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtDate = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtEmployee2 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.xrlDescription = New DevExpress.XtraReports.UI.XRTableCell()
@@ -98,6 +98,16 @@ Partial Public Class repWorkOrderDoc
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+    '
+    'XrLabel24
+    '
+    Me.XrLabel24.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+    Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 22.91667!)
+    Me.XrLabel24.Name = "XrLabel24"
+    Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+    Me.XrLabel24.SizeF = New System.Drawing.SizeF(151.0417!, 15.625!)
+    Me.XrLabel24.StylePriority.UseFont = False
+    Me.XrLabel24.Text = "Nombre: Asesor Técnico"
     '
     'XrLabel44
     '
@@ -297,16 +307,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel27.StylePriority.UseFont = False
     Me.XrLabel27.Text = "Fecha:"
     '
-    'XrLabel24
-    '
-    Me.XrLabel24.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 22.91667!)
-    Me.XrLabel24.Name = "XrLabel24"
-    Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel24.SizeF = New System.Drawing.SizeF(151.0417!, 15.625!)
-    Me.XrLabel24.StylePriority.UseFont = False
-    Me.XrLabel24.Text = "Nombre: Asesor Técnico"
-    '
     'xrNotes
     '
     Me.xrNotes.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
@@ -395,7 +395,6 @@ Partial Public Class repWorkOrderDoc
     Me.xrlOT2.StylePriority.UseBorders = False
     Me.xrlOT2.StylePriority.UseFont = False
     Me.xrlOT2.StylePriority.UseForeColor = False
-    Me.xrlOT2.Text = "CÓDIGO"
     Me.xrlOT2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
     'XrTable1
@@ -517,7 +516,7 @@ Partial Public Class repWorkOrderDoc
     '
     'XrTableRow5
     '
-    Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrlDateEntered, Me.xrlDueTime, Me.xrtDate, Me.XrTableCell3})
+    Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrlDateEntered, Me.xrtEmployeeID, Me.xrtDate, Me.xrtEmployee2})
     Me.XrTableRow5.Name = "XrTableRow5"
     Me.XrTableRow5.Weight = 1.0R
     '
@@ -528,12 +527,12 @@ Partial Public Class repWorkOrderDoc
     Me.xrlDateEntered.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrlDateEntered.Weight = 0.84993773586521215R
     '
-    'xrlDueTime
+    'xrtEmployeeID
     '
-    Me.xrlDueTime.Name = "xrlDueTime"
-    Me.xrlDueTime.StylePriority.UseTextAlignment = False
-    Me.xrlDueTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrlDueTime.Weight = 0.98544844180735613R
+    Me.xrtEmployeeID.Name = "xrtEmployeeID"
+    Me.xrtEmployeeID.StylePriority.UseTextAlignment = False
+    Me.xrtEmployeeID.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrtEmployeeID.Weight = 0.98544844180735613R
     '
     'xrtDate
     '
@@ -542,12 +541,12 @@ Partial Public Class repWorkOrderDoc
     Me.xrtDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.xrtDate.Weight = 0.66726380498615656R
     '
-    'XrTableCell3
+    'xrtEmployee2
     '
-    Me.XrTableCell3.Name = "XrTableCell3"
-    Me.XrTableCell3.StylePriority.UseTextAlignment = False
-    Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell3.Weight = 1.0909017917988755R
+    Me.xrtEmployee2.Name = "xrtEmployee2"
+    Me.xrtEmployee2.StylePriority.UseTextAlignment = False
+    Me.xrtEmployee2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrtEmployee2.Weight = 1.0909017917988755R
     '
     'XrTable4
     '
@@ -821,7 +820,7 @@ Partial Public Class repWorkOrderDoc
   Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents xrlDateEntered As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrlDueTime As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtEmployeeID As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents xrlDescription As DevExpress.XtraReports.UI.XRTableCell
@@ -831,7 +830,7 @@ Partial Public Class repWorkOrderDoc
   Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents xrtDate As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtEmployee2 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtStockCode As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrLabel44 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel45 As DevExpress.XtraReports.UI.XRLabel

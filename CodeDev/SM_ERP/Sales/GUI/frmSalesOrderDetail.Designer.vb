@@ -114,6 +114,7 @@ Partial Class frmSalesOrderDetail
     Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1031,7 +1032,7 @@ Partial Class frmSalesOrderDetail
     Me.gvWorkOrders.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvWorkOrders.Appearance.Row.Options.UseFont = True
     Me.gvWorkOrders.ColumnPanelRowHeight = 34
-    Me.gvWorkOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.gcWOSOItemNumber, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.Quantity})
+    Me.gvWorkOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.gcWOSOItemNumber, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.Quantity, Me.GridColumn8})
     Me.gvWorkOrders.GridControl = Me.grdWorkOrders
     Me.gvWorkOrders.Name = "gvWorkOrders"
     Me.gvWorkOrders.OptionsDetail.EnableMasterViewMode = False
@@ -1172,6 +1173,12 @@ Partial Class frmSalesOrderDetail
     Me.GridView2.OptionsView.ShowGroupPanel = False
     Me.GridView2.OptionsView.ShowViewCaption = True
     Me.GridView2.ViewCaption = "Despachos"
+    '
+    'GridColumn8
+    '
+    Me.GridColumn8.Caption = "CostoUnitario"
+    Me.GridColumn8.FieldName = "UnitPrice"
+    Me.GridColumn8.Name = "GridColumn8"
     '
     'frmSalesOrderDetail
     '
@@ -1334,4 +1341,5 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents RepositoryItemLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
   Friend WithEvents RepositoryItemCalcEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

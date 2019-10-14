@@ -59,6 +59,30 @@
     End Get
   End Property
 
+  Public ReadOnly Property UoM As String
+    Get
+      Return pMaterialRequirement.UoM
+    End Get
+  End Property
+
+  Public ReadOnly Property AreaID As Int32
+    Get
+      Return pMaterialRequirement.AreaID
+    End Get
+  End Property
+
+  Public ReadOnly Property SupplierStockCode As String
+    Get
+      Return pMaterialRequirement.SupplierStockCode
+    End Get
+  End Property
+
+  Public ReadOnly Property Comments As String
+    Get
+      Return pMaterialRequirement.Comments
+    End Get
+  End Property
+
   Public ReadOnly Property NetThickness As Decimal
     Get
       Return pMaterialRequirement.NetThickness
@@ -176,7 +200,8 @@
     Get
       Return Math.Round(clsSMSharedFuncs.BoardFeetFromCM(clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
                                               clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth),
-                                              clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3)
+                                              clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3) * UnitPiece * WorkOrderQuantity
+
     End Get
   End Property
 

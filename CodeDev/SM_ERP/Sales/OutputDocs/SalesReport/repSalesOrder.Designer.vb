@@ -160,7 +160,7 @@ Partial Public Class repSalesOrder
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrtImageFile, Me.XrTable2})
-    Me.Detail.HeightF = 63.38142!
+    Me.Detail.HeightF = 95.67308!
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -173,7 +173,7 @@ Partial Public Class repSalesOrder
     Me.xrtImageFile.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter
     Me.xrtImageFile.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 0!)
     Me.xrtImageFile.Name = "xrtImageFile"
-    Me.xrtImageFile.SizeF = New System.Drawing.SizeF(184.512!, 63.38142!)
+    Me.xrtImageFile.SizeF = New System.Drawing.SizeF(184.512!, 95.67308!)
     Me.xrtImageFile.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
     Me.xrtImageFile.StylePriority.UseBorders = False
     '
@@ -186,7 +186,7 @@ Partial Public Class repSalesOrder
     Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(184.5121!, 0!)
     Me.XrTable2.Name = "XrTable2"
     Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
-    Me.XrTable2.SizeF = New System.Drawing.SizeF(644.4879!, 63.38142!)
+    Me.XrTable2.SizeF = New System.Drawing.SizeF(644.4879!, 95.67308!)
     Me.XrTable2.StylePriority.UseBorders = False
     Me.XrTable2.StylePriority.UseFont = False
     Me.XrTable2.StylePriority.UseTextAlignment = False

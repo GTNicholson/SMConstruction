@@ -77,15 +77,16 @@ Public Class repWorkOrderMatReqsWood
     mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
     If mMatReq IsNot Nothing Then
       xrtcTotalPieces.Text = mMatReq.UnitPiece * pWorkOrder.Quantity
+      mWoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
+                                   ItemValueToDisplayValue(mMatReq.WoodSpecieID)
+
+      mQuality = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Quality).
+                                        ItemValueToDisplayValue(mMatReq.QualityType)
+
+      mMaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
+                                        ItemValueToDisplayValue(mMatReq.Material)
     End If
-    mWoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
-                                      ItemValueToDisplayValue(mMatReq.WoodSpecieID)
 
-    mQuality = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Quality).
-                                      ItemValueToDisplayValue(mMatReq.QualityType)
-
-    mMaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
-                                      ItemValueToDisplayValue(mMatReq.Material)
 
     xrtWoodSpecieID.Text = mWoodSpecieID
     xrtQualityType.Text = mQuality

@@ -8,7 +8,6 @@ Public Class fccWorkOrderDetail
   Private pSalesOrderItem As dmSalesOrderItem
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
-
   Private pTimeSheetEntrys As colTimeSheetEntrys
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
@@ -47,6 +46,15 @@ Public Class fccWorkOrderDetail
     End Get
     Set(value As dmSalesOrder)
       pSalesOrder = value
+    End Set
+  End Property
+
+  Public Property SalesOrderItem As dmSalesOrderItem
+    Get
+      Return pSalesOrderItem
+    End Get
+    Set(value As dmSalesOrderItem)
+      pSalesOrderItem = value
     End Set
   End Property
 
@@ -241,6 +249,7 @@ Public Class fccWorkOrderDetail
   Public Sub UpdateWorkOrderQtyPerSalesItem(ByVal vNewValue As Integer)
     pWorkOrder.QtyPerSalesItem = vNewValue
     pWorkOrder.Quantity = pWorkOrder.QtyPerSalesItem * pWorkOrder.ParentSalesOrderItem.Quantity
+
   End Sub
 
 End Class

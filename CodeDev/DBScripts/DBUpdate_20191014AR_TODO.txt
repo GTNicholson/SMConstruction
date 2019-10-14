@@ -1,0 +1,10 @@
+use SMConstruction
+go
+
+alter table MaterialRequirement
+add UoM varchar(5),
+AreaID int,
+SupplierStockCode varchar(15),
+Comments varchar(255)
+
+go

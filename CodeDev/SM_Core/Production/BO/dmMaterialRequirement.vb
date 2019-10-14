@@ -18,6 +18,11 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pWoodSpecie As Int32
   Private pWoodFinish As Int32
 
+  Private pUoM As String
+  Private pAreaID As Int32
+  Private pSupplierStockCode As String
+  Private pComments As String
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -66,6 +71,11 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .WoodFinish = WoodFinish
       .WoodSpecie = WoodSpecie
 
+      .UoM = UoM
+      .AreaID = AreaID
+      .SupplierStockCode = SupplierStockCode
+      .Comments = Comments
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -74,6 +84,46 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property UoM() As String
+    Get
+      Return pUoM
+    End Get
+    Set(ByVal value As String)
+      If pUoM <> value Then IsDirty = True
+      pUoM = value
+    End Set
+  End Property
+
+  Public Property AreaID() As Int32
+    Get
+      Return pAreaID
+    End Get
+    Set(ByVal value As Int32)
+      If pAreaID <> value Then IsDirty = True
+      pAreaID = value
+    End Set
+  End Property
+
+  Public Property SupplierStockCode() As String
+    Get
+      Return pSupplierStockCode
+    End Get
+    Set(ByVal value As String)
+      If pSupplierStockCode <> value Then IsDirty = True
+      pSupplierStockCode = value
+    End Set
+  End Property
+
+  Public Property Comments() As String
+    Get
+      Return pComments
+    End Get
+    Set(ByVal value As String)
+      If pComments <> value Then IsDirty = True
+      pComments = value
+    End Set
+  End Property
 
   Public Property MaterialRequirementID() As Int32
     Get

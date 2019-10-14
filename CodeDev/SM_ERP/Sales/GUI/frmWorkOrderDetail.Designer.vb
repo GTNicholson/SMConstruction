@@ -102,7 +102,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdMaterialRequirements = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirements = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -125,6 +125,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1077,7 +1078,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.GridColumn20, Me.GridColumn9})
     Me.gvMaterialRequirementOthers.GridControl = Me.grdMaterialRequirementOthers
     Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
     Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
@@ -1103,6 +1104,7 @@ Partial Class frmWorkOrderDetail
     'GridColumn17
     '
     Me.GridColumn17.Caption = "UdM"
+    Me.GridColumn17.FieldName = "UoM"
     Me.GridColumn17.Name = "GridColumn17"
     Me.GridColumn17.Visible = True
     Me.GridColumn17.VisibleIndex = 1
@@ -1117,17 +1119,19 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn18.VisibleIndex = 2
     Me.GridColumn18.Width = 117
     '
-    'GridColumn19
+    'gcAreaID
     '
-    Me.GridColumn19.Caption = "Área"
-    Me.GridColumn19.Name = "GridColumn19"
-    Me.GridColumn19.Visible = True
-    Me.GridColumn19.VisibleIndex = 3
-    Me.GridColumn19.Width = 92
+    Me.gcAreaID.Caption = "Área"
+    Me.gcAreaID.FieldName = "AreaID"
+    Me.gcAreaID.Name = "gcAreaID"
+    Me.gcAreaID.Visible = True
+    Me.gcAreaID.VisibleIndex = 3
+    Me.gcAreaID.Width = 92
     '
     'GridColumn20
     '
     Me.GridColumn20.Caption = "Código"
+    Me.GridColumn20.FieldName = "SupplierStockCode"
     Me.GridColumn20.Name = "GridColumn20"
     Me.GridColumn20.Visible = True
     Me.GridColumn20.VisibleIndex = 4
@@ -1358,6 +1362,14 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'GridColumn9
+    '
+    Me.GridColumn9.Caption = "Comentarios"
+    Me.GridColumn9.FieldName = "Comments"
+    Me.GridColumn9.Name = "GridColumn9"
+    Me.GridColumn9.Visible = True
+    Me.GridColumn9.VisibleIndex = 5
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1535,8 +1547,9 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents ceMetal As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcAreaID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label9 As Label
   Friend WithEvents txtQtyPerSalesItem As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

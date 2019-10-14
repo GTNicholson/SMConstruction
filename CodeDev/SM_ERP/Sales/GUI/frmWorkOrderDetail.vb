@@ -13,6 +13,7 @@ Public Class frmWorkOrderDetail
   Private pIsActive As Boolean
   Private pFormController As fccWorkOrderDetail
   Public ExitMode As Windows.Forms.DialogResult
+  Public pSOI As dmSalesOrderItem
 
   Public Sub New()
 
@@ -24,7 +25,7 @@ Public Class frmWorkOrderDetail
     Me.pMySharedIndex = sFormIndex
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     sActiveForms.Add(Me, Me.pMySharedIndex.ToString)
-
+    pSOI = New dmSalesOrderItem()
   End Sub
 
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
@@ -207,6 +208,9 @@ Public Class frmWorkOrderDetail
 
 
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcAreaID, mVIs)
+
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSArea, mVIs)
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
@@ -238,10 +242,9 @@ Public Class frmWorkOrderDetail
         Me.Text = "O.T. " & .WorkOrderNo
       End If
 
-
-      txtPrice.Text = .UnitPrice
       txtQtyPerSalesItem.Text = .QtyPerSalesItem
-      txtQuantity.Text = .Quantity
+
+      'txtQuantity.Text = .Quantity
 
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description
@@ -252,6 +255,7 @@ Public Class frmWorkOrderDetail
       clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
       clsDEControlLoading.SetDECombo(cboFurnitureCategory, .FurnitureCategoryID)
       clsDEControlLoading.SetDECombo(cboEmployee, .EmployeeID)
+
 
       ceMaquinado.Checked = .Machining
       ceCostura.Checked = .Upholstery
@@ -272,7 +276,9 @@ Public Class frmWorkOrderDetail
 
     End With
 
-
+    With pFormController.SalesOrderItem
+      txtPrice.Text = .UnitPrice
+    End With
 
 
     pIsActive = mIsActive
@@ -637,6 +643,7 @@ Public Class frmWorkOrderDetail
       mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
       mWOH.AssignWOBatchRefs()
       txtQuantity.Text = pFormController.WorkOrder.Quantity
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -647,6 +654,7 @@ Public Class frmWorkOrderDetail
       Dim mWOH As clsWorkOrderHandler
       mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
       txtQuantity.Text = pFormController.WorkOrder.Quantity
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -662,6 +670,8 @@ Public Class frmWorkOrderDetail
 
   Private Sub txtQtyPerSalesItem_Validated(sender As Object, e As EventArgs) Handles txtQtyPerSalesItem.Validated
     pFormController.UpdateWorkOrderQtyPerSalesItem(Val(txtQtyPerSalesItem.Text))
-    RefreshControls()
+    'RefreshControls()
+    UpdateObject()
+
   End Sub
 End Class
