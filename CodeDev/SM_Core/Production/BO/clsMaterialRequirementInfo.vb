@@ -198,7 +198,7 @@
 
   Public ReadOnly Property TotalBoardFeetFromCM As Decimal
     Get
-      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCM(clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
                                               clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth),
                                               clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3) * UnitPiece * WorkOrderQuantity
 
