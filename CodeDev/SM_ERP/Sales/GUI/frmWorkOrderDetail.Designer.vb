@@ -104,6 +104,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdMaterialRequirements = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirements = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -125,7 +126,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1137,6 +1139,14 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn20.VisibleIndex = 4
     Me.GridColumn20.Width = 119
     '
+    'GridColumn9
+    '
+    Me.GridColumn9.Caption = "Comentarios"
+    Me.GridColumn9.FieldName = "Comments"
+    Me.GridColumn9.Name = "GridColumn9"
+    Me.GridColumn9.Visible = True
+    Me.GridColumn9.VisibleIndex = 5
+    '
     'grdMaterialRequirements
     '
     Me.grdMaterialRequirements.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1165,7 +1175,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirements.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality})
+    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality, Me.gcTotalQuantity, Me.gcQtyBoardFeet})
     Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
     Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
     Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
@@ -1203,7 +1213,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.FieldName = "NetThickness"
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 2
+    Me.GridColumn10.VisibleIndex = 3
     Me.GridColumn10.Width = 72
     '
     'GridColumn11
@@ -1212,7 +1222,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.FieldName = "NetWidth"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 3
+    Me.GridColumn11.VisibleIndex = 4
     Me.GridColumn11.Width = 77
     '
     'GridColumn12
@@ -1221,7 +1231,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.FieldName = "NetLenght"
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
-    Me.GridColumn12.VisibleIndex = 4
+    Me.GridColumn12.VisibleIndex = 5
     Me.GridColumn12.Width = 74
     '
     'gcMaterialTypeID
@@ -1230,7 +1240,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID.FieldName = "MaterialTypeID"
     Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
     Me.gcMaterialTypeID.Visible = True
-    Me.gcMaterialTypeID.VisibleIndex = 5
+    Me.gcMaterialTypeID.VisibleIndex = 6
     Me.gcMaterialTypeID.Width = 57
     '
     'gcWoodSpecie
@@ -1239,7 +1249,7 @@ Partial Class frmWorkOrderDetail
     Me.gcWoodSpecie.FieldName = "WoodSpecie"
     Me.gcWoodSpecie.Name = "gcWoodSpecie"
     Me.gcWoodSpecie.Visible = True
-    Me.gcWoodSpecie.VisibleIndex = 6
+    Me.gcWoodSpecie.VisibleIndex = 7
     Me.gcWoodSpecie.Width = 56
     '
     'gcQuality
@@ -1248,7 +1258,7 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality.FieldName = "QualityType"
     Me.gcQuality.Name = "gcQuality"
     Me.gcQuality.Visible = True
-    Me.gcQuality.VisibleIndex = 7
+    Me.gcQuality.VisibleIndex = 8
     Me.gcQuality.Width = 53
     '
     'XtraTabPage4
@@ -1362,13 +1372,23 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
-    'GridColumn9
+    'gcTotalQuantity
     '
-    Me.GridColumn9.Caption = "Comentarios"
-    Me.GridColumn9.FieldName = "Comments"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 5
+    Me.gcTotalQuantity.Caption = "Piezas Total"
+    Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
+    Me.gcTotalQuantity.Name = "gcTotalQuantity"
+    Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+    Me.gcTotalQuantity.Visible = True
+    Me.gcTotalQuantity.VisibleIndex = 2
+    '
+    'gcQtyBoardFeet
+    '
+    Me.gcQtyBoardFeet.Caption = "Pie Tabla"
+    Me.gcQtyBoardFeet.FieldName = "ub_BoardFeet"
+    Me.gcQtyBoardFeet.Name = "gcQtyBoardFeet"
+    Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcQtyBoardFeet.Visible = True
+    Me.gcQtyBoardFeet.VisibleIndex = 9
     '
     'frmWorkOrderDetail
     '
@@ -1552,4 +1572,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label9 As Label
   Friend WithEvents txtQtyPerSalesItem As DevExpress.XtraEditors.TextEdit
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcTotalQuantity As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcQtyBoardFeet As DevExpress.XtraGrid.Columns.GridColumn
 End Class

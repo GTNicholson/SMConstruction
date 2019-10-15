@@ -627,7 +627,7 @@ Public Class frmWorkOrderDetail
       Return
     End If
 
-    mMatReqInfos = pFormController.GetMaterialRequirementInfos
+    mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
     repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
   End Sub
 
