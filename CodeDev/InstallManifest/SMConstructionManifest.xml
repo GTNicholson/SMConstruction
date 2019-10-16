@@ -48,10 +48,6 @@
     <AllowRollBack>FALSE</AllowRollBack>
   </CurrentVersion>
   <ExeFiles>
-    <Filename>RTISAlign.exe</Filename>
-    <FileUpdateType>0</FileUpdateType>
-  </ExeFiles>
-  <ExeFiles>
     <Filename>DevExpress.BonusSkins.v17.1.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
@@ -88,6 +84,10 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>DevExpress.Map.v17.1.Core.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.Office.v17.1.Core.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
@@ -120,11 +120,27 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>DevExpress.Snap.v17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>DevExpress.Snap.v17.1.Extensions.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.Sparkline.v17.1.Core.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>DevExpress.SpellChecker.v17.1.Core.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.Spreadsheet.v17.1.Core.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>DevExpress.TreeMap.v17.1.Core.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
@@ -172,11 +188,23 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>DevExpress.XtraGauges.v17.1.Presets.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>DevExpress.XtraGauges.v17.1.Win.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.XtraGrid.v17.1.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
     <Filename>DevExpress.XtraLayout.v17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>DevExpress.XtraMap.v17.1.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
@@ -220,11 +248,19 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>DevExpress.XtraScheduler.v17.1.Extensions.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.XtraScheduler.v17.1.Reporting.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
     <Filename>DevExpress.XtraScheduler.v17.1.Reporting.Extensions.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>DevExpress.XtraSpellChecker.v17.1.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
@@ -236,7 +272,43 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>DevExpress.XtraTreeMap.v17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>DevExpress.XtraVerticalGrid.v17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>itextsharp.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>MigraDoc.DocumentObjectModel.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>MigraDoc.Rendering.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>MigraDoc.RtfRendering.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>OpenVDF.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>PdfSharp.Charting.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>PdfSharp.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>RenderFormats.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
@@ -276,7 +348,15 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>RTIS.PDFUtils.V17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>RTIS.ProductCore.V17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>RTIS.VCAD.V17.1.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
@@ -284,7 +364,15 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>RTISAlign.exe</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>SimplementeMadera.exe</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>slapi.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
@@ -293,6 +381,82 @@
   </ExeFiles>
   <ExeFiles>
     <Filename>System.Data.SQLite.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdCommandLine.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdDXF.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdfopen.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdFramedControl.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VdProControl.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdPropertyGrid.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VDrawBaseControl.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdrawgl.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VDrawI5.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VdrawPro5.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdScrollableControl.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>vdxFcnv.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VectorDraw.Actions.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VectorDraw.Generics.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VectorDraw.Geometry.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VectorDraw.Professional.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VectorDraw.Render.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>VectorDraw.Serialize.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
+    <Filename>xFiles.dll</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <AuxFiles>
