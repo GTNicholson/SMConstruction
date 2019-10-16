@@ -116,8 +116,10 @@ Public Class clsSMSharedFuncs
     Dim mThicknessInInches As Decimal
     Dim mRetVal As Decimal
 
-    mLengthInInches = WoodLengthFeet(vLength) / 12
+    'mLengthInInches = vLength / 12
+    mLengthInInches = CMToQuaterInchesLenght(vLength)
     mWidthInInches = CMToQuaterInches(vWidth)
+    'mWidthInInches = vWidth
     mThicknessInInches = GrosWoodThickness(vThickness)
 
     mRetVal = vQty * (mLengthInInches * mWidthInInches * mThicknessInInches)

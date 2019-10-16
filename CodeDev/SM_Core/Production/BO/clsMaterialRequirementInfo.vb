@@ -183,7 +183,7 @@
     Get
       Dim mRetVal As Int32
 
-      mRetVal = pMaterialRequirement.UnitPiece * pSalesOrderItem.Quantity
+      mRetVal = pMaterialRequirement.UnitPiece * WorkOrder.Quantity
 
 
       Return mRetVal
@@ -200,12 +200,25 @@
     Get
       Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
                                               clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth),
-                                              clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3) * UnitPiece * WorkOrderQuantity
+                                              clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3) * TotalPieces * UnitPiece
 
     End Get
   End Property
 
+
+  Public ReadOnly Property TotalBoardFeetReport As Decimal
+    Get
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght,
+                                              pMaterialRequirement.NetWidth,
+                                              pMaterialRequirement.NetThickness), 3)
+
+    End Get
+  End Property
+
+
 End Class
+
+
 
 
 Public Class colMaterialRequirementInfos : Inherits List(Of clsMaterialRequirementInfo)

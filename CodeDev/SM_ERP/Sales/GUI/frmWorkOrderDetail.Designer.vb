@@ -38,8 +38,6 @@ Partial Class frmWorkOrderDetail
     Me.txtQtyPerSalesItem = New DevExpress.XtraEditors.TextEdit()
     Me.Label20 = New System.Windows.Forms.Label()
     Me.bteImage = New DevExpress.XtraEditors.ButtonEdit()
-    Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-    Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
     Me.grdWorkOrderBatches = New DevExpress.XtraGrid.GridControl()
     Me.gvWorkOrderBatches = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -116,6 +114,8 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcWoodSpecie = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcQuality = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -126,8 +126,6 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcTotalQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -286,8 +284,6 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.txtQtyPerSalesItem)
     Me.GroupControl1.Controls.Add(Me.Label20)
     Me.GroupControl1.Controls.Add(Me.bteImage)
-    Me.GroupControl1.Controls.Add(Me.SimpleButton2)
-    Me.GroupControl1.Controls.Add(Me.SimpleButton1)
     Me.GroupControl1.Controls.Add(Me.grdWorkOrderBatches)
     Me.GroupControl1.Controls.Add(Me.cboEmployee)
     Me.GroupControl1.Controls.Add(Me.Label18)
@@ -319,7 +315,7 @@ Partial Class frmWorkOrderDetail
     Me.Label9.AutoSize = True
     Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label9.Location = New System.Drawing.Point(376, 73)
+    Me.Label9.Location = New System.Drawing.Point(369, 73)
     Me.Label9.Name = "Label9"
     Me.Label9.Size = New System.Drawing.Size(33, 14)
     Me.Label9.TabIndex = 155
@@ -357,24 +353,8 @@ Partial Class frmWorkOrderDetail
     Me.bteImage.Properties.Appearance.Options.UseBackColor = True
     Me.bteImage.Properties.Appearance.Options.UseFont = True
     Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.bteImage.Size = New System.Drawing.Size(163, 20)
+    Me.bteImage.Size = New System.Drawing.Size(263, 20)
     Me.bteImage.TabIndex = 152
-    '
-    'SimpleButton2
-    '
-    Me.SimpleButton2.Location = New System.Drawing.Point(488, 107)
-    Me.SimpleButton2.Name = "SimpleButton2"
-    Me.SimpleButton2.Size = New System.Drawing.Size(80, 20)
-    Me.SimpleButton2.TabIndex = 151
-    Me.SimpleButton2.Text = "Generar LMR"
-    '
-    'SimpleButton1
-    '
-    Me.SimpleButton1.Location = New System.Drawing.Point(488, 136)
-    Me.SimpleButton1.Name = "SimpleButton1"
-    Me.SimpleButton1.Size = New System.Drawing.Size(78, 20)
-    Me.SimpleButton1.TabIndex = 150
-    Me.SimpleButton1.Text = "Generar LMP"
     '
     'grdWorkOrderBatches
     '
@@ -392,7 +372,7 @@ Partial Class frmWorkOrderDetail
     Me.grdWorkOrderBatches.MainView = Me.gvWorkOrderBatches
     Me.grdWorkOrderBatches.MenuManager = Me.BarManager1
     Me.grdWorkOrderBatches.Name = "grdWorkOrderBatches"
-    Me.grdWorkOrderBatches.Size = New System.Drawing.Size(195, 124)
+    Me.grdWorkOrderBatches.Size = New System.Drawing.Size(242, 124)
     Me.grdWorkOrderBatches.TabIndex = 149
     Me.grdWorkOrderBatches.UseEmbeddedNavigator = True
     Me.grdWorkOrderBatches.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderBatches})
@@ -670,7 +650,7 @@ Partial Class frmWorkOrderDetail
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseBackColor = True
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseFont = True
     Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(163, 20)
+    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(263, 20)
     Me.btneWorkOrderDocument.TabIndex = 136
     '
     'txtPrice
@@ -697,7 +677,7 @@ Partial Class frmWorkOrderDetail
     '
     'txtQuantity
     '
-    Me.txtQuantity.Location = New System.Drawing.Point(415, 70)
+    Me.txtQuantity.Location = New System.Drawing.Point(410, 70)
     Me.txtQuantity.MenuManager = Me.BarManager1
     Me.txtQuantity.Name = "txtQuantity"
     Me.txtQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1085,7 +1065,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
     Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
     Me.gvMaterialRequirementOthers.OptionsView.ShowViewCaption = True
-    Me.gvMaterialRequirementOthers.ViewCaption = "Lista de Materiales Requeridos"
+    Me.gvMaterialRequirementOthers.ViewCaption = "Lista de Materiales Requeridos (LMR)"
     '
     'GridColumn6
     '
@@ -1261,6 +1241,24 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality.VisibleIndex = 8
     Me.gcQuality.Width = 53
     '
+    'gcTotalQuantity
+    '
+    Me.gcTotalQuantity.Caption = "Piezas Total"
+    Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
+    Me.gcTotalQuantity.Name = "gcTotalQuantity"
+    Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+    Me.gcTotalQuantity.Visible = True
+    Me.gcTotalQuantity.VisibleIndex = 2
+    '
+    'gcQtyBoardFeet
+    '
+    Me.gcQtyBoardFeet.Caption = "Pie Tabla"
+    Me.gcQtyBoardFeet.FieldName = "ub_BoardFeet"
+    Me.gcQtyBoardFeet.Name = "gcQtyBoardFeet"
+    Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcQtyBoardFeet.Visible = True
+    Me.gcQtyBoardFeet.VisibleIndex = 9
+    '
     'XtraTabPage4
     '
     Me.XtraTabPage4.Controls.Add(Me.PanelControl1)
@@ -1371,24 +1369,6 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.Visible = True
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
-    '
-    'gcTotalQuantity
-    '
-    Me.gcTotalQuantity.Caption = "Piezas Total"
-    Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
-    Me.gcTotalQuantity.Name = "gcTotalQuantity"
-    Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-    Me.gcTotalQuantity.Visible = True
-    Me.gcTotalQuantity.VisibleIndex = 2
-    '
-    'gcQtyBoardFeet
-    '
-    Me.gcQtyBoardFeet.Caption = "Pie Tabla"
-    Me.gcQtyBoardFeet.FieldName = "ub_BoardFeet"
-    Me.gcQtyBoardFeet.Name = "gcQtyBoardFeet"
-    Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-    Me.gcQtyBoardFeet.Visible = True
-    Me.gcQtyBoardFeet.VisibleIndex = 9
     '
     'frmWorkOrderDetail
     '
@@ -1542,8 +1522,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents cePintura As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents ceLija As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents ceEnsamble As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents XtraTabPage5 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents grdMaterialRequirementOthers As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvMaterialRequirementOthers As DevExpress.XtraGrid.Views.Grid.GridView

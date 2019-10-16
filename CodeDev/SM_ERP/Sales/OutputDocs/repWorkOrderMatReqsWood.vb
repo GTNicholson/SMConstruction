@@ -9,12 +9,12 @@ Public Class repWorkOrderMatReqsWood
 
   Private Sub repWorkOrderMatReqsWood_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
 
-    xrlWorkOrderNo.Text = "OT " & pWorkOrder.WorkOrderNo
+    xrlWorkOrderNo.Text = pWorkOrder.WorkOrderNo
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrlProductDescription.Text = pWorkOrder.Description
     xrtDateEntered.Text = pWorkOrder.PlannedStartDate
     xrtQuantity.Text = pWorkOrder.Quantity
-    pQuantity = Val(xrtQuantity.Text)
+
 
     SetUpBindings()
 
@@ -23,8 +23,10 @@ Public Class repWorkOrderMatReqsWood
 
   Private Sub SetUpBindings()
 
-    xrlTotalBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetFromCM")
 
+
+    xrlTotalBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetReport")
+    'xrlMatReqDesc.DataBindings.Add("Text", Me.DataSource, "Description")
 
     ''xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xrtComponentDescription.DataBindings.Add("Text", Me.DataSource, "Description")
@@ -40,11 +42,9 @@ Public Class repWorkOrderMatReqsWood
     xrtGrossWidth.DataBindings.Add("Text", Me.DataSource, "InitialWidthFraction")
     xrtGrossLenght.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFraction")
     xrtGrossLenghtFeet.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFractionFeet")
-    xrtBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetFromCM")
+    'xrtBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetFromCM")
 
 
-
-    'xrlMatReqDesc.DataBindings.Add("Text", Me.DataSource, "Description")
   End Sub
 
 
@@ -85,12 +85,16 @@ Public Class repWorkOrderMatReqsWood
 
       mMaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
                                         ItemValueToDisplayValue(mMatReq.Material)
+
+      xrtWoodSpecieID.Text = mWoodSpecieID
+      xrtQualityType.Text = mQuality
+      xrtMaterialTypeID.Text = mMaterialID
+      xrtBoardFeet.Text = mMatReq.TotalBoardFeetReport()
+
     End If
 
 
-    xrtWoodSpecieID.Text = mWoodSpecieID
-    xrtQualityType.Text = mQuality
-    xrtMaterialTypeID.Text = mMaterialID
+
 
   End Sub
 

@@ -27,21 +27,20 @@ Public Class repOtherMaterials
 
     mRetVal.CreateDocument()
 
-    Dim mTool As DevExpress.XtraReports.UI.ReportPrintTool
-    mTool = New DevExpress.XtraReports.UI.ReportPrintTool(mRetVal)
-    mTool.ShowPreviewDialog()
+
 
     Return mRetVal
   End Function
   Private Sub SetUpBindings()
-    'xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
-    'xrtMaterialDescription.DataBindings.Add("Text", Me.DataSource, "Description")
-    'xrtMaterialQuantity.DataBindings.Add("Text", Me.DataSource, "Quantity")
+    xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
+    xrlWorkOrderNo2.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
+    xrtMaterialDescription.DataBindings.Add("Text", Me.DataSource, "Description")
+    xrtMaterialQuantity.DataBindings.Add("Text", Me.DataSource, "Quantity")
 
-    'xrtUoM.DataBindings.Add("Text", Me.DataSource, "UoM")
+    xrtUoM.DataBindings.Add("Text", Me.DataSource, "UoM")
     'xrtAreaID.DataBindings.Add("Text", Me.DataSource, "AreaID")
-    'xrtSupplierStockCode.DataBindings.Add("Text", Me.DataSource, "SupplierStockCode")
-    'xrtComments.DataBindings.Add("Text", Me.DataSource, "Comments")
+    xrtSupplierStockCode.DataBindings.Add("Text", Me.DataSource, "SupplierStockCode")
+    xrtComments.DataBindings.Add("Text", Me.DataSource, "Comments")
   End Sub
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
@@ -53,7 +52,7 @@ Public Class repOtherMaterials
 
     mAreaID = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)).
                                       ItemValueToDisplayValue(mMatReq.AreaID)
+    xrtAreaID.Text = mAreaID
 
-    MessageBox.Show(mMatReq.Description)
   End Sub
 End Class

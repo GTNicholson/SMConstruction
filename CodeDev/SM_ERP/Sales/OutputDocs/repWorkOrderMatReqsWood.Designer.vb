@@ -176,11 +176,11 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTable2.Font = New System.Drawing.Font("Arial", 7.0!)
     Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0.00007947285!, 0!)
     Me.XrTable2.Name = "XrTable2"
+    Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 1, 100.0!)
     Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
     Me.XrTable2.SizeF = New System.Drawing.SizeF(793.9572!, 26.04167!)
     Me.XrTable2.StylePriority.UseBorders = False
     Me.XrTable2.StylePriority.UseFont = False
-    Me.XrTable2.StylePriority.UseTextAlignment = False
     Me.XrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
     'XrTableRow2
@@ -329,15 +329,14 @@ Partial Public Class repWorkOrderMatReqsWood
     '
     'xrlWorkOrderNo
     '
-    Me.xrlWorkOrderNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Bold)
-    Me.xrlWorkOrderNo.LocationFloat = New DevExpress.Utils.PointFloat(610.0225!, 10.00001!)
+    Me.xrlWorkOrderNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 28.0!, System.Drawing.FontStyle.Bold)
+    Me.xrlWorkOrderNo.LocationFloat = New DevExpress.Utils.PointFloat(413.3815!, 27.00008!)
     Me.xrlWorkOrderNo.Name = "xrlWorkOrderNo"
     Me.xrlWorkOrderNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrlWorkOrderNo.SizeF = New System.Drawing.SizeF(197.8334!, 40.25003!)
+    Me.xrlWorkOrderNo.SizeF = New System.Drawing.SizeF(394.9518!, 70.45835!)
     Me.xrlWorkOrderNo.StylePriority.UseFont = False
     Me.xrlWorkOrderNo.StylePriority.UseTextAlignment = False
-    Me.xrlWorkOrderNo.Text = "OT"
-    Me.xrlWorkOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrlWorkOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
     '
     'XrLabel1
     '

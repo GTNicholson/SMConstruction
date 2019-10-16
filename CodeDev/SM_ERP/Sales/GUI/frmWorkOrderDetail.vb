@@ -411,6 +411,7 @@ Public Class frmWorkOrderDetail
     Dim mValidate As clsValidate
     Dim mReport As repWorkOrderDoc
     Dim mReportMRP As repWorkOrderMatReqsWood
+    Dim mOtherMaterialReport As repOtherMaterials
     Dim mFilePath As String
     Dim mRepMerge As New DevExpress.XtraReports.UI.XtraReport
 
@@ -420,6 +421,11 @@ Public Class frmWorkOrderDetail
       MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
       Return
     End If
+
+
+    'Dim mMatReqInfos As New colMaterialRequirementInfos
+
+
 
     mValidate = pFormController.ValidateObject()
     If mValidate.ValOk Then
@@ -432,10 +438,19 @@ Public Class frmWorkOrderDetail
         mRepMerge.Pages.Add(mRepPage)
       Next
 
+      ''Creating Wood Requirements Report
       mMatReqInfos = pFormController.GetMaterialRequirementInfos
       mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
 
       For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
+        mRepMerge.Pages.Add(mRepPage)
+      Next
+
+      ''Creating Other Materials Report
+      mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
+      mOtherMaterialReport = repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+
+      For Each mRepPage As DevExpress.XtraPrinting.Page In mOtherMaterialReport.Pages
         mRepMerge.Pages.Add(mRepPage)
       Next
 
@@ -607,7 +622,7 @@ Public Class frmWorkOrderDetail
     End If
   End Sub
 
-  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
     Dim mMatReqInfos As New colMaterialRequirementInfos
     If IsNothing(pFormController.SalesOrder.Customer) Then
       MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
@@ -619,7 +634,7 @@ Public Class frmWorkOrderDetail
 
   End Sub
 
-  Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+  Private Sub SimpleButton2_Click(sender As Object, e As EventArgs)
     Dim mMatReqInfos As New colMaterialRequirementInfos
 
     If IsNothing(pFormController.SalesOrder.Customer) Then
