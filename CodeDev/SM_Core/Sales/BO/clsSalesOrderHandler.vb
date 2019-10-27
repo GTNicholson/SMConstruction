@@ -79,5 +79,8 @@ Public Class clsSalesOrderHandler
     Return mRetVal
   End Function
 
+  Public Function GetCostShipping() As Decimal
+    Return pSalesOrder.ShippingCost
+  End Function
 
 End Class

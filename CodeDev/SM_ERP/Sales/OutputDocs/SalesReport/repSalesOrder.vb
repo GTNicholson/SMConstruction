@@ -168,13 +168,19 @@ Public Class repSalesOrder
     MyBase.Finalize()
   End Sub
 
-  Private Sub XrTableCell12_BeforePrint(sender As Object, e As PrintEventArgs) Handles xrtTotalAmount.BeforePrint
+  Private Sub XrTableCell12_BeforePrint(sender As Object, e As PrintEventArgs)
 
   End Sub
 
-  Private Sub ReportFooter_BeforePrint(sender As Object, e As PrintEventArgs) Handles ReportFooter.BeforePrint
+  Private Sub ReportFooter_BeforePrint(sender As Object, e As PrintEventArgs)
     xrtSubTotalAmount.Text = pHandler.GetTotalValue.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-    xrtTax.Text = (clsConstants.TaxRate * pHandler.GetTotalValue).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-    xrtTotalAmount.Text = ((1 + clsConstants.TaxRate) * pHandler.GetTotalValue).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtTax.Text = (pHandler.GetCostShipping).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtTotalAmount.Text = (pHandler.GetCostShipping + pHandler.GetTotalValue).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+  End Sub
+
+  Private Sub ReportFooter_BeforePrint_1(sender As Object, e As PrintEventArgs) Handles ReportFooter.BeforePrint
+    xrtSubTotalAmount.Text = pHandler.GetTotalValue.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtTax.Text = (pHandler.GetCostShipping).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtTotalAmount.Text = (pHandler.GetCostShipping + pHandler.GetTotalValue).ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
   End Sub
 End Class

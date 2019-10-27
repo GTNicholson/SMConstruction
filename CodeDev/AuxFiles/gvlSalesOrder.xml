@@ -46,7 +46,7 @@
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="12">
+  <property name="Columns" iskey="true" value="13">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -66,7 +66,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">86</property>
+      <property name="Width">79</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
@@ -78,7 +78,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">119</property>
+      <property name="Width">113</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
@@ -90,7 +90,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">129</property>
+      <property name="Width">125</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcOrderStatusEnum</property>
@@ -102,7 +102,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
-      <property name="Width">106</property>
+      <property name="Width">97</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
@@ -114,7 +114,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">91</property>
+      <property name="Width">78</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
@@ -126,7 +126,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">106</property>
+      <property name="Width">92</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
@@ -138,7 +138,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">106</property>
+      <property name="Width">98</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
@@ -150,7 +150,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">71</property>
+      <property name="Width">64</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
@@ -162,7 +162,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">131</property>
+      <property name="Width">115</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
@@ -170,11 +170,11 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Código Empleado</property>
-      <property name="FieldName">EstimatorEmployeeID</property>
+      <property name="FieldName">ContractManagerID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">108</property>
+      <property name="Width">91</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
@@ -184,9 +184,18 @@
       <property name="Caption">Empleado</property>
       <property name="FieldName">FirstName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
       <property name="Width">131</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Name">gcShippingCost</property>
+      <property name="Caption">Costo de Envío</property>
+      <property name="FieldName">ShippingCost</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">9</property>
+      <property name="Visible">true</property>
+      <property name="Width">78</property>
     </property>
   </property>
   <property name="ViewCaption" />

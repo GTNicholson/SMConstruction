@@ -31,9 +31,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel40 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLine17 = New DevExpress.XtraReports.UI.XRLine()
-    Me.XrLine14 = New DevExpress.XtraReports.UI.XRLine()
-    Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrLabel39 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel36 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel37 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLine13 = New DevExpress.XtraReports.UI.XRLine()
@@ -93,7 +90,7 @@ Partial Public Class repWorkOrderDoc
     '
     'Detail
     '
-    Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel24, Me.XrLabel44, Me.XrLabel45, Me.XrLine21, Me.XrLine18, Me.XrLabel42, Me.XrLabel43, Me.XrLabel40, Me.XrLabel41, Me.XrLine17, Me.XrLine14, Me.XrLabel38, Me.XrLabel39, Me.XrLabel36, Me.XrLabel37, Me.XrLine13, Me.XrLine10, Me.XrLabel34, Me.XrLabel35, Me.XrLabel31, Me.XrLabel32, Me.XrLine9, Me.XrLine7, Me.XrLabel27, Me.xrNotes, Me.XrLabel12, Me.xrPic})
+    Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel24, Me.XrLabel44, Me.XrLabel45, Me.XrLine21, Me.XrLine18, Me.XrLabel42, Me.XrLabel43, Me.XrLabel40, Me.XrLabel41, Me.XrLine17, Me.XrLabel36, Me.XrLabel37, Me.XrLine13, Me.XrLine10, Me.XrLabel34, Me.XrLabel35, Me.XrLabel31, Me.XrLabel32, Me.XrLine9, Me.XrLine7, Me.XrLabel27, Me.xrNotes, Me.XrLabel12, Me.xrPic})
     Me.Detail.HeightF = 553.0835!
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -102,7 +99,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel24
     '
     Me.XrLabel24.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 22.91667!)
+    Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(789.1667!, 22.91667!)
     Me.XrLabel24.Name = "XrLabel24"
     Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel24.SizeF = New System.Drawing.SizeF(151.0417!, 15.625!)
@@ -112,7 +109,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel44
     '
     Me.XrLabel44.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel44.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 485.1722!)
+    Me.XrLabel44.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 499.8591!)
     Me.XrLabel44.Name = "XrLabel44"
     Me.XrLabel44.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel44.SizeF = New System.Drawing.SizeF(187.4167!, 15.625!)
@@ -122,7 +119,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel45
     '
     Me.XrLabel45.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 519.753!)
+    Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(789.2375!, 525.9841!)
     Me.XrLabel45.Name = "XrLabel45"
     Me.XrLabel45.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel45.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -131,20 +128,20 @@ Partial Public Class repWorkOrderDoc
     '
     'XrLine21
     '
-    Me.XrLine21.LocationFloat = New DevExpress.Utils.PointFloat(845.7087!, 509.2531!)
+    Me.XrLine21.LocationFloat = New DevExpress.Utils.PointFloat(845.7087!, 515.4841!)
     Me.XrLine21.Name = "XrLine21"
     Me.XrLine21.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
     '
     'XrLine18
     '
-    Me.XrLine18.LocationFloat = New DevExpress.Utils.PointFloat(845.7084!, 443.2165!)
+    Me.XrLine18.LocationFloat = New DevExpress.Utils.PointFloat(845.7085!, 437.403!)
     Me.XrLine18.Name = "XrLine18"
     Me.XrLine18.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
     '
     'XrLabel42
     '
     Me.XrLabel42.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 453.7165!)
+    Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(789.2375!, 447.903!)
     Me.XrLabel42.Name = "XrLabel42"
     Me.XrLabel42.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel42.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -154,7 +151,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel43
     '
     Me.XrLabel43.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 419.1357!)
+    Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 421.778!)
     Me.XrLabel43.Name = "XrLabel43"
     Me.XrLabel43.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel43.SizeF = New System.Drawing.SizeF(187.4167!, 15.625!)
@@ -164,7 +161,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel40
     '
     Me.XrLabel40.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 353.0992!)
+    Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(789.2375!, 331.2052!)
     Me.XrLabel40.Name = "XrLabel40"
     Me.XrLabel40.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel40.SizeF = New System.Drawing.SizeF(187.4167!, 15.625!)
@@ -174,7 +171,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel41
     '
     Me.XrLabel41.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 387.68!)
+    Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(789.2375!, 365.786!)
     Me.XrLabel41.Name = "XrLabel41"
     Me.XrLabel41.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel41.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -183,40 +180,14 @@ Partial Public Class repWorkOrderDoc
     '
     'XrLine17
     '
-    Me.XrLine17.LocationFloat = New DevExpress.Utils.PointFloat(845.7084!, 377.18!)
+    Me.XrLine17.LocationFloat = New DevExpress.Utils.PointFloat(845.7085!, 359.3219!)
     Me.XrLine17.Name = "XrLine17"
     Me.XrLine17.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
-    '
-    'XrLine14
-    '
-    Me.XrLine14.LocationFloat = New DevExpress.Utils.PointFloat(845.7084!, 311.1435!)
-    Me.XrLine14.Name = "XrLine14"
-    Me.XrLine14.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
-    '
-    'XrLabel38
-    '
-    Me.XrLabel38.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 321.6435!)
-    Me.XrLabel38.Name = "XrLabel38"
-    Me.XrLabel38.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel38.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
-    Me.XrLabel38.StylePriority.UseFont = False
-    Me.XrLabel38.Text = "Fecha:"
-    '
-    'XrLabel39
-    '
-    Me.XrLabel39.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 287.0627!)
-    Me.XrLabel39.Name = "XrLabel39"
-    Me.XrLabel39.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel39.SizeF = New System.Drawing.SizeF(187.4167!, 15.625!)
-    Me.XrLabel39.StylePriority.UseFont = False
-    Me.XrLabel39.Text = "Nombre: Metal"
     '
     'XrLabel36
     '
     Me.XrLabel36.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 221.0262!)
+    Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 265.6158!)
     Me.XrLabel36.Name = "XrLabel36"
     Me.XrLabel36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel36.SizeF = New System.Drawing.SizeF(187.4167!, 15.625!)
@@ -226,7 +197,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel37
     '
     Me.XrLabel37.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 255.607!)
+    Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 291.7408!)
     Me.XrLabel37.Name = "XrLabel37"
     Me.XrLabel37.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel37.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -235,20 +206,20 @@ Partial Public Class repWorkOrderDoc
     '
     'XrLine13
     '
-    Me.XrLine13.LocationFloat = New DevExpress.Utils.PointFloat(845.7084!, 245.107!)
+    Me.XrLine13.LocationFloat = New DevExpress.Utils.PointFloat(845.7084!, 281.2408!)
     Me.XrLine13.Name = "XrLine13"
     Me.XrLine13.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
     '
     'XrLine10
     '
-    Me.XrLine10.LocationFloat = New DevExpress.Utils.PointFloat(845.7087!, 179.0704!)
+    Me.XrLine10.LocationFloat = New DevExpress.Utils.PointFloat(845.7087!, 203.1597!)
     Me.XrLine10.Name = "XrLine10"
     Me.XrLine10.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
     '
     'XrLabel34
     '
     Me.XrLabel34.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 189.5705!)
+    Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 213.6597!)
     Me.XrLabel34.Name = "XrLabel34"
     Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel34.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -258,7 +229,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel35
     '
     Me.XrLabel35.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 154.9897!)
+    Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(789.2375!, 187.5347!)
     Me.XrLabel35.Name = "XrLabel35"
     Me.XrLabel35.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel35.SizeF = New System.Drawing.SizeF(187.4167!, 15.625!)
@@ -268,17 +239,17 @@ Partial Public Class repWorkOrderDoc
     'XrLabel31
     '
     Me.XrLabel31.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 88.95319!)
+    Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(789.2373!, 109.4536!)
     Me.XrLabel31.Name = "XrLabel31"
     Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel31.SizeF = New System.Drawing.SizeF(290.7579!, 15.625!)
+    Me.XrLabel31.SizeF = New System.Drawing.SizeF(250.7628!, 15.625!)
     Me.XrLabel31.StylePriority.UseFont = False
     Me.XrLabel31.Text = "Nombre: Planeación y Seguimiento"
     '
     'XrLabel32
     '
     Me.XrLabel32.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 123.5339!)
+    Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 135.5785!)
     Me.XrLabel32.Name = "XrLabel32"
     Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel32.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -287,7 +258,7 @@ Partial Public Class repWorkOrderDoc
     '
     'XrLine9
     '
-    Me.XrLine9.LocationFloat = New DevExpress.Utils.PointFloat(845.7087!, 113.0339!)
+    Me.XrLine9.LocationFloat = New DevExpress.Utils.PointFloat(845.7087!, 125.0785!)
     Me.XrLine9.Name = "XrLine9"
     Me.XrLine9.SizeF = New System.Drawing.SizeF(194.2917!, 23.0!)
     '
@@ -300,7 +271,7 @@ Partial Public Class repWorkOrderDoc
     'XrLabel27
     '
     Me.XrLabel27.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 57.49743!)
+    Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(789.2374!, 57.49744!)
     Me.XrLabel27.Name = "XrLabel27"
     Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel27.SizeF = New System.Drawing.SizeF(43.05792!, 12.5!)
@@ -337,7 +308,7 @@ Partial Public Class repWorkOrderDoc
     Me.xrPic.LocationFloat = New DevExpress.Utils.PointFloat(0!, 310.4552!)
     Me.xrPic.Name = "xrPic"
     Me.xrPic.SizeF = New System.Drawing.SizeF(757.3959!, 237.1401!)
-    Me.xrPic.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+    Me.xrPic.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
     '
     'TopMargin
     '
@@ -368,7 +339,7 @@ Partial Public Class repWorkOrderDoc
     '
     'BottomMargin
     '
-    Me.BottomMargin.HeightF = 11.43681!
+    Me.BottomMargin.HeightF = 11.0!
     Me.BottomMargin.Name = "BottomMargin"
     Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -381,17 +352,19 @@ Partial Public Class repWorkOrderDoc
     '
     'xrlOT2
     '
-    Me.xrlOT2.BackColor = System.Drawing.Color.Black
+    Me.xrlOT2.BackColor = System.Drawing.Color.Transparent
+    Me.xrlOT2.BorderColor = System.Drawing.Color.Transparent
     Me.xrlOT2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.xrlOT2.Font = New System.Drawing.Font("Arial", 28.0!, System.Drawing.FontStyle.Bold)
-    Me.xrlOT2.ForeColor = System.Drawing.Color.White
-    Me.xrlOT2.LocationFloat = New DevExpress.Utils.PointFloat(365.1164!, 49.0!)
+    Me.xrlOT2.ForeColor = System.Drawing.Color.Black
+    Me.xrlOT2.LocationFloat = New DevExpress.Utils.PointFloat(346.8872!, 49.00001!)
     Me.xrlOT2.Name = "xrlOT2"
     Me.xrlOT2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.xrlOT2.SizeF = New System.Drawing.SizeF(261.2375!, 80.79156!)
     Me.xrlOT2.StylePriority.UseBackColor = False
+    Me.xrlOT2.StylePriority.UseBorderColor = False
     Me.xrlOT2.StylePriority.UseBorders = False
     Me.xrlOT2.StylePriority.UseFont = False
     Me.xrlOT2.StylePriority.UseForeColor = False
@@ -402,7 +375,7 @@ Partial Public Class repWorkOrderDoc
     Me.XrTable1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrTable1.Font = New System.Drawing.Font("Arial", 7.75!)
-    Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(657.4662!, 129.7916!)
+    Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(627.5396!, 129.7916!)
     Me.XrTable1.Name = "XrTable1"
     Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
     Me.XrTable1.SizeF = New System.Drawing.SizeF(99.93768!, 18.0!)
@@ -433,7 +406,7 @@ Partial Public Class repWorkOrderDoc
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel9.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
     Me.XrLabel9.ForeColor = System.Drawing.Color.White
-    Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(657.4616!, 106.8749!)
+    Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(627.5351!, 106.875!)
     Me.XrLabel9.Name = "XrLabel9"
     Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel9.SizeF = New System.Drawing.SizeF(99.93875!, 22.91666!)
@@ -452,7 +425,7 @@ Partial Public Class repWorkOrderDoc
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel20.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
     Me.XrLabel20.ForeColor = System.Drawing.Color.White
-    Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(949.9252!, 49.29169!)
+    Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(919.9987!, 49.29169!)
     Me.XrLabel20.Name = "XrLabel20"
     Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel20.SizeF = New System.Drawing.SizeF(130.0701!, 22.91666!)
@@ -471,7 +444,7 @@ Partial Public Class repWorkOrderDoc
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel5.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
     Me.XrLabel5.ForeColor = System.Drawing.Color.White
-    Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(757.3956!, 49.29169!)
+    Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(727.4691!, 49.29169!)
     Me.XrLabel5.Name = "XrLabel5"
     Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel5.SizeF = New System.Drawing.SizeF(115.8726!, 22.91667!)
@@ -506,7 +479,7 @@ Partial Public Class repWorkOrderDoc
     Me.XrTable5.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrTable5.Font = New System.Drawing.Font("Arial", 8.0!)
-    Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(657.4616!, 72.20833!)
+    Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(627.5351!, 72.20833!)
     Me.XrTable5.Name = "XrTable5"
     Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5})
     Me.XrTable5.SizeF = New System.Drawing.SizeF(422.5383!, 18.0!)
@@ -656,7 +629,7 @@ Partial Public Class repWorkOrderDoc
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel8.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
     Me.XrLabel8.ForeColor = System.Drawing.Color.White
-    Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(873.2684!, 49.29169!)
+    Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(843.3419!, 49.29169!)
     Me.XrLabel8.Name = "XrLabel8"
     Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel8.SizeF = New System.Drawing.SizeF(76.65674!, 22.91667!)
@@ -675,7 +648,7 @@ Partial Public Class repWorkOrderDoc
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel7.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
     Me.XrLabel7.ForeColor = System.Drawing.Color.White
-    Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(657.4571!, 49.00001!)
+    Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(627.5306!, 49.00001!)
     Me.XrLabel7.Name = "XrLabel7"
     Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel7.SizeF = New System.Drawing.SizeF(99.93875!, 22.91666!)
@@ -786,7 +759,7 @@ Partial Public Class repWorkOrderDoc
     Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
     Me.Font = New System.Drawing.Font("Arial", 9.75!)
     Me.Landscape = True
-    Me.Margins = New System.Drawing.Printing.Margins(10, 0, 101, 11)
+    Me.Margins = New System.Drawing.Printing.Margins(25, 17, 101, 11)
     Me.PageHeight = 850
     Me.PageWidth = 1100
     Me.Version = "17.1"
@@ -841,9 +814,6 @@ Partial Public Class repWorkOrderDoc
   Friend WithEvents XrLabel40 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel41 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLine17 As DevExpress.XtraReports.UI.XRLine
-  Friend WithEvents XrLine14 As DevExpress.XtraReports.UI.XRLine
-  Friend WithEvents XrLabel38 As DevExpress.XtraReports.UI.XRLabel
-  Friend WithEvents XrLabel39 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel36 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel37 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLine13 As DevExpress.XtraReports.UI.XRLine

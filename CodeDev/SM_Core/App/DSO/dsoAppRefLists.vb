@@ -132,10 +132,6 @@ Public Class dsoAppRefLists
           mItem.IList = LoadFurnitureCategory()
           mOK = True
 
-        Case appRefLists.Quality
-          mValueItems = New colValueItems
-          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 9", "Value", "Description")
-          mItem.IList = mValueItems
 
       End Select
       mItem = Nothing

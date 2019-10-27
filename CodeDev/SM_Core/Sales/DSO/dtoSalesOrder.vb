@@ -78,6 +78,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DueTime", DateToDBValue(.DueTime))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesDelAreaID", .SalesDelAreaID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerDelContacID", .CustomerDelContactID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ShippingCost", DBValueToDecimal(.ShippingCost))
 
     End With
 
@@ -112,6 +113,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .DueTime = DBReadDateTime(rDataReader, "DueTime")
         .SalesDelAreaID = DBReadInt32(rDataReader, "SalesDelAreaID")
         .CustomerDelContactID = DBReadInt32(rDataReader, "CustomerDelContacID")
+        .ShippingCost = DBReadDecimal(rDataReader, "ShippingCost")
         pSalesOrder.IsDirty = False
       End With
       mOK = True

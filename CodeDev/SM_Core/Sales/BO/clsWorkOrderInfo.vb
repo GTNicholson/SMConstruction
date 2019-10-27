@@ -60,6 +60,8 @@
     End Get
   End Property
 
+
+
   Public ReadOnly Property QtyPerSalesItem As Integer
     Get
       Return pWorkOrder.QtyPerSalesItem

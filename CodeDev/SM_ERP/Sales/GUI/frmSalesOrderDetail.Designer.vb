@@ -23,8 +23,8 @@ Partial Class frmSalesOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -110,11 +110,14 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.Quantity = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
     Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.txtShippingCost = New DevExpress.XtraEditors.TextEdit()
+    Me.Label22 = New System.Windows.Forms.Label()
+    Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,6 +170,8 @@ Partial Class frmSalesOrderDetail
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtShippingCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -318,6 +323,8 @@ Partial Class frmSalesOrderDetail
     '
     Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.GroupControl3.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl3.Controls.Add(Me.txtShippingCost)
+    Me.GroupControl3.Controls.Add(Me.Label22)
     Me.GroupControl3.Controls.Add(Me.cboSalesDelAreaID)
     Me.GroupControl3.Controls.Add(Me.cboCustomerDelContacID)
     Me.GroupControl3.Controls.Add(Me.Label18)
@@ -334,7 +341,7 @@ Partial Class frmSalesOrderDetail
     '
     'cboSalesDelAreaID
     '
-    Me.cboSalesDelAreaID.Location = New System.Drawing.Point(87, 214)
+    Me.cboSalesDelAreaID.Location = New System.Drawing.Point(102, 157)
     Me.cboSalesDelAreaID.MenuManager = Me.BarManager1
     Me.cboSalesDelAreaID.Name = "cboSalesDelAreaID"
     Me.cboSalesDelAreaID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -343,7 +350,7 @@ Partial Class frmSalesOrderDetail
     '
     'cboCustomerDelContacID
     '
-    Me.cboCustomerDelContacID.Location = New System.Drawing.Point(87, 34)
+    Me.cboCustomerDelContacID.Location = New System.Drawing.Point(102, 34)
     Me.cboCustomerDelContacID.MenuManager = Me.BarManager1
     Me.cboCustomerDelContacID.Name = "cboCustomerDelContacID"
     Me.cboCustomerDelContacID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -364,7 +371,7 @@ Partial Class frmSalesOrderDetail
     '
     'txtDelAddress2
     '
-    Me.txtDelAddress2.Location = New System.Drawing.Point(87, 154)
+    Me.txtDelAddress2.Location = New System.Drawing.Point(102, 116)
     Me.txtDelAddress2.MenuManager = Me.BarManager1
     Me.txtDelAddress2.Name = "txtDelAddress2"
     Me.txtDelAddress2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -375,7 +382,7 @@ Partial Class frmSalesOrderDetail
     '
     'txtDelAddress1
     '
-    Me.txtDelAddress1.Location = New System.Drawing.Point(87, 94)
+    Me.txtDelAddress1.Location = New System.Drawing.Point(102, 75)
     Me.txtDelAddress1.MenuManager = Me.BarManager1
     Me.txtDelAddress1.Name = "txtDelAddress1"
     Me.txtDelAddress1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -389,7 +396,7 @@ Partial Class frmSalesOrderDetail
     Me.Label17.AutoSize = True
     Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label17.Location = New System.Drawing.Point(7, 157)
+    Me.Label17.Location = New System.Drawing.Point(7, 119)
     Me.Label17.Name = "Label17"
     Me.Label17.Size = New System.Drawing.Size(45, 14)
     Me.Label17.TabIndex = 4
@@ -401,7 +408,7 @@ Partial Class frmSalesOrderDetail
     Me.Label16.AutoSize = True
     Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label16.Location = New System.Drawing.Point(7, 97)
+    Me.Label16.Location = New System.Drawing.Point(7, 78)
     Me.Label16.Name = "Label16"
     Me.Label16.Size = New System.Drawing.Size(58, 14)
     Me.Label16.TabIndex = 14
@@ -413,7 +420,7 @@ Partial Class frmSalesOrderDetail
     Me.Label21.AutoSize = True
     Me.Label21.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label21.Location = New System.Drawing.Point(7, 217)
+    Me.Label21.Location = New System.Drawing.Point(7, 160)
     Me.Label21.Name = "Label21"
     Me.Label21.Size = New System.Drawing.Size(30, 14)
     Me.Label21.TabIndex = 2
@@ -787,6 +794,7 @@ Partial Class frmSalesOrderDetail
     Me.txtProjectName.Name = "txtProjectName"
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
+    Me.txtProjectName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
     Me.txtProjectName.Size = New System.Drawing.Size(130, 20)
     Me.txtProjectName.TabIndex = 2
     Me.txtProjectName.Tag = "c"
@@ -845,7 +853,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.AppearanceCaption.Options.UseFont = True
     Me.grpOrderItem.AppearanceCaption.Options.UseForeColor = True
     Me.grpOrderItem.Controls.Add(Me.grdOrderItem)
-    Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+    Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(0, 5)
     Me.grpOrderItem.Name = "grpOrderItem"
@@ -1118,6 +1126,12 @@ Partial Class frmSalesOrderDetail
     Me.Quantity.VisibleIndex = 5
     Me.Quantity.Width = 60
     '
+    'GridColumn8
+    '
+    Me.GridColumn8.Caption = "CostoUnitario"
+    Me.GridColumn8.FieldName = "UnitPrice"
+    Me.GridColumn8.Name = "GridColumn8"
+    '
     'GridControl3
     '
     Me.GridControl3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1174,11 +1188,33 @@ Partial Class frmSalesOrderDetail
     Me.GridView2.OptionsView.ShowViewCaption = True
     Me.GridView2.ViewCaption = "Despachos"
     '
-    'GridColumn8
+    'txtShippingCost
     '
-    Me.GridColumn8.Caption = "CostoUnitario"
-    Me.GridColumn8.FieldName = "UnitPrice"
-    Me.GridColumn8.Name = "GridColumn8"
+    Me.txtShippingCost.EditValue = ""
+    Me.txtShippingCost.Location = New System.Drawing.Point(102, 198)
+    Me.txtShippingCost.MenuManager = Me.BarManager1
+    Me.txtShippingCost.Name = "txtShippingCost"
+    Me.txtShippingCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtShippingCost.Properties.Appearance.Options.UseFont = True
+    Me.txtShippingCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtShippingCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtShippingCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+    Me.txtShippingCost.Properties.MaxLength = 15
+    Me.txtShippingCost.Size = New System.Drawing.Size(130, 20)
+    Me.txtShippingCost.TabIndex = 17
+    Me.txtShippingCost.Tag = "c"
+    '
+    'Label22
+    '
+    Me.Label22.AutoSize = True
+    Me.Label22.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label22.Location = New System.Drawing.Point(7, 201)
+    Me.Label22.Name = "Label22"
+    Me.Label22.Size = New System.Drawing.Size(72, 14)
+    Me.Label22.TabIndex = 18
+    Me.Label22.Tag = "c"
+    Me.Label22.Text = "Costo Envío"
     '
     'frmSalesOrderDetail
     '
@@ -1247,6 +1283,8 @@ Partial Class frmSalesOrderDetail
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtShippingCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1342,4 +1380,7 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents RepositoryItemCalcEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents txtShippingCost As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label22 As Label
+  Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
 End Class

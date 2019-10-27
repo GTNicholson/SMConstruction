@@ -6,14 +6,16 @@ Public Class repOtherMaterials
   Private POtherMaterial As dmMaterialRequirement
 
   Private Sub repOtherMaterials_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
-    xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
-    xrtProductDescription.Text = pWorkOrder.Description
+    xrlCustomerName.Text = (pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName).ToUpper
+    xrtProductDescription.Text = (pWorkOrder.Description).ToUpper
     xrtQuantity.Text = pWorkOrder.Quantity
 
-
-
     SetUpBindings()
+
+
   End Sub
+
+
 
   Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder, ByRef rMatReqs As colMaterialRequirementInfos) As repOtherMaterials
     Dim mRetVal As repOtherMaterials
@@ -52,7 +54,17 @@ Public Class repOtherMaterials
 
     mAreaID = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)).
                                       ItemValueToDisplayValue(mMatReq.AreaID)
-    xrtAreaID.Text = mAreaID
+    xrtAreaID.Text = mAreaID.ToUpper
+
+    xrlWorkOrderNo.Text = xrlWorkOrderNo.Text.ToUpper
+    xrlWorkOrderNo2.Text = xrlWorkOrderNo2.Text.ToUpper
+
+    xrtMaterialDescription.Text = xrtMaterialDescription.Text.ToUpper
+
+    xrtUoM.Text = xrtUoM.Text.ToUpper
+    xrtComments.Text = xrtComments.Text.ToUpper
 
   End Sub
+
+
 End Class
