@@ -428,7 +428,7 @@ Partial Class frmTimeSheetEntry
     '
     Me.XtraTabPage2.Controls.Add(Me.grdTimeSheetEntries)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1146, 396)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1148, 397)
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
     'grdTimeSheetEntries
@@ -437,7 +437,7 @@ Partial Class frmTimeSheetEntry
     Me.grdTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
     Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
     Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1146, 396)
+    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1148, 397)
     Me.grdTimeSheetEntries.TabIndex = 0
     Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
     '

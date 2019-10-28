@@ -120,6 +120,7 @@ Public Class fccTimeSheetEntry
     Try
 
       mdso = New dsoHR(pDBConn)
+      pTimeSheetEntrys.Clear()
       If pEmployee IsNot Nothing And pWCDate <> New Date Then
         mdso.LoadTimeSheetEntrysEmpIDWC(pTimeSheetEntrys, pEmployee.EmployeeID, pWCDate)
       End If
@@ -133,6 +134,7 @@ Public Class fccTimeSheetEntry
     Dim mTime As DateTime
     Dim mEntry As clsTimeSheetEntryUI
 
+    pTimeSheetEntryUIs.Clear()
     mTime = pStartTime
     If pEmployee IsNot Nothing Then
       Do While mTime <= pEndTime

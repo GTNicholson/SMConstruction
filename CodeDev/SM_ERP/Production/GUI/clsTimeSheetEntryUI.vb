@@ -145,7 +145,7 @@ Public Class clsTimeSheetEntryUI
           mWOI = pWorkOrderInfos.ItemFromWorkOrderID(mTimeSheetEntry.WorkOrderID)
           If mWOI IsNot Nothing Then
             mRetVal = mWOI.WorkOrder.WorkOrderNo
-            mRetVal = mRetVal & "-" & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eWorkCentre), CType(mTimeSheetEntry.WorkCentreID, eWorkCentre)).Substring(0, 1)
+            mRetVal = mRetVal & "-" & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eWorkCentre), CType(mTimeSheetEntry.WorkCentreID, eWorkCentre)).Substring(0, 2)
             mRetVal = mRetVal & vbCrLf & mWOI.WorkOrder.Description.Substring(0, Math.Min(10, Len(mWOI.WorkOrder.Description)))
           Else
             mRetVal = String.Format("O.T. {0} No Existe", mTimeSheetEntry.Note)
@@ -175,6 +175,8 @@ Public Class clsTimeSheetEntryUI
     mNewTSEntry.EndTime = mStartTime.AddHours(1)
     mNewTSEntry.WorkCentreID = vWorkCentreID
     If IsNumeric(vEnteredString) Then
+      EditTSEntryWorkOrder(mNewTSEntry, vEnteredString)
+    ElseIf vEnteredString.Contains("-") Then
       EditTSEntryWorkOrder(mNewTSEntry, vEnteredString)
     Else
       EditTSEntryNonWorkOrder(mNewTSEntry, vEnteredString)
@@ -211,7 +213,7 @@ Public Class clsTimeSheetEntryUI
 
       If mExistingTSEntry IsNot Nothing Then
         '//We have one ealier in the day 
-        If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID Then
+        If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID And mExistingTSEntry.WorkCentreID = vNewTSEntry.WorkCentreID Then
           '// if types and workorderid match then extend existing
           mExistingTSEntry.EndTime = vNewTSEntry.EndTime
         Else
@@ -226,7 +228,7 @@ Public Class clsTimeSheetEntryUI
           pTimeSheetEntrys.Add(vNewTSEntry)
         Else
           '//We have one later in the day 
-          If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID Then
+          If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID And mExistingTSEntry.WorkCentreID = vNewTSEntry.WorkCentreID Then
             '// if types and workorderid match then bring next entry startime forwards existing
             mExistingTSEntry.StartTime = vNewTSEntry.StartTime
           Else

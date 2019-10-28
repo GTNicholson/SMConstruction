@@ -205,8 +205,20 @@ Public Class colWorkOrderInfos : Inherits List(Of clsWorkOrderInfo)
     For Each mWO As clsWorkOrderInfo In Me
       mIndex += 1
       If mWO.WorkOrderNo.Length > 2 Then
-        If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
-          mRetVal = mIndex
+        If mWO.WorkOrder.WorkOrderNo.Contains("-") = False Then
+          If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
+            mRetVal = mIndex
+            Exit For
+          End If
+        Else
+          If vWorkOrderNo.Contains("-") = True Then
+            If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
+              If mWO.WorkOrder.WorkOrderNo.Substring(mWO.WorkOrder.WorkOrderNo.IndexOf("-")) = vWorkOrderNo.Substring(vWorkOrderNo.IndexOf("-")) Then
+                mRetVal = mIndex
+                Exit For
+              End If
+            End If
+          End If
         End If
       End If
     Next
