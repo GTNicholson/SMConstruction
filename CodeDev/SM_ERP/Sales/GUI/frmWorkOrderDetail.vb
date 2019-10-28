@@ -327,7 +327,7 @@ Public Class frmWorkOrderDetail
 
     With pFormController.WorkOrder
       ''.Quantity = txtQuantity.Text
-      .Description = txtDescription.Text
+      .Description = txtDescription.Text.ToUpper
 
       .PlannedStartDate = dtePlannedStartDate.DateTime
       .UnitPrice = Val(txtPrice.Text)
@@ -370,7 +370,7 @@ Public Class frmWorkOrderDetail
     mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
     If mPF IsNot Nothing Then
       With mPF
-        .Notes = memPFNotes.Text
+        .Notes = memPFNotes.Text.ToUpper
       End With
     End If
   End Sub

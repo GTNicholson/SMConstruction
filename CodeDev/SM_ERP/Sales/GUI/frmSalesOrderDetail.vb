@@ -177,6 +177,7 @@ Public Class frmSalesOrderDetail
         btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
         txtDelAddress2.Text = .DelAddress2
         txtCustomerContact.Text = .CustomerContactID
+        txtShippingCost.Text = .ShippingCost
 
         If pFormController.SalesOrder.Customer IsNot Nothing Then
 
@@ -239,6 +240,7 @@ Public Class frmSalesOrderDetail
       .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
       .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
       .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
+      .ShippingCost = txtShippingCost.Text
 
       gvOrderItem.CloseEditor()
       gvOrderItem.UpdateCurrentRow()

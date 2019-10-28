@@ -728,6 +728,7 @@ Partial Class frmWorkOrderDetail
     Me.txtDescription.Name = "txtDescription"
     Me.txtDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDescription.Properties.Appearance.Options.UseFont = True
+    Me.txtDescription.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
     Me.txtDescription.Properties.MaxLength = 1000
     Me.txtDescription.Size = New System.Drawing.Size(263, 20)
     Me.txtDescription.TabIndex = 12
@@ -989,6 +990,7 @@ Partial Class frmWorkOrderDetail
     Me.memPFNotes.Location = New System.Drawing.Point(111, 155)
     Me.memPFNotes.MenuManager = Me.BarManager1
     Me.memPFNotes.Name = "memPFNotes"
+    Me.memPFNotes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
     Me.memPFNotes.Size = New System.Drawing.Size(460, 152)
     Me.memPFNotes.TabIndex = 17
     '
