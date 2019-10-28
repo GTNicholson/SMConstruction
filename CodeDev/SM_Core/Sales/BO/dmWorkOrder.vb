@@ -37,7 +37,6 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
 
-  Private pWorkOrderBatches As colWorkOrderBatchs
   Private pOutputDocuments As colOutputDocuments
   Private pWOFiles As colFileTrackers
 
@@ -47,7 +46,6 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
-    pWorkOrderBatches = New colWorkOrderBatchs
     pOutputDocuments = New colOutputDocuments
     pWOFiles = New colFileTrackers
     pWOFiles.TrackDeleted = True
@@ -69,7 +67,6 @@ Public Class dmWorkOrder : Inherits dmBase
       '' Check Objects and Collections
       If pProduct IsNot Nothing Then
         If mAnyDirty = False Then mAnyDirty = pProduct.IsAnyDirty
-        If mAnyDirty = False Then mAnyDirty = pWorkOrderBatches.IsDirty
         If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
         If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
       End If
@@ -114,7 +111,6 @@ Public Class dmWorkOrder : Inherits dmBase
 
       'Add entries here for each collection and class property
 
-      .WorkOrderBatches = WorkOrderBatches.Clone
       .OutputDocuments = OutputDocuments.Clone
       .WOFiles = WOFiles.Clone
 
@@ -167,14 +163,6 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
-  Public Property WorkOrderBatches As colWorkOrderBatchs
-    Get
-      Return pWorkOrderBatches
-    End Get
-    Set(value As colWorkOrderBatchs)
-      pWorkOrderBatches = value
-    End Set
-  End Property
 
   Public Property WoodSpecieID() As Int32
     Get

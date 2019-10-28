@@ -86,7 +86,6 @@ Public Class dsoSales
     Dim mdtoSOI As dtoSalesOrderItem
     Dim mdtoWO As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
-    Dim mdtoWOBatches As dtoWorkOrderBatch
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
 
@@ -112,8 +111,6 @@ Public Class dsoSales
               Case eProductType.ProductFurniture
                 mWO.ProductID = CType(mWO.Product, dmProductFurniture).ProductFurnitureID
             End Select
-            mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
-            mdtoWOBatches.SaveWorkOrderBatchCollection(mWO.WorkOrderBatches, mWO.WorkOrderID)
           End If
         Next
 
@@ -151,7 +148,6 @@ Public Class dsoSales
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
-    Dim mdtoWOBatches As dtoWorkOrderBatch
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
 
@@ -188,8 +184,6 @@ Public Class dsoSales
             mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
             mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
           End If
-          mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
-          mdtoWOBatches.LoadWorkOrderBatchCollection(mWO.WorkOrderBatches, mWO.WorkOrderID)
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.LoadFileTrackerCollection(mWO.WOFiles, eObjectType.WorkOrder, mWO.WorkOrderID)
           mdtoOutputDocs = New dtoOutputDocument(pDBConn)
@@ -218,7 +212,6 @@ Public Class dsoSales
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
 
     Dim mdtoWOFiles As dtoFileTracker
-    Dim mdtoWOBatches As dtoWorkOrderBatch
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoOutputDocs As dtoOutputDocument
     Try
@@ -238,8 +231,6 @@ Public Class dsoSales
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
         End If
-        mdtoWOBatches = New dtoWorkOrderBatch(pDBConn)
-        mdtoWOBatches.LoadWorkOrderBatchCollection(rWorkOrder.WorkOrderBatches, rWorkOrder.WorkOrderID)
         mdtoWOFiles = New dtoFileTracker(pDBConn)
         mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
@@ -264,7 +255,6 @@ Public Class dsoSales
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Dim mProductFurniture As dmProductFurniture
-    Dim mdtoWOBatch As dtoWorkOrderBatch
     Dim mdtoWOFiles As dtoFileTracker
     Dim mdtoOutputDocs As dtoOutputDocument
 
@@ -291,8 +281,6 @@ Public Class dsoSales
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         End If
-        mdtoWOBatch = New dtoWorkOrderBatch(pDBConn)
-        mdtoWOBatch.SaveWorkOrderBatchCollection(rWorkOrder.WorkOrderBatches, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
         mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
       End If

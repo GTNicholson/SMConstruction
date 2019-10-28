@@ -144,9 +144,11 @@ Public Class fccTimeSheetEntry
           mEntry.EmployeeID = pEmployee.EmployeeID
           mEntry.WeekCommencing = pWCDate
           mEntry.StartTime = mTime
+          mEntry.EndTime = mTime.AddHours(1)
+          mEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mEntry.StartTime, mEntry.EndTime)
           pTimeSheetEntryUIs.Add(mEntry)
         End If
-          mTime = mTime.AddHours(1)
+        mTime = mTime.AddHours(1)
       Loop
     End If
   End Sub

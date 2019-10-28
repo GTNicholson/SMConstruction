@@ -26,7 +26,6 @@ Public Class clsSalesOrderHandler
 
   Public Function AddWorkOrder(ByRef rSOI As dmSalesOrderItem, ByVal vProductType As eProductType) As dmWorkOrder
     Dim mNewWO As dmWorkOrder = Nothing
-    Dim mWOB As dmWorkOrderBatch
     Dim mWOHandler As clsWorkOrderHandler
 
     Try
@@ -35,12 +34,6 @@ Public Class clsSalesOrderHandler
       mNewWO.ProductTypeID = vProductType
       mNewWO.DateCreated = Now.Date
       mNewWO.Product = clsProductSharedFuncs.NewProductInstance(mNewWO.ProductTypeID)
-
-      mWOB = New dmWorkOrderBatch
-      mNewWO.WorkOrderBatches.Add(mWOB)
-
-      mWOHandler = New clsWorkOrderHandler(mNewWO)
-      mWOHandler.AssignWOBatchRefs()
 
       rSOI.WorkOrders.Add(mNewWO)
 

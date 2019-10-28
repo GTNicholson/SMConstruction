@@ -141,7 +141,7 @@
 
   Public ReadOnly Property InitialLenghtFraction As String
     Get
-      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInchesLenght(pMaterialRequirement.NetLenght))
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToHalfInchesLength(pMaterialRequirement.NetLenght))
     End Get
   End Property
 

@@ -99,7 +99,6 @@ Public Class frmWorkOrderDetail
       pFormController.LoadObjects()
       ConfigureFileControl()
       LoadCombos()
-      grdWorkOrderBatches.DataSource = pFormController.WorkOrder.WorkOrderBatches
       grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
       RefreshProductTabPages()
       RefreshControls()
@@ -660,19 +659,8 @@ Public Class frmWorkOrderDetail
     End Try
   End Sub
 
-  Private Sub gvWorkOrderBatches_RowCountChanged(sender As Object, e As EventArgs) Handles gvWorkOrderBatches.RowCountChanged
-    Try
-      Dim mWOH As clsWorkOrderHandler
-      mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
-      mWOH.AssignWOBatchRefs()
-      txtQuantity.Text = pFormController.WorkOrder.Quantity
 
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
-  End Sub
-
-  Private Sub gvWorkOrderBatches_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles gvWorkOrderBatches.ValidateRow
+  Private Sub gvWorkOrderBatches_ValidateRow(sender As Object, e As ValidateRowEventArgs)
     Try
       Dim mWOH As clsWorkOrderHandler
       mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)

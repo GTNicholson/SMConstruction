@@ -1,0 +1,7 @@
+use SMconstruction
+go
+drop table WorkOrderBatch
+GO
+
+Alter Table TimeSheetEntry add BreakMins Int
+GO

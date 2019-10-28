@@ -50,20 +50,20 @@ Public Class repOtherMaterials
     Dim mMatReq As clsMaterialRequirementInfo
 
 
-    mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
-
-    mAreaID = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)).
+    mMatReq = TryCast(Me.GetCurrentRow, clsMaterialRequirementInfo)
+    If mMatReq IsNot Nothing Then
+      mAreaID = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)).
                                       ItemValueToDisplayValue(mMatReq.AreaID)
-    xrtAreaID.Text = mAreaID.ToUpper
+      xrtAreaID.Text = mAreaID.ToUpper
 
-    xrlWorkOrderNo.Text = xrlWorkOrderNo.Text.ToUpper
-    xrlWorkOrderNo2.Text = xrlWorkOrderNo2.Text.ToUpper
+      xrlWorkOrderNo.Text = xrlWorkOrderNo.Text.ToUpper
+      xrlWorkOrderNo2.Text = xrlWorkOrderNo2.Text.ToUpper
 
-    xrtMaterialDescription.Text = xrtMaterialDescription.Text.ToUpper
+      xrtMaterialDescription.Text = xrtMaterialDescription.Text.ToUpper
 
-    xrtUoM.Text = xrtUoM.Text.ToUpper
-    xrtComments.Text = xrtComments.Text.ToUpper
-
+      xrtUoM.Text = xrtUoM.Text.ToUpper
+      xrtComments.Text = xrtComments.Text.ToUpper
+    End If
   End Sub
 
 

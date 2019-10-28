@@ -9,6 +9,7 @@ Public Class dmTimeSheetEntry : Inherits dmBase
   Private pWorkCentreID As Int32
   Private pStartTime As DateTime
   Private pEndTime As DateTime
+  Private pBreakMins As Integer
   Private pNote As String
 
   Public Sub New()
@@ -49,6 +50,7 @@ Public Class dmTimeSheetEntry : Inherits dmBase
       .WorkOrderID = WorkOrderID
       .StartTime = StartTime
       .EndTime = EndTime
+      .BreakMins = BreakMins
       .Note = Note
       'Add entries here for each collection and class property
 
@@ -129,11 +131,23 @@ Public Class dmTimeSheetEntry : Inherits dmBase
     End Set
   End Property
 
+  Public Property BreakMins() As Integer
+    Get
+      Return pBreakMins
+    End Get
+    Set(ByVal value As Integer)
+      If pBreakMins <> value Then IsDirty = True
+      pBreakMins = value
+    End Set
+  End Property
+
   Public ReadOnly Property Duration As Decimal
     Get
       Dim mRetVal As Decimal = 0
       If pStartTime <> New Date And pEndTime <> New Date Then
-        mRetVal = Math.Round(DateDiff(DateInterval.Minute, pStartTime, pEndTime) / 60, 1)
+        mRetVal = DateDiff(DateInterval.Minute, pStartTime, pEndTime)
+        mRetVal = mRetVal - pBreakMins
+        mRetVal = Math.Round(mRetVal / 60, 2)
       End If
       Return mRetVal
     End Get

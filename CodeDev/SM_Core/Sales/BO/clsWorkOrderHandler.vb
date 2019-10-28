@@ -7,22 +7,5 @@ Public Class clsWorkOrderHandler
     pWorkOrder = rWorkOrder
   End Sub
 
-  Public Sub AssignWOBatchRefs()
-    Dim mRefAsciiVal As Integer
-
-    If pWorkOrder.WorkOrderBatches.Count >= 2 Then
-      mRefAsciiVal = Asc("A")
-      For Each mWOBatch As dmWorkOrderBatch In pWorkOrder.WorkOrderBatches
-        mWOBatch.Ref = Chr(mRefAsciiVal)
-        mRefAsciiVal += 1
-      Next
-    Else
-      If pWorkOrder.WorkOrderBatches.Count = 1 Then
-        pWorkOrder.WorkOrderBatches(0).Ref = ""
-      End If
-    End If
-
-  End Sub
-
 
 End Class

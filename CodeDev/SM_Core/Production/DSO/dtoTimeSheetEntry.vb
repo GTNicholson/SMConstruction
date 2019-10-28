@@ -61,6 +61,7 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkCentreID", .WorkCentreID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StartTime", DateToDBValue(.StartTime))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EndTime", DateToDBValue(.EndTime))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BreakMins", .BreakMins)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Note", StringToDBValue(.Note))
     End With
 
@@ -79,6 +80,7 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
         .WorkCentreID = DBReadInt32(rDataReader, "WorkCentreID")
         .StartTime = DBReadDateTime(rDataReader, "StartTime")
         .EndTime = DBReadDateTime(rDataReader, "EndTime")
+        .BreakMins = DBReadInt32(rDataReader, "BreakMins")
         .Note = DBReadString(rDataReader, "Note")
         pTimeSheetEntry.IsDirty = False
       End With

@@ -6,6 +6,8 @@ Public Class clsTimeSheetEntryUI
   Private pEmployeeID As Integer
   Private pWeekCommencing As DateTime
   Private pStartTime As DateTime
+  Private pEndTime As DateTime
+  Private pBreakMins As Integer
   Private pTimeSheetEntrys As colTimeSheetEntrys
   Private pWorkOrderInfos As colWorkOrderInfos
 
@@ -33,6 +35,24 @@ Public Class clsTimeSheetEntryUI
     End Get
     Set(value As DateTime)
       pStartTime = value
+    End Set
+  End Property
+
+  Public Property EndTime As DateTime
+    Get
+      Return pEndTime
+    End Get
+    Set(value As DateTime)
+      pEndTime = value
+    End Set
+  End Property
+
+  Public Property BreakMins As Integer
+    Get
+      Return pBreakMins
+    End Get
+    Set(value As Integer)
+      pBreakMins = value
     End Set
   End Property
 
@@ -239,6 +259,10 @@ Public Class clsTimeSheetEntryUI
 
     End If
 
+    If mExistingTSEntry IsNot Nothing Then
+      mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
+    End If
+    vNewTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(vNewTSEntry.StartTime, vNewTSEntry.EndTime)
 
   End Sub
 
@@ -266,8 +290,10 @@ Public Class clsTimeSheetEntryUI
           End If
         End If
       End If
-
+      '// Refresh the break mins for this entry
+      mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
     End If
+
 
 
   End Sub
@@ -292,6 +318,17 @@ Public Class clsTimeSheetEntryUI
       rTimeSheetEntry.TimeSheetEntryTypeID = mCode.PropertyENUM
     End If
   End Sub
+
+  Public ReadOnly Property StartTimeAndBreak As String
+    Get
+      Dim mRetVal As String
+      mRetVal = pStartTime.ToString("HH:mm")
+      If pBreakMins <> 0 Then
+        mRetVal = mRetVal & " (Pausa:" & pBreakMins.ToString("#") & "mins)"
+      End If
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

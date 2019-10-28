@@ -31,9 +31,9 @@ Public Class repWorkOrderMatReqsWood
     ''xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xrtComponentDescription.DataBindings.Add("Text", Me.DataSource, "Description")
     xrtUnitPiece.DataBindings.Add("Text", Me.DataSource, "UnitPiece")
-    xrtNetThickness.DataBindings.Add("Text", Me.DataSource, "NetThickness")
-    xrtNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth")
-    xrtNetLenght.DataBindings.Add("Text", Me.DataSource, "NetLenght")
+    xrtNetThickness.DataBindings.Add("Text", Me.DataSource, "NetThickness", "{0:#.#}")
+    xrtNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth", "{0:#.#}")
+    xrtNetLenght.DataBindings.Add("Text", Me.DataSource, "NetLenght", "{0:#.#}")
 
 
 

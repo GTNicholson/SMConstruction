@@ -30,10 +30,13 @@ Public Class clsSMSharedFuncs
 
   Public Shared Function CMToQuaterInches(ByVal vCM As Decimal) As Decimal
     Dim mRetVal As Decimal
+    Dim mTempVal As Decimal
 
-    mRetVal = vCM / 2.54
-    mRetVal = Math.Truncate(mRetVal * 4) / 4
-    mRetVal += 0.25
+    mTempVal = (vCM / 2.54) + 0.25
+    mRetVal = Math.Truncate(mTempVal * 4) / 4
+    If mRetVal <> (mTempVal * 4) / 4 Then
+      mRetVal += 0.25
+    End If
     Return mRetVal
   End Function
 
@@ -46,12 +49,18 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
-  Public Shared Function CMToQuaterInchesLenght(ByVal vCM As Decimal) As Decimal
+  Public Shared Function CMToHalfInchesLength(ByVal vCM As Decimal) As Decimal
     Dim mRetVal As Decimal
+    Dim mTempVal As Decimal
 
-    mRetVal = vCM / 2.54
-    mRetVal = Math.Truncate(mRetVal * 4) / 4
-    mRetVal += 2
+    mTempVal = vCM + 5
+
+    mTempVal = mTempVal / 2.54
+    mRetVal = Math.Truncate(mTempVal * 2) / 2
+
+    If mRetVal <> (mTempVal * 2) / 2 Then
+      mRetVal += 0.5
+    End If
     Return mRetVal
   End Function
 
@@ -117,7 +126,7 @@ Public Class clsSMSharedFuncs
     Dim mRetVal As Decimal
 
     'mLengthInInches = vLength / 12
-    mLengthInInches = CMToQuaterInchesLenght(vLength)
+    mLengthInInches = CMToHalfInchesLength(vLength)
     mWidthInInches = CMToQuaterInches(vWidth)
     'mWidthInInches = vWidth
     mThicknessInInches = GrosWoodThickness(vThickness)
@@ -128,6 +137,17 @@ Public Class clsSMSharedFuncs
 
     mRetVal = Math.Round(mRetVal, 4)
 
+    Return mRetVal
+  End Function
+
+  Public Shared Function GetDefaultBreakMins(ByVal vStartTime As DateTime, ByVal vEndTime As DateTime) As Integer
+    Dim mRetVal As Integer = 0
+    If vStartTime.TimeOfDay <= New TimeSpan(9, 0, 0) And vEndTime.TimeOfDay >= New TimeSpan(10, 0, 0) Then
+      mRetVal = mRetVal + 15
+    End If
+    If vStartTime.TimeOfDay <= New TimeSpan(12, 0, 0) And vEndTime.TimeOfDay >= New TimeSpan(13, 0, 0) Then
+      mRetVal = mRetVal + 30
+    End If
     Return mRetVal
   End Function
 
