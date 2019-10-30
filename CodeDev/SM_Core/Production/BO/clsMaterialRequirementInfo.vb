@@ -178,13 +178,20 @@
     End Get
   End Property
 
+  Public ReadOnly Property PiecesPerComponent As Decimal
+    Get
+      Return pMaterialRequirement.PiecesPerComponent
+    End Get
+  End Property
+
 
   Public ReadOnly Property TotalPieces As Int32
     Get
       Dim mRetVal As Int32
 
-      mRetVal = pMaterialRequirement.UnitPiece * WorkOrder.Quantity
-
+      If pMaterialRequirement.PiecesPerComponent <> 0 Then
+        mRetVal = (pMaterialRequirement.UnitPiece * WorkOrder.Quantity) / pMaterialRequirement.PiecesPerComponent
+      End If
 
       Return mRetVal
 
@@ -208,17 +215,13 @@
 
   Public ReadOnly Property TotalBoardFeetReport As Decimal
     Get
-      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght,
-                                              pMaterialRequirement.NetWidth,
-                                              pMaterialRequirement.NetThickness), 3)
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght, pMaterialRequirement.NetWidth, pMaterialRequirement.NetThickness), 3)
 
     End Get
   End Property
 
 
 End Class
-
-
 
 
 Public Class colMaterialRequirementInfos : Inherits List(Of clsMaterialRequirementInfo)

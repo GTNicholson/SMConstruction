@@ -76,7 +76,7 @@ Public Class repWorkOrderMatReqsWood
     Dim mMatReq As clsMaterialRequirementInfo
     mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
     If mMatReq IsNot Nothing Then
-      xrtcTotalPieces.Text = mMatReq.UnitPiece * pWorkOrder.Quantity
+      xrtcTotalPieces.Text = mMatReq.TotalPieces ' (mMatReq.UnitPiece * pWorkOrder.Quantity) / mMatReq
       mWoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
                                    ItemValueToDisplayValue(mMatReq.WoodSpecieID)
 

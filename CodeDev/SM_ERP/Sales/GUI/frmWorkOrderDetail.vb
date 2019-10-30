@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports DevExpress.XtraBars
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.Elements
 
@@ -694,18 +695,26 @@ Public Class frmWorkOrderDetail
       Select Case e.Column.Name
         Case gcTotalQuantity.Name
           If e.IsGetData Then
-            e.Value = mMatReq.UnitPiece * pFormController.WorkOrder.Quantity
+            If mMatReq.PiecesPerComponent <> 0 Then
+              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+            End If
           End If
         Case gcQtyBoardFeet.Name
           Dim mValue As Decimal
           Dim mQty As Integer
           If e.IsGetData Then
-            mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity)
+            mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
             mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
             mValue = mValue
             e.Value = mValue
           End If
       End Select
     End If
+  End Sub
+
+  Private Sub gvMaterialRequirements_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles gvMaterialRequirements.InitNewRow
+    Dim mMatReq As dmMaterialRequirement
+    mMatReq = gvMaterialRequirements.GetRow(e.RowHandle)
+    mMatReq.PiecesPerComponent = 1
   End Sub
 End Class

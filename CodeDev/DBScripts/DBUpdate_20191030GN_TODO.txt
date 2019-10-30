@@ -1,0 +1,4 @@
+use SMconstruction
+go
+alter Table MaterialRequirement add PiecesPerComponent  Decimal(9,2)
+GO
