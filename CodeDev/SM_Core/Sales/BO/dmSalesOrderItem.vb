@@ -4,7 +4,7 @@ Imports RTIS.CommonVB
 Public Class dmSalesOrderItem : Inherits dmBase
   Private pSalesOrderItemID As Int32
   Private pSalesOrderID As Int32
-  Private pItemNumber As Int32
+  Private pItemNumber As String
   Private pDescription As String
   Private pQuantity As Int32
   Private pUnitPrice As Decimal
@@ -121,11 +121,11 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property ItemNumber() As Int32
+  Public Property ItemNumber() As String
     Get
       Return pItemNumber
     End Get
-    Set(ByVal value As Int32)
+    Set(ByVal value As String)
       If pItemNumber <> value Then IsDirty = True
       pItemNumber = value
     End Set

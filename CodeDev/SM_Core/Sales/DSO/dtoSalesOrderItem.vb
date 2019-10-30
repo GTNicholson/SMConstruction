@@ -56,7 +56,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
     End If
     With pSalesOrderItem
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemNumber", .ItemNumber)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemNumber", StringToDBValue(.ItemNumber))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", .UnitPrice)
@@ -77,7 +77,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       With pSalesOrderItem
         .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
         .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
-        .ItemNumber = DBReadInt32(rDataReader, "ItemNumber")
+        .ItemNumber = DBReadString(rDataReader, "ItemNumber")
         .Description = DBReadString(rDataReader, "Description")
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")

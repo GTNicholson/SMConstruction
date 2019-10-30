@@ -243,7 +243,7 @@ Public Class frmWorkOrderDetail
 
       txtQtyPerSalesItem.Text = .QtyPerSalesItem
 
-      'txtQuantity.Text = .Quantity
+      txtQuantity.Text = .Quantity
 
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description

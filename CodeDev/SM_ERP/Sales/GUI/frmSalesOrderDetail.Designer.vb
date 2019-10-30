@@ -23,8 +23,8 @@ Partial Class frmSalesOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -39,6 +39,8 @@ Partial Class frmSalesOrderDetail
     Me.cboContractManagerID = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label19 = New System.Windows.Forms.Label()
     Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+    Me.txtShippingCost = New DevExpress.XtraEditors.TextEdit()
+    Me.Label22 = New System.Windows.Forms.Label()
     Me.cboSalesDelAreaID = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.cboCustomerDelContacID = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label18 = New System.Windows.Forms.Label()
@@ -115,8 +117,6 @@ Partial Class frmSalesOrderDetail
     Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.txtShippingCost = New DevExpress.XtraEditors.TextEdit()
-    Me.Label22 = New System.Windows.Forms.Label()
     Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
@@ -125,6 +125,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl3.SuspendLayout()
+    CType(Me.txtShippingCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboSalesDelAreaID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboCustomerDelContacID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDelAddress2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,7 +171,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtShippingCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
@@ -338,6 +338,34 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl3.Size = New System.Drawing.Size(241, 265)
     Me.GroupControl3.TabIndex = 11
     Me.GroupControl3.Text = "Detalles de Envio del Cliente"
+    '
+    'txtShippingCost
+    '
+    Me.txtShippingCost.EditValue = ""
+    Me.txtShippingCost.Location = New System.Drawing.Point(102, 198)
+    Me.txtShippingCost.MenuManager = Me.BarManager1
+    Me.txtShippingCost.Name = "txtShippingCost"
+    Me.txtShippingCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtShippingCost.Properties.Appearance.Options.UseFont = True
+    Me.txtShippingCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtShippingCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtShippingCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+    Me.txtShippingCost.Properties.MaxLength = 15
+    Me.txtShippingCost.Size = New System.Drawing.Size(130, 20)
+    Me.txtShippingCost.TabIndex = 17
+    Me.txtShippingCost.Tag = "c"
+    '
+    'Label22
+    '
+    Me.Label22.AutoSize = True
+    Me.Label22.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label22.Location = New System.Drawing.Point(7, 201)
+    Me.Label22.Name = "Label22"
+    Me.Label22.Size = New System.Drawing.Size(72, 14)
+    Me.Label22.TabIndex = 18
+    Me.Label22.Tag = "c"
+    Me.Label22.Text = "Costo Envío"
     '
     'cboSalesDelAreaID
     '
@@ -853,7 +881,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.AppearanceCaption.Options.UseFont = True
     Me.grpOrderItem.AppearanceCaption.Options.UseForeColor = True
     Me.grpOrderItem.Controls.Add(Me.grdOrderItem)
-    Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+    Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Aggregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(0, 5)
     Me.grpOrderItem.Name = "grpOrderItem"
@@ -1188,34 +1216,6 @@ Partial Class frmSalesOrderDetail
     Me.GridView2.OptionsView.ShowViewCaption = True
     Me.GridView2.ViewCaption = "Despachos"
     '
-    'txtShippingCost
-    '
-    Me.txtShippingCost.EditValue = ""
-    Me.txtShippingCost.Location = New System.Drawing.Point(102, 198)
-    Me.txtShippingCost.MenuManager = Me.BarManager1
-    Me.txtShippingCost.Name = "txtShippingCost"
-    Me.txtShippingCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtShippingCost.Properties.Appearance.Options.UseFont = True
-    Me.txtShippingCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.txtShippingCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.txtShippingCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-    Me.txtShippingCost.Properties.MaxLength = 15
-    Me.txtShippingCost.Size = New System.Drawing.Size(130, 20)
-    Me.txtShippingCost.TabIndex = 17
-    Me.txtShippingCost.Tag = "c"
-    '
-    'Label22
-    '
-    Me.Label22.AutoSize = True
-    Me.Label22.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label22.Location = New System.Drawing.Point(7, 201)
-    Me.Label22.Name = "Label22"
-    Me.Label22.Size = New System.Drawing.Size(72, 14)
-    Me.Label22.TabIndex = 18
-    Me.Label22.Tag = "c"
-    Me.Label22.Text = "Costo Envío"
-    '
     'frmSalesOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1237,6 +1237,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl3.ResumeLayout(False)
     Me.GroupControl3.PerformLayout()
+    CType(Me.txtShippingCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboSalesDelAreaID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboCustomerDelContacID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDelAddress2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1283,7 +1284,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtShippingCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()

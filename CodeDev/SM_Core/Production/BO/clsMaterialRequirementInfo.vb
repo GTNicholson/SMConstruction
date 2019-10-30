@@ -210,7 +210,7 @@
     Get
       Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght,
                                               pMaterialRequirement.NetWidth,
-                                              pMaterialRequirement.NetThickness), 3)
+                                              pMaterialRequirement.NetThickness), 2)
 
     End Get
   End Property

@@ -45,11 +45,10 @@ Public Class repWorkOrderDoc
     xrlOT2.Text = pWorkOrder.WorkOrderNo
     xrlDateEntered.Text = pSalesOrder.DateEntered
     xrtDueTime.Text = pSalesOrder.DueTime
-    xrtDate.Text = pWorkOrder.DateCreated
+    xrtDate.Text = pWorkOrder.PlannedStartDate
     xrtEmployeeID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
     xrtEmployee2.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
-
-    xrSalesOrderID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(pSalesOrder.OrderTypeID)
+    xrtSalesOrderItemNumber.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
 
 
     If IsNothing(mPF) Then
