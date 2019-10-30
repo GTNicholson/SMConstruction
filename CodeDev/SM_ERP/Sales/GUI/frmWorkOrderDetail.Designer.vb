@@ -23,6 +23,7 @@ Partial Class frmWorkOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -112,6 +113,7 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTotalQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -729,6 +731,8 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
     Me.grpWOFiles.Controls.Add(Me.Label5)
+    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions1)})
+    Me.grpWOFiles.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWOFiles.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpWOFiles.Location = New System.Drawing.Point(0, 0)
     Me.grpWOFiles.Name = "grpWOFiles"
@@ -945,7 +949,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1144, 316)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1146, 314)
     Me.XtraTabPage2.Tag = "2"
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
@@ -958,7 +962,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(1144, 316)
+    Me.GroupControl3.Size = New System.Drawing.Size(1146, 314)
     Me.GroupControl3.TabIndex = 14
     Me.GroupControl3.Text = "Detalles de Estructura"
     '
@@ -967,7 +971,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirementOthers)
     Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirements)
     Me.XtraTabPage5.Name = "XtraTabPage5"
-    Me.XtraTabPage5.Size = New System.Drawing.Size(1152, 345)
+    Me.XtraTabPage5.Size = New System.Drawing.Size(1152, 342)
     Me.XtraTabPage5.Text = "Lista de Materiales de Producción"
     '
     'grdMaterialRequirementOthers
@@ -978,11 +982,11 @@ Partial Class frmWorkOrderDetail
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.EndEdit.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(3, 156)
+    Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(3, 172)
     Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
     Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
     Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
-    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1149, 179)
+    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1149, 163)
     Me.grdMaterialRequirementOthers.TabIndex = 41
     Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
     Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers})
@@ -1077,7 +1081,7 @@ Partial Class frmWorkOrderDetail
     Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
     Me.grdMaterialRequirements.MenuManager = Me.BarManager1
     Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1149, 147)
+    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1149, 163)
     Me.grdMaterialRequirements.TabIndex = 29
     Me.grdMaterialRequirements.UseEmbeddedNavigator = True
     Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements})
@@ -1086,13 +1090,16 @@ Partial Class frmWorkOrderDetail
     '
     Me.gvMaterialRequirements.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
     Me.gvMaterialRequirements.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvMaterialRequirements.Appearance.HeaderPanel.Options.UseTextOptions = True
+    Me.gvMaterialRequirements.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.gvMaterialRequirements.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvMaterialRequirements.Appearance.Row.Options.UseFont = True
     Me.gvMaterialRequirements.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
     Me.gvMaterialRequirements.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality, Me.gcTotalQuantity, Me.gcQtyBoardFeet})
+    Me.gvMaterialRequirements.ColumnPanelRowHeight = 34
+    Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality, Me.gcTotalQuantity, Me.gcQtyBoardFeet, Me.GridColumn5})
     Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
     Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
     Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
@@ -1113,7 +1120,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 0
-    Me.GridColumn2.Width = 172
+    Me.GridColumn2.Width = 324
     '
     'GridColumn4
     '
@@ -1122,7 +1129,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 1
-    Me.GridColumn4.Width = 73
+    Me.GridColumn4.Width = 137
     '
     'GridColumn10
     '
@@ -1130,8 +1137,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.FieldName = "NetThickness"
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 3
-    Me.GridColumn10.Width = 72
+    Me.GridColumn10.VisibleIndex = 4
+    Me.GridColumn10.Width = 139
     '
     'GridColumn11
     '
@@ -1139,8 +1146,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.FieldName = "NetWidth"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 4
-    Me.GridColumn11.Width = 77
+    Me.GridColumn11.VisibleIndex = 5
+    Me.GridColumn11.Width = 150
     '
     'GridColumn12
     '
@@ -1148,8 +1155,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.FieldName = "NetLenght"
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
-    Me.GridColumn12.VisibleIndex = 5
-    Me.GridColumn12.Width = 74
+    Me.GridColumn12.VisibleIndex = 6
+    Me.GridColumn12.Width = 144
     '
     'gcMaterialTypeID
     '
@@ -1157,8 +1164,8 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID.FieldName = "MaterialTypeID"
     Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
     Me.gcMaterialTypeID.Visible = True
-    Me.gcMaterialTypeID.VisibleIndex = 6
-    Me.gcMaterialTypeID.Width = 57
+    Me.gcMaterialTypeID.VisibleIndex = 7
+    Me.gcMaterialTypeID.Width = 110
     '
     'gcWoodSpecie
     '
@@ -1166,8 +1173,8 @@ Partial Class frmWorkOrderDetail
     Me.gcWoodSpecie.FieldName = "WoodSpecie"
     Me.gcWoodSpecie.Name = "gcWoodSpecie"
     Me.gcWoodSpecie.Visible = True
-    Me.gcWoodSpecie.VisibleIndex = 7
-    Me.gcWoodSpecie.Width = 56
+    Me.gcWoodSpecie.VisibleIndex = 8
+    Me.gcWoodSpecie.Width = 108
     '
     'gcQuality
     '
@@ -1175,8 +1182,8 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality.FieldName = "QualityType"
     Me.gcQuality.Name = "gcQuality"
     Me.gcQuality.Visible = True
-    Me.gcQuality.VisibleIndex = 8
-    Me.gcQuality.Width = 53
+    Me.gcQuality.VisibleIndex = 9
+    Me.gcQuality.Width = 103
     '
     'gcTotalQuantity
     '
@@ -1185,7 +1192,8 @@ Partial Class frmWorkOrderDetail
     Me.gcTotalQuantity.Name = "gcTotalQuantity"
     Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcTotalQuantity.Visible = True
-    Me.gcTotalQuantity.VisibleIndex = 2
+    Me.gcTotalQuantity.VisibleIndex = 3
+    Me.gcTotalQuantity.Width = 146
     '
     'gcQtyBoardFeet
     '
@@ -1194,13 +1202,23 @@ Partial Class frmWorkOrderDetail
     Me.gcQtyBoardFeet.Name = "gcQtyBoardFeet"
     Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcQtyBoardFeet.Visible = True
-    Me.gcQtyBoardFeet.VisibleIndex = 9
+    Me.gcQtyBoardFeet.VisibleIndex = 10
+    Me.gcQtyBoardFeet.Width = 157
+    '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "Piezas por Comp."
+    Me.GridColumn5.FieldName = "PiecesPerComponent"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 2
+    Me.GridColumn5.Width = 104
     '
     'XtraTabPage4
     '
     Me.XtraTabPage4.Controls.Add(Me.PanelControl1)
     Me.XtraTabPage4.Name = "XtraTabPage4"
-    Me.XtraTabPage4.Size = New System.Drawing.Size(1152, 345)
+    Me.XtraTabPage4.Size = New System.Drawing.Size(1152, 342)
     Me.XtraTabPage4.Text = "Estatus y Costos"
     '
     'PanelControl1
@@ -1210,7 +1228,7 @@ Partial Class frmWorkOrderDetail
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1152, 345)
+    Me.PanelControl1.Size = New System.Drawing.Size(1152, 342)
     Me.PanelControl1.TabIndex = 0
     '
     'GridControl4
@@ -1483,4 +1501,5 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcTotalQuantity As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcQtyBoardFeet As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

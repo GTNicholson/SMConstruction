@@ -69,6 +69,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialTypeID", .MaterialTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecie", .WoodSpecie)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PiecesPerComponent", .PiecesPerComponent)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", StringToDBValue(.UoM))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AreaID", .AreaID)
@@ -99,6 +100,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .MaterialTypeID = DBReadInt32(rDataReader, "MaterialTypeID")
         .WoodSpecie = DBReadInt32(rDataReader, "WoodSpecie")
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
+        .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
 
         .UoM = DBReadString(rDataReader, "UoM")
         .AreaID = DBReadInt32(rDataReader, "AreaID")

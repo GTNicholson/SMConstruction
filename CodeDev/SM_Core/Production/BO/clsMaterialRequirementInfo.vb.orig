@@ -215,7 +215,13 @@
 
   Public ReadOnly Property TotalBoardFeetReport As Decimal
     Get
+<<<<<<< HEAD
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght,
+                                              pMaterialRequirement.NetWidth,
+                                              pMaterialRequirement.NetThickness), 2)
+=======
       Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght, pMaterialRequirement.NetWidth, pMaterialRequirement.NetThickness), 3)
+>>>>>>> 685ff73d3e412a3500d146f561adcc63dc6417de
 
     End Get
   End Property
