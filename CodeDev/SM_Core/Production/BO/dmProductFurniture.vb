@@ -50,6 +50,7 @@ Public Class dmProductFurniture : Inherits dmBase
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirementOthers.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pProductFurnitureComponent.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
 

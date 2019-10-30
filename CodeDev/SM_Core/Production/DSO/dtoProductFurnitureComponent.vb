@@ -122,7 +122,7 @@ Public Class dtoProductFurnitureComponent : Inherits dtoBase
   Public Function LoadProductFurnitureComponentCollection(ByRef rProductFurnitureComponents As colProductFurnitureComponents, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@ProductFurnitureID", vParentID)
     mOK = MyBase.LoadCollection(rProductFurnitureComponents, mParams, "ProductFurnitureComponentID")
     rProductFurnitureComponents.TrackDeleted = True
     If mOK Then rProductFurnitureComponents.IsDirty = False
@@ -135,7 +135,7 @@ Public Class dtoProductFurnitureComponent : Inherits dtoBase
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
+      mParams.Add("@ProductFurnitureID", vParentID)
       ''Approach where delete items not found in the collection
       ''If rCollection.SomeRemoved Then
       ''  For Each Me.pProductFurnitureComponent In rCollection

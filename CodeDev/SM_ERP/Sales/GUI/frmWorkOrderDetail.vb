@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports DevExpress.XtraBars
+Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
@@ -311,6 +312,7 @@ Public Class frmWorkOrderDetail
 
         grdMaterialRequirements.DataSource = mPF.MaterialRequirments
         grdMaterialRequirementOthers.DataSource = mPF.MaterialRequirmentOthers
+        grdPackingComponents.DataSource = mPF.ProductFurnitureComponents
 
       End With
     End If
@@ -716,5 +718,9 @@ Public Class frmWorkOrderDetail
     Dim mMatReq As dmMaterialRequirement
     mMatReq = gvMaterialRequirements.GetRow(e.RowHandle)
     mMatReq.PiecesPerComponent = 1
+  End Sub
+
+  Private Sub grpWOFiles_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWOFiles.CustomButtonClick
+
   End Sub
 End Class
