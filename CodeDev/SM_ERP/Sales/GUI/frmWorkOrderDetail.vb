@@ -703,10 +703,19 @@ Public Class frmWorkOrderDetail
           Dim mValue As Decimal
           Dim mQty As Integer
           If e.IsGetData Then
-            mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-            mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
-            mValue = mValue
-            e.Value = mValue
+            Try
+
+              If IsNumeric(mMatReq.PiecesPerComponent) And mMatReq.PiecesPerComponent > 0 Then
+                mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+                mValue = mValue
+                e.Value = mValue
+              End If
+
+            Catch ex As Exception
+              If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+            End Try
+
           End If
       End Select
     End If
