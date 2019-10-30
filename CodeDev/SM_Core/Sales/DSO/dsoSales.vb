@@ -150,6 +150,7 @@ Public Class dsoSales
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
+    Dim mdtoComponents As dtoProductFurnitureComponent
 
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
@@ -183,6 +184,8 @@ Public Class dsoSales
             mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
             mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
             mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+            mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
+            mdtoComponents.LoadProductFurnitureComponentCollection(mProdFurniture.ProductFurnitureComponents, mProdFurniture.ProductFurnitureID)
           End If
           mdtoWOFiles = New dtoFileTracker(pDBConn)
           mdtoWOFiles.LoadFileTrackerCollection(mWO.WOFiles, eObjectType.WorkOrder, mWO.WorkOrderID)
@@ -210,6 +213,7 @@ Public Class dsoSales
     Dim mdto As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
+    Dim mdtoComponents As dtoProductFurnitureComponent
 
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
@@ -230,6 +234,8 @@ Public Class dsoSales
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+          mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
+          mdtoComponents.LoadProductFurnitureComponentCollection(mProdFurniture.ProductFurnitureComponents, mProdFurniture.ProductFurnitureID)
         End If
         mdtoWOFiles = New dtoFileTracker(pDBConn)
         mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
@@ -257,6 +263,7 @@ Public Class dsoSales
     Dim mProductFurniture As dmProductFurniture
     Dim mdtoWOFiles As dtoFileTracker
     Dim mdtoOutputDocs As dtoOutputDocument
+    Dim mdtoComponents As dtoProductFurnitureComponent
 
     Try
       pDBConn.Connect()
@@ -278,9 +285,11 @@ Public Class dsoSales
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
-          mdtoWOFiles = New dtoFileTracker(pDBConn)
-          mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
+          mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
+          mdtoComponents.SaveProductFurnitureComponentCollection(mProductFurniture.ProductFurnitureComponents, mProductFurniture.ProductFurnitureID)
         End If
+        mdtoWOFiles = New dtoFileTracker(pDBConn)
+        mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
         mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
       End If

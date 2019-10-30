@@ -50,6 +50,7 @@ Public Class dmProductFurniture : Inherits dmBase
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirementOthers.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pProductFurnitureComponent.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
 
@@ -69,7 +70,7 @@ Public Class dmProductFurniture : Inherits dmBase
       .FurnitureType = FurnitureType
       .MaterialRequirments = MaterialRequirments.Clone
       .MaterialRequirmentOthers = MaterialRequirmentOthers
-      '.ProductFurnitureComponents = ProductFurnitureComponents.Clone
+      .ProductFurnitureComponents = ProductFurnitureComponents.Clone
 
 
       'Add entries here for each collection and class property

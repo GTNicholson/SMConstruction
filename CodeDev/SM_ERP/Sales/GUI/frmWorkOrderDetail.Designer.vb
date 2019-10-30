@@ -70,6 +70,8 @@ Partial Class frmWorkOrderDetail
     Me.tabProductSpec = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
     Me.grpWOFiles = New DevExpress.XtraEditors.GroupControl()
+    Me.grdPackingComponents = New DevExpress.XtraGrid.GridControl()
+    Me.gvPackingComponents = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.ceSub = New DevExpress.XtraEditors.CheckEdit()
     Me.ceCostura = New DevExpress.XtraEditors.CheckEdit()
     Me.ceMetal = New DevExpress.XtraEditors.CheckEdit()
@@ -124,6 +126,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +156,8 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage1.SuspendLayout()
     CType(Me.grpWOFiles, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpWOFiles.SuspendLayout()
+    CType(Me.grdPackingComponents, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvPackingComponents, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ceSub.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ceCostura.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.ceMetal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -714,6 +719,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpWOFiles.AppearanceCaption.Options.UseFont = True
     Me.grpWOFiles.AppearanceCaption.Options.UseForeColor = True
+    Me.grpWOFiles.Controls.Add(Me.grdPackingComponents)
     Me.grpWOFiles.Controls.Add(Me.ceSub)
     Me.grpWOFiles.Controls.Add(Me.ceCostura)
     Me.grpWOFiles.Controls.Add(Me.ceMetal)
@@ -739,6 +745,31 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Size = New System.Drawing.Size(1146, 314)
     Me.grpWOFiles.TabIndex = 14
     Me.grpWOFiles.Text = "Detalles de Mueble"
+    '
+    'grdPackingComponents
+    '
+    Me.grdPackingComponents.Location = New System.Drawing.Point(11, 156)
+    Me.grdPackingComponents.MainView = Me.gvPackingComponents
+    Me.grdPackingComponents.MenuManager = Me.BarManager1
+    Me.grdPackingComponents.Name = "grdPackingComponents"
+    Me.grdPackingComponents.Size = New System.Drawing.Size(200, 138)
+    Me.grdPackingComponents.TabIndex = 43
+    Me.grdPackingComponents.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPackingComponents})
+    '
+    'gvPackingComponents
+    '
+    Me.gvPackingComponents.Appearance.Row.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvPackingComponents.Appearance.Row.Options.UseFont = True
+    Me.gvPackingComponents.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvPackingComponents.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvPackingComponents.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7})
+    Me.gvPackingComponents.GridControl = Me.grdPackingComponents
+    Me.gvPackingComponents.Name = "gvPackingComponents"
+    Me.gvPackingComponents.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
+    Me.gvPackingComponents.OptionsView.ShowColumnHeaders = False
+    Me.gvPackingComponents.OptionsView.ShowGroupPanel = False
+    Me.gvPackingComponents.OptionsView.ShowViewCaption = True
+    Me.gvPackingComponents.ViewCaption = "Components para Empacar"
     '
     'ceSub
     '
@@ -926,11 +957,11 @@ Partial Class frmWorkOrderDetail
     '
     'memPFNotes
     '
-    Me.memPFNotes.Location = New System.Drawing.Point(111, 155)
+    Me.memPFNotes.Location = New System.Drawing.Point(226, 155)
     Me.memPFNotes.MenuManager = Me.BarManager1
     Me.memPFNotes.Name = "memPFNotes"
     Me.memPFNotes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-    Me.memPFNotes.Size = New System.Drawing.Size(460, 152)
+    Me.memPFNotes.Size = New System.Drawing.Size(345, 139)
     Me.memPFNotes.TabIndex = 17
     '
     'Label5
@@ -1325,6 +1356,14 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "Descripcion"
+    Me.GridColumn7.FieldName = "Description"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 0
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1370,6 +1409,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.grpWOFiles, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpWOFiles.ResumeLayout(False)
     Me.grpWOFiles.PerformLayout()
+    CType(Me.grdPackingComponents, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvPackingComponents, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ceSub.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ceCostura.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.ceMetal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1502,4 +1543,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcTotalQuantity As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcQtyBoardFeet As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents grdPackingComponents As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvPackingComponents As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
