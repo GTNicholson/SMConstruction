@@ -70,7 +70,7 @@ Public Class dmProductFurniture : Inherits dmBase
       .FurnitureType = FurnitureType
       .MaterialRequirments = MaterialRequirments.Clone
       .MaterialRequirmentOthers = MaterialRequirmentOthers
-      '.ProductFurnitureComponents = ProductFurnitureComponents.Clone
+      .ProductFurnitureComponents = ProductFurnitureComponents.Clone
 
 
       'Add entries here for each collection and class property
