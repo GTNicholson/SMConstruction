@@ -1,0 +1,4 @@
+use SMConstruction
+
+alter table SalesOrderItem
+alter column ItemNumber varchar(15)

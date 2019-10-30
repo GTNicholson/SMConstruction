@@ -245,7 +245,7 @@ Partial Public Class repOtherMaterials
     'TopMargin
     '
     Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrTable3, Me.xrlWorkOrderNo2, Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel1})
-    Me.TopMargin.HeightF = 306.8411!
+    Me.TopMargin.HeightF = 307.0!
     Me.TopMargin.Name = "TopMargin"
     Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -587,7 +587,7 @@ Partial Public Class repOtherMaterials
     '
     'BottomMargin
     '
-    Me.BottomMargin.HeightF = 20.52085!
+    Me.BottomMargin.HeightF = 21.0!
     Me.BottomMargin.Name = "BottomMargin"
     Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -1272,7 +1272,7 @@ Partial Public Class repOtherMaterials
     '
     Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.ReportHeader})
     Me.FormattingRuleSheet.AddRange(New DevExpress.XtraReports.UI.FormattingRule() {Me.FormattingRule1})
-    Me.Margins = New System.Drawing.Printing.Margins(6, 1, 307, 21)
+    Me.Margins = New System.Drawing.Printing.Margins(11, 1, 307, 21)
     Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
     Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.XrControlStyle1})
     Me.Version = "17.1"

@@ -12,7 +12,7 @@ Public Class clsSalesOrderHandler
     Try
       mNewSOI = New dmSalesOrderItem
       mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
-      mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
+      ''mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
 
       AddWorkOrder(mNewSOI, vProductType)
 

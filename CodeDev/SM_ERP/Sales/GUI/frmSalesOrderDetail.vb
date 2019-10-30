@@ -712,5 +712,7 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
+  Private Sub grpOrderItem_Paint(sender As Object, e As PaintEventArgs) Handles grpOrderItem.Paint
 
+  End Sub
 End Class
