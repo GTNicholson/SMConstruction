@@ -730,6 +730,10 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub grpWOFiles_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWOFiles.CustomButtonClick
-
+    Try
+      repFGLabel.PrintWorkOrderLabels(pFormController.WorkOrder, pFormController.SalesOrder)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class
