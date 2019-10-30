@@ -1,0 +1,21 @@
+use SMconstruction
+
+GO
+
+Drop Table dbo.ProductFurnitureComponent
+
+go
+
+CREATE TABLE dbo.ProductFurnitureComponent
+(
+ProductFurnitureComponentID         INT Identity(1,1),
+ProductFurnitureID                  INT,
+Description                         NCHAR(100),
+Species                             INT,
+Qty                                 FLOAT,
+Dimensions                          NCHAR(100)
+)
+ON [PRIMARY]
+
+
+GO
