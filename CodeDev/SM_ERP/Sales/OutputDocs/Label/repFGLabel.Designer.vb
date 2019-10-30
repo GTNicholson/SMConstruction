@@ -19,9 +19,17 @@ Partial Public Class repFGLabel
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repFGLabel))
     Dim Code39ExtendedGenerator1 As DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator()
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repFGLabel))
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+    Me.XrPanel2 = New DevExpress.XtraReports.UI.XRPanel()
+    Me.xrlDescription2 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.xrlDescription1 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.XrPanel3 = New DevExpress.XtraReports.UI.XRPanel()
+    Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.XrBarCode1 = New DevExpress.XtraReports.UI.XRBarCode()
     Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
     Me.xrlCustomer = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -30,102 +38,16 @@ Partial Public Class repFGLabel
     Me.XrPictureBox3 = New DevExpress.XtraReports.UI.XRPictureBox()
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-    Me.XrPanel2 = New DevExpress.XtraReports.UI.XRPanel()
-    Me.xrlDescription1 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrPanel3 = New DevExpress.XtraReports.UI.XRPanel()
-    Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrBarCode1 = New DevExpress.XtraReports.UI.XRBarCode()
-    Me.xrlDescription2 = New DevExpress.XtraReports.UI.XRLabel()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
     '
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel2, Me.XrPanel3, Me.XrPanel1, Me.XrPictureBox2, Me.XrPictureBox1, Me.XrPictureBox3})
-    Me.Detail.HeightF = 412.5!
+    Me.Detail.HeightF = 385.0417!
+    Me.Detail.KeepTogether = True
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-    '
-    'XrPanel1
-    '
-    Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-    Me.XrPanel1.BorderWidth = 2.0!
-    Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrlCustomer, Me.XrLabel1})
-    Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(203.125!, 120.7917!)
-    Me.XrPanel1.Name = "XrPanel1"
-    Me.XrPanel1.SizeF = New System.Drawing.SizeF(386.8751!, 87.1528!)
-    Me.XrPanel1.StylePriority.UseBorders = False
-    Me.XrPanel1.StylePriority.UseBorderWidth = False
-    '
-    'xrlCustomer
-    '
-    Me.xrlCustomer.Borders = DevExpress.XtraPrinting.BorderSide.None
-    Me.xrlCustomer.Font = New System.Drawing.Font("Times New Roman", 20.0!)
-    Me.xrlCustomer.LocationFloat = New DevExpress.Utils.PointFloat(121.2153!, 10.00002!)
-    Me.xrlCustomer.Name = "xrlCustomer"
-    Me.xrlCustomer.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrlCustomer.SizeF = New System.Drawing.SizeF(255.6597!, 67.15277!)
-    Me.xrlCustomer.StylePriority.UseBorders = False
-    Me.xrlCustomer.StylePriority.UseFont = False
-    Me.xrlCustomer.Text = "Customer:"
-    '
-    'XrLabel1
-    '
-    Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
-    Me.XrLabel1.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-    Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 10.00002!)
-    Me.XrLabel1.Name = "XrLabel1"
-    Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel1.SizeF = New System.Drawing.SizeF(111.2153!, 22.99999!)
-    Me.XrLabel1.StylePriority.UseBorders = False
-    Me.XrLabel1.StylePriority.UseFont = False
-    Me.XrLabel1.Text = "Customer:"
-    '
-    'XrPictureBox2
-    '
-    Me.XrPictureBox2.Image = CType(resources.GetObject("XrPictureBox2.Image"), System.Drawing.Image)
-    Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(424.2362!, 0!)
-    Me.XrPictureBox2.Name = "XrPictureBox2"
-    Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(175.7639!, 97.30554!)
-    Me.XrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-    '
-    'XrPictureBox1
-    '
-    Me.XrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-    Me.XrPictureBox1.BorderWidth = 2.0!
-    Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-    Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-    Me.XrPictureBox1.Name = "XrPictureBox1"
-    Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(414.2361!, 83.41665!)
-    Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-    Me.XrPictureBox1.StylePriority.UseBorders = False
-    Me.XrPictureBox1.StylePriority.UseBorderWidth = False
-    '
-    'XrPictureBox3
-    '
-    Me.XrPictureBox3.Image = CType(resources.GetObject("XrPictureBox3.Image"), System.Drawing.Image)
-    Me.XrPictureBox3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 120.7917!)
-    Me.XrPictureBox3.Name = "XrPictureBox3"
-    Me.XrPictureBox3.SizeF = New System.Drawing.SizeF(203.125!, 281.7083!)
-    Me.XrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-    '
-    'TopMargin
-    '
-    Me.TopMargin.HeightF = 0!
-    Me.TopMargin.Name = "TopMargin"
-    Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-    Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-    '
-    'BottomMargin
-    '
-    Me.BottomMargin.HeightF = 0!
-    Me.BottomMargin.Name = "BottomMargin"
-    Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-    Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
     '
     'XrPanel2
     '
@@ -134,11 +56,23 @@ Partial Public Class repFGLabel
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrPanel2.BorderWidth = 2.0!
     Me.XrPanel2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrlDescription2, Me.xrlDescription1, Me.XrLabel4})
-    Me.XrPanel2.LocationFloat = New DevExpress.Utils.PointFloat(203.125!, 207.9445!)
+    Me.XrPanel2.LocationFloat = New DevExpress.Utils.PointFloat(196.1249!, 194.9445!)
     Me.XrPanel2.Name = "XrPanel2"
-    Me.XrPanel2.SizeF = New System.Drawing.SizeF(386.8751!, 120.4861!)
+    Me.XrPanel2.SizeF = New System.Drawing.SizeF(386.8751!, 109.0277!)
     Me.XrPanel2.StylePriority.UseBorders = False
     Me.XrPanel2.StylePriority.UseBorderWidth = False
+    '
+    'xrlDescription2
+    '
+    Me.xrlDescription2.Borders = DevExpress.XtraPrinting.BorderSide.None
+    Me.xrlDescription2.Font = New System.Drawing.Font("Times New Roman", 20.0!, System.Drawing.FontStyle.Bold)
+    Me.xrlDescription2.LocationFloat = New DevExpress.Utils.PointFloat(121.2152!, 53.88885!)
+    Me.xrlDescription2.Name = "xrlDescription2"
+    Me.xrlDescription2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+    Me.xrlDescription2.SizeF = New System.Drawing.SizeF(255.6597!, 43.88882!)
+    Me.xrlDescription2.StylePriority.UseBorders = False
+    Me.xrlDescription2.StylePriority.UseFont = False
+    Me.xrlDescription2.Text = "Customer:"
     '
     'xrlDescription1
     '
@@ -171,7 +105,7 @@ Partial Public Class repFGLabel
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrPanel3.BorderWidth = 2.0!
     Me.XrPanel3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel8, Me.XrBarCode1})
-    Me.XrPanel3.LocationFloat = New DevExpress.Utils.PointFloat(203.1249!, 328.4306!)
+    Me.XrPanel3.LocationFloat = New DevExpress.Utils.PointFloat(196.1248!, 308.4306!)
     Me.XrPanel3.Name = "XrPanel3"
     Me.XrPanel3.SizeF = New System.Drawing.SizeF(386.8751!, 71.56937!)
     Me.XrPanel3.StylePriority.UseBorders = False
@@ -215,22 +149,90 @@ Partial Public Class repFGLabel
     Me.XrBarCode1.Symbology = Code39ExtendedGenerator1
     Me.XrBarCode1.Text = "FG000001"
     '
-    'xrlDescription2
+    'XrPanel1
     '
-    Me.xrlDescription2.Borders = DevExpress.XtraPrinting.BorderSide.None
-    Me.xrlDescription2.Font = New System.Drawing.Font("Times New Roman", 20.0!, System.Drawing.FontStyle.Bold)
-    Me.xrlDescription2.LocationFloat = New DevExpress.Utils.PointFloat(121.2152!, 53.88885!)
-    Me.xrlDescription2.Name = "xrlDescription2"
-    Me.xrlDescription2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrlDescription2.SizeF = New System.Drawing.SizeF(255.6597!, 43.88882!)
-    Me.xrlDescription2.StylePriority.UseBorders = False
-    Me.xrlDescription2.StylePriority.UseFont = False
-    Me.xrlDescription2.Text = "Customer:"
+    Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+    Me.XrPanel1.BorderWidth = 2.0!
+    Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrlCustomer, Me.XrLabel1})
+    Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(196.1249!, 107.7917!)
+    Me.XrPanel1.Name = "XrPanel1"
+    Me.XrPanel1.SizeF = New System.Drawing.SizeF(386.8751!, 87.1528!)
+    Me.XrPanel1.StylePriority.UseBorders = False
+    Me.XrPanel1.StylePriority.UseBorderWidth = False
+    '
+    'xrlCustomer
+    '
+    Me.xrlCustomer.Borders = DevExpress.XtraPrinting.BorderSide.None
+    Me.xrlCustomer.Font = New System.Drawing.Font("Times New Roman", 20.0!)
+    Me.xrlCustomer.LocationFloat = New DevExpress.Utils.PointFloat(121.2153!, 10.00002!)
+    Me.xrlCustomer.Name = "xrlCustomer"
+    Me.xrlCustomer.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+    Me.xrlCustomer.SizeF = New System.Drawing.SizeF(255.6597!, 67.15277!)
+    Me.xrlCustomer.StylePriority.UseBorders = False
+    Me.xrlCustomer.StylePriority.UseFont = False
+    Me.xrlCustomer.Text = "Customer:"
+    '
+    'XrLabel1
+    '
+    Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
+    Me.XrLabel1.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+    Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 10.00002!)
+    Me.XrLabel1.Name = "XrLabel1"
+    Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+    Me.XrLabel1.SizeF = New System.Drawing.SizeF(111.2153!, 22.99999!)
+    Me.XrLabel1.StylePriority.UseBorders = False
+    Me.XrLabel1.StylePriority.UseFont = False
+    Me.XrLabel1.Text = "Customer:"
+    '
+    'XrPictureBox2
+    '
+    Me.XrPictureBox2.Image = CType(resources.GetObject("XrPictureBox2.Image"), System.Drawing.Image)
+    Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(414.2363!, 10.00001!)
+    Me.XrPictureBox2.Name = "XrPictureBox2"
+    Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(165.7637!, 97.30554!)
+    Me.XrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+    '
+    'XrPictureBox1
+    '
+    Me.XrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
+    Me.XrPictureBox1.BorderWidth = 2.0!
+    Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+    Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(10.00009!, 13.8889!)
+    Me.XrPictureBox1.Name = "XrPictureBox1"
+    Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(403.8194!, 83.41665!)
+    Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+    Me.XrPictureBox1.StylePriority.UseBorders = False
+    Me.XrPictureBox1.StylePriority.UseBorderWidth = False
+    '
+    'XrPictureBox3
+    '
+    Me.XrPictureBox3.Image = CType(resources.GetObject("XrPictureBox3.Image"), System.Drawing.Image)
+    Me.XrPictureBox3.LocationFloat = New DevExpress.Utils.PointFloat(9.99999!, 107.7917!)
+    Me.XrPictureBox3.Name = "XrPictureBox3"
+    Me.XrPictureBox3.SizeF = New System.Drawing.SizeF(174.6666!, 272.2082!)
+    Me.XrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+    '
+    'TopMargin
+    '
+    Me.TopMargin.HeightF = 5.0!
+    Me.TopMargin.Name = "TopMargin"
+    Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+    Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+    '
+    'BottomMargin
+    '
+    Me.BottomMargin.HeightF = 5.0!
+    Me.BottomMargin.Name = "BottomMargin"
+    Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+    Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
     '
     'repFGLabel
     '
     Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
-    Me.Margins = New System.Drawing.Printing.Margins(0, 0, 0, 0)
+    Me.Landscape = True
+    Me.Margins = New System.Drawing.Printing.Margins(0, 0, 5, 5)
     Me.PageHeight = 400
     Me.PageWidth = 600
     Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
