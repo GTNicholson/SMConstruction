@@ -44,7 +44,7 @@ Public Class frmWorkOrderTracking
   Private Sub gvWorksOrders_DoubleClick(sender As Object, e As EventArgs) Handles gvWorksOrders.DoubleClick
     Dim mWorkOrderTracking As clsWorkOrderTracking
     Dim mWorkOrderID As Integer
-    Dim mCategory As eWorkOrderMilestone
+    Dim mCategory As eWorkCentre
     Dim mWorkOrderMileStoneStatus As dmWorkOrderMilestoneStatus
     Dim mColTag As Object
 
@@ -52,7 +52,7 @@ Public Class frmWorkOrderTracking
       If gvWorksOrders.FocusedRowHandle >= 0 Then
         mColTag = gvWorksOrders.FocusedColumn.Tag
         If IsNumeric(mColTag) Then
-          mCategory = CType(mColTag, eWorkOrderMilestone)
+          mCategory = CType(mColTag, eWorkCentre)
           mWorkOrderTracking = CType(gvWorksOrders.GetFocusedRow, clsWorkOrderTracking)
           mWorkOrderID = mWorkOrderTracking.WorkOrderID
 
@@ -133,7 +133,7 @@ Public Class frmWorkOrderTracking
   Private Sub gvWorksOrders_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvWorksOrders.RowCellStyle
     Try
       Select Case e.Column.Name
-        Case gcDiseno.Name, gcInginiero.Name, gcCompadeMateriales.Name, gcCompradeMadera.Name
+        Case gcDiseno.Name, gcInginiero.Name, gcMachining.Name, gcAssembly.Name, gcMetalWork.Name, gcPainting.Name, gcSanding.Name, gcUpholstery.Name
           Dim mRow As clsWorkOrderTracking = gvWorksOrders.GetRow(e.RowHandle)
           Dim mStatus As dmWorkOrderMilestoneStatus
           Dim mStatusID As Integer
@@ -197,7 +197,7 @@ Public Class frmWorkOrderTracking
       If RTIS.CommonVB.clsGeneralA.IsBlankDate(mVal) Then
         mInfo.GroupText = "No Planificado"
       Else
-        mInfo.GroupText = "W/C: " & mVal.ToString("dd/MM/yyyy")
+        mInfo.GroupText = "Semana: " & mVal.ToString("dd/MM/yyyy")
       End If
     End If
   End Sub

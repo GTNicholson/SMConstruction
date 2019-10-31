@@ -92,11 +92,18 @@ Public Class clsSMSharedFuncs
   End Function
 
   Public Shared Function GetWOImageFileName(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder) As String
-    Dim mRetVal As String
+    Dim mRetVal As String = ""
     Dim mExportDirectory As String = String.Empty
 
+
+
     mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
-    mRetVal = IO.Path.Combine(mExportDirectory, rWorkOrder.ImageFile)
+
+    If rWorkOrder.ImageFile <> "" Then
+      mRetVal = IO.Path.Combine(mExportDirectory, rWorkOrder.ImageFile)
+    End If
+
+
 
     Return mRetVal
   End Function

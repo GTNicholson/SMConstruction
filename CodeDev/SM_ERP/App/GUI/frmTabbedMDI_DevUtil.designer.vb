@@ -52,7 +52,7 @@ Partial Class frmTabbedMDI_DevUtil
     Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
     Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
     Me.BarEditItem2 = New DevExpress.XtraBars.BarEditItem()
-    Me.NavBarControl1 = New DevExpress.XtraNavBar.NavBarControl()
+    Me.navbar = New DevExpress.XtraNavBar.NavBarControl()
     Me.NavBarGroup2 = New DevExpress.XtraNavBar.NavBarGroup()
     Me.navbarDataTransferUtility = New DevExpress.XtraNavBar.NavBarItem()
     Me.navbarSQLiteUtil = New DevExpress.XtraNavBar.NavBarItem()
@@ -71,6 +71,8 @@ Partial Class frmTabbedMDI_DevUtil
     Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
     Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
     Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
+    Me.navbarPodioTest = New DevExpress.XtraNavBar.NavBarItem()
+    Me.navbarPrinterTest = New DevExpress.XtraNavBar.NavBarItem()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +82,7 @@ Partial Class frmTabbedMDI_DevUtil
     CType(Me.RepositorybarComboMDITabOrientation, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.NavBarControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.navbar, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -306,19 +308,19 @@ Partial Class frmTabbedMDI_DevUtil
     Me.BarEditItem2.Name = "BarEditItem2"
     Me.BarEditItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.Caption
     '
-    'NavBarControl1
+    'navbar
     '
-    Me.NavBarControl1.ActiveGroup = Me.NavBarGroup2
-    Me.NavBarControl1.ContentButtonHint = Nothing
-    Me.NavBarControl1.Dock = System.Windows.Forms.DockStyle.Left
-    Me.NavBarControl1.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup_Utilities, Me.NavBarGroup2, Me.NavBarGroup3, Me.NavBarGroup1})
-    Me.NavBarControl1.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig})
-    Me.NavBarControl1.Location = New System.Drawing.Point(0, 45)
-    Me.NavBarControl1.Name = "NavBarControl1"
-    Me.NavBarControl1.OptionsNavPane.ExpandedWidth = 231
-    Me.NavBarControl1.Size = New System.Drawing.Size(231, 390)
-    Me.NavBarControl1.TabIndex = 5
-    Me.NavBarControl1.Text = "NavBarControl1"
+    Me.navbar.ActiveGroup = Me.NavBarGroup2
+    Me.navbar.ContentButtonHint = Nothing
+    Me.navbar.Dock = System.Windows.Forms.DockStyle.Left
+    Me.navbar.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup_Utilities, Me.NavBarGroup2, Me.NavBarGroup3, Me.NavBarGroup1})
+    Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest})
+    Me.navbar.Location = New System.Drawing.Point(0, 45)
+    Me.navbar.Name = "navbar"
+    Me.navbar.OptionsNavPane.ExpandedWidth = 231
+    Me.navbar.Size = New System.Drawing.Size(231, 390)
+    Me.navbar.TabIndex = 5
+    Me.navbar.Text = "NavBarControl1"
     '
     'NavBarGroup2
     '
@@ -400,6 +402,7 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.NavBarGroup1.Caption = "Application Tests & Utilities"
     Me.NavBarGroup1.Expanded = True
+    Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest)})
     Me.NavBarGroup1.Name = "NavBarGroup1"
     '
     'NavBarItem_Connection
@@ -420,13 +423,23 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
     '
+    'navbarPodioTest
+    '
+    Me.navbarPodioTest.Caption = "Podio Test"
+    Me.navbarPodioTest.Name = "navbarPodioTest"
+    '
+    'navbarPrinterTest
+    '
+    Me.navbarPrinterTest.Caption = "Printer Test"
+    Me.navbarPrinterTest.Name = "navbarPrinterTest"
+    '
     'frmTabbedMDI_DevUtil
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(1168, 435)
     Me.Controls.Add(Me.SplitterControl1)
-    Me.Controls.Add(Me.NavBarControl1)
+    Me.Controls.Add(Me.navbar)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
     Me.Controls.Add(Me.barDockControlBottom)
@@ -445,7 +458,7 @@ Partial Class frmTabbedMDI_DevUtil
     CType(Me.RepositorybarComboMDITabOrientation, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.NavBarControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.navbar, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -476,7 +489,7 @@ Partial Class frmTabbedMDI_DevUtil
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
   End Sub
-  Friend WithEvents NavBarControl1 As DevExpress.XtraNavBar.NavBarControl
+  Friend WithEvents navbar As DevExpress.XtraNavBar.NavBarControl
   Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
@@ -504,4 +517,6 @@ Partial Class frmTabbedMDI_DevUtil
   Friend WithEvents navbarConnLockTest As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents NavBarDataCompare As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents navbaritLookUpConfig As DevExpress.XtraNavBar.NavBarItem
+  Friend WithEvents navbarPodioTest As DevExpress.XtraNavBar.NavBarItem
+  Friend WithEvents navbarPrinterTest As DevExpress.XtraNavBar.NavBarItem
 End Class

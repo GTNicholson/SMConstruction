@@ -5,9 +5,13 @@ Public Class repFGLabel
   Private pSO As dmSalesOrder
   Private pFGLabelItems As List(Of clsFGLabelItem)
 
-  Public Shared Sub PrintWorkOrderLabels(ByRef rWo As dmWorkOrder, ByRef rSo As dmSalesOrder)
+  Public Shared Sub PrintWorkOrderLabels(ByRef rWo As dmWorkOrder, ByRef rSo As dmSalesOrder, ByRef rLabelDef As clsLabelDefinition)
+
     Dim mrep As New repFGLabel
     Dim mprintTool As DevExpress.XtraReports.UI.ReportPrintTool
+
+    mrep.PrinterName = rLabelDef.PrinterName
+
 
     mrep.pWO = rWo
     mrep.pSO = rSo

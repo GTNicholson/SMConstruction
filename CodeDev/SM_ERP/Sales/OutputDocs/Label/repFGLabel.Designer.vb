@@ -43,7 +43,7 @@ Partial Public Class repFGLabel
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrpImage, Me.XrPanel2, Me.XrPanel3, Me.XrPanel1, Me.XrPictureBox1, Me.XrPictureBox3})
-    Me.Detail.HeightF = 380.0!
+    Me.Detail.HeightF = 385.0!
     Me.Detail.KeepTogether = True
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -201,9 +201,9 @@ Partial Public Class repFGLabel
     Me.XrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
     Me.XrPictureBox1.BorderWidth = 2.0!
     Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-    Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(69.11468!, 9.999991!)
+    Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(117.7082!, 21.25007!)
     Me.XrPictureBox1.Name = "XrPictureBox1"
-    Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(407.3748!, 66.74998!)
+    Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(281.5934!, 66.74998!)
     Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
     Me.XrPictureBox1.StylePriority.UseBorders = False
     Me.XrPictureBox1.StylePriority.UseBorderWidth = False

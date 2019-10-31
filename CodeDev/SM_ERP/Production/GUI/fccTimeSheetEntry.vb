@@ -23,6 +23,12 @@ Public Class fccTimeSheetEntry
     pRTISGlobal = rRTISGlobal
   End Sub
 
+  Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
+    Get
+      Return pDBConn
+    End Get
+  End Property
+
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
     Get
       Return pRTISGlobal
@@ -38,6 +44,11 @@ Public Class fccTimeSheetEntry
     pWorkOrderInfos = New colWorkOrderInfos
     mdso.LoadWorkOrderInfos(pWorkOrderInfos, "")
   End Sub
+  Public Function IsDirty() As Boolean
+    Dim mIsDirty As Boolean = True
+    mIsDirty = pTimeSheetEntrys.IsDirty
+    Return mIsDirty
+  End Function
 
   Public Property WCDate As DateTime
     Get
@@ -107,7 +118,7 @@ Public Class fccTimeSheetEntry
     pWCDate = RTIS.CommonVB.libDateTime.MondayOfWeek(Now.Date)
     pStartTime = (New Date).AddHours(6)
     pEndTime = (New Date).AddHours(18)
-    pWorkCentreID = eWorkCentre.Optimizacion
+    pWorkCentreID = eWorkCentre.Dimensionado
     clsTimeSheetEntryUI.SetCurrentWorkCenterID(pWorkCentreID)
   End Sub
 
@@ -123,6 +134,8 @@ Public Class fccTimeSheetEntry
       pTimeSheetEntrys.Clear()
       If pEmployee IsNot Nothing And pWCDate <> New Date Then
         mdso.LoadTimeSheetEntrysEmpIDWC(pTimeSheetEntrys, pEmployee.EmployeeID, pWCDate)
+      Else
+        pTimeSheetEntrys.IsDirty = False
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw

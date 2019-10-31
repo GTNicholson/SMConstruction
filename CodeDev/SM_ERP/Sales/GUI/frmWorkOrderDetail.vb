@@ -730,8 +730,16 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub grpWOFiles_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWOFiles.CustomButtonClick
+
+    Dim mlabelDef As New SM_Core.clsLabelDefinition
+    Dim mDso As New SM_Core.dsoLabelDefinition(My.Application.RTISUserSession.CreateMainDBConn())
+
     Try
-      repFGLabel.PrintWorkOrderLabels(pFormController.WorkOrder, pFormController.SalesOrder)
+
+      mlabelDef.LabelDefinitionID = 1
+      mDso.LoadLabelDefinition(mlabelDef)
+
+      repFGLabel.PrintWorkOrderLabels(pFormController.WorkOrder, pFormController.SalesOrder, mlabelDef)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
