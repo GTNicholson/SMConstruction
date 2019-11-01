@@ -89,15 +89,18 @@ End Enum
 
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
-  <Description("Optimización")> Optimizacion = 1
-  <Description("Maquinado")> Maquinado = 2
-  <Description("Ensamble")> Ensamble = 3
-  <Description("Lija")> Lija = 4
-  <Description("Metal")> Metal = 5
-  <Description("Tapizado")> Tapizado = 6
-  <Description("Pintura")> Pintura = 7
-  <Description("Empaque")> Empaque = 8
-  <Description("Despacho")> Despacho = 9
+  <Description("Ingeniería")> Engineering = 1
+  <Description("Dimensionado")> Dimensionado = 2
+  <Description("Maquinado")> Machining = 3
+  <Description("Ensamble")> Assembly = 4
+  <Description("Lija")> Sanding = 5
+  <Description("Acabado")> Painting = 6
+  <Description("Metal")> MetalWork = 7
+  <Description("Tapizado")> Upholstery = 8
+  <Description("SubContratación")> SubContract = 9
+  <Description("Empaque")> Packaing = 10
+  <Description("Despacho")> Dispatching = 11
+
 
 End Enum
 
@@ -120,12 +123,17 @@ Public Enum eMilestoneStatus
 
 End Enum
 
-Public Enum eWorkOrderMilestone
-  Design = 1
-  Specification = 2
-  MaterialPurchasing = 3
-  WoodPurchasing = 4
-End Enum
+''Public Enum eWorkOrderMilestone
+''  Engineering = 1
+''  Dimensioning = 2
+''  Machining = 3
+''  Assembly = 4
+''  Sanding = 5
+''  Painting = 6
+''  MetalWork = 7
+''  Upholstery = 8
+
+''End Enum
 
 Public Enum eIVAType
   Aplica = 1
@@ -137,14 +145,18 @@ Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of cls
 
   Private Sub New()
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cUnDefined, "Sin Def", " ", System.Drawing.Color.White))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkOrder, "OT", "", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Ausencia", "A", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vacaciones", "V", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfermo", "E", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Parada", "P", System.Drawing.Color.Lavender))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkAllowance, "Subsidio", "S", System.Drawing.Color.Lavender))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkOrder, "OT", "", System.Drawing.Color.Green))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Ausencia", "A", System.Drawing.Color.Gray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vacaciones", "V", System.Drawing.Color.Gray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.DarkRed))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfermo", "E", System.Drawing.Color.Gray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.PaleGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Pausa", "P", System.Drawing.Color.DarkRed))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkAllowance, "Subsidio", "S", System.Drawing.Color.Gray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaterialTransportation, "Traslado", "T", System.Drawing.Color.PaleGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cInventory, "Inventario", "I", System.Drawing.Color.PaleGreen))
+
+
   End Sub
 
   Public Shared ReadOnly Property GetInstance As colTimeSheetCodes
@@ -181,12 +193,16 @@ Public Class clsTimeSheetCode : Inherits RTIS.ERPCore.clsPropertyENUM
   Public Const cCleaning = 6
   Public Const cStop = 7
   Public Const cWorkAllowance = 8
+  Public Const cMaterialTransportation = 9
+  Public Const cInventory = 10
 
   Public Sub New(ByVal vID As Integer, vDescription As String, vKeyCode As String, vColour As System.Drawing.Color)
     MyBase.New(vID, vDescription)
     pKeyCode = vKeyCode
     pColour = vColour
   End Sub
+
+
 
   Public ReadOnly Property KeyCode As String
     Get

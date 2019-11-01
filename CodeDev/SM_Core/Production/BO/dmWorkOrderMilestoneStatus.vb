@@ -4,7 +4,7 @@ Imports RTIS.CommonVB
 Public Class dmWorkOrderMilestoneStatus : Inherits dmBase
   Private pWorkOrderMilestoneStatusID As Int32
   Private pWorkOrderID As Int32
-  Private pMilestoneENUM As Byte
+  Private pWorkCenter As Byte
   Private pStatus As Byte
   Private pTargetDate As DateTime
   Private pActualDate As DateTime
@@ -80,11 +80,11 @@ Public Class dmWorkOrderMilestoneStatus : Inherits dmBase
 
   Public Property MilestoneENUM() As Byte
     Get
-      Return pMilestoneENUM
+      Return pWorkCenter
     End Get
     Set(ByVal value As Byte)
-      If pMilestoneENUM <> value Then IsDirty = True
-      pMilestoneENUM = value
+      If pWorkCenter <> value Then IsDirty = True
+      pWorkCenter = value
     End Set
   End Property
 

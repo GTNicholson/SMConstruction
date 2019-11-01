@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraTab
 Imports RTIS.CommonVB
 Imports RTIS.Elements
@@ -21,6 +22,9 @@ Public Class frmTimeSheetEntry
     Dim mMsg As String = ""
 
     Try
+      If pController.DBConn.RTISUser.IsSecurityAllowAll = False Then
+        XtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
+      End If
 
       pController.SetInitialDefaultValues()
       pController.LoadTimeSheetEntrys()
@@ -102,7 +106,15 @@ Public Class frmTimeSheetEntry
 
   Private Sub cboEmployee_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboEmployee.SelectedIndexChanged
     Try
-      pController.SetCurrentEmployee(clsDEControlLoading.GetDEComboValue(cboEmployee))
+
+
+      UpdateObjects()
+        pController.SetCurrentEmployee(clsDEControlLoading.GetDEComboValue(cboEmployee))
+        pController.LoadTimeSheetEntrys()
+        pController.LoadTimeSheetEntryUIs()
+        grdTimeSheet.DataSource = pController.TimeSheetEntryUIs
+        grdTimeSheetEntries.DataSource = pController.TimeSheetEntrys
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -151,5 +163,82 @@ Public Class frmTimeSheetEntry
 
   Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
     gvTimeSheetEntries.RefreshData()
+  End Sub
+
+  Private Sub cboEmployee_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cboEmployee.Validating
+
+  End Sub
+
+
+
+  Private Function CheckSave(ByVal rOption As Boolean) As Boolean
+    Dim mSaveRequired As Boolean
+    Dim mResponse As MsgBoxResult
+    Dim mRetVal As Boolean
+
+    UpdateObjects()
+    'pFormController.SaveObjects()
+    If pController.IsDirty() Then
+      If rOption Then
+        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
+        Select Case mResponse
+          Case MsgBoxResult.Yes
+            mSaveRequired = True
+            mRetVal = False
+
+          Case MsgBoxResult.No
+            mSaveRequired = False
+            mRetVal = True
+
+          Case MsgBoxResult.Cancel
+            mSaveRequired = False
+            mRetVal = False
+        End Select
+      Else
+
+        mSaveRequired = True
+        mRetVal = False
+      End If
+    Else
+
+      mSaveRequired = False
+      mRetVal = True
+    End If
+
+    If mSaveRequired Then
+
+      pController.SaveTimeSheetEntrys()
+      mRetVal = True
+
+    End If
+    CheckSave = mRetVal
+
+    ''If mSaveRequired Then
+    ''  ''Dim mValidate As clsValidate
+    ''  ''mValidate = pFormController.ValidateObject
+    ''  ''If mValidate.ValOk Then
+    ''  pFormController.SaveObjects()
+    ''  ''Else
+    ''  '' MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+    ''  ''mRetVal = False
+    ''  ''End If
+    ''End If
+    ''CheckSave = mRetVal
+  End Function
+
+  Private Sub cboEmployee_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles cboEmployee.EditValueChanging
+    Try
+
+      If CheckSave(True) Then
+      Else
+        cboEmployee.EditValue = e.OldValue
+        e.Cancel = True
+        cboEmployee.Refresh()
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 End Class

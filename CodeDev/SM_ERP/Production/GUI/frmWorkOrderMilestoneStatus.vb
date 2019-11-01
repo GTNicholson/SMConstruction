@@ -30,7 +30,8 @@ Public Class frmWorkOrderMilestoneStatus
     Dim mErrorDisplayed As Boolean
     Try
 
-      RefreshControls
+
+      RefreshControls()
 
       mOK = True
 
@@ -56,7 +57,7 @@ Public Class frmWorkOrderMilestoneStatus
       With pController.WorkOrderMilestoneStatus
         radgrpWOStatusSetting.EditValue = CInt(.Status)
 
-        dtePlannedDate.DateTime = .TargetDate
+        dtePlannedDate.EditValue = .TargetDate
         dteActualDate.DateTime = .ActualDate
         txtNotes.Text = .Notes
       End With

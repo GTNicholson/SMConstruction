@@ -715,4 +715,16 @@ Public Class frmSalesOrderDetail
   Private Sub grpOrderItem_Paint(sender As Object, e As PaintEventArgs) Handles grpOrderItem.Paint
 
   End Sub
+
+  Private Sub gvOrderItem_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles gvOrderItem.RowUpdated
+    '// Update the work order qtys
+    Dim mSOItem As dmSalesOrderItem
+    mSOItem = TryCast(e.Row, dmSalesOrderItem)
+    If mSOItem IsNot Nothing Then
+      For Each mWO In mSOItem.WorkOrders
+        mWO.Quantity = mSOItem.Quantity * mWO.QtyPerSalesItem
+      Next
+    End If
+    gvWorkOrders.RefreshData()
+  End Sub
 End Class

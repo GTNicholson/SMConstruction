@@ -73,7 +73,7 @@ Partial Class frmWorkOrderMilestoneStatus
     Me.radgrpWOStatusSetting.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.radgrpWOStatusSetting.Properties.Appearance.Options.UseFont = True
     Me.radgrpWOStatusSetting.Properties.Appearance.Options.UseForeColor = True
-    Me.radgrpWOStatusSetting.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Pendiente"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "No Requerido"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "In Proceso"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Completo")})
+    Me.radgrpWOStatusSetting.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Pendiente"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "No Requerido"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "En Proceso"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Completo")})
     Me.radgrpWOStatusSetting.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
     Me.radgrpWOStatusSetting.Size = New System.Drawing.Size(328, 25)
     Me.radgrpWOStatusSetting.TabIndex = 120
@@ -140,7 +140,7 @@ Partial Class frmWorkOrderMilestoneStatus
     Me.dtePlannedDate.Properties.EditFormat.FormatString = ""
     Me.dtePlannedDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
     Me.dtePlannedDate.Properties.Mask.UseMaskAsDisplayFormat = True
-    Me.dtePlannedDate.Properties.NullDate = "01/01/0001 00:00:00"
+    Me.dtePlannedDate.Properties.NullDate = New Date(CType(0, Long))
     Me.dtePlannedDate.Size = New System.Drawing.Size(94, 20)
     Me.dtePlannedDate.TabIndex = 123
     '
@@ -160,7 +160,7 @@ Partial Class frmWorkOrderMilestoneStatus
     Me.dteActualDate.Properties.EditFormat.FormatString = ""
     Me.dteActualDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
     Me.dteActualDate.Properties.Mask.UseMaskAsDisplayFormat = True
-    Me.dteActualDate.Properties.NullDate = "01/01/0001 00:00:00"
+    Me.dteActualDate.Properties.NullDate = New Date(CType(0, Long))
     Me.dteActualDate.Size = New System.Drawing.Size(94, 20)
     Me.dteActualDate.TabIndex = 119
     '

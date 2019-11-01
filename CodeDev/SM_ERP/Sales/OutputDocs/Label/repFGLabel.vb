@@ -5,9 +5,13 @@ Public Class repFGLabel
   Private pSO As dmSalesOrder
   Private pFGLabelItems As List(Of clsFGLabelItem)
 
-  Public Shared Sub PrintWorkOrderLabels(ByRef rWo As dmWorkOrder, ByRef rSo As dmSalesOrder)
+  Public Shared Sub PrintWorkOrderLabels(ByRef rWo As dmWorkOrder, ByRef rSo As dmSalesOrder, ByRef rLabelDef As clsLabelDefinition)
+
     Dim mrep As New repFGLabel
     Dim mprintTool As DevExpress.XtraReports.UI.ReportPrintTool
+
+    mrep.PrinterName = rLabelDef.PrinterName
+
 
     mrep.pWO = rWo
     mrep.pSO = rSo
@@ -67,6 +71,19 @@ Public Class repFGLabel
 
 
 
+  End Sub
+
+  Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
+    Dim mFileName As String
+    Dim mImage As Image
+
+    mFileName = clsSMSharedFuncs.GetWOImageFileName(pSO, pWO)
+
+    If IO.File.Exists(mFileName) Then
+      mImage = Drawing.Image.FromFile(mFileName)
+    End If
+
+    xrpImage.Image = mImage
   End Sub
 End Class
 

@@ -29,16 +29,18 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.gcTotalValue = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDiseno = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcInginiero = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCompadeMateriales = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCompradeMadera = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMachining = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcAssembly = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcSanding = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcPainting = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMetalWork = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcUpholstery = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -55,11 +57,11 @@ Partial Class frmWorkOrderTracking
     'grdWorksOrders
     '
     Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 24)
+    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 29)
     Me.grdWorksOrders.MainView = Me.gvWorksOrders
     Me.grdWorksOrders.Name = "grdWorksOrders"
     Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 602)
+    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 597)
     Me.grdWorksOrders.TabIndex = 0
     Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
     '
@@ -74,11 +76,11 @@ Partial Class frmWorkOrderTracking
     Me.gvWorksOrders.Appearance.Row.Options.UseTextOptions = True
     Me.gvWorksOrders.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.gvWorksOrders.ColumnPanelRowHeight = 34
-    Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcTotalValue, Me.gcDiseno, Me.gcInginiero, Me.gcCompadeMateriales, Me.gcCompradeMadera})
+    Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcDiseno, Me.gcInginiero, Me.gcMachining, Me.gcAssembly, Me.gcSanding, Me.gcPainting, Me.gcMetalWork, Me.gcUpholstery})
     Me.gvWorksOrders.GridControl = Me.grdWorksOrders
     Me.gvWorksOrders.GroupCount = 1
     Me.gvWorksOrders.GroupRowHeight = 28
-    Me.gvWorksOrders.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalValue", Me.gcTotalValue, "{0:0.##}")})
+    Me.gvWorksOrders.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalValue", Nothing, "{0:0.##}")})
     Me.gvWorksOrders.Name = "gvWorksOrders"
     Me.gvWorksOrders.OptionsBehavior.AutoExpandAllGroups = True
     Me.gvWorksOrders.OptionsView.ColumnAutoWidth = False
@@ -102,27 +104,27 @@ Partial Class frmWorkOrderTracking
     '
     Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
     Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn1.Caption = "Numero de O.T."
+    Me.GridColumn1.Caption = "Núm. O.T."
     Me.GridColumn1.FieldName = "WorkOrderNo"
     Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn1.Name = "GridColumn1"
     Me.GridColumn1.OptionsColumn.ReadOnly = True
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
-    Me.GridColumn1.Width = 71
+    Me.GridColumn1.Width = 94
     '
     'GridColumn2
     '
     Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
     Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn2.Caption = "Descripcion"
+    Me.GridColumn2.Caption = "Descripción"
     Me.GridColumn2.FieldName = "Description"
     Me.GridColumn2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.OptionsColumn.ReadOnly = True
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 1
-    Me.GridColumn2.Width = 263
+    Me.GridColumn2.Width = 112
     '
     'GridColumn3
     '
@@ -137,19 +139,6 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn3.VisibleIndex = 2
     Me.GridColumn3.Width = 62
     '
-    'GridColumn6
-    '
-    Me.GridColumn6.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.GridColumn6.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn6.Caption = "Tipo de Producto"
-    Me.GridColumn6.FieldName = "ProductType"
-    Me.GridColumn6.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.OptionsColumn.ReadOnly = True
-    Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 3
-    Me.GridColumn6.Width = 138
-    '
     'GridColumn4
     '
     Me.GridColumn4.AppearanceCell.BackColor = System.Drawing.Color.Lavender
@@ -160,7 +149,8 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.OptionsColumn.ReadOnly = True
     Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 4
+    Me.GridColumn4.VisibleIndex = 3
+    Me.GridColumn4.Width = 65
     '
     'GridColumn10
     '
@@ -171,8 +161,8 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.OptionsColumn.ReadOnly = True
     Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 5
-    Me.GridColumn10.Width = 138
+    Me.GridColumn10.VisibleIndex = 4
+    Me.GridColumn10.Width = 94
     '
     'GridColumn5
     '
@@ -184,7 +174,8 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
-    Me.GridColumn5.VisibleIndex = 6
+    Me.GridColumn5.VisibleIndex = 5
+    Me.GridColumn5.Width = 76
     '
     'RepositoryItemDateEdit1
     '
@@ -194,18 +185,6 @@ Partial Class frmWorkOrderTracking
     Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
     Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
     '
-    'gcTotalValue
-    '
-    Me.gcTotalValue.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.gcTotalValue.AppearanceCell.Options.UseBackColor = True
-    Me.gcTotalValue.Caption = "Valor"
-    Me.gcTotalValue.FieldName = "TotalValue"
-    Me.gcTotalValue.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-    Me.gcTotalValue.Name = "gcTotalValue"
-    Me.gcTotalValue.Visible = True
-    Me.gcTotalValue.VisibleIndex = 7
-    Me.gcTotalValue.Width = 66
-    '
     'gcDiseno
     '
     Me.gcDiseno.AppearanceCell.Options.UseTextOptions = True
@@ -213,7 +192,7 @@ Partial Class frmWorkOrderTracking
     Me.gcDiseno.AppearanceHeader.Options.UseTextOptions = True
     Me.gcDiseno.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
     Me.gcDiseno.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcDiseno.Caption = "Diseno"
+    Me.gcDiseno.Caption = "Ingeniería"
     Me.gcDiseno.FieldName = "GridColumn5"
     Me.gcDiseno.Name = "gcDiseno"
     Me.gcDiseno.OptionsColumn.AllowEdit = False
@@ -221,7 +200,7 @@ Partial Class frmWorkOrderTracking
     Me.gcDiseno.Tag = 1
     Me.gcDiseno.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcDiseno.Visible = True
-    Me.gcDiseno.VisibleIndex = 8
+    Me.gcDiseno.VisibleIndex = 6
     '
     'gcInginiero
     '
@@ -230,7 +209,7 @@ Partial Class frmWorkOrderTracking
     Me.gcInginiero.AppearanceHeader.Options.UseTextOptions = True
     Me.gcInginiero.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
     Me.gcInginiero.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcInginiero.Caption = "Inginiero"
+    Me.gcInginiero.Caption = "Dimensionado"
     Me.gcInginiero.FieldName = "GridColumn7"
     Me.gcInginiero.Name = "gcInginiero"
     Me.gcInginiero.OptionsColumn.AllowEdit = False
@@ -238,41 +217,90 @@ Partial Class frmWorkOrderTracking
     Me.gcInginiero.Tag = 2
     Me.gcInginiero.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcInginiero.Visible = True
-    Me.gcInginiero.VisibleIndex = 9
+    Me.gcInginiero.VisibleIndex = 7
+    Me.gcInginiero.Width = 89
     '
-    'gcCompadeMateriales
+    'gcMachining
     '
-    Me.gcCompadeMateriales.AppearanceCell.Options.UseTextOptions = True
-    Me.gcCompadeMateriales.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-    Me.gcCompadeMateriales.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcCompadeMateriales.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-    Me.gcCompadeMateriales.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcCompadeMateriales.Caption = "Compa de Materiales"
-    Me.gcCompadeMateriales.FieldName = "GridColumn8"
-    Me.gcCompadeMateriales.Name = "gcCompadeMateriales"
-    Me.gcCompadeMateriales.OptionsColumn.AllowEdit = False
-    Me.gcCompadeMateriales.OptionsColumn.ReadOnly = True
-    Me.gcCompadeMateriales.Tag = 3
-    Me.gcCompadeMateriales.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-    Me.gcCompadeMateriales.Visible = True
-    Me.gcCompadeMateriales.VisibleIndex = 10
+    Me.gcMachining.AppearanceCell.Options.UseTextOptions = True
+    Me.gcMachining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcMachining.AppearanceHeader.Options.UseTextOptions = True
+    Me.gcMachining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcMachining.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gcMachining.Caption = "Maquinado"
+    Me.gcMachining.FieldName = "GridColumn8"
+    Me.gcMachining.Name = "gcMachining"
+    Me.gcMachining.OptionsColumn.AllowEdit = False
+    Me.gcMachining.OptionsColumn.ReadOnly = True
+    Me.gcMachining.Tag = 3
+    Me.gcMachining.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcMachining.Visible = True
+    Me.gcMachining.VisibleIndex = 8
     '
-    'gcCompradeMadera
+    'gcAssembly
     '
-    Me.gcCompradeMadera.AppearanceCell.Options.UseTextOptions = True
-    Me.gcCompradeMadera.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-    Me.gcCompradeMadera.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcCompradeMadera.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-    Me.gcCompradeMadera.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcCompradeMadera.Caption = "Compra de Madera"
-    Me.gcCompradeMadera.FieldName = "GridColumn9"
-    Me.gcCompradeMadera.Name = "gcCompradeMadera"
-    Me.gcCompradeMadera.OptionsColumn.AllowEdit = False
-    Me.gcCompradeMadera.OptionsColumn.ReadOnly = True
-    Me.gcCompradeMadera.Tag = 4
-    Me.gcCompradeMadera.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-    Me.gcCompradeMadera.Visible = True
-    Me.gcCompradeMadera.VisibleIndex = 11
+    Me.gcAssembly.AppearanceCell.Options.UseTextOptions = True
+    Me.gcAssembly.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcAssembly.AppearanceHeader.Options.UseTextOptions = True
+    Me.gcAssembly.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    Me.gcAssembly.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gcAssembly.Caption = "Ensamble"
+    Me.gcAssembly.FieldName = "GridColumn9"
+    Me.gcAssembly.Name = "gcAssembly"
+    Me.gcAssembly.OptionsColumn.AllowEdit = False
+    Me.gcAssembly.OptionsColumn.ReadOnly = True
+    Me.gcAssembly.Tag = 4
+    Me.gcAssembly.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcAssembly.Visible = True
+    Me.gcAssembly.VisibleIndex = 9
+    '
+    'gcSanding
+    '
+    Me.gcSanding.Caption = "Lija"
+    Me.gcSanding.FieldName = "gc"
+    Me.gcSanding.Name = "gcSanding"
+    Me.gcSanding.OptionsColumn.AllowEdit = False
+    Me.gcSanding.OptionsColumn.ReadOnly = True
+    Me.gcSanding.Tag = "5"
+    Me.gcSanding.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcSanding.Visible = True
+    Me.gcSanding.VisibleIndex = 10
+    '
+    'gcPainting
+    '
+    Me.gcPainting.Caption = "Pintura"
+    Me.gcPainting.FieldName = "gcPainting"
+    Me.gcPainting.Name = "gcPainting"
+    Me.gcPainting.OptionsColumn.AllowEdit = False
+    Me.gcPainting.OptionsColumn.ReadOnly = True
+    Me.gcPainting.Tag = "6"
+    Me.gcPainting.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcPainting.Visible = True
+    Me.gcPainting.VisibleIndex = 11
+    '
+    'gcMetalWork
+    '
+    Me.gcMetalWork.Caption = "Metal"
+    Me.gcMetalWork.FieldName = "Metal"
+    Me.gcMetalWork.Name = "gcMetalWork"
+    Me.gcMetalWork.OptionsColumn.AllowEdit = False
+    Me.gcMetalWork.OptionsColumn.ReadOnly = True
+    Me.gcMetalWork.Tag = "7"
+    Me.gcMetalWork.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcMetalWork.Visible = True
+    Me.gcMetalWork.VisibleIndex = 12
+    '
+    'gcUpholstery
+    '
+    Me.gcUpholstery.Caption = "Tapizado"
+    Me.gcUpholstery.FieldName = "gcUpholstery"
+    Me.gcUpholstery.Name = "gcUpholstery"
+    Me.gcUpholstery.OptionsColumn.AllowEdit = False
+    Me.gcUpholstery.OptionsColumn.ReadOnly = True
+    Me.gcUpholstery.Tag = "8"
+    Me.gcUpholstery.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcUpholstery.Visible = True
+    Me.gcUpholstery.VisibleIndex = 13
     '
     'BarManager1
     '
@@ -298,7 +326,7 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 24)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 29)
     '
     'barDockControlBottom
     '
@@ -312,17 +340,17 @@ Partial Class frmWorkOrderTracking
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 24)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 602)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 597)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 24)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 29)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 602)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 597)
     '
     'frmWorkOrderTracking
     '
@@ -357,15 +385,17 @@ Partial Class frmWorkOrderTracking
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcDiseno As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcInginiero As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcCompadeMateriales As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcCompradeMadera As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMachining As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcAssembly As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcTotalValue As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+  Friend WithEvents gcSanding As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcPainting As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMetalWork As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcUpholstery As DevExpress.XtraGrid.Columns.GridColumn
 End Class

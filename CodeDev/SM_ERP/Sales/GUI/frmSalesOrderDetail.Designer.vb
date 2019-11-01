@@ -885,7 +885,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(0, 5)
     Me.grpOrderItem.Name = "grpOrderItem"
-    Me.grpOrderItem.Size = New System.Drawing.Size(563, 169)
+    Me.grpOrderItem.Size = New System.Drawing.Size(563, 191)
     Me.grpOrderItem.TabIndex = 0
     Me.grpOrderItem.Text = "Articulos"
     '
@@ -897,7 +897,7 @@ Partial Class frmSalesOrderDetail
     Me.grdOrderItem.MenuManager = Me.BarManager1
     Me.grdOrderItem.Name = "grdOrderItem"
     Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-    Me.grdOrderItem.Size = New System.Drawing.Size(559, 141)
+    Me.grdOrderItem.Size = New System.Drawing.Size(559, 163)
     Me.grdOrderItem.TabIndex = 0
     Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem})
     '
@@ -1043,7 +1043,7 @@ Partial Class frmSalesOrderDetail
     Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWorkOrders.Location = New System.Drawing.Point(578, 5)
     Me.grpWorkOrders.Name = "grpWorkOrders"
-    Me.grpWorkOrders.Size = New System.Drawing.Size(571, 169)
+    Me.grpWorkOrders.Size = New System.Drawing.Size(571, 193)
     Me.grpWorkOrders.TabIndex = 1
     Me.grpWorkOrders.Text = "Ordenes de Trabajo"
     '
@@ -1055,7 +1055,7 @@ Partial Class frmSalesOrderDetail
     Me.grdWorkOrders.MenuManager = Me.BarManager1
     Me.grdWorkOrders.Name = "grdWorkOrders"
     Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-    Me.grdWorkOrders.Size = New System.Drawing.Size(567, 144)
+    Me.grdWorkOrders.Size = New System.Drawing.Size(567, 168)
     Me.grdWorkOrders.TabIndex = 0
     Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders})
     '
@@ -1164,11 +1164,11 @@ Partial Class frmSalesOrderDetail
     '
     Me.GridControl3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl3.Location = New System.Drawing.Point(580, 180)
+    Me.GridControl3.Location = New System.Drawing.Point(580, 204)
     Me.GridControl3.MainView = Me.GridView3
     Me.GridControl3.MenuManager = Me.BarManager1
     Me.GridControl3.Name = "GridControl3"
-    Me.GridControl3.Size = New System.Drawing.Size(569, 197)
+    Me.GridControl3.Size = New System.Drawing.Size(569, 173)
     Me.GridControl3.TabIndex = 3
     Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
     '
@@ -1192,11 +1192,11 @@ Partial Class frmSalesOrderDetail
     '
     Me.GridControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl2.Location = New System.Drawing.Point(0, 180)
+    Me.GridControl2.Location = New System.Drawing.Point(0, 204)
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(563, 197)
+    Me.GridControl2.Size = New System.Drawing.Size(563, 173)
     Me.GridControl2.TabIndex = 2
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '

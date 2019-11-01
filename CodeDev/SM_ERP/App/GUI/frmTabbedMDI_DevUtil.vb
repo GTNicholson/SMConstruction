@@ -200,4 +200,39 @@ Public Class frmTabbedMDI_DevUtil
   Private Sub frmTabbedMDI_DevUtil_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
   End Sub
+
+  Private Sub navbarPodioTest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbarPodioTest.LinkClicked
+    Dim mSourceFile As String = ""
+    Dim mTargetFile As String = ""
+    Dim mTargetPath As String = ""
+
+    Try
+
+      Dim menum As Integer
+
+
+      RTIS.CommonVB.clsGeneralA.GetOpenFileName(mSourceFile, "SourceFile")
+      mTargetPath = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), "Dropbox", "MADE")
+      mTargetFile = IO.Path.GetFileName(mSourceFile)
+      RTIS.CommonVB.clsGeneralA.GetSaveFileName(mTargetFile, "TargetFile", mTargetPath)
+
+      IO.File.Copy(mSourceFile, mTargetFile)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
+  Private Sub navbarPrinterTest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbarPrinterTest.LinkClicked
+    Dim mlabelDef As New clsLabelDefinition
+    Dim mDso As New dsoLabelDefinition(My.Application.RTISUserSession.CreateMainDBConn())
+    Dim mWO As New dmWorkOrder
+    Dim mSO As New dmSalesOrder
+
+    mlabelDef.LabelDefinitionID = 1
+    mDso.LoadLabelDefinition(mlabelDef)
+
+    repFGLabel.PrintWorkOrderLabels(mWO, mSO, mlabelDef)
+  End Sub
 End Class

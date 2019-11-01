@@ -1,0 +1,10 @@
+use SMConstruction
+
+
+alter table LabelDefinition
+add PrinterName varchar(50)
+go
+
+Insert into LabelDefinition (LabelDefName,PrinterName)
+values (1,'SMM_Label')
+go

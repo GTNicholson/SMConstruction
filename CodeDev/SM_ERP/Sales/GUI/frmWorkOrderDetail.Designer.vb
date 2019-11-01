@@ -72,6 +72,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles = New DevExpress.XtraEditors.GroupControl()
     Me.grdPackingComponents = New DevExpress.XtraGrid.GridControl()
     Me.gvPackingComponents = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.ceSub = New DevExpress.XtraEditors.CheckEdit()
     Me.ceCostura = New DevExpress.XtraEditors.CheckEdit()
     Me.ceMetal = New DevExpress.XtraEditors.CheckEdit()
@@ -126,7 +127,6 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -765,11 +765,20 @@ Partial Class frmWorkOrderDetail
     Me.gvPackingComponents.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7})
     Me.gvPackingComponents.GridControl = Me.grdPackingComponents
     Me.gvPackingComponents.Name = "gvPackingComponents"
+    Me.gvPackingComponents.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
     Me.gvPackingComponents.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
     Me.gvPackingComponents.OptionsView.ShowColumnHeaders = False
     Me.gvPackingComponents.OptionsView.ShowGroupPanel = False
     Me.gvPackingComponents.OptionsView.ShowViewCaption = True
-    Me.gvPackingComponents.ViewCaption = "Components para Empacar"
+    Me.gvPackingComponents.ViewCaption = "Componentes para Empacar"
+    '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "Descripcion"
+    Me.GridColumn7.FieldName = "Description"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 0
     '
     'ceSub
     '
@@ -1355,14 +1364,6 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.Visible = True
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
-    '
-    'GridColumn7
-    '
-    Me.GridColumn7.Caption = "Descripcion"
-    Me.GridColumn7.FieldName = "Description"
-    Me.GridColumn7.Name = "GridColumn7"
-    Me.GridColumn7.Visible = True
-    Me.GridColumn7.VisibleIndex = 0
     '
     'frmWorkOrderDetail
     '

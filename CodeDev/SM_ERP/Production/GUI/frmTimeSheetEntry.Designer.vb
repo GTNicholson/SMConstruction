@@ -60,9 +60,9 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl2.SuspendLayout()
@@ -137,7 +137,7 @@ Partial Class frmTimeSheetEntry
     Me.radgrpWorkCentreID.Name = "radgrpWorkCentreID"
     Me.radgrpWorkCentreID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.radgrpWorkCentreID.Properties.Appearance.Options.UseFont = True
-    Me.radgrpWorkCentreID.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Optimización"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Maquinado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Ensamble"), New DevExpress.XtraEditors.Controls.RadioGroupItem(4, "Lija"), New DevExpress.XtraEditors.Controls.RadioGroupItem(5, "Metal"), New DevExpress.XtraEditors.Controls.RadioGroupItem(6, "Tapizado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(7, "Pintura"), New DevExpress.XtraEditors.Controls.RadioGroupItem(8, "Empaque"), New DevExpress.XtraEditors.Controls.RadioGroupItem(9, "Despacho")})
+    Me.radgrpWorkCentreID.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Dimensionado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Maquinado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Ensamble"), New DevExpress.XtraEditors.Controls.RadioGroupItem(4, "Lija"), New DevExpress.XtraEditors.Controls.RadioGroupItem(5, "Metal"), New DevExpress.XtraEditors.Controls.RadioGroupItem(6, "Tapizado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(7, "Pintura"), New DevExpress.XtraEditors.Controls.RadioGroupItem(8, "Empaque"), New DevExpress.XtraEditors.Controls.RadioGroupItem(9, "Despacho")})
     Me.radgrpWorkCentreID.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
     Me.radgrpWorkCentreID.Size = New System.Drawing.Size(695, 26)
     Me.radgrpWorkCentreID.TabIndex = 9
@@ -168,7 +168,7 @@ Partial Class frmTimeSheetEntry
     Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.LabelControl3.Appearance.Options.UseFont = True
     Me.LabelControl3.Appearance.Options.UseForeColor = True
-    Me.LabelControl3.Location = New System.Drawing.Point(708, 14)
+    Me.LabelControl3.Location = New System.Drawing.Point(708, 17)
     Me.LabelControl3.Name = "LabelControl3"
     Me.LabelControl3.Size = New System.Drawing.Size(8, 18)
     Me.LabelControl3.TabIndex = 6
@@ -177,7 +177,7 @@ Partial Class frmTimeSheetEntry
     'timTimeEnd
     '
     Me.timTimeEnd.EditValue = New Date(2019, 5, 8, 0, 0, 0, 0)
-    Me.timTimeEnd.Location = New System.Drawing.Point(722, 12)
+    Me.timTimeEnd.Location = New System.Drawing.Point(722, 15)
     Me.timTimeEnd.Name = "timTimeEnd"
     Me.timTimeEnd.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.timTimeEnd.Properties.Appearance.Options.UseFont = True
@@ -190,7 +190,7 @@ Partial Class frmTimeSheetEntry
     'timTimeStart
     '
     Me.timTimeStart.EditValue = New Date(2019, 5, 8, 0, 0, 0, 0)
-    Me.timTimeStart.Location = New System.Drawing.Point(627, 13)
+    Me.timTimeStart.Location = New System.Drawing.Point(627, 15)
     Me.timTimeStart.Name = "timTimeStart"
     Me.timTimeStart.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.timTimeStart.Properties.Appearance.Options.UseFont = True
@@ -206,11 +206,11 @@ Partial Class frmTimeSheetEntry
     Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.LabelControl2.Appearance.Options.UseFont = True
     Me.LabelControl2.Appearance.Options.UseForeColor = True
-    Me.LabelControl2.Location = New System.Drawing.Point(401, 16)
+    Me.LabelControl2.Location = New System.Drawing.Point(397, 17)
     Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(78, 18)
+    Me.LabelControl2.Size = New System.Drawing.Size(82, 18)
     Me.LabelControl2.TabIndex = 3
-    Me.LabelControl2.Text = "Semana de"
+    Me.LabelControl2.Text = "Semana del"
     '
     'LabelControl1
     '
@@ -227,7 +227,7 @@ Partial Class frmTimeSheetEntry
     'datWeekCommencing
     '
     Me.datWeekCommencing.EditValue = Nothing
-    Me.datWeekCommencing.Location = New System.Drawing.Point(485, 13)
+    Me.datWeekCommencing.Location = New System.Drawing.Point(485, 14)
     Me.datWeekCommencing.Name = "datWeekCommencing"
     Me.datWeekCommencing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.datWeekCommencing.Properties.Appearance.Options.UseFont = True
@@ -269,7 +269,7 @@ Partial Class frmTimeSheetEntry
     '
     Me.XtraTabPage1.Controls.Add(Me.grdTimeSheet)
     Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1148, 397)
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1146, 396)
     Me.XtraTabPage1.Text = "XtraTabPage1"
     '
     'grdTimeSheet
@@ -279,7 +279,7 @@ Partial Class frmTimeSheetEntry
     Me.grdTimeSheet.MainView = Me.gvTimeSheet
     Me.grdTimeSheet.Name = "grdTimeSheet"
     Me.grdTimeSheet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitmemTSEntry})
-    Me.grdTimeSheet.Size = New System.Drawing.Size(1148, 397)
+    Me.grdTimeSheet.Size = New System.Drawing.Size(1146, 396)
     Me.grdTimeSheet.TabIndex = 0
     Me.grdTimeSheet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheet})
     '
@@ -427,7 +427,7 @@ Partial Class frmTimeSheetEntry
     '
     Me.XtraTabPage2.Controls.Add(Me.grdTimeSheetEntries)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1148, 397)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1146, 396)
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
     'grdTimeSheetEntries
@@ -436,7 +436,7 @@ Partial Class frmTimeSheetEntry
     Me.grdTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
     Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
     Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1148, 397)
+    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1146, 396)
     Me.grdTimeSheetEntries.TabIndex = 0
     Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
     '
@@ -530,6 +530,15 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn16.VisibleIndex = 8
     Me.GridColumn16.Width = 156
     '
+    'GridColumn19
+    '
+    Me.GridColumn19.Caption = "Minutos Pausa"
+    Me.GridColumn19.FieldName = "BreakMins"
+    Me.GridColumn19.Name = "GridColumn19"
+    Me.GridColumn19.Visible = True
+    Me.GridColumn19.VisibleIndex = 9
+    Me.GridColumn19.Width = 115
+    '
     'GridColumn18
     '
     Me.GridColumn18.Caption = "Note"
@@ -547,15 +556,6 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn17.Visible = True
     Me.GridColumn17.VisibleIndex = 4
     Me.GridColumn17.Width = 188
-    '
-    'GridColumn19
-    '
-    Me.GridColumn19.Caption = "Minutos Pausa"
-    Me.GridColumn19.FieldName = "BreakMins"
-    Me.GridColumn19.Name = "GridColumn19"
-    Me.GridColumn19.Visible = True
-    Me.GridColumn19.VisibleIndex = 9
-    Me.GridColumn19.Width = 115
     '
     'frmTimeSheetEntry
     '
