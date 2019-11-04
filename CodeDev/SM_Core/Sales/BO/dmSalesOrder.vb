@@ -26,6 +26,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pSalesDelAreaID As Int32
   Private pCustomerDelContactID As Int32
   Private pShippingCost As Decimal
+  Private pWorkOrdersIssued As Boolean
 
   Private pCustomer As dmCustomer
   Private pSalesOrderItems As colSalesOrderItems
@@ -104,6 +105,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .SalesDelAreaID = SalesDelAreaID
       .CustomerDelContactID = CustomerDelContactID
       .ShippingCost = ShippingCost
+      .WorkOrdersIssued = WorkOrdersIssued
 
       'Add entries here for each collection and class property
 
@@ -122,6 +124,16 @@ Public Class dmSalesOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderID <> value Then IsDirty = True
       pSalesOrderID = value
+    End Set
+  End Property
+
+  Public Property WorkOrdersIssued() As Boolean
+    Get
+      Return pWorkOrdersIssued
+    End Get
+    Set(ByVal value As Boolean)
+      If pWorkOrdersIssued <> value Then IsDirty = True
+      pWorkOrdersIssued = value
     End Set
   End Property
 

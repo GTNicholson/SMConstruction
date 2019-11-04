@@ -134,7 +134,7 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Fecha Requerida</property>
-      <property name="FieldName">DueTime</property>
+      <property name="FieldName">FinishDate</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>

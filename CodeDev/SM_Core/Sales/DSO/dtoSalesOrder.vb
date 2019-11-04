@@ -79,6 +79,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesDelAreaID", .SalesDelAreaID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerDelContacID", .CustomerDelContactID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ShippingCost", DBValueToDecimal(.ShippingCost))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrdersIssued", DBValueToBoolean(.WorkOrdersIssued))
 
     End With
 
@@ -114,6 +115,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .SalesDelAreaID = DBReadInt32(rDataReader, "SalesDelAreaID")
         .CustomerDelContactID = DBReadInt32(rDataReader, "CustomerDelContacID")
         .ShippingCost = DBReadDecimal(rDataReader, "ShippingCost")
+        .WorkOrdersIssued = DBReadBoolean(rDataReader, "WorkOrdersIssued")
         pSalesOrder.IsDirty = False
       End With
       mOK = True

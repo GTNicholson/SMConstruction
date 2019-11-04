@@ -120,6 +120,14 @@ Public Class fccSalesOrderDetail
     Return mRetVal
   End Function
 
+  Public Sub GenerateWorkOrders()
+    pSalesOrder.WorkOrdersIssued = True
+  End Sub
+
+  Public Sub RecallWorkOrders()
+    pSalesOrder.WorkOrdersIssued = False
+  End Sub
+
   Public Sub AddSalesOrderItem(ByVal vProductType As eProductType)
     Dim mdso As dsoSales
     Dim mSOI As dmSalesOrderItem

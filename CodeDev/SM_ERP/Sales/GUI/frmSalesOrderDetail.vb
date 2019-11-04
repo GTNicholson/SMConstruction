@@ -203,6 +203,26 @@ Public Class frmSalesOrderDetail
 
         End If
 
+        If pFormController.SalesOrder.WorkOrdersIssued Then
+          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpWorkOrders.CustomHeaderButtons
+            Select Case Val(mbtn.Tag)
+              Case 1
+                mbtn.Visible = False
+              Case 0
+                mbtn.Visible = True
+            End Select
+          Next
+        Else
+          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpWorkOrders.CustomHeaderButtons
+            Select Case Val(mbtn.Tag)
+              Case 1
+                mbtn.Visible = True
+              Case 0
+                mbtn.Visible = False
+            End Select
+          Next
+        End If
+
       End With
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -713,6 +733,25 @@ Public Class frmSalesOrderDetail
   End Sub
 
   Private Sub grpOrderItem_Paint(sender As Object, e As PaintEventArgs) Handles grpOrderItem.Paint
+
+  End Sub
+
+  Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
+    Dim mSOI As dmSalesOrderItem
+    Try
+
+
+      Select Case Val(e.Button.Properties.Tag)
+        Case 1
+          pFormController.GenerateWorkOrders()
+        Case 0
+          pFormController.RecallWorkOrders()
+      End Select
+      gvWorkOrders.RefreshData()
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
 
   End Sub
 End Class

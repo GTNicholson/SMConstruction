@@ -80,6 +80,8 @@
     End Get
   End Property
 
+
+
   Public ReadOnly Property UnitPrice As Decimal
     Get
       Return pWorkOrder.UnitPrice
@@ -173,6 +175,12 @@
     End Get
   End Property
 
+
+  Public ReadOnly Property FinishDate As Date
+    Get
+      Return pSalesOrder.FinishDate
+    End Get
+  End Property
 
 End Class
 

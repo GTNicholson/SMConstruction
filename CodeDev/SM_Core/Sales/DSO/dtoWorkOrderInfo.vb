@@ -77,6 +77,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .OrderNo = DBReadString(rDataReader, "OrderNo")
         .ProjectName = DBReadString(rDataReader, "ProjectName")
         .DueTime = DBReadDate(rDataReader, "DueTime")
+        .FinishDate =DBReadDate(rDataReader, "FinishDate")
       End With
 
       With pWorkOrderInfo.Customer
