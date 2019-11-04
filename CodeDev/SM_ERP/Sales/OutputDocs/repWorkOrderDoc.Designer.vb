@@ -53,7 +53,7 @@ Partial Public Class repWorkOrderDoc
     Me.xrlOT2 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
-    Me.xrtDueTime = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtFinishDate = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
@@ -385,18 +385,18 @@ Partial Public Class repWorkOrderDoc
     '
     'XrTableRow1
     '
-    Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtDueTime})
+    Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtFinishDate})
     Me.XrTableRow1.Name = "XrTableRow1"
     Me.XrTableRow1.Weight = 1.0R
     '
-    'xrtDueTime
+    'xrtFinishDate
     '
-    Me.xrtDueTime.Font = New System.Drawing.Font("Arial", 8.0!)
-    Me.xrtDueTime.Name = "xrtDueTime"
-    Me.xrtDueTime.StylePriority.UseFont = False
-    Me.xrtDueTime.StylePriority.UseTextAlignment = False
-    Me.xrtDueTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtDueTime.Weight = 0.84993773586521215R
+    Me.xrtFinishDate.Font = New System.Drawing.Font("Arial", 8.0!)
+    Me.xrtFinishDate.Name = "xrtFinishDate"
+    Me.xrtFinishDate.StylePriority.UseFont = False
+    Me.xrtFinishDate.StylePriority.UseTextAlignment = False
+    Me.xrtFinishDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrtFinishDate.Weight = 0.84993773586521215R
     '
     'XrLabel9
     '
@@ -828,7 +828,7 @@ Partial Public Class repWorkOrderDoc
   Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents xrtDueTime As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtFinishDate As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents xrPic As DevExpress.XtraReports.UI.XRPictureBox
   Friend WithEvents xrlOT2 As DevExpress.XtraReports.UI.XRLabel

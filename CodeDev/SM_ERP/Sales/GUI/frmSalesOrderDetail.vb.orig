@@ -171,7 +171,7 @@ Public Class frmSalesOrderDetail
         'dteDateEntered.EditValue = .DateEntered
         dteDateEntered.EditValue = clsGeneralA.DateToDBValue(.DateEntered)
         dteFinishDate.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
-        dteDueTime.EditValue = clsGeneralA.DateToDBValue(.DueTime)
+        dteDispatchDate.EditValue = clsGeneralA.DateToDBValue(.DueTime)
         txtVisibleNotes.Text = .VisibleNotes
         txtDelAddress1.Text = .DelAddress1
         btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
@@ -250,7 +250,7 @@ Public Class frmSalesOrderDetail
       .OrderNo = txtSalesOrderID.Text
       .ProjectName = txtProjectName.Text
       .DateEntered = dteDateEntered.DateTime
-      .DueTime = dteDueTime.DateTime
+      .DueTime = dteDispatchDate.DateTime
       .FinishDate = dteFinishDate.DateTime
       .VisibleNotes = txtVisibleNotes.Text
       .DelAddress1 = txtDelAddress1.Text
@@ -736,6 +736,7 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
+<<<<<<< HEAD
   Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
     Dim mSOI As dmSalesOrderItem
     Try
@@ -753,8 +754,7 @@ Public Class frmSalesOrderDetail
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
-  End Sub
-
+=======
   Private Sub gvOrderItem_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles gvOrderItem.RowUpdated
     '// Update the work order qtys
     Dim mSOItem As dmSalesOrderItem
@@ -765,5 +765,6 @@ Public Class frmSalesOrderDetail
       Next
     End If
     gvWorkOrders.RefreshData()
+>>>>>>> 679922b5d9665d2e4a655a9ccf3fe12f73b22ea0
   End Sub
 End Class

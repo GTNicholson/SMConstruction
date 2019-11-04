@@ -158,4 +158,19 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function GetPrinterName(ByVal vPrinterName As String) As String
+    Dim mRetVal As String = ""
+    If vPrinterName <> "" Then
+      For Each mName As String In System.Drawing.Printing.PrinterSettings.InstalledPrinters
+        If mName.Length >= vPrinterName.Length Then
+          If mName.Substring(0, Len(vPrinterName)) = vPrinterName Then
+            mRetVal = mName
+            Exit For
+          End If
+        End If
+      Next
+    End If
+    Return mRetVal
+  End Function
+
 End Class

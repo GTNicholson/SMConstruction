@@ -744,4 +744,11 @@ Public Class frmWorkOrderDetail
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub gvPackingComponents_KeyDown(sender As Object, e As KeyEventArgs) Handles gvPackingComponents.KeyDown
+    Select Case e.KeyCode
+      Case Keys.Delete
+        gvPackingComponents.DeleteSelectedRows()
+    End Select
+  End Sub
 End Class

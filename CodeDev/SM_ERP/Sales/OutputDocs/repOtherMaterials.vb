@@ -9,6 +9,7 @@ Public Class repOtherMaterials
     xrlCustomerName.Text = (pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName).ToUpper
     xrtProductDescription.Text = (pWorkOrder.Description).ToUpper
     xrtQuantity.Text = pWorkOrder.Quantity
+    xrtStockCode.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
 
     SetUpBindings()
 
