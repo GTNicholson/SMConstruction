@@ -171,7 +171,7 @@ Public Class frmSalesOrderDetail
         'dteDateEntered.EditValue = .DateEntered
         dteDateEntered.EditValue = clsGeneralA.DateToDBValue(.DateEntered)
         dteFinishDate.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
-        dteDueTime.EditValue = clsGeneralA.DateToDBValue(.DueTime)
+        dteDispatchDate.EditValue = clsGeneralA.DateToDBValue(.DueTime)
         txtVisibleNotes.Text = .VisibleNotes
         txtDelAddress1.Text = .DelAddress1
         btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
@@ -230,7 +230,7 @@ Public Class frmSalesOrderDetail
       .OrderNo = txtSalesOrderID.Text
       .ProjectName = txtProjectName.Text
       .DateEntered = dteDateEntered.DateTime
-      .DueTime = dteDueTime.DateTime
+      .DueTime = dteDispatchDate.DateTime
       .FinishDate = dteFinishDate.DateTime
       .VisibleNotes = txtVisibleNotes.Text
       .DelAddress1 = txtDelAddress1.Text

@@ -69,7 +69,7 @@ Partial Class frmSalesOrderDetail
     Me.Label1 = New System.Windows.Forms.Label()
     Me.Label9 = New System.Windows.Forms.Label()
     Me.txtVisibleNotes = New DevExpress.XtraEditors.MemoEdit()
-    Me.dteDueTime = New DevExpress.XtraEditors.DateEdit()
+    Me.dteDispatchDate = New DevExpress.XtraEditors.DateEdit()
     Me.Label8 = New System.Windows.Forms.Label()
     Me.dteFinishDate = New DevExpress.XtraEditors.DateEdit()
     Me.Label7 = New System.Windows.Forms.Label()
@@ -141,8 +141,8 @@ Partial Class frmSalesOrderDetail
     CType(Me.txtSalesAreaID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtVisibleNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.dteDueTime.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.dteDueTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dteDispatchDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dteDispatchDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteFinishDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteFinishDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteDateEntered.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,7 +278,7 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl1.Controls.Add(Me.GroupControl2)
     Me.GroupControl1.Controls.Add(Me.Label9)
     Me.GroupControl1.Controls.Add(Me.txtVisibleNotes)
-    Me.GroupControl1.Controls.Add(Me.dteDueTime)
+    Me.GroupControl1.Controls.Add(Me.dteDispatchDate)
     Me.GroupControl1.Controls.Add(Me.Label8)
     Me.GroupControl1.Controls.Add(Me.dteFinishDate)
     Me.GroupControl1.Controls.Add(Me.Label7)
@@ -704,16 +704,16 @@ Partial Class frmSalesOrderDetail
     Me.txtVisibleNotes.Size = New System.Drawing.Size(263, 251)
     Me.txtVisibleNotes.TabIndex = 12
     '
-    'dteDueTime
+    'dteDispatchDate
     '
-    Me.dteDueTime.EditValue = Nothing
-    Me.dteDueTime.Location = New System.Drawing.Point(131, 152)
-    Me.dteDueTime.MenuManager = Me.BarManager1
-    Me.dteDueTime.Name = "dteDueTime"
-    Me.dteDueTime.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.dteDueTime.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.dteDueTime.Size = New System.Drawing.Size(130, 20)
-    Me.dteDueTime.TabIndex = 5
+    Me.dteDispatchDate.EditValue = Nothing
+    Me.dteDispatchDate.Location = New System.Drawing.Point(131, 152)
+    Me.dteDispatchDate.MenuManager = Me.BarManager1
+    Me.dteDispatchDate.Name = "dteDispatchDate"
+    Me.dteDispatchDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dteDispatchDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dteDispatchDate.Size = New System.Drawing.Size(130, 20)
+    Me.dteDispatchDate.TabIndex = 5
     '
     'Label8
     '
@@ -1254,8 +1254,8 @@ Partial Class frmSalesOrderDetail
     CType(Me.txtSalesAreaID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtVisibleNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.dteDueTime.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.dteDueTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dteDispatchDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dteDispatchDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteFinishDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteFinishDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteDateEntered.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1301,7 +1301,7 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents Label9 As Label
   Friend WithEvents txtVisibleNotes As DevExpress.XtraEditors.MemoEdit
-  Friend WithEvents dteDueTime As DevExpress.XtraEditors.DateEdit
+  Friend WithEvents dteDispatchDate As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label8 As Label
   Friend WithEvents dteFinishDate As DevExpress.XtraEditors.DateEdit
   Friend WithEvents Label7 As Label

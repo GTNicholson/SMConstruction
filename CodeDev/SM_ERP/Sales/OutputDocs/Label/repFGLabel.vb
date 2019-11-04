@@ -9,8 +9,12 @@ Public Class repFGLabel
 
     Dim mrep As New repFGLabel
     Dim mprintTool As DevExpress.XtraReports.UI.ReportPrintTool
+    Dim mPrinterName As String
 
-    mrep.PrinterName = rLabelDef.PrinterName
+    If rLabelDef.PrinterName <> "" Then
+      mPrinterName = clsSMSharedFuncs.GetPrinterName(rLabelDef.PrinterName)
+      If mPrinterName <> "" Then mrep.PrinterName = mPrinterName
+    End If
 
 
     mrep.pWO = rWo

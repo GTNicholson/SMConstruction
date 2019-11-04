@@ -148,13 +148,15 @@ Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of cls
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkOrder, "OT", "", System.Drawing.Color.Green))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Ausencia", "A", System.Drawing.Color.Gray))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vacaciones", "V", System.Drawing.Color.Gray))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.DarkRed))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.Tomato))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfermo", "E", System.Drawing.Color.Gray))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Pausa", "P", System.Drawing.Color.DarkRed))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Demora", "D", System.Drawing.Color.Tomato))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkAllowance, "Subsidio", "S", System.Drawing.Color.Gray))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaterialTransportation, "Traslado", "T", System.Drawing.Color.PaleGreen))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cInventory, "Inventario", "I", System.Drawing.Color.PaleGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPrototype, "Prototipo", "P", System.Drawing.Color.PaleGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPermission, "Consentiiento", "C", System.Drawing.Color.Gray))
 
 
   End Sub
@@ -195,6 +197,8 @@ Public Class clsTimeSheetCode : Inherits RTIS.ERPCore.clsPropertyENUM
   Public Const cWorkAllowance = 8
   Public Const cMaterialTransportation = 9
   Public Const cInventory = 10
+  Public Const cPrototype = 11
+  Public Const cPermission = 12
 
   Public Sub New(ByVal vID As Integer, vDescription As String, vKeyCode As String, vColour As System.Drawing.Color)
     MyBase.New(vID, vDescription)
