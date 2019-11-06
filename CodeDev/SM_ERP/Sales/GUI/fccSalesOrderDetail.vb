@@ -11,10 +11,13 @@ Public Class fccSalesOrderDetail
 
   Private pSOWorkOrderInfos As colWorkOrderInfos
 
+  Private pSOActionHandler As clsSalesOrderActionsHandler
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pSOWorkOrderInfos = New colWorkOrderInfos
     pRTISGlobal = rRTISGlobal
+    pSOActionHandler = New clsSalesOrderActionsHandler(rDBConn.RTISUser, rDBConn)
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -121,11 +124,27 @@ Public Class fccSalesOrderDetail
   End Function
 
   Public Sub GenerateWorkOrders()
-    pSalesOrder.WorkOrdersIssued = True
+    Dim mVal As clsValWarn
+    pSOActionHandler.SalesOrder = pSalesOrder
+    pSOActionHandler.InitMainObject()
+
+    mVal = pSOActionHandler.RefreshActionValidation(clsSalesOrderActionsHandler.eSalesOrderAction.GenerateWorkOrders)
+    If mVal.ValOk Then
+      mVal = pSOActionHandler.RunAction(clsSalesOrderActionsHandler.eSalesOrderAction.GenerateWorkOrders)
+    End If
+    ''
   End Sub
 
   Public Sub RecallWorkOrders()
-    pSalesOrder.WorkOrdersIssued = False
+    Dim mVal As clsValWarn
+    pSOActionHandler.SalesOrder = pSalesOrder
+    pSOActionHandler.InitMainObject()
+
+    mVal = pSOActionHandler.RefreshActionValidation(clsSalesOrderActionsHandler.eSalesOrderAction.RecallWorkOrders)
+    If mVal.ValOk Then
+      mVal = pSOActionHandler.RunAction(clsSalesOrderActionsHandler.eSalesOrderAction.RecallWorkOrders)
+    End If
+
   End Sub
 
   Public Sub AddSalesOrderItem(ByVal vProductType As eProductType)

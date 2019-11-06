@@ -380,6 +380,7 @@ Public Class dsoSales
 
     If rSalesOrderItem.WorkOrders.Count > 0 Then
       mWONostr = rSalesOrderItem.WorkOrders(0).WorkOrderNo
+      If mWONostr Is Nothing Then mWONostr = ""
       If mWONostr.Contains("-") Then
         mWONostr = mWONostr.Substring(0, mWONostr.IndexOf("-"))
       End If

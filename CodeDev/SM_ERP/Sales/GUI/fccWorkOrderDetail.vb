@@ -125,23 +125,23 @@ Public Class fccWorkOrderDetail
     Return mRetVal
   End Function
 
-  Public Sub RaiseWorkOrderNo()
-    Dim mSOI As New dmSalesOrderItem
-    Dim mDSO As New dsoSales(pDBConn)
-    Dim mWO As dmWorkOrder
+  ''Public Sub RaiseWorkOrderNo()
+  ''  Dim mSOI As New dmSalesOrderItem
+  ''  Dim mDSO As New dsoSales(pDBConn)
+  ''  Dim mWO As dmWorkOrder
 
-    '// because we can relate Work Orders across a sales order item, we need to load the Sales Order Item and the related work orders 
-    mDSO.LoadSalesOrderItemWithWOs(mSOI, pWorkOrder.SalesOrderItemID)
-    mDSO.RaiseWorkOrderNo(mSOI, pDBConn)
-    mDSO.SaveSalesOrderItemWithWOs(mSOI)
-
-
-    '// Retreive this wo's number to refresh in this form
-    mWO = mSOI.WorkOrders.ItemFromKey(pWorkOrder.WorkOrderID)
-    pWorkOrder.WorkOrderNo = mWO.WorkOrderNo
+  ''  '// because we can relate Work Orders across a sales order item, we need to load the Sales Order Item and the related work orders 
+  ''  mDSO.LoadSalesOrderItemWithWOs(mSOI, pWorkOrder.SalesOrderItemID)
+  ''  mDSO.RaiseWorkOrderNo(mSOI, pDBConn)
+  ''  mDSO.SaveSalesOrderItemWithWOs(mSOI)
 
 
-  End Sub
+  ''  '// Retreive this wo's number to refresh in this form
+  ''  mWO = mSOI.WorkOrders.ItemFromKey(pWorkOrder.WorkOrderID)
+  ''  pWorkOrder.WorkOrderNo = mWO.WorkOrderNo
+
+
+  ''End Sub
 
   Public Sub SetProductType(ByVal vNewProductType As Integer)
     Try

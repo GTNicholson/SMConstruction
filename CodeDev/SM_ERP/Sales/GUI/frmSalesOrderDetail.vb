@@ -739,13 +739,21 @@ Public Class frmSalesOrderDetail
   Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
     Dim mSOI As dmSalesOrderItem
     Try
-
+      Dim mResult = New MsgBoxResult
 
       Select Case Val(e.Button.Properties.Tag)
         Case 1
-          pFormController.GenerateWorkOrders()
+          mResult = MsgBox("¿Está seguro que desea generar los números de OT?")
+          If mResult = MsgBoxResult.Ok Then
+            pFormController.GenerateWorkOrders()
+          End If
+
         Case 0
-          pFormController.RecallWorkOrders()
+          mResult = MsgBox("¿Está seguro que desea limpiar los números de OT?")
+          If mResult = MsgBoxResult.Ok Then
+            pFormController.RecallWorkOrders()
+          End If
+
       End Select
       gvWorkOrders.RefreshData()
       RefreshControls()

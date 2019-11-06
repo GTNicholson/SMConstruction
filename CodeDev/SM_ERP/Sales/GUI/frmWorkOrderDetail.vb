@@ -544,10 +544,7 @@ Public Class frmWorkOrderDetail
 
   End Sub
 
-  Private Sub btnWorkOrderNumber_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnWorkOrderNumber.ButtonClick
-    pFormController.RaiseWorkOrderNo()
-    RefreshControls()
-  End Sub
+
 
   Private Sub bbtnSave_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnSave.ItemClick
     Try
@@ -751,4 +748,6 @@ Public Class frmWorkOrderDetail
         gvPackingComponents.DeleteSelectedRows()
     End Select
   End Sub
+
+
 End Class
