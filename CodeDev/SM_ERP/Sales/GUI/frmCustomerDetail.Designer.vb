@@ -470,7 +470,7 @@ Partial Class frmCustomerDetail
     Me.gvContacts.Name = "gvContacts"
     Me.gvContacts.OptionsView.ShowGroupPanel = False
     Me.gvContacts.OptionsView.ShowViewCaption = True
-    Me.gvContacts.ViewCaption = "Contacts"
+    Me.gvContacts.ViewCaption = "Contactos"
     '
     'GridColumn1
     '
@@ -482,7 +482,7 @@ Partial Class frmCustomerDetail
     '
     'GridColumn2
     '
-    Me.GridColumn2.Caption = "Appellido"
+    Me.GridColumn2.Caption = "Apellido"
     Me.GridColumn2.FieldName = "LastName"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
