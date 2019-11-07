@@ -283,12 +283,13 @@ Partial Public Class repWorkOrderDoc
     Me.xrNotes.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+    Me.xrNotes.CanGrow = False
     Me.xrNotes.Font = New System.Drawing.Font("Arial", 8.0!)
     Me.xrNotes.LocationFloat = New DevExpress.Utils.PointFloat(0!, 22.91667!)
     Me.xrNotes.Multiline = True
     Me.xrNotes.Name = "xrNotes"
     Me.xrNotes.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrNotes.SizeF = New System.Drawing.SizeF(757.4039!, 230.1992!)
+    Me.xrNotes.SizeF = New System.Drawing.SizeF(757.4039!, 180.243!)
     Me.xrNotes.StylePriority.UseBorders = False
     Me.xrNotes.StylePriority.UseFont = False
     '
@@ -304,11 +305,12 @@ Partial Public Class repWorkOrderDoc
     '
     'xrPic
     '
-    Me.xrPic.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter
+    Me.xrPic.AnchorVertical = DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom
+    Me.xrPic.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopCenter
     Me.xrPic.KeepTogether = False
-    Me.xrPic.LocationFloat = New DevExpress.Utils.PointFloat(0!, 265.6158!)
+    Me.xrPic.LocationFloat = New DevExpress.Utils.PointFloat(0!, 213.6597!)
     Me.xrPic.Name = "xrPic"
-    Me.xrPic.SizeF = New System.Drawing.SizeF(757.3959!, 281.9795!)
+    Me.xrPic.SizeF = New System.Drawing.SizeF(757.3959!, 333.9356!)
     Me.xrPic.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
     '
     'TopMargin

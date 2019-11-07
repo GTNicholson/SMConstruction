@@ -774,4 +774,8 @@ Public Class frmSalesOrderDetail
     End If
     gvWorkOrders.RefreshData()
   End Sub
+
+  Private Sub gcDetails_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gcDetails.CustomButtonClick
+    MessageBox.Show("Hola")
+  End Sub
 End Class
