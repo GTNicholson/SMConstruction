@@ -51,7 +51,6 @@ Partial Public Class repSalesOrder
     Me.XrLabel45 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel()
     Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-    Me.XrPictureBox3 = New DevExpress.XtraReports.UI.XRPictureBox()
     Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
     Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -159,7 +158,7 @@ Partial Public Class repSalesOrder
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrtImageFile, Me.XrTable2})
-    Me.Detail.HeightF = 95.67308!
+    Me.Detail.HeightF = 87.33975!
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -172,7 +171,7 @@ Partial Public Class repSalesOrder
     Me.xrtImageFile.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter
     Me.xrtImageFile.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 0!)
     Me.xrtImageFile.Name = "xrtImageFile"
-    Me.xrtImageFile.SizeF = New System.Drawing.SizeF(184.512!, 95.67308!)
+    Me.xrtImageFile.SizeF = New System.Drawing.SizeF(184.512!, 85.67308!)
     Me.xrtImageFile.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
     Me.xrtImageFile.StylePriority.UseBorders = False
     '
@@ -185,7 +184,7 @@ Partial Public Class repSalesOrder
     Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(184.5121!, 0!)
     Me.XrTable2.Name = "XrTable2"
     Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
-    Me.XrTable2.SizeF = New System.Drawing.SizeF(607.488!, 95.67308!)
+    Me.XrTable2.SizeF = New System.Drawing.SizeF(607.488!, 85.67308!)
     Me.XrTable2.StylePriority.UseBorders = False
     Me.XrTable2.StylePriority.UseFont = False
     Me.XrTable2.StylePriority.UseTextAlignment = False
@@ -267,7 +266,7 @@ Partial Public Class repSalesOrder
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.xrlNotes.Font = New System.Drawing.Font("Arial", 8.0!)
-    Me.xrlNotes.LocationFloat = New DevExpress.Utils.PointFloat(9.99999!, 27.52164!)
+    Me.xrlNotes.LocationFloat = New DevExpress.Utils.PointFloat(10.00009!, 141.2715!)
     Me.xrlNotes.Name = "xrlNotes"
     Me.xrlNotes.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.xrlNotes.SizeF = New System.Drawing.SizeF(486.0625!, 103.4998!)
@@ -280,7 +279,7 @@ Partial Public Class repSalesOrder
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrTable19.Font = New System.Drawing.Font("Arial", 8.0!)
-    Me.XrTable19.LocationFloat = New DevExpress.Utils.PointFloat(582.2347!, 9.626351!)
+    Me.XrTable19.LocationFloat = New DevExpress.Utils.PointFloat(582.2348!, 123.3762!)
     Me.XrTable19.Name = "XrTable19"
     Me.XrTable19.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19, Me.XrTableRow20, Me.XrTableRow21})
     Me.XrTable19.SizeF = New System.Drawing.SizeF(209.7653!, 53.68592!)
@@ -376,7 +375,7 @@ Partial Public Class repSalesOrder
     '
     Me.XrLabel49.Font = New System.Drawing.Font("Arial", 10.0!)
     Me.XrLabel49.ForeColor = System.Drawing.Color.Gray
-    Me.XrLabel49.LocationFloat = New DevExpress.Utils.PointFloat(19.99987!, 9.626389!)
+    Me.XrLabel49.LocationFloat = New DevExpress.Utils.PointFloat(19.99997!, 123.3763!)
     Me.XrLabel49.Name = "XrLabel49"
     Me.XrLabel49.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel49.SizeF = New System.Drawing.SizeF(49.59937!, 16.74998!)
@@ -387,7 +386,7 @@ Partial Public Class repSalesOrder
     'XrLabel47
     '
     Me.XrLabel47.Font = New System.Drawing.Font("Arial", 10.0!)
-    Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(631.5429!, 89.68805!)
+    Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(631.543!, 203.4379!)
     Me.XrLabel47.Name = "XrLabel47"
     Me.XrLabel47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel47.SizeF = New System.Drawing.SizeF(160.4572!, 16.74995!)
@@ -399,7 +398,7 @@ Partial Public Class repSalesOrder
     'XrLabel46
     '
     Me.XrLabel46.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(547.4595!, 129.2713!)
+    Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(547.4595!, 243.0212!)
     Me.XrLabel46.Name = "XrLabel46"
     Me.XrLabel46.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel46.SizeF = New System.Drawing.SizeF(48.61169!, 16.75!)
@@ -411,7 +410,7 @@ Partial Public Class repSalesOrder
     'XrLabel45
     '
     Me.XrLabel45.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-    Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(547.4594!, 89.68805!)
+    Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(547.4595!, 203.4379!)
     Me.XrLabel45.Name = "XrLabel45"
     Me.XrLabel45.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel45.SizeF = New System.Drawing.SizeF(84.08344!, 16.74998!)
@@ -423,7 +422,7 @@ Partial Public Class repSalesOrder
     'XrLabel48
     '
     Me.XrLabel48.Font = New System.Drawing.Font("Arial", 10.0!)
-    Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(631.5429!, 129.2713!)
+    Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(631.543!, 243.0212!)
     Me.XrLabel48.Name = "XrLabel48"
     Me.XrLabel48.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel48.SizeF = New System.Drawing.SizeF(158.5399!, 16.74998!)
@@ -434,17 +433,10 @@ Partial Public Class repSalesOrder
     '
     'ReportFooter
     '
-    Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox3, Me.XrLabel48, Me.XrLabel46, Me.XrLabel45, Me.XrLabel47, Me.XrLabel49, Me.XrTable19, Me.xrlNotes})
-    Me.ReportFooter.HeightF = 324.563!
+    Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel48, Me.XrLabel46, Me.XrLabel45, Me.XrLabel47, Me.XrLabel49, Me.XrTable19, Me.xrlNotes})
+    Me.ReportFooter.HeightF = 272.9167!
     Me.ReportFooter.Name = "ReportFooter"
-    '
-    'XrPictureBox3
-    '
-    Me.XrPictureBox3.Image = CType(resources.GetObject("XrPictureBox3.Image"), System.Drawing.Image)
-    Me.XrPictureBox3.LocationFloat = New DevExpress.Utils.PointFloat(0.000111262!, 164.5822!)
-    Me.XrPictureBox3.Name = "XrPictureBox3"
-    Me.XrPictureBox3.SizeF = New System.Drawing.SizeF(791.0414!, 155.7406!)
-    Me.XrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+    Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBand
     '
     'ReportHeader
     '
@@ -1285,7 +1277,6 @@ Partial Public Class repSalesOrder
   Friend WithEvents XrLabel45 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel48 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
-  Friend WithEvents XrPictureBox3 As DevExpress.XtraReports.UI.XRPictureBox
   Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
   Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
