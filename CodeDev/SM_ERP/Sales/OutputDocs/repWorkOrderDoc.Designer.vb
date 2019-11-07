@@ -289,7 +289,7 @@ Partial Public Class repWorkOrderDoc
     Me.xrNotes.Multiline = True
     Me.xrNotes.Name = "xrNotes"
     Me.xrNotes.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrNotes.SizeF = New System.Drawing.SizeF(757.4039!, 180.243!)
+    Me.xrNotes.SizeF = New System.Drawing.SizeF(757.4039!, 258.3242!)
     Me.xrNotes.StylePriority.UseBorders = False
     Me.xrNotes.StylePriority.UseFont = False
     '
@@ -305,12 +305,11 @@ Partial Public Class repWorkOrderDoc
     '
     'xrPic
     '
-    Me.xrPic.AnchorVertical = DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom
     Me.xrPic.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopCenter
     Me.xrPic.KeepTogether = False
-    Me.xrPic.LocationFloat = New DevExpress.Utils.PointFloat(0!, 213.6597!)
+    Me.xrPic.LocationFloat = New DevExpress.Utils.PointFloat(0!, 291.7408!)
     Me.xrPic.Name = "xrPic"
-    Me.xrPic.SizeF = New System.Drawing.SizeF(757.3959!, 333.9356!)
+    Me.xrPic.SizeF = New System.Drawing.SizeF(757.3959!, 255.8546!)
     Me.xrPic.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
     '
     'TopMargin
