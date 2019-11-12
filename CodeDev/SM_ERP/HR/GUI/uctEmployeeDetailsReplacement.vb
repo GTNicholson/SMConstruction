@@ -59,6 +59,7 @@ Public Class uctEmployeeDetailsReplacement
     lblMainRole.Visible = mOK
     cboMainRole.Visible = mOK
     grpRoles.Visible = mOK
+
     SetupUserPermissions()
   End Sub
 
@@ -107,7 +108,10 @@ Public Class uctEmployeeDetailsReplacement
 
       grpDetails.CustomHeaderButtons(0).Properties.Enabled = puctController.CurrentEmployee.EmployeeID > 0
 
-      grdEmployeeShiftPatternOptions.Enabled = True
+
+      '//Rates of Pay
+      grdRateOfPay.Enabled = True
+      grdRateOfPay.DataSource = mEmpSD.EmployeeRateOfPays
 
     Else
 
@@ -136,7 +140,16 @@ Public Class uctEmployeeDetailsReplacement
       grpRoles.Enabled = False
       grpDetails.CustomHeaderButtons(0).Properties.Enabled = False
       'btnEnroll.Enabled = False
-      grdEmployeeShiftPatternOptions.Enabled = False
+      grdRateOfPay.DataSource = Nothing
+      grdRateOfPay.Enabled = False
+    End If
+
+
+    '//Show/Hide Rates of Pay
+    If puctController.dsoAdminEmployee.DBConn.RTISUser.ActivityPermission(eActivityCode.EmployeeSalaries) <> ePermissionCode.ePC_Full Then
+      grpRateOfPay.Visible = False
+    Else
+      grpRateOfPay.Visible = True
     End If
 
     Select Case pCurrentMode

@@ -19,16 +19,19 @@ Public Class dsoAdminEmployeeOverride : Inherits dsoAdminEmployee
   Public Overrides Function LoadEmployees(ByRef rEmployees As colEmployees) As Boolean
     Dim mOk As Boolean
     Dim mdto As dtoEmployeeSM
-
+    Dim mdtoRofP As dtoEmployeeRateOfPay
     Try
 
       If pDBConn.Connect Then
         mdto = New dtoEmployeeSM(pDBConn)
 
+        mdtoRofP = New dtoEmployeeRateOfPay(pDBConn)
+
         mOk = mdto.LoadEmployeeCollection(rEmployees)
 
-        For Each mEmployee As dmEmployee In rEmployees
+        For Each mEmployee As dmEmployeeSM In rEmployees
           ''  mdtoEmployeeSERoles.LoadEmployeeSERoles(mEmployee.Roles, mEmployee.EmployeeID)
+          mdtoRofP.LoadEmployeeRateOfPayCollection(mEmployee.EmployeeRateOfPays, mEmployee.EmployeeID)
         Next
 
         mdto = Nothing
@@ -46,16 +49,21 @@ Public Class dsoAdminEmployeeOverride : Inherits dsoAdminEmployee
   Public Overrides Function SaveEmployee(ByRef rEmployee As dmEmployee) As Boolean
     Dim mOk As Boolean
     Dim mdto As dtoEmployeeSM
+    Dim mdtoRofP As dtoEmployeeRateOfPay
+    Dim mEmpSM As dmEmployeeSM
     'Dim mdtoEmployeeSERoles As New dtoEmployeeSERole(pDBConn)
 
 
     Try
 
       If pDBConn.Connect Then
+        mEmpSM = rEmployee
         mdto = New dtoEmployeeSM(pDBConn)
+        mdtoRofP = New dtoEmployeeRateOfPay(pDBConn)
 
-        mOk = mdto.SaveEmployee(rEmployee)
+        mOk = mdto.SaveEmployee(mEmpSM)
 
+        mdtoRofP.SaveEmployeeRateOfPayCollection(mEmpSM.EmployeeRateOfPays, mEmpSM.EmployeeID)
 
       End If
 

@@ -20,6 +20,8 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   Private pRefLists As RTIS.CommonVB.colRefLists
   Private pHostCompanys As colHostCompanys
 
+  Private pClipBoard As clsClipBoard
+
   ''Private pHostCompaiys As host
   Private newPropertyValue As String
 
@@ -55,7 +57,6 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     End If
   End Sub
 
-
   Public Shared Function GetInstance() As AppRTISGlobal
     Return mInstance
   End Function
@@ -64,6 +65,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     MyBase.new()
     pRefLists = New appRefLists 'Need project sub class defined
     pSessionDataSet = eSessionDataSet.Live
+    pClipBoard = New clsClipBoard
   End Sub
 
   Public Property SessionDataSet() As eSessionDataSet
@@ -99,6 +101,12 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   Public Sub SetRefLists(ByRef rRefList As RTIS.CommonVB.colRefLists)
     pRefLists = rRefList
   End Sub
+
+  Public ReadOnly Property ClipBoard As clsClipBoard
+    Get
+      Return pClipBoard
+    End Get
+  End Property
 
   ''Public Property AppExtensionDLLFile() As String
   ''  Get

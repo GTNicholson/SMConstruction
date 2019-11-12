@@ -11,11 +11,21 @@ Public Enum eActivityCode
 
   Production = 200
 
+  HumanResources = 300
+  EmployeeSalaries = 301
+
 End Enum
 
 Public Enum eObjectType
   SalesOrder = 1
   WorkOrder = 2
+End Enum
+
+Public Enum eEmployeeRole
+  <Description("Ventas")> Sales = 1
+  <Description("Ingeneria")> Engineering = 2
+  <Description("Production")> Production = 3
+  <Description("Administracion")> Admin = 4
 End Enum
 
 Public Enum eCustomerStatus
