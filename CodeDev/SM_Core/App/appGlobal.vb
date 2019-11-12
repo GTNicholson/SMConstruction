@@ -13,12 +13,17 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
 
   Private pSessionDataSet As eSessionDataSet
 
+  Private pPodioPath As String
+
   ''Private pAppExtensionDLLFile As String
   Private pAppExtFactory As clsAppExtensionFactory
   Private pRefLists As RTIS.CommonVB.colRefLists
   Private pHostCompanys As colHostCompanys
 
   ''Private pHostCompaiys As host
+  Private newPropertyValue As String
+
+
 
   Public Sub ProcessUnhandledException(ByRef rException As Exception, ByVal rLogError As Boolean, ByVal rDisplayError As Boolean)
     If rDisplayError Then
@@ -74,6 +79,15 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     Get
       Return pHostCompanys
     End Get
+  End Property
+
+  Public Property PodioPath() As String
+    Get
+      Return pPodioPath
+    End Get
+    Set(ByVal value As String)
+      pPodioPath = value
+    End Set
   End Property
 
   Public ReadOnly Property RefLists() As RTIS.CommonVB.colRefLists Implements RTIS.CommonVB.iRefListHolder.RefLists

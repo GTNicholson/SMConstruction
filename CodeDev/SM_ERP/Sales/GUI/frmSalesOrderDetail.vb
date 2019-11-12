@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraBars.Docking2010
+﻿Imports System.Environment
+Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
@@ -178,6 +179,7 @@ Public Class frmSalesOrderDetail
         txtDelAddress2.Text = .DelAddress2
         txtCustomerContact.Text = .CustomerContactID
         txtShippingCost.Text = .ShippingCost
+        btnePodio.EditValue = .PodioPath
 
         If pFormController.SalesOrder.Customer IsNot Nothing Then
 
@@ -261,7 +263,7 @@ Public Class frmSalesOrderDetail
       .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
       .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
       .ShippingCost = txtShippingCost.Text
-
+      .PodioPath = btnePodio.EditValue
       gvOrderItem.CloseEditor()
       gvOrderItem.UpdateCurrentRow()
 
@@ -775,7 +777,48 @@ Public Class frmSalesOrderDetail
     gvWorkOrders.RefreshData()
   End Sub
 
-  Private Sub gcDetails_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gcDetails.CustomButtonClick
-    MessageBox.Show("Hola")
+  Private Sub btnExportToPodio_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnePodio.ButtonClick
+    Try
+      Dim mFilePath As String = String.Empty
+
+      Select Case e.Button.Kind
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
+
+          mFilePath = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), AppRTISGlobal.GetInstance.PodioPath, "")
+          If RTIS.CommonVB.clsGeneralA.GetFolderName(mFilePath) = DialogResult.OK Then
+            pFormController.SalesOrder.PodioPath = mFilePath
+            RefreshControls()
+          End If
+
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
+
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
+
+      End Select
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+
+    ''Dim mSourceFile As String = ""
+    ''Dim mTargetFile As String = ""
+    ''Dim mTargetPath As String = ""
+
+    ''Try
+
+    ''  Dim menum As Integer
+
+
+    ''  RTIS.CommonVB.clsGeneralA.GetOpenFileName(mSourceFile, "SourceFile")
+    ''  mTargetPath = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), "Dropbox", "MADE")
+    ''  mTargetFile = IO.Path.GetFileName(mSourceFile)
+    ''  RTIS.CommonVB.clsGeneralA.GetSaveFileName(mTargetFile, "TargetFile", mTargetPath)
+
+    ''  IO.File.Copy(mSourceFile, mTargetFile)
+
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    ''End Try
+
   End Sub
 End Class

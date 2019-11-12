@@ -29,7 +29,7 @@ Public Class dsoRTISGlobal
     ''TODO - Extend to load different defaults for different datasets, e.g. LIVE, UAT, TRAINING, STANDBY, DEVELOPMENT
     Try
       If pDBConn.Connect(mIsNewConnection) Then
-        mSQL = "Select DefaultExportPath, AuxFilePath, SharedUserFilePath, ErrorLogPath, VersionLogFile FROM RTISGlobal Where RTISGlobalID = " & rRTISGlobal.SessionDataSet
+        mSQL = "Select DefaultExportPath, AuxFilePath, SharedUserFilePath, ErrorLogPath, VersionLogFile,PodioPath FROM RTISGlobal Where RTISGlobalID = " & rRTISGlobal.SessionDataSet
         mReader = pDBConn.LoadReader(mSQL)
         If mReader.Read Then
           mTempRead = clsDBConnBase.DBReadString(mReader, "DefaultExportPath")
@@ -49,6 +49,10 @@ Public Class dsoRTISGlobal
           UpdateStandardFolder(rRTISGlobal, rRTISGlobal.ErrorLogPath, mTempRead)
 
           rRTISGlobal.VersionLogFile = clsDBConnBase.DBReadString(mReader, "VersionLogFile")
+
+          mTempRead = clsDBConnBase.DBReadString(mReader, "PodioPath")
+          ''If mTempRead.Length > 0 Then rRTISGlobal.DefaultExportPath = mTempRead.Trim
+          UpdateStandardFolder(rRTISGlobal, rRTISGlobal.DefaultExportPath, mTempRead)
 
           mReadOK = True
         End If

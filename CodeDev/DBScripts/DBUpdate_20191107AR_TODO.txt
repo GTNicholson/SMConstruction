@@ -1,0 +1,5 @@
+use SMConstruction
+go
+
+alter table SalesOrder
+add PodioPath varchar(256)
