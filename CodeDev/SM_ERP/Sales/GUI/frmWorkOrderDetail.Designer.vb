@@ -95,6 +95,8 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
     Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
     Me.XtraTabPage5 = New DevExpress.XtraTab.XtraTabPage()
+    Me.btnTestPaste = New DevExpress.XtraEditors.SimpleButton()
+    Me.btnTestCopy = New DevExpress.XtraEditors.SimpleButton()
     Me.grdMaterialRequirementOthers = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirementOthers = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -128,8 +130,6 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.btnTestCopy = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnTestPaste = New DevExpress.XtraEditors.SimpleButton()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1036,6 +1036,22 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage5.Size = New System.Drawing.Size(1152, 382)
     Me.XtraTabPage5.Text = "Lista de Materiales de Producción"
     '
+    'btnTestPaste
+    '
+    Me.btnTestPaste.Location = New System.Drawing.Point(1055, 3)
+    Me.btnTestPaste.Name = "btnTestPaste"
+    Me.btnTestPaste.Size = New System.Drawing.Size(82, 25)
+    Me.btnTestPaste.TabIndex = 43
+    Me.btnTestPaste.Text = "Paste"
+    '
+    'btnTestCopy
+    '
+    Me.btnTestCopy.Location = New System.Drawing.Point(910, 3)
+    Me.btnTestCopy.Name = "btnTestCopy"
+    Me.btnTestCopy.Size = New System.Drawing.Size(82, 25)
+    Me.btnTestCopy.TabIndex = 42
+    Me.btnTestCopy.Text = "Copy"
+    '
     'grdMaterialRequirementOthers
     '
     Me.grdMaterialRequirementOthers.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1391,22 +1407,6 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.Visible = True
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
-    '
-    'btnTestCopy
-    '
-    Me.btnTestCopy.Location = New System.Drawing.Point(910, 3)
-    Me.btnTestCopy.Name = "btnTestCopy"
-    Me.btnTestCopy.Size = New System.Drawing.Size(82, 25)
-    Me.btnTestCopy.TabIndex = 42
-    Me.btnTestCopy.Text = "Copy"
-    '
-    'btnTestPaste
-    '
-    Me.btnTestPaste.Location = New System.Drawing.Point(1055, 3)
-    Me.btnTestPaste.Name = "btnTestPaste"
-    Me.btnTestPaste.Size = New System.Drawing.Size(82, 25)
-    Me.btnTestPaste.TabIndex = 43
-    Me.btnTestPaste.Text = "Paste"
     '
     'frmWorkOrderDetail
     '

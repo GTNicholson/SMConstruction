@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("SM_ERP.Xml")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SM_ERP.xml")>  _
         Public ReadOnly Property ConnInfoFile() As String
             Get
                 Return CType(Me("ConnInfoFile"),String)
