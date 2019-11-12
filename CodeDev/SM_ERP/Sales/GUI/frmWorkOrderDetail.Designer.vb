@@ -23,7 +23,7 @@ Partial Class frmWorkOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -128,6 +128,8 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.btnTestCopy = New DevExpress.XtraEditors.SimpleButton()
+    Me.btnTestPaste = New DevExpress.XtraEditors.SimpleButton()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -738,7 +740,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
     Me.grpWOFiles.Controls.Add(Me.Label5)
-    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions2)})
+    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions1)})
     Me.grpWOFiles.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWOFiles.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpWOFiles.Location = New System.Drawing.Point(0, 0)
@@ -1026,6 +1028,8 @@ Partial Class frmWorkOrderDetail
     '
     'XtraTabPage5
     '
+    Me.XtraTabPage5.Controls.Add(Me.btnTestPaste)
+    Me.XtraTabPage5.Controls.Add(Me.btnTestCopy)
     Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirementOthers)
     Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirements)
     Me.XtraTabPage5.Name = "XtraTabPage5"
@@ -1388,6 +1392,22 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'btnTestCopy
+    '
+    Me.btnTestCopy.Location = New System.Drawing.Point(910, 3)
+    Me.btnTestCopy.Name = "btnTestCopy"
+    Me.btnTestCopy.Size = New System.Drawing.Size(82, 25)
+    Me.btnTestCopy.TabIndex = 42
+    Me.btnTestCopy.Text = "Copy"
+    '
+    'btnTestPaste
+    '
+    Me.btnTestPaste.Location = New System.Drawing.Point(1055, 3)
+    Me.btnTestPaste.Name = "btnTestPaste"
+    Me.btnTestPaste.Size = New System.Drawing.Size(82, 25)
+    Me.btnTestPaste.TabIndex = 43
+    Me.btnTestPaste.Text = "Paste"
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1571,4 +1591,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents btnWorkOrderNumber As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label10 As Label
+  Friend WithEvents btnTestPaste As DevExpress.XtraEditors.SimpleButton
+  Friend WithEvents btnTestCopy As DevExpress.XtraEditors.SimpleButton
 End Class

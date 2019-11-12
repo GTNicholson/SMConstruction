@@ -81,8 +81,8 @@ Public Class dsoAppRefLists
           mOK = True
 
         Case appRefLists.Roles
-          mValueItems = New colValueItems
-          'mOK = pDBConn.LoadValueItems(mValueItems, "SELECT RoleID,Role FROM Role ORDER BY Role", "RoleID", "Role")
+          mValueItems = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eEmployeeRole))
+          mItem.IList = mValueItems
           mOK = True
         Case appRefLists.Country
           mValueItems = New colValueItems

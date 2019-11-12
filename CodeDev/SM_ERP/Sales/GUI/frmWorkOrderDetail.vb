@@ -749,5 +749,24 @@ Public Class frmWorkOrderDetail
     End Select
   End Sub
 
+  Private Sub btnTestCopy_Click(sender As Object, e As EventArgs) Handles btnTestCopy.Click
+    Dim mMatReqs As colMaterialRequirements
+    mMatReqs = grdMaterialRequirements.DataSource
+    pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
+  End Sub
 
+  Private Sub btnTestPaste_Click(sender As Object, e As EventArgs) Handles btnTestPaste.Click
+    Dim mPF As dmProductFurniture
+    mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+    If mPF IsNot Nothing Then
+
+      If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
+        For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
+          mMatReq.ClearKeys()
+          mMatReq.ObjectID = mPF.ProductFurnitureID
+          mPF.MaterialRequirments.Add(mMatReq)
+        Next
+      End If
+    End If
+  End Sub
 End Class

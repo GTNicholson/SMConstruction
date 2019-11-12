@@ -24,9 +24,9 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpDetails = New DevExpress.XtraEditors.GroupControl()
     Me.cboSalesArea = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.grdEmployeeShiftPatternOptions = New DevExpress.XtraGrid.GridControl()
-    Me.gvEmployeeShiftPatternOptions = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.grpRateOfPay = New DevExpress.XtraEditors.GroupControl()
+    Me.grdRateOfPay = New DevExpress.XtraGrid.GridControl()
+    Me.gvRateOfPay = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repitchkcboShiftOptions = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
@@ -66,10 +66,10 @@ Partial Class uctEmployeeDetailsReplacement
     CType(Me.grpDetails, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpDetails.SuspendLayout()
     CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.GroupControl1.SuspendLayout()
-    CType(Me.grdEmployeeShiftPatternOptions, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvEmployeeShiftPatternOptions, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grpRateOfPay, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.grpRateOfPay.SuspendLayout()
+    CType(Me.grdRateOfPay, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvRateOfPay, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repitchkcboShiftOptions, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpRoles, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpRoles.SuspendLayout()
@@ -107,7 +107,7 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpDetails.AppearanceCaption.Options.UseFont = True
     Me.grpDetails.Controls.Add(Me.cboSalesArea)
     Me.grpDetails.Controls.Add(Me.LabelControl8)
-    Me.grpDetails.Controls.Add(Me.GroupControl1)
+    Me.grpDetails.Controls.Add(Me.grpRateOfPay)
     Me.grpDetails.Controls.Add(Me.grpRoles)
     Me.grpDetails.Controls.Add(Me.memNotes)
     Me.grpDetails.Controls.Add(Me.LabelControl11)
@@ -163,40 +163,40 @@ Partial Class uctEmployeeDetailsReplacement
     Me.LabelControl8.TabIndex = 39
     Me.LabelControl8.Text = "País"
     '
-    'GroupControl1
+    'grpRateOfPay
     '
-    Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GroupControl1.AppearanceCaption.Options.UseFont = True
-    Me.GroupControl1.Controls.Add(Me.grdEmployeeShiftPatternOptions)
-    Me.GroupControl1.Location = New System.Drawing.Point(748, 36)
-    Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(393, 201)
-    Me.GroupControl1.TabIndex = 37
-    Me.GroupControl1.Text = "Detalles de Turno"
+    Me.grpRateOfPay.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.grpRateOfPay.AppearanceCaption.Options.UseFont = True
+    Me.grpRateOfPay.Controls.Add(Me.grdRateOfPay)
+    Me.grpRateOfPay.Location = New System.Drawing.Point(816, 36)
+    Me.grpRateOfPay.Name = "grpRateOfPay"
+    Me.grpRateOfPay.Size = New System.Drawing.Size(325, 201)
+    Me.grpRateOfPay.TabIndex = 37
+    Me.grpRateOfPay.Text = "Salario"
     '
-    'grdEmployeeShiftPatternOptions
+    'grdRateOfPay
     '
-    Me.grdEmployeeShiftPatternOptions.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdEmployeeShiftPatternOptions.Location = New System.Drawing.Point(2, 22)
-    Me.grdEmployeeShiftPatternOptions.MainView = Me.gvEmployeeShiftPatternOptions
-    Me.grdEmployeeShiftPatternOptions.Name = "grdEmployeeShiftPatternOptions"
-    Me.grdEmployeeShiftPatternOptions.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitchkcboShiftOptions})
-    Me.grdEmployeeShiftPatternOptions.Size = New System.Drawing.Size(389, 177)
-    Me.grdEmployeeShiftPatternOptions.TabIndex = 36
-    Me.grdEmployeeShiftPatternOptions.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvEmployeeShiftPatternOptions})
+    Me.grdRateOfPay.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdRateOfPay.Location = New System.Drawing.Point(2, 21)
+    Me.grdRateOfPay.MainView = Me.gvRateOfPay
+    Me.grdRateOfPay.Name = "grdRateOfPay"
+    Me.grdRateOfPay.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitchkcboShiftOptions})
+    Me.grdRateOfPay.Size = New System.Drawing.Size(321, 178)
+    Me.grdRateOfPay.TabIndex = 36
+    Me.grdRateOfPay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRateOfPay})
     '
-    'gvEmployeeShiftPatternOptions
+    'gvRateOfPay
     '
-    Me.gvEmployeeShiftPatternOptions.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.gvEmployeeShiftPatternOptions.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvEmployeeShiftPatternOptions.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.gvEmployeeShiftPatternOptions.Appearance.Row.Options.UseFont = True
-    Me.gvEmployeeShiftPatternOptions.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn4})
-    Me.gvEmployeeShiftPatternOptions.GridControl = Me.grdEmployeeShiftPatternOptions
-    Me.gvEmployeeShiftPatternOptions.Name = "gvEmployeeShiftPatternOptions"
-    Me.gvEmployeeShiftPatternOptions.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top
-    Me.gvEmployeeShiftPatternOptions.OptionsView.ShowGroupPanel = False
-    Me.gvEmployeeShiftPatternOptions.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Descending)})
+    Me.gvRateOfPay.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvRateOfPay.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvRateOfPay.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvRateOfPay.Appearance.Row.Options.UseFont = True
+    Me.gvRateOfPay.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn4})
+    Me.gvRateOfPay.GridControl = Me.grdRateOfPay
+    Me.gvRateOfPay.Name = "gvRateOfPay"
+    Me.gvRateOfPay.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top
+    Me.gvRateOfPay.OptionsView.ShowGroupPanel = False
+    Me.gvRateOfPay.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Descending)})
     '
     'GridColumn2
     '
@@ -205,17 +205,16 @@ Partial Class uctEmployeeDetailsReplacement
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 0
-    Me.GridColumn2.Width = 400
+    Me.GridColumn2.Width = 143
     '
     'GridColumn4
     '
-    Me.GridColumn4.Caption = "Opciones de Turno"
-    Me.GridColumn4.ColumnEdit = Me.repitchkcboShiftOptions
-    Me.GridColumn4.FieldName = "ShiftPatternOptions"
+    Me.GridColumn4.Caption = "Salario"
+    Me.GridColumn4.FieldName = "StandardRate"
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 1
-    Me.GridColumn4.Width = 1232
+    Me.GridColumn4.Width = 162
     '
     'repitchkcboShiftOptions
     '
@@ -235,7 +234,7 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpRoles.Enabled = False
     Me.grpRoles.Location = New System.Drawing.Point(433, 36)
     Me.grpRoles.Name = "grpRoles"
-    Me.grpRoles.Size = New System.Drawing.Size(309, 201)
+    Me.grpRoles.Size = New System.Drawing.Size(377, 201)
     Me.grpRoles.TabIndex = 7
     Me.grpRoles.Text = "Roles del Empleado"
     '
@@ -244,7 +243,7 @@ Partial Class uctEmployeeDetailsReplacement
     Me.radPaymentType.Location = New System.Drawing.Point(163, 26)
     Me.radPaymentType.Name = "radPaymentType"
     Me.radPaymentType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Asalariado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Horario")})
-    Me.radPaymentType.Size = New System.Drawing.Size(139, 23)
+    Me.radPaymentType.Size = New System.Drawing.Size(165, 23)
     Me.radPaymentType.TabIndex = 30
     '
     'radEmployeeGrouop
@@ -263,7 +262,7 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grdEmployeeRoles.Location = New System.Drawing.Point(5, 79)
     Me.grdEmployeeRoles.MainView = Me.gvEmployeeRoles
     Me.grdEmployeeRoles.Name = "grdEmployeeRoles"
-    Me.grdEmployeeRoles.Size = New System.Drawing.Size(297, 117)
+    Me.grdEmployeeRoles.Size = New System.Drawing.Size(365, 117)
     Me.grdEmployeeRoles.TabIndex = 12
     Me.grdEmployeeRoles.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvEmployeeRoles})
     '
@@ -299,7 +298,7 @@ Partial Class uctEmployeeDetailsReplacement
     Me.cboMainRole.Location = New System.Drawing.Point(65, 55)
     Me.cboMainRole.Name = "cboMainRole"
     Me.cboMainRole.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboMainRole.Size = New System.Drawing.Size(237, 20)
+    Me.cboMainRole.Size = New System.Drawing.Size(263, 20)
     Me.cboMainRole.TabIndex = 11
     '
     'lblMainRole
@@ -523,10 +522,10 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpDetails.ResumeLayout(False)
     Me.grpDetails.PerformLayout()
     CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.GroupControl1.ResumeLayout(False)
-    CType(Me.grdEmployeeShiftPatternOptions, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvEmployeeShiftPatternOptions, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grpRateOfPay, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.grpRateOfPay.ResumeLayout(False)
+    CType(Me.grdRateOfPay, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvRateOfPay, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repitchkcboShiftOptions, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grpRoles, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpRoles.ResumeLayout(False)
@@ -582,9 +581,9 @@ Partial Class uctEmployeeDetailsReplacement
   Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents txtPosition As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents grdEmployeeShiftPatternOptions As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvEmployeeShiftPatternOptions As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grpRateOfPay As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents grdRateOfPay As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvRateOfPay As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents radPaymentType As DevExpress.XtraEditors.RadioGroup
   Friend WithEvents radEmployeeGrouop As DevExpress.XtraEditors.RadioGroup
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
