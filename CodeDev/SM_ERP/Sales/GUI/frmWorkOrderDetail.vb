@@ -257,6 +257,8 @@ Public Class frmWorkOrderDetail
       txtDescription.Text = .Description
 
       dtePlannedStartDate.DateTime = .PlannedStartDate
+      dteDrawingDate.DateTime = .DrawingDate
+
 
       clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
       clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
@@ -338,6 +340,8 @@ Public Class frmWorkOrderDetail
       .Description = txtDescription.Text.ToUpper
 
       .PlannedStartDate = dtePlannedStartDate.DateTime
+      .DrawingDate = dteDrawingDate.DateTime
+
       .UnitPrice = Val(txtPrice.Text)
 
       .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)

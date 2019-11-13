@@ -1,0 +1,12 @@
+use SmConstruction
+go
+
+use SMConstruction
+go
+
+ALTER TABLE MaterialRequirement 
+ALTER COLUMN PiecesPerComponent decimal(9,3)
+GO
+
+ALTER TABLE MaterialRequirement 
+ALTER COLUMN qUANTITY decimal(9,3)

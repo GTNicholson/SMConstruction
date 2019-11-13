@@ -32,6 +32,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pUpholstery As Boolean
   Private pSubContract As Boolean
 
+  Private pDrawingDate As DateTime
+
   Private pQtyPerSalesItem As Integer
 
 
@@ -107,7 +109,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .SubContract = SubContract
       .EmployeeID = EmployeeID
       .QtyPerSalesItem = QtyPerSalesItem
-
+      .DrawingDate = DrawingDate
 
       'Add entries here for each collection and class property
 
@@ -271,6 +273,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As Date)
       If pDateCreated <> value Then IsDirty = True
       pDateCreated = value
+    End Set
+  End Property
+
+  Public Property DrawingDate As Date
+    Get
+      Return pDrawingDate
+    End Get
+    Set(value As Date)
+      If pDrawingDate <> value Then IsDirty = True
+      pDrawingDate = value
     End Set
   End Property
 

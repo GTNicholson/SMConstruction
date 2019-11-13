@@ -29,6 +29,7 @@ Partial Public Class repWorkOrderDoc
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
     Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
     Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
     Me.xrlOT2 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -40,7 +41,7 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
-    Me.xrlDateEntered = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrlDrawingDate = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtEmployeeID = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtDate = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtEmployee2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -61,7 +62,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +152,15 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel7.StylePriority.UseForeColor = False
     Me.XrLabel7.Text = "FECHA"
     Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    '
+    'XrPictureBox1
+    '
+    Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+    Me.XrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft
+    Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(2.05663!, 0!)
+    Me.XrPictureBox1.Name = "XrPictureBox1"
+    Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(386.1668!, 50.25004!)
+    Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
     '
     'XrLabel3
     '
@@ -302,16 +311,16 @@ Partial Public Class repWorkOrderDoc
     '
     'XrTableRow5
     '
-    Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrlDateEntered, Me.xrtEmployeeID, Me.xrtDate, Me.xrtEmployee2})
+    Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrlDrawingDate, Me.xrtEmployeeID, Me.xrtDate, Me.xrtEmployee2})
     Me.XrTableRow5.Name = "XrTableRow5"
     Me.XrTableRow5.Weight = 1.0R
     '
-    'xrlDateEntered
+    'xrlDrawingDate
     '
-    Me.xrlDateEntered.Name = "xrlDateEntered"
-    Me.xrlDateEntered.StylePriority.UseTextAlignment = False
-    Me.xrlDateEntered.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrlDateEntered.Weight = 0.84993773586521215R
+    Me.xrlDrawingDate.Name = "xrlDrawingDate"
+    Me.xrlDrawingDate.StylePriority.UseTextAlignment = False
+    Me.xrlDrawingDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrlDrawingDate.Weight = 0.84993773586521215R
     '
     'xrtEmployeeID
     '
@@ -548,15 +557,6 @@ Partial Public Class repWorkOrderDoc
     Me.XrLabel29.Text = "OT"
     Me.XrLabel29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
-    'XrPictureBox1
-    '
-    Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-    Me.XrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft
-    Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(2.05663!, 0!)
-    Me.XrPictureBox1.Name = "XrPictureBox1"
-    Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(386.1668!, 50.25004!)
-    Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
-    '
     'repWorkOrderDoc
     '
     Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
@@ -593,7 +593,7 @@ Partial Public Class repWorkOrderDoc
   Friend WithEvents xrlWorkOrderNo As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents xrlDateEntered As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrlDrawingDate As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtEmployeeID As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow

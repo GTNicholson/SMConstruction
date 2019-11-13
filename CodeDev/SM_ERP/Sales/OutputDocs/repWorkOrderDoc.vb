@@ -44,7 +44,7 @@ Public Class repWorkOrderDoc
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrSalesOrderID.Text = pSalesOrder.OrderNo
     xrlOT2.Text = pWorkOrder.WorkOrderNo
-    xrlDateEntered.Text = pSalesOrder.DateEntered
+    xrlDrawingDate.Text = pWorkOrder.DrawingDate
     xrtFinishDate.Text = pSalesOrder.FinishDate
     xrtDate.Text = pWorkOrder.PlannedStartDate
     xrtEmployeeID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)

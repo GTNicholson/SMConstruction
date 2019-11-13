@@ -39,6 +39,8 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.Label21 = New System.Windows.Forms.Label()
+    Me.dteDrawingDate = New DevExpress.XtraEditors.DateEdit()
     Me.btnWorkOrderNumber = New DevExpress.XtraEditors.ButtonEdit()
     Me.Label9 = New System.Windows.Forms.Label()
     Me.txtQtyPerSalesItem = New DevExpress.XtraEditors.TextEdit()
@@ -148,6 +150,8 @@ Partial Class frmWorkOrderDetail
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.dteDrawingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dteDrawingDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtQtyPerSalesItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -315,6 +319,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.Label21)
+    Me.GroupControl1.Controls.Add(Me.dteDrawingDate)
     Me.GroupControl1.Controls.Add(Me.btnWorkOrderNumber)
     Me.GroupControl1.Controls.Add(Me.Label9)
     Me.GroupControl1.Controls.Add(Me.txtQtyPerSalesItem)
@@ -343,6 +349,32 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Size = New System.Drawing.Size(1158, 120)
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
+    '
+    'Label21
+    '
+    Me.Label21.AutoSize = True
+    Me.Label21.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label21.Location = New System.Drawing.Point(546, 93)
+    Me.Label21.Name = "Label21"
+    Me.Label21.Size = New System.Drawing.Size(93, 14)
+    Me.Label21.TabIndex = 158
+    Me.Label21.Tag = "c"
+    Me.Label21.Text = "Fecha de Dibujo"
+    '
+    'dteDrawingDate
+    '
+    Me.dteDrawingDate.EditValue = Nothing
+    Me.dteDrawingDate.Location = New System.Drawing.Point(643, 90)
+    Me.dteDrawingDate.MenuManager = Me.BarManager1
+    Me.dteDrawingDate.Name = "dteDrawingDate"
+    Me.dteDrawingDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.dteDrawingDate.Properties.Appearance.Options.UseFont = True
+    Me.dteDrawingDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dteDrawingDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dteDrawingDate.Properties.NullDate = New Date(CType(0, Long))
+    Me.dteDrawingDate.Size = New System.Drawing.Size(100, 20)
+    Me.dteDrawingDate.TabIndex = 157
     '
     'btnWorkOrderNumber
     '
@@ -399,7 +431,7 @@ Partial Class frmWorkOrderDetail
     Me.bteImage.Properties.Appearance.Options.UseBackColor = True
     Me.bteImage.Properties.Appearance.Options.UseFont = True
     Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.bteImage.Size = New System.Drawing.Size(258, 20)
+    Me.bteImage.Size = New System.Drawing.Size(160, 20)
     Me.bteImage.TabIndex = 152
     '
     'cboEmployee
@@ -611,7 +643,7 @@ Partial Class frmWorkOrderDetail
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(382, 93)
+    Me.Label11.Location = New System.Drawing.Point(265, 93)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(75, 14)
     Me.Label11.TabIndex = 137
@@ -619,7 +651,7 @@ Partial Class frmWorkOrderDetail
     '
     'btneWorkOrderDocument
     '
-    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(468, 90)
+    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(346, 90)
     Me.btneWorkOrderDocument.MenuManager = Me.BarManager1
     Me.btneWorkOrderDocument.Name = "btneWorkOrderDocument"
     Me.btneWorkOrderDocument.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -627,7 +659,7 @@ Partial Class frmWorkOrderDetail
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseBackColor = True
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseFont = True
     Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(275, 20)
+    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(185, 20)
     Me.btneWorkOrderDocument.TabIndex = 136
     '
     'txtPrice
@@ -1574,6 +1606,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.dteDrawingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dteDrawingDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtQtyPerSalesItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1768,4 +1802,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents XtraTabPage7 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents btnWorkOrderNumber As DevExpress.XtraEditors.ButtonEdit
+  Friend WithEvents Label21 As Label
+  Friend WithEvents dteDrawingDate As DevExpress.XtraEditors.DateEdit
 End Class
