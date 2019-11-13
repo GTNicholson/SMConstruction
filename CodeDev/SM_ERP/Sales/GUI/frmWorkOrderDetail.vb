@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports DevExpress.XtraBars
 Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
@@ -16,6 +17,11 @@ Public Class frmWorkOrderDetail
   Private pFormController As fccWorkOrderDetail
   Public ExitMode As Windows.Forms.DialogResult
   Public pSOI As dmSalesOrderItem
+
+  Private Enum eCopyPasteButton
+    Copy = 1
+    Paste = 2
+  End Enum
 
   Public Sub New()
 
@@ -749,24 +755,43 @@ Public Class frmWorkOrderDetail
     End Select
   End Sub
 
-  Private Sub btnTestCopy_Click(sender As Object, e As EventArgs) Handles btnTestCopy.Click
-    Dim mMatReqs As colMaterialRequirements
-    mMatReqs = grdMaterialRequirements.DataSource
-    pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
+
+  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
+    Select Case e.Button.Properties.Tag
+      Case eCopyPasteButton.Copy
+        Dim mMatReqs As colMaterialRequirements
+        mMatReqs = grdMaterialRequirements.DataSource
+        pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
+      Case eCopyPasteButton.Paste
+        Dim mPF As dmProductFurniture
+        mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+        If mPF IsNot Nothing Then
+
+          If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
+            For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
+              mMatReq.ClearKeys()
+              mMatReq.ObjectID = mPF.ProductFurnitureID
+              mPF.MaterialRequirments.Add(mMatReq)
+            Next
+          End If
+        End If
+    End Select
   End Sub
 
-  Private Sub btnTestPaste_Click(sender As Object, e As EventArgs) Handles btnTestPaste.Click
-    Dim mPF As dmProductFurniture
-    mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
-    If mPF IsNot Nothing Then
-
-      If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
-        For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
-          mMatReq.ClearKeys()
-          mMatReq.ObjectID = mPF.ProductFurnitureID
-          mPF.MaterialRequirments.Add(mMatReq)
-        Next
+  Private Sub btnWorkOrderNumber_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnWorkOrderNumber.ButtonClick
+    Dim mNewWO As String
+    Try
+      UpdateObject()
+      mNewWO = pFormController.WorkOrder.WorkOrderNo
+      mNewWO = InputBox("Modificar el Numero de OT",, mNewWO)
+      If mNewWO <> "" Then
+        pFormController.WorkOrder.WorkOrderNo = mNewWO
       End If
-    End If
+      pFormController.SaveObjects()
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 End Class

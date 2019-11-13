@@ -35,9 +35,10 @@ Public Class repWorkOrderDoc
 
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     Dim mPF As dmProductFurniture
+    Dim mPicHeight As Single
     mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
 
-
+    XrSubreport1.ReportSource = New srepWorkOrderSignOffs
 
     SetUpDataBindings()
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
@@ -60,8 +61,25 @@ Public Class repWorkOrderDoc
 
     xrNotes.Text = mPF.Notes
 
+    '// Optimise Image size so that it fits on what remains of the page after the notext
+    mPicHeight = GetOptimalPicHeight(mPF.Notes)
+    xrPic.HeightF = mPicHeight
 
   End Sub
+
+  Private Function GetOptimalPicHeight(ByVal vNotes As String) As Single
+    Dim mRetVal As Single
+    Dim mSize As Drawing.SizeF
+    Dim mAvailableHeight As Single
+
+    mAvailableHeight = Me.Detail.HeightF
+    mSize = PrintingSystem.Graph.MeasureString(vNotes, xrNotes.WidthF)
+    mSize.Height = Math.Max(mSize.Height, xrNotes.HeightF)
+    mAvailableHeight = mAvailableHeight - (xrNotes.TopF + mSize.Height)
+
+    mRetVal = mAvailableHeight
+    Return mRetVal
+  End Function
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim mFileName As String
