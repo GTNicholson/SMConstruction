@@ -24,6 +24,10 @@ Partial Class frmWorkOrderDetail
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -35,6 +39,7 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.btnWorkOrderNumber = New DevExpress.XtraEditors.ButtonEdit()
     Me.Label9 = New System.Windows.Forms.Label()
     Me.txtQtyPerSalesItem = New DevExpress.XtraEditors.TextEdit()
     Me.Label20 = New System.Windows.Forms.Label()
@@ -64,7 +69,6 @@ Partial Class frmWorkOrderDetail
     Me.Label2 = New System.Windows.Forms.Label()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.txtDescription = New DevExpress.XtraEditors.TextEdit()
-    Me.btnWorkOrderNumber = New DevExpress.XtraEditors.TextEdit()
     Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
     Me.tabProductSpec = New DevExpress.XtraTab.XtraTabControl()
@@ -95,17 +99,11 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
     Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
     Me.XtraTabPage5 = New DevExpress.XtraTab.XtraTabPage()
-    Me.btnTestPaste = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnTestCopy = New DevExpress.XtraEditors.SimpleButton()
-    Me.grdMaterialRequirementOthers = New DevExpress.XtraGrid.GridControl()
-    Me.gvMaterialRequirementOthers = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+    Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+    Me.XtraTabControl3 = New DevExpress.XtraTab.XtraTabControl()
+    Me.XtraTabPage8 = New DevExpress.XtraTab.XtraTabPage()
+    Me.grpMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
     Me.grdMaterialRequirements = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirements = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -120,6 +118,22 @@ Partial Class frmWorkOrderDetail
     Me.gcTotalQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.XtraTabPage9 = New DevExpress.XtraTab.XtraTabPage()
+    Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
+    Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+    Me.XtraTabPage6 = New DevExpress.XtraTab.XtraTabPage()
+    Me.grpMaterialRequirementOthers = New DevExpress.XtraEditors.GroupControl()
+    Me.grdMaterialRequirementOthers = New DevExpress.XtraGrid.GridControl()
+    Me.gvMaterialRequirementOthers = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.XtraTabPage7 = New DevExpress.XtraTab.XtraTabPage()
+    Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -134,6 +148,7 @@ Partial Class frmWorkOrderDetail
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtQtyPerSalesItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,7 +165,6 @@ Partial Class frmWorkOrderDetail
     CType(Me.txtPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabControl2.SuspendLayout()
     Me.XtraTabPage3.SuspendLayout()
@@ -177,10 +191,27 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage2.SuspendLayout()
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage5.SuspendLayout()
-    CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.PanelControl2.SuspendLayout()
+    Me.TableLayoutPanel2.SuspendLayout()
+    CType(Me.XtraTabControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.XtraTabControl3.SuspendLayout()
+    Me.XtraTabPage8.SuspendLayout()
+    CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.grpMaterialRequirements.SuspendLayout()
     CType(Me.grdMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.XtraTabPage9.SuspendLayout()
+    CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.XtraTabControl1.SuspendLayout()
+    Me.XtraTabPage6.SuspendLayout()
+    CType(Me.grpMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.grpMaterialRequirementOthers.SuspendLayout()
+    CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.XtraTabPage7.SuspendLayout()
+    CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage4.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
@@ -284,6 +315,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.btnWorkOrderNumber)
     Me.GroupControl1.Controls.Add(Me.Label9)
     Me.GroupControl1.Controls.Add(Me.txtQtyPerSalesItem)
     Me.GroupControl1.Controls.Add(Me.Label20)
@@ -305,13 +337,24 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.Label2)
     Me.GroupControl1.Controls.Add(Me.Label1)
     Me.GroupControl1.Controls.Add(Me.txtDescription)
-    Me.GroupControl1.Controls.Add(Me.btnWorkOrderNumber)
     Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
     Me.GroupControl1.Name = "GroupControl1"
     Me.GroupControl1.Size = New System.Drawing.Size(1158, 120)
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
+    '
+    'btnWorkOrderNumber
+    '
+    Me.btnWorkOrderNumber.Location = New System.Drawing.Point(93, 34)
+    Me.btnWorkOrderNumber.MenuManager = Me.BarManager1
+    Me.btnWorkOrderNumber.Name = "btnWorkOrderNumber"
+    Me.btnWorkOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.btnWorkOrderNumber.Properties.Appearance.Options.UseFont = True
+    Me.btnWorkOrderNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo)})
+    Me.btnWorkOrderNumber.Properties.ReadOnly = True
+    Me.btnWorkOrderNumber.Size = New System.Drawing.Size(101, 20)
+    Me.btnWorkOrderNumber.TabIndex = 156
     '
     'Label9
     '
@@ -668,16 +711,6 @@ Partial Class frmWorkOrderDetail
     Me.txtDescription.TabIndex = 12
     Me.txtDescription.Tag = "c"
     '
-    'btnWorkOrderNumber
-    '
-    Me.btnWorkOrderNumber.Location = New System.Drawing.Point(93, 34)
-    Me.btnWorkOrderNumber.MenuManager = Me.BarManager1
-    Me.btnWorkOrderNumber.Name = "btnWorkOrderNumber"
-    Me.btnWorkOrderNumber.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
-    Me.btnWorkOrderNumber.Properties.Appearance.Options.UseBackColor = True
-    Me.btnWorkOrderNumber.Size = New System.Drawing.Size(100, 20)
-    Me.btnWorkOrderNumber.TabIndex = 138
-    '
     'XtraTabControl2
     '
     Me.XtraTabControl2.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1028,139 +1061,85 @@ Partial Class frmWorkOrderDetail
     '
     'XtraTabPage5
     '
-    Me.XtraTabPage5.Controls.Add(Me.btnTestPaste)
-    Me.XtraTabPage5.Controls.Add(Me.btnTestCopy)
-    Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirementOthers)
-    Me.XtraTabPage5.Controls.Add(Me.grdMaterialRequirements)
+    Me.XtraTabPage5.Controls.Add(Me.PanelControl2)
     Me.XtraTabPage5.Name = "XtraTabPage5"
     Me.XtraTabPage5.Size = New System.Drawing.Size(1152, 382)
     Me.XtraTabPage5.Text = "Lista de Materiales de Producción"
     '
-    'btnTestPaste
+    'PanelControl2
     '
-    Me.btnTestPaste.Location = New System.Drawing.Point(1055, 3)
-    Me.btnTestPaste.Name = "btnTestPaste"
-    Me.btnTestPaste.Size = New System.Drawing.Size(82, 25)
-    Me.btnTestPaste.TabIndex = 43
-    Me.btnTestPaste.Text = "Paste"
+    Me.PanelControl2.Controls.Add(Me.TableLayoutPanel2)
+    Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+    Me.PanelControl2.Name = "PanelControl2"
+    Me.PanelControl2.Size = New System.Drawing.Size(1152, 382)
+    Me.PanelControl2.TabIndex = 45
     '
-    'btnTestCopy
+    'TableLayoutPanel2
     '
-    Me.btnTestCopy.Location = New System.Drawing.Point(910, 3)
-    Me.btnTestCopy.Name = "btnTestCopy"
-    Me.btnTestCopy.Size = New System.Drawing.Size(82, 25)
-    Me.btnTestCopy.TabIndex = 42
-    Me.btnTestCopy.Text = "Copy"
+    Me.TableLayoutPanel2.ColumnCount = 1
+    Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel2.Controls.Add(Me.XtraTabControl3, 0, 0)
+    Me.TableLayoutPanel2.Controls.Add(Me.XtraTabControl1, 0, 1)
+    Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TableLayoutPanel2.Location = New System.Drawing.Point(2, 2)
+    Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+    Me.TableLayoutPanel2.RowCount = 2
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+    Me.TableLayoutPanel2.Size = New System.Drawing.Size(1148, 378)
+    Me.TableLayoutPanel2.TabIndex = 44
     '
-    'grdMaterialRequirementOthers
+    'XtraTabControl3
     '
-    Me.grdMaterialRequirementOthers.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.Edit.Visible = False
-    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.NextPage.Visible = False
-    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(3, 196)
-    Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
-    Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
-    Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
-    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1149, 179)
-    Me.grdMaterialRequirementOthers.TabIndex = 41
-    Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
-    Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers})
+    Me.XtraTabControl3.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.XtraTabControl3.AppearancePage.Header.Options.UseFont = True
+    Me.XtraTabControl3.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.XtraTabControl3.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+    Me.XtraTabControl3.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
+    Me.XtraTabControl3.Location = New System.Drawing.Point(3, 3)
+    Me.XtraTabControl3.Name = "XtraTabControl3"
+    Me.XtraTabControl3.SelectedTabPage = Me.XtraTabPage8
+    Me.XtraTabControl3.Size = New System.Drawing.Size(1142, 183)
+    Me.XtraTabControl3.TabIndex = 1
+    Me.XtraTabControl3.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage8, Me.XtraTabPage9})
     '
-    'gvMaterialRequirementOthers
+    'XtraTabPage8
     '
-    Me.gvMaterialRequirementOthers.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.gvMaterialRequirementOthers.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvMaterialRequirementOthers.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.gvMaterialRequirementOthers.Appearance.Row.Options.UseFont = True
-    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseFont = True
-    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.GridColumn20, Me.GridColumn9})
-    Me.gvMaterialRequirementOthers.GridControl = Me.grdMaterialRequirementOthers
-    Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
-    Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
-    Me.gvMaterialRequirementOthers.OptionsView.ShowViewCaption = True
-    Me.gvMaterialRequirementOthers.ViewCaption = "Lista de Materiales Requeridos (LMR)"
+    Me.XtraTabPage8.Controls.Add(Me.grpMaterialRequirements)
+    Me.XtraTabPage8.Name = "XtraTabPage8"
+    Me.XtraTabPage8.Size = New System.Drawing.Size(1072, 177)
+    Me.XtraTabPage8.Text = "Original"
     '
-    'GridColumn6
+    'grpMaterialRequirements
     '
-    Me.GridColumn6.Caption = "Código"
-    Me.GridColumn6.FieldName = "StockCode"
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Width = 54
-    '
-    'GridColumn8
-    '
-    Me.GridColumn8.Caption = "Descripción de Materiales"
-    Me.GridColumn8.FieldName = "Description"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 0
-    Me.GridColumn8.Width = 194
-    '
-    'GridColumn17
-    '
-    Me.GridColumn17.Caption = "UdM"
-    Me.GridColumn17.FieldName = "UoM"
-    Me.GridColumn17.Name = "GridColumn17"
-    Me.GridColumn17.Visible = True
-    Me.GridColumn17.VisibleIndex = 1
-    Me.GridColumn17.Width = 48
-    '
-    'GridColumn18
-    '
-    Me.GridColumn18.Caption = "Cantidad Estimada"
-    Me.GridColumn18.FieldName = "Quantity"
-    Me.GridColumn18.Name = "GridColumn18"
-    Me.GridColumn18.Visible = True
-    Me.GridColumn18.VisibleIndex = 2
-    Me.GridColumn18.Width = 117
-    '
-    'gcAreaID
-    '
-    Me.gcAreaID.Caption = "Área"
-    Me.gcAreaID.FieldName = "AreaID"
-    Me.gcAreaID.Name = "gcAreaID"
-    Me.gcAreaID.Visible = True
-    Me.gcAreaID.VisibleIndex = 3
-    Me.gcAreaID.Width = 92
-    '
-    'GridColumn20
-    '
-    Me.GridColumn20.Caption = "Código"
-    Me.GridColumn20.FieldName = "SupplierStockCode"
-    Me.GridColumn20.Name = "GridColumn20"
-    Me.GridColumn20.Visible = True
-    Me.GridColumn20.VisibleIndex = 4
-    Me.GridColumn20.Width = 119
-    '
-    'GridColumn9
-    '
-    Me.GridColumn9.Caption = "Comentarios"
-    Me.GridColumn9.FieldName = "Comments"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 5
+    Me.grpMaterialRequirements.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.grpMaterialRequirements.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
+    Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
+    Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirements)
+    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
+    Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+    Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
+    Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
+    Me.grpMaterialRequirements.Size = New System.Drawing.Size(1072, 177)
+    Me.grpMaterialRequirements.TabIndex = 147
+    Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
     '
     'grdMaterialRequirements
     '
-    Me.grdMaterialRequirements.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.grdMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
     Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdMaterialRequirements.Location = New System.Drawing.Point(3, 3)
+    Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 26)
     Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
     Me.grdMaterialRequirements.MenuManager = Me.BarManager1
     Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1149, 187)
+    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1068, 149)
     Me.grdMaterialRequirements.TabIndex = 29
     Me.grdMaterialRequirements.UseEmbeddedNavigator = True
     Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements})
@@ -1182,7 +1161,6 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
     Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
     Me.gvMaterialRequirements.OptionsView.ShowGroupPanel = False
-    Me.gvMaterialRequirements.OptionsView.ShowViewCaption = True
     Me.gvMaterialRequirements.ViewCaption = "Lista de Materia Prima (LMP)"
     '
     'GridColumn1
@@ -1292,6 +1270,176 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 2
     Me.GridColumn5.Width = 104
+    '
+    'XtraTabPage9
+    '
+    Me.XtraTabPage9.Controls.Add(Me.GroupControl8)
+    Me.XtraTabPage9.Name = "XtraTabPage9"
+    Me.XtraTabPage9.Size = New System.Drawing.Size(1072, 177)
+    Me.XtraTabPage9.Text = "Cambios"
+    '
+    'GroupControl8
+    '
+    Me.GroupControl8.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl8.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl8.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl8.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
+    Me.GroupControl8.Name = "GroupControl8"
+    Me.GroupControl8.Size = New System.Drawing.Size(1072, 177)
+    Me.GroupControl8.TabIndex = 148
+    Me.GroupControl8.Text = "Lista de Materia Prima (LMP)"
+    '
+    'XtraTabControl1
+    '
+    Me.XtraTabControl1.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.XtraTabControl1.AppearancePage.Header.Options.UseFont = True
+    Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+    Me.XtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
+    Me.XtraTabControl1.Location = New System.Drawing.Point(3, 192)
+    Me.XtraTabControl1.Name = "XtraTabControl1"
+    Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage6
+    Me.XtraTabControl1.Size = New System.Drawing.Size(1142, 183)
+    Me.XtraTabControl1.TabIndex = 0
+    Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage6, Me.XtraTabPage7})
+    '
+    'XtraTabPage6
+    '
+    Me.XtraTabPage6.Controls.Add(Me.grpMaterialRequirementOthers)
+    Me.XtraTabPage6.Name = "XtraTabPage6"
+    Me.XtraTabPage6.Size = New System.Drawing.Size(1072, 177)
+    Me.XtraTabPage6.Text = "Original"
+    '
+    'grpMaterialRequirementOthers
+    '
+    Me.grpMaterialRequirementOthers.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.grpMaterialRequirementOthers.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseFont = True
+    Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseForeColor = True
+    Me.grpMaterialRequirementOthers.Controls.Add(Me.grdMaterialRequirementOthers)
+    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
+    Me.grpMaterialRequirementOthers.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+    Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
+    Me.grpMaterialRequirementOthers.Name = "grpMaterialRequirementOthers"
+    Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1072, 177)
+    Me.grpMaterialRequirementOthers.TabIndex = 147
+    Me.grpMaterialRequirementOthers.Text = "Lista de Materiales Requeridos (LMR)"
+    '
+    'grdMaterialRequirementOthers
+    '
+    Me.grdMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(2, 26)
+    Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
+    Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
+    Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
+    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1068, 149)
+    Me.grdMaterialRequirementOthers.TabIndex = 41
+    Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
+    Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers})
+    '
+    'gvMaterialRequirementOthers
+    '
+    Me.gvMaterialRequirementOthers.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirementOthers.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvMaterialRequirementOthers.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvMaterialRequirementOthers.Appearance.Row.Options.UseFont = True
+    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.GridColumn20, Me.GridColumn9})
+    Me.gvMaterialRequirementOthers.GridControl = Me.grdMaterialRequirementOthers
+    Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
+    Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
+    Me.gvMaterialRequirementOthers.ViewCaption = "Lista de Materiales Requeridos (LMR)"
+    '
+    'GridColumn6
+    '
+    Me.GridColumn6.Caption = "Código"
+    Me.GridColumn6.FieldName = "StockCode"
+    Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.Width = 54
+    '
+    'GridColumn8
+    '
+    Me.GridColumn8.Caption = "Descripción de Materiales"
+    Me.GridColumn8.FieldName = "Description"
+    Me.GridColumn8.Name = "GridColumn8"
+    Me.GridColumn8.Visible = True
+    Me.GridColumn8.VisibleIndex = 0
+    Me.GridColumn8.Width = 194
+    '
+    'GridColumn17
+    '
+    Me.GridColumn17.Caption = "UdM"
+    Me.GridColumn17.FieldName = "UoM"
+    Me.GridColumn17.Name = "GridColumn17"
+    Me.GridColumn17.Visible = True
+    Me.GridColumn17.VisibleIndex = 1
+    Me.GridColumn17.Width = 48
+    '
+    'GridColumn18
+    '
+    Me.GridColumn18.Caption = "Cantidad Estimada"
+    Me.GridColumn18.FieldName = "Quantity"
+    Me.GridColumn18.Name = "GridColumn18"
+    Me.GridColumn18.Visible = True
+    Me.GridColumn18.VisibleIndex = 2
+    Me.GridColumn18.Width = 117
+    '
+    'gcAreaID
+    '
+    Me.gcAreaID.Caption = "Área"
+    Me.gcAreaID.FieldName = "AreaID"
+    Me.gcAreaID.Name = "gcAreaID"
+    Me.gcAreaID.Visible = True
+    Me.gcAreaID.VisibleIndex = 3
+    Me.gcAreaID.Width = 92
+    '
+    'GridColumn20
+    '
+    Me.GridColumn20.Caption = "Código"
+    Me.GridColumn20.FieldName = "SupplierStockCode"
+    Me.GridColumn20.Name = "GridColumn20"
+    Me.GridColumn20.Visible = True
+    Me.GridColumn20.VisibleIndex = 4
+    Me.GridColumn20.Width = 119
+    '
+    'GridColumn9
+    '
+    Me.GridColumn9.Caption = "Comentarios"
+    Me.GridColumn9.FieldName = "Comments"
+    Me.GridColumn9.Name = "GridColumn9"
+    Me.GridColumn9.Visible = True
+    Me.GridColumn9.VisibleIndex = 5
+    '
+    'XtraTabPage7
+    '
+    Me.XtraTabPage7.Controls.Add(Me.GroupControl6)
+    Me.XtraTabPage7.Name = "XtraTabPage7"
+    Me.XtraTabPage7.Size = New System.Drawing.Size(1072, 177)
+    Me.XtraTabPage7.Text = "Cambios"
+    '
+    'GroupControl6
+    '
+    Me.GroupControl6.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl6.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
+    Me.GroupControl6.Name = "GroupControl6"
+    Me.GroupControl6.Size = New System.Drawing.Size(1072, 177)
+    Me.GroupControl6.TabIndex = 148
+    Me.GroupControl6.Text = "Lista de Materiales Requeridos (LMR)"
     '
     'XtraTabPage4
     '
@@ -1426,6 +1574,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtQtyPerSalesItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1443,7 +1592,6 @@ Partial Class frmWorkOrderDetail
     CType(Me.txtPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabControl2.ResumeLayout(False)
     Me.XtraTabPage3.ResumeLayout(False)
@@ -1471,10 +1619,27 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage2.ResumeLayout(False)
     CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage5.ResumeLayout(False)
-    CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.PanelControl2.ResumeLayout(False)
+    Me.TableLayoutPanel2.ResumeLayout(False)
+    CType(Me.XtraTabControl3, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.XtraTabControl3.ResumeLayout(False)
+    Me.XtraTabPage8.ResumeLayout(False)
+    CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.grpMaterialRequirements.ResumeLayout(False)
     CType(Me.grdMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.XtraTabPage9.ResumeLayout(False)
+    CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.XtraTabControl1.ResumeLayout(False)
+    Me.XtraTabPage6.ResumeLayout(False)
+    CType(Me.grpMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.grpMaterialRequirementOthers.ResumeLayout(False)
+    CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.XtraTabPage7.ResumeLayout(False)
+    CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage4.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
@@ -1589,8 +1754,18 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents grdPackingComponents As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvPackingComponents As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents btnWorkOrderNumber As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label10 As Label
-  Friend WithEvents btnTestPaste As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents btnTestCopy As DevExpress.XtraEditors.SimpleButton
+  Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+  Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+  Friend WithEvents XtraTabControl3 As DevExpress.XtraTab.XtraTabControl
+  Friend WithEvents XtraTabPage8 As DevExpress.XtraTab.XtraTabPage
+  Friend WithEvents grpMaterialRequirements As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents XtraTabPage9 As DevExpress.XtraTab.XtraTabPage
+  Friend WithEvents GroupControl8 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+  Friend WithEvents XtraTabPage6 As DevExpress.XtraTab.XtraTabPage
+  Friend WithEvents grpMaterialRequirementOthers As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents XtraTabPage7 As DevExpress.XtraTab.XtraTabPage
+  Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents btnWorkOrderNumber As DevExpress.XtraEditors.ButtonEdit
 End Class
