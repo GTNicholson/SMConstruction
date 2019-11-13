@@ -99,18 +99,19 @@ End Enum
 
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
-  <Description("Ingeniería")> Engineering = 1
-  <Description("Dimensionado")> Dimensionado = 2
-  <Description("Maquinado")> Machining = 3
-  <Description("Ensamble")> Assembly = 4
-  <Description("Lija")> Sanding = 5
-  <Description("Acabado")> Painting = 6
-  <Description("Metal")> MetalWork = 7
-  <Description("Tapizado")> Upholstery = 8
-  <Description("SubContratación")> SubContract = 9
-  <Description("Empaque")> Packaing = 10
-  <Description("Despacho")> Dispatching = 11
-
+  <Description("Ingeniería")> Engineering = 12
+  <Description("Selección")> Selection = 13
+  <Description("Dimensionado")> Dimensionado = 1
+  <Description("Maquinado")> Machining = 2
+  <Description("Ensamble")> Assembly = 3
+  <Description("Lija")> Sanding = 4
+  <Description("Acabado")> Painting = 5
+  <Description("Metal")> MetalWork = 6
+  <Description("Tapizado")> Upholstery = 7
+  <Description("SubContratación")> SubContract = 8
+  <Description("Empaque")> Packaing = 9
+  <Description("Despacho")> Dispatching = 10
+  <Description("Instalación")> Installing = 11
 
 End Enum
 

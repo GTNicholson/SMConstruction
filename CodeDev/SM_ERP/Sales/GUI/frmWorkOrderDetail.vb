@@ -252,6 +252,7 @@ Public Class frmWorkOrderDetail
       txtQtyPerSalesItem.Text = .QtyPerSalesItem
 
       txtQuantity.Text = .Quantity
+      txtUnitCost.Text = .UnitPrice
 
       btnWorkOrderNumber.EditValue = .WorkOrderNo
       txtDescription.Text = .Description
@@ -280,14 +281,18 @@ Public Class frmWorkOrderDetail
 
       UctFileControl1.LoadControls()
       UctFileControl1.RefreshControls()
+
+      With pFormController.SalesOrderItem
+        txtPrice.Text = .UnitPrice
+        txtSalesQuantity.Text = .Quantity
+      End With
+
       RefreshProductControls()
       RefreshSalesControls()
 
     End With
 
-    With pFormController.SalesOrderItem
-      txtPrice.Text = .UnitPrice
-    End With
+
 
 
     pIsActive = mIsActive
@@ -298,6 +303,8 @@ Public Class frmWorkOrderDetail
       txtSalesOrderID.Text = .OrderNo
       txtProjectName.Text = .ProjectName
       txtDueTime.Text = .DueTime
+
+
       If .Customer IsNot Nothing Then
         txtCompanyName.Text = .Customer.CompanyName
       End If
@@ -342,7 +349,7 @@ Public Class frmWorkOrderDetail
       .PlannedStartDate = dtePlannedStartDate.DateTime
       .DrawingDate = dteDrawingDate.DateTime
 
-      .UnitPrice = Val(txtPrice.Text)
+      .UnitPrice = Val(txtUnitCost.Text)
 
       .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
       .FurnitureCategoryID = clsDEControlLoading.GetDEComboValue(cboFurnitureCategory)

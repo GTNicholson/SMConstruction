@@ -137,7 +137,7 @@ Partial Class frmTimeSheetEntry
     Me.radgrpWorkCentreID.Name = "radgrpWorkCentreID"
     Me.radgrpWorkCentreID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.radgrpWorkCentreID.Properties.Appearance.Options.UseFont = True
-    Me.radgrpWorkCentreID.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Dimensionado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Maquinado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Ensamble"), New DevExpress.XtraEditors.Controls.RadioGroupItem(4, "Lija"), New DevExpress.XtraEditors.Controls.RadioGroupItem(5, "Metal"), New DevExpress.XtraEditors.Controls.RadioGroupItem(6, "Tapizado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(7, "Pintura"), New DevExpress.XtraEditors.Controls.RadioGroupItem(8, "Empaque"), New DevExpress.XtraEditors.Controls.RadioGroupItem(9, "Despacho")})
+    Me.radgrpWorkCentreID.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(13, "Selección"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Dimensionado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Maquinado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Ensamble"), New DevExpress.XtraEditors.Controls.RadioGroupItem(4, "Lija"), New DevExpress.XtraEditors.Controls.RadioGroupItem(5, "Pintura"), New DevExpress.XtraEditors.Controls.RadioGroupItem(6, "Metal"), New DevExpress.XtraEditors.Controls.RadioGroupItem(7, "Tapizado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(9, "Empaque"), New DevExpress.XtraEditors.Controls.RadioGroupItem(10, "Despacho")})
     Me.radgrpWorkCentreID.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
     Me.radgrpWorkCentreID.Size = New System.Drawing.Size(695, 26)
     Me.radgrpWorkCentreID.TabIndex = 9
@@ -269,7 +269,7 @@ Partial Class frmTimeSheetEntry
     '
     Me.XtraTabPage1.Controls.Add(Me.grdTimeSheet)
     Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1146, 396)
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1148, 397)
     Me.XtraTabPage1.Text = "XtraTabPage1"
     '
     'grdTimeSheet
@@ -279,7 +279,7 @@ Partial Class frmTimeSheetEntry
     Me.grdTimeSheet.MainView = Me.gvTimeSheet
     Me.grdTimeSheet.Name = "grdTimeSheet"
     Me.grdTimeSheet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitmemTSEntry})
-    Me.grdTimeSheet.Size = New System.Drawing.Size(1146, 396)
+    Me.grdTimeSheet.Size = New System.Drawing.Size(1148, 397)
     Me.grdTimeSheet.TabIndex = 0
     Me.grdTimeSheet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheet})
     '
@@ -427,7 +427,7 @@ Partial Class frmTimeSheetEntry
     '
     Me.XtraTabPage2.Controls.Add(Me.grdTimeSheetEntries)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1146, 396)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1148, 397)
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
     'grdTimeSheetEntries
@@ -436,7 +436,7 @@ Partial Class frmTimeSheetEntry
     Me.grdTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
     Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
     Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1146, 396)
+    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1148, 397)
     Me.grdTimeSheetEntries.TabIndex = 0
     Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
     '
