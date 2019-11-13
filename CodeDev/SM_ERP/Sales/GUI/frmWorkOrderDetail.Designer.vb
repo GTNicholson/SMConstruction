@@ -39,6 +39,8 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.Label22 = New System.Windows.Forms.Label()
+    Me.txtUnitCost = New DevExpress.XtraEditors.TextEdit()
     Me.Label21 = New System.Windows.Forms.Label()
     Me.dteDrawingDate = New DevExpress.XtraEditors.DateEdit()
     Me.btnWorkOrderNumber = New DevExpress.XtraEditors.ButtonEdit()
@@ -57,6 +59,8 @@ Partial Class frmWorkOrderDetail
     Me.Label15 = New System.Windows.Forms.Label()
     Me.Label13 = New System.Windows.Forms.Label()
     Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
+    Me.txtPrice = New DevExpress.XtraEditors.TextEdit()
+    Me.Label4 = New System.Windows.Forms.Label()
     Me.lblWorkOrderID = New System.Windows.Forms.Label()
     Me.cboProductType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label14 = New System.Windows.Forms.Label()
@@ -64,8 +68,6 @@ Partial Class frmWorkOrderDetail
     Me.Label12 = New System.Windows.Forms.Label()
     Me.Label11 = New System.Windows.Forms.Label()
     Me.btneWorkOrderDocument = New DevExpress.XtraEditors.ButtonEdit()
-    Me.txtPrice = New DevExpress.XtraEditors.TextEdit()
-    Me.Label4 = New System.Windows.Forms.Label()
     Me.txtQuantity = New DevExpress.XtraEditors.TextEdit()
     Me.Label3 = New System.Windows.Forms.Label()
     Me.Label2 = New System.Windows.Forms.Label()
@@ -146,10 +148,13 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.txtSalesQuantity = New DevExpress.XtraEditors.TextEdit()
+    Me.Label23 = New System.Windows.Forms.Label()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.txtUnitCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteDrawingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteDrawingDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,11 +167,11 @@ Partial Class frmWorkOrderDetail
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtCompanyName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dtePlannedStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dtePlannedStartDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btneWorkOrderDocument.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,6 +228,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtSalesQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -319,6 +325,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.Label22)
+    Me.GroupControl1.Controls.Add(Me.txtUnitCost)
     Me.GroupControl1.Controls.Add(Me.Label21)
     Me.GroupControl1.Controls.Add(Me.dteDrawingDate)
     Me.GroupControl1.Controls.Add(Me.btnWorkOrderNumber)
@@ -336,8 +344,6 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Controls.Add(Me.Label12)
     Me.GroupControl1.Controls.Add(Me.Label11)
     Me.GroupControl1.Controls.Add(Me.btneWorkOrderDocument)
-    Me.GroupControl1.Controls.Add(Me.txtPrice)
-    Me.GroupControl1.Controls.Add(Me.Label4)
     Me.GroupControl1.Controls.Add(Me.txtQuantity)
     Me.GroupControl1.Controls.Add(Me.Label3)
     Me.GroupControl1.Controls.Add(Me.Label2)
@@ -349,6 +355,28 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.Size = New System.Drawing.Size(1158, 120)
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
+    '
+    'Label22
+    '
+    Me.Label22.AutoSize = True
+    Me.Label22.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label22.Location = New System.Drawing.Point(161, 63)
+    Me.Label22.Name = "Label22"
+    Me.Label22.Size = New System.Drawing.Size(40, 14)
+    Me.Label22.TabIndex = 160
+    Me.Label22.Text = "Costo"
+    '
+    'txtUnitCost
+    '
+    Me.txtUnitCost.Location = New System.Drawing.Point(206, 60)
+    Me.txtUnitCost.MenuManager = Me.BarManager1
+    Me.txtUnitCost.Name = "txtUnitCost"
+    Me.txtUnitCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtUnitCost.Properties.Appearance.Options.UseFont = True
+    Me.txtUnitCost.Size = New System.Drawing.Size(53, 20)
+    Me.txtUnitCost.TabIndex = 159
+    Me.txtUnitCost.Tag = "c"
     '
     'Label21
     '
@@ -462,6 +490,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl2.AppearanceCaption.Options.UseFont = True
     Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl2.Controls.Add(Me.txtSalesQuantity)
+    Me.GroupControl2.Controls.Add(Me.Label23)
     Me.GroupControl2.Controls.Add(Me.txtDueTime)
     Me.GroupControl2.Controls.Add(Me.Label17)
     Me.GroupControl2.Controls.Add(Me.txtSalesOrderID)
@@ -470,6 +500,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.Controls.Add(Me.Label15)
     Me.GroupControl2.Controls.Add(Me.Label13)
     Me.GroupControl2.Controls.Add(Me.txtProjectName)
+    Me.GroupControl2.Controls.Add(Me.txtPrice)
+    Me.GroupControl2.Controls.Add(Me.Label4)
     Me.GroupControl2.Location = New System.Drawing.Point(749, 31)
     Me.GroupControl2.Name = "GroupControl2"
     Me.GroupControl2.Size = New System.Drawing.Size(404, 82)
@@ -478,14 +510,14 @@ Partial Class frmWorkOrderDetail
     '
     'txtDueTime
     '
-    Me.txtDueTime.Location = New System.Drawing.Point(278, 52)
+    Me.txtDueTime.Location = New System.Drawing.Point(193, 52)
     Me.txtDueTime.MenuManager = Me.BarManager1
     Me.txtDueTime.Name = "txtDueTime"
     Me.txtDueTime.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.txtDueTime.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDueTime.Properties.Appearance.Options.UseBackColor = True
     Me.txtDueTime.Properties.Appearance.Options.UseFont = True
-    Me.txtDueTime.Size = New System.Drawing.Size(111, 20)
+    Me.txtDueTime.Size = New System.Drawing.Size(85, 20)
     Me.txtDueTime.TabIndex = 152
     Me.txtDueTime.Tag = "c"
     '
@@ -494,12 +526,12 @@ Partial Class frmWorkOrderDetail
     Me.Label17.AutoSize = True
     Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label17.Location = New System.Drawing.Point(174, 55)
+    Me.Label17.Location = New System.Drawing.Point(131, 55)
     Me.Label17.Name = "Label17"
-    Me.Label17.Size = New System.Drawing.Size(98, 14)
+    Me.Label17.Size = New System.Drawing.Size(66, 14)
     Me.Label17.TabIndex = 151
     Me.Label17.Tag = "c"
-    Me.Label17.Text = "Fecha Requerida"
+    Me.Label17.Text = "Fecha Req."
     '
     'txtSalesOrderID
     '
@@ -510,7 +542,7 @@ Partial Class frmWorkOrderDetail
     Me.txtSalesOrderID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtSalesOrderID.Properties.Appearance.Options.UseBackColor = True
     Me.txtSalesOrderID.Properties.Appearance.Options.UseFont = True
-    Me.txtSalesOrderID.Size = New System.Drawing.Size(93, 20)
+    Me.txtSalesOrderID.Size = New System.Drawing.Size(67, 20)
     Me.txtSalesOrderID.TabIndex = 150
     Me.txtSalesOrderID.Tag = "c"
     '
@@ -535,7 +567,7 @@ Partial Class frmWorkOrderDetail
     Me.txtCompanyName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtCompanyName.Properties.Appearance.Options.UseBackColor = True
     Me.txtCompanyName.Properties.Appearance.Options.UseFont = True
-    Me.txtCompanyName.Size = New System.Drawing.Size(93, 20)
+    Me.txtCompanyName.Size = New System.Drawing.Size(67, 20)
     Me.txtCompanyName.TabIndex = 148
     Me.txtCompanyName.Tag = "c"
     '
@@ -556,7 +588,7 @@ Partial Class frmWorkOrderDetail
     Me.Label13.AutoSize = True
     Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label13.Location = New System.Drawing.Point(174, 30)
+    Me.Label13.Location = New System.Drawing.Point(131, 30)
     Me.Label13.Name = "Label13"
     Me.Label13.Size = New System.Drawing.Size(56, 14)
     Me.Label13.TabIndex = 141
@@ -565,16 +597,41 @@ Partial Class frmWorkOrderDetail
     '
     'txtProjectName
     '
-    Me.txtProjectName.Location = New System.Drawing.Point(278, 27)
+    Me.txtProjectName.Location = New System.Drawing.Point(193, 27)
     Me.txtProjectName.MenuManager = Me.BarManager1
     Me.txtProjectName.Name = "txtProjectName"
     Me.txtProjectName.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseBackColor = True
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
-    Me.txtProjectName.Size = New System.Drawing.Size(111, 20)
+    Me.txtProjectName.Size = New System.Drawing.Size(85, 20)
     Me.txtProjectName.TabIndex = 140
     Me.txtProjectName.Tag = "c"
+    '
+    'txtPrice
+    '
+    Me.txtPrice.Location = New System.Drawing.Point(341, 27)
+    Me.txtPrice.MenuManager = Me.BarManager1
+    Me.txtPrice.Name = "txtPrice"
+    Me.txtPrice.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
+    Me.txtPrice.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtPrice.Properties.Appearance.Options.UseBackColor = True
+    Me.txtPrice.Properties.Appearance.Options.UseFont = True
+    Me.txtPrice.Properties.ReadOnly = True
+    Me.txtPrice.Size = New System.Drawing.Size(53, 20)
+    Me.txtPrice.TabIndex = 19
+    Me.txtPrice.Tag = "c"
+    '
+    'Label4
+    '
+    Me.Label4.AutoSize = True
+    Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label4.Location = New System.Drawing.Point(284, 30)
+    Me.Label4.Name = "Label4"
+    Me.Label4.Size = New System.Drawing.Size(42, 14)
+    Me.Label4.TabIndex = 18
+    Me.Label4.Text = "Precio"
     '
     'lblWorkOrderID
     '
@@ -661,28 +718,6 @@ Partial Class frmWorkOrderDetail
     Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
     Me.btneWorkOrderDocument.Size = New System.Drawing.Size(185, 20)
     Me.btneWorkOrderDocument.TabIndex = 136
-    '
-    'txtPrice
-    '
-    Me.txtPrice.Location = New System.Drawing.Point(200, 60)
-    Me.txtPrice.MenuManager = Me.BarManager1
-    Me.txtPrice.Name = "txtPrice"
-    Me.txtPrice.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtPrice.Properties.Appearance.Options.UseFont = True
-    Me.txtPrice.Size = New System.Drawing.Size(53, 20)
-    Me.txtPrice.TabIndex = 19
-    Me.txtPrice.Tag = "c"
-    '
-    'Label4
-    '
-    Me.Label4.AutoSize = True
-    Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label4.Location = New System.Drawing.Point(152, 63)
-    Me.Label4.Name = "Label4"
-    Me.Label4.Size = New System.Drawing.Size(42, 14)
-    Me.Label4.TabIndex = 18
-    Me.Label4.Text = "Precio"
     '
     'txtQuantity
     '
@@ -1588,6 +1623,31 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'txtSalesQuantity
+    '
+    Me.txtSalesQuantity.Location = New System.Drawing.Point(341, 52)
+    Me.txtSalesQuantity.MenuManager = Me.BarManager1
+    Me.txtSalesQuantity.Name = "txtSalesQuantity"
+    Me.txtSalesQuantity.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
+    Me.txtSalesQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtSalesQuantity.Properties.Appearance.Options.UseBackColor = True
+    Me.txtSalesQuantity.Properties.Appearance.Options.UseFont = True
+    Me.txtSalesQuantity.Properties.ReadOnly = True
+    Me.txtSalesQuantity.Size = New System.Drawing.Size(53, 20)
+    Me.txtSalesQuantity.TabIndex = 154
+    Me.txtSalesQuantity.Tag = "c"
+    '
+    'Label23
+    '
+    Me.Label23.AutoSize = True
+    Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label23.Location = New System.Drawing.Point(284, 55)
+    Me.Label23.Name = "Label23"
+    Me.Label23.Size = New System.Drawing.Size(55, 14)
+    Me.Label23.TabIndex = 153
+    Me.Label23.Text = "Cantidad"
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1606,6 +1666,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.txtUnitCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteDrawingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteDrawingDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1619,11 +1680,11 @@ Partial Class frmWorkOrderDetail
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtCompanyName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dtePlannedStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dtePlannedStartDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btneWorkOrderDocument.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1681,6 +1742,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtSalesQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1804,4 +1866,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents btnWorkOrderNumber As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents Label21 As Label
   Friend WithEvents dteDrawingDate As DevExpress.XtraEditors.DateEdit
+  Friend WithEvents Label22 As Label
+  Friend WithEvents txtUnitCost As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtSalesQuantity As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents Label23 As Label
 End Class
