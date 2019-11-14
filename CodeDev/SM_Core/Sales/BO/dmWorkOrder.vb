@@ -23,6 +23,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pWorkcentreID As Int32
   Private pFurnitureCategoryID As Int32
   Private pSubFurnitureCategoryID As Int32
+  Private pPlannedDeliverDate As DateTime
 
   Private pMachining As Boolean
   Private pAssembley As Boolean
@@ -110,7 +111,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .EmployeeID = EmployeeID
       .QtyPerSalesItem = QtyPerSalesItem
       .DrawingDate = DrawingDate
-
+      .PlannedDeliverDate = PlannedDeliverDate
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -123,6 +124,17 @@ Public Class dmWorkOrder : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property PlannedDeliverDate As Date
+    Get
+      Return pPlannedDeliverDate
+    End Get
+    Set(value As Date)
+      If pPlannedDeliverDate <> value Then IsDirty = True
+      pPlannedDeliverDate = value
+    End Set
+  End Property
+
 
   Public Property WorkcentreID() As Int32
     Get

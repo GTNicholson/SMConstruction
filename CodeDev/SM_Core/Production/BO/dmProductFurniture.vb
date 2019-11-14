@@ -13,6 +13,9 @@ Public Class dmProductFurniture : Inherits dmBase
   Private pMaterialRequirements As colMaterialRequirements
   Private pMaterialRequirementOthers As colMaterialRequirements
 
+  Private pMaterialRequirementsChanges As colMaterialRequirementsChanges
+  Private pMaterialRequirementOthersChanges As colMaterialRequirementsChanges
+
   Private pProductFurnitureComponent As colProductFurnitureComponents
 
 
@@ -24,6 +27,10 @@ Public Class dmProductFurniture : Inherits dmBase
     ''Add object/collection instantiations here
     pMaterialRequirements = New colMaterialRequirements
     pMaterialRequirementOthers = New colMaterialRequirements
+
+    pMaterialRequirementsChanges = New colMaterialRequirementsChanges
+    pMaterialRequirementOthersChanges = New colMaterialRequirementsChanges
+
 
     pProductFurnitureComponent = New colProductFurnitureComponents
   End Sub
@@ -50,6 +57,9 @@ Public Class dmProductFurniture : Inherits dmBase
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
       If mAnyDirty = False Then mAnyDirty = pMaterialRequirementOthers.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pMaterialRequirementsChanges.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pMaterialRequirementOthersChanges.IsDirty
+
       If mAnyDirty = False Then mAnyDirty = pProductFurnitureComponent.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
@@ -70,6 +80,11 @@ Public Class dmProductFurniture : Inherits dmBase
       .FurnitureType = FurnitureType
       .MaterialRequirments = MaterialRequirments.Clone
       .MaterialRequirmentOthers = MaterialRequirmentOthers
+
+      .MaterialRequirmentsChanges = MaterialRequirmentsChanges.Clone
+      .MaterialRequirmentOthersChanges = MaterialRequirmentOthersChanges
+
+
       .ProductFurnitureComponents = ProductFurnitureComponents.Clone
 
 
@@ -211,6 +226,24 @@ Public Class dmProductFurniture : Inherits dmBase
     End Get
     Set(value As colMaterialRequirements)
       pMaterialRequirementOthers = value
+    End Set
+  End Property
+
+  Public Property MaterialRequirmentsChanges As colMaterialRequirementsChanges
+    Get
+      Return pMaterialRequirementsChanges
+    End Get
+    Set(value As colMaterialRequirementsChanges)
+      pMaterialRequirementsChanges = value
+    End Set
+  End Property
+
+  Public Property MaterialRequirmentOthersChanges As colMaterialRequirementsChanges
+    Get
+      Return pMaterialRequirementOthersChanges
+    End Get
+    Set(value As colMaterialRequirementsChanges)
+      pMaterialRequirementOthersChanges = value
     End Set
   End Property
 

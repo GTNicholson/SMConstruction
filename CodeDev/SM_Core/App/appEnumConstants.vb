@@ -124,6 +124,8 @@ End Enum
 Public Enum eMaterialRequirementType
   Wood = 1
   Other = 2
+  WoodChanges = 3
+  OtherChanges = 4
 End Enum
 
 Public Enum eMilestoneStatus

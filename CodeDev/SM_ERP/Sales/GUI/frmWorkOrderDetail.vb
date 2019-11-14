@@ -214,6 +214,15 @@ Public Class frmWorkOrderDetail
     clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirements, gcQuality, mVIs)
 
 
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementsChanges, gcMaterialChanges, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementsChanges, gcSpecieChanges, mVIs)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Quality)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementsChanges, gcQualityChanges, mVIs)
+
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcAreaID, mVIs)
 
@@ -258,6 +267,7 @@ Public Class frmWorkOrderDetail
       txtDescription.Text = .Description
 
       dtePlannedStartDate.DateTime = .PlannedStartDate
+      dtePlannedDeliverDate.DateTime = .PlannedDeliverDate
       dteDrawingDate.DateTime = .DrawingDate
 
 
@@ -327,6 +337,12 @@ Public Class frmWorkOrderDetail
 
         grdMaterialRequirements.DataSource = mPF.MaterialRequirments
         grdMaterialRequirementOthers.DataSource = mPF.MaterialRequirmentOthers
+
+
+        grdMaterialRequirementsChanges.DataSource = mPF.MaterialRequirmentsChanges
+
+
+
         grdPackingComponents.DataSource = mPF.ProductFurnitureComponents
 
       End With
@@ -347,6 +363,8 @@ Public Class frmWorkOrderDetail
       .Description = txtDescription.Text.ToUpper
 
       .PlannedStartDate = dtePlannedStartDate.DateTime
+      .PlannedDeliverDate = dtePlannedDeliverDate.DateTime
+
       .DrawingDate = dteDrawingDate.DateTime
 
       .UnitPrice = Val(txtUnitCost.Text)
@@ -472,6 +490,16 @@ Public Class frmWorkOrderDetail
       For Each mRepPage As DevExpress.XtraPrinting.Page In mOtherMaterialReport.Pages
         mRepMerge.Pages.Add(mRepPage)
       Next
+
+
+      ''Creating Wood Requirments Changes Report
+      mMatReqInfos = pFormController.GetMaterialRequirementInfosChanges
+      ''mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+
+      ''For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
+      ''  mRepMerge.Pages.Add(mRepPage)
+      ''Next
+
 
       CreateReportPDF(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, True, mRepMerge)
 
@@ -737,6 +765,8 @@ Public Class frmWorkOrderDetail
     End If
   End Sub
 
+
+
   Private Sub gvMaterialRequirements_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles gvMaterialRequirements.InitNewRow
     Dim mMatReq As dmMaterialRequirement
     mMatReq = gvMaterialRequirements.GetRow(e.RowHandle)
@@ -772,6 +802,9 @@ Public Class frmWorkOrderDetail
       Case eCopyPasteButton.Copy
         Dim mMatReqs As colMaterialRequirements
         mMatReqs = grdMaterialRequirements.DataSource
+
+
+
         pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
       Case eCopyPasteButton.Paste
         Dim mPF As dmProductFurniture
@@ -805,4 +838,39 @@ Public Class frmWorkOrderDetail
     End Try
 
   End Sub
+
+  Private Sub gvRequirmentMaterialsChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvRequirmentMaterialsChanges.CustomUnboundColumnData
+    Dim mMatReq As dmMaterialRequirement
+
+    mMatReq = TryCast(e.Row, dmMaterialRequirement)
+    If mMatReq IsNot Nothing Then
+      Select Case e.Column.Name
+        Case gcTotalQuantityChanges.Name
+          If e.IsGetData Then
+            If mMatReq.PiecesPerComponent <> 0 Then
+              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+            End If
+          End If
+        Case gcBoardTableChanges.Name
+          Dim mValue As Decimal
+          Dim mQty As Integer
+          If e.IsGetData Then
+            Try
+
+              If IsNumeric(mMatReq.PiecesPerComponent) And mMatReq.PiecesPerComponent > 0 Then
+                mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+                mValue = mValue
+                e.Value = mValue
+              End If
+
+            Catch ex As Exception
+              If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+            End Try
+
+          End If
+      End Select
+    End If
+  End Sub
+
 End Class

@@ -23,11 +23,11 @@ Partial Class frmWorkOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -39,6 +39,8 @@ Partial Class frmWorkOrderDetail
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.Label24 = New System.Windows.Forms.Label()
+    Me.dtePlannedDeliverDate = New DevExpress.XtraEditors.DateEdit()
     Me.Label22 = New System.Windows.Forms.Label()
     Me.txtUnitCost = New DevExpress.XtraEditors.TextEdit()
     Me.Label21 = New System.Windows.Forms.Label()
@@ -51,6 +53,8 @@ Partial Class frmWorkOrderDetail
     Me.cboEmployee = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label18 = New System.Windows.Forms.Label()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+    Me.txtSalesQuantity = New DevExpress.XtraEditors.TextEdit()
+    Me.Label23 = New System.Windows.Forms.Label()
     Me.txtDueTime = New DevExpress.XtraEditors.TextEdit()
     Me.Label17 = New System.Windows.Forms.Label()
     Me.txtSalesOrderID = New DevExpress.XtraEditors.TextEdit()
@@ -148,12 +152,26 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.txtSalesQuantity = New DevExpress.XtraEditors.TextEdit()
-    Me.Label23 = New System.Windows.Forms.Label()
+    Me.grdMaterialRequirementsChanges = New DevExpress.XtraGrid.GridControl()
+    Me.gvRequirmentMaterialsChanges = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMaterialChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcSpecieChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQualityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalQuantityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcBoardTableChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.dtePlannedDeliverDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.dtePlannedDeliverDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtUnitCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteDrawingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dteDrawingDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +181,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
+    CType(Me.txtSalesQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDueTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtCompanyName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,6 +231,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage9.SuspendLayout()
     CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl8.SuspendLayout()
     CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabControl1.SuspendLayout()
     Me.XtraTabPage6.SuspendLayout()
@@ -228,7 +248,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtSalesQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdMaterialRequirementsChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvRequirmentMaterialsChanges, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -325,6 +346,8 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.Label24)
+    Me.GroupControl1.Controls.Add(Me.dtePlannedDeliverDate)
     Me.GroupControl1.Controls.Add(Me.Label22)
     Me.GroupControl1.Controls.Add(Me.txtUnitCost)
     Me.GroupControl1.Controls.Add(Me.Label21)
@@ -356,12 +379,38 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl1.TabIndex = 13
     Me.GroupControl1.Text = "Order de Trabajo"
     '
+    'Label24
+    '
+    Me.Label24.AutoSize = True
+    Me.Label24.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label24.Location = New System.Drawing.Point(600, 66)
+    Me.Label24.Name = "Label24"
+    Me.Label24.Size = New System.Drawing.Size(65, 14)
+    Me.Label24.TabIndex = 162
+    Me.Label24.Tag = "c"
+    Me.Label24.Text = "Fecha Plan"
+    '
+    'dtePlannedDeliverDate
+    '
+    Me.dtePlannedDeliverDate.EditValue = Nothing
+    Me.dtePlannedDeliverDate.Location = New System.Drawing.Point(676, 63)
+    Me.dtePlannedDeliverDate.MenuManager = Me.BarManager1
+    Me.dtePlannedDeliverDate.Name = "dtePlannedDeliverDate"
+    Me.dtePlannedDeliverDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.dtePlannedDeliverDate.Properties.Appearance.Options.UseFont = True
+    Me.dtePlannedDeliverDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dtePlannedDeliverDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.dtePlannedDeliverDate.Properties.NullDate = New Date(CType(0, Long))
+    Me.dtePlannedDeliverDate.Size = New System.Drawing.Size(100, 20)
+    Me.dtePlannedDeliverDate.TabIndex = 7
+    '
     'Label22
     '
     Me.Label22.AutoSize = True
     Me.Label22.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label22.Location = New System.Drawing.Point(161, 63)
+    Me.Label22.Location = New System.Drawing.Point(589, 37)
     Me.Label22.Name = "Label22"
     Me.Label22.Size = New System.Drawing.Size(40, 14)
     Me.Label22.TabIndex = 160
@@ -369,13 +418,13 @@ Partial Class frmWorkOrderDetail
     '
     'txtUnitCost
     '
-    Me.txtUnitCost.Location = New System.Drawing.Point(206, 60)
+    Me.txtUnitCost.Location = New System.Drawing.Point(635, 34)
     Me.txtUnitCost.MenuManager = Me.BarManager1
     Me.txtUnitCost.Name = "txtUnitCost"
     Me.txtUnitCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtUnitCost.Properties.Appearance.Options.UseFont = True
-    Me.txtUnitCost.Size = New System.Drawing.Size(53, 20)
-    Me.txtUnitCost.TabIndex = 159
+    Me.txtUnitCost.Size = New System.Drawing.Size(43, 20)
+    Me.txtUnitCost.TabIndex = 2
     Me.txtUnitCost.Tag = "c"
     '
     'Label21
@@ -383,7 +432,7 @@ Partial Class frmWorkOrderDetail
     Me.Label21.AutoSize = True
     Me.Label21.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label21.Location = New System.Drawing.Point(546, 93)
+    Me.Label21.Location = New System.Drawing.Point(385, 66)
     Me.Label21.Name = "Label21"
     Me.Label21.Size = New System.Drawing.Size(93, 14)
     Me.Label21.TabIndex = 158
@@ -393,7 +442,7 @@ Partial Class frmWorkOrderDetail
     'dteDrawingDate
     '
     Me.dteDrawingDate.EditValue = Nothing
-    Me.dteDrawingDate.Location = New System.Drawing.Point(643, 90)
+    Me.dteDrawingDate.Location = New System.Drawing.Point(483, 63)
     Me.dteDrawingDate.MenuManager = Me.BarManager1
     Me.dteDrawingDate.Name = "dteDrawingDate"
     Me.dteDrawingDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -402,11 +451,11 @@ Partial Class frmWorkOrderDetail
     Me.dteDrawingDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dteDrawingDate.Properties.NullDate = New Date(CType(0, Long))
     Me.dteDrawingDate.Size = New System.Drawing.Size(100, 20)
-    Me.dteDrawingDate.TabIndex = 157
+    Me.dteDrawingDate.TabIndex = 6
     '
     'btnWorkOrderNumber
     '
-    Me.btnWorkOrderNumber.Location = New System.Drawing.Point(93, 34)
+    Me.btnWorkOrderNumber.Location = New System.Drawing.Point(85, 34)
     Me.btnWorkOrderNumber.MenuManager = Me.BarManager1
     Me.btnWorkOrderNumber.Name = "btnWorkOrderNumber"
     Me.btnWorkOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -421,7 +470,7 @@ Partial Class frmWorkOrderDetail
     Me.Label9.AutoSize = True
     Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label9.Location = New System.Drawing.Point(265, 63)
+    Me.Label9.Location = New System.Drawing.Point(684, 37)
     Me.Label9.Name = "Label9"
     Me.Label9.Size = New System.Drawing.Size(33, 14)
     Me.Label9.TabIndex = 155
@@ -429,13 +478,13 @@ Partial Class frmWorkOrderDetail
     '
     'txtQtyPerSalesItem
     '
-    Me.txtQtyPerSalesItem.Location = New System.Drawing.Point(93, 60)
+    Me.txtQtyPerSalesItem.Location = New System.Drawing.Point(548, 34)
     Me.txtQtyPerSalesItem.MenuManager = Me.BarManager1
     Me.txtQtyPerSalesItem.Name = "txtQtyPerSalesItem"
     Me.txtQtyPerSalesItem.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtQtyPerSalesItem.Properties.Appearance.Options.UseFont = True
-    Me.txtQtyPerSalesItem.Size = New System.Drawing.Size(53, 20)
-    Me.txtQtyPerSalesItem.TabIndex = 154
+    Me.txtQtyPerSalesItem.Size = New System.Drawing.Size(35, 20)
+    Me.txtQtyPerSalesItem.TabIndex = 1
     Me.txtQtyPerSalesItem.Tag = "c"
     '
     'Label20
@@ -443,7 +492,7 @@ Partial Class frmWorkOrderDetail
     Me.Label20.AutoSize = True
     Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label20.Location = New System.Drawing.Point(6, 93)
+    Me.Label20.Location = New System.Drawing.Point(287, 95)
     Me.Label20.Name = "Label20"
     Me.Label20.Size = New System.Drawing.Size(48, 14)
     Me.Label20.TabIndex = 153
@@ -451,7 +500,7 @@ Partial Class frmWorkOrderDetail
     '
     'bteImage
     '
-    Me.bteImage.Location = New System.Drawing.Point(93, 90)
+    Me.bteImage.Location = New System.Drawing.Point(341, 92)
     Me.bteImage.MenuManager = Me.BarManager1
     Me.bteImage.Name = "bteImage"
     Me.bteImage.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -459,26 +508,26 @@ Partial Class frmWorkOrderDetail
     Me.bteImage.Properties.Appearance.Options.UseBackColor = True
     Me.bteImage.Properties.Appearance.Options.UseFont = True
     Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.bteImage.Size = New System.Drawing.Size(160, 20)
-    Me.bteImage.TabIndex = 152
+    Me.bteImage.Size = New System.Drawing.Size(137, 20)
+    Me.bteImage.TabIndex = 9
     '
     'cboEmployee
     '
-    Me.cboEmployee.Location = New System.Drawing.Point(430, 60)
+    Me.cboEmployee.Location = New System.Drawing.Point(278, 63)
     Me.cboEmployee.MenuManager = Me.BarManager1
     Me.cboEmployee.Name = "cboEmployee"
     Me.cboEmployee.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.cboEmployee.Properties.Appearance.Options.UseFont = True
     Me.cboEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboEmployee.Size = New System.Drawing.Size(100, 20)
-    Me.cboEmployee.TabIndex = 148
+    Me.cboEmployee.Size = New System.Drawing.Size(98, 20)
+    Me.cboEmployee.TabIndex = 5
     '
     'Label18
     '
     Me.Label18.AutoSize = True
     Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label18.Location = New System.Drawing.Point(363, 63)
+    Me.Label18.Location = New System.Drawing.Point(219, 66)
     Me.Label18.Name = "Label18"
     Me.Label18.Size = New System.Drawing.Size(58, 14)
     Me.Label18.TabIndex = 147
@@ -502,22 +551,47 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl2.Controls.Add(Me.txtProjectName)
     Me.GroupControl2.Controls.Add(Me.txtPrice)
     Me.GroupControl2.Controls.Add(Me.Label4)
-    Me.GroupControl2.Location = New System.Drawing.Point(749, 31)
+    Me.GroupControl2.Location = New System.Drawing.Point(782, 31)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(404, 82)
+    Me.GroupControl2.Size = New System.Drawing.Size(371, 82)
     Me.GroupControl2.TabIndex = 146
     Me.GroupControl2.Text = "Detalles de la Orden de Venta"
     '
+    'txtSalesQuantity
+    '
+    Me.txtSalesQuantity.Location = New System.Drawing.Point(308, 52)
+    Me.txtSalesQuantity.MenuManager = Me.BarManager1
+    Me.txtSalesQuantity.Name = "txtSalesQuantity"
+    Me.txtSalesQuantity.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
+    Me.txtSalesQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtSalesQuantity.Properties.Appearance.Options.UseBackColor = True
+    Me.txtSalesQuantity.Properties.Appearance.Options.UseFont = True
+    Me.txtSalesQuantity.Properties.ReadOnly = True
+    Me.txtSalesQuantity.Size = New System.Drawing.Size(53, 20)
+    Me.txtSalesQuantity.TabIndex = 154
+    Me.txtSalesQuantity.Tag = "c"
+    '
+    'Label23
+    '
+    Me.Label23.AutoSize = True
+    Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label23.Location = New System.Drawing.Point(247, 55)
+    Me.Label23.Name = "Label23"
+    Me.Label23.Size = New System.Drawing.Size(55, 14)
+    Me.Label23.TabIndex = 153
+    Me.Label23.Text = "Cantidad"
+    '
     'txtDueTime
     '
-    Me.txtDueTime.Location = New System.Drawing.Point(193, 52)
+    Me.txtDueTime.Location = New System.Drawing.Point(176, 52)
     Me.txtDueTime.MenuManager = Me.BarManager1
     Me.txtDueTime.Name = "txtDueTime"
     Me.txtDueTime.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.txtDueTime.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDueTime.Properties.Appearance.Options.UseBackColor = True
     Me.txtDueTime.Properties.Appearance.Options.UseFont = True
-    Me.txtDueTime.Size = New System.Drawing.Size(85, 20)
+    Me.txtDueTime.Size = New System.Drawing.Size(65, 20)
     Me.txtDueTime.TabIndex = 152
     Me.txtDueTime.Tag = "c"
     '
@@ -526,7 +600,7 @@ Partial Class frmWorkOrderDetail
     Me.Label17.AutoSize = True
     Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label17.Location = New System.Drawing.Point(131, 55)
+    Me.Label17.Location = New System.Drawing.Point(114, 55)
     Me.Label17.Name = "Label17"
     Me.Label17.Size = New System.Drawing.Size(66, 14)
     Me.Label17.TabIndex = 151
@@ -535,14 +609,14 @@ Partial Class frmWorkOrderDetail
     '
     'txtSalesOrderID
     '
-    Me.txtSalesOrderID.Location = New System.Drawing.Point(58, 27)
+    Me.txtSalesOrderID.Location = New System.Drawing.Point(49, 27)
     Me.txtSalesOrderID.MenuManager = Me.BarManager1
     Me.txtSalesOrderID.Name = "txtSalesOrderID"
     Me.txtSalesOrderID.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.txtSalesOrderID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtSalesOrderID.Properties.Appearance.Options.UseBackColor = True
     Me.txtSalesOrderID.Properties.Appearance.Options.UseFont = True
-    Me.txtSalesOrderID.Size = New System.Drawing.Size(67, 20)
+    Me.txtSalesOrderID.Size = New System.Drawing.Size(59, 20)
     Me.txtSalesOrderID.TabIndex = 150
     Me.txtSalesOrderID.Tag = "c"
     '
@@ -560,14 +634,14 @@ Partial Class frmWorkOrderDetail
     '
     'txtCompanyName
     '
-    Me.txtCompanyName.Location = New System.Drawing.Point(58, 52)
+    Me.txtCompanyName.Location = New System.Drawing.Point(49, 52)
     Me.txtCompanyName.MenuManager = Me.BarManager1
     Me.txtCompanyName.Name = "txtCompanyName"
     Me.txtCompanyName.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.txtCompanyName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtCompanyName.Properties.Appearance.Options.UseBackColor = True
     Me.txtCompanyName.Properties.Appearance.Options.UseFont = True
-    Me.txtCompanyName.Size = New System.Drawing.Size(67, 20)
+    Me.txtCompanyName.Size = New System.Drawing.Size(59, 20)
     Me.txtCompanyName.TabIndex = 148
     Me.txtCompanyName.Tag = "c"
     '
@@ -588,7 +662,7 @@ Partial Class frmWorkOrderDetail
     Me.Label13.AutoSize = True
     Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label13.Location = New System.Drawing.Point(131, 30)
+    Me.Label13.Location = New System.Drawing.Point(114, 32)
     Me.Label13.Name = "Label13"
     Me.Label13.Size = New System.Drawing.Size(56, 14)
     Me.Label13.TabIndex = 141
@@ -597,20 +671,20 @@ Partial Class frmWorkOrderDetail
     '
     'txtProjectName
     '
-    Me.txtProjectName.Location = New System.Drawing.Point(193, 27)
+    Me.txtProjectName.Location = New System.Drawing.Point(176, 26)
     Me.txtProjectName.MenuManager = Me.BarManager1
     Me.txtProjectName.Name = "txtProjectName"
     Me.txtProjectName.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
     Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtProjectName.Properties.Appearance.Options.UseBackColor = True
     Me.txtProjectName.Properties.Appearance.Options.UseFont = True
-    Me.txtProjectName.Size = New System.Drawing.Size(85, 20)
+    Me.txtProjectName.Size = New System.Drawing.Size(65, 20)
     Me.txtProjectName.TabIndex = 140
     Me.txtProjectName.Tag = "c"
     '
     'txtPrice
     '
-    Me.txtPrice.Location = New System.Drawing.Point(341, 27)
+    Me.txtPrice.Location = New System.Drawing.Point(308, 25)
     Me.txtPrice.MenuManager = Me.BarManager1
     Me.txtPrice.Name = "txtPrice"
     Me.txtPrice.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
@@ -627,7 +701,7 @@ Partial Class frmWorkOrderDetail
     Me.Label4.AutoSize = True
     Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label4.Location = New System.Drawing.Point(284, 30)
+    Me.Label4.Location = New System.Drawing.Point(247, 32)
     Me.Label4.Name = "Label4"
     Me.Label4.Size = New System.Drawing.Size(42, 14)
     Me.Label4.TabIndex = 18
@@ -649,21 +723,21 @@ Partial Class frmWorkOrderDetail
     '
     'cboProductType
     '
-    Me.cboProductType.Location = New System.Drawing.Point(643, 34)
+    Me.cboProductType.Location = New System.Drawing.Point(113, 63)
     Me.cboProductType.MenuManager = Me.BarManager1
     Me.cboProductType.Name = "cboProductType"
     Me.cboProductType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.cboProductType.Properties.Appearance.Options.UseFont = True
     Me.cboProductType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.cboProductType.Size = New System.Drawing.Size(100, 20)
-    Me.cboProductType.TabIndex = 144
+    Me.cboProductType.TabIndex = 4
     '
     'Label14
     '
     Me.Label14.AutoSize = True
     Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label14.Location = New System.Drawing.Point(546, 63)
+    Me.Label14.Location = New System.Drawing.Point(495, 95)
     Me.Label14.Name = "Label14"
     Me.Label14.Size = New System.Drawing.Size(88, 14)
     Me.Label14.TabIndex = 143
@@ -673,7 +747,7 @@ Partial Class frmWorkOrderDetail
     'dtePlannedStartDate
     '
     Me.dtePlannedStartDate.EditValue = Nothing
-    Me.dtePlannedStartDate.Location = New System.Drawing.Point(643, 60)
+    Me.dtePlannedStartDate.Location = New System.Drawing.Point(592, 92)
     Me.dtePlannedStartDate.MenuManager = Me.BarManager1
     Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
     Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -682,7 +756,7 @@ Partial Class frmWorkOrderDetail
     Me.dtePlannedStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dtePlannedStartDate.Properties.NullDate = New Date(CType(0, Long))
     Me.dtePlannedStartDate.Size = New System.Drawing.Size(100, 20)
-    Me.dtePlannedStartDate.TabIndex = 26
+    Me.dtePlannedStartDate.TabIndex = 10
     '
     'Label12
     '
@@ -691,16 +765,16 @@ Partial Class frmWorkOrderDetail
     Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.Label12.Location = New System.Drawing.Point(6, 37)
     Me.Label12.Name = "Label12"
-    Me.Label12.Size = New System.Drawing.Size(74, 14)
+    Me.Label12.Size = New System.Drawing.Size(55, 14)
     Me.Label12.TabIndex = 139
-    Me.Label12.Text = "Numero O.T."
+    Me.Label12.Text = "Núm O.T."
     '
     'Label11
     '
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(265, 93)
+    Me.Label11.Location = New System.Drawing.Point(6, 95)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(75, 14)
     Me.Label11.TabIndex = 137
@@ -708,7 +782,7 @@ Partial Class frmWorkOrderDetail
     '
     'btneWorkOrderDocument
     '
-    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(346, 90)
+    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(113, 92)
     Me.btneWorkOrderDocument.MenuManager = Me.BarManager1
     Me.btneWorkOrderDocument.Name = "btneWorkOrderDocument"
     Me.btneWorkOrderDocument.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -716,19 +790,19 @@ Partial Class frmWorkOrderDetail
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseBackColor = True
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseFont = True
     Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(185, 20)
-    Me.btneWorkOrderDocument.TabIndex = 136
+    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(153, 20)
+    Me.btneWorkOrderDocument.TabIndex = 8
     '
     'txtQuantity
     '
-    Me.txtQuantity.Location = New System.Drawing.Point(304, 60)
+    Me.txtQuantity.Location = New System.Drawing.Point(723, 34)
     Me.txtQuantity.MenuManager = Me.BarManager1
     Me.txtQuantity.Name = "txtQuantity"
     Me.txtQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtQuantity.Properties.Appearance.Options.UseFont = True
     Me.txtQuantity.Properties.ReadOnly = True
-    Me.txtQuantity.Size = New System.Drawing.Size(53, 20)
-    Me.txtQuantity.TabIndex = 17
+    Me.txtQuantity.Size = New System.Drawing.Size(50, 20)
+    Me.txtQuantity.TabIndex = 3
     Me.txtQuantity.Tag = "c"
     '
     'Label3
@@ -736,7 +810,7 @@ Partial Class frmWorkOrderDetail
     Me.Label3.AutoSize = True
     Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label3.Location = New System.Drawing.Point(6, 63)
+    Me.Label3.Location = New System.Drawing.Point(462, 37)
     Me.Label3.Name = "Label3"
     Me.Label3.Size = New System.Drawing.Size(80, 14)
     Me.Label3.TabIndex = 16
@@ -747,7 +821,7 @@ Partial Class frmWorkOrderDetail
     Me.Label2.AutoSize = True
     Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label2.Location = New System.Drawing.Point(206, 37)
+    Me.Label2.Location = New System.Drawing.Point(192, 37)
     Me.Label2.Name = "Label2"
     Me.Label2.Size = New System.Drawing.Size(72, 14)
     Me.Label2.TabIndex = 15
@@ -759,7 +833,7 @@ Partial Class frmWorkOrderDetail
     Me.Label1.AutoSize = True
     Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label1.Location = New System.Drawing.Point(544, 37)
+    Me.Label1.Location = New System.Drawing.Point(6, 66)
     Me.Label1.Name = "Label1"
     Me.Label1.Size = New System.Drawing.Size(101, 14)
     Me.Label1.TabIndex = 14
@@ -767,15 +841,15 @@ Partial Class frmWorkOrderDetail
     '
     'txtDescription
     '
-    Me.txtDescription.Location = New System.Drawing.Point(291, 34)
+    Me.txtDescription.Location = New System.Drawing.Point(270, 34)
     Me.txtDescription.MenuManager = Me.BarManager1
     Me.txtDescription.Name = "txtDescription"
     Me.txtDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtDescription.Properties.Appearance.Options.UseFont = True
     Me.txtDescription.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
     Me.txtDescription.Properties.MaxLength = 1000
-    Me.txtDescription.Size = New System.Drawing.Size(240, 20)
-    Me.txtDescription.TabIndex = 12
+    Me.txtDescription.Size = New System.Drawing.Size(186, 20)
+    Me.txtDescription.TabIndex = 0
     Me.txtDescription.Tag = "c"
     '
     'XtraTabControl2
@@ -840,7 +914,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
     Me.grpWOFiles.Controls.Add(Me.Label5)
-    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions1)})
+    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions6)})
     Me.grpWOFiles.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWOFiles.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpWOFiles.Location = New System.Drawing.Point(0, 0)
@@ -868,7 +942,7 @@ Partial Class frmWorkOrderDetail
     Me.grdPackingComponents.MainView = Me.gvPackingComponents
     Me.grdPackingComponents.MenuManager = Me.BarManager1
     Me.grdPackingComponents.Name = "grdPackingComponents"
-    Me.grdPackingComponents.Size = New System.Drawing.Size(200, 180)
+    Me.grdPackingComponents.Size = New System.Drawing.Size(200, 213)
     Me.grdPackingComponents.TabIndex = 43
     Me.grdPackingComponents.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPackingComponents})
     '
@@ -1003,7 +1077,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl4.Controls.Add(Me.UctFileControl1)
     Me.GroupControl4.Location = New System.Drawing.Point(586, 26)
     Me.GroupControl4.Name = "GroupControl4"
-    Me.GroupControl4.Size = New System.Drawing.Size(555, 310)
+    Me.GroupControl4.Size = New System.Drawing.Size(555, 343)
     Me.GroupControl4.TabIndex = 34
     Me.GroupControl4.Text = "Archivos de O.T."
     '
@@ -1012,7 +1086,7 @@ Partial Class frmWorkOrderDetail
     Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UctFileControl1.Location = New System.Drawing.Point(2, 23)
     Me.UctFileControl1.Name = "UctFileControl1"
-    Me.UctFileControl1.Size = New System.Drawing.Size(551, 285)
+    Me.UctFileControl1.Size = New System.Drawing.Size(551, 318)
     Me.UctFileControl1.TabIndex = 0
     Me.UctFileControl1.UserController = Nothing
     '
@@ -1090,7 +1164,7 @@ Partial Class frmWorkOrderDetail
     Me.memPFNotes.MenuManager = Me.BarManager1
     Me.memPFNotes.Name = "memPFNotes"
     Me.memPFNotes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-    Me.memPFNotes.Size = New System.Drawing.Size(345, 154)
+    Me.memPFNotes.Size = New System.Drawing.Size(345, 187)
     Me.memPFNotes.TabIndex = 17
     '
     'Label5
@@ -1185,7 +1259,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirements)
-    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
+    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
     Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
@@ -1351,6 +1425,7 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl8.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl8.AppearanceCaption.Options.UseFont = True
     Me.GroupControl8.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl8.Controls.Add(Me.grdMaterialRequirementsChanges)
     Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl8.Name = "GroupControl8"
@@ -1386,7 +1461,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementOthers.Controls.Add(Me.grdMaterialRequirementOthers)
-    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
+    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
     Me.grpMaterialRequirementOthers.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
@@ -1623,30 +1698,149 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
-    'txtSalesQuantity
+    'grdMaterialRequirementsChanges
     '
-    Me.txtSalesQuantity.Location = New System.Drawing.Point(341, 52)
-    Me.txtSalesQuantity.MenuManager = Me.BarManager1
-    Me.txtSalesQuantity.Name = "txtSalesQuantity"
-    Me.txtSalesQuantity.Properties.Appearance.BackColor = System.Drawing.Color.Lavender
-    Me.txtSalesQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtSalesQuantity.Properties.Appearance.Options.UseBackColor = True
-    Me.txtSalesQuantity.Properties.Appearance.Options.UseFont = True
-    Me.txtSalesQuantity.Properties.ReadOnly = True
-    Me.txtSalesQuantity.Size = New System.Drawing.Size(53, 20)
-    Me.txtSalesQuantity.TabIndex = 154
-    Me.txtSalesQuantity.Tag = "c"
+    Me.grdMaterialRequirementsChanges.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirementsChanges.Location = New System.Drawing.Point(2, 23)
+    Me.grdMaterialRequirementsChanges.MainView = Me.gvRequirmentMaterialsChanges
+    Me.grdMaterialRequirementsChanges.MenuManager = Me.BarManager1
+    Me.grdMaterialRequirementsChanges.Name = "grdMaterialRequirementsChanges"
+    Me.grdMaterialRequirementsChanges.Size = New System.Drawing.Size(1068, 152)
+    Me.grdMaterialRequirementsChanges.TabIndex = 30
+    Me.grdMaterialRequirementsChanges.UseEmbeddedNavigator = True
+    Me.grdMaterialRequirementsChanges.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRequirmentMaterialsChanges})
     '
-    'Label23
+    'gvRequirmentMaterialsChanges
     '
-    Me.Label23.AutoSize = True
-    Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label23.Location = New System.Drawing.Point(284, 55)
-    Me.Label23.Name = "Label23"
-    Me.Label23.Size = New System.Drawing.Size(55, 14)
-    Me.Label23.TabIndex = 153
-    Me.Label23.Text = "Cantidad"
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Options.UseTextOptions = True
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gvRequirmentMaterialsChanges.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvRequirmentMaterialsChanges.Appearance.Row.Options.UseFont = True
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvRequirmentMaterialsChanges.ColumnPanelRowHeight = 34
+    Me.gvRequirmentMaterialsChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn21, Me.gcMaterialChanges, Me.gcSpecieChanges, Me.gcQualityChanges, Me.gcTotalQuantityChanges, Me.gcBoardTableChanges, Me.GridColumn27})
+    Me.gvRequirmentMaterialsChanges.GridControl = Me.grdMaterialRequirementsChanges
+    Me.gvRequirmentMaterialsChanges.Name = "gvRequirmentMaterialsChanges"
+    Me.gvRequirmentMaterialsChanges.OptionsView.ShowGroupPanel = False
+    Me.gvRequirmentMaterialsChanges.ViewCaption = "Lista de Materia Prima (LMP)"
+    '
+    'GridColumn13
+    '
+    Me.GridColumn13.Caption = "Código"
+    Me.GridColumn13.FieldName = "StockCode"
+    Me.GridColumn13.Name = "GridColumn13"
+    Me.GridColumn13.Width = 58
+    '
+    'GridColumn14
+    '
+    Me.GridColumn14.Caption = "Componente"
+    Me.GridColumn14.FieldName = "Description"
+    Me.GridColumn14.Name = "GridColumn14"
+    Me.GridColumn14.Visible = True
+    Me.GridColumn14.VisibleIndex = 0
+    Me.GridColumn14.Width = 324
+    '
+    'GridColumn15
+    '
+    Me.GridColumn15.Caption = "Piezas unit."
+    Me.GridColumn15.FieldName = "UnitPiece"
+    Me.GridColumn15.Name = "GridColumn15"
+    Me.GridColumn15.Visible = True
+    Me.GridColumn15.VisibleIndex = 1
+    Me.GridColumn15.Width = 137
+    '
+    'GridColumn16
+    '
+    Me.GridColumn16.Caption = "Grosor Neto"
+    Me.GridColumn16.FieldName = "NetThickness"
+    Me.GridColumn16.Name = "GridColumn16"
+    Me.GridColumn16.Visible = True
+    Me.GridColumn16.VisibleIndex = 4
+    Me.GridColumn16.Width = 139
+    '
+    'GridColumn19
+    '
+    Me.GridColumn19.Caption = "Ancho Neto"
+    Me.GridColumn19.FieldName = "NetWidth"
+    Me.GridColumn19.Name = "GridColumn19"
+    Me.GridColumn19.Visible = True
+    Me.GridColumn19.VisibleIndex = 5
+    Me.GridColumn19.Width = 150
+    '
+    'GridColumn21
+    '
+    Me.GridColumn21.Caption = "Largo Neto"
+    Me.GridColumn21.FieldName = "NetLenght"
+    Me.GridColumn21.Name = "GridColumn21"
+    Me.GridColumn21.Visible = True
+    Me.GridColumn21.VisibleIndex = 6
+    Me.GridColumn21.Width = 144
+    '
+    'gcMaterialChanges
+    '
+    Me.gcMaterialChanges.Caption = "Material"
+    Me.gcMaterialChanges.FieldName = "MaterialTypeID"
+    Me.gcMaterialChanges.Name = "gcMaterialChanges"
+    Me.gcMaterialChanges.Visible = True
+    Me.gcMaterialChanges.VisibleIndex = 7
+    Me.gcMaterialChanges.Width = 110
+    '
+    'gcSpecieChanges
+    '
+    Me.gcSpecieChanges.Caption = "Especie"
+    Me.gcSpecieChanges.FieldName = "WoodSpecie"
+    Me.gcSpecieChanges.Name = "gcSpecieChanges"
+    Me.gcSpecieChanges.Visible = True
+    Me.gcSpecieChanges.VisibleIndex = 8
+    Me.gcSpecieChanges.Width = 108
+    '
+    'gcQualityChanges
+    '
+    Me.gcQualityChanges.Caption = "Calidad"
+    Me.gcQualityChanges.FieldName = "QualityType"
+    Me.gcQualityChanges.Name = "gcQualityChanges"
+    Me.gcQualityChanges.Visible = True
+    Me.gcQualityChanges.VisibleIndex = 9
+    Me.gcQualityChanges.Width = 103
+    '
+    'gcTotalQuantityChanges
+    '
+    Me.gcTotalQuantityChanges.Caption = "Piezas Total"
+    Me.gcTotalQuantityChanges.FieldName = "ub_TotalQuantityChanges"
+    Me.gcTotalQuantityChanges.Name = "gcTotalQuantityChanges"
+    Me.gcTotalQuantityChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+    Me.gcTotalQuantityChanges.Visible = True
+    Me.gcTotalQuantityChanges.VisibleIndex = 3
+    Me.gcTotalQuantityChanges.Width = 146
+    '
+    'gcBoardTableChanges
+    '
+    Me.gcBoardTableChanges.Caption = "Pie Tabla"
+    Me.gcBoardTableChanges.FieldName = "ub_BoardFeetChanges"
+    Me.gcBoardTableChanges.Name = "gcBoardTableChanges"
+    Me.gcBoardTableChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcBoardTableChanges.Visible = True
+    Me.gcBoardTableChanges.VisibleIndex = 10
+    Me.gcBoardTableChanges.Width = 157
+    '
+    'GridColumn27
+    '
+    Me.GridColumn27.Caption = "Piezas por Comp."
+    Me.GridColumn27.FieldName = "PiecesPerComponent"
+    Me.GridColumn27.Name = "GridColumn27"
+    Me.GridColumn27.Visible = True
+    Me.GridColumn27.VisibleIndex = 2
+    Me.GridColumn27.Width = 104
     '
     'frmWorkOrderDetail
     '
@@ -1666,6 +1860,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.dtePlannedDeliverDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.dtePlannedDeliverDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtUnitCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteDrawingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dteDrawingDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1676,6 +1872,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
     Me.GroupControl2.PerformLayout()
+    CType(Me.txtSalesQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDueTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtCompanyName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1726,6 +1923,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage9.ResumeLayout(False)
     CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl8.ResumeLayout(False)
     CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabControl1.ResumeLayout(False)
     Me.XtraTabPage6.ResumeLayout(False)
@@ -1742,7 +1940,8 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtSalesQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdMaterialRequirementsChanges, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvRequirmentMaterialsChanges, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1870,4 +2069,20 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents txtUnitCost As DevExpress.XtraEditors.TextEdit
   Friend WithEvents txtSalesQuantity As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label23 As Label
+  Friend WithEvents Label24 As Label
+  Friend WithEvents dtePlannedDeliverDate As DevExpress.XtraEditors.DateEdit
+  Friend WithEvents grdMaterialRequirementsChanges As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvRequirmentMaterialsChanges As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMaterialChanges As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcSpecieChanges As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcQualityChanges As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcTotalQuantityChanges As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcBoardTableChanges As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
