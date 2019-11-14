@@ -148,6 +148,10 @@ Public Class dsoSales
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
+
+    Dim mdtoMaterialRequirementChanges As dtoMaterialRequirement
+
+
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoComponents As dtoProductFurnitureComponent
@@ -184,6 +188,12 @@ Public Class dsoSales
             mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
             mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
             mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+
+            mdtoMaterialRequirementChanges = New dtoMaterialRequirement(pDBConn)
+            mdtoMaterialRequirementChanges.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
+            ''mdtoMaterialRequirementChanges.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
+
+
             mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
             mdtoComponents.LoadProductFurnitureComponentCollection(mProdFurniture.ProductFurnitureComponents, mProdFurniture.ProductFurnitureID)
           End If
@@ -234,6 +244,10 @@ Public Class dsoSales
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirments, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.LoadMaterialRequirementCollection(mProdFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+
+          mdtoMaterialRequirement.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
+          mdtoMaterialRequirement.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
+
           mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
           mdtoComponents.LoadProductFurnitureComponentCollection(mProdFurniture.ProductFurnitureComponents, mProdFurniture.ProductFurnitureID)
         End If
@@ -285,6 +299,11 @@ Public Class dsoSales
           mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+
+          mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
+          mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
+
+
           mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
           mdtoComponents.SaveProductFurnitureComponentCollection(mProductFurniture.ProductFurnitureComponents, mProductFurniture.ProductFurnitureID)
         End If

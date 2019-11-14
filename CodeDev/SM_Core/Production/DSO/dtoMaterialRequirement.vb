@@ -165,7 +165,52 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
   End Function
 
 
+
+  Public Function LoadMaterialRequirementCollectionChanges(ByRef rMaterialRequirements As colMaterialRequirementsChanges, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mParams.Add("@ObjectType", vProductType)
+    mParams.Add("@ObjectID", vParentID)
+    mParams.Add("@MaterialRequirementType", vMatReqType)
+    mOK = MyBase.LoadCollection(rMaterialRequirements, mParams, "MaterialRequirementID")
+    rMaterialRequirements.TrackDeleted = True
+    If mOK Then rMaterialRequirements.IsDirty = False
+    Return mOK
+  End Function
+
   Public Function SaveMaterialRequirementCollection(ByRef rCollection As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
+    Dim mAllOK As Boolean
+    Dim mIDs As String = ""
+    If rCollection.IsDirty Then
+
+      If rCollection.SomeDeleted Then
+        mAllOK = True
+        For Each Me.pMaterialRequirement In rCollection.DeletedItems
+          If pMaterialRequirement.MaterialRequirementID <> 0 Then
+            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pMaterialRequirement.MaterialRequirementID)
+          End If
+        Next
+      Else
+        mAllOK = True
+      End If
+
+      For Each Me.pMaterialRequirement In rCollection
+        If pMaterialRequirement.IsDirty Or pMaterialRequirement.ObjectType = 0 Or pMaterialRequirement.ObjectID = 0 Or pMaterialRequirement.MaterialRequirementID = 0 Then 'Or pMaterialRequirement.MaterialRequirementID = 0
+          pMaterialRequirement.ObjectType = vProductType
+          pMaterialRequirement.ObjectID = vParentID
+          pMaterialRequirement.MaterialRequirementType = vMatReqType
+          If mAllOK Then mAllOK = SaveObject()
+        End If
+      Next
+      If mAllOK Then rCollection.IsDirty = False
+    Else
+      mAllOK = True
+    End If
+
+    Return mAllOK
+  End Function
+
+  Public Function SaveMaterialRequirementCollectionChanges(ByRef rCollection As colMaterialRequirementsChanges, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
     Dim mAllOK As Boolean
     Dim mIDs As String = ""
     If rCollection.IsDirty Then

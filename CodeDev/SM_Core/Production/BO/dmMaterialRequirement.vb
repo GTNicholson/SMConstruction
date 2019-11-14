@@ -335,3 +335,30 @@ Public Class colMaterialRequirements : Inherits colBase(Of dmMaterialRequirement
 
 End Class
 
+
+Public Class colMaterialRequirementsChanges : Inherits colBase(Of dmMaterialRequirement)
+
+  Public Overrides Function IndexFromKey(ByVal vMaterialRequirementID As Integer) As Integer
+    Dim mItem As dmMaterialRequirement
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.MaterialRequirementID = vMaterialRequirementID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+
+  Public Sub New()
+    MyBase.New()
+  End Sub
+
+  Public Sub New(ByVal vList As List(Of dmMaterialRequirement))
+    MyBase.New(vList)
+  End Sub
+
+End Class
+

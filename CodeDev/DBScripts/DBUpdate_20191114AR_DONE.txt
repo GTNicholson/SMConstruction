@@ -1,0 +1,6 @@
+use SMConstruction
+go
+
+alter table WorkOrder
+add PlannedDeliverDate datetime
+go
