@@ -6,8 +6,11 @@ Public Class repWorkOrderMatReqsWood
   Private pSalesOrder As dmSalesOrder
   Private pWorkOrder As dmWorkOrder
   Private pQuantity As Int32
+  Private pMatReqChanges As colMaterialRequirementInfos
 
   Private Sub repWorkOrderMatReqsWood_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
+    Dim msrepMatReqChanges As srepWorkOrderMatReqsWoodChanges
+
 
     xrlWorkOrderNo.Text = pWorkOrder.WorkOrderNo
     xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
@@ -18,6 +21,10 @@ Public Class repWorkOrderMatReqsWood
 
     SetUpBindings()
 
+
+    msrepMatReqChanges = New srepWorkOrderMatReqsWoodChanges
+    msrepMatReqChanges.DataSource = pMatReqChanges
+    subrepMatReqChanges.ReportSource = msrepMatReqChanges
 
   End Sub
 
@@ -48,13 +55,15 @@ Public Class repWorkOrderMatReqsWood
   End Sub
 
 
-  Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder, ByRef rMatReqs As colMaterialRequirementInfos) As repWorkOrderMatReqsWood
+  Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder, ByRef rMatReqs As colMaterialRequirementInfos, ByRef rMatReqChanges As colMaterialRequirementInfos) As repWorkOrderMatReqsWood
     Dim mRetVal As repWorkOrderMatReqsWood
 
     mRetVal = New repWorkOrderMatReqsWood
     mRetVal.pSalesOrder = rSalesOrder
     mRetVal.pWorkOrder = rWorkOrder
     mRetVal.DataSource = rMatReqs
+
+    mRetVal.pMatReqChanges = rMatReqChanges
 
     mRetVal.CreateDocument()
 
