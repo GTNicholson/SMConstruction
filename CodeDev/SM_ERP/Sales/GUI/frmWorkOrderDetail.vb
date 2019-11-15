@@ -453,6 +453,7 @@ Public Class frmWorkOrderDetail
     Dim mRepMerge As New DevExpress.XtraReports.UI.XtraReport
 
     Dim mMatReqInfos As New colMaterialRequirementInfos
+    Dim mMatReqInfoChanges As New colMaterialRequirementInfos
 
     If IsNothing(pFormController.SalesOrder.Customer) Then
       MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
@@ -477,7 +478,8 @@ Public Class frmWorkOrderDetail
 
       ''Creating Wood Requirements Report
       mMatReqInfos = pFormController.GetMaterialRequirementInfos
-      mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+      mMatReqInfoChanges = pFormController.GetMaterialRequirementInfosChanges
+      mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mMatReqInfoChanges)
 
       For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
         mRepMerge.Pages.Add(mRepPage)
@@ -666,17 +668,6 @@ Public Class frmWorkOrderDetail
     End If
   End Sub
 
-  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
-    Dim mMatReqInfos As New colMaterialRequirementInfos
-    If IsNothing(pFormController.SalesOrder.Customer) Then
-      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
-      Return
-    End If
-
-    mMatReqInfos = pFormController.GetMaterialRequirementInfos
-    repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
-
-  End Sub
 
   Private Sub SimpleButton2_Click(sender As Object, e As EventArgs)
     Dim mMatReqInfos As New colMaterialRequirementInfos

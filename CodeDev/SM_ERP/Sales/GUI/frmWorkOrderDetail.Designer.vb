@@ -23,11 +23,11 @@ Partial Class frmWorkOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -128,6 +128,20 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage9 = New DevExpress.XtraTab.XtraTabPage()
     Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
+    Me.grdMaterialRequirementsChanges = New DevExpress.XtraGrid.GridControl()
+    Me.gvRequirmentMaterialsChanges = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMaterialChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcSpecieChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcQualityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcTotalQuantityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcBoardTableChanges = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage6 = New DevExpress.XtraTab.XtraTabPage()
     Me.grpMaterialRequirementOthers = New DevExpress.XtraEditors.GroupControl()
@@ -152,20 +166,6 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.grdMaterialRequirementsChanges = New DevExpress.XtraGrid.GridControl()
-    Me.gvRequirmentMaterialsChanges = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcMaterialChanges = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSpecieChanges = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcQualityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcTotalQuantityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcBoardTableChanges = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -232,6 +232,8 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage9.SuspendLayout()
     CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl8.SuspendLayout()
+    CType(Me.grdMaterialRequirementsChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvRequirmentMaterialsChanges, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabControl1.SuspendLayout()
     Me.XtraTabPage6.SuspendLayout()
@@ -248,8 +250,6 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.grdMaterialRequirementsChanges, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvRequirmentMaterialsChanges, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -492,7 +492,7 @@ Partial Class frmWorkOrderDetail
     Me.Label20.AutoSize = True
     Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label20.Location = New System.Drawing.Point(287, 95)
+    Me.Label20.Location = New System.Drawing.Point(6, 92)
     Me.Label20.Name = "Label20"
     Me.Label20.Size = New System.Drawing.Size(48, 14)
     Me.Label20.TabIndex = 153
@@ -500,7 +500,7 @@ Partial Class frmWorkOrderDetail
     '
     'bteImage
     '
-    Me.bteImage.Location = New System.Drawing.Point(341, 92)
+    Me.bteImage.Location = New System.Drawing.Point(67, 89)
     Me.bteImage.MenuManager = Me.BarManager1
     Me.bteImage.Name = "bteImage"
     Me.bteImage.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -737,7 +737,7 @@ Partial Class frmWorkOrderDetail
     Me.Label14.AutoSize = True
     Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label14.Location = New System.Drawing.Point(495, 95)
+    Me.Label14.Location = New System.Drawing.Point(495, 92)
     Me.Label14.Name = "Label14"
     Me.Label14.Size = New System.Drawing.Size(88, 14)
     Me.Label14.TabIndex = 143
@@ -747,7 +747,7 @@ Partial Class frmWorkOrderDetail
     'dtePlannedStartDate
     '
     Me.dtePlannedStartDate.EditValue = Nothing
-    Me.dtePlannedStartDate.Location = New System.Drawing.Point(592, 92)
+    Me.dtePlannedStartDate.Location = New System.Drawing.Point(592, 89)
     Me.dtePlannedStartDate.MenuManager = Me.BarManager1
     Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
     Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -774,7 +774,7 @@ Partial Class frmWorkOrderDetail
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(6, 95)
+    Me.Label11.Location = New System.Drawing.Point(220, 92)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(75, 14)
     Me.Label11.TabIndex = 137
@@ -782,7 +782,7 @@ Partial Class frmWorkOrderDetail
     '
     'btneWorkOrderDocument
     '
-    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(113, 92)
+    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(327, 89)
     Me.btneWorkOrderDocument.MenuManager = Me.BarManager1
     Me.btneWorkOrderDocument.Name = "btneWorkOrderDocument"
     Me.btneWorkOrderDocument.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -914,7 +914,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
     Me.grpWOFiles.Controls.Add(Me.Label5)
-    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions6)})
+    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions1)})
     Me.grpWOFiles.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWOFiles.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpWOFiles.Location = New System.Drawing.Point(0, 0)
@@ -1259,7 +1259,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirements)
-    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
+    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
     Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
@@ -1433,6 +1433,150 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl8.TabIndex = 148
     Me.GroupControl8.Text = "Lista de Materia Prima (LMP)"
     '
+    'grdMaterialRequirementsChanges
+    '
+    Me.grdMaterialRequirementsChanges.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirementsChanges.Location = New System.Drawing.Point(2, 23)
+    Me.grdMaterialRequirementsChanges.MainView = Me.gvRequirmentMaterialsChanges
+    Me.grdMaterialRequirementsChanges.MenuManager = Me.BarManager1
+    Me.grdMaterialRequirementsChanges.Name = "grdMaterialRequirementsChanges"
+    Me.grdMaterialRequirementsChanges.Size = New System.Drawing.Size(1068, 152)
+    Me.grdMaterialRequirementsChanges.TabIndex = 30
+    Me.grdMaterialRequirementsChanges.UseEmbeddedNavigator = True
+    Me.grdMaterialRequirementsChanges.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRequirmentMaterialsChanges})
+    '
+    'gvRequirmentMaterialsChanges
+    '
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Options.UseTextOptions = True
+    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.gvRequirmentMaterialsChanges.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvRequirmentMaterialsChanges.Appearance.Row.Options.UseFont = True
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvRequirmentMaterialsChanges.ColumnPanelRowHeight = 34
+    Me.gvRequirmentMaterialsChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn21, Me.gcMaterialChanges, Me.gcSpecieChanges, Me.gcQualityChanges, Me.gcTotalQuantityChanges, Me.gcBoardTableChanges, Me.GridColumn27})
+    Me.gvRequirmentMaterialsChanges.GridControl = Me.grdMaterialRequirementsChanges
+    Me.gvRequirmentMaterialsChanges.Name = "gvRequirmentMaterialsChanges"
+    Me.gvRequirmentMaterialsChanges.OptionsView.ShowGroupPanel = False
+    Me.gvRequirmentMaterialsChanges.ViewCaption = "Lista de Materia Prima (LMP)"
+    '
+    'GridColumn13
+    '
+    Me.GridColumn13.Caption = "Código"
+    Me.GridColumn13.FieldName = "StockCode"
+    Me.GridColumn13.Name = "GridColumn13"
+    Me.GridColumn13.Width = 58
+    '
+    'GridColumn14
+    '
+    Me.GridColumn14.Caption = "Componente"
+    Me.GridColumn14.FieldName = "Description"
+    Me.GridColumn14.Name = "GridColumn14"
+    Me.GridColumn14.Visible = True
+    Me.GridColumn14.VisibleIndex = 0
+    Me.GridColumn14.Width = 324
+    '
+    'GridColumn15
+    '
+    Me.GridColumn15.Caption = "Piezas unit."
+    Me.GridColumn15.FieldName = "UnitPiece"
+    Me.GridColumn15.Name = "GridColumn15"
+    Me.GridColumn15.Visible = True
+    Me.GridColumn15.VisibleIndex = 1
+    Me.GridColumn15.Width = 137
+    '
+    'GridColumn16
+    '
+    Me.GridColumn16.Caption = "Grosor Neto"
+    Me.GridColumn16.FieldName = "NetThickness"
+    Me.GridColumn16.Name = "GridColumn16"
+    Me.GridColumn16.Visible = True
+    Me.GridColumn16.VisibleIndex = 4
+    Me.GridColumn16.Width = 139
+    '
+    'GridColumn19
+    '
+    Me.GridColumn19.Caption = "Ancho Neto"
+    Me.GridColumn19.FieldName = "NetWidth"
+    Me.GridColumn19.Name = "GridColumn19"
+    Me.GridColumn19.Visible = True
+    Me.GridColumn19.VisibleIndex = 5
+    Me.GridColumn19.Width = 150
+    '
+    'GridColumn21
+    '
+    Me.GridColumn21.Caption = "Largo Neto"
+    Me.GridColumn21.FieldName = "NetLenght"
+    Me.GridColumn21.Name = "GridColumn21"
+    Me.GridColumn21.Visible = True
+    Me.GridColumn21.VisibleIndex = 6
+    Me.GridColumn21.Width = 144
+    '
+    'gcMaterialChanges
+    '
+    Me.gcMaterialChanges.Caption = "Material"
+    Me.gcMaterialChanges.FieldName = "MaterialTypeID"
+    Me.gcMaterialChanges.Name = "gcMaterialChanges"
+    Me.gcMaterialChanges.Visible = True
+    Me.gcMaterialChanges.VisibleIndex = 7
+    Me.gcMaterialChanges.Width = 110
+    '
+    'gcSpecieChanges
+    '
+    Me.gcSpecieChanges.Caption = "Especie"
+    Me.gcSpecieChanges.FieldName = "WoodSpecie"
+    Me.gcSpecieChanges.Name = "gcSpecieChanges"
+    Me.gcSpecieChanges.Visible = True
+    Me.gcSpecieChanges.VisibleIndex = 8
+    Me.gcSpecieChanges.Width = 108
+    '
+    'gcQualityChanges
+    '
+    Me.gcQualityChanges.Caption = "Calidad"
+    Me.gcQualityChanges.FieldName = "QualityType"
+    Me.gcQualityChanges.Name = "gcQualityChanges"
+    Me.gcQualityChanges.Visible = True
+    Me.gcQualityChanges.VisibleIndex = 9
+    Me.gcQualityChanges.Width = 103
+    '
+    'gcTotalQuantityChanges
+    '
+    Me.gcTotalQuantityChanges.Caption = "Piezas Total"
+    Me.gcTotalQuantityChanges.FieldName = "ub_TotalQuantityChanges"
+    Me.gcTotalQuantityChanges.Name = "gcTotalQuantityChanges"
+    Me.gcTotalQuantityChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+    Me.gcTotalQuantityChanges.Visible = True
+    Me.gcTotalQuantityChanges.VisibleIndex = 3
+    Me.gcTotalQuantityChanges.Width = 146
+    '
+    'gcBoardTableChanges
+    '
+    Me.gcBoardTableChanges.Caption = "Pie Tabla"
+    Me.gcBoardTableChanges.FieldName = "ub_BoardFeetChanges"
+    Me.gcBoardTableChanges.Name = "gcBoardTableChanges"
+    Me.gcBoardTableChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcBoardTableChanges.Visible = True
+    Me.gcBoardTableChanges.VisibleIndex = 10
+    Me.gcBoardTableChanges.Width = 157
+    '
+    'GridColumn27
+    '
+    Me.GridColumn27.Caption = "Piezas por Comp."
+    Me.GridColumn27.FieldName = "PiecesPerComponent"
+    Me.GridColumn27.Name = "GridColumn27"
+    Me.GridColumn27.Visible = True
+    Me.GridColumn27.VisibleIndex = 2
+    Me.GridColumn27.Width = 104
+    '
     'XtraTabControl1
     '
     Me.XtraTabControl1.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1461,7 +1605,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementOthers.Controls.Add(Me.grdMaterialRequirementOthers)
-    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
+    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1)})
     Me.grpMaterialRequirementOthers.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
@@ -1698,150 +1842,6 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
-    'grdMaterialRequirementsChanges
-    '
-    Me.grdMaterialRequirementsChanges.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.Edit.Visible = False
-    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.NextPage.Visible = False
-    Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdMaterialRequirementsChanges.Location = New System.Drawing.Point(2, 23)
-    Me.grdMaterialRequirementsChanges.MainView = Me.gvRequirmentMaterialsChanges
-    Me.grdMaterialRequirementsChanges.MenuManager = Me.BarManager1
-    Me.grdMaterialRequirementsChanges.Name = "grdMaterialRequirementsChanges"
-    Me.grdMaterialRequirementsChanges.Size = New System.Drawing.Size(1068, 152)
-    Me.grdMaterialRequirementsChanges.TabIndex = 30
-    Me.grdMaterialRequirementsChanges.UseEmbeddedNavigator = True
-    Me.grdMaterialRequirementsChanges.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRequirmentMaterialsChanges})
-    '
-    'gvRequirmentMaterialsChanges
-    '
-    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.Options.UseTextOptions = True
-    Me.gvRequirmentMaterialsChanges.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gvRequirmentMaterialsChanges.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.gvRequirmentMaterialsChanges.Appearance.Row.Options.UseFont = True
-    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseFont = True
-    Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvRequirmentMaterialsChanges.ColumnPanelRowHeight = 34
-    Me.gvRequirmentMaterialsChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn21, Me.gcMaterialChanges, Me.gcSpecieChanges, Me.gcQualityChanges, Me.gcTotalQuantityChanges, Me.gcBoardTableChanges, Me.GridColumn27})
-    Me.gvRequirmentMaterialsChanges.GridControl = Me.grdMaterialRequirementsChanges
-    Me.gvRequirmentMaterialsChanges.Name = "gvRequirmentMaterialsChanges"
-    Me.gvRequirmentMaterialsChanges.OptionsView.ShowGroupPanel = False
-    Me.gvRequirmentMaterialsChanges.ViewCaption = "Lista de Materia Prima (LMP)"
-    '
-    'GridColumn13
-    '
-    Me.GridColumn13.Caption = "Código"
-    Me.GridColumn13.FieldName = "StockCode"
-    Me.GridColumn13.Name = "GridColumn13"
-    Me.GridColumn13.Width = 58
-    '
-    'GridColumn14
-    '
-    Me.GridColumn14.Caption = "Componente"
-    Me.GridColumn14.FieldName = "Description"
-    Me.GridColumn14.Name = "GridColumn14"
-    Me.GridColumn14.Visible = True
-    Me.GridColumn14.VisibleIndex = 0
-    Me.GridColumn14.Width = 324
-    '
-    'GridColumn15
-    '
-    Me.GridColumn15.Caption = "Piezas unit."
-    Me.GridColumn15.FieldName = "UnitPiece"
-    Me.GridColumn15.Name = "GridColumn15"
-    Me.GridColumn15.Visible = True
-    Me.GridColumn15.VisibleIndex = 1
-    Me.GridColumn15.Width = 137
-    '
-    'GridColumn16
-    '
-    Me.GridColumn16.Caption = "Grosor Neto"
-    Me.GridColumn16.FieldName = "NetThickness"
-    Me.GridColumn16.Name = "GridColumn16"
-    Me.GridColumn16.Visible = True
-    Me.GridColumn16.VisibleIndex = 4
-    Me.GridColumn16.Width = 139
-    '
-    'GridColumn19
-    '
-    Me.GridColumn19.Caption = "Ancho Neto"
-    Me.GridColumn19.FieldName = "NetWidth"
-    Me.GridColumn19.Name = "GridColumn19"
-    Me.GridColumn19.Visible = True
-    Me.GridColumn19.VisibleIndex = 5
-    Me.GridColumn19.Width = 150
-    '
-    'GridColumn21
-    '
-    Me.GridColumn21.Caption = "Largo Neto"
-    Me.GridColumn21.FieldName = "NetLenght"
-    Me.GridColumn21.Name = "GridColumn21"
-    Me.GridColumn21.Visible = True
-    Me.GridColumn21.VisibleIndex = 6
-    Me.GridColumn21.Width = 144
-    '
-    'gcMaterialChanges
-    '
-    Me.gcMaterialChanges.Caption = "Material"
-    Me.gcMaterialChanges.FieldName = "MaterialTypeID"
-    Me.gcMaterialChanges.Name = "gcMaterialChanges"
-    Me.gcMaterialChanges.Visible = True
-    Me.gcMaterialChanges.VisibleIndex = 7
-    Me.gcMaterialChanges.Width = 110
-    '
-    'gcSpecieChanges
-    '
-    Me.gcSpecieChanges.Caption = "Especie"
-    Me.gcSpecieChanges.FieldName = "WoodSpecie"
-    Me.gcSpecieChanges.Name = "gcSpecieChanges"
-    Me.gcSpecieChanges.Visible = True
-    Me.gcSpecieChanges.VisibleIndex = 8
-    Me.gcSpecieChanges.Width = 108
-    '
-    'gcQualityChanges
-    '
-    Me.gcQualityChanges.Caption = "Calidad"
-    Me.gcQualityChanges.FieldName = "QualityType"
-    Me.gcQualityChanges.Name = "gcQualityChanges"
-    Me.gcQualityChanges.Visible = True
-    Me.gcQualityChanges.VisibleIndex = 9
-    Me.gcQualityChanges.Width = 103
-    '
-    'gcTotalQuantityChanges
-    '
-    Me.gcTotalQuantityChanges.Caption = "Piezas Total"
-    Me.gcTotalQuantityChanges.FieldName = "ub_TotalQuantityChanges"
-    Me.gcTotalQuantityChanges.Name = "gcTotalQuantityChanges"
-    Me.gcTotalQuantityChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-    Me.gcTotalQuantityChanges.Visible = True
-    Me.gcTotalQuantityChanges.VisibleIndex = 3
-    Me.gcTotalQuantityChanges.Width = 146
-    '
-    'gcBoardTableChanges
-    '
-    Me.gcBoardTableChanges.Caption = "Pie Tabla"
-    Me.gcBoardTableChanges.FieldName = "ub_BoardFeetChanges"
-    Me.gcBoardTableChanges.Name = "gcBoardTableChanges"
-    Me.gcBoardTableChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-    Me.gcBoardTableChanges.Visible = True
-    Me.gcBoardTableChanges.VisibleIndex = 10
-    Me.gcBoardTableChanges.Width = 157
-    '
-    'GridColumn27
-    '
-    Me.GridColumn27.Caption = "Piezas por Comp."
-    Me.GridColumn27.FieldName = "PiecesPerComponent"
-    Me.GridColumn27.Name = "GridColumn27"
-    Me.GridColumn27.Visible = True
-    Me.GridColumn27.VisibleIndex = 2
-    Me.GridColumn27.Width = 104
-    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1924,6 +1924,8 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage9.ResumeLayout(False)
     CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl8.ResumeLayout(False)
+    CType(Me.grdMaterialRequirementsChanges, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvRequirmentMaterialsChanges, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabControl1.ResumeLayout(False)
     Me.XtraTabPage6.ResumeLayout(False)
@@ -1940,8 +1942,6 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.grdMaterialRequirementsChanges, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvRequirmentMaterialsChanges, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
