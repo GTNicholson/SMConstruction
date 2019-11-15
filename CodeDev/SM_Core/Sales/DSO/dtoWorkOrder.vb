@@ -84,7 +84,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingDate", DateToDBValue(.DrawingDate))
 
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PlannedDeliverDate", DateToDBValue(.DrawingDate))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PlannedDeliverDate", DateToDBValue(.PlannedDeliverDate))
 
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QtyPerSalesItem", .QtyPerSalesItem)
