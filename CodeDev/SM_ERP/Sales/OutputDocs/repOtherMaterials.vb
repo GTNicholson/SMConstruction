@@ -4,8 +4,12 @@ Public Class repOtherMaterials
   Private pSalesOrder As dmSalesOrder
   Private pWorkOrder As dmWorkOrder
   Private POtherMaterial As dmMaterialRequirement
+  Private pOtherMaterialChanges As colMaterialRequirementInfos
+
 
   Private Sub repOtherMaterials_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
+    Dim msrepOtherMaterialChanges As srepOtherMaterialsChange
+
     xrlCustomerName.Text = (pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName).ToUpper
     xrtProductDescription.Text = (pWorkOrder.Description).ToUpper
     xrtQuantity.Text = pWorkOrder.Quantity
@@ -13,12 +17,15 @@ Public Class repOtherMaterials
 
     SetUpBindings()
 
+    msrepOtherMaterialChanges = New srepOtherMaterialsChange
+    msrepOtherMaterialChanges.DataSource = pOtherMaterialChanges
+    subrepOtherMaterialsChange.ReportSource = msrepOtherMaterialChanges
 
   End Sub
 
 
 
-  Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder, ByRef rMatReqs As colMaterialRequirementInfos) As repOtherMaterials
+  Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByRef rWorkOrder As dmWorkOrder, ByRef rMatReqs As colMaterialRequirementInfos, ByRef rMatReqChanges As colMaterialRequirementInfos) As repOtherMaterials
     Dim mRetVal As repOtherMaterials
 
     mRetVal = New repOtherMaterials
@@ -26,11 +33,13 @@ Public Class repOtherMaterials
     mRetVal.pWorkOrder = rWorkOrder
     mRetVal.DataSource = rMatReqs
 
-
+    mRetVal.pOtherMaterialChanges = rMatReqChanges
 
     mRetVal.CreateDocument()
 
-
+    'Dim mTool As DevExpress.XtraReports.UI.ReportPrintTool
+    'mTool = New DevExpress.XtraReports.UI.ReportPrintTool(mRetVal)
+    'mTool.ShowPreviewDialog()
 
     Return mRetVal
   End Function
@@ -49,6 +58,8 @@ Public Class repOtherMaterials
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim mAreaID As String
     Dim mMatReq As clsMaterialRequirementInfo
+
+
 
 
     mMatReq = TryCast(Me.GetCurrentRow, clsMaterialRequirementInfo)

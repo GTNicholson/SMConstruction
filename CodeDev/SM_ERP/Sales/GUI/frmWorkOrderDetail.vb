@@ -224,7 +224,11 @@ Public Class frmWorkOrderDetail
     clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementsChanges, gcQualityChanges, mVIs)
 
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcAreaID, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementOthers, gcAreaID, mVIs)
+
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementOthersChange, gcAreaIDChange, mVIs)
+
 
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSArea, mVIs)
@@ -232,8 +236,8 @@ Public Class frmWorkOrderDetail
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdTimeSheetEntries, gcTSEmployee, mVIs)
 
-    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
-    clsDEControlLoading.FillDEComboVI(cboWoodFinish, mVIs)
+    ''mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
+    ''clsDEControlLoading.FillDEComboVI(cboWoodFinish, mVIs)
 
   End Sub
 
@@ -272,7 +276,7 @@ Public Class frmWorkOrderDetail
 
 
       clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
-      clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
+      ''clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
       clsDEControlLoading.SetDECombo(cboFurnitureCategory, .FurnitureCategoryID)
       clsDEControlLoading.SetDECombo(cboEmployee, .EmployeeID)
 
@@ -338,9 +342,9 @@ Public Class frmWorkOrderDetail
         grdMaterialRequirements.DataSource = mPF.MaterialRequirments
         grdMaterialRequirementOthers.DataSource = mPF.MaterialRequirmentOthers
 
-
+        ''Grids for the changes
         grdMaterialRequirementsChanges.DataSource = mPF.MaterialRequirmentsChanges
-
+        grdMaterialRequirementOthersChange.DataSource = mPF.MaterialRequirmentOthersChanges
 
 
         grdPackingComponents.DataSource = mPF.ProductFurnitureComponents
@@ -369,7 +373,7 @@ Public Class frmWorkOrderDetail
 
       .UnitPrice = Val(txtUnitCost.Text)
 
-      .WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
+      ''.WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
       .FurnitureCategoryID = clsDEControlLoading.GetDEComboValue(cboFurnitureCategory)
       .EmployeeID = clsDEControlLoading.GetDEComboValue(cboEmployee)
 
@@ -454,6 +458,7 @@ Public Class frmWorkOrderDetail
 
     Dim mMatReqInfos As New colMaterialRequirementInfos
     Dim mMatReqInfoChanges As New colMaterialRequirementInfos
+    Dim mOtherMatInfoChanges As New colMaterialRequirementInfos
 
     If IsNothing(pFormController.SalesOrder.Customer) Then
       MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
@@ -487,7 +492,8 @@ Public Class frmWorkOrderDetail
 
       ''Creating Other Materials Report
       mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
-      mOtherMaterialReport = repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
+      mOtherMatInfoChanges = pFormController.GetMaterialOtherMaterialChanges
+      mOtherMaterialReport = repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mOtherMatInfoChanges)
 
       For Each mRepPage As DevExpress.XtraPrinting.Page In mOtherMaterialReport.Pages
         mRepMerge.Pages.Add(mRepPage)
@@ -495,7 +501,7 @@ Public Class frmWorkOrderDetail
 
 
       ''Creating Wood Requirments Changes Report
-      mMatReqInfos = pFormController.GetMaterialRequirementInfosChanges
+      ''mMatReqInfos = pFormController.GetMaterialRequirementInfosChanges
       ''mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
 
       ''For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
@@ -668,18 +674,6 @@ Public Class frmWorkOrderDetail
     End If
   End Sub
 
-
-  Private Sub SimpleButton2_Click(sender As Object, e As EventArgs)
-    Dim mMatReqInfos As New colMaterialRequirementInfos
-
-    If IsNothing(pFormController.SalesOrder.Customer) Then
-      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
-      Return
-    End If
-
-    mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
-    repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
-  End Sub
 
   Private Sub bteImage_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles bteImage.ButtonClick
     Try
@@ -864,4 +858,28 @@ Public Class frmWorkOrderDetail
     End If
   End Sub
 
+  Private Sub grpMaterialRequirementOthers_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementOthers.CustomButtonClick
+    Select Case e.Button.Properties.Tag
+      Case eCopyPasteButton.Copy
+        Dim mMatReqs As colMaterialRequirements
+        mMatReqs = grdMaterialRequirementOthers.DataSource
+
+
+
+        pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
+      Case eCopyPasteButton.Paste
+        Dim mPF As dmProductFurniture
+        mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+        If mPF IsNot Nothing Then
+
+          If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
+            For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
+              mMatReq.ClearKeys()
+              mMatReq.ObjectID = mPF.ProductFurnitureID
+              mPF.MaterialRequirmentOthers.Add(mMatReq)
+            Next
+          End If
+        End If
+    End Select
+  End Sub
 End Class

@@ -239,7 +239,23 @@ Public Class fccWorkOrderDetail
     Return mMatReqInfos
   End Function
 
+  Public Function GetMaterialOtherMaterialChanges() As colMaterialRequirementInfos
+    Dim mMatReqInfos As New colMaterialRequirementInfos
+    Dim mMRI As clsMaterialRequirementInfo
+    Dim mPF As dmProductFurniture
 
+    mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
+
+    If mPF IsNot Nothing Then
+      For Each mMR As dmMaterialRequirement In mPF.MaterialRequirmentOthersChanges
+        mMRI = New clsMaterialRequirementInfo(mMR)
+        mMRI.WorkOrder = pWorkOrder
+        mMatReqInfos.Add(mMRI)
+      Next
+    End If
+
+    Return mMatReqInfos
+  End Function
 
   Public Function CreateWOImageFile(ByVal vSourceFile As String) As Boolean
     Dim mFilePath As String

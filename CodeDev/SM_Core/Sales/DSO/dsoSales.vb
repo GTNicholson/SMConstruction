@@ -191,7 +191,7 @@ Public Class dsoSales
 
             mdtoMaterialRequirementChanges = New dtoMaterialRequirement(pDBConn)
             mdtoMaterialRequirementChanges.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
-            ''mdtoMaterialRequirementChanges.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
+            mdtoMaterialRequirementChanges.LoadMaterialRequirementCollectionChanges(mProdFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProdFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
 
 
             mdtoComponents = New dtoProductFurnitureComponent(pDBConn)

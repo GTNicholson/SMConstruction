@@ -96,11 +96,7 @@ Partial Class frmWorkOrderDetail
     Me.ceMaquinado = New DevExpress.XtraEditors.CheckEdit()
     Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
     Me.UctFileControl1 = New SimplementeMadera.uctFileControl()
-    Me.cboSubFurnitureCategory = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.cboWoodFinish = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.cboFurnitureCategory = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.Label8 = New System.Windows.Forms.Label()
-    Me.Label7 = New System.Windows.Forms.Label()
     Me.Label6 = New System.Windows.Forms.Label()
     Me.memPFNotes = New DevExpress.XtraEditors.MemoEdit()
     Me.Label5 = New System.Windows.Forms.Label()
@@ -156,6 +152,15 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage7 = New DevExpress.XtraTab.XtraTabPage()
     Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+    Me.grdMaterialRequirementOthersChange = New DevExpress.XtraGrid.GridControl()
+    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcAreaIDChange = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -212,8 +217,6 @@ Partial Class frmWorkOrderDetail
     CType(Me.ceMaquinado.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl4.SuspendLayout()
-    CType(Me.cboSubFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.cboWoodFinish.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage2.SuspendLayout()
@@ -243,6 +246,9 @@ Partial Class frmWorkOrderDetail
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage7.SuspendLayout()
     CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl6.SuspendLayout()
+    CType(Me.grdMaterialRequirementOthersChange, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage4.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
@@ -508,7 +514,7 @@ Partial Class frmWorkOrderDetail
     Me.bteImage.Properties.Appearance.Options.UseBackColor = True
     Me.bteImage.Properties.Appearance.Options.UseFont = True
     Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.bteImage.Size = New System.Drawing.Size(137, 20)
+    Me.bteImage.Size = New System.Drawing.Size(147, 20)
     Me.bteImage.TabIndex = 9
     '
     'cboEmployee
@@ -737,7 +743,7 @@ Partial Class frmWorkOrderDetail
     Me.Label14.AutoSize = True
     Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label14.Location = New System.Drawing.Point(495, 92)
+    Me.Label14.Location = New System.Drawing.Point(485, 92)
     Me.Label14.Name = "Label14"
     Me.Label14.Size = New System.Drawing.Size(88, 14)
     Me.Label14.TabIndex = 143
@@ -747,7 +753,7 @@ Partial Class frmWorkOrderDetail
     'dtePlannedStartDate
     '
     Me.dtePlannedStartDate.EditValue = Nothing
-    Me.dtePlannedStartDate.Location = New System.Drawing.Point(592, 89)
+    Me.dtePlannedStartDate.Location = New System.Drawing.Point(579, 89)
     Me.dtePlannedStartDate.MenuManager = Me.BarManager1
     Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
     Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -755,7 +761,7 @@ Partial Class frmWorkOrderDetail
     Me.dtePlannedStartDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dtePlannedStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dtePlannedStartDate.Properties.NullDate = New Date(CType(0, Long))
-    Me.dtePlannedStartDate.Size = New System.Drawing.Size(100, 20)
+    Me.dtePlannedStartDate.Size = New System.Drawing.Size(99, 20)
     Me.dtePlannedStartDate.TabIndex = 10
     '
     'Label12
@@ -782,7 +788,7 @@ Partial Class frmWorkOrderDetail
     '
     'btneWorkOrderDocument
     '
-    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(327, 89)
+    Me.btneWorkOrderDocument.Location = New System.Drawing.Point(301, 89)
     Me.btneWorkOrderDocument.MenuManager = Me.BarManager1
     Me.btneWorkOrderDocument.Name = "btneWorkOrderDocument"
     Me.btneWorkOrderDocument.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -790,7 +796,7 @@ Partial Class frmWorkOrderDetail
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseBackColor = True
     Me.btneWorkOrderDocument.Properties.Appearance.Options.UseFont = True
     Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(153, 20)
+    Me.btneWorkOrderDocument.Size = New System.Drawing.Size(177, 20)
     Me.btneWorkOrderDocument.TabIndex = 8
     '
     'txtQuantity
@@ -906,11 +912,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.ceEnsamble)
     Me.grpWOFiles.Controls.Add(Me.ceMaquinado)
     Me.grpWOFiles.Controls.Add(Me.GroupControl4)
-    Me.grpWOFiles.Controls.Add(Me.cboSubFurnitureCategory)
-    Me.grpWOFiles.Controls.Add(Me.cboWoodFinish)
     Me.grpWOFiles.Controls.Add(Me.cboFurnitureCategory)
-    Me.grpWOFiles.Controls.Add(Me.Label8)
-    Me.grpWOFiles.Controls.Add(Me.Label7)
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
     Me.grpWOFiles.Controls.Add(Me.Label5)
@@ -928,7 +930,7 @@ Partial Class frmWorkOrderDetail
     Me.Label10.AutoSize = True
     Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label10.Location = New System.Drawing.Point(223, 156)
+    Me.Label10.Location = New System.Drawing.Point(221, 125)
     Me.Label10.Name = "Label10"
     Me.Label10.Size = New System.Drawing.Size(41, 14)
     Me.Label10.TabIndex = 44
@@ -938,7 +940,7 @@ Partial Class frmWorkOrderDetail
     '
     Me.grdPackingComponents.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.grdPackingComponents.Location = New System.Drawing.Point(11, 156)
+    Me.grdPackingComponents.Location = New System.Drawing.Point(13, 125)
     Me.grdPackingComponents.MainView = Me.gvPackingComponents
     Me.grdPackingComponents.MenuManager = Me.BarManager1
     Me.grdPackingComponents.Name = "grdPackingComponents"
@@ -972,7 +974,7 @@ Partial Class frmWorkOrderDetail
     '
     'ceSub
     '
-    Me.ceSub.Location = New System.Drawing.Point(325, 119)
+    Me.ceSub.Location = New System.Drawing.Point(327, 91)
     Me.ceSub.MenuManager = Me.BarManager1
     Me.ceSub.Name = "ceSub"
     Me.ceSub.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -984,7 +986,7 @@ Partial Class frmWorkOrderDetail
     '
     'ceCostura
     '
-    Me.ceCostura.Location = New System.Drawing.Point(226, 119)
+    Me.ceCostura.Location = New System.Drawing.Point(228, 91)
     Me.ceCostura.MenuManager = Me.BarManager1
     Me.ceCostura.Name = "ceCostura"
     Me.ceCostura.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -996,7 +998,7 @@ Partial Class frmWorkOrderDetail
     '
     'ceMetal
     '
-    Me.ceMetal.Location = New System.Drawing.Point(111, 119)
+    Me.ceMetal.Location = New System.Drawing.Point(113, 91)
     Me.ceMetal.MenuManager = Me.BarManager1
     Me.ceMetal.Name = "ceMetal"
     Me.ceMetal.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1011,7 +1013,7 @@ Partial Class frmWorkOrderDetail
     Me.Label19.AutoSize = True
     Me.Label19.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label19.Location = New System.Drawing.Point(8, 96)
+    Me.Label19.Location = New System.Drawing.Point(10, 68)
     Me.Label19.Name = "Label19"
     Me.Label19.Size = New System.Drawing.Size(82, 14)
     Me.Label19.TabIndex = 39
@@ -1020,7 +1022,7 @@ Partial Class frmWorkOrderDetail
     '
     'cePintura
     '
-    Me.cePintura.Location = New System.Drawing.Point(440, 94)
+    Me.cePintura.Location = New System.Drawing.Point(442, 66)
     Me.cePintura.MenuManager = Me.BarManager1
     Me.cePintura.Name = "cePintura"
     Me.cePintura.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1032,7 +1034,7 @@ Partial Class frmWorkOrderDetail
     '
     'ceLija
     '
-    Me.ceLija.Location = New System.Drawing.Point(325, 94)
+    Me.ceLija.Location = New System.Drawing.Point(327, 66)
     Me.ceLija.MenuManager = Me.BarManager1
     Me.ceLija.Name = "ceLija"
     Me.ceLija.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1044,7 +1046,7 @@ Partial Class frmWorkOrderDetail
     '
     'ceEnsamble
     '
-    Me.ceEnsamble.Location = New System.Drawing.Point(226, 94)
+    Me.ceEnsamble.Location = New System.Drawing.Point(228, 66)
     Me.ceEnsamble.MenuManager = Me.BarManager1
     Me.ceEnsamble.Name = "ceEnsamble"
     Me.ceEnsamble.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1056,7 +1058,7 @@ Partial Class frmWorkOrderDetail
     '
     'ceMaquinado
     '
-    Me.ceMaquinado.Location = New System.Drawing.Point(111, 94)
+    Me.ceMaquinado.Location = New System.Drawing.Point(113, 66)
     Me.ceMaquinado.MenuManager = Me.BarManager1
     Me.ceMaquinado.Name = "ceMaquinado"
     Me.ceMaquinado.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1090,28 +1092,6 @@ Partial Class frmWorkOrderDetail
     Me.UctFileControl1.TabIndex = 0
     Me.UctFileControl1.UserController = Nothing
     '
-    'cboSubFurnitureCategory
-    '
-    Me.cboSubFurnitureCategory.Location = New System.Drawing.Point(288, 34)
-    Me.cboSubFurnitureCategory.MenuManager = Me.BarManager1
-    Me.cboSubFurnitureCategory.Name = "cboSubFurnitureCategory"
-    Me.cboSubFurnitureCategory.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cboSubFurnitureCategory.Properties.Appearance.Options.UseFont = True
-    Me.cboSubFurnitureCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboSubFurnitureCategory.Size = New System.Drawing.Size(100, 20)
-    Me.cboSubFurnitureCategory.TabIndex = 33
-    '
-    'cboWoodFinish
-    '
-    Me.cboWoodFinish.Location = New System.Drawing.Point(466, 34)
-    Me.cboWoodFinish.MenuManager = Me.BarManager1
-    Me.cboWoodFinish.Name = "cboWoodFinish"
-    Me.cboWoodFinish.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cboWoodFinish.Properties.Appearance.Options.UseFont = True
-    Me.cboWoodFinish.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboWoodFinish.Size = New System.Drawing.Size(100, 20)
-    Me.cboWoodFinish.TabIndex = 32
-    '
     'cboFurnitureCategory
     '
     Me.cboFurnitureCategory.Location = New System.Drawing.Point(80, 34)
@@ -1122,28 +1102,6 @@ Partial Class frmWorkOrderDetail
     Me.cboFurnitureCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.cboFurnitureCategory.Size = New System.Drawing.Size(100, 20)
     Me.cboFurnitureCategory.TabIndex = 30
-    '
-    'Label8
-    '
-    Me.Label8.AutoSize = True
-    Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label8.Location = New System.Drawing.Point(400, 37)
-    Me.Label8.Name = "Label8"
-    Me.Label8.Size = New System.Drawing.Size(54, 14)
-    Me.Label8.TabIndex = 25
-    Me.Label8.Text = "Acabado"
-    '
-    'Label7
-    '
-    Me.Label7.AutoSize = True
-    Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label7.Location = New System.Drawing.Point(192, 37)
-    Me.Label7.Name = "Label7"
-    Me.Label7.Size = New System.Drawing.Size(84, 14)
-    Me.Label7.TabIndex = 21
-    Me.Label7.Text = "Sub Categoria"
     '
     'Label6
     '
@@ -1160,11 +1118,11 @@ Partial Class frmWorkOrderDetail
     '
     Me.memPFNotes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.memPFNotes.Location = New System.Drawing.Point(226, 182)
+    Me.memPFNotes.Location = New System.Drawing.Point(224, 142)
     Me.memPFNotes.MenuManager = Me.BarManager1
     Me.memPFNotes.Name = "memPFNotes"
     Me.memPFNotes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-    Me.memPFNotes.Size = New System.Drawing.Size(345, 187)
+    Me.memPFNotes.Size = New System.Drawing.Size(345, 196)
     Me.memPFNotes.TabIndex = 17
     '
     'Label5
@@ -1172,7 +1130,7 @@ Partial Class frmWorkOrderDetail
     Me.Label5.AutoSize = True
     Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label5.Location = New System.Drawing.Point(8, 94)
+    Me.Label5.Location = New System.Drawing.Point(10, 66)
     Me.Label5.Name = "Label5"
     Me.Label5.Size = New System.Drawing.Size(38, 14)
     Me.Label5.TabIndex = 16
@@ -1318,7 +1276,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 0
-    Me.GridColumn2.Width = 324
+    Me.GridColumn2.Width = 210
     '
     'GridColumn4
     '
@@ -1327,7 +1285,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 1
-    Me.GridColumn4.Width = 137
+    Me.GridColumn4.Width = 88
     '
     'GridColumn10
     '
@@ -1336,7 +1294,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
     Me.GridColumn10.VisibleIndex = 4
-    Me.GridColumn10.Width = 139
+    Me.GridColumn10.Width = 65
     '
     'GridColumn11
     '
@@ -1345,7 +1303,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
     Me.GridColumn11.VisibleIndex = 5
-    Me.GridColumn11.Width = 150
+    Me.GridColumn11.Width = 70
     '
     'GridColumn12
     '
@@ -1354,7 +1312,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
     Me.GridColumn12.VisibleIndex = 6
-    Me.GridColumn12.Width = 144
+    Me.GridColumn12.Width = 67
     '
     'gcMaterialTypeID
     '
@@ -1363,7 +1321,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
     Me.gcMaterialTypeID.Visible = True
     Me.gcMaterialTypeID.VisibleIndex = 7
-    Me.gcMaterialTypeID.Width = 110
+    Me.gcMaterialTypeID.Width = 51
     '
     'gcWoodSpecie
     '
@@ -1372,7 +1330,7 @@ Partial Class frmWorkOrderDetail
     Me.gcWoodSpecie.Name = "gcWoodSpecie"
     Me.gcWoodSpecie.Visible = True
     Me.gcWoodSpecie.VisibleIndex = 8
-    Me.gcWoodSpecie.Width = 108
+    Me.gcWoodSpecie.Width = 50
     '
     'gcQuality
     '
@@ -1381,7 +1339,7 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality.Name = "gcQuality"
     Me.gcQuality.Visible = True
     Me.gcQuality.VisibleIndex = 9
-    Me.gcQuality.Width = 103
+    Me.gcQuality.Width = 47
     '
     'gcTotalQuantity
     '
@@ -1391,7 +1349,7 @@ Partial Class frmWorkOrderDetail
     Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcTotalQuantity.Visible = True
     Me.gcTotalQuantity.VisibleIndex = 3
-    Me.gcTotalQuantity.Width = 146
+    Me.gcTotalQuantity.Width = 257
     '
     'gcQtyBoardFeet
     '
@@ -1401,7 +1359,7 @@ Partial Class frmWorkOrderDetail
     Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcQtyBoardFeet.Visible = True
     Me.gcQtyBoardFeet.VisibleIndex = 10
-    Me.gcQtyBoardFeet.Width = 157
+    Me.gcQtyBoardFeet.Width = 80
     '
     'GridColumn5
     '
@@ -1410,7 +1368,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 2
-    Me.GridColumn5.Width = 104
+    Me.GridColumn5.Width = 67
     '
     'XtraTabPage9
     '
@@ -1661,7 +1619,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
     Me.GridColumn8.VisibleIndex = 0
-    Me.GridColumn8.Width = 194
+    Me.GridColumn8.Width = 288
     '
     'GridColumn17
     '
@@ -1670,7 +1628,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn17.Name = "GridColumn17"
     Me.GridColumn17.Visible = True
     Me.GridColumn17.VisibleIndex = 1
-    Me.GridColumn17.Width = 48
+    Me.GridColumn17.Width = 80
     '
     'GridColumn18
     '
@@ -1679,7 +1637,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn18.Name = "GridColumn18"
     Me.GridColumn18.Visible = True
     Me.GridColumn18.VisibleIndex = 2
-    Me.GridColumn18.Width = 117
+    Me.GridColumn18.Width = 130
     '
     'gcAreaID
     '
@@ -1688,7 +1646,7 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaID.Name = "gcAreaID"
     Me.gcAreaID.Visible = True
     Me.gcAreaID.VisibleIndex = 3
-    Me.gcAreaID.Width = 92
+    Me.gcAreaID.Width = 146
     '
     'GridColumn20
     '
@@ -1697,7 +1655,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn20.Name = "GridColumn20"
     Me.GridColumn20.Visible = True
     Me.GridColumn20.VisibleIndex = 4
-    Me.GridColumn20.Width = 119
+    Me.GridColumn20.Width = 166
     '
     'GridColumn9
     '
@@ -1706,6 +1664,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
     Me.GridColumn9.VisibleIndex = 5
+    Me.GridColumn9.Width = 242
     '
     'XtraTabPage7
     '
@@ -1720,12 +1679,107 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl6.AppearanceCaption.Options.UseFont = True
     Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl6.Controls.Add(Me.grdMaterialRequirementOthersChange)
     Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
     Me.GroupControl6.Name = "GroupControl6"
     Me.GroupControl6.Size = New System.Drawing.Size(1072, 177)
     Me.GroupControl6.TabIndex = 148
     Me.GroupControl6.Text = "Lista de Materiales Requeridos (LMR)"
+    '
+    'grdMaterialRequirementOthersChange
+    '
+    Me.grdMaterialRequirementOthersChange.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirementOthersChange.Location = New System.Drawing.Point(2, 23)
+    Me.grdMaterialRequirementOthersChange.MainView = Me.GridView1
+    Me.grdMaterialRequirementOthersChange.MenuManager = Me.BarManager1
+    Me.grdMaterialRequirementOthersChange.Name = "grdMaterialRequirementOthersChange"
+    Me.grdMaterialRequirementOthersChange.Size = New System.Drawing.Size(1068, 152)
+    Me.grdMaterialRequirementOthersChange.TabIndex = 42
+    Me.grdMaterialRequirementOthersChange.UseEmbeddedNavigator = True
+    Me.grdMaterialRequirementOthersChange.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+    '
+    'GridView1
+    '
+    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
+    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.GridView1.Appearance.Row.Options.UseFont = True
+    Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.GridView1.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
+    Me.GridView1.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.gcAreaIDChange, Me.GridColumn28, Me.GridColumn29})
+    Me.GridView1.GridControl = Me.grdMaterialRequirementOthersChange
+    Me.GridView1.Name = "GridView1"
+    Me.GridView1.OptionsView.ShowGroupPanel = False
+    Me.GridView1.ViewCaption = "Lista de Materiales Requeridos (LMR)"
+    '
+    'GridColumn22
+    '
+    Me.GridColumn22.Caption = "Código"
+    Me.GridColumn22.FieldName = "StockCode"
+    Me.GridColumn22.Name = "GridColumn22"
+    Me.GridColumn22.Width = 54
+    '
+    'GridColumn23
+    '
+    Me.GridColumn23.Caption = "Descripción de Materiales"
+    Me.GridColumn23.FieldName = "Description"
+    Me.GridColumn23.Name = "GridColumn23"
+    Me.GridColumn23.Visible = True
+    Me.GridColumn23.VisibleIndex = 0
+    Me.GridColumn23.Width = 288
+    '
+    'GridColumn24
+    '
+    Me.GridColumn24.Caption = "UdM"
+    Me.GridColumn24.FieldName = "UoM"
+    Me.GridColumn24.Name = "GridColumn24"
+    Me.GridColumn24.Visible = True
+    Me.GridColumn24.VisibleIndex = 1
+    Me.GridColumn24.Width = 80
+    '
+    'GridColumn25
+    '
+    Me.GridColumn25.Caption = "Cantidad Estimada"
+    Me.GridColumn25.FieldName = "Quantity"
+    Me.GridColumn25.Name = "GridColumn25"
+    Me.GridColumn25.Visible = True
+    Me.GridColumn25.VisibleIndex = 2
+    Me.GridColumn25.Width = 130
+    '
+    'gcAreaIDChange
+    '
+    Me.gcAreaIDChange.Caption = "Área"
+    Me.gcAreaIDChange.FieldName = "AreaID"
+    Me.gcAreaIDChange.Name = "gcAreaIDChange"
+    Me.gcAreaIDChange.Visible = True
+    Me.gcAreaIDChange.VisibleIndex = 3
+    Me.gcAreaIDChange.Width = 146
+    '
+    'GridColumn28
+    '
+    Me.GridColumn28.Caption = "Código"
+    Me.GridColumn28.FieldName = "SupplierStockCode"
+    Me.GridColumn28.Name = "GridColumn28"
+    Me.GridColumn28.Visible = True
+    Me.GridColumn28.VisibleIndex = 4
+    Me.GridColumn28.Width = 166
+    '
+    'GridColumn29
+    '
+    Me.GridColumn29.Caption = "Razón de Cambio"
+    Me.GridColumn29.FieldName = "Comments"
+    Me.GridColumn29.Name = "GridColumn29"
+    Me.GridColumn29.Visible = True
+    Me.GridColumn29.VisibleIndex = 5
+    Me.GridColumn29.Width = 242
     '
     'XtraTabPage4
     '
@@ -1904,8 +1958,6 @@ Partial Class frmWorkOrderDetail
     CType(Me.ceMaquinado.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl4.ResumeLayout(False)
-    CType(Me.cboSubFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.cboWoodFinish.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage2.ResumeLayout(False)
@@ -1935,6 +1987,9 @@ Partial Class frmWorkOrderDetail
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage7.ResumeLayout(False)
     CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl6.ResumeLayout(False)
+    CType(Me.grdMaterialRequirementOthersChange, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage4.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
@@ -1968,8 +2023,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents grpWOFiles As DevExpress.XtraEditors.GroupControl
   Friend WithEvents dtePlannedStartDate As DevExpress.XtraEditors.DateEdit
-  Friend WithEvents Label8 As Label
-  Friend WithEvents Label7 As Label
   Friend WithEvents Label6 As Label
   Friend WithEvents memPFNotes As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents Label5 As Label
@@ -1993,8 +2046,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcDuration As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents cboProductType As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label14 As Label
-  Friend WithEvents cboSubFurnitureCategory As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents cboWoodFinish As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents cboFurnitureCategory As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents UctFileControl1 As uctFileControl
@@ -2085,4 +2136,13 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcTotalQuantityChanges As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcBoardTableChanges As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents grdMaterialRequirementOthersChange As DevExpress.XtraGrid.GridControl
+  Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcAreaIDChange As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
