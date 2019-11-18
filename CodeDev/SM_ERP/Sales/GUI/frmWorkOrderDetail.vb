@@ -725,7 +725,7 @@ Public Class frmWorkOrderDetail
         Case gcTotalQuantity.Name
           If e.IsGetData Then
             If mMatReq.PiecesPerComponent <> 0 Then
-              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+              ''e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
             End If
           End If
         Case gcQtyBoardFeet.Name
@@ -736,7 +736,9 @@ Public Class frmWorkOrderDetail
 
               If IsNumeric(mMatReq.PiecesPerComponent) And mMatReq.PiecesPerComponent > 0 Then
                 mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+                ''mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+
+                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mMatReq.TotalPieces, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
                 mValue = mValue
                 e.Value = mValue
               End If
@@ -833,7 +835,7 @@ Public Class frmWorkOrderDetail
         Case gcTotalQuantityChanges.Name
           If e.IsGetData Then
             If mMatReq.PiecesPerComponent <> 0 Then
-              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+              '' e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
             End If
           End If
         Case gcBoardTableChanges.Name

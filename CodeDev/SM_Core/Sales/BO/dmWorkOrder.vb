@@ -36,6 +36,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pDrawingDate As DateTime
 
   Private pQtyPerSalesItem As Integer
+  Private pTotalPieces As Decimal
 
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
@@ -112,6 +113,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .QtyPerSalesItem = QtyPerSalesItem
       .DrawingDate = DrawingDate
       .PlannedDeliverDate = PlannedDeliverDate
+      .TotalPieces = TotalPieces
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -143,6 +145,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pWorkcentreID <> value Then IsDirty = True
       pWorkcentreID = value
+    End Set
+  End Property
+
+  Public Property TotalPieces() As Decimal
+    Get
+      Return pTotalPieces
+    End Get
+    Set(ByVal value As Decimal)
+      If pTotalPieces <> value Then IsDirty = True
+      pTotalPieces = value
     End Set
   End Property
 

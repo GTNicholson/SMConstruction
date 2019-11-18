@@ -1077,9 +1077,9 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl4.AppearanceCaption.Options.UseFont = True
     Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl4.Controls.Add(Me.UctFileControl1)
-    Me.GroupControl4.Location = New System.Drawing.Point(586, 26)
+    Me.GroupControl4.Location = New System.Drawing.Point(586, 37)
     Me.GroupControl4.Name = "GroupControl4"
-    Me.GroupControl4.Size = New System.Drawing.Size(555, 343)
+    Me.GroupControl4.Size = New System.Drawing.Size(555, 301)
     Me.GroupControl4.TabIndex = 34
     Me.GroupControl4.Text = "Archivos de O.T."
     '
@@ -1088,7 +1088,7 @@ Partial Class frmWorkOrderDetail
     Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.UctFileControl1.Location = New System.Drawing.Point(2, 23)
     Me.UctFileControl1.Name = "UctFileControl1"
-    Me.UctFileControl1.Size = New System.Drawing.Size(551, 318)
+    Me.UctFileControl1.Size = New System.Drawing.Size(551, 276)
     Me.UctFileControl1.TabIndex = 0
     Me.UctFileControl1.UserController = Nothing
     '
@@ -1344,9 +1344,8 @@ Partial Class frmWorkOrderDetail
     'gcTotalQuantity
     '
     Me.gcTotalQuantity.Caption = "Piezas Total"
-    Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
+    Me.gcTotalQuantity.FieldName = "TotalPieces"
     Me.gcTotalQuantity.Name = "gcTotalQuantity"
-    Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcTotalQuantity.Visible = True
     Me.gcTotalQuantity.VisibleIndex = 3
     Me.gcTotalQuantity.Width = 257

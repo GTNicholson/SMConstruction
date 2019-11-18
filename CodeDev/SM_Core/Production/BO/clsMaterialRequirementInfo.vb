@@ -197,6 +197,12 @@
 
     End Get
 
+  End Property
+  Public ReadOnly Property TotalPieces_SMM As Decimal
+    Get
+      Return pMaterialRequirement.TotalPieces
+
+    End Get
 
   End Property
 

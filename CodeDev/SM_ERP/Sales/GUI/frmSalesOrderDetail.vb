@@ -780,12 +780,14 @@ Public Class frmSalesOrderDetail
   Private Sub btnExportToPodio_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnePodio.ButtonClick
     Try
       Dim mFilePath As String = String.Empty
+      Dim mInitDir As String = String.Empty
 
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
 
-          mFilePath = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), AppRTISGlobal.GetInstance.PodioPath, "")
-          If RTIS.CommonVB.clsGeneralA.GetFolderName(mFilePath) = DialogResult.OK Then
+          mInitDir = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), AppRTISGlobal.GetInstance.PodioPath)
+          '' mFilePath = mInitDir
+          If RTIS.CommonVB.clsGeneralA.GetFolderName(mFilePath, "Selecciona la carpeta de Podio", mInitDir) = DialogResult.OK Then
             pFormController.SalesOrder.PodioPath = mFilePath
             RefreshControls()
           End If

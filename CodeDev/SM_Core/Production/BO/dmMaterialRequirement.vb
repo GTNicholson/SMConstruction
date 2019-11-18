@@ -18,6 +18,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pWoodSpecie As Int32
   Private pWoodFinish As Int32
   Private pPiecesPerComponent As Decimal
+  Private pTotalPieces As Decimal
 
   Private pUoM As String
   Private pAreaID As Int32
@@ -71,6 +72,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .MaterialTypeID = MaterialTypeID
       .WoodFinish = WoodFinish
       .WoodSpecie = WoodSpecie
+      .TotalPieces = TotalPieces
 
       .UoM = UoM
       .AreaID = AreaID
@@ -133,6 +135,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(ByVal value As Int32)
       If pMaterialRequirementID <> value Then IsDirty = True
       pMaterialRequirementID = value
+    End Set
+  End Property
+
+  Public Property TotalPieces() As Decimal
+    Get
+      Return pTotalPieces
+    End Get
+    Set(ByVal value As Decimal)
+      If pTotalPieces <> value Then IsDirty = True
+      pTotalPieces = value
     End Set
   End Property
 

@@ -5,7 +5,8 @@ Public Class clsSMSharedFuncs
   Public Shared Function GrosWoodThickness(ByVal vCM As Decimal) As Decimal
     Dim mRetVal As Decimal
     Dim mInches As Decimal
-    mInches = CMToQuaterInches(vCM)
+    ''   mInches = CMToQuaterInches(vCM)
+    mInches = vCM / 2.54
     If mInches <= 1 Then
       mRetVal = 1
     ElseIf mInches <= 1.5 Then
@@ -13,7 +14,7 @@ Public Class clsSMSharedFuncs
     ElseIf mInches <= 2 Then
       mRetVal = 2
     Else
-      mRetVal = 0
+      mRetVal = CMToQuaterInches(vCM)
     End If
     Return mRetVal
   End Function

@@ -86,6 +86,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PlannedDeliverDate", DateToDBValue(.PlannedDeliverDate))
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPieces", .TotalPieces)
+
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QtyPerSalesItem", .QtyPerSalesItem)
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
@@ -133,6 +135,9 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .QtyPerSalesItem = DBReadInt32(rDataReader, "QtyPerSalesItem")
         .DrawingDate = DBReadDate(rDataReader, "DrawingDate")
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
+
+        .TotalPieces = DBReadDecimal(rDataReader, "TotalPieces")
+
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False
       End With

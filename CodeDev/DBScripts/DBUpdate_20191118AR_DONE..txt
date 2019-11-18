@@ -1,0 +1,6 @@
+use SMConstruction
+go
+
+alter table materialrequirement
+add TotalPieces decimal
+go

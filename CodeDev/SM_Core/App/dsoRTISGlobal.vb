@@ -52,7 +52,7 @@ Public Class dsoRTISGlobal
 
           mTempRead = clsDBConnBase.DBReadString(mReader, "PodioPath")
           ''If mTempRead.Length > 0 Then rRTISGlobal.DefaultExportPath = mTempRead.Trim
-          UpdateStandardFolder(rRTISGlobal, rRTISGlobal.DefaultExportPath, mTempRead)
+          rRTISGlobal.PodioPath = mTempRead
 
           mReadOK = True
         End If

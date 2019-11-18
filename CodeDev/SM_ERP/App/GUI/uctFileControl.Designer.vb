@@ -61,12 +61,12 @@ Partial Class uctFileControl
     Me.grdFiles.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdFiles.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdFiles.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdFiles.Location = New System.Drawing.Point(0, 30)
+    Me.grdFiles.Location = New System.Drawing.Point(0, 33)
     Me.grdFiles.MainView = Me.gvFiles
     Me.grdFiles.Margin = New System.Windows.Forms.Padding(5)
     Me.grdFiles.Name = "grdFiles"
     Me.grdFiles.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemButtonEdit1, Me.repDescription})
-    Me.grdFiles.Size = New System.Drawing.Size(520, 189)
+    Me.grdFiles.Size = New System.Drawing.Size(499, 114)
     Me.grdFiles.TabIndex = 1
     Me.grdFiles.UseEmbeddedNavigator = True
     Me.grdFiles.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvFiles})
@@ -194,31 +194,31 @@ Partial Class uctFileControl
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(520, 30)
+    Me.barDockControlTop.Size = New System.Drawing.Size(499, 33)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 219)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 147)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(520, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(499, 0)
     '
     'barDockControlLeft
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 189)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 114)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(520, 30)
+    Me.barDockControlRight.Location = New System.Drawing.Point(499, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 189)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 114)
     '
     'uctFileControl
     '
@@ -230,7 +230,7 @@ Partial Class uctFileControl
     Me.Controls.Add(Me.barDockControlBottom)
     Me.Controls.Add(Me.barDockControlTop)
     Me.Name = "uctFileControl"
-    Me.Size = New System.Drawing.Size(520, 219)
+    Me.Size = New System.Drawing.Size(499, 147)
     CType(Me.grdFiles, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvFiles, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repDescription, System.ComponentModel.ISupportInitialize).EndInit()
