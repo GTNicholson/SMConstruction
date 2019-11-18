@@ -677,6 +677,7 @@ Public Class frmWorkOrderDetail
 
   Private Sub bteImage_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles bteImage.ButtonClick
     Try
+      UpdateObject()
       Dim mFileName As String = ""
       If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
         If pFormController.CreateWOImageFile(mFileName) = False Then
@@ -725,7 +726,7 @@ Public Class frmWorkOrderDetail
         Case gcTotalQuantity.Name
           If e.IsGetData Then
             If mMatReq.PiecesPerComponent <> 0 Then
-              ''e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
             End If
           End If
         Case gcQtyBoardFeet.Name

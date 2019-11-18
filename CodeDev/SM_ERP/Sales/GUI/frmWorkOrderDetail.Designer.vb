@@ -1344,8 +1344,9 @@ Partial Class frmWorkOrderDetail
     'gcTotalQuantity
     '
     Me.gcTotalQuantity.Caption = "Piezas Total"
-    Me.gcTotalQuantity.FieldName = "TotalPieces"
+    Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
     Me.gcTotalQuantity.Name = "gcTotalQuantity"
+    Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcTotalQuantity.Visible = True
     Me.gcTotalQuantity.VisibleIndex = 3
     Me.gcTotalQuantity.Width = 257
