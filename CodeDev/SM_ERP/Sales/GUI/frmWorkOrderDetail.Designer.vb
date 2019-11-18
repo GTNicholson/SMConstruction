@@ -1276,7 +1276,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 0
-    Me.GridColumn2.Width = 210
+    Me.GridColumn2.Width = 241
     '
     'GridColumn4
     '
@@ -1285,7 +1285,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 1
-    Me.GridColumn4.Width = 88
+    Me.GridColumn4.Width = 84
     '
     'GridColumn10
     '
@@ -1294,7 +1294,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
     Me.GridColumn10.VisibleIndex = 4
-    Me.GridColumn10.Width = 65
+    Me.GridColumn10.Width = 78
     '
     'GridColumn11
     '
@@ -1303,7 +1303,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
     Me.GridColumn11.VisibleIndex = 5
-    Me.GridColumn11.Width = 70
+    Me.GridColumn11.Width = 84
     '
     'GridColumn12
     '
@@ -1312,7 +1312,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
     Me.GridColumn12.VisibleIndex = 6
-    Me.GridColumn12.Width = 67
+    Me.GridColumn12.Width = 81
     '
     'gcMaterialTypeID
     '
@@ -1321,7 +1321,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialTypeID.Name = "gcMaterialTypeID"
     Me.gcMaterialTypeID.Visible = True
     Me.gcMaterialTypeID.VisibleIndex = 7
-    Me.gcMaterialTypeID.Width = 51
+    Me.gcMaterialTypeID.Width = 60
     '
     'gcWoodSpecie
     '
@@ -1330,7 +1330,7 @@ Partial Class frmWorkOrderDetail
     Me.gcWoodSpecie.Name = "gcWoodSpecie"
     Me.gcWoodSpecie.Visible = True
     Me.gcWoodSpecie.VisibleIndex = 8
-    Me.gcWoodSpecie.Width = 50
+    Me.gcWoodSpecie.Width = 59
     '
     'gcQuality
     '
@@ -1339,17 +1339,19 @@ Partial Class frmWorkOrderDetail
     Me.gcQuality.Name = "gcQuality"
     Me.gcQuality.Visible = True
     Me.gcQuality.VisibleIndex = 9
-    Me.gcQuality.Width = 47
+    Me.gcQuality.Width = 56
     '
     'gcTotalQuantity
     '
     Me.gcTotalQuantity.Caption = "Piezas Total"
+    Me.gcTotalQuantity.DisplayFormat.FormatString = "N3"
+    Me.gcTotalQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
     Me.gcTotalQuantity.Name = "gcTotalQuantity"
     Me.gcTotalQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcTotalQuantity.Visible = True
     Me.gcTotalQuantity.VisibleIndex = 3
-    Me.gcTotalQuantity.Width = 257
+    Me.gcTotalQuantity.Width = 105
     '
     'gcQtyBoardFeet
     '
@@ -1359,16 +1361,18 @@ Partial Class frmWorkOrderDetail
     Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcQtyBoardFeet.Visible = True
     Me.gcQtyBoardFeet.VisibleIndex = 10
-    Me.gcQtyBoardFeet.Width = 80
+    Me.gcQtyBoardFeet.Width = 112
     '
     'GridColumn5
     '
     Me.GridColumn5.Caption = "Piezas por Comp."
+    Me.GridColumn5.DisplayFormat.FormatString = "N3"
+    Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn5.FieldName = "PiecesPerComponent"
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 2
-    Me.GridColumn5.Width = 67
+    Me.GridColumn5.Width = 92
     '
     'XtraTabPage9
     '

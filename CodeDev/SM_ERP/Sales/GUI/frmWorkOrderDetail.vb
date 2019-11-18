@@ -729,6 +729,9 @@ Public Class frmWorkOrderDetail
               e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
             End If
           End If
+          If e.IsSetData Then
+            mMatReq.PiecesPerComponent = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / e.Value
+          End If
         Case gcQtyBoardFeet.Name
           Dim mValue As Decimal
           Dim mQty As Integer
