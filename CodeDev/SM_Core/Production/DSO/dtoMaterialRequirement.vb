@@ -73,6 +73,8 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
 
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateChange", DateToDBValue(.DateChange))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateOtherMaterial ", DateToDBValue(.DateOtherMaterial))
+
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPieces", .TotalPieces)
 
@@ -108,6 +110,8 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
         .TotalPieces = DBReadDecimal(rDataReader, "TotalPieces")
         .DateChange = DBReadDate(rDataReader, "DateChange")
+
+        .DateOtherMaterial = DBReadDate(rDataReader, "DateOtherMaterial")
 
         .UoM = DBReadString(rDataReader, "UoM")
         .AreaID = DBReadInt32(rDataReader, "AreaID")

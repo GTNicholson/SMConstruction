@@ -184,6 +184,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property DateOtherMaterial As DateTime
+    Get
+      Return pMaterialRequirement.DateOtherMaterial
+    End Get
+  End Property
+
   Public ReadOnly Property PiecesPerComponent As Decimal
     Get
       Return pMaterialRequirement.PiecesPerComponent

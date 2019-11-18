@@ -11,3 +11,15 @@ go
 alter table materialrequirement
 add DateChange datetime
 go
+
+alter table materialrequirement
+alter column Description text
+go
+
+alter table materialrequirement
+alter column UoM text
+go
+
+alter table materialrequirement
+add DateOtherMaterial datetime
+ go

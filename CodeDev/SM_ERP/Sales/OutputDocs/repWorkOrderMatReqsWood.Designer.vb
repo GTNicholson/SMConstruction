@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class repWorkOrderMatReqsWood
   Inherits DevExpress.XtraReports.UI.XtraReport
 
   'XtraReport overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
+  <System.Diagnostics.DebuggerNonUserCode()>
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     If disposing AndAlso components IsNot Nothing Then
       components.Dispose()
@@ -17,7 +17,7 @@ Partial Public Class repWorkOrderMatReqsWood
   'NOTE: The following procedure is required by the Designer
   'It can be modified using the Designer.  
   'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
+  <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repWorkOrderMatReqsWood))
@@ -124,87 +124,87 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.xrtComponentDescription.Name = "xrtComponentDescription"
     Me.xrtComponentDescription.StylePriority.UseTextAlignment = False
     Me.xrtComponentDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtComponentDescription.Weight = 1.8018651353033492R
+    Me.xrtComponentDescription.Weight = 1.5808037123951297R
     '
     'xrtUnitPiece
     '
     Me.xrtUnitPiece.Name = "xrtUnitPiece"
-    Me.xrtUnitPiece.Weight = 0.4567755633076207R
+    Me.xrtUnitPiece.Weight = 0.42663219537153768R
     '
     'xrtcTotalPieces
     '
     Me.xrtcTotalPieces.BackColor = System.Drawing.Color.Transparent
     Me.xrtcTotalPieces.Name = "xrtcTotalPieces"
     Me.xrtcTotalPieces.StylePriority.UseBackColor = False
-    Me.xrtcTotalPieces.Weight = 0.53034538745255067R
+    Me.xrtcTotalPieces.Weight = 0.4499585591026114R
     '
     'xrtGrossThickness
     '
     Me.xrtGrossThickness.BackColor = System.Drawing.Color.LightGray
     Me.xrtGrossThickness.Name = "xrtGrossThickness"
     Me.xrtGrossThickness.StylePriority.UseBackColor = False
-    Me.xrtGrossThickness.Weight = 0.51246036033025832R
+    Me.xrtGrossThickness.Weight = 0.58279728963219313R
     '
     'xrtNetThickness
     '
     Me.xrtNetThickness.BackColor = System.Drawing.Color.White
     Me.xrtNetThickness.Name = "xrtNetThickness"
     Me.xrtNetThickness.StylePriority.UseBackColor = False
-    Me.xrtNetThickness.Weight = 0.46019499280637821R
+    Me.xrtNetThickness.Weight = 0.52048548204603784R
     '
     'xrtGrossWidth
     '
     Me.xrtGrossWidth.BackColor = System.Drawing.Color.LightGray
     Me.xrtGrossWidth.Name = "xrtGrossWidth"
     Me.xrtGrossWidth.StylePriority.UseBackColor = False
-    Me.xrtGrossWidth.Weight = 0.48433804414433546R
+    Me.xrtGrossWidth.Weight = 0.38385553904308606R
     '
     'xrtNetWidth
     '
     Me.xrtNetWidth.Name = "xrtNetWidth"
-    Me.xrtNetWidth.Weight = 0.38014020633331858R
+    Me.xrtNetWidth.Weight = 0.52081583122777353R
     '
     'xrtGrossLenght
     '
     Me.xrtGrossLenght.BackColor = System.Drawing.Color.LightGray
     Me.xrtGrossLenght.Name = "xrtGrossLenght"
     Me.xrtGrossLenght.StylePriority.UseBackColor = False
-    Me.xrtGrossLenght.Weight = 0.48557826869523724R
+    Me.xrtGrossLenght.Weight = 0.44538544328379592R
     '
     'xrtNetLenght
     '
     Me.xrtNetLenght.Name = "xrtNetLenght"
-    Me.xrtNetLenght.Weight = 0.48851361175084113R
+    Me.xrtNetLenght.Weight = 0.51865859878662723R
     '
     'xrtGrossLenghtFeet
     '
     Me.xrtGrossLenghtFeet.BackColor = System.Drawing.Color.LightGray
     Me.xrtGrossLenghtFeet.Name = "xrtGrossLenghtFeet"
     Me.xrtGrossLenghtFeet.StylePriority.UseBackColor = False
-    Me.xrtGrossLenghtFeet.Weight = 0.4772994404835893R
+    Me.xrtGrossLenghtFeet.Weight = 0.41700946641201686R
     '
     'xrtBoardFeet
     '
     Me.xrtBoardFeet.BackColor = System.Drawing.Color.LightGray
     Me.xrtBoardFeet.Name = "xrtBoardFeet"
     Me.xrtBoardFeet.StylePriority.UseBackColor = False
-    Me.xrtBoardFeet.Weight = 0.56681795685063063R
+    Me.xrtBoardFeet.Weight = 0.52662424829389676R
     Me.xrtBoardFeet.XlsxFormatString = "n2"
     '
     'xrtMaterialTypeID
     '
     Me.xrtMaterialTypeID.Name = "xrtMaterialTypeID"
-    Me.xrtMaterialTypeID.Weight = 1.2625481220046149R
+    Me.xrtMaterialTypeID.Weight = 1.1319220294719834R
     '
     'xrtWoodSpecieID
     '
     Me.xrtWoodSpecieID.Name = "xrtWoodSpecieID"
-    Me.xrtWoodSpecieID.Weight = 0.98780629571070055R
+    Me.xrtWoodSpecieID.Weight = 1.0079007222907879R
     '
     'xrtQualityType
     '
     Me.xrtQualityType.Name = "xrtQualityType"
-    Me.xrtQualityType.Weight = 1.0120684086443579R
+    Me.xrtQualityType.Weight = 1.3939027434519558R
     '
     'TopMargin
     '
@@ -237,10 +237,10 @@ Partial Public Class repWorkOrderMatReqsWood
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.xrlTotalBoardFeet.Font = New System.Drawing.Font("Arial Narrow", 10.0!)
     Me.xrlTotalBoardFeet.ForeColor = System.Drawing.Color.White
-    Me.xrlTotalBoardFeet.LocationFloat = New DevExpress.Utils.PointFloat(630.0354!, 0!)
+    Me.xrlTotalBoardFeet.LocationFloat = New DevExpress.Utils.PointFloat(606.0771!, 0!)
     Me.xrlTotalBoardFeet.Name = "xrlTotalBoardFeet"
     Me.xrlTotalBoardFeet.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.xrlTotalBoardFeet.SizeF = New System.Drawing.SizeF(58.76013!, 45.83338!)
+    Me.xrlTotalBoardFeet.SizeF = New System.Drawing.SizeF(54.59344!, 45.83338!)
     Me.xrlTotalBoardFeet.StylePriority.UseBackColor = False
     Me.xrlTotalBoardFeet.StylePriority.UseBorderColor = False
     Me.xrlTotalBoardFeet.StylePriority.UseBorders = False
@@ -259,10 +259,10 @@ Partial Public Class repWorkOrderMatReqsWood
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel10.Font = New System.Drawing.Font("Arial Narrow", 10.0!, System.Drawing.FontStyle.Bold)
     Me.XrLabel10.ForeColor = System.Drawing.Color.Black
-    Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(479.5745!, 23.95833!)
+    Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(462.9079!, 23.95833!)
     Me.XrLabel10.Name = "XrLabel10"
     Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel10.SizeF = New System.Drawing.SizeF(150.4609!, 21.87502!)
+    Me.XrLabel10.SizeF = New System.Drawing.SizeF(143.1692!, 21.87502!)
     Me.XrLabel10.StylePriority.UseBackColor = False
     Me.XrLabel10.StylePriority.UseBorderColor = False
     Me.XrLabel10.StylePriority.UseBorders = False
@@ -280,10 +280,10 @@ Partial Public Class repWorkOrderMatReqsWood
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel9.Font = New System.Drawing.Font("Arial Narrow", 10.0!, System.Drawing.FontStyle.Bold)
     Me.XrLabel9.ForeColor = System.Drawing.Color.Black
-    Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(389.9569!, 23.95836!)
+    Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(369.1237!, 23.95836!)
     Me.XrLabel9.Name = "XrLabel9"
     Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel9.SizeF = New System.Drawing.SizeF(89.61758!, 21.87502!)
+    Me.XrLabel9.SizeF = New System.Drawing.SizeF(93.78427!, 21.87502!)
     Me.XrLabel9.StylePriority.UseBackColor = False
     Me.XrLabel9.StylePriority.UseBorderColor = False
     Me.XrLabel9.StylePriority.UseBorders = False
@@ -301,10 +301,10 @@ Partial Public Class repWorkOrderMatReqsWood
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel8.Font = New System.Drawing.Font("Arial Narrow", 10.0!, System.Drawing.FontStyle.Bold)
     Me.XrLabel8.ForeColor = System.Drawing.Color.Black
-    Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(289.125!, 23.95833!)
+    Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(254.75!, 23.95833!)
     Me.XrLabel8.Name = "XrLabel8"
     Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel8.SizeF = New System.Drawing.SizeF(100.8319!, 21.87502!)
+    Me.XrLabel8.SizeF = New System.Drawing.SizeF(114.3736!, 21.87502!)
     Me.XrLabel8.StylePriority.UseBackColor = False
     Me.XrLabel8.StylePriority.UseBorderColor = False
     Me.XrLabel8.StylePriority.UseBorders = False
@@ -322,10 +322,10 @@ Partial Public Class repWorkOrderMatReqsWood
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrLabel7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
     Me.XrLabel7.ForeColor = System.Drawing.Color.Black
-    Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(289.125!, 0!)
+    Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(254.75!, 0!)
     Me.XrLabel7.Name = "XrLabel7"
     Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel7.SizeF = New System.Drawing.SizeF(340.9104!, 23.95833!)
+    Me.XrLabel7.SizeF = New System.Drawing.SizeF(351.3271!, 23.95833!)
     Me.XrLabel7.StylePriority.UseBackColor = False
     Me.XrLabel7.StylePriority.UseBorderColor = False
     Me.XrLabel7.StylePriority.UseBorders = False
@@ -346,7 +346,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
     Me.XrLabel5.Name = "XrLabel5"
     Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel5.SizeF = New System.Drawing.SizeF(289.125!, 45.83337!)
+    Me.XrLabel5.SizeF = New System.Drawing.SizeF(254.75!, 45.83337!)
     Me.XrLabel5.StylePriority.UseBackColor = False
     Me.XrLabel5.StylePriority.UseBorderColor = False
     Me.XrLabel5.StylePriority.UseBorders = False
@@ -388,21 +388,21 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell1.CanGrow = False
     Me.XrTableCell1.Name = "XrTableCell1"
     Me.XrTableCell1.Text = "Componente"
-    Me.XrTableCell1.Weight = 1.801865963148656R
+    Me.XrTableCell1.Weight = 1.5808048084263633R
     '
     'XrTableCell2
     '
     Me.XrTableCell2.CanGrow = False
     Me.XrTableCell2.Name = "XrTableCell2"
     Me.XrTableCell2.Text = "Piezas unit."
-    Me.XrTableCell2.Weight = 0.45677571953360241R
+    Me.XrTableCell2.Weight = 0.42663220083461795R
     '
     'XrTableCell3
     '
     Me.XrTableCell3.CanGrow = False
     Me.XrTableCell3.Name = "XrTableCell3"
     Me.XrTableCell3.Text = "Total Piezas"
-    Me.XrTableCell3.Weight = 0.53034541971818672R
+    Me.XrTableCell3.Weight = 0.44995858184237419R
     '
     'XrTableCell7
     '
@@ -411,7 +411,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell7.Name = "XrTableCell7"
     Me.XrTableCell7.StylePriority.UseBackColor = False
     Me.XrTableCell7.Text = "Bruto plg"
-    Me.XrTableCell7.Weight = 0.51246010342711812R
+    Me.XrTableCell7.Weight = 0.582797335445808R
     '
     'XrTableCell8
     '
@@ -420,7 +420,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell8.Name = "XrTableCell8"
     Me.XrTableCell8.StylePriority.UseBackColor = False
     Me.XrTableCell8.Text = "Neto cm"
-    Me.XrTableCell8.Weight = 0.46019587002045664R
+    Me.XrTableCell8.Weight = 0.52048555685461739R
     '
     'XrTableCell9
     '
@@ -429,14 +429,14 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell9.Name = "XrTableCell9"
     Me.XrTableCell9.StylePriority.UseBackColor = False
     Me.XrTableCell9.Text = "Bruto plg"
-    Me.XrTableCell9.Weight = 0.48433782029016004R
+    Me.XrTableCell9.Weight = 0.38385559766349031R
     '
     'XrTableCell10
     '
     Me.XrTableCell10.CanGrow = False
     Me.XrTableCell10.Name = "XrTableCell10"
     Me.XrTableCell10.Text = "Neto cm"
-    Me.XrTableCell10.Weight = 0.38014078242410276R
+    Me.XrTableCell10.Weight = 0.52081583522508068R
     '
     'XrTableCell12
     '
@@ -445,14 +445,14 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell12.Name = "XrTableCell12"
     Me.XrTableCell12.StylePriority.UseBackColor = False
     Me.XrTableCell12.Text = "Bruto plg"
-    Me.XrTableCell12.Weight = 0.48557775334214848R
+    Me.XrTableCell12.Weight = 0.4453855119314386R
     '
     'XrTableCell14
     '
     Me.XrTableCell14.CanGrow = False
     Me.XrTableCell14.Name = "XrTableCell14"
     Me.XrTableCell14.Text = "Neto cm"
-    Me.XrTableCell14.Weight = 0.48851420004662816R
+    Me.XrTableCell14.Weight = 0.51865860189101R
     '
     'XrTableCell16
     '
@@ -461,7 +461,7 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell16.Name = "XrTableCell16"
     Me.XrTableCell16.StylePriority.UseBackColor = False
     Me.XrTableCell16.Text = "Bruto pies"
-    Me.XrTableCell16.Weight = 0.47729826215100279R
+    Me.XrTableCell16.Weight = 0.41700886969864115R
     '
     'XrTableCell19
     '
@@ -470,28 +470,28 @@ Partial Public Class repWorkOrderMatReqsWood
     Me.XrTableCell19.Name = "XrTableCell19"
     Me.XrTableCell19.StylePriority.UseBackColor = False
     Me.XrTableCell19.Text = "PT Bruto"
-    Me.XrTableCell19.Weight = 0.56681799746354766R
+    Me.XrTableCell19.Weight = 0.52662487290744053R
     '
     'XrTableCell21
     '
     Me.XrTableCell21.CanGrow = False
     Me.XrTableCell21.Name = "XrTableCell21"
     Me.XrTableCell21.Text = "Material"
-    Me.XrTableCell21.Weight = 1.2625481283476616R
+    Me.XrTableCell21.Weight = 1.1319215722381257R
     '
     'XrTableCell22
     '
     Me.XrTableCell22.CanGrow = False
     Me.XrTableCell22.Name = "XrTableCell22"
     Me.XrTableCell22.Text = "Especie"
-    Me.XrTableCell22.Weight = 0.98780573153451812R
+    Me.XrTableCell22.Weight = 1.0079014068106009R
     '
     'XrTableCell23
     '
     Me.XrTableCell23.CanGrow = False
     Me.XrTableCell23.Name = "XrTableCell23"
     Me.XrTableCell23.Text = "Calidad"
-    Me.XrTableCell23.Weight = 1.0120686780968144R
+    Me.XrTableCell23.Weight = 1.3939031219383153R
     '
     'ReportFooter
     '

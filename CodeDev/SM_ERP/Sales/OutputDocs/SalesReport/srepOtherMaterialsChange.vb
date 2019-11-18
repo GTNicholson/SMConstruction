@@ -41,7 +41,7 @@ Public Class srepOtherMaterialsChange
                                       ItemValueToDisplayValue(mMatReq.AreaID)
       xrtAreaID.Text = mAreaID.ToUpper
 
-      xrtDateChange.Text = mMatReq.DateChange.ToShortDateString
+      xrtDateChange.Text = mMatReq.DateOtherMaterial.ToShortDateString
 
       xrtMaterialDescription.Text = xrtMaterialDescription.Text.ToUpper
 
