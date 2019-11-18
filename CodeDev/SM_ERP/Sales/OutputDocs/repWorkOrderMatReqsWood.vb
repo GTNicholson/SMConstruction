@@ -42,7 +42,7 @@ Public Class repWorkOrderMatReqsWood
     xrtNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth", "{0:#.#}")
     xrtNetLenght.DataBindings.Add("Text", Me.DataSource, "NetLenght", "{0:#.#}")
 
-    xrtcTotalPieces.DataBindings.Add("Text", Me.DataSource, "TotalPieces_SMM", "{0:#.#}")
+    ''xrtcTotalPieces.DataBindings.Add("Text", Me.DataSource, "TotalPieces_SMM", "{0:#.#}")
 
     ''Function Area
     xrtGrossThickness.DataBindings.Add("Text", Me.DataSource, "InitialThicknessFraction")
@@ -85,7 +85,7 @@ Public Class repWorkOrderMatReqsWood
     Dim mMatReq As clsMaterialRequirementInfo
     mMatReq = CType(Me.GetCurrentRow, clsMaterialRequirementInfo)
     If mMatReq IsNot Nothing Then
-      ''xrtcTotalPieces.Text = mMatReq.TotalPieces ' (mMatReq.UnitPiece * pWorkOrder.Quantity) / mMatReq
+      xrtcTotalPieces.Text = mMatReq.TotalPieces ' (mMatReq.UnitPiece * pWorkOrder.Quantity) / mMatReq
 
       mWoodSpecieID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
                                    ItemValueToDisplayValue(mMatReq.WoodSpecieID)

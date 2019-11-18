@@ -29,7 +29,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtSupplierStockCode = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtComments = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xrtDateChange = New DevExpress.XtraReports.UI.XRTableCell()
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
@@ -75,7 +75,7 @@ Partial Public Class srepOtherMaterialsChange
     '
     'XrTableRow1
     '
-    Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtMaterialDescription, Me.xrtUoM, Me.xrtMaterialQuantity, Me.xrtAreaID, Me.xrtSupplierStockCode, Me.xrtComments, Me.XrTableCell12, Me.XrTableCell13})
+    Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtMaterialDescription, Me.xrtUoM, Me.xrtMaterialQuantity, Me.xrtAreaID, Me.xrtSupplierStockCode, Me.xrtComments, Me.XrTableCell12, Me.xrtDateChange})
     Me.XrTableRow1.Name = "XrTableRow1"
     Me.XrTableRow1.Weight = 1.0R
     '
@@ -170,18 +170,18 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.XrTableCell12.Weight = 1.2958912383135843R
     '
-    'XrTableCell13
+    'xrtDateChange
     '
-    Me.XrTableCell13.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+    Me.xrtDateChange.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-    Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 8.0!)
-    Me.XrTableCell13.Name = "XrTableCell13"
-    Me.XrTableCell13.StylePriority.UseBorders = False
-    Me.XrTableCell13.StylePriority.UseFont = False
-    Me.XrTableCell13.StylePriority.UseTextAlignment = False
-    Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell13.Weight = 1.0079140918034946R
+    Me.xrtDateChange.Font = New System.Drawing.Font("Arial", 8.0!)
+    Me.xrtDateChange.Name = "xrtDateChange"
+    Me.xrtDateChange.StylePriority.UseBorders = False
+    Me.xrtDateChange.StylePriority.UseFont = False
+    Me.xrtDateChange.StylePriority.UseTextAlignment = False
+    Me.xrtDateChange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+    Me.xrtDateChange.Weight = 1.0079140918034946R
     '
     'TopMargin
     '
@@ -397,5 +397,5 @@ Partial Public Class srepOtherMaterialsChange
   Friend WithEvents xrtSupplierStockCode As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtComments As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents xrtDateChange As DevExpress.XtraReports.UI.XRTableCell
 End Class

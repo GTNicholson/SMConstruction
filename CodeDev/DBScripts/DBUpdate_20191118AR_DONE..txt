@@ -4,3 +4,10 @@ go
 alter table materialrequirement
 add TotalPieces decimal
 go
+
+use SMConstruction
+go
+
+alter table materialrequirement
+add DateChange datetime
+go

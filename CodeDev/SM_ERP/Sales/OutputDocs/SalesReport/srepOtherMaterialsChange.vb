@@ -11,10 +11,7 @@ Public Class srepOtherMaterialsChange
 
   Private Sub srepOtherMaterialsChange_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     Dim msrepMatReqChanges As srepOtherMaterialsChange
-
     SetUpBindings()
-
-
     msrepMatReqChanges = New srepOtherMaterialsChange
     msrepMatReqChanges.DataSource = pMatReqChanges
   End Sub
@@ -43,6 +40,8 @@ Public Class srepOtherMaterialsChange
       mAreaID = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)).
                                       ItemValueToDisplayValue(mMatReq.AreaID)
       xrtAreaID.Text = mAreaID.ToUpper
+
+      xrtDateChange.Text = mMatReq.DateChange.ToShortDateString
 
       xrtMaterialDescription.Text = xrtMaterialDescription.Text.ToUpper
 

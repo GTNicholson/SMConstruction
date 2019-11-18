@@ -29,10 +29,12 @@ Public Class srepWorkOrderMatReqsWoodChanges
 
     ''xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xrtComponentDescription.DataBindings.Add("Text", Me.DataSource, "Description")
+    xrtcChangeReason.DataBindings.Add("Text", Me.DataSource, "Comments")
     xrtUnitPiece.DataBindings.Add("Text", Me.DataSource, "UnitPiece")
     xrtNetThickness.DataBindings.Add("Text", Me.DataSource, "NetThickness", "{0:#.#}")
     xrtNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth", "{0:#.#}")
     xrtNetLenght.DataBindings.Add("Text", Me.DataSource, "NetLenght", "{0:#.#}")
+    xrtGrossLenghtFeet.DataBindings.Add("Text", Me.DataSource, "InitialLenghtFractionFeet")
 
 
   End Sub
@@ -58,6 +60,7 @@ Public Class srepWorkOrderMatReqsWoodChanges
       mMaterialID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Material).
                                         ItemValueToDisplayValue(mMatReq.Material)
 
+      xrtcDate.Text = mMatReq.DateChange.ToShortDateString
       xrtWoodSpecieID.Text = mWoodSpecieID
       xrtQualityType.Text = mQuality
       xrtMaterialTypeID.Text = mMaterialID

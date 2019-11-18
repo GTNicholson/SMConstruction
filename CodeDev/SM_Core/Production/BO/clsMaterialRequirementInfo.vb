@@ -178,6 +178,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property DateChange As DateTime
+    Get
+      Return pMaterialRequirement.DateChange
+    End Get
+  End Property
+
   Public ReadOnly Property PiecesPerComponent As Decimal
     Get
       Return pMaterialRequirement.PiecesPerComponent

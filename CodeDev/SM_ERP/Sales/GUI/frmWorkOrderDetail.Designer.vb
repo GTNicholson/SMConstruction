@@ -138,6 +138,8 @@ Partial Class frmWorkOrderDetail
     Me.gcTotalQuantityChanges = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcBoardTableChanges = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMatReason = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcDateChange = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
     Me.XtraTabPage6 = New DevExpress.XtraTab.XtraTabPage()
     Me.grpMaterialRequirementOthers = New DevExpress.XtraEditors.GroupControl()
@@ -161,6 +163,7 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaIDChange = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcDateOtherMaterialChange = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
@@ -171,6 +174,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcOtherDateChange = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1425,7 +1429,7 @@ Partial Class frmWorkOrderDetail
     Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseFont = True
     Me.gvRequirmentMaterialsChanges.Appearance.ViewCaption.Options.UseForeColor = True
     Me.gvRequirmentMaterialsChanges.ColumnPanelRowHeight = 34
-    Me.gvRequirmentMaterialsChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn21, Me.gcMaterialChanges, Me.gcSpecieChanges, Me.gcQualityChanges, Me.gcTotalQuantityChanges, Me.gcBoardTableChanges, Me.GridColumn27})
+    Me.gvRequirmentMaterialsChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn21, Me.gcMaterialChanges, Me.gcSpecieChanges, Me.gcQualityChanges, Me.gcTotalQuantityChanges, Me.gcBoardTableChanges, Me.GridColumn27, Me.gcMatReason, Me.gcDateChange})
     Me.gvRequirmentMaterialsChanges.GridControl = Me.grdMaterialRequirementsChanges
     Me.gvRequirmentMaterialsChanges.Name = "gvRequirmentMaterialsChanges"
     Me.gvRequirmentMaterialsChanges.OptionsView.ShowGroupPanel = False
@@ -1445,7 +1449,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn14.Name = "GridColumn14"
     Me.GridColumn14.Visible = True
     Me.GridColumn14.VisibleIndex = 0
-    Me.GridColumn14.Width = 324
+    Me.GridColumn14.Width = 113
     '
     'GridColumn15
     '
@@ -1454,7 +1458,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn15.Name = "GridColumn15"
     Me.GridColumn15.Visible = True
     Me.GridColumn15.VisibleIndex = 1
-    Me.GridColumn15.Width = 137
+    Me.GridColumn15.Width = 56
     '
     'GridColumn16
     '
@@ -1463,7 +1467,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn16.Name = "GridColumn16"
     Me.GridColumn16.Visible = True
     Me.GridColumn16.VisibleIndex = 4
-    Me.GridColumn16.Width = 139
+    Me.GridColumn16.Width = 57
     '
     'GridColumn19
     '
@@ -1472,7 +1476,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn19.Name = "GridColumn19"
     Me.GridColumn19.Visible = True
     Me.GridColumn19.VisibleIndex = 5
-    Me.GridColumn19.Width = 150
+    Me.GridColumn19.Width = 63
     '
     'GridColumn21
     '
@@ -1481,7 +1485,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn21.Name = "GridColumn21"
     Me.GridColumn21.Visible = True
     Me.GridColumn21.VisibleIndex = 6
-    Me.GridColumn21.Width = 144
+    Me.GridColumn21.Width = 59
     '
     'gcMaterialChanges
     '
@@ -1490,7 +1494,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMaterialChanges.Name = "gcMaterialChanges"
     Me.gcMaterialChanges.Visible = True
     Me.gcMaterialChanges.VisibleIndex = 7
-    Me.gcMaterialChanges.Width = 110
+    Me.gcMaterialChanges.Width = 45
     '
     'gcSpecieChanges
     '
@@ -1499,7 +1503,7 @@ Partial Class frmWorkOrderDetail
     Me.gcSpecieChanges.Name = "gcSpecieChanges"
     Me.gcSpecieChanges.Visible = True
     Me.gcSpecieChanges.VisibleIndex = 8
-    Me.gcSpecieChanges.Width = 108
+    Me.gcSpecieChanges.Width = 45
     '
     'gcQualityChanges
     '
@@ -1508,7 +1512,7 @@ Partial Class frmWorkOrderDetail
     Me.gcQualityChanges.Name = "gcQualityChanges"
     Me.gcQualityChanges.Visible = True
     Me.gcQualityChanges.VisibleIndex = 9
-    Me.gcQualityChanges.Width = 103
+    Me.gcQualityChanges.Width = 43
     '
     'gcTotalQuantityChanges
     '
@@ -1518,7 +1522,7 @@ Partial Class frmWorkOrderDetail
     Me.gcTotalQuantityChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcTotalQuantityChanges.Visible = True
     Me.gcTotalQuantityChanges.VisibleIndex = 3
-    Me.gcTotalQuantityChanges.Width = 146
+    Me.gcTotalQuantityChanges.Width = 61
     '
     'gcBoardTableChanges
     '
@@ -1528,7 +1532,7 @@ Partial Class frmWorkOrderDetail
     Me.gcBoardTableChanges.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcBoardTableChanges.Visible = True
     Me.gcBoardTableChanges.VisibleIndex = 10
-    Me.gcBoardTableChanges.Width = 157
+    Me.gcBoardTableChanges.Width = 46
     '
     'GridColumn27
     '
@@ -1537,7 +1541,26 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn27.Name = "GridColumn27"
     Me.GridColumn27.Visible = True
     Me.GridColumn27.VisibleIndex = 2
-    Me.GridColumn27.Width = 104
+    Me.GridColumn27.Width = 43
+    '
+    'gcMatReason
+    '
+    Me.gcMatReason.Caption = "Razón de Cambio"
+    Me.gcMatReason.FieldName = "Comments"
+    Me.gcMatReason.Name = "gcMatReason"
+    Me.gcMatReason.Visible = True
+    Me.gcMatReason.VisibleIndex = 11
+    Me.gcMatReason.Width = 61
+    '
+    'gcDateChange
+    '
+    Me.gcDateChange.Caption = "Fecha"
+    Me.gcDateChange.DisplayFormat.FormatString = "d"
+    Me.gcDateChange.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.gcDateChange.FieldName = "DateChange"
+    Me.gcDateChange.Name = "gcDateChange"
+    Me.gcDateChange.Visible = True
+    Me.gcDateChange.VisibleIndex = 12
     '
     'XtraTabControl1
     '
@@ -1718,7 +1741,7 @@ Partial Class frmWorkOrderDetail
     Me.GridView1.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
     Me.GridView1.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.gcAreaIDChange, Me.GridColumn28, Me.GridColumn29})
+    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.gcAreaIDChange, Me.GridColumn28, Me.GridColumn29, Me.gcDateOtherMaterialChange, Me.gcOtherDateChange})
     Me.GridView1.GridControl = Me.grdMaterialRequirementOthersChange
     Me.GridView1.Name = "GridView1"
     Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -1738,7 +1761,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn23.Name = "GridColumn23"
     Me.GridColumn23.Visible = True
     Me.GridColumn23.VisibleIndex = 0
-    Me.GridColumn23.Width = 288
+    Me.GridColumn23.Width = 176
     '
     'GridColumn24
     '
@@ -1747,7 +1770,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn24.Name = "GridColumn24"
     Me.GridColumn24.Visible = True
     Me.GridColumn24.VisibleIndex = 1
-    Me.GridColumn24.Width = 80
+    Me.GridColumn24.Width = 49
     '
     'GridColumn25
     '
@@ -1756,7 +1779,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn25.Name = "GridColumn25"
     Me.GridColumn25.Visible = True
     Me.GridColumn25.VisibleIndex = 2
-    Me.GridColumn25.Width = 130
+    Me.GridColumn25.Width = 83
     '
     'gcAreaIDChange
     '
@@ -1765,7 +1788,7 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaIDChange.Name = "gcAreaIDChange"
     Me.gcAreaIDChange.Visible = True
     Me.gcAreaIDChange.VisibleIndex = 3
-    Me.gcAreaIDChange.Width = 146
+    Me.gcAreaIDChange.Width = 83
     '
     'GridColumn28
     '
@@ -1774,7 +1797,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn28.Name = "GridColumn28"
     Me.GridColumn28.Visible = True
     Me.GridColumn28.VisibleIndex = 4
-    Me.GridColumn28.Width = 166
+    Me.GridColumn28.Width = 86
     '
     'GridColumn29
     '
@@ -1782,8 +1805,19 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn29.FieldName = "Comments"
     Me.GridColumn29.Name = "GridColumn29"
     Me.GridColumn29.Visible = True
-    Me.GridColumn29.VisibleIndex = 5
-    Me.GridColumn29.Width = 242
+    Me.GridColumn29.VisibleIndex = 6
+    Me.GridColumn29.Width = 116
+    '
+    'gcDateOtherMaterialChange
+    '
+    Me.gcDateOtherMaterialChange.Caption = "Fecha"
+    Me.gcDateOtherMaterialChange.DisplayFormat.FormatString = "d"
+    Me.gcDateOtherMaterialChange.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.gcDateOtherMaterialChange.FieldName = "DateChange "
+    Me.gcDateOtherMaterialChange.Name = "gcDateOtherMaterialChange"
+    Me.gcDateOtherMaterialChange.Visible = True
+    Me.gcDateOtherMaterialChange.VisibleIndex = 5
+    Me.gcDateOtherMaterialChange.Width = 99
     '
     'XtraTabPage4
     '
@@ -1899,6 +1933,14 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.Visible = True
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
+    '
+    'gcOtherDateChange
+    '
+    Me.gcOtherDateChange.Caption = "Fecha"
+    Me.gcOtherDateChange.FieldName = "DateChange"
+    Me.gcOtherDateChange.Name = "gcOtherDateChange"
+    Me.gcOtherDateChange.Visible = True
+    Me.gcOtherDateChange.VisibleIndex = 7
     '
     'frmWorkOrderDetail
     '
@@ -2149,4 +2191,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcAreaIDChange As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMatReason As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcDateChange As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcDateOtherMaterialChange As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcOtherDateChange As DevExpress.XtraGrid.Columns.GridColumn
 End Class

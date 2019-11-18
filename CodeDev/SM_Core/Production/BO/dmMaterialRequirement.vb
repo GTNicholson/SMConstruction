@@ -20,6 +20,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pPiecesPerComponent As Decimal
   Private pTotalPieces As Decimal
 
+  Private pDateChange As DateTime
+
   Private pUoM As String
   Private pAreaID As Int32
   Private pSupplierStockCode As String
@@ -73,6 +75,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .WoodFinish = WoodFinish
       .WoodSpecie = WoodSpecie
       .TotalPieces = TotalPieces
+      .DateChange = DateChange
 
       .UoM = UoM
       .AreaID = AreaID
@@ -115,6 +118,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(ByVal value As String)
       If pSupplierStockCode <> value Then IsDirty = True
       pSupplierStockCode = value
+    End Set
+  End Property
+
+  Public Property DateChange() As DateTime
+    Get
+      Return pDateChange
+    End Get
+    Set(ByVal value As DateTime)
+      If pDateChange <> value Then IsDirty = True
+      pDateChange = value
     End Set
   End Property
 

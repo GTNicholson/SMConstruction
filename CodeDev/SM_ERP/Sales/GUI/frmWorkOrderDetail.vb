@@ -306,9 +306,6 @@ Public Class frmWorkOrderDetail
 
     End With
 
-
-
-
     pIsActive = mIsActive
   End Sub
 
@@ -740,9 +737,9 @@ Public Class frmWorkOrderDetail
 
               If IsNumeric(mMatReq.PiecesPerComponent) And mMatReq.PiecesPerComponent > 0 Then
                 mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-                ''mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
 
-                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mMatReq.TotalPieces, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+                ''mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mMatReq.TotalPieces, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
                 mValue = mValue
                 e.Value = mValue
               End If
@@ -833,15 +830,22 @@ Public Class frmWorkOrderDetail
   Private Sub gvRequirmentMaterialsChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvRequirmentMaterialsChanges.CustomUnboundColumnData
     Dim mMatReq As dmMaterialRequirement
 
+
+
     mMatReq = TryCast(e.Row, dmMaterialRequirement)
     If mMatReq IsNot Nothing Then
       Select Case e.Column.Name
         Case gcTotalQuantityChanges.Name
           If e.IsGetData Then
             If mMatReq.PiecesPerComponent <> 0 Then
-              '' e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
             End If
           End If
+
+          If e.IsSetData Then
+            mMatReq.PiecesPerComponent = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / e.Value
+          End If
+
         Case gcBoardTableChanges.Name
           Dim mValue As Decimal
           Dim mQty As Integer
