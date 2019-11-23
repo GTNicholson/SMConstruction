@@ -10,10 +10,13 @@ Public Class repOtherMaterials
   Private Sub repOtherMaterials_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     Dim msrepOtherMaterialChanges As srepOtherMaterialsChange
 
+    If pWorkOrder.isInternal = False Then
     xrlCustomerName.Text = (pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName).ToUpper
+      xrtStockCode.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
+    End If
+
     xrtProductDescription.Text = (pWorkOrder.Description).ToUpper
     xrtQuantity.Text = pWorkOrder.Quantity
-    xrtStockCode.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
 
     SetUpBindings()
 

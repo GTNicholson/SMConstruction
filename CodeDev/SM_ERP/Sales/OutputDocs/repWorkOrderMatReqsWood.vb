@@ -11,9 +11,11 @@ Public Class repWorkOrderMatReqsWood
   Private Sub repWorkOrderMatReqsWood_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     Dim msrepMatReqChanges As srepWorkOrderMatReqsWoodChanges
 
+    If pWorkOrder.isInternal = False Then
+      xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
+    End If
 
     xrlWorkOrderNo.Text = pWorkOrder.WorkOrderNo
-    xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
     xrlProductDescription.Text = pWorkOrder.Description
     xrtDateEntered.Text = pWorkOrder.PlannedStartDate
     xrtQuantity.Text = pWorkOrder.Quantity

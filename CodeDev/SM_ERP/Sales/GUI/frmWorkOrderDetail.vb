@@ -136,12 +136,16 @@ Public Class frmWorkOrderDetail
 
   Private Sub ConfigureFileControl()
     Dim mFileDirectory As String
-    mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+    If pFormController.WorkOrder.isInternal Then
+      UctFileControl1.Enabled = False
+    Else
+      mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
 
-    UctFileControl1.UserController = New uccFileControl(Me)
-    UctFileControl1.UserController.Directory = mFileDirectory
-    UctFileControl1.UserController.FileTrackers = pFormController.WorkOrder.WOFiles
-    UctFileControl1.UserController.ConfigSystemWatcher()
+      UctFileControl1.UserController = New uccFileControl(Me)
+      UctFileControl1.UserController.Directory = mFileDirectory
+      UctFileControl1.UserController.FileTrackers = pFormController.WorkOrder.WOFiles
+      UctFileControl1.UserController.ConfigSystemWatcher()
+    End If
 
   End Sub
 
@@ -293,16 +297,17 @@ Public Class frmWorkOrderDetail
 
       bteImage.Text = .ImageFile
 
-      UctFileControl1.LoadControls()
-      UctFileControl1.RefreshControls()
-
-      With pFormController.SalesOrderItem
-        txtPrice.Text = .UnitPrice
-        txtSalesQuantity.Text = .Quantity
-      End With
-
       RefreshProductControls()
-      RefreshSalesControls()
+
+      If pFormController.WorkOrder.isInternal = False Then
+        UctFileControl1.LoadControls()
+        UctFileControl1.RefreshControls()
+        RefreshSalesControls()
+        With pFormController.SalesOrderItem
+          txtPrice.Text = .UnitPrice
+          txtSalesQuantity.Text = .Quantity
+        End With
+      End If
 
     End With
 
@@ -420,27 +425,30 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub btneWorkOrderDocument_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btneWorkOrderDocument.ButtonClick
+    Dim mFilePath As String = String.Empty
 
-    If IsNothing(pFormController.SalesOrder.Customer) Then
-      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
-      Return
-
-    End If
     Try
-      Dim mFilePath As String = String.Empty
-      UpdateObject()
-      Select Case e.Button.Kind
-        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
-          AddWorkOrderDocument()
-          RefreshControls()
-        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
-          DeleteWorkOrderDocument()
-          RefreshControls()
-        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
-          ViewWorkOrderDocument()
-      End Select
+      If pFormController.WorkOrder.isInternal = False Then
+        If pFormController.SalesOrder IsNot Nothing Then
+          If pFormController.SalesOrder.Customer IsNot Nothing Then
+            MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+          End If
+        End If
+      Else
+        UpdateObject()
+        Select Case e.Button.Kind
+          Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
+            AddWorkOrderDocument()
+            RefreshControls()
+          Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
+            DeleteWorkOrderDocument()
+            RefreshControls()
+          Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
+            ViewWorkOrderDocument()
+        End Select
+      End If
     Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
   End Sub
@@ -457,10 +465,10 @@ Public Class frmWorkOrderDetail
     Dim mMatReqInfoChanges As New colMaterialRequirementInfos
     Dim mOtherMatInfoChanges As New colMaterialRequirementInfos
 
-    If IsNothing(pFormController.SalesOrder.Customer) Then
-      MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
-      Return
-    End If
+    ''If IsNothing(pFormController.SalesOrder.Customer) Then
+    ''  MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+    ''  Return
+    ''End If
 
 
     'Dim mMatReqInfos As New colMaterialRequirementInfos
@@ -563,7 +571,11 @@ Public Class frmWorkOrderDetail
 
     mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.WorkOrder.WorkOrderID
 
-    mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+    If pFormController.WorkOrder.isInternal = False Then
+      mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+    Else
+      mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+    End If
 
     mFileName &= ".pdf"
     mFileName = clsGeneralA.GetFileSafeName(mFileName)

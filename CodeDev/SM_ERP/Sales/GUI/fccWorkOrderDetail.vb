@@ -70,7 +70,10 @@ Public Class fccWorkOrderDetail
     Dim mdsoHR As dsoHR
     Dim mSOID As Integer
 
-    If pPrimaryKeyID <> 0 Then
+    If pPrimaryKeyID = 0 Then
+      '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
+      pWorkOrder = clsWorkOrderHandler.CreateInternalWorkOrder(eProductType.ProductFurniture)
+    Else
       If pWorkOrder Is Nothing Then
         mdso = New dsoSales(pDBConn)
 

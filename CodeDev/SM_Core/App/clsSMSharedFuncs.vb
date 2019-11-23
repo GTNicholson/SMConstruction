@@ -97,8 +97,11 @@ Public Class clsSMSharedFuncs
     Dim mExportDirectory As String = String.Empty
 
 
-
-    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
+    If rWorkOrder.isInternal = False Then
+      mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
+    Else
+      mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rWorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
+    End If
 
     If rWorkOrder.ImageFile <> "" Then
       mRetVal = IO.Path.Combine(mExportDirectory, rWorkOrder.ImageFile)

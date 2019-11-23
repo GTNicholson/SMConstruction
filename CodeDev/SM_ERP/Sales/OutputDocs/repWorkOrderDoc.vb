@@ -41,15 +41,18 @@ Public Class repWorkOrderDoc
     XrSubreport1.ReportSource = New srepWorkOrderSignOffs
 
     SetUpDataBindings()
-    xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
-    xrSalesOrderID.Text = pSalesOrder.OrderNo
+    If pWorkOrder.isInternal = False Then
+      xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
+      xrSalesOrderID.Text = pSalesOrder.OrderNo
+      xrtSalesOrderItemNumber.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
+    End If
+
     xrlOT2.Text = pWorkOrder.WorkOrderNo
     xrlDrawingDate.Text = pWorkOrder.DrawingDate
     xrtFinishDate.Text = pWorkOrder.PlannedDeliverDate
     xrtDate.Text = pWorkOrder.PlannedStartDate
     xrtEmployeeID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
     xrtEmployee2.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
-    xrtSalesOrderItemNumber.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
 
 
     If IsNothing(mPF) Then
