@@ -69,20 +69,20 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
     Try
       If pWorkOrderInfo Is Nothing Then SetObjectToNew()
 
-      With pWorkOrderInfo.WorkOrder
-        .WorkOrderID = DBReadInteger(rDataReader, "WorkOrderID")
-        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
-        .Quantity = DBReadInteger(rDataReader, "Quantity")
-        .Description = DBReadString(rDataReader, "Description")
-        .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
-        .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
-        .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
-        .EmployeeID = DBReadInteger(rDataReader, "EmployeeID")
-
-      End With
-
       Select Case pMode
         Case eMode.WorkOrderInfo, eMode.WorkOrderTracking
+
+          With pWorkOrderInfo.WorkOrder
+            .WorkOrderID = DBReadInteger(rDataReader, "WorkOrderID")
+            .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            .Quantity = DBReadInteger(rDataReader, "Quantity")
+            .Description = DBReadString(rDataReader, "Description")
+            .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
+            .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
+            .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
+            .EmployeeID = DBReadInteger(rDataReader, "EmployeeID")
+
+          End With
 
           With pWorkOrderInfo.SalesOrder
             .OrderNo = DBReadString(rDataReader, "OrderNo")
@@ -94,6 +94,21 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
           With pWorkOrderInfo.Customer
             .CompanyName = DBReadString(rDataReader, "CompanyName")
           End With
+
+        Case eMode.WorkOrderInfoInternal
+
+          With pWorkOrderInfo.WorkOrder
+            .WorkOrderID = DBReadInteger(rDataReader, "WorkOrderID")
+            .ProductTypeID = DBReadInteger(rDataReader, "ProductTypeID")
+            .Quantity = DBReadInteger(rDataReader, "Quantity")
+            .Description = DBReadString(rDataReader, "Description")
+            .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
+            .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
+            .WorkOrderType = DBReadInteger(rDataReader, "WorkOrderType")
+
+          End With
+
+
       End Select
 
       mOK = True

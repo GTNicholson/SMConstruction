@@ -340,6 +340,24 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadInternalWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos, ByVal vWhere As String) As Boolean
+    Dim mdto As dtoWorkOrderInfo
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderInfoInternal)
+      mdto.LoadWorkOrderInfoCollectionByWhere(rWorkOrderInfos, vWhere)
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+
   Public Function LoadSalesOrderItemWithWOs(ByRef rSalesOrderItem As dmSalesOrderItem, vID As Integer) As Boolean
     Dim mdto As dtoSalesOrderItem
     Dim mdtoWO As dtoWorkOrder

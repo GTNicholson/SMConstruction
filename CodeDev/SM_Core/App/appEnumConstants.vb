@@ -46,6 +46,7 @@ Public Enum eBrowseList
   Customer = 3
   SalesOrders = 4
   WorkOrder = 5
+  InternalWorkOrder = 6
 
 End Enum
 
