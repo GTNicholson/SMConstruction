@@ -9,17 +9,25 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
   Public Enum eMode
     WorkOrderInfo = 1
-    WorkOrderTracking = 2
+    WorkOrderInfoInternal = 2
+    WorkOrderTracking = 3
   End Enum
 
   Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vmode As eMode)
     MyBase.New(rDBSource)
     pMode = vmode
+    SetTableDetails()
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "vwWorkOrderInfo"
-    pKeyFieldName = "WorkOrderID"
+    Select Case pMode
+      Case eMode.WorkOrderInfo, eMode.WorkOrderTracking
+        pTableName = "vwWorkOrderInfo"
+        pKeyFieldName = "WorkOrderID"
+      Case eMode.WorkOrderInfoInternal
+        pTableName = "vwWorkOrderInternalInfo"   '// Axel this is a new query
+        pKeyFieldName = "WorkOrderID"
+    End Select
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
   End Sub
@@ -73,16 +81,20 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
       End With
 
-      With pWorkOrderInfo.SalesOrder
-        .OrderNo = DBReadString(rDataReader, "OrderNo")
-        .ProjectName = DBReadString(rDataReader, "ProjectName")
-        .DueTime = DBReadDate(rDataReader, "DueTime")
-        .FinishDate =DBReadDate(rDataReader, "FinishDate")
-      End With
+      Select Case pMode
+        Case eMode.WorkOrderInfo, eMode.WorkOrderTracking
 
-      With pWorkOrderInfo.Customer
-        .CompanyName = DBReadString(rDataReader, "CompanyName")
-      End With
+          With pWorkOrderInfo.SalesOrder
+            .OrderNo = DBReadString(rDataReader, "OrderNo")
+            .ProjectName = DBReadString(rDataReader, "ProjectName")
+            .DueTime = DBReadDate(rDataReader, "DueTime")
+            .FinishDate = DBReadDate(rDataReader, "FinishDate")
+          End With
+
+          With pWorkOrderInfo.Customer
+            .CompanyName = DBReadString(rDataReader, "CompanyName")
+          End With
+      End Select
 
       mOK = True
     Catch Ex As Exception
@@ -97,7 +109,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
   Protected Overrides Function SetObjectToNew() As Object
     Select Case pMode
-      Case eMode.WorkOrderInfo
+      Case eMode.WorkOrderInfo, eMode.WorkOrderInfoInternal
         pWorkOrderInfo = New clsWorkOrderInfo
       Case eMode.WorkOrderTracking
         pWorkOrderInfo = New clsWorkOrderTracking
