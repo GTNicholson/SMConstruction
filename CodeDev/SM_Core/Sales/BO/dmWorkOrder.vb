@@ -24,6 +24,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pFurnitureCategoryID As Int32
   Private pSubFurnitureCategoryID As Int32
   Private pPlannedDeliverDate As DateTime
+  Private pisInternal As Boolean
 
   Private pMachining As Boolean
   Private pAssembley As Boolean
@@ -114,6 +115,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .DrawingDate = DrawingDate
       .PlannedDeliverDate = PlannedDeliverDate
       .TotalPieces = TotalPieces
+      .isInternal = isInternal
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -145,6 +147,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Int32)
       If pWorkcentreID <> value Then IsDirty = True
       pWorkcentreID = value
+    End Set
+  End Property
+
+  Public Property isInternal() As Boolean
+    Get
+      Return pisInternal
+    End Get
+    Set(ByVal value As Boolean)
+      If pisInternal <> value Then IsDirty = True
+      pisInternal = value
     End Set
   End Property
 

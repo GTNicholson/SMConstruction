@@ -1,0 +1,23 @@
+use SmConstruction
+go
+
+CREATE TABLE dbo.Shift
+(
+ShiftID INT IDENTITY(1,1) NOT NULL,
+Description text
+CONSTRAINT pk_ShiftID PRIMARY KEY CLUSTERED (ShiftID)
+)
+ON [PRIMARY]
+go
+
+CREATE TABLE dbo.ShiftDetails 
+(
+ShiftDetailID INT IDENTITY(1,1) NOT NULL,
+ShiftID int,
+DayOfWeek tinyint,
+StartTime datetime,
+EndTime datetime
+CONSTRAINT pk_ShiftDetailID PRIMARY KEY CLUSTERED (ShiftDetailID)
+)
+ON [PRIMARY]
+go

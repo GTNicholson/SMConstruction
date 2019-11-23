@@ -171,7 +171,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("Agregar OT Interna", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Activar OT", eListOption.DefaultListOption)
         .AddListOption("Nueva OT", eListOption.DefaultListOption)
@@ -244,7 +244,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
       Me.SaveButton = eActiveVisibleState.Invisible
 
       Me.AddButton = eActiveVisibleState.Active
-      Me.AddButton = eActiveVisibleState.Invisible
+      ''Me.AddButton = eActiveVisibleState.Active
 
       Me.ViewButton = eActiveVisibleState.Active
       Me.EditButton = eActiveVisibleState.Active

@@ -120,6 +120,17 @@ Public Enum eProductType
   <Description("Estructura")> Strucutre = 2
 End Enum
 
+Public Enum eOrderType
+  <Description("Venta")> Sales = 2
+  <Description("Consumo Interno")> Interno = 1
+  <Description("Pre Venta")> PreSale = 3
+  <Description("Muestra de Acabado")> Sample = 4
+  <Description("Proyecto")> Project = 5
+  <Description("Mueble")> Furniture = 6
+
+
+End Enum
+
 
 Public Enum eMaterialRequirementType
   Wood = 1
@@ -245,6 +256,8 @@ Public Class clsConstants
 
   Public Const WorkOrderNoPrefix = "OT"
   Public Const SalesOrderPrefix = "SO"
+  Public Const SampleOrderPrexi = "IN"
+
 
   Public Const TaxRate = 0.15
 

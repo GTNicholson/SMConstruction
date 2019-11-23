@@ -88,6 +88,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPieces", .TotalPieces)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "isInternal", .isInternal)
+
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QtyPerSalesItem", .QtyPerSalesItem)
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
@@ -131,6 +133,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .MetalWork = DBReadBoolean(rDataReader, "MetalWork")
         .Upholstery = DBReadBoolean(rDataReader, "Upholstery")
         .SubContract = DBReadBoolean(rDataReader, "SubContract")
+
+        .isInternal = DBReadBoolean(rDataReader, "isInternal")
 
         .QtyPerSalesItem = DBReadInt32(rDataReader, "QtyPerSalesItem")
         .DrawingDate = DBReadDate(rDataReader, "DrawingDate")

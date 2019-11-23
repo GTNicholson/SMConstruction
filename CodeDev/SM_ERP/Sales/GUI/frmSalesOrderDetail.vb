@@ -136,7 +136,12 @@ Public Class frmSalesOrderDetail
 
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
+    ''RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
+
+    mVIs = clsEnumsConstants.EnumToVIs(GetType(eOrderType))
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, mVIs)
+
+
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus))
 
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)

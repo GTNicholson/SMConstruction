@@ -51,7 +51,7 @@ Partial Public Class srepOtherMaterialsChange
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-    Me.Detail.HeightF = 21.875!
+    Me.Detail.HeightF = 61.09069!
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -65,7 +65,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
     Me.XrTable1.Name = "XrTable1"
     Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-    Me.XrTable1.SizeF = New System.Drawing.SizeF(813.0!, 20.45835!)
+    Me.XrTable1.SizeF = New System.Drawing.SizeF(1054.0!, 58.63971!)
     Me.XrTable1.StylePriority.UseBackColor = False
     Me.XrTable1.StylePriority.UseBorders = False
     Me.XrTable1.StylePriority.UseFont = False
@@ -90,7 +90,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtMaterialDescription.StylePriority.UseFont = False
     Me.xrtMaterialDescription.StylePriority.UseTextAlignment = False
     Me.xrtMaterialDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtMaterialDescription.Weight = 1.8833991565114059R
+    Me.xrtMaterialDescription.Weight = 2.4298434723018505R
     '
     'xrtUoM
     '
@@ -103,7 +103,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtUoM.StylePriority.UseFont = False
     Me.xrtUoM.StylePriority.UseTextAlignment = False
     Me.xrtUoM.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtUoM.Weight = 0.63302358609590037R
+    Me.xrtUoM.Weight = 0.7149887238569812R
     '
     'xrtMaterialQuantity
     '
@@ -116,7 +116,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtMaterialQuantity.StylePriority.UseFont = False
     Me.xrtMaterialQuantity.StylePriority.UseTextAlignment = False
     Me.xrtMaterialQuantity.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtMaterialQuantity.Weight = 0.83470441429487008R
+    Me.xrtMaterialQuantity.Weight = 0.90301096371734568R
     '
     'xrtAreaID
     '
@@ -129,7 +129,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtAreaID.StylePriority.UseFont = False
     Me.xrtAreaID.StylePriority.UseTextAlignment = False
     Me.xrtAreaID.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtAreaID.Weight = 0.633805520693283R
+    Me.xrtAreaID.Weight = 1.0163147132079495R
     '
     'xrtSupplierStockCode
     '
@@ -142,7 +142,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtSupplierStockCode.StylePriority.UseFont = False
     Me.xrtSupplierStockCode.StylePriority.UseTextAlignment = False
     Me.xrtSupplierStockCode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtSupplierStockCode.Weight = 1.1825791284019749R
+    Me.xrtSupplierStockCode.Weight = 1.059628785262773R
     '
     'xrtComments
     '
@@ -155,7 +155,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtComments.StylePriority.UseFont = False
     Me.xrtComments.StylePriority.UseTextAlignment = False
     Me.xrtComments.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtComments.Weight = 1.591561311646081R
+    Me.xrtComments.Weight = 2.0150585161330672R
     '
     'XrTableCell12
     '
@@ -168,7 +168,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell12.StylePriority.UseFont = False
     Me.XrTableCell12.StylePriority.UseTextAlignment = False
     Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell12.Weight = 1.2958912383135843R
+    Me.XrTableCell12.Weight = 2.4980654161685094R
     '
     'xrtDateChange
     '
@@ -181,11 +181,11 @@ Partial Public Class srepOtherMaterialsChange
     Me.xrtDateChange.StylePriority.UseFont = False
     Me.xrtDateChange.StylePriority.UseTextAlignment = False
     Me.xrtDateChange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.xrtDateChange.Weight = 1.0079140918034946R
+    Me.xrtDateChange.Weight = 1.1125037807410267R
     '
     'TopMargin
     '
-    Me.TopMargin.HeightF = 92.0!
+    Me.TopMargin.HeightF = 8.666656!
     Me.TopMargin.Name = "TopMargin"
     Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -207,10 +207,10 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrLabel16.BorderWidth = 2.0!
     Me.XrLabel16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
     Me.XrLabel16.ForeColor = System.Drawing.Color.Black
-    Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
+    Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 17.70831!)
     Me.XrLabel16.Name = "XrLabel16"
     Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-    Me.XrLabel16.SizeF = New System.Drawing.SizeF(813.0!, 32.2917!)
+    Me.XrLabel16.SizeF = New System.Drawing.SizeF(1054.0!, 32.2917!)
     Me.XrLabel16.StylePriority.UseBackColor = False
     Me.XrLabel16.StylePriority.UseBorderColor = False
     Me.XrLabel16.StylePriority.UseBorders = False
@@ -237,7 +237,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.0!)
     Me.XrTable6.Name = "XrTable6"
     Me.XrTable6.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow14})
-    Me.XrTable6.SizeF = New System.Drawing.SizeF(813.0!, 28.79168!)
+    Me.XrTable6.SizeF = New System.Drawing.SizeF(1054.0!, 28.79168!)
     Me.XrTable6.StylePriority.UseBackColor = False
     Me.XrTable6.StylePriority.UseBorders = False
     Me.XrTable6.StylePriority.UseFont = False
@@ -263,7 +263,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell2.StylePriority.UseTextAlignment = False
     Me.XrTableCell2.Text = "DESCRIPCIÓN / PRODUCTO"
     Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell2.Weight = 1.8833991565114059R
+    Me.XrTableCell2.Weight = 2.4298432171569231R
     '
     'XrTableCell3
     '
@@ -277,7 +277,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell3.StylePriority.UseTextAlignment = False
     Me.XrTableCell3.Text = "U/M"
     Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell3.Weight = 0.63302358609590037R
+    Me.XrTableCell3.Weight = 0.71498838366374506R
     '
     'XrTableCell5
     '
@@ -291,7 +291,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell5.StylePriority.UseTextAlignment = False
     Me.XrTableCell5.Text = "CANTIDAD"
     Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell5.Weight = 0.83470441429487008R
+    Me.XrTableCell5.Weight = 0.90301164410381818R
     '
     'XrTableCell48
     '
@@ -305,7 +305,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell48.StylePriority.UseTextAlignment = False
     Me.XrTableCell48.Text = "ÁREA"
     Me.XrTableCell48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell48.Weight = 0.63380586088651925R
+    Me.XrTableCell48.Weight = 1.016313692628241R
     '
     'XrTableCell49
     '
@@ -319,7 +319,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell49.StylePriority.UseTextAlignment = False
     Me.XrTableCell49.Text = "CÓDIGO"
     Me.XrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell49.Weight = 1.1825787031604294R
+    Me.XrTableCell49.Weight = 1.0596304862289536R
     '
     'XrTableCell50
     '
@@ -333,7 +333,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell50.StylePriority.UseTextAlignment = False
     Me.XrTableCell50.Text = "RAZÓN DEL CAMBIO"
     Me.XrTableCell50.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell50.Weight = 1.5915613966943898R
+    Me.XrTableCell50.Weight = 2.0150563899253404R
     '
     'XrTableCell1
     '
@@ -347,7 +347,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell1.StylePriority.UseTextAlignment = False
     Me.XrTableCell1.Text = "AUTORIZA"
     Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell1.Weight = 1.2958912383135843R
+    Me.XrTableCell1.Weight = 2.4980660965549815R
     '
     'XrTableCell4
     '
@@ -361,12 +361,15 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell4.StylePriority.UseTextAlignment = False
     Me.XrTableCell4.Text = "FECHA"
     Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-    Me.XrTableCell4.Weight = 1.0079140918034946R
+    Me.XrTableCell4.Weight = 1.1125044611274995R
     '
     'srepOtherMaterialsChange
     '
     Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
-    Me.Margins = New System.Drawing.Printing.Margins(27, 9, 92, 18)
+    Me.Landscape = True
+    Me.Margins = New System.Drawing.Printing.Margins(27, 9, 9, 18)
+    Me.PageHeight = 850
+    Me.PageWidth = 1100
     Me.Version = "17.1"
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).EndInit()
