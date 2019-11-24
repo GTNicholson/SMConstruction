@@ -367,7 +367,7 @@ Public Class frmSalesOrderDetail
           If mWOI IsNot Nothing Then
             UpdateObjects()
             pFormController.SaveObjects()
-            frmWorkOrderDetail.OpenFormModalWithObjects(mWOI.WorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance)
+            frmWorkOrderDetail.OpenFormModalWithObjects(mWOI.WorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance, False)
             '// in one work order form it is possible
             pFormController.RefreshWorkOrderNos(mWOI.WorkOrder.ParentSalesOrderItem)
             RefreshControls()

@@ -9,11 +9,13 @@ Public Class fccWorkOrderDetail
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
   Private pTimeSheetEntrys As colTimeSheetEntrys
+  Private pIsInternal As Boolean
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pTimeSheetEntrys = New colTimeSheetEntrys
+    pIsInternal = vIsInternal
   End Sub
 
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
@@ -75,28 +77,33 @@ Public Class fccWorkOrderDetail
       pWorkOrder = clsWorkOrderHandler.CreateInternalWorkOrder(eProductType.ProductFurniture)
     Else
       If pWorkOrder Is Nothing Then
-        mdso = New dsoSales(pDBConn)
 
-        mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
+        If pIsInternal = False Then
+          mdso = New dsoSales(pDBConn)
 
-        pSalesOrder = New dmSalesOrder
-        mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
+          mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
 
-        For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-          For Each mWO As dmWorkOrder In mSOI.WorkOrders
-            If mWO.WorkOrderID = pPrimaryKeyID Then
-              pWorkOrder = mWO
-              pSalesOrderItem = mSOI
-              Exit For
-            End If
+          pSalesOrder = New dmSalesOrder
+          mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
+
+          For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+            For Each mWO As dmWorkOrder In mSOI.WorkOrders
+              If mWO.WorkOrderID = pPrimaryKeyID Then
+                pWorkOrder = mWO
+                pSalesOrderItem = mSOI
+                Exit For
+              End If
+            Next
+            If pWorkOrder IsNot Nothing Then Exit For
           Next
-          If pWorkOrder IsNot Nothing Then Exit For
-        Next
-      Else
-        '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
-        pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
+          '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
+          pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
+        Else
+          mdso = New dsoSales(pDBConn)
+          pWorkOrder = New dmWorkOrder
+          mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
+        End If
       End If
-
       mdsoHR = New dsoHR(pDBConn)
       pTimeSheetEntrys = New colTimeSheetEntrys
       mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)

@@ -22,9 +22,6 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
   End Sub
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
-    Dim mReloadData As Boolean = False
-    frmWorkOrderDetail.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
-    Return mReloadData
   End Function
 
   Public Overrides Function EditButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.EditButtonClicked
@@ -34,13 +31,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmWorkOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
-      'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
-
-      'Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
-      '  Case eAddEditDeleteView.DefaultForm
-
-      'End Select
+      frmWorkOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, False)
     End If
     Return mReloadData
   End Function

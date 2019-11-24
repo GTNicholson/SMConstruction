@@ -36,7 +36,7 @@ Public Class frmWorkOrderDetail
     pSOI = New dmSalesOrderItem()
   End Sub
 
-  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
+  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByVal vIsInternal As Boolean)
     Dim mfrm As frmWorkOrderDetail = Nothing
 
     If vPrimaryKeyID <> 0 Then
@@ -44,7 +44,7 @@ Public Class frmWorkOrderDetail
     End If
     If mfrm Is Nothing Then
       mfrm = New frmWorkOrderDetail
-      mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
+      mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal, vIsInternal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.Show()
@@ -54,12 +54,12 @@ Public Class frmWorkOrderDetail
 
   End Sub
 
-  Public Shared Sub OpenFormModalWithObjects(ByRef rWorkOrder As dmWorkOrder, ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Shared Sub OpenFormModalWithObjects(ByRef rWorkOrder As dmWorkOrder, ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     Dim mfrm As frmWorkOrderDetail = Nothing
 
 
     mfrm = New frmWorkOrderDetail
-    mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
+    mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal, vIsInternal)
     mfrm.pFormController.WorkOrder = rWorkOrder
     mfrm.pFormController.SalesOrder = rSalesOrder
     mfrm.FormController.PrimaryKeyID = rWorkOrder.WorkOrderID

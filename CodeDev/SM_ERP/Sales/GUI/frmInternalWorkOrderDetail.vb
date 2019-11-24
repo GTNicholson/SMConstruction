@@ -44,7 +44,7 @@ Public Class frmInternalWorkOrderDetail
     End If
     If mfrm Is Nothing Then
       mfrm = New frmInternalWorkOrderDetail
-      mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
+      mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal, True)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.Show()
@@ -59,7 +59,7 @@ Public Class frmInternalWorkOrderDetail
 
 
     mfrm = New frmInternalWorkOrderDetail
-    mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal)
+    mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal, True)
     mfrm.pFormController.WorkOrder = rWorkOrder
     mfrm.pFormController.SalesOrder = rSalesOrder
     mfrm.FormController.PrimaryKeyID = rWorkOrder.WorkOrderID
