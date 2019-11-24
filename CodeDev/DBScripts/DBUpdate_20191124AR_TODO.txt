@@ -5,3 +5,13 @@ SELECT        WO.WorkOrderID, WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, WO.
                          WO.WorkOrderType
 FROM            dbo.WorkOrder AS WO INNER JOIN
                          dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+
+go
+
+alter view vwWorkOrderInternalInfo
+as
+
+SELECT        WO.WorkOrderID, WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, WO.Description, WO.PlannedStartDate, WO.PlannedDeliverDate, CONCAT(Emp.FirstName, ' ', Emp.LastName)  AS EmployeeName, 
+                         WO.WorkOrderType,wo.UnitPrice,Emp.EmployeeID
+FROM            dbo.WorkOrder AS WO INNER JOIN
+                         dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
