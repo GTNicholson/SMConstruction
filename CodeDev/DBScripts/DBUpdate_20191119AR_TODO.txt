@@ -1,8 +1,10 @@
 use SMConstruction
 go
 
+go
 ALTER View vwWorkOrderInfo
 as
+
 
 SELECT      WO.WorkOrderID,  WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, 
 			WO.Description, WO.PlannedStartDate, SO.ProjectName, SO.OrderTypeID,
