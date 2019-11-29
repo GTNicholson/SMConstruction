@@ -79,7 +79,7 @@ Partial Class Form1
     '
     'GridColumn2
     '
-    Me.GridColumn2.Caption = "ProductTypeID"
+    Me.GridColumn2.Caption = "Tipo de Producto"
     Me.GridColumn2.FieldName = "ProductTypeID"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True

@@ -50,4 +50,24 @@ Public Class dsoProduction
     Return mRetVal
   End Function
 
+  Public Function LoadShiftsDownConnected(ByRef rShifts As colShifts) As Boolean
+    Dim mdto As dtoShift
+    Dim mdtoShifDetail As dtoShiftDetails
+    Dim mRetVal As Boolean
+    Try
+      mdto = New dtoShift(pDBConn)
+      mdto.LoadShiftCollection(rShifts)
+
+      mdtoShifDetail = New dtoShiftDetails(pDBConn)
+
+      For Each mShift As dmShift In rShifts
+        mdtoShifDetail.LoadShiftDetailsCollection(mShift.ShifDetails, mShift.ShiftID)
+      Next
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+    Return mRetVal
+  End Function
 End Class

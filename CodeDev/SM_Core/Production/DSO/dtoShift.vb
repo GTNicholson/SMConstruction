@@ -112,10 +112,9 @@ Public Class dtoShift : Inherits dtoBase
   End Function
 
 
-  Public Function LoadShiftCollection(ByRef rShifts As colShifts, ByVal vParentID As Integer) As Boolean
+  Public Function LoadShiftCollection(ByRef rShifts As colShifts) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
     mOK = MyBase.LoadCollection(rShifts, mParams, "ShiftID")
     rShifts.TrackDeleted = True
     If mOK Then rShifts.IsDirty = False

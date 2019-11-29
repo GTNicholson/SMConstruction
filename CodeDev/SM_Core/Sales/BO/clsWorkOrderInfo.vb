@@ -80,6 +80,11 @@
     End Get
   End Property
 
+  Public ReadOnly Property PlannedDeliverDate As DateTime
+    Get
+      Return pWorkOrder.PlannedDeliverDate
+    End Get
+  End Property
 
 
   Public ReadOnly Property UnitPrice As Decimal

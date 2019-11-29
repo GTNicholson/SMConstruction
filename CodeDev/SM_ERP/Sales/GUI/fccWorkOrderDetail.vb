@@ -318,8 +318,16 @@ Public Class fccWorkOrderDetail
   End Function
 
   Public Sub UpdateWorkOrderQtyPerSalesItem(ByVal vNewValue As Integer)
-    pWorkOrder.QtyPerSalesItem = vNewValue
-    pWorkOrder.Quantity = pWorkOrder.QtyPerSalesItem * pWorkOrder.ParentSalesOrderItem.Quantity
+
+    If pWorkOrder.isInternal = False Then
+      pWorkOrder.QtyPerSalesItem = vNewValue
+      pWorkOrder.Quantity = pWorkOrder.QtyPerSalesItem * pWorkOrder.ParentSalesOrderItem.Quantity
+    Else
+      pWorkOrder.QtyPerSalesItem = vNewValue
+      pWorkOrder.Quantity = pWorkOrder.QtyPerSalesItem
+    End If
+
+
 
   End Sub
 

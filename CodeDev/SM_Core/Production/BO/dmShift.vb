@@ -4,6 +4,7 @@ Imports RTIS.CommonVB
 Public Class dmShift : Inherits dmBase
   Private pShiftID As Int32
   Private pDescription As String
+  Private pShiftDetails As colShiftDetailss
 
   Public Sub New()
     MyBase.New()
@@ -11,6 +12,8 @@ Public Class dmShift : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pShiftDetails = New colShiftDetailss
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -19,13 +22,21 @@ Public Class dmShift : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pShiftDetails = Nothing
+
     MyBase.Finalize()
+
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then
+        mAnyDirty = pShiftDetails.IsDirty
+
+      End If
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -40,6 +51,7 @@ Public Class dmShift : Inherits dmBase
       .ShiftID = ShiftID
       .Description = Description
       'Add entries here for each collection and class property
+      .ShifDetails = pShiftDetails.Clone
 
       'Entries for object management
 
@@ -57,6 +69,18 @@ Public Class dmShift : Inherits dmBase
       pShiftID = value
     End Set
   End Property
+
+  Public Property ShifDetails() As colShiftDetailss
+    Get
+      Return pShiftDetails
+    End Get
+    Set(ByVal value As colShiftDetailss)
+      pShiftDetails = value
+    End Set
+  End Property
+
+
+
 
   Public Property Description() As String
     Get

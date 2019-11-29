@@ -269,6 +269,7 @@ Public Class frmWorkOrderDetail
         Me.Text = "O.T. " & .WorkOrderNo
       End If
 
+
       txtQtyPerSalesItem.Text = .QtyPerSalesItem
 
       txtQuantity.Text = .Quantity
@@ -738,7 +739,13 @@ Public Class frmWorkOrderDetail
         Case gcTotalQuantity.Name
           If e.IsGetData Then
             If mMatReq.PiecesPerComponent <> 0 Then
-              e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+              If pFormController.IsInternal = False Then
+                e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
+              Else
+
+              End If
+
+
             End If
           End If
           If e.IsSetData Then

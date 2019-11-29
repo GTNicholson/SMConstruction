@@ -120,7 +120,7 @@ Public Class dtoShiftDetails : Inherits dtoBase
   Public Function LoadShiftDetailsCollection(ByRef rShiftDetailss As colShiftDetailss, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@ShiftID", vParentID)
     mOK = MyBase.LoadCollection(rShiftDetailss, mParams, "ShiftDetailID")
     rShiftDetailss.TrackDeleted = True
     If mOK Then rShiftDetailss.IsDirty = False
@@ -134,7 +134,7 @@ Public Class dtoShiftDetails : Inherits dtoBase
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
+      mParams.Add("@ShiftID", vParentID)
       ''Approach where delete items not found in the collection
       ''If rCollection.SomeRemoved Then
       ''  For Each Me.pShiftDetails In rCollection

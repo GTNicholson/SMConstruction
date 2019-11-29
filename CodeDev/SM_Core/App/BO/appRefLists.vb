@@ -21,6 +21,8 @@ Public Class appRefLists : Inherits colRefLists
   Public Const Quality As Integer = 14
   Public Const FurnitureCategory As Integer = 15
   Public Const SubCategory As Integer = 16
+  Public Const Shift As Integer = 17
+
 
 
   Public Sub New()
@@ -44,6 +46,7 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(Quality, "Quality", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(FurnitureCategory, "FurnitureCategory", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(SubCategory, "SubCategory", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(Shift, "Shift", clsRefListItem.eLoadMode.Unloaded)
 
   End Sub
 

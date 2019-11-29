@@ -131,7 +131,12 @@ Public Class dsoAppRefLists
         Case appRefLists.FurnitureCategory
           mItem.IList = LoadFurnitureCategory()
           mOK = True
-
+        Case appRefLists.Shift
+          Dim mDso As dsoProduction
+          Dim mShifts As New colShifts
+          mDso = New dsoProduction(pDBConn)
+          mDso.LoadShiftsDownConnected(mShifts)
+          mItem.IList = mShifts
 
       End Select
       mItem = Nothing
