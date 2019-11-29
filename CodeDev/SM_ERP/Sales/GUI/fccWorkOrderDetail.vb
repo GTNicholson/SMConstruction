@@ -16,6 +16,7 @@ Public Class fccWorkOrderDetail
     pRTISGlobal = rRTISGlobal
     pTimeSheetEntrys = New colTimeSheetEntrys
     pIsInternal = vIsInternal
+
   End Sub
 
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
@@ -48,6 +49,15 @@ Public Class fccWorkOrderDetail
     End Get
     Set(value As dmSalesOrder)
       pSalesOrder = value
+    End Set
+  End Property
+
+  Public Property IsInternal As Boolean
+    Get
+      Return WorkOrder.isInternal
+    End Get
+    Set(value As Boolean)
+      WorkOrder.isInternal = value
     End Set
   End Property
 

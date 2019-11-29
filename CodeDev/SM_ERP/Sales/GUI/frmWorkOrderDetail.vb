@@ -16,6 +16,7 @@ Public Class frmWorkOrderDetail
   Private pIsActive As Boolean
   Private pFormController As fccWorkOrderDetail
   Public ExitMode As Windows.Forms.DialogResult
+  Public IsInternal As New Boolean
   Public pSOI As dmSalesOrderItem
 
   Private Enum eCopyPasteButton
@@ -136,6 +137,8 @@ Public Class frmWorkOrderDetail
 
   Private Sub ConfigureFileControl()
     Dim mFileDirectory As String
+
+
     If pFormController.WorkOrder.isInternal Then
       UctFileControl1.Enabled = False
     Else

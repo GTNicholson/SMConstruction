@@ -1,0 +1,34 @@
+use SMConstruction
+go
+
+go
+ALTER View vwWorkOrderInfo
+as
+
+
+SELECT      WO.WorkOrderID,  WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, 
+			WO.Description, WO.PlannedStartDate, SO.ProjectName, SO.OrderTypeID,
+			SO.OrderStatusENUM, SO.OrderNo, SO.CustomerRef, SO.ContractManagerID, 
+            SO.BusinessSectorID, C.CompanyName, C.SalesAreaID, WO.unitPrice,Concat(emp.FirstName, ' ',emp.LastName) as EmployeeName
+			,so.DueTime,So.FinishDate,wo.workordertype, wo.EmployeeID
+			
+
+FROM        dbo.WorkOrder AS WO 
+			Inner JOIN dbo.SalesOrderItem SOI ON SOI.SalesOrderItemID = WO.SalesOrderItemID
+			Inner JOIN dbo.SalesOrder SO ON SO.SalesOrderID = WO.SalesOrderID
+			LEFT OUTER JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID
+			LEFT OUTER JOIN dbo.Employee AS Emp ON emp.EmployeeID = wo.employeeID
+Where Isnull(IsInternal,0) = 0
+
+go
+
+ALTER view vwWorkOrderInternalInfo
+as
+
+SELECT        WO.WorkOrderID, WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, WO.Description, WO.PlannedStartDate, WO.PlannedDeliverDate, CONCAT(Emp.FirstName, ' ', Emp.LastName)  AS EmployeeName, 
+                         WO.WorkOrderType,wo.UnitPrice,Emp.EmployeeID
+FROM            dbo.WorkOrder AS WO Left JOIN
+                         dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+Where IsInternal = 1
+
+go
