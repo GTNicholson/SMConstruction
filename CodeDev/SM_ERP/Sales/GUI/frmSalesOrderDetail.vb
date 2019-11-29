@@ -786,14 +786,20 @@ Public Class frmSalesOrderDetail
     Try
       Dim mFilePath As String = String.Empty
       Dim mInitDir As String = String.Empty
+      Dim mSourceFile As String
 
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
 
-          mInitDir = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), AppRTISGlobal.GetInstance.PodioPath)
-          '' mFilePath = mInitDir
-          If RTIS.CommonVB.clsGeneralA.GetFolderName(mFilePath, "Selecciona la carpeta de Podio", mInitDir) = DialogResult.OK Then
-            pFormController.SalesOrder.PodioPath = mFilePath
+          mSourceFile = pFormController.SalesOrder.OutputDocuments.GetFilePath(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
+          If IO.File.Exists(mSourceFile) Then
+            mInitDir = IO.Path.Combine(Environment.GetFolderPath(SpecialFolder.UserProfile), AppRTISGlobal.GetInstance.PodioPath)
+            mFilePath = "OrdenDeVenta" & pFormController.SalesOrder.OrderNo & ".pdf"
+            mFilePath = RTIS.CommonVB.clsGeneralA.GetFileSafeName(mFilePath)
+            If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFilePath, "Guardar Archivo en Podio", mInitDir) = DialogResult.OK Then
+              IO.File.Copy(mSourceFile, mFilePath, True)
+              pFormController.SalesOrder.PodioPath = mFilePath
+            End If
             RefreshControls()
           End If
 

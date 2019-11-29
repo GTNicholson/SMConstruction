@@ -122,8 +122,8 @@ Public Class dsoSales
 
       ''mdtoSOFiles = New dtoFileTracker(pDBConn)
       ''mdtoSOFiles.SaveFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
-      ''mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-      ''mdtoOutputDocs.SaveOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID)
+      mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+      mdtoOutputDocs.SaveOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID)
 
 
       pDBConn.Disconnect()
@@ -207,8 +207,8 @@ Public Class dsoSales
 
     Next
 
-    ''mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-    ''mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
+    mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+    mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
 
     pDBConn.Disconnect()
 

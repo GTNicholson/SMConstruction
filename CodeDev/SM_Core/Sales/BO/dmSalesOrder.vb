@@ -71,6 +71,7 @@ Public Class dmSalesOrder : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pSalesOrderItems.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
