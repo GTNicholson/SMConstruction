@@ -82,38 +82,41 @@ Public Class fccWorkOrderDetail
     Dim mdsoHR As dsoHR
     Dim mSOID As Integer
 
+    mdso = New dsoSales(pDBConn)
+
     If pPrimaryKeyID = 0 Then
       '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
       pWorkOrder = clsWorkOrderHandler.CreateInternalWorkOrder(eProductType.ProductFurniture)
     Else
-      If pWorkOrder Isnot Nothing Then
+      If pWorkOrder Is Nothing Then '//Not already loaded
+        pWorkOrder = New dmWorkOrder
+        mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
+      End If
 
-        If pIsInternal = False Then
-          mdso = New dsoSales(pDBConn)
-
+      '// if it is a salesorder, check that the remaining details have been loaded and assigned
+      If pIsInternal = False Then
+        If pSalesOrder Is Nothing Then
           mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
 
           pSalesOrder = New dmSalesOrder
           mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
 
-          For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-            For Each mWO As dmWorkOrder In mSOI.WorkOrders
-              If mWO.WorkOrderID = pPrimaryKeyID Then
-                pWorkOrder = mWO
-                pSalesOrderItem = mSOI
-                Exit For
-              End If
-            Next
-            If pWorkOrder IsNot Nothing Then Exit For
-          Next
-          '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
-          pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
-        Else
-          mdso = New dsoSales(pDBConn)
-          pWorkOrder = New dmWorkOrder
-          mdso.LoadWorkOrderDown(pWorkOrder, pPrimaryKeyID)
         End If
+        For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+          For Each mWO As dmWorkOrder In mSOI.WorkOrders
+            If mWO.WorkOrderID = pPrimaryKeyID Then
+              pWorkOrder = mWO
+              pSalesOrderItem = mSOI
+              Exit For
+            End If
+          Next
+          If pWorkOrder IsNot Nothing Then Exit For
+        Next
+
+        '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
+        pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
       End If
+
       mdsoHR = New dsoHR(pDBConn)
       pTimeSheetEntrys = New colTimeSheetEntrys
       mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)
