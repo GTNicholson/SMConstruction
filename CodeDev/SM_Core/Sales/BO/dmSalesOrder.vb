@@ -31,6 +31,8 @@ Public Class dmSalesOrder : Inherits dmBase
 
   Private pCustomer As dmCustomer
   Private pSalesOrderItems As colSalesOrderItems
+
+  Private pSalesOrderItemDM As dmSalesOrderItem
   ''Private pWorkOrders As colWorkOrders
 
   Private pOutputDocuments As colOutputDocuments
@@ -45,6 +47,7 @@ Public Class dmSalesOrder : Inherits dmBase
     ''pWorkOrders = New colWorkOrders
     pSalesOrderItems = New colSalesOrderItems
     pOutputDocuments = New colOutputDocuments
+    pSalesOrderItemDM = New dmSalesOrderItem
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -72,6 +75,9 @@ Public Class dmSalesOrder : Inherits dmBase
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pSalesOrderItems.IsDirty
       If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pSalesOrderItems.IsDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -403,6 +409,15 @@ Public Class dmSalesOrder : Inherits dmBase
     End Get
     Set(value As colSalesOrderItems)
       pSalesOrderItems = value
+    End Set
+  End Property
+
+  Public Property SalesOrderItemsDM As dmSalesOrderItem
+    Get
+      Return pSalesOrderItemDM
+    End Get
+    Set(value As dmSalesOrderItem)
+      pSalesOrderItemDM = value
     End Set
   End Property
 

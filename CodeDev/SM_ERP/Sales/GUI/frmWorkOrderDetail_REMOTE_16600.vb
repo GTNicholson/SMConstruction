@@ -64,6 +64,9 @@ Public Class frmWorkOrderDetail
     mfrm.pFormController.WorkOrder = rWorkOrder
     mfrm.pFormController.SalesOrder = rSalesOrder
     mfrm.FormController.PrimaryKeyID = rWorkOrder.WorkOrderID
+
+    ''new changes A.R.
+    mfrm.pFormController.SalesOrderItem = rSalesOrder.SalesOrderItemsDM
     ''mfrm.ParentForm = rParent
     mfrm.ShowDialog()
 
@@ -434,11 +437,27 @@ Public Class frmWorkOrderDetail
     Try
       If pFormController.WorkOrder.isInternal = False Then
         If pFormController.SalesOrder IsNot Nothing Then
-          If pFormController.SalesOrder.Customer IsNot Nothing Then
+          If pFormController.SalesOrder.Customer Is Nothing Then
             MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+          Else
+            UpdateObject()
+            Select Case e.Button.Kind
+              Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
+                AddWorkOrderDocument()
+                RefreshControls()
+              Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
+                DeleteWorkOrderDocument()
+                RefreshControls()
+              Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
+                ViewWorkOrderDocument()
+            End Select
           End If
+
+
+
         End If
       Else
+
         UpdateObject()
         Select Case e.Button.Kind
           Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
