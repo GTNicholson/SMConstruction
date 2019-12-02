@@ -430,15 +430,18 @@ Public Class frmWorkOrderDetail
 
   Private Sub btneWorkOrderDocument_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btneWorkOrderDocument.ButtonClick
     Dim mFilePath As String = String.Empty
+    Dim mOK As Boolean = True
 
     Try
       If pFormController.WorkOrder.isInternal = False Then
         If pFormController.SalesOrder IsNot Nothing Then
-          If pFormController.SalesOrder.Customer IsNot Nothing Then
+          If pFormController.SalesOrder.Customer Is Nothing Then
             MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
+            mOK = False
           End If
         End If
-      Else
+      End If
+      If mOK Then
         UpdateObject()
         Select Case e.Button.Kind
           Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus

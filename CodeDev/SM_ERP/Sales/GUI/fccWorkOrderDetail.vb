@@ -86,7 +86,7 @@ Public Class fccWorkOrderDetail
       '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
       pWorkOrder = clsWorkOrderHandler.CreateInternalWorkOrder(eProductType.ProductFurniture)
     Else
-      If pWorkOrder Is Nothing Then
+      If pWorkOrder Isnot Nothing Then
 
         If pIsInternal = False Then
           mdso = New dsoSales(pDBConn)
