@@ -67,7 +67,7 @@
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="Caption">Tipo de Producto</property>
+      <property name="Caption">ProductTypeID</property>
       <property name="FieldName">ProductTypeID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>

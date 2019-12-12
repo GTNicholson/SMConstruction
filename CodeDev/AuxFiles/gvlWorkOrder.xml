@@ -46,7 +46,7 @@
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="11">
+  <property name="Columns" iskey="true" value="8">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -57,123 +57,66 @@
       <property name="ColumnEditName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
-      <property name="Name">GridColumn6</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption"># Orden de Compra</property>
-      <property name="FieldName">OrderNo</property>
+      <property name="Name">GridColumn1</property>
+      <property name="Caption">WorkOrderNo</property>
+      <property name="FieldName">WorkOrderNo</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">124</property>
+      <property name="Width">107</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
-      <property name="Name">GridColumn10</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Cliente</property>
-      <property name="FieldName">CompanyName</property>
+      <property name="Name">GridColumn2</property>
+      <property name="Caption">Tipo de Producto</property>
+      <property name="FieldName">ProductTypeID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">123</property>
+      <property name="Width">99</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Descripcion</property>
-      <property name="FieldName">Description</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
-      <property name="Visible">true</property>
-      <property name="Width">117</property>
-    </property>
-    <property name="Item5" isnull="true" iskey="true">
-      <property name="Name">Quantity</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Cantidad</property>
+      <property name="Caption">Quantity</property>
       <property name="FieldName">Quantity</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item6" isnull="true" iskey="true">
-      <property name="Name">GridColumn1</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption"># Orden de Trabajo</property>
-      <property name="FieldName">WorkOrderNo</property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Name">GridColumn4</property>
+      <property name="Caption">Description</property>
+      <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">122</property>
+      <property name="Width">126</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Name">GridColumn5</property>
+      <property name="Caption">PlannedStartDate</property>
+      <property name="FieldName">PlannedStartDate</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">4</property>
+      <property name="Visible">true</property>
+      <property name="Width">109</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
-      <property name="Name">GridColumn2</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Tipo de OT</property>
+      <property name="Name">GridColumn6</property>
+      <property name="Caption">PlannedDeliverDate</property>
+      <property name="FieldName">PlannedDeliverDate</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+      <property name="Width">115</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Name">GridColumn7</property>
+      <property name="Caption">WorkOrderType</property>
       <property name="FieldName">WorkOrderType</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">74</property>
-    </property>
-    <property name="Item8" isnull="true" iskey="true">
-      <property name="Name">GridColumn4</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Proyecto</property>
-      <property name="FieldName">ProjectName</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
-      <property name="Visible">true</property>
-      <property name="Width">155</property>
-    </property>
-    <property name="Item9" isnull="true" iskey="true">
-      <property name="Name">GridColumn16</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Fecha Producción</property>
-      <property name="FieldName">PlannedStartDate</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
-      <property name="Visible">true</property>
-      <property name="Width">100</property>
-    </property>
-    <property name="Item10" isnull="true" iskey="true">
-      <property name="Name">GridColumn17</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Fecha de Compromiso</property>
-      <property name="FieldName">FinishDate</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
-      <property name="Visible">true</property>
-      <property name="Width">135</property>
-    </property>
-    <property name="Item11" isnull="true" iskey="true">
-      <property name="Name">GridColumn18</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Fecha Despachada</property>
-      <property name="FieldName">DueTime</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
-      <property name="Visible">true</property>
-      <property name="Width">111</property>
+      <property name="Width">215</property>
     </property>
   </property>
   <property name="ViewCaption" />
