@@ -106,11 +106,11 @@ Public Class fccWorkOrderDetail
           For Each mWO As dmWorkOrder In mSOI.WorkOrders
             If mWO.WorkOrderID = pPrimaryKeyID Then
               pWorkOrder = mWO
-              pSalesOrderItem = mSOI
+              pWorkOrder.ParentSalesOrderItem = msoi
               Exit For
             End If
           Next
-          If pWorkOrder IsNot Nothing Then Exit For
+          If pWorkOrder.ParentSalesOrderItem IsNot Nothing Then Exit For
         Next
 
         '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
