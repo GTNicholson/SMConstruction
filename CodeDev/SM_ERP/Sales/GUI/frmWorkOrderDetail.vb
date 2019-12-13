@@ -445,8 +445,10 @@ Public Class frmWorkOrderDetail
         UpdateObject()
         Select Case e.Button.Kind
           Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
+
             AddWorkOrderDocument()
-            RefreshControls()
+              RefreshControls()
+
           Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
             DeleteWorkOrderDocument()
             RefreshControls()
@@ -459,6 +461,7 @@ Public Class frmWorkOrderDetail
     End Try
 
   End Sub
+
 
   Public Sub AddWorkOrderDocument()
     Dim mValidate As clsValidate
@@ -560,6 +563,12 @@ Public Class frmWorkOrderDetail
 
     Select Case vDocType
       Case eDocumentType.WorkOrderDoc
+
+        If pFormController.WorkOrder IsNot Nothing Then
+          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
+        End If
+
+      Case eDocumentType.InternalWorkOrder
 
         If pFormController.WorkOrder IsNot Nothing Then
           mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)

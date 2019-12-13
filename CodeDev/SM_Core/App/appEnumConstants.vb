@@ -81,6 +81,7 @@ End Enum
 Public Enum eParentType
   WorkOrder = 1
   SalesOrder = 2
+  InternalWorkOrder = 3
 End Enum
 
 Public Enum eFileType
@@ -92,10 +93,12 @@ End Enum
 Public Enum eDocumentType
   WorkOrderDoc = 1
   SalesOrder = 2
+  InternalWorkOrder = 3
 End Enum
 
 Public Enum eTallyIDs
   WorkOrder = 1
+  InternalWorkOrder = 2
 End Enum
 
 Public Enum eWorkCentre

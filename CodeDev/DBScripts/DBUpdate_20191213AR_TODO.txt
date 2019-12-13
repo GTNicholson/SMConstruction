@@ -1,0 +1,11 @@
+alter view vwWorkOrderInfo
+as
+
+SELECT        WO.WorkOrderID, WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, WO.Description, WO.PlannedStartDate,Wo.PlannedDeliverDate, SO.ProjectName, SO.OrderTypeID, SO.OrderStatusENUM, SO.OrderNo, SO.CustomerRef, SO.ContractManagerID, 
+                         SO.BusinessSectorID, C.CompanyName, C.SalesAreaID, WO.UnitPrice, CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName, SO.DueTime, SO.FinishDate, WO.WorkOrderType, WO.EmployeeID
+FROM            dbo.WorkOrder AS WO INNER JOIN
+                         dbo.SalesOrderItem AS SOI ON SOI.SalesOrderItemID = WO.SalesOrderItemID INNER JOIN
+                         dbo.SalesOrder AS SO ON SO.SalesOrderID = WO.SalesOrderID LEFT OUTER JOIN
+                         dbo.Customer AS C ON C.CustomerID = SO.CustomerID LEFT OUTER JOIN
+                         dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE        (ISNULL(WO.isInternal, 0) = 0)
