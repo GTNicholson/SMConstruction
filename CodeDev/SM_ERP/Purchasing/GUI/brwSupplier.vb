@@ -3,7 +3,7 @@ Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 
-Public Class brwWorkOrder : Inherits brwBrowserListBase
+Public Class brwSupplier : Inherits brwBrowserListBase
 
   Public Enum eListOption
     DefaultListOption = 1
@@ -22,6 +22,9 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
   End Sub
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
+    Dim mReloadData As Boolean = False
+    frmSupplierDetail.OpenFormMDI(0, pDBConn, rForm.ParentForm)
+    Return mReloadData
   End Function
 
   Public Overrides Function EditButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.EditButtonClicked
@@ -31,7 +34,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmWorkOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, False)
+      frmSupplierDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SupplierID")), pDBConn, rForm.ParentForm)
     End If
     Return mReloadData
   End Function
@@ -74,18 +77,16 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
-    Dim mWOIs As New colWorkOrderInfos
-    Dim mDSO As New dsoSales(pDBConn)
-
-
+    Dim mDataTable As DataTable
     Dim mOK As Boolean
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
-      mDSO.LoadWorkOrderInfos(mWOIs, "")
+      DBConn.Connect()
+      mDataTable = Me.DBConn.CreateDataTable("Select * From Supplier Order By CompanyName")
 
-      gridBrowseList.DataSource = mWOIs
+      gridBrowseList.DataSource = mDataTable
 
       '
       'mOK = mdsoSalesQuote.LoadCustomerTable(mDataTable) 'TODO - Restrict to Live quotes etc.
@@ -97,6 +98,9 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(libProductDefinition.PartType)))
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
+
+
+
 
       'gridBrowseList.Update()
       gridBrowseList.Refresh()
@@ -162,22 +166,22 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("Agregar OT Interna", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar OT", eListOption.DefaultListOption)
-        .AddListOption("Nueva OT", eListOption.DefaultListOption)
-        .AddListOption("OT Caducada", eListOption.DefaultListOption)
+        .AddListOption("Activar Proveedor", eListOption.DefaultListOption)
+        .AddListOption("Nuevo Proveedor", eListOption.DefaultListOption)
+        .AddListOption("Proveedores Caducados", eListOption.DefaultListOption)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
         '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)
         '.AddDeleteOption("Delete Option2", eAddEditDeleteView.AlternateForm)
-        ''.AddViewOption("View Work Order Enquiries", eAddEditDeleteView.AlternateForm)
+        .AddViewOption("Ver Entrada de Proveedores", eAddEditDeleteView.AlternateForm)
 
-        ''.AddProcessOption("Mail-shot active Work Order", AddressOf BatchProcessExecute)
-        ''.AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
-        ''.AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
-        ''.AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
+        .AddProcessOption("Mail-shot active suppliers", AddressOf BatchProcessExecute)
+        .AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
+        .AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
+        .AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
 
 
         '' If Don't want the first button to be the default
@@ -214,19 +218,14 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWorkOrder.xml")
-      ListTitle = "Ordenes de Trabajo"
+      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSupplier.xml")
+      ListTitle = "Lista de Proveedores"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 
       gridBrowseList.RepositoryItems.Clear()
       gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
       mGridView = gridBrowseList.MainView
-
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("ProductTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WorkOrderType))
-
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("ProductTypeID"), clsEnumsConstants.EnumToVIs(GetType(eProductType)))
-
       ''Set lookup columns
 
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(ePartType)))
@@ -234,11 +233,16 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
       ' gridBrowseList.Refresh()
 
+
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SupplierStatusID"), clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
+
+
       Me.SaveButton = eActiveVisibleState.Invisible
 
       Me.AddButton = eActiveVisibleState.Active
-      ''Me.AddButton = eActiveVisibleState.Active
-
       Me.ViewButton = eActiveVisibleState.Active
       Me.EditButton = eActiveVisibleState.Active
       If My.Application.RTISUserSession.ActivityPermission(eActivityCode.ForceLockRemoval) >= ePermissionCode.ePC_Full Then
@@ -344,8 +348,8 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
-    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWorkOrder.xml")
-    ListTitle = "Lista de Órdenes de Trabajo"
+    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSupplier.xml")
+    ListTitle = "Lista de Proveedores"
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"
 

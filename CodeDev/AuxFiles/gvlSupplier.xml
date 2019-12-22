@@ -46,82 +46,69 @@
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="8">
+  <property name="Columns" iskey="true" value="7">
     <property name="Item1" isnull="true" iskey="true">
-      <property name="Name">GridColumn12</property>
+      <property name="Name">gcSupplierID</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">ID</property>
-      <property name="FieldName">WorkOrderID</property>
+      <property name="Caption">SupplierID</property>
+      <property name="FieldName">SupplierID</property>
       <property name="ColumnEditName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
-      <property name="Name">GridColumn1</property>
-      <property name="Caption">Número de OT</property>
-      <property name="FieldName">WorkOrderNo</property>
+      <property name="Name">gcCompanyName</property>
+      <property name="Caption">Company Name</property>
+      <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">123</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
-      <property name="Name">gcProductType</property>
-      <property name="Caption">Tipo de Producto</property>
-      <property name="FieldName">ProductTypeID</property>
+      <property name="Name">gcSupplierStatusID</property>
+      <property name="Caption">Status</property>
+      <property name="FieldName">SupplierStatusID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">156</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
-      <property name="Name">GridColumn3</property>
-      <property name="Caption">Cantidad</property>
-      <property name="FieldName">Quantity</property>
+      <property name="Name">gcParentSupplierID</property>
+      <property name="Caption">Parent Supplier</property>
+      <property name="FieldName">ParentSupplierID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">117</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
-      <property name="Name">GridColumn4</property>
-      <property name="Caption">Descripción</property>
-      <property name="FieldName">Description</property>
+      <property name="Name">gcAccountCode</property>
+      <property name="Caption">Account Code</property>
+      <property name="FieldName">AccountCode</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">123</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
-      <property name="Name">GridColumn5</property>
-      <property name="Caption">Fecha Plan. Inicio</property>
-      <property name="FieldName">PlannedStartDate</property>
+      <property name="Name">gcTelNo</property>
+      <property name="Caption">Te lNo</property>
+      <property name="FieldName">TelNo</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">141</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
-      <property name="Name">GridColumn6</property>
-      <property name="Caption">Fecha Plan. Entrega</property>
-      <property name="FieldName">PlannedDeliverDate</property>
+      <property name="Name">gcSalesAreaID</property>
+      <property name="Caption">País</property>
+      <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">139</property>
-    </property>
-    <property name="Item8" isnull="true" iskey="true">
-      <property name="Name">GridColumn7</property>
-      <property name="Caption">Costo Est. de OT</property>
-      <property name="FieldName">UnitPrice</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
-      <property name="Visible">true</property>
-      <property name="Width">143</property>
-      <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">N2</property>
-        <property name="FormatType">Numeric</property>
-      </property>
     </property>
   </property>
   <property name="ViewCaption" />

@@ -63,6 +63,7 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
         .StartTime = DBReadDateTime(rDataReader, "StartTime")
         .EndTime = DBReadDateTime(rDataReader, "EndTime")
         .Note = DBReadString(rDataReader, "Note")
+        .OverTimeMinutes = DBReadInt32(rDataReader, "OverTimeMinutes")
       End With
 
       With pTimeSheetEntryInfo.WorkOrder

@@ -20,6 +20,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pPiecesPerComponent As Decimal
   Private pTotalPieces As Decimal
   Private pDateOtherMaterial As DateTime
+  Private pStockItemID As Int32
 
   Private pDateChange As DateTime
 
@@ -78,6 +79,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .TotalPieces = TotalPieces
       .DateChange = DateChange
       .DateOtherMaterial = DateOtherMaterial
+      .StockItemID = StockItemID
 
       .UoM = UoM
       .AreaID = AreaID
@@ -110,6 +112,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(ByVal value As Int32)
       If pAreaID <> value Then IsDirty = True
       pAreaID = value
+    End Set
+  End Property
+
+  Public Property StockItemID() As Int32
+    Get
+      Return pStockItemID
+    End Get
+    Set(ByVal value As Int32)
+      If pStockItemID <> value Then IsDirty = True
+      pStockItemID = value
     End Set
   End Property
 

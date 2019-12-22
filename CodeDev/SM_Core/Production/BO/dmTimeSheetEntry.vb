@@ -11,6 +11,7 @@ Public Class dmTimeSheetEntry : Inherits dmBase
   Private pEndTime As DateTime
   Private pBreakMins As Integer
   Private pNote As String
+  Private pOverTimeMinutes As Integer
 
   Public Sub New()
     MyBase.New()
@@ -52,6 +53,7 @@ Public Class dmTimeSheetEntry : Inherits dmBase
       .EndTime = EndTime
       .BreakMins = BreakMins
       .Note = Note
+      .OverTimeMinutes = OverTimeMinutes
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -163,6 +165,15 @@ Public Class dmTimeSheetEntry : Inherits dmBase
     End Set
   End Property
 
+  Public Property OverTimeMinutes() As Int32
+    Get
+      Return pOverTimeMinutes
+    End Get
+    Set(ByVal value As Int32)
+      If pOverTimeMinutes <> value Then IsDirty = True
+      pOverTimeMinutes = value
+    End Set
+  End Property
 
 End Class
 

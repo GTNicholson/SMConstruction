@@ -1,0 +1,53 @@
+use smconstruction
+go
+
+CREATE TABLE dbo.StockTake
+(
+StockTakeID                        INT IDENTITY(1,1) NOT NULL,
+StockTakeTypeID                    TINYINT,
+Description                         VARCHAR(100),
+StockTakeDate                      DATETIME,
+CreatedDate                         DATETIME,
+SnapshotDateTime                    DATETIME,
+DateCommitted                       DATETIME,
+RangeStockCodeStart                 VARCHAR(32),
+RangeStockCodeEnd                   VARCHAR(32),
+DateSystemQty                       DATETIME,
+CONSTRAINT PK_StockTake PRIMARY KEY CLUSTERED (StockTakeID)
+)
+ON [PRIMARY]
+
+
+CREATE TABLE dbo.StockTakeItem
+(
+StockTakeItemID                    INT IDENTITY(1,1) NOT NULL,
+StockTakeID                        INT,
+StockItemID                         INT,
+StockItemLocationID                 TINYINT,
+SalesOrderPhaseID                   INT,
+SnapshotQty                         DECIMAL(10, 4),
+CountedQty                          DECIMAL(10, 4),
+CreatedDate                         DATETIME,
+TotalValue                          MONEY,
+IsCounted                           BIT,
+SnapShotStockQty                    DECIMAL(10, 4),
+SnapShotCostingQuantity             DECIMAL(10, 4),
+SnapShotUnitCost                    DECIMAL(10, 4),
+StockItemCategoryID                 INT,
+StockTakeSheetID                    INT,
+SystemTotalValue                    DECIMAL(10, 4),
+CountedTotalValue                   DECIMAL(10, 4),
+CONSTRAINT PK_StockTakeItem PRIMARY KEY CLUSTERED ( StockTakeItemID )
+)
+ON [PRIMARY]
+
+
+CREATE TABLE dbo.StockItemLocation
+(
+StockItemLocationID                 INT IDENTITY(1,1) NOT NULL,
+StockItemID                         INT,
+LocationID                          TINYINT,
+Qty                                 DECIMAL(10, 4),
+CONSTRAINT pk_StockItemLocation PRIMARY KEY CLUSTERED ( StockItemLocationID )
+)
+ON [PRIMARY]

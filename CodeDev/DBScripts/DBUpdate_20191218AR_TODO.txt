@@ -1,0 +1,134 @@
+
+CREATE TABLE [dbo].[MaterialRequirementForcasting](
+	[MaterialRequirementForcastingID] [int] IDENTITY(1,1) NOT NULL,
+	[ObjectType] [tinyint] NULL,
+	[ObjectID] [int] NULL,
+	[StockCode] [varchar](25) NULL,
+	[Description] [text] NULL,
+	[Quantity] [decimal](9, 3) NULL,
+	[MaterialRequirementType] [tinyint] NULL,
+	[UnitPiece] [int] NULL,
+	[NetThickness] [decimal](9, 2) NULL,
+	[NetWidth] [decimal](9, 2) NULL,
+	[NetLenght] [decimal](9, 2) NULL,
+	[QualityType] [int] NULL,
+	[MaterialTypeID] [int] NULL,
+	[WoodSpecie] [int] NULL,
+	[WoodFinish] [int] NULL,
+	[UoM] [text] NULL,
+	[AreaID] [int] NULL,
+	[SupplierStockCode] [varchar](15) NULL,
+	[Comments] [varchar](255) NULL,
+	[PiecesPerComponent] [decimal](9, 3) NULL,
+	[TotalPieces] [decimal](18, 0) NULL,
+	[DateChange] [datetime] NULL,
+	[DateOtherMaterial] [datetime] NULL,
+ CONSTRAINT [pk_MaterialRequirementForcastingID] PRIMARY KEY CLUSTERED 
+(
+	[MaterialRequirementForcastingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+
+alter table MaterialRequirement
+add StockItemID int
+
+go
+
+alter table MaterialRequirementForcasting
+add StockItemID int
+go
+
+GO
+
+CREATE TABLE [dbo].[StockItem](
+	[StockItemID] [int] IDENTITY(1,1) NOT NULL,
+	[StockCode] [varchar](25) NULL,
+	[Category] [tinyint] NULL,
+	[ItemType] [tinyint] NULL,
+	[Species] [int] NULL,
+	[Colour] [varchar](25) NULL,
+	[PartNo] [varchar](25) NULL,
+	[Length] [decimal](10, 4) NULL,
+	[Width] [decimal](10, 4) NULL,
+	[Thickness] [decimal](10, 4) NULL,
+	[Description] [varchar](255) NULL,
+	[StockQuantity] [decimal](10, 4) NULL,
+	[DefaultSupplier] [int] NULL,
+	[Finish] [tinyint] NULL,
+	[ShortDescription] [varchar](100) NULL,
+	[SubItemType] [int] NULL,
+	[StockFinanceCategoryID] [int] NULL,
+	[ExtraInfo] [varchar](1000) NULL,
+	[Handing] [tinyint] NULL,
+	[OppositeStockItemID] [int] NULL,
+	[IsGeneric] [bit] NULL,
+	[TemplateStockItemID] [int] NULL,
+	[Inactive] [bit] NULL,
+	[InterdenStockItemID] [int] NULL,
+	[ProjectID] [int] NULL,
+ CONSTRAINT [pk_StockItem] PRIMARY KEY CLUSTERED 
+(
+	[StockItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[StockItem] ADD  DEFAULT ((0)) FOR [StockFinanceCategoryID]
+GO
+
+CREATE TABLE [dbo].[StockItemType](
+	[StockItemTypeID] [int] IDENTITY(1,1) NOT NULL,
+	[DisplayOrder] [int] NULL,
+	[Abbreviation] [varchar](10) NULL,
+	[Description] [varchar](500) NULL,
+	[Value] [int] NULL,
+	[ArchiveOnly] [bit] NULL,
+	[Category] [int] NOT NULL,
+ CONSTRAINT [PK_ItemType] PRIMARY KEY CLUSTERED 
+(
+	[StockItemTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[StockItemType] ADD  DEFAULT ((0)) FOR [Category]
+GO
+
+
+CREATE TABLE [dbo].[Supplier](
+	[SupplierID] [int] IDENTITY(1,1) NOT NULL,
+	[CompanyName] [varchar](64) NULL,
+	[SupplierStatusID] [int] NULL,
+	[SupplierTypeID] [int] NULL,
+	[ParentSupplierID] [int] NULL,
+	[AccountCode] [varchar](24) NULL,
+	[TelNo] [varchar](32) NULL,
+	[Fax] [varchar](32) NULL,
+	[Email] [varchar](64) NULL,
+	[WebURL] [varchar](64) NULL,
+	[SalesAreaID] [int] NULL,
+	[PaymentTermsType] [tinyint] NULL,
+	[PaymentTermsParam] [int] NULL,
+	[VATRefNo] [varchar](24) NULL,
+	[Notes] [varchar](max) NULL,
+	[DateEntered] [datetime] NULL,
+	[DateAmended] [datetime] NULL,
+	[EnteredByUserID] [int] NULL,
+	[AmendedByUserID] [int] NULL,
+	[DefaultAddressID] [int] NULL,
+	[DefaultContactID] [int] NULL,
+	[InvoiceParentCompany] [bit] NULL,
+ CONSTRAINT [PK_Supplier] PRIMARY KEY CLUSTERED 
+(
+	[SupplierID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+

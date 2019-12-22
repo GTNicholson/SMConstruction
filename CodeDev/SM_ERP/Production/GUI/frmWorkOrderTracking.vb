@@ -149,12 +149,12 @@ Public Class frmWorkOrderTracking
             Select Case mStatusID
               Case eMilestoneStatus.Pending, eMilestoneStatus.PartComplete
                 If mStatus Is Nothing Then
-                  If RTIS.CommonVB.clsGeneralA.IsBlankDate(mRow.PlannedStartDate) Then
+                  If RTIS.CommonVB.clsGeneralA.IsBlankDate(mRow.FinishDate) Then
                     e.Appearance.BackColor = Color.White
                   Else
-                    If Now >= RTIS.CommonVB.libDateTime.MondayOfWeek(mRow.PlannedStartDate).AddDays(-7) Then
+                    If Now >= RTIS.CommonVB.libDateTime.MondayOfWeek(mRow.FinishDate).AddDays(-7) Then
                       e.Appearance.BackColor = Color.Tomato
-                    ElseIf Now >= RTIS.CommonVB.libDateTime.MondayOfWeek(mRow.PlannedStartDate) Then
+                    ElseIf Now >= RTIS.CommonVB.libDateTime.MondayOfWeek(mRow.FinishDate) Then
                       e.Appearance.BackColor = Color.Gold
                     Else
                       e.Appearance.BackColor = Color.White
