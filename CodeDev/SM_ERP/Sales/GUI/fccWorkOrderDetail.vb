@@ -290,7 +290,12 @@ Public Class fccWorkOrderDetail
       If IO.File.Exists(vSourceFile) Then
         mFileName = "WorkOrderImg" & "_" & WorkOrder.WorkOrderID
 
-        mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
+        If pWorkOrder.isInternal Then
+          mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pWorkOrder.PlannedDeliverDate.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
+        Else
+          mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(WorkOrder.WorkOrderID.ToString("00000")))
+
+        End If
 
         mFileName &= IO.Path.GetExtension(vSourceFile)
         mFileName = clsGeneralA.GetFileSafeName(mFileName)
