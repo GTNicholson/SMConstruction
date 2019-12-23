@@ -36,6 +36,13 @@
     End Set
   End Property
 
+  Public ReadOnly Property CustomerName As String
+    Get
+      Return pCustomer.CompanyName
+    End Get
+
+  End Property
+
   Public ReadOnly Property WorkOrderID As Integer
     Get
       Return pWorkOrder.WorkOrderID
@@ -95,7 +102,7 @@
 
   Public ReadOnly Property PlannedStartDateWC As DateTime
     Get
-      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pWorkOrder.PlannedStartDate)
+      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pSalesOrder.FinishDate)
     End Get
   End Property
 
@@ -163,13 +170,6 @@
   Public ReadOnly Property EmployeeID As Int32
     Get
       Return pWorkOrder.EmployeeID
-    End Get
-  End Property
-
-
-  Public ReadOnly Property DueTime As Date
-    Get
-      Return pSalesOrder.DueTime
     End Get
   End Property
 

@@ -142,6 +142,8 @@ Public Class dtoCustomer : Inherits dtoBase
         .Numero_ABA = DBReadString(rDataReader, "Numero_ABA")
         .CustomerReference = DBReadString(rDataReader, "CustomerReference")
         .SalesTermsType = DBReadInt32(rDataReader, "SalesTermsType")
+
+
         pCustomer.IsDirty = False
       End With
       mOK = True

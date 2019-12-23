@@ -82,6 +82,9 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AreaID", .AreaID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierStockCode", StringToDBValue(.SupplierStockCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Comments", StringToDBValue(.Comments))
+
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemID", .StockItemID)
+
     End With
 
   End Sub
@@ -117,7 +120,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .AreaID = DBReadInt32(rDataReader, "AreaID")
         .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
         .Comments = DBReadString(rDataReader, "Comments")
-
+        .StockItemID = DBReadInt32(rDataReader, "StockItemID")
 
         pMaterialRequirement.IsDirty = False
       End With

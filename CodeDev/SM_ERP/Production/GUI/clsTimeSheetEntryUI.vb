@@ -214,6 +214,11 @@ Public Class clsTimeSheetEntryUI
   Private Sub EditOrAddTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry)
     Dim mExistingTSEntry As dmTimeSheetEntry
 
+    Dim mShift As dmShift
+    Dim mShifts As colShifts
+    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
+    mShift = mShifts(0)
+
     mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
 
     If mExistingTSEntry IsNot Nothing Then
@@ -261,8 +266,10 @@ Public Class clsTimeSheetEntryUI
 
     If mExistingTSEntry IsNot Nothing Then
       mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
+      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift)
     End If
     vNewTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(vNewTSEntry.StartTime, vNewTSEntry.EndTime)
+    vNewTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(vNewTSEntry, mShift)
 
   End Sub
 

@@ -1,0 +1,37 @@
+use SMConstruction
+go
+
+alter TABLE Supplier
+add RazonSocial varchar(100),
+	BancoIntermediario varchar(100),
+	Numero_SWIFT varchar(15),
+	Numero_ABA varchar (15),
+	Rucnumber varchar(25),
+	SupplierReferenceID varchar (15),
+	PurchasingTermsType int
+GO
+go
+
+alter table TimeSheetEntry
+add OverTimeMinutes int
+go
+
+
+alter view vwTimeSheetEntryInfo
+as
+
+
+SELECT        
+TS.TimeSheetEntryID, 
+TS.TimeSheetEntryTypeID,
+TS.EmployeeID, 
+TS.WorkOrderID, 
+TS.StartTime, 
+TS.EndTime, 
+TS.Note, 
+TS.WorkcentreID,
+TS.OverTimeMinutes, 
+WO.WorkOrderNo, 
+WO.Description
+FROM dbo.TimeSheetEntry AS TS 
+LEFT OUTER JOIN dbo.WorkOrder AS WO ON WO.WorkOrderID = TS.WorkOrderID

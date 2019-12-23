@@ -1,0 +1,32 @@
+USE [SMConstruction]
+GO
+
+/****** Object:  Table [dbo].[CustomerContact]    Script Date: 20/12/2019 09:08:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[SupplierContact](
+	[SupplierContactID] [int] IDENTITY(1,1) NOT NULL,
+	[SupplierID] [int] NULL,
+	[Title] [varchar](8) NULL,
+	[FirstName] [varchar](32) NULL,
+	[LastName] [varchar](32) NULL,
+	[TelNo] [varchar](32) NULL,
+	[Email] [varchar](64) NULL,
+	[Mobile] [varchar](32) NULL,
+	[ContactType] [int] NULL,
+	[ContactOptions] [int] NULL,
+	[IsActive] [bit] NOT NULL,
+	[DateStart] [datetime] NULL,
+	[DateEnd] [datetime] NULL,
+	[Position] [varchar](32) NULL,
+ CONSTRAINT [PK_SupplierContactID] PRIMARY KEY CLUSTERED 
+(
+	[SupplierContactID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

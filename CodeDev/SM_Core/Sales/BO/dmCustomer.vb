@@ -140,6 +140,8 @@ Public Class dmCustomer : Inherits dmBase
     End Set
   End Property
 
+
+
   Public Property CompanyName() As String
     Get
       Return pCompanyName
