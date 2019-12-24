@@ -1,0 +1,37 @@
+Create view vwWorkOrderTracking
+as
+SELECT
+WO.WorkOrderID, 
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate,
+Wo.PlannedDeliverDate, 
+WO.UnitPrice,
+WO.WorkOrderType, 
+WO.EmployeeID,
+
+SO.ProjectName, 
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+SO.DueTime, 
+SO.FinishDate,
+
+C.CompanyName, 
+C.SalesAreaID, 
+ 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName  
+
+FROM            
+dbo.WorkOrder AS WO 
+Left JOIN dbo.SalesOrderItem AS SOI ON SOI.SalesOrderItemID = WO.SalesOrderItemID 
+Left JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = WO.SalesOrderID 
+LEFT JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+
+GO

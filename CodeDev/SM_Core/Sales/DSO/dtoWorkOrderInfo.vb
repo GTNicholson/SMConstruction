@@ -21,11 +21,14 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
 
   Protected Overrides Sub SetTableDetails()
     Select Case pMode
-      Case eMode.WorkOrderInfo, eMode.WorkOrderTracking
+      Case eMode.WorkOrderInfo
         pTableName = "vwWorkOrderInfo"
         pKeyFieldName = "WorkOrderID"
       Case eMode.WorkOrderInfoInternal
         pTableName = "vwWorkOrderInternalInfo"   '// Axel this is a new query
+        pKeyFieldName = "WorkOrderID"
+      Case eMode.WorkOrderTracking
+        pTableName = "vwWorkOrderTracking"
         pKeyFieldName = "WorkOrderID"
     End Select
     pUseSoftDelete = False
