@@ -376,7 +376,7 @@ Public Class dsoSales
     Try
 
       pDBConn.Connect()
-      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderInfo)
+      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderTracking)
       mdto.LoadWorkOrderInfoCollectionByWhere(rWorkOrderInfos, vWhere)
       mRetVal = True
     Catch ex As Exception

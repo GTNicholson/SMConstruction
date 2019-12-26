@@ -6,413 +6,384 @@ Imports RTIS.Elements
 
 
 Public Class frmStockTake
-  ''  Private pFormController As fccStockTake
-  ''  Public FormMode As eFormMode
-  ''  Public ExitMode As Windows.Forms.DialogResult
+  Private pFormController As fccStockTake
 
-  ''  Private Shared sActiveForms As Collection
-  ''  Private Shared sFormIndex As Integer
-  ''  Private pMySharedIndex As Integer
+  Private Shared sActiveForms As Collection
+  Private Shared sFormIndex As Integer
+  Private pMySharedIndex As Integer
+
+  Public FormMode As eFormMode
+  Public ExitMode As Windows.Forms.DialogResult
 
   ''  Private pIsActive As Boolean
   ''  Private pLoadError As Boolean
-  ''  Private pForceExit As Boolean = False
+  Private pForceExit As Boolean = False
   ''  Private pSpinEnter As Boolean
 
 
-  ''  Public Shared Sub OpenFormAsMDIChild(ByRef rParentForm As Windows.Forms.Form, ByRef rUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPrimaryKeyID As Integer, ByVal vFormMode As eFormMode, ByVal vStockCheckType As eStockCheckType)
-  ''    Dim mfrm As frmStockTake = Nothing
-  ''    Dim mCreated As Boolean = False
-  ''    'Dim mTableName As String
+  Public Shared Sub OpenFormAsMDIChild(ByRef rParentForm As Windows.Forms.Form, ByRef rUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPrimaryKeyID As Integer, ByVal vFormMode As eFormMode)
+    Dim mfrm As frmStockTake = Nothing
+    Dim mCreated As Boolean = False
+    'Dim mTableName As String
 
-  ''    '' Add code here if need to check if a Detail Form for this ID is already open
+    '' Add code here if need to check if a Detail Form for this ID is already open
 
-  ''    mfrm = GetFormIfLoaded(vPrimaryKeyID, vStockCheckType)
+    mfrm = GetFormIfLoaded(vPrimaryKeyID)
 
-  ''    If mfrm Is Nothing Then
-  ''      mfrm = New frmStockTake
-  ''      mfrm.FormController = New fccStockTake
-  ''      mfrm.FormController.DBConn = rUserSession.CreateMainDBConn
-  ''      mfrm.FormController.RTISGlobal = rRTISGlobal
-  ''      mfrm.FormController.StockCheckID = vPrimaryKeyID
-  ''      mfrm.FormController.StockCheckTypeID = vStockCheckType
-  ''      mfrm.FormMode = vFormMode
-  ''      ''If vPrimaryKeyID = 0 Then
-  ''      ''  mfrm.FormMode = eFormMode.eFMFormModeAdd
-  ''      ''Else
-  ''      ''  mfrm.FormMode = eFormMode.eFMFormModeEdit
-  ''      ''End If
+    If mfrm Is Nothing Then
+      mfrm = New frmStockTake
+      mfrm.FormController = New fccStockTake
+      mfrm.FormController.DBConn = rUserSession.CreateMainDBConn
+      mfrm.FormController.RTISGlobal = rRTISGlobal
+      mfrm.FormController.StockTakeID = vPrimaryKeyID
+      If vPrimaryKeyID = 0 Then
+        mfrm.FormMode = eFormMode.eFMFormModeAdd
+      Else
+        mfrm.FormMode = eFormMode.eFMFormModeEdit
+      End If
 
-  ''      mfrm.MdiParent = rParentForm 'My.Application.MenuMDIForm
-  ''      mfrm.Show()
-  ''    Else
-  ''      mfrm.Focus()
-  ''    End If
+      mfrm.MdiParent = rParentForm 'My.Application.MenuMDIForm
+        mfrm.Show()
+      Else
+        mfrm.Focus()
+    End If
 
-  ''  End Sub
+  End Sub
 
 
-  ''  Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer, ByVal vStockCheckType As eStockCheckType) As frmStockTake
-  ''    Dim mfrmWanted As frmStockTake = Nothing
-  ''    Dim mFound As Boolean = False
-  ''    Dim mfrm As frmStockTake
-  ''    'Check if exisits already
-  ''    If sActiveForms Is Nothing Then sActiveForms = New Collection
-  ''    For Each mfrm In sActiveForms
-  ''      If mfrm.FormController.StockCheckID = vPrimaryKeyID AndAlso mfrm.FormController.StockCheckTypeID = vStockCheckType Then
-  ''        mfrmWanted = mfrm
-  ''        mFound = True
-  ''        Exit For
-  ''      End If
-  ''    Next
-  ''    If Not mFound Then
-  ''      mfrmWanted = Nothing
-  ''    End If
-  ''    Return mfrmWanted
-  ''  End Function
+  Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmStockTake
+    Dim mfrmWanted As frmStockTake = Nothing
+    Dim mFound As Boolean = False
+    Dim mfrm As frmStockTake
+    'Check if exisits already
+    If sActiveForms Is Nothing Then sActiveForms = New Collection
+    For Each mfrm In sActiveForms
+      If mfrm.FormController.StockTakeID = vPrimaryKeyID Then
+        mfrmWanted = mfrm
+        mFound = True
+        Exit For
+      End If
+    Next
+    If Not mFound Then
+      mfrmWanted = Nothing
+    End If
+    Return mfrmWanted
+  End Function
 
-  ''  Public Sub New()
+  Public Sub New()
 
-  ''    ' This call is required by the Windows Form Designer.
-  ''    InitializeComponent()
+    ' This call is required by the Windows Form Designer.
+    InitializeComponent()
 
-  ''    ' Add any initialization after the InitializeComponent() call.
-  ''    sFormIndex = sFormIndex + 1
-  ''    Me.pMySharedIndex = sFormIndex
-  ''    If sActiveForms Is Nothing Then sActiveForms = New Collection
-  ''    sActiveForms.Add(Me, Me.pMySharedIndex.ToString)
+    ' Add any initialization after the InitializeComponent() call.
+    sFormIndex = sFormIndex + 1
+    Me.pMySharedIndex = sFormIndex
+    If sActiveForms Is Nothing Then sActiveForms = New Collection
+    sActiveForms.Add(Me, Me.pMySharedIndex.ToString)
 
-  ''  End Sub
-
-  ''  Private Sub frmDetailForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-
-  ''  End Sub
-
-  ''  Private Sub frmDetailForm_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-  ''    FormController.ClearObjects()
-  ''    'FormController = Nothing
-  ''    sActiveForms.Remove(Me.pMySharedIndex.ToString)
-  ''    Me.Dispose()
-  ''  End Sub
-
-  ''  Public Property FormController() As fccStockTake
-  ''    Get
-  ''      FormController = pFormController
-  ''    End Get
-  ''    Set(ByVal value As fccStockTake)
-  ''      pFormController = value
-  ''    End Set
-  ''  End Property
-
-  ''  Private Sub frmDetailForm_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-
-  ''    If Not pForceExit Then
-  ''      If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
-  ''        e.Cancel = Not CheckSave(True)
-  ''      End If
-  ''    End If
-  ''  End Sub
-
-  ''  Private Sub frmDetailForm_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
-
-  ''  End Sub
-
-  ''  Private Sub frmDetailForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-  ''    Dim mOK As Boolean = True
-  ''    Dim mMsg As String = ""
-  ''    Dim mErrorDisplayed As Boolean = False
-
-  ''    ''Resize if required
-
-  ''    pIsActive = False
-  ''    pLoadError = False
-
-  ''    Try
-  ''      If mOK Then mOK = pFormController.LoadObject()
-
-  ''      If mOK Then mOK = pFormController.LoadRefData()
-
-  ''      LoadCombo()
-  ''      LoadGrid()
-
-  ''      'If mOK Then LoadExtensionControls()
-
-  ''      If mOK Then RefreshControls()
-
-  ''      If mOK Then SetupUserPermissions()
-
-  ''      If mOK Then
+  End Sub
 
 
-  ''        Me.Text = "Stock Take: " & pFormController.StockCheckID
-  ''        grpDetail.Text = clsEnumsConstants.GetEnumDescription(GetType(eStockCheckType), pFormController.StockCheckTypeID)
-  ''        grpDetail.Width = grpItemDetail.Width
+  Private Sub frmDetailForm_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+    ''FormController.ClearObjects()
+    FormController = Nothing
+    sActiveForms.Remove(Me.pMySharedIndex.ToString)
+    Me.Dispose()
+  End Sub
 
-  ''        bbtnStockValuation.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+  Public Property FormController() As fccStockTake
+    Get
+      FormController = pFormController
+    End Get
+    Set(ByVal value As fccStockTake)
+      pFormController = value
+    End Set
+  End Property
 
-  ''        barbtnLoadDespatchedQty.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
-  ''        bbtnRefreshWIPItems.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
-  ''        bbtnGoodsInInvoiced.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+  Private Sub frmDetailForm_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
 
-  ''      End If
+    If Not pForceExit Then
+      If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
+        e.Cancel = Not CheckSave(True)
+      End If
+    End If
+  End Sub
 
-  ''    Catch ex As Exception
-  ''      mMsg = ex.Message
-  ''      mOK = False
-  ''      mErrorDisplayed = True
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
+  Private Sub frmDetailForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    ''    Dim mOK As Boolean = True
+    ''    Dim mMsg As String = ""
+    ''    Dim mErrorDisplayed As Boolean = False
 
-  ''    If Not mOK Then
-  ''      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
-  ''      pLoadError = True
-  ''      ExitMode = Windows.Forms.DialogResult.Abort
-  ''      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
+    ''    ''Resize if required
 
-  ''    End If
+    ''    pIsActive = False
+    ''    pLoadError = False
 
-  ''    pIsActive = True
+    ''    Try
+    ''      If mOK Then mOK = pFormController.LoadObject()
 
-  ''  End Sub
+    ''      If mOK Then mOK = pFormController.LoadRefData()
 
-  ''  Private Sub LoadCombo()
-  ''    ''clsDEControlLoading.LoadGridLookUpEditiVI(grdStockCheckItem, gcPricingUnit, eUnit.GetInstance().ValueItems)
-  ''    If Not String.IsNullOrEmpty(pFormController.StockCheck.RangeStockCodeStart) Then
-  ''      gvStockCheckItem.ActiveFilterString = String.Format(" StockCode >= '{0}' AND StockCode <= '{1}'", pFormController.StockCheck.RangeStockCodeStart, pFormController.StockCheck.RangeStockCodeEnd)
-  ''    End If
+    ''      LoadCombo()
+    ''      LoadGrid()
 
-  ''  End Sub
+    ''      'If mOK Then LoadExtensionControls()
+
+    ''      If mOK Then RefreshControls()
+
+    ''      If mOK Then SetupUserPermissions()
+
+    ''      If mOK Then
+
+
+    ''        Me.Text = "Stock Take: " & pFormController.StockCheckID
+    ''        grpDetail.Text = clsEnumsConstants.GetEnumDescription(GetType(eStockCheckType), pFormController.StockCheckTypeID)
+    ''        grpDetail.Width = grpItemDetail.Width
+
+    ''        bbtnStockValuation.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+
+    ''        barbtnLoadDespatchedQty.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+    ''        bbtnRefreshWIPItems.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+    ''        bbtnGoodsInInvoiced.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+
+    ''      End If
+
+    ''    Catch ex As Exception
+    ''      mMsg = ex.Message
+    ''      mOK = False
+    ''      mErrorDisplayed = True
+    ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    ''    End Try
+
+    ''    If Not mOK Then
+    ''      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+    ''      pLoadError = True
+    ''      ExitMode = Windows.Forms.DialogResult.Abort
+    ''      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
+
+    ''    End If
+
+    ''    pIsActive = True
+
+  End Sub
+
+  Private Sub LoadCombo()
+    ''    ''clsDEControlLoading.LoadGridLookUpEditiVI(grdStockCheckItem, gcPricingUnit, eUnit.GetInstance().ValueItems)
+    ''    If Not String.IsNullOrEmpty(pFormController.StockCheck.RangeStockCodeStart) Then
+    ''      gvStockCheckItem.ActiveFilterString = String.Format(" StockCode >= '{0}' AND StockCode <= '{1}'", pFormController.StockCheck.RangeStockCodeStart, pFormController.StockCheck.RangeStockCodeEnd)
+    ''End If
+
+  End Sub
 
   ''  Private Sub LoadGrid()
   ''    grdStockCheckItem.DataSource = pFormController.StockItemValuations
   ''  End Sub
 
-  ''  Private Sub SetupUserPermissions()
-  ''    'Dim mPermisionLevel As ePermissionCode
-  ''    'mPermisionLevel = pDBConn.RTISUser.ActivityPermissions.GetActivityPermission(eActivityCode.UserConfig)
+
+  Private Sub CloseForm() 'Needs exit mode set first
+    pForceExit = True
+    Me.Close()
+  End Sub
+
+  Private Function CheckSave(ByVal rOption As Boolean) As Boolean
+    ''    Dim mSaveRequired As Boolean
+    ''    Dim mResponse As MsgBoxResult
+    ''    Dim mRetVal As Boolean
+
+    ''    UpdateObject()
+
+    ''    If pFormController.IsDirty() Then
+    ''      If rOption Then
+    ''        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+    ''        Select Case mResponse
+    ''          Case MsgBoxResult.Yes
+    ''            mSaveRequired = True
+    ''            mRetVal = False
+    ''            ExitMode = Windows.Forms.DialogResult.Yes
+    ''          Case MsgBoxResult.No
+    ''            mSaveRequired = False
+    ''            mRetVal = True
+    ''            ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
+    ''          Case MsgBoxResult.Cancel
+    ''            mSaveRequired = False
+    ''            mRetVal = False
+    ''        End Select
+    ''      Else
+    ''        ExitMode = Windows.Forms.DialogResult.Yes
+    ''        mSaveRequired = True
+    ''        mRetVal = False
+    ''      End If
+    ''    Else
+    ''      ExitMode = Windows.Forms.DialogResult.Ignore
+    ''      mSaveRequired = False
+    ''      mRetVal = True
+    ''    End If
+    ''    If mSaveRequired Then
+    ''      Dim mValidate As clsValidate
+    ''      mValidate = pFormController.ValidateObject
+    ''      If mValidate.ValOk Then
+    ''        mRetVal = pFormController.SaveObject()
+    ''        'TODO - If mRetVal then AddHandler InstanceData to  BrowseTracker
+    ''      Else
+    ''        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+    ''        mRetVal = False
+    ''      End If
+    ''    End If
+    ''    CheckSave = mRetVal
+  End Function
+
+  Private Sub RefreshControls()
+    ''    ' Check User Permissions here
+    ''    Dim mStartActive As Boolean = pIsActive
+    ''    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
+
+    ''    pIsActive = False
+    ''    If pFormController.StockCheck IsNot Nothing Then
+
+    ''      With pFormController.StockCheck
+    ''        txtStockCheckDesc.Text = .Description
+    ''        dateStockCheck.DateTime = .StockCheckDate
+    ''        txtRangeStockCodeEnd.Text = .RangeStockCodeEnd
+    ''        txtRangeStockCodeStart.Text = .RangeStockCodeStart
+
+    ''        datDateSystemQty.DateTime = .DateSystemQty
+
+    ''        barbtnCommitStockTake.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+
+    ''        UIHelper.SetControlsEnabled(PanelControl1, clsGeneralA.IsBlankDate(.DateCommitted))
+    ''        UIHelper.SetBarManagerEnabled(BarManager1, clsGeneralA.IsBlankDate(.DateCommitted))
+    ''        barbtnClose.Enabled = True
+
+    ''        RefreshSystemQtyButton()
+
+    ''        pceStockTakeSheets.Text = String.Format("{0} Sheet(s)", .StockTakeSheets.Count.ToString())
 
 
-  ''  End Sub
+    ''        If .DateSystemQty > DateTime.MinValue Then
+    ''          btnSelectVisible.Enabled = True
+    ''          btnDeselectVisible.Enabled = True
+    ''          btnDeselectAll.Enabled = True
+    ''          txtRangeStockCodeStart.Enabled = True
+    ''          txtRangeStockCodeEnd.Enabled = True
+    ''          btnAddToNextSheet.Enabled = True
+    ''          btnClearRange.Enabled = True
+    ''          btnClearSystemQty.Enabled = True
+    ''          pceStockTakeSheets.Enabled = True
 
-  ''  Private Sub CloseForm() 'Needs exit mode set first
-  ''    pForceExit = True
-  ''    Me.Close()
-  ''  End Sub
+    ''          barbtnFIFOSystemValue.Enabled = True
+    ''          barbtnFIFOCountedValue.Enabled = True
 
-  ''  Private Function CheckSave(ByVal rOption As Boolean) As Boolean
-  ''    Dim mSaveRequired As Boolean
-  ''    Dim mResponse As MsgBoxResult
-  ''    Dim mRetVal As Boolean
+    ''          If Not String.IsNullOrEmpty(.RangeStockCodeStart) AndAlso Not String.IsNullOrEmpty(.RangeStockCodeEnd) Then
+    ''            btnApplyRange.Enabled = True
+    ''          Else
+    ''            btnApplyRange.Enabled = False
+    ''          End If
 
-  ''    UpdateObject()
+    ''        Else
+    ''          btnSelectVisible.Enabled = False
+    ''          btnDeselectVisible.Enabled = False
+    ''          btnDeselectAll.Enabled = False
+    ''          txtRangeStockCodeStart.Enabled = False
+    ''          txtRangeStockCodeEnd.Enabled = False
+    ''          btnApplyRange.Enabled = False
+    ''          btnAddToNextSheet.Enabled = False
+    ''          btnClearRange.Enabled = False
+    ''          btnClearSystemQty.Enabled = False
+    ''          pceStockTakeSheets.Enabled = False
 
-  ''    If pFormController.IsDirty() Then
-  ''      If rOption Then
-  ''        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
-  ''        Select Case mResponse
-  ''          Case MsgBoxResult.Yes
-  ''            mSaveRequired = True
-  ''            mRetVal = False
-  ''            ExitMode = Windows.Forms.DialogResult.Yes
-  ''          Case MsgBoxResult.No
-  ''            mSaveRequired = False
-  ''            mRetVal = True
-  ''            ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
-  ''          Case MsgBoxResult.Cancel
-  ''            mSaveRequired = False
-  ''            mRetVal = False
-  ''        End Select
-  ''      Else
-  ''        ExitMode = Windows.Forms.DialogResult.Yes
-  ''        mSaveRequired = True
-  ''        mRetVal = False
-  ''      End If
-  ''    Else
-  ''      ExitMode = Windows.Forms.DialogResult.Ignore
-  ''      mSaveRequired = False
-  ''      mRetVal = True
-  ''    End If
-  ''    If mSaveRequired Then
-  ''      Dim mValidate As clsValidate
-  ''      mValidate = pFormController.ValidateObject
-  ''      If mValidate.ValOk Then
-  ''        mRetVal = pFormController.SaveObject()
-  ''        'TODO - If mRetVal then AddHandler InstanceData to  BrowseTracker
-  ''      Else
-  ''        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
-  ''        mRetVal = False
-  ''      End If
-  ''    End If
-  ''    CheckSave = mRetVal
-  ''  End Function
+    ''          barbtnFIFOSystemValue.Enabled = False
+    ''          barbtnFIFOCountedValue.Enabled = False
 
-  ''  Private Sub RefreshControls()
-  ''    ' Check User Permissions here
-  ''    Dim mStartActive As Boolean = pIsActive
-  ''    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
+    ''        End If
 
-  ''    pIsActive = False
-  ''    If pFormController.StockCheck IsNot Nothing Then
+    ''        gvStockCheckItem.RefreshData()
+    ''        gvStockTakeSheets.RefreshData()
+    ''        gvStockItemValuationHistorys.RefreshData()
+    ''      End With
 
-  ''      With pFormController.StockCheck
-  ''        txtStockCheckDesc.Text = .Description
-  ''        dateStockCheck.DateTime = .StockCheckDate
-  ''        txtRangeStockCodeEnd.Text = .RangeStockCodeEnd
-  ''        txtRangeStockCodeStart.Text = .RangeStockCodeStart
+    ''    End If
 
-  ''        datDateSystemQty.DateTime = .DateSystemQty
+    ''    pIsActive = mStartActive
+  End Sub
 
-  ''        barbtnCommitStockTake.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+  Private Sub UpdateObject()
+    ''    ''Read in from controls - update object/record
+    ''    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
 
-  ''        UIHelper.SetControlsEnabled(PanelControl1, clsGeneralA.IsBlankDate(.DateCommitted))
-  ''        UIHelper.SetBarManagerEnabled(BarManager1, clsGeneralA.IsBlankDate(.DateCommitted))
-  ''        barbtnClose.Enabled = True
+    ''    'Make sure all grid controls etc. finished current edit
+    ''    Try
+    ''      Dim mActiveControl As Control = Me.ActiveControl
+    ''      grpDetail.Focus()
+    ''      If mActiveControl IsNot Nothing Then
+    ''        mActiveControl.Focus()
+    ''      End If
+    ''    Catch Ex As Exception
+    ''      If Debugger.IsAttached Then MsgBox("UpdateObject-Focus: " & Ex.Message)
+    ''    End Try
 
-  ''        RefreshSystemQtyButton()
+    ''    If pFormController.StockCheck IsNot Nothing Then
 
-  ''        pceStockTakeSheets.Text = String.Format("{0} Sheet(s)", .StockTakeSheets.Count.ToString())
+    ''      With pFormController.StockCheck
+    ''        .Description = txtStockCheckDesc.Text
+    ''        .StockCheckDate = dateStockCheck.DateTime
+    ''        .RangeStockCodeEnd = txtRangeStockCodeEnd.Text
+    ''        .RangeStockCodeStart = txtRangeStockCodeStart.Text
+    ''      End With
 
+    ''    End If
 
-  ''        If .DateSystemQty > DateTime.MinValue Then
-  ''          btnSelectVisible.Enabled = True
-  ''          btnDeselectVisible.Enabled = True
-  ''          btnDeselectAll.Enabled = True
-  ''          txtRangeStockCodeStart.Enabled = True
-  ''          txtRangeStockCodeEnd.Enabled = True
-  ''          btnAddToNextSheet.Enabled = True
-  ''          btnClearRange.Enabled = True
-  ''          btnClearSystemQty.Enabled = True
-  ''          pceStockTakeSheets.Enabled = True
+  End Sub
 
-  ''          barbtnFIFOSystemValue.Enabled = True
-  ''          barbtnFIFOCountedValue.Enabled = True
+  Private Sub InitiateCloseExit(ByVal vWithCheck As Boolean) 'User initiated request to save - Call from buttons/menu/toolbar etc.
+    If vWithCheck Then
+      If CheckSave(True) Then 'Changed from False 20150206 !!!
+        CloseForm()
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.No
+      CloseForm()
+    End If
 
-  ''          If Not String.IsNullOrEmpty(.RangeStockCodeStart) AndAlso Not String.IsNullOrEmpty(.RangeStockCodeEnd) Then
-  ''            btnApplyRange.Enabled = True
-  ''          Else
-  ''            btnApplyRange.Enabled = False
-  ''          End If
+  End Sub
 
-  ''        Else
-  ''          btnSelectVisible.Enabled = False
-  ''          btnDeselectVisible.Enabled = False
-  ''          btnDeselectAll.Enabled = False
-  ''          txtRangeStockCodeStart.Enabled = False
-  ''          txtRangeStockCodeEnd.Enabled = False
-  ''          btnApplyRange.Enabled = False
-  ''          btnAddToNextSheet.Enabled = False
-  ''          btnClearRange.Enabled = False
-  ''          btnClearSystemQty.Enabled = False
-  ''          pceStockTakeSheets.Enabled = False
+  Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
 
-  ''          barbtnFIFOSystemValue.Enabled = False
-  ''          barbtnFIFOCountedValue.Enabled = False
+    If CheckSave(False) Then
+      CloseForm()
+    End If
 
-  ''        End If
+  End Sub
 
-  ''        gvStockCheckItem.RefreshData()
-  ''        gvStockTakeSheets.RefreshData()
-  ''        gvStockItemValuationHistorys.RefreshData()
-  ''      End With
+  Private Sub barbtnSaveExit_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnSaveExit.ItemClick
+    Try
+      InitiateSaveExit()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
-  ''    End If
+  Private Sub barbutSave_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnSave.ItemClick
+    Try
+      CheckSave(False)
 
-  ''    pIsActive = mStartActive
-  ''  End Sub
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
-  ''  Private Sub UpdateObject()
-  ''    ''Read in from controls - update object/record
-  ''    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
-
-  ''    'Make sure all grid controls etc. finished current edit
-  ''    Try
-  ''      Dim mActiveControl As Control = Me.ActiveControl
-  ''      grpDetail.Focus()
-  ''      If mActiveControl IsNot Nothing Then
-  ''        mActiveControl.Focus()
-  ''      End If
-  ''    Catch Ex As Exception
-  ''      If Debugger.IsAttached Then MsgBox("UpdateObject-Focus: " & Ex.Message)
-  ''    End Try
-
-  ''    If pFormController.StockCheck IsNot Nothing Then
-
-  ''      With pFormController.StockCheck
-  ''        .Description = txtStockCheckDesc.Text
-  ''        .StockCheckDate = dateStockCheck.DateTime
-  ''        .RangeStockCodeEnd = txtRangeStockCodeEnd.Text
-  ''        .RangeStockCodeStart = txtRangeStockCodeStart.Text
-  ''      End With
-
-  ''    End If
-
-  ''  End Sub
-
-  ''  ''Private Sub ControlForceValidateExample()
-  ''  ''  '' knock on effects of a property/control change - example event template
-  ''  ''  Try
-  ''  ''    If pIsActive Then
-  ''  ''      UpdateObject()
-  ''  ''
-  ''  ''      ''Knock-on effects
-  ''  ''
-  ''  ''      RefreshControls()
-  ''  ''    End If
-  ''  ''  Catch ex As Exception
-  ''  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''  ''  End Try
-  ''  ''End Sub
-
-  ''  Private Sub InitiateCloseExit(ByVal vWithCheck As Boolean) 'User initiated request to save - Call from buttons/menu/toolbar etc.
-  ''    If vWithCheck Then
-  ''      If CheckSave(True) Then 'Changed from False 20150206 !!!
-  ''        CloseForm()
-  ''      End If
-  ''    Else
-  ''      ExitMode = Windows.Forms.DialogResult.No
-  ''      CloseForm()
-  ''    End If
-
-  ''  End Sub
-
-  ''  Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
-
-  ''    If CheckSave(False) Then
-  ''      CloseForm()
-  ''    End If
-
-  ''  End Sub
-
-  ''  Private Sub barbtnSaveExit_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnSaveExit.ItemClick
-  ''    Try
-  ''      InitiateSaveExit()
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
-
-  ''  Private Sub barbutSave_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnSave.ItemClick
-  ''    Try
-  ''      CheckSave(False)
-
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
-
-  ''  Private Sub barbtnClose_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnClose.ItemClick
-  ''    Try
-  ''      InitiateCloseExit(True)
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
+  Private Sub barbtnClose_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnClose.ItemClick
+    Try
+      InitiateCloseExit(True)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
 
-  ''  Protected Overrides Sub Finalize()
-  ''    If FormController IsNot Nothing Then FormController = Nothing
-  ''    MyBase.Finalize()
-  ''  End Sub
+  Protected Overrides Sub Finalize()
+    If FormController IsNot Nothing Then FormController = Nothing
+    MyBase.Finalize()
+  End Sub
 
   ''  Private Sub gvStockCheckItem_BeforeLeaveRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowAllowEventArgs) Handles gvStockCheckItem.BeforeLeaveRow
   ''    Try

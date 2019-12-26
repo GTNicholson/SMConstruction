@@ -54,7 +54,7 @@ Public Enum eBrowseList
   InternalWorkOrder = 6
   Inventory = 7
   Supplier = 8
-
+  StockTake = 9
 End Enum
 
 
@@ -497,6 +497,7 @@ Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockIte
   Public Const ResbalonesYNiveladores = 5
   Public Const Rodos = 6
   Public Const HerrajesEspeciales = 7
+  Public Const Portatiles = 8
   Public Const Otros = 99
 
   Private Shared mSharedInstance As eStockItemTypeHerrajes
@@ -524,6 +525,9 @@ Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockIte
 
     Dim mHerrajesEspeciales As New clsStockItemTypeHerrajes(HerrajesEspeciales, "Herrajes Especiales")
     MyBase.Add(mHerrajesEspeciales)
+
+    Dim mPortatiles As New clsStockItemTypeHerrajes(Portatiles, "Portatiles")
+    MyBase.Add(mPortatiles)
 
     Dim mOtros As New clsStockItemTypeHerrajes(Otros, "Los Demás")
     MyBase.Add(mOtros)

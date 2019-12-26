@@ -8,7 +8,6 @@ Public Class fccStockTake
   Private pStockTakeID As Integer
   Private pStockTake As dmStockTake
   ''Private pStockItemValuations As colStockItemValuations
-  ''Public StockCheckTypeID As eStockTakeType
   Public Property Mode As eMode
 
   Public Enum eMode
@@ -139,10 +138,10 @@ Public Class fccStockTake
       End Select
 
     Catch ex As Exception
-      ''    mOK = False
+      mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     Finally
-      ''    mdsoStock = Nothing
+      ''mdsoStock = Nothing
     End Try
     Return mOK
   End Function

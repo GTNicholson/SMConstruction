@@ -9,6 +9,8 @@ Public Class frmStockItem
   Private pMySharedIndex As Integer
   Private pIsActive As Boolean
 
+  Private pFormController As fccStocktem
+
   Public Sub New()
 
     ' This call is required by the designer.
@@ -27,17 +29,25 @@ Public Class frmStockItem
   End Sub
 
   Private Sub frmStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    pIsActive = False
+    pFormController.LoadObject()
+    ''RefreshAddStockItemOptions()
+    grdStockItems.DataSource = pFormController.StockItems
+    ''LoadCombos()
 
+    ''RefreshControls()
+    pIsActive = True
   End Sub
 
-  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory))
     Dim mfrm As frmStockItem = Nothing
 
     mfrm = GetFormIfLoaded()
     If mfrm Is Nothing Then
       mfrm = New frmStockItem
       mfrm.MdiParent = rMDIParent
-      ''mfrm.pFormController = New fccStocktemAdmin(rDBConn, rRTISGlobal)
+      mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal)
+      mfrm.pFormController.Categorys = vCategorys
 
       mfrm.Show()
     Else
@@ -63,4 +73,7 @@ Public Class frmStockItem
     Return mfrmWanted
   End Function
 
+  Private Sub frmStockItem_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+    sActiveForms.Remove(Me.pMySharedIndex.ToString)
+  End Sub
 End Class
