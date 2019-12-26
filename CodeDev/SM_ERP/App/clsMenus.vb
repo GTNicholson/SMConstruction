@@ -28,7 +28,8 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Purchasing)
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Purchasing, True)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Inventario", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryBrowse, eActivityCode.Inventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.Inventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.Inventory)
 
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
@@ -69,10 +70,19 @@ Class clsMenuFunctions
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
-  Public Shared Sub InventoryBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+  Public Shared Sub InventoryAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mCategories As New List(Of eStockItemCategory)
+    mCategories.Add(eStockItemCategory.Abrasivos)
+    mCategories.Add(eStockItemCategory.NailsAndBolds)
+    mCategories.Add(eStockItemCategory.EPP)
+    mCategories.Add(eStockItemCategory.Ironmongery)
+    frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mCategories)
   End Sub
 
+  Public Shared Sub StockTakeBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwStockTake(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.StockTake)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+  End Sub
 
   Public Shared Sub SupplierBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBrw As New brwSupplier(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Supplier)

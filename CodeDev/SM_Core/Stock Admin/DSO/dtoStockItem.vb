@@ -3,6 +3,7 @@ Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
+Imports SM_Core
 
 Public Class dtoStockItem : Inherits dtoBase
   Private pStockItem As dmStockItem
@@ -18,6 +19,14 @@ Public Class dtoStockItem : Inherits dtoBase
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
   End Sub
+
+  Public Function LoadStockItemsByWhere(rStockItems As colStockItems, vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rStockItems, mParams, "StockItemID", vWhere)
+    If mOK Then rStockItems.IsDirty = False
+    Return mOK
+  End Function
 
   Overrides Property ObjectKeyFieldValue() As Integer
     Get

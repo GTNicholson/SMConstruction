@@ -1,0 +1,13 @@
+alter table stockitem add
+ASIS_CDUNI Integer,
+ASIS_CDPROV Integer,
+ASIS_FOB Decimal(9,2),
+ASIS_UCO_C Decimal(9,2),
+ASIS_UCO_D Decimal(9,2),
+ASIS_UCTCL  Decimal(9,2)
+
+GO
+
+alter table stockitem add ASISID Integer
+
+GO
