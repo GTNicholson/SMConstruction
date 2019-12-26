@@ -104,61 +104,61 @@ Public Class fccStockTake
 
 
           ''For Each mSCItem As dmStockTakeItem In pStockTake.StockTakeItems
-  ''        If mStockItemIDs.Contains(mSCItem.StockItemID) = False Then mStockItemIDs.Add(mSCItem.StockItemID)
-  ''        Next
+          ''        If mStockItemIDs.Contains(mSCItem.StockItemID) = False Then mStockItemIDs.Add(mSCItem.StockItemID)
+          ''        Next
 
-  ''        If mStockItemIDs.Count <> 0 Then
-  ''          mStockItems = New colStockItems
-  ''          mdsoStock.LoadStockItems(mStockItems, String.Format("StockItemID IN ({0})", String.Join(",", mStockItemIDs.ToArray)))
+          ''        If mStockItemIDs.Count <> 0 Then
+          ''          mStockItems = New colStockItems
+          ''          mdsoStock.LoadStockItems(mStockItems, String.Format("StockItemID IN ({0})", String.Join(",", mStockItemIDs.ToArray)))
 
-  ''          For Each mSCItem As dmStockCheckItem In pStockTake.StockCheckItems
-  ''            mSCItem.StockItem = mStockItems.ItemFromKey(mSCItem.StockItemID)
-  ''          Next
-  ''        End If
+          ''          For Each mSCItem As dmStockCheckItem In pStockTake.StockCheckItems
+          ''            mSCItem.StockItem = mStockItems.ItemFromKey(mSCItem.StockItemID)
+          ''          Next
+          ''        End If
 
-  ''        CreateStockItemValuations()
+          ''        CreateStockItemValuations()
 
-  ''        If (Mode = eMode.StockTake Or Mode = eMode.StockValuation) AndAlso pStockTakeID = 0 Then
-  ''          SaveObject()
-  ''        End If
+          ''        If (Mode = eMode.StockTake Or Mode = eMode.StockValuation) AndAlso pStockTakeID = 0 Then
+          ''          SaveObject()
+          ''        End If
 
-  ''      Case eMode.AdhocValuation
-  ''        '// Valuation
+          ''      Case eMode.AdhocValuation
+          ''        '// Valuation
 
-  ''        Select Case StockCheckTypeID
-  ''          Case eStockCheckType.StockValuation
-  ''            LoadCurrentStock()
-  ''            mOK = True
-  ''          Case eStockCheckType.WIPValuation
-  ''            pStockItemValuations = New colStockItemValuations
-  ''            LoadWIPStock(Now.Date.AddDays(1))
-  ''            CreateWIPStockCheckItems()
-  ''            mOK = True
-  ''        End Select
+          ''        Select Case StockCheckTypeID
+          ''          Case eStockCheckType.StockValuation
+          ''            LoadCurrentStock()
+          ''            mOK = True
+          ''          Case eStockCheckType.WIPValuation
+          ''            pStockItemValuations = New colStockItemValuations
+          ''            LoadWIPStock(Now.Date.AddDays(1))
+          ''            CreateWIPStockCheckItems()
+          ''            mOK = True
+          ''        End Select
 
-  ''    End Select
+      End Select
 
-  ''  Catch ex As Exception
-  ''    mOK = False
-  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''  Finally
-  ''    mdsoStock = Nothing
-  ''  End Try
-  ''  Return mOK
-  ''End Function
+    Catch ex As Exception
+      ''    mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      ''    mdsoStock = Nothing
+    End Try
+    Return mOK
+  End Function
 
-  ''Public Sub CreateStockItemValuations()
-  ''  Dim mSIV As clsStockItemValuation
+  Public Sub CreateStockItemValuations()
+    ''  Dim mSIV As clsStockItemValuation
 
-  ''  pStockItemValuations = New colStockItemValuations
+    ''  pStockItemValuations = New colStockItemValuations
 
-  ''  For Each mSCItem As dmStockCheckItem In pStockTake.StockCheckItems
-  ''    mSIV = New clsStockItemValuation(mSCItem.StockItem)
-  ''    mSIV.StockCheckItem = mSCItem
-  ''    StockItemValuations.Add(mSIV)
-  ''  Next
+    ''  For Each mSCItem As dmStockCheckItem In pStockTake.StockCheckItems
+    ''    mSIV = New clsStockItemValuation(mSCItem.StockItem)
+    ''    mSIV.StockCheckItem = mSCItem
+    ''    StockItemValuations.Add(mSIV)
+    ''  Next
 
-  ''End Sub
+  End Sub
 
   ''Public Sub AddDefaultItemsNonWIP()
   ''  Dim mdsoStock As New dsoStock(pDBConn)
