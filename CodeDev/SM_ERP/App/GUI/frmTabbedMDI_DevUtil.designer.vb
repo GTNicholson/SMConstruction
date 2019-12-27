@@ -68,11 +68,12 @@ Partial Class frmTabbedMDI_DevUtil
     Me.navbarEmailTest = New DevExpress.XtraNavBar.NavBarItem()
     Me.navbarSerialComTest = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarGroup1 = New DevExpress.XtraNavBar.NavBarGroup()
+    Me.navbarPodioTest = New DevExpress.XtraNavBar.NavBarItem()
+    Me.navbarPrinterTest = New DevExpress.XtraNavBar.NavBarItem()
     Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
     Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
     Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
-    Me.navbarPodioTest = New DevExpress.XtraNavBar.NavBarItem()
-    Me.navbarPrinterTest = New DevExpress.XtraNavBar.NavBarItem()
+    Me.navbaritBackDateOverTime = New DevExpress.XtraNavBar.NavBarItem()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositorybarComboMDITabImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,15 +144,15 @@ Partial Class frmTabbedMDI_DevUtil
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1168, 45)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1272, 45)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 435)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 543)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1168, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1272, 0)
     '
     'barDockControlLeft
     '
@@ -159,15 +160,15 @@ Partial Class frmTabbedMDI_DevUtil
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 45)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 390)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 498)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1168, 45)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1272, 45)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 390)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 498)
     '
     'barComboMDITabLocation
     '
@@ -314,11 +315,11 @@ Partial Class frmTabbedMDI_DevUtil
     Me.navbar.ContentButtonHint = Nothing
     Me.navbar.Dock = System.Windows.Forms.DockStyle.Left
     Me.navbar.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup_Utilities, Me.NavBarGroup2, Me.NavBarGroup3, Me.NavBarGroup1})
-    Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest})
+    Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime})
     Me.navbar.Location = New System.Drawing.Point(0, 45)
     Me.navbar.Name = "navbar"
     Me.navbar.OptionsNavPane.ExpandedWidth = 231
-    Me.navbar.Size = New System.Drawing.Size(231, 390)
+    Me.navbar.Size = New System.Drawing.Size(231, 498)
     Me.navbar.TabIndex = 5
     Me.navbar.Text = "NavBarControl1"
     '
@@ -402,26 +403,8 @@ Partial Class frmTabbedMDI_DevUtil
     '
     Me.NavBarGroup1.Caption = "Application Tests & Utilities"
     Me.NavBarGroup1.Expanded = True
-    Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest)})
+    Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritBackDateOverTime)})
     Me.NavBarGroup1.Name = "NavBarGroup1"
-    '
-    'NavBarItem_Connection
-    '
-    Me.NavBarItem_Connection.Caption = "Connection Set-up"
-    Me.NavBarItem_Connection.Name = "NavBarItem_Connection"
-    Me.NavBarItem_Connection.Visible = False
-    '
-    'SplitterControl1
-    '
-    Me.SplitterControl1.Location = New System.Drawing.Point(231, 45)
-    Me.SplitterControl1.Name = "SplitterControl1"
-    Me.SplitterControl1.Size = New System.Drawing.Size(8, 390)
-    Me.SplitterControl1.TabIndex = 6
-    Me.SplitterControl1.TabStop = False
-    '
-    'DefaultLookAndFeelMDI
-    '
-    Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
     '
     'navbarPodioTest
     '
@@ -433,11 +416,34 @@ Partial Class frmTabbedMDI_DevUtil
     Me.navbarPrinterTest.Caption = "Printer Test"
     Me.navbarPrinterTest.Name = "navbarPrinterTest"
     '
+    'NavBarItem_Connection
+    '
+    Me.NavBarItem_Connection.Caption = "Connection Set-up"
+    Me.NavBarItem_Connection.Name = "NavBarItem_Connection"
+    Me.NavBarItem_Connection.Visible = False
+    '
+    'SplitterControl1
+    '
+    Me.SplitterControl1.Location = New System.Drawing.Point(231, 45)
+    Me.SplitterControl1.Name = "SplitterControl1"
+    Me.SplitterControl1.Size = New System.Drawing.Size(8, 498)
+    Me.SplitterControl1.TabIndex = 6
+    Me.SplitterControl1.TabStop = False
+    '
+    'DefaultLookAndFeelMDI
+    '
+    Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
+    '
+    'navbaritBackDateOverTime
+    '
+    Me.navbaritBackDateOverTime.Caption = "Back Date Over Time"
+    Me.navbaritBackDateOverTime.Name = "navbaritBackDateOverTime"
+    '
     'frmTabbedMDI_DevUtil
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1168, 435)
+    Me.ClientSize = New System.Drawing.Size(1272, 543)
     Me.Controls.Add(Me.SplitterControl1)
     Me.Controls.Add(Me.navbar)
     Me.Controls.Add(Me.barDockControlLeft)
@@ -519,4 +525,5 @@ Partial Class frmTabbedMDI_DevUtil
   Friend WithEvents navbaritLookUpConfig As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents navbarPodioTest As DevExpress.XtraNavBar.NavBarItem
   Friend WithEvents navbarPrinterTest As DevExpress.XtraNavBar.NavBarItem
+  Friend WithEvents navbaritBackDateOverTime As DevExpress.XtraNavBar.NavBarItem
 End Class

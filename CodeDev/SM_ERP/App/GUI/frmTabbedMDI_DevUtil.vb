@@ -235,4 +235,25 @@ Public Class frmTabbedMDI_DevUtil
 
     repFGLabel.PrintWorkOrderLabels(mWO, mSO, mlabelDef)
   End Sub
+
+  Private Sub navbaritBackDateOverTime_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbaritBackDateOverTime.LinkClicked
+    Dim mTSE As dmTimeSheetEntry
+    Dim mTSEs As New colTimeSheetEntrys
+    Dim mdso As dsoHR
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mOTMins As Integer
+    Dim mShift As dmShift
+
+    mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+
+    mShift = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift).Item(0)
+
+    mdso = New dsoHR(mDBConn)
+    mdso.LoadTimeSheetEntrysByWhere(mTSEs, "")
+
+    For Each mTSE In mTSEs
+      mOTMins = clsTimeSheetSharedFuncs.getOverTimeMinutes(mTSE, mShift)
+    Next
+
+  End Sub
 End Class

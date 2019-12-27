@@ -186,50 +186,50 @@ Public Class frmStockTake
   End Sub
 
   Private Function CheckSave(ByVal rOption As Boolean) As Boolean
-    ''    Dim mSaveRequired As Boolean
-    ''    Dim mResponse As MsgBoxResult
-    ''    Dim mRetVal As Boolean
+    Dim mSaveRequired As Boolean
+    Dim mResponse As MsgBoxResult
+    Dim mRetVal As Boolean
 
-    ''    UpdateObject()
+    UpdateObject()
 
-    ''    If pFormController.IsDirty() Then
-    ''      If rOption Then
-    ''        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
-    ''        Select Case mResponse
-    ''          Case MsgBoxResult.Yes
-    ''            mSaveRequired = True
-    ''            mRetVal = False
-    ''            ExitMode = Windows.Forms.DialogResult.Yes
-    ''          Case MsgBoxResult.No
-    ''            mSaveRequired = False
-    ''            mRetVal = True
-    ''            ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
-    ''          Case MsgBoxResult.Cancel
-    ''            mSaveRequired = False
-    ''            mRetVal = False
-    ''        End Select
-    ''      Else
-    ''        ExitMode = Windows.Forms.DialogResult.Yes
-    ''        mSaveRequired = True
-    ''        mRetVal = False
-    ''      End If
-    ''    Else
-    ''      ExitMode = Windows.Forms.DialogResult.Ignore
-    ''      mSaveRequired = False
-    ''      mRetVal = True
-    ''    End If
-    ''    If mSaveRequired Then
-    ''      Dim mValidate As clsValidate
-    ''      mValidate = pFormController.ValidateObject
-    ''      If mValidate.ValOk Then
-    ''        mRetVal = pFormController.SaveObject()
-    ''        'TODO - If mRetVal then AddHandler InstanceData to  BrowseTracker
-    ''      Else
-    ''        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
-    ''        mRetVal = False
-    ''      End If
-    ''    End If
-    ''    CheckSave = mRetVal
+    If pFormController.IsDirty() Then
+      If rOption Then
+        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        Select Case mResponse
+          Case MsgBoxResult.Yes
+            mSaveRequired = True
+            mRetVal = False
+            ExitMode = Windows.Forms.DialogResult.Yes
+          Case MsgBoxResult.No
+            mSaveRequired = False
+            mRetVal = True
+            ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
+          Case MsgBoxResult.Cancel
+            mSaveRequired = False
+            mRetVal = False
+        End Select
+      Else
+        ExitMode = Windows.Forms.DialogResult.Yes
+        mSaveRequired = True
+        mRetVal = False
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.Ignore
+      mSaveRequired = False
+      mRetVal = True
+    End If
+    If mSaveRequired Then
+      Dim mValidate As clsValidate
+      mValidate = pFormController.ValidateObject
+      If mValidate.ValOk Then
+        mRetVal = pFormController.SaveObject()
+        'TODO - If mRetVal then AddHandler InstanceData to  BrowseTracker
+      Else
+        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+        mRetVal = False
+      End If
+    End If
+    CheckSave = mRetVal
   End Function
 
   Private Sub RefreshControls()

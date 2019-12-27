@@ -56,6 +56,30 @@ Public Class dsoHR
     Return mOK
   End Function
 
+  Public Function LoadTimeSheetEntrysByWhere(ByRef rTimeSheetEntrys As colTimeSheetEntrys, ByVal vWhere As String) As Boolean
+    Dim mdto As dtoTimeSheetEntry
+    Dim mWhere As String
+    Dim mOK As Boolean = False
+
+    Try
+
+      pDBConn.Connect()
+
+      mdto = New dtoTimeSheetEntry(pDBConn)
+      mWhere = vWhere
+      mdto.LoadTimeSheetEntryCollectionByWhere(rTimeSheetEntrys, mWhere)
+
+      mOK = True
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function SaveTimeSheetEntrys(ByRef rTimeSheetEntrys As colTimeSheetEntrys, ByVal vEmployeeID As Integer) As Boolean
     Dim mdto As dtoTimeSheetEntry
     Dim mOK As Boolean = False

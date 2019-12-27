@@ -220,50 +220,50 @@ Public Class fccStockTake
 
 
 
-  ''Public Function IsDirty() As Boolean
-  ''  Dim mIsDirty As Boolean = True
-  ''  If Not pStockTake Is Nothing Then
-  ''    mIsDirty = pStockTake.IsAnyDirty
-  ''  Else
-  ''    mIsDirty = False
-  ''  End If
-  ''  Return mIsDirty
-  ''End Function
+  Public Function IsDirty() As Boolean
+    Dim mIsDirty As Boolean = True
+    If Not pStockTake Is Nothing Then
+      mIsDirty = pStockTake.IsAnyDirty
+    Else
+      mIsDirty = False
+    End If
+    Return mIsDirty
+  End Function
 
-  ''Public Function ValidateObject() As clsValidate
-  ''  Dim mValidate As New clsValidate
-  ''  mValidate.ValOk = True
-  ''  If False Then '' Change to perform validation checks
-  ''    mValidate.ValOk = False
-  ''    mValidate.AddMsgLine("Check failed details")
-  ''  End If
-  ''  Return mValidate
-  ''End Function
+  Public Function ValidateObject() As clsValidate
+    Dim mValidate As New clsValidate
+    mValidate.ValOk = True
+    If False Then '' Change to perform validation checks
+      mValidate.ValOk = False
+      mValidate.AddMsgLine("Check failed details")
+    End If
+    Return mValidate
+  End Function
 
-  ''Public Function SaveObject() As Boolean
-  ''  Dim mOK As Boolean = False
-  ''  Dim mdsoStock As New dsoStock(DBConn)
+  Public Function SaveObject() As Boolean
+    Dim mOK As Boolean = False
+    Dim mdsoStock As New dsoStock(DBConn)
 
-  ''  Try
+    Try
 
-  ''    mOK = mdsoStock.SaveStockCheck(pStockTake)
+      ''mOK = mdsoStock.SaveStockCheck(pStockTake)
 
-  ''    If pStockTakeID = 0 Then
-  ''      pStockTakeID = pStockTake.StockCheckID
-  ''    End If
+      If pStockTakeID = 0 Then
+        pStockTakeID = pStockTake.StockTakeID
+      End If
 
-  ''    If mOK Then mOK = SaveStockCheckItems(pStockTake.StockCheckItems)
+      ''If mOK Then mOK = SaveStockCheckItems(pStockTake.StockCheckItems)
 
 
-  ''  Catch ex As Exception
-  ''    mOK = False
-  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''  Finally
-  ''    mdsoStock = Nothing
-  ''  End Try
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      mdsoStock = Nothing
+    End Try
 
-  ''  Return mOK
-  ''End Function
+    Return mOK
+  End Function
 
 
   ''Public Function SaveCurrentStockCheckItem() As Boolean
