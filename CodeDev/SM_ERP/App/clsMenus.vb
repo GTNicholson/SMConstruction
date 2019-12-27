@@ -75,7 +75,18 @@ Class clsMenuFunctions
     mCategories.Add(eStockItemCategory.Abrasivos)
     mCategories.Add(eStockItemCategory.NailsAndBolds)
     mCategories.Add(eStockItemCategory.EPP)
+    mCategories.Add(eStockItemCategory.Herramientas)
+    mCategories.Add(eStockItemCategory.MatElect)
+    mCategories.Add(eStockItemCategory.MatEmpaque)
+    mCategories.Add(eStockItemCategory.MatVarios)
+    mCategories.Add(eStockItemCategory.Metal)
+    mCategories.Add(eStockItemCategory.PinturaYQuimico)
+    mCategories.Add(eStockItemCategory.Plywood)
+    mCategories.Add(eStockItemCategory.Repuestos)
+    mCategories.Add(eStockItemCategory.Tapiceria)
+    mCategories.Add(eStockItemCategory.VidioYEspejo)
     mCategories.Add(eStockItemCategory.Ironmongery)
+
     frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mCategories)
   End Sub
 

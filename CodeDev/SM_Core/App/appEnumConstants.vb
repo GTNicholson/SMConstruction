@@ -153,11 +153,11 @@ Public Enum eStockItemCategory
   <Description("Materiales Electricos")> MatElect = 7
   <Description("Materiales Varios")> MatVarios = 8
   <Description("Metales")> Metal = 9
-  <Description("Pinturas y Quimicos")> PinturaYQuimico = 9
-  <Description("Plywood")> Plywood = 10
-  <Description("Repuestos y Partes")> Repuestos = 11
-  <Description("Tapiceria")> Tapiceria = 12
-  <Description("Vidrios y Espejos")> VidioYEspejo = 13
+  <Description("Pinturas y Quimicos")> PinturaYQuimico = 10
+  <Description("Plywood")> Plywood = 11
+  <Description("Repuestos y Partes")> Repuestos = 12
+  <Description("Tapiceria")> Tapiceria = 13
+  <Description("Vidrios y Espejos")> VidioYEspejo = 14
 End Enum
 
 Public Enum eMaterialRequirementType

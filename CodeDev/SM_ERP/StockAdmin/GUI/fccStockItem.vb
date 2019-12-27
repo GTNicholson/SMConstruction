@@ -13,7 +13,7 @@ Public Class fccStocktem
   Private pCurrentCategory As eStockItemCategory
   Private pCurrentStockItemOpposite As dmStockItem
   Private pInterdenStockItem As dmStockItem
-
+  Private ptmpIsFullyLoadedDown As Boolean
   Private pShowItemsMode As Integer
 
   ''Private pStockItemRegistry As clsStockItemRegistry
@@ -55,6 +55,15 @@ Public Class fccStocktem
     End Get
     Set(value As dmStockItem)
       pCurrentStockItem = value
+    End Set
+  End Property
+
+  Public Property tmpIsFullyLoadedDown() As Boolean
+    Get
+      tmpIsFullyLoadedDown = ptmpIsFullyLoadedDown
+    End Get
+    Set(ByVal value As Boolean)
+      ptmpIsFullyLoadedDown = value
     End Set
   End Property
 
@@ -168,7 +177,7 @@ Public Class fccStocktem
         mdsoStock.LoadStockItem(pCurrentStockItem, pCurrentStockItem.StockItemID)
         mdsoStock.LoadStockItem(pCurrentStockItemOpposite, pCurrentStockItem.OppositeStockItemID)
         mdsoStock.LoadStockItem(pInterdenStockItem, pCurrentStockItem.InterdenStockItemID)
-        ''pCurrentStockItem.tmpIsFullyLoadedDown = True
+        pCurrentStockItem.tmpIsFullyLoadedDown = True
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -196,47 +205,48 @@ Public Class fccStocktem
     End Try
   End Sub
 
-  ''  Public Function AddStockItem(ByVal vClassType As eStockType, ByVal vCategory As eStockItemCategory) As dmStockItem
-  ''    Dim mRetVal As dmStockItem = Nothing
-  ''    Dim mStockItem As dmStockItem
-  ''    Dim mProvisional As Boolean = False
-  ''    Try
+  Public Function AddStockItem(ByVal vClassType As Integer, ByVal vCategory As eStockItemCategory) As dmStockItem
+    Dim mRetVal As dmStockItem = Nothing
+    Dim mStockItem As dmStockItem
+    Dim mProvisional As Boolean = False
+    Try
 
-  ''      Select Case vClassType
-  ''        Case eStockType.Basic
-  ''          mStockItem = New dmStockItem '(mProvisional)
-  ''        Case Else
-  ''          mStockItem = New dmStockItem '(mProvisional)
-  ''      End Select
+      Select Case vClassType
+        ''Case eStockType.Basic
+        Case 1
+          mStockItem = New dmStockItem '(mProvisional)
+        Case Else
+          mStockItem = New dmStockItem '(mProvisional)
+      End Select
 
-  ''      mStockItem.ClassTypeID = CInt(vClassType)
-  ''      mStockItem.Category = vCategory
-  ''      mStockItem.tmpIsFullyLoadedDown = True
-  ''      pStockItems.Add(mStockItem)
+      ''mStockItem.ClassTypeID = CInt(vClassType)
+      mStockItem.Category = vCategory
+      ''mStockItem.tmpIsFullyLoadedDown = True
+      pStockItems.Add(mStockItem)
 
-  ''      mRetVal = mStockItem
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''    End Try
-  ''    Return mRetVal
-  ''  End Function
+      mRetVal = mStockItem
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mRetVal
+  End Function
 
-  ''  Public Function GetStockItemFixings() As colStockItems
+  ''Public Function GetStockItemFixings() As colStockItems
 
-  ''    pStockItemsPicker = New colStockItems
-  ''    Dim mdsoStock As New dsoStock(pDBConn)
+  ''  pStockItemsPicker = New colStockItems
+  ''  Dim mdsoStock As New dsoStock(pDBConn)
 
-  ''    Try
-  ''      mdsoStock.LoadStockItems(pStockItemsPicker, String.Format("Category = {0}", CInt(eStockItemCategory.Fixing)))
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''    Finally
-  ''      mdsoStock = Nothing
-  ''    End Try
+  ''  Try
+  ''    mdsoStock.LoadStockItems(pStockItemsPicker, String.Format("Category = {0}", CInt(eStockItemCategory.Fixing)))
+  ''  Catch ex As Exception
+  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+  ''  Finally
+  ''    mdsoStock = Nothing
+  ''  End Try
 
 
-  ''    Return pStockItemsPicker
-  ''  End Function
+  ''  Return pStockItemsPicker
+  ''End Function
 
   ''  Public Function GetStockItems() As colStockItems
 

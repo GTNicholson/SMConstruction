@@ -27,6 +27,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pInactive As Boolean
   Private pInterdenStockItemID As Int32
   Private pProjectID As Int32
+  Private ptmpIsFullyLoadedDown As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -344,7 +345,14 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property tmpIsFullyLoadedDown() As Boolean
+    Get
+      tmpIsFullyLoadedDown = ptmpIsFullyLoadedDown
+    End Get
+    Set(ByVal value As Boolean)
+      ptmpIsFullyLoadedDown = value
+    End Set
+  End Property
 End Class
 
 
