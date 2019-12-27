@@ -11,3 +11,5 @@ GO
 alter table stockitem add ASISID Integer
 
 GO
+
+go

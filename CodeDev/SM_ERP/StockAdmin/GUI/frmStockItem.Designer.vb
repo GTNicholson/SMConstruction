@@ -217,7 +217,7 @@ Partial Class frmStockItem
     Me.chkIsObsolete.Name = "chkIsObsolete"
     Me.chkIsObsolete.Size = New System.Drawing.Size(111, 18)
     Me.chkIsObsolete.TabIndex = 117
-    Me.chkIsObsolete.Text = "Is Obsolete"
+    Me.chkIsObsolete.Text = "está Obsoleto"
     Me.chkIsObsolete.UseVisualStyleBackColor = True
     '
     'chkIsGeneric
@@ -229,7 +229,7 @@ Partial Class frmStockItem
     Me.chkIsGeneric.Name = "chkIsGeneric"
     Me.chkIsGeneric.Size = New System.Drawing.Size(86, 18)
     Me.chkIsGeneric.TabIndex = 116
-    Me.chkIsGeneric.Text = "Generic"
+    Me.chkIsGeneric.Text = "Genérico"
     Me.chkIsGeneric.UseVisualStyleBackColor = True
     '
     'lblStockItemID
@@ -242,7 +242,7 @@ Partial Class frmStockItem
     Me.lblStockItemID.Appearance.Options.UseTextOptions = True
     Me.lblStockItemID.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
     Me.lblStockItemID.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
-    Me.lblStockItemID.Location = New System.Drawing.Point(448, 3)
+    Me.lblStockItemID.Location = New System.Drawing.Point(363, 4)
     Me.lblStockItemID.Name = "lblStockItemID"
     Me.lblStockItemID.Size = New System.Drawing.Size(123, 15)
     Me.lblStockItemID.TabIndex = 113
@@ -256,9 +256,9 @@ Partial Class frmStockItem
     Me.LabelControl16.Appearance.Options.UseForeColor = True
     Me.LabelControl16.Location = New System.Drawing.Point(318, 124)
     Me.LabelControl16.Name = "LabelControl16"
-    Me.LabelControl16.Size = New System.Drawing.Size(85, 14)
+    Me.LabelControl16.Size = New System.Drawing.Size(87, 14)
     Me.LabelControl16.TabIndex = 108
-    Me.LabelControl16.Text = "Finance Category"
+    Me.LabelControl16.Text = "Categ. de Finanza"
     '
     'LabelControl15
     '
@@ -268,9 +268,9 @@ Partial Class frmStockItem
     Me.LabelControl15.Appearance.Options.UseForeColor = True
     Me.LabelControl15.Location = New System.Drawing.Point(318, 150)
     Me.LabelControl15.Name = "LabelControl15"
-    Me.LabelControl15.Size = New System.Drawing.Size(62, 14)
+    Me.LabelControl15.Size = New System.Drawing.Size(79, 14)
     Me.LabelControl15.TabIndex = 107
-    Me.LabelControl15.Text = "SubItemType"
+    Me.LabelControl15.Text = "Tipo de Sub Ítem"
     '
     'LabelControl14
     '
@@ -280,9 +280,9 @@ Partial Class frmStockItem
     Me.LabelControl14.Appearance.Options.UseForeColor = True
     Me.LabelControl14.Location = New System.Drawing.Point(318, 202)
     Me.LabelControl14.Name = "LabelControl14"
-    Me.LabelControl14.Size = New System.Drawing.Size(77, 14)
+    Me.LabelControl14.Size = New System.Drawing.Size(51, 14)
     Me.LabelControl14.TabIndex = 106
-    Me.LabelControl14.Text = "Default Supplier"
+    Me.LabelControl14.Text = "Proveedor"
     '
     'LabelControl13
     '
@@ -292,9 +292,9 @@ Partial Class frmStockItem
     Me.LabelControl13.Appearance.Options.UseForeColor = True
     Me.LabelControl13.Location = New System.Drawing.Point(318, 29)
     Me.LabelControl13.Name = "LabelControl13"
-    Me.LabelControl13.Size = New System.Drawing.Size(83, 14)
+    Me.LabelControl13.Size = New System.Drawing.Size(86, 14)
     Me.LabelControl13.TabIndex = 105
-    Me.LabelControl13.Text = "Short Description"
+    Me.LabelControl13.Text = "Descripción Corta"
     '
     'LabelControl12
     '
@@ -304,9 +304,9 @@ Partial Class frmStockItem
     Me.LabelControl12.Appearance.Options.UseForeColor = True
     Me.LabelControl12.Location = New System.Drawing.Point(318, 82)
     Me.LabelControl12.Name = "LabelControl12"
-    Me.LabelControl12.Size = New System.Drawing.Size(40, 14)
+    Me.LabelControl12.Size = New System.Drawing.Size(42, 14)
     Me.LabelControl12.TabIndex = 104
-    Me.LabelControl12.Text = "Quantity"
+    Me.LabelControl12.Text = "Cantidad"
     '
     'LabelControl11
     '
@@ -376,9 +376,9 @@ Partial Class frmStockItem
     Me.LabelControl5.Appearance.Options.UseForeColor = True
     Me.LabelControl5.Location = New System.Drawing.Point(318, 55)
     Me.LabelControl5.Name = "LabelControl5"
-    Me.LabelControl5.Size = New System.Drawing.Size(60, 14)
+    Me.LabelControl5.Size = New System.Drawing.Size(80, 14)
     Me.LabelControl5.TabIndex = 98
-    Me.LabelControl5.Text = "Part Number"
+    Me.LabelControl5.Text = "Número de Parte"
     '
     'LabelControl25
     '
@@ -445,14 +445,14 @@ Partial Class frmStockItem
     Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl4.Name = "PanelControl4"
-    Me.PanelControl4.Size = New System.Drawing.Size(585, 233)
+    Me.PanelControl4.Size = New System.Drawing.Size(504, 194)
     Me.PanelControl4.TabIndex = 0
     '
     'tabpgDoorBlankDetails
     '
     Me.tabpgDoorBlankDetails.Controls.Add(Me.PanelControl4)
     Me.tabpgDoorBlankDetails.Name = "tabpgDoorBlankDetails"
-    Me.tabpgDoorBlankDetails.Size = New System.Drawing.Size(585, 233)
+    Me.tabpgDoorBlankDetails.Size = New System.Drawing.Size(504, 194)
     Me.tabpgDoorBlankDetails.Tag = "1"
     Me.tabpgDoorBlankDetails.Text = "Door Blank Details"
     '
@@ -534,7 +534,7 @@ Partial Class frmStockItem
     Me.grpGroupF8.Name = "grpGroupF8"
     Me.grpGroupF8.Size = New System.Drawing.Size(576, 260)
     Me.grpGroupF8.TabIndex = 94
-    Me.grpGroupF8.Text = "Stock Item Detail"
+    Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
     '
     'LabelControl4
     '
@@ -544,9 +544,9 @@ Partial Class frmStockItem
     Me.LabelControl4.Appearance.Options.UseForeColor = True
     Me.LabelControl4.Location = New System.Drawing.Point(5, 206)
     Me.LabelControl4.Name = "LabelControl4"
-    Me.LabelControl4.Size = New System.Drawing.Size(32, 14)
+    Me.LabelControl4.Size = New System.Drawing.Size(26, 14)
     Me.LabelControl4.TabIndex = 97
-    Me.LabelControl4.Text = "Colour"
+    Me.LabelControl4.Text = "Color"
     '
     'LabelControl3
     '
@@ -556,9 +556,9 @@ Partial Class frmStockItem
     Me.LabelControl3.Appearance.Options.UseForeColor = True
     Me.LabelControl3.Location = New System.Drawing.Point(5, 180)
     Me.LabelControl3.Name = "LabelControl3"
-    Me.LabelControl3.Size = New System.Drawing.Size(39, 14)
+    Me.LabelControl3.Size = New System.Drawing.Size(44, 14)
     Me.LabelControl3.TabIndex = 96
-    Me.LabelControl3.Text = "Species"
+    Me.LabelControl3.Text = "Especies"
     '
     'LabelControl2
     '
@@ -568,9 +568,9 @@ Partial Class frmStockItem
     Me.LabelControl2.Appearance.Options.UseForeColor = True
     Me.LabelControl2.Location = New System.Drawing.Point(5, 154)
     Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(46, 14)
+    Me.LabelControl2.Size = New System.Drawing.Size(57, 14)
     Me.LabelControl2.TabIndex = 95
-    Me.LabelControl2.Text = "Item Type"
+    Me.LabelControl2.Text = "Tipo de Ítem"
     '
     'LabelControl22
     '
@@ -580,9 +580,9 @@ Partial Class frmStockItem
     Me.LabelControl22.Appearance.Options.UseForeColor = True
     Me.LabelControl22.Location = New System.Drawing.Point(5, 128)
     Me.LabelControl22.Name = "LabelControl22"
-    Me.LabelControl22.Size = New System.Drawing.Size(44, 14)
+    Me.LabelControl22.Size = New System.Drawing.Size(46, 14)
     Me.LabelControl22.TabIndex = 94
-    Me.LabelControl22.Text = "Category"
+    Me.LabelControl22.Text = "Categoría"
     '
     'cboStockFinanceCategory
     '
@@ -657,15 +657,15 @@ Partial Class frmStockItem
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1370, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 33)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 749)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1370, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1164, 0)
     '
     'barDockControlLeft
     '
@@ -673,15 +673,15 @@ Partial Class frmStockItem
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 716)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1370, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 716)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
     '
     'BarButtonItem1
     '
@@ -995,9 +995,9 @@ Partial Class frmStockItem
     Me.LabelControl8.Appearance.Options.UseForeColor = True
     Me.LabelControl8.Location = New System.Drawing.Point(5, 29)
     Me.LabelControl8.Name = "LabelControl8"
-    Me.LabelControl8.Size = New System.Drawing.Size(54, 14)
+    Me.LabelControl8.Size = New System.Drawing.Size(57, 14)
     Me.LabelControl8.TabIndex = 41
-    Me.LabelControl8.Text = "Description"
+    Me.LabelControl8.Text = "Descripción"
     '
     'LabelControl1
     '
@@ -1007,9 +1007,9 @@ Partial Class frmStockItem
     Me.LabelControl1.Appearance.Options.UseForeColor = True
     Me.LabelControl1.Location = New System.Drawing.Point(5, 54)
     Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(55, 14)
+    Me.LabelControl1.Size = New System.Drawing.Size(33, 14)
     Me.LabelControl1.TabIndex = 43
-    Me.LabelControl1.Text = "Stock Code"
+    Me.LabelControl1.Text = "Código"
     '
     'txtDescription
     '
@@ -1050,10 +1050,10 @@ Partial Class frmStockItem
     Me.tabExtraDetails.AppearancePage.Header.ForeColor = System.Drawing.Color.Maroon
     Me.tabExtraDetails.AppearancePage.Header.Options.UseFont = True
     Me.tabExtraDetails.AppearancePage.Header.Options.UseForeColor = True
-    Me.tabExtraDetails.Location = New System.Drawing.Point(749, 37)
+    Me.tabExtraDetails.Location = New System.Drawing.Point(645, 29)
     Me.tabExtraDetails.Name = "tabExtraDetails"
     Me.tabExtraDetails.SelectedTabPage = Me.tabpgIMDetails
-    Me.tabExtraDetails.Size = New System.Drawing.Size(591, 262)
+    Me.tabExtraDetails.Size = New System.Drawing.Size(510, 223)
     Me.tabExtraDetails.TabIndex = 97
     Me.tabExtraDetails.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabpgIMDetails, Me.tabpgCNCOperations, Me.tabpgDoorBlankDetails})
     '
@@ -1061,7 +1061,7 @@ Partial Class frmStockItem
     '
     Me.tabpgIMDetails.Controls.Add(Me.PanelControl3)
     Me.tabpgIMDetails.Name = "tabpgIMDetails"
-    Me.tabpgIMDetails.Size = New System.Drawing.Size(585, 233)
+    Me.tabpgIMDetails.Size = New System.Drawing.Size(504, 194)
     Me.tabpgIMDetails.Tag = "3"
     Me.tabpgIMDetails.Text = "Ironmongery Details"
     '
@@ -1076,7 +1076,7 @@ Partial Class frmStockItem
     Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl3.Name = "PanelControl3"
-    Me.PanelControl3.Size = New System.Drawing.Size(585, 233)
+    Me.PanelControl3.Size = New System.Drawing.Size(504, 194)
     Me.PanelControl3.TabIndex = 0
     '
     'bteInterdenStockItem
@@ -1150,7 +1150,7 @@ Partial Class frmStockItem
     '
     Me.tabpgCNCOperations.Controls.Add(Me.PanelControl5)
     Me.tabpgCNCOperations.Name = "tabpgCNCOperations"
-    Me.tabpgCNCOperations.Size = New System.Drawing.Size(585, 233)
+    Me.tabpgCNCOperations.Size = New System.Drawing.Size(504, 194)
     Me.tabpgCNCOperations.Tag = "3"
     Me.tabpgCNCOperations.Text = "CNC Operations"
     '
@@ -1173,7 +1173,7 @@ Partial Class frmStockItem
     Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl5.Name = "PanelControl5"
-    Me.PanelControl5.Size = New System.Drawing.Size(585, 233)
+    Me.PanelControl5.Size = New System.Drawing.Size(504, 194)
     Me.PanelControl5.TabIndex = 0
     '
     'CheckedComboBoxEdit1
@@ -1345,7 +1345,7 @@ Partial Class frmStockItem
     '
     'gcSubItemType
     '
-    Me.gcSubItemType.Caption = "Sub Item Type"
+    Me.gcSubItemType.Caption = "Tipo de Sub ítem"
     Me.gcSubItemType.FieldName = "UBSubItemType"
     Me.gcSubItemType.Name = "gcSubItemType"
     Me.gcSubItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
@@ -1355,7 +1355,7 @@ Partial Class frmStockItem
     '
     'gcItemType
     '
-    Me.gcItemType.Caption = "Item Type"
+    Me.gcItemType.Caption = "Tipo de Ítem"
     Me.gcItemType.FieldName = "UBItemType"
     Me.gcItemType.Name = "gcItemType"
     Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
@@ -1364,7 +1364,7 @@ Partial Class frmStockItem
     '
     'gcCategory
     '
-    Me.gcCategory.Caption = "Category"
+    Me.gcCategory.Caption = "Categoría"
     Me.gcCategory.FieldName = "Category"
     Me.gcCategory.Name = "gcCategory"
     Me.gcCategory.Visible = True
@@ -1372,7 +1372,7 @@ Partial Class frmStockItem
     '
     'gcPricingUnit
     '
-    Me.gcPricingUnit.Caption = "Unit"
+    Me.gcPricingUnit.Caption = "Precio Unitario"
     Me.gcPricingUnit.FieldName = "PricingUnit"
     Me.gcPricingUnit.Name = "gcPricingUnit"
     Me.gcPricingUnit.Visible = True
@@ -1381,7 +1381,7 @@ Partial Class frmStockItem
     '
     'gcStdCost
     '
-    Me.gcStdCost.Caption = "Cost"
+    Me.gcStdCost.Caption = "Costo"
     Me.gcStdCost.DisplayFormat.FormatString = "c2"
     Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcStdCost.FieldName = "StdCost"
@@ -1391,7 +1391,7 @@ Partial Class frmStockItem
     '
     'gcStdPrice
     '
-    Me.gcStdPrice.Caption = "Price"
+    Me.gcStdPrice.Caption = "Precio"
     Me.gcStdPrice.DisplayFormat.FormatString = "c2"
     Me.gcStdPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcStdPrice.FieldName = "StdPrice"
@@ -1401,7 +1401,7 @@ Partial Class frmStockItem
     '
     'GridColumn2
     '
-    Me.GridColumn2.Caption = "Stock Code"
+    Me.GridColumn2.Caption = "Código"
     Me.GridColumn2.FieldName = "StockCode"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.OptionsColumn.ReadOnly = True
@@ -1411,7 +1411,7 @@ Partial Class frmStockItem
     '
     'GridColumn1
     '
-    Me.GridColumn1.Caption = "Description"
+    Me.GridColumn1.Caption = "Descripción"
     Me.GridColumn1.FieldName = "Description"
     Me.GridColumn1.Name = "GridColumn1"
     Me.GridColumn1.OptionsColumn.ReadOnly = True
@@ -1448,7 +1448,7 @@ Partial Class frmStockItem
     Me.grdStockItems.MainView = Me.gvStockItems
     Me.grdStockItems.MenuManager = Me.BarManager1
     Me.grdStockItems.Name = "grdStockItems"
-    Me.grdStockItems.Size = New System.Drawing.Size(1366, 408)
+    Me.grdStockItems.Size = New System.Drawing.Size(1160, 388)
     Me.grdStockItems.TabIndex = 0
     Me.grdStockItems.UseEmbeddedNavigator = True
     Me.grdStockItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItems})
@@ -1464,7 +1464,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1.Panel1.Text = "Panel1"
     Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
     Me.SplitContainerControl1.Panel2.Text = "Panel2"
-    Me.SplitContainerControl1.Size = New System.Drawing.Size(1366, 712)
+    Me.SplitContainerControl1.Size = New System.Drawing.Size(1160, 692)
     Me.SplitContainerControl1.SplitterPosition = 299
     Me.SplitContainerControl1.TabIndex = 0
     Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1482,9 +1482,9 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpCurrentStockItem.Location = New System.Drawing.Point(0, 0)
     Me.grpCurrentStockItem.Name = "grpCurrentStockItem"
-    Me.grpCurrentStockItem.Size = New System.Drawing.Size(1366, 299)
+    Me.grpCurrentStockItem.Size = New System.Drawing.Size(1160, 299)
     Me.grpCurrentStockItem.TabIndex = 1
-    Me.grpCurrentStockItem.Text = "Current Stock Item"
+    Me.grpCurrentStockItem.Text = "Ítem de Inventario Actual"
     '
     'PanelControl1
     '
@@ -1492,21 +1492,21 @@ Partial Class frmStockItem
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1370, 716)
+    Me.PanelControl1.Size = New System.Drawing.Size(1164, 696)
     Me.PanelControl1.TabIndex = 4
     '
     'frmStockItem
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1370, 749)
+    Me.ClientSize = New System.Drawing.Size(1164, 729)
     Me.Controls.Add(Me.PanelControl1)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
     Me.Controls.Add(Me.barDockControlBottom)
     Me.Controls.Add(Me.barDockControlTop)
     Me.Name = "frmStockItem"
-    Me.Text = "frmStockItem"
+    Me.Text = "Artículo de Inventario"
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
