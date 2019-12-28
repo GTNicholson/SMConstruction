@@ -84,8 +84,8 @@ Class clsMenuFunctions
     mCategories.Add(eStockItemCategory.Plywood)
     mCategories.Add(eStockItemCategory.Repuestos)
     mCategories.Add(eStockItemCategory.Tapiceria)
-    mCategories.Add(eStockItemCategory.VidioYEspejo)
-    mCategories.Add(eStockItemCategory.Ironmongery)
+    mCategories.Add(eStockItemCategory.VidrioYEspejo)
+    mCategories.Add(eStockItemCategory.Herrajes)
 
     frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mCategories)
   End Sub

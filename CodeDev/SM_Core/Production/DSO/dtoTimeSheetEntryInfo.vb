@@ -71,6 +71,14 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
         .Description = DBReadString(rDataReader, "Description")
       End With
 
+      With pTimeSheetEntryInfo.SalesOrder
+        .ProjectName = DBReadString(rDataReader, "ProjectName")
+      End With
+
+      With pTimeSheetEntryInfo.Customer
+        .CompanyName = DBReadString(rDataReader, "CompanyName")
+      End With
+
       mOK = True
     Catch Ex As Exception
       If clsErrorHandler.HandleError(Ex, clsErrorHandler.PolicyDataLayer) Then Throw

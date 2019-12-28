@@ -147,17 +147,17 @@ Public Enum eStockItemCategory
   <Description("Abrasivos")> Abrasivos = 1
   <Description("Clavos y Tornillos")> NailsAndBolds = 2
   <Description("Equipos de Proteccion")> EPP = 3
-  <Description("Herrajes")> Ironmongery = 4
+  <Description("Herrajes")> Herrajes = 4
   <Description("Herramientas")> Herramientas = 5
-  <Description("Material Empaque")> MatEmpaque = 6
-  <Description("Materiales Electricos")> MatElect = 7
+  <Description("Materiales Electricos")> MatElect = 6
+  <Description("Material Empaque")> MatEmpaque = 7
   <Description("Materiales Varios")> MatVarios = 8
   <Description("Metales")> Metal = 9
   <Description("Pinturas y Quimicos")> PinturaYQuimico = 10
   <Description("Plywood")> Plywood = 11
   <Description("Repuestos y Partes")> Repuestos = 12
   <Description("Tapiceria")> Tapiceria = 13
-  <Description("Vidrios y Espejos")> VidioYEspejo = 14
+  <Description("Vidrios y Espejos")> VidrioYEspejo = 14
 End Enum
 
 Public Enum eMaterialRequirementType
@@ -208,7 +208,7 @@ Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of cls
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaterialTransportation, "Traslado", "T", System.Drawing.Color.PaleGreen))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cInventory, "Inventario", "I", System.Drawing.Color.PaleGreen))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPrototype, "Prototipo", "P", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPermission, "Consentiiento", "C", System.Drawing.Color.Gray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPermission, "Consentimiento", "C", System.Drawing.Color.Gray))
 
 
   End Sub
@@ -724,6 +724,13 @@ End Class
 
 Public Class eStockItemTypeMetales : Inherits colPropertyENUMOfT(Of clsStockItemTypeMetales)
 
+  Public Enum eStockItemMetales
+    Aluminio = 1
+    Platinas = 2
+    Tubos = 3
+    Varillas = 4
+    Otros = 99
+  End Enum
   Public Const Aluminio = 1
   Public Const Platinas = 2
   Public Const Tubos = 3

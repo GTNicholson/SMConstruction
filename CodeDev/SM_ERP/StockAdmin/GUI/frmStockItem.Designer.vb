@@ -146,6 +146,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1425,7 +1426,7 @@ Partial Class frmStockItem
     Me.gvStockItems.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvStockItems.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
     Me.gvStockItems.Appearance.Row.Options.UseBackColor = True
-    Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.gcStdPrice, Me.gcStdCost, Me.gcPricingUnit, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8})
+    Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.gcStdPrice, Me.gcStdCost, Me.gcPricingUnit, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8})
     Me.gvStockItems.GridControl = Me.grdStockItems
     Me.gvStockItems.Name = "gvStockItems"
     Me.gvStockItems.OptionsBehavior.Editable = False
@@ -1494,6 +1495,12 @@ Partial Class frmStockItem
     Me.PanelControl1.Name = "PanelControl1"
     Me.PanelControl1.Size = New System.Drawing.Size(1164, 696)
     Me.PanelControl1.TabIndex = 4
+    '
+    'gcStockItemID
+    '
+    Me.gcStockItemID.Caption = "GridColumn3"
+    Me.gcStockItemID.FieldName = "StockItemID"
+    Me.gcStockItemID.Name = "gcStockItemID"
     '
     'frmStockItem
     '
@@ -1691,4 +1698,5 @@ Partial Class frmStockItem
   Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents BarEditItem1 As DevExpress.XtraBars.BarEditItem
   Friend WithEvents bargCategory As DevExpress.XtraBars.BarEditItem
+  Friend WithEvents gcStockItemID As DevExpress.XtraGrid.Columns.GridColumn
 End Class
