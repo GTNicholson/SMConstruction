@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraBars
+Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
@@ -15,8 +16,8 @@ Public Class frmStockTake
   Public FormMode As eFormMode
   Public ExitMode As Windows.Forms.DialogResult
 
-  ''  Private pIsActive As Boolean
-  ''  Private pLoadError As Boolean
+  Private pIsActive As Boolean
+  Private pLoadError As Boolean
   Private pForceExit As Boolean = False
   ''  Private pSpinEnter As Boolean
 
@@ -43,9 +44,9 @@ Public Class frmStockTake
       End If
 
       mfrm.MdiParent = rParentForm 'My.Application.MenuMDIForm
-        mfrm.Show()
-      Else
-        mfrm.Focus()
+      mfrm.Show()
+    Else
+      mfrm.Focus()
     End If
 
   End Sub
@@ -110,60 +111,58 @@ Public Class frmStockTake
   End Sub
 
   Private Sub frmDetailForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-    ''    Dim mOK As Boolean = True
-    ''    Dim mMsg As String = ""
-    ''    Dim mErrorDisplayed As Boolean = False
+    Dim mOK As Boolean = True
+    Dim mMsg As String = ""
+    Dim mErrorDisplayed As Boolean = False
 
-    ''    ''Resize if required
+    ''Resize if required
 
-    ''    pIsActive = False
-    ''    pLoadError = False
+    pIsActive = False
+    pLoadError = False
 
-    ''    Try
-    ''      If mOK Then mOK = pFormController.LoadObject()
+    Try
+      If mOK Then mOK = pFormController.LoadObject()
 
-    ''      If mOK Then mOK = pFormController.LoadRefData()
+      If mOK Then mOK = pFormController.LoadRefData()
 
-    ''      LoadCombo()
-    ''      LoadGrid()
+      LoadCombo()
+      LoadGrid()
 
-    ''      'If mOK Then LoadExtensionControls()
+      ''      'If mOK Then LoadExtensionControls()
 
-    ''      If mOK Then RefreshControls()
+      If mOK Then RefreshControls()
 
-    ''      If mOK Then SetupUserPermissions()
+      ''      If mOK Then SetupUserPermissions()
 
-    ''      If mOK Then
+      If mOK Then
 
+        Me.Text = "Stock Take: " & pFormController.StockTakeID
+        grpDetail.Width = grpItemDetail.Width
 
-    ''        Me.Text = "Stock Take: " & pFormController.StockCheckID
-    ''        grpDetail.Text = clsEnumsConstants.GetEnumDescription(GetType(eStockCheckType), pFormController.StockCheckTypeID)
-    ''        grpDetail.Width = grpItemDetail.Width
+        bbtnStockValuation.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
 
-    ''        bbtnStockValuation.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        barbtnLoadDespatchedQty.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        bbtnRefreshWIPItems.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        bbtnGoodsInInvoiced.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
 
-    ''        barbtnLoadDespatchedQty.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
-    ''        bbtnRefreshWIPItems.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
-    ''        bbtnGoodsInInvoiced.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      End If
 
-    ''      End If
+    Catch ex As Exception
+      mMsg = ex.Message
+      mOK = False
+      mErrorDisplayed = True
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
 
-    ''    Catch ex As Exception
-    ''      mMsg = ex.Message
-    ''      mOK = False
-    ''      mErrorDisplayed = True
-    ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    ''    End Try
+    If Not mOK Then
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      pLoadError = True
+      ExitMode = Windows.Forms.DialogResult.Abort
+      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
 
-    ''    If Not mOK Then
-    ''      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
-    ''      pLoadError = True
-    ''      ExitMode = Windows.Forms.DialogResult.Abort
-    ''      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
+    End If
 
-    ''    End If
-
-    ''    pIsActive = True
+    pIsActive = True
 
   End Sub
 
@@ -175,9 +174,10 @@ Public Class frmStockTake
 
   End Sub
 
-  ''  Private Sub LoadGrid()
-  ''    grdStockCheckItem.DataSource = pFormController.StockItemValuations
-  ''  End Sub
+  Private Sub LoadGrid()
+    grdStockCheckItem.DataSource = pFormController.StockTakeItemEditors
+    gvStockCheckItem.RefreshData()
+  End Sub
 
 
   Private Sub CloseForm() 'Needs exit mode set first
@@ -233,104 +233,104 @@ Public Class frmStockTake
   End Function
 
   Private Sub RefreshControls()
-    ''    ' Check User Permissions here
-    ''    Dim mStartActive As Boolean = pIsActive
-    ''    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
+    ' Check User Permissions here
+    Dim mStartActive As Boolean = pIsActive
+    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
 
-    ''    pIsActive = False
-    ''    If pFormController.StockCheck IsNot Nothing Then
+    pIsActive = False
+    If pFormController.StockTake IsNot Nothing Then
 
-    ''      With pFormController.StockCheck
-    ''        txtStockCheckDesc.Text = .Description
-    ''        dateStockCheck.DateTime = .StockCheckDate
-    ''        txtRangeStockCodeEnd.Text = .RangeStockCodeEnd
-    ''        txtRangeStockCodeStart.Text = .RangeStockCodeStart
+      With pFormController.StockTake
+        txtStockCheckDesc.Text = .Description
+        dateStockCheck.DateTime = .StockTakeDate
+        txtRangeStockCodeEnd.Text = .RangeStockCodeEnd
+        txtRangeStockCodeStart.Text = .RangeStockCodeStart
 
-    ''        datDateSystemQty.DateTime = .DateSystemQty
+        datDateSystemQty.DateTime = .DateSystemQty
 
-    ''        barbtnCommitStockTake.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+        barbtnCommitStockTake.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
 
-    ''        UIHelper.SetControlsEnabled(PanelControl1, clsGeneralA.IsBlankDate(.DateCommitted))
-    ''        UIHelper.SetBarManagerEnabled(BarManager1, clsGeneralA.IsBlankDate(.DateCommitted))
-    ''        barbtnClose.Enabled = True
+        ''UIHelper.SetControlsEnabled(PanelControl1, clsGeneralA.IsBlankDate(.DateCommitted))
+        ''UIHelper.SetBarManagerEnabled(BarManager1, clsGeneralA.IsBlankDate(.DateCommitted))
+        barbtnClose.Enabled = True
 
-    ''        RefreshSystemQtyButton()
+        ''RefreshSystemQtyButton()
 
-    ''        pceStockTakeSheets.Text = String.Format("{0} Sheet(s)", .StockTakeSheets.Count.ToString())
+        ''pceStockTakeSheets.Text = String.Format("{0} Sheet(s)", .StockTakeSheets.Count.ToString())
 
 
-    ''        If .DateSystemQty > DateTime.MinValue Then
-    ''          btnSelectVisible.Enabled = True
-    ''          btnDeselectVisible.Enabled = True
-    ''          btnDeselectAll.Enabled = True
-    ''          txtRangeStockCodeStart.Enabled = True
-    ''          txtRangeStockCodeEnd.Enabled = True
-    ''          btnAddToNextSheet.Enabled = True
-    ''          btnClearRange.Enabled = True
-    ''          btnClearSystemQty.Enabled = True
-    ''          pceStockTakeSheets.Enabled = True
+        If .DateSystemQty > DateTime.MinValue Then
+          btnSelectVisible.Enabled = True
+          btnDeselectVisible.Enabled = True
+          btnDeselectAll.Enabled = True
+          txtRangeStockCodeStart.Enabled = True
+          txtRangeStockCodeEnd.Enabled = True
+          btnAddToNextSheet.Enabled = True
+          btnClearRange.Enabled = True
+          btnClearSystemQty.Enabled = True
+          pceStockTakeSheets.Enabled = True
 
-    ''          barbtnFIFOSystemValue.Enabled = True
-    ''          barbtnFIFOCountedValue.Enabled = True
+          barbtnFIFOSystemValue.Enabled = True
+          barbtnFIFOCountedValue.Enabled = True
 
-    ''          If Not String.IsNullOrEmpty(.RangeStockCodeStart) AndAlso Not String.IsNullOrEmpty(.RangeStockCodeEnd) Then
-    ''            btnApplyRange.Enabled = True
-    ''          Else
-    ''            btnApplyRange.Enabled = False
-    ''          End If
+          If Not String.IsNullOrEmpty(.RangeStockCodeStart) AndAlso Not String.IsNullOrEmpty(.RangeStockCodeEnd) Then
+            btnApplyRange.Enabled = True
+          Else
+            btnApplyRange.Enabled = False
+          End If
 
-    ''        Else
-    ''          btnSelectVisible.Enabled = False
-    ''          btnDeselectVisible.Enabled = False
-    ''          btnDeselectAll.Enabled = False
-    ''          txtRangeStockCodeStart.Enabled = False
-    ''          txtRangeStockCodeEnd.Enabled = False
-    ''          btnApplyRange.Enabled = False
-    ''          btnAddToNextSheet.Enabled = False
-    ''          btnClearRange.Enabled = False
-    ''          btnClearSystemQty.Enabled = False
-    ''          pceStockTakeSheets.Enabled = False
+        Else
+          btnSelectVisible.Enabled = False
+          btnDeselectVisible.Enabled = False
+          btnDeselectAll.Enabled = False
+          txtRangeStockCodeStart.Enabled = False
+          txtRangeStockCodeEnd.Enabled = False
+          btnApplyRange.Enabled = False
+          btnAddToNextSheet.Enabled = False
+          btnClearRange.Enabled = False
+          btnClearSystemQty.Enabled = False
+          pceStockTakeSheets.Enabled = False
 
-    ''          barbtnFIFOSystemValue.Enabled = False
-    ''          barbtnFIFOCountedValue.Enabled = False
+          barbtnFIFOSystemValue.Enabled = False
+          barbtnFIFOCountedValue.Enabled = False
 
-    ''        End If
+        End If
 
-    ''        gvStockCheckItem.RefreshData()
-    ''        gvStockTakeSheets.RefreshData()
-    ''        gvStockItemValuationHistorys.RefreshData()
-    ''      End With
+        gvStockCheckItem.RefreshData()
+        gvStockTakeSheets.RefreshData()
+        gvStockItemValuationHistorys.RefreshData()
+      End With
 
-    ''    End If
+    End If
 
-    ''    pIsActive = mStartActive
+    pIsActive = mStartActive
   End Sub
 
   Private Sub UpdateObject()
-    ''    ''Read in from controls - update object/record
+    ''Read in from controls - update object/record
     ''    'Dim mIntExtender As RTIS.FormExtenderCore.intExtenderControl
 
-    ''    'Make sure all grid controls etc. finished current edit
-    ''    Try
-    ''      Dim mActiveControl As Control = Me.ActiveControl
-    ''      grpDetail.Focus()
-    ''      If mActiveControl IsNot Nothing Then
-    ''        mActiveControl.Focus()
-    ''      End If
-    ''    Catch Ex As Exception
-    ''      If Debugger.IsAttached Then MsgBox("UpdateObject-Focus: " & Ex.Message)
-    ''    End Try
+    'Make sure all grid controls etc. finished current edit
+    Try
+      Dim mActiveControl As Control = Me.ActiveControl
+      grpDetail.Focus()
+      If mActiveControl IsNot Nothing Then
+        mActiveControl.Focus()
+      End If
+    Catch Ex As Exception
+      If Debugger.IsAttached Then MsgBox("UpdateObject-Focus: " & Ex.Message)
+    End Try
 
-    ''    If pFormController.StockCheck IsNot Nothing Then
+    If pFormController.StockTake IsNot Nothing Then
 
-    ''      With pFormController.StockCheck
-    ''        .Description = txtStockCheckDesc.Text
-    ''        .StockCheckDate = dateStockCheck.DateTime
-    ''        .RangeStockCodeEnd = txtRangeStockCodeEnd.Text
-    ''        .RangeStockCodeStart = txtRangeStockCodeStart.Text
-    ''      End With
+      With pFormController.StockTake
+        .Description = txtStockCheckDesc.Text
+        .StockTakeDate = dateStockCheck.DateTime
+        .RangeStockCodeEnd = txtRangeStockCodeEnd.Text
+        .RangeStockCodeStart = txtRangeStockCodeStart.Text
+      End With
 
-    ''    End If
+    End If
 
   End Sub
 
@@ -384,6 +384,7 @@ Public Class frmStockTake
     If FormController IsNot Nothing Then FormController = Nothing
     MyBase.Finalize()
   End Sub
+
 
   ''  Private Sub gvStockCheckItem_BeforeLeaveRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowAllowEventArgs) Handles gvStockCheckItem.BeforeLeaveRow
   ''    Try
@@ -445,35 +446,6 @@ Public Class frmStockTake
   ''    End If
   ''  End Sub
 
-  ''  Private Sub barbtnLoadDespatchedQty_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnLoadDespatchedQty.ItemClick
-  ''    Dim mPhaseIDs As New List(Of Integer)
-  ''    Dim mEndDatetime As DateTime
-  ''    Try
-
-  ''      For Each mSIV As clsStockItemValuation In pFormController.StockItemValuations
-  ''        If mPhaseIDs.Contains(mSIV.SalesOrderPhaseID) = False Then mPhaseIDs.Add(mSIV.SalesOrderPhaseID)
-  ''      Next
-  ''      UpdateObject()
-  ''      Select Case pFormController.Mode
-  ''        Case fccStockCheck.eMode.AdhocValuation
-  ''          mEndDatetime = Now.AddDays(1)
-  ''        Case fccStockCheck.eMode.StockValuation
-  ''          mEndDatetime = pFormController.StockCheck.StockCheckDate
-  ''      End Select
-
-  ''      mEndDatetime = New DateTime(mEndDatetime.Year, mEndDatetime.Month, mEndDatetime.Day)
-
-  ''      For Each mPhaseID As Integer In mPhaseIDs
-  ''        pFormController.UpdateDespatchedQty(mPhaseID, mEndDatetime)
-  ''      Next
-
-  ''      gvStockCheckItem.RefreshData()
-
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-
-  ''  End Sub
 
 
 
@@ -642,50 +614,19 @@ Public Class frmStockTake
   ''    End Try
   ''  End Sub
 
-  ''  Private Sub bbtnRefreshWIPItems_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnRefreshWIPItems.ItemClick
-  ''    Try
-  ''      pFormController.ClearReceivedQtys()
-  ''      Select Case pFormController.Mode
-  ''        Case fccStockCheck.eMode.AdhocValuation
-  ''          pFormController.LoadWIPStock(Now.Date.AddDays(1))
-  ''        Case Else
-  ''          pFormController.LoadWIPStock(pFormController.StockCheck.StockCheckDate)
-  ''      End Select
-  ''      pFormController.CreateWIPStockCheckItems()
-  ''      gvStockCheckItem.RefreshData()
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
 
-  ''  Private Sub bbtnReceivedAndInvoiced_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnGoodsInInvoiced.ItemClick
-  ''    Try
-  ''      pFormController.ClearInvoicedQtys()
-  ''      Select Case pFormController.Mode
-  ''        Case fccStockCheck.eMode.AdhocValuation
-  ''          pFormController.RefreshGoodsInInvoicedQty(Now.Date.AddDays(1))
-  ''        Case Else
-  ''          pFormController.RefreshGoodsInInvoicedQty(pFormController.StockCheck.StockCheckDate)
-  ''      End Select
-  ''      gvStockCheckItem.RefreshData()
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
+  Private Sub bbtnRefreshStockItems_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnRefreshStockItems.ItemClick
+    Try
+      pFormController.AddDefaultItems()
 
-  ''  End Sub
+      LoadCombo()
 
-  ''  Private Sub bbtnRefreshStockItems_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnRefreshStockItems.ItemClick
-  ''    Try
-  ''      pFormController.AddDefaultItemsNonWIP()
+      LoadGrid()
 
-  ''      LoadCombo()
-
-  ''      LoadGrid()
-
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
   ''  Private Sub barbtnRefreshSystemQty_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnRefreshSystemQty.ItemClick
   ''    Try
@@ -853,74 +794,86 @@ Public Class frmStockTake
   ''    End Try
   ''  End Sub
 
-  ''  Private Sub gvStockCheckItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockCheckItem.CustomUnboundColumnData
-  ''    Try
+  Private Sub gvStockCheckItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockCheckItem.CustomUnboundColumnData
+    Try
 
-  ''      Dim mRow As clsStockItemValuation = e.Row
+      Dim mRow As clsStockTakeItemEditor = e.Row
 
-  ''      If mRow IsNot Nothing Then
-  ''        If e.IsGetData Then
+      If mRow IsNot Nothing Then
+        If e.IsGetData Then
 
-  ''          Select Case e.Column.Name
-  ''            Case gcDiscrepency.Name
+          Select Case e.Column.Name
+            Case gcDiscrepency.Name
 
-  ''              If mRow.IsCounted Then
-  ''                e.Value = (mRow.CountedQty - mRow.SnapshotQty)
-  ''              Else
-  ''                e.Value = 0
-  ''              End If
-
-
-  ''            Case gcCountedQty.Name
-
-  ''              If mRow.IsCounted Then
-  ''                e.Value = mRow.CountedQty
-  ''              Else
-  ''                e.Value = Nothing
-  ''              End If
-
-  ''            Case gcStockTakeSheet.Name
-
-  ''              If mRow.StockCheckItem IsNot Nothing AndAlso mRow.StockCheckItem.StockTakeSheetID > 0 Then
-  ''                Dim mSheet As dmStockTakeSheet = pFormController.StockCheck.StockTakeSheets.ItemFromKey(mRow.StockCheckItem.StockTakeSheetID)
-
-  ''                If mSheet IsNot Nothing Then
-  ''                  e.Value = String.Format("Sheet {0}", mSheet.SheetNo.ToString("D3"))
-  ''                Else
-  ''                  e.Value = String.Empty
-  ''                End If
-
-  ''              End If
+              If mRow.IsCounted Then
+                e.Value = (mRow.CountedQty - mRow.SnapshotQty)
+              Else
+                e.Value = 0
+              End If
 
 
-  ''          End Select
+            Case gcCountedQty.Name
+
+              If mRow.IsCounted Then
+                e.Value = mRow.CountedQty
+              Else
+                e.Value = Nothing
+              End If
+
+              ''Case gcStockTakeSheet.Name
+
+              ''  If mRow.StockCheckItem IsNot Nothing AndAlso mRow.StockCheckItem.StockTakeSheetID > 0 Then
+              ''    Dim mSheet As dmStockTakeSheet = pFormController.StockCheck.StockTakeSheets.ItemFromKey(mRow.StockCheckItem.StockTakeSheetID)
+
+              ''    If mSheet IsNot Nothing Then
+              ''      e.Value = String.Format("Sheet {0}", mSheet.SheetNo.ToString("D3"))
+              ''    Else
+              ''      e.Value = String.Empty
+              ''    End If
+
+              ''  End If
 
 
-  ''        End If
-
-  ''        If e.IsSetData Then
-
-  ''          Select Case e.Column.Name
-  ''            Case gcCountedQty.Name
-
-  ''              mRow.CountedQty = e.Value
-
-  ''              If e.Value IsNot Nothing Then
-  ''                mRow.IsCounted = True
-  ''              Else
-  ''                mRow.IsCounted = False
-  ''              End If
-  ''          End Select
-
-  ''        End If
-  ''      End If
+          End Select
 
 
+        End If
 
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''    End Try
-  ''  End Sub
+        If e.IsSetData Then
+
+          Select Case e.Column.Name
+            Case gcCountedQty.Name
+
+              mRow.CountedQty = e.Value
+
+              If e.Value IsNot Nothing Then
+                mRow.IsCounted = True
+              Else
+                mRow.IsCounted = False
+              End If
+          End Select
+
+        End If
+      End If
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Private Sub barbtnCommitStockTake_ItemClick(sender As Object, e As ItemClickEventArgs) Handles barbtnCommitStockTake.ItemClick
+
+  End Sub
+
+  Private Sub bbtnAplicarCantidadesContado_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnAplicarCantidadesContado.ItemClick
+    Try
+      pFormController.CommitStockTakeSheet()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
   ''  Private Sub btnAddToNextSheet_Click(sender As Object, e As EventArgs) Handles btnAddToNextSheet.Click
   ''    Try

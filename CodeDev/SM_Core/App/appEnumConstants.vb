@@ -24,6 +24,8 @@ End Enum
 Public Enum eObjectType
   SalesOrder = 1
   WorkOrder = 2
+  StockItemLocation = 3
+  StockTake = 4
 End Enum
 
 Public Enum eEmployeeRole
@@ -987,3 +989,18 @@ Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsSto
   End Function
 
 End Class
+
+Public Enum eTransactionType
+  <Description("Goods In")> GoodsIn = 1
+  <Description("Picked")> Pick = 2
+  <Description("Restocked")> Restock = 3
+  <Description("Amendment")> Amendment = 4
+  <Description("Stock Check")> StockCheck = 5
+  <Description("Transfer")> Transfer = 6
+  <Description("Supplier Return")> SupplierReturn = 7
+  <Description("Customer Return")> CustomerReturn = 8
+  <Description("Adjustment")> Adjustment = 9
+  <Description("Palletise SIR")> PalletiseSIR = 10
+  <Description("Palletise LI")> PalletiseLI = 11
+
+End Enum

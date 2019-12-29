@@ -42,12 +42,6 @@ Public Class fccStocktem
     End Get
   End Property
 
-  ''  Public ReadOnly Property StockItemRegistry As clsStockItemRegistry
-  ''    Get
-  ''      Return pStockItemRegistry
-  ''    End Get
-  ''  End Property
-
 
   Public Property CurrentStockItem As dmStockItem
     Get

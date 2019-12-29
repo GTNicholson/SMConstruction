@@ -24,13 +24,9 @@ Partial Class Form1
   Private Sub InitializeComponent()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcSupplierID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSupplierStatusID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcParentSupplierID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcTelNo = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSalesAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -52,74 +48,44 @@ Partial Class Form1
     Me.GridView1.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.ColumnPanelRowHeight = 34
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcSupplierID, Me.gcCompanyName, Me.gcSupplierStatusID, Me.gcParentSupplierID, Me.gcAccountCode, Me.gcTelNo, Me.gcSalesAreaID})
+    Me.GridView1.ColumnPanelRowHeight = 40
+    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
     Me.GridView1.GridControl = Me.GridControl1
+    Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "GroupField", Nothing, "")})
+    Me.GridView1.HorzScrollStep = 3
     Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsView.ColumnAutoWidth = False
+    Me.GridView1.OptionsLayout.Columns.StoreAllOptions = True
+    Me.GridView1.OptionsLayout.StoreAllOptions = True
     Me.GridView1.OptionsView.ShowAutoFilterRow = True
+    Me.GridView1.OptionsView.ShowDetailButtons = False
     Me.GridView1.OptionsView.ShowGroupPanel = False
     '
-    'gcSupplierID
+    'GridColumn1
     '
-    Me.gcSupplierID.Caption = "SupplierID"
-    Me.gcSupplierID.FieldName = "SupplierID"
-    Me.gcSupplierID.Name = "gcSupplierID"
-    Me.gcSupplierID.OptionsColumn.ReadOnly = True
+    Me.GridColumn1.Caption = "ID"
+    Me.GridColumn1.FieldName = "StockTakeID"
+    Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.Visible = True
+    Me.GridColumn1.VisibleIndex = 0
+    Me.GridColumn1.Width = 89
     '
-    'gcCompanyName
+    'GridColumn2
     '
-    Me.gcCompanyName.Caption = "Company Name"
-    Me.gcCompanyName.FieldName = "CompanyName"
-    Me.gcCompanyName.Name = "gcCompanyName"
-    Me.gcCompanyName.Visible = True
-    Me.gcCompanyName.VisibleIndex = 0
-    Me.gcCompanyName.Width = 123
+    Me.GridColumn2.Caption = "Descripcion"
+    Me.GridColumn2.FieldName = "Description"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 2
+    Me.GridColumn2.Width = 944
     '
-    'gcSupplierStatusID
+    'GridColumn3
     '
-    Me.gcSupplierStatusID.Caption = "Status"
-    Me.gcSupplierStatusID.FieldName = "SupplierStatusID"
-    Me.gcSupplierStatusID.Name = "gcSupplierStatusID"
-    Me.gcSupplierStatusID.Visible = True
-    Me.gcSupplierStatusID.VisibleIndex = 1
-    Me.gcSupplierStatusID.Width = 156
-    '
-    'gcParentSupplierID
-    '
-    Me.gcParentSupplierID.Caption = "Parent Supplier"
-    Me.gcParentSupplierID.FieldName = "ParentSupplierID"
-    Me.gcParentSupplierID.Name = "gcParentSupplierID"
-    Me.gcParentSupplierID.Visible = True
-    Me.gcParentSupplierID.VisibleIndex = 2
-    Me.gcParentSupplierID.Width = 117
-    '
-    'gcAccountCode
-    '
-    Me.gcAccountCode.Caption = "Account Code"
-    Me.gcAccountCode.FieldName = "AccountCode"
-    Me.gcAccountCode.Name = "gcAccountCode"
-    Me.gcAccountCode.Visible = True
-    Me.gcAccountCode.VisibleIndex = 3
-    Me.gcAccountCode.Width = 123
-    '
-    'gcTelNo
-    '
-    Me.gcTelNo.Caption = "Te lNo"
-    Me.gcTelNo.FieldName = "TelNo"
-    Me.gcTelNo.Name = "gcTelNo"
-    Me.gcTelNo.Visible = True
-    Me.gcTelNo.VisibleIndex = 4
-    Me.gcTelNo.Width = 141
-    '
-    'gcSalesAreaID
-    '
-    Me.gcSalesAreaID.Caption = "País"
-    Me.gcSalesAreaID.FieldName = "SalesAreaID"
-    Me.gcSalesAreaID.Name = "gcSalesAreaID"
-    Me.gcSalesAreaID.Visible = True
-    Me.gcSalesAreaID.VisibleIndex = 5
-    Me.gcSalesAreaID.Width = 139
+    Me.GridColumn3.Caption = "Fecha de Conteo"
+    Me.GridColumn3.FieldName = "StockTakeDate"
+    Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.Visible = True
+    Me.GridColumn3.VisibleIndex = 1
+    Me.GridColumn3.Width = 129
     '
     'Form1
     '
@@ -137,11 +103,7 @@ Partial Class Form1
 
   Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents gcSupplierID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcCompanyName As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcSupplierStatusID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcParentSupplierID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcAccountCode As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcTelNo As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcSalesAreaID As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

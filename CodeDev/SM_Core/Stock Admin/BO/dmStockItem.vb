@@ -1,7 +1,10 @@
 ﻿''Class Definition - StockItem (to StockItem)'Generated from Table:StockItem
 Imports RTIS.CommonVB
+Imports RTIS.ERPStock
 
 Public Class dmStockItem : Inherits dmBase
+  Implements RTIS.ERPStock.intStockItemDef
+
   Private pStockItemID As Int32
   Private pStockCode As String
   Private pCategory As Byte
@@ -94,6 +97,10 @@ Public Class dmStockItem : Inherits dmBase
     End With
 
   End Sub
+
+  Public Function SIDefSpecEquals(vStockItemDef As intStockItemDef) As Boolean Implements intStockItemDef.SIDefSpecEquals
+    Throw New NotImplementedException()
+  End Function
 
   Public Property StockItemID() As Int32
     Get
@@ -351,6 +358,294 @@ Public Class dmStockItem : Inherits dmBase
     End Get
     Set(ByVal value As Boolean)
       ptmpIsFullyLoadedDown = value
+    End Set
+  End Property
+
+  Private Property intStockItemDef_StockItemID As Integer Implements intStockItemDef.StockItemID
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StockItemType As Short Implements intStockItemDef.StockItemType
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Short)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property ComponentType As Short Implements intStockItemDef.ComponentType
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Short)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StockCategory As Integer Implements intStockItemDef.StockCategory
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StockSubCategory As Integer Implements intStockItemDef.StockSubCategory
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Private Property intStockItemDef_StockCode As String Implements intStockItemDef.StockCode
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property AuxCode As String Implements intStockItemDef.AuxCode
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property SIDescription As String Implements intStockItemDef.SIDescription
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Private Property intStockItemDef_Length As Decimal Implements intStockItemDef.Length
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Private Property intStockItemDef_Width As Decimal Implements intStockItemDef.Width
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Private Property intStockItemDef_Thickness As Decimal Implements intStockItemDef.Thickness
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property AttributeID As Integer Implements intStockItemDef.AttributeID
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property AttributeValue As String Implements intStockItemDef.AttributeValue
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property OwnerID As Integer Implements intStockItemDef.OwnerID
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property MaterialID As Integer Implements intStockItemDef.MaterialID
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StockUnitTypeENUM As Integer Implements intStockItemDef.StockUnitTypeENUM
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property DefaultStockLocation As String Implements intStockItemDef.DefaultStockLocation
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property DateStart As Date Implements intStockItemDef.DateStart
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Date)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property DateEnd As Date Implements intStockItemDef.DateEnd
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Date)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property DateEntered As Date Implements intStockItemDef.DateEntered
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Date)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property DateAmended As Date Implements intStockItemDef.DateAmended
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Date)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StockItemStatus As Byte Implements intStockItemDef.StockItemStatus
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Byte)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property SerialNo As String Implements intStockItemDef.SerialNo
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property IsProvisional As Boolean Implements intStockItemDef.IsProvisional
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Boolean)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property PricingUnit As Byte Implements intStockItemDef.PricingUnit
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Byte)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StdCost As Decimal Implements intStockItemDef.StdCost
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property StdPrice As Decimal Implements intStockItemDef.StdPrice
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Decimal)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property IsTemplate As Boolean Implements intStockItemDef.IsTemplate
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Boolean)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Private Property intStockItemDef_TemplateStockItemID As Integer Implements intStockItemDef.TemplateStockItemID
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Integer)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property Notes As String Implements intStockItemDef.Notes
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As String)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property IsNonDefaultMatReq As Boolean Implements intStockItemDef.IsNonDefaultMatReq
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As Boolean)
+      Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Property ProcessItemOperations As IList Implements intStockItemDef.ProcessItemOperations
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As IList)
+      Throw New NotImplementedException()
     End Set
   End Property
 End Class

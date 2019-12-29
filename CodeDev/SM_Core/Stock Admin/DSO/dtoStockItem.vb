@@ -6,6 +6,8 @@ Imports RTIS.CommonVB
 Imports SM_Core
 
 Public Class dtoStockItem : Inherits dtoBase
+  Implements intdtoStockItem
+
   Private pStockItem As dmStockItem
 
   Public Sub New(ByRef rDBSource As clsDBConnBase)
@@ -221,6 +223,22 @@ Public Class dtoStockItem : Inherits dtoBase
     End If
 
     Return mAllOK
+  End Function
+
+  Public Function LoadStockItemsDictByParams(ByRef rStockItemsDict As Dictionary(Of Integer, RTIS.ERPStock.intStockItemDef), ByRef rParams As Hashtable) As Boolean Implements intdtoStockItem.LoadStockItemsDictByParams
+    Dim mParams As New Hashtable
+    Dim mStockItems As New colStockItems
+    Dim mOK As Boolean
+    For Each mItem As KeyValuePair(Of String, Object) In rParams
+      mParams.Add(mItem.Key, mItem.Value)
+    Next
+    mOK = MyBase.LoadCollection(mStockItems, mParams, pKeyFieldName)
+    For Each mSI As dmStockItem In mStockItems
+      If rStockItemsDict.ContainsKey(mSI.StockItemID) = False Then
+        rStockItemsDict.Add(mSI.StockItemID, mSI)
+      End If
+    Next
+    Return mOK
   End Function
 
 End Class

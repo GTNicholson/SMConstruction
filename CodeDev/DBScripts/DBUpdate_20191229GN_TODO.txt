@@ -1,0 +1,21 @@
+CREATE TABLE dbo.StockItemTransactionLog
+(
+StockItemTransactionLogID           INT IDENTITY(1,1) NOT NULL,
+ObjectType                          TINYINT,
+ObjectID                            INT,
+TransactionType                     TINYINT,
+UserID                              INT,
+TranValue                           DECIMAL(12, 4),
+PrevValue                           DECIMAL(12, 4),
+NewValue                            DECIMAL(12, 4),
+SystemDate                          DATETIME,
+TransactionDate                     DATETIME,
+RefObjectType                       TINYINT,
+RefObjectID                         INT,
+AdditionalRef                       INT,
+Note                                VARCHAR(300),
+TransactionValuation                DECIMAL(10, 4),
+StockValuation                      DECIMAL(10, 4),
+CONSTRAINT pk_StockItemTransactionLog PRIMARY KEY CLUSTERED ( StockItemTransactionLogID )
+)
+ON [PRIMARY]

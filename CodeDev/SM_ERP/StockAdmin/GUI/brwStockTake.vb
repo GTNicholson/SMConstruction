@@ -33,7 +33,7 @@ Public Class brwStockTake : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmSupplierDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SupplierID")), pDBConn, rForm.ParentForm)
+      frmStockTake.OpenFormAsMDIChild(rForm.ParentForm, pDBConn.RTISUser, pRTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("StockTakeID")), eFormMode.eFMFormModeAdd)
     End If
     Return mReloadData
   End Function
@@ -167,37 +167,6 @@ Public Class brwStockTake : Inherits brwBrowserListBase
 
         .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar Proveedor", eListOption.DefaultListOption)
-        .AddListOption("Nuevo Proveedor", eListOption.DefaultListOption)
-        .AddListOption("Proveedores Caducados", eListOption.DefaultListOption)
-
-
-        '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
-        '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)
-        '.AddDeleteOption("Delete Option2", eAddEditDeleteView.AlternateForm)
-        .AddViewOption("Ver Entrada de Proveedores", eAddEditDeleteView.AlternateForm)
-
-        .AddProcessOption("Mail-shot active suppliers", AddressOf BatchProcessExecute)
-        .AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
-        .AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
-        .AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
-
-
-        '' If Don't want the first button to be the default
-        ''Dim mBar As DevExpress.XtraBars.Bar = .GetMainToolBar()
-        ''Dim mBtn As DevExpress.XtraBars.BarButtonItem
-        ''Dim mButtonLink As DevExpress.XtraBars.BarItemLink
-        ''Dim mPopUP As DevExpress.XtraBars.PopupMenu
-        ''For Each mButtonLink In mBar.ItemLinks
-        ''  If mButtonLink.Item.Name = "barbtnEdit" Then
-        ''    mBtn = mButtonLink.Item
-        ''    mBtn.ActAsDropDown = True
-        ''    mBtn.AllowDrawArrow = True
-        ''    mPopUP = mBtn.DropDownControl
-        ''    mPopUP.RemoveLink(mPopUP.ItemLinks(0))
-        ''    Exit For
-        ''  End If
-        ''Next
 
       End With
       PrepareList()
@@ -217,8 +186,8 @@ Public Class brwStockTake : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSupplier.xml")
-      ListTitle = "Lista de Proveedores"
+      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlStockTake.xml")
+      ListTitle = "Conteos de Inventario"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 

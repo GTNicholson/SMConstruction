@@ -7,7 +7,9 @@ Public Class fccStockTake
   Private pRTISGlobal As AppRTISGlobal
   Private pStockTakeID As Integer
   Private pStockTake As dmStockTake
-  ''Private pStockItemValuations As colStockItemValuations
+
+  Private pStockTakeItemEditors As colStockTakeItemEditors
+
   Public Property Mode As eMode
 
   Public Enum eMode
@@ -15,6 +17,10 @@ Public Class fccStockTake
     StockValuation = 1
     AdhocValuation = 2
   End Enum
+
+  Public Sub New()
+    pStockTakeItemEditors = New colStockTakeItemEditors
+  End Sub
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -34,11 +40,11 @@ Public Class fccStockTake
     End Set
   End Property
 
-  ''Public ReadOnly Property StockItemValuations As colStockItemValuations
-  ''  Get
-  ''    Return pStockItemValuations
-  ''  End Get
-  ''End Property
+  Public ReadOnly Property StockTakeItemEditors As colStockTakeItemEditors
+    Get
+      Return pStockTakeItemEditors
+    End Get
+  End Property
 
   Public Property StockTakeID() As Integer
     Get
@@ -52,9 +58,9 @@ Public Class fccStockTake
 
   Public Property CurrentStockCheckItem As dmStockTakeItem
 
-  Public Property StockCheck() As dmStockTake
+  Public Property StockTake() As dmStockTake
     Get
-      StockCheck = pStockTake
+      StockTake = pStockTake
     End Get
     Set(ByVal value As dmStockTake)
       pStockTake = value
@@ -77,65 +83,24 @@ Public Class fccStockTake
 
 
   Public Function LoadObject() As Boolean
-    ''Dim mdsoStock As New dsoStock(DBConn)
+    Dim mdsoStock As New dsoStock(DBConn)
     Dim mOK As Boolean
     Dim mStockItemIDs As New List(Of Integer)
     Dim mStockItems As colStockItems
     Try
+      If pStockTakeID = 0 Then
+        mOK = True
+        '// New
+        pStockTake = New dmStockTake
+        pStockTake.SnapshotDateTime = Now
 
+      Else
+        '// Load
+        mOK = mdsoStock.LoadStockTakeDown(pStockTake, pStockTakeID)
+      End If
 
-      Select Case Mode
+      RefreshStockTakeItemEditors()
 
-        Case eMode.StockTake, eMode.StockValuation
-          '// Stock Check
-          If pStockTakeID = 0 Then
-            mOK = True
-            '// New
-            pStockTake = New dmStockTake
-            pStockTake.SnapshotDateTime = Now
-            ''pStockTake.StockTakeTypeID = StockTakeTypeID
-
-          Else
-            '// Load
-            ''mOK = mdsoStock.LoadStockCheckDown(pStockTake, pStockTakeID)
-            ''StockCheckTypeID = pStockTake.StockCheckTypeID
-          End If
-
-
-          ''For Each mSCItem As dmStockTakeItem In pStockTake.StockTakeItems
-          ''        If mStockItemIDs.Contains(mSCItem.StockItemID) = False Then mStockItemIDs.Add(mSCItem.StockItemID)
-          ''        Next
-
-          ''        If mStockItemIDs.Count <> 0 Then
-          ''          mStockItems = New colStockItems
-          ''          mdsoStock.LoadStockItems(mStockItems, String.Format("StockItemID IN ({0})", String.Join(",", mStockItemIDs.ToArray)))
-
-          ''          For Each mSCItem As dmStockCheckItem In pStockTake.StockCheckItems
-          ''            mSCItem.StockItem = mStockItems.ItemFromKey(mSCItem.StockItemID)
-          ''          Next
-          ''        End If
-
-          ''        CreateStockItemValuations()
-
-          ''        If (Mode = eMode.StockTake Or Mode = eMode.StockValuation) AndAlso pStockTakeID = 0 Then
-          ''          SaveObject()
-          ''        End If
-
-          ''      Case eMode.AdhocValuation
-          ''        '// Valuation
-
-          ''        Select Case StockCheckTypeID
-          ''          Case eStockCheckType.StockValuation
-          ''            LoadCurrentStock()
-          ''            mOK = True
-          ''          Case eStockCheckType.WIPValuation
-          ''            pStockItemValuations = New colStockItemValuations
-          ''            LoadWIPStock(Now.Date.AddDays(1))
-          ''            CreateWIPStockCheckItems()
-          ''            mOK = True
-          ''        End Select
-
-      End Select
 
     Catch ex As Exception
       mOK = False
@@ -146,77 +111,55 @@ Public Class fccStockTake
     Return mOK
   End Function
 
-  Public Sub CreateStockItemValuations()
-    ''  Dim mSIV As clsStockItemValuation
+  Public Sub RefreshStockTakeItemEditors()
+    Dim mSTE As clsStockTakeItemEditor
+    Dim mSI As dmStockItem
+    'Add new ones into editors
+    For Each mSTI As dmStockTakeItem In pStockTake.StockTakeItems
+      If pStockTakeItemEditors.IndexFromStockItemIDLocationID(mSTI.StockItemID, mSTI.StockItemLocationID) = -1 Then
+        mSTE = New clsStockTakeItemEditor
+        mSTE.StockTakeItem = mSTI
+        mSI = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mSTI.StockItemID)
+        mSTE.StockItem = mSI
+        pStockTakeItemEditors.Add(mSTE)
+      End If
+    Next
 
-    ''  pStockItemValuations = New colStockItemValuations
-
-    ''  For Each mSCItem As dmStockCheckItem In pStockTake.StockCheckItems
-    ''    mSIV = New clsStockItemValuation(mSCItem.StockItem)
-    ''    mSIV.StockCheckItem = mSCItem
-    ''    StockItemValuations.Add(mSIV)
-    ''  Next
-
+    'remove where no longer required
+    For mLoop As Integer = pStockTakeItemEditors.Count - 1 To 0
+      mSTE = pStockTakeItemEditors(mLoop)
+      If pStockTake.StockTakeItems.IndexFromStockItemIDLocationID(mSTE.StockTakeItem.StockItemID, mSTE.StockTakeItem.StockItemLocationID) = -1 Then
+        pStockTakeItemEditors.RemoveAt(mLoop)
+      End If
+    Next
   End Sub
 
-  ''Public Sub AddDefaultItemsNonWIP()
-  ''  Dim mdsoStock As New dsoStock(pDBConn)
-  ''  Dim mProposedStockCheckItems As New colStockCheckItems
-  ''  Dim mStockItemLocationInfos As colStockItemLocationInfos
-  ''  Dim mStockItemLocationInfosExtras As colStockItemLocationInfos
+  Public Sub AddDefaultItems()
+    Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mProposedStockItems As New colStockItems
 
-  ''  Dim mStockCheckItem As dmStockCheckItem
-  ''  Dim mWhere As String = String.Empty
-  ''  Dim mExtra As String = String.Empty
+    Dim mStockTakeItem As dmStockTakeItem
+    Dim mWhere As String = String.Empty
+    Dim mExtra As String = String.Empty
 
-  ''  mStockItemLocationInfos = New colStockItemLocationInfos
+    mdsoStock.LoadStockItemsByWhere(mProposedStockItems, "")
 
 
-  ''  ''mWhere = String.Format("Category IN({0},{1}) AND Qty <> 0", CByte(eStockItemCategory.Ironmongery), CByte(eStockItemCategory.IntumescentStripSeals))
-  ''  mWhere = String.Format("Category IN({0},{1}) AND Qty <> 0", CByte(eStockItemCategory.Ironmongery), CByte(eStockItemCategory.IntumescentStripSeals))
+    For Each mSI As dmStockItem In mProposedStockItems
+      If pStockTake.StockTakeItems.ItemFromStockItemIDLocationID(mSI.StockItemID, 1) Is Nothing Then
+        mStockTakeItem = New dmStockTakeItem
+        mStockTakeItem.StockItemID = mSI.StockItemID
+        mStockTakeItem.StockItemLocationID = 1
+        pStockTake.StockTakeItems.Add(mStockTakeItem)
+      End If
+    Next
 
-  ''  mdsoStock.LoadStockItemLocationInfosByWhere(mStockItemLocationInfos, mWhere)
+    RefreshStockTakeItemEditors()
 
+    SaveObject()
+    LoadObject()
 
-  ''  '// mExtra to get the sotckitems that have moved since the date in question
-  ''  mExtra = "select StockItemID from"
-  ''  mExtra = mExtra & " stockitemtransactionlog"
-  ''  mExtra = mExtra & " Inner Join StockItemLocation on ObjectID = StockItemLocationID"
-  ''  mExtra = mExtra & " Where ObjectType = 7 and TransactionDate >= '" & pStockTake.StockCheckDate.ToString("yyyy/MM/dd") & "'"
-
-  ''  mWhere = String.Format("Category IN({0},{1}) And qty = 0 And StockItemID in ({2})", CByte(eStockItemCategory.Ironmongery), CByte(eStockItemCategory.IntumescentStripSeals), mExtra)
-
-  ''  mStockItemLocationInfosExtras = New colStockItemLocationInfos
-
-  ''  mdsoStock.LoadStockItemLocationInfosByWhere(mStockItemLocationInfosExtras, mWhere)
-
-  ''  For Each mSIVIExtra As clsStockItemLocationInfo In mStockItemLocationInfosExtras
-  ''    If mStockItemLocationInfos.ItemFromStockItemIDLocationID(mSIVIExtra.StockItemID, mSIVIExtra.LocationID) Is Nothing Then
-  ''      mStockItemLocationInfos.Add(mSIVIExtra)
-  ''    End If
-  ''  Next
-
-  ''  For Each mSILocationInfo As clsStockItemLocationInfo In mStockItemLocationInfos
-  ''    mStockCheckItem = mProposedStockCheckItems.ItemFromStockItemIDLocationIDPhaseID(mSILocationInfo.StockItemID, mSILocationInfo.LocationID, 0)
-  ''    If mStockCheckItem Is Nothing Then
-  ''      '// Add
-  ''      mStockCheckItem = New dmStockCheckItem
-  ''      mStockCheckItem.LocationID = mSILocationInfo.LocationID
-  ''      mStockCheckItem.StockItemID = mSILocationInfo.StockItemID
-  ''      '  mStockCheckItem.SnapshotQty = mSILocationInfo.Quantity
-  ''      mStockCheckItem.StockCheckID = pStockTake.StockCheckID
-  ''      mProposedStockCheckItems.Add(mStockCheckItem)
-  ''    End If
-  ''  Next
-
-  ''  For Each mStockCheckItem In mProposedStockCheckItems
-  ''    If pStockTake.StockCheckItems.ItemFromStockItemIDLocationIDPhaseID(mStockCheckItem.StockItemID, mStockCheckItem.LocationID, mStockCheckItem.SalesOrderPhaseID) Is Nothing Then pStockTake.StockCheckItems.Add(mStockCheckItem)
-  ''  Next
-
-  ''  SaveObject()
-  ''  LoadObject()
-
-  ''End Sub
+  End Sub
 
 
 
@@ -246,14 +189,11 @@ Public Class fccStockTake
 
     Try
 
-      ''mOK = mdsoStock.SaveStockCheck(pStockTake)
+      mOK = mdsoStock.SaveStockTakeDown(pStockTake)
 
       If pStockTakeID = 0 Then
         pStockTakeID = pStockTake.StockTakeID
       End If
-
-      ''If mOK Then mOK = SaveStockCheckItems(pStockTake.StockCheckItems)
-
 
     Catch ex As Exception
       mOK = False
@@ -1088,30 +1028,51 @@ Public Class fccStockTake
 
   ''End Sub
 
-  ''Public Sub LoadCountedStockValuationHistory(ByVal vEndTimeDate As DateTime)
-  ''  Dim mdso As New dsoStock(pDBConn)
-  ''  Dim mQty As Decimal
 
-  ''  Try
-  ''    If pDBConn.Connect() Then
-  ''      For Each mSIV As clsStockItemValuation In StockItemValuations
-  ''        mSIV.StockItemValuationHistorys.Clear()
+  Public Function CommitStockTakeSheet() As Integer
+    Dim mCount As Integer = 0
 
-  ''        mQty = mSIV.CountedQty
+    Try
+      Dim mdsoStock As New dsoStock(pDBConn)
+      Dim mdsoStockTrans As New dsoStockTransactions(pDBConn)
 
-  ''        mdso.LoadStockItemValueHistoryConnected(mSIV.StockItemValuationHistorys, mSIV.StockItem, mQty, mSIV.SalesOrderPhaseID, vEndTimeDate)
+      For Each mSTIE As clsStockTakeItemEditor In pStockTakeItemEditors
+        If mSTIE.IsCounted Then
+          Dim mStockItemLocation As dmStockItemLocation = Nothing
 
-  ''        mSIV.CountedTotalValue = mSIV.StockItemValuationsTotal
+          mStockItemLocation = mdsoStock.GetStockItemLocationByStockItemIDLocationID(mSTIE.StockTakeItem.StockItemID, mSTIE.StockTakeItem.StockItemLocationID)
 
-  ''      Next
-  ''    End If
-  ''  Catch ex As Exception
-  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-  ''  Finally
-  ''    If pDBConn.IsConnected Then pDBConn.Disconnect()
-  ''  End Try
+          If mStockItemLocation Is Nothing Then
+            mStockItemLocation = New dmStockItemLocation
+            mStockItemLocation.StockItemID = mSTIE.StockTakeItem.StockItemID
+            mStockItemLocation.LocationID = 1 '// NEEDS CONSIDERING
+            mdsoStock.SaveStockItemLocation(mStockItemLocation)
+          End If
 
-  ''End Sub
+          If mStockItemLocation IsNot Nothing Then
+            Dim mOk As Boolean = False
+
+            mOk = mdsoStockTrans.StockTakeSetStockItemLocationQty(mStockItemLocation, mSTIE.CountedQty, eObjectType.StockTake, mSTIE.StockTakeItem.StockTakeID, pStockTake.StockTakeDate)
+
+            If mOk Then
+              mCount += 1
+            End If
+
+          End If
+
+        End If
+      Next
+
+      If mCount > 0 Then
+        SaveObject()
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mCount
+  End Function
 
 End Class
 
