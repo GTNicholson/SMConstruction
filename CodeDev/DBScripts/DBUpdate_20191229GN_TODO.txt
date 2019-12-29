@@ -19,3 +19,42 @@ StockValuation                      DECIMAL(10, 4),
 CONSTRAINT pk_StockItemTransactionLog PRIMARY KEY CLUSTERED ( StockItemTransactionLogID )
 )
 ON [PRIMARY]
+
+GO
+
+
+CREATE VIEW vwStockItemTransactionLogInfo AS 
+SELECT 
+	SITL.StockItemTransactionLogID,
+	SITL.TransactionType, 
+	SITL.TransactionDate,
+	SITL.RefObjectType, 
+	SITL.RefObjectID, 
+	SITL.Tranvalue,
+	SITL.PrevValue,
+	SITL.NewValue,
+	SITL.TransactionValuation,
+	SITL.StockValuation,
+	
+	SI.StockItemID,
+	SI.Category,
+	SI.ItemType,
+	SI.StockCode, 
+	SI.Description, 
+
+	UL.UserName,
+	
+	ST.Description as StockTakeDescription
+	
+
+FROM StockItemTransactionLog SITL
+
+INNER JOIN UserList UL ON SITL.userid = UL.UserID 
+
+INNER JOIN StockItemLocation SIL ON SITL.ObjectID = SIL.StockItemLocationID
+
+INNER JOIN StockItem SI ON SIL.StockItemID = SI.StockItemID
+
+Left Join StockTake ST on ST.StockTakeID = SITL.RefObjectID and SITL.RefObjectType = 4
+
+GO

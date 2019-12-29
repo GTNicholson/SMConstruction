@@ -563,7 +563,7 @@ Public Class frmStockItem
     Dim mVIs As New colValueItems
     ''Dim mSubTypes As colSubItemTypes
     ''Dim mSubType As clsSubItemType
-    Dim mSubItemTypes As colStockItemTypes
+    ''Dim mSubItemTypes As colStockItemTypes
 
     Dim mText As String = ""
     ''Dim mSISubItemTypeIron As clsStockSubItemTypeIronmongery

@@ -11,7 +11,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.Sales, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Sales)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.Sales)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Sales)
+    ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Sales)
 
     mLastGroup = mMenuList.AddNewGroup("Producción", 0, eActivityCode.Production, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.Production)
@@ -30,6 +30,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Purchasing, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.Inventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.Inventory)
 
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
@@ -140,6 +141,12 @@ Class clsMenuFunctions
   Public Shared Sub TimeSheetEntryInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewTimeSheet.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 

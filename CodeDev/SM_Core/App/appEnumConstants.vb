@@ -85,6 +85,7 @@ End Enum
 Public Enum eReportSource
   WorkOrder = 1
   TimeSheet = 2
+  StockItemTransactions = 3
 End Enum
 
 Public Enum eParentType
