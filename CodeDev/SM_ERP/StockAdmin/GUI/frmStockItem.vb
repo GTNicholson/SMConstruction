@@ -45,7 +45,7 @@ Public Class frmStockItem
     pFormController.LoadObject()
     RefreshAddStockItemOptions()
     grdStockItems.DataSource = pFormController.StockItems
-    ''LoadCombos()
+    LoadCombos()
 
     RefreshControls()
     pIsActive = True
@@ -206,15 +206,9 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
         clsDEControlLoading.SetDECombo(cboDefaultSupplier, .DefaultSupplier)
-
-        ''clsDEControlLoading.SetDECombo(cboCNCOpPrimaryLeaf, .CNCOperationIDPrimary)
-        ''clsDEControlLoading.SetDECombo(cboCNCOpSecondaryLeaf, .CNCOperationIDSecondary)
-        ''clsDEControlLoading.SetDECombo(cboCNCOpHangingJamb, .CNCOperationIDHanging)
-        ''clsDEControlLoading.SetDECombo(cboCNCOpClosingJamb, .CNCOperationIDClosing)
-        ''clsDEControlLoading.SetDECombo(cboCNCOpHead, .CNCOperationIDHead)
-
         chkcboActiveCondition.RefreshEditValue()
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
+
         If pFormController.CurrentStockItemOpposite IsNot Nothing Then
           btedOppositeItem.Text = pFormController.CurrentStockItemOpposite.StockCode
 
@@ -245,6 +239,21 @@ Public Class frmStockItem
     pIsActive = mStartActive
   End Sub
 
+  Private Sub LoadCombos()
+
+    Dim mVIs As colValueItems
+
+    mVIs = clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+    For mLoop As Integer = mVIs.Count - 1 To 0 Step -1
+      If pFormController.Categorys.Contains(mVIs(mLoop).ItemValue) = False Then
+        mVIs.RemoveAt(mLoop)
+      End If
+    Next
+    clsDEControlLoading.FillDEComboVI(cboCategory, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
+
+  End Sub
+
   Private Sub UpdateObject()
 
     If pFormController.CurrentStockItem IsNot Nothing Then
@@ -259,7 +268,6 @@ Public Class frmStockItem
         .PartNo = txtPartNo.Text
         .Colour = txtColour.Text
         .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
-
         .ItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
         .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubitemType)
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
@@ -275,107 +283,197 @@ Public Class frmStockItem
 
   End Sub
   Private Sub RefreshCategorySpecificControls()
-    ''Dim mStartActive As Boolean = pIsActive
-    ''Dim mcolSubItemTypes As colSubItemTypes
+    Dim mStartActive As Boolean = pIsActive
+    ''Dim mcoltemTypes As colSubItemTypes
     ''Dim mcolSubItemTypes2 As colSubItemTypes
-    ''Dim mItem As clsRefListItem
-    ''Dim mVIs As New colValueItems
-    ''pIsActive = False
+    Dim mItem As clsRefListItem
+    Dim mVIs As New colValueItems
+    pIsActive = False
 
-    ''If pFormController.CurrentStockItem IsNot Nothing Then
+    If pFormController.CurrentStockItem IsNot Nothing Then
 
-    ''  mcolSubItemTypes = CType(pFormController.RTISGlobal.RefLists(appRefLists.SubItemType).IList, colSubItemTypes)
-    ''  If mcolSubItemTypes IsNot Nothing Then
-    ''    mcolSubItemTypes2 = mcolSubItemTypes.GetByItemType(pFormController.CurrentStockItem.ItemType)
-    ''    If mcolSubItemTypes2.Count > 0 Then
-    ''      mItem = New clsRefListItem(999, "Temp", clsRefListItem.eLoadMode.Loaded)
-    ''      mItem.IList = mcolSubItemTypes2
-    ''      mVIs = mItem.ListAsValueItems
-    ''    End If
+      ''  ''  mcolSubItemTypes = CType(pFormController.RTISGlobal.RefLists(appRefLists.SubItemType).IList, colSubItemTypes)
+      ''  ''  If mcolSubItemTypes IsNot Nothing Then
+      ''  ''    mcolSubItemTypes2 = mcolSubItemTypes.GetByItemType(pFormController.CurrentStockItem.ItemType)
+      ''  ''    If mcolSubItemTypes2.Count > 0 Then
+      ''  ''      mItem = New clsRefListItem(999, "Temp", clsRefListItem.eLoadMode.Loaded)
+      ''  ''      mItem.IList = mcolSubItemTypes2
+      ''  ''      mVIs = mItem.ListAsValueItems
+      ''  ''    End If
 
-    ''  End If
-    ''  clsDEControlLoading.FillDEComboVI(cboSubitemType, mVIs)
+      ''End If
 
-    ''  Select Case pFormController.CurrentStockItem.Category
-    ''    Case eStockItemCategory.DoorBlank
-    ''      clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.DoorCoreSpecies))
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = False
-    ''      cboSubitemType.Enabled = False
-    ''    Case eStockItemCategory.Facing
-    ''      clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.FacingSpecies))
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = False
-    ''      cboSubitemType.Enabled = False
-    ''      ''Case eStockItemCategory.Substrate
-    ''      ''  clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Substrate))
-    ''      ''  cboSpecies.Enabled = True
-    ''      ''  cboItemType.Enabled = False
-    ''      ''  cboSubitemType.Enabled = False
-    ''    Case eStockItemCategory.Ironmongery
-    ''      Dim mIronmongeryType As clsStockItemTypeIronmongery
-    ''      clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeIronmongery.GetInstance.ValueItems)
-    ''      mIronmongeryType = eStockItemTypeIronmongery.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-    ''      If mIronmongeryType IsNot Nothing Then
-    ''        ''Dim mSubItemTypes As colStockSubItemTypeIronmongery
-    ''        clsDEControlLoading.FillDEComboVIi(cboSubitemType, mIronmongeryType.StockSubItemTypeIronmongerys)
-    ''      End If
-    ''    Case eStockItemCategory.Glass
+      ''  clsDEControlLoading.FillDEComboVI(cboSubitemType, mVIs)
 
-    ''      Dim mGlassType As clsStockItemTypeGlass
-    ''      clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeGlass.GetInstance.ValueItems)
-    ''      mGlassType = eStockItemTypeGlass.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-    ''      If mGlassType IsNot Nothing Then
-    ''        ''Dim mSubItemTypes As colStockSubItemTypeIronmongery
-    ''        clsDEControlLoading.FillDEComboVIi(cboSubitemType, mGlassType.StockSubItemTypeGlass)
-    ''      End If
+      Select Case pFormController.CurrentStockItem.Category
 
-    ''      ''AR:Changes
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = True
-    ''      cboSubitemType.Enabled = True
+        Case eStockItemCategory.Abrasivos
 
-    ''    Case eStockItemCategory.Intumescent
-    ''      Dim mIntumescentType As clsStockItemTypeIntumescent
-    ''      clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeIntumescent.GetInstance.ValueItems)
-    ''      mIntumescentType = eStockItemTypeIntumescent.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          Dim mAbrasivosType As clsStockItemTypeAbrasivos
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
+          mAbrasivosType = eStockItemTypeAbrasivos.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mAbrasivosType IsNot Nothing Then
 
-    ''      ''AR:Changes
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = True
-    ''      cboSubitemType.Enabled = True
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mAbrasivosType.StockSubItemTypeAbrasivos)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.EPP
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = False
+          cboSubitemType.Enabled = False
+
+        Case eStockItemCategory.Herrajes
+
+          Dim mHerrajesType As clsStockItemTypeHerrajes
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerrajes.GetInstance.ValueItems)
+          mHerrajesType = eStockItemTypeHerrajes.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mHerrajesType IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mHerrajesType.StockSubItemTypeHerrajes)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.Herramientas
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.MatElect
+
+          Dim mMatElectrico As clsStockItemTypeMaterialElectrico
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialElectrico.GetInstance.ValueItems)
+          mMatElectrico = eStockItemTypeMaterialElectrico.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mMatElectrico IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mMatElectrico.StockSubItemTypeMaterialElectrico)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.MatEmpaque
+
+          Dim mMatEmpaque As clsStockItemTypeMaterialEmpaque
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialEmpaque.GetInstance.ValueItems)
+          mMatEmpaque = eStockItemTypeMaterialEmpaque.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mMatEmpaque IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mMatEmpaque.StockSubItemTypeMaterialEmpaque)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.MatVarios
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.Metal
+
+          Dim mMetalType As clsStockItemTypeMetales
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMetales.GetInstance.ValueItems)
+          mMetalType = eStockItemTypeMetales.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mMetalType IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mMetalType.StockSubItemTypeMetales)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
 
 
-    ''    Case eStockItemCategory.Beading
-    ''      clsDEControlLoading.FillDEComboVI(cboItemType, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.BeadStyle))
-    ''      clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.BeadSpecies))
-    ''      ''clsDEControlLoading.FillDEComboVI(cboSubitemType, clsEnumsConstants.EnumToVIs(GetType(eBeadSubTypes)))
+        Case eStockItemCategory.NailsAndBolds
 
-    ''      ''AR:Changes
-    ''      clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.SubItemType))
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = True
-    ''      cboSubitemType.Enabled = False
-    ''    Case eStockItemCategory.Lips
-    ''      clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.LipsSpecies))
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = False
-    ''      cboSubitemType.Enabled = False
-    ''    Case eStockItemCategory.Timber
-    ''      clsDEControlLoading.FillDEComboVI(cboItemType, eFCCategoryJW.GetInstance.ValueItems)
-    ''      clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.FrameSpecies))
-    ''      cboSpecies.Enabled = True
-    ''      cboItemType.Enabled = True
-    ''      cboSubitemType.Enabled = True
-    ''    Case Else
-    ''      cboSpecies.Enabled = False
-    ''      cboItemType.Enabled = False
-    ''      cboSubitemType.Enabled = False
-    ''  End Select
+          Dim mNailsAndBoltsType As clsStockItemTypeNailsAndBolts
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
+          mNailsAndBoltsType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mNailsAndBoltsType IsNot Nothing Then
 
-    ''End If
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mNailsAndBoltsType.StockSubItemTypeNailsAndBolts)
+          End If
 
-    ''pIsActive = mStartActive
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+
+        Case eStockItemCategory.PinturaYQuimico
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.Plywood
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.Repuestos
+
+          Dim mRepuestosType As clsStockItemTypeRepuestosYPartes
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeRepuestosYPartes.GetInstance.ValueItems)
+          mRepuestosType = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mRepuestosType IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mRepuestosType.StockSubItemTypeRepuestosYPartes)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.Tapiceria
+
+          Dim mTapiceria As clsStockItemTypeTapiceria
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTapiceria.GetInstance.ValueItems)
+          mTapiceria = eStockItemTypeTapiceria.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mTapiceria IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mTapiceria.StockSubItemTypeTapiceria)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case eStockItemCategory.VidrioYEspejo
+
+          Dim mVidrioType As clsStockItemTypeVidrioYEspejo
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
+          mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+          If mVidrioType IsNot Nothing Then
+
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
+          End If
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+        Case Else
+          ''cboSpecies.Enabled = False
+          ''cboItemType.Enabled = False
+          ''cboSubitemType.Enabled = False
+      End Select
+
+    End If
+
+    pIsActive = mStartActive
   End Sub
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
@@ -442,7 +540,7 @@ Public Class frmStockItem
     Next
     If pFormController.CurrentStockItem IsNot Nothing Then
       Select Case pFormController.CurrentStockItem.Category
-        Case eStockItemCategory.Ironmongery
+        Case eStockItemCategory.Herrajes
           tabpgIMDetails.PageVisible = True
           tabpgCNCOperations.PageVisible = True
           tabExtraDetails.Visible = True
@@ -465,6 +563,8 @@ Public Class frmStockItem
     Dim mVIs As New colValueItems
     ''Dim mSubTypes As colSubItemTypes
     ''Dim mSubType As clsSubItemType
+    Dim mSubItemTypes As colStockItemTypes
+
     Dim mText As String = ""
     ''Dim mSISubItemTypeIron As clsStockSubItemTypeIronmongery
     mRow = TryCast(e.Row, dmStockItem)
@@ -473,22 +573,87 @@ Public Class frmStockItem
         Select Case e.Column.Name
           Case gcItemType.Name
             Select Case mRow.Category
-              Case eStockItemCategory.Ironmongery
 
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(mRow.ItemType, eStockItemCategory))
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+
             End Select
-          Case gcSubItemType.Name
-            ''mSubTypes = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.SubItemType)
-            ''mSubTypes = mSubTypes.GetByItemType(mRow.ItemType)
-            ''mSubType = mSubTypes.ItemFromSubItemType(mRow.SubItemType)
-            ''If mSubType IsNot Nothing Then
-            ''  mText = mSubType.Description
-            ''Else
-            ''  mText = ""
-            ''End If
-            e.Value = mText
+
+
         End Select
+
+
       End If
     End If
   End Sub

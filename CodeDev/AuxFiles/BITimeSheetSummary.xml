@@ -1,32 +1,6 @@
 ﻿<XtraSerializer version="1.0" application="PivotGrid">
   <property name="#LayoutVersion" />
-  <property name="Appearance" isnull="true" iskey="true">
-    <property name="Cell" iskey="true" value="Cell">
-      <property name="Options" isnull="true" iskey="true">
-        <property name="UseFont">true</property>
-      </property>
-      <property name="Font">Arial, 8.25pt</property>
-    </property>
-    <property name="FieldValue" iskey="true" value="FieldValue">
-      <property name="Options" isnull="true" iskey="true">
-        <property name="UseFont">true</property>
-      </property>
-      <property name="Font">Arial Rounded MT Bold, 8.25pt</property>
-    </property>
-    <property name="GrandTotalCell" iskey="true" value="GrandTotalCell">
-      <property name="Options" isnull="true" iskey="true">
-        <property name="UseFont">true</property>
-      </property>
-      <property name="Font">Arial, 8.25pt, style=Bold</property>
-    </property>
-    <property name="TotalCell" iskey="true" value="TotalCell">
-      <property name="Options" isnull="true" iskey="true">
-        <property name="UseFont">true</property>
-      </property>
-      <property name="Font">Arial, 8.25pt, style=Bold</property>
-    </property>
-  </property>
-  <property name="Fields" iskey="true" value="19">
+  <property name="Fields" iskey="true" value="21">
     <property name="Item1" isnull="true" iskey="true">
       <property name="CustomTotals" iskey="true" value="0" />
       <property name="Options" isnull="true" iskey="true">
@@ -380,7 +354,6 @@
       <property name="Name">fieldTimeSheetDateWC</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">TimeSheetDateWC</property>
-      <property name="Caption">Semana</property>
       <property name="Index">10</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -690,6 +663,75 @@
         <property name="ColumnFieldComponentName" />
       </property>
     </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="CustomTotals" iskey="true" value="0" />
+      <property name="Options" isnull="true" iskey="true">
+        <property name="AllowRunTimeSummaryChange">true</property>
+      </property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCustomerName</property>
+      <property name="Area">DataArea</property>
+      <property name="FieldName">CustomerName</property>
+      <property name="Index">19</property>
+      <property name="SortBySummaryInfo" isnull="true" iskey="true">
+        <property name="Conditions" iskey="true" value="0" />
+        <property name="FieldComponentName" />
+      </property>
+      <property name="FilterValues" isnull="true" iskey="true">
+        <property name="Values">~Xtra#Array0, </property>
+        <property name="ValuesCore" iskey="true" value="0" />
+        <property name="DeferFilterString" />
+        <property name="ShowBlanks">true</property>
+        <property name="FilterType">Excluded</property>
+      </property>
+      <property name="AreaIndex">1</property>
+      <property name="ActualSortMode">Default</property>
+      <property name="SummaryFilter" isnull="true" iskey="true">
+        <property name="StartValue" isnull="true" />
+        <property name="EndValue" isnull="true" />
+        <property name="Mode">LastLevel</property>
+        <property name="RowFieldComponentName" />
+        <property name="ColumnFieldComponentName" />
+      </property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="CustomTotals" iskey="true" value="0" />
+      <property name="Options" isnull="true" iskey="true">
+        <property name="AllowRunTimeSummaryChange">true</property>
+      </property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldProjectName</property>
+      <property name="FieldName">ProjectName</property>
+      <property name="Index">20</property>
+      <property name="SortBySummaryInfo" isnull="true" iskey="true">
+        <property name="Conditions" iskey="true" value="0" />
+        <property name="FieldComponentName" />
+      </property>
+      <property name="FilterValues" isnull="true" iskey="true">
+        <property name="Values">~Xtra#Array0, </property>
+        <property name="ValuesCore" iskey="true" value="0" />
+        <property name="DeferFilterString" />
+        <property name="ShowBlanks">true</property>
+        <property name="FilterType">Excluded</property>
+      </property>
+      <property name="AreaIndex">15</property>
+      <property name="ActualSortMode">Default</property>
+      <property name="SummaryFilter" isnull="true" iskey="true">
+        <property name="StartValue" isnull="true" />
+        <property name="EndValue" isnull="true" />
+        <property name="Mode">LastLevel</property>
+        <property name="RowFieldComponentName" />
+        <property name="ColumnFieldComponentName" />
+      </property>
+    </property>
   </property>
   <property name="Prefilter" isnull="true" iskey="true">
     <property name="Criteria" isnull="true" />
@@ -703,5 +745,4 @@
     <property name="FieldValuesProvideMode">DisplayText</property>
   </property>
   <property name="Groups" iskey="true" value="0" />
-  <property name="FormatConditions" iskey="true" value="0" />
 </XtraSerializer>

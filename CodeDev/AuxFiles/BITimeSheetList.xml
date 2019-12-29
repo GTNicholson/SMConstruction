@@ -23,7 +23,7 @@
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="19">
+  <property name="Columns" iskey="true" value="21">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">colTimeSheetEntry</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -214,12 +214,28 @@
       <property name="VisibleIndex">18</property>
       <property name="Visible">true</property>
     </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="Name">colCompanyName</property>
+      <property name="Caption">Cliente</property>
+      <property name="FieldName">CompanyName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">19</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="Name">colProjectName</property>
+      <property name="Caption">Nombre de Proyecto</property>
+      <property name="FieldName">ProjectName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">20</property>
+      <property name="Visible">true</property>
+    </property>
   </property>
   <property name="ViewCaption" />
   <property name="BorderStyle">Default</property>
   <property name="SynchronizeClones">true</property>
   <property name="DetailTabHeaderLocation">Top</property>
-  <property name="Name">gridviewManReport</property>
+  <property name="Name">GridView1</property>
   <property name="DetailHeight">350</property>
   <property name="Tag" isnull="true" />
   <property name="GroupSummary" iskey="true" value="0" />

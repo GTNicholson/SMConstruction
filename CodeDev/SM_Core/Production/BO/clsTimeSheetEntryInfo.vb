@@ -1,12 +1,17 @@
 ﻿Public Class clsTimeSheetEntryInfo
   Private pTimeSheetEntry As dmTimeSheetEntry
   Private pWorkOrder As dmWorkOrder
+  Private pSalesOrder As dmSalesOrder
+  Private pCustomer As dmCustomer
 
   Private Shared sEmployeeVIs As RTIS.CommonVB.colValueItems
+
 
   Public Sub New()
     pTimeSheetEntry = New dmTimeSheetEntry
     pWorkOrder = New dmWorkOrder
+    pSalesOrder = New dmSalesOrder
+    pCustomer = New dmCustomer
 
     If sEmployeeVIs Is Nothing Then
       sEmployeeVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees)
@@ -23,6 +28,31 @@
   Public ReadOnly Property WorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
+    End Get
+  End Property
+
+  Public ReadOnly Property Customer As dmCustomer
+    Get
+      Return pCustomer
+    End Get
+  End Property
+
+  Public ReadOnly Property CustomerName As String
+    Get
+      Return pCustomer.CompanyName
+    End Get
+  End Property
+
+
+
+  Public ReadOnly Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+  End Property
+  Public ReadOnly Property ProjectName As String
+    Get
+      Return pSalesOrder.ProjectName
     End Get
   End Property
 
