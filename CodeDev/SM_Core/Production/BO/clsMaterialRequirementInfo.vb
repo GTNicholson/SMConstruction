@@ -2,12 +2,31 @@
   Private pMaterialRequirement As dmMaterialRequirement
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrderItem As dmSalesOrderItem
+  Private pStockItem As dmStockItem
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
     pWorkOrder = New dmWorkOrder
     pSalesOrderItem = New dmSalesOrderItem
+    pStockItem = New dmStockItem
   End Sub
+
+  Public Sub New()
+    pMaterialRequirement = New dmMaterialRequirement
+    pWorkOrder = New dmWorkOrder
+    pSalesOrderItem = New dmSalesOrderItem
+    pStockItem = New dmStockItem
+  End Sub
+
+  Public Property MaterialRequirement As dmMaterialRequirement
+    Get
+      Return pMaterialRequirement
+    End Get
+    Set(ByVal value As dmMaterialRequirement)
+      pMaterialRequirement = value
+    End Set
+  End Property
+
   Public Property WorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
@@ -23,6 +42,15 @@
     End Get
     Set(ByVal value As dmSalesOrderItem)
       pSalesOrderItem = value
+    End Set
+  End Property
+
+  Public Property StockItem As dmStockItem
+    Get
+      Return pStockItem
+    End Get
+    Set(value As dmStockItem)
+      pStockItem = value
     End Set
   End Property
 

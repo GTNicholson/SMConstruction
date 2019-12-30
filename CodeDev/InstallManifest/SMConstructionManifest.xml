@@ -483,4 +483,19 @@
   <AuxFiles>
     <Filename>gvlWorkOrder.xml</Filename>
   </AuxFiles>
+  <AuxFiles>
+    <Filename>gvlInternalWorkOrder.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>gvlStockTake.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>gvlSupplier.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIStockTransactionItemList.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIStockTransactionItemSummary.xml</Filename>
+  </AuxFiles>
 </AppUpdateManifest>

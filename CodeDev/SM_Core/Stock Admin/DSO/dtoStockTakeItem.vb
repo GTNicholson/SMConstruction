@@ -145,7 +145,7 @@ Public Class dtoStockTakeItem : Inherits dtoBase
   Public Function LoadStockTakeItemCollection(ByRef rStockTakeItems As colStockTakeItems, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@StockTakeID", vParentID)
     mOK = MyBase.LoadCollection(rStockTakeItems, mParams, "StockTakeItemID")
     rStockTakeItems.TrackDeleted = True
     If mOK Then rStockTakeItems.IsDirty = False
@@ -159,7 +159,7 @@ Public Class dtoStockTakeItem : Inherits dtoBase
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
+      mParams.Add("@StockTakeID", vParentID)
       ''Approach where delete items not found in the collection
       ''If rCollection.SomeRemoved Then
       ''  For Each Me.pStockTakeItem In rCollection
@@ -188,7 +188,7 @@ Public Class dtoStockTakeItem : Inherits dtoBase
 
       For Each Me.pStockTakeItem In rCollection
         If pStockTakeItem.IsDirty Or pStockTakeItem.StockItemID <> vParentID Or pStockTakeItem.StockTakeItemID = 0 Then 'Or pStockTakeItem.StockTakeItemID = 0
-          pStockTakeItem.StockItemID = vParentID
+          pStockTakeItem.StockTakeID = vParentID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next

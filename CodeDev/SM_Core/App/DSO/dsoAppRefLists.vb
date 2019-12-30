@@ -31,6 +31,10 @@ Public Class dsoAppRefLists
         For Each mItem In rRefLists
           mAllOK = LoadAList(rRefLists, mItem.RefListType)
         Next
+
+        'Load the Stock Item Regestry
+        AppRTISGlobal.GetInstance.StockItemRegistryInitialise(pDBConn)
+
       Else
         mAllOK = False
       End If

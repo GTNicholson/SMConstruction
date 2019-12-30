@@ -13,12 +13,16 @@ Public Class dmStockTake : Inherits dmBase
   Private pRangeStockCodeEnd As String
   Private pDateSystemQty As DateTime
 
+
+  Private pStockTakeItems As colStockTakeItems
+
   Public Sub New()
     MyBase.New()
   End Sub
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pStockTakeItems = New colStockTakeItems
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -27,6 +31,7 @@ Public Class dmStockTake : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pStockTakeItems = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -34,6 +39,7 @@ Public Class dmStockTake : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pStockTakeItems.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -55,7 +61,9 @@ Public Class dmStockTake : Inherits dmBase
       .RangeStockCodeStart = RangeStockCodeStart
       .RangeStockCodeEnd = RangeStockCodeEnd
       .DateSystemQty = DateSystemQty
+
       'Add entries here for each collection and class property
+      StockTakeItems = StockTakeItems.Clone
 
       'Entries for object management
 
@@ -164,6 +172,14 @@ Public Class dmStockTake : Inherits dmBase
     End Set
   End Property
 
+  Public Property StockTakeItems As colStockTakeItems
+    Get
+      Return pStockTakeItems
+    End Get
+    Set(value As colStockTakeItems)
+      pStockTakeItems = value
+    End Set
+  End Property
 
 End Class
 

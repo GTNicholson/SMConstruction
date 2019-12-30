@@ -465,11 +465,6 @@ Public Class appInit
       If clsErrorHandler.HandleError(Ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
-
-
-
-
-
     Return mIsLoggedOn
   End Function
 
@@ -482,6 +477,8 @@ Public Class appInit
     ''mAllOK = mdsoGlobal.LoadInMemoryCollections(rRTISGlobal) And mAllOK
 
     mAllOK = mdsoAppRefLists.LoadAllLists(rRTISGlobal.RefLists) And mAllOK
+
+    rRTISGlobal.StockItemRegistry.LoadInitial()
 
     mdsoGlobal = Nothing
     mdsoAppRefLists = Nothing

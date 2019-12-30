@@ -295,6 +295,31 @@ Public Class colStockTakeItems : Inherits colBase(Of dmStockTakeItem)
     MyBase.New(vList)
   End Sub
 
+  Public Function IndexFromStockItemIDLocationID(vStockItemID As Integer, vLocationID As Integer) As Integer
+    Dim mItem As dmStockTakeItem
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.StockItemID = vStockItemID And mItem.StockItemLocationID = vLocationID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+
+  Public Function ItemFromStockItemIDLocationID(vStockItemID As Integer, vLocationID As Integer) As dmStockTakeItem
+    Dim mRetVal As dmStockTakeItem = Nothing
+    Dim mIndex As Integer
+
+    mIndex = IndexFromStockItemIDLocationID(vStockItemID, vLocationID)
+    If mIndex <> -1 Then
+      mRetVal = Me.Items(mIndex)
+    End If
+    Return mRetVal
+  End Function
+
 End Class
 
 

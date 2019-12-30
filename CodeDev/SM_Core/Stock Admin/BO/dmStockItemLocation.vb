@@ -5,7 +5,8 @@ Public Class dmStockItemLocation : Inherits dmBase
   Private pStockItemLocationID As Int32
   Private pStockItemID As Int32
   Private pLocationID As Byte
-  Private pQty As Decimal
+  ''Private pQuantity As Decimal
+  Private pQtyValueTracker As clsDecValueTracker
 
   Public Sub New()
     MyBase.New()
@@ -13,6 +14,7 @@ Public Class dmStockItemLocation : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pQtyValueTracker = New clsDecValueTracker
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -42,7 +44,7 @@ Public Class dmStockItemLocation : Inherits dmBase
       .StockItemLocationID = StockItemLocationID
       .StockItemID = StockItemID
       .LocationID = LocationID
-      .Qty = Qty
+      .QtyValueTracker.SetDecValue(Qty)
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -82,16 +84,20 @@ Public Class dmStockItemLocation : Inherits dmBase
     End Set
   End Property
 
-  Public Property Qty() As Decimal
+  Public ReadOnly Property Qty() As Decimal
     Get
-      Return pQty
+      Return pQtyValueTracker.DecValue
     End Get
-    Set(ByVal value As Decimal)
-      If pQty <> value Then IsDirty = True
-      pQty = value
-    End Set
   End Property
 
+  Public Property QtyValueTracker As clsDecValueTracker
+    Get
+      Return pQtyValueTracker
+    End Get
+    Set(value As clsDecValueTracker)
+      pQtyValueTracker = value
+    End Set
+  End Property
 
 End Class
 

@@ -25,6 +25,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   ''Private pHostCompaiys As host
   Private newPropertyValue As String
 
+  Private pStockItemRegistry As clsStockItemRegistryBase
 
 
   Public Sub ProcessUnhandledException(ByRef rException As Exception, ByVal rLogError As Boolean, ByVal rDisplayError As Boolean)
@@ -62,7 +63,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   End Function
 
   Private Sub New()
-    MyBase.new()
+    MyBase.New()
     pRefLists = New appRefLists 'Need project sub class defined
     pSessionDataSet = eSessionDataSet.Live
     pClipBoard = New clsClipBoard
@@ -80,6 +81,16 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   Public ReadOnly Property HostCompanys As colHostCompanys
     Get
       Return pHostCompanys
+    End Get
+  End Property
+
+  Public Sub StockItemRegistryInitialise(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+    pStockItemRegistry = New clsStockItemRegistryComp(rDBConn)
+  End Sub
+
+  Public ReadOnly Property StockItemRegistry As clsStockItemRegistryBase
+    Get
+      Return pStockItemRegistry
     End Get
   End Property
 

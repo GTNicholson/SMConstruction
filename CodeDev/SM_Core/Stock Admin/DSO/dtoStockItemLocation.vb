@@ -71,7 +71,7 @@ Public Class dtoStockItemLocation : Inherits dtoBase
         .StockItemLocationID = DBReadInt32(rDataReader, "StockItemLocationID")
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")
         .LocationID = DBReadByte(rDataReader, "LocationID")
-        .Qty = DBReadDecimal(rDataReader, "Qty")
+        .QtyValueTracker.SetDecValue(DBReadDecimal(rDataReader, "Qty"))
         pStockItemLocation.IsDirty = False
       End With
       mOK = True
@@ -116,14 +116,29 @@ Public Class dtoStockItemLocation : Inherits dtoBase
   End Function
 
 
-  Public Function LoadStockItemLocationCollection(ByRef rStockItemLocations As colStockItemLocations, ByVal vParentID As Integer) As Boolean
+  Public Function LoadStockItemLocationCollectionByStockItemID(ByRef rStockItemLocations As colStockItemLocations, ByVal vStockItemID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@StockItemID", vStockItemID)
     mOK = MyBase.LoadCollection(rStockItemLocations, mParams, "StockItemLocationID")
     rStockItemLocations.TrackDeleted = True
     If mOK Then rStockItemLocations.IsDirty = False
     Return mOK
+  End Function
+
+  Public Function LoadStockItemLocationByStockItemIDLocationID(ByVal vStockItemID As Integer, ByVal vLocationID As Integer) As dmStockItemLocation
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    Dim mRetVal As dmStockItemLocation = Nothing
+    Dim mStockItemLocations As New colStockItemLocations
+    '// Should only find one!
+    mParams.Add("@StockItemID", vStockItemID)
+    mParams.Add("@LocationID", vLocationID)
+    mOK = MyBase.LoadCollection(mStockItemLocations, mParams, "StockItemLocationID")
+    If mOK = True And mStockItemLocations.Count = 1 Then
+      mRetVal = mStockItemLocations(0)
+    End If
+    Return mRetVal
   End Function
 
 

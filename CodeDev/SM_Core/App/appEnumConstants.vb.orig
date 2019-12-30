@@ -343,7 +343,8 @@ End Class
 
 ''End Class
 
-Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockItemType)
+<<<<<<< HEAD
+Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockItemTypeAbrasivos)
 
   Enum eStockItemAbrasivos
     EsponjasYPastes = 1
@@ -355,6 +356,9 @@ Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockIt
   End Enum
 
 
+=======
+Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockItemType)
+>>>>>>> a59bce416f58f503abcac46231483b10471da93d
   Public Const EsponjasYPastes = 1
   Public Const LijaBanda = 2
   Public Const LijaDisco = 3
@@ -435,7 +439,8 @@ End Class
 
 ''End Class
 
-Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemType)
+<<<<<<< HEAD
+Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemTypeNailsAndBolts)
 
   Public Enum eStockItemNailAndBolts
     Clavos = 1
@@ -444,6 +449,9 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
     Golosos = 4
   End Enum
 
+=======
+Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemType)
+>>>>>>> a59bce416f58f503abcac46231483b10471da93d
   Public Const Clavos = 1
   Public Const Tornillos = 2
   Public Const Pernos = 3
