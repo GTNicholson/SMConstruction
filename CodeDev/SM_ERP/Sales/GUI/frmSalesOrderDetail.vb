@@ -184,6 +184,7 @@ Public Class frmSalesOrderDetail
         txtDelAddress2.Text = .DelAddress2
         txtCustomerContact.Text = .CustomerContactID
         txtShippingCost.Text = .ShippingCost
+        txtVersion.Text = .Version
         btnePodio.EditValue = .PodioPath
 
         If pFormController.SalesOrder.Customer IsNot Nothing Then
@@ -268,6 +269,7 @@ Public Class frmSalesOrderDetail
       .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
       .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
       .ShippingCost = txtShippingCost.Text
+      .Version = txtVersion.Text
       .PodioPath = btnePodio.EditValue
       gvOrderItem.CloseEditor()
       gvOrderItem.UpdateCurrentRow()

@@ -1,0 +1,28 @@
+use SMConstruction
+go
+
+alter table WorkOrder
+add SalesOrderItemWOIndex int
+
+go
+
+insert into Tally
+(Description,StartingValue,EndingValue,Increment,LoopBack)
+values
+('Orden de Venta',1,9999,1,'False')
+go
+
+
+alter table salesorder
+add Version smallint
+go
+
+alter table StockItem
+add StdCost money,
+	StdImportCost money
+go
+
+alter table StockItem
+add StdCost money,
+	StdImportCost money
+go

@@ -71,6 +71,9 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkcentreID", .WorkcentreID)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SOWONumber", .SOWONumber)
+
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FurnitureCategoryID", .FurnitureCategoryID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubFurnitureCategoryID", .SubFurnitureCategoryID)
 
@@ -81,6 +84,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MetalWork", .MetalWork)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Upholstery", .Upholstery)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubContract", .SubContract)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderItemWOIndex", .SalesOrderItemWOIndex)
+
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingDate", DateToDBValue(.DrawingDate))
 
@@ -120,11 +125,13 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WorkcentreID = DBReadInt32(rDataReader, "WorkcentreID")
 
+        .SalesOrderItemWOIndex = DBReadInt32(rDataReader, "SalesOrderItemWOIndex")
+
         .FurnitureCategoryID = DBReadInt32(rDataReader, "FurnitureCategoryID")
         .SubFurnitureCategoryID = DBReadInt32(rDataReader, "SubFurnitureCategoryID")
 
         .EmployeeID = DBReadInt32(rDataReader, "EmployeeID")
-
+        .SOWONumber = DBReadInt32(rDataReader, "SOWONumber")
 
         .Machining = DBReadBoolean(rDataReader, "Machining")
         .Assembley = DBReadBoolean(rDataReader, "Assembley")

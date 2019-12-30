@@ -23,14 +23,14 @@ Partial Class frmStockItem
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim EditorButtonImageOptions7 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.chkIsObsolete = New System.Windows.Forms.CheckBox()
     Me.chkIsGeneric = New System.Windows.Forms.CheckBox()
     Me.lblStockItemID = New DevExpress.XtraEditors.LabelControl()
@@ -136,17 +136,16 @@ Partial Class frmStockItem
     Me.gcSubItemType = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcItemType = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPricingUnit = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcStdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcStdImportCost = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gvStockItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdStockItems = New DevExpress.XtraGrid.GridControl()
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -412,7 +411,7 @@ Partial Class frmStockItem
     Me.spnMinCutWidth.Name = "spnMinCutWidth"
     Me.spnMinCutWidth.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnMinCutWidth.Properties.Appearance.Options.UseFont = True
-    Me.spnMinCutWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1)})
+    Me.spnMinCutWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions7)})
     Me.spnMinCutWidth.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnMinCutWidth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnMinCutWidth.Properties.EditFormat.FormatString = "#0.00"
@@ -428,7 +427,7 @@ Partial Class frmStockItem
     Me.spnMinCutLength.Name = "spnMinCutLength"
     Me.spnMinCutLength.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnMinCutLength.Properties.Appearance.Options.UseFont = True
-    Me.spnMinCutLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2)})
+    Me.spnMinCutLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1)})
     Me.spnMinCutLength.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnMinCutLength.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnMinCutLength.Properties.EditFormat.FormatString = "#0.00"
@@ -866,7 +865,7 @@ Partial Class frmStockItem
     Me.spnQuantity.Name = "spnQuantity"
     Me.spnQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnQuantity.Properties.Appearance.Options.UseFont = True
-    Me.spnQuantity.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions3)})
+    Me.spnQuantity.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2)})
     Me.spnQuantity.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnQuantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnQuantity.Properties.EditFormat.FormatString = "#0.00"
@@ -883,7 +882,7 @@ Partial Class frmStockItem
     Me.spnThickness.Name = "spnThickness"
     Me.spnThickness.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnThickness.Properties.Appearance.Options.UseFont = True
-    Me.spnThickness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions4)})
+    Me.spnThickness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions3)})
     Me.spnThickness.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnThickness.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnThickness.Properties.EditFormat.FormatString = "#0.00"
@@ -900,7 +899,7 @@ Partial Class frmStockItem
     Me.spnWidth.Name = "spnWidth"
     Me.spnWidth.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnWidth.Properties.Appearance.Options.UseFont = True
-    Me.spnWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions5)})
+    Me.spnWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions4)})
     Me.spnWidth.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnWidth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnWidth.Properties.EditFormat.FormatString = "#0.00"
@@ -917,7 +916,7 @@ Partial Class frmStockItem
     Me.spnLength.Name = "spnLength"
     Me.spnLength.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnLength.Properties.Appearance.Options.UseFont = True
-    Me.spnLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions6)})
+    Me.spnLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions5)})
     Me.spnLength.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnLength.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnLength.Properties.EditFormat.FormatString = "#0.00"
@@ -1342,7 +1341,8 @@ Partial Class frmStockItem
     Me.GridColumn8.FieldName = "DSetDescription"
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 8
+    Me.GridColumn8.VisibleIndex = 7
+    Me.GridColumn8.Width = 74
     '
     'gcSubItemType
     '
@@ -1351,8 +1351,8 @@ Partial Class frmStockItem
     Me.gcSubItemType.Name = "gcSubItemType"
     Me.gcSubItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcSubItemType.Visible = True
-    Me.gcSubItemType.VisibleIndex = 4
-    Me.gcSubItemType.Width = 93
+    Me.gcSubItemType.VisibleIndex = 6
+    Me.gcSubItemType.Width = 67
     '
     'gcItemType
     '
@@ -1362,6 +1362,7 @@ Partial Class frmStockItem
     Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcItemType.Visible = True
     Me.gcItemType.VisibleIndex = 3
+    Me.gcItemType.Width = 53
     '
     'gcCategory
     '
@@ -1370,35 +1371,29 @@ Partial Class frmStockItem
     Me.gcCategory.Name = "gcCategory"
     Me.gcCategory.Visible = True
     Me.gcCategory.VisibleIndex = 2
-    '
-    'gcPricingUnit
-    '
-    Me.gcPricingUnit.Caption = "Precio Unitario"
-    Me.gcPricingUnit.FieldName = "PricingUnit"
-    Me.gcPricingUnit.Name = "gcPricingUnit"
-    Me.gcPricingUnit.Visible = True
-    Me.gcPricingUnit.VisibleIndex = 5
-    Me.gcPricingUnit.Width = 57
+    Me.gcCategory.Width = 53
     '
     'gcStdCost
     '
-    Me.gcStdCost.Caption = "Costo"
-    Me.gcStdCost.DisplayFormat.FormatString = "c2"
+    Me.gcStdCost.Caption = "Costo Unitario"
+    Me.gcStdCost.DisplayFormat.FormatString = "N2"
     Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcStdCost.FieldName = "StdCost"
     Me.gcStdCost.Name = "gcStdCost"
     Me.gcStdCost.Visible = True
-    Me.gcStdCost.VisibleIndex = 6
+    Me.gcStdCost.VisibleIndex = 4
+    Me.gcStdCost.Width = 53
     '
-    'gcStdPrice
+    'gcStdImportCost
     '
-    Me.gcStdPrice.Caption = "Precio"
-    Me.gcStdPrice.DisplayFormat.FormatString = "c2"
-    Me.gcStdPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcStdPrice.FieldName = "StdPrice"
-    Me.gcStdPrice.Name = "gcStdPrice"
-    Me.gcStdPrice.Visible = True
-    Me.gcStdPrice.VisibleIndex = 7
+    Me.gcStdImportCost.Caption = "Costo de Import."
+    Me.gcStdImportCost.DisplayFormat.FormatString = "N2"
+    Me.gcStdImportCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.gcStdImportCost.FieldName = "StdImportCost"
+    Me.gcStdImportCost.Name = "gcStdImportCost"
+    Me.gcStdImportCost.Visible = True
+    Me.gcStdImportCost.VisibleIndex = 5
+    Me.gcStdImportCost.Width = 47
     '
     'GridColumn2
     '
@@ -1408,7 +1403,7 @@ Partial Class frmStockItem
     Me.GridColumn2.OptionsColumn.ReadOnly = True
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 0
-    Me.GridColumn2.Width = 130
+    Me.GridColumn2.Width = 81
     '
     'GridColumn1
     '
@@ -1418,7 +1413,7 @@ Partial Class frmStockItem
     Me.GridColumn1.OptionsColumn.ReadOnly = True
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 1
-    Me.GridColumn1.Width = 450
+    Me.GridColumn1.Width = 224
     '
     'gvStockItems
     '
@@ -1426,7 +1421,7 @@ Partial Class frmStockItem
     Me.gvStockItems.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvStockItems.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
     Me.gvStockItems.Appearance.Row.Options.UseBackColor = True
-    Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.gcStdPrice, Me.gcStdCost, Me.gcPricingUnit, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8})
+    Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8})
     Me.gvStockItems.GridControl = Me.grdStockItems
     Me.gvStockItems.Name = "gvStockItems"
     Me.gvStockItems.OptionsBehavior.Editable = False
@@ -1435,6 +1430,12 @@ Partial Class frmStockItem
     Me.gvStockItems.OptionsView.ShowDetailButtons = False
     Me.gvStockItems.OptionsView.ShowGroupPanel = False
     Me.gvStockItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
+    '
+    'gcStockItemID
+    '
+    Me.gcStockItemID.Caption = "GridColumn3"
+    Me.gcStockItemID.FieldName = "StockItemID"
+    Me.gcStockItemID.Name = "gcStockItemID"
     '
     'grdStockItems
     '
@@ -1478,7 +1479,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.AppearanceCaption.Options.UseForeColor = True
     Me.grpCurrentStockItem.Controls.Add(Me.tabExtraDetails)
     Me.grpCurrentStockItem.Controls.Add(Me.grpGroupF8)
-    Me.grpCurrentStockItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Edit", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Save", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+    Me.grpCurrentStockItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Edit", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Save", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
     Me.grpCurrentStockItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpCurrentStockItem.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpCurrentStockItem.Location = New System.Drawing.Point(0, 0)
@@ -1495,12 +1496,6 @@ Partial Class frmStockItem
     Me.PanelControl1.Name = "PanelControl1"
     Me.PanelControl1.Size = New System.Drawing.Size(1164, 696)
     Me.PanelControl1.TabIndex = 4
-    '
-    'gcStockItemID
-    '
-    Me.gcStockItemID.Caption = "GridColumn3"
-    Me.gcStockItemID.FieldName = "StockItemID"
-    Me.gcStockItemID.Name = "gcStockItemID"
     '
     'frmStockItem
     '
@@ -1628,9 +1623,8 @@ Partial Class frmStockItem
   Friend WithEvents gvStockItems As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcStdPrice As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcStdImportCost As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcStdCost As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcPricingUnit As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcItemType As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcSubItemType As DevExpress.XtraGrid.Columns.GridColumn

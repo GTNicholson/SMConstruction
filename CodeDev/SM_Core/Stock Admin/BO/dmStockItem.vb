@@ -27,6 +27,9 @@ Public Class dmStockItem : Inherits dmBase
   Private pInactive As Boolean
   Private pInterdenStockItemID As Int32
   Private pProjectID As Int32
+  Private pStdCost As Decimal
+  Private pStdImportCost As Decimal
+
   Private ptmpIsFullyLoadedDown As Boolean
 
   Public Sub New()
@@ -86,6 +89,8 @@ Public Class dmStockItem : Inherits dmBase
       .Inactive = Inactive
       .InterdenStockItemID = InterdenStockItemID
       .ProjectID = ProjectID
+      .StdCost = StdCost
+      .StdImportCost = StdImportCost
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -104,6 +109,28 @@ Public Class dmStockItem : Inherits dmBase
       pStockItemID = value
     End Set
   End Property
+
+  Public Property StdCost() As Decimal
+    Get
+      Return pStdCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pStdCost <> value Then IsDirty = True
+      pStdCost = value
+    End Set
+  End Property
+
+
+  Public Property StdImportCost() As Decimal
+    Get
+      Return pStdImportCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pStdImportCost <> value Then IsDirty = True
+      pStdImportCost = value
+    End Set
+  End Property
+
 
   Public Property StockCode() As String
     Get

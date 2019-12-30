@@ -454,11 +454,12 @@ Public Class dsoSales
   End Function
 
 
-  Public Sub RaiseWorkOrderNo(ByRef rSalesOrderItem As dmSalesOrderItem, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+  Public Sub RaiseWorkOrderNo(ByRef rSalesOrderItem As dmSalesOrderItem, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vSalesOrderNo As String)
     Dim mWONo As Integer
     Dim mWONostr As String = ""
     Dim mdso As dsoGeneral
     Dim mWONoSuffix As Integer = 0
+
 
     '// See if the first Work Order Parent Sales Order Item has 
 
@@ -482,6 +483,8 @@ Public Class dsoSales
       For Each mWO As dmWorkOrder In rSalesOrderItem.WorkOrders
         mWONoSuffix += 1
         mWO.WorkOrderNo = mWONostr & "-" & mWONoSuffix
+        mWO.SalesOrderItemWOIndex = mWONoSuffix
+        mWO.SOWONumber = vSalesOrderNo & "-" & rSalesOrderItem.ItemNumber & "-" & mWONoSuffix
       Next
     End If
 

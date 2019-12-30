@@ -333,6 +333,17 @@ Public Class colStockSubItemTypeAbrasivos : Inherits List(Of clsStockSubItemType
 End Class
 
 Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockItemTypeAbrasivos)
+
+  Enum eStockItemAbrasivos
+    EsponjasYPastes = 1
+    LijaBanda = 2
+    LijaDisco = 3
+    LijaPliego = 4
+    LijaRollo = 5
+    Otros = 99
+  End Enum
+
+
   Public Const EsponjasYPastes = 1
   Public Const LijaBanda = 2
   Public Const LijaDisco = 3
@@ -414,6 +425,14 @@ Public Class colStockSubItemTypeNailsAndBolts : Inherits List(Of clsStockSubItem
 End Class
 
 Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemTypeNailsAndBolts)
+
+  Public Enum eStockItemNailAndBolts
+    Clavos = 1
+    Tornillos = 2
+    Pernos = 3
+    Golosos = 4
+  End Enum
+
   Public Const Clavos = 1
   Public Const Tornillos = 2
   Public Const Pernos = 3
@@ -489,6 +508,18 @@ Public Class colStockSubItemTypeHerrajes : Inherits List(Of clsStockSubItemTypeH
 End Class
 
 Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockItemTypeHerrajes)
+
+  Public Enum eStockItemHerrajes
+    Riel = 1
+    Tuercas = 2
+    Arandelas = 3
+    Bisagras = 4
+    ResbalonesYNiveladores = 5
+    Rodos = 6
+    HerrajesEspeciales = 7
+    Portatiles = 8
+    Otros = 99
+  End Enum
 
   Public Const Riel = 1
   Public Const Tuercas = 2
@@ -586,6 +617,10 @@ End Class
 
 Public Class eStockItemTypeMaterialElectrico : Inherits colPropertyENUMOfT(Of clsStockItemTypeMaterialElectrico)
 
+  Public Enum eStockItemMaterialElectrico
+    General = 1
+  End Enum
+
   Public Const General = 1
 
   Private Shared mSharedInstance As eStockItemTypeMaterialElectrico
@@ -650,6 +685,12 @@ Public Class colStockSubItemTypeMaterialEmpaque : Inherits List(Of clsStockSubIt
 End Class
 
 Public Class eStockItemTypeMaterialEmpaque : Inherits colPropertyENUMOfT(Of clsStockItemTypeMaterialEmpaque)
+
+  Public Enum StockItemMaterialEmpaque
+    Plasticos = 1
+    Grapas = 2
+    Otros = 99
+  End Enum
 
   Public Const Plasticos = 1
   Public Const Grapas = 2
@@ -814,6 +855,14 @@ End Class
 
 Public Class eStockItemTypeRepuestosYPartes : Inherits colPropertyENUMOfT(Of clsStockItemTypeRepuestosYPartes)
 
+  Public Enum eStockItemRepuestosYPartes
+    CuchillosYCabezales = 1
+    Bandas = 2
+    Balinera = 3
+    BrocasYFresas = 4
+    Otros = 99
+  End Enum
+
   Public Const CuchillosYCabezales = 1
   Public Const Bandas = 2
   Public Const Balinera = 3
@@ -897,6 +946,13 @@ End Class
 
 Public Class eStockItemTypeTapiceria : Inherits colPropertyENUMOfT(Of clsStockItemTypeTapiceria)
 
+  Public Enum eStockItemTapiceria
+    Tachuelas = 1
+    Nylons = 2
+    Otros = 99
+  End Enum
+
+
   Public Const Tachuelas = 1
   Public Const Nylons = 2
   Public Const Otros = 99
@@ -968,6 +1024,12 @@ Public Class colStockSubItemTypeVidrioYEspejo : Inherits List(Of clsStockSubItem
 End Class
 
 Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsStockItemTypeVidrioYEspejo)
+
+  Public Enum eStockItemVidrioYEspejo
+    Espejos = 1
+    Vidrios = 2
+
+  End Enum
 
   Public Const Espejos = 1
   Public Const Vidrios = 2
