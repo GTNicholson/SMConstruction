@@ -102,7 +102,7 @@ Public Class dmStockItem : Inherits dmBase
     Throw New NotImplementedException()
   End Function
 
-  Public Property StockItemID() As Int32
+  Public Property StockItemID() As Int32 Implements intStockItemDef.StockItemID
     Get
       Return pStockItemID
     End Get
@@ -112,7 +112,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property StockCode() As String
+  Public Property StockCode() As String Implements intStockItemDef.StockCode
     Get
       Return pStockCode
     End Get
@@ -122,21 +122,21 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Category() As Byte
+  Public Property Category() As Integer Implements intStockItemDef.StockCategory
     Get
       Return pCategory
     End Get
-    Set(ByVal value As Byte)
+    Set(ByVal value As Integer)
       If pCategory <> value Then IsDirty = True
       pCategory = value
     End Set
   End Property
 
-  Public Property ItemType() As Byte
+  Public Property ItemType() As Short Implements intStockItemDef.StockItemType
     Get
       Return pItemType
     End Get
-    Set(ByVal value As Byte)
+    Set(ByVal value As Short)
       If pItemType <> value Then IsDirty = True
       pItemType = value
     End Set
@@ -172,7 +172,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Length() As Decimal
+  Public Property Length() As Decimal Implements intStockItemDef.Length
     Get
       Return pLength
     End Get
@@ -182,7 +182,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Width() As Decimal
+  Public Property Width() As Decimal Implements intStockItemDef.Width
     Get
       Return pWidth
     End Get
@@ -192,7 +192,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Thickness() As Decimal
+  Public Property Thickness() As Decimal Implements intStockItemDef.Thickness
     Get
       Return pThickness
     End Get
@@ -202,7 +202,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Description() As String
+  Public Property Description() As String Implements intStockItemDef.SIDescription
     Get
       Return pDescription
     End Get
@@ -361,38 +361,13 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Private Property intStockItemDef_StockItemID As Integer Implements intStockItemDef.StockItemID
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As Integer)
-      Throw New NotImplementedException()
-    End Set
-  End Property
 
-  Public Property StockItemType As Short Implements intStockItemDef.StockItemType
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As Short)
-      Throw New NotImplementedException()
-    End Set
-  End Property
 
   Public Property ComponentType As Short Implements intStockItemDef.ComponentType
     Get
       Throw New NotImplementedException()
     End Get
     Set(value As Short)
-      Throw New NotImplementedException()
-    End Set
-  End Property
-
-  Public Property StockCategory As Integer Implements intStockItemDef.StockCategory
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As Integer)
       Throw New NotImplementedException()
     End Set
   End Property
@@ -406,14 +381,6 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Private Property intStockItemDef_StockCode As String Implements intStockItemDef.StockCode
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As String)
-      Throw New NotImplementedException()
-    End Set
-  End Property
 
   Public Property AuxCode As String Implements intStockItemDef.AuxCode
     Get
@@ -424,41 +391,6 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property SIDescription As String Implements intStockItemDef.SIDescription
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As String)
-      Throw New NotImplementedException()
-    End Set
-  End Property
-
-  Private Property intStockItemDef_Length As Decimal Implements intStockItemDef.Length
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As Decimal)
-      Throw New NotImplementedException()
-    End Set
-  End Property
-
-  Private Property intStockItemDef_Width As Decimal Implements intStockItemDef.Width
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As Decimal)
-      Throw New NotImplementedException()
-    End Set
-  End Property
-
-  Private Property intStockItemDef_Thickness As Decimal Implements intStockItemDef.Thickness
-    Get
-      Throw New NotImplementedException()
-    End Get
-    Set(value As Decimal)
-      Throw New NotImplementedException()
-    End Set
-  End Property
 
   Public Property AttributeID As Integer Implements intStockItemDef.AttributeID
     Get

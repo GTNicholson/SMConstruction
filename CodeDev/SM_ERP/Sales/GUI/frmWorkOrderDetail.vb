@@ -19,9 +19,11 @@ Public Class frmWorkOrderDetail
   Public IsInternal As New Boolean
   Public pSOI As dmSalesOrderItem
 
-  Private Enum eCopyPasteButton
+  Private Enum eMaterialRequirementsButtons
     Copy = 1
     Paste = 2
+    AddOther = 3
+    AddInv = 4
   End Enum
 
   Public Sub New()
@@ -447,7 +449,7 @@ Public Class frmWorkOrderDetail
           Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
 
             AddWorkOrderDocument()
-              RefreshControls()
+            RefreshControls()
 
           Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
             DeleteWorkOrderDocument()
@@ -457,7 +459,7 @@ Public Class frmWorkOrderDetail
         End Select
       End If
     Catch ex As Exception
-        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
   End Sub
@@ -821,14 +823,14 @@ Public Class frmWorkOrderDetail
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     Select Case e.Button.Properties.Tag
-      Case eCopyPasteButton.Copy
+      Case eMaterialRequirementsButtons.Copy
         Dim mMatReqs As colMaterialRequirements
         mMatReqs = grdMaterialRequirements.DataSource
 
 
 
         pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
-      Case eCopyPasteButton.Paste
+      Case eMaterialRequirementsButtons.Paste
         Dim mPF As dmProductFurniture
         mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
         If mPF IsNot Nothing Then
@@ -904,14 +906,12 @@ Public Class frmWorkOrderDetail
 
   Private Sub grpMaterialRequirementOthers_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementOthers.CustomButtonClick
     Select Case e.Button.Properties.Tag
-      Case eCopyPasteButton.Copy
+      Case eMaterialRequirementsButtons.Copy
         Dim mMatReqs As colMaterialRequirements
         mMatReqs = grdMaterialRequirementOthers.DataSource
 
-
-
         pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
-      Case eCopyPasteButton.Paste
+      Case eMaterialRequirementsButtons.Paste
         Dim mPF As dmProductFurniture
         mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
         If mPF IsNot Nothing Then
@@ -924,6 +924,14 @@ Public Class frmWorkOrderDetail
             Next
           End If
         End If
+      Case eMaterialRequirementsButtons.AddInv
+        Dim mSIs As New colStockItems
+        Dim mPicker As clsPickerStockItem
+        For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
+          mSIs.Add(mItem.Value)
+        Next
+        mPicker = New clsPickerStockItem(mSIs)
+        frmPickerStockItem.OpenPickerMulti(mPicker, True)
     End Select
   End Sub
 End Class

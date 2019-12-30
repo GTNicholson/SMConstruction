@@ -219,6 +219,7 @@ Public Class fccWorkOrderDetail
       For Each mMR As dmMaterialRequirement In mPF.MaterialRequirments
         mMRI = New clsMaterialRequirementInfo(mMR)
         mMRI.WorkOrder = pWorkOrder
+        mMRI.StockItem = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mMRI.MaterialRequirement.StockItemID)
         mMatReqInfos.Add(mMRI)
       Next
     End If
@@ -237,6 +238,7 @@ Public Class fccWorkOrderDetail
       For Each mMR As dmMaterialRequirement In mPF.MaterialRequirmentsChanges
         mMRI = New clsMaterialRequirementInfo(mMR)
         mMRI.WorkOrder = pWorkOrder
+        mMRI.StockItem = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mMRI.MaterialRequirement.StockItemID)
         mMatReqInfos.Add(mMRI)
       Next
     End If
@@ -255,6 +257,7 @@ Public Class fccWorkOrderDetail
       For Each mMR As dmMaterialRequirement In mPF.MaterialRequirmentOthers
         mMRI = New clsMaterialRequirementInfo(mMR)
         mMRI.WorkOrder = pWorkOrder
+        mMRI.StockItem = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mMRI.MaterialRequirement.StockItemID)
         mMatReqInfos.Add(mMRI)
       Next
     End If
@@ -273,6 +276,7 @@ Public Class fccWorkOrderDetail
       For Each mMR As dmMaterialRequirement In mPF.MaterialRequirmentOthersChanges
         mMRI = New clsMaterialRequirementInfo(mMR)
         mMRI.WorkOrder = pWorkOrder
+        mMRI.StockItem = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mMRI.MaterialRequirement.StockItemID)
         mMatReqInfos.Add(mMRI)
       Next
     End If
