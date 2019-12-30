@@ -117,15 +117,15 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property StdCost() As Decimal
-    Get
-      Return pStdCost
-    End Get
-    Set(ByVal value As Decimal)
-      If pStdCost <> value Then IsDirty = True
-      pStdCost = value
-    End Set
-  End Property
+  ''Public Property StdCost() As Decimal
+  ''  Get
+  ''    Return pStdCost
+  ''  End Get
+  ''  Set(ByVal value As Decimal)
+  ''    If pStdCost <> value Then IsDirty = True
+  ''    pStdCost = value
+  ''  End Set
+  ''End Property
 
 
   Public Property StdImportCost() As Decimal
