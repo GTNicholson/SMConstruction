@@ -138,4 +138,37 @@ Public Class dsoStock
 
     Return mOK
   End Function
+
+  Public Function GetNextStockCodeSuffixNo(ByVal vStockCodeStem As String) As Integer
+    Dim mReader As IDataReader
+    Dim mSQL As String
+    Dim mRetVal As Integer
+    Dim mExistingCode As String
+    Dim mLastDotPos As Integer
+    Try
+
+
+      mSQL = "Select Top 1 StockCode from StockItem where StockCode Like '" & vStockCodeStem & "%' Order By StockCode Desc"
+      pDBConn.Connect()
+      mReader = pDBConn.LoadReader(mSQL)
+      If mReader.Read Then
+        mExistingCode = RTIS.DataLayer.clsDBConnBase.DBReadString(mReader, "StockCode")
+        mLastDotPos = mExistingCode.LastIndexOf(".")
+        If mLastDotPos <> -1 And mExistingCode.Length >= mLastDotPos + 1 Then
+          mRetVal = Val(mExistingCode.Substring(mLastDotPos + 1)) + 1
+        Else
+          '// invalid code
+          mRetVal = -1
+        End If
+      Else
+          mRetVal = 1
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
 End Class

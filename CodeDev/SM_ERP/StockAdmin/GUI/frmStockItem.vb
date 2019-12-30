@@ -309,13 +309,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Abrasivos
 
-          Dim mAbrasivosType As clsStockItemTypeAbrasivos
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
-          mAbrasivosType = eStockItemTypeAbrasivos.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mAbrasivosType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mAbrasivosType.StockSubItemTypeAbrasivos)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -329,13 +323,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Herrajes
 
-          Dim mHerrajesType As clsStockItemTypeHerrajes
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerrajes.GetInstance.ValueItems)
-          mHerrajesType = eStockItemTypeHerrajes.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mHerrajesType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mHerrajesType.StockSubItemTypeHerrajes)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -349,13 +337,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.MatElect
 
-          Dim mMatElectrico As clsStockItemTypeMaterialElectrico
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialElectrico.GetInstance.ValueItems)
-          mMatElectrico = eStockItemTypeMaterialElectrico.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mMatElectrico IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mMatElectrico.StockSubItemTypeMaterialElectrico)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -363,13 +345,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.MatEmpaque
 
-          Dim mMatEmpaque As clsStockItemTypeMaterialEmpaque
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialEmpaque.GetInstance.ValueItems)
-          mMatEmpaque = eStockItemTypeMaterialEmpaque.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mMatEmpaque IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mMatEmpaque.StockSubItemTypeMaterialEmpaque)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -383,13 +359,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Metal
 
-          Dim mMetalType As clsStockItemTypeMetales
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMetales.GetInstance.ValueItems)
-          mMetalType = eStockItemTypeMetales.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mMetalType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mMetalType.StockSubItemTypeMetales)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -398,13 +368,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.NailsAndBolds
 
-          Dim mNailsAndBoltsType As clsStockItemTypeNailsAndBolts
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
-          mNailsAndBoltsType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mNailsAndBoltsType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mNailsAndBoltsType.StockSubItemTypeNailsAndBolts)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -425,13 +389,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Repuestos
 
-          Dim mRepuestosType As clsStockItemTypeRepuestosYPartes
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeRepuestosYPartes.GetInstance.ValueItems)
-          mRepuestosType = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mRepuestosType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mRepuestosType.StockSubItemTypeRepuestosYPartes)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -439,13 +397,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Tapiceria
 
-          Dim mTapiceria As clsStockItemTypeTapiceria
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTapiceria.GetInstance.ValueItems)
-          mTapiceria = eStockItemTypeTapiceria.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mTapiceria IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mTapiceria.StockSubItemTypeTapiceria)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -453,13 +405,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.VidrioYEspejo
 
-          Dim mVidrioType As clsStockItemTypeVidrioYEspejo
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-          mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mVidrioType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -658,5 +604,9 @@ Public Class frmStockItem
     End If
   End Sub
 
+  Private Sub btnedStockCode_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnedStockCode.ButtonClick
+    pFormController.SetStockCode()
+    RefreshControls()
+  End Sub
 End Class
 

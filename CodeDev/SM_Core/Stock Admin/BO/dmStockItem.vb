@@ -498,7 +498,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property StockUnitTypeENUM As Integer Implements intStockItemDef.StockUnitTypeENUM
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
@@ -507,7 +507,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property DefaultStockLocation As String Implements intStockItemDef.DefaultStockLocation
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As String)
       Throw New NotImplementedException()
@@ -525,7 +525,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property DateEnd As Date Implements intStockItemDef.DateEnd
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Date)
       Throw New NotImplementedException()
@@ -534,7 +534,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property DateEntered As Date Implements intStockItemDef.DateEntered
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Date)
       Throw New NotImplementedException()
@@ -543,7 +543,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property DateAmended As Date Implements intStockItemDef.DateAmended
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Date)
       Throw New NotImplementedException()
@@ -552,7 +552,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property StockItemStatus As Byte Implements intStockItemDef.StockItemStatus
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Byte)
       Throw New NotImplementedException()
@@ -561,7 +561,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property SerialNo As String Implements intStockItemDef.SerialNo
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As String)
       Throw New NotImplementedException()
@@ -570,7 +570,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property IsProvisional As Boolean Implements intStockItemDef.IsProvisional
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Boolean)
       Throw New NotImplementedException()
@@ -579,7 +579,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property PricingUnit As Byte Implements intStockItemDef.PricingUnit
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Byte)
       Throw New NotImplementedException()
@@ -588,7 +588,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property StdCost As Decimal Implements intStockItemDef.StdCost
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Decimal)
       Throw New NotImplementedException()
@@ -597,7 +597,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property StdPrice As Decimal Implements intStockItemDef.StdPrice
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Decimal)
       Throw New NotImplementedException()
@@ -606,7 +606,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property IsTemplate As Boolean Implements intStockItemDef.IsTemplate
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Boolean)
       Throw New NotImplementedException()
@@ -642,7 +642,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property ProcessItemOperations As IList Implements intStockItemDef.ProcessItemOperations
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As IList)
       Throw New NotImplementedException()

@@ -142,11 +142,12 @@ Partial Class frmStockItem
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gvStockItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdStockItems = New DevExpress.XtraGrid.GridControl()
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.btnedStockCode = New DevExpress.XtraEditors.ButtonEdit()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,6 +208,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
+    CType(Me.btnedStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'chkIsObsolete
@@ -495,6 +497,7 @@ Partial Class frmStockItem
     Me.grpGroupF8.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpGroupF8.AppearanceCaption.Options.UseFont = True
     Me.grpGroupF8.AppearanceCaption.Options.UseForeColor = True
+    Me.grpGroupF8.Controls.Add(Me.btnedStockCode)
     Me.grpGroupF8.Controls.Add(Me.chkIsObsolete)
     Me.grpGroupF8.Controls.Add(Me.chkIsGeneric)
     Me.grpGroupF8.Controls.Add(Me.lblStockItemID)
@@ -1030,7 +1033,7 @@ Partial Class frmStockItem
     Me.txtStockCode.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.txtStockCode.Properties.Appearance.Options.UseFont = True
     Me.txtStockCode.Properties.MaxLength = 25
-    Me.txtStockCode.Size = New System.Drawing.Size(150, 20)
+    Me.txtStockCode.Size = New System.Drawing.Size(83, 20)
     Me.txtStockCode.TabIndex = 42
     '
     'LabelControl18
@@ -1436,6 +1439,12 @@ Partial Class frmStockItem
     Me.gvStockItems.OptionsView.ShowGroupPanel = False
     Me.gvStockItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
     '
+    'gcStockItemID
+    '
+    Me.gcStockItemID.Caption = "GridColumn3"
+    Me.gcStockItemID.FieldName = "StockItemID"
+    Me.gcStockItemID.Name = "gcStockItemID"
+    '
     'grdStockItems
     '
     Me.grdStockItems.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1496,11 +1505,14 @@ Partial Class frmStockItem
     Me.PanelControl1.Size = New System.Drawing.Size(1164, 696)
     Me.PanelControl1.TabIndex = 4
     '
-    'gcStockItemID
+    'btnedStockCode
     '
-    Me.gcStockItemID.Caption = "GridColumn3"
-    Me.gcStockItemID.FieldName = "StockItemID"
-    Me.gcStockItemID.Name = "gcStockItemID"
+    Me.btnedStockCode.Location = New System.Drawing.Point(204, 52)
+    Me.btnedStockCode.MenuManager = Me.BarManager1
+    Me.btnedStockCode.Name = "btnedStockCode"
+    Me.btnedStockCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.btnedStockCode.Size = New System.Drawing.Size(88, 20)
+    Me.btnedStockCode.TabIndex = 118
     '
     'frmStockItem
     '
@@ -1578,6 +1590,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
+    CType(Me.btnedStockCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1699,4 +1712,5 @@ Partial Class frmStockItem
   Friend WithEvents BarEditItem1 As DevExpress.XtraBars.BarEditItem
   Friend WithEvents bargCategory As DevExpress.XtraBars.BarEditItem
   Friend WithEvents gcStockItemID As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents btnedStockCode As DevExpress.XtraEditors.ButtonEdit
 End Class

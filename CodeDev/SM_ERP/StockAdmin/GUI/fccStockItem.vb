@@ -311,5 +311,18 @@ Public Class fccStocktem
   ''    Return mRetval
   ''  End Function
 
+  Public Sub SetStockCode()
+    Dim mDSO As dsoStock
+    Dim mStem As String
+    Dim mSuffix As Integer
+
+    mStem = clsStockItemSharedFuncs.GetStockCodeStem(pCurrentStockItem)
+    mDSO = New dsoStock(pDBConn)
+    mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
+
+    pCurrentStockItem.StockCode = mStem & "." & mSuffix.ToString("000")
+
+  End Sub
+
 End Class
 
