@@ -23,26 +23,29 @@ Partial Class frmPickMaterials
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
     Me.ButtonEdit1 = New DevExpress.XtraEditors.ButtonEdit()
+    Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+    Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
+    CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
-    CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'GroupControl1
@@ -53,6 +56,8 @@ Partial Class frmPickMaterials
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.LabelControl2)
+    Me.GroupControl1.Controls.Add(Me.TextEdit1)
     Me.GroupControl1.Controls.Add(Me.LabelControl1)
     Me.GroupControl1.Controls.Add(Me.ButtonEdit1)
     Me.GroupControl1.Location = New System.Drawing.Point(2, 12)
@@ -60,6 +65,26 @@ Partial Class frmPickMaterials
     Me.GroupControl1.Size = New System.Drawing.Size(1066, 73)
     Me.GroupControl1.TabIndex = 0
     Me.GroupControl1.Text = "Orden de Trabajo"
+    '
+    'LabelControl1
+    '
+    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl1.Appearance.Options.UseFont = True
+    Me.LabelControl1.Location = New System.Drawing.Point(10, 41)
+    Me.LabelControl1.Name = "LabelControl1"
+    Me.LabelControl1.Size = New System.Drawing.Size(112, 16)
+    Me.LabelControl1.TabIndex = 1
+    Me.LabelControl1.Text = "Orden de Trabajo"
+    '
+    'ButtonEdit1
+    '
+    Me.ButtonEdit1.Location = New System.Drawing.Point(141, 38)
+    Me.ButtonEdit1.Name = "ButtonEdit1"
+    Me.ButtonEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!)
+    Me.ButtonEdit1.Properties.Appearance.Options.UseFont = True
+    Me.ButtonEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.ButtonEdit1.Size = New System.Drawing.Size(111, 22)
+    Me.ButtonEdit1.TabIndex = 0
     '
     'GroupControl2
     '
@@ -76,16 +101,6 @@ Partial Class frmPickMaterials
     Me.GroupControl2.Size = New System.Drawing.Size(1066, 430)
     Me.GroupControl2.TabIndex = 1
     Me.GroupControl2.Text = "Materiales"
-    '
-    'ButtonEdit1
-    '
-    Me.ButtonEdit1.Location = New System.Drawing.Point(141, 38)
-    Me.ButtonEdit1.Name = "ButtonEdit1"
-    Me.ButtonEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!)
-    Me.ButtonEdit1.Properties.Appearance.Options.UseFont = True
-    Me.ButtonEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.ButtonEdit1.Size = New System.Drawing.Size(111, 22)
-    Me.ButtonEdit1.TabIndex = 0
     '
     'GridControl1
     '
@@ -116,14 +131,6 @@ Partial Class frmPickMaterials
     Me.GridColumn1.VisibleIndex = 0
     Me.GridColumn1.Width = 88
     '
-    'GridColumn2
-    '
-    Me.GridColumn2.Caption = "Description"
-    Me.GridColumn2.Name = "GridColumn2"
-    Me.GridColumn2.Visible = True
-    Me.GridColumn2.VisibleIndex = 1
-    Me.GridColumn2.Width = 208
-    '
     'GridColumn3
     '
     Me.GridColumn3.Caption = "Categoria"
@@ -139,6 +146,14 @@ Partial Class frmPickMaterials
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 3
     Me.GridColumn4.Width = 121
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Description"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 1
+    Me.GridColumn2.Width = 208
     '
     'GridColumn5
     '
@@ -172,15 +187,22 @@ Partial Class frmPickMaterials
     Me.GridColumn8.VisibleIndex = 7
     Me.GridColumn8.Width = 132
     '
-    'LabelControl1
+    'TextEdit1
     '
-    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl1.Appearance.Options.UseFont = True
-    Me.LabelControl1.Location = New System.Drawing.Point(10, 41)
-    Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(112, 16)
-    Me.LabelControl1.TabIndex = 1
-    Me.LabelControl1.Text = "Orden de Trabajo"
+    Me.TextEdit1.Location = New System.Drawing.Point(324, 40)
+    Me.TextEdit1.Name = "TextEdit1"
+    Me.TextEdit1.Size = New System.Drawing.Size(218, 20)
+    Me.TextEdit1.TabIndex = 2
+    '
+    'LabelControl2
+    '
+    Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl2.Appearance.Options.UseFont = True
+    Me.LabelControl2.Location = New System.Drawing.Point(273, 41)
+    Me.LabelControl2.Name = "LabelControl2"
+    Me.LabelControl2.Size = New System.Drawing.Size(45, 16)
+    Me.LabelControl2.TabIndex = 3
+    Me.LabelControl2.Text = "Cliente"
     '
     'frmPickMaterials
     '
@@ -194,11 +216,12 @@ Partial Class frmPickMaterials
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
+    CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
-    CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -217,4 +240,6 @@ Partial Class frmPickMaterials
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+  Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
 End Class

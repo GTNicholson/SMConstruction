@@ -187,7 +187,7 @@ Public Class dtoStockTakeItem : Inherits dtoBase
       End If
 
       For Each Me.pStockTakeItem In rCollection
-        If pStockTakeItem.IsDirty Or pStockTakeItem.StockItemID <> vParentID Or pStockTakeItem.StockTakeItemID = 0 Then 'Or pStockTakeItem.StockTakeItemID = 0
+        If pStockTakeItem.IsDirty Or pStockTakeItem.StockTakeID <> vParentID Or pStockTakeItem.StockTakeItemID = 0 Then 'Or pStockTakeItem.StockTakeItemID = 0
           pStockTakeItem.StockTakeID = vParentID
           If mAllOK Then mAllOK = SaveObject()
         End If

@@ -82,7 +82,7 @@ Class clsMenuFunctions
     mCategories.Add(eStockItemCategory.MatVarios)
     mCategories.Add(eStockItemCategory.Metal)
     mCategories.Add(eStockItemCategory.PinturaYQuimico)
-    mCategories.Add(eStockItemCategory.Plywood)
+    mCategories.Add(eStockItemCategory.Laminas)
     mCategories.Add(eStockItemCategory.Repuestos)
     mCategories.Add(eStockItemCategory.Tapiceria)
     mCategories.Add(eStockItemCategory.VidrioYEspejo)

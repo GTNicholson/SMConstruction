@@ -126,12 +126,14 @@ Public Class fccStockTake
     Next
 
     'remove where no longer required
-    For mLoop As Integer = pStockTakeItemEditors.Count - 1 To 0
-      mSTE = pStockTakeItemEditors(mLoop)
-      If pStockTake.StockTakeItems.IndexFromStockItemIDLocationID(mSTE.StockTakeItem.StockItemID, mSTE.StockTakeItem.StockItemLocationID) = -1 Then
-        pStockTakeItemEditors.RemoveAt(mLoop)
-      End If
-    Next
+    If pStockTakeItemEditors.Count > 0 Then
+      For mLoop As Integer = pStockTakeItemEditors.Count - 1 To 0
+        mSTE = pStockTakeItemEditors(mLoop)
+        If pStockTake.StockTakeItems.IndexFromStockItemIDLocationID(mSTE.StockTakeItem.StockItemID, mSTE.StockTakeItem.StockItemLocationID) = -1 Then
+          pStockTakeItemEditors.RemoveAt(mLoop)
+        End If
+      Next
+    End If
   End Sub
 
   Public Sub AddDefaultItems()

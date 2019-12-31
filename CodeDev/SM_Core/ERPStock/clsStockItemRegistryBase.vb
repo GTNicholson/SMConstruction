@@ -18,7 +18,7 @@
 
   Public Function GetStockItemFromID(ByVal vStockItemID As Integer) As dmStockItem
     Dim mRetVal As dmStockItem = Nothing
-    mRetVal = pStockItemsDict.Item(vStockItemID)
+    If pStockItemsDict.ContainsKey(vStockItemID) Then mRetVal = pStockItemsDict.Item(vStockItemID)
     Return mRetVal
   End Function
 

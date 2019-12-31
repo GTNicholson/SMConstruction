@@ -157,7 +157,7 @@ Public Enum eStockItemCategory
   <Description("Materiales Varios")> MatVarios = 8
   <Description("Metales")> Metal = 9
   <Description("Pinturas y Quimicos")> PinturaYQuimico = 10
-  <Description("Plywood")> Plywood = 11
+  <Description("Laminas")> Laminas = 11
   <Description("Repuestos y Partes")> Repuestos = 12
   <Description("Tapiceria")> Tapiceria = 13
   <Description("Vidrios y Espejos")> VidrioYEspejo = 14
@@ -931,6 +931,61 @@ Public Class eStockItemTypeTapiceria : Inherits colPropertyENUMOfT(Of clsStockIt
 
 End Class
 
+
+Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItemType)
+
+  Public Const Recubrimiento = 1
+  Public Const Diluyente = 2
+  Public Const Barniz = 3
+  Public Const Componentes = 4
+  Public Const Tintes = 5
+  Public Const Combustibles = 6
+  Public Const Pegamento = 7
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypePintura
+
+  Public Sub New()
+
+    MyBase.New()
+
+    Dim mType As clsStockItemType
+
+    mType = New clsStockItemType(Recubrimiento, "Recubrimiento para Madera", "RM")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Diluyente, "Diluyente", "DI")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Barniz, "Barniz", "BZ")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Componentes, "Componentes", "CP")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Tintes, "Tintes", "TN")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Combustibles, "Combustibles", "CB")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Pegamento, "Pegamento para Madera", "PG")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemType(Otros, "Otros", "OTR")
+    MyBase.Add(mType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypePintura
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypePintura
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
 ''Public Class clsStockItemTypeVidrioYEspejo : Inherits clsPropertyENUM
 ''  Private pStockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
 
@@ -994,6 +1049,42 @@ Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsSto
   Public Shared Function GetInstance() As eStockItemTypeVidrioYEspejo
     If mSharedInstance Is Nothing Then
       mSharedInstance = New eStockItemTypeVidrioYEspejo
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+
+Public Class eStockItemTypeLamina : Inherits colPropertyENUMOfT(Of clsStockItemType)
+
+  Public Const Plywood = 1
+  Public Const Poroplast = 2
+  Public Const Plycem = 3
+  Public Const Otros = 99
+
+
+  Private Shared mSharedInstance As eStockItemTypeLamina
+
+  Public Sub New()
+    MyBase.New()
+    Dim mType As clsStockItemType
+
+    mType = New clsStockItemType(Plywood, "Plywood", "PW")
+    MyBase.Add(mType)
+    mType = New clsStockItemType(Poroplast, "Poroplast", "PP")
+    MyBase.Add(mType)
+    mType = New clsStockItemType(Plycem, "Plycem", "PC")
+    MyBase.Add(mType)
+    mType = New clsStockItemType(Otros, "Otros", "OTR")
+    MyBase.Add(mType)
+
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeLamina
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeLamina
     End If
     Return mSharedInstance
   End Function

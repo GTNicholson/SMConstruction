@@ -364,6 +364,10 @@
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>
   <ExeFiles>
+    <Filename>RTIS.ERPStock.V17.1.dll</Filename>
+    <FileUpdateType>0</FileUpdateType>
+  </ExeFiles>
+  <ExeFiles>
     <Filename>RTISAlign.exe</Filename>
     <FileUpdateType>0</FileUpdateType>
   </ExeFiles>

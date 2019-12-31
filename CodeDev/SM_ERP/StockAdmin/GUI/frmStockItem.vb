@@ -377,11 +377,15 @@ Public Class frmStockItem
 
         Case eStockItemCategory.PinturaYQuimico
 
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePintura.GetInstance.ValueItems)
+
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
-        Case eStockItemCategory.Plywood
+        Case eStockItemCategory.Laminas
+
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeLamina.GetInstance.ValueItems)
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
