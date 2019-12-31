@@ -309,9 +309,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Abrasivos
 
-          Dim mAbrasivosType As clsStockItemTypeAbrasivos
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -325,9 +323,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Herrajes
 
-          Dim mHerrajesType As clsStockItemTypeHerrajes
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerrajes.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -342,9 +338,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.MatElect
 
-          Dim mMatElectrico As clsStockItemTypeMaterialElectrico
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialElectrico.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -352,9 +346,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.MatEmpaque
 
-          Dim mMatEmpaque As clsStockItemTypeMaterialEmpaque
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialEmpaque.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -368,9 +360,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Metal
 
-          Dim mMetalType As clsStockItemTypeMetales
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMetales.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -379,9 +369,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.NailsAndBolds
 
-          Dim mNailsAndBoltsType As clsStockItemTypeNailsAndBolts
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -390,15 +378,11 @@ Public Class frmStockItem
 
         Case eStockItemCategory.PinturaYQuimico
 
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePintura.GetInstance.ValueItems)
-
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
-        Case eStockItemCategory.Laminas
-
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeLamina.GetInstance.ValueItems)
+        Case eStockItemCategory.Plywood
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -406,9 +390,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Repuestos
 
-          Dim mRepuestosType As clsStockItemTypeRepuestosYPartes
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeRepuestosYPartes.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -416,9 +398,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Tapiceria
 
-          Dim mTapiceria As clsStockItemTypeTapiceria
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTapiceria.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -426,13 +406,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.VidrioYEspejo
 
-          Dim mVidrioType As clsStockItemTypeVidrioYEspejo
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-          'mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mVidrioType IsNot Nothing Then
-
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
-          End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -536,7 +510,7 @@ Public Class frmStockItem
     Dim mVIs As New colValueItems
     ''Dim mSubTypes As colSubItemTypes
     ''Dim mSubType As clsSubItemType
-    Dim mSubItemTypes As colStockItemTypes
+    ''Dim mSubItemTypes As colStockItemTypes
 
     Dim mText As String = ""
     ''Dim mSISubItemTypeIron As clsStockSubItemTypeIronmongery
@@ -642,8 +616,14 @@ Public Class frmStockItem
 
   End Sub
 
+<<<<<<< HEAD
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
 
+=======
+  Private Sub btnedStockCode_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnedStockCode.ButtonClick
+    pFormController.SetStockCode()
+    RefreshControls()
+>>>>>>> a59bce416f58f503abcac46231483b10471da93d
   End Sub
 End Class
 

@@ -25,6 +25,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pSubFurnitureCategoryID As Int32
   Private pPlannedDeliverDate As DateTime
   Private pisInternal As Boolean
+  Private pSOWONumber As Int32
 
   Private pMachining As Boolean
   Private pAssembley As Boolean
@@ -44,6 +45,9 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Private pOutputDocuments As colOutputDocuments
   Private pWOFiles As colFileTrackers
+
+  Private pSalesOrderItemWOIndex As Integer
+
 
   Public Sub New()
     MyBase.New()
@@ -115,7 +119,9 @@ Public Class dmWorkOrder : Inherits dmBase
       .DrawingDate = DrawingDate
       .PlannedDeliverDate = PlannedDeliverDate
       .TotalPieces = TotalPieces
+      .SalesOrderItemWOIndex = SalesOrderItemWOIndex
       .isInternal = isInternal
+      .SOWONumber = SOWONumber
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -150,6 +156,17 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property SalesOrderItemWOIndex() As Int32
+    Get
+      Return pSalesOrderItemWOIndex
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesOrderItemWOIndex <> value Then IsDirty = True
+      pSalesOrderItemWOIndex = value
+    End Set
+  End Property
+
+
   Public Property isInternal() As Boolean
     Get
       Return pisInternal
@@ -167,6 +184,17 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(ByVal value As Decimal)
       If pTotalPieces <> value Then IsDirty = True
       pTotalPieces = value
+    End Set
+  End Property
+
+
+  Public Property SOWONumber() As Int32
+    Get
+      Return pSOWONumber
+    End Get
+    Set(ByVal value As Int32)
+      If pSOWONumber <> value Then IsDirty = True
+      pSOWONumber = value
     End Set
   End Property
 

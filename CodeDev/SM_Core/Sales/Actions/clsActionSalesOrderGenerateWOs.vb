@@ -25,7 +25,7 @@ Public Class clsActionSalesOrderGenerateWOs : Inherits clsDomainAction
     '// Generate WO numbers
 
     For Each mSOI As dmSalesOrderItem In pSalesOrderActionHandler.SalesOrder.SalesOrderItems
-      mDSO.RaiseWorkOrderNo(mSOI, pSalesOrderActionHandler.DBConn)
+      mDSO.RaiseWorkOrderNo(mSOI, pSalesOrderActionHandler.DBConn, pSalesOrderActionHandler.SalesOrder.OrderNo)
       mDSO.SaveSalesOrderItemWithWOs(mSOI)
     Next
     pSalesOrderActionHandler.SalesOrder.WorkOrdersIssued = True

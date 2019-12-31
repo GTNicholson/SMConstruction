@@ -117,15 +117,16 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  ''Public Property StdCost() As Decimal
-  ''  Get
-  ''    Return pStdCost
-  ''  End Get
-  ''  Set(ByVal value As Decimal)
-  ''    If pStdCost <> value Then IsDirty = True
-  ''    pStdCost = value
-  ''  End Set
-  ''End Property
+<<<<<<< HEAD
+  Public Property StdCost() As Decimal
+    Get
+      Return pStdCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pStdCost <> value Then IsDirty = True
+      pStdCost = value
+    End Set
+  End Property
 
 
   Public Property StdImportCost() As Decimal
@@ -139,7 +140,10 @@ Public Class dmStockItem : Inherits dmBase
   End Property
 
 
+  Public Property StockCode() As String
+=======
   Public Property StockCode() As String Implements intStockItemDef.StockCode
+>>>>>>> a59bce416f58f503abcac46231483b10471da93d
     Get
       Return pStockCode
     End Get

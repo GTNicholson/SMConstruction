@@ -987,6 +987,7 @@ Public Class eStockItemTypeTapiceria : Inherits colPropertyENUMOfT(Of clsStockIt
 
 End Class
 
+<<<<<<< HEAD
 
 Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
@@ -1042,7 +1043,28 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
 
 End Class
 
+''Public Class clsStockItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+''  Private pStockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
+=======
+Public Class clsStockItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+  Private pStockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
+>>>>>>> a0efc2ca1db72009fc10c7561b2654c6ef0bfa5d
 
+  Public Property StockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
+    Get
+      Return pStockSubItemTypeVidrioYEspejo
+    End Get
+    Set(value As colStockSubItemTypeVidrioYEspejo)
+      pStockSubItemTypeVidrioYEspejo = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeVidrioYEspejo = New colStockSubItemTypeVidrioYEspejo
+  End Sub
+
+End Class
 
 Public Class clsStockSubItemTypeVidrioYEspejo : Inherits clsPropertyENUM
 
