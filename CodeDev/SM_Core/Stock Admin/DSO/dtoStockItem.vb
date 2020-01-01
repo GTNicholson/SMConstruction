@@ -89,8 +89,8 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InterdenStockItemID", .InterdenStockItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProjectID", .ProjectID)
 
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdImportCost", .StdImportCost)
+      ''   DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
+      '' DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdImportCost", .StdImportCost)
 
 
     End With
@@ -128,8 +128,8 @@ Public Class dtoStockItem : Inherits dtoBase
         .Inactive = DBReadBoolean(rDataReader, "Inactive")
         .InterdenStockItemID = DBReadInt32(rDataReader, "InterdenStockItemID")
         .ProjectID = DBReadInt32(rDataReader, "ProjectID")
-        .StdCost = DBReadDecimal(rDataReader, "StdCost")
-        .StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
+        '' .StdCost = DBReadDecimal(rDataReader, "StdCost")
+        ''.StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
 
 
 

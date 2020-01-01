@@ -114,6 +114,7 @@ Public Class fccStockTake
   Public Sub RefreshStockTakeItemEditors()
     Dim mSTE As clsStockTakeItemEditor
     Dim mSI As dmStockItem
+
     'Add new ones into editors
     For Each mSTI As dmStockTakeItem In pStockTake.StockTakeItems
       If pStockTakeItemEditors.IndexFromStockItemIDLocationID(mSTI.StockItemID, mSTI.StockItemLocationID) = -1 Then
@@ -159,7 +160,6 @@ Public Class fccStockTake
     RefreshStockTakeItemEditors()
 
     SaveObject()
-    LoadObject()
 
   End Sub
 
