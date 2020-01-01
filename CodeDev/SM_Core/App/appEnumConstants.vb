@@ -733,46 +733,46 @@ Public Class eStockItemTypeMaterialEmpaque : Inherits colPropertyENUMOfT(Of clsS
 
 End Class
 
-Public Class clsStockItemTypeMetales : Inherits clsPropertyENUM
-  Private pStockSubItemTypeMetales As colStockSubItemTypeMetales
+''Public Class clsStockItemTypeMetales : Inherits clsPropertyENUM
+''  Private pStockSubItemTypeMetales As colStockSubItemTypeMetales
 
-  Public Property StockSubItemTypeMetales As colStockSubItemTypeMetales
-    Get
-      Return pStockSubItemTypeMetales
-    End Get
-    Set(value As colStockSubItemTypeMetales)
-      pStockSubItemTypeMetales = value
-    End Set
-  End Property
+''  Public Property StockSubItemTypeMetales As colStockSubItemTypeMetales
+''    Get
+''      Return pStockSubItemTypeMetales
+''    End Get
+''    Set(value As colStockSubItemTypeMetales)
+''      pStockSubItemTypeMetales = value
+''    End Set
+''  End Property
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeMetales = New colStockSubItemTypeMetales
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''    pStockSubItemTypeMetales = New colStockSubItemTypeMetales
+''  End Sub
 
-End Class
+''End Class
 
-Public Class clsStockSubItemTypeMetales : Inherits clsPropertyENUM
+''Public Class clsStockSubItemTypeMetales : Inherits clsPropertyENUM
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''  End Sub
 
-End Class
+''End Class
 
-Public Class colStockSubItemTypeMetales : Inherits List(Of clsStockSubItemTypeMetales)
+''Public Class colStockSubItemTypeMetales : Inherits List(Of clsStockSubItemTypeMetales)
 
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeMetales
-    For Each mItem As clsStockSubItemTypeMetales In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
+''  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeMetales
+''    For Each mItem As clsStockSubItemTypeMetales In Me
+''      If mItem.PropertyENUM = vKey Then
+''        Return mItem
+''      End If
+''    Next
 
-    Return Nothing
-  End Function
+''    Return Nothing
+''  End Function
 
-End Class
+''End Class
 
 Public Class eStockItemTypeMetales : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
@@ -820,46 +820,46 @@ Public Class eStockItemTypeMetales : Inherits colPropertyENUMOfT(Of clsStockItem
 
 End Class
 
-Public Class clsStockItemTypeRepuestosYPartes : Inherits clsPropertyENUM
-  Private pStockSubItemTypeRepuestosYPartes As colStockSubItemTypeRepuestosYPartes
+''Public Class clsStockItemTypeRepuestosYPartes : Inherits clsPropertyENUM
+''  Private pStockSubItemTypeRepuestosYPartes As colStockSubItemTypeRepuestosYPartes
 
-  Public Property StockSubItemTypeRepuestosYPartes As colStockSubItemTypeRepuestosYPartes
-    Get
-      Return pStockSubItemTypeRepuestosYPartes
-    End Get
-    Set(value As colStockSubItemTypeRepuestosYPartes)
-      pStockSubItemTypeRepuestosYPartes = value
-    End Set
-  End Property
+''  Public Property StockSubItemTypeRepuestosYPartes As colStockSubItemTypeRepuestosYPartes
+''    Get
+''      Return pStockSubItemTypeRepuestosYPartes
+''    End Get
+''    Set(value As colStockSubItemTypeRepuestosYPartes)
+''      pStockSubItemTypeRepuestosYPartes = value
+''    End Set
+''  End Property
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeRepuestosYPartes = New colStockSubItemTypeRepuestosYPartes
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''    pStockSubItemTypeRepuestosYPartes = New colStockSubItemTypeRepuestosYPartes
+''  End Sub
 
-End Class
+''End Class
 
-Public Class clsStockSubItemTypeRepuestosYPartes : Inherits clsPropertyENUM
+''Public Class clsStockSubItemTypeRepuestosYPartes : Inherits clsPropertyENUM
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''  End Sub
 
-End Class
+''End Class
 
-Public Class colStockSubItemTypeRepuestosYPartes : Inherits List(Of clsStockSubItemTypeRepuestosYPartes)
+''Public Class colStockSubItemTypeRepuestosYPartes : Inherits List(Of clsStockSubItemTypeRepuestosYPartes)
 
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeRepuestosYPartes
-    For Each mItem As clsStockSubItemTypeRepuestosYPartes In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
+''  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeRepuestosYPartes
+''    For Each mItem As clsStockSubItemTypeRepuestosYPartes In Me
+''      If mItem.PropertyENUM = vKey Then
+''        Return mItem
+''      End If
+''    Next
 
-    Return Nothing
-  End Function
+''    Return Nothing
+''  End Function
 
-End Class
+''End Class
 
 Public Class eStockItemTypeRepuestosYPartes : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
@@ -908,46 +908,46 @@ Public Class eStockItemTypeRepuestosYPartes : Inherits colPropertyENUMOfT(Of cls
 
 End Class
 
-Public Class clsStockItemTypeTapiceria : Inherits clsPropertyENUM
-  Private pStockSubItemTypeTapiceria As colStockSubItemTypeTapiceria
+''Public Class clsStockItemTypeTapiceria : Inherits clsPropertyENUM
+''  Private pStockSubItemTypeTapiceria As colStockSubItemTypeTapiceria
 
-  Public Property StockSubItemTypeTapiceria As colStockSubItemTypeTapiceria
-    Get
-      Return pStockSubItemTypeTapiceria
-    End Get
-    Set(value As colStockSubItemTypeTapiceria)
-      pStockSubItemTypeTapiceria = value
-    End Set
-  End Property
+''  Public Property StockSubItemTypeTapiceria As colStockSubItemTypeTapiceria
+''    Get
+''      Return pStockSubItemTypeTapiceria
+''    End Get
+''    Set(value As colStockSubItemTypeTapiceria)
+''      pStockSubItemTypeTapiceria = value
+''    End Set
+''  End Property
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeTapiceria = New colStockSubItemTypeTapiceria
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''    pStockSubItemTypeTapiceria = New colStockSubItemTypeTapiceria
+''  End Sub
 
-End Class
+''End Class
 
-Public Class clsStockSubItemTypeTapiceria : Inherits clsPropertyENUM
+''Public Class clsStockSubItemTypeTapiceria : Inherits clsPropertyENUM
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''  End Sub
 
-End Class
+''End Class
 
-Public Class colStockSubItemTypeTapiceria : Inherits List(Of clsStockSubItemTypeTapiceria)
+''Public Class colStockSubItemTypeTapiceria : Inherits List(Of clsStockSubItemTypeTapiceria)
 
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeTapiceria
-    For Each mItem As clsStockSubItemTypeTapiceria In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
+''  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeTapiceria
+''    For Each mItem As clsStockSubItemTypeTapiceria In Me
+''      If mItem.PropertyENUM = vKey Then
+''        Return mItem
+''      End If
+''    Next
 
-    Return Nothing
-  End Function
+''    Return Nothing
+''  End Function
 
-End Class
+''End Class
 
 Public Class eStockItemTypeTapiceria : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
@@ -1044,27 +1044,27 @@ End Class
 
 
 
-Public Class clsStockSubItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+''Public Class clsStockSubItemTypeVidrioYEspejo : Inherits clsPropertyENUM
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
+''  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+''    MyBase.New(vPropertyENUM, vDescription)
+''  End Sub
 
-End Class
+''End Class
 
-Public Class colStockSubItemTypeVidrioYEspejo : Inherits List(Of clsStockSubItemTypeVidrioYEspejo)
+''Public Class colStockSubItemTypeVidrioYEspejo : Inherits List(Of clsStockSubItemTypeVidrioYEspejo)
 
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeVidrioYEspejo
-    For Each mItem As clsStockSubItemTypeVidrioYEspejo In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
+''  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeVidrioYEspejo
+''    For Each mItem As clsStockSubItemTypeVidrioYEspejo In Me
+''      If mItem.PropertyENUM = vKey Then
+''        Return mItem
+''      End If
+''    Next
 
-    Return Nothing
-  End Function
+''    Return Nothing
+''  End Function
 
-End Class
+''End Class
 
 Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsStockItemType)
 

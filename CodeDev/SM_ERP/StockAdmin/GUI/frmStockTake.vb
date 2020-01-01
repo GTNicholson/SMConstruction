@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraBars
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
@@ -446,20 +447,17 @@ Public Class frmStockTake
   ''    End If
   ''  End Sub
 
-
-
-
-  ''  Private Sub barbtnExcelExport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnExcelExport.ItemClick
-  ''    Try
-  ''      Dim mFileName As String = String.Empty
-  ''      Dim mTitle As String = Me.Text
-  ''      If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName, mTitle, String.Empty, "Excel |*.xls") = DialogResult.OK Then
-  ''        grdStockCheckItem.ExportToXls(mFileName)
-  ''      End If
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
+  Private Sub barbtnExcelExport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnExcelExport.ItemClick
+    Try
+      Dim mFileName As String = String.Empty
+      Dim mTitle As String = Me.Text
+      If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName, mTitle, String.Empty, "Excel |*.xls") = DialogResult.OK Then
+        grdStockCheckItem.ExportToXls(mFileName)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
   ''  Private Sub spn_Enter(sender As Object, e As EventArgs) Handles RepositoryItemSpinEditCounted.Enter
   ''    pSpinEnter = True
@@ -870,6 +868,17 @@ Public Class frmStockTake
   Private Sub bbtnAplicarCantidadesContado_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnAplicarCantidadesContado.ItemClick
     Try
       pFormController.CommitStockTakeSheet()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub repitbtStockItemRefresh_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repitbtStockItemRefresh.ButtonClick
+    Dim mCurrentSTIE As clsStockTakeItemEditor
+    Try
+      mCurrentSTIE = gvStockCheckItem.GetFocusedRow
+      mCurrentSTIE.StockItem = pFormController.RTISGlobal.StockItemRegistry.GetStockItemFromID(mCurrentSTIE.StockItem.StockItemID)
+      gvStockCheckItem.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

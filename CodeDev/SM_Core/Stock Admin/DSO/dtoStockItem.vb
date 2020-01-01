@@ -55,6 +55,11 @@ Public Class dtoStockItem : Inherits dtoBase
     End Set
   End Property
 
+  Public ReadOnly Property KeyFieldName As String Implements intdtoStockItem.KeyFieldName
+    Get
+      Return pKeyFieldName
+    End Get
+  End Property
 
   Overrides Sub ObjectToSQLInfo(ByRef rFieldList As String, ByRef rParamList As String, ByRef rParameterValues As System.Data.IDataParameterCollection, ByVal vSetList As Boolean)
 
@@ -88,9 +93,9 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Inactive", .Inactive)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InterdenStockItemID", .InterdenStockItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProjectID", .ProjectID)
-
-      ''   DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
-      '' DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdImportCost", .StdImportCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdImportCost", .StdImportCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ASISID", .ASISID)
 
 
     End With
@@ -128,9 +133,9 @@ Public Class dtoStockItem : Inherits dtoBase
         .Inactive = DBReadBoolean(rDataReader, "Inactive")
         .InterdenStockItemID = DBReadInt32(rDataReader, "InterdenStockItemID")
         .ProjectID = DBReadInt32(rDataReader, "ProjectID")
-        '' .StdCost = DBReadDecimal(rDataReader, "StdCost")
-        ''.StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
-
+        .StdCost = DBReadDecimal(rDataReader, "StdCost")
+        .StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
+        .ASISID = DBReadInt32(rDataReader, "ASISID")
 
 
         pStockItem.IsDirty = False
@@ -155,7 +160,7 @@ Public Class dtoStockItem : Inherits dtoBase
   End Function
 
 
-  Public Function LoadStockItem(ByRef rStockItem As dmStockItem, ByVal vStockItemID As Integer) As Boolean
+  Public Function LoadStockItem(ByRef rStockItem As dmStockItem, ByVal vStockItemID As Integer) As Boolean Implements intdtoStockItem.LoadStockItem
     Dim mOK As Boolean
     mOK = LoadObject(vStockItemID)
     If mOK Then

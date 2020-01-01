@@ -33,6 +33,8 @@ Public Class dmStockItem : Inherits dmBase
   Private pStdCost As Decimal
   Private pStdImportCost As Decimal
 
+  Private pASISID As Integer
+
   Private ptmpIsFullyLoadedDown As Boolean
 
   Public Sub New()
@@ -117,17 +119,6 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  ''Public Property StdCost() As Decimal
-  ''  Get
-  ''    Return pStdCost
-  ''  End Get
-  ''  Set(ByVal value As Decimal)
-  ''    If pStdCost <> value Then IsDirty = True
-  ''    pStdCost = value
-  ''  End Set
-  ''End Property
-
-
   Public Property StdImportCost() As Decimal
     Get
       Return pStdImportCost
@@ -135,6 +126,16 @@ Public Class dmStockItem : Inherits dmBase
     Set(ByVal value As Decimal)
       If pStdImportCost <> value Then IsDirty = True
       pStdImportCost = value
+    End Set
+  End Property
+
+  Public Property ASISID() As Integer
+    Get
+      Return pASISID
+    End Get
+    Set(ByVal value As Integer)
+      If pASISID <> value Then IsDirty = True
+      pASISID = value
     End Set
   End Property
 
@@ -547,10 +548,11 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property StdCost As Decimal Implements intStockItemDef.StdCost
     Get
-      ''Throw New NotImplementedException()
+      Return pStdCost
     End Get
     Set(value As Decimal)
-      Throw New NotImplementedException()
+      If pStdCost <> value Then pIsDirty = True
+      pStdCost = value
     End Set
   End Property
 

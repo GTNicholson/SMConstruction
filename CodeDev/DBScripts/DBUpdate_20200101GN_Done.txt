@@ -1,0 +1,7 @@
+alter table StockItem add StdCost Decimal(9,2)
+
+GO
+
+alter table StockItem add StdImportCost Decimal(9,2)
+
+GO

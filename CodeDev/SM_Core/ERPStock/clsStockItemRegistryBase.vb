@@ -1,4 +1,6 @@
-﻿Public MustInherit Class clsStockItemRegistryBase
+﻿Imports RTIS.CommonVB
+
+Public MustInherit Class clsStockItemRegistryBase
   Protected pStockItemsDict As Dictionary(Of Integer, RTIS.ERPStock.intStockItemDef)
   Protected pDBConn As RTIS.DataLayer.clsDBConnBase
 
@@ -26,17 +28,52 @@
 
   End Sub
 
-  Public Sub LoadByParams(ByVal vWhere As String)
+  Public Sub LoadByParams(ByRef rParams As Hashtable)
     Dim mdto As intdtoStockItem
-    Dim mParams As New Hashtable
-    mdto = CreateDtoStockItem()
-    mdto.LoadStockItemsDictByParams(pStockItemsDict, mParams)
+    Try
+
+      mdto = CreateDtoStockItem()
+      mdto.LoadStockItemsDictByParams(pStockItemsDict, rParams)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
   End Sub
 
   Public MustOverride Sub LoadInitial()
 
-  Public Sub LoadByID(ByVal vStockItemID As Integer)
+  Public Sub RefreshStockItem(ByVal vStockItemID As Integer)
+    Dim mdto As intdtoStockItem
+    Dim mStockItem As New dmStockItem
+    Try
+      If pStockItemsDict.ContainsKey(vStockItemID) Then
+        pDBConn.Connect()
+        mdto = CreateDtoStockItem()
+        mdto.LoadStockItem(mStockItem, vStockItemID)
+        pStockItemsDict(vStockItemID) = mStockItem
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 
+
+  Public Sub LoadByID(ByVal vStockItemID As Integer)
+    Dim mdto As intdtoStockItem
+    Dim mStockItem As New dmStockItem
+    Try
+      mdto = CreateDtoStockItem()
+      pDBConn.Connect()
+      mdto.LoadStockItem(mStockItem, vStockItemID)
+      pStockItemsDict.Add(vStockItemID, mStockItem)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
   End Sub
 
   Public Function CreateClone() As clsStockItemRegistryComp
