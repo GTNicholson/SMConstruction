@@ -370,13 +370,13 @@ Public Class dsoSales
     End Try
   End Function
 
-  Public Function LoadWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos, ByVal vWhere As String, ByVal vMode As dtoWorkOrderInfo.eMode) As Boolean
     Dim mdto As dtoWorkOrderInfo
     Dim mRetVal As Boolean
     Try
 
       pDBConn.Connect()
-      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderTracking)
+      mdto = New dtoWorkOrderInfo(pDBConn, vMode)
       mdto.LoadWorkOrderInfoCollectionByWhere(rWorkOrderInfos, vWhere)
       mRetVal = True
     Catch ex As Exception

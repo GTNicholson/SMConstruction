@@ -83,7 +83,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
-      mDSO.LoadWorkOrderInfos(mWOIs, "")
+      mDSO.LoadWorkOrderInfos(mWOIs, "", dtoWorkOrderInfo.eMode.WorkOrderInfo)
 
       gridBrowseList.DataSource = mWOIs
 

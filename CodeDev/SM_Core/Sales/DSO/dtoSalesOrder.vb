@@ -82,7 +82,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrdersIssued", DBValueToBoolean(.WorkOrdersIssued))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PodioPath", StringToDBValue(.PodioPath))
 
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version ", .Version)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version", .Version)
 
     End With
 

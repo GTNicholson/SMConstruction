@@ -42,7 +42,7 @@ Public Class fccTimeSheetEntry
 
     mdso = New dsoSales(pDBConn)
     pWorkOrderInfos = New colWorkOrderInfos
-    mdso.LoadWorkOrderInfos(pWorkOrderInfos, "")
+    mdso.LoadWorkOrderInfos(pWorkOrderInfos, "", dtoWorkOrderInfo.eMode.WorkOrderTracking)
   End Sub
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean = True
