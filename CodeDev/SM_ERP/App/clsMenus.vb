@@ -29,7 +29,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.Purchasing, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Purchasing)
 
-    mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Purchasing, True)
+    mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Inventory, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.Inventory)

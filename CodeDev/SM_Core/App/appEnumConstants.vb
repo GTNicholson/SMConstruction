@@ -17,7 +17,7 @@ Public Enum eActivityCode
 
   Purchasing = 400
 
-  Inventory = 500.0F
+  Inventory = 500
 
 End Enum
 
