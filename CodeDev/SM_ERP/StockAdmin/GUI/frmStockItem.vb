@@ -208,21 +208,9 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboDefaultSupplier, .DefaultSupplier)
         chkcboActiveCondition.RefreshEditValue()
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
+        txtStdCost.Text = .StdCost
+        txtImportCost.Text = .StdImportCost
 
-        If pFormController.CurrentStockItemOpposite IsNot Nothing Then
-          btedOppositeItem.Text = pFormController.CurrentStockItemOpposite.StockCode
-
-        Else
-          btedOppositeItem.Text = ""
-        End If
-
-
-        If pFormController.CurrentStockItem.InterdenStockItemID <> 0 Then
-          bteInterdenStockItem.Text = pFormController.InterdenStockItem.Description
-
-        Else
-          bteInterdenStockItem.Text = ""
-        End If
 
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
@@ -276,7 +264,8 @@ Public Class frmStockItem
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboDefaultSupplier)
         .IsGeneric = chkIsGeneric.Checked
         .Inactive = chkIsObsolete.Checked
-
+        .StdCost = txtStdCost.Text
+        .StdImportCost = txtImportCost.Text
 
       End With
     End If
@@ -465,13 +454,15 @@ Public Class frmStockItem
     cboCNCOpSecondaryLeaf.ReadOnly = vReadOnly
     cboCNCOpHangingJamb.ReadOnly = vReadOnly
     cboCNCOpClosingJamb.ReadOnly = vReadOnly
+    txtImportCost.ReadOnly = vReadOnly
+    txtStdCost.ReadOnly = vReadOnly
     cboCNCOpHead.ReadOnly = vReadOnly
     chkIsGeneric.Enabled = Not vReadOnly
     cboHanding.ReadOnly = vReadOnly
-    btedOppositeItem.ReadOnly = vReadOnly
     spnMinCutLength.ReadOnly = vReadOnly
     spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
+
 
     ''    btnedImageFile.ReadOnly = vReadOnly
 
