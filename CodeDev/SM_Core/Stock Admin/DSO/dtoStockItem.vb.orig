@@ -133,9 +133,15 @@ Public Class dtoStockItem : Inherits dtoBase
         .Inactive = DBReadBoolean(rDataReader, "Inactive")
         .InterdenStockItemID = DBReadInt32(rDataReader, "InterdenStockItemID")
         .ProjectID = DBReadInt32(rDataReader, "ProjectID")
+<<<<<<< HEAD
+
+        ''.StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
+
+=======
         .StdCost = DBReadDecimal(rDataReader, "StdCost")
         .StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
         .ASISID = DBReadInt32(rDataReader, "ASISID")
+>>>>>>> 51b383c603e2de2ec070eace2eaf32f31d2a0c4f
 
 
         pStockItem.IsDirty = False

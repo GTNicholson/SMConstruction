@@ -318,7 +318,7 @@ Public Class frmStockItem
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.EPP
-          clsDEControlLoading.FillDEComboVI(cboItemType, Nothing)
+          cboItemType.Enabled = False
           cboSpecies.Enabled = True
           cboItemType.Enabled = False
           cboSubitemType.Enabled = False
@@ -335,7 +335,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Herramientas
 
-          clsDEControlLoading.FillDEComboVI(cboItemType, Nothing)
+          cboItemType.Enabled = False
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
@@ -368,7 +368,6 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Metal
 
-          Dim mMetalType As clsStockItemTypeMetales
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMetales.GetInstance.ValueItems)
 
 
@@ -379,7 +378,6 @@ Public Class frmStockItem
 
         Case eStockItemCategory.NailsAndBolds
 
-          Dim mNailsAndBoltsType As clsStockItemTypeNailsAndBolts
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
 
 
@@ -406,9 +404,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Repuestos
 
-          Dim mRepuestosType As clsStockItemTypeRepuestosYPartes
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeRepuestosYPartes.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -416,9 +412,7 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Tapiceria
 
-          Dim mTapiceria As clsStockItemTypeTapiceria
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTapiceria.GetInstance.ValueItems)
-
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -426,13 +420,13 @@ Public Class frmStockItem
 
         Case eStockItemCategory.VidrioYEspejo
 
-          Dim mVidrioType As clsStockSubItemTypeVidrioYEspejo
+          Dim mVidrioType As clsStockItemType
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
           'mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          If mVidrioType IsNot Nothing Then
+          ''If mVidrioType IsNot Nothing Then
 
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-          End If
+          ''  clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
+          ''End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -536,7 +530,7 @@ Public Class frmStockItem
     Dim mVIs As New colValueItems
     ''Dim mSubTypes As colSubItemTypes
     ''Dim mSubType As clsSubItemType
-    Dim mSubItemTypes As colStockItemTypes
+    ''Dim mSubItemTypes As colStockItemType
 
     Dim mText As String = ""
     ''Dim mSISubItemTypeIron As clsStockSubItemTypeIronmongery
@@ -550,81 +544,45 @@ Public Class frmStockItem
               Case eStockItemCategory.Abrasivos
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeAbrasivos), CType(mRow.ItemType, eStockItemTypeAbrasivos.eStockItemAbrasivos))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
-
-
               Case eStockItemCategory.Herrajes
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
                 e.Value = mText
-
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.MatElect
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialElectrico), CType(mRow.ItemType, eStockItemTypeMaterialElectrico.eStockItemMaterialElectrico))
                 e.Value = mText
 
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.MatEmpaque
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialEmpaque), CType(mRow.ItemType, eStockItemTypeMaterialEmpaque.StockItemMaterialEmpaque))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.Metal
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.NailsAndBolds
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.Repuestos
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.Tapiceria
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTapiceria), CType(mRow.ItemType, eStockItemTypeTapiceria.eStockItemTapiceria))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.VidrioYEspejo
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case eStockItemCategory.Metal
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
               Case Else
                 e.Value = ""
-                SetDetailFocus()
-                RefreshCategorySpecificControls()
-                RefreshControls()
 
             End Select
 

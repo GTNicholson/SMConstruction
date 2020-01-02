@@ -13,6 +13,8 @@ Public Class clsStockItemRegistryComp : Inherits clsStockItemRegistryBase
     mdto.LoadStockItemsDictByParams(pStockItemsDict, mParams)
   End Sub
 
+
+
   Public Overrides Function CreateDtoStockItem() As intdtoStockItem
     Dim mRetVal As intdtoStockItem
     mRetVal = New dtoStockItem(pDBConn)

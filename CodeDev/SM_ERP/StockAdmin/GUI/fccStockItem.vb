@@ -188,11 +188,16 @@ Public Class fccStocktem
         Dim mdsoStock As New dsoStock(pDBConn)
 
         mdsoStock.SaveStockItem(pCurrentStockItem)
+        If pRTISGlobal.StockItemRegistry.GetStockItemFromID(pCurrentStockItem.StockItemID) IsNot Nothing Then
+          pRTISGlobal.StockItemRegistry.RefreshStockItem(pCurrentStockItem.StockItemID)
+        Else
+          pRTISGlobal.StockItemRegistry.LoadByID(pCurrentStockItem.StockItemID)
+        End If
         ''mdsoStock.SaveStockItemAlternateCodes(pCurrentStockItem)
         ''mdsoStock.SaveStockItemBOMs(pCurrentStockItem)
         ''mdsoStock.SaveStockItemFixings(pCurrentStockItem)
         mdsoStock = Nothing
-      End If
+        End If
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -320,7 +325,7 @@ Public Class fccStocktem
     mDSO = New dsoStock(pDBConn)
     mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
 
-    pCurrentStockItem.StockCode = mStem & "." & mSuffix.ToString("000")
+    pCurrentStockItem.StockCode = mStem & mSuffix.ToString("000")
 
   End Sub
 
