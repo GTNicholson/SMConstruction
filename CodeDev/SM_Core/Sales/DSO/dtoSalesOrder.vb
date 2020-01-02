@@ -82,7 +82,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrdersIssued", DBValueToBoolean(.WorkOrdersIssued))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PodioPath", StringToDBValue(.PodioPath))
 
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version ", .Version)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version", .Version)
 
     End With
 
@@ -115,7 +115,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .ClientInfo = DBReadString(rDataReader, "ClientInfo")
         .FinishDate = DBReadDateTime(rDataReader, "FinishDate")
         .DueTime = DBReadDateTime(rDataReader, "DueTime")
-        .Version = DBReadInt32(rDataReader, "Version ")
+        .Version = DBReadInt32(rDataReader, "Version")
         .CustomerDelContactID = DBReadInt32(rDataReader, "CustomerDelContacID")
         .ShippingCost = DBReadDecimal(rDataReader, "ShippingCost")
         .WorkOrdersIssued = DBReadBoolean(rDataReader, "WorkOrdersIssued")
