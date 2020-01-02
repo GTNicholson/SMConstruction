@@ -128,8 +128,8 @@ Public Class dtoStockItem : Inherits dtoBase
         .Inactive = DBReadBoolean(rDataReader, "Inactive")
         .InterdenStockItemID = DBReadInt32(rDataReader, "InterdenStockItemID")
         .ProjectID = DBReadInt32(rDataReader, "ProjectID")
-        .StdCost = DBReadDecimal(rDataReader, "StdCost")
-        .StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
+
+        ''.StdImportCost = DBReadDecimal(rDataReader, "StdImportCost")
 
 
 

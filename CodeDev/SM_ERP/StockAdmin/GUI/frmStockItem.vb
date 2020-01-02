@@ -426,12 +426,12 @@ Public Class frmStockItem
 
         Case eStockItemCategory.VidrioYEspejo
 
-          Dim mVidrioType As clsStockItemTypeVidrioYEspejo
+          Dim mVidrioType As clsStockSubItemTypeVidrioYEspejo
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
           'mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
           If mVidrioType IsNot Nothing Then
 
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
+            clsDEControlLoading.FillDEComboVIi(cboSubitemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
           End If
 
           cboSpecies.Enabled = True

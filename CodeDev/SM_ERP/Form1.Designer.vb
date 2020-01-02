@@ -67,6 +67,7 @@ Partial Class Form1
     Me.fieldDescription = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldCustomerName = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldProjectName = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.gcOverTimeMinutes = New DevExpress.XtraPivotGrid.PivotGridField()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PivotGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -257,7 +258,7 @@ Partial Class Form1
     '
     'PivotGridControl1
     '
-    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldTimeSheetEntry, Me.fieldWorkOrder, Me.fieldTimeSheetEntryID, Me.fieldTimeSheetEntryTypeID, Me.fieldTimeSheetEntryTypeDesc, Me.fieldEmployeeID, Me.fieldEmployeeName, Me.fieldWorkOrderID, Me.fieldStartTime, Me.fieldTimeSheetDate, Me.fieldTimeSheetDateWC, Me.fieldTimeSheetDateMC, Me.fieldEndTime, Me.fieldDuration, Me.fieldNote, Me.fieldWorkCentreID, Me.fieldWorkCentreDesc, Me.fieldWorkOrderNo, Me.fieldDescription, Me.fieldCustomerName, Me.fieldProjectName})
+    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldTimeSheetEntry, Me.fieldWorkOrder, Me.fieldTimeSheetEntryID, Me.fieldTimeSheetEntryTypeID, Me.fieldTimeSheetEntryTypeDesc, Me.fieldEmployeeID, Me.fieldEmployeeName, Me.fieldWorkOrderID, Me.fieldStartTime, Me.fieldTimeSheetDate, Me.fieldTimeSheetDateWC, Me.fieldTimeSheetDateMC, Me.fieldEndTime, Me.fieldDuration, Me.fieldNote, Me.fieldWorkCentreID, Me.fieldWorkCentreDesc, Me.fieldWorkOrderNo, Me.fieldDescription, Me.fieldCustomerName, Me.fieldProjectName, Me.gcOverTimeMinutes})
     Me.PivotGridControl1.Location = New System.Drawing.Point(50, 187)
     Me.PivotGridControl1.Name = "PivotGridControl1"
     Me.PivotGridControl1.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
@@ -295,14 +296,15 @@ Partial Class Form1
     '
     'fieldTimeSheetEntryTypeDesc
     '
-    Me.fieldTimeSheetEntryTypeDesc.AreaIndex = 4
+    Me.fieldTimeSheetEntryTypeDesc.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+    Me.fieldTimeSheetEntryTypeDesc.AreaIndex = 1
     Me.fieldTimeSheetEntryTypeDesc.FieldName = "TimeSheetEntryTypeDesc"
     Me.fieldTimeSheetEntryTypeDesc.Name = "fieldTimeSheetEntryTypeDesc"
     Me.fieldTimeSheetEntryTypeDesc.Options.AllowRunTimeSummaryChange = True
     '
     'fieldEmployeeID
     '
-    Me.fieldEmployeeID.AreaIndex = 5
+    Me.fieldEmployeeID.AreaIndex = 4
     Me.fieldEmployeeID.Caption = "ID Empleado"
     Me.fieldEmployeeID.FieldName = "EmployeeID"
     Me.fieldEmployeeID.Name = "fieldEmployeeID"
@@ -310,7 +312,7 @@ Partial Class Form1
     '
     'fieldEmployeeName
     '
-    Me.fieldEmployeeName.AreaIndex = 6
+    Me.fieldEmployeeName.AreaIndex = 5
     Me.fieldEmployeeName.Caption = "Empleado"
     Me.fieldEmployeeName.FieldName = "EmployeeName"
     Me.fieldEmployeeName.Name = "fieldEmployeeName"
@@ -318,14 +320,14 @@ Partial Class Form1
     '
     'fieldWorkOrderID
     '
-    Me.fieldWorkOrderID.AreaIndex = 7
+    Me.fieldWorkOrderID.AreaIndex = 6
     Me.fieldWorkOrderID.FieldName = "WorkOrderID"
     Me.fieldWorkOrderID.Name = "fieldWorkOrderID"
     Me.fieldWorkOrderID.Options.AllowRunTimeSummaryChange = True
     '
     'fieldStartTime
     '
-    Me.fieldStartTime.AreaIndex = 8
+    Me.fieldStartTime.AreaIndex = 7
     Me.fieldStartTime.Caption = "Hora Inicio"
     Me.fieldStartTime.FieldName = "StartTime"
     Me.fieldStartTime.Name = "fieldStartTime"
@@ -333,7 +335,7 @@ Partial Class Form1
     '
     'fieldTimeSheetDate
     '
-    Me.fieldTimeSheetDate.AreaIndex = 9
+    Me.fieldTimeSheetDate.AreaIndex = 8
     Me.fieldTimeSheetDate.FieldName = "TimeSheetDate"
     Me.fieldTimeSheetDate.Name = "fieldTimeSheetDate"
     Me.fieldTimeSheetDate.Options.AllowRunTimeSummaryChange = True
@@ -352,14 +354,14 @@ Partial Class Form1
     '
     'fieldTimeSheetDateMC
     '
-    Me.fieldTimeSheetDateMC.AreaIndex = 10
+    Me.fieldTimeSheetDateMC.AreaIndex = 9
     Me.fieldTimeSheetDateMC.FieldName = "TimeSheetDateMC"
     Me.fieldTimeSheetDateMC.Name = "fieldTimeSheetDateMC"
     Me.fieldTimeSheetDateMC.Options.AllowRunTimeSummaryChange = True
     '
     'fieldEndTime
     '
-    Me.fieldEndTime.AreaIndex = 11
+    Me.fieldEndTime.AreaIndex = 10
     Me.fieldEndTime.Caption = "Hora Fin"
     Me.fieldEndTime.FieldName = "EndTime"
     Me.fieldEndTime.Name = "fieldEndTime"
@@ -378,14 +380,14 @@ Partial Class Form1
     '
     'fieldNote
     '
-    Me.fieldNote.AreaIndex = 12
+    Me.fieldNote.AreaIndex = 11
     Me.fieldNote.FieldName = "Note"
     Me.fieldNote.Name = "fieldNote"
     Me.fieldNote.Options.AllowRunTimeSummaryChange = True
     '
     'fieldWorkCentreID
     '
-    Me.fieldWorkCentreID.AreaIndex = 13
+    Me.fieldWorkCentreID.AreaIndex = 12
     Me.fieldWorkCentreID.FieldName = "WorkCentreID"
     Me.fieldWorkCentreID.Name = "fieldWorkCentreID"
     Me.fieldWorkCentreID.Options.AllowRunTimeSummaryChange = True
@@ -401,8 +403,7 @@ Partial Class Form1
     '
     'fieldWorkOrderNo
     '
-    Me.fieldWorkOrderNo.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-    Me.fieldWorkOrderNo.AreaIndex = 1
+    Me.fieldWorkOrderNo.AreaIndex = 16
     Me.fieldWorkOrderNo.Caption = "Núm. OT"
     Me.fieldWorkOrderNo.FieldName = "WorkOrderNo"
     Me.fieldWorkOrderNo.Name = "fieldWorkOrderNo"
@@ -410,7 +411,7 @@ Partial Class Form1
     '
     'fieldDescription
     '
-    Me.fieldDescription.AreaIndex = 14
+    Me.fieldDescription.AreaIndex = 13
     Me.fieldDescription.Caption = "Descripción de Producto"
     Me.fieldDescription.FieldName = "Description"
     Me.fieldDescription.Name = "fieldDescription"
@@ -418,8 +419,7 @@ Partial Class Form1
     '
     'fieldCustomerName
     '
-    Me.fieldCustomerName.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-    Me.fieldCustomerName.AreaIndex = 1
+    Me.fieldCustomerName.AreaIndex = 15
     Me.fieldCustomerName.Caption = "Cliente"
     Me.fieldCustomerName.FieldName = "CustomerName"
     Me.fieldCustomerName.Name = "fieldCustomerName"
@@ -427,11 +427,19 @@ Partial Class Form1
     '
     'fieldProjectName
     '
-    Me.fieldProjectName.AreaIndex = 15
+    Me.fieldProjectName.AreaIndex = 14
     Me.fieldProjectName.Caption = "Proyecto"
     Me.fieldProjectName.FieldName = "ProjectName"
     Me.fieldProjectName.Name = "fieldProjectName"
     Me.fieldProjectName.Options.AllowRunTimeSummaryChange = True
+    '
+    'gcOverTimeMinutes
+    '
+    Me.gcOverTimeMinutes.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+    Me.gcOverTimeMinutes.AreaIndex = 1
+    Me.gcOverTimeMinutes.FieldName = "OverTimeMinutes"
+    Me.gcOverTimeMinutes.Name = "gcOverTimeMinutes"
+    Me.gcOverTimeMinutes.Options.AllowRunTimeSummaryChange = True
     '
     'Form1
     '
@@ -494,4 +502,5 @@ Partial Class Form1
   Friend WithEvents fieldDescription As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldCustomerName As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldProjectName As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents gcOverTimeMinutes As DevExpress.XtraPivotGrid.PivotGridField
 End Class
