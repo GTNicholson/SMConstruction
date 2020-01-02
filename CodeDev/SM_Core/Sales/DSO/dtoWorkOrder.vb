@@ -71,7 +71,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkcentreID", .WorkcentreID)
 
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SOWONumber", .SOWONumber)
+      ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SOWONumber", .SOWONumber)
 
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FurnitureCategoryID", .FurnitureCategoryID)
@@ -131,7 +131,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .SubFurnitureCategoryID = DBReadInt32(rDataReader, "SubFurnitureCategoryID")
 
         .EmployeeID = DBReadInt32(rDataReader, "EmployeeID")
-        .SOWONumber = DBReadInt32(rDataReader, "SOWONumber")
+        ''.SOWONumber = DBReadInt32(rDataReader, "SOWONumber")
 
         .Machining = DBReadBoolean(rDataReader, "Machining")
         .Assembley = DBReadBoolean(rDataReader, "Assembley")

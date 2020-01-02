@@ -115,7 +115,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .ClientInfo = DBReadString(rDataReader, "ClientInfo")
         .FinishDate = DBReadDateTime(rDataReader, "FinishDate")
         .DueTime = DBReadDateTime(rDataReader, "DueTime")
-        .Version = DBReadInt32(rDataReader, "Version ")
+        .Version = DBReadInt32(rDataReader, "Version")
         .CustomerDelContactID = DBReadInt32(rDataReader, "CustomerDelContacID")
         .ShippingCost = DBReadDecimal(rDataReader, "ShippingCost")
         .WorkOrdersIssued = DBReadBoolean(rDataReader, "WorkOrdersIssued")
