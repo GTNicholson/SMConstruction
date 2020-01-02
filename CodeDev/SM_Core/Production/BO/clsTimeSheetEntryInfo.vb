@@ -62,6 +62,13 @@
     End Get
   End Property
 
+
+  Public ReadOnly Property OverTimeMinutes As Int32
+    Get
+      Return pTimeSheetEntry.OverTimeMinutes
+    End Get
+  End Property
+
   Public ReadOnly Property TimeSheetEntryTypeID As Integer
     Get
       Return pTimeSheetEntry.TimeSheetEntryTypeID

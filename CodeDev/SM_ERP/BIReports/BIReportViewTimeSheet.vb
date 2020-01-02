@@ -7,6 +7,7 @@ Public Class BIReportViewTimeSheet
   Private Enum eBITimeSheetLayoutID
     TimeSheetList = 1
     TimeSheetSummary = 2
+    TimeSheetByDescription = 3
   End Enum
 
   Private Enum eBIReportDefs
@@ -96,6 +97,14 @@ Public Class BIReportViewTimeSheet
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BITimeSheetSummary.xml"
     mRepLayout.LayoutName = "Hoja de Trabajo Resumen"
+    vReportSource.BIGridLayouts.Add(mRepLayout)
+
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetByDescription
+    mRepLayout.InterfaceType = 0
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BITimeSheetByDescription.xml"
+    mRepLayout.LayoutName = "Hoja de Trabajo Resumen Description"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 
