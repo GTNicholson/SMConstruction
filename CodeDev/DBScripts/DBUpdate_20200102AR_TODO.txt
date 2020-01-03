@@ -1,0 +1,16 @@
+create view vwStockItemInfo
+as
+select 
+SI.StockItemId,
+SI.Category,
+SI.ItemType,
+SI.Species,
+SI.Colour,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Description,
+SI.STDCOST
+
+from StockItem as SI

@@ -178,6 +178,34 @@ Public Enum eMilestoneStatus
 
 End Enum
 
+Public Enum eUoM
+  <Description("Ninguno")> None = 0
+  <Description("mt")> mt = 1
+  <Description("cm")> Cm = 2
+  <Description("mm")> mm = 3
+  <Description("yd")> yd = 4
+  <Description("in")> pul = 5
+  <Description("ft")> ft = 6
+
+
+  <Description("m2")> Metros2 = 5
+  <Description("m3")> Metros3 = 6
+
+  <Description("lt")> lt = 7
+  <Description("ml")> ml = 8
+  <Description("mm3")> mm3 = 9
+  <Description("cm3")> cm3 = 10
+  <Description("gal")> gal = 11
+
+  <Description("und")> und = 12
+  <Description("cja")> cja = 13
+
+
+
+
+
+End Enum
+
 ''Public Enum eWorkOrderMilestone
 ''  Engineering = 1
 ''  Dimensioning = 2
