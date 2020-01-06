@@ -83,7 +83,7 @@ Public Class clsMDISystemAdmin : Inherits clsMDIShellContextBase
         ''Dim mAppList As New colValueItems
         ''mAppList.AddNewItem(1, "Current")
         ''mAppList.AddNewItem(2, "Legacy")
-        RTIS.Elements.frmUserGroupEdit.ShowUserGroupEditForm(rMDIParent, pDBConn, pRTISGlobal, mPermissionCode, fccUserGroupEdit.eGridEditOptions.User_Groupings) ', mAppList) 'AppList is optional
+        RTIS.Elements.frmUserGroupEdit.ShowUserGroupEditForm(rMDIParent, pDBConn, pRTISGlobal, mPermissionCode, fccUserGroupEdit.eGridEditOptions.User_Groupings,, False) ', mAppList) 'AppList is optional
 
       End If
 

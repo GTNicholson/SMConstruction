@@ -23,16 +23,16 @@ Partial Class frmStockItem
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim EditorButtonImageOptions9 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions7 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim EditorButtonImageOptions8 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.chkIsObsolete = New System.Windows.Forms.CheckBox()
     Me.chkIsGeneric = New System.Windows.Forms.CheckBox()
     Me.lblStockItemID = New DevExpress.XtraEditors.LabelControl()
@@ -57,11 +57,8 @@ Partial Class frmStockItem
     Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
     Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
     Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
-    Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboStockFinanceCategory = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+    Me.bteImage = New DevExpress.XtraEditors.ButtonEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.barRGObsoleteItems = New DevExpress.XtraBars.BarEditItem()
@@ -91,6 +88,16 @@ Partial Class frmStockItem
     Me.RepositoryItemRadioGroup1 = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
     Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
     Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+    Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+    Me.txtImportCost = New DevExpress.XtraEditors.SpinEdit()
+    Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+    Me.txtStdCost = New DevExpress.XtraEditors.SpinEdit()
+    Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+    Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+    Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+    Me.cboStockFinanceCategory = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.cboSubitemType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.txtDescriptionShort = New DevExpress.XtraEditors.TextEdit()
     Me.cboFinish = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -146,13 +153,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtStdCost = New DevExpress.XtraEditors.SpinEdit()
-    Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtImportCost = New DevExpress.XtraEditors.SpinEdit()
-    Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
-    Me.bteImage = New DevExpress.XtraEditors.ButtonEdit()
-    Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,7 +162,7 @@ Partial Class frmStockItem
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpGroupF8.SuspendLayout()
-    CType(Me.cboStockFinanceCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,6 +172,10 @@ Partial Class frmStockItem
     CType(Me.RepositoryItemBreadCrumbEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtImportCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtStdCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cboStockFinanceCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboSubitemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDescriptionShort.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboFinish.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,10 +216,6 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
-    CType(Me.txtStdCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtImportCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'chkIsObsolete
@@ -420,7 +421,7 @@ Partial Class frmStockItem
     Me.spnMinCutWidth.Name = "spnMinCutWidth"
     Me.spnMinCutWidth.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnMinCutWidth.Properties.Appearance.Options.UseFont = True
-    Me.spnMinCutWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1)})
+    Me.spnMinCutWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions9)})
     Me.spnMinCutWidth.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnMinCutWidth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnMinCutWidth.Properties.EditFormat.FormatString = "#0.00"
@@ -436,7 +437,7 @@ Partial Class frmStockItem
     Me.spnMinCutLength.Name = "spnMinCutLength"
     Me.spnMinCutLength.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnMinCutLength.Properties.Appearance.Options.UseFont = True
-    Me.spnMinCutLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2)})
+    Me.spnMinCutLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1)})
     Me.spnMinCutLength.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnMinCutLength.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnMinCutLength.Properties.EditFormat.FormatString = "#0.00"
@@ -454,14 +455,14 @@ Partial Class frmStockItem
     Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl4.Name = "PanelControl4"
-    Me.PanelControl4.Size = New System.Drawing.Size(504, 194)
+    Me.PanelControl4.Size = New System.Drawing.Size(373, 194)
     Me.PanelControl4.TabIndex = 0
     '
     'tabpgDoorBlankDetails
     '
     Me.tabpgDoorBlankDetails.Controls.Add(Me.PanelControl4)
     Me.tabpgDoorBlankDetails.Name = "tabpgDoorBlankDetails"
-    Me.tabpgDoorBlankDetails.Size = New System.Drawing.Size(504, 194)
+    Me.tabpgDoorBlankDetails.Size = New System.Drawing.Size(373, 194)
     Me.tabpgDoorBlankDetails.Tag = "1"
     Me.tabpgDoorBlankDetails.Text = "Door Blank Details"
     '
@@ -552,66 +553,30 @@ Partial Class frmStockItem
     Me.grpGroupF8.TabIndex = 94
     Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
     '
-    'LabelControl4
+    'LabelControl21
     '
-    Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl4.Appearance.Options.UseFont = True
-    Me.LabelControl4.Appearance.Options.UseForeColor = True
-    Me.LabelControl4.Location = New System.Drawing.Point(5, 206)
-    Me.LabelControl4.Name = "LabelControl4"
-    Me.LabelControl4.Size = New System.Drawing.Size(26, 14)
-    Me.LabelControl4.TabIndex = 97
-    Me.LabelControl4.Text = "Color"
+    Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl21.Appearance.Options.UseFont = True
+    Me.LabelControl21.Appearance.Options.UseForeColor = True
+    Me.LabelControl21.Location = New System.Drawing.Point(682, 250)
+    Me.LabelControl21.Name = "LabelControl21"
+    Me.LabelControl21.Size = New System.Drawing.Size(34, 14)
+    Me.LabelControl21.TabIndex = 124
+    Me.LabelControl21.Text = "Imagen"
     '
-    'LabelControl3
+    'bteImage
     '
-    Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl3.Appearance.Options.UseFont = True
-    Me.LabelControl3.Appearance.Options.UseForeColor = True
-    Me.LabelControl3.Location = New System.Drawing.Point(5, 180)
-    Me.LabelControl3.Name = "LabelControl3"
-    Me.LabelControl3.Size = New System.Drawing.Size(44, 14)
-    Me.LabelControl3.TabIndex = 96
-    Me.LabelControl3.Text = "Especies"
-    '
-    'LabelControl2
-    '
-    Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl2.Appearance.Options.UseFont = True
-    Me.LabelControl2.Appearance.Options.UseForeColor = True
-    Me.LabelControl2.Location = New System.Drawing.Point(5, 154)
-    Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(57, 14)
-    Me.LabelControl2.TabIndex = 95
-    Me.LabelControl2.Text = "Tipo de Ítem"
-    '
-    'LabelControl22
-    '
-    Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl22.Appearance.Options.UseFont = True
-    Me.LabelControl22.Appearance.Options.UseForeColor = True
-    Me.LabelControl22.Location = New System.Drawing.Point(5, 128)
-    Me.LabelControl22.Name = "LabelControl22"
-    Me.LabelControl22.Size = New System.Drawing.Size(46, 14)
-    Me.LabelControl22.TabIndex = 94
-    Me.LabelControl22.Text = "Categoría"
-    '
-    'cboStockFinanceCategory
-    '
-    Me.cboStockFinanceCategory.Location = New System.Drawing.Point(415, 130)
-    Me.cboStockFinanceCategory.MenuManager = Me.BarManager1
-    Me.cboStockFinanceCategory.Name = "cboStockFinanceCategory"
-    Me.cboStockFinanceCategory.Properties.AllowMouseWheel = False
-    Me.cboStockFinanceCategory.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cboStockFinanceCategory.Properties.Appearance.Options.UseFont = True
-    Me.cboStockFinanceCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboStockFinanceCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-    Me.cboStockFinanceCategory.Size = New System.Drawing.Size(218, 20)
-    Me.cboStockFinanceCategory.TabIndex = 93
+    Me.bteImage.Location = New System.Drawing.Point(722, 250)
+    Me.bteImage.MenuManager = Me.BarManager1
+    Me.bteImage.Name = "bteImage"
+    Me.bteImage.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
+    Me.bteImage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.bteImage.Properties.Appearance.Options.UseBackColor = True
+    Me.bteImage.Properties.Appearance.Options.UseFont = True
+    Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+    Me.bteImage.Size = New System.Drawing.Size(149, 20)
+    Me.bteImage.TabIndex = 123
     '
     'BarManager1
     '
@@ -673,7 +638,7 @@ Partial Class frmStockItem
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 30)
     '
     'barDockControlBottom
     '
@@ -687,17 +652,17 @@ Partial Class frmStockItem
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 699)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 30)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 699)
     '
     'BarButtonItem1
     '
@@ -824,6 +789,135 @@ Partial Class frmStockItem
     Me.RepoItemRadioGroupCategory.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
     Me.RepoItemRadioGroupCategory.Name = "RepoItemRadioGroupCategory"
     '
+    'PictureEdit1
+    '
+    Me.PictureEdit1.Cursor = System.Windows.Forms.Cursors.Default
+    Me.PictureEdit1.Location = New System.Drawing.Point(682, 25)
+    Me.PictureEdit1.MenuManager = Me.BarManager1
+    Me.PictureEdit1.Name = "PictureEdit1"
+    Me.PictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
+    Me.PictureEdit1.Size = New System.Drawing.Size(189, 219)
+    Me.PictureEdit1.TabIndex = 122
+    '
+    'txtImportCost
+    '
+    Me.txtImportCost.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+    Me.txtImportCost.Location = New System.Drawing.Point(539, 104)
+    Me.txtImportCost.Name = "txtImportCost"
+    Me.txtImportCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtImportCost.Properties.Appearance.Options.UseFont = True
+    Me.txtImportCost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2)})
+    Me.txtImportCost.Properties.DisplayFormat.FormatString = "#0.00"
+    Me.txtImportCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtImportCost.Properties.EditFormat.FormatString = "#0.00"
+    Me.txtImportCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtImportCost.Properties.Mask.EditMask = "N2"
+    Me.txtImportCost.Properties.ReadOnly = True
+    Me.txtImportCost.Size = New System.Drawing.Size(52, 20)
+    Me.txtImportCost.TabIndex = 121
+    '
+    'LabelControl20
+    '
+    Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl20.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl20.Appearance.Options.UseFont = True
+    Me.LabelControl20.Appearance.Options.UseForeColor = True
+    Me.LabelControl20.Location = New System.Drawing.Point(473, 107)
+    Me.LabelControl20.Name = "LabelControl20"
+    Me.LabelControl20.Size = New System.Drawing.Size(60, 14)
+    Me.LabelControl20.TabIndex = 120
+    Me.LabelControl20.Text = "Costo Import"
+    '
+    'txtStdCost
+    '
+    Me.txtStdCost.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+    Me.txtStdCost.Location = New System.Drawing.Point(415, 104)
+    Me.txtStdCost.Name = "txtStdCost"
+    Me.txtStdCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtStdCost.Properties.Appearance.Options.UseFont = True
+    Me.txtStdCost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions3)})
+    Me.txtStdCost.Properties.DisplayFormat.FormatString = "#0.00"
+    Me.txtStdCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtStdCost.Properties.EditFormat.FormatString = "#0.00"
+    Me.txtStdCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.txtStdCost.Properties.Mask.EditMask = "N2"
+    Me.txtStdCost.Properties.ReadOnly = True
+    Me.txtStdCost.Size = New System.Drawing.Size(52, 20)
+    Me.txtStdCost.TabIndex = 119
+    '
+    'LabelControl19
+    '
+    Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl19.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl19.Appearance.Options.UseFont = True
+    Me.LabelControl19.Appearance.Options.UseForeColor = True
+    Me.LabelControl19.Location = New System.Drawing.Point(320, 107)
+    Me.LabelControl19.Name = "LabelControl19"
+    Me.LabelControl19.Size = New System.Drawing.Size(50, 14)
+    Me.LabelControl19.TabIndex = 118
+    Me.LabelControl19.Text = "Costo Std."
+    '
+    'LabelControl4
+    '
+    Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl4.Appearance.Options.UseFont = True
+    Me.LabelControl4.Appearance.Options.UseForeColor = True
+    Me.LabelControl4.Location = New System.Drawing.Point(5, 206)
+    Me.LabelControl4.Name = "LabelControl4"
+    Me.LabelControl4.Size = New System.Drawing.Size(26, 14)
+    Me.LabelControl4.TabIndex = 97
+    Me.LabelControl4.Text = "Color"
+    '
+    'LabelControl3
+    '
+    Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl3.Appearance.Options.UseFont = True
+    Me.LabelControl3.Appearance.Options.UseForeColor = True
+    Me.LabelControl3.Location = New System.Drawing.Point(5, 180)
+    Me.LabelControl3.Name = "LabelControl3"
+    Me.LabelControl3.Size = New System.Drawing.Size(44, 14)
+    Me.LabelControl3.TabIndex = 96
+    Me.LabelControl3.Text = "Especies"
+    '
+    'LabelControl2
+    '
+    Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl2.Appearance.Options.UseFont = True
+    Me.LabelControl2.Appearance.Options.UseForeColor = True
+    Me.LabelControl2.Location = New System.Drawing.Point(5, 154)
+    Me.LabelControl2.Name = "LabelControl2"
+    Me.LabelControl2.Size = New System.Drawing.Size(57, 14)
+    Me.LabelControl2.TabIndex = 95
+    Me.LabelControl2.Text = "Tipo de Ítem"
+    '
+    'LabelControl22
+    '
+    Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl22.Appearance.Options.UseFont = True
+    Me.LabelControl22.Appearance.Options.UseForeColor = True
+    Me.LabelControl22.Location = New System.Drawing.Point(5, 128)
+    Me.LabelControl22.Name = "LabelControl22"
+    Me.LabelControl22.Size = New System.Drawing.Size(46, 14)
+    Me.LabelControl22.TabIndex = 94
+    Me.LabelControl22.Text = "Categoría"
+    '
+    'cboStockFinanceCategory
+    '
+    Me.cboStockFinanceCategory.Location = New System.Drawing.Point(415, 130)
+    Me.cboStockFinanceCategory.MenuManager = Me.BarManager1
+    Me.cboStockFinanceCategory.Name = "cboStockFinanceCategory"
+    Me.cboStockFinanceCategory.Properties.AllowMouseWheel = False
+    Me.cboStockFinanceCategory.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboStockFinanceCategory.Properties.Appearance.Options.UseFont = True
+    Me.cboStockFinanceCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboStockFinanceCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+    Me.cboStockFinanceCategory.Size = New System.Drawing.Size(218, 20)
+    Me.cboStockFinanceCategory.TabIndex = 93
+    '
     'cboSubitemType
     '
     Me.cboSubitemType.Location = New System.Drawing.Point(415, 156)
@@ -881,7 +975,7 @@ Partial Class frmStockItem
     Me.spnQuantity.Name = "spnQuantity"
     Me.spnQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnQuantity.Properties.Appearance.Options.UseFont = True
-    Me.spnQuantity.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions5)})
+    Me.spnQuantity.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions4)})
     Me.spnQuantity.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnQuantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnQuantity.Properties.EditFormat.FormatString = "#0.00"
@@ -898,7 +992,7 @@ Partial Class frmStockItem
     Me.spnThickness.Name = "spnThickness"
     Me.spnThickness.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnThickness.Properties.Appearance.Options.UseFont = True
-    Me.spnThickness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions6)})
+    Me.spnThickness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions5)})
     Me.spnThickness.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnThickness.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnThickness.Properties.EditFormat.FormatString = "#0.00"
@@ -915,7 +1009,7 @@ Partial Class frmStockItem
     Me.spnWidth.Name = "spnWidth"
     Me.spnWidth.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnWidth.Properties.Appearance.Options.UseFont = True
-    Me.spnWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions7)})
+    Me.spnWidth.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions6)})
     Me.spnWidth.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnWidth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnWidth.Properties.EditFormat.FormatString = "#0.00"
@@ -932,7 +1026,7 @@ Partial Class frmStockItem
     Me.spnLength.Name = "spnLength"
     Me.spnLength.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.spnLength.Properties.Appearance.Options.UseFont = True
-    Me.spnLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions8)})
+    Me.spnLength.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions7)})
     Me.spnLength.Properties.DisplayFormat.FormatString = "#0.00"
     Me.spnLength.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.spnLength.Properties.EditFormat.FormatString = "#0.00"
@@ -1133,7 +1227,7 @@ Partial Class frmStockItem
     '
     Me.tabpgCNCOperations.Controls.Add(Me.PanelControl5)
     Me.tabpgCNCOperations.Name = "tabpgCNCOperations"
-    Me.tabpgCNCOperations.Size = New System.Drawing.Size(504, 194)
+    Me.tabpgCNCOperations.Size = New System.Drawing.Size(373, 194)
     Me.tabpgCNCOperations.Tag = "3"
     Me.tabpgCNCOperations.Text = "CNC Operations"
     '
@@ -1156,7 +1250,7 @@ Partial Class frmStockItem
     Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl5.Name = "PanelControl5"
-    Me.PanelControl5.Size = New System.Drawing.Size(504, 194)
+    Me.PanelControl5.Size = New System.Drawing.Size(373, 194)
     Me.PanelControl5.TabIndex = 0
     '
     'CheckedComboBoxEdit1
@@ -1324,7 +1418,7 @@ Partial Class frmStockItem
     Me.GridColumn8.FieldName = "DSetDescription"
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 8
+    Me.GridColumn8.VisibleIndex = 9
     Me.GridColumn8.Width = 143
     '
     'gcSubItemType
@@ -1334,7 +1428,7 @@ Partial Class frmStockItem
     Me.gcSubItemType.Name = "gcSubItemType"
     Me.gcSubItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcSubItemType.Visible = True
-    Me.gcSubItemType.VisibleIndex = 7
+    Me.gcSubItemType.VisibleIndex = 8
     Me.gcSubItemType.Width = 113
     '
     'gcItemType
@@ -1344,7 +1438,7 @@ Partial Class frmStockItem
     Me.gcItemType.Name = "gcItemType"
     Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcItemType.Visible = True
-    Me.gcItemType.VisibleIndex = 4
+    Me.gcItemType.VisibleIndex = 5
     Me.gcItemType.Width = 89
     '
     'gcCategory
@@ -1364,7 +1458,7 @@ Partial Class frmStockItem
     Me.gcStdCost.FieldName = "StdCost"
     Me.gcStdCost.Name = "gcStdCost"
     Me.gcStdCost.Visible = True
-    Me.gcStdCost.VisibleIndex = 5
+    Me.gcStdCost.VisibleIndex = 6
     Me.gcStdCost.Width = 89
     '
     'gcStdImportCost
@@ -1375,7 +1469,7 @@ Partial Class frmStockItem
     Me.gcStdImportCost.FieldName = "StdImportCost"
     Me.gcStdImportCost.Name = "gcStdImportCost"
     Me.gcStdImportCost.Visible = True
-    Me.gcStdImportCost.VisibleIndex = 6
+    Me.gcStdImportCost.VisibleIndex = 7
     Me.gcStdImportCost.Width = 78
     '
     'GridColumn2
@@ -1404,7 +1498,7 @@ Partial Class frmStockItem
     Me.gvStockItems.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvStockItems.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
     Me.gvStockItems.Appearance.Row.Options.UseBackColor = True
-    Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8})
+    Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8})
     Me.gvStockItems.GridControl = Me.grdStockItems
     Me.gvStockItems.Name = "gvStockItems"
     Me.gvStockItems.OptionsBehavior.Editable = False
@@ -1458,7 +1552,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1.Panel1.Text = "Panel1"
     Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
     Me.SplitContainerControl1.Panel2.Text = "Panel2"
-    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 692)
+    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 695)
     Me.SplitContainerControl1.SplitterPosition = 315
     Me.SplitContainerControl1.TabIndex = 0
     Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1471,7 +1565,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.AppearanceCaption.Options.UseForeColor = True
     Me.grpCurrentStockItem.Controls.Add(Me.tabExtraDetails)
     Me.grpCurrentStockItem.Controls.Add(Me.grpGroupF8)
-    Me.grpCurrentStockItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+    Me.grpCurrentStockItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
     Me.grpCurrentStockItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpCurrentStockItem.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpCurrentStockItem.Location = New System.Drawing.Point(0, 0)
@@ -1484,103 +1578,19 @@ Partial Class frmStockItem
     '
     Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1294, 696)
+    Me.PanelControl1.Size = New System.Drawing.Size(1294, 699)
     Me.PanelControl1.TabIndex = 4
     '
-    'LabelControl19
+    'GridColumn4
     '
-    Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl19.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl19.Appearance.Options.UseFont = True
-    Me.LabelControl19.Appearance.Options.UseForeColor = True
-    Me.LabelControl19.Location = New System.Drawing.Point(320, 107)
-    Me.LabelControl19.Name = "LabelControl19"
-    Me.LabelControl19.Size = New System.Drawing.Size(50, 14)
-    Me.LabelControl19.TabIndex = 118
-    Me.LabelControl19.Text = "Costo Std."
-    '
-    'txtStdCost
-    '
-    Me.txtStdCost.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-    Me.txtStdCost.Location = New System.Drawing.Point(415, 104)
-    Me.txtStdCost.Name = "txtStdCost"
-    Me.txtStdCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtStdCost.Properties.Appearance.Options.UseFont = True
-    Me.txtStdCost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions4)})
-    Me.txtStdCost.Properties.DisplayFormat.FormatString = "#0.00"
-    Me.txtStdCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.txtStdCost.Properties.EditFormat.FormatString = "#0.00"
-    Me.txtStdCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.txtStdCost.Properties.Mask.EditMask = "N2"
-    Me.txtStdCost.Properties.ReadOnly = True
-    Me.txtStdCost.Size = New System.Drawing.Size(52, 20)
-    Me.txtStdCost.TabIndex = 119
-    '
-    'LabelControl20
-    '
-    Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl20.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl20.Appearance.Options.UseFont = True
-    Me.LabelControl20.Appearance.Options.UseForeColor = True
-    Me.LabelControl20.Location = New System.Drawing.Point(473, 107)
-    Me.LabelControl20.Name = "LabelControl20"
-    Me.LabelControl20.Size = New System.Drawing.Size(60, 14)
-    Me.LabelControl20.TabIndex = 120
-    Me.LabelControl20.Text = "Costo Import"
-    '
-    'txtImportCost
-    '
-    Me.txtImportCost.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-    Me.txtImportCost.Location = New System.Drawing.Point(539, 104)
-    Me.txtImportCost.Name = "txtImportCost"
-    Me.txtImportCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtImportCost.Properties.Appearance.Options.UseFont = True
-    Me.txtImportCost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions3)})
-    Me.txtImportCost.Properties.DisplayFormat.FormatString = "#0.00"
-    Me.txtImportCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.txtImportCost.Properties.EditFormat.FormatString = "#0.00"
-    Me.txtImportCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.txtImportCost.Properties.Mask.EditMask = "N2"
-    Me.txtImportCost.Properties.ReadOnly = True
-    Me.txtImportCost.Size = New System.Drawing.Size(52, 20)
-    Me.txtImportCost.TabIndex = 121
-    '
-    'PictureEdit1
-    '
-    Me.PictureEdit1.Cursor = System.Windows.Forms.Cursors.Default
-    Me.PictureEdit1.Location = New System.Drawing.Point(682, 25)
-    Me.PictureEdit1.MenuManager = Me.BarManager1
-    Me.PictureEdit1.Name = "PictureEdit1"
-    Me.PictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-    Me.PictureEdit1.Size = New System.Drawing.Size(189, 219)
-    Me.PictureEdit1.TabIndex = 122
-    '
-    'bteImage
-    '
-    Me.bteImage.Location = New System.Drawing.Point(722, 250)
-    Me.bteImage.MenuManager = Me.BarManager1
-    Me.bteImage.Name = "bteImage"
-    Me.bteImage.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.bteImage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.bteImage.Properties.Appearance.Options.UseBackColor = True
-    Me.bteImage.Properties.Appearance.Options.UseFont = True
-    Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.bteImage.Size = New System.Drawing.Size(149, 20)
-    Me.bteImage.TabIndex = 123
-    '
-    'LabelControl21
-    '
-    Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl21.Appearance.Options.UseFont = True
-    Me.LabelControl21.Appearance.Options.UseForeColor = True
-    Me.LabelControl21.Location = New System.Drawing.Point(682, 250)
-    Me.LabelControl21.Name = "LabelControl21"
-    Me.LabelControl21.Size = New System.Drawing.Size(34, 14)
-    Me.LabelControl21.TabIndex = 124
-    Me.LabelControl21.Text = "Imagen"
+    Me.GridColumn4.Caption = "Part Num."
+    Me.GridColumn4.FieldName = "PartNo"
+    Me.GridColumn4.Name = "GridColumn4"
+    Me.GridColumn4.OptionsColumn.ReadOnly = True
+    Me.GridColumn4.Visible = True
+    Me.GridColumn4.VisibleIndex = 4
     '
     'frmStockItem
     '
@@ -1604,7 +1614,7 @@ Partial Class frmStockItem
     CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpGroupF8.ResumeLayout(False)
     Me.grpGroupF8.PerformLayout()
-    CType(Me.cboStockFinanceCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1614,6 +1624,10 @@ Partial Class frmStockItem
     CType(Me.RepositoryItemBreadCrumbEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtImportCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtStdCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cboStockFinanceCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboSubitemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDescriptionShort.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboFinish.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1656,10 +1670,6 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
-    CType(Me.txtStdCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtImportCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1785,4 +1795,5 @@ Partial Class frmStockItem
   Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
   Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
+  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

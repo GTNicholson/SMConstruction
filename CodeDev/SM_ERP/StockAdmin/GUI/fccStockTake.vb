@@ -121,16 +121,29 @@ Public Class fccStockTake
         mSTE = New clsStockTakeItemEditor
         mSTE.StockTakeItem = mSTI
         mSI = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mSTI.StockItemID)
-        mSTE.StockItem = mSI
+        If mSI IsNot Nothing Then
+          mSTE.StockItem = mSI
+        End If
         pStockTakeItemEditors.Add(mSTE)
-      End If
+        End If
     Next
 
     'remove where no longer required
     If pStockTakeItemEditors.Count > 0 Then
-      For mLoop As Integer = pStockTakeItemEditors.Count - 1 To 0
+      For mLoop As Integer = pStockTakeItemEditors.Count - 1 To 0 Step -1
         mSTE = pStockTakeItemEditors(mLoop)
         If pStockTake.StockTakeItems.IndexFromStockItemIDLocationID(mSTE.StockTakeItem.StockItemID, mSTE.StockTakeItem.StockItemLocationID) = -1 Then
+          pStockTakeItemEditors.RemoveAt(mLoop)
+        End If
+      Next
+    End If
+
+    'remove items that are not in the registry
+    If pStockTakeItemEditors.Count > 0 Then
+      For mLoop As Integer = pStockTakeItemEditors.Count - 1 To 0 Step -1
+        mSTE = pStockTakeItemEditors(mLoop)
+        mSI = pRTISGlobal.StockItemRegistry.GetStockItemFromID(mSTE.StockTakeItem.StockItemID)
+        If mSI Is Nothing Then
           pStockTakeItemEditors.RemoveAt(mLoop)
         End If
       Next

@@ -1,0 +1,3 @@
+alter table StockTakeItem add WriteOffQuantity Decimal(10,4)
+
+GO

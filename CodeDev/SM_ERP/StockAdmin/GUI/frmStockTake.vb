@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraBars
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraBars
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
@@ -804,7 +805,7 @@ Public Class frmStockTake
             Case gcDiscrepency.Name
 
               If mRow.IsCounted Then
-                e.Value = (mRow.CountedQty - mRow.SnapshotQty)
+                e.Value = ((mRow.CountedQty + mRow.WriteOffQuantity) - mRow.SnapshotQty)
               Else
                 e.Value = 0
               End If
@@ -818,18 +819,13 @@ Public Class frmStockTake
                 e.Value = Nothing
               End If
 
-              ''Case gcStockTakeSheet.Name
+            Case gcWriteOffQuantity.Name
 
-              ''  If mRow.StockCheckItem IsNot Nothing AndAlso mRow.StockCheckItem.StockTakeSheetID > 0 Then
-              ''    Dim mSheet As dmStockTakeSheet = pFormController.StockCheck.StockTakeSheets.ItemFromKey(mRow.StockCheckItem.StockTakeSheetID)
-
-              ''    If mSheet IsNot Nothing Then
-              ''      e.Value = String.Format("Sheet {0}", mSheet.SheetNo.ToString("D3"))
-              ''    Else
-              ''      e.Value = String.Empty
-              ''    End If
-
-              ''  End If
+              If mRow.IsCounted Then
+                e.Value = mRow.WriteOffQuantity
+              Else
+                e.Value = Nothing
+              End If
 
 
           End Select
@@ -847,8 +843,15 @@ Public Class frmStockTake
               If e.Value IsNot Nothing Then
                 mRow.IsCounted = True
               Else
+                mRow.WriteOffQuantity = 0
                 mRow.IsCounted = False
               End If
+            Case gcWriteOffQuantity.Name
+
+              If mRow.IsCounted Then
+                mRow.WriteOffQuantity = e.Value
+              End If
+
           End Select
 
         End If
@@ -882,6 +885,22 @@ Public Class frmStockTake
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub gvStockCheckItem_ShowingEditor(sender As Object, e As CancelEventArgs) Handles gvStockCheckItem.ShowingEditor
+    Dim mCurrentSTIE As clsStockTakeItemEditor
+    Try
+      Select Case gvStockCheckItem.FocusedColumn.Name
+        Case gcWriteOffQuantity.Name
+          mCurrentSTIE = gvStockCheckItem.GetFocusedRow
+          If mCurrentSTIE.IsCounted = False Then
+            e.Cancel = True
+          End If
+      End Select
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
   ''  Private Sub btnAddToNextSheet_Click(sender As Object, e As EventArgs) Handles btnAddToNextSheet.Click

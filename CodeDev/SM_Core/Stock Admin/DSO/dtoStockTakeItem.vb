@@ -71,6 +71,7 @@ Public Class dtoStockTakeItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockTakeSheetID", .StockTakeSheetID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SystemTotalValue", .SystemTotalValue)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CountedTotalValue", .CountedTotalValue)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WriteOffQuantity", .WriteOffQuantity)
     End With
 
   End Sub
@@ -98,6 +99,7 @@ Public Class dtoStockTakeItem : Inherits dtoBase
         .StockTakeSheetID = DBReadInt32(rDataReader, "StockTakeSheetID")
         .SystemTotalValue = DBReadDecimal(rDataReader, "SystemTotalValue")
         .CountedTotalValue = DBReadDecimal(rDataReader, "CountedTotalValue")
+        .WriteOffQuantity = DBReadDecimal(rDataReader, "WriteOffQuantity")
         pStockTakeItem.IsDirty = False
       End With
       mOK = True

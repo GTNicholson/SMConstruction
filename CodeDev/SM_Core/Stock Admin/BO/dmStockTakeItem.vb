@@ -19,6 +19,7 @@ Public Class dmStockTakeItem : Inherits dmBase
   Private pStockTakeSheetID As Int32
   Private pSystemTotalValue As Decimal
   Private pCountedTotalValue As Decimal
+  Private pWriteOffQuantity As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -145,6 +146,16 @@ Public Class dmStockTakeItem : Inherits dmBase
     Set(ByVal value As Decimal)
       If pCountedQty <> value Then IsDirty = True
       pCountedQty = value
+    End Set
+  End Property
+
+  Public Property WriteOffQuantity() As Decimal
+    Get
+      Return pWriteOffQuantity
+    End Get
+    Set(ByVal value As Decimal)
+      If pWriteOffQuantity <> value Then IsDirty = True
+      pWriteOffQuantity = value
     End Set
   End Property
 

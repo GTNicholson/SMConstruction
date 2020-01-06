@@ -62,6 +62,16 @@
     End Set
   End Property
 
+  Public Property WriteOffQuantity As Decimal
+    Get
+      Return pStockTakeItem.WriteOffQuantity
+    End Get
+    Set(value As Decimal)
+      pStockTakeItem.WriteOffQuantity = value
+    End Set
+  End Property
+
+
   Public ReadOnly Property SIDescription As String
     Get
       Dim mRetVal As String = ""
