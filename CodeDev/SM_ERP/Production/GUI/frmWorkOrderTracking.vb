@@ -112,15 +112,20 @@ Public Class frmWorkOrderTracking
               Case eMilestoneStatus.Complete
                 mText = mWorkOrderMileStoneStatus.ActualDate.ToString("dd-MMM")
                 If clsGeneralA.IsBlankDate(mWorkOrderMileStoneStatus.TargetDate) = False Then
-                  mText &= vbCrLf & DateDiff(DateInterval.Day, mWorkOrderMileStoneStatus.TargetDate, mWorkOrderMileStoneStatus.ActualDate).ToString("+0;-#")
+                  ''mText &= DateDiff(DateInterval.Day, mWorkOrderMileStoneStatus.TargetDate, mWorkOrderMileStoneStatus.ActualDate).ToString("+0;-#")
+                Else
+                  mText = ""
+
                 End If
             End Select
             If Not String.IsNullOrWhiteSpace(mWorkOrderMileStoneStatus.Notes) Then
               mText &= " (*)"
             End If
             e.Value = mText
-          Else
 
+            If Not String.IsNullOrWhiteSpace(mWorkOrderMileStoneStatus.Notes) Then
+              mText &= " (*)"
+            End If
           End If
         End If
       End If
@@ -133,7 +138,7 @@ Public Class frmWorkOrderTracking
   Private Sub gvWorksOrders_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvWorksOrders.RowCellStyle
     Try
       Select Case e.Column.Name
-        Case gcDiseno.Name, gcInginiero.Name, gcMachining.Name, gcAssembly.Name, gcMetalWork.Name, gcPainting.Name, gcSanding.Name, gcUpholstery.Name
+        Case gcDiseno.Name, gcInginiero.Name, gcMachining.Name, gcAssembly.Name, gcMetalWork.Name, gcPainting.Name, gcSanding.Name, gcUpholstery.Name, gcPackaging.Name, gcDispatch.Name
           Dim mRow As clsWorkOrderTracking = gvWorksOrders.GetRow(e.RowHandle)
           Dim mStatus As dmWorkOrderMilestoneStatus
           Dim mStatusID As Integer
@@ -200,5 +205,9 @@ Public Class frmWorkOrderTracking
         mInfo.GroupText = "Semana: " & mVal.ToString("dd/MM/yyyy")
       End If
     End If
+  End Sub
+
+  Private Sub grdWorksOrders_Click(sender As Object, e As EventArgs) Handles grdWorksOrders.Click
+
   End Sub
 End Class

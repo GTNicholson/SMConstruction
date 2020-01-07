@@ -25,10 +25,12 @@ Public Class fccWorkOrderTracking
 
   Public Sub LoadObjects()
     Dim mdso As dsoProduction
+    Dim mwhere As String
+    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
     Try
       mdso = New dsoProduction(pDBConn)
       pWorkOrderTrackings = New colWorkOrderInfos
-      mdso.LoadWorkOrderTrackings(pWorkOrderTrackings, "")
+      mdso.LoadWorkOrderTrackings(pWorkOrderTrackings, mwhere)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

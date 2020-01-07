@@ -33,6 +33,7 @@ Partial Class frmWorkOrderTracking
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+    Me.gcCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDiseno = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcInginiero = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,13 +43,14 @@ Partial Class frmWorkOrderTracking
     Me.gcPainting = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcMetalWork = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcUpholstery = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcPackaging = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcDispatch = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.gcCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +80,7 @@ Partial Class frmWorkOrderTracking
     Me.gvWorksOrders.Appearance.Row.Options.UseTextOptions = True
     Me.gvWorksOrders.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.gvWorksOrders.ColumnPanelRowHeight = 34
-    Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcCustomer, Me.GridColumn6, Me.gcDiseno, Me.gcInginiero, Me.gcMachining, Me.gcAssembly, Me.gcSanding, Me.gcPainting, Me.gcMetalWork, Me.gcUpholstery})
+    Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcCustomer, Me.GridColumn6, Me.gcDiseno, Me.gcInginiero, Me.gcMachining, Me.gcAssembly, Me.gcSanding, Me.gcPainting, Me.gcMetalWork, Me.gcUpholstery, Me.gcPackaging, Me.gcDispatch})
     Me.gvWorksOrders.GridControl = Me.grdWorksOrders
     Me.gvWorksOrders.GroupCount = 1
     Me.gvWorksOrders.GroupRowHeight = 28
@@ -188,6 +190,19 @@ Partial Class frmWorkOrderTracking
     Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
     Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+    '
+    'gcCustomer
+    '
+    Me.gcCustomer.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.gcCustomer.AppearanceCell.Options.UseBackColor = True
+    Me.gcCustomer.Caption = "Cliente"
+    Me.gcCustomer.FieldName = "CustomerName"
+    Me.gcCustomer.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+    Me.gcCustomer.Name = "gcCustomer"
+    Me.gcCustomer.OptionsColumn.ReadOnly = True
+    Me.gcCustomer.Visible = True
+    Me.gcCustomer.VisibleIndex = 4
+    Me.gcCustomer.Width = 76
     '
     'GridColumn6
     '
@@ -318,6 +333,28 @@ Partial Class frmWorkOrderTracking
     Me.gcUpholstery.Visible = True
     Me.gcUpholstery.VisibleIndex = 15
     '
+    'gcPackaging
+    '
+    Me.gcPackaging.Caption = "Empaque"
+    Me.gcPackaging.FieldName = "gcPackaging"
+    Me.gcPackaging.Name = "gcPackaging"
+    Me.gcPackaging.OptionsColumn.AllowEdit = False
+    Me.gcPackaging.OptionsColumn.ReadOnly = True
+    Me.gcPackaging.Tag = "9"
+    Me.gcPackaging.Visible = True
+    Me.gcPackaging.VisibleIndex = 16
+    '
+    'gcDispatch
+    '
+    Me.gcDispatch.Caption = "Despacho"
+    Me.gcDispatch.FieldName = "gcDispatch"
+    Me.gcDispatch.Name = "gcDispatch"
+    Me.gcDispatch.OptionsColumn.AllowEdit = False
+    Me.gcDispatch.OptionsColumn.ReadOnly = True
+    Me.gcDispatch.Tag = "10"
+    Me.gcDispatch.Visible = True
+    Me.gcDispatch.VisibleIndex = 17
+    '
     'BarManager1
     '
     Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
@@ -368,19 +405,6 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 597)
     '
-    'gcCustomer
-    '
-    Me.gcCustomer.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.gcCustomer.AppearanceCell.Options.UseBackColor = True
-    Me.gcCustomer.Caption = "Cliente"
-    Me.gcCustomer.FieldName = "CustomerName"
-    Me.gcCustomer.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-    Me.gcCustomer.Name = "gcCustomer"
-    Me.gcCustomer.OptionsColumn.ReadOnly = True
-    Me.gcCustomer.Visible = True
-    Me.gcCustomer.VisibleIndex = 4
-    Me.gcCustomer.Width = 76
-    '
     'frmWorkOrderTracking
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -429,4 +453,6 @@ Partial Class frmWorkOrderTracking
   Friend WithEvents gcUpholstery As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcCustomer As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcPackaging As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcDispatch As DevExpress.XtraGrid.Columns.GridColumn
 End Class

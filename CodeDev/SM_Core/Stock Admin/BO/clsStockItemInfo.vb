@@ -2,19 +2,10 @@
 
 Public Class clsStockItemInfo
   Private pStockItem As dmStockItem
-
-  Private PStockItemId As Integer
-  Private pCategory As Integer
-  Private pItemType As Integer
-  Private pSpecies As Integer
-  Private pColour As String
-  Private pPartNo As String
-  Private pLength As Decimal
-  Private pWidth As Decimal
-  Private pThickness As Decimal
-  Private pDescription As String
-  Private pStdCosT As Decimal
-
+  Private pCurrentInventory As Decimal
+  Private pRequiredInventory As Decimal
+  Private pOrderQty As Decimal
+  Private pBalance As Decimal
 
 
   Public Sub New()
@@ -26,6 +17,42 @@ Public Class clsStockItemInfo
     MyBase.Finalize()
   End Sub
 
+  Public Property CurrentInventory() As Decimal
+    Get
+      Return pCurrentInventory
+    End Get
+    Set(ByVal value As Decimal)
+      pCurrentInventory = value
+    End Set
+  End Property
+
+  Public Property RequiredInventory() As Decimal
+    Get
+      Return pRequiredInventory
+    End Get
+    Set(ByVal value As Decimal)
+      pRequiredInventory = value
+    End Set
+  End Property
+
+  Public Property OrderQty() As Decimal
+    Get
+      Return pOrderQty
+    End Get
+    Set(ByVal value As Decimal)
+      pOrderQty = value
+    End Set
+  End Property
+
+  Public Property Balance() As Decimal
+    Get
+      Return pBalance
+    End Get
+    Set(ByVal value As Decimal)
+      pBalance = value
+    End Set
+  End Property
+
   Public Property StockItem() As dmStockItem
     Get
       Return pStockItem
@@ -35,96 +62,92 @@ Public Class clsStockItemInfo
     End Set
   End Property
 
-  Public Property StockItemId() As Integer
+  Public ReadOnly Property StockItemID() As Integer
     Get
-      Return PStockItemId
+      Return pStockItem.StockItemID
     End Get
-    Set(ByVal value As Int32)
-      PStockItemId = value
-    End Set
-  End Property
-  Public Property Category() As Integer
-    Get
-      Return pCategory
-    End Get
-    Set(ByVal value As Int32)
-      pCategory = value
-    End Set
-  End Property
-  Public Property ItemType() As Integer
-    Get
-      Return pItemType
-    End Get
-    Set(ByVal value As Int32)
-      pItemType = value
-    End Set
+
   End Property
 
-  Public Property Species() As Int32
+  Public ReadOnly Property StockCode() As String
     Get
-      Return pSpecies
+      Return pStockItem.StockCode
     End Get
-    Set(ByVal value As Int32)
-      pSpecies = value
-    End Set
-  End Property
-  Public Property Colour() As String
-    Get
-      Return pColour
-    End Get
-    Set(ByVal value As String)
-      pColour = value
-    End Set
-  End Property
-  Public Property PartNo() As String
-    Get
-      Return pPartNo
-    End Get
-    Set(ByVal value As String)
-      pPartNo = value
-    End Set
-  End Property
-  Public Property Description() As String
-    Get
-      Return pDescription
-    End Get
-    Set(ByVal value As String)
-      pDescription = value
-    End Set
+
   End Property
 
-  Public Property Length() As Decimal
+
+
+  Public ReadOnly Property Category() As Integer
     Get
-      Return pLength
+      Return pStockItem.Category
     End Get
-    Set(ByVal value As Decimal)
-      pLength = value
-    End Set
+
   End Property
-  Public Property Width() As Decimal
+  Public ReadOnly Property ItemType() As Integer
     Get
-      Return pWidth
+      Return pStockItem.ItemType
     End Get
-    Set(ByVal value As Decimal)
-      pWidth = value
-    End Set
-  End Property
-  Public Property Thickness() As Decimal
-    Get
-      Return pThickness
-    End Get
-    Set(ByVal value As Decimal)
-      pThickness = value
-    End Set
+
   End Property
 
-  Public Property StdCosT() As Decimal
+  Public ReadOnly Property Species() As Int32
     Get
-      Return pStdCosT
+      Return pStockItem.Species
     End Get
-    Set(ByVal value As Decimal)
-      pStdCosT = value
-    End Set
+
+  End Property
+  Public ReadOnly Property Colour() As String
+    Get
+      Return pStockItem.Colour
+    End Get
+
+  End Property
+  Public ReadOnly Property PartNo() As String
+    Get
+      Return pStockItem.PartNo
+    End Get
+
+  End Property
+
+  Public ReadOnly Property ASISID() As Int32
+    Get
+      Return pStockItem.ASISID
+    End Get
+
+  End Property
+
+  Public ReadOnly Property Description() As String
+    Get
+      Return pStockItem.Description
+    End Get
+
+  End Property
+
+  Public ReadOnly Property Length() As Decimal
+    Get
+      Return pStockItem.Length
+    End Get
+
+  End Property
+  Public ReadOnly Property Width() As Decimal
+    Get
+      Return pStockItem.Length
+    End Get
+
+  End Property
+  Public ReadOnly Property Thickness() As Decimal
+    Get
+      Return pStockItem.Thickness
+    End Get
+
+  End Property
+
+  Public ReadOnly Property StdCosT() As Decimal
+    Get
+      Return pStockItem.StdCost
+    End Get
+
   End Property
 
 End Class

@@ -123,7 +123,7 @@ Public Enum eWorkCentre
   <Description("Metal")> MetalWork = 6
   <Description("Tapizado")> Upholstery = 7
   <Description("SubContratación")> SubContract = 8
-  <Description("Empaque")> Packaing = 9
+  <Description("Empaque")> Packaging = 9
   <Description("Despacho")> Dispatching = 10
   <Description("Instalación")> Installing = 11
 

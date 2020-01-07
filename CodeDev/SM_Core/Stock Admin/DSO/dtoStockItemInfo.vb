@@ -23,7 +23,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
 
   Overrides Property ObjectKeyFieldValue() As Integer
     Get
-      ObjectKeyFieldValue = pStockItemInfo.StockItemId
+      ObjectKeyFieldValue = pStockItemInfo.StockItemID
     End Get
     Set(ByVal value As Integer)
       'pStockItemTransactionLogInfo.StockCode = value
@@ -57,18 +57,11 @@ Public Class dtoStockItemInfo : Inherits dtoBase
     Try
       If pStockItemInfo Is Nothing Then SetObjectToNew()
       With pStockItemInfo
-        .StockItemId = DBReadInt32(rDataReader, "StockItemId")
-        .Category = DBReadInt32(rDataReader, "Category")
-        .ItemType = DBReadInt32(rDataReader, "ItemType")
-        .Species = DBReadInt32(rDataReader, "Species")
-        .Colour = DBReadString(rDataReader, "Colour")
-        .PartNo = DBReadString(rDataReader, "PartNo")
-        .Length = DBReadDecimal(rDataReader, "Length")
-        .Width = DBReadDecimal(rDataReader, "Width")
-        .Thickness = DBReadDecimal(rDataReader, "Thickness")
-        .Description = DBReadString(rDataReader, "Description")
-        .StdCosT = DBReadDecimal(rDataReader, "StdCosT")
 
+        .CurrentInventory = DBReadDecimal(rDataReader, "CurrentInventory")
+        .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
+        .OrderQty = DBReadDecimal(rDataReader, "OrderQty")
+        .Balance = DBReadDecimal(rDataReader, "Balance")
       End With
 
       mOK = True
@@ -97,6 +90,17 @@ Public Class dtoStockItemInfo : Inherits dtoBase
 
     mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemId", vWhere)
     Return mOK
+  End Function
+
+  Public Function LoadStockItemCollection(ByRef rStockItemInfos As colStockItemInfos, ByVal vStockItemID As Integer) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ''mParams.Add("@ParentID", vParentID)
+    mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID")
+
+    Return mOK
+
+
   End Function
 
 End Class

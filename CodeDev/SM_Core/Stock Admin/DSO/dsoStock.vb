@@ -161,7 +161,7 @@ Public Class dsoStock
           mRetVal = -1
         End If
       Else
-          mRetVal = 1
+        mRetVal = 1
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -170,5 +170,32 @@ Public Class dsoStock
     End Try
     Return mRetVal
   End Function
+
+
+
+  Public Function LoadStockItemDown(ByRef rStockItemInfos As colStockItemInfos, ByVal vStockItemID As Integer) As Boolean
+
+    Dim mRetVal As Boolean
+    Dim mdto As dtoStockItemInfo
+
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoStockItemInfo(pDBConn)
+      mdto.LoadStockItemCollection(rStockItemInfos, vStockItemID)
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+
+
+  End Function
+
 
 End Class
