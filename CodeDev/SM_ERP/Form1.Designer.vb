@@ -24,27 +24,6 @@ Partial Class Form1
   Private Sub InitializeComponent()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.colTimeSheetEntry = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colWorkOrder = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colTimeSheetEntryID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colTimeSheetEntryTypeID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colTimeSheetEntryTypeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colEmployeeID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colEmployeeName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colWorkOrderID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colStartTime = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colTimeSheetDate = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colTimeSheetDateWC = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colTimeSheetDateMC = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colEndTime = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colNote = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colWorkCentreID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colWorkCentreDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colWorkOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.colProjectName = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.PivotGridControl1 = New DevExpress.XtraPivotGrid.PivotGridControl()
     Me.fieldTimeSheetEntry = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldWorkOrder = New DevExpress.XtraPivotGrid.PivotGridField()
@@ -68,6 +47,14 @@ Partial Class Form1
     Me.fieldCustomerName = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldProjectName = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcOverTimeMinutes = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcProductType = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PivotGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,177 +71,19 @@ Partial Class Form1
     '
     'GridView1
     '
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colTimeSheetEntry, Me.colWorkOrder, Me.colTimeSheetEntryID, Me.colTimeSheetEntryTypeID, Me.colTimeSheetEntryTypeDesc, Me.colEmployeeID, Me.colEmployeeName, Me.colWorkOrderID, Me.colStartTime, Me.colTimeSheetDate, Me.colTimeSheetDateWC, Me.colTimeSheetDateMC, Me.colEndTime, Me.colDuration, Me.colNote, Me.colWorkCentreID, Me.colWorkCentreDesc, Me.colWorkOrderNo, Me.colDescription, Me.colCompanyName, Me.colProjectName})
+    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
+    Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
+    Me.GridView1.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.GridView1.Appearance.Row.Options.UseFont = True
+    Me.GridView1.ColumnPanelRowHeight = 34
+    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn1, Me.gcProductType, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
     Me.GridView1.GridControl = Me.GridControl1
     Me.GridView1.Name = "GridView1"
-    '
-    'colTimeSheetEntry
-    '
-    Me.colTimeSheetEntry.FieldName = "TimeSheetEntry"
-    Me.colTimeSheetEntry.Name = "colTimeSheetEntry"
-    Me.colTimeSheetEntry.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetEntry.Visible = True
-    Me.colTimeSheetEntry.VisibleIndex = 0
-    '
-    'colWorkOrder
-    '
-    Me.colWorkOrder.FieldName = "WorkOrder"
-    Me.colWorkOrder.Name = "colWorkOrder"
-    Me.colWorkOrder.OptionsColumn.ReadOnly = True
-    Me.colWorkOrder.Visible = True
-    Me.colWorkOrder.VisibleIndex = 1
-    '
-    'colTimeSheetEntryID
-    '
-    Me.colTimeSheetEntryID.FieldName = "TimeSheetEntryID"
-    Me.colTimeSheetEntryID.Name = "colTimeSheetEntryID"
-    Me.colTimeSheetEntryID.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetEntryID.Visible = True
-    Me.colTimeSheetEntryID.VisibleIndex = 2
-    '
-    'colTimeSheetEntryTypeID
-    '
-    Me.colTimeSheetEntryTypeID.FieldName = "TimeSheetEntryTypeID"
-    Me.colTimeSheetEntryTypeID.Name = "colTimeSheetEntryTypeID"
-    Me.colTimeSheetEntryTypeID.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetEntryTypeID.Visible = True
-    Me.colTimeSheetEntryTypeID.VisibleIndex = 3
-    '
-    'colTimeSheetEntryTypeDesc
-    '
-    Me.colTimeSheetEntryTypeDesc.FieldName = "TimeSheetEntryTypeDesc"
-    Me.colTimeSheetEntryTypeDesc.Name = "colTimeSheetEntryTypeDesc"
-    Me.colTimeSheetEntryTypeDesc.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetEntryTypeDesc.Visible = True
-    Me.colTimeSheetEntryTypeDesc.VisibleIndex = 4
-    '
-    'colEmployeeID
-    '
-    Me.colEmployeeID.FieldName = "EmployeeID"
-    Me.colEmployeeID.Name = "colEmployeeID"
-    Me.colEmployeeID.OptionsColumn.ReadOnly = True
-    Me.colEmployeeID.Visible = True
-    Me.colEmployeeID.VisibleIndex = 5
-    '
-    'colEmployeeName
-    '
-    Me.colEmployeeName.FieldName = "EmployeeName"
-    Me.colEmployeeName.Name = "colEmployeeName"
-    Me.colEmployeeName.OptionsColumn.ReadOnly = True
-    Me.colEmployeeName.Visible = True
-    Me.colEmployeeName.VisibleIndex = 6
-    '
-    'colWorkOrderID
-    '
-    Me.colWorkOrderID.FieldName = "WorkOrderID"
-    Me.colWorkOrderID.Name = "colWorkOrderID"
-    Me.colWorkOrderID.OptionsColumn.ReadOnly = True
-    Me.colWorkOrderID.Visible = True
-    Me.colWorkOrderID.VisibleIndex = 7
-    '
-    'colStartTime
-    '
-    Me.colStartTime.FieldName = "StartTime"
-    Me.colStartTime.Name = "colStartTime"
-    Me.colStartTime.OptionsColumn.ReadOnly = True
-    Me.colStartTime.Visible = True
-    Me.colStartTime.VisibleIndex = 8
-    '
-    'colTimeSheetDate
-    '
-    Me.colTimeSheetDate.FieldName = "TimeSheetDate"
-    Me.colTimeSheetDate.Name = "colTimeSheetDate"
-    Me.colTimeSheetDate.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetDate.Visible = True
-    Me.colTimeSheetDate.VisibleIndex = 9
-    '
-    'colTimeSheetDateWC
-    '
-    Me.colTimeSheetDateWC.FieldName = "TimeSheetDateWC"
-    Me.colTimeSheetDateWC.Name = "colTimeSheetDateWC"
-    Me.colTimeSheetDateWC.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetDateWC.Visible = True
-    Me.colTimeSheetDateWC.VisibleIndex = 10
-    '
-    'colTimeSheetDateMC
-    '
-    Me.colTimeSheetDateMC.FieldName = "TimeSheetDateMC"
-    Me.colTimeSheetDateMC.Name = "colTimeSheetDateMC"
-    Me.colTimeSheetDateMC.OptionsColumn.ReadOnly = True
-    Me.colTimeSheetDateMC.Visible = True
-    Me.colTimeSheetDateMC.VisibleIndex = 11
-    '
-    'colEndTime
-    '
-    Me.colEndTime.FieldName = "EndTime"
-    Me.colEndTime.Name = "colEndTime"
-    Me.colEndTime.OptionsColumn.ReadOnly = True
-    Me.colEndTime.Visible = True
-    Me.colEndTime.VisibleIndex = 12
-    '
-    'colDuration
-    '
-    Me.colDuration.FieldName = "Duration"
-    Me.colDuration.Name = "colDuration"
-    Me.colDuration.OptionsColumn.ReadOnly = True
-    Me.colDuration.Visible = True
-    Me.colDuration.VisibleIndex = 13
-    '
-    'colNote
-    '
-    Me.colNote.FieldName = "Note"
-    Me.colNote.Name = "colNote"
-    Me.colNote.OptionsColumn.ReadOnly = True
-    Me.colNote.Visible = True
-    Me.colNote.VisibleIndex = 14
-    '
-    'colWorkCentreID
-    '
-    Me.colWorkCentreID.FieldName = "WorkCentreID"
-    Me.colWorkCentreID.Name = "colWorkCentreID"
-    Me.colWorkCentreID.OptionsColumn.ReadOnly = True
-    Me.colWorkCentreID.Visible = True
-    Me.colWorkCentreID.VisibleIndex = 15
-    '
-    'colWorkCentreDesc
-    '
-    Me.colWorkCentreDesc.FieldName = "WorkCentreDesc"
-    Me.colWorkCentreDesc.Name = "colWorkCentreDesc"
-    Me.colWorkCentreDesc.OptionsColumn.ReadOnly = True
-    Me.colWorkCentreDesc.Visible = True
-    Me.colWorkCentreDesc.VisibleIndex = 16
-    '
-    'colWorkOrderNo
-    '
-    Me.colWorkOrderNo.FieldName = "WorkOrderNo"
-    Me.colWorkOrderNo.Name = "colWorkOrderNo"
-    Me.colWorkOrderNo.OptionsColumn.ReadOnly = True
-    Me.colWorkOrderNo.Visible = True
-    Me.colWorkOrderNo.VisibleIndex = 17
-    '
-    'colDescription
-    '
-    Me.colDescription.FieldName = "Description"
-    Me.colDescription.Name = "colDescription"
-    Me.colDescription.OptionsColumn.ReadOnly = True
-    Me.colDescription.Visible = True
-    Me.colDescription.VisibleIndex = 18
-    '
-    'colCompanyName
-    '
-    Me.colCompanyName.Caption = "Cliente"
-    Me.colCompanyName.FieldName = "CompanyName"
-    Me.colCompanyName.Name = "colCompanyName"
-    Me.colCompanyName.Visible = True
-    Me.colCompanyName.VisibleIndex = 19
-    '
-    'colProjectName
-    '
-    Me.colProjectName.Caption = "Nombre de Proyecto"
-    Me.colProjectName.FieldName = "ProjectName"
-    Me.colProjectName.Name = "colProjectName"
-    Me.colProjectName.Visible = True
-    Me.colProjectName.VisibleIndex = 20
+    Me.GridView1.OptionsView.ColumnAutoWidth = False
+    Me.GridView1.OptionsView.ShowAutoFilterRow = True
+    Me.GridView1.OptionsView.ShowGroupPanel = False
     '
     'PivotGridControl1
     '
@@ -441,6 +270,78 @@ Partial Class Form1
     Me.gcOverTimeMinutes.Name = "gcOverTimeMinutes"
     Me.gcOverTimeMinutes.Options.AllowRunTimeSummaryChange = True
     '
+    'GridColumn12
+    '
+    Me.GridColumn12.Caption = "ID"
+    Me.GridColumn12.FieldName = "WorkOrderID"
+    Me.GridColumn12.Name = "GridColumn12"
+    Me.GridColumn12.OptionsColumn.ReadOnly = True
+    '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "Número de OT"
+    Me.GridColumn1.FieldName = "WorkOrderNo"
+    Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.Visible = True
+    Me.GridColumn1.VisibleIndex = 0
+    Me.GridColumn1.Width = 123
+    '
+    'gcProductType
+    '
+    Me.gcProductType.Caption = "Tipo de Producto"
+    Me.gcProductType.FieldName = "ProductTypeID"
+    Me.gcProductType.Name = "gcProductType"
+    Me.gcProductType.Visible = True
+    Me.gcProductType.VisibleIndex = 1
+    Me.gcProductType.Width = 156
+    '
+    'GridColumn3
+    '
+    Me.GridColumn3.Caption = "Cantidad"
+    Me.GridColumn3.FieldName = "Quantity"
+    Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.Visible = True
+    Me.GridColumn3.VisibleIndex = 2
+    Me.GridColumn3.Width = 117
+    '
+    'GridColumn4
+    '
+    Me.GridColumn4.Caption = "Descripción"
+    Me.GridColumn4.FieldName = "Description"
+    Me.GridColumn4.Name = "GridColumn4"
+    Me.GridColumn4.Visible = True
+    Me.GridColumn4.VisibleIndex = 3
+    Me.GridColumn4.Width = 123
+    '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "Fecha Plan. Inicio"
+    Me.GridColumn5.FieldName = "PlannedStartDate"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 4
+    Me.GridColumn5.Width = 141
+    '
+    'GridColumn6
+    '
+    Me.GridColumn6.Caption = "Fecha Plan. Entrega"
+    Me.GridColumn6.FieldName = "PlannedDeliverDate"
+    Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.Visible = True
+    Me.GridColumn6.VisibleIndex = 5
+    Me.GridColumn6.Width = 139
+    '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "Costo Est. de OT"
+    Me.GridColumn7.DisplayFormat.FormatString = "N2"
+    Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn7.FieldName = "UnitPrice"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 6
+    Me.GridColumn7.Width = 143
+    '
     'Form1
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -459,27 +360,6 @@ Partial Class Form1
 
   Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents colTimeSheetEntry As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colWorkOrder As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colTimeSheetEntryID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colTimeSheetEntryTypeID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colTimeSheetEntryTypeDesc As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colEmployeeID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colEmployeeName As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colWorkOrderID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colStartTime As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colTimeSheetDate As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colTimeSheetDateWC As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colTimeSheetDateMC As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colEndTime As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colDuration As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colNote As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colWorkCentreID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colWorkCentreDesc As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colWorkOrderNo As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colDescription As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colCompanyName As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents colProjectName As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents PivotGridControl1 As DevExpress.XtraPivotGrid.PivotGridControl
   Friend WithEvents fieldTimeSheetEntry As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldWorkOrder As DevExpress.XtraPivotGrid.PivotGridField
@@ -503,4 +383,12 @@ Partial Class Form1
   Friend WithEvents fieldCustomerName As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldProjectName As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcOverTimeMinutes As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcProductType As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

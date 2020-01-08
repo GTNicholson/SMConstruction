@@ -25,7 +25,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pSubFurnitureCategoryID As Int32
   Private pPlannedDeliverDate As DateTime
   Private pisInternal As Boolean
-  Private pSOWONumber As Int32
+  Private pSOWONumber As String
 
   Private pMachining As Boolean
   Private pAssembley As Boolean
@@ -46,7 +46,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pOutputDocuments As colOutputDocuments
   Private pWOFiles As colFileTrackers
 
-  Private pSalesOrderItemWOIndex As Integer
+  Private pSalesOrderItemWOIndex As Int32
 
 
   Public Sub New()
@@ -188,11 +188,11 @@ Public Class dmWorkOrder : Inherits dmBase
   End Property
 
 
-  Public Property SOWONumber() As Int32
+  Public Property SOWONumber() As String
     Get
       Return pSOWONumber
     End Get
-    Set(ByVal value As Int32)
+    Set(ByVal value As String)
       If pSOWONumber <> value Then IsDirty = True
       pSOWONumber = value
     End Set

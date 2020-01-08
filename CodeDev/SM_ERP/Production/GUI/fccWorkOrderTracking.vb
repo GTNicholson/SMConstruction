@@ -27,6 +27,8 @@ Public Class fccWorkOrderTracking
     Dim mdso As dsoProduction
     Dim mwhere As String
     mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+    mwhere += " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)
+or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
     Try
       mdso = New dsoProduction(pDBConn)
       pWorkOrderTrackings = New colWorkOrderInfos

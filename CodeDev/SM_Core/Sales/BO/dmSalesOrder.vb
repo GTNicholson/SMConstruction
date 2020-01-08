@@ -28,7 +28,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pShippingCost As Decimal
   Private pWorkOrdersIssued As Boolean
   Private pPodioPath As String
-  Private pVersion As Int32
+  Private pVersion As String
 
   Private pCustomer As dmCustomer
   Private pSalesOrderItems As colSalesOrderItems
@@ -128,11 +128,11 @@ Public Class dmSalesOrder : Inherits dmBase
   End Sub
 
 
-  Public Property Version() As Int32
+  Public Property Version() As String
     Get
       Return pVersion
     End Get
-    Set(ByVal value As Int32)
+    Set(ByVal value As String)
       If pVersion <> value Then IsDirty = True
       pVersion = value
     End Set

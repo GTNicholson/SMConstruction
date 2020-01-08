@@ -99,6 +99,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QtyPerSalesItem", .QtyPerSalesItem)
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
 
+
+
     End With
 
   End Sub
