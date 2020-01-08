@@ -84,6 +84,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .EmployeeID = DBReadInteger(rDataReader, "EmployeeID")
         .ProductTypeID = DBReadInteger(rDataReader, "ProductTypeID")
 
+
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
       End With
 
@@ -108,8 +109,10 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .ProductTypeID = DBReadInteger(rDataReader, "ProductTypeID")
             .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
           End With
-
-
+        Case Else
+          With pWorkOrderInfo.WorkOrder
+            .SalesOrderItemWOIndex = DBReadInteger(rDataReader, "SalesOrderItemWOIndex")
+          End With
       End Select
 
       mOK = True

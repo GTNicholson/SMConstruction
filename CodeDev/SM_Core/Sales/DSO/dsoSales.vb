@@ -474,7 +474,7 @@ Public Class dsoSales
     If mWONostr = "" Then
       mdso = New dsoGeneral(rDBConn)
       mWONo = mdso.GetNextTallyWorkOrderNo()
-      mWONostr = clsConstants.WorkOrderNoPrefix & mWONo.ToString("00000")
+      mWONostr = clsConstants.SalesOrderPrefix & vSalesOrderNo & "-" & clsConstants.WorkOrderNoPrefix & mWONo.ToString("00000")
     End If
 
     If rSalesOrderItem.WorkOrders.Count = 1 Then

@@ -1,0 +1,10 @@
+alter table SalesOrder
+alter column Version varchar
+
+alter table workorder
+alter column workorderno varchar(25)
+
+alter table workorder
+alter column SalesOrderItemWOIndex varchar(25)
+
+
