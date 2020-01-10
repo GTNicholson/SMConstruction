@@ -6,3 +6,21 @@ SELECT        WO.WorkOrderID, WO.WorkOrderNo, WO.ProductTypeID, WO.Quantity, WO.
 FROM            dbo.WorkOrder AS WO INNER JOIN
                          dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
 Where IsInternal = 1
+
+
+create view vwStockItemInfo
+as
+select 
+SI.StockItemId,
+SI.Category,
+SI.ItemType,
+SI.Species,
+SI.Colour,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Description,
+SI.STDCOST
+
+from StockItem as SI

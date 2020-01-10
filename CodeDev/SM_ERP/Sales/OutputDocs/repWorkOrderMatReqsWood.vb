@@ -34,6 +34,7 @@ Public Class repWorkOrderMatReqsWood
 
 
 
+
     xrlTotalBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetReport")
     'xrlMatReqDesc.DataBindings.Add("Text", Me.DataSource, "Description")
 

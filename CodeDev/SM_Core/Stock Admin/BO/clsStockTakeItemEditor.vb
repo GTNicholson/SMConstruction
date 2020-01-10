@@ -136,6 +136,43 @@
     End Get
   End Property
 
+  Public ReadOnly Property CountedValue As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pStockItem IsNot Nothing Then
+        mRetVal = clsStockItemSharedFuncs.getStockItemValue(pStockItem, pStockTakeItem.CountedQty)
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+
+  Public ReadOnly Property DiscrepancyValue As Decimal
+    Get
+      Dim mRetVal As Decimal
+      Dim mStockCountedQty As Decimal
+      Dim mDiscrepancy As Decimal
+
+      mStockCountedQty = pStockTakeItem.CountedQty + pStockTakeItem.WriteOffQuantity
+      mDiscrepancy = pStockTakeItem.SnapshotQty - mStockCountedQty
+
+      If pStockItem IsNot Nothing Then
+        mRetVal = clsStockItemSharedFuncs.getStockItemValue(pStockItem, mDiscrepancy)
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property WriteOffValue As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pStockItem IsNot Nothing Then
+        mRetVal = clsStockItemSharedFuncs.getStockItemValue(pStockItem, pStockTakeItem.WriteOffQuantity)
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
 End Class
 
 Public Class colStockTakeItemEditors : Inherits List(Of clsStockTakeItemEditor)

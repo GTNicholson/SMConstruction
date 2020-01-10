@@ -173,7 +173,7 @@ Public Class dsoStock
 
 
 
-  Public Function LoadStockItemDown(ByRef rStockItemInfos As colStockItemInfos, ByVal vStockItemID As Integer) As Boolean
+  Public Function LoadStockItemInfos(ByRef rStockItemInfos As colStockItemInfos, ByVal vWhere As String) As Boolean
 
     Dim mRetVal As Boolean
     Dim mdto As dtoStockItemInfo
@@ -183,7 +183,7 @@ Public Class dsoStock
 
       pDBConn.Connect()
       mdto = New dtoStockItemInfo(pDBConn)
-      mdto.LoadStockItemCollection(rStockItemInfos, vStockItemID)
+      mdto.LoadStockItemCollection(rStockItemInfos, vWhere)
       pDBConn.Disconnect()
       mRetVal = True
     Catch ex As Exception

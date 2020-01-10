@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.Elements
+Imports RTIS.ERPStock
 
 Public Class frmWorkOrderDetail
   Private Shared sActiveForms As Collection
@@ -931,7 +932,57 @@ Public Class frmWorkOrderDetail
           mSIs.Add(mItem.Value)
         Next
         mPicker = New clsPickerStockItem(mSIs)
+
+
         frmPickerStockItem.OpenPickerMulti(mPicker, True)
+
+        pFormController.syncronizedMaterialRequirment(mPicker.SelectedObjects)
+
+        RefreshProductControls()
+
     End Select
+  End Sub
+
+  Private Sub gvMaterialRequirementOthers_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirementOthers.CustomUnboundColumnData
+    Dim mMatReq As dmMaterialRequirement
+    Dim mSI As dmStockItem
+
+    mMatReq = CType(e.Row, dmMaterialRequirement)
+
+    If mMatReq.StockItemID = 0 Then
+
+
+      Select Case e.Column.Name
+        Case gcMatReqOtherDescription.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.Description
+          ElseIf e.IsSetData Then
+            mMatReq.Description = e.Value
+          End If
+        Case gcStockCode.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.StockCode
+          ElseIf e.IsSetData Then
+            mMatReq.StockCode = e.Value
+          End If
+      End Select
+    Else
+      mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
+      If mSI IsNot Nothing Then
+
+        Select Case e.Column.Name
+          Case gcMatReqOtherDescription.Name
+            If e.IsGetData Then
+              e.Value = mSI.Description
+
+            End If
+          Case gcStockCode.Name
+            If e.IsGetData Then
+              e.Value = mSI.StockCode
+
+            End If
+        End Select
+      End If
+    End If
   End Sub
 End Class

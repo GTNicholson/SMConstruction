@@ -19,6 +19,7 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+    Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
     Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -35,6 +36,7 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.xrtMaterialTypeID = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtWoodSpecieID = New DevExpress.XtraReports.UI.XRTableCell()
     Me.xrtQualityType = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -56,7 +58,6 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.XrTableCell41 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell42 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-    Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +176,12 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.xrtQualityType.Name = "xrtQualityType"
     Me.xrtQualityType.Weight = 0.49382825719924806R
     '
+    'XrTableCell2
+    '
+    Me.XrTableCell2.CanGrow = False
+    Me.XrTableCell2.Name = "XrTableCell2"
+    Me.XrTableCell2.Weight = 0.74881362789057559R
+    '
     'TopMargin
     '
     Me.TopMargin.HeightF = 100.0!
@@ -213,6 +220,8 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.xrlTotalBoardFeet.StylePriority.UseBorders = False
     Me.xrlTotalBoardFeet.StylePriority.UseFont = False
     Me.xrlTotalBoardFeet.StylePriority.UseForeColor = False
+    XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
+    Me.xrlTotalBoardFeet.Summary = XrSummary1
     Me.xrlTotalBoardFeet.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
     'XrLabel12
@@ -389,12 +398,6 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.XrTableCell1.StylePriority.UseFont = False
     Me.XrTableCell1.Text = "Autoriza"
     Me.XrTableCell1.Weight = 0.74881355333501731R
-    '
-    'XrTableCell2
-    '
-    Me.XrTableCell2.CanGrow = False
-    Me.XrTableCell2.Name = "XrTableCell2"
-    Me.XrTableCell2.Weight = 0.74881362789057559R
     '
     'srepWorkOrderMatReqsWoodChanges
     '

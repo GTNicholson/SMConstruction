@@ -6,7 +6,16 @@ Public Class frmPickerStockItem
 
   Private pPickerStockItem As clsPickerStockItem
   Private pRemainOpen As Boolean
+  Private pStockItems As dmStockItem
 
+  Public Property StockItem As dmStockItem
+    Get
+      Return pStockItems
+    End Get
+    Set(value As dmStockItem)
+      pStockItems = value
+    End Set
+  End Property
 
   Public Shared Function OpenPickerSingle(ByVal vPickerStockItem As clsPickerStockItem) As intStockItemDef
     Dim mfrm As New frmPickerStockItem
@@ -26,6 +35,7 @@ Public Class frmPickerStockItem
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As New List(Of intStockItemDef)
 
+
     mfrm.pPickerStockItem = vPickerStockItem
     mfrm.pRemainOpen = vRemainOpen
     mfrm.ShowDialog()
@@ -35,6 +45,12 @@ Public Class frmPickerStockItem
         mRetVal.Add(mItem)
       Next
     End If
+
+    With mfrm.StockItem
+
+
+    End With
+
     Return mRetVal
   End Function
 

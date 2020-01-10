@@ -104,7 +104,7 @@ Public Class dsoStockTransactions
     mdto = New dtoStockItemTransactionLog(pDBConn)
     mWhere = String.Format("ObjectType = {0} AND ObjectID IN ({1})", CByte(eObjectType.StockItemLocation), vID)
     mWhere = mWhere & String.Format(" And TransactionType in ({0},{1})", CInt(eTransactionType.StockCheck), CInt(eTransactionType.Amendment))
-    mWhere = mWhere & String.Format(" And TransactionDate > '{0}'", vDateTime.ToString("yyyy/MM/dd HH:mm:ss"))
+    mWhere = mWhere & String.Format(" And TransactionDate > '{0}'", vDateTime.ToString("yyyyMMdd HH:mm:ss"))
     mdto.LoadStockItemTransactionLogTOP1ByWhere(mSITLs, mWhere, False)
 
     If mSITLs.Count <> 0 Then
@@ -121,7 +121,7 @@ Public Class dsoStockTransactions
 
     mdto = New dtoStockItemTransactionLog(pDBConn)
     mWhere = String.Format("ObjectType = {0} AND ObjectID IN ({1})", CByte(eObjectType.StockItemLocation), vID)
-    mWhere = mWhere & String.Format(" And TransactionDate <= '{0}'", vDateTime.ToString("yyyy/MM/dd HH:mm:ss:fff"))
+    mWhere = mWhere & String.Format(" And TransactionDate <= '{0}'", vDateTime.ToString("yyyyMMdd HH:mm:ss:fff"))
     mdto.LoadStockItemTransactionLogTOP1ByWhere(mSITLs, mWhere, True)
 
     If mSITLs.Count <> 0 Then
@@ -138,8 +138,8 @@ Public Class dsoStockTransactions
 
     mdto = New dtoStockItemTransactionLog(pDBConn)
     mWhere = String.Format("ObjectType = {0} AND ObjectID IN ({1})", CByte(eObjectType.StockItemLocation), vID)
-    mWhere = mWhere & String.Format(" And TransactionDate > '{0}'", vStartDateTime.ToString("yyyy/MM/dd HH:mm:ss"))
-    mWhere = mWhere & String.Format(" And TransactionDate < '{0}'", vEndDateTime.ToString("yyyy/MM/dd HH:mm:ss"))
+    mWhere = mWhere & String.Format(" And TransactionDate > '{0}'", vStartDateTime.ToString("yyyyMMdd HH:mm:ss"))
+    mWhere = mWhere & String.Format(" And TransactionDate < '{0}'", vEndDateTime.ToString("yyyyMMdd HH:mm:ss"))
     mdto.LoadStockItemTransactionLogCollectionByWhere(mRetVal, mWhere)
 
     Return mRetVal

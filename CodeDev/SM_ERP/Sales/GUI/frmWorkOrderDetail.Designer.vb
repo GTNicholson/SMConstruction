@@ -148,8 +148,8 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers = New DevExpress.XtraEditors.GroupControl()
     Me.grdMaterialRequirementOthers = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirementOthers = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMatReqOtherDescription = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1644,27 +1644,31 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.GridColumn20, Me.GridColumn9})
+    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCode, Me.gcMatReqOtherDescription, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.GridColumn20, Me.GridColumn9})
     Me.gvMaterialRequirementOthers.GridControl = Me.grdMaterialRequirementOthers
     Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
     Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
     Me.gvMaterialRequirementOthers.ViewCaption = "Lista de Materiales Requeridos (LMR)"
     '
-    'GridColumn6
+    'gcStockCode
     '
-    Me.GridColumn6.Caption = "Código"
-    Me.GridColumn6.FieldName = "StockCode"
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Width = 54
+    Me.gcStockCode.Caption = "Código SMM"
+    Me.gcStockCode.FieldName = "ubStockCode"
+    Me.gcStockCode.Name = "gcStockCode"
+    Me.gcStockCode.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcStockCode.Visible = True
+    Me.gcStockCode.VisibleIndex = 0
+    Me.gcStockCode.Width = 54
     '
-    'GridColumn8
+    'gcMatReqOtherDescription
     '
-    Me.GridColumn8.Caption = "Descripción de Materiales"
-    Me.GridColumn8.FieldName = "Description"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 0
-    Me.GridColumn8.Width = 288
+    Me.gcMatReqOtherDescription.Caption = "Descripción de Materiales"
+    Me.gcMatReqOtherDescription.FieldName = "UbMatReqOtherDescription"
+    Me.gcMatReqOtherDescription.Name = "gcMatReqOtherDescription"
+    Me.gcMatReqOtherDescription.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcMatReqOtherDescription.Visible = True
+    Me.gcMatReqOtherDescription.VisibleIndex = 1
+    Me.gcMatReqOtherDescription.Width = 288
     '
     'GridColumn17
     '
@@ -1672,7 +1676,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn17.FieldName = "UoM"
     Me.GridColumn17.Name = "GridColumn17"
     Me.GridColumn17.Visible = True
-    Me.GridColumn17.VisibleIndex = 1
+    Me.GridColumn17.VisibleIndex = 2
     Me.GridColumn17.Width = 80
     '
     'GridColumn18
@@ -1681,7 +1685,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn18.FieldName = "Quantity"
     Me.GridColumn18.Name = "GridColumn18"
     Me.GridColumn18.Visible = True
-    Me.GridColumn18.VisibleIndex = 2
+    Me.GridColumn18.VisibleIndex = 3
     Me.GridColumn18.Width = 130
     '
     'gcAreaID
@@ -1690,16 +1694,16 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaID.FieldName = "AreaID"
     Me.gcAreaID.Name = "gcAreaID"
     Me.gcAreaID.Visible = True
-    Me.gcAreaID.VisibleIndex = 3
+    Me.gcAreaID.VisibleIndex = 4
     Me.gcAreaID.Width = 146
     '
     'GridColumn20
     '
-    Me.GridColumn20.Caption = "Código"
+    Me.GridColumn20.Caption = "Código Proveedor"
     Me.GridColumn20.FieldName = "SupplierStockCode"
     Me.GridColumn20.Name = "GridColumn20"
     Me.GridColumn20.Visible = True
-    Me.GridColumn20.VisibleIndex = 4
+    Me.GridColumn20.VisibleIndex = 5
     Me.GridColumn20.Width = 166
     '
     'GridColumn9
@@ -1708,7 +1712,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn9.FieldName = "Comments"
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 5
+    Me.GridColumn9.VisibleIndex = 6
     Me.GridColumn9.Width = 242
     '
     'XtraTabPage7
@@ -2145,8 +2149,8 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents XtraTabPage5 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents grdMaterialRequirementOthers As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvMaterialRequirementOthers As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcStockCode As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMatReqOtherDescription As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents grdMaterialRequirements As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvMaterialRequirements As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn

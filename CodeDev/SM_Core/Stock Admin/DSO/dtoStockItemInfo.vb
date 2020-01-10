@@ -58,10 +58,17 @@ Public Class dtoStockItemInfo : Inherits dtoBase
       If pStockItemInfo Is Nothing Then SetObjectToNew()
       With pStockItemInfo
 
-        .CurrentInventory = DBReadDecimal(rDataReader, "CurrentInventory")
-        .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
-        .OrderQty = DBReadDecimal(rDataReader, "OrderQty")
-        .Balance = DBReadDecimal(rDataReader, "Balance")
+        '' .CurrentInventory = DBReadDecimal(rDataReader, "CurrentInventory")
+        '' .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
+        ''.OrderQty = DBReadDecimal(rDataReader, "OrderQty")
+        ''.Balance = DBReadDecimal(rDataReader, "Balance")
+      End With
+      With pStockItemInfo.StockItem
+        .Category = DBReadByte(rDataReader, "Category")
+        .ItemType = DBReadByte(rDataReader, "ItemType")
+        .StockCode = DBReadString(rDataReader, "StockCode")
+        .Description = DBReadString(rDataReader, "Description")
+        .ASISID = DBReadInt32(rDataReader, "ASISID")
       End With
 
       mOK = True
@@ -88,15 +95,19 @@ Public Class dtoStockItemInfo : Inherits dtoBase
     Dim mParams As New Hashtable
     Dim mOK As Boolean
 
-    mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemId", vWhere)
+    mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID", vWhere)
     Return mOK
   End Function
 
-  Public Function LoadStockItemCollection(ByRef rStockItemInfos As colStockItemInfos, ByVal vStockItemID As Integer) As Boolean
+  Public Function LoadStockItemCollection(ByRef rStockItemInfos As colStockItemInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     ''mParams.Add("@ParentID", vParentID)
-    mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID")
+    If vWhere <> "" Then
+      mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID", vWhere)
+    Else
+      mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID")
+    End If
 
     Return mOK
 

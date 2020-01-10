@@ -72,6 +72,7 @@ Partial Class frmStockTake
     Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcCountedQty = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemSpinEditCounted = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+    Me.gcWriteOffQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcIsCounted = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDiscrepency = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -82,7 +83,6 @@ Partial Class frmStockTake
     Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcWriteOffQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.grdStockCheckItem = New DevExpress.XtraGrid.GridControl()
     Me.repitPUStockItemValuationHistorys = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
     Me.grpDetail = New DevExpress.XtraEditors.GroupControl()
@@ -531,7 +531,7 @@ Partial Class frmStockTake
     Me.gvStockCheckItem.Appearance.Row.Options.UseBackColor = True
     Me.gvStockCheckItem.Appearance.Row.Options.UseFont = True
     Me.gvStockCheckItem.ColumnPanelRowHeight = 34
-    Me.gvStockCheckItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.gcStockCode, Me.GridColumn23, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.gcCountedQty, Me.GridColumn20, Me.gcIsCounted, Me.gcDiscrepency, Me.GridColumn2, Me.gcStockTakeSheet, Me.GridColumn9, Me.GridColumn3, Me.GridColumn21, Me.GridColumn24, Me.GridColumn22, Me.gcWriteOffQuantity})
+    Me.gvStockCheckItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.gcStockCode, Me.GridColumn23, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.gcCountedQty, Me.gcWriteOffQuantity, Me.GridColumn20, Me.gcIsCounted, Me.gcDiscrepency, Me.GridColumn2, Me.gcStockTakeSheet, Me.GridColumn9, Me.GridColumn3, Me.GridColumn21, Me.GridColumn24, Me.GridColumn22})
     Me.gvStockCheckItem.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
     Me.gvStockCheckItem.GridControl = Me.grdStockCheckItem
     Me.gvStockCheckItem.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, Nothing, Me.gcStockCode, "")})
@@ -577,6 +577,22 @@ Partial Class frmStockTake
     Me.RepositoryItemSpinEditCounted.EditFormat.FormatString = "#.##"
     Me.RepositoryItemSpinEditCounted.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.RepositoryItemSpinEditCounted.Name = "RepositoryItemSpinEditCounted"
+    '
+    'gcWriteOffQuantity
+    '
+    Me.gcWriteOffQuantity.AppearanceCell.BackColor = System.Drawing.Color.White
+    Me.gcWriteOffQuantity.AppearanceCell.Options.UseBackColor = True
+    Me.gcWriteOffQuantity.Caption = "Cantidad Desechos"
+    Me.gcWriteOffQuantity.ColumnEdit = Me.RepositoryItemSpinEditCounted
+    Me.gcWriteOffQuantity.DisplayFormat.FormatString = "0.##;;0"
+    Me.gcWriteOffQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.gcWriteOffQuantity.FieldName = "gcWriteOffQuantity"
+    Me.gcWriteOffQuantity.Name = "gcWriteOffQuantity"
+    Me.gcWriteOffQuantity.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcWriteOffQuantity", "{0:0.##;;#}")})
+    Me.gcWriteOffQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+    Me.gcWriteOffQuantity.Visible = True
+    Me.gcWriteOffQuantity.VisibleIndex = 11
+    Me.gcWriteOffQuantity.Width = 59
     '
     'GridColumn20
     '
@@ -647,7 +663,7 @@ Partial Class frmStockTake
     'GridColumn3
     '
     Me.GridColumn3.Caption = "Valor de Sistema"
-    Me.GridColumn3.DisplayFormat.FormatString = "£#,##0.00;;#"
+    Me.GridColumn3.DisplayFormat.FormatString = "$#,##0.00;;#"
     Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn3.FieldName = "SystemTotalValue"
     Me.GridColumn3.Name = "GridColumn3"
@@ -659,11 +675,12 @@ Partial Class frmStockTake
     'GridColumn21
     '
     Me.GridColumn21.Caption = "Valor Contado"
-    Me.GridColumn21.DisplayFormat.FormatString = "£#,##0.00;;#"
+    Me.GridColumn21.DisplayFormat.FormatString = "$#,##0.00;;#"
     Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.GridColumn21.FieldName = "CountedTotalValue"
+    Me.GridColumn21.FieldName = "CountedValue"
     Me.GridColumn21.Name = "GridColumn21"
-    Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CountedTotalValue", "{0:£#,##0.00;;#}")})
+    Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CountedValue", "{0:$#,##0.00;;#}")})
+    Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.GridColumn21.Visible = True
     Me.GridColumn21.VisibleIndex = 14
     Me.GridColumn21.Width = 29
@@ -671,11 +688,12 @@ Partial Class frmStockTake
     'GridColumn24
     '
     Me.GridColumn24.Caption = "Valor de Desechos"
-    Me.GridColumn24.DisplayFormat.FormatString = "£#,##0.00;;#"
+    Me.GridColumn24.DisplayFormat.FormatString = "$#,##0.00;;#"
     Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn24.FieldName = "WriteOffValue"
     Me.GridColumn24.Name = "GridColumn24"
-    Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WriteOffValue", "{0:£#,##0.00;;#}")})
+    Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WriteOffValue", "{0:$#,##0.00;;#}")})
+    Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.GridColumn24.Visible = True
     Me.GridColumn24.VisibleIndex = 15
     Me.GridColumn24.Width = 33
@@ -683,27 +701,14 @@ Partial Class frmStockTake
     'GridColumn22
     '
     Me.GridColumn22.Caption = "Valor de Diferencia"
-    Me.GridColumn22.DisplayFormat.FormatString = "£#,##0.00;;#"
+    Me.GridColumn22.DisplayFormat.FormatString = "$#,##0.00;;#"
     Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.GridColumn22.FieldName = "ValueDescrepency"
+    Me.GridColumn22.FieldName = "DiscrepancyValue"
     Me.GridColumn22.Name = "GridColumn22"
-    Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ValueDescrepency", "{0:£#,##0.00;;#}")})
+    Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ValueDescrepency", "{0:$#,##0.00;;#}")})
     Me.GridColumn22.Visible = True
     Me.GridColumn22.VisibleIndex = 16
     Me.GridColumn22.Width = 27
-    '
-    'gcWriteOffQuantity
-    '
-    Me.gcWriteOffQuantity.AppearanceCell.BackColor = System.Drawing.Color.White
-    Me.gcWriteOffQuantity.AppearanceCell.Options.UseBackColor = True
-    Me.gcWriteOffQuantity.Caption = "Cantidad Desechos"
-    Me.gcWriteOffQuantity.ColumnEdit = Me.RepositoryItemSpinEditCounted
-    Me.gcWriteOffQuantity.FieldName = "gcWriteOffQuantity"
-    Me.gcWriteOffQuantity.Name = "gcWriteOffQuantity"
-    Me.gcWriteOffQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-    Me.gcWriteOffQuantity.Visible = True
-    Me.gcWriteOffQuantity.VisibleIndex = 11
-    Me.gcWriteOffQuantity.Width = 59
     '
     'grdStockCheckItem
     '

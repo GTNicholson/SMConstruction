@@ -69,6 +69,11 @@
     Return mRetVal
   End Function
 
+  Public Shared Function getStockItemValue(ByRef rStockItem As dmStockItem, ByVal vQty As Decimal) As Decimal
+    Dim mRetval As Decimal
+    mRetval = (rStockItem.StdCost + rStockItem.StdImportCost) * vQty
+    Return mRetval
+  End Function
 
 
 End Class
