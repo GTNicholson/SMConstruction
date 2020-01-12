@@ -7,7 +7,7 @@ Public Class fccStockItemInfos
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pCategorys As Int32
   Private pRTISGlobal As AppRTISGlobal
-  Private pCurrentStockItem As dmStockItem
+  Private pCurrentStockItemInfo As clsStockItemInfo
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pStockItemInfos = New colStockItemInfos
@@ -15,12 +15,12 @@ Public Class fccStockItemInfos
 
   End Sub
 
-  Public Property CurrentStockItem As dmStockItem
+  Public Property CurrentStockItemInfo As clsStockItemInfo
     Get
-      Return pCurrentStockItem
+      Return pCurrentStockItemInfo
     End Get
-    Set(value As dmStockItem)
-      pCurrentStockItem = value
+    Set(value As clsStockItemInfo)
+      pCurrentStockItemInfo = value
     End Set
   End Property
 
@@ -64,11 +64,11 @@ Public Class fccStockItemInfos
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mWhere As String = ""
     Try
-      If pCurrentStockItem IsNot Nothing Then
+      If pCurrentStockItemInfo IsNot Nothing Then
         Dim mSI As dmStockItem
-        mSI = pCurrentStockItem
-        mdsoStock.LoadStockItem(pCurrentStockItem, pCurrentStockItem.StockItemID)
-        pCurrentStockItem.tmpIsFullyLoadedDown = True
+        mSI = pCurrentStockItemInfo.StockItem
+        mdsoStock.LoadStockItem(mSI, pCurrentStockItemInfo.StockItemID)
+        mSI.tmpIsFullyLoadedDown = True
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -88,6 +88,70 @@ Public Class fccStockItemInfos
   Public Sub ClearObjects()
 
     'Me.MainObject = Nothing
+
+  End Sub
+
+
+  Public Sub ApplyStockAdjust(ByVal vStockItem As dmStockItem, ByVal vLocationID As Byte, ByVal vTransactionType As eTransactionType, ByVal vTranQty As Decimal, ByVal vAdjustDate As DateTime, ByVal vNotes As String)
+    Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
+    Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mStockItemLocations As colStockItemLocations
+    Dim mStockItemLocation As dmStockItemLocation
+
+    Try
+
+      mStockItemLocations = New colStockItemLocations
+
+      mdsoStock.LoadStockItemLocationsByWhere(mStockItemLocations, "StockItemID =" & vStockItem.StockItemID & " AND LocationID =" & vLocationID)
+
+      If mStockItemLocations.Count > 0 Then
+        mStockItemLocation = mStockItemLocations(0)
+      Else
+        mStockItemLocation = New dmStockItemLocation
+        mStockItemLocation.StockItemID = vStockItem.StockItemID
+        mStockItemLocation.LocationID = vLocationID
+        mStockItemLocations.Add(mStockItemLocation)
+        mdsoStock.SaveStockItemLocations(mStockItemLocations)
+      End If
+
+      If mStockItemLocation IsNot Nothing Then
+        Dim mLocationAmendment As New dmStockItemLocationAmendmentLog
+
+        With mLocationAmendment
+          .SystemDate = DateTime.Now
+          .AmendmentDate = vAdjustDate
+          .ChangeDetails = vNotes
+          .UserID = pDBConn.RTISUser.UserID
+          .StockItemLocationID = mStockItemLocation.StockItemLocationID
+        End With
+
+        ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
+        Select Case vTransactionType
+          Case eTransactionType.Adjustment
+            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment)
+          Case eTransactionType.Amendment
+            mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment)
+        End Select
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub RefreshStockItemCurrentInventory(ByRef rStockItemInfo As clsStockItemInfo)
+    Dim mDso As dsoStock
+    Dim mCurrentLevel As Decimal
+
+    Try
+
+      mDso = New dsoStock(pDBConn)
+      mCurrentLevel = mDso.GetCurrentInventory(rStockItemInfo.StockItem.StockItemID)
+      rStockItemInfo.CurrentInventory = mCurrentLevel
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
 
   End Sub
 

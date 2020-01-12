@@ -1,0 +1,18 @@
+CREATE TABLE dbo.StockItemLocationAmendmentLog
+(
+StockItemLocationAmendmentLogID     INT IDENTITY(1,1) NOT NULL,
+SystemDate                          DATETIME,
+AmendmentDate                       DATETIME,
+StockItemLocationID                 INT,
+ChangeDetails                       VARCHAR(2000),
+UserID                              INT,
+UserNotes                           VARCHAR(2000),
+CONSTRAINT PK_StockItemLocationAmendmentLog PRIMARY KEY CLUSTERED ( StockItemLocationAmendmentLogID )
+)
+ON [PRIMARY]
+
+GO
+
+update userlist set contact = 3951 where UserID = 1
+
+GO

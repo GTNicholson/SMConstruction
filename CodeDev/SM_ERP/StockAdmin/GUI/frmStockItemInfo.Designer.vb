@@ -24,8 +24,6 @@ Partial Class frmStockItemInfo
   Private Sub InitializeComponent()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockItemInfo))
     Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
     Me.grdStockItemInfos = New DevExpress.XtraGrid.GridControl()
     Me.gvStockItemInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -38,19 +36,15 @@ Partial Class frmStockItemInfo
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.repitbtCurrentInventory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repitPUStockItemValuationHistorys = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.RepositoryItemSpinEditCounted = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-    Me.repitbtStockItemRefresh = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpItemDetail.SuspendLayout()
     CType(Me.grdStockItemInfos, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvStockItemInfos, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repitPUStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.RepositoryItemSpinEditCounted, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repitbtStockItemRefresh, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grpItemDetail
@@ -69,9 +63,9 @@ Partial Class frmStockItemInfo
     Me.grpItemDetail.Controls.Add(Me.grdStockItemInfos)
     Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Select All", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "SelectAll", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Clear Selection", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ClearSelection", -1)})
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-    Me.grpItemDetail.Location = New System.Drawing.Point(12, 12)
+    Me.grpItemDetail.Location = New System.Drawing.Point(3, 12)
     Me.grpItemDetail.Name = "grpItemDetail"
-    Me.grpItemDetail.Size = New System.Drawing.Size(1346, 279)
+    Me.grpItemDetail.Size = New System.Drawing.Size(1362, 509)
     Me.grpItemDetail.TabIndex = 95
     Me.grpItemDetail.Text = "Stock Items"
     '
@@ -81,8 +75,8 @@ Partial Class frmStockItemInfo
     Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 26)
     Me.grdStockItemInfos.MainView = Me.gvStockItemInfos
     Me.grdStockItemInfos.Name = "grdStockItemInfos"
-    Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitPUStockItemValuationHistorys, Me.RepositoryItemSpinEditCounted, Me.repitbtStockItemRefresh})
-    Me.grdStockItemInfos.Size = New System.Drawing.Size(1342, 251)
+    Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory})
+    Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 481)
     Me.grdStockItemInfos.TabIndex = 6
     Me.grdStockItemInfos.UseEmbeddedNavigator = True
     Me.grdStockItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemInfos})
@@ -93,9 +87,7 @@ Partial Class frmStockItemInfo
     Me.gvStockItemInfos.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvStockItemInfos.Appearance.HeaderPanel.Options.UseTextOptions = True
     Me.gvStockItemInfos.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gvStockItemInfos.Appearance.Row.BackColor = System.Drawing.Color.Lavender
     Me.gvStockItemInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.gvStockItemInfos.Appearance.Row.Options.UseBackColor = True
     Me.gvStockItemInfos.Appearance.Row.Options.UseFont = True
     Me.gvStockItemInfos.ColumnPanelRowHeight = 34
     Me.gvStockItemInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn8, Me.GridColumn1, Me.GridColumn6, Me.gcCategory, Me.gcItemType, Me.GridColumn5, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
@@ -103,8 +95,6 @@ Partial Class frmStockItemInfo
     Me.gvStockItemInfos.GridControl = Me.grdStockItemInfos
     Me.gvStockItemInfos.Name = "gvStockItemInfos"
     Me.gvStockItemInfos.OptionsBehavior.AutoExpandAllGroups = True
-    Me.gvStockItemInfos.OptionsBehavior.Editable = False
-    Me.gvStockItemInfos.OptionsBehavior.ReadOnly = True
     Me.gvStockItemInfos.OptionsView.ShowAutoFilterRow = True
     Me.gvStockItemInfos.OptionsView.ShowDetailButtons = False
     Me.gvStockItemInfos.OptionsView.ShowGroupPanel = False
@@ -121,7 +111,8 @@ Partial Class frmStockItemInfo
     Me.GridColumn8.FieldName = "ASISID"
     Me.GridColumn8.Name = "GridColumn8"
     Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 6
+    Me.GridColumn8.VisibleIndex = 1
+    Me.GridColumn8.Width = 69
     '
     'GridColumn1
     '
@@ -130,6 +121,7 @@ Partial Class frmStockItemInfo
     Me.GridColumn1.Name = "GridColumn1"
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
+    Me.GridColumn1.Width = 82
     '
     'GridColumn6
     '
@@ -137,7 +129,8 @@ Partial Class frmStockItemInfo
     Me.GridColumn6.FieldName = "Description"
     Me.GridColumn6.Name = "GridColumn6"
     Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 4
+    Me.GridColumn6.VisibleIndex = 5
+    Me.GridColumn6.Width = 274
     '
     'gcCategory
     '
@@ -145,7 +138,8 @@ Partial Class frmStockItemInfo
     Me.gcCategory.FieldName = "Category"
     Me.gcCategory.Name = "gcCategory"
     Me.gcCategory.Visible = True
-    Me.gcCategory.VisibleIndex = 1
+    Me.gcCategory.VisibleIndex = 2
+    Me.gcCategory.Width = 130
     '
     'gcItemType
     '
@@ -154,7 +148,8 @@ Partial Class frmStockItemInfo
     Me.gcItemType.Name = "gcItemType"
     Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcItemType.Visible = True
-    Me.gcItemType.VisibleIndex = 2
+    Me.gcItemType.VisibleIndex = 3
+    Me.gcItemType.Width = 130
     '
     'GridColumn5
     '
@@ -162,7 +157,8 @@ Partial Class frmStockItemInfo
     Me.GridColumn5.FieldName = "PartNo"
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
-    Me.GridColumn5.VisibleIndex = 3
+    Me.GridColumn5.VisibleIndex = 4
+    Me.GridColumn5.Width = 103
     '
     'GridColumn7
     '
@@ -170,14 +166,24 @@ Partial Class frmStockItemInfo
     Me.GridColumn7.FieldName = "DefaultSupplier"
     Me.GridColumn7.Name = "GridColumn7"
     Me.GridColumn7.Visible = True
-    Me.GridColumn7.VisibleIndex = 5
+    Me.GridColumn7.VisibleIndex = 6
+    Me.GridColumn7.Width = 220
     '
     'GridColumn9
     '
     Me.GridColumn9.Caption = "Inv. Actual"
+    Me.GridColumn9.ColumnEdit = Me.repitbtCurrentInventory
+    Me.GridColumn9.FieldName = "CurrentInventory"
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
     Me.GridColumn9.VisibleIndex = 7
+    Me.GridColumn9.Width = 79
+    '
+    'repitbtCurrentInventory
+    '
+    Me.repitbtCurrentInventory.AutoHeight = False
+    Me.repitbtCurrentInventory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.repitbtCurrentInventory.Name = "repitbtCurrentInventory"
     '
     'GridColumn10
     '
@@ -185,6 +191,7 @@ Partial Class frmStockItemInfo
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
     Me.GridColumn10.VisibleIndex = 8
+    Me.GridColumn10.Width = 79
     '
     'GridColumn11
     '
@@ -192,6 +199,7 @@ Partial Class frmStockItemInfo
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
     Me.GridColumn11.VisibleIndex = 9
+    Me.GridColumn11.Width = 79
     '
     'GridColumn12
     '
@@ -199,35 +207,7 @@ Partial Class frmStockItemInfo
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
     Me.GridColumn12.VisibleIndex = 10
-    '
-    'repitPUStockItemValuationHistorys
-    '
-    Me.repitPUStockItemValuationHistorys.Appearance.Options.UseTextOptions = True
-    Me.repitPUStockItemValuationHistorys.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.repitPUStockItemValuationHistorys.AutoHeight = False
-    Me.repitPUStockItemValuationHistorys.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.repitPUStockItemValuationHistorys.DisplayFormat.FormatString = "N2"
-    Me.repitPUStockItemValuationHistorys.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.repitPUStockItemValuationHistorys.EditFormat.FormatString = "N2"
-    Me.repitPUStockItemValuationHistorys.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.repitPUStockItemValuationHistorys.Name = "repitPUStockItemValuationHistorys"
-    '
-    'RepositoryItemSpinEditCounted
-    '
-    Me.RepositoryItemSpinEditCounted.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-    Me.RepositoryItemSpinEditCounted.AutoHeight = False
-    Me.RepositoryItemSpinEditCounted.DisplayFormat.FormatString = "#.##"
-    Me.RepositoryItemSpinEditCounted.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.RepositoryItemSpinEditCounted.EditFormat.FormatString = "#.##"
-    Me.RepositoryItemSpinEditCounted.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.RepositoryItemSpinEditCounted.Name = "RepositoryItemSpinEditCounted"
-    '
-    'repitbtStockItemRefresh
-    '
-    Me.repitbtStockItemRefresh.AutoHeight = False
-    EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
-    Me.repitbtStockItemRefresh.Name = "repitbtStockItemRefresh"
+    Me.GridColumn12.Width = 97
     '
     'frmStockItemInfo
     '
@@ -241,9 +221,7 @@ Partial Class frmStockItemInfo
     Me.grpItemDetail.ResumeLayout(False)
     CType(Me.grdStockItemInfos, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvStockItemInfos, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repitPUStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.RepositoryItemSpinEditCounted, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repitbtStockItemRefresh, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -252,9 +230,6 @@ Partial Class frmStockItemInfo
   Friend WithEvents grdStockItemInfos As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvStockItemInfos As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents repitPUStockItemValuationHistorys As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
-  Friend WithEvents RepositoryItemSpinEditCounted As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-  Friend WithEvents repitbtStockItemRefresh As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents gcStockItemID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
@@ -266,4 +241,5 @@ Partial Class frmStockItemInfo
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents repitbtCurrentInventory As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

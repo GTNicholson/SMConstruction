@@ -142,26 +142,12 @@ Public Class dtoStockItemLocation : Inherits dtoBase
   End Function
 
 
-  Public Function SaveStockItemLocationCollection(ByRef rCollection As colStockItemLocations, ByVal vParentID As Integer) As Boolean
+  Public Function SaveStockItemLocationCollection(ByRef rCollection As colStockItemLocations) As Boolean
     Dim mParams As New Hashtable
     Dim mAllOK As Boolean
-    Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
-      ''Approach where delete items not found in the collection
-      ''If rCollection.SomeRemoved Then
-      ''  For Each Me.pStockItemLocation In rCollection
-      ''    If pStockItemLocation.StockItemLocationID <> 0 Then
-      ''      mCount = mCount + 1
-      ''      If mCount > 1 Then mIDs = mIDs & ", "
-      ''       mIDs = mIDs & pStockItemLocation.StockItemLocationID.ToString
-      ''    End If
-      ''  Next
-      ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
-      ''Else
-      ''   mAllOK = True
-      ''End If
+
 
       ''Alternative Approach - where maintain collection of deleted items
       If rCollection.SomeDeleted Then
@@ -176,8 +162,7 @@ Public Class dtoStockItemLocation : Inherits dtoBase
       End If
 
       For Each Me.pStockItemLocation In rCollection
-        If pStockItemLocation.IsDirty Or pStockItemLocation.LocationID <> vParentID Or pStockItemLocation.StockItemLocationID = 0 Then 'Or pStockItemLocation.StockItemLocationID = 0
-          pStockItemLocation.LocationID = vParentID
+        If pStockItemLocation.IsDirty Or pStockItemLocation.StockItemLocationID = 0 Then 'Or pStockItemLocation.StockItemLocationID = 0
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next
@@ -187,6 +172,16 @@ Public Class dtoStockItemLocation : Inherits dtoBase
     End If
 
     Return mAllOK
+  End Function
+
+  Public Function LoadStockItemLocationCollectionByWhere(ByRef rStockItemLocations As colStockItemLocations, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ' mParams.Add("@ParentID", vParentID)
+    mOK = MyBase.LoadCollection(rStockItemLocations, mParams, "StockItemLocationID", vWhere)
+    rStockItemLocations.TrackDeleted = True
+    If mOK Then rStockItemLocations.IsDirty = False
+    Return mOK
   End Function
 
 End Class

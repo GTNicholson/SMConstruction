@@ -3,6 +3,7 @@ Imports RTIS.CommonVB
 Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraEditors.Controls
 
 Public Class frmStockItemInfo
 
@@ -167,6 +168,45 @@ Public Class frmStockItemInfo
     Return mfrmWanted
   End Function
 
+  Private Sub repitbtCurrentInventory_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repitbtCurrentInventory.ButtonClick
+    Try
+      If pFormController.CurrentStockItemInfo IsNot Nothing Then
+        Dim mfrm As New frmStockAdjust
 
+        If mfrm.ShowDialog = DialogResult.OK Then
+          Dim mDate As DateTime = mfrm.SelectedDate
+          Dim mQty As Decimal = mfrm.SelectedQty
+          Dim mNotes As String = mfrm.Notes
 
+          Select Case mfrm.TransactionType
+            Case eTransactionType.Adjustment
+              pFormController.ApplyStockAdjust(pFormController.CurrentStockItemInfo.StockItem, 1, eTransactionType.Adjustment, mQty, mDate, mNotes)
+            Case eTransactionType.Amendment
+              pFormController.ApplyStockAdjust(pFormController.CurrentStockItemInfo.StockItem, 1, eTransactionType.Amendment, mQty, mDate, mNotes)
+          End Select
+          pFormController.RefreshStockItemCurrentInventory(pFormController.CurrentStockItemInfo)
+          gvStockItemInfos.CloseEditor()
+          gvStockItemInfos.UpdateCurrentRow()
+        End If
+
+        mfrm = Nothing
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub gvStockItemInfos_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvStockItemInfos.FocusedRowObjectChanged
+    Try
+      Dim mSII As clsStockItemInfo
+      If gvStockItemInfos.IsDataRow(e.FocusedRowHandle) Then
+        mSII = TryCast(e.Row, clsStockItemInfo)
+        pFormController.CurrentStockItemInfo = mSII
+      Else
+        pFormController.CurrentStockItemInfo = Nothing
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class

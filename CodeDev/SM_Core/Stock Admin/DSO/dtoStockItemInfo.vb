@@ -58,12 +58,13 @@ Public Class dtoStockItemInfo : Inherits dtoBase
       If pStockItemInfo Is Nothing Then SetObjectToNew()
       With pStockItemInfo
 
-        '' .CurrentInventory = DBReadDecimal(rDataReader, "CurrentInventory")
+        .CurrentInventory = DBReadDecimal(rDataReader, "Qty")
         '' .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
         ''.OrderQty = DBReadDecimal(rDataReader, "OrderQty")
         ''.Balance = DBReadDecimal(rDataReader, "Balance")
       End With
       With pStockItemInfo.StockItem
+        .StockItemID = DBReadInteger(rDataReader, "StockItemID")
         .Category = DBReadByte(rDataReader, "Category")
         .ItemType = DBReadByte(rDataReader, "ItemType")
         .StockCode = DBReadString(rDataReader, "StockCode")

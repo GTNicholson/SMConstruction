@@ -197,5 +197,54 @@ Public Class dsoStock
 
   End Function
 
+  Public Function LoadStockItemLocationsByWhere(ByVal vStockItemLocations As colStockItemLocations, ByVal vWhere As String) As Boolean
+    Dim mdtoSILocation As New dtoStockItemLocation(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect() Then
+        mOK = mdtoSILocation.LoadStockItemLocationCollectionByWhere(vStockItemLocations, vWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+    Return mOK
+  End Function
+
+  Public Function SaveStockItemLocations(ByVal vSILocations As colStockItemLocations) As Boolean
+    Dim mdtoSILocation As New dtoStockItemLocation(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect() Then
+        mOK = mdtoSILocation.SaveStockItemLocationCollection(vSILocations)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
+  Public Function GetCurrentInventory(ByVal vStockItemID As Integer) As Decimal
+    Dim mSQL As String
+    Dim mRetVal As Decimal = 0
+    Try
+      pDBConn.Connect()
+      mSQL = "Select Sum(Qty) from StockItemLocation Where StockItemID = " & vStockItemID
+      mRetVal = pDBConn.ExecuteScalar(mSQL)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
 
 End Class

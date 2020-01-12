@@ -146,4 +146,191 @@ Public Class dsoStockTransactions
   End Function
 
 
+  Public Function AmendmentSetStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vNewQty As Decimal, ByVal vRefObjectType As eObjectType, ByVal vRefObjectID As Integer, ByVal vTransDate As DateTime, ByRef rAmmendmentLog As dmStockItemLocationAmendmentLog) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
+    Dim mdtoStockItemLocationAmendmentLog As New dtoStockItemLocationAmendmentLog(pDBConn)
+    Dim mSILTranLog As dmStockItemTransactionLog
+
+    Dim mSILTranLogRollForward As New colStockItemTransactionLogs
+    Dim mPrevTran As dmStockItemTransactionLog
+    Dim mPrevValue As Decimal = 0
+    Dim mSubsequentStockCheckTran As dmStockItemTransactionLog
+
+    Dim mAdjustmentQty As Decimal
+    Dim mNewStockLevel As Decimal
+
+    Try
+
+      If vStockitemLocation IsNot Nothing Then
+
+        pDBConn.Connect()
+
+        pDBConn.ConnectionBeginTrans()
+
+        '// Get the previous Transaction
+        mPrevTran = GetLastTransactionBeforeConnected(vTransDate, vStockitemLocation.StockItemLocationID)
+        If mPrevTran IsNot Nothing Then mPrevValue = mPrevTran.NewValue
+
+        mAdjustmentQty = vNewQty - mPrevValue
+
+        '// Get any stock check after the insert date
+        mSubsequentStockCheckTran = GetFirstStockCheckTransactionAfterConnected(vTransDate, vStockitemLocation.StockItemLocationID)
+
+        '// Get transactions after this date that need to have their prev and new changed
+        If mSubsequentStockCheckTran IsNot Nothing Then
+          mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, mSubsequentStockCheckTran.TransactionDate, vStockitemLocation.StockItemLocationID)
+        Else
+          mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
+        End If
+
+        '//Save the ammentmentlog first to get an ID
+        mOK = mdtoStockItemLocationAmendmentLog.SaveStockItemLocationAmendmentLog(rAmmendmentLog)
+
+        mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionSet(mPrevValue, vNewQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, 0, vTransDate, eTransactionType.Amendment, pDBConn.RTISUser.UserID, "", vRefObjectType, rAmmendmentLog.StockItemLocationAmendmentLogID)
+
+        mNewStockLevel = vNewQty
+
+        For Each mTran As dmStockItemTransactionLog In mSILTranLogRollForward
+          Select Case mTran.TransactionType
+            Case eTransactionType.StockCheck, eTransactionType.Amendment
+              '//This should not happen as we have the subsequent stock check transaction as a seperate transaction
+              mTran.PrevValue += mAdjustmentQty
+            Case Else
+              mTran.PrevValue += mAdjustmentQty
+              mTran.NewValue += mAdjustmentQty
+              mNewStockLevel = mTran.NewValue
+          End Select
+        Next
+
+        If mSubsequentStockCheckTran Is Nothing Then
+          If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty = " & mNewStockLevel & " WHERE StockItemLocationID =" & vStockitemLocation.StockItemLocationID) > 0 Then
+          Else
+            mOK = False
+          End If
+        Else
+          '//Change the PrevValue of the Stock Check Transaction
+          mSubsequentStockCheckTran.PrevValue += mAdjustmentQty
+          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSubsequentStockCheckTran)
+        End If
+
+        If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSILTranLog)
+
+        If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
+
+
+      End If
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+
+      If pDBConn.IsConnected Then
+        If mOK Then
+          pDBConn.ConnectionCommitTrans()
+        Else
+          pDBConn.ConnectionRollBackTrans()
+        End If
+
+        pDBConn.Disconnect()
+      End If
+    End Try
+
+    Return mOK
+  End Function
+
+
+  Public Function AdjustmentSetStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vAdjustQty As Decimal, ByVal vRefObjectType As eObjectType, ByVal vRefObjectID As Integer, ByVal vTransDate As DateTime, ByVal rAmmendmentLog As dmStockItemLocationAmendmentLog) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
+    Dim mSILTranLog As dmStockItemTransactionLog
+    Dim mSILTranLogRollForward As New colStockItemTransactionLogs
+    Dim mPrevTran As dmStockItemTransactionLog
+    Dim mPrevValue As Decimal = 0
+    Dim mSubsequentStockCheckTran As dmStockItemTransactionLog
+    Dim mdtoStockItemLocationAmendmentLog As New dtoStockItemLocationAmendmentLog(pDBConn)
+
+    Dim mNewStockLevel As Decimal
+
+    Try
+
+      If vStockitemLocation IsNot Nothing Then
+
+
+        If vAdjustQty <> 0 Then
+
+          pDBConn.Connect()
+
+          pDBConn.ConnectionBeginTrans()
+
+          '// Get the previous Transaction
+          mPrevTran = GetLastTransactionBeforeConnected(vTransDate, vStockitemLocation.StockItemLocationID)
+          If mPrevTran IsNot Nothing Then mPrevValue = mPrevTran.NewValue
+
+          '// Get any stock check after the insert date
+          mSubsequentStockCheckTran = GetFirstStockCheckTransactionAfterConnected(vTransDate, vStockitemLocation.StockItemLocationID)
+
+          '// Get transactions after this date that need to have their prev and new changed
+          If mSubsequentStockCheckTran IsNot Nothing Then
+            mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, mSubsequentStockCheckTran.TransactionDate, vStockitemLocation.StockItemLocationID)
+          Else
+            mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
+          End If
+
+          '//Save the ammentmentlog first to get an ID
+          mOK = mdtoStockItemLocationAmendmentLog.SaveStockItemLocationAmendmentLog(rAmmendmentLog)
+
+          mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, vAdjustQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, 0, vTransDate, eTransactionType.Adjustment, pDBConn.RTISUser.UserID, "", vRefObjectType, rAmmendmentLog.StockItemLocationAmendmentLogID)
+          mNewStockLevel = mPrevValue + vAdjustQty
+
+          For Each mTran As dmStockItemTransactionLog In mSILTranLogRollForward
+            Select Case mTran.TransactionType
+              Case eTransactionType.StockCheck, eTransactionType.Amendment
+                '//This should not happen as we have the subsequent stock check transaction as a seperate transaction
+                mTran.PrevValue += vAdjustQty
+              Case Else
+                mTran.PrevValue += vAdjustQty
+                mTran.NewValue += vAdjustQty
+                mNewStockLevel = mTran.NewValue
+            End Select
+          Next
+
+          If mSubsequentStockCheckTran Is Nothing Then
+            If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & vStockitemLocation.StockItemLocationID) > 0 Then
+            Else
+              mOK = False
+            End If
+          Else
+            '//Change the PrevValue of the Stock Check Transaction
+            mSubsequentStockCheckTran.PrevValue += vAdjustQty
+            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSubsequentStockCheckTran)
+          End If
+
+          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSILTranLog)
+
+          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
+
+        End If
+      End If
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+
+      If pDBConn.IsConnected Then
+        If mOK Then
+          pDBConn.ConnectionCommitTrans()
+        Else
+          pDBConn.ConnectionRollBackTrans()
+        End If
+
+        pDBConn.Disconnect()
+      End If
+    End Try
+
+    Return mOK
+  End Function
+
+
 End Class
