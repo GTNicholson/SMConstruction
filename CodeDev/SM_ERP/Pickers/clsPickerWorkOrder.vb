@@ -1,4 +1,4 @@
-﻿Public Class clsPickerWorkOrder : Inherits clsPickerBase(Of dmCustomer)
+﻿Public Class clsPickerWorkOrder : Inherits clsPickerBase(Of clsWorkOrderInfo)
 
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
 

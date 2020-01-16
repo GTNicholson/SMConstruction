@@ -33,7 +33,6 @@ Partial Public Class srepOtherMaterialsChange
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-    Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
     Me.XrTable6 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow14 = New DevExpress.XtraReports.UI.XRTableRow()
     Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -44,6 +43,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell50 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,7 +51,7 @@ Partial Public Class srepOtherMaterialsChange
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-    Me.Detail.HeightF = 61.09069!
+    Me.Detail.HeightF = 25.72304!
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -65,7 +65,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
     Me.XrTable1.Name = "XrTable1"
     Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-    Me.XrTable1.SizeF = New System.Drawing.SizeF(1054.0!, 58.63971!)
+    Me.XrTable1.SizeF = New System.Drawing.SizeF(1054.0!, 25.72304!)
     Me.XrTable1.StylePriority.UseBackColor = False
     Me.XrTable1.StylePriority.UseBorders = False
     Me.XrTable1.StylePriority.UseFont = False
@@ -185,14 +185,14 @@ Partial Public Class srepOtherMaterialsChange
     '
     'TopMargin
     '
-    Me.TopMargin.HeightF = 8.666656!
+    Me.TopMargin.HeightF = 9.0!
     Me.TopMargin.Name = "TopMargin"
     Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
     '
     'BottomMargin
     '
-    Me.BottomMargin.HeightF = 18.0!
+    Me.BottomMargin.HeightF = 0!
     Me.BottomMargin.Name = "BottomMargin"
     Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -207,7 +207,7 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrLabel16.BorderWidth = 2.0!
     Me.XrLabel16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
     Me.XrLabel16.ForeColor = System.Drawing.Color.Black
-    Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 17.70831!)
+    Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 38.54163!)
     Me.XrLabel16.Name = "XrLabel16"
     Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel16.SizeF = New System.Drawing.SizeF(1054.0!, 32.2917!)
@@ -220,12 +220,6 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrLabel16.Text = "CAMBIOS NECESARIOS"
     Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     '
-    'ReportHeader
-    '
-    Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable6, Me.XrLabel16})
-    Me.ReportHeader.HeightF = 78.79169!
-    Me.ReportHeader.Name = "ReportHeader"
-    '
     'XrTable6
     '
     Me.XrTable6.BackColor = System.Drawing.Color.Transparent
@@ -234,7 +228,7 @@ Partial Public Class srepOtherMaterialsChange
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrTable6.Font = New System.Drawing.Font("Arial", 8.0!)
     Me.XrTable6.ForeColor = System.Drawing.Color.Black
-    Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.0!)
+    Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 70.83334!)
     Me.XrTable6.Name = "XrTable6"
     Me.XrTable6.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow14})
     Me.XrTable6.SizeF = New System.Drawing.SizeF(1054.0!, 28.79168!)
@@ -363,11 +357,17 @@ Partial Public Class srepOtherMaterialsChange
     Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
     Me.XrTableCell4.Weight = 1.1125044611274995R
     '
+    'PageHeader
+    '
+    Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable6, Me.XrLabel16})
+    Me.PageHeader.HeightF = 100.0!
+    Me.PageHeader.Name = "PageHeader"
+    '
     'srepOtherMaterialsChange
     '
-    Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
+    Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader})
     Me.Landscape = True
-    Me.Margins = New System.Drawing.Printing.Margins(27, 9, 9, 18)
+    Me.Margins = New System.Drawing.Printing.Margins(27, 9, 9, 0)
     Me.PageHeight = 850
     Me.PageWidth = 1100
     Me.Version = "17.1"
@@ -380,7 +380,6 @@ Partial Public Class srepOtherMaterialsChange
   Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
   Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
   Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
-  Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
   Friend WithEvents XrTable6 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow14 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
@@ -401,4 +400,5 @@ Partial Public Class srepOtherMaterialsChange
   Friend WithEvents xrtComments As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtDateChange As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
 End Class

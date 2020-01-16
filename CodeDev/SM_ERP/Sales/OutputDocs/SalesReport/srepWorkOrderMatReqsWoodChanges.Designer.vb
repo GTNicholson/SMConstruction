@@ -39,7 +39,6 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
     Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-    Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
     Me.xrlTotalBoardFeet = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
@@ -58,6 +57,7 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.XrTableCell41 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell42 = New DevExpress.XtraReports.UI.XRTableCell()
     Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
     CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,23 +184,17 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     '
     'TopMargin
     '
-    Me.TopMargin.HeightF = 100.0!
+    Me.TopMargin.HeightF = 9.375!
     Me.TopMargin.Name = "TopMargin"
     Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
     '
     'BottomMargin
     '
-    Me.BottomMargin.HeightF = 100.0!
+    Me.BottomMargin.HeightF = 10.04973!
     Me.BottomMargin.Name = "BottomMargin"
     Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-    '
-    'ReportHeader
-    '
-    Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrlTotalBoardFeet, Me.XrLabel12, Me.XrTable5})
-    Me.ReportHeader.HeightF = 67.31771!
-    Me.ReportHeader.Name = "ReportHeader"
     '
     'xrlTotalBoardFeet
     '
@@ -211,7 +205,7 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.xrlTotalBoardFeet.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.xrlTotalBoardFeet.ForeColor = System.Drawing.Color.White
-    Me.xrlTotalBoardFeet.LocationFloat = New DevExpress.Utils.PointFloat(650.7879!, 0!)
+    Me.xrlTotalBoardFeet.LocationFloat = New DevExpress.Utils.PointFloat(650.7878!, 0.00003405979!)
     Me.xrlTotalBoardFeet.Name = "xrlTotalBoardFeet"
     Me.xrlTotalBoardFeet.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.xrlTotalBoardFeet.SizeF = New System.Drawing.SizeF(76.99329!, 32.29167!)
@@ -255,7 +249,7 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
     Me.XrTable5.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
     Me.XrTable5.ForeColor = System.Drawing.Color.Black
-    Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.29167!)
+    Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.60789!)
     Me.XrTable5.Name = "XrTable5"
     Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5})
     Me.XrTable5.SizeF = New System.Drawing.SizeF(1026.0!, 35.02604!)
@@ -399,11 +393,17 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
     Me.XrTableCell1.Text = "Autoriza"
     Me.XrTableCell1.Weight = 0.74881355333501731R
     '
+    'PageHeader
+    '
+    Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.xrlTotalBoardFeet, Me.XrTable5})
+    Me.PageHeader.HeightF = 67.63394!
+    Me.PageHeader.Name = "PageHeader"
+    '
     'srepWorkOrderMatReqsWoodChanges
     '
-    Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
+    Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader})
     Me.Landscape = True
-    Me.Margins = New System.Drawing.Printing.Margins(36, 28, 100, 100)
+    Me.Margins = New System.Drawing.Printing.Margins(36, 28, 9, 10)
     Me.PageHeight = 850
     Me.PageWidth = 1100
     Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
@@ -431,7 +431,6 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
   Friend WithEvents xrtMaterialTypeID As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtWoodSpecieID As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtQualityType As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
   Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
   Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
   Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
@@ -451,4 +450,5 @@ Partial Public Class srepWorkOrderMatReqsWoodChanges
   Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
   Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+  Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
 End Class

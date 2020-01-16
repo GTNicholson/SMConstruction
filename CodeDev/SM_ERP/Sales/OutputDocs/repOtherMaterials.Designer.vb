@@ -74,7 +74,7 @@ Partial Public Class repOtherMaterials
     'Detail
     '
     Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
-    Me.Detail.HeightF = 23.21867!
+    Me.Detail.HeightF = 20.3186!
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -553,7 +553,7 @@ Partial Public Class repOtherMaterials
     '
     'ReportFooter
     '
-    Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox2, Me.subrepOtherMaterialsChange})
+    Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.subrepOtherMaterialsChange, Me.XrPictureBox2})
     Me.ReportFooter.HeightF = 197.5322!
     Me.ReportFooter.Name = "ReportFooter"
     '
@@ -567,7 +567,7 @@ Partial Public Class repOtherMaterials
     '
     'subrepOtherMaterialsChange
     '
-    Me.subrepOtherMaterialsChange.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+    Me.subrepOtherMaterialsChange.LocationFloat = New DevExpress.Utils.PointFloat(0.00003973643!, 0!)
     Me.subrepOtherMaterialsChange.Name = "subrepOtherMaterialsChange"
     Me.subrepOtherMaterialsChange.SizeF = New System.Drawing.SizeF(1067.0!, 19.79167!)
     '

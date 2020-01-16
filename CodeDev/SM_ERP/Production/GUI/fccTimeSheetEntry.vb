@@ -143,6 +143,8 @@ Public Class fccTimeSheetEntry
 
   End Sub
 
+
+
   Public Sub LoadTimeSheetEntryUIs()
     Dim mTime As DateTime
     Dim mEntry As clsTimeSheetEntryUI
