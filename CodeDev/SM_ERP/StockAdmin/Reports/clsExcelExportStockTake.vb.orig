@@ -108,31 +108,25 @@ Public Class clsExcelExportStockTake
   End Sub
 
   Public Sub CreateSpreadSheet()
+<<<<<<< HEAD
+    Dim mRowPos As Integer = 0
+    Dim mNoteRange As DevExpress.Spreadsheet.Range
+    Dim mSumStartRow As Integer
+    Dim mColumnHeading As String
+    Dim mDeliveryRowAdded As Integer
+
     pSpreadSheet = New DevExpress.Spreadsheet.Workbook
-    pCurrentSheet = pSpreadSheet.Worksheets(0)
-    AddHeader()
-    AddColumnHeaders()
-    AddItems()
-  End Sub
 
-  Private Sub AddHeader()
-    pCurrentSheet.Cells(1, 1).SetValue(pStockTake.Description)
-  End Sub
+      pSpreadSheet.LoadDocument(pTemplateFileName)
 
-  Private Sub AddColumnHeaders()
-    pCurrentSheet.Cells(cColumnRowPos, cColPosStockCode).SetValue("Stock Code")
+      mRowPos += 16
 
-  End Sub
+      AddHeadings(pHeaderRow, False)
 
-  Private Sub AddItems()
-    Dim mRow As Integer
+      mSumStartRow = mRowPos + 1
 
-    mRow = cColumnRowPos + 1
 
-    For Each mItem As clsStockTakeItemEditor In pStockTakeItemEditors
-      pCurrentSheet.Cells(mRow, cColPosStockCode).SetValue(mItem.StockItem.Description)
-      mRow = mRow + 1
-    Next
+
   End Sub
 
 
@@ -158,6 +152,33 @@ Public Class clsExcelExportStockTake
   Public Sub New(ByRef rProductionBatch As dmStockTake, ByRef rWorkBookTemplate As DevExpress.Spreadsheet.Workbook, ByRef rSummarised As Boolean)
     Me.New(rProductionBatch, rWorkBookTemplate)
     pSummarised = rSummarised
+=======
+    pSpreadSheet = New DevExpress.Spreadsheet.Workbook
+    pCurrentSheet = pSpreadSheet.Worksheets(0)
+    AddHeader()
+    AddColumnHeaders()
+    AddItems()
+  End Sub
+
+  Private Sub AddHeader()
+    pCurrentSheet.Cells(1, 1).SetValue(pStockTake.Description)
+  End Sub
+
+  Private Sub AddColumnHeaders()
+    pCurrentSheet.Cells(cColumnRowPos, cColPosStockCode).SetValue("Stock Code")
+
+  End Sub
+
+  Private Sub AddItems()
+    Dim mRow As Integer
+
+    mRow = cColumnRowPos + 1
+
+    For Each mItem As clsStockTakeItemEditor In pStockTakeItemEditors
+      pCurrentSheet.Cells(mRow, cColPosStockCode).SetValue(mItem.StockItem.Description)
+      mRow = mRow + 1
+    Next
+>>>>>>> 374a143399b6c436372508142f8547033ca24bea
   End Sub
 
 End Class
