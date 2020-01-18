@@ -149,6 +149,8 @@
     End Get
   End Property
 
+
+
   Public ReadOnly Property CompanyName As String
     Get
       Return pCustomer.CompanyName
