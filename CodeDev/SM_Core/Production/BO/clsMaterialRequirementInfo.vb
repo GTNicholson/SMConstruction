@@ -225,6 +225,19 @@
     End Get
   End Property
 
+  Public ReadOnly Property PickedQty As Decimal
+    Get
+      Return pMaterialRequirement.PickedQty
+    End Get
+  End Property
+
+  Public ReadOnly Property QtyOS As Decimal
+    Get
+      Return pMaterialRequirement.Quantity - pMaterialRequirement.PickedQty
+    End Get
+  End Property
+
+
   Public ReadOnly Property DateChange As DateTime
     Get
       Return pMaterialRequirement.DateChange

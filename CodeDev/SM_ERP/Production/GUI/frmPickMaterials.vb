@@ -159,9 +159,10 @@ Public Class frmPickMaterials
     Me.Dispose()
   End Sub
 
-  Private Sub btnProcessPicks_Click(sender As Object, e As EventArgs) Handles btnProcessPicks.Click
+  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     Try
-      pFormController.ProcessPicks
+      pFormController.ProcessPicks()
+      gvMaterialRequirementInfos.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
