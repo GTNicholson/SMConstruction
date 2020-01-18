@@ -61,5 +61,28 @@ Public Class fccPickMaterials
   End Sub
 
 
+  Public Sub LoadMaterialRequirementInfos(ByRef rcolWorkOrderInfos As colMaterialRequirementInfos)
+
+    Dim mdto As dtoMaterialRequirementInfo
+    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID
+    rcolWorkOrderInfos.Clear()
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+      mdto.LoadMaterialRequirementInfoCollectionByWhere(rcolWorkOrderInfos, mWhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+
+  End Sub
+
 
 End Class

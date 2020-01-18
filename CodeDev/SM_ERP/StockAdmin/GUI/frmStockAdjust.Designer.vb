@@ -25,6 +25,7 @@ Partial Class frmStockAdjust
     Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockAdjust))
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+    Me.radgrpStockAdjustType = New DevExpress.XtraEditors.RadioGroup()
     Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
     Me.spnStockAdjustQty = New DevExpress.XtraEditors.SpinEdit()
     Me.datSelectedTime = New DevExpress.XtraEditors.TimeEdit()
@@ -34,15 +35,14 @@ Partial Class frmStockAdjust
     Me.memNotes = New DevExpress.XtraEditors.MemoEdit()
     Me.datSelectedDate = New DevExpress.XtraEditors.DateEdit()
     Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-    Me.radgrpStockAdjustType = New DevExpress.XtraEditors.RadioGroup()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
+    CType(Me.radgrpStockAdjustType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnStockAdjustQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datSelectedTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.memNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datSelectedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datSelectedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.radgrpStockAdjustType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'PanelControl1
@@ -60,8 +60,18 @@ Partial Class frmStockAdjust
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(321, 196)
+    Me.PanelControl1.Size = New System.Drawing.Size(355, 201)
     Me.PanelControl1.TabIndex = 0
+    '
+    'radgrpStockAdjustType
+    '
+    Me.radgrpStockAdjustType.Location = New System.Drawing.Point(64, 9)
+    Me.radgrpStockAdjustType.Name = "radgrpStockAdjustType"
+    Me.radgrpStockAdjustType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.radgrpStockAdjustType.Properties.Appearance.Options.UseFont = True
+    Me.radgrpStockAdjustType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Ajustar Inventario"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Reiniciar Inventario")})
+    Me.radgrpStockAdjustType.Size = New System.Drawing.Size(277, 26)
+    Me.radgrpStockAdjustType.TabIndex = 149
     '
     'LabelControl2
     '
@@ -71,9 +81,9 @@ Partial Class frmStockAdjust
     Me.LabelControl2.Appearance.Options.UseForeColor = True
     Me.LabelControl2.Location = New System.Drawing.Point(14, 43)
     Me.LabelControl2.Name = "LabelControl2"
-    Me.LabelControl2.Size = New System.Drawing.Size(45, 14)
+    Me.LabelControl2.Size = New System.Drawing.Size(48, 14)
     Me.LabelControl2.TabIndex = 148
-    Me.LabelControl2.Text = "Quantity"
+    Me.LabelControl2.Text = "Cantidad"
     '
     'spnStockAdjustQty
     '
@@ -104,21 +114,21 @@ Partial Class frmStockAdjust
     '
     Me.btnCancel.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.btnCancel.Appearance.Options.UseFont = True
-    Me.btnCancel.Location = New System.Drawing.Point(251, 167)
+    Me.btnCancel.Location = New System.Drawing.Point(240, 166)
     Me.btnCancel.Name = "btnCancel"
-    Me.btnCancel.Size = New System.Drawing.Size(55, 23)
+    Me.btnCancel.Size = New System.Drawing.Size(66, 23)
     Me.btnCancel.TabIndex = 58
-    Me.btnCancel.Text = "Cancel"
+    Me.btnCancel.Text = "Cancelar"
     '
     'btnConfirm
     '
     Me.btnConfirm.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.btnConfirm.Appearance.Options.UseFont = True
-    Me.btnConfirm.Location = New System.Drawing.Point(190, 167)
+    Me.btnConfirm.Location = New System.Drawing.Point(64, 166)
     Me.btnConfirm.Name = "btnConfirm"
-    Me.btnConfirm.Size = New System.Drawing.Size(55, 23)
+    Me.btnConfirm.Size = New System.Drawing.Size(73, 23)
     Me.btnConfirm.TabIndex = 57
-    Me.btnConfirm.Text = "Confirm"
+    Me.btnConfirm.Text = "Confirmar"
     '
     'LabelControl1
     '
@@ -128,9 +138,9 @@ Partial Class frmStockAdjust
     Me.LabelControl1.Appearance.Options.UseForeColor = True
     Me.LabelControl1.Location = New System.Drawing.Point(14, 96)
     Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(32, 14)
+    Me.LabelControl1.Size = New System.Drawing.Size(31, 14)
     Me.LabelControl1.TabIndex = 50
-    Me.LabelControl1.Text = "Notes"
+    Me.LabelControl1.Text = "Notas"
     '
     'memNotes
     '
@@ -163,25 +173,15 @@ Partial Class frmStockAdjust
     Me.LabelControl7.Appearance.Options.UseForeColor = True
     Me.LabelControl7.Location = New System.Drawing.Point(14, 70)
     Me.LabelControl7.Name = "LabelControl7"
-    Me.LabelControl7.Size = New System.Drawing.Size(24, 14)
+    Me.LabelControl7.Size = New System.Drawing.Size(32, 14)
     Me.LabelControl7.TabIndex = 47
-    Me.LabelControl7.Text = "Date"
-    '
-    'radgrpStockAdjustType
-    '
-    Me.radgrpStockAdjustType.Location = New System.Drawing.Point(64, 9)
-    Me.radgrpStockAdjustType.Name = "radgrpStockAdjustType"
-    Me.radgrpStockAdjustType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.radgrpStockAdjustType.Properties.Appearance.Options.UseFont = True
-    Me.radgrpStockAdjustType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Adjust Stock By"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Reset Stock To")})
-    Me.radgrpStockAdjustType.Size = New System.Drawing.Size(242, 26)
-    Me.radgrpStockAdjustType.TabIndex = 149
+    Me.LabelControl7.Text = "Fecha"
     '
     'frmStockAdjust
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(321, 196)
+    Me.ClientSize = New System.Drawing.Size(355, 201)
     Me.Controls.Add(Me.PanelControl1)
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
     Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -189,16 +189,16 @@ Partial Class frmStockAdjust
     Me.MinimizeBox = False
     Me.Name = "frmStockAdjust"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "Stock Adjustment"
+    Me.Text = "Ajuste de Inventario"
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
     Me.PanelControl1.PerformLayout()
+    CType(Me.radgrpStockAdjustType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.spnStockAdjustQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datSelectedTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.memNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datSelectedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datSelectedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.radgrpStockAdjustType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub

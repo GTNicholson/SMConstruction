@@ -28,6 +28,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pAreaID As Int32
   Private pSupplierStockCode As String
   Private pComments As String
+  Private pPickedQty As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -80,7 +81,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .DateChange = DateChange
       .DateOtherMaterial = DateOtherMaterial
       .StockItemID = StockItemID
-
+      .PickedQty = PickedQty
       .UoM = UoM
       .AreaID = AreaID
       .SupplierStockCode = SupplierStockCode
@@ -94,6 +95,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property PickedQty() As Decimal
+    Get
+      Return pPickedQty
+    End Get
+    Set(ByVal value As Decimal)
+      If pPickedQty <> value Then IsDirty = True
+      pPickedQty = value
+    End Set
+  End Property
 
   Public Property UoM() As String
     Get

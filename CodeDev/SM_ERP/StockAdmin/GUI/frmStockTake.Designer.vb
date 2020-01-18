@@ -24,9 +24,7 @@ Partial Class frmStockTake
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockTake))
-    Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.puccStockItemValuationHistorys = New DevExpress.XtraEditors.PopupContainerControl()
@@ -86,35 +84,15 @@ Partial Class frmStockTake
     Me.grdStockCheckItem = New DevExpress.XtraGrid.GridControl()
     Me.repitPUStockItemValuationHistorys = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
     Me.grpDetail = New DevExpress.XtraEditors.GroupControl()
-    Me.btnAutoCreateSheets = New DevExpress.XtraEditors.SimpleButton()
     Me.btnDeselectAll = New DevExpress.XtraEditors.SimpleButton()
     Me.lblViewMode = New DevExpress.XtraEditors.LabelControl()
     Me.btnDeselectVisible = New DevExpress.XtraEditors.SimpleButton()
     Me.radGRNMode = New DevExpress.XtraEditors.RadioGroup()
     Me.btnSelectVisible = New DevExpress.XtraEditors.SimpleButton()
-    Me.pceStockTakeSheets = New DevExpress.XtraEditors.PopupContainerEdit()
-    Me.pccStockTakeSheets = New DevExpress.XtraEditors.PopupContainerControl()
-    Me.grdStockTakeSheets = New DevExpress.XtraGrid.GridControl()
-    Me.gvStockTakeSheets = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcNoOfItems = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repDateFormat = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repbtnViewSheet = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.btnAddToNextSheet = New DevExpress.XtraEditors.SimpleButton()
     Me.datDateSystemQty = New DevExpress.XtraEditors.DateEdit()
     Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
     Me.btnClearSystemQty = New DevExpress.XtraEditors.SimpleButton()
     Me.btnClearRange = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnApplyRange = New DevExpress.XtraEditors.SimpleButton()
-    Me.lblRangeEnd = New DevExpress.XtraEditors.LabelControl()
-    Me.lblRangeStart = New DevExpress.XtraEditors.LabelControl()
-    Me.txtRangeStockCodeEnd = New DevExpress.XtraEditors.TextEdit()
-    Me.lblRange = New DevExpress.XtraEditors.LabelControl()
-    Me.txtRangeStockCodeStart = New DevExpress.XtraEditors.TextEdit()
     Me.dateStockCheck = New DevExpress.XtraEditors.DateEdit()
     Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
     Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -137,18 +115,8 @@ Partial Class frmStockTake
     CType(Me.grpDetail, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpDetail.SuspendLayout()
     CType(Me.radGRNMode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.pceStockTakeSheets.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.pccStockTakeSheets, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.pccStockTakeSheets.SuspendLayout()
-    CType(Me.grdStockTakeSheets, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvStockTakeSheets, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repDateFormat, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repDateFormat.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repbtnViewSheet, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datDateSystemQty.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datDateSystemQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtRangeStockCodeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtRangeStockCodeStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dateStockCheck.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.dateStockCheck.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtStockCheckDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -505,8 +473,8 @@ Partial Class frmStockTake
     'repitbtStockItemRefresh
     '
     Me.repitbtStockItemRefresh.AutoHeight = False
-    EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
-    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions3, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
+    EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
     Me.repitbtStockItemRefresh.Name = "repitbtStockItemRefresh"
     '
     'GridColumn1
@@ -717,7 +685,7 @@ Partial Class frmStockTake
     Me.grdStockCheckItem.MainView = Me.gvStockCheckItem
     Me.grdStockCheckItem.Name = "grdStockCheckItem"
     Me.grdStockCheckItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitPUStockItemValuationHistorys, Me.RepositoryItemSpinEditCounted, Me.repitbtStockItemRefresh})
-    Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 518)
+    Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 546)
     Me.grdStockCheckItem.TabIndex = 6
     Me.grdStockCheckItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockCheckItem})
     '
@@ -742,45 +710,28 @@ Partial Class frmStockTake
     Me.grpDetail.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpDetail.AppearanceCaption.Options.UseFont = True
     Me.grpDetail.AppearanceCaption.Options.UseForeColor = True
-    Me.grpDetail.Controls.Add(Me.btnAutoCreateSheets)
     Me.grpDetail.Controls.Add(Me.btnDeselectAll)
     Me.grpDetail.Controls.Add(Me.lblViewMode)
     Me.grpDetail.Controls.Add(Me.btnDeselectVisible)
     Me.grpDetail.Controls.Add(Me.radGRNMode)
     Me.grpDetail.Controls.Add(Me.btnSelectVisible)
-    Me.grpDetail.Controls.Add(Me.pceStockTakeSheets)
-    Me.grpDetail.Controls.Add(Me.btnAddToNextSheet)
     Me.grpDetail.Controls.Add(Me.datDateSystemQty)
     Me.grpDetail.Controls.Add(Me.LabelControl1)
     Me.grpDetail.Controls.Add(Me.btnClearSystemQty)
     Me.grpDetail.Controls.Add(Me.btnClearRange)
-    Me.grpDetail.Controls.Add(Me.btnApplyRange)
-    Me.grpDetail.Controls.Add(Me.lblRangeEnd)
-    Me.grpDetail.Controls.Add(Me.lblRangeStart)
-    Me.grpDetail.Controls.Add(Me.txtRangeStockCodeEnd)
-    Me.grpDetail.Controls.Add(Me.lblRange)
-    Me.grpDetail.Controls.Add(Me.txtRangeStockCodeStart)
     Me.grpDetail.Controls.Add(Me.dateStockCheck)
     Me.grpDetail.Controls.Add(Me.LabelControl7)
     Me.grpDetail.Controls.Add(Me.LabelControl8)
     Me.grpDetail.Controls.Add(Me.txtStockCheckDesc)
     Me.grpDetail.Location = New System.Drawing.Point(6, 6)
     Me.grpDetail.Name = "grpDetail"
-    Me.grpDetail.Size = New System.Drawing.Size(1359, 113)
+    Me.grpDetail.Size = New System.Drawing.Size(1359, 85)
     Me.grpDetail.TabIndex = 95
     Me.grpDetail.Text = "Captura de Inentario"
     '
-    'btnAutoCreateSheets
-    '
-    Me.btnAutoCreateSheets.Location = New System.Drawing.Point(1030, 44)
-    Me.btnAutoCreateSheets.Name = "btnAutoCreateSheets"
-    Me.btnAutoCreateSheets.Size = New System.Drawing.Size(109, 23)
-    Me.btnAutoCreateSheets.TabIndex = 206
-    Me.btnAutoCreateSheets.Text = "Auto crear Hojas"
-    '
     'btnDeselectAll
     '
-    Me.btnDeselectAll.Location = New System.Drawing.Point(289, 86)
+    Me.btnDeselectAll.Location = New System.Drawing.Point(289, 56)
     Me.btnDeselectAll.Name = "btnDeselectAll"
     Me.btnDeselectAll.Size = New System.Drawing.Size(105, 23)
     Me.btnDeselectAll.TabIndex = 68
@@ -792,7 +743,7 @@ Partial Class frmStockTake
     Me.lblViewMode.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.lblViewMode.Appearance.Options.UseFont = True
     Me.lblViewMode.Appearance.Options.UseForeColor = True
-    Me.lblViewMode.Location = New System.Drawing.Point(406, 88)
+    Me.lblViewMode.Location = New System.Drawing.Point(410, 30)
     Me.lblViewMode.Name = "lblViewMode"
     Me.lblViewMode.Size = New System.Drawing.Size(79, 14)
     Me.lblViewMode.TabIndex = 205
@@ -800,7 +751,7 @@ Partial Class frmStockTake
     '
     'btnDeselectVisible
     '
-    Me.btnDeselectVisible.Location = New System.Drawing.Point(172, 85)
+    Me.btnDeselectVisible.Location = New System.Drawing.Point(168, 56)
     Me.btnDeselectVisible.Name = "btnDeselectVisible"
     Me.btnDeselectVisible.Size = New System.Drawing.Size(111, 23)
     Me.btnDeselectVisible.TabIndex = 66
@@ -809,7 +760,7 @@ Partial Class frmStockTake
     'radGRNMode
     '
     Me.radGRNMode.EditValue = CType(2, Byte)
-    Me.radGRNMode.Location = New System.Drawing.Point(491, 85)
+    Me.radGRNMode.Location = New System.Drawing.Point(519, 24)
     Me.radGRNMode.Name = "radGRNMode"
     Me.radGRNMode.Properties.AllowMouseWheel = False
     Me.radGRNMode.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
@@ -821,142 +772,21 @@ Partial Class frmStockTake
     Me.radGRNMode.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
     Me.radGRNMode.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(2, Byte), "Todo"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(3, Byte), "No Asignado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(1, Byte), "Conteo")})
     Me.radGRNMode.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
-    Me.radGRNMode.Size = New System.Drawing.Size(275, 20)
+    Me.radGRNMode.Size = New System.Drawing.Size(226, 20)
     Me.radGRNMode.TabIndex = 204
     '
     'btnSelectVisible
     '
-    Me.btnSelectVisible.Location = New System.Drawing.Point(63, 85)
+    Me.btnSelectVisible.Location = New System.Drawing.Point(59, 56)
     Me.btnSelectVisible.Name = "btnSelectVisible"
     Me.btnSelectVisible.Size = New System.Drawing.Size(103, 23)
     Me.btnSelectVisible.TabIndex = 65
     Me.btnSelectVisible.Text = "Seleccionar Visible"
     '
-    'pceStockTakeSheets
-    '
-    Me.pceStockTakeSheets.Location = New System.Drawing.Point(924, 46)
-    Me.pceStockTakeSheets.MenuManager = Me.BarManager1
-    Me.pceStockTakeSheets.Name = "pceStockTakeSheets"
-    Me.pceStockTakeSheets.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.pceStockTakeSheets.Properties.PopupControl = Me.pccStockTakeSheets
-    Me.pceStockTakeSheets.Size = New System.Drawing.Size(100, 20)
-    Me.pceStockTakeSheets.TabIndex = 64
-    '
-    'pccStockTakeSheets
-    '
-    Me.pccStockTakeSheets.Controls.Add(Me.grdStockTakeSheets)
-    Me.pccStockTakeSheets.Location = New System.Drawing.Point(942, 256)
-    Me.pccStockTakeSheets.Name = "pccStockTakeSheets"
-    Me.pccStockTakeSheets.Size = New System.Drawing.Size(501, 220)
-    Me.pccStockTakeSheets.TabIndex = 206
-    '
-    'grdStockTakeSheets
-    '
-    Me.grdStockTakeSheets.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdStockTakeSheets.Location = New System.Drawing.Point(0, 0)
-    Me.grdStockTakeSheets.MainView = Me.gvStockTakeSheets
-    Me.grdStockTakeSheets.MenuManager = Me.BarManager1
-    Me.grdStockTakeSheets.Name = "grdStockTakeSheets"
-    Me.grdStockTakeSheets.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repDateFormat, Me.repbtnViewSheet})
-    Me.grdStockTakeSheets.Size = New System.Drawing.Size(501, 220)
-    Me.grdStockTakeSheets.TabIndex = 0
-    Me.grdStockTakeSheets.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockTakeSheets})
-    '
-    'gvStockTakeSheets
-    '
-    Me.gvStockTakeSheets.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.gvStockTakeSheets.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvStockTakeSheets.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.gcNoOfItems, Me.GridColumn10, Me.GridColumn11, Me.GridColumn18, Me.GridColumn19})
-    Me.gvStockTakeSheets.GridControl = Me.grdStockTakeSheets
-    Me.gvStockTakeSheets.Name = "gvStockTakeSheets"
-    Me.gvStockTakeSheets.OptionsView.ShowGroupPanel = False
-    '
-    'GridColumn8
-    '
-    Me.GridColumn8.Caption = "Sheet No"
-    Me.GridColumn8.FieldName = "SheetNo"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 1
-    Me.GridColumn8.Width = 164
-    '
-    'gcNoOfItems
-    '
-    Me.gcNoOfItems.Caption = "Number of Items"
-    Me.gcNoOfItems.DisplayFormat.FormatString = "#"
-    Me.gcNoOfItems.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcNoOfItems.FieldName = "gcNoOfItems"
-    Me.gcNoOfItems.Name = "gcNoOfItems"
-    Me.gcNoOfItems.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-    Me.gcNoOfItems.Visible = True
-    Me.gcNoOfItems.VisibleIndex = 3
-    Me.gcNoOfItems.Width = 201
-    '
-    'GridColumn10
-    '
-    Me.GridColumn10.Caption = "Description"
-    Me.GridColumn10.FieldName = "Description"
-    Me.GridColumn10.Name = "GridColumn10"
-    Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 2
-    Me.GridColumn10.Width = 266
-    '
-    'GridColumn11
-    '
-    Me.GridColumn11.Caption = "Issued"
-    Me.GridColumn11.ColumnEdit = Me.repDateFormat
-    Me.GridColumn11.FieldName = "DateIssued"
-    Me.GridColumn11.Name = "GridColumn11"
-    Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 4
-    Me.GridColumn11.Width = 153
-    '
-    'repDateFormat
-    '
-    Me.repDateFormat.AutoHeight = False
-    Me.repDateFormat.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, True, False, False, EditorButtonImageOptions1)})
-    Me.repDateFormat.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.repDateFormat.Name = "repDateFormat"
-    Me.repDateFormat.NullDate = New Date(CType(0, Long))
-    '
-    'GridColumn18
-    '
-    Me.GridColumn18.Caption = "Processed"
-    Me.GridColumn18.ColumnEdit = Me.repDateFormat
-    Me.GridColumn18.FieldName = "DateProcessed"
-    Me.GridColumn18.Name = "GridColumn18"
-    Me.GridColumn18.Visible = True
-    Me.GridColumn18.VisibleIndex = 5
-    Me.GridColumn18.Width = 160
-    '
-    'GridColumn19
-    '
-    Me.GridColumn19.Caption = " "
-    Me.GridColumn19.ColumnEdit = Me.repbtnViewSheet
-    Me.GridColumn19.Name = "GridColumn19"
-    Me.GridColumn19.Visible = True
-    Me.GridColumn19.VisibleIndex = 0
-    Me.GridColumn19.Width = 86
-    '
-    'repbtnViewSheet
-    '
-    Me.repbtnViewSheet.AutoHeight = False
-    Me.repbtnViewSheet.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View", -1, True, True, False, EditorButtonImageOptions2)})
-    Me.repbtnViewSheet.Name = "repbtnViewSheet"
-    Me.repbtnViewSheet.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
-    '
-    'btnAddToNextSheet
-    '
-    Me.btnAddToNextSheet.Location = New System.Drawing.Point(809, 44)
-    Me.btnAddToNextSheet.Name = "btnAddToNextSheet"
-    Me.btnAddToNextSheet.Size = New System.Drawing.Size(109, 23)
-    Me.btnAddToNextSheet.TabIndex = 63
-    Me.btnAddToNextSheet.Text = "Asignación de Hoja"
-    '
     'datDateSystemQty
     '
     Me.datDateSystemQty.EditValue = Nothing
-    Me.datDateSystemQty.Location = New System.Drawing.Point(1253, 40)
+    Me.datDateSystemQty.Location = New System.Drawing.Point(894, 25)
     Me.datDateSystemQty.MenuManager = Me.BarManager1
     Me.datDateSystemQty.Name = "datDateSystemQty"
     Me.datDateSystemQty.Properties.AllowMouseWheel = False
@@ -967,7 +797,7 @@ Partial Class frmStockTake
     Me.datDateSystemQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
     Me.datDateSystemQty.Properties.NullDate = New Date(CType(0, Long))
     Me.datDateSystemQty.Properties.ReadOnly = True
-    Me.datDateSystemQty.Size = New System.Drawing.Size(99, 22)
+    Me.datDateSystemQty.Size = New System.Drawing.Size(124, 22)
     Me.datDateSystemQty.TabIndex = 62
     '
     'LabelControl1
@@ -976,7 +806,7 @@ Partial Class frmStockTake
     Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.LabelControl1.Appearance.Options.UseFont = True
     Me.LabelControl1.Appearance.Options.UseForeColor = True
-    Me.LabelControl1.Location = New System.Drawing.Point(1141, 43)
+    Me.LabelControl1.Location = New System.Drawing.Point(782, 28)
     Me.LabelControl1.Name = "LabelControl1"
     Me.LabelControl1.Size = New System.Drawing.Size(106, 15)
     Me.LabelControl1.TabIndex = 61
@@ -984,7 +814,7 @@ Partial Class frmStockTake
     '
     'btnClearSystemQty
     '
-    Me.btnClearSystemQty.Location = New System.Drawing.Point(809, 86)
+    Me.btnClearSystemQty.Location = New System.Drawing.Point(420, 56)
     Me.btnClearSystemQty.Name = "btnClearSystemQty"
     Me.btnClearSystemQty.Size = New System.Drawing.Size(108, 23)
     Me.btnClearSystemQty.TabIndex = 59
@@ -993,80 +823,16 @@ Partial Class frmStockTake
     '
     'btnClearRange
     '
-    Me.btnClearRange.Location = New System.Drawing.Point(923, 86)
+    Me.btnClearRange.Location = New System.Drawing.Point(534, 57)
     Me.btnClearRange.Name = "btnClearRange"
     Me.btnClearRange.Size = New System.Drawing.Size(150, 23)
     Me.btnClearRange.TabIndex = 56
     Me.btnClearRange.Text = "Limpiar Cantidad Contada"
     '
-    'btnApplyRange
-    '
-    Me.btnApplyRange.Location = New System.Drawing.Point(682, 44)
-    Me.btnApplyRange.Name = "btnApplyRange"
-    Me.btnApplyRange.Size = New System.Drawing.Size(49, 23)
-    Me.btnApplyRange.TabIndex = 55
-    Me.btnApplyRange.Text = "Seleccionar"
-    '
-    'lblRangeEnd
-    '
-    Me.lblRangeEnd.Appearance.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblRangeEnd.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.lblRangeEnd.Appearance.Options.UseFont = True
-    Me.lblRangeEnd.Appearance.Options.UseForeColor = True
-    Me.lblRangeEnd.Location = New System.Drawing.Point(580, 33)
-    Me.lblRangeEnd.Name = "lblRangeEnd"
-    Me.lblRangeEnd.Size = New System.Drawing.Size(88, 12)
-    Me.lblRangeEnd.TabIndex = 54
-    Me.lblRangeEnd.Text = "Código de Inv. Final "
-    '
-    'lblRangeStart
-    '
-    Me.lblRangeStart.Appearance.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblRangeStart.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.lblRangeStart.Appearance.Options.UseFont = True
-    Me.lblRangeStart.Appearance.Options.UseForeColor = True
-    Me.lblRangeStart.Location = New System.Drawing.Point(476, 33)
-    Me.lblRangeStart.Name = "lblRangeStart"
-    Me.lblRangeStart.Size = New System.Drawing.Size(89, 12)
-    Me.lblRangeStart.TabIndex = 53
-    Me.lblRangeStart.Text = "Código de Inv. Inicial"
-    '
-    'txtRangeStockCodeEnd
-    '
-    Me.txtRangeStockCodeEnd.Location = New System.Drawing.Point(578, 45)
-    Me.txtRangeStockCodeEnd.MenuManager = Me.BarManager1
-    Me.txtRangeStockCodeEnd.Name = "txtRangeStockCodeEnd"
-    Me.txtRangeStockCodeEnd.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtRangeStockCodeEnd.Properties.Appearance.Options.UseFont = True
-    Me.txtRangeStockCodeEnd.Size = New System.Drawing.Size(98, 22)
-    Me.txtRangeStockCodeEnd.TabIndex = 52
-    '
-    'lblRange
-    '
-    Me.lblRange.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblRange.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.lblRange.Appearance.Options.UseFont = True
-    Me.lblRange.Appearance.Options.UseForeColor = True
-    Me.lblRange.Location = New System.Drawing.Point(409, 47)
-    Me.lblRange.Name = "lblRange"
-    Me.lblRange.Size = New System.Drawing.Size(37, 15)
-    Me.lblRange.TabIndex = 51
-    Me.lblRange.Text = "Rango"
-    '
-    'txtRangeStockCodeStart
-    '
-    Me.txtRangeStockCodeStart.Location = New System.Drawing.Point(474, 45)
-    Me.txtRangeStockCodeStart.MenuManager = Me.BarManager1
-    Me.txtRangeStockCodeStart.Name = "txtRangeStockCodeStart"
-    Me.txtRangeStockCodeStart.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.txtRangeStockCodeStart.Properties.Appearance.Options.UseFont = True
-    Me.txtRangeStockCodeStart.Size = New System.Drawing.Size(98, 22)
-    Me.txtRangeStockCodeStart.TabIndex = 50
-    '
     'dateStockCheck
     '
     Me.dateStockCheck.EditValue = Nothing
-    Me.dateStockCheck.Location = New System.Drawing.Point(303, 44)
+    Me.dateStockCheck.Location = New System.Drawing.Point(303, 28)
     Me.dateStockCheck.MenuManager = Me.BarManager1
     Me.dateStockCheck.Name = "dateStockCheck"
     Me.dateStockCheck.Properties.AllowMouseWheel = False
@@ -1084,7 +850,7 @@ Partial Class frmStockTake
     Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.LabelControl7.Appearance.Options.UseFont = True
     Me.LabelControl7.Appearance.Options.UseForeColor = True
-    Me.LabelControl7.Location = New System.Drawing.Point(263, 47)
+    Me.LabelControl7.Location = New System.Drawing.Point(263, 31)
     Me.LabelControl7.Name = "LabelControl7"
     Me.LabelControl7.Size = New System.Drawing.Size(34, 15)
     Me.LabelControl7.TabIndex = 43
@@ -1096,7 +862,7 @@ Partial Class frmStockTake
     Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.LabelControl8.Appearance.Options.UseFont = True
     Me.LabelControl8.Appearance.Options.UseForeColor = True
-    Me.LabelControl8.Location = New System.Drawing.Point(9, 47)
+    Me.LabelControl8.Location = New System.Drawing.Point(9, 31)
     Me.LabelControl8.Name = "LabelControl8"
     Me.LabelControl8.Size = New System.Drawing.Size(66, 15)
     Me.LabelControl8.TabIndex = 41
@@ -1104,7 +870,7 @@ Partial Class frmStockTake
     '
     'txtStockCheckDesc
     '
-    Me.txtStockCheckDesc.Location = New System.Drawing.Point(78, 44)
+    Me.txtStockCheckDesc.Location = New System.Drawing.Point(78, 28)
     Me.txtStockCheckDesc.MenuManager = Me.BarManager1
     Me.txtStockCheckDesc.Name = "txtStockCheckDesc"
     Me.txtStockCheckDesc.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1125,14 +891,13 @@ Partial Class frmStockTake
     Me.grpItemDetail.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpItemDetail.AppearanceCaption.Options.UseFont = True
     Me.grpItemDetail.AppearanceCaption.Options.UseForeColor = True
-    Me.grpItemDetail.Controls.Add(Me.pccStockTakeSheets)
     Me.grpItemDetail.Controls.Add(Me.puccStockItemValuationHistorys)
     Me.grpItemDetail.Controls.Add(Me.grdStockCheckItem)
     Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Todo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "SelectAll", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ClearSelection", -1)})
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-    Me.grpItemDetail.Location = New System.Drawing.Point(6, 125)
+    Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
     Me.grpItemDetail.Name = "grpItemDetail"
-    Me.grpItemDetail.Size = New System.Drawing.Size(1359, 546)
+    Me.grpItemDetail.Size = New System.Drawing.Size(1359, 574)
     Me.grpItemDetail.TabIndex = 94
     Me.grpItemDetail.Text = "Stock Items"
     '
@@ -1176,18 +941,8 @@ Partial Class frmStockTake
     Me.grpDetail.ResumeLayout(False)
     Me.grpDetail.PerformLayout()
     CType(Me.radGRNMode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.pceStockTakeSheets.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.pccStockTakeSheets, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.pccStockTakeSheets.ResumeLayout(False)
-    CType(Me.grdStockTakeSheets, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvStockTakeSheets, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repDateFormat.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repDateFormat, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repbtnViewSheet, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datDateSystemQty.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datDateSystemQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtRangeStockCodeEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtRangeStockCodeStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dateStockCheck.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.dateStockCheck.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtStockCheckDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1230,12 +985,6 @@ Partial Class frmStockTake
   Friend WithEvents grpDetail As DevExpress.XtraEditors.GroupControl
   Friend WithEvents btnClearSystemQty As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents btnClearRange As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents btnApplyRange As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents lblRangeEnd As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents lblRangeStart As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtRangeStockCodeEnd As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents lblRange As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtRangeStockCodeStart As DevExpress.XtraEditors.TextEdit
   Friend WithEvents dateStockCheck As DevExpress.XtraEditors.DateEdit
   Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
@@ -1263,25 +1012,11 @@ Partial Class frmStockTake
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents datDateSystemQty As DevExpress.XtraEditors.DateEdit
   Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents btnAddToNextSheet As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents gcStockTakeSheet As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents pceStockTakeSheets As DevExpress.XtraEditors.PopupContainerEdit
-  Friend WithEvents pccStockTakeSheets As DevExpress.XtraEditors.PopupContainerControl
-  Friend WithEvents grdStockTakeSheets As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvStockTakeSheets As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcNoOfItems As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents btnSelectVisible As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents btnDeselectVisible As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents btnDeselectAll As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents repDateFormat As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-  Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents repbtnViewSheet As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-  Friend WithEvents btnAutoCreateSheets As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents barbtnFIFOSystemValue As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents barbtnFIFOCountedValue As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn

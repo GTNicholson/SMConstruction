@@ -6,7 +6,7 @@ Imports RTIS.DataLayer
 Public Class frmPickMaterials
 
   Dim pFormController As fccPickMaterials
-  Dim pCallOffInfos As colMaterialRequirementInfos
+  Dim pMaterialRequirementInfos As colMaterialRequirementInfos
   Public FormMode As eFormMode
   Public ExitMode As Windows.Forms.DialogResult
 
@@ -23,6 +23,15 @@ Public Class frmPickMaterials
     eEdit = 2
   End Enum
 
+  Public Property MaterialRequirementInfos() As colMaterialRequirementInfos
+    Get
+      MaterialRequirementInfos = pMaterialRequirementInfos
+    End Get
+    Set(ByVal value As colMaterialRequirementInfos)
+      pMaterialRequirementInfos = value
+    End Set
+  End Property
+
   Public Property FormController() As fccPickMaterials
     Get
       FormController = pFormController
@@ -34,6 +43,7 @@ Public Class frmPickMaterials
 
   Public Sub New()
 
+    pMaterialRequirementInfos = New colMaterialRequirementInfos
     ' This call is required by the designer.
     InitializeComponent()
 
@@ -99,7 +109,7 @@ Public Class frmPickMaterials
 
     If mWO IsNot Nothing Then
       pFormController.CurrentWorkOrderInfo = mWO
-      FillCustomerDetail()
+      RefreshControls()
 
     End If
 
@@ -107,13 +117,20 @@ Public Class frmPickMaterials
 
   End Sub
 
-  Private Sub FillCustomerDetail()
+  Private Sub RefreshControls()
 
     Try
+
+
+
       With pFormController.CurrentWorkOrderInfo
         btnSelectOT.Text = .WorkOrderNo
         txtCompanyName.Text = .CustomerName
       End With
+
+      pFormController.LoadMaterialRequirementInfos(MaterialRequirementInfos)
+      grdMaterialRequirementInfo.DataSource = MaterialRequirementInfos
+      gvMaterialRequirementInfos.RefreshData()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -129,5 +146,17 @@ Public Class frmPickMaterials
 
     '// Bind the grid to the new collection
 
+  End Sub
+
+  Private Sub frmPickMaterials_Load(sender As Object, e As EventArgs) Handles Me.Load
+    ''Dim mWOIs As New colWorkOrderInfos
+
+
+
+  End Sub
+
+  Private Sub frmPickMaterials_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+    sActiveForms.Remove(Me.pMySharedIndex.ToString)
+    Me.Dispose()
   End Sub
 End Class

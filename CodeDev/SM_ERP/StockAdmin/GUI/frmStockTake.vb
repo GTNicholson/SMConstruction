@@ -23,7 +23,75 @@ Public Class frmStockTake
   Private pForceExit As Boolean = False
   ''  Private pSpinEnter As Boolean
 
+  Private Sub btnSelectVisible_Click(sender As Object, e As EventArgs) Handles btnSelectVisible.Click
 
+    Try
+
+      SelectVisible()
+
+    Catch ex As Exception
+
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+  End Sub
+
+
+
+  Private Sub SelectVisible()
+
+    ''Dim mVisibleRows As List(Of clsstockItemValuation)
+
+
+
+    ''mVisibleRows = gvStockCheckItem.GetVisibleRows(Of clsStockItemValuation)
+
+
+
+    ''For Each mItem As clsStockItemValuation In mVisibleRows
+
+    ''  mItem.TempSelected = True
+
+    ''Next
+
+
+
+    gvStockCheckItem.RefreshData()
+
+  End Sub
+
+
+
+  Private Sub btnDeselectVisible_Click(sender As Object, e As EventArgs) Handles btnDeselectVisible.Click
+
+    Try
+
+      ''Dim mVisibleRows As List(Of clsStockItemValuation)
+
+
+
+      ''mVisibleRows = gvStockCheckItem.GetVisibleRows(Of clsStockItemValuation)
+
+
+
+      ''For Each mItem As clsStockItemValuation In mVisibleRows
+
+      ''mItem.TempSelected = False
+
+      ''Next
+
+
+
+      gvStockCheckItem.RefreshData()
+
+    Catch ex As Exception
+
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+  End Sub
   Public Shared Sub OpenFormAsMDIChild(ByRef rParentForm As Windows.Forms.Form, ByRef rUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPrimaryKeyID As Integer, ByVal vFormMode As eFormMode)
     Dim mfrm As frmStockTake = Nothing
     Dim mCreated As Boolean = False
@@ -245,8 +313,6 @@ Public Class frmStockTake
       With pFormController.StockTake
         txtStockCheckDesc.Text = .Description
         dateStockCheck.DateTime = .StockTakeDate
-        txtRangeStockCodeEnd.Text = .RangeStockCodeEnd
-        txtRangeStockCodeStart.Text = .RangeStockCodeStart
 
         datDateSystemQty.DateTime = .DateSystemQty
 
@@ -265,33 +331,24 @@ Public Class frmStockTake
           btnSelectVisible.Enabled = True
           btnDeselectVisible.Enabled = True
           btnDeselectAll.Enabled = True
-          txtRangeStockCodeStart.Enabled = True
-          txtRangeStockCodeEnd.Enabled = True
-          btnAddToNextSheet.Enabled = True
+
           btnClearRange.Enabled = True
           btnClearSystemQty.Enabled = True
-          pceStockTakeSheets.Enabled = True
+
 
           barbtnFIFOSystemValue.Enabled = True
           barbtnFIFOCountedValue.Enabled = True
 
-          If Not String.IsNullOrEmpty(.RangeStockCodeStart) AndAlso Not String.IsNullOrEmpty(.RangeStockCodeEnd) Then
-            btnApplyRange.Enabled = True
-          Else
-            btnApplyRange.Enabled = False
-          End If
+
 
         Else
           btnSelectVisible.Enabled = False
           btnDeselectVisible.Enabled = False
           btnDeselectAll.Enabled = False
-          txtRangeStockCodeStart.Enabled = False
-          txtRangeStockCodeEnd.Enabled = False
-          btnApplyRange.Enabled = False
-          btnAddToNextSheet.Enabled = False
+
           btnClearRange.Enabled = False
           btnClearSystemQty.Enabled = False
-          pceStockTakeSheets.Enabled = False
+
 
           barbtnFIFOSystemValue.Enabled = False
           barbtnFIFOCountedValue.Enabled = False
@@ -299,7 +356,7 @@ Public Class frmStockTake
         End If
 
         gvStockCheckItem.RefreshData()
-        gvStockTakeSheets.RefreshData()
+
         gvStockItemValuationHistorys.RefreshData()
       End With
 
@@ -328,8 +385,7 @@ Public Class frmStockTake
       With pFormController.StockTake
         .Description = txtStockCheckDesc.Text
         .StockTakeDate = dateStockCheck.DateTime
-        .RangeStockCodeEnd = txtRangeStockCodeEnd.Text
-        .RangeStockCodeStart = txtRangeStockCodeStart.Text
+
       End With
 
     End If

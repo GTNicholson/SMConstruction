@@ -51,6 +51,7 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+    Me.bbtnExportToExcel = New DevExpress.XtraBars.BarButtonItem()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,11 +62,11 @@ Partial Class frmWorkOrderTracking
     'grdWorksOrders
     '
     Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 29)
+    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 33)
     Me.grdWorksOrders.MainView = Me.gvWorksOrders
     Me.grdWorksOrders.Name = "grdWorksOrders"
     Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 597)
+    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 593)
     Me.grdWorksOrders.TabIndex = 0
     Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
     '
@@ -363,7 +364,8 @@ Partial Class frmWorkOrderTracking
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.MaxItemId = 0
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnExportToExcel})
+    Me.BarManager1.MaxItemId = 1
     '
     'Bar1
     '
@@ -371,6 +373,7 @@ Partial Class frmWorkOrderTracking
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnExportToExcel)})
     Me.Bar1.Text = "Tools"
     '
     'barDockControlTop
@@ -379,7 +382,7 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 29)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 33)
     '
     'barDockControlBottom
     '
@@ -393,17 +396,24 @@ Partial Class frmWorkOrderTracking
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 597)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 593)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 29)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 597)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 593)
+    '
+    'bbtnExportToExcel
+    '
+    Me.bbtnExportToExcel.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnExportToExcel.Caption = "Export to Excel"
+    Me.bbtnExportToExcel.Id = 0
+    Me.bbtnExportToExcel.Name = "bbtnExportToExcel"
     '
     'frmWorkOrderTracking
     '
@@ -455,4 +465,5 @@ Partial Class frmWorkOrderTracking
   Friend WithEvents gcCustomer As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcPackaging As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcDispatch As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents bbtnExportToExcel As DevExpress.XtraBars.BarButtonItem
 End Class

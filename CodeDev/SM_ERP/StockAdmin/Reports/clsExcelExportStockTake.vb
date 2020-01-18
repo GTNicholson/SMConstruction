@@ -48,7 +48,7 @@ Public Class clsExcelExportStockTake
     End Set
   End Property
 
-  Private Sub AddHeadings(ByVal vRowForTitlesToStartIn As Integer, Optional ByVal vIsSummarised As Boolean = False)
+  Private Sub AddHeadings(ByVal vRowForTitlesToStartIn As Integer)
     Dim mRange As DevExpress.Spreadsheet.Range
     Dim mCurColPos As Integer
     Dim mIMHead As String
@@ -60,7 +60,7 @@ Public Class clsExcelExportStockTake
 
 
     'HEADINGS in
-    pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColPosCount).Value = "Cnt "
+    pCurrentSheet.Cells(vRowForTitlesToStartIn, cColPosCount).Value = "Cnt "
 
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColStockCode).Value = "Código Producto "
 
@@ -77,13 +77,6 @@ Public Class clsExcelExportStockTake
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColOrderedQty).Value = "Cantidad Pedidas "
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColBalance).Value = "Saldo "
 
-    mCurColPos = cColBalance - 1
-    For Each mStockTakes As dmStockTake In pStockTakes
-
-      mCurColPos += 1
-      pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, mCurColPos).Value = mStockTakes.StockTakeID
-
-    Next
 
     pColumnCount = mCurColPos
 
@@ -111,7 +104,7 @@ Public Class clsExcelExportStockTake
     pSpreadSheet = New DevExpress.Spreadsheet.Workbook
     pCurrentSheet = pSpreadSheet.Worksheets(0)
     AddHeader()
-    AddColumnHeaders()
+    AddHeadings(cColumnRowPos)
     AddItems()
   End Sub
 
@@ -119,10 +112,6 @@ Public Class clsExcelExportStockTake
     pCurrentSheet.Cells(1, 1).SetValue(pStockTake.Description)
   End Sub
 
-  Private Sub AddColumnHeaders()
-    pCurrentSheet.Cells(cColumnRowPos, cColPosStockCode).SetValue("Stock Code")
-
-  End Sub
 
   Private Sub AddItems()
     Dim mRow As Integer
@@ -159,5 +148,7 @@ Public Class clsExcelExportStockTake
     Me.New(rProductionBatch, rWorkBookTemplate)
     pSummarised = rSummarised
   End Sub
+
+
 
 End Class

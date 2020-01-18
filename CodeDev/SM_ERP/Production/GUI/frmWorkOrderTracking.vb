@@ -210,4 +210,14 @@ Public Class frmWorkOrderTracking
   Private Sub grdWorksOrders_Click(sender As Object, e As EventArgs) Handles grdWorksOrders.Click
 
   End Sub
+
+  Private Sub bbtnExportToExcel_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnExportToExcel.ItemClick
+    Dim mOptions As New DevExpress.XtraPrinting.XlsxExportOptionsEx
+    Dim mFileName As String = ""
+    If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = vbOK Then
+      mOptions.ExportType = DevExpress.Export.ExportType.DataAware
+      mOptions.ExportType = DevExpress.Export.ExportType.WYSIWYG
+      gvWorksOrders.ExportToXlsx(mFileName, mOptions)
+    End If
+  End Sub
 End Class

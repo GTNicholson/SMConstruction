@@ -3,12 +3,14 @@
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrderItem As dmSalesOrderItem
   Private pStockItem As dmStockItem
+  Private pProductFurniture As dmProductFurniture
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
     pWorkOrder = New dmWorkOrder
     pSalesOrderItem = New dmSalesOrderItem
     pStockItem = New dmStockItem
+    pProductFurniture = New dmProductFurniture
   End Sub
 
   Public Sub New()
@@ -16,6 +18,7 @@
     pWorkOrder = New dmWorkOrder
     pSalesOrderItem = New dmSalesOrderItem
     pStockItem = New dmStockItem
+    pProductFurniture = New dmProductFurniture
   End Sub
 
   Public Property MaterialRequirement As dmMaterialRequirement
@@ -36,6 +39,14 @@
     End Set
   End Property
 
+  Public Property ProductFurniture As dmProductFurniture
+    Get
+      Return pProductFurniture
+    End Get
+    Set(ByVal value As dmProductFurniture)
+      pProductFurniture = value
+    End Set
+  End Property
   Public Property SalesOrderItem As dmSalesOrderItem
     Get
       Return pSalesOrderItem
@@ -83,7 +94,15 @@
 
   Public ReadOnly Property Description As String
     Get
-      Return pMaterialRequirement.Description
+      Dim mretValue As String = ""
+
+      If pMaterialRequirement.StockItemID = 0 Then
+        mretValue = pMaterialRequirement.Description
+      Else
+        mretValue = pStockItem.Description
+      End If
+
+      Return mretValue
     End Get
   End Property
 
@@ -246,7 +265,13 @@
 
   End Property
 
+  Public ReadOnly Property Category As Int32
+    Get
+      Return pStockItem.Category
 
+    End Get
+
+  End Property
 
 
   Public ReadOnly Property TotalBoardFeetFromCM As Decimal
