@@ -119,6 +119,12 @@ Public Class frmPickMaterials
       With pFormController.CurrentWorkOrderInfo
         btnSelectOT.Text = .WorkOrderNo
         txtCompanyName.Text = .CustomerName
+        txtFinishDate.Text = .FinishDate
+        txtProjectName.Text = .ProjectName
+        txtReference.Text = .OrderNo
+        txtWODescription.Text = .Description
+        txtWOQty.Text = .Quantity
+
       End With
 
       pFormController.LoadMaterialRequirementProcessorss()
@@ -132,7 +138,7 @@ Public Class frmPickMaterials
   End Sub
 
 
-  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
 
     '// call formcontroller to load workorderinfos collection where objectytype = WO and objectid = eProductType.ProductFurniture
 

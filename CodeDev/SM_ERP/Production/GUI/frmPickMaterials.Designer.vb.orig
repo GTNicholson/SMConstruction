@@ -44,6 +44,10 @@ Partial Class frmPickMaterials
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+<<<<<<< HEAD
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.btnProcessPicks = New DevExpress.XtraEditors.SimpleButton()
+=======
     Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
     Me.txtFinishDate = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -51,6 +55,7 @@ Partial Class frmPickMaterials
     Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
     Me.txtReference = New DevExpress.XtraEditors.TextEdit()
+>>>>>>> a7be361f738138f7452688adcb885ab86895aa61
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,11 +82,18 @@ Partial Class frmPickMaterials
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+<<<<<<< HEAD
+    Me.GroupControl1.Controls.Add(Me.btnProcessPicks)
+    Me.GroupControl1.Controls.Add(Me.SimpleButton1)
+    Me.GroupControl1.Controls.Add(Me.LabelControl2)
+    Me.GroupControl1.Controls.Add(Me.txtCompanyName)
+=======
     Me.GroupControl1.Controls.Add(Me.TextEdit2)
     Me.GroupControl1.Controls.Add(Me.LabelControl5)
     Me.GroupControl1.Controls.Add(Me.LabelControl4)
     Me.GroupControl1.Controls.Add(Me.txtWOQty)
     Me.GroupControl1.Controls.Add(Me.LabelControl3)
+>>>>>>> a7be361f738138f7452688adcb885ab86895aa61
     Me.GroupControl1.Controls.Add(Me.LabelControl1)
     Me.GroupControl1.Controls.Add(Me.btnSelectOT)
     Me.GroupControl1.Controls.Add(Me.txtWODescription)
@@ -215,7 +227,7 @@ Partial Class frmPickMaterials
     Me.gvMaterialRequirementInfos.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvMaterialRequirementInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.gvMaterialRequirementInfos.Appearance.Row.Options.UseFont = True
-    Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4})
+    Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4, Me.GridColumn5})
     Me.gvMaterialRequirementInfos.GridControl = Me.grdMaterialRequirementInfo
     Me.gvMaterialRequirementInfos.Name = "gvMaterialRequirementInfos"
     Me.gvMaterialRequirementInfos.OptionsView.ShowGroupPanel = False
@@ -298,6 +310,23 @@ Partial Class frmPickMaterials
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 5
     '
+<<<<<<< HEAD
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "GridColumn5"
+    Me.GridColumn5.FieldName = "ToProcessQty"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 8
+    '
+    'btnProcessPicks
+    '
+    Me.btnProcessPicks.Location = New System.Drawing.Point(904, 29)
+    Me.btnProcessPicks.Name = "btnProcessPicks"
+    Me.btnProcessPicks.Size = New System.Drawing.Size(134, 31)
+    Me.btnProcessPicks.TabIndex = 5
+    Me.btnProcessPicks.Text = "Processar Cantidades"
+=======
     'GroupControl3
     '
     Me.GroupControl3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -373,6 +402,7 @@ Partial Class frmPickMaterials
     Me.txtReference.Properties.ReadOnly = True
     Me.txtReference.Size = New System.Drawing.Size(149, 20)
     Me.txtReference.TabIndex = 4
+>>>>>>> a7be361f738138f7452688adcb885ab86895aa61
     '
     'frmPickMaterials
     '
@@ -422,6 +452,10 @@ Partial Class frmPickMaterials
   Friend WithEvents txtCompanyName As DevExpress.XtraEditors.TextEdit
   Friend WithEvents gcAreaID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+<<<<<<< HEAD
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents btnProcessPicks As DevExpress.XtraEditors.SimpleButton
+=======
   Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
@@ -435,4 +469,5 @@ Partial Class frmPickMaterials
   Friend WithEvents txtProjectName As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents txtReference As DevExpress.XtraEditors.TextEdit
+>>>>>>> a7be361f738138f7452688adcb885ab86895aa61
 End Class
