@@ -16,4 +16,8 @@
 
 End Class
 
+Public Class colMaterialRequirementProcessors : Inherits List(Of clsMaterialRequirementProcessor)
+
+End Class
+
 

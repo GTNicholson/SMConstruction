@@ -7,9 +7,28 @@ Public Class dsoStock
     pDBConn = rDBConn
   End Sub
 
+  Public Function GetOrCreateStockItemLocation(ByVal vStockItemID As Integer, vLocationID As Integer) As dmStockItemLocation
+    Dim mStockItemLocations As New colStockItemLocations
+    Dim mStockItemLocation As dmStockItemLocation = Nothing
+
+    LoadStockItemLocationsByWhere(mStockItemLocations, "StockItemID =" & vStockItemID & " AND LocationID =" & vLocationID)
+
+    If mStockItemLocations.Count > 0 Then
+      mStockItemLocation = mStockItemLocations(0)
+    Else
+      mStockItemLocation = New dmStockItemLocation
+      mStockItemLocation.StockItemID = vStockItemID
+      mStockItemLocation.LocationID = vLocationID
+      mStockItemLocations.Add(mStockItemLocation)
+      SaveStockItemLocations(mStockItemLocations)
+    End If
+    Return mStockItemLocation
+  End Function
+
   Public Sub LoadStockItem(ByRef rStockItem As dmStockItem, ByVal vStockItemID As Integer)
 
   End Sub
+
 
   Public Sub LoadStockItemsByWhere(ByRef rStockItems As colStockItems, ByVal vWhere As String)
     Dim mdto As dtoStockItem

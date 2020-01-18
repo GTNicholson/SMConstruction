@@ -4,12 +4,13 @@ Public Class fccPickMaterials
 
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pWorkOrder As colWorkOrderInfos
-  Private pMaterialRequirementProcessors As colMaterialRequirementInfos
+  Private pMaterialRequirementProcessors As colMaterialRequirementProcessors
   Private pFormController As fccPickMaterials
   Private pCurrentWorkOrderInfo As clsWorkOrderInfo
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
+    pMaterialRequirementProcessors = New colMaterialRequirementProcessors
   End Sub
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
@@ -39,6 +40,15 @@ Public Class fccPickMaterials
     End Set
   End Property
 
+  Public Property MaterialRequirementProcessors() As colMaterialRequirementProcessors
+    Get
+      MaterialRequirementProcessors = pMaterialRequirementProcessors
+    End Get
+    Set(ByVal value As colMaterialRequirementProcessors)
+      pMaterialRequirementProcessors = value
+    End Set
+  End Property
+
   Public Sub LoadWorkOrderInfos(ByRef rcolWorkOrderInfos As colWorkOrderInfos)
 
     Dim mdto As dtoWorkOrderInfo
@@ -61,28 +71,50 @@ Public Class fccPickMaterials
   End Sub
 
 
-  Public Sub LoadMaterialRequirementInfos(ByRef rcolWorkOrderInfos As colMaterialRequirementInfos)
+  Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
     Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID
-    rcolWorkOrderInfos.Clear()
+    pMaterialRequirementProcessors.Clear()
     Try
 
       pDBConn.Connect()
       mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
 
-      mdto.LoadMaterialRequirementInfoCollectionByWhere(rcolWorkOrderInfos, mWhere)
+      mdto.LoadMaterialRequirementProcessorsByWhere(pMaterialRequirementProcessors, mWhere)
 
 
     Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     Finally
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
 
-
-
   End Sub
 
+  Public Sub ProcessPicks()
+    Try
+      Dim mdsoTran As dsoStockTransactions
+      Dim mdsoStock As dsoStock
+      Dim mSIL As dmStockItemLocation
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+      mdsoStock = New dsoStock(pDBConn)
+
+      For Each mMRP As clsMaterialRequirementProcessor In pMaterialRequirementProcessors
+        If mMRP.ToProcessQty <> 0 Then
+          If mMRP.StockItem.StockItemID <> 0 Then
+          mSIL = mdsoStock.GetOrCreateStockItemLocation(mMRP.StockItem.StockItemID, 1)
+        Else
+          mSIL = Nothing
+        End If
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now)
+        End If
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 
 End Class

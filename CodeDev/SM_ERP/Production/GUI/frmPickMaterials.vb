@@ -23,14 +23,7 @@ Public Class frmPickMaterials
     eEdit = 2
   End Enum
 
-  Public Property MaterialRequirementInfos() As colMaterialRequirementInfos
-    Get
-      MaterialRequirementInfos = pMaterialRequirementInfos
-    End Get
-    Set(ByVal value As colMaterialRequirementInfos)
-      pMaterialRequirementInfos = value
-    End Set
-  End Property
+
 
   Public Property FormController() As fccPickMaterials
     Get
@@ -128,8 +121,8 @@ Public Class frmPickMaterials
         txtCompanyName.Text = .CustomerName
       End With
 
-      pFormController.LoadMaterialRequirementInfos(MaterialRequirementInfos)
-      grdMaterialRequirementInfo.DataSource = MaterialRequirementInfos
+      pFormController.LoadMaterialRequirementProcessorss()
+      grdMaterialRequirementInfo.DataSource = pFormController.MaterialRequirementProcessors
       gvMaterialRequirementInfos.RefreshData()
 
     Catch ex As Exception
@@ -158,5 +151,13 @@ Public Class frmPickMaterials
   Private Sub frmPickMaterials_Closed(sender As Object, e As EventArgs) Handles Me.Closed
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()
+  End Sub
+
+  Private Sub btnProcessPicks_Click(sender As Object, e As EventArgs) Handles btnProcessPicks.Click
+    Try
+      pFormController.ProcessPicks
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

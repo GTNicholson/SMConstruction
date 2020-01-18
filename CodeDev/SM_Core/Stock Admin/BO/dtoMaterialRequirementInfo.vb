@@ -79,7 +79,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         .UoM = DBReadString(rDataReader, "UoM")
         .AreaID = DBReadInt32(rDataReader, "AreaID")
         .Comments = DBReadString(rDataReader, "Comments")
-        .PickedQty = DBReadDecimal(rDataReader, "PickedQty")
+        .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
         .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
 
       End With
@@ -135,11 +135,11 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
   End Function
 
 
-  Public Function LoadMaterialRequirementInfoCollectionByWhere(ByRef rMaterialRequirementInfos As colMaterialRequirementInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadMaterialRequirementProcessorsByWhere(ByRef rMaterialRequirementProcessors As colMaterialRequirementProcessors, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
 
-    mOK = MyBase.LoadCollection(rMaterialRequirementInfos, mParams, "MaterialRequirementID", vWhere)
+    mOK = MyBase.LoadCollection(rMaterialRequirementProcessors, mParams, "MaterialRequirementID", vWhere)
     Return mOK
   End Function
 

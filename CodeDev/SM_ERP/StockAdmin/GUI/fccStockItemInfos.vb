@@ -95,24 +95,11 @@ Public Class fccStockItemInfos
   Public Sub ApplyStockAdjust(ByVal vStockItem As dmStockItem, ByVal vLocationID As Byte, ByVal vTransactionType As eTransactionType, ByVal vTranQty As Decimal, ByVal vAdjustDate As DateTime, ByVal vNotes As String)
     Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
     Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mStockItemLocations As colStockItemLocations
     Dim mStockItemLocation As dmStockItemLocation
 
     Try
 
-      mStockItemLocations = New colStockItemLocations
-
-      mdsoStock.LoadStockItemLocationsByWhere(mStockItemLocations, "StockItemID =" & vStockItem.StockItemID & " AND LocationID =" & vLocationID)
-
-      If mStockItemLocations.Count > 0 Then
-        mStockItemLocation = mStockItemLocations(0)
-      Else
-        mStockItemLocation = New dmStockItemLocation
-        mStockItemLocation.StockItemID = vStockItem.StockItemID
-        mStockItemLocation.LocationID = vLocationID
-        mStockItemLocations.Add(mStockItemLocation)
-        mdsoStock.SaveStockItemLocations(mStockItemLocations)
-      End If
+      mStockItemLocation = mdsoStock.GetOrCreateStockItemLocation(vStockItem.StockItemID, vLocationID)
 
       If mStockItemLocation IsNot Nothing Then
         Dim mLocationAmendment As New dmStockItemLocationAmendmentLog

@@ -39,6 +39,8 @@ Partial Class frmPickMaterials
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.btnProcessPicks = New DevExpress.XtraEditors.SimpleButton()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
     CType(Me.txtCompanyName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +59,7 @@ Partial Class frmPickMaterials
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.btnProcessPicks)
     Me.GroupControl1.Controls.Add(Me.SimpleButton1)
     Me.GroupControl1.Controls.Add(Me.LabelControl2)
     Me.GroupControl1.Controls.Add(Me.txtCompanyName)
@@ -145,7 +148,7 @@ Partial Class frmPickMaterials
     Me.gvMaterialRequirementInfos.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvMaterialRequirementInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.gvMaterialRequirementInfos.Appearance.Row.Options.UseFont = True
-    Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4})
+    Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4, Me.GridColumn5})
     Me.gvMaterialRequirementInfos.GridControl = Me.grdMaterialRequirementInfo
     Me.gvMaterialRequirementInfos.Name = "gvMaterialRequirementInfos"
     Me.gvMaterialRequirementInfos.OptionsView.ShowGroupPanel = False
@@ -220,6 +223,22 @@ Partial Class frmPickMaterials
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 5
     '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "GridColumn5"
+    Me.GridColumn5.FieldName = "ToProcessQty"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 8
+    '
+    'btnProcessPicks
+    '
+    Me.btnProcessPicks.Location = New System.Drawing.Point(904, 29)
+    Me.btnProcessPicks.Name = "btnProcessPicks"
+    Me.btnProcessPicks.Size = New System.Drawing.Size(134, 31)
+    Me.btnProcessPicks.TabIndex = 5
+    Me.btnProcessPicks.Text = "Processar Cantidades"
+    '
     'frmPickMaterials
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -259,4 +278,6 @@ Partial Class frmPickMaterials
   Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents gcAreaID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents btnProcessPicks As DevExpress.XtraEditors.SimpleButton
 End Class

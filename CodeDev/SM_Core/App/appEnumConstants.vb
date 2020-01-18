@@ -27,6 +27,7 @@ Public Enum eObjectType
   StockItemLocation = 3
   StockTake = 4
   StockItemAmmendmentLog = 5
+  MaterialRequirement = 6
 End Enum
 
 Public Enum eEmployeeRole
