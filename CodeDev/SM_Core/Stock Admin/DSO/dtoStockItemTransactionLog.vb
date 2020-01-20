@@ -180,7 +180,7 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
     Else
       mOrderBy = "TransactionDate Asc, StockItemTransactionLogID Asc"
     End If
-    mOrderBy =
+
     mOK = MyBase.LoadCollection(rStockItemTransactionLogs, mParams, mOrderBy)
     rStockItemTransactionLogs.TrackDeleted = True
     If mOK Then rStockItemTransactionLogs.IsDirty = False

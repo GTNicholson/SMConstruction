@@ -53,14 +53,41 @@ Public Class clsExcelExportStockTake
     Dim mCurColPos As Integer
     Dim mIMHead As String
 
+
     'Title in
-    pSpreadSheet.Worksheets(0).Cells(1, 1).Value = "Reporte"
-    pSpreadSheet.Worksheets(0).Cells(1, 1).Font.Size = 15
-    pSpreadSheet.Worksheets(0).Cells(1, 1).Font.Bold = True
+
+
+    mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(1, 1, pColumnCount, 1)
+    mRange.Merge
+    mRange.Borders.SetAllBorders(Color.Black, BorderLineStyle.Thin)
+    mRange.Fill.BackgroundColor = Color.Lavender
+    mRange.Value = "Reporte de Toma de Inventario"
+    mRange.Font.Size = 20
+    mRange.Font.Bold = True
+    mRange.Font.Color = Color.DimGray
+    mRange.Font.Name = "Arial"
+
+    mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(10, 1, 15, 1)
+    mRange.Merge
+    mRange.Borders.SetAllBorders(Color.Black, BorderLineStyle.Thin)
+    mRange.Fill.BackgroundColor = Color.Lavender
+    mRange.Value = "Fecha " + pStockTake.StockTakeDate
+    mRange.Font.Size = 20
+    mRange.Font.Bold = True
+    mRange.Font.Color = Color.DimGray
+    mRange.Font.Name = "Arial"
 
 
     'HEADINGS in
-    pCurrentSheet.Cells(vRowForTitlesToStartIn, cColPosCount).Value = "Cnt "
+
+    mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(0, vRowForTitlesToStartIn, pColumnCount, vRowForTitlesToStartIn)
+    mRange.Fill.BackgroundColor = Color.Lavender
+    mRange.Borders.BottomBorder.LineStyle = DevExpress.Spreadsheet.BorderLineStyle.Thin
+    mRange.Borders.SetAllBorders(Color.Black, BorderLineStyle.Thin)
+    mRange.Alignment.WrapText = True
+    mRange.Font.Size = 12
+    mRange.ColumnWidthInCharacters = 12
+    mRange.Font.Bold = True
 
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColStockCode).Value = "Código Producto "
 
@@ -78,25 +105,8 @@ Public Class clsExcelExportStockTake
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColBalance).Value = "Saldo "
 
 
-    pColumnCount = mCurColPos
-
     mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(0, vRowForTitlesToStartIn, pColumnCount, vRowForTitlesToStartIn)
-    mRange.Fill.BackgroundColor = Color.Lavender
-    mRange.Borders.BottomBorder.LineStyle = DevExpress.Spreadsheet.BorderLineStyle.Thick
-    mRange.Alignment.WrapText = True
-    mRange.Alignment.RotationAngle = 90
-    mRange.Font.Bold = True
-
-    mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(cColDescription, pHeaderRow - 1, cColCategory, pHeaderRow - 1)
-
-    mRange.Font.Bold = True
-    mRange.Fill.BackgroundColor = Color.Lavender
-    mRange.Borders.SetAllBorders(Color.DarkSlateGray, DevExpress.Spreadsheet.BorderLineStyle.Thin)
-    mRange.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
-    pSpreadSheet.Worksheets(0).Cells(pHeaderRow - 1, cColDescription).Value = "Frame"
-
-
-
+    mRange.AutoFitColumns
 
   End Sub
 
@@ -109,17 +119,37 @@ Public Class clsExcelExportStockTake
   End Sub
 
   Private Sub AddHeader()
-    pCurrentSheet.Cells(1, 1).SetValue(pStockTake.Description)
+    ''pCurrentSheet.Cells(1, 1).SetValue(pStockTake.Description)
+    ''pCurrentSheet.Cells(1, 1).SetValue("Hola")
+
   End Sub
 
 
   Private Sub AddItems()
     Dim mRow As Integer
+    Dim mRange As DevExpress.Spreadsheet.Range
 
     mRow = cColumnRowPos + 1
 
     For Each mItem As clsStockTakeItemEditor In pStockTakeItemEditors
-      pCurrentSheet.Cells(mRow, cColPosStockCode).SetValue(mItem.StockItem.Description)
+
+      mRange = pCurrentSheet.Range.FromLTRB(0, mRow, pColumnCount, mRow + 1)
+
+      mRange.Fill.BackgroundColor = Color.White
+      mRange.Borders.BottomBorder.LineStyle = DevExpress.Spreadsheet.BorderLineStyle.Thin
+      mRange.Borders.SetAllBorders(Color.Black, BorderLineStyle.Thin)
+      mRange.AutoFitColumns
+      mRange.AutoFitRows
+
+      pCurrentSheet.Cells(mRow, cColPosStockCode).SetValue(mItem.StockItem.StockCode)
+      pCurrentSheet.Cells(mRow, cColDescription).SetValue(mItem.StockItem.Description)
+      pCurrentSheet.Cells(mRow, cColCategory).SetValue(mItem.StockItem.Category)
+
+      pCurrentSheet.Cells(mRow, cColCategory).SetValue(mItem.StockItem.ItemType)
+      pCurrentSheet.Cells(mRow, cColCategory).SetValue(mItem.StockItem.PartNo)
+      pCurrentSheet.Cells(mRow, cColCategory).SetValue(mItem.CountedQty)
+
+
       mRow = mRow + 1
     Next
   End Sub

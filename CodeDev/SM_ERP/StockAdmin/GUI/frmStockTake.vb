@@ -22,6 +22,11 @@ Public Class frmStockTake
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
   ''  Private pSpinEnter As Boolean
+  Private Enum eStockTakeOptions
+    SelectVisible = 1
+    DeselectVisible = 2
+
+  End Enum
 
   Private Sub btnSelectVisible_Click(sender As Object, e As EventArgs) Handles btnSelectVisible.Click
 
@@ -41,19 +46,19 @@ Public Class frmStockTake
 
   Private Sub SelectVisible()
 
-    ''Dim mVisibleRows As List(Of clsstockItemValuation)
+    Dim mVisibleRows As List(Of clsStockTakeItemEditor)
 
 
 
-    ''mVisibleRows = gvStockCheckItem.GetVisibleRows(Of clsStockItemValuation)
+    ''mVisibleRows = gvStockCheckItem.SelectRows(0, 10)
 
 
 
-    ''For Each mItem As clsStockItemValuation In mVisibleRows
+    For Each mItem As clsStockTakeItemEditor In mVisibleRows
 
-    ''  mItem.TempSelected = True
+      mItem.TempSelected = True
 
-    ''Next
+    Next
 
 
 
@@ -67,19 +72,19 @@ Public Class frmStockTake
 
     Try
 
-      ''Dim mVisibleRows As List(Of clsStockItemValuation)
+      Dim mVisibleRows As List(Of clsStockTakeItemEditor)
 
 
 
-      ''mVisibleRows = gvStockCheckItem.GetVisibleRows(Of clsStockItemValuation)
+      mVisibleRows = gvStockCheckItem.GetFocusedRow
 
 
 
-      ''For Each mItem As clsStockItemValuation In mVisibleRows
+      For Each mItem As clsStockTakeItemEditor In mVisibleRows
 
-      ''mItem.TempSelected = False
+        mItem.TempSelected = False
 
-      ''Next
+      Next
 
 
 
@@ -960,6 +965,55 @@ Public Class frmStockTake
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+
+  End Sub
+
+  Private Sub grpItemDetail_CustomButtonClick(sender As Object, e As Docking2010.BaseButtonEventArgs) Handles grpItemDetail.CustomButtonClick
+
+    Select Case e.Button.Properties.Tag
+      Case eStockTakeOptions.SelectVisible
+
+        Try
+
+          SelectVisible()
+
+        Catch ex As Exception
+
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+        End Try
+
+      Case eStockTakeOptions.DeselectVisible
+
+        Try
+
+          Dim mVisibleRows As List(Of clsStockTakeItemEditor)
+
+
+
+          mVisibleRows = gvStockCheckItem.GetFocusedRow
+
+
+
+          For Each mItem As clsStockTakeItemEditor In mVisibleRows
+
+            mItem.TempSelected = False
+
+          Next
+
+
+
+          gvStockCheckItem.RefreshData()
+
+        Catch ex As Exception
+
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+        End Try
+
+
+    End Select
+
 
   End Sub
 

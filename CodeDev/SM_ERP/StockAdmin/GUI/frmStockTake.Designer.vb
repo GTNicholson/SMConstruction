@@ -893,7 +893,7 @@ Partial Class frmStockTake
     Me.grpItemDetail.AppearanceCaption.Options.UseForeColor = True
     Me.grpItemDetail.Controls.Add(Me.puccStockItemValuationHistorys)
     Me.grpItemDetail.Controls.Add(Me.grdStockCheckItem)
-    Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Todo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "SelectAll", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ClearSelection", -1)})
+    Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Todo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1)})
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
     Me.grpItemDetail.Name = "grpItemDetail"
