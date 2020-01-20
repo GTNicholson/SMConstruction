@@ -28,7 +28,7 @@ Public Class frmStockTake
 
   End Enum
 
-  Private Sub btnSelectVisible_Click(sender As Object, e As EventArgs) Handles btnSelectVisible.Click
+  Private Sub btnSelectVisible_Click(sender As Object, e As EventArgs)
 
     Try
 
@@ -45,16 +45,17 @@ Public Class frmStockTake
 
 
   Private Sub SelectVisible()
+    Dim mVisibleRows As New colStockTakeItemEditors
+    Dim mItem As clsStockTakeItemEditor
 
-    Dim mVisibleRows As List(Of clsStockTakeItemEditor)
+    For mLoop = 0 To gvStockCheckItem.DataRowCount - 1
+      mItem = gvStockCheckItem.GetRow(mLoop)
+      mVisibleRows.Add(mItem)
+    Next
 
 
 
-    ''mVisibleRows = gvStockCheckItem.SelectRows(0, 10)
-
-
-
-    For Each mItem As clsStockTakeItemEditor In mVisibleRows
+    For Each mItem In mVisibleRows
 
       mItem.TempSelected = True
 
@@ -62,30 +63,54 @@ Public Class frmStockTake
 
 
 
+
+    gvStockCheckItem.RefreshData()
+
+  End Sub
+
+  Private Sub DeSelectVisible()
+    Dim mVisibleRows As New colStockTakeItemEditors
+    Dim mItem As clsStockTakeItemEditor
+
+    For mLoop = 0 To gvStockCheckItem.DataRowCount - 1
+      mItem = gvStockCheckItem.GetRow(mLoop)
+      mVisibleRows.Add(mItem)
+    Next
+
+
+
+    For Each mItem In mVisibleRows
+
+      mItem.TempSelected = False
+
+    Next
+
     gvStockCheckItem.RefreshData()
 
   End Sub
 
 
 
-  Private Sub btnDeselectVisible_Click(sender As Object, e As EventArgs) Handles btnDeselectVisible.Click
+
+  Private Sub btnDeselectVisible_Click(sender As Object, e As EventArgs)
 
     Try
 
-      Dim mVisibleRows As List(Of clsStockTakeItemEditor)
+      Dim mVisibleRows As New colStockTakeItemEditors
+      Dim mItem As clsStockTakeItemEditor
+
+      For mLoop = 0 To gvStockCheckItem.DataRowCount - 1
+        mItem = gvStockCheckItem.GetRow(mLoop)
+        mVisibleRows.Add(mItem)
+      Next
 
 
 
-      mVisibleRows = gvStockCheckItem.GetFocusedRow
-
-
-
-      For Each mItem As clsStockTakeItemEditor In mVisibleRows
+      For Each mItem In mVisibleRows
 
         mItem.TempSelected = False
 
       Next
-
 
 
       gvStockCheckItem.RefreshData()
@@ -333,9 +358,6 @@ Public Class frmStockTake
 
 
         If .DateSystemQty > DateTime.MinValue Then
-          btnSelectVisible.Enabled = True
-          btnDeselectVisible.Enabled = True
-          btnDeselectAll.Enabled = True
 
           btnClearRange.Enabled = True
           btnClearSystemQty.Enabled = True
@@ -347,9 +369,6 @@ Public Class frmStockTake
 
 
         Else
-          btnSelectVisible.Enabled = False
-          btnDeselectVisible.Enabled = False
-          btnDeselectAll.Enabled = False
 
           btnClearRange.Enabled = False
           btnClearSystemQty.Enabled = False
@@ -987,27 +1006,12 @@ Public Class frmStockTake
 
         Try
 
-          Dim mVisibleRows As List(Of clsStockTakeItemEditor)
-
-
-
-          mVisibleRows = gvStockCheckItem.GetFocusedRow
-
-
-
-          For Each mItem As clsStockTakeItemEditor In mVisibleRows
-
-            mItem.TempSelected = False
-
-          Next
-
-
-
-          gvStockCheckItem.RefreshData()
+          DeSelectVisible()
 
         Catch ex As Exception
 
           If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
 
         End Try
 
@@ -1015,7 +1019,74 @@ Public Class frmStockTake
     End Select
 
 
+
   End Sub
+
+  Private Function PrintSelectedItems() As colStockTakeItemEditors
+    Dim mDataSource As New colStockTakeItemEditors
+
+    For Each mSTIE In pFormController.StockTakeItemEditors
+      If mSTIE.TempSelected = True Then
+        mDataSource.Add(mSTIE)
+      End If
+    Next
+
+    ''crear metodo para el reporte psando mdatasource al reporte
+    Return mDataSource
+  End Function
+
+  Private Sub bbtnPrintVisibleItems_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnPrintVisibleItems.ItemClick
+    Dim mReport As repSelectedItems
+    Dim mRepTools As DevExpress.XtraReports.UI.ReportPrintTool
+
+
+
+    CheckSave(False)
+
+    mReport = GetReport()
+    mRepTools = New DevExpress.XtraReports.UI.ReportPrintTool(mReport)
+    mRepTools.ShowPreviewDialog()
+
+    ''CreateReportPDF(True, mReport)
+
+    CheckSave(False)
+    RefreshControls()
+
+    mReport.Dispose()
+
+  End Sub
+
+  Public Sub CreateReportPDF(ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport)
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+
+    If vReport IsNot Nothing Then
+
+      pFormController.CreateSelectedItemsReport(vReport, "")
+      frmPDFViewer.OpenFormAsModal(Me.ParentForm, "C:\Users\Administrator\Downloads\axel.pdf")
+      vReport.Dispose()
+
+    End If
+
+  End Sub
+
+  Public Function GetReport() As DevExpress.XtraReports.UI.XtraReport
+    Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+    Dim mDataSource As New colStockTakeItemEditors
+
+    For Each mSTIE In pFormController.StockTakeItemEditors
+      If mSTIE.TempSelected = True Then
+        mDataSource.Add(mSTIE)
+      End If
+    Next
+
+    mRetVal = repSelectedItems.GenerateReport(mDataSource)
+
+
+    Return mRetVal
+  End Function
+
 
   ''  Private Sub btnAddToNextSheet_Click(sender As Object, e As EventArgs) Handles btnAddToNextSheet.Click
   ''    Try

@@ -49,6 +49,7 @@ Partial Class frmStockTake
     Me.barbtnFIFOSystemValue = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnFIFOCountedValue = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnAplicarCantidadesContado = New DevExpress.XtraBars.BarButtonItem()
+    Me.bbtnPrintVisibleItems = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -84,11 +85,8 @@ Partial Class frmStockTake
     Me.grdStockCheckItem = New DevExpress.XtraGrid.GridControl()
     Me.repitPUStockItemValuationHistorys = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
     Me.grpDetail = New DevExpress.XtraEditors.GroupControl()
-    Me.btnDeselectAll = New DevExpress.XtraEditors.SimpleButton()
     Me.lblViewMode = New DevExpress.XtraEditors.LabelControl()
-    Me.btnDeselectVisible = New DevExpress.XtraEditors.SimpleButton()
     Me.radGRNMode = New DevExpress.XtraEditors.RadioGroup()
-    Me.btnSelectVisible = New DevExpress.XtraEditors.SimpleButton()
     Me.datDateSystemQty = New DevExpress.XtraEditors.DateEdit()
     Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
     Me.btnClearSystemQty = New DevExpress.XtraEditors.SimpleButton()
@@ -252,8 +250,8 @@ Partial Class frmStockTake
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.barbtnSaveExit, Me.barbtnClose, Me.barbtnSave, Me.barbtnExcelExport, Me.bbtnStockValuation, Me.barbtnLoadDespatchedQty, Me.bbtnRefreshWIPItems, Me.bbtnGoodsInInvoiced, Me.bbtnRefreshStockItems, Me.barbtnRefreshSystemQty, Me.barbtnCommitStockTake, Me.barbtnPrintCountSheet, Me.barbtnFIFOSystemValue, Me.barbtnFIFOCountedValue, Me.bbtnAplicarCantidadesContado})
-    Me.BarManager1.MaxItemId = 23
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.barbtnSaveExit, Me.barbtnClose, Me.barbtnSave, Me.barbtnExcelExport, Me.bbtnStockValuation, Me.barbtnLoadDespatchedQty, Me.bbtnRefreshWIPItems, Me.bbtnGoodsInInvoiced, Me.bbtnRefreshStockItems, Me.barbtnRefreshSystemQty, Me.barbtnCommitStockTake, Me.barbtnPrintCountSheet, Me.barbtnFIFOSystemValue, Me.barbtnFIFOCountedValue, Me.bbtnAplicarCantidadesContado, Me.bbtnPrintVisibleItems})
+    Me.BarManager1.MaxItemId = 24
     Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox1})
     '
     'Bar1
@@ -262,7 +260,7 @@ Partial Class frmStockTake
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSaveExit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSave, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnClose, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnExcelExport, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnRefreshStockItems, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRefreshSystemQty), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOSystemValue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOCountedValue), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnAplicarCantidadesContado, True)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSaveExit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSave, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnClose, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnRefreshStockItems, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRefreshSystemQty), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOSystemValue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOCountedValue), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnAplicarCantidadesContado, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnPrintVisibleItems), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnExcelExport)})
     Me.Bar1.OptionsBar.AllowQuickCustomization = False
     Me.Bar1.OptionsBar.DisableClose = True
     Me.Bar1.OptionsBar.DisableCustomization = True
@@ -339,6 +337,13 @@ Partial Class frmStockTake
     Me.bbtnAplicarCantidadesContado.Caption = "Aplicar Cantidades Contado"
     Me.bbtnAplicarCantidadesContado.Id = 22
     Me.bbtnAplicarCantidadesContado.Name = "bbtnAplicarCantidadesContado"
+    '
+    'bbtnPrintVisibleItems
+    '
+    Me.bbtnPrintVisibleItems.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnPrintVisibleItems.Caption = "Imprimir Selección"
+    Me.bbtnPrintVisibleItems.Id = 23
+    Me.bbtnPrintVisibleItems.Name = "bbtnPrintVisibleItems"
     '
     'barDockControlTop
     '
@@ -710,11 +715,8 @@ Partial Class frmStockTake
     Me.grpDetail.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpDetail.AppearanceCaption.Options.UseFont = True
     Me.grpDetail.AppearanceCaption.Options.UseForeColor = True
-    Me.grpDetail.Controls.Add(Me.btnDeselectAll)
     Me.grpDetail.Controls.Add(Me.lblViewMode)
-    Me.grpDetail.Controls.Add(Me.btnDeselectVisible)
     Me.grpDetail.Controls.Add(Me.radGRNMode)
-    Me.grpDetail.Controls.Add(Me.btnSelectVisible)
     Me.grpDetail.Controls.Add(Me.datDateSystemQty)
     Me.grpDetail.Controls.Add(Me.LabelControl1)
     Me.grpDetail.Controls.Add(Me.btnClearSystemQty)
@@ -729,14 +731,6 @@ Partial Class frmStockTake
     Me.grpDetail.TabIndex = 95
     Me.grpDetail.Text = "Captura de Inentario"
     '
-    'btnDeselectAll
-    '
-    Me.btnDeselectAll.Location = New System.Drawing.Point(289, 56)
-    Me.btnDeselectAll.Name = "btnDeselectAll"
-    Me.btnDeselectAll.Size = New System.Drawing.Size(105, 23)
-    Me.btnDeselectAll.TabIndex = 68
-    Me.btnDeselectAll.Text = "Deseleccionar Todo"
-    '
     'lblViewMode
     '
     Me.lblViewMode.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -748,14 +742,6 @@ Partial Class frmStockTake
     Me.lblViewMode.Size = New System.Drawing.Size(79, 14)
     Me.lblViewMode.TabIndex = 205
     Me.lblViewMode.Text = "Modo de Vista"
-    '
-    'btnDeselectVisible
-    '
-    Me.btnDeselectVisible.Location = New System.Drawing.Point(168, 56)
-    Me.btnDeselectVisible.Name = "btnDeselectVisible"
-    Me.btnDeselectVisible.Size = New System.Drawing.Size(111, 23)
-    Me.btnDeselectVisible.TabIndex = 66
-    Me.btnDeselectVisible.Text = "Deseleccionar Visible"
     '
     'radGRNMode
     '
@@ -774,14 +760,6 @@ Partial Class frmStockTake
     Me.radGRNMode.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
     Me.radGRNMode.Size = New System.Drawing.Size(226, 20)
     Me.radGRNMode.TabIndex = 204
-    '
-    'btnSelectVisible
-    '
-    Me.btnSelectVisible.Location = New System.Drawing.Point(59, 56)
-    Me.btnSelectVisible.Name = "btnSelectVisible"
-    Me.btnSelectVisible.Size = New System.Drawing.Size(103, 23)
-    Me.btnSelectVisible.TabIndex = 65
-    Me.btnSelectVisible.Text = "Seleccionar Visible"
     '
     'datDateSystemQty
     '
@@ -1014,9 +992,6 @@ Partial Class frmStockTake
   Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents gcStockTakeSheet As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents btnSelectVisible As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents btnDeselectVisible As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents btnDeselectAll As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents barbtnFIFOSystemValue As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents barbtnFIFOCountedValue As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1027,4 +1002,5 @@ Partial Class frmStockTake
   Friend WithEvents repitbtStockItemRefresh As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents gcWriteOffQuantity As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents bbtnPrintVisibleItems As DevExpress.XtraBars.BarButtonItem
 End Class

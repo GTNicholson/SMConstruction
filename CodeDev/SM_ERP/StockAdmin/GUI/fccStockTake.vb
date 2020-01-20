@@ -221,6 +221,19 @@ Public Class fccStockTake
   End Function
 
 
+  Public Sub CreateSelectedItemsReport(ByRef rReport As repSelectedItems, ByVal vFilePath As String)
+    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
+    Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
+    Dim mFilePath As String
+
+    mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
+    mExportOptions.ConvertImagesToJpeg = False
+
+    rReport.ExportToPdf("C:\Users\Administrator\Downloads\axel.pdf", mExportOptions)
+
+
+
+  End Sub
   ''Public Function SaveCurrentStockCheckItem() As Boolean
   ''  Dim mOK As Boolean = False
   ''  Dim mdsoStock As New dsoStock(DBConn)
