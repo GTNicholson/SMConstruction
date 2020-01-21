@@ -28,6 +28,9 @@ Public Class frmPickMaterials
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementInfo, gcCategory, mVIs)
 
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementInfo, gcAreaID, mVIs)
+
   End Sub
 
 

@@ -64,8 +64,7 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SystemDate", DateToDBValue(.SystemDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TransactionDate", DateToDBValue(.TransactionDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefObjectType", .RefObjectType)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AdditionalRef", .AdditionalRef)
+      ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AdditionalRef", .AdditionalRef)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Note", StringToDBValue(.Note))
       '// TransactionValue not in write
@@ -94,7 +93,7 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
         .RefObjectID = DBReadInt32(rDataReader, "RefObjectID")
         .AdditionalRef = DBReadInt32(rDataReader, "AdditionalRef")
         .Note = DBReadString(rDataReader, "Note")
-        .StdCost = DBReadDecimal(rDataReader, "StdCost")
+        ''.StdCost = DBReadDecimal(rDataReader, "StdCost")
         .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
         .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
         pStockItemTransactionLog.IsDirty = False

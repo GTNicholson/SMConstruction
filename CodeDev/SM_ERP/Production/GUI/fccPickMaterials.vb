@@ -52,12 +52,15 @@ Public Class fccPickMaterials
   Public Sub LoadWorkOrderInfos(ByRef rcolWorkOrderInfos As colWorkOrderInfos)
 
     Dim mdto As dtoWorkOrderInfo
-
+    Dim mwhere As String
+    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+    mwhere += " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)
+or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
     Try
 
       pDBConn.Connect()
-      mdto = New dtoWorkOrderInfo(DBConn, 1)
-      mdto.LoadWorkOrderInfoCollectionByWhere(rcolWorkOrderInfos, "")
+      mdto = New dtoWorkOrderInfo(DBConn, 3)
+      mdto.LoadWorkOrderInfoCollectionByWhere(rcolWorkOrderInfos, mwhere)
 
 
     Catch ex As Exception

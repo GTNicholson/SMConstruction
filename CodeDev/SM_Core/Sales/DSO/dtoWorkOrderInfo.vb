@@ -19,6 +19,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
     SetTableDetails()
   End Sub
 
+
   Protected Overrides Sub SetTableDetails()
     Select Case pMode
       Case eMode.WorkOrderInfo
@@ -30,6 +31,8 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
       Case eMode.WorkOrderTracking
         pTableName = "vwWorkOrderTracking"
         pKeyFieldName = "WorkOrderID"
+
+
     End Select
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
@@ -132,6 +135,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         pWorkOrderInfo = New clsWorkOrderInfo
       Case eMode.WorkOrderTracking
         pWorkOrderInfo = New clsWorkOrderTracking
+
     End Select
     Return pWorkOrderInfo
 

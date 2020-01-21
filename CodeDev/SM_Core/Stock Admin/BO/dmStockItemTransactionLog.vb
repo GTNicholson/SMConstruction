@@ -220,7 +220,7 @@ Public Class dmStockItemTransactionLog : Inherits dmBase
 
   Public Property StdCost() As Decimal
     Get
-      Return pNote
+      Return pStdCost
     End Get
     Set(ByVal value As Decimal)
       If pStdCost <> value Then IsDirty = True

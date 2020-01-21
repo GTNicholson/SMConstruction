@@ -98,7 +98,7 @@ Partial Class frmWorkOrderPicker
     'GridColumn2
     '
     Me.GridColumn2.Caption = "Project Name"
-    Me.GridColumn2.FieldName = "CompanyName"
+    Me.GridColumn2.FieldName = "ProjectName"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 2
