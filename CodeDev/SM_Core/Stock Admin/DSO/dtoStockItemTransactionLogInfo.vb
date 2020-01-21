@@ -73,6 +73,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
         .UserName = DBReadString(rDataReader, "UserName")
         .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
         .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
+
         ''Select Case pStockItemTransactionLogInfo.RefObjectType
         ''  Case eDTMObjectType.SOPMaterialRequirement
         ''    .SalesOrderPhaseID = DBReadInteger(rDataReader, "SalesOrderPhaseID")
@@ -93,7 +94,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
         .ItemType = DBReadByte(rDataReader, "ItemType")
         .StockCode = DBReadString(rDataReader, "StockCode")
         .Description = DBReadString(rDataReader, "Description")
-        ''.StdCost = DBReadDecimal(rDataReader, "StdCost")
+        .StdCost = DBReadDecimal(rDataReader, "StdCost")
       End With
 
 

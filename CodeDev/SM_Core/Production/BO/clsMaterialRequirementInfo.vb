@@ -72,6 +72,14 @@
 
   End Property
 
+
+  Public ReadOnly Property PartNo As String
+    Get
+      Return pStockItem.PartNo
+    End Get
+
+  End Property
+
   Public ReadOnly Property Quality As Int32
     Get
       Return pMaterialRequirement.QualityType

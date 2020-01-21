@@ -38,13 +38,14 @@ Partial Class frmPickMaterials
     Me.grdMaterialRequirementInfo = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirementInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
     Me.txtFinishDate = New DevExpress.XtraEditors.TextEdit()
@@ -53,7 +54,6 @@ Partial Class frmPickMaterials
     Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
     Me.txtReference = New DevExpress.XtraEditors.TextEdit()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,10 +154,10 @@ Partial Class frmPickMaterials
     '
     Me.btnSelectOT.Location = New System.Drawing.Point(69, 38)
     Me.btnSelectOT.Name = "btnSelectOT"
-    Me.btnSelectOT.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!)
+    Me.btnSelectOT.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.btnSelectOT.Properties.Appearance.Options.UseFont = True
     Me.btnSelectOT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.btnSelectOT.Size = New System.Drawing.Size(95, 22)
+    Me.btnSelectOT.Size = New System.Drawing.Size(95, 20)
     Me.btnSelectOT.TabIndex = 0
     '
     'txtWODescription
@@ -216,11 +216,11 @@ Partial Class frmPickMaterials
     '
     'gvMaterialRequirementInfos
     '
-    Me.gvMaterialRequirementInfos.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirementInfos.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
     Me.gvMaterialRequirementInfos.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvMaterialRequirementInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 9.75!)
+    Me.gvMaterialRequirementInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.75!)
     Me.gvMaterialRequirementInfos.Appearance.Row.Options.UseFont = True
-    Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5})
+    Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.gcCategory, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5})
     Me.gvMaterialRequirementInfos.GridControl = Me.grdMaterialRequirementInfo
     Me.gvMaterialRequirementInfos.Name = "gvMaterialRequirementInfos"
     Me.gvMaterialRequirementInfos.OptionsView.ShowGroupPanel = False
@@ -235,19 +235,19 @@ Partial Class frmPickMaterials
     Me.GridColumn1.OptionsColumn.ReadOnly = True
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
-    Me.GridColumn1.Width = 130
+    Me.GridColumn1.Width = 90
     '
-    'GridColumn3
+    'gcCategory
     '
-    Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn3.Caption = "Categoria"
-    Me.GridColumn3.FieldName = "Category"
-    Me.GridColumn3.Name = "GridColumn3"
-    Me.GridColumn3.OptionsColumn.ReadOnly = True
-    Me.GridColumn3.Visible = True
-    Me.GridColumn3.VisibleIndex = 2
-    Me.GridColumn3.Width = 179
+    Me.gcCategory.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.gcCategory.AppearanceCell.Options.UseBackColor = True
+    Me.gcCategory.Caption = "Categoria"
+    Me.gcCategory.FieldName = "Category"
+    Me.gcCategory.Name = "gcCategory"
+    Me.gcCategory.OptionsColumn.ReadOnly = True
+    Me.gcCategory.Visible = True
+    Me.gcCategory.VisibleIndex = 2
+    Me.gcCategory.Width = 136
     '
     'GridColumn2
     '
@@ -259,7 +259,7 @@ Partial Class frmPickMaterials
     Me.GridColumn2.OptionsColumn.ReadOnly = True
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 1
-    Me.GridColumn2.Width = 427
+    Me.GridColumn2.Width = 216
     '
     'GridColumn8
     '
@@ -271,33 +271,35 @@ Partial Class frmPickMaterials
     Me.GridColumn8.OptionsColumn.ReadOnly = True
     Me.GridColumn8.Visible = True
     Me.GridColumn8.VisibleIndex = 3
-    Me.GridColumn8.Width = 196
+    Me.GridColumn8.Width = 103
     '
     'GridColumn6
     '
     Me.GridColumn6.AppearanceCell.BackColor = System.Drawing.Color.Lavender
     Me.GridColumn6.AppearanceCell.Options.UseBackColor = True
     Me.GridColumn6.Caption = "Cant. Req."
+    Me.GridColumn6.DisplayFormat.FormatString = "###.000"
+    Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn6.FieldName = "Quantity"
     Me.GridColumn6.Name = "GridColumn6"
     Me.GridColumn6.OptionsColumn.ReadOnly = True
     Me.GridColumn6.Visible = True
     Me.GridColumn6.VisibleIndex = 6
-    Me.GridColumn6.Width = 94
+    Me.GridColumn6.Width = 83
     '
     'GridColumn7
     '
     Me.GridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Lavender
     Me.GridColumn7.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn7.Caption = "Cant. Sacado"
-    Me.GridColumn7.DisplayFormat.FormatString = "#"
+    Me.GridColumn7.Caption = "Cant. Despachada"
+    Me.GridColumn7.DisplayFormat.FormatString = "###.000"
     Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn7.FieldName = "PickedQty"
     Me.GridColumn7.Name = "GridColumn7"
     Me.GridColumn7.OptionsColumn.ReadOnly = True
     Me.GridColumn7.Visible = True
     Me.GridColumn7.VisibleIndex = 7
-    Me.GridColumn7.Width = 137
+    Me.GridColumn7.Width = 109
     '
     'gcAreaID
     '
@@ -309,7 +311,7 @@ Partial Class frmPickMaterials
     Me.gcAreaID.OptionsColumn.ReadOnly = True
     Me.gcAreaID.Visible = True
     Me.gcAreaID.VisibleIndex = 4
-    Me.gcAreaID.Width = 111
+    Me.gcAreaID.Width = 91
     '
     'GridColumn4
     '
@@ -321,18 +323,32 @@ Partial Class frmPickMaterials
     Me.GridColumn4.OptionsColumn.ReadOnly = True
     Me.GridColumn4.Visible = True
     Me.GridColumn4.VisibleIndex = 5
-    Me.GridColumn4.Width = 111
+    Me.GridColumn4.Width = 91
+    '
+    'GridColumn9
+    '
+    Me.GridColumn9.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+    Me.GridColumn9.AppearanceCell.Options.UseBackColor = True
+    Me.GridColumn9.Caption = "Cant. Pendiente"
+    Me.GridColumn9.DisplayFormat.FormatString = "###.000"
+    Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn9.FieldName = "QtyOS"
+    Me.GridColumn9.Name = "GridColumn9"
+    Me.GridColumn9.OptionsColumn.ReadOnly = True
+    Me.GridColumn9.Visible = True
+    Me.GridColumn9.VisibleIndex = 8
+    Me.GridColumn9.Width = 88
     '
     'GridColumn5
     '
-    Me.GridColumn5.Caption = "Para Processar"
-    Me.GridColumn5.DisplayFormat.FormatString = "#"
+    Me.GridColumn5.Caption = "A Procesar"
+    Me.GridColumn5.DisplayFormat.FormatString = "###.000"
     Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn5.FieldName = "ToProcessQty"
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 9
-    Me.GridColumn5.Width = 127
+    Me.GridColumn5.Width = 123
     '
     'GroupControl3
     '
@@ -410,20 +426,6 @@ Partial Class frmPickMaterials
     Me.txtReference.Size = New System.Drawing.Size(149, 20)
     Me.txtReference.TabIndex = 4
     '
-    'GridColumn9
-    '
-    Me.GridColumn9.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.GridColumn9.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn9.Caption = "Balance"
-    Me.GridColumn9.DisplayFormat.FormatString = "#"
-    Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.GridColumn9.FieldName = "QtyOS"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.OptionsColumn.ReadOnly = True
-    Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 8
-    Me.GridColumn9.Width = 110
-    '
     'frmPickMaterials
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -463,7 +465,7 @@ Partial Class frmPickMaterials
   Friend WithEvents grdMaterialRequirementInfo As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvMaterialRequirementInfos As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn

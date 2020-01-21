@@ -137,6 +137,7 @@ Partial Class frmStockItemInfo
     Me.gcCategory.Caption = "Categoría"
     Me.gcCategory.FieldName = "Category"
     Me.gcCategory.Name = "gcCategory"
+    Me.gcCategory.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcCategory.Visible = True
     Me.gcCategory.VisibleIndex = 2
     Me.gcCategory.Width = 130
@@ -216,7 +217,7 @@ Partial Class frmStockItemInfo
     Me.ClientSize = New System.Drawing.Size(1370, 533)
     Me.Controls.Add(Me.grpItemDetail)
     Me.Name = "frmStockItemInfo"
-    Me.Text = "frmStockItemInfo"
+    Me.Text = "Información de Inventario"
     CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpItemDetail.ResumeLayout(False)
     CType(Me.grdStockItemInfos, System.ComponentModel.ISupportInitialize).EndInit()

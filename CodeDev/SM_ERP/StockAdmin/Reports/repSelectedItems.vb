@@ -40,6 +40,12 @@ Public Class repSelectedItems
 
 
     mSTIE = Me.GetCurrentRow
-    xrtStockDescription.Text = mSTIE.StockItem.Description
+    If mSTIE IsNot Nothing Then
+      xrtStockDescription.Text = mSTIE.StockItem.Description
+      xrtCategory.Text = mSTIE.StockItemCategoryDesc
+      xrtPartNo.Text = mSTIE.StockItem.PartNo
+      xrtSystemQty.Text = mSTIE.StockTakeItem.CountedQty
+    End If
+
   End Sub
 End Class

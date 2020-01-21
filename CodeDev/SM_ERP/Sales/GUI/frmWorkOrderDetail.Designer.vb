@@ -153,7 +153,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage7 = New DevExpress.XtraTab.XtraTabPage()
     Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
@@ -1644,7 +1644,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseFont = True
     Me.gvMaterialRequirementOthers.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCode, Me.gcMatReqOtherDescription, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.GridColumn20, Me.GridColumn9})
+    Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCode, Me.gcMatReqOtherDescription, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.gcPartNo, Me.GridColumn9})
     Me.gvMaterialRequirementOthers.GridControl = Me.grdMaterialRequirementOthers
     Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
     Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
@@ -1697,14 +1697,15 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaID.VisibleIndex = 4
     Me.gcAreaID.Width = 146
     '
-    'GridColumn20
+    'gcPartNo
     '
-    Me.GridColumn20.Caption = "Código Proveedor"
-    Me.GridColumn20.FieldName = "SupplierStockCode"
-    Me.GridColumn20.Name = "GridColumn20"
-    Me.GridColumn20.Visible = True
-    Me.GridColumn20.VisibleIndex = 5
-    Me.GridColumn20.Width = 166
+    Me.gcPartNo.Caption = "Código Proveedor"
+    Me.gcPartNo.FieldName = "UBPartNo"
+    Me.gcPartNo.Name = "gcPartNo"
+    Me.gcPartNo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcPartNo.Visible = True
+    Me.gcPartNo.VisibleIndex = 5
+    Me.gcPartNo.Width = 166
     '
     'GridColumn9
     '
@@ -2170,7 +2171,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcAreaID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcPartNo As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label9 As Label
   Friend WithEvents txtQtyPerSalesItem As DevExpress.XtraEditors.TextEdit
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn

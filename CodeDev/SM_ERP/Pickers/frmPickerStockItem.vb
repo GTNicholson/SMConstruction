@@ -1,4 +1,5 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraGrid.Views.Base
+Imports RTIS.CommonVB
 Imports RTIS.Elements
 Imports RTIS.ERPStock
 
@@ -30,6 +31,8 @@ Public Class frmPickerStockItem
 
     Return mRetVal
   End Function
+
+
 
   Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean) As List(Of intStockItemDef)
     Dim mfrm As New frmPickerStockItem
@@ -80,9 +83,13 @@ Public Class frmPickerStockItem
   End Sub
 
   Private Sub LoadCombo()
-    '' clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcCategory, clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory)))
-    ''clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcItemType, eStockItemTypeIronmongery.GetInstance.ValueItems)
+    Dim mVIs As colValueItems
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcCategory, mVIs)
+
   End Sub
+
+
 
   Private Sub RefreshControls()
     grdItemList.DataSource = pPickerStockItem.DataSource
@@ -120,27 +127,70 @@ Public Class frmPickerStockItem
   End Sub
 
   Private Sub gvItemList_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles gvItemList.CustomUnboundColumnData
-    Dim mRow As intStockItemDef
-    ''Dim mSIItemTypeIron As clsStockItemTypeIronmongery
-    mRow = TryCast(e.Row, intStockItemDef)
-    'Dim mSISubItemTypeIron As clsStockSubItemTypeIronmongery
+    Dim mRow As dmStockItem
+    Dim mVIs As New colValueItems
 
+    Dim mText As String = ""
+    mRow = TryCast(e.Row, dmStockItem)
     If mRow IsNot Nothing Then
       If e.IsGetData Then
-        If e.Column.Name = gcSubItemType.Name Then
-          ''Select Case mRow.Category
-          ''  Case eStockItemCategory.Ironmongery
-          ''    If mRow.SubItemType <> 0 Then
-          ''      mSIItemTypeIron = eStockItemTypeIronmongery.GetInstance.ItemFromKey(mRow.ItemType)
-          ''      If mSIItemTypeIron IsNot Nothing Then
-          ''        mSISubItemTypeIron = mSIItemTypeIron.StockSubItemTypeIronmongerys.ItemFromKey(mRow.SubItemType)
-          ''        If mSISubItemTypeIron IsNot Nothing Then e.Value = mSISubItemTypeIron.Description
-          ''      End If
-          ''    End If
-          ''End Select
-        End If
+        Select Case e.Column.Name
+          Case gcItemType.Name
+            Select Case mRow.Category
+
+              Case eStockItemCategory.Abrasivos
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeAbrasivos), CType(mRow.ItemType, eStockItemTypeAbrasivos.eStockItemAbrasivos))
+                e.Value = mText
+              Case eStockItemCategory.Herrajes
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+                e.Value = mText
+
+              Case eStockItemCategory.MatElect
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialElectrico), CType(mRow.ItemType, eStockItemTypeMaterialElectrico.eStockItemMaterialElectrico))
+                e.Value = mText
+
+
+              Case eStockItemCategory.MatEmpaque
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialEmpaque), CType(mRow.ItemType, eStockItemTypeMaterialEmpaque.StockItemMaterialEmpaque))
+                e.Value = mText
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+              Case eStockItemCategory.NailsAndBolds
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+                e.Value = mText
+
+              Case eStockItemCategory.Repuestos
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
+                e.Value = mText
+
+              Case eStockItemCategory.Tapiceria
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTapiceria), CType(mRow.ItemType, eStockItemTypeTapiceria.eStockItemTapiceria))
+                e.Value = mText
+
+              Case eStockItemCategory.VidrioYEspejo
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
+                e.Value = mText
+
+              Case eStockItemCategory.Metal
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                e.Value = mText
+
+              Case Else
+                e.Value = ""
+
+            End Select
+
+
+        End Select
+
+
       End If
     End If
+
+    RefreshControls()
   End Sub
 
   Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvItemList.CustomRowCellEdit

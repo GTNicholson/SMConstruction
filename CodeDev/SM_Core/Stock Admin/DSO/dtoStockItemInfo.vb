@@ -70,6 +70,14 @@ Public Class dtoStockItemInfo : Inherits dtoBase
         .StockCode = DBReadString(rDataReader, "StockCode")
         .Description = DBReadString(rDataReader, "Description")
         .ASISID = DBReadInt32(rDataReader, "ASISID")
+        .PartNo = DBReadString(rDataReader, "PartNo")
+        .Colour = DBReadString(rDataReader, "Colour")
+        .Length = DBReadDecimal(rDataReader, "Length")
+        .Width = DBReadDecimal(rDataReader, "Width")
+        .Thickness = DBReadDecimal(rDataReader, "Thickness")
+        .DefaultSupplier = DBReadInt32(rDataReader, "DefaultSupplier")
+        .StdCost = DBReadDecimal(rDataReader, "StdCost")
+        .Species = DBReadInt32(rDataReader, "Species")
       End With
 
       mOK = True

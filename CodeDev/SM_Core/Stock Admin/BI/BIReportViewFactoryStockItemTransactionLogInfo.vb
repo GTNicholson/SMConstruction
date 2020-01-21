@@ -35,7 +35,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
 
     mConditionSetterList = New clsBIConditionSetterList()
     mConditionSetterList.FilterGroup = 0
-    mConditionSetterList.Title = "Report Parameters"
+    mConditionSetterList.Title = "Parámetros de Reporte"
     mConditionSetterList.DBConn = rDBConn
     mConditionSetterList.BIReportParameters = mBIReportView.BIReportSource.ColManRepParameter.GetParameterGroup(mConditionSetterList.FilterGroup)
     mConditionSetterList.ConditionSetterID = 0
@@ -44,7 +44,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'filter coding
     mConditionSetterfilter.FilterGroup = 1
-    mConditionSetterfilter.Title = "Report Filter"
+    mConditionSetterfilter.Title = "Filtro de Reporte"
     mConditionSetterfilter.DBConn = rDBConn
     mConditionSetterfilter.RefLists = rRTISGlobal.RefLists
     mConditionSetterfilter.BIReportParameters = mBIReportView.BIReportSource.ColManRepParameter.GetParameterGroup(mConditionSetterfilter.FilterGroup)
@@ -70,7 +70,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
 
     mRepDefGeneral = New dmBIReportDef
     mRepDefGeneral.ReportName = "General"
-    mRepDefGeneral.Description = "Stock Transaction Log Items"
+    mRepDefGeneral.Description = "Registro de Transacción de Ítem de Inventario"
     mRepDefGeneral.BIReportDefID = eBIReportDefs.General
     mRepDefGeneral.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransList
     mRepSource.BIReportDefs.Add(mRepDefGeneral)

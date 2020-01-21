@@ -965,6 +965,13 @@ Public Class frmWorkOrderDetail
           ElseIf e.IsSetData Then
             mMatReq.StockCode = e.Value
           End If
+
+        Case gcPartNo.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.SupplierStockCode
+          ElseIf e.IsSetData Then
+            mMatReq.StockCode = e.Value
+          End If
       End Select
     Else
       mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
@@ -979,6 +986,12 @@ Public Class frmWorkOrderDetail
           Case gcStockCode.Name
             If e.IsGetData Then
               e.Value = mSI.StockCode
+
+            End If
+
+          Case gcPartNo.Name
+            If e.IsGetData Then
+              e.Value = mSI.PartNo
 
             End If
         End Select

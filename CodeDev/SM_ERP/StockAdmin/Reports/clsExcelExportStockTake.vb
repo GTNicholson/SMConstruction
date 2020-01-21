@@ -20,7 +20,7 @@ Public Class clsExcelExportStockTake
   Private Const cColItemType As Integer = 4
   Private Const cColPartNumber As Integer = 5
   Private Const cColCurrentInventory As Integer = 6
-  Private Const cColRequiredInventory As Integer = 7
+  Private Const cColQtyCounted As Integer = 7
   Private Const cColOrderedQty As Integer = 8
   Private Const cColBalance As Integer = 9
 
@@ -100,7 +100,7 @@ Public Class clsExcelExportStockTake
 
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColCurrentInventory).Value = "Inventario Actual "
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColOrderedQty).Value = "Cantidad Pedida "
-    pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColRequiredInventory).Value = "Cantidad Requerida "
+    pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColQtyCounted).Value = "Cantidad Requerida "
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColOrderedQty).Value = "Cantidad Pedidas "
     pSpreadSheet.Worksheets(0).Cells(vRowForTitlesToStartIn, cColBalance).Value = "Saldo "
 

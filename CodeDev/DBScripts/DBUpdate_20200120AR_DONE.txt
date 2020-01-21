@@ -1,0 +1,63 @@
+
+alter view vwStockItemTransactionLogInfo
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.StockValuation, 
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+UL.UserName, 
+ST.Description AS StockTakeDescription
+FROM            dbo.StockItemTransactionLog AS SITL INNER JOIN
+                         dbo.UserList AS UL ON SITL.UserID = UL.UserID INNER JOIN
+                         dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID INNER JOIN
+                         dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID LEFT OUTER JOIN
+                         dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+
+GO
+
+ALTER view vwMaterialRequirementPicking
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.PickedQty,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.Description AS 'SIDESCRIPTION',
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+SO.OrderNo,
+CU.CompanyName
+
+from MaterialRequirement MR
+LEFT JOIN StockItem SI ON SI.StockItemID=MR.StockItemID 
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=MR.ObjectID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType=2

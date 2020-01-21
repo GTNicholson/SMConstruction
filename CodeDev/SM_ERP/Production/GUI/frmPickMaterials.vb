@@ -1,7 +1,7 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraGrid.Views.Base
+Imports RTIS.CommonVB
 Imports RTIS.DataLayer
-
-
+Imports RTIS.Elements
 
 Public Class frmPickMaterials
 
@@ -23,6 +23,12 @@ Public Class frmPickMaterials
     eEdit = 2
   End Enum
 
+  Private Sub LoadCombos()
+    Dim mVIs As colValueItems
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementInfo, gcCategory, mVIs)
+
+  End Sub
 
 
   Public Property FormController() As fccPickMaterials
@@ -66,6 +72,8 @@ Public Class frmPickMaterials
       mfrm.Focus()
     End If
   End Sub
+
+
 
 
   Private Shared Function GetFormIfLoaded() As frmPickMaterials
@@ -150,7 +158,7 @@ Public Class frmPickMaterials
   Private Sub frmPickMaterials_Load(sender As Object, e As EventArgs) Handles Me.Load
     ''Dim mWOIs As New colWorkOrderInfos
 
-
+    LoadCombos()
 
   End Sub
 

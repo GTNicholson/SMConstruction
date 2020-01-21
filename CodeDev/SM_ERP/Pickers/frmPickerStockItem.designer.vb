@@ -22,8 +22,8 @@ Partial Class frmPickerStockItem
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Me.grdItemList = New DevExpress.XtraGrid.GridControl()
     Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,7 +32,8 @@ Partial Class frmPickerStockItem
     Me.gcDescription = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcItemType = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSubItemType = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcSystemQty = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repoItemRemove = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,7 +50,7 @@ Partial Class frmPickerStockItem
     Me.grdItemList.MainView = Me.gvItemList
     Me.grdItemList.Name = "grdItemList"
     Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove})
-    Me.grdItemList.Size = New System.Drawing.Size(939, 437)
+    Me.grdItemList.Size = New System.Drawing.Size(1012, 437)
     Me.grdItemList.TabIndex = 98
     Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
     '
@@ -66,7 +67,7 @@ Partial Class frmPickerStockItem
     Me.gvItemList.Appearance.SelectedRow.Options.UseFont = True
     Me.gvItemList.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.gvItemList.Appearance.TopNewRow.Options.UseFont = True
-    Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcStockCode, Me.gcDescription, Me.gcCategory, Me.gcItemType, Me.gcSubItemType})
+    Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcStockCode, Me.gcDescription, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSystemQty})
     Me.gvItemList.GridControl = Me.grdItemList
     Me.gvItemList.HorzScrollStep = 20
     Me.gvItemList.Name = "gvItemList"
@@ -85,62 +86,73 @@ Partial Class frmPickerStockItem
     '
     'gcStockCode
     '
+    Me.gcStockCode.Caption = "Código"
     Me.gcStockCode.ColumnEdit = Me.repoItemSelect
     Me.gcStockCode.FieldName = "StockCode"
     Me.gcStockCode.Name = "gcStockCode"
     Me.gcStockCode.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
     Me.gcStockCode.Visible = True
     Me.gcStockCode.VisibleIndex = 0
-    Me.gcStockCode.Width = 126
+    Me.gcStockCode.Width = 114
     '
     'repoItemSelect
     '
     Me.repoItemSelect.AutoHeight = False
-    Me.repoItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "  Select  ", -1, True, True, True, EditorButtonImageOptions1)})
+    Me.repoItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "  Select  ", -1, True, True, True, EditorButtonImageOptions5)})
     Me.repoItemSelect.Name = "repoItemSelect"
     Me.repoItemSelect.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
     '
     'gcDescription
     '
+    Me.gcDescription.Caption = "Descripción"
     Me.gcDescription.FieldName = "Description"
     Me.gcDescription.Name = "gcDescription"
     Me.gcDescription.OptionsColumn.ReadOnly = True
     Me.gcDescription.Visible = True
     Me.gcDescription.VisibleIndex = 1
-    Me.gcDescription.Width = 470
+    Me.gcDescription.Width = 274
     '
     'gcCategory
     '
-    Me.gcCategory.Caption = "Category"
+    Me.gcCategory.Caption = "Categoría"
     Me.gcCategory.FieldName = "Category"
     Me.gcCategory.Name = "gcCategory"
     Me.gcCategory.Visible = True
     Me.gcCategory.VisibleIndex = 2
-    Me.gcCategory.Width = 95
+    Me.gcCategory.Width = 225
     '
     'gcItemType
     '
-    Me.gcItemType.Caption = "Item Type"
-    Me.gcItemType.FieldName = "ItemType"
+    Me.gcItemType.Caption = "Sub Categoría"
+    Me.gcItemType.FieldName = "gc"
     Me.gcItemType.Name = "gcItemType"
+    Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcItemType.Visible = True
     Me.gcItemType.VisibleIndex = 3
-    Me.gcItemType.Width = 103
+    Me.gcItemType.Width = 144
     '
-    'gcSubItemType
+    'gcPartNo
     '
-    Me.gcSubItemType.Caption = "Sub Item Type"
-    Me.gcSubItemType.FieldName = "UBSubItemType"
-    Me.gcSubItemType.Name = "gcSubItemType"
-    Me.gcSubItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-    Me.gcSubItemType.Visible = True
-    Me.gcSubItemType.VisibleIndex = 4
-    Me.gcSubItemType.Width = 127
+    Me.gcPartNo.Caption = "Número Parte"
+    Me.gcPartNo.FieldName = "PartNo"
+    Me.gcPartNo.Name = "gcPartNo"
+    Me.gcPartNo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcPartNo.Visible = True
+    Me.gcPartNo.VisibleIndex = 4
+    Me.gcPartNo.Width = 124
+    '
+    'gcSystemQty
+    '
+    Me.gcSystemQty.Caption = "Cantidad Disp."
+    Me.gcSystemQty.Name = "gcSystemQty"
+    Me.gcSystemQty.Visible = True
+    Me.gcSystemQty.VisibleIndex = 5
+    Me.gcSystemQty.Width = 113
     '
     'repoItemRemove
     '
     Me.repoItemRemove.AutoHeight = False
-    Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remove", -1, True, True, True, EditorButtonImageOptions2)})
+    Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remove", -1, True, True, True, EditorButtonImageOptions6)})
     Me.repoItemRemove.Name = "repoItemRemove"
     Me.repoItemRemove.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
     '
@@ -148,11 +160,11 @@ Partial Class frmPickerStockItem
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(963, 461)
+    Me.ClientSize = New System.Drawing.Size(1036, 461)
     Me.Controls.Add(Me.grdItemList)
     Me.Name = "frmPickerStockItem"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-    Me.Text = "Picker"
+    Me.Text = "Lista de Artículos de Inventario"
     CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).EndInit()
@@ -169,6 +181,7 @@ Partial Class frmPickerStockItem
   Friend WithEvents repoItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcItemType As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcSubItemType As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcPartNo As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repoItemRemove As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+  Friend WithEvents gcSystemQty As DevExpress.XtraGrid.Columns.GridColumn
 End Class

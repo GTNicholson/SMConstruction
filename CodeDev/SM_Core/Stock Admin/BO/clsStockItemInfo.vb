@@ -6,6 +6,7 @@ Public Class clsStockItemInfo
   Private pRequiredInventory As Decimal
   Private pOrderQty As Decimal
   Private pBalance As Decimal
+  Private pQty As Decimal
 
 
   Public Sub New()
@@ -61,6 +62,17 @@ Public Class clsStockItemInfo
       pStockItem = value
     End Set
   End Property
+
+  Public ReadOnly Property StockItemCategoryDesc As String
+    Get
+      Dim mRetVal As String = ""
+      If pStockItem IsNot Nothing Then
+        mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
 
   Public ReadOnly Property StockItemID() As Integer
     Get
@@ -150,7 +162,18 @@ Public Class clsStockItemInfo
 
   End Property
 
+  Public ReadOnly Property qty() As Decimal
+    Get
+      Return pQty
+    End Get
+
+  End Property
+
 End Class
+
+
+
+
 
 Public Class colStockItemInfos : Inherits List(Of clsStockItemInfo)
 

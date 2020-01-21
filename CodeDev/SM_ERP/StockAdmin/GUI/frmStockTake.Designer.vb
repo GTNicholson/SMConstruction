@@ -43,13 +43,13 @@ Partial Class frmStockTake
     Me.barbtnSaveExit = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnSave = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnExcelExport = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnRefreshStockItems = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnRefreshSystemQty = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnFIFOSystemValue = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnFIFOCountedValue = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnAplicarCantidadesContado = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnPrintVisibleItems = New DevExpress.XtraBars.BarButtonItem()
+    Me.barbtnExcelExport = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -295,14 +295,6 @@ Partial Class frmStockTake
     Me.barbtnClose.ImageOptions.LargeImage = CType(resources.GetObject("barbtnClose.ImageOptions.LargeImage"), System.Drawing.Image)
     Me.barbtnClose.Name = "barbtnClose"
     '
-    'barbtnExcelExport
-    '
-    Me.barbtnExcelExport.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
-    Me.barbtnExcelExport.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.barbtnExcelExport.Caption = "Excel Export"
-    Me.barbtnExcelExport.Id = 4
-    Me.barbtnExcelExport.Name = "barbtnExcelExport"
-    '
     'bbtnRefreshStockItems
     '
     Me.bbtnRefreshStockItems.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
@@ -344,6 +336,14 @@ Partial Class frmStockTake
     Me.bbtnPrintVisibleItems.Caption = "Imprimir Selección"
     Me.bbtnPrintVisibleItems.Id = 23
     Me.bbtnPrintVisibleItems.Name = "bbtnPrintVisibleItems"
+    '
+    'barbtnExcelExport
+    '
+    Me.barbtnExcelExport.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+    Me.barbtnExcelExport.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.barbtnExcelExport.Caption = "Excel Export"
+    Me.barbtnExcelExport.Id = 4
+    Me.barbtnExcelExport.Name = "barbtnExcelExport"
     '
     'barDockControlTop
     '
@@ -636,11 +636,11 @@ Partial Class frmStockTake
     'GridColumn3
     '
     Me.GridColumn3.Caption = "Valor de Sistema"
-    Me.GridColumn3.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn3.DisplayFormat.FormatString = "C$#,##0.00;;#"
     Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn3.FieldName = "SystemTotalValue"
     Me.GridColumn3.Name = "GridColumn3"
-    Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SystemTotalValue", "{0:£#,##0.00;;#}")})
+    Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SystemTotalValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn3.Visible = True
     Me.GridColumn3.VisibleIndex = 13
     Me.GridColumn3.Width = 32
@@ -648,11 +648,11 @@ Partial Class frmStockTake
     'GridColumn21
     '
     Me.GridColumn21.Caption = "Valor Contado"
-    Me.GridColumn21.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn21.DisplayFormat.FormatString = "C$#,##0.00;;#"
     Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn21.FieldName = "CountedValue"
     Me.GridColumn21.Name = "GridColumn21"
-    Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CountedValue", "{0:$#,##0.00;;#}")})
+    Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CountedValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.GridColumn21.Visible = True
     Me.GridColumn21.VisibleIndex = 14
@@ -661,11 +661,11 @@ Partial Class frmStockTake
     'GridColumn24
     '
     Me.GridColumn24.Caption = "Valor de Desechos"
-    Me.GridColumn24.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn24.DisplayFormat.FormatString = "C$#,##0.00;;#"
     Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn24.FieldName = "WriteOffValue"
     Me.GridColumn24.Name = "GridColumn24"
-    Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WriteOffValue", "{0:$#,##0.00;;#}")})
+    Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WriteOffValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.GridColumn24.Visible = True
     Me.GridColumn24.VisibleIndex = 15
@@ -674,11 +674,11 @@ Partial Class frmStockTake
     'GridColumn22
     '
     Me.GridColumn22.Caption = "Valor de Diferencia"
-    Me.GridColumn22.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn22.DisplayFormat.FormatString = "C$#,##0.00;;#"
     Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn22.FieldName = "DiscrepancyValue"
     Me.GridColumn22.Name = "GridColumn22"
-    Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ValueDescrepency", "{0:$#,##0.00;;#}")})
+    Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ValueDescrepency", "{0:C$#,##0.00;;#}")})
     Me.GridColumn22.Visible = True
     Me.GridColumn22.VisibleIndex = 16
     Me.GridColumn22.Width = 27
