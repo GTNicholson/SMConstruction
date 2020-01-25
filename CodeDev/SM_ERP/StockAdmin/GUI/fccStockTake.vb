@@ -1092,6 +1092,7 @@ Public Class fccStockTake
       Next
 
       If mCount > 0 Then
+        pStockTake.DateCommitted = Date.Now
         SaveObject()
       End If
 

@@ -23,10 +23,10 @@ Partial Class frmStockTake
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockTake))
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.puccStockItemValuationHistorys = New DevExpress.XtraEditors.PopupContainerControl()
     Me.grdStockItemValuationHistorys = New DevExpress.XtraGrid.GridControl()
     Me.gvStockItemValuationHistorys = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -298,14 +298,14 @@ Partial Class frmStockTake
     'bbtnRefreshStockItems
     '
     Me.bbtnRefreshStockItems.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnRefreshStockItems.Caption = "Refrescar Artículos"
+    Me.bbtnRefreshStockItems.Caption = "Cargar Artículos"
     Me.bbtnRefreshStockItems.Id = 16
     Me.bbtnRefreshStockItems.Name = "bbtnRefreshStockItems"
     '
     'barbtnRefreshSystemQty
     '
     Me.barbtnRefreshSystemQty.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.barbtnRefreshSystemQty.Caption = "Refrescar Cantidad de Sistema"
+    Me.barbtnRefreshSystemQty.Caption = "Refrescar Cantidad"
     Me.barbtnRefreshSystemQty.Id = 17
     Me.barbtnRefreshSystemQty.Name = "barbtnRefreshSystemQty"
     '
@@ -326,22 +326,21 @@ Partial Class frmStockTake
     'bbtnAplicarCantidadesContado
     '
     Me.bbtnAplicarCantidadesContado.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnAplicarCantidadesContado.Caption = "Aplicar Cantidades Contado"
+    Me.bbtnAplicarCantidadesContado.Caption = "Aplicar Conteo de Inv."
     Me.bbtnAplicarCantidadesContado.Id = 22
     Me.bbtnAplicarCantidadesContado.Name = "bbtnAplicarCantidadesContado"
     '
     'bbtnPrintVisibleItems
     '
     Me.bbtnPrintVisibleItems.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnPrintVisibleItems.Caption = "Imprimir Selección"
+    Me.bbtnPrintVisibleItems.Caption = "Imprimir Visible"
     Me.bbtnPrintVisibleItems.Id = 23
     Me.bbtnPrintVisibleItems.Name = "bbtnPrintVisibleItems"
     '
     'barbtnExcelExport
     '
-    Me.barbtnExcelExport.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
     Me.barbtnExcelExport.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.barbtnExcelExport.Caption = "Excel Export"
+    Me.barbtnExcelExport.Caption = "Exportar en Excel"
     Me.barbtnExcelExport.Id = 4
     Me.barbtnExcelExport.Name = "barbtnExcelExport"
     '
@@ -478,8 +477,8 @@ Partial Class frmStockTake
     'repitbtStockItemRefresh
     '
     Me.repitbtStockItemRefresh.AutoHeight = False
-    EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
+    EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions2, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
     Me.repitbtStockItemRefresh.Name = "repitbtStockItemRefresh"
     '
     'GridColumn1
@@ -531,11 +530,11 @@ Partial Class frmStockTake
     Me.gcCountedQty.AppearanceCell.Options.UseBackColor = True
     Me.gcCountedQty.Caption = "Cantidad Contada"
     Me.gcCountedQty.ColumnEdit = Me.RepositoryItemSpinEditCounted
-    Me.gcCountedQty.DisplayFormat.FormatString = "0.##;;0"
+    Me.gcCountedQty.DisplayFormat.FormatString = "0.###;;0"
     Me.gcCountedQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcCountedQty.FieldName = "gcCountedQty"
     Me.gcCountedQty.Name = "gcCountedQty"
-    Me.gcCountedQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcCountedQty", "{0:0.##;;0}")})
+    Me.gcCountedQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcCountedQty", "{0:#,##0.00;;#}")})
     Me.gcCountedQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcCountedQty.Visible = True
     Me.gcCountedQty.VisibleIndex = 10
@@ -561,7 +560,7 @@ Partial Class frmStockTake
     Me.gcWriteOffQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcWriteOffQuantity.FieldName = "gcWriteOffQuantity"
     Me.gcWriteOffQuantity.Name = "gcWriteOffQuantity"
-    Me.gcWriteOffQuantity.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcWriteOffQuantity", "{0:0.##;;#}")})
+    Me.gcWriteOffQuantity.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcWriteOffQuantity", "{0:#,##0.00;;#}")})
     Me.gcWriteOffQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcWriteOffQuantity.Visible = True
     Me.gcWriteOffQuantity.VisibleIndex = 11
@@ -596,7 +595,7 @@ Partial Class frmStockTake
     Me.gcDiscrepency.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcDiscrepency.FieldName = "gcDiscrepency"
     Me.gcDiscrepency.Name = "gcDiscrepency"
-    Me.gcDiscrepency.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcDiscrepency", "{0:0.##;;#}")})
+    Me.gcDiscrepency.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcDiscrepency", "{0:#,##0.00;;#}")})
     Me.gcDiscrepency.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcDiscrepency.Visible = True
     Me.gcDiscrepency.VisibleIndex = 12
@@ -609,7 +608,7 @@ Partial Class frmStockTake
     Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn2.FieldName = "SnapshotQty"
     Me.GridColumn2.Name = "GridColumn2"
-    Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SnapshotQty", "{0:0.##;;#}")})
+    Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SnapshotQty", "{0:#,##0.00;;#}")})
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 8
     Me.GridColumn2.Width = 37
@@ -737,7 +736,7 @@ Partial Class frmStockTake
     Me.lblViewMode.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
     Me.lblViewMode.Appearance.Options.UseFont = True
     Me.lblViewMode.Appearance.Options.UseForeColor = True
-    Me.lblViewMode.Location = New System.Drawing.Point(410, 30)
+    Me.lblViewMode.Location = New System.Drawing.Point(434, 28)
     Me.lblViewMode.Name = "lblViewMode"
     Me.lblViewMode.Size = New System.Drawing.Size(79, 14)
     Me.lblViewMode.TabIndex = 205
@@ -801,7 +800,7 @@ Partial Class frmStockTake
     '
     'btnClearRange
     '
-    Me.btnClearRange.Location = New System.Drawing.Point(534, 57)
+    Me.btnClearRange.Location = New System.Drawing.Point(534, 56)
     Me.btnClearRange.Name = "btnClearRange"
     Me.btnClearRange.Size = New System.Drawing.Size(150, 23)
     Me.btnClearRange.TabIndex = 56
@@ -814,7 +813,7 @@ Partial Class frmStockTake
     Me.dateStockCheck.MenuManager = Me.BarManager1
     Me.dateStockCheck.Name = "dateStockCheck"
     Me.dateStockCheck.Properties.AllowMouseWheel = False
-    Me.dateStockCheck.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.dateStockCheck.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.75!)
     Me.dateStockCheck.Properties.Appearance.Options.UseFont = True
     Me.dateStockCheck.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.dateStockCheck.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -851,7 +850,7 @@ Partial Class frmStockTake
     Me.txtStockCheckDesc.Location = New System.Drawing.Point(78, 28)
     Me.txtStockCheckDesc.MenuManager = Me.BarManager1
     Me.txtStockCheckDesc.Name = "txtStockCheckDesc"
-    Me.txtStockCheckDesc.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtStockCheckDesc.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.75!)
     Me.txtStockCheckDesc.Properties.Appearance.Options.UseFont = True
     Me.txtStockCheckDesc.Size = New System.Drawing.Size(178, 22)
     Me.txtStockCheckDesc.TabIndex = 40
@@ -871,7 +870,7 @@ Partial Class frmStockTake
     Me.grpItemDetail.AppearanceCaption.Options.UseForeColor = True
     Me.grpItemDetail.Controls.Add(Me.puccStockItemValuationHistorys)
     Me.grpItemDetail.Controls.Add(Me.grdStockCheckItem)
-    Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Todo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1)})
+    Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Visibles", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1)})
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
     Me.grpItemDetail.Name = "grpItemDetail"

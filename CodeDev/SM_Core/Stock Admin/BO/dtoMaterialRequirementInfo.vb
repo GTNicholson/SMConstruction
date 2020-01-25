@@ -82,6 +82,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
         .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
 
+
       End With
       With pMaterialRequirment.StockItem
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")

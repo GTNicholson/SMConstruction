@@ -94,6 +94,7 @@
 
   End Property
 
+
   Public ReadOnly Property WorkOrderQuantity As Integer
     Get
       Return pWorkOrder.Quantity
