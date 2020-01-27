@@ -388,6 +388,8 @@ Public Class dsoStockTransactions
             Next
 
             If mSubsequentStockCheckTran Is Nothing Then
+
+
               If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & vStockitemLocation.StockItemLocationID) > 0 Then
               Else
                 mOK = False
