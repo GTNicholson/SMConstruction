@@ -341,12 +341,19 @@ Public Class frmStockTake
     If pFormController.StockTake IsNot Nothing Then
 
       With pFormController.StockTake
+
+        If Not clsGeneralA.IsBlankDate(.DateCommitted) Then
+          gvStockCheckItem.OptionsBehavior.Editable = False
+        Else
+          gvStockCheckItem.OptionsBehavior.Editable = True
+        End If
         txtStockCheckDesc.Text = .Description
         dateStockCheck.DateTime = .StockTakeDate
 
         datDateSystemQty.DateTime = .DateSystemQty
 
-        barbtnCommitStockTake.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+        bbtnAplicarCantidadesContado.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+
 
         ''UIHelper.SetControlsEnabled(PanelControl1, clsGeneralA.IsBlankDate(.DateCommitted))
         ''UIHelper.SetBarManagerEnabled(BarManager1, clsGeneralA.IsBlankDate(.DateCommitted))
@@ -385,6 +392,7 @@ Public Class frmStockTake
       End With
 
     End If
+
 
     pIsActive = mStartActive
   End Sub
@@ -530,6 +538,7 @@ Public Class frmStockTake
 
   Private Sub barbtnExcelExport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnExcelExport.ItemClick
     Try
+
       Dim mFileName As String = String.Empty
       Dim mTitle As String = Me.Text
       Dim mExcel As clsExcelExportStockTake
@@ -955,6 +964,9 @@ Public Class frmStockTake
   Private Sub bbtnAplicarCantidadesContado_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnAplicarCantidadesContado.ItemClick
     Try
       pFormController.CommitStockTakeSheet()
+
+
+      RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

@@ -388,6 +388,8 @@ Public Class dsoStockTransactions
             Next
 
             If mSubsequentStockCheckTran Is Nothing Then
+
+
               If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & vStockitemLocation.StockItemLocationID) > 0 Then
               Else
                 mOK = False
@@ -406,7 +408,7 @@ Public Class dsoStockTransactions
 
           '// even if there is no StockItem, we still need to update the material requirement picked qty
           If mOK Then
-            If pDBConn.ExecuteCommand("UPDATE dbo.MaterialRequirement SET PickedQty=" & vMatReq.PickedQty + vPickedQty & " WHERE MaterialRequirementID =" & vMatReq.MaterialRequirementID) > 0 Then
+            If pDBConn.ExecuteCommand("UPDATE dbo.MaterialRequirement SET PickedQty=" & vMatReq.PickedQty + vPickedQty & "WHERE MaterialRequirementID =" & vMatReq.MaterialRequirementID) > 0 Then
               mOK = True
             Else
               mOK = False

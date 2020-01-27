@@ -38,6 +38,8 @@ Public Class repFGLabel
     xrlCustomer.DataBindings.Add("Text", DataSource, "Customer")
     xrlDescription1.DataBindings.Add("Text", DataSource, "Description")
     xrlDescription2.DataBindings.Add("Text", DataSource, "Component")
+    xrlDestination.DataBindings.Add("Text", DataSource, "Destination")
+    xrlOTNumber.DataBindings.Add("Text", DataSource, "WorkOrderNo")
     XrBarCode1.DataBindings.Add("Text", DataSource, "BarCode")
   End Sub
 
@@ -55,6 +57,9 @@ Public Class repFGLabel
         mFGLabelItem.Customer = pSO.Customer.CompanyName
         mFGLabelItem.Description = pWO.Description
         mFGLabelItem.BarCode = "FG" & pWO.WorkOrderID.ToString("000000")
+        mFGLabelItem.Destination = pSO.Customer.MainAddress1
+        mFGLabelItem.WorkOrderNo = pWO.WorkOrderNo
+
         pFGLabelItems.Add(mFGLabelItem)
 
       Else
@@ -64,6 +69,8 @@ Public Class repFGLabel
           mFGLabelItem.Description = pWO.Description
           mFGLabelItem.Component = mComp.Description
           mFGLabelItem.BarCode = "FG" & pWO.WorkOrderID.ToString("000000")
+          mFGLabelItem.Destination = pSO.Customer.MainAddress1
+          mFGLabelItem.WorkOrderNo = pWO.WorkOrderNo
           pFGLabelItems.Add(mFGLabelItem)
         Next
 
@@ -87,7 +94,7 @@ Public Class repFGLabel
       mImage = Drawing.Image.FromFile(mFileName)
     End If
 
-    xrpImage.Image = mImage
+    ''xrpImage.Image = mImage
   End Sub
 End Class
 
@@ -96,6 +103,8 @@ Public Class clsFGLabelItem
   Public Property Description As String
   Public Property Component As String
   Public Property BarCode As String
+  Public Property Destination As String
+  Public Property WorkOrderNo As String
 
 
 

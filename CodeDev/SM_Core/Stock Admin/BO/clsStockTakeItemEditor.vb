@@ -92,6 +92,15 @@
     End Get
   End Property
 
+  Public ReadOnly Property StdCost As Decimal
+    Get
+
+      Return pStockItem.StdCost
+    End Get
+  End Property
+
+
+
   Public ReadOnly Property StockItemCategoryDesc As String
     Get
       Dim mRetVal As String = ""

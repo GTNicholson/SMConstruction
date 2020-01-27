@@ -98,22 +98,26 @@ or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
   Public Sub ProcessPicks()
     Try
       Dim mdsoTran As dsoStockTransactions
+      Dim mMatReq As dtoMaterialRequirement
+
       Dim mdsoStock As dsoStock
       Dim mSIL As dmStockItemLocation
 
       mdsoTran = New dsoStockTransactions(pDBConn)
+
       mdsoStock = New dsoStock(pDBConn)
 
       For Each mMRP As clsMaterialRequirementProcessor In pMaterialRequirementProcessors
         If mMRP.ToProcessQty <> 0 Then
           If mMRP.StockItem.StockItemID <> 0 Then
-          mSIL = mdsoStock.GetOrCreateStockItemLocation(mMRP.StockItem.StockItemID, 1)
-        Else
-          mSIL = Nothing
-        End If
+            mSIL = mdsoStock.GetOrCreateStockItemLocation(mMRP.StockItem.StockItemID, 1)
+          Else
+            mSIL = Nothing
+          End If
           mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now)
           mMRP.ToProcessQty = 0
         End If
+
       Next
 
     Catch ex As Exception

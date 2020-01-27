@@ -87,6 +87,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .SupplierStockCode = SupplierStockCode
       .Comments = Comments
 
+
       'Add entries here for each collection and class property
 
       'Entries for object management

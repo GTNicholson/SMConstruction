@@ -83,6 +83,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierStockCode", StringToDBValue(.SupplierStockCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Comments", StringToDBValue(.Comments))
 
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemID", .StockItemID)
 
       '// this can only be changed in transactions DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PickedQty", .PickedQty)
@@ -117,7 +118,6 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .DateChange = DBReadDate(rDataReader, "DateChange")
 
         .DateOtherMaterial = DBReadDate(rDataReader, "DateOtherMaterial")
-
         .UoM = DBReadString(rDataReader, "UoM")
         .AreaID = DBReadInt32(rDataReader, "AreaID")
         .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")

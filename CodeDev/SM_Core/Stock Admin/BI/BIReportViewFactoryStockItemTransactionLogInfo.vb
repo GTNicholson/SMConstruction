@@ -64,7 +64,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.StockItemTransactions
-    mRepSource.Name = "Stock Transaction Log Items"
+    mRepSource.Name = "Registro de Transacción de Ítem de Inventario"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -91,7 +91,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mRepDDLayout.InterfaceType = 1
     mRepDDLayout.ParentLayoutID = 0
     mRepDDLayout.LayoutFileName = "BIStockTransactionItemList.xml"
-    mRepDDLayout.LayoutName = "Stock Transaction Items List"
+    mRepDDLayout.LayoutName = "Lista de Transacción de Ítem de Inventario"
     vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
     mRepLayout = New dmBIGridLayout
@@ -99,7 +99,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIStockTransactionItemSummary.xml"
-    mRepLayout.LayoutName = "Stock Transaction Items Summary"
+    mRepLayout.LayoutName = "Resumen de Artículos de Transacción de Inventario"
     ''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
     mRepLayout.DrillDownLayout = mRepDDLayout
     vReportSource.BIGridLayouts.Add(mRepLayout)
@@ -113,7 +113,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mParam.FieldName = "TransactionDate"
     mParam.ParamOperator = ">="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Trans Date From"
+    mParam.ParamLabel = "Desde la Fecha"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.StartDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
@@ -124,7 +124,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mParam.FieldName = "TransactionDate"
     mParam.ParamOperator = "<="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Trans Date To"
+    mParam.ParamLabel = "Hasta la Fecha"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.EndDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
@@ -135,7 +135,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mParam.FieldName = "IsManagedStock"
     mParam.ParamOperator = "="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftBoolean
-    mParam.ParamLabel = "Is Managed Stock"
+    mParam.ParamLabel = "¿El Inventario es administrado?"
     mParam.FilterGroup = 0
     mParam.ORGroup = -1 ' HACK to exclude from sql filter string
     mParam.DefaultValue = True
