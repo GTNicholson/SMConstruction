@@ -343,9 +343,9 @@ Public Class frmStockTake
       With pFormController.StockTake
 
         If Not clsGeneralA.IsBlankDate(.DateCommitted) Then
-          grpItemDetail.Enabled = False
+          gvStockCheckItem.OptionsBehavior.Editable = False
         Else
-          grpItemDetail.Enabled = True
+          gvStockCheckItem.OptionsBehavior.Editable = True
         End If
         txtStockCheckDesc.Text = .Description
         dateStockCheck.DateTime = .StockTakeDate

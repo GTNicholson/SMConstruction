@@ -196,7 +196,7 @@ Partial Class frmPickMaterials
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirementInfo)
-    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Processar", True, ButtonImageOptions1)})
+    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions1)})
     Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirements.Location = New System.Drawing.Point(2, 142)
     Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
