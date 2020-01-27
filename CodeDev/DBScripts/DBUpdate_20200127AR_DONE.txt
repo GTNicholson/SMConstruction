@@ -7,7 +7,7 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+go
 
 ALTER view [dbo].[vwMaterialRequirementPicking]
 as
