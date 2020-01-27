@@ -150,6 +150,7 @@ Public Class frmStockItem
         pCurrentDetailMode = eCurrentDetailMode.eEdit
         SetDetailsControlsReadonly(False)
         SetDetailFocus()
+        RefreshControls()
         RefreshCategorySpecificControls()
         RefreshControls()
       Case eDetailButtons.Save

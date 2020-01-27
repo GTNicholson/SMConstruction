@@ -87,6 +87,13 @@
 
   End Property
 
+  Public ReadOnly Property MaterialRequirementType As Int32
+    Get
+      Return pMaterialRequirement.MaterialRequirementType
+    End Get
+
+  End Property
+
   Public ReadOnly Property Material As Int32
     Get
       Return pMaterialRequirement.MaterialTypeID
