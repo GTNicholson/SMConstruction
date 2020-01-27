@@ -190,7 +190,6 @@ Public Class frmPickerStockItem
       End If
     End If
 
-    RefreshControls()
   End Sub
 
   Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvItemList.CustomRowCellEdit
