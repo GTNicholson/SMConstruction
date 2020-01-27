@@ -128,6 +128,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.EndDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
+    mParam.DefaultValue = Now.Date
     vReportSource.ColManRepParameter.Add(mParam)
 
     mParam = New clsManRepParameter
