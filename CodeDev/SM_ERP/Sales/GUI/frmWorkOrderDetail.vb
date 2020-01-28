@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 Imports RTIS.Elements
 Imports RTIS.ERPStock
 
@@ -19,6 +20,8 @@ Public Class frmWorkOrderDetail
   Public ExitMode As Windows.Forms.DialogResult
   Public IsInternal As New Boolean
   Public pSOI As dmSalesOrderItem
+  Public pDBCon As RTIS.DataLayer.clsDBConnBase
+  Public pAppRTISGlobal As AppRTISGlobal
 
   Private Enum eMaterialRequirementsButtons
     Copy = 1
@@ -40,8 +43,29 @@ Public Class frmWorkOrderDetail
     pSOI = New dmSalesOrderItem()
   End Sub
 
+  Public Property DBCon As clsDBConnBase
+    Get
+      Return pDBCon
+    End Get
+    Set(value As clsDBConnBase)
+      pDBCon = value
+    End Set
+  End Property
+
+  Public Property RTISGlobal As AppRTISGlobal
+    Get
+      Return pAppRTISGlobal
+    End Get
+    Set(value As AppRTISGlobal)
+      pAppRTISGlobal = value
+    End Set
+  End Property
+
+
+
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByVal vIsInternal As Boolean)
     Dim mfrm As frmWorkOrderDetail = Nothing
+
 
     If vPrimaryKeyID <> 0 Then
       mfrm = GetFormIfLoaded(vPrimaryKeyID)
@@ -51,6 +75,8 @@ Public Class frmWorkOrderDetail
       mfrm.pFormController = New fccWorkOrderDetail(rDBConn, rRTISGlobal, vIsInternal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
+      mfrm.DBCon = rDBConn
+      mfrm.RTISGlobal = rRTISGlobal
       mfrm.Show()
     Else
       mfrm.Focus()
@@ -934,7 +960,7 @@ Public Class frmWorkOrderDetail
         mPicker = New clsPickerStockItem(mSIs)
 
 
-        frmPickerStockItem.OpenPickerMulti(mPicker, True)
+        frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
 
         pFormController.syncronizedMaterialRequirment(mPicker.SelectedObjects)
 
@@ -990,6 +1016,83 @@ Public Class frmWorkOrderDetail
             End If
 
           Case gcPartNo.Name
+            If e.IsGetData Then
+              e.Value = mSI.PartNo
+
+            End If
+        End Select
+      End If
+    End If
+  End Sub
+
+  Private Sub grpMaterialRequirementsOtherChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementsOtherChanges.CustomButtonClick
+    Select Case e.Button.Properties.Tag
+
+      Case eMaterialRequirementsButtons.AddInv
+        Dim mSIs As New colStockItems
+        Dim mPicker As clsPickerStockItem
+        For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
+          mSIs.Add(mItem.Value)
+        Next
+        mPicker = New clsPickerStockItem(mSIs)
+
+
+        frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
+
+        pFormController.syncronizedMaterialRequirmentChanges(mPicker.SelectedObjects)
+
+        RefreshProductControls()
+
+    End Select
+  End Sub
+
+  Private Sub gvMaterialRequirmentOtherChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirmentOtherChanges.CustomUnboundColumnData
+    Dim mMatReq As dmMaterialRequirement
+    Dim mSI As dmStockItem
+
+    mMatReq = CType(e.Row, dmMaterialRequirement)
+
+    If mMatReq.StockItemID = 0 Then
+
+
+      Select Case e.Column.Name
+        Case gcMatReqOtherDescriptionChange.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.Description
+          ElseIf e.IsSetData Then
+            mMatReq.Description = e.Value
+          End If
+        Case gcStockCodeChange.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.StockCode
+          ElseIf e.IsSetData Then
+            mMatReq.StockCode = e.Value
+          End If
+
+        Case gcPartNoChange.Name
+          If e.IsGetData Then
+            e.Value = mMatReq.SupplierStockCode
+          ElseIf e.IsSetData Then
+            mMatReq.StockCode = e.Value
+          End If
+      End Select
+    Else
+      mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
+      If mSI IsNot Nothing Then
+
+        Select Case e.Column.Name
+          Case gcMatReqOtherDescriptionChange.Name
+            If e.IsGetData Then
+              e.Value = mSI.Description
+
+            End If
+          Case gcStockCodeChange.Name
+            If e.IsGetData Then
+              e.Value = mSI.StockCode
+
+            End If
+
+          Case gcPartNoChange.Name
             If e.IsGetData Then
               e.Value = mSI.PartNo
 

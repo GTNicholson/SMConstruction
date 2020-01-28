@@ -116,6 +116,24 @@ Public Class frmStockItem
       mfrm.Focus()
     End If
   End Sub
+
+  Public Shared Function GetNewStockItem(ByRef rDBConn As clsDBConnBase, ByRef rAppRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory))
+
+    Dim mfrm As frmStockItem = Nothing
+
+    mfrm = GetFormIfLoaded()
+    If mfrm Is Nothing Then
+      mfrm = New frmStockItem
+
+      mfrm.pFormController = New fccStocktem(rDBConn, rAppRTISGlobal)
+      mfrm.pFormController.Categorys = vCategorys
+
+      mfrm.ShowDialog()
+    Else
+      mfrm.Focus()
+    End If
+  End Function
+
   Private Shared Function GetFormIfLoaded() As frmStockItem
     Dim mfrmWanted As frmStockItem = Nothing
     Dim mFound As Boolean = False
@@ -135,6 +153,11 @@ Public Class frmStockItem
     Return mfrmWanted
   End Function
 
+  Public ReadOnly Property FormController As fccStocktem
+    Get
+      Return pFormController
+    End Get
+  End Property
   Private Sub frmStockItem_Closed(sender As Object, e As EventArgs) Handles Me.Closed
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
   End Sub
@@ -593,7 +616,8 @@ Public Class frmStockItem
   End Sub
 
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
-
+    UpdateObject()
+    RefreshCategorySpecificControls()
   End Sub
 End Class
 

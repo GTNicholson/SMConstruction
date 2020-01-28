@@ -4,7 +4,7 @@ Imports RTIS.CommonVB
 Public Class fccStocktem
   Private pDBConn As clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
-
+  Private pPrimaryKeyID As Integer
   Private pStockItems As colStockItems
   ''  Private pStockItemsPicker As colStockItems
   Private pCurrentStockItem As dmStockItem
@@ -15,6 +15,7 @@ Public Class fccStocktem
   Private pInterdenStockItem As dmStockItem
   Private ptmpIsFullyLoadedDown As Boolean
   Private pShowItemsMode As Integer
+  Private pStockItem As dmStockItem
 
   ''Private pStockItemRegistry As clsStockItemRegistry
 
@@ -52,6 +53,13 @@ Public Class fccStocktem
     End Set
   End Property
 
+  Public ReadOnly Property StockItem As dmStockItem
+    Get
+      Return pStockItem
+    End Get
+  End Property
+
+
   Public Property tmpIsFullyLoadedDown() As Boolean
     Get
       tmpIsFullyLoadedDown = ptmpIsFullyLoadedDown
@@ -70,6 +78,14 @@ Public Class fccStocktem
     End Set
   End Property
 
+  Public Property PrimaryKeyID As Integer
+    Get
+      Return pPrimaryKeyID
+    End Get
+    Set(value As Integer)
+      pPrimaryKeyID = value
+    End Set
+  End Property
 
   Public Property InterdenStockItem As dmStockItem
     Get
@@ -116,6 +132,7 @@ Public Class fccStocktem
     ''pStockItemRegistry = New clsStockItemRegistry(rDBConn)
     pShowItemsMode = eShowItems.ShowLive
   End Sub
+
 
   Public Sub LoadObject()
     pCurrentCategory = 0 '// All

@@ -79,7 +79,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         .UoM = DBReadString(rDataReader, "UoM")
         .AreaID = DBReadInt32(rDataReader, "AreaID")
         .Comments = DBReadString(rDataReader, "Comments")
-        .MaterialRequirementType = DBReadInt32(rDataReader, "MaterialRequirementType")
+        .MaterialRequirementType = DBReadByte(rDataReader, "MaterialRequirementType")
         .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
         .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
 

@@ -155,11 +155,11 @@ Public Class clsExcelExportStockTake
 
         pCurrentSheet.Cells(mRow, cColStdCost).SetValue(mItem.StdCost)
 
-        pCurrentSheet.Cells(mRow, cColCurrentInventory).SetValue(mItem.CountedQty)
+        pCurrentSheet.Cells(mRow, cColCurrentInventory).SetValue(mItem.CountedQty + mItem.WriteOffQuantity)
         mTotalCounted += mItem.CountedQty
 
-        pCurrentSheet.Cells(mRow, cColTotalAmount).SetValue(mItem.CountedValue)
-        mTotalAmount += mItem.CountedValue
+        pCurrentSheet.Cells(mRow, cColTotalAmount).SetValue(mItem.CountedValue + mItem.WriteOffValue)
+        mTotalAmount += mItem.CountedValue + mItem.WriteOffValue
 
         mRow = mRow + 1
       End If

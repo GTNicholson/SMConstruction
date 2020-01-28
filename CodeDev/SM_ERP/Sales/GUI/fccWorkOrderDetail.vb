@@ -158,6 +158,23 @@ Public Class fccWorkOrderDetail
 
 
   End Sub
+
+  Public Sub syncronizedMaterialRequirmentChanges(ByRef rStockItems As List(Of dmStockItem))
+    Dim mMat As dmMaterialRequirement
+    Dim mFurniture As dmProductFurniture
+
+    For Each mSI As dmStockItem In rStockItems
+      mMat = New dmMaterialRequirement
+      mFurniture = pWorkOrder.Product
+
+      mMat.ObjectID = pWorkOrder.WorkOrderID
+      mMat.ObjectType = eObjectType.WorkOrder
+      mMat.StockItemID = mSI.StockItemID
+      mFurniture.MaterialRequirmentOthersChanges.Add(mMat)
+    Next
+
+
+  End Sub
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
     Dim mRetVal As New clsValWarn
     mRetVal.ValOk = True

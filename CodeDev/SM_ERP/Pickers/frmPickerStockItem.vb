@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 Imports RTIS.Elements
 Imports RTIS.ERPStock
 
@@ -8,6 +9,8 @@ Public Class frmPickerStockItem
   Private pPickerStockItem As clsPickerStockItem
   Private pRemainOpen As Boolean
   Private pStockItems As dmStockItem
+  Private pFormController As fccStocktem
+
 
   Public Property StockItem As dmStockItem
     Get
@@ -15,6 +18,14 @@ Public Class frmPickerStockItem
     End Get
     Set(value As dmStockItem)
       pStockItems = value
+    End Set
+  End Property
+  Public Property FormController() As fccStocktem
+    Get
+      FormController = pFormController
+    End Get
+    Set(ByVal value As fccStocktem)
+      pFormController = value
     End Set
   End Property
 
@@ -34,9 +45,11 @@ Public Class frmPickerStockItem
 
 
 
-  Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean) As List(Of intStockItemDef)
+  Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of intStockItemDef)
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As New List(Of intStockItemDef)
+
+    mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal)
 
 
     mfrm.pPickerStockItem = vPickerStockItem
@@ -208,6 +221,35 @@ Public Class frmPickerStockItem
       End If
 
     End If
+  End Sub
+
+  Private Sub bbtnNewStockItem_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnNewStockItem.ItemClick
+    Dim mRetVal As dmStockItem
+    Dim mCategories As New List(Of eStockItemCategory)
+    mCategories.Add(eStockItemCategory.Abrasivos)
+    mCategories.Add(eStockItemCategory.NailsAndBolds)
+    mCategories.Add(eStockItemCategory.EPP)
+    mCategories.Add(eStockItemCategory.Herramientas)
+    mCategories.Add(eStockItemCategory.MatElect)
+    mCategories.Add(eStockItemCategory.MatEmpaque)
+    mCategories.Add(eStockItemCategory.MatVarios)
+    mCategories.Add(eStockItemCategory.Metal)
+    mCategories.Add(eStockItemCategory.PinturaYQuimico)
+    mCategories.Add(eStockItemCategory.Laminas)
+    mCategories.Add(eStockItemCategory.Repuestos)
+    mCategories.Add(eStockItemCategory.Tapiceria)
+    mCategories.Add(eStockItemCategory.VidrioYEspejo)
+    mCategories.Add(eStockItemCategory.Herrajes)
+
+
+
+    Try
+      frmStockItem.GetNewStockItem(pFormController.DBConn, pFormController.RTISGlobal, mCategories)
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
 End Class

@@ -30,6 +30,7 @@ Partial Class frmWorkOrderDetail
     Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions8 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -156,15 +157,15 @@ Partial Class frmWorkOrderDetail
     Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage7 = New DevExpress.XtraTab.XtraTabPage()
-    Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+    Me.grpMaterialRequirementsOtherChanges = New DevExpress.XtraEditors.GroupControl()
     Me.grdMaterialRequirementOthersChange = New DevExpress.XtraGrid.GridControl()
-    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gvMaterialRequirmentOtherChanges = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.gcStockCodeChange = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcMatReqOtherDescriptionChange = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAreaIDChange = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcPartNoChange = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDateOtherMaterialChange = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -255,10 +256,10 @@ Partial Class frmWorkOrderDetail
     CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage7.SuspendLayout()
-    CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.GroupControl6.SuspendLayout()
+    CType(Me.grpMaterialRequirementsOtherChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.grpMaterialRequirementsOtherChanges.SuspendLayout()
     CType(Me.grdMaterialRequirementOthersChange, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvMaterialRequirmentOtherChanges, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -907,7 +908,7 @@ Partial Class frmWorkOrderDetail
     Me.XtraTabPage1.Name = "XtraTabPage1"
     Me.XtraTabPage1.Size = New System.Drawing.Size(1146, 354)
     Me.XtraTabPage1.Tag = "1"
-    Me.XtraTabPage1.Text = "XtraTabPage1"
+    Me.XtraTabPage1.Text = "Datos Generales"
     '
     'grpWOFiles
     '
@@ -1608,7 +1609,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementOthers.Controls.Add(Me.grdMaterialRequirementOthers)
-    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar Lista", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar Lista", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Otro", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Inv.", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1)})
+    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar Lista", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar Lista", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Otro", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1)})
     Me.grpMaterialRequirementOthers.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
@@ -1718,24 +1719,26 @@ Partial Class frmWorkOrderDetail
     '
     'XtraTabPage7
     '
-    Me.XtraTabPage7.Controls.Add(Me.GroupControl6)
+    Me.XtraTabPage7.Controls.Add(Me.grpMaterialRequirementsOtherChanges)
     Me.XtraTabPage7.Name = "XtraTabPage7"
     Me.XtraTabPage7.Size = New System.Drawing.Size(1072, 177)
     Me.XtraTabPage7.Text = "Cambios"
     '
-    'GroupControl6
+    'grpMaterialRequirementsOtherChanges
     '
-    Me.GroupControl6.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GroupControl6.AppearanceCaption.Options.UseFont = True
-    Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
-    Me.GroupControl6.Controls.Add(Me.grdMaterialRequirementOthersChange)
-    Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
-    Me.GroupControl6.Name = "GroupControl6"
-    Me.GroupControl6.Size = New System.Drawing.Size(1072, 177)
-    Me.GroupControl6.TabIndex = 148
-    Me.GroupControl6.Text = "Lista de Materiales Requeridos (LMR)"
+    Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Options.UseFont = True
+    Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Options.UseForeColor = True
+    Me.grpMaterialRequirementsOtherChanges.Controls.Add(Me.grdMaterialRequirementOthersChange)
+    Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1)})
+    Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+    Me.grpMaterialRequirementsOtherChanges.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grpMaterialRequirementsOtherChanges.Location = New System.Drawing.Point(0, 0)
+    Me.grpMaterialRequirementsOtherChanges.Name = "grpMaterialRequirementsOtherChanges"
+    Me.grpMaterialRequirementsOtherChanges.Size = New System.Drawing.Size(1072, 177)
+    Me.grpMaterialRequirementsOtherChanges.TabIndex = 148
+    Me.grpMaterialRequirementsOtherChanges.Text = "Lista de Materiales Requeridos (LMR)"
     '
     'grdMaterialRequirementOthersChange
     '
@@ -1745,47 +1748,51 @@ Partial Class frmWorkOrderDetail
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.EndEdit.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdMaterialRequirementOthersChange.Location = New System.Drawing.Point(2, 23)
-    Me.grdMaterialRequirementOthersChange.MainView = Me.GridView1
+    Me.grdMaterialRequirementOthersChange.Location = New System.Drawing.Point(2, 26)
+    Me.grdMaterialRequirementOthersChange.MainView = Me.gvMaterialRequirmentOtherChanges
     Me.grdMaterialRequirementOthersChange.MenuManager = Me.BarManager1
     Me.grdMaterialRequirementOthersChange.Name = "grdMaterialRequirementOthersChange"
     Me.grdMaterialRequirementOthersChange.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-    Me.grdMaterialRequirementOthersChange.Size = New System.Drawing.Size(1068, 152)
+    Me.grdMaterialRequirementOthersChange.Size = New System.Drawing.Size(1068, 149)
     Me.grdMaterialRequirementOthersChange.TabIndex = 42
     Me.grdMaterialRequirementOthersChange.UseEmbeddedNavigator = True
-    Me.grdMaterialRequirementOthersChange.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+    Me.grdMaterialRequirementOthersChange.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirmentOtherChanges})
     '
-    'GridView1
+    'gvMaterialRequirmentOtherChanges
     '
-    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-    Me.GridView1.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.gcAreaIDChange, Me.GridColumn28, Me.GridColumn29, Me.gcDateOtherMaterialChange})
-    Me.GridView1.GridControl = Me.grdMaterialRequirementOthersChange
-    Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsView.ShowGroupPanel = False
-    Me.GridView1.ViewCaption = "Lista de Materiales Requeridos (LMR)"
+    Me.gvMaterialRequirmentOtherChanges.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirmentOtherChanges.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvMaterialRequirmentOtherChanges.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
+    Me.gvMaterialRequirmentOtherChanges.Appearance.Row.Options.UseFont = True
+    Me.gvMaterialRequirmentOtherChanges.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+    Me.gvMaterialRequirmentOtherChanges.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvMaterialRequirmentOtherChanges.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvMaterialRequirmentOtherChanges.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvMaterialRequirmentOtherChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCodeChange, Me.gcMatReqOtherDescriptionChange, Me.GridColumn24, Me.GridColumn25, Me.gcAreaIDChange, Me.gcPartNoChange, Me.GridColumn29, Me.gcDateOtherMaterialChange})
+    Me.gvMaterialRequirmentOtherChanges.GridControl = Me.grdMaterialRequirementOthersChange
+    Me.gvMaterialRequirmentOtherChanges.Name = "gvMaterialRequirmentOtherChanges"
+    Me.gvMaterialRequirmentOtherChanges.OptionsView.ShowGroupPanel = False
+    Me.gvMaterialRequirmentOtherChanges.ViewCaption = "Lista de Materiales Requeridos (LMR)"
     '
-    'GridColumn22
+    'gcStockCodeChange
     '
-    Me.GridColumn22.Caption = "Código"
-    Me.GridColumn22.FieldName = "StockCode"
-    Me.GridColumn22.Name = "GridColumn22"
-    Me.GridColumn22.Width = 54
+    Me.gcStockCodeChange.Caption = "Código SMM"
+    Me.gcStockCodeChange.FieldName = "ubStockCode"
+    Me.gcStockCodeChange.Name = "gcStockCodeChange"
+    Me.gcStockCodeChange.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcStockCodeChange.Visible = True
+    Me.gcStockCodeChange.VisibleIndex = 7
+    Me.gcStockCodeChange.Width = 54
     '
-    'GridColumn23
+    'gcMatReqOtherDescriptionChange
     '
-    Me.GridColumn23.Caption = "Descripción de Materiales"
-    Me.GridColumn23.FieldName = "Description"
-    Me.GridColumn23.Name = "GridColumn23"
-    Me.GridColumn23.Visible = True
-    Me.GridColumn23.VisibleIndex = 0
-    Me.GridColumn23.Width = 176
+    Me.gcMatReqOtherDescriptionChange.Caption = "Descripción de Materiales"
+    Me.gcMatReqOtherDescriptionChange.FieldName = "UbMatReqOtherDescription"
+    Me.gcMatReqOtherDescriptionChange.Name = "gcMatReqOtherDescriptionChange"
+    Me.gcMatReqOtherDescriptionChange.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcMatReqOtherDescriptionChange.Visible = True
+    Me.gcMatReqOtherDescriptionChange.VisibleIndex = 0
+    Me.gcMatReqOtherDescriptionChange.Width = 176
     '
     'GridColumn24
     '
@@ -1814,14 +1821,15 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaIDChange.VisibleIndex = 3
     Me.gcAreaIDChange.Width = 83
     '
-    'GridColumn28
+    'gcPartNoChange
     '
-    Me.GridColumn28.Caption = "Código"
-    Me.GridColumn28.FieldName = "SupplierStockCode"
-    Me.GridColumn28.Name = "GridColumn28"
-    Me.GridColumn28.Visible = True
-    Me.GridColumn28.VisibleIndex = 4
-    Me.GridColumn28.Width = 86
+    Me.gcPartNoChange.Caption = "Código Proveedor"
+    Me.gcPartNoChange.FieldName = "UBPartNo"
+    Me.gcPartNoChange.Name = "gcPartNoChange"
+    Me.gcPartNoChange.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+    Me.gcPartNoChange.Visible = True
+    Me.gcPartNoChange.VisibleIndex = 4
+    Me.gcPartNoChange.Width = 86
     '
     'GridColumn29
     '
@@ -2063,10 +2071,10 @@ Partial Class frmWorkOrderDetail
     CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage7.ResumeLayout(False)
-    CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.GroupControl6.ResumeLayout(False)
+    CType(Me.grpMaterialRequirementsOtherChanges, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.grpMaterialRequirementsOtherChanges.ResumeLayout(False)
     CType(Me.grdMaterialRequirementOthersChange, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvMaterialRequirmentOtherChanges, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2193,7 +2201,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents XtraTabPage6 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents grpMaterialRequirementOthers As DevExpress.XtraEditors.GroupControl
   Friend WithEvents XtraTabPage7 As DevExpress.XtraTab.XtraTabPage
-  Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents grpMaterialRequirementsOtherChanges As DevExpress.XtraEditors.GroupControl
   Friend WithEvents btnWorkOrderNumber As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents Label21 As Label
   Friend WithEvents dteDrawingDate As DevExpress.XtraEditors.DateEdit
@@ -2218,13 +2226,13 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcBoardTableChanges As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents grdMaterialRequirementOthersChange As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gvMaterialRequirmentOtherChanges As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents gcStockCodeChange As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcMatReqOtherDescriptionChange As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcAreaIDChange As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcPartNoChange As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcMatReason As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcDateChange As DevExpress.XtraGrid.Columns.GridColumn
