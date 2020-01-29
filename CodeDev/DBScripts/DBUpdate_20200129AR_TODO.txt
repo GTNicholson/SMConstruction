@@ -1,0 +1,36 @@
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.PickedQty,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.Description AS 'SIDESCRIPTION',
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+SO.OrderNo,
+CU.CompanyName
+
+from MaterialRequirement MR
+LEFT JOIN StockItem SI ON SI.StockItemID=MR.StockItemID 
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=MR.ObjectID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,4)
+
+GO

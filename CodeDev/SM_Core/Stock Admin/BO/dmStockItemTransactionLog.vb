@@ -19,6 +19,7 @@ Public Class dmStockItemTransactionLog : Inherits dmBase
   Private pStdCost As Decimal
   Private pTransactionValuation As Decimal
   Private pStockValuation As Decimal
+  Private pReferenceNo As String
 
   Public Sub New()
     MyBase.New()
@@ -69,6 +70,7 @@ Public Class dmStockItemTransactionLog : Inherits dmBase
       .TransactionValuation = TransactionValuation
       .StockValuation = StockValuation
       .StdCost = StdCost
+      .ReferenceNo = ReferenceNo
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -85,6 +87,16 @@ Public Class dmStockItemTransactionLog : Inherits dmBase
     Set(ByVal value As Int32)
       If pStockItemTransactionLogID <> value Then IsDirty = True
       pStockItemTransactionLogID = value
+    End Set
+  End Property
+
+  Public Property ReferenceNo() As String
+    Get
+      Return pReferenceNo
+    End Get
+    Set(ByVal value As String)
+      If pReferenceNo <> value Then IsDirty = True
+      pReferenceNo = value
     End Set
   End Property
 

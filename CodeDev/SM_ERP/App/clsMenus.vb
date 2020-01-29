@@ -32,7 +32,7 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Inventory, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.Inventory)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Picking de Insumos por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.Purchasing)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Picking de Insumos por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Stock Infos.", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.Inventory)

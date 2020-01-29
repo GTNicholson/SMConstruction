@@ -73,6 +73,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
         .UserName = DBReadString(rDataReader, "UserName")
         .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
         .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
+        .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
 
         ''Select Case pStockItemTransactionLogInfo.RefObjectType
         ''  Case eDTMObjectType.SOPMaterialRequirement

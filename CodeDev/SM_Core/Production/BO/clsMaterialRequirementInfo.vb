@@ -30,6 +30,15 @@
     End Set
   End Property
 
+  Public Property MaterialRequirementID As Int32
+    Get
+      Return pMaterialRequirement.MaterialRequirementID
+    End Get
+    Set(ByVal value As Int32)
+      pMaterialRequirement.MaterialRequirementID = value
+    End Set
+  End Property
+
   Public Property WorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
@@ -63,6 +72,25 @@
     Set(value As dmStockItem)
       pStockItem = value
     End Set
+  End Property
+
+  Public Property StdCost As Decimal
+    Get
+      Return pStockItem.StdCost
+    End Get
+    Set(value As Decimal)
+      pStockItem.StdCost = value
+    End Set
+  End Property
+
+  Public ReadOnly Property TotalAmount As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pStockItem IsNot Nothing Then
+        mRetVal = clsStockItemSharedFuncs.getStockItemValue(pStockItem, Quantity)
+      End If
+      Return mRetVal
+    End Get
   End Property
 
   Public ReadOnly Property WoodSpecieID As Int32

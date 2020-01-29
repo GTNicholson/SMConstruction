@@ -26,7 +26,7 @@ Public Class frmWorkOrderDetail
   Private Enum eMaterialRequirementsButtons
     Copy = 1
     Paste = 2
-    AddOther = 3
+    ExportList = 3
     AddInv = 4
   End Enum
 
@@ -870,6 +870,12 @@ Public Class frmWorkOrderDetail
             Next
           End If
         End If
+
+      Case eMaterialRequirementsButtons.ExportList
+        Dim mFileName As String = "Exportar MRP " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
+        If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+          gvMaterialRequirements.ExportToXlsx(mFileName)
+        End If
     End Select
   End Sub
 
@@ -965,7 +971,11 @@ Public Class frmWorkOrderDetail
         pFormController.syncronizedMaterialRequirment(mPicker.SelectedObjects)
 
         RefreshProductControls()
-
+      Case eMaterialRequirementsButtons.ExportList
+        Dim mFileName As String = "Exportar LMR " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
+        If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+          gvMaterialRequirementOthers.ExportToXlsx(mFileName)
+        End If
     End Select
   End Sub
 
@@ -1028,6 +1038,25 @@ Public Class frmWorkOrderDetail
   Private Sub grpMaterialRequirementsOtherChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementsOtherChanges.CustomButtonClick
     Select Case e.Button.Properties.Tag
 
+      Case eMaterialRequirementsButtons.Copy
+        Dim mMatReqs As colMaterialRequirementsChanges
+        mMatReqs = grdMaterialRequirementOthersChange.DataSource
+
+        pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
+      Case eMaterialRequirementsButtons.Paste
+        Dim mPF As dmProductFurniture
+        mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+        If mPF IsNot Nothing Then
+
+          If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
+            For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
+              mMatReq.ClearKeys()
+              mMatReq.ObjectID = mPF.ProductFurnitureID
+              mPF.MaterialRequirmentOthersChanges.Add(mMatReq)
+            Next
+          End If
+        End If
+
       Case eMaterialRequirementsButtons.AddInv
         Dim mSIs As New colStockItems
         Dim mPicker As clsPickerStockItem
@@ -1042,6 +1071,12 @@ Public Class frmWorkOrderDetail
         pFormController.syncronizedMaterialRequirmentChanges(mPicker.SelectedObjects)
 
         RefreshProductControls()
+
+      Case eMaterialRequirementsButtons.ExportList
+        Dim mFileName As String = "Exportar LMR de Cambios " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
+        If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+          gvMaterialRequirmentOtherChanges.ExportToXlsx(mFileName)
+        End If
 
     End Select
   End Sub
@@ -1100,5 +1135,16 @@ Public Class frmWorkOrderDetail
         End Select
       End If
     End If
+  End Sub
+
+  Private Sub grpMaterialRequirementChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementChanges.CustomButtonClick
+    Select Case e.Button.Properties.Tag
+
+      Case eMaterialRequirementsButtons.ExportList
+        Dim mFileName As String = "Exportar MRP de Cambios " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
+        If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+          gvRequirmentMaterialsChanges.ExportToXlsx(mFileName)
+        End If
+    End Select
   End Sub
 End Class

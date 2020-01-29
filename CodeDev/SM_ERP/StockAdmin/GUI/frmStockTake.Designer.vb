@@ -562,8 +562,6 @@ Partial Class frmStockTake
     Me.gcWriteOffQuantity.Name = "gcWriteOffQuantity"
     Me.gcWriteOffQuantity.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcWriteOffQuantity", "{0:#,##0.00;;#}")})
     Me.gcWriteOffQuantity.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-    Me.gcWriteOffQuantity.Visible = True
-    Me.gcWriteOffQuantity.VisibleIndex = 11
     Me.gcWriteOffQuantity.Width = 59
     '
     'GridColumn20
@@ -598,7 +596,7 @@ Partial Class frmStockTake
     Me.gcDiscrepency.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcDiscrepency", "{0:#,##0.00;;#}")})
     Me.gcDiscrepency.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcDiscrepency.Visible = True
-    Me.gcDiscrepency.VisibleIndex = 12
+    Me.gcDiscrepency.VisibleIndex = 11
     Me.gcDiscrepency.Width = 39
     '
     'GridColumn2
@@ -620,7 +618,7 @@ Partial Class frmStockTake
     Me.gcStockTakeSheet.Name = "gcStockTakeSheet"
     Me.gcStockTakeSheet.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcStockTakeSheet.Visible = True
-    Me.gcStockTakeSheet.VisibleIndex = 17
+    Me.gcStockTakeSheet.VisibleIndex = 16
     Me.gcStockTakeSheet.Width = 20
     '
     'GridColumn9
@@ -641,7 +639,7 @@ Partial Class frmStockTake
     Me.GridColumn3.Name = "GridColumn3"
     Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SystemTotalValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn3.Visible = True
-    Me.GridColumn3.VisibleIndex = 13
+    Me.GridColumn3.VisibleIndex = 12
     Me.GridColumn3.Width = 32
     '
     'GridColumn21
@@ -654,7 +652,7 @@ Partial Class frmStockTake
     Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CountedValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.GridColumn21.Visible = True
-    Me.GridColumn21.VisibleIndex = 14
+    Me.GridColumn21.VisibleIndex = 13
     Me.GridColumn21.Width = 29
     '
     'GridColumn24
@@ -667,7 +665,7 @@ Partial Class frmStockTake
     Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WriteOffValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.GridColumn24.Visible = True
-    Me.GridColumn24.VisibleIndex = 15
+    Me.GridColumn24.VisibleIndex = 14
     Me.GridColumn24.Width = 33
     '
     'GridColumn22
@@ -679,7 +677,7 @@ Partial Class frmStockTake
     Me.GridColumn22.Name = "GridColumn22"
     Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DiscrepancyValue", "{0:C$#,##0.00;;#}")})
     Me.GridColumn22.Visible = True
-    Me.GridColumn22.VisibleIndex = 16
+    Me.GridColumn22.VisibleIndex = 15
     Me.GridColumn22.Width = 27
     '
     'grdStockCheckItem
