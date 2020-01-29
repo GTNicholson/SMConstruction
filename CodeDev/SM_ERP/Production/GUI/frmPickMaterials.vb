@@ -172,10 +172,18 @@ Public Class frmPickMaterials
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     Try
-      gvMaterialRequirementInfos.CloseEditor()
-      gvMaterialRequirementInfos.UpdateCurrentRow()
-      pFormController.ProcessPicks()
-      gvMaterialRequirementInfos.RefreshData()
+      Dim mReferenceNo As String = ""
+      mReferenceNo = InputBox("Ingrese el número de Requisa", "Registro de Requis", 1)
+
+      If mReferenceNo IsNot String.Empty Then
+        gvMaterialRequirementInfos.CloseEditor()
+        gvMaterialRequirementInfos.UpdateCurrentRow()
+        pFormController.ProcessPicks(mReferenceNo)
+        gvMaterialRequirementInfos.RefreshData()
+      Else
+        MessageBox.Show("Por favor, ingrese el número de referencia para esta salida de materiales", "Advertencia")
+      End If
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

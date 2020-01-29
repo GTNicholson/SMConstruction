@@ -1,0 +1,49 @@
+USE [SMConstruction]
+
+alter table StockItemTransactionLog
+add ReferenceNo varchar(5)
+go
+
+GO
+
+/****** Object:  View [dbo].[vwStockItemTransactionLogInfo]    Script Date: 28/1/2020 11:45:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER view [dbo].[vwStockItemTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.StockValuation, 
+SITL.ReferenceNo,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+UL.UserName, 
+ST.Description AS StockTakeDescription
+FROM            dbo.StockItemTransactionLog AS SITL INNER JOIN
+                         dbo.UserList AS UL ON SITL.UserID = UL.UserID INNER JOIN
+                         dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID INNER JOIN
+                         dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID LEFT OUTER JOIN
+                         dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+
+
+GO
+
+

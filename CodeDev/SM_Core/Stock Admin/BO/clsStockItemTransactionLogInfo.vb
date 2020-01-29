@@ -5,6 +5,7 @@ Public Class clsStockItemTransactionLogInfo
 
   Private pStockItemTransactionLogID As Integer
   Private pPONum As String
+  Private pReferenceNo As String
   Private pSupplierName As String
   Private pGRNumber As String
   Private pTransQty As Decimal
@@ -186,6 +187,15 @@ Public Class clsStockItemTransactionLogInfo
     End Get
     Set(value As Integer)
       pSalesOrderPhaseID = value
+    End Set
+  End Property
+
+  Public Property ReferenceNo As String
+    Get
+      Return pReferenceNo
+    End Get
+    Set(value As String)
+      pReferenceNo = value
     End Set
   End Property
 

@@ -90,6 +90,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         .Category = DBReadByte(rDataReader, "Category")
         .PartNo = DBReadString(rDataReader, "PartNo")
         .Description = DBReadString(rDataReader, "SIDESCRIPTION")
+        .StdCost = DBReadDecimal(rDataReader, "StdCost")
 
       End With
 

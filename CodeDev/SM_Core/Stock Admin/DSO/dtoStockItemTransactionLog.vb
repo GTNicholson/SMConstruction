@@ -67,6 +67,7 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
       ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AdditionalRef", .AdditionalRef)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Note", StringToDBValue(.Note))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReferenceNo", StringToDBValue(.ReferenceNo))
       '// TransactionValue not in write
       '// StockValue not in write
     End With
@@ -93,6 +94,7 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
         .RefObjectID = DBReadInt32(rDataReader, "RefObjectID")
         .AdditionalRef = DBReadInt32(rDataReader, "AdditionalRef")
         .Note = DBReadString(rDataReader, "Note")
+        .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
         ''.StdCost = DBReadDecimal(rDataReader, "StdCost")
         .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
         .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
