@@ -350,7 +350,7 @@ Partial Class frmStockTake
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1370, 35)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1370, 32)
     '
     'barDockControlBottom
     '
@@ -364,17 +364,17 @@ Partial Class frmStockTake
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 35)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 676)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 679)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1370, 35)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1370, 32)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 676)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 679)
     '
     'bbtnStockValuation
     '
@@ -683,11 +683,11 @@ Partial Class frmStockTake
     'grdStockCheckItem
     '
     Me.grdStockCheckItem.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdStockCheckItem.Location = New System.Drawing.Point(2, 26)
+    Me.grdStockCheckItem.Location = New System.Drawing.Point(2, 24)
     Me.grdStockCheckItem.MainView = Me.gvStockCheckItem
     Me.grdStockCheckItem.Name = "grdStockCheckItem"
     Me.grdStockCheckItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitPUStockItemValuationHistorys, Me.RepositoryItemSpinEditCounted, Me.repitbtStockItemRefresh})
-    Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 546)
+    Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 551)
     Me.grdStockCheckItem.TabIndex = 6
     Me.grdStockCheckItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockCheckItem})
     '
@@ -872,7 +872,7 @@ Partial Class frmStockTake
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
     Me.grpItemDetail.Name = "grpItemDetail"
-    Me.grpItemDetail.Size = New System.Drawing.Size(1359, 574)
+    Me.grpItemDetail.Size = New System.Drawing.Size(1359, 577)
     Me.grpItemDetail.TabIndex = 94
     Me.grpItemDetail.Text = "Stock Items"
     '
@@ -881,9 +881,9 @@ Partial Class frmStockTake
     Me.PanelControl1.Controls.Add(Me.grpDetail)
     Me.PanelControl1.Controls.Add(Me.grpItemDetail)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 35)
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 32)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1370, 676)
+    Me.PanelControl1.Size = New System.Drawing.Size(1370, 679)
     Me.PanelControl1.TabIndex = 10
     '
     'frmStockTake

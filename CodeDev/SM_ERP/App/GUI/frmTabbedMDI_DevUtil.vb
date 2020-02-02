@@ -4,6 +4,7 @@ Imports RTIS.DeveloperUtilities
 
 Imports System.IO
 Imports System.Environment
+Imports DevExpress.XtraNavBar
 
 Public Class frmTabbedMDI_DevUtil
   '' Private pDepartments As colValueItems
@@ -174,10 +175,10 @@ Public Class frmTabbedMDI_DevUtil
   End Sub
 
   Private Sub navbarSQLiteUtil_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbarSQLiteUtil.LinkClicked
-        ''Dim mfrm As New frmSQLiteDB
-        ''mfrm.MdiParent = Me
-        ''mfrm.Show()
-    End Sub
+    ''Dim mfrm As New frmSQLiteDB
+    ''mfrm.MdiParent = Me
+    ''mfrm.Show()
+  End Sub
 
   Private Sub navbarConnLockTest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles navbarConnLockTest.LinkClicked
     'Dim mfrm As New frmTestConn
@@ -255,5 +256,36 @@ Public Class frmTabbedMDI_DevUtil
       mOTMins = clsTimeSheetSharedFuncs.getOverTimeMinutes(mTSE, mShift)
     Next
 
+  End Sub
+
+  Private Sub navbaritAssignStockCodes_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles navbaritAssignStockCodes.LinkClicked
+    Dim mStockItems As colStockItems
+    Dim mdtoSI As dtoStockItem
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mSICode As String
+    Dim mdsoStock As dsoStock
+
+    Try
+
+      mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+      mDBConn.Connect()
+      mdsoStock = New dsoStock(mDBConn)
+      mdtoSI = New dtoStockItem(mDBConn)
+
+      mStockItems = New colStockItems
+      mdtoSI.LoadStockItemsByWhere(mStockItems, "StockCode is null")
+
+      For Each mSI As dmStockItem In mStockItems
+        mSICode = clsStockItemSharedFuncs.GetStockCodeStem(mSI)
+        mSICode = mSICode & mdsoStock.GetNextStockCodeSuffixNoConnected(mSICode).ToString("000")
+        mSI.StockCode = mSICode
+        mdtoSI.SaveStockItem(mSI)
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mDBConn.IsConnected Then mDBConn.Disconnect()
+    End Try
   End Sub
 End Class

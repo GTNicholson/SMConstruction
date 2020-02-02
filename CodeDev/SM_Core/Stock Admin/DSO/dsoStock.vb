@@ -159,6 +159,21 @@ Public Class dsoStock
   End Function
 
   Public Function GetNextStockCodeSuffixNo(ByVal vStockCodeStem As String) As Integer
+    Dim mRetVal As Integer
+
+    Try
+
+      pDBConn.Connect()
+      mRetVal = GetNextStockCodeSuffixNoConnected(vStockCodeStem)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function GetNextStockCodeSuffixNoConnected(ByVal vStockCodeStem As String) As Integer
     Dim mReader As IDataReader
     Dim mSQL As String
     Dim mRetVal As Integer
@@ -168,7 +183,6 @@ Public Class dsoStock
 
 
       mSQL = "Select Top 1 StockCode from StockItem where StockCode Like '" & vStockCodeStem & "%' Order By StockCode Desc"
-      pDBConn.Connect()
       mReader = pDBConn.LoadReader(mSQL)
       If mReader.Read Then
         mExistingCode = RTIS.DataLayer.clsDBConnBase.DBReadString(mReader, "StockCode")
@@ -185,12 +199,14 @@ Public Class dsoStock
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      If mReader IsNot Nothing Then
+        If mReader.IsClosed = False Then mReader.Close()
+        mReader.Dispose()
+        mReader = Nothing
+      End If
     End Try
     Return mRetVal
   End Function
-
-
 
   Public Function LoadStockItemInfos(ByRef rStockItemInfos As colStockItemInfos, ByVal vWhere As String) As Boolean
 
