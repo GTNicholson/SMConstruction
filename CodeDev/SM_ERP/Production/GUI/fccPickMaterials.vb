@@ -95,7 +95,7 @@ or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
 
   End Sub
 
-  Public Sub ProcessPicks(ByVal vReferenceNo As String)
+  Public Sub ProcessPicks(ByVal vReferenceNo As String, ByVal vDateEntered As Date, ByVal vNotes As String)
     Try
       Dim mdsoTran As dsoStockTransactions
       Dim mMatReq As dtoMaterialRequirement
@@ -114,7 +114,7 @@ or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
           Else
             mSIL = Nothing
           End If
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, vReferenceNo)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, vDateEntered, vReferenceNo, vNotes)
           mMRP.ToProcessQty = 0
         End If
 

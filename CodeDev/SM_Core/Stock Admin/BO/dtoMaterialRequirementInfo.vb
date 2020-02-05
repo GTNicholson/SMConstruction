@@ -87,6 +87,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
       End With
       With pMaterialRequirment.StockItem
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+        .StockCode = DBReadString(rDataReader, "STOCKITEMCODE")
         .Category = DBReadByte(rDataReader, "Category")
         .PartNo = DBReadString(rDataReader, "PartNo")
         .Description = DBReadString(rDataReader, "SIDESCRIPTION")

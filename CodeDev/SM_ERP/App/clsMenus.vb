@@ -28,6 +28,9 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.Purchasing, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Purchasing)
+    '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.Purchasing)
+    ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Órdenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.Purchasing)
+
 
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Inventory, True)
@@ -106,9 +109,28 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub SupplierBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    Dim mBrw As New brwSupplier(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Supplier)
+    Dim mBrw As New brwSupplier(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.PurchaseOrder)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
+
+  Public Shared Sub PurchaseOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mfrm As RTIS.Elements.frmBrowseList
+    Dim mbrwInt As brwPurchaseOrder
+
+    mbrwInt = New brwPurchaseOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal, eBrowseList.PurchaseOrder)
+    mfrm = RTIS.Elements.frmBrowseList.GetFormIfLoaded(mbrwInt)
+
+    If mfrm Is Nothing Then
+      RTIS.Elements.frmBrowseList.OpenFormAsMDIChild(rParentForm, mbrwInt)
+    Else
+      mfrm.Focus()
+    End If
+  End Sub
+
+  Public Shared Sub PickingPurchaseOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmPickingPurchaseOrder.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+  End Sub
+
 
   Public Shared Sub OtherMaterialsConsolidation(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     frmPickMaterials.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
