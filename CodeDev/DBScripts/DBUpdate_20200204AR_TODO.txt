@@ -1,0 +1,178 @@
+USE SMConstruction
+GO
+
+/****** Object:  Table [dbo].[PurchaseOrder]    Script Date: 4/2/2020 12:15:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PurchaseOrder](
+	[PurchaseOrderID] [int] IDENTITY(1,1) NOT NULL,
+	[PONum] [varchar](50) NULL,
+	[SupplierID] [int] NULL,
+	[SupplierContactName] [varchar](50) NULL,
+	[SupplierContactTel] [varchar](50) NULL,
+	[Category] [tinyint] NULL,
+	[SubmissionDate] [datetime] NULL,
+	[Status] [tinyint] NULL,
+	[DelStatus] [tinyint] NULL,
+	[Instructions] [text] NULL,
+	[Comments] [text] NULL,
+	[BuyerID] [tinyint] NULL,
+	[AcknowledgementNo] [varchar](50) NULL,
+	[OrderType] [tinyint] NULL,
+	[Carriage] [float] NULL,
+	[VatRate] [money] NULL,
+	[RequiredDate] [datetime] NULL,
+	[PurchaseCategory] [tinyint] NULL,
+	[CoCOrder] [bit] NULL,
+	[CoCType] [tinyint] NULL,
+	[PriceGross] [money] NULL,
+	[TotalPrice] [money] NULL,
+	[DeliveryAddress1] [varchar](128) NULL,
+	[DeliveryAddress2] [varchar](128) NULL,
+	[DeliveryAddress3] [varchar](128) NULL,
+	[DeliveryTown] [varchar](64) NULL,
+	[DeliveryCounty] [varchar](64) NULL,
+	[DeliveryPostCode] [varchar](16) NULL,
+	[DeliveryContact] [varchar](128) NULL,
+	[DeliveryTel] [varchar](64) NULL,
+	[DeliveryEmail] [varchar](64) NULL,
+	[CallOffType] [tinyint] NULL,
+	[VatRateCode] [tinyint] NULL,
+	[ApplyVATToCarriage] [bit] NULL,
+	[SupplierContactID] [int] NULL,
+	[SupplierRef] [varchar](64) NULL,
+	[LastStatusChangeDate] [datetime] NULL,
+	[FileName] [varchar](1000) NULL,
+	[SupplierAddress1] [varchar](128) NULL,
+	[SupplierAddress2] [varchar](128) NULL,
+	[SupplierAddress3] [varchar](128) NULL,
+	[SupplierTown] [varchar](64) NULL,
+	[SupplierCounty] [varchar](64) NULL,
+	[SupplierPostCode] [varchar](16) NULL,
+	[InvoiceAddress1] [varchar](128) NULL,
+	[InvoiceAddress2] [varchar](128) NULL,
+	[InvoiceAddress3] [varchar](128) NULL,
+	[InvoiceTown] [varchar](64) NULL,
+	[InvoiceCounty] [varchar](64) NULL,
+	[InvoicePostCode] [varchar](16) NULL,
+ CONSTRAINT [pkPurchaseOrderID_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[PurchaseOrderID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[PurchaseOrder] ADD  DEFAULT ((0)) FOR [SupplierID]
+GO
+
+ALTER TABLE [dbo].[PurchaseOrder] ADD  DEFAULT ((0)) FOR [Carriage]
+GO
+
+ALTER TABLE [dbo].[PurchaseOrder] ADD  DEFAULT ((0)) FOR [VatRate]
+GO
+
+ALTER TABLE [dbo].[PurchaseOrder] ADD  DEFAULT ((0)) FOR [PriceGross]
+GO
+
+ALTER TABLE [dbo].[PurchaseOrder] ADD  DEFAULT ((0)) FOR [TotalPrice]
+GO
+
+
+USE SMConstruction
+GO
+
+/****** Object:  Table [dbo].[PurchaseOrderAllocation]    Script Date: 4/2/2020 12:16:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PurchaseOrderAllocation](
+	[PurchaseOrderAllocationID] [int] IDENTITY(1,1) NOT NULL,
+	[PurchaseOrderID] [int] NULL,
+	[CallOffID] [int] NULL,
+ CONSTRAINT [pkPurchaseOrderAllocationID_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[PurchaseOrderAllocationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+USE SMConstruction
+GO
+
+/****** Object:  Table [dbo].[PurchaseOrderItem]    Script Date: 4/2/2020 12:17:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PurchaseOrderItem](
+	[PurchaseOrderItemID] [int] IDENTITY(1,1) NOT NULL,
+	[PurchaseOrderID] [int] NULL,
+	[StockItemID] [int] NULL,
+	[Status] [tinyint] NULL,
+	[Description] [varchar](512) NULL,
+	[PartNo] [varchar](64) NULL,
+	[UnitPrice] [money] NULL,
+	[PricingMethod] [tinyint] NULL,
+	[PricingUnit] [tinyint] NULL,
+	[Length] [decimal](9, 4) NULL,
+	[Width] [decimal](9, 4) NULL,
+	[Thickness] [decimal](9, 4) NULL,
+	[LineNumber] [int] NULL,
+	[StockItemPartID] [int] NULL,
+	[CoCType] [tinyint] NULL,
+	[QtyRequired] [decimal](10, 4) NULL,
+	[SupplierCode] [varchar](10) NULL,
+	[NominalAccountCode] [varchar](8) NULL,
+	[NominalCostCentre] [varchar](3) NULL,
+	[VatRateCode] [tinyint] NULL,
+	[VatValue] [money] NULL,
+	[Notes] [varchar](256) NULL,
+	[AverageInvoicePrice] [money] NULL,
+	[Density] [decimal](9, 4) NULL,
+	[PickedQty] [decimal](18, 0) NULL,
+ CONSTRAINT [pkPurchaseOrderItemID] PRIMARY KEY CLUSTERED 
+(
+	[PurchaseOrderItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+USE SMConstruction
+GO
+
+/****** Object:  Table [dbo].[PurchaseOrderItemAllocation]    Script Date: 4/2/2020 12:17:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PurchaseOrderItemAllocation](
+	[PurchaseOrderItemAllocationID] [int] IDENTITY(1,1) NOT NULL,
+	[PurchaseOrderItemID] [int] NULL,
+	[CallOffID] [int] NULL,
+	[Quantity] [decimal](9, 2) NULL,
+	[ReceivedQty] [decimal](18, 0) NULL,
+ CONSTRAINT [pkPurchaseOrderItemAllocationID] PRIMARY KEY CLUSTERED 
+(
+	[PurchaseOrderItemAllocationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+

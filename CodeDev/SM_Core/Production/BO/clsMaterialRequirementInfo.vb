@@ -83,6 +83,12 @@
     End Set
   End Property
 
+  Public ReadOnly Property StockCode As String
+    Get
+      Return pStockItem.StockCode
+    End Get
+  End Property
+
   Public ReadOnly Property TotalAmount As Decimal
     Get
       Dim mRetVal As Decimal
@@ -268,6 +274,8 @@
       Return pMaterialRequirement.Quantity
     End Get
   End Property
+
+
 
   Public ReadOnly Property PickedQty As Decimal
     Get

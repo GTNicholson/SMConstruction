@@ -638,7 +638,7 @@ Partial Class frmStockItem
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 30)
     '
     'barDockControlBottom
     '
@@ -652,17 +652,17 @@ Partial Class frmStockItem
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 699)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 30)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 699)
     '
     'BarButtonItem1
     '
@@ -1171,7 +1171,7 @@ Partial Class frmStockItem
     '
     Me.tabpgIMDetails.Controls.Add(Me.PanelControl3)
     Me.tabpgIMDetails.Name = "tabpgIMDetails"
-    Me.tabpgIMDetails.Size = New System.Drawing.Size(373, 194)
+    Me.tabpgIMDetails.Size = New System.Drawing.Size(371, 193)
     Me.tabpgIMDetails.Tag = "3"
     Me.tabpgIMDetails.Text = "Ironmongery Details"
     '
@@ -1183,7 +1183,7 @@ Partial Class frmStockItem
     Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl3.Name = "PanelControl3"
-    Me.PanelControl3.Size = New System.Drawing.Size(373, 194)
+    Me.PanelControl3.Size = New System.Drawing.Size(371, 193)
     Me.PanelControl3.TabIndex = 0
     '
     'LabelControl17
@@ -1561,7 +1561,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1.Panel1.Text = "Panel1"
     Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
     Me.SplitContainerControl1.Panel2.Text = "Panel2"
-    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 692)
+    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 695)
     Me.SplitContainerControl1.SplitterPosition = 315
     Me.SplitContainerControl1.TabIndex = 0
     Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1587,9 +1587,9 @@ Partial Class frmStockItem
     '
     Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1294, 696)
+    Me.PanelControl1.Size = New System.Drawing.Size(1294, 699)
     Me.PanelControl1.TabIndex = 4
     '
     'frmStockItem

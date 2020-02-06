@@ -79,8 +79,12 @@ Public Class frmStockItemInfo
   Private Sub gvStockItemInfos_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItemInfos.CustomUnboundColumnData
     Dim mRow As clsStockItemInfo
     Dim mVIs As New colValueItems
+    ''Dim mSubTypes As colSubItemTypes
+    ''Dim mSubType As clsSubItemType
+    ''Dim mSubItemTypes As colStockItemType
 
     Dim mText As String = ""
+    ''Dim mSISubItemTypeIron As clsStockSubItemTypeIronmongery
     mRow = TryCast(e.Row, clsStockItemInfo)
     If mRow IsNot Nothing Then
       If e.IsGetData Then
@@ -91,8 +95,23 @@ Public Class frmStockItemInfo
               Case eStockItemCategory.Abrasivos
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeAbrasivos), CType(mRow.ItemType, eStockItemTypeAbrasivos.eStockItemAbrasivos))
                 e.Value = mText
+
+
+              Case eStockItemCategory.NailsAndBolds
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+                e.Value = mText
+
+
+              Case eStockItemCategory.EPP
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeEPP), CType(mRow.ItemType, eStockItemTypeEPP.eStockItemMaterialEPP))
+                e.Value = mText
+
               Case eStockItemCategory.Herrajes
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+                e.Value = mText
+
+              Case eStockItemCategory.Herramientas
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerramientas), CType(mRow.ItemType, eStockItemTypeHerramientas.eStockItemMaterialHerramientas))
                 e.Value = mText
 
               Case eStockItemCategory.MatElect
@@ -104,13 +123,24 @@ Public Class frmStockItemInfo
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialEmpaque), CType(mRow.ItemType, eStockItemTypeMaterialEmpaque.StockItemMaterialEmpaque))
                 e.Value = mText
 
+              Case eStockItemCategory.MatVarios
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMatVarios), CType(mRow.ItemType, eStockItemTypeMatVarios.eStockItemMaterialMatVarios))
+                e.Value = mText
+
+
               Case eStockItemCategory.Metal
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
 
-              Case eStockItemCategory.NailsAndBolds
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+
+              Case eStockItemCategory.PinturaYQuimico
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypePintura), CType(mRow.ItemType, eStockItemTypePintura.eStockItemPintura))
                 e.Value = mText
+
+              Case eStockItemCategory.Laminas
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeLamina), CType(mRow.ItemType, eStockItemTypeLamina.eStockItemLamina))
+                e.Value = mText
+
 
               Case eStockItemCategory.Repuestos
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
@@ -122,10 +152,6 @@ Public Class frmStockItemInfo
 
               Case eStockItemCategory.VidrioYEspejo
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
-                e.Value = mText
-
-              Case eStockItemCategory.Metal
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
 
               Case Else

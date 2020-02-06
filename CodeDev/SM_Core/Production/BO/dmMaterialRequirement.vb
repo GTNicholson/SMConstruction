@@ -147,6 +147,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End Set
   End Property
 
+
   Public Property DateChange() As DateTime
     Get
       Return pDateChange

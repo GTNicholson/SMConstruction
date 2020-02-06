@@ -1,9 +1,9 @@
-ï»¿
+
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 
-Public Class brwSalesOrder : Inherits brwBrowserListBase
+Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
   Public Enum eListOption
     DefaultListOption = 1
@@ -24,8 +24,10 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
 
-    frmSalesOrderDetail.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+    frmPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
 
+    'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, 0, BrowseRefreshTracker,eFormMode.eFMFormModeAdd)
+    'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
     Return mReloadData
   End Function
 
@@ -36,11 +38,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmSalesOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
-      'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
-
-      'Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
-      '  Case eAddEditDeleteView.DefaultForm
+      frmPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
 
       'End Select
     End If
@@ -92,7 +90,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Try
 
       DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo Order By SalesOrderID")
+      mDataTable = Me.DBConn.CreateDataTable("Select * From PurchaseOrder")
 
       gridBrowseList.DataSource = mDataTable
 
@@ -176,17 +174,17 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
         .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar Ã“rden de Venta", eListOption.DefaultListOption)
-        .AddListOption("Nueva Ã“rden de Venta", eListOption.DefaultListOption)
-        .AddListOption("Orden de Venta caducada", eListOption.DefaultListOption)
+        .AddListOption("Activar Órden de Compra", eListOption.DefaultListOption)
+        .AddListOption("Nueva Órden de Compra", eListOption.DefaultListOption)
+        .AddListOption("Orden de Compra caducada", eListOption.DefaultListOption)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
         '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)
         '.AddDeleteOption("Delete Option2", eAddEditDeleteView.AlternateForm)
-        .AddViewOption("View SalesOrder Enquiries", eAddEditDeleteView.AlternateForm)
+        .AddViewOption("Ver Consultas de Orden de Compra", eAddEditDeleteView.AlternateForm)
 
-        .AddProcessOption("Mail-shot active SalesOrder", AddressOf BatchProcessExecute)
+        .AddProcessOption("Mail-shot active Orden de Compra", AddressOf BatchProcessExecute)
         .AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
         .AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
         .AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
@@ -226,8 +224,8 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-      ListTitle = "Lista de Ventas"
+      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
+      ListTitle = "Lista de Compras"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 
@@ -236,9 +234,9 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
       mGridView = gridBrowseList.MainView
       ''Set lookup columns
 
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderStatusENUM"), clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus)))
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderStatusENUM"), clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus)))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
 
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
@@ -352,8 +350,8 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
-    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-    ListTitle = "Lista de Ventas"
+    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
+    ListTitle = "Lista de Compras"
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"
 
