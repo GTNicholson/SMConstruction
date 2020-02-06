@@ -1006,7 +1006,7 @@ Public Class frmWorkOrderDetail
           If e.IsGetData Then
             e.Value = mMatReq.SupplierStockCode
           ElseIf e.IsSetData Then
-            mMatReq.StockCode = e.Value
+            mMatReq.SupplierStockCode = e.Value
           End If
       End Select
     Else

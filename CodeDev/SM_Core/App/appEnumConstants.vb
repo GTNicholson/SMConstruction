@@ -669,7 +669,7 @@ Public Class eStockItemTypeMaterialElectrico : Inherits colPropertyENUMOfT(Of cl
   End Enum
 
   Public Const General = 1
-  Public Const Other = 99
+  Public Const Otros = 99
 
   Private Shared mSharedInstance As eStockItemTypeMaterialElectrico
 
@@ -680,7 +680,7 @@ Public Class eStockItemTypeMaterialElectrico : Inherits colPropertyENUMOfT(Of cl
     MyBase.Add(mGeneral)
 
 
-    Dim mOther As New clsStockItemType(Other, "Los demás", "OTR")
+    Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
     MyBase.Add(mOther)
   End Sub
 
@@ -695,12 +695,6 @@ End Class
 
 
 ''empiezo aca
-
-''termino aca
-
-
-
-
 Public Class clsStockItemTypeMatVarios : Inherits clsPropertyENUM
   Private pStockSubItemTypeMatVarios As colStockSubItemTypeMatVarios
 
@@ -750,7 +744,7 @@ Public Class eStockItemTypeMatVarios : Inherits colPropertyENUMOfT(Of clsStockIt
   End Enum
 
   Public Const General = 1
-  Public Const Other = 99
+  Public Const Otros = 99
 
   Private Shared mSharedInstance As eStockItemTypeMatVarios
 
@@ -761,7 +755,7 @@ Public Class eStockItemTypeMatVarios : Inherits colPropertyENUMOfT(Of clsStockIt
     MyBase.Add(mGeneral)
 
 
-    Dim mOther As New clsStockItemType(Other, "Los demás", "OTR")
+    Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
     MyBase.Add(mOther)
   End Sub
 
@@ -773,9 +767,84 @@ Public Class eStockItemTypeMatVarios : Inherits colPropertyENUMOfT(Of clsStockIt
   End Function
 
 End Class
+''termino aca
 
+Public Class clsStockItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+  Private pStockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
 
+  Public Property StockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
+    Get
+      Return pStockSubItemTypeVidrioYEspejo
+    End Get
+    Set(value As colStockSubItemTypeVidrioYEspejo)
+      pStockSubItemTypeVidrioYEspejo = value
+    End Set
+  End Property
 
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeVidrioYEspejo = New colStockSubItemTypeVidrioYEspejo
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+    MyBase.New(vPropertyENUM, vDescription)
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypeVidrioYEspejo : Inherits List(Of clsStockSubItemTypeVidrioYEspejo)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeVidrioYEspejo
+    For Each mItem As clsStockSubItemTypeVidrioYEspejo In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsStockItemType)
+
+  Public Enum eStockItemVidrioYEspejo
+    Vidrios = 1
+    Espejos = 2
+    Otros = 99
+  End Enum
+
+  Public Const Vidrios = 1
+  Public Const Espejos = 2
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypeVidrioYEspejo
+
+  Public Sub New()
+    MyBase.New()
+
+    Dim mVidrios As New clsStockItemType(Vidrios, "Vidrios Dúplex", "VD")
+    MyBase.Add(mVidrios)
+
+    Dim mEspejos As New clsStockItemType(Espejos, "Espejos", "EPJ")
+    MyBase.Add(mEspejos)
+
+    Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
+    MyBase.Add(mOther)
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeVidrioYEspejo
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeVidrioYEspejo
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
 
 
 ''termino aca
@@ -1357,43 +1426,10 @@ End Class
 
 ''End Class
 
-Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
-  Public Enum eStockItemVidrioYEspejo
-    Espejos = 1
-    Vidrios = 2
-    Other = 99
+'aca
 
-  End Enum
-
-  Public Const Espejos = 1
-  Public Const Vidrios = 2
-  Public Const Other = 99
-
-  Private Shared mSharedInstance As eStockItemTypeVidrioYEspejo
-
-  Public Sub New()
-    MyBase.New()
-
-    Dim mEspejos As New clsStockItemType(Espejos, "Espejos", "ES")
-    MyBase.Add(mEspejos)
-
-    Dim mVidrios As New clsStockItemType(Vidrios, "Vidrios", "VD")
-    MyBase.Add(mVidrios)
-
-    Dim mOther As New clsStockItemType(Other, "Los Demás", "OTR")
-    MyBase.Add(mOther)
-  End Sub
-
-  Public Shared Function GetInstance() As eStockItemTypeVidrioYEspejo
-    If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypeVidrioYEspejo
-    End If
-    Return mSharedInstance
-  End Function
-
-End Class
-
+'aca
 
 Public Class eStockItemTypeLamina : Inherits colPropertyENUMOfT(Of clsStockItemType)
 

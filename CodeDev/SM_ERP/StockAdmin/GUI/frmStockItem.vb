@@ -296,6 +296,8 @@ Public Class frmStockItem
 
   End Sub
   Private Sub RefreshCategorySpecificControls()
+
+
     Dim mStartActive As Boolean = pIsActive
     ''Dim mcoltemTypes As colSubItemTypes
     ''Dim mcolSubItemTypes2 As colSubItemTypes
@@ -324,17 +326,21 @@ Public Class frmStockItem
 
           Dim mAbrasivosType As clsStockItemTypeAbrasivos
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
-
-
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
+        Case eStockItemCategory.NailsAndBolds
+
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+
         Case eStockItemCategory.EPP
           Dim mEPP As clsStockItemTypeEPP
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeEPP.GetInstance.ValueItems)
-
-
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
@@ -350,6 +356,9 @@ Public Class frmStockItem
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.Herramientas
+
+          Dim mHerrajesType As clsStockItemTypeHerramientas
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerramientas.GetInstance.ValueItems)
 
           cboItemType.Enabled = False
           cboSpecies.Enabled = True
@@ -378,6 +387,11 @@ Public Class frmStockItem
 
         Case eStockItemCategory.MatVarios
 
+          Dim mMatEmpaque As clsStockItemTypeMatVarios
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarios.GetInstance.ValueItems)
+
+
+
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
@@ -392,14 +406,6 @@ Public Class frmStockItem
           cboSubitemType.Enabled = True
 
 
-        Case eStockItemCategory.NailsAndBolds
-
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
-
-
-          cboSpecies.Enabled = True
-          cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
 
 
         Case eStockItemCategory.PinturaYQuimico
@@ -438,11 +444,6 @@ Public Class frmStockItem
 
           Dim mVidrioType As clsStockItemType
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-          'mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          ''If mVidrioType IsNot Nothing Then
-
-          ''  clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
-          ''End If
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -544,6 +545,8 @@ Public Class frmStockItem
 
 
   Private Sub gvStockItems_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItems.CustomUnboundColumnData
+
+
     Dim mRow As dmStockItem
     Dim mVIs As New colValueItems
     ''Dim mSubTypes As colSubItemTypes
@@ -618,6 +621,7 @@ Public Class frmStockItem
                 e.Value = mText
 
               Case eStockItemCategory.VidrioYEspejo
+
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
                 e.Value = mText
 
@@ -634,6 +638,7 @@ Public Class frmStockItem
     End If
 
     RefreshControls()
+
   End Sub
 
   Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
@@ -643,6 +648,10 @@ Public Class frmStockItem
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
     UpdateObject()
     RefreshCategorySpecificControls()
+  End Sub
+
+  Private Sub gvStockItems_ColumnChanged(sender As Object, e As EventArgs) Handles gvStockItems.ColumnChanged
+
   End Sub
 End Class
 
