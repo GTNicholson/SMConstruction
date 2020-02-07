@@ -42,6 +42,8 @@ Partial Class Form1
     Me.fieldTransDateMC = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcTotalValue = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcRequisaNo = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.gcWorkOrderNo = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.gcAreaDescription = New DevExpress.XtraPivotGrid.PivotGridField()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PivotGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,7 +111,7 @@ Partial Class Form1
     '
     'PivotGridControl1
     '
-    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldStockCategoryDesc, Me.fieldStockItemTypeDesc, Me.fieldStockCode, Me.fieldStockDesc, Me.fieldStdCost, Me.fieldTransferValue, Me.fieldStockItemTransactionLogID, Me.fieldTransQuantity, Me.fieldTransType, Me.fieldTransDateWC, Me.fieldTransDateMC, Me.gcTotalValue, Me.gcRequisaNo})
+    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldStockCategoryDesc, Me.fieldStockItemTypeDesc, Me.fieldStockCode, Me.fieldStockDesc, Me.fieldStdCost, Me.fieldTransferValue, Me.fieldStockItemTransactionLogID, Me.fieldTransQuantity, Me.fieldTransType, Me.fieldTransDateWC, Me.fieldTransDateMC, Me.gcTotalValue, Me.gcRequisaNo, Me.gcWorkOrderNo, Me.gcAreaDescription})
     Me.PivotGridControl1.Location = New System.Drawing.Point(50, 187)
     Me.PivotGridControl1.Name = "PivotGridControl1"
     Me.PivotGridControl1.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
@@ -254,6 +256,22 @@ Partial Class Form1
     Me.gcRequisaNo.FieldName = "ReferenceNo"
     Me.gcRequisaNo.Name = "gcRequisaNo"
     '
+    'gcWorkOrderNo
+    '
+    Me.gcWorkOrderNo.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+    Me.gcWorkOrderNo.AreaIndex = 1
+    Me.gcWorkOrderNo.Caption = "OT Num"
+    Me.gcWorkOrderNo.FieldName = "WorkOrderNo"
+    Me.gcWorkOrderNo.Name = "gcWorkOrderNo"
+    '
+    'gcAreaDescription
+    '
+    Me.gcAreaDescription.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+    Me.gcAreaDescription.AreaIndex = 2
+    Me.gcAreaDescription.Caption = "Área"
+    Me.gcAreaDescription.FieldName = "AreaDescription"
+    Me.gcAreaDescription.Name = "gcAreaDescription"
+    '
     'Form1
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -290,4 +308,6 @@ Partial Class Form1
   Friend WithEvents gcRequiredDate As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcTotalValue As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcRequisaNo As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents gcWorkOrderNo As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents gcAreaDescription As DevExpress.XtraPivotGrid.PivotGridField
 End Class

@@ -8,6 +8,8 @@ Public Class clsStockItemTransactionLogInfo
   Private pStockItemTransactionLogID As Integer
   Private pPONum As String
   Private pReferenceNo As String
+  Private pAreaDescription As String
+  Private pWorkOrderNo As String
   Private pSupplierName As String
   Private pGRNumber As String
   Private pTransQty As Decimal
@@ -38,6 +40,7 @@ Public Class clsStockItemTransactionLogInfo
     MyBase.New()
     pCurrentStockItem = New dmStockItem
     pWorkOrder = New dmWorkOrder
+    pMaterialRequirement = New dmMaterialRequirement
 
   End Sub
 
@@ -65,6 +68,15 @@ Public Class clsStockItemTransactionLogInfo
     End Set
   End Property
 
+  Public Property MaterialRequirement As dmMaterialRequirement
+    Get
+      Return pMaterialRequirement
+    End Get
+    Set(ByVal value As dmMaterialRequirement)
+      pMaterialRequirement = value
+    End Set
+  End Property
+
   Public ReadOnly Property WorkOrderNo As String
     Get
       Return pWorkOrder.WorkOrderNo
@@ -88,6 +100,15 @@ Public Class clsStockItemTransactionLogInfo
       Return mRetVal
     End Get
   End Property
+
+  Public ReadOnly Property AreaDescription As String
+    Get
+      Dim mRetVal As String
+      mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eWorkCentre), CType(pMaterialRequirement.AreaID, eWorkCentre))
+      Return mRetVal
+    End Get
+  End Property
+
 
   Public ReadOnly Property StockItemTypeDesc As String
     Get

@@ -98,7 +98,15 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
         .StdCost = DBReadDecimal(rDataReader, "StdCost")
       End With
 
+      With pStockItemTransactionLogInfo.WorkOrder
+        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
 
+      End With
+
+      With pStockItemTransactionLogInfo.MaterialRequirement
+        .AreaID = DBReadInt32(rDataReader, "AreaID")
+
+      End With
       mOK = True
     Catch Ex As Exception
       mOK = False
