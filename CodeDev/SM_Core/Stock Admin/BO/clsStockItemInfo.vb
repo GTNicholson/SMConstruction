@@ -155,7 +155,7 @@ Public Class clsStockItemInfo
 
   End Property
 
-  Public ReadOnly Property StdCosT() As Decimal
+  Public ReadOnly Property StdCost() As Decimal
     Get
       Return pStockItem.StdCost
     End Get

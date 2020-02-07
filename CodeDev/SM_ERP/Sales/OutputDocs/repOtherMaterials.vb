@@ -51,10 +51,10 @@ Public Class repOtherMaterials
     xrlWorkOrderNo2.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xrtMaterialDescription.DataBindings.Add("Text", Me.DataSource, "Description")
     xrtMaterialQuantity.DataBindings.Add("Text", Me.DataSource, "Quantity")
-
+    xrtStockSMM.DataBindings.Add("Text", Me.DataSource, "StockCode")
     xrtUoM.DataBindings.Add("Text", Me.DataSource, "UoM")
     'xrtAreaID.DataBindings.Add("Text", Me.DataSource, "AreaID")
-    xrtSupplierStockCode.DataBindings.Add("Text", Me.DataSource, "SupplierStockCode")
+    xrtSupplierStockCode.DataBindings.Add("Text", Me.DataSource, "PartNo")
     xrtComments.DataBindings.Add("Text", Me.DataSource, "Comments")
   End Sub
 

@@ -115,8 +115,6 @@ End Enum
 
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
-  <Description("Ingeniería")> Engineering = 12
-  <Description("Selección")> Selection = 13
   <Description("Dimensionado")> Dimensionado = 1
   <Description("Maquinado")> Machining = 2
   <Description("Ensamble")> Assembly = 3
@@ -128,6 +126,9 @@ Public Enum eWorkCentre
   <Description("Empaque")> Packaging = 9
   <Description("Despacho")> Dispatching = 10
   <Description("Instalación")> Installing = 11
+  <Description("Ingeniería")> Engineering = 12
+  <Description("Selección")> Selection = 13
+  <Description("Afilado")> Afilado = 14
 
 End Enum
 

@@ -2,6 +2,8 @@
 
 Public Class clsStockItemTransactionLogInfo
   Private pCurrentStockItem As dmStockItem
+  Private pWorkOrder As dmWorkOrder
+  Private pMaterialRequirement As dmMaterialRequirement
 
   Private pStockItemTransactionLogID As Integer
   Private pPONum As String
@@ -29,10 +31,14 @@ Public Class clsStockItemTransactionLogInfo
   Private pStockTakeDesc As String
   Private pStockCheckDesc As String
 
+  Private pTotalValue As Decimal
+
 
   Public Sub New()
     MyBase.New()
     pCurrentStockItem = New dmStockItem
+    pWorkOrder = New dmWorkOrder
+
   End Sub
 
   Protected Overrides Sub Finalize()
@@ -48,6 +54,33 @@ Public Class clsStockItemTransactionLogInfo
     End Set
   End Property
 
+
+
+  Public Property WorkOrder As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+    Set(ByVal value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
+  End Property
+
+  Public ReadOnly Property WorkOrderNo As String
+    Get
+      Return pWorkOrder.WorkOrderNo
+    End Get
+  End Property
+
+
+  Public ReadOnly Property TotalValue As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pCurrentStockItem IsNot Nothing Then
+        mRetVal = clsStockItemSharedFuncs.getStockItemValue(pCurrentStockItem, TransQuantity)
+      End If
+      Return mRetVal
+    End Get
+  End Property
   Public ReadOnly Property StockCategoryDesc As String
     Get
       Dim mRetVal As String

@@ -187,6 +187,11 @@ Public Class frmWorkOrderDetail
     Dim mRetVal As Boolean
 
     UpdateObject()
+    If cboEmployee.EditValue = "" Then
+      MsgBox("Se debe de ingresar el dibujante en la OT")
+      Return False
+    End If
+
 
     If pFormController.IsDirty() Then
       If rOption Then
