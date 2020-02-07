@@ -28,6 +28,8 @@ Public Class frmWorkOrderDetail
     Paste = 2
     ExportList = 3
     AddInv = 4
+    CopyChange = 5
+    PasteChange = 6
   End Enum
 
   Public Sub New()
@@ -1043,12 +1045,12 @@ Public Class frmWorkOrderDetail
   Private Sub grpMaterialRequirementsOtherChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementsOtherChanges.CustomButtonClick
     Select Case e.Button.Properties.Tag
 
-      Case eMaterialRequirementsButtons.Copy
+      Case eMaterialRequirementsButtons.CopyChange
         Dim mMatReqs As colMaterialRequirementsChanges
         mMatReqs = grdMaterialRequirementOthersChange.DataSource
 
         pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
-      Case eMaterialRequirementsButtons.Paste
+      Case eMaterialRequirementsButtons.PasteChange
         Dim mPF As dmProductFurniture
         mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
         If mPF IsNot Nothing Then
