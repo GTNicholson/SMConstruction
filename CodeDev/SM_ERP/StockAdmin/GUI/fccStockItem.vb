@@ -177,7 +177,46 @@ Public Class fccStocktem
     End Try
 
   End Sub
+  Public Function CreateSIImageFile(ByVal vSourceFile As String) As Boolean
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    Dim mRetVal As Boolean = False
 
+    Try
+      If IO.File.Exists(vSourceFile) Then
+        mFileName = "IMG _" & pCurrentStockItem.StockItemID
+
+
+        mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.StockItemFileFolderSys, clsGeneralA.GetFileSafeName(pCurrentStockItem.StockItemID.ToString("00000")))
+
+        mFileName &= IO.Path.GetExtension(vSourceFile)
+        mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+        mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+        If IO.Directory.Exists(mExportDirectory) = False Then
+          IO.Directory.CreateDirectory(mExportDirectory)
+        End If
+
+        mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+
+        IO.File.Copy(vSourceFile, mFilePath, True)
+
+        If IO.File.Exists(mFilePath) = True Then
+          pCurrentStockItem.ImageFile = IO.Path.GetFileName(mFilePath)
+          mRetVal = True
+        Else
+          pCurrentStockItem.ImageFile = ""
+          mRetVal = False
+        End If
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mRetVal
+  End Function
   Public Sub LoadStockItemExtraDetails()
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mWhere As String = ""

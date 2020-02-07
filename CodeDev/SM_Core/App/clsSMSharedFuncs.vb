@@ -122,6 +122,16 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function GetStockItemImageFileName(ByRef rStockItem As dmStockItem) As String
+    Dim mRetVal As String
+    Dim mExportDirectory As String = String.Empty
+
+    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.StockItemFileFolderSys, clsGeneralA.GetFileSafeName(rStockItem.StockItemID.ToString("00000")))
+    mRetVal = IO.Path.Combine(mExportDirectory, rStockItem.ImageFile)
+
+    Return mRetVal
+  End Function
+
   Public Shared Function TotalAmount(ByVal vUnitPrice As Decimal, ByVal vQuantity As Int32) As Decimal
     Dim mRetVal As Decimal
 

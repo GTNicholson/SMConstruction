@@ -312,6 +312,7 @@ Public Class clsConstants
 
   Public Const WorkOrderFileFolderSys As String = "OTArchivosSys"
   Public Const WorkOrderFileFolderUsr As String = "OTArchivosUsr"
+  Public Const StockItemFileFolderSys As String = "SIArchivosSys"
 
   Public Const SalesOrderFileFolderSys As String = "SOArchivosSys"
   Public Const SalesOrderFileFolderUsr As String = "SOArchivosUsr"

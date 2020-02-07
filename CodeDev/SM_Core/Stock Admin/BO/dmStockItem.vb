@@ -32,7 +32,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pProjectID As Int32
   Private pStdCost As Decimal
   Private pStdImportCost As Decimal
-
+  Private pImageFile As String
   Private pASISID As Integer
 
   Private ptmpIsFullyLoadedDown As Boolean
@@ -96,6 +96,7 @@ Public Class dmStockItem : Inherits dmBase
       .ProjectID = ProjectID
       .StdCost = StdCost
       .StdImportCost = StdImportCost
+      .ImageFile = ImageFile
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -126,6 +127,16 @@ Public Class dmStockItem : Inherits dmBase
     Set(ByVal value As Decimal)
       If pStdImportCost <> value Then IsDirty = True
       pStdImportCost = value
+    End Set
+  End Property
+
+  Public Property ImageFile() As String
+    Get
+      Return pImageFile
+    End Get
+    Set(ByVal value As String)
+      If pImageFile <> value Then IsDirty = True
+      pImageFile = value
     End Set
   End Property
 

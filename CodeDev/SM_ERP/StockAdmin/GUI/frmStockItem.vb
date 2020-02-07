@@ -3,6 +3,7 @@ Imports RTIS.CommonVB
 Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraEditors.Controls
 
 Public Class frmStockItem
 
@@ -207,10 +208,13 @@ Public Class frmStockItem
   Private Sub RefreshControls()
 
     Dim mStartActive As Boolean = pIsActive
+    Dim mImage As Image = Nothing
 
     pIsActive = False
 
     If pFormController.CurrentStockItem IsNot Nothing Then
+
+
 
       With pFormController.CurrentStockItem
         txtDescription.Text = .Description
@@ -234,12 +238,37 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
         txtStdCost.Text = .StdCost
         txtImportCost.Text = .StdImportCost
-
+        bteImage.Text = .ImageFile
 
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
 
       End With
+
+      Dim mFileName As String
+      If Not String.IsNullOrEmpty(pFormController.CurrentStockItem.ImageFile) Then
+
+        mFileName = clsSMSharedFuncs.GetStockItemImageFileName(pFormController.CurrentStockItem)
+        If IO.File.Exists(mFileName) Then
+
+          mImage = Drawing.Image.FromFile(mFileName)
+
+        Else
+          mImage = Nothing
+
+        End If
+
+
+
+      End If
+
+
+
+
+
+
+
+
     End If
 
     If pCurrentDetailMode = eCurrentDetailMode.eView Then
@@ -248,6 +277,8 @@ Public Class frmStockItem
       SetDetailsControlsReadonly(False)
     End If
 
+
+    peImage.Image = mImage
     pIsActive = mStartActive
   End Sub
 
@@ -490,7 +521,7 @@ Public Class frmStockItem
     spnMinCutLength.ReadOnly = vReadOnly
     spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
-
+    bteImage.ReadOnly = not vReadOnly
 
     ''    btnedImageFile.ReadOnly = vReadOnly
 
@@ -652,6 +683,21 @@ Public Class frmStockItem
 
   Private Sub gvStockItems_ColumnChanged(sender As Object, e As EventArgs) Handles gvStockItems.ColumnChanged
 
+  End Sub
+
+  Private Sub bteImage_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteImage.ButtonClick
+    Try
+      UpdateObject()
+      Dim mFileName As String = ""
+      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
+        If pFormController.CreateSIImageFile(mFileName) = False Then
+          MsgBox("¡No Funcionó!")
+        End If
+      End If
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class
 
