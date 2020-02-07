@@ -12,6 +12,7 @@ Public Class frmPickerStockItem
   Private pFormController As fccStocktem
 
 
+
   Public Property StockItem As dmStockItem
     Get
       Return pStockItems
@@ -20,6 +21,9 @@ Public Class frmPickerStockItem
       pStockItems = value
     End Set
   End Property
+
+
+
   Public Property FormController() As fccStocktem
     Get
       FormController = pFormController
@@ -91,7 +95,7 @@ Public Class frmPickerStockItem
 
     If Not mOK Then
       'MsgBox("Problem loading the form... Please try again" & vbCrLf & mMsg, vbExclamation)
-      MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, ""), vbExclamation)
+      MsgBox(String.Format("Problema en cargar el formulario... Por favor intente de nuevo{0}{1}", vbCrLf, ""), vbExclamation)
     End If
   End Sub
 

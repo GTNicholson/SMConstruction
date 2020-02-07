@@ -1,5 +1,3 @@
-USE [SMConstruction]
-GO
 
 /****** Object:  View [dbo].[vwMaterialRequirementPicking]    Script Date: 5/2/2020 13:27:53 ******/
 SET ANSI_NULLS ON

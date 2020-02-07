@@ -24,7 +24,8 @@ Public Class srepOtherMaterialsChange
 
     xrtUoM.DataBindings.Add("Text", Me.DataSource, "UoM")
     'xrtAreaID.DataBindings.Add("Text", Me.DataSource, "AreaID")
-    xrtSupplierStockCode.DataBindings.Add("Text", Me.DataSource, "SupplierStockCode")
+    xrtSupplierStockCode.DataBindings.Add("Text", Me.DataSource, "PartNo")
+    xrtStockCodeSMM.DataBindings.Add("Text", Me.DataSource, "StockCode")
     xrtComments.DataBindings.Add("Text", Me.DataSource, "Comments")
 
 
