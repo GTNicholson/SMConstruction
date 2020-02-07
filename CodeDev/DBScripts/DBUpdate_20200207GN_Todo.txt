@@ -1,0 +1,40 @@
+
+
+ALTER view [dbo].[vwStockItemTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.StockValuation, 
+SITL.ReferenceNo,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+
+UL.UserName, 
+
+ST.Description AS StockTakeDescription,
+
+WO.WorkOrderNo
+
+FROM dbo.StockItemTransactionLog AS SITL 
+INNER JOIN dbo.UserList AS UL ON SITL.UserID = UL.UserID 
+INNER JOIN dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID 
+INNER JOIN dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID 
+LEFT JOIN dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+LEFT JOIN dbo.MaterialRequirement AS MR ON MR.MaterialRequirementID = SITL.RefObjectID AND SITL.RefObjectType = 6
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=MR.ObjectID
+
+GO

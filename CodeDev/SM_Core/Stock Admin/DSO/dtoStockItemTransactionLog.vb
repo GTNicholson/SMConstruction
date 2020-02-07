@@ -64,6 +64,7 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SystemDate", DateToDBValue(.SystemDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TransactionDate", DateToDBValue(.TransactionDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefObjectType", .RefObjectType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefObjectID", .RefObjectID)
       ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StdCost", .StdCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AdditionalRef", .AdditionalRef)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Note", StringToDBValue(.Note))

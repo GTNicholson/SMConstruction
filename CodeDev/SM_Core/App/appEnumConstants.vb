@@ -404,6 +404,10 @@ Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockIt
     Dim mLijaBanda As New clsStockItemType(LijaBanda, "Lija Banda", "LB")
     MyBase.Add(mLijaBanda)
 
+    Dim mLijaDisco As New clsStockItemType(LijaBanda, "Lija Disco", "LD")
+    MyBase.Add(mLijaBanda)
+
+
     Dim mLijaPliego As New clsStockItemType(LijaPliego, "Lija Pliego", "LP")
     MyBase.Add(mLijaPliego)
 
