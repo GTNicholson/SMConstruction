@@ -1787,7 +1787,7 @@ Partial Class frmWorkOrderDetail
     Me.gcStockCodeChange.Name = "gcStockCodeChange"
     Me.gcStockCodeChange.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcStockCodeChange.Visible = True
-    Me.gcStockCodeChange.VisibleIndex = 7
+    Me.gcStockCodeChange.VisibleIndex = 0
     Me.gcStockCodeChange.Width = 54
     '
     'gcMatReqOtherDescriptionChange
@@ -1797,7 +1797,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMatReqOtherDescriptionChange.Name = "gcMatReqOtherDescriptionChange"
     Me.gcMatReqOtherDescriptionChange.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcMatReqOtherDescriptionChange.Visible = True
-    Me.gcMatReqOtherDescriptionChange.VisibleIndex = 0
+    Me.gcMatReqOtherDescriptionChange.VisibleIndex = 1
     Me.gcMatReqOtherDescriptionChange.Width = 176
     '
     'GridColumn24
@@ -1806,7 +1806,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn24.FieldName = "UoM"
     Me.GridColumn24.Name = "GridColumn24"
     Me.GridColumn24.Visible = True
-    Me.GridColumn24.VisibleIndex = 1
+    Me.GridColumn24.VisibleIndex = 2
     Me.GridColumn24.Width = 49
     '
     'GridColumn25
@@ -1815,7 +1815,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn25.FieldName = "Quantity"
     Me.GridColumn25.Name = "GridColumn25"
     Me.GridColumn25.Visible = True
-    Me.GridColumn25.VisibleIndex = 2
+    Me.GridColumn25.VisibleIndex = 3
     Me.GridColumn25.Width = 83
     '
     'gcAreaIDChange
@@ -1824,7 +1824,7 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaIDChange.FieldName = "AreaID"
     Me.gcAreaIDChange.Name = "gcAreaIDChange"
     Me.gcAreaIDChange.Visible = True
-    Me.gcAreaIDChange.VisibleIndex = 3
+    Me.gcAreaIDChange.VisibleIndex = 4
     Me.gcAreaIDChange.Width = 83
     '
     'gcPartNoChange
@@ -1834,7 +1834,7 @@ Partial Class frmWorkOrderDetail
     Me.gcPartNoChange.Name = "gcPartNoChange"
     Me.gcPartNoChange.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcPartNoChange.Visible = True
-    Me.gcPartNoChange.VisibleIndex = 4
+    Me.gcPartNoChange.VisibleIndex = 5
     Me.gcPartNoChange.Width = 86
     '
     'GridColumn29
@@ -1843,7 +1843,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn29.FieldName = "Comments"
     Me.GridColumn29.Name = "GridColumn29"
     Me.GridColumn29.Visible = True
-    Me.GridColumn29.VisibleIndex = 5
+    Me.GridColumn29.VisibleIndex = 6
     Me.GridColumn29.Width = 116
     '
     'gcDateOtherMaterialChange
@@ -1854,7 +1854,7 @@ Partial Class frmWorkOrderDetail
     Me.gcDateOtherMaterialChange.FieldName = "DateOtherMaterial"
     Me.gcDateOtherMaterialChange.Name = "gcDateOtherMaterialChange"
     Me.gcDateOtherMaterialChange.Visible = True
-    Me.gcDateOtherMaterialChange.VisibleIndex = 6
+    Me.gcDateOtherMaterialChange.VisibleIndex = 7
     '
     'RepositoryItemDateEdit1
     '

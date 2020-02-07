@@ -85,7 +85,10 @@
 
   Public ReadOnly Property StockCode As String
     Get
-      Return pStockItem.StockCode
+      If StockItem IsNot Nothing Then
+        Return pStockItem.StockCode
+      End If
+      Return ""
     End Get
   End Property
 
@@ -109,7 +112,10 @@
 
   Public ReadOnly Property PartNo As String
     Get
-      Return pStockItem.PartNo
+      If pStockItem IsNot Nothing Then
+        Return pStockItem.PartNo
+      End If
+      Return ""
     End Get
 
   End Property
