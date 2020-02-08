@@ -1737,7 +1737,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementsOtherChanges.Controls.Add(Me.grdMaterialRequirementOthersChange)
-    Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions10, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions11, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
+    Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions10, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions11, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1)})
     Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementsOtherChanges.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementsOtherChanges.Location = New System.Drawing.Point(0, 0)

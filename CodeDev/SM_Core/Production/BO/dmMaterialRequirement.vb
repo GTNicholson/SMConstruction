@@ -21,7 +21,6 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pTotalPieces As Decimal
   Private pDateOtherMaterial As DateTime
   Private pStockItemID As Int32
-
   Private pDateChange As DateTime
 
   Private pUoM As String
@@ -330,6 +329,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
 
   Public Property Description() As String
     Get
+
       Return pDescription
     End Get
     Set(ByVal value As String)

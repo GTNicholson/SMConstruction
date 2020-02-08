@@ -1037,7 +1037,12 @@ Public Class frmWorkOrderDetail
         Select Case e.Column.Name
           Case gcMatReqOtherDescription.Name
             If e.IsGetData Then
-              e.Value = mSI.Description
+              If String.IsNullOrEmpty(mSI.ShortDescription) Then
+                e.Value = mSI.Description
+              Else
+                e.Value = mSI.ShortDescription
+              End If
+
 
             End If
           Case gcStockCode.Name
@@ -1059,33 +1064,47 @@ Public Class frmWorkOrderDetail
   Private Sub grpMaterialRequirementsOtherChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementsOtherChanges.CustomButtonClick
     Select Case e.Button.Properties.Tag
 
-      Case eMaterialRequirementsButtons.CopyChange
-        Dim mMatReqs As colMaterialRequirements
-        mMatReqs = grdMaterialRequirementOthersChange.DataSource
+      ''Case eMaterialRequirementsButtons.CopyChange
+      ''  Dim mMatReqs As colMaterialRequirements
+      ''  mMatReqs = grdMaterialRequirementOthersChange.DataSource
 
-        pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
-      Case eMaterialRequirementsButtons.PasteChange
-        Dim mPF As dmProductFurniture
-        mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
-        If mPF IsNot Nothing Then
+      ''  pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
+      ''Case eMaterialRequirementsButtons.PasteChange
+      ''  Dim mPF As dmProductFurniture
+      ''  mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+      ''  If mPF IsNot Nothing Then
 
-          If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
-            For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
-              mMatReq.ClearKeys()
-              mMatReq.ObjectID = mPF.ProductFurnitureID
-              mPF.MaterialRequirmentOthersChanges.Add(mMatReq)
-            Next
-          End If
-        End If
+      ''    If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
+      ''      For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
+      ''        mMatReq.ClearKeys()
+      ''        mMatReq.ObjectID = mPF.ProductFurnitureID
+      ''        mPF.MaterialRequirmentOthersChanges.Add(mMatReq)
+      ''      Next
+      ''    End If
+      ''  End If
 
       Case eMaterialRequirementsButtons.AddInv
         Dim mSIs As New colStockItems
         Dim mPicker As clsPickerStockItem
+        Dim mSelectedSI As dmStockItem
+
         For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
           mSIs.Add(mItem.Value)
         Next
+
         mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
 
+        Dim mPF As dmProductFurniture
+        mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+
+        For Each mMR As dmMaterialRequirement In mPF.MaterialRequirmentOthersChanges
+          mSelectedSI = mSIs.ItemFromKey(mMR.StockItemID)
+          If mSelectedSI IsNot Nothing Then
+            If mPicker.SelectedObjects.Contains(mSelectedSI) = False Then
+              mPicker.SelectedObjects.Add(mSelectedSI)
+            End If
+          End If
+        Next
 
         frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
 

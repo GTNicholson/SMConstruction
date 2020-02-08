@@ -188,17 +188,36 @@ Public Class fccWorkOrderDetail
   Public Sub syncronizedMaterialRequirmentChanges(ByRef rStockItems As List(Of dmStockItem))
     Dim mMat As dmMaterialRequirement
     Dim mFurniture As dmProductFurniture
+    Dim mFound As Boolean
+
+    mFurniture = pWorkOrder.Product
 
     For Each mSI As dmStockItem In rStockItems
-      mMat = New dmMaterialRequirement
-      mFurniture = pWorkOrder.Product
+      If mFurniture.MaterialRequirmentOthersChanges.IndexFromStockItemID(mSI.StockItemID) = -1 Then
+        mMat = New dmMaterialRequirement
 
-      mMat.ObjectID = pWorkOrder.WorkOrderID
-      mMat.ObjectType = eObjectType.WorkOrder
-      mMat.StockItemID = mSI.StockItemID
-      mFurniture.MaterialRequirmentOthersChanges.Add(mMat)
+        mMat.ObjectID = pWorkOrder.WorkOrderID
+        mMat.ObjectType = eObjectType.WorkOrder
+        mMat.StockItemID = mSI.StockItemID
+        mFurniture.MaterialRequirmentOthersChanges.Add(mMat)
+      End If
     Next
 
+    For mLoop As Integer = mFurniture.MaterialRequirmentOthersChanges.Count - 1 To 0 Step -1
+      mFound = False
+      mMat = mFurniture.MaterialRequirmentOthersChanges(mLoop)
+      If mMat.StockItemID <> 0 Then '// this leaves the manual ones alone
+        For Each mSI As dmStockItem In rStockItems
+          If mMat.StockItemID = mSI.StockItemID Then
+            mFound = True
+            Exit For
+          End If
+        Next
+        If mFound = False Then
+          mFurniture.MaterialRequirmentOthersChanges.RemoveAt(mLoop)
+        End If
+      End If
+    Next
 
   End Sub
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
