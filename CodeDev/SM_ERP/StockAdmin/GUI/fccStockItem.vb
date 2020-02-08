@@ -17,7 +17,7 @@ Public Class fccStocktem
   Private pShowItemsMode As Integer
   Private pStockItem As dmStockItem
 
-  ''Private pStockItemRegistry As clsStockItemRegistry
+  Private pSIGlobalRegistry As clsStockItemRegistryBase
 
   Public Enum eShowItems
     ShowAll = 0
@@ -43,6 +43,11 @@ Public Class fccStocktem
     End Get
   End Property
 
+  Public ReadOnly Property SIGlobalRegistry As clsStockItemRegistryBase
+    Get
+      Return pSIGlobalRegistry
+    End Get
+  End Property
 
   Public Property CurrentStockItem As dmStockItem
     Get
@@ -124,12 +129,11 @@ Public Class fccStocktem
     End Set
   End Property
 
-  Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rRegistry As clsStockItemRegistryBase)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pStockItems = New colStockItems
-    ''pStockItemsPicker = New colStockItems
-    ''pStockItemRegistry = New clsStockItemRegistry(rDBConn)
+    pSIGlobalRegistry = rRegistry
     pShowItemsMode = eShowItems.ShowLive
   End Sub
 
@@ -244,16 +248,13 @@ Public Class fccStocktem
         Dim mdsoStock As New dsoStock(pDBConn)
 
         mdsoStock.SaveStockItem(pCurrentStockItem)
-        If pRTISGlobal.StockItemRegistry.GetStockItemFromID(pCurrentStockItem.StockItemID) IsNot Nothing Then
-          pRTISGlobal.StockItemRegistry.RefreshStockItem(pCurrentStockItem.StockItemID)
+        If pSIGlobalRegistry.GetStockItemFromID(pCurrentStockItem.StockItemID) IsNot Nothing Then
+          pSIGlobalRegistry.RefreshStockItem(pCurrentStockItem.StockItemID)
         Else
-          pRTISGlobal.StockItemRegistry.LoadByID(pCurrentStockItem.StockItemID)
+          pSIGlobalRegistry.LoadByID(pCurrentStockItem.StockItemID)
         End If
-        ''mdsoStock.SaveStockItemAlternateCodes(pCurrentStockItem)
-        ''mdsoStock.SaveStockItemBOMs(pCurrentStockItem)
-        ''mdsoStock.SaveStockItemFixings(pCurrentStockItem)
         mdsoStock = Nothing
-        End If
+      End If
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -372,18 +373,21 @@ Public Class fccStocktem
   ''    Return mRetval
   ''  End Function
 
-  Public Sub SetStockCode()
+  Public Function GetProposedCode()
     Dim mDSO As dsoStock
     Dim mStem As String
     Dim mSuffix As Integer
+    Dim mRetVal As String = ""
 
     mStem = clsStockItemSharedFuncs.GetStockCodeStem(pCurrentStockItem)
     mDSO = New dsoStock(pDBConn)
-    mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
+    If mStem <> "" Then
+      mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
 
-    pCurrentStockItem.StockCode = mStem & mSuffix.ToString("000")
-
-  End Sub
+      mRetVal = mStem & mSuffix.ToString("000")
+    End If
+    Return mRetVal
+  End Function
 
 End Class
 

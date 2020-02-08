@@ -13,8 +13,8 @@ Public Class dmProductFurniture : Inherits dmBase
   Private pMaterialRequirements As colMaterialRequirements
   Private pMaterialRequirementOthers As colMaterialRequirements
 
-  Private pMaterialRequirementsChanges As colMaterialRequirementsChanges
-  Private pMaterialRequirementOthersChanges As colMaterialRequirementsChanges
+  Private pMaterialRequirementsChanges As colMaterialRequirements
+  Private pMaterialRequirementOthersChanges As colMaterialRequirements
 
   Private pProductFurnitureComponent As colProductFurnitureComponents
 
@@ -28,8 +28,8 @@ Public Class dmProductFurniture : Inherits dmBase
     pMaterialRequirements = New colMaterialRequirements
     pMaterialRequirementOthers = New colMaterialRequirements
 
-    pMaterialRequirementsChanges = New colMaterialRequirementsChanges
-    pMaterialRequirementOthersChanges = New colMaterialRequirementsChanges
+    pMaterialRequirementsChanges = New colMaterialRequirements
+    pMaterialRequirementOthersChanges = New colMaterialRequirements
 
 
     pProductFurnitureComponent = New colProductFurnitureComponents
@@ -229,20 +229,20 @@ Public Class dmProductFurniture : Inherits dmBase
     End Set
   End Property
 
-  Public Property MaterialRequirmentsChanges As colMaterialRequirementsChanges
+  Public Property MaterialRequirmentsChanges As colMaterialRequirements
     Get
       Return pMaterialRequirementsChanges
     End Get
-    Set(value As colMaterialRequirementsChanges)
+    Set(value As colMaterialRequirements)
       pMaterialRequirementsChanges = value
     End Set
   End Property
 
-  Public Property MaterialRequirmentOthersChanges As colMaterialRequirementsChanges
+  Public Property MaterialRequirmentOthersChanges As colMaterialRequirements
     Get
       Return pMaterialRequirementOthersChanges
     End Get
-    Set(value As colMaterialRequirementsChanges)
+    Set(value As colMaterialRequirements)
       pMaterialRequirementOthersChanges = value
     End Set
   End Property

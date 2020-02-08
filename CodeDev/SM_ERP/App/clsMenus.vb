@@ -79,7 +79,7 @@ Class clsMenuFunctions
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
-  Public Shared Sub InventoryAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+  Public Shared Sub InventoryAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mCategories As New List(Of eStockItemCategory)
     mCategories.Add(eStockItemCategory.Abrasivos)
     mCategories.Add(eStockItemCategory.NailsAndBolds)
@@ -96,7 +96,7 @@ Class clsMenuFunctions
     mCategories.Add(eStockItemCategory.VidrioYEspejo)
     mCategories.Add(eStockItemCategory.Herrajes)
 
-    frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mCategories)
+    frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mCategories, rRTISGlobal.StockItemRegistry)
   End Sub
 
   Public Shared Sub StockTakeBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)

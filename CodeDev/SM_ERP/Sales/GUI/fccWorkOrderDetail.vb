@@ -25,6 +25,12 @@ Public Class fccWorkOrderDetail
     End Get
   End Property
 
+  Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
+    Get
+      Return pDBConn
+    End Get
+  End Property
+
   Public Property PrimaryKeyID As Integer
     Get
       Return pPrimaryKeyID
@@ -145,15 +151,35 @@ Public Class fccWorkOrderDetail
   Public Sub syncronizedMaterialRequirment(ByRef rStockItems As List(Of dmStockItem))
     Dim mMat As dmMaterialRequirement
     Dim mFurniture As dmProductFurniture
+    Dim mFound As Boolean
+
+    mFurniture = pWorkOrder.Product
 
     For Each mSI As dmStockItem In rStockItems
-      mMat = New dmMaterialRequirement
-      mFurniture = pWorkOrder.Product
+      If mFurniture.MaterialRequirmentOthers.IndexFromStockItemID(mSI.StockItemID) = -1 Then
+        mMat = New dmMaterialRequirement
 
-      mMat.ObjectID = pWorkOrder.WorkOrderID
-      mMat.ObjectType = eObjectType.WorkOrder
-      mMat.StockItemID = mSI.StockItemID
-      mFurniture.MaterialRequirmentOthers.Add(mMat)
+        mMat.ObjectID = pWorkOrder.WorkOrderID
+        mMat.ObjectType = eObjectType.WorkOrder
+        mMat.StockItemID = mSI.StockItemID
+        mFurniture.MaterialRequirmentOthers.Add(mMat)
+      End If
+    Next
+
+    For mLoop As Integer = mFurniture.MaterialRequirmentOthers.Count - 1 To 0 Step -1
+      mFound = False
+      mMat = mFurniture.MaterialRequirmentOthers(mLoop)
+      If mMat.StockItemID <> 0 Then '// this leaves the manual ones alone
+        For Each mSI As dmStockItem In rStockItems
+        If mMat.StockItemID = mSI.StockItemID Then
+          mFound = True
+          Exit For
+        End If
+      Next
+        If mFound = False Then
+          mFurniture.MaterialRequirmentOthers.RemoveAt(mLoop)
+        End If
+      End If
     Next
 
 

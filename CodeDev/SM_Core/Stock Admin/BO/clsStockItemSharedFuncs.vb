@@ -15,6 +15,7 @@
       Case eStockItemCategory.MatEmpaque
         mRetVal = eStockItemTypeMaterialEmpaque.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.MatVarios
+        mRetVal = eStockItemTypeMatVarios.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.Metal
         mRetVal = eStockItemTypeMetales.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.PinturaYQuimico
@@ -33,6 +34,7 @@
 
   Public Shared Function GetStockCodeStem(ByRef rStockItem As dmStockItem) As String
     Dim mRetVal As String = ""
+    Dim mValid As Boolean = True
     Dim mstocktype As clsStockItemType
     Select Case rStockItem.Category
       Case eStockItemCategory.Abrasivos
@@ -63,9 +65,16 @@
         mRetVal = "TAP."
       Case eStockItemCategory.VidrioYEspejo
         mRetVal = "VYE."
+      Case Else
+        mValid = False
     End Select
     mstocktype = GetStockItemType(rStockItem)
-    If mstocktype IsNot Nothing Then mRetVal = mRetVal & mstocktype.Abreviation & "."
+    If mstocktype IsNot Nothing Then
+      mRetVal = mRetVal & mstocktype.Abreviation & "."
+    Else
+      mValid = False
+    End If
+    If mValid = False Then mRetVal = ""
     Return mRetVal
   End Function
 

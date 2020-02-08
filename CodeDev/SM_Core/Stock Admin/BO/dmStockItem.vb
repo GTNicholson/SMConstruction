@@ -404,7 +404,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property ComponentType As Short Implements intStockItemDef.ComponentType
     Get
-      Throw New NotImplementedException()
+     '' Throw New NotImplementedException()
     End Get
     Set(value As Short)
       Throw New NotImplementedException()
@@ -413,7 +413,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property StockSubCategory As Integer Implements intStockItemDef.StockSubCategory
     Get
-      Throw New NotImplementedException()
+     '' Throw New NotImplementedException()
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
@@ -423,7 +423,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property AuxCode As String Implements intStockItemDef.AuxCode
     Get
-      Throw New NotImplementedException()
+      '' Throw New NotImplementedException()
     End Get
     Set(value As String)
       Throw New NotImplementedException()
@@ -433,7 +433,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property AttributeID As Integer Implements intStockItemDef.AttributeID
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
@@ -442,7 +442,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property AttributeValue As String Implements intStockItemDef.AttributeValue
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As String)
       Throw New NotImplementedException()
@@ -451,7 +451,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property OwnerID As Integer Implements intStockItemDef.OwnerID
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
@@ -460,7 +460,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property MaterialID As Integer Implements intStockItemDef.MaterialID
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
@@ -487,7 +487,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property DateStart As Date Implements intStockItemDef.DateStart
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Date)
       Throw New NotImplementedException()
@@ -596,7 +596,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property Notes As String Implements intStockItemDef.Notes
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As String)
       Throw New NotImplementedException()
@@ -605,7 +605,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property IsNonDefaultMatReq As Boolean Implements intStockItemDef.IsNonDefaultMatReq
     Get
-      Throw New NotImplementedException()
+      ''Throw New NotImplementedException()
     End Get
     Set(value As Boolean)
       Throw New NotImplementedException()

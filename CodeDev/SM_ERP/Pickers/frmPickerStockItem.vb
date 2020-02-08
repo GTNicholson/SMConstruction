@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraTab
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
@@ -9,9 +10,7 @@ Public Class frmPickerStockItem
   Private pPickerStockItem As clsPickerStockItem
   Private pRemainOpen As Boolean
   Private pStockItems As dmStockItem
-  Private pFormController As fccStocktem
-
-
+  Private pActive As Boolean
 
   Public Property StockItem As dmStockItem
     Get
@@ -22,16 +21,6 @@ Public Class frmPickerStockItem
     End Set
   End Property
 
-
-
-  Public Property FormController() As fccStocktem
-    Get
-      FormController = pFormController
-    End Get
-    Set(ByVal value As fccStocktem)
-      pFormController = value
-    End Set
-  End Property
 
   Public Shared Function OpenPickerSingle(ByVal vPickerStockItem As clsPickerStockItem) As intStockItemDef
     Dim mfrm As New frmPickerStockItem
@@ -52,8 +41,6 @@ Public Class frmPickerStockItem
   Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of intStockItemDef)
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As New List(Of intStockItemDef)
-
-    mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal)
 
 
     mfrm.pPickerStockItem = vPickerStockItem
@@ -77,17 +64,14 @@ Public Class frmPickerStockItem
   Private Sub frmPickerStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Dim mOK As Boolean = True
     Try
-
-
-      ''  mOK = pFormController.LoadObject()
-
+      pActive = False
       LoadCombo()
+      grdItemList.DataSource = pPickerStockItem.DataSource
 
+      CreateTabs()
+      SetCurrentTab(eStockItemCategory.Abrasivos)
 
-
-      RefreshControls()
-
-
+      pActive = True
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -107,14 +91,6 @@ Public Class frmPickerStockItem
   End Sub
 
 
-
-  Private Sub RefreshControls()
-    grdItemList.DataSource = pPickerStockItem.DataSource
-    gvItemList.FocusedRowHandle = grdItemList.AutoFilterRowHandle
-    gvItemList.FocusedColumn = gcStockCode
-    gvItemList.ShowEditor()
-  End Sub
-
   Private Sub repoItemSelect_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repoItemSelect.ButtonClick
     Try
       Dim mItem As intStockItemDef
@@ -124,6 +100,7 @@ Public Class frmPickerStockItem
         If pRemainOpen = False Then Me.Close()
       End If
       gvItemList.CloseEditor()
+      RefeshTabCaption(pPickerStockItem.CurrentCategory)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -138,6 +115,7 @@ Public Class frmPickerStockItem
         If pRemainOpen = False Then Me.Close()
       End If
       gvItemList.CloseEditor()
+      RefeshTabCaption(pPickerStockItem.CurrentCategory)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -228,32 +206,95 @@ Public Class frmPickerStockItem
   End Sub
 
   Private Sub bbtnNewStockItem_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnNewStockItem.ItemClick
-    Dim mRetVal As dmStockItem
-    Dim mCategories As New List(Of eStockItemCategory)
-    mCategories.Add(eStockItemCategory.Abrasivos)
-    mCategories.Add(eStockItemCategory.NailsAndBolds)
-    mCategories.Add(eStockItemCategory.EPP)
-    mCategories.Add(eStockItemCategory.Herramientas)
-    mCategories.Add(eStockItemCategory.MatElect)
-    mCategories.Add(eStockItemCategory.MatEmpaque)
-    mCategories.Add(eStockItemCategory.MatVarios)
-    mCategories.Add(eStockItemCategory.Metal)
-    mCategories.Add(eStockItemCategory.PinturaYQuimico)
-    mCategories.Add(eStockItemCategory.Laminas)
-    mCategories.Add(eStockItemCategory.Repuestos)
-    mCategories.Add(eStockItemCategory.Tapiceria)
-    mCategories.Add(eStockItemCategory.VidrioYEspejo)
-    mCategories.Add(eStockItemCategory.Herrajes)
 
+    Dim mCategories As New List(Of eStockItemCategory)
+    Dim mCurrentID As Integer
+    Dim mCurrentItem As dmStockItem = Nothing
 
 
     Try
-      frmStockItem.GetNewStockItem(pFormController.DBConn, pFormController.RTISGlobal, mCategories)
-      RefreshControls()
+      mCategories.Add(pPickerStockItem.CurrentCategory)
+
+      mCurrentID = frmStockItem.OpenAsModalGetID(pPickerStockItem.DBConn, pPickerStockItem.RTISGlobal, mCategories, pPickerStockItem.RTISGlobal.StockItemRegistry)
+
+      Dim mSIs = New List(Of dmStockItem)
+      For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pPickerStockItem.RTISGlobal.StockItemRegistry.StockItemsDict
+        mSIs.Add(mItem.Value)
+        If mItem.Value.StockItemID = mCurrentID Then
+          mCurrentItem = mItem.Value
+        End If
+      Next
+      pPickerStockItem.DataSource = mSIs
+
+      gvItemList.RefreshData()
+
+      If mCurrentItem IsNot Nothing Then
+        gvItemList.FocusedRowHandle = gvItemList.FindRow(mCurrentItem)
+      End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
   End Sub
+
+  Private Sub CreateTabs()
+    Dim mVIs As colValueItems
+    Dim mTabPage As DevExpress.XtraTab.XtraTabPage
+
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+    Do While xtabCategories.TabPages.Count > 1
+      xtabCategories.TabPages.RemoveAt(xtabCategories.TabPages.Count - 1)
+    Loop
+
+    For Each mVI As clsValueItem In mVIs
+      mTabPage = New DevExpress.XtraTab.XtraTabPage
+      mTabPage.Text = mVI.DisplayValue
+      mTabPage.Tag = mVI.ItemValue
+      xtabCategories.TabPages.Add(mTabPage)
+    Next
+
+    For Each mTabPage In xtabCategories.TabPages
+      If mTabPage.Tag Is Nothing OrElse mTabPage.Tag = 0 Then
+        mTabPage.PageVisible = False
+      Else
+        RefeshTabCaption(mTabPage.Tag)
+      End If
+    Next
+
+    SetCurrentTab(eStockItemCategory.Abrasivos)
+
+  End Sub
+
+  Private Sub SetCurrentTab(ByVal vCategory As eStockItemCategory)
+    For Each mTabPage As DevExpress.XtraTab.XtraTabPage In xtabCategories.TabPages
+      If mTabPage.Tag IsNot Nothing AndAlso mTabPage.Tag = vCategory Then
+        xtabCategories.SelectedTabPage = mTabPage
+        grdItemList.Parent = mTabPage
+        pPickerStockItem.CurrentCategory = vCategory
+        gvItemList.ActiveFilterString = "Category = " & pPickerStockItem.CurrentCategory
+      End If
+    Next
+
+  End Sub
+
+  Private Sub RefeshTabCaption(ByVal vCategory As eStockItemCategory)
+    Dim mSelected As Integer = 0
+    For Each mTabPage As DevExpress.XtraTab.XtraTabPage In xtabCategories.TabPages
+      If mTabPage.Tag IsNot Nothing AndAlso mTabPage.Tag = vCategory Then
+        mSelected = pPickerStockItem.SelectedCount(vCategory)
+        If mSelected = 0 Then
+          mTabPage.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), vCategory)
+        Else
+          mTabPage.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), vCategory) & " (" & mSelected & ")"
+        End If
+      End If
+    Next
+
+  End Sub
+
+  Private Sub xtabCategories_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles xtabCategories.SelectedPageChanged
+    SetCurrentTab(e.Page.Tag)
+  End Sub
+
 
 End Class

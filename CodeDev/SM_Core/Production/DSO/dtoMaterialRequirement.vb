@@ -182,7 +182,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
 
 
 
-  Public Function LoadMaterialRequirementCollectionChanges(ByRef rMaterialRequirements As colMaterialRequirementsChanges, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
+  Public Function LoadMaterialRequirementCollectionChanges(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mParams.Add("@ObjectType", vProductType)
@@ -226,7 +226,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
     Return mAllOK
   End Function
 
-  Public Function SaveMaterialRequirementCollectionChanges(ByRef rCollection As colMaterialRequirementsChanges, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
+  Public Function SaveMaterialRequirementCollectionChanges(ByRef rCollection As colMaterialRequirements, ByVal vProductType As Integer, ByVal vParentID As Integer, ByVal vMatReqType As Integer) As Boolean
     Dim mAllOK As Boolean
     Dim mIDs As String = ""
     If rCollection.IsDirty Then

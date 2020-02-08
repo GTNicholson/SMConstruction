@@ -37,9 +37,60 @@ Public Class frmStockItem
 
   End Sub
 
-  Private Sub barRGObsoleteItems_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barRGObsoleteItems.ItemClick
+  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory), ByRef rRegistry As clsStockItemRegistryBase)
+    Dim mfrm As frmStockItem = Nothing
 
+    mfrm = GetFormIfLoaded()
+    If mfrm Is Nothing Then
+      mfrm = New frmStockItem
+      mfrm.MdiParent = rMDIParent
+      mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal, rRegistry)
+      mfrm.pFormController.Categorys = vCategorys
+      mfrm.Show()
+    Else
+      mfrm.Focus()
+    End If
   End Sub
+
+  Public Shared Function OpenAsModalGetID(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory), ByRef rRegistry As clsStockItemRegistryBase) As Integer
+    Dim mfrm As frmStockItem = Nothing
+    Dim mRetVal As Integer = -1
+
+    mfrm = New frmStockItem
+    mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal, rRegistry)
+    mfrm.pFormController.Categorys = vCategorys
+    mfrm.ShowDialog()
+    If mfrm.pFormController.CurrentStockItem IsNot Nothing Then
+      mRetVal = mfrm.pFormController.CurrentStockItem.StockItemID
+    End If
+    Return mRetVal
+  End Function
+
+
+  Private Shared Function GetFormIfLoaded() As frmStockItem
+    Dim mfrmWanted As frmStockItem = Nothing
+    Dim mFound As Boolean = False
+    Dim mfrm As frmStockItem
+    'Check if exisits already
+    If sActiveForms Is Nothing Then sActiveForms = New Collection
+    For Each mfrm In sActiveForms
+      If TypeOf mfrm Is frmStockItem Then
+        mfrmWanted = mfrm
+        mFound = True
+        Exit For
+      End If
+    Next
+    If Not mFound Then
+      mfrmWanted = Nothing
+    End If
+    Return mfrmWanted
+  End Function
+
+  Public ReadOnly Property FormController As fccStocktem
+    Get
+      Return pFormController
+    End Get
+  End Property
 
   Private Sub frmStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     pIsActive = False
@@ -51,6 +102,8 @@ Public Class frmStockItem
     RefreshControls()
     pIsActive = True
   End Sub
+
+
 
   Private Sub RefreshAddStockItemOptions()
     Dim mItem As DevExpress.XtraBars.BarButtonItem
@@ -102,63 +155,8 @@ Public Class frmStockItem
     txtDescription.Focus()
   End Sub
 
-  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory))
-    Dim mfrm As frmStockItem = Nothing
 
-    mfrm = GetFormIfLoaded()
-    If mfrm Is Nothing Then
-      mfrm = New frmStockItem
-      mfrm.MdiParent = rMDIParent
-      mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal)
-      mfrm.pFormController.Categorys = vCategorys
 
-      mfrm.Show()
-    Else
-      mfrm.Focus()
-    End If
-  End Sub
-
-  Public Shared Function GetNewStockItem(ByRef rDBConn As clsDBConnBase, ByRef rAppRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory))
-
-    Dim mfrm As frmStockItem = Nothing
-
-    mfrm = GetFormIfLoaded()
-    If mfrm Is Nothing Then
-      mfrm = New frmStockItem
-
-      mfrm.pFormController = New fccStocktem(rDBConn, rAppRTISGlobal)
-      mfrm.pFormController.Categorys = vCategorys
-
-      mfrm.ShowDialog()
-    Else
-      mfrm.Focus()
-    End If
-  End Function
-
-  Private Shared Function GetFormIfLoaded() As frmStockItem
-    Dim mfrmWanted As frmStockItem = Nothing
-    Dim mFound As Boolean = False
-    Dim mfrm As frmStockItem
-    'Check if exisits already
-    If sActiveForms Is Nothing Then sActiveForms = New Collection
-    For Each mfrm In sActiveForms
-      If TypeOf mfrm Is frmStockItem Then
-        mfrmWanted = mfrm
-        mFound = True
-        Exit For
-      End If
-    Next
-    If Not mFound Then
-      mfrmWanted = Nothing
-    End If
-    Return mfrmWanted
-  End Function
-
-  Public ReadOnly Property FormController As fccStocktem
-    Get
-      Return pFormController
-    End Get
-  End Property
   Private Sub frmStockItem_Closed(sender As Object, e As EventArgs) Handles Me.Closed
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
   End Sub
@@ -179,6 +177,7 @@ Public Class frmStockItem
         RefreshControls()
       Case eDetailButtons.Save
         UpdateObject()
+        CheckStockCode()
         pFormController.SaveObject()
         pCurrentDetailMode = eCurrentDetailMode.eView
         gvStockItems.RefreshData()
@@ -187,6 +186,20 @@ Public Class frmStockItem
     End Select
     RefreshDetailButtons()
   End Sub
+
+  Private Function CheckStockCode() As Boolean
+    Dim mRetval As Boolean
+    Dim mProposedCode As String
+    If pFormController.CurrentStockItem.StockCode = "" Then
+      mProposedCode = pFormController.GetProposedCode
+      If mProposedCode <> "" Then
+        If MsgBox("Creer codigo de articulo : " & mProposedCode & "?", vbYesNo) = vbYes Then
+          pFormController.CurrentStockItem.StockCode = mProposedCode
+        End If
+      End If
+    End If
+    Return mRetval
+  End Function
 
   Private Sub gvStockItems_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvStockItems.FocusedRowObjectChanged
     Dim mSI As dmStockItem

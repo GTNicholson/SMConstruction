@@ -967,11 +967,25 @@ Public Class frmWorkOrderDetail
       Case eMaterialRequirementsButtons.AddInv
         Dim mSIs As New colStockItems
         Dim mPicker As clsPickerStockItem
+        Dim mSelectedSI As dmStockItem
+
         For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
           mSIs.Add(mItem.Value)
         Next
-        mPicker = New clsPickerStockItem(mSIs)
 
+        mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
+
+        Dim mPF As dmProductFurniture
+        mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
+
+        For Each mMR As dmMaterialRequirement In mPF.MaterialRequirmentOthers
+          mSelectedSI = mSIs.ItemFromKey(mMR.StockItemID)
+          If mSelectedSI IsNot Nothing Then
+            If mPicker.SelectedObjects.Contains(mSelectedSI) = false Then
+              mPicker.SelectedObjects.Add(mSelectedSI)
+            End If
+          End If
+        Next
 
         frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
 
@@ -1046,7 +1060,7 @@ Public Class frmWorkOrderDetail
     Select Case e.Button.Properties.Tag
 
       Case eMaterialRequirementsButtons.CopyChange
-        Dim mMatReqs As colMaterialRequirementsChanges
+        Dim mMatReqs As colMaterialRequirements
         mMatReqs = grdMaterialRequirementOthersChange.DataSource
 
         pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
@@ -1070,7 +1084,7 @@ Public Class frmWorkOrderDetail
         For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
           mSIs.Add(mItem.Value)
         Next
-        mPicker = New clsPickerStockItem(mSIs)
+        mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
 
 
         frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
