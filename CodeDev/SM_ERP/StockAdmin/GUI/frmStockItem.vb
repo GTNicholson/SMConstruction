@@ -123,13 +123,22 @@ Public Class frmStockItem
   Private Sub AddStockItemCat(sender As Object, e As EventArgs)
     Dim mCategory As eStockItemCategory
     Dim mNewStockItem As dmStockItem
-
+    Dim mRH As Integer
     mCategory = CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
     mNewStockItem = pFormController.AddStockItem(1, mCategory)
 
     gvStockItems.RefreshData()
-    gvStockItems.FindRow(mNewStockItem)
-    gvStockItems.FocusedRowHandle = gvStockItems.FindRow(mNewStockItem)
+
+    mRH = gvStockItems.FindRow(mNewStockItem)
+
+    If mRH >= 0 Then
+      gvStockItems.FocusedRowHandle = mRH
+    Else
+      pFormController.CurrentStockItem = mNewStockItem
+      ShowHideDetails()
+      RefreshCategorySpecificControls()
+      RefreshControls()
+    End If
     pCurrentDetailMode = eCurrentDetailMode.eEdit
     RefreshDetailButtons()
     SetDetailFocus()
