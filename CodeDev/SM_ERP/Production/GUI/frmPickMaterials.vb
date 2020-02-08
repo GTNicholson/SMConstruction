@@ -1,4 +1,6 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
@@ -180,8 +182,21 @@ Public Class frmPickMaterials
         Dim mDate As Date = mfrm.SelectedDate
         Dim mRequisaNo As Decimal = mfrm.ReferenceNo
         Dim mNotes As String = mfrm.Notes
+        Dim mTransactionValuation As Decimal
+        Dim mCol As GridColumn = gvMaterialRequirementInfos.Columns.ColumnByName("gcStdCost")
+        Dim mIndex As Int32 = gvMaterialRequirementInfos.GetFocusedDataSourceRowIndex
+
+
+        If mCol Is Nothing Then
+          Return
+        End If
+        gvMaterialRequirementInfos.BeginSort()
+
+
+        mTransactionValuation = Convert.ToDecimal(gvMaterialRequirementInfos.GetRowCellValue(mIndex, mCol))
 
         If mRequisaNo <> Decimal.Zero Then
+
           gvMaterialRequirementInfos.CloseEditor()
           gvMaterialRequirementInfos.UpdateCurrentRow()
           pFormController.ProcessPicks(mRequisaNo.ToString, mDate, mNotes)
@@ -194,10 +209,14 @@ Public Class frmPickMaterials
       End If
       ''mReferenceNo = InputBox("Ingrese el número de Requisa", "Registro de Requis", 1)
 
-
-
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    Finally
+      gvMaterialRequirementInfos.EndSort()
+
+
     End Try
+
   End Sub
 End Class

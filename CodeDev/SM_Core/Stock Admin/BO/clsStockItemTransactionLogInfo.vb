@@ -382,6 +382,11 @@ Public Class clsStockItemTransactionLogInfo
       Select Case pRefObjectType
         Case eObjectType.StockTake
           mRetVal = pStockTakeDesc
+        Case eObjectType.MaterialRequirement
+          mRetVal = pWorkOrder.WorkOrderNo
+        Case eObjectType.PODeliveryItem
+          mRetVal = "" ''GRN Number
+
       End Select
       Return mRetVal
     End Get
@@ -390,6 +395,15 @@ Public Class clsStockItemTransactionLogInfo
   Public ReadOnly Property RefInfo2 As String
     Get
       Dim mRetVal As String = ""
+      Select Case pRefObjectType
+
+        Case eObjectType.MaterialRequirement
+          mRetVal = "" ''ProjectName
+        Case eObjectType.PODeliveryItem
+          mRetVal = "" ''PO Num
+
+
+      End Select
       Return mRetVal
     End Get
   End Property
@@ -397,10 +411,17 @@ Public Class clsStockItemTransactionLogInfo
   Public ReadOnly Property RefInfo3 As String
     Get
       Dim mRetVal As String = ""
+      Select Case pRefObjectType
+
+        Case eObjectType.MaterialRequirement
+          mRetVal = "" ''CustomerName
+
+        Case eObjectType.PODeliveryItem
+          mRetVal = "" ''Supplier
+      End Select
       Return mRetVal
     End Get
   End Property
-
 
 End Class
 

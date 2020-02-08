@@ -28,6 +28,7 @@ Public Enum eObjectType
   StockTake = 4
   StockItemAmmendmentLog = 5
   MaterialRequirement = 6
+  PODeliveryItem = 7
 End Enum
 
 Public Enum eEmployeeRole

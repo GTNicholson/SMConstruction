@@ -114,7 +114,7 @@ or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
           Else
             mSIL = Nothing
           End If
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, vDateEntered, vReferenceNo, vNotes)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, vDateEntered, vReferenceNo, vNotes, mMRP.StockItem.StdCost * mMRP.ToProcessQty)
           mMRP.ToProcessQty = 0
         End If
 

@@ -11,7 +11,7 @@
     pDecValue = vNewValue
   End Sub
 
-  Public Function CreateTransactionAdjust(ByVal vPrevValue As Decimal, ByVal vAdjustvalue As Decimal, ByVal vObjectType As Byte, ByVal vObjectID As Integer, ByVal vRef As Integer, ByVal vTranDate As Date, ByVal vTranType As Byte, ByVal vUserID As Integer, ByVal vNote As String, ByVal vRefObjectType As Byte, ByVal vRefObjectID As Long, ByVal vReferenceNo As String) As dmStockItemTransactionLog
+  Public Function CreateTransactionAdjust(ByVal vPrevValue As Decimal, ByVal vAdjustvalue As Decimal, ByVal vObjectType As Byte, ByVal vObjectID As Integer, ByVal vRef As Integer, ByVal vTranDate As Date, ByVal vTranType As Byte, ByVal vUserID As Integer, ByVal vNote As String, ByVal vRefObjectType As Byte, ByVal vRefObjectID As Long, ByVal vReferenceNo As String, ByVal vTransactionValuation As Decimal) As dmStockItemTransactionLog
     Dim mTransaction As New dmStockItemTransactionLog
     With mTransaction
       .TranValue = vAdjustvalue
@@ -28,6 +28,8 @@
       .PrevValue = vPrevValue
       .NewValue = vPrevValue + vAdjustvalue
       .ReferenceNo = vReferenceNo
+      .TransactionValuation = vTransactionValuation
+
     End With
     pDecValue = pDecValue + vAdjustvalue
     Return mTransaction
