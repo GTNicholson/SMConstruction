@@ -521,7 +521,8 @@ Public Class frmStockItem
     spnMinCutLength.ReadOnly = vReadOnly
     spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
-    bteImage.ReadOnly = not vReadOnly
+    bteImage.Enabled = Not vReadOnly
+
 
     ''    btnedImageFile.ReadOnly = vReadOnly
 
