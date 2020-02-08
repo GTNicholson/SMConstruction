@@ -34,6 +34,8 @@ Partial Class frmWorkOrderDetail
     Dim ButtonImageOptions9 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions10 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions11 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderDetail))
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -183,6 +185,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.repbtnSubstituteMatReq = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -274,6 +277,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -1636,6 +1640,7 @@ Partial Class frmWorkOrderDetail
     Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
     Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
     Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
+    Me.grdMaterialRequirementOthers.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repbtnSubstituteMatReq})
     Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1068, 149)
     Me.grdMaterialRequirementOthers.TabIndex = 41
     Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
@@ -1660,12 +1665,13 @@ Partial Class frmWorkOrderDetail
     'gcStockCode
     '
     Me.gcStockCode.Caption = "Código SMM"
+    Me.gcStockCode.ColumnEdit = Me.repbtnSubstituteMatReq
     Me.gcStockCode.FieldName = "ubStockCode"
     Me.gcStockCode.Name = "gcStockCode"
     Me.gcStockCode.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcStockCode.Visible = True
     Me.gcStockCode.VisibleIndex = 0
-    Me.gcStockCode.Width = 54
+    Me.gcStockCode.Width = 93
     '
     'gcMatReqOtherDescription
     '
@@ -1675,7 +1681,7 @@ Partial Class frmWorkOrderDetail
     Me.gcMatReqOtherDescription.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcMatReqOtherDescription.Visible = True
     Me.gcMatReqOtherDescription.VisibleIndex = 1
-    Me.gcMatReqOtherDescription.Width = 288
+    Me.gcMatReqOtherDescription.Width = 223
     '
     'GridColumn17
     '
@@ -1684,7 +1690,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn17.Name = "GridColumn17"
     Me.GridColumn17.Visible = True
     Me.GridColumn17.VisibleIndex = 2
-    Me.GridColumn17.Width = 80
+    Me.GridColumn17.Width = 61
     '
     'GridColumn18
     '
@@ -1693,7 +1699,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn18.Name = "GridColumn18"
     Me.GridColumn18.Visible = True
     Me.GridColumn18.VisibleIndex = 3
-    Me.GridColumn18.Width = 130
+    Me.GridColumn18.Width = 100
     '
     'gcAreaID
     '
@@ -1702,7 +1708,7 @@ Partial Class frmWorkOrderDetail
     Me.gcAreaID.Name = "gcAreaID"
     Me.gcAreaID.Visible = True
     Me.gcAreaID.VisibleIndex = 4
-    Me.gcAreaID.Width = 146
+    Me.gcAreaID.Width = 113
     '
     'gcPartNo
     '
@@ -1712,7 +1718,7 @@ Partial Class frmWorkOrderDetail
     Me.gcPartNo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcPartNo.Visible = True
     Me.gcPartNo.VisibleIndex = 5
-    Me.gcPartNo.Width = 166
+    Me.gcPartNo.Width = 128
     '
     'GridColumn9
     '
@@ -1721,7 +1727,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
     Me.GridColumn9.VisibleIndex = 6
-    Me.GridColumn9.Width = 242
+    Me.GridColumn9.Width = 194
     '
     'XtraTabPage7
     '
@@ -1985,6 +1991,13 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
+    'repbtnSubstituteMatReq
+    '
+    Me.repbtnSubstituteMatReq.AutoHeight = False
+    EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+    Me.repbtnSubstituteMatReq.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
+    Me.repbtnSubstituteMatReq.Name = "repbtnSubstituteMatReq"
+    '
     'frmWorkOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2092,6 +2105,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -2246,4 +2260,5 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcDateOtherMaterialChange As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemDateEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
   Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+  Friend WithEvents repbtnSubstituteMatReq As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

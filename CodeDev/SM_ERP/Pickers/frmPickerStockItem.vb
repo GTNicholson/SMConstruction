@@ -225,7 +225,7 @@ Public Class frmPickerStockItem
         End If
       Next
       pPickerStockItem.DataSource = mSIs
-
+      grdItemList.DataSource = pPickerStockItem.DataSource
       gvItemList.RefreshData()
 
       If mCurrentItem IsNot Nothing Then
