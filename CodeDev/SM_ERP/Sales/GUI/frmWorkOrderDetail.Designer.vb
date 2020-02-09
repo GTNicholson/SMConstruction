@@ -23,19 +23,19 @@ Partial Class frmWorkOrderDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim ButtonImageOptions12 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions13 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions14 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions15 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderDetail))
     Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions8 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions9 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions10 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions11 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderDetail))
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -108,8 +108,6 @@ Partial Class frmWorkOrderDetail
     Me.Label6 = New System.Windows.Forms.Label()
     Me.memPFNotes = New DevExpress.XtraEditors.MemoEdit()
     Me.Label5 = New System.Windows.Forms.Label()
-    Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-    Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
     Me.XtraTabPage5 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
     Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
@@ -155,6 +153,7 @@ Partial Class frmWorkOrderDetail
     Me.grdMaterialRequirementOthers = New DevExpress.XtraGrid.GridControl()
     Me.gvMaterialRequirementOthers = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.repbtnSubstituteMatReq = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.gcMatReqOtherDescription = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -185,7 +184,7 @@ Partial Class frmWorkOrderDetail
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repbtnSubstituteMatReq = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,8 +233,6 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl4.SuspendLayout()
     CType(Me.cboFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.XtraTabPage2.SuspendLayout()
-    CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage5.SuspendLayout()
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl2.SuspendLayout()
@@ -261,6 +258,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers.SuspendLayout()
     CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage7.SuspendLayout()
     CType(Me.grpMaterialRequirementsOtherChanges, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpMaterialRequirementsOtherChanges.SuspendLayout()
@@ -277,7 +275,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -907,7 +905,7 @@ Partial Class frmWorkOrderDetail
     Me.tabProductSpec.SelectedTabPage = Me.XtraTabPage1
     Me.tabProductSpec.Size = New System.Drawing.Size(1152, 382)
     Me.tabProductSpec.TabIndex = 20
-    Me.tabProductSpec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+    Me.tabProductSpec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
     '
     'XtraTabPage1
     '
@@ -938,7 +936,7 @@ Partial Class frmWorkOrderDetail
     Me.grpWOFiles.Controls.Add(Me.Label6)
     Me.grpWOFiles.Controls.Add(Me.memPFNotes)
     Me.grpWOFiles.Controls.Add(Me.Label5)
-    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions1)})
+    Me.grpWOFiles.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imp. Etiqueta", True, ButtonImageOptions12)})
     Me.grpWOFiles.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWOFiles.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpWOFiles.Location = New System.Drawing.Point(0, 0)
@@ -968,7 +966,7 @@ Partial Class frmWorkOrderDetail
     Me.grdPackingComponents.Name = "grdPackingComponents"
     Me.grdPackingComponents.Size = New System.Drawing.Size(200, 213)
     Me.grdPackingComponents.TabIndex = 43
-    Me.grdPackingComponents.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPackingComponents})
+    Me.grdPackingComponents.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPackingComponents, Me.GridView1})
     '
     'gvPackingComponents
     '
@@ -1159,27 +1157,6 @@ Partial Class frmWorkOrderDetail
     Me.Label5.Tag = "c"
     Me.Label5.Text = "Notas"
     '
-    'XtraTabPage2
-    '
-    Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
-    Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1146, 354)
-    Me.XtraTabPage2.Tag = "2"
-    Me.XtraTabPage2.Text = "XtraTabPage2"
-    '
-    'GroupControl3
-    '
-    Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GroupControl3.AppearanceCaption.Options.UseFont = True
-    Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
-    Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
-    Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(1146, 354)
-    Me.GroupControl3.TabIndex = 14
-    Me.GroupControl3.Text = "Detalles de Estructura"
-    '
     'XtraTabPage5
     '
     Me.XtraTabPage5.Controls.Add(Me.PanelControl2)
@@ -1239,7 +1216,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirements)
-    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
+    Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar", True, ButtonImageOptions13, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions14, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
     Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
@@ -1410,8 +1387,8 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementChanges.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementChanges.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementChanges.Controls.Add(Me.grdMaterialRequirementsChanges)
-    ButtonImageOptions5.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.AfterText
-    Me.grpMaterialRequirementChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
+    ButtonImageOptions2.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.AfterText
+    Me.grpMaterialRequirementChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
     Me.grpMaterialRequirementChanges.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementChanges.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementChanges.Location = New System.Drawing.Point(0, 0)
@@ -1619,7 +1596,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementOthers.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementOthers.Controls.Add(Me.grdMaterialRequirementOthers)
-    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar Lista", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar Lista", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1)})
+    Me.grpMaterialRequirementOthers.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Pegar Lista", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Copiar Lista", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions15, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1)})
     Me.grpMaterialRequirementOthers.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
@@ -1631,11 +1608,13 @@ Partial Class frmWorkOrderDetail
     'grdMaterialRequirementOthers
     '
     Me.grdMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.Append.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.EndEdit.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirementOthers.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
     Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(2, 26)
     Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
     Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
@@ -1659,6 +1638,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirementOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCode, Me.gcMatReqOtherDescription, Me.GridColumn17, Me.GridColumn18, Me.gcAreaID, Me.gcPartNo, Me.GridColumn9})
     Me.gvMaterialRequirementOthers.GridControl = Me.grdMaterialRequirementOthers
     Me.gvMaterialRequirementOthers.Name = "gvMaterialRequirementOthers"
+    Me.gvMaterialRequirementOthers.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
     Me.gvMaterialRequirementOthers.OptionsView.ShowGroupPanel = False
     Me.gvMaterialRequirementOthers.ViewCaption = "Lista de Materiales Requeridos (LMR)"
     '
@@ -1672,6 +1652,13 @@ Partial Class frmWorkOrderDetail
     Me.gcStockCode.Visible = True
     Me.gcStockCode.VisibleIndex = 0
     Me.gcStockCode.Width = 93
+    '
+    'repbtnSubstituteMatReq
+    '
+    Me.repbtnSubstituteMatReq.AutoHeight = False
+    EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+    Me.repbtnSubstituteMatReq.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions2, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
+    Me.repbtnSubstituteMatReq.Name = "repbtnSubstituteMatReq"
     '
     'gcMatReqOtherDescription
     '
@@ -1743,7 +1730,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Options.UseFont = True
     Me.grpMaterialRequirementsOtherChanges.AppearanceCaption.Options.UseForeColor = True
     Me.grpMaterialRequirementsOtherChanges.Controls.Add(Me.grdMaterialRequirementOthersChange)
-    Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions10, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions11, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1)})
+    Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar Lista", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Producto", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1)})
     Me.grpMaterialRequirementsOtherChanges.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpMaterialRequirementsOtherChanges.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementsOtherChanges.Location = New System.Drawing.Point(0, 0)
@@ -1755,11 +1742,13 @@ Partial Class frmWorkOrderDetail
     'grdMaterialRequirementOthersChange
     '
     Me.grdMaterialRequirementOthersChange.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.Append.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.EndEdit.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
     Me.grdMaterialRequirementOthersChange.Location = New System.Drawing.Point(2, 26)
     Me.grdMaterialRequirementOthersChange.MainView = Me.gvMaterialRequirmentOtherChanges
     Me.grdMaterialRequirementOthersChange.MenuManager = Me.BarManager1
@@ -1783,6 +1772,7 @@ Partial Class frmWorkOrderDetail
     Me.gvMaterialRequirmentOtherChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCodeChange, Me.gcMatReqOtherDescriptionChange, Me.GridColumn24, Me.GridColumn25, Me.gcAreaIDChange, Me.gcPartNoChange, Me.GridColumn29, Me.gcDateOtherMaterialChange})
     Me.gvMaterialRequirmentOtherChanges.GridControl = Me.grdMaterialRequirementOthersChange
     Me.gvMaterialRequirmentOtherChanges.Name = "gvMaterialRequirmentOtherChanges"
+    Me.gvMaterialRequirmentOtherChanges.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
     Me.gvMaterialRequirmentOtherChanges.OptionsView.ShowGroupPanel = False
     Me.gvMaterialRequirmentOtherChanges.ViewCaption = "Lista de Materiales Requeridos (LMR)"
     '
@@ -1991,12 +1981,10 @@ Partial Class frmWorkOrderDetail
     Me.gcDuration.VisibleIndex = 2
     Me.gcDuration.Width = 477
     '
-    'repbtnSubstituteMatReq
+    'GridView1
     '
-    Me.repbtnSubstituteMatReq.AutoHeight = False
-    EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-    Me.repbtnSubstituteMatReq.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
-    Me.repbtnSubstituteMatReq.Name = "repbtnSubstituteMatReq"
+    Me.GridView1.GridControl = Me.grdPackingComponents
+    Me.GridView1.Name = "GridView1"
     '
     'frmWorkOrderDetail
     '
@@ -2062,8 +2050,6 @@ Partial Class frmWorkOrderDetail
     Me.GroupControl4.ResumeLayout(False)
     CType(Me.cboFurnitureCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.memPFNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.XtraTabPage2.ResumeLayout(False)
-    CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage5.ResumeLayout(False)
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl2.ResumeLayout(False)
@@ -2089,6 +2075,7 @@ Partial Class frmWorkOrderDetail
     Me.grpMaterialRequirementOthers.ResumeLayout(False)
     CType(Me.grdMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage7.ResumeLayout(False)
     CType(Me.grpMaterialRequirementsOtherChanges, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpMaterialRequirementsOtherChanges.ResumeLayout(False)
@@ -2105,7 +2092,7 @@ Partial Class frmWorkOrderDetail
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -2128,15 +2115,7 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents txtDescription As DevExpress.XtraEditors.TextEdit
   Friend WithEvents XtraTabControl2 As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage3 As DevExpress.XtraTab.XtraTabPage
-  Friend WithEvents tabProductSpec As DevExpress.XtraTab.XtraTabControl
-  Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-  Friend WithEvents grpWOFiles As DevExpress.XtraEditors.GroupControl
   Friend WithEvents dtePlannedStartDate As DevExpress.XtraEditors.DateEdit
-  Friend WithEvents Label6 As Label
-  Friend WithEvents memPFNotes As DevExpress.XtraEditors.MemoEdit
-  Friend WithEvents Label5 As Label
-  Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
-  Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
   Friend WithEvents GridControl4 As DevExpress.XtraGrid.GridControl
@@ -2155,9 +2134,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcDuration As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents cboProductType As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label14 As Label
-  Friend WithEvents cboFurnitureCategory As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents UctFileControl1 As uctFileControl
   Friend WithEvents lblWorkOrderID As Label
   Friend WithEvents btnSaveAndClose As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents btnClose As DevExpress.XtraBars.BarButtonItem
@@ -2170,11 +2146,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents Label17 As Label
   Friend WithEvents cboEmployee As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label18 As Label
-  Friend WithEvents ceMaquinado As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents Label19 As Label
-  Friend WithEvents cePintura As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents ceLija As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents ceEnsamble As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents XtraTabPage5 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents grdMaterialRequirementOthers As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvMaterialRequirementOthers As DevExpress.XtraGrid.Views.Grid.GridView
@@ -2193,9 +2164,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcQuality As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents Label20 As Label
   Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
-  Friend WithEvents ceSub As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents ceCostura As DevExpress.XtraEditors.CheckEdit
-  Friend WithEvents ceMetal As DevExpress.XtraEditors.CheckEdit
   Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcAreaID As DevExpress.XtraGrid.Columns.GridColumn
@@ -2206,10 +2174,6 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents gcTotalQuantity As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcQtyBoardFeet As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents grdPackingComponents As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvPackingComponents As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents Label10 As Label
   Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
   Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
   Friend WithEvents XtraTabControl3 As DevExpress.XtraTab.XtraTabControl
@@ -2261,4 +2225,26 @@ Partial Class frmWorkOrderDetail
   Friend WithEvents RepositoryItemDateEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
   Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
   Friend WithEvents repbtnSubstituteMatReq As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+  Friend WithEvents tabProductSpec As DevExpress.XtraTab.XtraTabControl
+  Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+  Friend WithEvents grpWOFiles As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents Label10 As Label
+  Friend WithEvents grdPackingComponents As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvPackingComponents As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents ceSub As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceCostura As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceMetal As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents Label19 As Label
+  Friend WithEvents cePintura As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceLija As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceEnsamble As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents ceMaquinado As DevExpress.XtraEditors.CheckEdit
+  Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents UctFileControl1 As uctFileControl
+  Friend WithEvents cboFurnitureCategory As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents Label6 As Label
+  Friend WithEvents memPFNotes As DevExpress.XtraEditors.MemoEdit
+  Friend WithEvents Label5 As Label
+  Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

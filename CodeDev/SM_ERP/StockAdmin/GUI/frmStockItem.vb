@@ -112,7 +112,7 @@ Public Class frmStockItem
 
     For Each mCat As eStockItemCategory In pFormController.Categorys
       mItem = New DevExpress.XtraBars.BarButtonItem
-      mItem.Caption = "Agregar " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), mCat) & " Stock Item"
+      mItem.Caption = "Artículo de " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), mCat)
       mItem.Tag = mCat
       AddHandler mItem.ItemClick, AddressOf AddStockItemCat
       barbtnAddStockItemCat.AddItem(mItem)
