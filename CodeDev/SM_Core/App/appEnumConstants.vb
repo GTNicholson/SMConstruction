@@ -130,6 +130,8 @@ Public Enum eWorkCentre
   <Description("Ingeniería")> Engineering = 12
   <Description("Selección")> Selection = 13
   <Description("Afilado")> Afilado = 14
+  <Description("Patio")> Patio = 15
+  <Description("Mantenimiento")> Mantenimiento = 16
 
 End Enum
 
