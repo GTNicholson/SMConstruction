@@ -99,6 +99,8 @@ Public Class dtoStockItemTransactionLog : Inherits dtoBase
         .Note = DBReadString(rDataReader, "Note")
         .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
 
+
+
         ''.StdCost = DBReadDecimal(rDataReader, "StdCost")
         .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
         .StockValuation = DBReadDecimal(rDataReader, "StockValuation")

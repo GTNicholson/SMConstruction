@@ -8,8 +8,11 @@
       Case eStockItemCategory.NailsAndBolds
         mRetVal = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.EPP
+        mRetVal = eStockItemTypeEPP.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.Herrajes
         mRetVal = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType)
+      Case eStockItemCategory.Herramientas
+        mRetVal = eStockItemTypeHerramientas.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.MatElect
         mRetVal = eStockItemTypeMaterialElectrico.GetInstance.ItemFromKey(rStockItem.ItemType)
       Case eStockItemCategory.MatEmpaque

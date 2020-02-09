@@ -20,9 +20,9 @@ Partial Class frmPurchaseOrder
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+    Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPurchaseOrder))
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.Bar2 = New DevExpress.XtraBars.Bar()
@@ -610,9 +610,9 @@ Partial Class frmPurchaseOrder
     Me.gpnlPOItems.AppearanceCaption.Options.UseForeColor = True
     Me.gpnlPOItems.ButtonInterval = 2
     Me.gpnlPOItems.Controls.Add(Me.grdPurchaseOrderItems)
-    ButtonImageOptions3.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
-    ButtonImageOptions4.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
-    Me.gpnlPOItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddStockItem", 0), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Artículo", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "DeleteItem", 2)})
+    ButtonImageOptions1.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
+    ButtonImageOptions2.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
+    Me.gpnlPOItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddStockItem", 0), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Artículo", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "DeleteItem", 2)})
     Me.gpnlPOItems.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.gpnlPOItems.Dock = System.Windows.Forms.DockStyle.Fill
     Me.gpnlPOItems.Location = New System.Drawing.Point(0, 0)
@@ -631,8 +631,8 @@ Partial Class frmPurchaseOrder
     Me.grdPurchaseOrderItems.EmbeddedNavigator.Buttons.Last.Visible = False
     Me.grdPurchaseOrderItems.EmbeddedNavigator.Buttons.NextPage.Visible = False
     Me.grdPurchaseOrderItems.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    GridLevelNode2.RelationName = "Level1"
-    Me.grdPurchaseOrderItems.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+    GridLevelNode1.RelationName = "Level1"
+    Me.grdPurchaseOrderItems.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
     Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 24)
     Me.grdPurchaseOrderItems.MainView = Me.gvPurchaseOrderItems
     Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1

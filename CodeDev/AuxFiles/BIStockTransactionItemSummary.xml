@@ -1,6 +1,6 @@
 ﻿<XtraSerializer version="1.0" application="PivotGrid">
   <property name="#LayoutVersion" />
-  <property name="Fields" iskey="true" value="15">
+  <property name="Fields" iskey="true" value="17">
     <property name="Item1" isnull="true" iskey="true">
       <property name="CustomTotals" iskey="true" value="0" />
       <property name="Options" isnull="true" iskey="true">
@@ -12,7 +12,6 @@
       </property>
       <property name="FieldEditName" />
       <property name="Name">fieldStockCategoryDesc</property>
-      <property name="Area">RowArea</property>
       <property name="FieldName">StockCategoryDesc</property>
       <property name="Caption">Categoría</property>
       <property name="Index">0</property>
@@ -27,7 +26,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">3</property>
+      <property name="AreaIndex">4</property>
       <property name="ActualSortMode">Default</property>
       <property name="Width">155</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
@@ -63,7 +62,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">4</property>
+      <property name="AreaIndex">3</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -120,6 +119,7 @@
       </property>
       <property name="FieldEditName" />
       <property name="Name">fieldStockDesc</property>
+      <property name="Area">RowArea</property>
       <property name="FieldName">StockDesc</property>
       <property name="Caption">Descripción del Producto</property>
       <property name="Index">3</property>
@@ -134,7 +134,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">0</property>
+      <property name="AreaIndex">3</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -213,7 +213,7 @@
         <property name="FormatString">#,##0.00</property>
         <property name="FormatType">Numeric</property>
       </property>
-      <property name="AreaIndex">2</property>
+      <property name="AreaIndex">1</property>
       <property name="ActualSortMode">Default</property>
       <property name="Width">87</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
@@ -256,7 +256,7 @@
         <property name="FormatString">#,##0</property>
         <property name="FormatType">Numeric</property>
       </property>
-      <property name="AreaIndex">3</property>
+      <property name="AreaIndex">2</property>
       <property name="ActualSortMode">Default</property>
       <property name="Width">59</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
@@ -335,7 +335,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">1</property>
+      <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -355,9 +355,9 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">fieldTransDateWC</property>
+      <property name="Name">fieldTransDate</property>
       <property name="Area">RowArea</property>
-      <property name="FieldName">TransDateWC</property>
+      <property name="FieldName">TransDate</property>
       <property name="Caption">Fecha Detalle</property>
       <property name="Index">9</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
@@ -501,7 +501,7 @@
       </property>
       <property name="FieldEditName" />
       <property name="Name">gcWorkOrderNo</property>
-      <property name="Area">ColumnArea</property>
+      <property name="Area">RowArea</property>
       <property name="FieldName">WorkOrderNo</property>
       <property name="Caption">OT Num</property>
       <property name="Index">13</property>
@@ -516,7 +516,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">1</property>
+      <property name="AreaIndex">4</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -534,7 +534,6 @@
       </property>
       <property name="FieldEditName" />
       <property name="Name">gcAreaDescription</property>
-      <property name="Area">ColumnArea</property>
       <property name="FieldName">AreaDescription</property>
       <property name="Caption">Área</property>
       <property name="Index">14</property>
@@ -549,7 +548,71 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">2</property>
+      <property name="AreaIndex">7</property>
+      <property name="ActualSortMode">Default</property>
+      <property name="SummaryFilter" isnull="true" iskey="true">
+        <property name="StartValue" isnull="true" />
+        <property name="EndValue" isnull="true" />
+        <property name="Mode">LastLevel</property>
+        <property name="RowFieldComponentName" />
+        <property name="ColumnFieldComponentName" />
+      </property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="CustomTotals" iskey="true" value="0" />
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">gcRefNo2</property>
+      <property name="FieldName">RefInfo2</property>
+      <property name="Caption">RefInfo2</property>
+      <property name="Index">15</property>
+      <property name="SortBySummaryInfo" isnull="true" iskey="true">
+        <property name="Conditions" iskey="true" value="0" />
+        <property name="FieldComponentName" />
+      </property>
+      <property name="FilterValues" isnull="true" iskey="true">
+        <property name="Values">~Xtra#Array0, </property>
+        <property name="ValuesCore" iskey="true" value="0" />
+        <property name="DeferFilterString" />
+        <property name="ShowBlanks">true</property>
+        <property name="FilterType">Excluded</property>
+      </property>
+      <property name="AreaIndex">5</property>
+      <property name="ActualSortMode">Default</property>
+      <property name="SummaryFilter" isnull="true" iskey="true">
+        <property name="StartValue" isnull="true" />
+        <property name="EndValue" isnull="true" />
+        <property name="Mode">LastLevel</property>
+        <property name="RowFieldComponentName" />
+        <property name="ColumnFieldComponentName" />
+      </property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="CustomTotals" iskey="true" value="0" />
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">gcRefInfo2</property>
+      <property name="FieldName">RefInfo2</property>
+      <property name="Caption">RefInfo3</property>
+      <property name="Index">16</property>
+      <property name="SortBySummaryInfo" isnull="true" iskey="true">
+        <property name="Conditions" iskey="true" value="0" />
+        <property name="FieldComponentName" />
+      </property>
+      <property name="FilterValues" isnull="true" iskey="true">
+        <property name="Values">~Xtra#Array0, </property>
+        <property name="ValuesCore" iskey="true" value="0" />
+        <property name="DeferFilterString" />
+        <property name="ShowBlanks">true</property>
+        <property name="FilterType">Excluded</property>
+      </property>
+      <property name="AreaIndex">6</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -575,6 +638,21 @@
   <property name="OptionsChartDataSource" isnull="true" iskey="true">
     <property name="FieldValuesProvideMode">DisplayText</property>
   </property>
-  <property name="Groups" iskey="true" value="0" />
+  <property name="Groups" iskey="true" value="1">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Fields" iskey="true" value="1">
+        <property name="Item1">fieldStockCategoryDesc</property>
+      </property>
+      <property name="Caption" />
+      <property name="Hierarchy" isnull="true" />
+      <property name="FilterValues" isnull="true" iskey="true">
+        <property name="Values" isnull="true" iskey="true">
+          <property name="Items" iskey="true" value="0" />
+        </property>
+        <property name="DeferFilterString" />
+        <property name="FilterType">Excluded</property>
+      </property>
+    </property>
+  </property>
   <property name="FormatConditions" iskey="true" value="0" />
 </XtraSerializer>

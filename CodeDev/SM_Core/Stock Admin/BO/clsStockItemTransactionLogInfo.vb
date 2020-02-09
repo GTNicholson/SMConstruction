@@ -4,6 +4,8 @@ Public Class clsStockItemTransactionLogInfo
   Private pCurrentStockItem As dmStockItem
   Private pWorkOrder As dmWorkOrder
   Private pMaterialRequirement As dmMaterialRequirement
+  Private pSalesOrder As dmSalesOrder
+  Private pCustomer As dmCustomer
 
   Private pStockItemTransactionLogID As Integer
   Private pPONum As String
@@ -41,6 +43,8 @@ Public Class clsStockItemTransactionLogInfo
     pCurrentStockItem = New dmStockItem
     pWorkOrder = New dmWorkOrder
     pMaterialRequirement = New dmMaterialRequirement
+    pSalesOrder = New dmSalesOrder
+    pCustomer = New dmCustomer
 
   End Sub
 
@@ -376,6 +380,24 @@ Public Class clsStockItemTransactionLogInfo
     End Set
   End Property
 
+  Public Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+    Set(value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
+  End Property
+
+  Public Property Customer As dmCustomer
+    Get
+      Return pCustomer
+    End Get
+    Set(value As dmCustomer)
+      pCustomer = value
+    End Set
+  End Property
+
   Public ReadOnly Property RefInfo1 As String
     Get
       Dim mRetVal As String = ""
@@ -398,7 +420,7 @@ Public Class clsStockItemTransactionLogInfo
       Select Case pRefObjectType
 
         Case eObjectType.MaterialRequirement
-          mRetVal = "" ''ProjectName
+          mRetVal = pSalesOrder.ProjectName
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''PO Num
 
@@ -414,7 +436,7 @@ Public Class clsStockItemTransactionLogInfo
       Select Case pRefObjectType
 
         Case eObjectType.MaterialRequirement
-          mRetVal = "" ''CustomerName
+          mRetVal = pCustomer.CompanyName
 
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''Supplier

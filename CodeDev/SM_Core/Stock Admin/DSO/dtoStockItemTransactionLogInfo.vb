@@ -107,6 +107,17 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
         .AreaID = DBReadInt32(rDataReader, "AreaID")
 
       End With
+
+      With pStockItemTransactionLogInfo.SalesOrder
+        .ProjectName = DBReadString(rDataReader, "ProjectName")
+
+      End With
+
+      With pStockItemTransactionLogInfo.Customer
+        .CompanyName = DBReadString(rDataReader, "CompanyName")
+
+      End With
+
       mOK = True
     Catch Ex As Exception
       mOK = False

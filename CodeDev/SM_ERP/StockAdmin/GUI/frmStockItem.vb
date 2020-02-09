@@ -202,7 +202,7 @@ Public Class frmStockItem
     If pFormController.CurrentStockItem.StockCode = "" Then
       mProposedCode = pFormController.GetProposedCode
       If mProposedCode <> "" Then
-        If MsgBox("Creer codigo de articulo : " & mProposedCode & "?", vbYesNo) = vbYes Then
+        If MsgBox("¿Crear el código de artículo : " & mProposedCode & "?", vbYesNo) = vbYes Then
           pFormController.CurrentStockItem.StockCode = mProposedCode
         End If
       End If

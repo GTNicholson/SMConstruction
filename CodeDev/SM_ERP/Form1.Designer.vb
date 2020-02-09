@@ -22,6 +22,7 @@ Partial Class Form1
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
+    Dim PivotGridGroup1 As DevExpress.XtraPivotGrid.PivotGridGroup = New DevExpress.XtraPivotGrid.PivotGridGroup()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -38,12 +39,14 @@ Partial Class Form1
     Me.fieldStockItemTransactionLogID = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldTransQuantity = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldTransType = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTransDateWC = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.fieldTransDate = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldTransDateMC = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcTotalValue = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcRequisaNo = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcWorkOrderNo = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcAreaDescription = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.gcRefNo2 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.gcRefInfo2 = New DevExpress.XtraPivotGrid.PivotGridField()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PivotGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +114,11 @@ Partial Class Form1
     '
     'PivotGridControl1
     '
-    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldStockCategoryDesc, Me.fieldStockItemTypeDesc, Me.fieldStockCode, Me.fieldStockDesc, Me.fieldStdCost, Me.fieldTransferValue, Me.fieldStockItemTransactionLogID, Me.fieldTransQuantity, Me.fieldTransType, Me.fieldTransDateWC, Me.fieldTransDateMC, Me.gcTotalValue, Me.gcRequisaNo, Me.gcWorkOrderNo, Me.gcAreaDescription})
+    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldStockCategoryDesc, Me.fieldStockItemTypeDesc, Me.fieldStockCode, Me.fieldStockDesc, Me.fieldStdCost, Me.fieldTransferValue, Me.fieldStockItemTransactionLogID, Me.fieldTransQuantity, Me.fieldTransType, Me.fieldTransDate, Me.fieldTransDateMC, Me.gcTotalValue, Me.gcRequisaNo, Me.gcWorkOrderNo, Me.gcAreaDescription, Me.gcRefNo2, Me.gcRefInfo2})
+    PivotGridGroup1.Fields.Add(Me.fieldStockCategoryDesc)
+    PivotGridGroup1.Hierarchy = Nothing
+    PivotGridGroup1.ShowNewValues = True
+    Me.PivotGridControl1.Groups.AddRange(New DevExpress.XtraPivotGrid.PivotGridGroup() {PivotGridGroup1})
     Me.PivotGridControl1.Location = New System.Drawing.Point(50, 187)
     Me.PivotGridControl1.Name = "PivotGridControl1"
     Me.PivotGridControl1.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
@@ -123,8 +130,7 @@ Partial Class Form1
     '
     'fieldStockCategoryDesc
     '
-    Me.fieldStockCategoryDesc.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-    Me.fieldStockCategoryDesc.AreaIndex = 3
+    Me.fieldStockCategoryDesc.AreaIndex = 4
     Me.fieldStockCategoryDesc.Caption = "Categoría"
     Me.fieldStockCategoryDesc.FieldName = "StockCategoryDesc"
     Me.fieldStockCategoryDesc.Name = "fieldStockCategoryDesc"
@@ -133,7 +139,7 @@ Partial Class Form1
     '
     'fieldStockItemTypeDesc
     '
-    Me.fieldStockItemTypeDesc.AreaIndex = 4
+    Me.fieldStockItemTypeDesc.AreaIndex = 3
     Me.fieldStockItemTypeDesc.Caption = "Tipo de Producto"
     Me.fieldStockItemTypeDesc.FieldName = "StockItemTypeDesc"
     Me.fieldStockItemTypeDesc.Name = "fieldStockItemTypeDesc"
@@ -150,7 +156,8 @@ Partial Class Form1
     '
     'fieldStockDesc
     '
-    Me.fieldStockDesc.AreaIndex = 0
+    Me.fieldStockDesc.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+    Me.fieldStockDesc.AreaIndex = 3
     Me.fieldStockDesc.Caption = "Descripción del Producto"
     Me.fieldStockDesc.FieldName = "StockDesc"
     Me.fieldStockDesc.Name = "fieldStockDesc"
@@ -169,7 +176,7 @@ Partial Class Form1
     '
     'fieldTransferValue
     '
-    Me.fieldTransferValue.AreaIndex = 2
+    Me.fieldTransferValue.AreaIndex = 1
     Me.fieldTransferValue.Caption = "Valor de Transferencia"
     Me.fieldTransferValue.CellFormat.FormatString = "#,##0.00"
     Me.fieldTransferValue.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -182,7 +189,7 @@ Partial Class Form1
     '
     'fieldStockItemTransactionLogID
     '
-    Me.fieldStockItemTransactionLogID.AreaIndex = 3
+    Me.fieldStockItemTransactionLogID.AreaIndex = 2
     Me.fieldStockItemTransactionLogID.Caption = "Conteo de Transf."
     Me.fieldStockItemTransactionLogID.CellFormat.FormatString = "#,##0"
     Me.fieldStockItemTransactionLogID.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -210,22 +217,22 @@ Partial Class Form1
     '
     'fieldTransType
     '
-    Me.fieldTransType.AreaIndex = 1
+    Me.fieldTransType.AreaIndex = 0
     Me.fieldTransType.Caption = "Tipo de Transf."
     Me.fieldTransType.FieldName = "TransType"
     Me.fieldTransType.Name = "fieldTransType"
     Me.fieldTransType.Options.AllowRunTimeSummaryChange = True
     '
-    'fieldTransDateWC
+    'fieldTransDate
     '
-    Me.fieldTransDateWC.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-    Me.fieldTransDateWC.AreaIndex = 0
-    Me.fieldTransDateWC.Caption = "Fecha Detalle"
-    Me.fieldTransDateWC.FieldName = "TransDateWC"
-    Me.fieldTransDateWC.Name = "fieldTransDateWC"
-    Me.fieldTransDateWC.Options.AllowRunTimeSummaryChange = True
-    Me.fieldTransDateWC.ValueFormat.FormatString = "dd-MM-yy"
-    Me.fieldTransDateWC.ValueFormat.FormatType = DevExpress.Utils.FormatType.Custom
+    Me.fieldTransDate.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+    Me.fieldTransDate.AreaIndex = 0
+    Me.fieldTransDate.Caption = "Fecha Detalle"
+    Me.fieldTransDate.FieldName = "TransDate"
+    Me.fieldTransDate.Name = "fieldTransDate"
+    Me.fieldTransDate.Options.AllowRunTimeSummaryChange = True
+    Me.fieldTransDate.ValueFormat.FormatString = "dd-MM-yy"
+    Me.fieldTransDate.ValueFormat.FormatType = DevExpress.Utils.FormatType.Custom
     '
     'fieldTransDateMC
     '
@@ -258,19 +265,32 @@ Partial Class Form1
     '
     'gcWorkOrderNo
     '
-    Me.gcWorkOrderNo.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
-    Me.gcWorkOrderNo.AreaIndex = 1
+    Me.gcWorkOrderNo.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+    Me.gcWorkOrderNo.AreaIndex = 4
     Me.gcWorkOrderNo.Caption = "OT Num"
     Me.gcWorkOrderNo.FieldName = "WorkOrderNo"
     Me.gcWorkOrderNo.Name = "gcWorkOrderNo"
     '
     'gcAreaDescription
     '
-    Me.gcAreaDescription.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
-    Me.gcAreaDescription.AreaIndex = 2
+    Me.gcAreaDescription.AreaIndex = 7
     Me.gcAreaDescription.Caption = "Área"
     Me.gcAreaDescription.FieldName = "AreaDescription"
     Me.gcAreaDescription.Name = "gcAreaDescription"
+    '
+    'gcRefNo2
+    '
+    Me.gcRefNo2.AreaIndex = 5
+    Me.gcRefNo2.Caption = "RefInfo2"
+    Me.gcRefNo2.FieldName = "RefInfo2"
+    Me.gcRefNo2.Name = "gcRefNo2"
+    '
+    'gcRefInfo2
+    '
+    Me.gcRefInfo2.AreaIndex = 6
+    Me.gcRefInfo2.Caption = "RefInfo3"
+    Me.gcRefInfo2.FieldName = "RefInfo2"
+    Me.gcRefInfo2.Name = "gcRefInfo2"
     '
     'Form1
     '
@@ -300,7 +320,7 @@ Partial Class Form1
   Friend WithEvents fieldStockItemTransactionLogID As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldTransQuantity As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldTransType As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTransDateWC As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents fieldTransDate As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldTransDateMC As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -310,4 +330,6 @@ Partial Class Form1
   Friend WithEvents gcRequisaNo As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcWorkOrderNo As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcAreaDescription As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents gcRefNo2 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents gcRefInfo2 As DevExpress.XtraPivotGrid.PivotGridField
 End Class
