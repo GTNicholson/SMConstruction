@@ -4,7 +4,6 @@ Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraEditors.Controls
-Imports System.IO
 
 Public Class frmStockItem
 
@@ -294,15 +293,13 @@ Public Class frmStockItem
 
         mFileName = clsSMSharedFuncs.GetStockItemImageFileName(pFormController.CurrentStockItem)
         If IO.File.Exists(mFileName) Then
-
-          mImage = Drawing.Image.FromFile(mFileName)
+          mImage = Image.FromStream(New IO.MemoryStream(IO.File.ReadAllBytes(mFileName)))
+          ''  mImage = Drawing.Image.FromFile(mFileName)
 
         Else
           mImage = Nothing
 
         End If
-
-
 
       End If
 
@@ -718,7 +715,7 @@ Public Class frmStockItem
       End If
     End If
 
-    RefreshControls()
+    ''RefreshControls()
 
   End Sub
 
@@ -737,36 +734,22 @@ Public Class frmStockItem
 
   Private Sub bteImage_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteImage.ButtonClick
     Try
-      Select Case e.Button.Kind
-        Case ButtonPredefines.Ellipsis, ButtonPredefines.Plus
-          UpdateObjects()
-          Dim mFileName As String = ""
+      UpdateObjects()
+      Dim mFileName As String = ""
+      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
 
-          If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
-            If pFormController.CreateSIImageFile(mFileName) = False Then
-              MsgBox("¡No Funcionó!")
-            End If
-          End If
-          RefreshControls()
+        ''// make sure that we clear the current image first so that it can be overwritten
+        peImage.Image = Nothing
+        peImage.Refresh()
 
-
-        Case ButtonPredefines.Delete
-          DeleteSIImage()
-
-      End Select
-
-
+        If pFormController.CreateSIImageFile(mFileName) = False Then
+          MsgBox("¡No Funcionó!")
+        End If
+      End If
+      RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
-  End Sub
-
-  Public Sub DeleteSIImage()
-    peImage.Image.Dispose()
-    peImage.Image = Nothing
-    File.Delete(pFormController.CurrentStockItem.ImageFile)
-    bteImage.Text = Nothing
-
   End Sub
 
   Private Sub btnedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnedSupplier.ButtonClick
