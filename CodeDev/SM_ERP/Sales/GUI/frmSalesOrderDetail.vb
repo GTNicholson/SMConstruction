@@ -563,7 +563,7 @@ Public Class frmSalesOrderDetail
 
       CheckSave(False)
 
-      mFilePath = pFormController.SalesOrder.OutputDocuments.GetFilePath(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
+      mFilePath = pFormController.SalesOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
 
       RefreshControls()
       If IO.File.Exists(mFilePath) Then

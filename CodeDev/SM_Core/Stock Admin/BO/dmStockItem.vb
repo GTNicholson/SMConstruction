@@ -37,6 +37,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pSupplier As dmSupplier
 
   Private ptmpIsFullyLoadedDown As Boolean
+  Private pOutputDocuments As colOutputDocuments
 
   Public Sub New()
     MyBase.New()
@@ -44,6 +45,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     pSupplier = New dmSupplier
+    pOutputDocuments = New colOutputDocuments
     ''Add object/collection instantiations here
   End Sub
 
@@ -56,11 +58,23 @@ Public Class dmStockItem : Inherits dmBase
     MyBase.Finalize()
   End Sub
 
+  Public Property OutputDocuments As colOutputDocuments
+    Get
+      Return pOutputDocuments
+    End Get
+    Set(value As colOutputDocuments)
+      pOutputDocuments = value
+    End Set
+  End Property
+
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
+
       IsAnyDirty = mAnyDirty
+
     End Get
   End Property
 

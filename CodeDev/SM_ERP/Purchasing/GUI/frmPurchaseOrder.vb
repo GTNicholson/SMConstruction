@@ -250,18 +250,6 @@ Public Class frmPurchaseOrder
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
 
 
-        ''If pFormController.PurchaseOrder.Supplier IsNot Nothing Then
-
-        ''  If pFormController.PurchaseOrder.Supplier.SupplierContacts.Count > 0 Then
-        ''    txtCustomerContact.Text = pFormController.SalesOrder.Customer.CustomerContacts(0).FirstName & " " & pFormController.SalesOrder.Customer.CustomerContacts(0).LastName
-        ''  Else
-        ''    txtCustomerContact.Text = ""
-        ''  End If
-        ''Else
-        ''  txtCustomerContact.Text = ""
-        ''End If
-
-
         If .Supplier Is Nothing Then
           btedSupplier.Text = ""
         Else
@@ -297,6 +285,7 @@ Public Class frmPurchaseOrder
     With pFormController.PurchaseOrder
       .PONum = txtPONum.Text
       .RequiredDate = dteDueDate.DateTime
+
 
       gvPurchaseOrderItems.CloseEditor()
       gvPurchaseOrderItems.UpdateCurrentRow()
@@ -399,35 +388,6 @@ Public Class frmPurchaseOrder
     'End Try
   End Sub
 
-
-  Private Sub btnEditPurchaseOrderPDF_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs)
-    Try
-
-      UpdateObject()
-      Select Case e.Button.Kind
-        Case ButtonPredefines.Plus
-          pFormController.CreatePurchaseOrderPDF()
-
-          If File.Exists(pFormController.PurchaseOrder.FileName) Then
-            '  frmSpreadSheetControl.OpenFormModal(pUserController.CallOff.CustomerScheduleItemisedFileXLS)
-            Process.Start(pFormController.PurchaseOrder.FileName)
-          End If
-
-        Case ButtonPredefines.Delete
-          If File.Exists(pFormController.PurchaseOrder.FileName) Then File.Delete(pFormController.PurchaseOrder.FileName)
-          pFormController.PurchaseOrder.FileName = ""
-        Case ButtonPredefines.Ellipsis
-          If File.Exists(pFormController.PurchaseOrder.FileName) Then
-            ' frmSpreadSheetControl.OpenFormModal(pUserController.CallOff.CustomerScheduleItemisedFileXLS)
-            Process.Start(pFormController.PurchaseOrder.FileName)
-          End If
-      End Select
-      RefreshControls()
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
-  End Sub
 
   Private Sub LabelControl13_Click(sender As Object, e As EventArgs)
 
@@ -573,4 +533,106 @@ Public Class frmPurchaseOrder
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub btnEditPurchaseOrderPDF_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnEditPurchaseOrderPDF.ButtonClick
+    Try
+
+      UpdateObject()
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Plus
+
+          AddPurchaseOrderDocument()
+          RefreshControls()
+      End Select
+      RefreshControls()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Public Sub AddPurchaseOrderDocument()
+    Dim mValidate As clsValidate
+    Dim mReport As repPurchaseOrder
+    Dim mFilePath As String
+
+    mValidate = pFormController.ValidateObject()
+    If mValidate.ValOk Then
+
+      CheckSave(False)
+
+      mReport = GetReport(eDocumentType.PurchaseOrder)
+
+      CreateReportPDF(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, True, mReport)
+
+      CheckSave(False)
+
+      mFilePath = pFormController.PurchaseOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
+
+      RefreshControls()
+      If IO.File.Exists(mFilePath) Then
+        frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+      End If
+      mReport.ClearImages()
+      mReport.Dispose()
+    Else
+      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
+    End If
+
+  End Sub
+
+  Public Sub CreateReportPDF(ByVal vParentType As eParentType, ByVal vDocumentType As eDocumentType, ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport)
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
+
+    mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.PurchaseOrder.PurchaseOrderID
+
+    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys, pFormController.PurchaseOrder.RequiredDate.Year, clsGeneralA.GetFileSafeName(pFormController.PurchaseOrder.PurchaseOrderID.ToString("00000")))
+
+    mFileName &= ".pdf"
+    mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+    mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+    If IO.Directory.Exists(mExportDirectory) = False Then
+      IO.Directory.CreateDirectory(mExportDirectory)
+    End If
+
+    mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+    If IO.File.Exists(mFilePath) Then
+      If vOverride = False Then If MsgBox("Por favor, confirme que desea volver a crear el PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+    End If
+
+    ' mReport = CreateReport(vDocumentType)
+    If vReport IsNot Nothing Then
+
+
+      ''vReport.ExportToPdf(mFilePath, mExportOptions)
+      pFormController.CreatePurchaseOrderPack(vReport, mFilePath)
+
+      vReport.Dispose()
+      'vReport = Nothing
+
+      pFormController.PurchaseOrder.OutputDocuments.SetFilePath(eParentType.PurchaseOrder, vDocumentType, eFileType.PDF, mFilePath)
+
+    End If
+
+  End Sub
+  Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
+    Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+    Dim mPOs As New colPurchaseOrders
+
+    Select Case vDocType
+      Case eDocumentType.PurchaseOrder
+
+        If pFormController.PurchaseOrder IsNot Nothing Then
+          mRetVal = repPurchaseOrder.GenerateReport(pFormController.PurchaseOrder)
+        End If
+
+    End Select
+
+    Return mRetVal
+  End Function
+
 End Class

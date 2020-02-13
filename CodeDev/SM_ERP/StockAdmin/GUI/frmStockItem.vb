@@ -4,6 +4,7 @@ Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraEditors.Controls
+Imports System.IO
 
 Public Class frmStockItem
 
@@ -736,17 +737,36 @@ Public Class frmStockItem
 
   Private Sub bteImage_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteImage.ButtonClick
     Try
-      UpdateObjects()
-      Dim mFileName As String = ""
-      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
-        If pFormController.CreateSIImageFile(mFileName) = False Then
-          MsgBox("¡No Funcionó!")
-        End If
-      End If
-      RefreshControls()
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Ellipsis, ButtonPredefines.Plus
+          UpdateObjects()
+          Dim mFileName As String = ""
+
+          If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
+            If pFormController.CreateSIImageFile(mFileName) = False Then
+              MsgBox("¡No Funcionó!")
+            End If
+          End If
+          RefreshControls()
+
+
+        Case ButtonPredefines.Delete
+          DeleteSIImage()
+
+      End Select
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Public Sub DeleteSIImage()
+    peImage.Image.Dispose()
+    peImage.Image = Nothing
+    File.Delete(pFormController.CurrentStockItem.ImageFile)
+    bteImage.Text = Nothing
+
   End Sub
 
   Private Sub btnedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnedSupplier.ButtonClick

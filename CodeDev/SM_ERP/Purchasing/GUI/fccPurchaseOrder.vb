@@ -1,6 +1,7 @@
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
+Imports RTIS.ERPCore
 
 Public Class fccPurchaseOrder
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
@@ -137,7 +138,7 @@ Public Class fccPurchaseOrder
     mValidate.ValOk = True
     If False Then '' Change to perform validation checks
       mValidate.ValOk = False
-      mValidate.AddMsgLine("Check failed details")
+      mValidate.AddMsgLine("Falló la verificación de detalles")
     End If
     Return mValidate
   End Function
@@ -167,6 +168,19 @@ Public Class fccPurchaseOrder
     Return mOK
   End Function
 
+
+  Public Sub CreatePurchaseOrderPack(ByRef rReport As repPurchaseOrder, ByVal vFilePath As String)
+    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
+    Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
+    Dim mFilePath As String
+
+    mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
+    mExportOptions.ConvertImagesToJpeg = False
+
+    rReport.ExportToPdf(vFilePath, mExportOptions)
+
+
+  End Sub
   Public Function UpdateCOMOs() As Boolean
     Dim mOK As Boolean = False
     Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
@@ -180,15 +194,7 @@ Public Class fccPurchaseOrder
 
   End Sub
 
-  Public Sub CreatePurchaseOrderPDF()
-    Dim mPOInfo As New clsPurchaseOrderInfo
-    Dim mPOItemInfos As New colPOItemInfos
 
-    Dim mFileName As String
-    Dim mDirectory As String
-    Dim mExportFilename As String
-
-  End Sub
 
   Public Function LoadStockItemsForPicker() As colStockItems
     Dim mStockITems As New colStockItems

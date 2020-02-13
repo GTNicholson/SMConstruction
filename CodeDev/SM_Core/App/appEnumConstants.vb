@@ -111,18 +111,24 @@ Public Enum eParentType
   WorkOrder = 1
   SalesOrder = 2
   InternalWorkOrder = 3
+  StockItem = 4
+  PurchaseOrder = 5
 End Enum
 
 Public Enum eFileType
   Excel = 1
   PDF = 2
   SNX = 3
+  JPG = 4
+  PNG = 5
 End Enum
 
 Public Enum eDocumentType
   WorkOrderDoc = 1
   SalesOrder = 2
   InternalWorkOrder = 3
+  PurchaseOrder = 4
+  StockItem = 5
 End Enum
 
 Public Enum eTallyIDs
@@ -334,6 +340,7 @@ Public Class clsConstants
   Public Const StockItemFileFolderSys As String = "SIArchivosSys"
 
   Public Const SalesOrderFileFolderSys As String = "SOArchivosSys"
+  Public Const PurchaseOrderFileFolderSys As String = "POArchivosSys"
   Public Const SalesOrderFileFolderUsr As String = "SOArchivosUsr"
 
   Public Const WorkOrderNoPrefix = "OT"

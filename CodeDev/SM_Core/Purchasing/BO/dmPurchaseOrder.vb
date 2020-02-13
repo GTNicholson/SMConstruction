@@ -41,7 +41,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pInvoiceAddress As RTIS.ERPCore.dmPostalAddress
 
   Private pPurchaseOrderItems As colPurchaseOrderItems
-
+  Private pOutputDocuments As colOutputDocuments
   Private pSupplier As dmSupplier
   Private pPurchaseOrderAllocations As colPurchaseOrderAllocations
 
@@ -58,6 +58,8 @@ Public Class dmPurchaseOrder : Inherits dmBase
     pInvoiceAddress = New RTIS.ERPCore.dmPostalAddress
     pPurchaseOrderAllocations = New colPurchaseOrderAllocations
     pSupplier = New dmSupplier
+    pOutputDocuments = New colOutputDocuments
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -83,7 +85,14 @@ Public Class dmPurchaseOrder : Inherits dmBase
       IsAnyDirty = mAnyDirty
     End Get
   End Property
-
+  Public Property OutputDocuments As colOutputDocuments
+    Get
+      Return pOutputDocuments
+    End Get
+    Set(value As colOutputDocuments)
+      pOutputDocuments = value
+    End Set
+  End Property
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     PurchaseOrderID = 0

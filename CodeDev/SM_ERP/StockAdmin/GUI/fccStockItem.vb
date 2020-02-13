@@ -1,5 +1,6 @@
 ﻿Imports RTIS.DataLayer
 Imports RTIS.CommonVB
+Imports System.IO
 
 Public Class fccStocktem
   Private pDBConn As clsDBConnBase
@@ -224,22 +225,31 @@ Public Class fccStocktem
         mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
         If IO.Directory.Exists(mExportDirectory) = False Then
           IO.Directory.CreateDirectory(mExportDirectory)
+
         End If
 
         mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
 
-        IO.File.Copy(vSourceFile, mFilePath, True)
-
         If IO.File.Exists(mFilePath) = True Then
           pCurrentStockItem.ImageFile = IO.Path.GetFileName(mFilePath)
           mRetVal = True
+
         Else
+
           pCurrentStockItem.ImageFile = ""
           mRetVal = False
         End If
+        IO.File.Copy(vSourceFile, mFilePath, True)
+
+
+
+
+
       End If
 
     Catch ex As Exception
+
+
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
 
