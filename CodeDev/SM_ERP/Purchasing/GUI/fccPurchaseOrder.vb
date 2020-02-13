@@ -49,14 +49,24 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
-  Public Property PurchaseOrder() As dmPurchaseOrder
+  Public Property PurchaseOrder As dmPurchaseOrder
     Get
-      PurchaseOrder = pPurchaseOrder
+      Return pPurchaseOrder
     End Get
-    Set(ByVal value As dmPurchaseOrder)
+    Set(value As dmPurchaseOrder)
       pPurchaseOrder = value
     End Set
   End Property
+  Public Sub ReloadSupplier()
+    Dim mdso As dsoPurchasing
+    Try
+      mdso = New dsoPurchasing(pDBConn)
+      mdso.LoadSupplierDown(pPurchaseOrder.Supplier, pPurchaseOrder.SupplierID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
 
   Public Property Suppliers As colSuppliers
     Get
@@ -140,7 +150,7 @@ Public Class fccPurchaseOrder
 
     Try
 
-      mOK = mdsoPurchaseOrder.SavePurchaseOrderDownNEW(Me.PurchaseOrder)
+      mOK = mdsoPurchaseOrder.SavePurchaseOrderDown(Me.PurchaseOrder)
 
       If pPrimaryKeyID = 0 Then
         pPrimaryKeyID = PurchaseOrder.PurchaseOrderID
@@ -187,5 +197,15 @@ Public Class fccPurchaseOrder
 
     Return mStockITems
   End Function
-
+  Public Function GetSupplierList() As colSuppliers
+    Dim mRetVal As New colSuppliers
+    Dim mdso As dsoPurchasing
+    Try
+      mdso = New dsoPurchasing(pDBConn)
+      mdso.LoadSuppliers(mRetVal)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mRetVal
+  End Function
 End Class

@@ -23,24 +23,17 @@ Partial Class frmSupplierDetail
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Me.grdContacts = New DevExpress.XtraGrid.GridControl()
-    Me.gvContacts = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
+    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
+    Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
+    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.grdSupplierContact = New DevExpress.XtraGrid.GridControl()
+    Me.gvSupplierContacts = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,7 +42,7 @@ Partial Class frmSupplierDetail
     Me.BarManager2 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar2 = New DevExpress.XtraBars.Bar()
     Me.bbtnSavenAndClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+    Me.btSave = New DevExpress.XtraBars.BarButtonItem()
     Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
     Me.BarDockControl2 = New DevExpress.XtraBars.BarDockControl()
     Me.BarDockControl3 = New DevExpress.XtraBars.BarDockControl()
@@ -57,7 +50,7 @@ Partial Class frmSupplierDetail
     Me.BarDockControl5 = New DevExpress.XtraBars.BarDockControl()
     Me.cboSalesTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label10 = New System.Windows.Forms.Label()
-    Me.lblCustomerID = New System.Windows.Forms.Label()
+    Me.lblSupplierID = New System.Windows.Forms.Label()
     Me.cboPaymentTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.Label13 = New System.Windows.Forms.Label()
     Me.txtABA = New DevExpress.XtraEditors.TextEdit()
@@ -69,8 +62,6 @@ Partial Class frmSupplierDetail
     Me.Label17 = New System.Windows.Forms.Label()
     Me.txtAcountRef = New DevExpress.XtraEditors.TextEdit()
     Me.Label20 = New System.Windows.Forms.Label()
-    Me.txtMainPostCode = New DevExpress.XtraEditors.TextEdit()
-    Me.Label15 = New System.Windows.Forms.Label()
     Me.txtSupplierReference = New DevExpress.XtraEditors.TextEdit()
     Me.Label12 = New System.Windows.Forms.Label()
     Me.txtMainTown = New DevExpress.XtraEditors.TextEdit()
@@ -81,7 +72,7 @@ Partial Class frmSupplierDetail
     Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.grdSalesOrder = New DevExpress.XtraGrid.GridControl()
+    Me.grdSupplierPO = New DevExpress.XtraGrid.GridControl()
     Me.txtWebUrl = New DevExpress.XtraEditors.TextEdit()
     Me.Label9 = New System.Windows.Forms.Label()
     Me.txtMainAddress1 = New DevExpress.XtraEditors.TextEdit()
@@ -101,11 +92,9 @@ Partial Class frmSupplierDetail
     Me.Label3 = New System.Windows.Forms.Label()
     Me.Label1 = New System.Windows.Forms.Label()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    CType(Me.grdContacts, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvContacts, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdSupplierContact, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvSupplierContacts, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboSalesTermsType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboPaymentTermsType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,12 +104,11 @@ Partial Class frmSupplierDetail
     CType(Me.txtSwift.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtBancoIntermediario.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtAcountRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtSupplierReference.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtMainTown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.rgEstatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.grdSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdSupplierPO, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtWebUrl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtMainAddress1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboCountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,83 +124,6 @@ Partial Class frmSupplierDetail
     Me.GroupControl1.SuspendLayout()
     Me.SuspendLayout()
     '
-    'grdContacts
-    '
-    Me.grdContacts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.grdContacts.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-    Me.grdContacts.EmbeddedNavigator.Buttons.Edit.Visible = False
-    Me.grdContacts.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.grdContacts.EmbeddedNavigator.Buttons.First.Visible = False
-    Me.grdContacts.EmbeddedNavigator.Buttons.Last.Visible = False
-    Me.grdContacts.EmbeddedNavigator.Buttons.NextPage.Visible = False
-    Me.grdContacts.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdContacts.Location = New System.Drawing.Point(12, 369)
-    Me.grdContacts.MainView = Me.gvContacts
-    Me.grdContacts.MenuManager = Me.BarManager1
-    Me.grdContacts.Name = "grdContacts"
-    Me.grdContacts.Size = New System.Drawing.Size(620, 146)
-    Me.grdContacts.TabIndex = 3
-    Me.grdContacts.UseEmbeddedNavigator = True
-    Me.grdContacts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvContacts})
-    '
-    'gvContacts
-    '
-    Me.gvContacts.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvContacts.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvContacts.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvContacts.Appearance.Row.Options.UseFont = True
-    Me.gvContacts.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvContacts.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.gvContacts.Appearance.ViewCaption.Options.UseFont = True
-    Me.gvContacts.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.gvContacts.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-    Me.gvContacts.GridControl = Me.grdContacts
-    Me.gvContacts.Name = "gvContacts"
-    Me.gvContacts.OptionsView.ShowGroupPanel = False
-    Me.gvContacts.OptionsView.ShowViewCaption = True
-    Me.gvContacts.ViewCaption = "Contactos"
-    '
-    'GridColumn1
-    '
-    Me.GridColumn1.Caption = "Nombre"
-    Me.GridColumn1.FieldName = "FirstName"
-    Me.GridColumn1.Name = "GridColumn1"
-    Me.GridColumn1.Visible = True
-    Me.GridColumn1.VisibleIndex = 0
-    '
-    'GridColumn2
-    '
-    Me.GridColumn2.Caption = "Apellido"
-    Me.GridColumn2.FieldName = "LastName"
-    Me.GridColumn2.Name = "GridColumn2"
-    Me.GridColumn2.Visible = True
-    Me.GridColumn2.VisibleIndex = 1
-    '
-    'GridColumn3
-    '
-    Me.GridColumn3.Caption = "Tel."
-    Me.GridColumn3.FieldName = "TelNo"
-    Me.GridColumn3.Name = "GridColumn3"
-    Me.GridColumn3.Visible = True
-    Me.GridColumn3.VisibleIndex = 2
-    '
-    'GridColumn4
-    '
-    Me.GridColumn4.Caption = "EMail"
-    Me.GridColumn4.FieldName = "Email"
-    Me.GridColumn4.Name = "GridColumn4"
-    Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 3
-    '
-    'GridColumn5
-    '
-    Me.GridColumn5.Caption = "Cel."
-    Me.GridColumn5.FieldName = "Mobile"
-    Me.GridColumn5.Name = "GridColumn5"
-    Me.GridColumn5.Visible = True
-    Me.GridColumn5.VisibleIndex = 4
-    '
     'BarManager1
     '
     Me.BarManager1.DockControls.Add(Me.barDockControlTop)
@@ -222,27 +133,6 @@ Partial Class frmSupplierDetail
     Me.BarManager1.Form = Me
     Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnSaveAndClose, Me.bbtnSave, Me.btnClose})
     Me.BarManager1.MaxItemId = 0
-    '
-    'btnSaveAndClose
-    '
-    Me.btnSaveAndClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
-    Me.btnSaveAndClose.Id = 2
-    Me.btnSaveAndClose.Name = "btnSaveAndClose"
-    '
-    'bbtnSave
-    '
-    Me.bbtnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnSave.Caption = "Guardar"
-    Me.bbtnSave.Id = 0
-    Me.bbtnSave.Name = "bbtnSave"
-    '
-    'btnClose
-    '
-    Me.btnClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.btnClose.Caption = "Cerrar"
-    Me.btnClose.Id = 1
-    Me.btnClose.Name = "btnClose"
     '
     'barDockControlTop
     '
@@ -276,6 +166,27 @@ Partial Class frmSupplierDetail
     Me.BarDockControl1.Manager = Me.BarManager1
     Me.BarDockControl1.Size = New System.Drawing.Size(0, 488)
     '
+    'btnSaveAndClose
+    '
+    Me.btnSaveAndClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
+    Me.btnSaveAndClose.Id = 2
+    Me.btnSaveAndClose.Name = "btnSaveAndClose"
+    '
+    'bbtnSave
+    '
+    Me.bbtnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnSave.Caption = "Guardar"
+    Me.bbtnSave.Id = 0
+    Me.bbtnSave.Name = "bbtnSave"
+    '
+    'btnClose
+    '
+    Me.btnClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.btnClose.Caption = "Cerrar"
+    Me.btnClose.Id = 1
+    Me.btnClose.Name = "btnClose"
+    '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
@@ -284,42 +195,42 @@ Partial Class frmSupplierDetail
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 488)
     '
-    'GridControl1
+    'grdSupplierContact
     '
-    Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+    Me.grdSupplierContact.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl1.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-    Me.GridControl1.EmbeddedNavigator.Buttons.Edit.Visible = False
-    Me.GridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.GridControl1.EmbeddedNavigator.Buttons.First.Visible = False
-    Me.GridControl1.EmbeddedNavigator.Buttons.Last.Visible = False
-    Me.GridControl1.EmbeddedNavigator.Buttons.NextPage.Visible = False
-    Me.GridControl1.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.GridControl1.Location = New System.Drawing.Point(12, 366)
-    Me.GridControl1.MainView = Me.GridView1
-    Me.GridControl1.MenuManager = Me.BarManager2
-    Me.GridControl1.Name = "GridControl1"
-    Me.GridControl1.Size = New System.Drawing.Size(620, 132)
-    Me.GridControl1.TabIndex = 10
-    Me.GridControl1.UseEmbeddedNavigator = True
-    Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdSupplierContact.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdSupplierContact.Location = New System.Drawing.Point(12, 366)
+    Me.grdSupplierContact.MainView = Me.gvSupplierContacts
+    Me.grdSupplierContact.MenuManager = Me.BarManager2
+    Me.grdSupplierContact.Name = "grdSupplierContact"
+    Me.grdSupplierContact.Size = New System.Drawing.Size(620, 132)
+    Me.grdSupplierContact.TabIndex = 10
+    Me.grdSupplierContact.UseEmbeddedNavigator = True
+    Me.grdSupplierContact.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSupplierContacts})
     '
-    'GridView1
+    'gvSupplierContacts
     '
-    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView1.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
-    Me.GridView1.GridControl = Me.GridControl1
-    Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsView.ShowGroupPanel = False
-    Me.GridView1.OptionsView.ShowViewCaption = True
-    Me.GridView1.ViewCaption = "Contactos"
+    Me.gvSupplierContacts.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvSupplierContacts.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvSupplierContacts.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvSupplierContacts.Appearance.Row.Options.UseFont = True
+    Me.gvSupplierContacts.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvSupplierContacts.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.gvSupplierContacts.Appearance.ViewCaption.Options.UseFont = True
+    Me.gvSupplierContacts.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.gvSupplierContacts.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+    Me.gvSupplierContacts.GridControl = Me.grdSupplierContact
+    Me.gvSupplierContacts.Name = "gvSupplierContacts"
+    Me.gvSupplierContacts.OptionsView.ShowGroupPanel = False
+    Me.gvSupplierContacts.OptionsView.ShowViewCaption = True
+    Me.gvSupplierContacts.ViewCaption = "Contactos"
     '
     'GridColumn6
     '
@@ -369,7 +280,7 @@ Partial Class frmSupplierDetail
     Me.BarManager2.DockControls.Add(Me.BarDockControl4)
     Me.BarManager2.DockControls.Add(Me.BarDockControl5)
     Me.BarManager2.Form = Me
-    Me.BarManager2.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem2, Me.BarButtonItem3, Me.bbtnSavenAndClose})
+    Me.BarManager2.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btSave, Me.BarButtonItem3, Me.bbtnSavenAndClose})
     Me.BarManager2.MaxItemId = 3
     '
     'Bar2
@@ -378,7 +289,7 @@ Partial Class frmSupplierDetail
     Me.Bar2.DockCol = 0
     Me.Bar2.DockRow = 0
     Me.Bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSavenAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem3)})
+    Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSavenAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.btSave), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem3)})
     Me.Bar2.Text = "Herramientas"
     '
     'bbtnSavenAndClose
@@ -388,12 +299,12 @@ Partial Class frmSupplierDetail
     Me.bbtnSavenAndClose.Id = 2
     Me.bbtnSavenAndClose.Name = "bbtnSavenAndClose"
     '
-    'BarButtonItem2
+    'btSave
     '
-    Me.BarButtonItem2.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.BarButtonItem2.Caption = "Guardar"
-    Me.BarButtonItem2.Id = 0
-    Me.BarButtonItem2.Name = "BarButtonItem2"
+    Me.btSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.btSave.Caption = "Guardar"
+    Me.btSave.Id = 0
+    Me.btSave.Name = "btSave"
     '
     'BarButtonItem3
     '
@@ -454,19 +365,19 @@ Partial Class frmSupplierDetail
     Me.Label10.TabIndex = 31
     Me.Label10.Text = "Términos de Ventas"
     '
-    'lblCustomerID
+    'lblSupplierID
     '
-    Me.lblCustomerID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.lblCustomerID.AutoSize = True
-    Me.lblCustomerID.BackColor = System.Drawing.Color.Transparent
-    Me.lblCustomerID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblCustomerID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.lblCustomerID.Location = New System.Drawing.Point(452, 0)
-    Me.lblCustomerID.Name = "lblCustomerID"
-    Me.lblCustomerID.Size = New System.Drawing.Size(47, 14)
-    Me.lblCustomerID.TabIndex = 19
-    Me.lblCustomerID.Text = "ID: 0000"
-    Me.lblCustomerID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.lblSupplierID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.lblSupplierID.AutoSize = True
+    Me.lblSupplierID.BackColor = System.Drawing.Color.Transparent
+    Me.lblSupplierID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.lblSupplierID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.lblSupplierID.Location = New System.Drawing.Point(452, 0)
+    Me.lblSupplierID.Name = "lblSupplierID"
+    Me.lblSupplierID.Size = New System.Drawing.Size(47, 14)
+    Me.lblSupplierID.TabIndex = 19
+    Me.lblSupplierID.Text = "ID: 0000"
+    Me.lblSupplierID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'cboPaymentTermsType
     '
@@ -515,7 +426,7 @@ Partial Class frmSupplierDetail
     Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl2.Controls.Add(Me.cboSalesTermsType)
     Me.GroupControl2.Controls.Add(Me.Label10)
-    Me.GroupControl2.Controls.Add(Me.lblCustomerID)
+    Me.GroupControl2.Controls.Add(Me.lblSupplierID)
     Me.GroupControl2.Controls.Add(Me.cboPaymentTermsType)
     Me.GroupControl2.Controls.Add(Me.Label13)
     Me.GroupControl2.Controls.Add(Me.txtABA)
@@ -589,24 +500,6 @@ Partial Class frmSupplierDetail
     Me.Label20.TabIndex = 11
     Me.Label20.Text = "Número de Cuenta"
     '
-    'txtMainPostCode
-    '
-    Me.txtMainPostCode.Location = New System.Drawing.Point(456, 225)
-    Me.txtMainPostCode.Name = "txtMainPostCode"
-    Me.txtMainPostCode.Size = New System.Drawing.Size(155, 20)
-    Me.txtMainPostCode.TabIndex = 10
-    '
-    'Label15
-    '
-    Me.Label15.AutoSize = True
-    Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label15.Location = New System.Drawing.Point(342, 228)
-    Me.Label15.Name = "Label15"
-    Me.Label15.Size = New System.Drawing.Size(83, 14)
-    Me.Label15.TabIndex = 25
-    Me.Label15.Text = "Código Postal"
-    '
     'txtSupplierReference
     '
     Me.txtSupplierReference.Location = New System.Drawing.Point(141, 29)
@@ -647,7 +540,7 @@ Partial Class frmSupplierDetail
     '
     'rgEstatus
     '
-    Me.rgEstatus.Location = New System.Drawing.Point(456, 269)
+    Me.rgEstatus.Location = New System.Drawing.Point(456, 219)
     Me.rgEstatus.MenuManager = Me.BarManager2
     Me.rgEstatus.Name = "rgEstatus"
     Me.rgEstatus.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
@@ -661,7 +554,7 @@ Partial Class frmSupplierDetail
     Me.Label11.AutoSize = True
     Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label11.Location = New System.Drawing.Point(342, 277)
+    Me.Label11.Location = New System.Drawing.Point(342, 227)
     Me.Label11.Name = "Label11"
     Me.Label11.Size = New System.Drawing.Size(44, 14)
     Me.Label11.TabIndex = 23
@@ -694,7 +587,7 @@ Partial Class frmSupplierDetail
     Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
     Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
     Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13, Me.GridColumn11})
-    Me.GridView2.GridControl = Me.grdSalesOrder
+    Me.GridView2.GridControl = Me.grdSupplierPO
     Me.GridView2.Name = "GridView2"
     Me.GridView2.OptionsView.ShowGroupPanel = False
     Me.GridView2.OptionsView.ShowViewCaption = True
@@ -708,25 +601,25 @@ Partial Class frmSupplierDetail
     Me.GridColumn13.Visible = True
     Me.GridColumn13.VisibleIndex = 1
     '
-    'grdSalesOrder
+    'grdSupplierPO
     '
-    Me.grdSalesOrder.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+    Me.grdSupplierPO.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.Edit.Visible = False
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.First.Visible = False
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.Last.Visible = False
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.NextPage.Visible = False
-    Me.grdSalesOrder.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-    Me.grdSalesOrder.Location = New System.Drawing.Point(643, 366)
-    Me.grdSalesOrder.MainView = Me.GridView2
-    Me.grdSalesOrder.MenuManager = Me.BarManager2
-    Me.grdSalesOrder.Name = "grdSalesOrder"
-    Me.grdSalesOrder.Size = New System.Drawing.Size(509, 132)
-    Me.grdSalesOrder.TabIndex = 12
-    Me.grdSalesOrder.UseEmbeddedNavigator = True
-    Me.grdSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.Edit.Visible = False
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdSupplierPO.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdSupplierPO.Location = New System.Drawing.Point(643, 366)
+    Me.grdSupplierPO.MainView = Me.GridView2
+    Me.grdSupplierPO.MenuManager = Me.BarManager2
+    Me.grdSupplierPO.Name = "grdSupplierPO"
+    Me.grdSupplierPO.Size = New System.Drawing.Size(509, 132)
+    Me.grdSupplierPO.TabIndex = 12
+    Me.grdSupplierPO.UseEmbeddedNavigator = True
+    Me.grdSupplierPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '
     'txtWebUrl
     '
@@ -812,7 +705,7 @@ Partial Class frmSupplierDetail
     Me.GroupControl3.Name = "GroupControl3"
     Me.GroupControl3.Size = New System.Drawing.Size(514, 89)
     Me.GroupControl3.TabIndex = 11
-    Me.GroupControl3.Text = "Notas del Cliente"
+    Me.GroupControl3.Text = "Notas del Proveedor"
     '
     'Label6
     '
@@ -906,8 +799,6 @@ Partial Class frmSupplierDetail
     Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.GroupControl1.AppearanceCaption.Options.UseFont = True
     Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
-    Me.GroupControl1.Controls.Add(Me.txtMainPostCode)
-    Me.GroupControl1.Controls.Add(Me.Label15)
     Me.GroupControl1.Controls.Add(Me.txtSupplierReference)
     Me.GroupControl1.Controls.Add(Me.Label12)
     Me.GroupControl1.Controls.Add(Me.txtMainTown)
@@ -941,9 +832,9 @@ Partial Class frmSupplierDetail
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(1164, 521)
-    Me.Controls.Add(Me.GridControl1)
+    Me.Controls.Add(Me.grdSupplierContact)
     Me.Controls.Add(Me.GroupControl2)
-    Me.Controls.Add(Me.grdSalesOrder)
+    Me.Controls.Add(Me.grdSupplierPO)
     Me.Controls.Add(Me.GroupControl3)
     Me.Controls.Add(Me.GroupControl1)
     Me.Controls.Add(Me.barDockControlRight)
@@ -957,11 +848,9 @@ Partial Class frmSupplierDetail
     Me.Controls.Add(Me.BarDockControl2)
     Me.Name = "frmSupplierDetail"
     Me.Text = "Detalles de Proveedor"
-    CType(Me.grdContacts, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvContacts, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdSupplierContact, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvSupplierContacts, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboSalesTermsType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboPaymentTermsType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -972,12 +861,11 @@ Partial Class frmSupplierDetail
     CType(Me.txtSwift.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtBancoIntermediario.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtAcountRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtSupplierReference.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtMainTown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.rgEstatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.grdSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdSupplierPO, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtWebUrl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtMainAddress1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboCountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -996,14 +884,6 @@ Partial Class frmSupplierDetail
     Me.PerformLayout()
 
   End Sub
-
-  Friend WithEvents grdContacts As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvContacts As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
   Friend WithEvents btnSaveAndClose As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bbtnSave As DevExpress.XtraBars.BarButtonItem
@@ -1013,8 +893,8 @@ Partial Class frmSupplierDetail
   Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
   Friend WithEvents BarDockControl1 As DevExpress.XtraBars.BarDockControl
   Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grdSupplierContact As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvSupplierContacts As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1023,7 +903,7 @@ Partial Class frmSupplierDetail
   Friend WithEvents BarManager2 As DevExpress.XtraBars.BarManager
   Friend WithEvents Bar2 As DevExpress.XtraBars.Bar
   Friend WithEvents bbtnSavenAndClose As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents btSave As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents BarDockControl2 As DevExpress.XtraBars.BarDockControl
   Friend WithEvents BarDockControl3 As DevExpress.XtraBars.BarDockControl
@@ -1032,7 +912,7 @@ Partial Class frmSupplierDetail
   Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents cboSalesTermsType As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label10 As Label
-  Friend WithEvents lblCustomerID As Label
+  Friend WithEvents lblSupplierID As Label
   Friend WithEvents cboPaymentTermsType As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents Label13 As Label
   Friend WithEvents txtABA As DevExpress.XtraEditors.TextEdit
@@ -1043,7 +923,7 @@ Partial Class frmSupplierDetail
   Friend WithEvents Label17 As Label
   Friend WithEvents txtAcountRef As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label20 As Label
-  Friend WithEvents grdSalesOrder As DevExpress.XtraGrid.GridControl
+  Friend WithEvents grdSupplierPO As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1051,8 +931,6 @@ Partial Class frmSupplierDetail
   Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents txtCustomerNotes As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents txtMainPostCode As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label15 As Label
   Friend WithEvents txtSupplierReference As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label12 As Label
   Friend WithEvents txtMainTown As DevExpress.XtraEditors.TextEdit

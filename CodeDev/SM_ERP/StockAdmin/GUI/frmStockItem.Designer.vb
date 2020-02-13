@@ -101,7 +101,6 @@ Partial Class frmStockItem
     Me.cboSubitemType = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.txtDescriptionShort = New DevExpress.XtraEditors.TextEdit()
     Me.cboFinish = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.cboDefaultSupplier = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.spnQuantity = New DevExpress.XtraEditors.SpinEdit()
     Me.spnThickness = New DevExpress.XtraEditors.SpinEdit()
     Me.spnWidth = New DevExpress.XtraEditors.SpinEdit()
@@ -154,6 +153,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+    Me.btnedSupplier = New DevExpress.XtraEditors.ButtonEdit()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,7 +179,6 @@ Partial Class frmStockItem
     CType(Me.cboSubitemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDescriptionShort.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboFinish.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.cboDefaultSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnThickness.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,6 +215,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
+    CType(Me.btnedSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'chkIsObsolete
@@ -504,6 +504,7 @@ Partial Class frmStockItem
     Me.grpGroupF8.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpGroupF8.AppearanceCaption.Options.UseFont = True
     Me.grpGroupF8.AppearanceCaption.Options.UseForeColor = True
+    Me.grpGroupF8.Controls.Add(Me.btnedSupplier)
     Me.grpGroupF8.Controls.Add(Me.LabelControl21)
     Me.grpGroupF8.Controls.Add(Me.bteImage)
     Me.grpGroupF8.Controls.Add(Me.peImage)
@@ -533,7 +534,6 @@ Partial Class frmStockItem
     Me.grpGroupF8.Controls.Add(Me.cboSubitemType)
     Me.grpGroupF8.Controls.Add(Me.txtDescriptionShort)
     Me.grpGroupF8.Controls.Add(Me.cboFinish)
-    Me.grpGroupF8.Controls.Add(Me.cboDefaultSupplier)
     Me.grpGroupF8.Controls.Add(Me.spnQuantity)
     Me.grpGroupF8.Controls.Add(Me.spnThickness)
     Me.grpGroupF8.Controls.Add(Me.spnWidth)
@@ -638,7 +638,7 @@ Partial Class frmStockItem
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 30)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 33)
     '
     'barDockControlBottom
     '
@@ -652,17 +652,17 @@ Partial Class frmStockItem
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 699)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 30)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 699)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
     '
     'BarButtonItem1
     '
@@ -956,19 +956,6 @@ Partial Class frmStockItem
     Me.cboFinish.Size = New System.Drawing.Size(218, 20)
     Me.cboFinish.TabIndex = 90
     '
-    'cboDefaultSupplier
-    '
-    Me.cboDefaultSupplier.Location = New System.Drawing.Point(415, 208)
-    Me.cboDefaultSupplier.MenuManager = Me.BarManager1
-    Me.cboDefaultSupplier.Name = "cboDefaultSupplier"
-    Me.cboDefaultSupplier.Properties.AllowMouseWheel = False
-    Me.cboDefaultSupplier.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cboDefaultSupplier.Properties.Appearance.Options.UseFont = True
-    Me.cboDefaultSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboDefaultSupplier.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-    Me.cboDefaultSupplier.Size = New System.Drawing.Size(218, 20)
-    Me.cboDefaultSupplier.TabIndex = 89
-    '
     'spnQuantity
     '
     Me.spnQuantity.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
@@ -1172,7 +1159,7 @@ Partial Class frmStockItem
     '
     Me.tabpgIMDetails.Controls.Add(Me.PanelControl3)
     Me.tabpgIMDetails.Name = "tabpgIMDetails"
-    Me.tabpgIMDetails.Size = New System.Drawing.Size(193, 193)
+    Me.tabpgIMDetails.Size = New System.Drawing.Size(195, 194)
     Me.tabpgIMDetails.Tag = "3"
     Me.tabpgIMDetails.Text = "Ironmongery Details"
     '
@@ -1184,7 +1171,7 @@ Partial Class frmStockItem
     Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl3.Name = "PanelControl3"
-    Me.PanelControl3.Size = New System.Drawing.Size(193, 193)
+    Me.PanelControl3.Size = New System.Drawing.Size(195, 194)
     Me.PanelControl3.TabIndex = 0
     '
     'LabelControl17
@@ -1562,7 +1549,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1.Panel1.Text = "Panel1"
     Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
     Me.SplitContainerControl1.Panel2.Text = "Panel2"
-    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 695)
+    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 692)
     Me.SplitContainerControl1.SplitterPosition = 315
     Me.SplitContainerControl1.TabIndex = 0
     Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1588,10 +1575,19 @@ Partial Class frmStockItem
     '
     Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1294, 699)
+    Me.PanelControl1.Size = New System.Drawing.Size(1294, 696)
     Me.PanelControl1.TabIndex = 4
+    '
+    'btnedSupplier
+    '
+    Me.btnedSupplier.Location = New System.Drawing.Point(415, 208)
+    Me.btnedSupplier.MenuManager = Me.BarManager1
+    Me.btnedSupplier.Name = "btnedSupplier"
+    Me.btnedSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.btnedSupplier.Size = New System.Drawing.Size(218, 20)
+    Me.btnedSupplier.TabIndex = 125
     '
     'frmStockItem
     '
@@ -1632,7 +1628,6 @@ Partial Class frmStockItem
     CType(Me.cboSubitemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDescriptionShort.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboFinish.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.cboDefaultSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.spnQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.spnThickness.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.spnWidth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1671,6 +1666,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
+    CType(Me.btnedSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1770,7 +1766,6 @@ Partial Class frmStockItem
   Friend WithEvents cboSubitemType As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents txtDescriptionShort As DevExpress.XtraEditors.TextEdit
   Friend WithEvents cboFinish As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents cboDefaultSupplier As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents spnQuantity As DevExpress.XtraEditors.SpinEdit
   Friend WithEvents spnThickness As DevExpress.XtraEditors.SpinEdit
   Friend WithEvents spnWidth As DevExpress.XtraEditors.SpinEdit
@@ -1797,4 +1792,5 @@ Partial Class frmStockItem
   Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents btnedSupplier As DevExpress.XtraEditors.ButtonEdit
 End Class

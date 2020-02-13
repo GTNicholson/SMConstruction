@@ -46,7 +46,7 @@
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="7">
+  <property name="Columns" iskey="true" value="8">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">gcSupplierID</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -75,40 +75,47 @@
       <property name="Width">156</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
-      <property name="Name">gcParentSupplierID</property>
-      <property name="Caption">Parent Supplier</property>
-      <property name="FieldName">ParentSupplierID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
-      <property name="Visible">true</property>
-      <property name="Width">117</property>
-    </property>
-    <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcAccountCode</property>
       <property name="Caption">Account Code</property>
       <property name="FieldName">AccountCode</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">123</property>
     </property>
-    <property name="Item6" isnull="true" iskey="true">
+    <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcTelNo</property>
       <property name="Caption">Te lNo</property>
       <property name="FieldName">TelNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">141</property>
     </property>
-    <property name="Item7" isnull="true" iskey="true">
+    <property name="Item6" isnull="true" iskey="true">
       <property name="Name">gcSalesAreaID</property>
       <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">139</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Name">GridColumn1</property>
+      <property name="Caption">Tipo de término de Pago</property>
+      <property name="FieldName">PaymentTermsType</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Name">GridColumn2</property>
+      <property name="Caption">Tipo de Compra</property>
+      <property name="FieldName">PurchaseTermsType</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">6</property>
+      <property name="Visible">true</property>
     </property>
   </property>
   <property name="ViewCaption" />

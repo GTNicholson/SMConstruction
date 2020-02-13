@@ -1,4 +1,5 @@
 Imports System.IO
+Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
@@ -136,8 +137,9 @@ Public Class frmPurchaseOrder
 
 
       pFormController.LoadObject()
-      grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
-      LoadCombo()
+      RefreshGrid()
+
+      LoadCombos()
       RefreshControls()
       If mOK Then RefreshControls()
 
@@ -162,7 +164,11 @@ Public Class frmPurchaseOrder
 
   End Sub
 
-  Private Sub LoadCombo()
+  Private Sub RefreshGrid()
+    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
+  End Sub
+
+  Private Sub LoadCombos()
 
   End Sub
 
@@ -186,10 +192,10 @@ Public Class frmPurchaseOrder
     Dim mRetVal As Boolean
 
     UpdateObject()
-
+    'pFormController.SaveObjects()
     If pFormController.IsDirty() Then
       If rOption Then
-        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
         Select Case mResponse
           Case MsgBoxResult.Yes
             mSaveRequired = True
@@ -213,34 +219,93 @@ Public Class frmPurchaseOrder
       mSaveRequired = False
       mRetVal = True
     End If
+
     If mSaveRequired Then
       Dim mValidate As clsValidate
       mValidate = pFormController.ValidateObject
       If mValidate.ValOk Then
-        mRetVal = pFormController.SaveObject()
-        'TODO - If mRetVal then AddHandler InstanceData to  BrowseTracker
+        pFormController.SaveObject()
+        mRetVal = True
       Else
-        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")
+        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
         mRetVal = False
       End If
     End If
     CheckSave = mRetVal
+
+
   End Function
 
   Private Sub RefreshControls()
-    ' Check User Permissions here
-    Dim mStartActive As Boolean = pIsActive
-    Dim mSupplier As dmSupplier
+    Try
 
-    pIsActive = False
+      With pFormController.PurchaseOrder
 
-    ''Populate controls with data for the current object/record
-    ''Reposition Combos
-    pIsActive = mStartActive
+        txtPONum.Text = .PONum
+        txtSupplierRef.Text = .SupplierRef
+        'dteDateEntered.EditValue = .DateEntered
+        dteDueDate.EditValue = clsGeneralA.DateToDBValue(.RequiredDate)
+
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
+
+
+        ''If pFormController.PurchaseOrder.Supplier IsNot Nothing Then
+
+        ''  If pFormController.PurchaseOrder.Supplier.SupplierContacts.Count > 0 Then
+        ''    txtCustomerContact.Text = pFormController.SalesOrder.Customer.CustomerContacts(0).FirstName & " " & pFormController.SalesOrder.Customer.CustomerContacts(0).LastName
+        ''  Else
+        ''    txtCustomerContact.Text = ""
+        ''  End If
+        ''Else
+        ''  txtCustomerContact.Text = ""
+        ''End If
+
+
+        If .Supplier Is Nothing Then
+          btedSupplier.Text = ""
+        Else
+          FillSupplierDetail()
+
+        End If
+      End With
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Private Sub FillSupplierDetail()
+
+    Try
+      With pFormController.PurchaseOrder
+        btedSupplier.Text = .Supplier.CompanyName
+        txtAddress1.Text = .Supplier.MainAddress1
+        txtCountry.Text = .Supplier.MainCountry
+        txtTown.Text = .Supplier.MainTown
+
+        'CustomerStatusID.Text = .Customer.CustomerStatusID
+
+      End With
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
   Private Sub UpdateObject()
+    With pFormController.PurchaseOrder
+      .PONum = txtPONum.Text
+      .RequiredDate = dteDueDate.DateTime
 
+      gvPurchaseOrderItems.CloseEditor()
+      gvPurchaseOrderItems.UpdateCurrentRow()
+
+
+
+
+
+    End With
   End Sub
 
   ''Private Sub ControlForceValidateExample()
@@ -309,32 +374,6 @@ Public Class frmPurchaseOrder
     MyBase.Finalize()
   End Sub
 
-  Private Sub btedSupplier_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs)
-
-    Dim mSelectedSupplier As dmSupplier
-
-    Try
-
-      UpdateObject()
-
-
-
-      If mSelectedSupplier IsNot Nothing Then
-        pFormController.PurchaseOrder.SupplierID = mSelectedSupplier.SupplierID
-
-        pFormController.LoadSuppliers()
-        pFormController.PurchaseOrder.Supplier = mSelectedSupplier
-
-        'pFormController.PurchaseOrder.InvoiceAddress = mSelectedSupplier.MainSupplierAddress
-
-        RefreshControls()
-      End If
-
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
-  End Sub
 
   Private Sub bbiPrintPurchaseOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     'Dim mPOInfo As New clsPurchaseOrderInfo
@@ -359,11 +398,6 @@ Public Class frmPurchaseOrder
     '  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     'End Try
   End Sub
-
-  Private Sub gpnlPOItems_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs)
-
-  End Sub
-
 
 
   Private Sub btnEditPurchaseOrderPDF_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs)
@@ -401,5 +435,142 @@ Public Class frmPurchaseOrder
 
   Private Sub cboStatus_SelectedIndexChanged(sender As Object, e As EventArgs)
 
+  End Sub
+
+  Private Sub btnSaveAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
+    Try
+      InitiateSaveExit()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
+    Try
+
+      UpdateObject()
+      pFormController.SaveObject()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
+  Private Sub btnClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnClose.ItemClick
+    Try
+      InitiateCloseExit(True)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub btedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btedSupplier.ButtonClick
+    Try
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Combo
+          Dim mSupplierPicker As clsPickerSupplier
+          Dim mSupplier As dmSupplier
+          UpdateObject()
+          mSupplierPicker = New clsPickerSupplier(pFormController.GetSupplierList, pFormController.DBConn)
+          mSupplier = frmPickSupplier.OpenPickerSingle(mSupplierPicker)
+          If mSupplier IsNot Nothing Then
+            pFormController.PurchaseOrder.SupplierID = mSupplier.SupplierID
+            pFormController.PurchaseOrder.Supplier = mSupplier
+            pFormController.ReloadSupplier()
+            FillSupplierDetail()
+
+          End If
+          RefreshControls()
+        Case ButtonPredefines.Ellipsis
+          frmCustomerDetail.OpenFormModal(pFormController.PurchaseOrder.SupplierID, pFormController.DBConn)
+          If pFormController.PurchaseOrder.SupplierID <> 0 Then
+            pFormController.ReloadSupplier()
+            FillSupplierDetail()
+
+          End If
+          RefreshControls()
+      End Select
+
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub gpnlPOItems_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpnlPOItems.CustomButtonClick
+    ' Dim mPickerStockItem As clsPickerStockItem
+    Dim mSelectedItem As dmStockItem
+    Dim mPOItem As dmPurchaseOrderItem
+    Dim mPOItemEditor As clsPOItemEditor
+    Dim mPicker As clsPickerStockItem
+    Dim mStockItems As New colStockItems
+    Dim mStockItem As dmStockItem
+    Dim mSelectedStockItems As colStockItems
+    Try
+
+      Select Case e.Button.Properties.Tag
+        Case "AddStockItem"
+
+          For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
+            mStockItems.Add(mItem.Value)
+          Next
+
+          mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, pFormController.RTISGlobal)
+
+          For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+            If mPOItem.StockItemID > 0 Then
+              mStockItem = mStockItems.ItemFromKey(mPOItem.StockItemID)
+
+              If Not mPicker.SelectedObjects.Contains(mStockItem) Then
+                mPicker.SelectedObjects.Add(mStockItem)
+              End If
+            End If
+          Next
+
+          If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal) Then
+            For Each mSelectedItem In mPicker.SelectedObjects
+              If mSelectedItem IsNot Nothing Then
+                mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
+                If mPOItem Is Nothing Then
+                  mPOItem = clsPurchaseHandler.AddPOItem(pFormController.PurchaseOrder)
+                  mPOItem.StockItemID = mSelectedItem.StockItemID
+                  mPOItem.Description = mSelectedItem.Description
+                  mPOItem.PartNo = mSelectedItem.PartNo
+                End If
+              End If
+            Next
+          End If
+          mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
+
+          For mindex As Integer = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Count - 1 To 0 Step -1
+            mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem(mindex)
+            If mPOItem.StockItemID > 0 Then
+              mStockItem = mSelectedStockItems.ItemFromKey(mPOItem.StockItemID)
+
+              If Not mPicker.SelectedObjects.Contains(mStockItem) Then
+                pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
+              End If
+            End If
+          Next
+
+
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+
+        Case "DeleteItem"
+
+          mPOItem = gvPurchaseOrderItems.GetFocusedRow
+          If mPOItem IsNot Nothing Then
+            If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
+              pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
+              grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+            End If
+          End If
+
+      End Select
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

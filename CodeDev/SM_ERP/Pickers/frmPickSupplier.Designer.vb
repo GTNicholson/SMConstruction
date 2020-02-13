@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmPickerCustomer
+Partial Class frmPickSupplier
   Inherits System.Windows.Forms.Form
 
   'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -27,13 +27,12 @@ Partial Class frmPickerCustomer
     Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCustomerType = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAddress = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.bbtnNewCustomer = New DevExpress.XtraBars.BarButtonItem()
+    Me.bbtnNewSupplier = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -52,7 +51,7 @@ Partial Class frmPickerCustomer
     Me.grdItemList.Name = "grdItemList"
     Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repItemSelect})
     Me.grdItemList.Size = New System.Drawing.Size(733, 367)
-    Me.grdItemList.TabIndex = 0
+    Me.grdItemList.TabIndex = 4
     Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
     '
     'gvItemList
@@ -68,7 +67,7 @@ Partial Class frmPickerCustomer
     Me.gvItemList.Appearance.SelectedRow.Options.UseFont = True
     Me.gvItemList.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!)
     Me.gvItemList.Appearance.TopNewRow.Options.UseFont = True
-    Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcCompanyName, Me.gcCustomerType, Me.gcAddress, Me.gcAccountCode})
+    Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcCompanyName, Me.gcAddress, Me.gcAccountCode})
     Me.gvItemList.GridControl = Me.grdItemList
     Me.gvItemList.HorzScrollStep = 20
     Me.gvItemList.Name = "gvItemList"
@@ -95,22 +94,13 @@ Partial Class frmPickerCustomer
     Me.gcCompanyName.VisibleIndex = 1
     Me.gcCompanyName.Width = 208
     '
-    'gcCustomerType
-    '
-    Me.gcCustomerType.Caption = "Tipo de Cliente"
-    Me.gcCustomerType.FieldName = "CustomerTypeID"
-    Me.gcCustomerType.Name = "gcCustomerType"
-    Me.gcCustomerType.Visible = True
-    Me.gcCustomerType.VisibleIndex = 2
-    Me.gcCustomerType.Width = 105
-    '
     'gcAddress
     '
     Me.gcAddress.Caption = "Dirección"
     Me.gcAddress.FieldName = "MainAddress.FullAddress"
     Me.gcAddress.Name = "gcAddress"
     Me.gcAddress.Visible = True
-    Me.gcAddress.VisibleIndex = 3
+    Me.gcAddress.VisibleIndex = 2
     Me.gcAddress.Width = 311
     '
     'gcAccountCode
@@ -138,7 +128,7 @@ Partial Class frmPickerCustomer
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnNewCustomer})
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnNewSupplier})
     Me.BarManager1.MaxItemId = 1
     '
     'Bar1
@@ -149,15 +139,15 @@ Partial Class frmPickerCustomer
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnNewCustomer)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnNewSupplier)})
     Me.Bar1.Text = "Herramientas"
     '
-    'bbtnNewCustomer
+    'bbtnNewSupplier
     '
-    Me.bbtnNewCustomer.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnNewCustomer.Caption = "Nuevo Cliente"
-    Me.bbtnNewCustomer.Id = 0
-    Me.bbtnNewCustomer.Name = "bbtnNewCustomer"
+    Me.bbtnNewSupplier.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnNewSupplier.Caption = "Nuevo Proveedor"
+    Me.bbtnNewSupplier.Id = 0
+    Me.bbtnNewSupplier.Name = "bbtnNewSupplier"
     '
     'barDockControlTop
     '
@@ -191,7 +181,7 @@ Partial Class frmPickerCustomer
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 367)
     '
-    'frmPickerCustomer
+    'frmPickSupplier
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -201,11 +191,9 @@ Partial Class frmPickerCustomer
     Me.Controls.Add(Me.barDockControlRight)
     Me.Controls.Add(Me.barDockControlBottom)
     Me.Controls.Add(Me.barDockControlTop)
-    Me.MaximizeBox = False
-    Me.MinimizeBox = False
-    Me.Name = "frmPickerCustomer"
+    Me.Name = "frmPickSupplier"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "Selección de Cliente"
+    Me.Text = "frmPickSupplier"
     CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repItemSelect, System.ComponentModel.ISupportInitialize).EndInit()
@@ -219,13 +207,12 @@ Partial Class frmPickerCustomer
   Friend WithEvents gvItemList As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcCompanyName As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcCustomerType As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcAddress As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcAccountCode As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
   Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
-  Friend WithEvents bbtnNewCustomer As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents bbtnNewSupplier As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
   Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
   Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl

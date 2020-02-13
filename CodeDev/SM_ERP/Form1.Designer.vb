@@ -23,14 +23,11 @@ Partial Class Form1
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Dim PivotGridGroup1 As DevExpress.XtraPivotGrid.PivotGridGroup = New DevExpress.XtraPivotGrid.PivotGridGroup()
+    Me.fieldStockCategoryDesc = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcRequiredDate = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.PivotGridControl1 = New DevExpress.XtraPivotGrid.PivotGridControl()
-    Me.fieldStockCategoryDesc = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldStockItemTypeDesc = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldStockCode = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.fieldStockDesc = New DevExpress.XtraPivotGrid.PivotGridField()
@@ -47,10 +44,22 @@ Partial Class Form1
     Me.gcAreaDescription = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcRefNo2 = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.gcRefInfo2 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcRequiredDate = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PivotGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
+    '
+    'fieldStockCategoryDesc
+    '
+    Me.fieldStockCategoryDesc.AreaIndex = 4
+    Me.fieldStockCategoryDesc.Caption = "Categoría"
+    Me.fieldStockCategoryDesc.FieldName = "StockCategoryDesc"
+    Me.fieldStockCategoryDesc.Name = "fieldStockCategoryDesc"
+    Me.fieldStockCategoryDesc.Options.AllowRunTimeSummaryChange = True
+    Me.fieldStockCategoryDesc.Width = 155
     '
     'GridControl1
     '
@@ -77,13 +86,6 @@ Partial Class Form1
     Me.GridView1.OptionsView.ShowAutoFilterRow = True
     Me.GridView1.OptionsView.ShowGroupPanel = False
     '
-    'GridColumn5
-    '
-    Me.GridColumn5.Caption = "ID"
-    Me.GridColumn5.FieldName = "PurchaseOrderID"
-    Me.GridColumn5.Name = "GridColumn5"
-    Me.GridColumn5.OptionsColumn.ReadOnly = True
-    '
     'GridColumn1
     '
     Me.GridColumn1.Caption = "# O.C."
@@ -93,24 +95,6 @@ Partial Class Form1
     Me.GridColumn1.Visible = True
     Me.GridColumn1.VisibleIndex = 0
     Me.GridColumn1.Width = 79
-    '
-    'GridColumn8
-    '
-    Me.GridColumn8.Caption = "Proveedor"
-    Me.GridColumn8.FieldName = "SupplierID"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.OptionsColumn.ReadOnly = True
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 1
-    Me.GridColumn8.Width = 113
-    '
-    'gcRequiredDate
-    '
-    Me.gcRequiredDate.Caption = "Fecha Requerida"
-    Me.gcRequiredDate.FieldName = "RequiredDate"
-    Me.gcRequiredDate.Name = "gcRequiredDate"
-    Me.gcRequiredDate.Visible = True
-    Me.gcRequiredDate.VisibleIndex = 2
     '
     'PivotGridControl1
     '
@@ -127,15 +111,6 @@ Partial Class Form1
     Me.PivotGridControl1.OptionsDataField.RowValueLineCount = 2
     Me.PivotGridControl1.Size = New System.Drawing.Size(1002, 200)
     Me.PivotGridControl1.TabIndex = 1
-    '
-    'fieldStockCategoryDesc
-    '
-    Me.fieldStockCategoryDesc.AreaIndex = 4
-    Me.fieldStockCategoryDesc.Caption = "Categoría"
-    Me.fieldStockCategoryDesc.FieldName = "StockCategoryDesc"
-    Me.fieldStockCategoryDesc.Name = "fieldStockCategoryDesc"
-    Me.fieldStockCategoryDesc.Options.AllowRunTimeSummaryChange = True
-    Me.fieldStockCategoryDesc.Width = 155
     '
     'fieldStockItemTypeDesc
     '
@@ -292,6 +267,31 @@ Partial Class Form1
     Me.gcRefInfo2.FieldName = "RefInfo2"
     Me.gcRefInfo2.Name = "gcRefInfo2"
     '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "ID"
+    Me.GridColumn5.FieldName = "PurchaseOrderID"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.OptionsColumn.ReadOnly = True
+    '
+    'GridColumn8
+    '
+    Me.GridColumn8.Caption = "Proveedor"
+    Me.GridColumn8.FieldName = "SupplierID"
+    Me.GridColumn8.Name = "GridColumn8"
+    Me.GridColumn8.OptionsColumn.ReadOnly = True
+    Me.GridColumn8.Visible = True
+    Me.GridColumn8.VisibleIndex = 1
+    Me.GridColumn8.Width = 113
+    '
+    'gcRequiredDate
+    '
+    Me.gcRequiredDate.Caption = "Fecha Requerida"
+    Me.gcRequiredDate.FieldName = "RequiredDate"
+    Me.gcRequiredDate.Name = "gcRequiredDate"
+    Me.gcRequiredDate.Visible = True
+    Me.gcRequiredDate.VisibleIndex = 2
+    '
     'Form1
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -322,14 +322,14 @@ Partial Class Form1
   Friend WithEvents fieldTransType As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldTransDate As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents fieldTransDateMC As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcRequiredDate As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcTotalValue As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcRequisaNo As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcWorkOrderNo As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcAreaDescription As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcRefNo2 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents gcRefInfo2 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcRequiredDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

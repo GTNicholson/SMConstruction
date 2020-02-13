@@ -22,6 +22,7 @@ Public Class appRefLists : Inherits colRefLists
   Public Const FurnitureCategory As Integer = 15
   Public Const SubCategory As Integer = 16
   Public Const Shift As Integer = 17
+  Public Const PurchaseTermType As Integer = 18
 
 
 
@@ -47,6 +48,7 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(FurnitureCategory, "FurnitureCategory", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(SubCategory, "SubCategory", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Shift, "Shift", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(PurchaseTermType, "PurchaseTermType", clsRefListItem.eLoadMode.Unloaded)
 
   End Sub
 

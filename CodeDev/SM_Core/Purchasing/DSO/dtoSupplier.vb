@@ -1,7 +1,4 @@
-﻿
-''DTO Definition - Supplier (to Supplier)'Generated from Table:Supplier
-
-Imports RTIS.DataLayer
+﻿Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
@@ -12,6 +9,16 @@ Public Class dtoSupplier : Inherits dtoBase
   Public Sub New(ByRef rDBSource As clsDBConnBase)
     MyBase.New(rDBSource)
   End Sub
+
+  Public Function LoadSupplierCollection(ByRef rSupplier As colSuppliers) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ''mParams.Add("@ParentID", vParentID)
+    mOK = MyBase.LoadCollection(rSupplier, mParams, "SupplierID")
+    rSupplier.TrackDeleted = True
+    If mOK Then rSupplier.IsDirty = False
+    Return mOK
+  End Function
 
   Protected Overrides Sub SetTableDetails()
     pTableName = "Supplier"
@@ -76,6 +83,18 @@ Public Class dtoSupplier : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultAddressID", .DefaultAddressID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultContactID", .DefaultContactID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InvoiceParentCompany", .InvoiceParentCompany)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RazonSocial", StringToDBValue(.RazonSocial))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BancoIntermediario", StringToDBValue(.BancoIntermediario))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_SWIFT", StringToDBValue(.Numero_SWIFT))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Numero_ABA", StringToDBValue(.Numero_ABA))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Rucnumber", StringToDBValue(.Rucnumber))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierReferenceID", StringToDBValue(.SupplierReferenceID))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PurchasingTermsType", .PurchasingTermsType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainAddress1", StringToDBValue(.MainAddress1))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainAddress2", StringToDBValue(.MainAddress2))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainTown", StringToDBValue(.MainTown))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCounty", StringToDBValue(.MainCounty))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCountry", StringToDBValue(.MainCountry))
     End With
 
   End Sub
@@ -108,6 +127,18 @@ Public Class dtoSupplier : Inherits dtoBase
         .DefaultAddressID = DBReadInt32(rDataReader, "DefaultAddressID")
         .DefaultContactID = DBReadInt32(rDataReader, "DefaultContactID")
         .InvoiceParentCompany = DBReadBoolean(rDataReader, "InvoiceParentCompany")
+        .RazonSocial = DBReadString(rDataReader, "RazonSocial")
+        .BancoIntermediario = DBReadString(rDataReader, "BancoIntermediario")
+        .Numero_SWIFT = DBReadString(rDataReader, "Numero_SWIFT")
+        .Numero_ABA = DBReadString(rDataReader, "Numero_ABA")
+        .Rucnumber = DBReadString(rDataReader, "Rucnumber")
+        .SupplierReferenceID = DBReadString(rDataReader, "SupplierReferenceID")
+        .PurchasingTermsType = DBReadInt32(rDataReader, "PurchasingTermsType")
+        .MainAddress1 = DBReadString(rDataReader, "MainAddress1")
+        .MainAddress2 = DBReadString(rDataReader, "MainAddress2")
+        .MainTown = DBReadString(rDataReader, "MainTown")
+        .MainCounty = DBReadString(rDataReader, "MainCounty")
+        .MainCountry = DBReadString(rDataReader, "MainCountry")
         pSupplier.IsDirty = False
       End With
       mOK = True
@@ -197,7 +228,7 @@ Public Class dtoSupplier : Inherits dtoBase
       End If
 
       For Each Me.pSupplier In rCollection
-        If pSupplier.IsDirty Or pSupplier.SupplierID = 0 Then 'Or pSupplier.SupplierID = 0
+        If pSupplier.IsDirty <> vParentID Or pSupplier.SupplierID = 0 Then 'Or pSupplier.SupplierID = 0
 
           If mAllOK Then mAllOK = SaveObject()
         End If

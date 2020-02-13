@@ -5,12 +5,16 @@ Imports RTIS.DataLayer
 Imports RTIS.Elements
 Imports RTIS.ERPStock
 
+
+
 Public Class frmPickerStockItem
+  Private pRTISGlobal As AppRTISGlobal
 
   Private pPickerStockItem As clsPickerStockItem
   Private pRemainOpen As Boolean
   Private pStockItems As dmStockItem
   Private pActive As Boolean
+
 
   Public Property StockItem As dmStockItem
     Get
@@ -22,6 +26,22 @@ Public Class frmPickerStockItem
   End Property
 
 
+  Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal) As Boolean
+    Dim mfrm As frmPickerStockItem
+    Dim mCreated As Boolean = False
+    'Dim mTableName As String
+
+    mfrm = New frmPickerStockItem
+    mfrm.pPickerStockItem = rPickerStockItem
+    mfrm.pRTISGlobal = rRTISGlobal
+    mfrm.pRemainOpen = True
+
+
+
+
+    mfrm.ShowDialog()
+    Return True
+  End Function
   Public Shared Function OpenPickerSingle(ByVal vPickerStockItem As clsPickerStockItem) As intStockItemDef
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As intStockItemDef = Nothing

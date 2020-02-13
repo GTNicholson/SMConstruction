@@ -14,6 +14,7 @@ Public Class frmSupplierDetail
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
 
+
   Public Sub New()
 
     ' Esta llamada es exigida por el diseñador.
@@ -45,6 +46,7 @@ Public Class frmSupplierDetail
 
   End Sub
 
+
   Public Shared Sub OpenFormModal(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     Dim mfrm As frmSupplierDetail = Nothing
 
@@ -55,6 +57,20 @@ Public Class frmSupplierDetail
 
   End Sub
 
+  Public Shared Function GetNewSupplier(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase) As dmSupplier
+    Dim mfrm As frmSupplierDetail = Nothing
+    Dim mRetVal As dmSupplier = Nothing
+    mfrm = New frmSupplierDetail
+    mfrm.pFormController = New fccSupplierDetail(rDBConn)
+    mfrm.FormController.PrimaryKeyID = 0
+    mfrm.ShowDialog()
+
+    If mfrm.FormController.Supplier.SupplierID <> 0 Then
+      mRetVal = mfrm.pFormController.Supplier
+    End If
+
+    Return mRetVal
+  End Function
 
   Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmSupplierDetail
     Dim mfrmWanted As frmSupplierDetail = Nothing
@@ -101,8 +117,8 @@ Public Class frmSupplierDetail
 
 
       pFormController.LoadObjects()
-
-      ''LoadCombos()
+      grdSupplierContact.DataSource = pFormController.Supplier.SupplierContacts
+      LoadCombos()
 
       If mOK Then RefreshControls()
 
@@ -125,60 +141,20 @@ Public Class frmSupplierDetail
 
     pIsActive = True
 
+
   End Sub
 
 
-  Private Sub RefreshControls()
-    With pFormController.Supplier
-
-      ''  lblCustomerID.Text = "ID:" & .CustomerID.ToString("00000")
-
-      txtSupplierReference.Text = .SupplierReferenceID
-      txtCompanyName.Text = .CompanyName
-      ''  txtRazonSocial.Text = .RazonSocial
-      ''  txtRucNumber.Text = .Rucnumber
-      ''  txtMainAddress1.Text = .MainAddress1
-      ''  txtTelNo.Text = .TelNo
-      ''  txtEmail.Text = .Email
-      ''  txtWebUrl.Text = .WebURL
-      ''  txtAcountRef.Text = .AccountRef
-      ''  txtBancoIntermediario.Text = .BancoIntermediario
-      ''  txtSwift.Text = .Numero_SWIFT
-      ''  txtABA.Text = .Numero_ABA
-      ''  txtMainTown.Text = .MainTown
-      ''  txtCustomerReference.Text = .CustomerReference
-      ''  txtCustomerNotes.Text = .CustomerNotes
-      ''  RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
-      ''  RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
-      ''  RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesTermsType, .SalesTermsType)
-      ''  txtMainPostCode.Text = .MainPostCode
-      ''  rgEstatus.EditValue = .CustomerStatusID
-
-    End With
-  End Sub
-
-  Private Sub UpdateObjects()
-    With pFormController.Supplier
-      .CompanyName = txtCompanyName.Text
-
-    End With
-  End Sub
-
-  Private Sub bbtnSavenAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSavenAndClose.ItemClick
-
+  Private Sub LoadCombos()
     Try
-      InitiateSaveExit()
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
-
-  End Sub
-
-  Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
-
-    If CheckSave(False) Then
-      CloseForm()
-    End If
 
   End Sub
 
@@ -188,7 +164,7 @@ Public Class frmSupplierDetail
     Dim mRetVal As Boolean
 
     UpdateObjects()
-    'pFormController.SaveObjects()
+    ''pFormController.SaveObjects()
     If pFormController.IsDirty() Then
       If rOption Then
         mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
@@ -233,4 +209,133 @@ Public Class frmSupplierDetail
     End If
     CheckSave = mRetVal
   End Function
+
+  'Here put the fields
+  Private Sub RefreshControls()
+    With pFormController.Supplier
+
+      lblSupplierID.Text = "ID:" & .SupplierID.ToString("00000")
+
+      txtSupplierReference.Text = .SupplierReferenceID
+      txtCompanyName.Text = .CompanyName
+      txtRazonSocial.Text = .RazonSocial
+      txtRucNumber.Text = .Rucnumber
+      txtMainAddress1.Text = .MainAddress1
+      txtTelNo.Text = .TelNo
+      txtEmail.Text = .Email
+      txtWebUrl.Text = .WebURL
+      txtAcountRef.Text = .AccountCode
+      txtBancoIntermediario.Text = .BancoIntermediario
+      txtSwift.Text = .Numero_SWIFT
+      txtABA.Text = .Numero_ABA
+      txtMainTown.Text = .MainTown
+      txtCustomerNotes.Text = .Notes
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesTermsType, .PurchasingTermsType)
+      rgEstatus.EditValue = .SupplierStatusID
+
+
+
+    End With
+  End Sub
+
+  Private Sub UpdateObjects()
+    With pFormController.Supplier
+      .CompanyName = txtCompanyName.Text
+      .SupplierReferenceID = txtSupplierReference.Text
+      .CompanyName = txtCompanyName.Text
+      .RazonSocial = txtRazonSocial.Text
+      .Rucnumber = txtRucNumber.Text
+      .MainAddress1 = txtMainAddress1.Text
+      .TelNo = txtTelNo.Text
+      .Email = txtEmail.Text
+      .WebURL = txtWebUrl.Text
+      .AccountCode = txtAcountRef.Text
+      .BancoIntermediario = txtBancoIntermediario.Text
+      .Numero_SWIFT = txtSwift.Text
+      .Numero_ABA = txtABA.Text
+      .MainTown = txtMainTown.Text
+      .Notes = txtCustomerNotes.Text
+      .SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
+      .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
+      .PurchasingTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesTermsType)
+      .SupplierStatusID = rgEstatus.EditValue
+
+      gvSupplierContacts.CloseEditor()
+      gvSupplierContacts.UpdateCurrentRow()
+
+    End With
+  End Sub
+
+  Private Sub frmSupplierDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+    ''FormController.ClearObjects()
+    sActiveForms.Remove(Me.pMySharedIndex.ToString)
+    Me.Dispose()
+  End Sub
+
+
+
+  Private Sub frmSupplierDetail_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    If Not pForceExit Then
+      If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
+        e.Cancel = Not CheckSave(True)
+      End If
+    End If
+
+
+
+  End Sub
+
+
+
+  Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
+
+    If CheckSave(False) Then
+      CloseForm()
+    End If
+
+  End Sub
+
+  Private Sub btnClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnClose.ItemClick
+    Try
+      InitiateCloseExit(True)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub InitiateCloseExit(ByVal vWithCheck As Boolean) 'User initiated request to save - Call from buttons/menu/toolbar etc.
+    If vWithCheck Then
+      If CheckSave(True) Then 'Changed from False 20150206 !!!
+        CloseForm()
+      End If
+    Else
+      ExitMode = Windows.Forms.DialogResult.No
+      CloseForm()
+    End If
+
+  End Sub
+
+  Private Sub frmCustomerDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
+  End Sub
+
+  Private Sub bbtnSavenAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSavenAndClose.ItemClick
+    Try
+      InitiateSaveExit()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub btSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btSave.ItemClick
+    Try
+      UpdateObjects()
+      pFormController.SaveObjects()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class

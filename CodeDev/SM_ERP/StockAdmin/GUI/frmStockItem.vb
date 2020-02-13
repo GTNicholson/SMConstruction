@@ -93,13 +93,25 @@ Public Class frmStockItem
   End Property
 
   Private Sub frmStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    pIsActive = False
-    pFormController.LoadObject()
-    RefreshAddStockItemOptions()
-    grdStockItems.DataSource = pFormController.StockItems
-    LoadCombos()
+    Dim mOK As Boolean = True
+    Dim mMsg As String = ""
+    Dim mErrorDisplayed As Boolean = False
 
-    RefreshControls()
+    pIsActive = False
+    Try
+      pFormController.LoadObject()
+      RefreshAddStockItemOptions()
+      grdStockItems.DataSource = pFormController.StockItems
+      LoadCombos()
+
+      RefreshControls()
+    Catch ex As Exception
+      mMsg = ex.Message
+      mOK = False
+      mErrorDisplayed = True
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
     pIsActive = True
   End Sub
 
@@ -185,7 +197,7 @@ Public Class frmStockItem
         RefreshCategorySpecificControls()
         RefreshControls()
       Case eDetailButtons.Save
-        UpdateObject()
+        UpdateObjects()
         CheckStockCode()
         pFormController.SaveObject()
         pCurrentDetailMode = eCurrentDetailMode.eView
@@ -255,12 +267,21 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
-        clsDEControlLoading.SetDECombo(cboDefaultSupplier, .DefaultSupplier)
         chkcboActiveCondition.RefreshEditValue()
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
         txtStdCost.Text = .StdCost
         txtImportCost.Text = .StdImportCost
         bteImage.Text = .ImageFile
+        btnedSupplier.Text = .DefaultSupplier
+
+
+        ''If .Supplier Is Nothing Then
+        ''  btnedSupplier.Text = ""
+        ''Else
+        ''  FillSupplierDetail()
+
+        ''End If
+
 
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
@@ -285,12 +306,6 @@ Public Class frmStockItem
       End If
 
 
-
-
-
-
-
-
     End If
 
     If pCurrentDetailMode = eCurrentDetailMode.eView Then
@@ -302,6 +317,19 @@ Public Class frmStockItem
 
     peImage.Image = mImage
     pIsActive = mStartActive
+  End Sub
+
+  Private Sub FillSupplierDetail()
+
+    Try
+      With pFormController.CurrentStockItem
+        btnedSupplier.Text = .Supplier.CompanyName
+      End With
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
   Private Sub LoadCombos()
@@ -319,7 +347,7 @@ Public Class frmStockItem
 
   End Sub
 
-  Private Sub UpdateObject()
+  Private Sub UpdateObjects()
 
     If pFormController.CurrentStockItem IsNot Nothing Then
       With pFormController.CurrentStockItem
@@ -338,7 +366,6 @@ Public Class frmStockItem
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
         .StockFinanceCategoryID = clsDEControlLoading.GetDEComboValue(cboStockFinanceCategory)
         .Finish = clsDEControlLoading.GetDEComboValue(cboFinish)
-        .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboDefaultSupplier)
         .IsGeneric = chkIsGeneric.Checked
         .Inactive = chkIsObsolete.Checked
         .StdCost = txtStdCost.Text
@@ -530,7 +557,6 @@ Public Class frmStockItem
     cboStockFinanceCategory.ReadOnly = vReadOnly
     cboSubitemType.ReadOnly = vReadOnly
     cboFinish.ReadOnly = vReadOnly
-    cboDefaultSupplier.ReadOnly = vReadOnly
     cboCNCOpPrimaryLeaf.ReadOnly = vReadOnly
     cboCNCOpSecondaryLeaf.ReadOnly = vReadOnly
     cboCNCOpHangingJamb.ReadOnly = vReadOnly
@@ -544,7 +570,7 @@ Public Class frmStockItem
     spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
     bteImage.Enabled = Not vReadOnly
-
+    btnedSupplier.Enabled = Not vReadOnly
 
     ''    btnedImageFile.ReadOnly = vReadOnly
 
@@ -700,7 +726,7 @@ Public Class frmStockItem
   End Sub
 
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
-    UpdateObject()
+    UpdateObjects()
     RefreshCategorySpecificControls()
   End Sub
 
@@ -710,7 +736,7 @@ Public Class frmStockItem
 
   Private Sub bteImage_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteImage.ButtonClick
     Try
-      UpdateObject()
+      UpdateObjects()
       Dim mFileName As String = ""
       If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
         If pFormController.CreateSIImageFile(mFileName) = False Then
@@ -722,5 +748,40 @@ Public Class frmStockItem
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub btnedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnedSupplier.ButtonClick
+    Try
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Combo
+          Dim mSupplierPicker As clsPickerSupplier
+          Dim mSupplier As dmSupplier
+          UpdateObjects()
+          mSupplierPicker = New clsPickerSupplier(pFormController.GetSupplierList, pFormController.DBConn)
+          mSupplier = frmPickSupplier.OpenPickerSingle(mSupplierPicker)
+          If mSupplier IsNot Nothing Then
+            pFormController.CurrentStockItem.DefaultSupplier = mSupplier.SupplierID
+            pFormController.CurrentStockItem.Supplier = mSupplier
+            pFormController.ReloadSupplier()
+            FillSupplierDetail()
+
+          End If
+          RefreshControls()
+        Case ButtonPredefines.Ellipsis
+          frmSupplierDetail.OpenFormModal(pFormController.StockItem.DefaultSupplier, pFormController.DBConn)
+          If pFormController.StockItem.DefaultSupplier <> 0 Then
+            pFormController.ReloadSupplier()
+            FillSupplierDetail()
+
+          End If
+          RefreshControls()
+      End Select
+
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
 End Class
 

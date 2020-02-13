@@ -41,14 +41,14 @@ Partial Class frmPurchaseOrder
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+    Me.txtCountry = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-    Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+    Me.txtTown = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
     Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
     Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-    Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+    Me.txtAddress1 = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
     Me.txtCarriage = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
@@ -74,47 +74,29 @@ Partial Class frmPurchaseOrder
     Me.gpnlPOItems = New DevExpress.XtraEditors.GroupControl()
     Me.grdPurchaseOrderItems = New DevExpress.XtraGrid.GridControl()
     Me.gvPurchaseOrderItems = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcPOIDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepoItemPopupContainerEditPOItemAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
     Me.gcPOIUnitPrice = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemSpinEditUnitValue = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-    Me.gcPOIUnit = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcPOINetValue = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcQtyReceived = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepoItemPopupContainerEditQtyReceived = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepoItemButtonEditStockItem = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.gcSuppCode = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcStdOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcUnitName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSupplierItem = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcNominalAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcNominalCostCentre = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcVATRateCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcVATValue = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPOINominalAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPOINominalCostCentre = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCoCType = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcDensity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.xtpCallOffs = New DevExpress.XtraTab.XtraTabPage()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
-    CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtCountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtTown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtAddress1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtCarriage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.btnEditPurchaseOrderPDF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboBuyer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -254,7 +236,7 @@ Partial Class frmPurchaseOrder
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 30)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 33)
     '
     'barDockControlBottom
     '
@@ -268,17 +250,17 @@ Partial Class frmPurchaseOrder
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 548)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 545)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 30)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 548)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 545)
     '
     'PanelControl1
     '
@@ -310,28 +292,28 @@ Partial Class frmPurchaseOrder
     '
     'GroupControl1
     '
-    Me.GroupControl1.Controls.Add(Me.TextEdit5)
+    Me.GroupControl1.Controls.Add(Me.txtCountry)
     Me.GroupControl1.Controls.Add(Me.LabelControl8)
-    Me.GroupControl1.Controls.Add(Me.TextEdit4)
+    Me.GroupControl1.Controls.Add(Me.txtTown)
     Me.GroupControl1.Controls.Add(Me.LabelControl7)
     Me.GroupControl1.Controls.Add(Me.TextEdit3)
     Me.GroupControl1.Controls.Add(Me.TextEdit2)
     Me.GroupControl1.Controls.Add(Me.LabelControl6)
-    Me.GroupControl1.Controls.Add(Me.TextEdit1)
+    Me.GroupControl1.Controls.Add(Me.txtAddress1)
     Me.GroupControl1.Location = New System.Drawing.Point(445, 5)
     Me.GroupControl1.Name = "GroupControl1"
     Me.GroupControl1.Size = New System.Drawing.Size(379, 202)
     Me.GroupControl1.TabIndex = 240
     Me.GroupControl1.Text = "Detalles del Proveedor"
     '
-    'TextEdit5
+    'txtCountry
     '
-    Me.TextEdit5.EditValue = ""
-    Me.TextEdit5.Location = New System.Drawing.Point(267, 110)
-    Me.TextEdit5.MenuManager = Me.BarManager1
-    Me.TextEdit5.Name = "TextEdit5"
-    Me.TextEdit5.Size = New System.Drawing.Size(107, 20)
-    Me.TextEdit5.TabIndex = 240
+    Me.txtCountry.EditValue = ""
+    Me.txtCountry.Location = New System.Drawing.Point(267, 110)
+    Me.txtCountry.MenuManager = Me.BarManager1
+    Me.txtCountry.Name = "txtCountry"
+    Me.txtCountry.Size = New System.Drawing.Size(107, 20)
+    Me.txtCountry.TabIndex = 240
     '
     'LabelControl8
     '
@@ -341,14 +323,14 @@ Partial Class frmPurchaseOrder
     Me.LabelControl8.TabIndex = 239
     Me.LabelControl8.Text = "País"
     '
-    'TextEdit4
+    'txtTown
     '
-    Me.TextEdit4.EditValue = ""
-    Me.TextEdit4.Location = New System.Drawing.Point(64, 110)
-    Me.TextEdit4.MenuManager = Me.BarManager1
-    Me.TextEdit4.Name = "TextEdit4"
-    Me.TextEdit4.Size = New System.Drawing.Size(107, 20)
-    Me.TextEdit4.TabIndex = 238
+    Me.txtTown.EditValue = ""
+    Me.txtTown.Location = New System.Drawing.Point(64, 110)
+    Me.txtTown.MenuManager = Me.BarManager1
+    Me.txtTown.Name = "txtTown"
+    Me.txtTown.Size = New System.Drawing.Size(107, 20)
+    Me.txtTown.TabIndex = 238
     '
     'LabelControl7
     '
@@ -384,14 +366,14 @@ Partial Class frmPurchaseOrder
     Me.LabelControl6.TabIndex = 234
     Me.LabelControl6.Text = "Dirección"
     '
-    'TextEdit1
+    'txtAddress1
     '
-    Me.TextEdit1.EditValue = ""
-    Me.TextEdit1.Location = New System.Drawing.Point(64, 26)
-    Me.TextEdit1.MenuManager = Me.BarManager1
-    Me.TextEdit1.Name = "TextEdit1"
-    Me.TextEdit1.Size = New System.Drawing.Size(310, 20)
-    Me.TextEdit1.TabIndex = 233
+    Me.txtAddress1.EditValue = ""
+    Me.txtAddress1.Location = New System.Drawing.Point(64, 26)
+    Me.txtAddress1.MenuManager = Me.BarManager1
+    Me.txtAddress1.Name = "txtAddress1"
+    Me.txtAddress1.Size = New System.Drawing.Size(310, 20)
+    Me.txtAddress1.TabIndex = 233
     '
     'LabelControl13
     '
@@ -554,7 +536,7 @@ Partial Class frmPurchaseOrder
     Me.btedSupplier.Location = New System.Drawing.Point(104, 31)
     Me.btedSupplier.MenuManager = Me.BarManager1
     Me.btedSupplier.Name = "btedSupplier"
-    Me.btedSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.btedSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton()})
     Me.btedSupplier.Size = New System.Drawing.Size(109, 20)
     Me.btedSupplier.TabIndex = 220
     '
@@ -595,7 +577,7 @@ Partial Class frmPurchaseOrder
     '
     Me.xtpPOItems.Controls.Add(Me.gpnlPOItems)
     Me.xtpPOItems.Name = "xtpPOItems"
-    Me.xtpPOItems.Size = New System.Drawing.Size(1144, 306)
+    Me.xtpPOItems.Size = New System.Drawing.Size(1146, 308)
     Me.xtpPOItems.Text = "PO Items"
     '
     'gpnlPOItems
@@ -617,7 +599,7 @@ Partial Class frmPurchaseOrder
     Me.gpnlPOItems.Dock = System.Windows.Forms.DockStyle.Fill
     Me.gpnlPOItems.Location = New System.Drawing.Point(0, 0)
     Me.gpnlPOItems.Name = "gpnlPOItems"
-    Me.gpnlPOItems.Size = New System.Drawing.Size(1144, 306)
+    Me.gpnlPOItems.Size = New System.Drawing.Size(1146, 308)
     Me.gpnlPOItems.TabIndex = 204
     Me.gpnlPOItems.Text = "Artículos de Compra"
     '
@@ -633,12 +615,12 @@ Partial Class frmPurchaseOrder
     Me.grdPurchaseOrderItems.EmbeddedNavigator.Buttons.PrevPage.Visible = False
     GridLevelNode1.RelationName = "Level1"
     Me.grdPurchaseOrderItems.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-    Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 24)
+    Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 26)
     Me.grdPurchaseOrderItems.MainView = Me.gvPurchaseOrderItems
     Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1
     Me.grdPurchaseOrderItems.Name = "grdPurchaseOrderItems"
     Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived})
-    Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1140, 280)
+    Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1142, 280)
     Me.grdPurchaseOrderItems.TabIndex = 86
     Me.grdPurchaseOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPurchaseOrderItems})
     '
@@ -649,7 +631,7 @@ Partial Class frmPurchaseOrder
     Me.gvPurchaseOrderItems.Appearance.HeaderPanel.Options.UseTextOptions = True
     Me.gvPurchaseOrderItems.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.gvPurchaseOrderItems.ColumnPanelRowHeight = 35
-    Me.gvPurchaseOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.gcPOIDescription, Me.gcQuantity, Me.gcPOIUnitPrice, Me.gcPOIUnit, Me.gcPOINetValue, Me.gcQtyReceived, Me.GridColumn7, Me.gcStockCode, Me.gcSuppCode, Me.GridColumn11, Me.gcStdOrderQty, Me.gcUnitName, Me.GridColumn13, Me.gcSupplierItem, Me.gcNominalAccountCode, Me.gcNominalCostCentre, Me.gcVATRateCode, Me.gcVATValue, Me.GridColumn9, Me.GridColumn10, Me.gcPOINominalAccountCode, Me.gcPOINominalCostCentre, Me.GridColumn22, Me.gcCoCType, Me.gcDensity})
+    Me.gvPurchaseOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.gcPOIDescription, Me.gcPOIUnitPrice, Me.gcPOINetValue, Me.GridColumn11, Me.gcVATRateCode, Me.GridColumn1, Me.GridColumn3})
     Me.gvPurchaseOrderItems.GridControl = Me.grdPurchaseOrderItems
     Me.gvPurchaseOrderItems.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", Me.gcPOINetValue, "")})
     Me.gvPurchaseOrderItems.Name = "gvPurchaseOrderItems"
@@ -659,45 +641,16 @@ Partial Class frmPurchaseOrder
     Me.gvPurchaseOrderItems.OptionsView.ShowGroupPanel = False
     Me.gvPurchaseOrderItems.ViewCaption = "Purchase Order Items"
     '
-    'GridColumn12
-    '
-    Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-    Me.GridColumn12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.GridColumn12.Caption = "Item"
-    Me.GridColumn12.FieldName = "ItemNo"
-    Me.GridColumn12.Name = "GridColumn12"
-    Me.GridColumn12.OptionsColumn.AllowEdit = False
-    Me.GridColumn12.OptionsColumn.ReadOnly = True
-    Me.GridColumn12.Width = 49
-    '
     'gcPOIDescription
     '
     Me.gcPOIDescription.AppearanceHeader.Options.UseTextOptions = True
     Me.gcPOIDescription.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcPOIDescription.Caption = "Description"
+    Me.gcPOIDescription.Caption = "Descripción"
     Me.gcPOIDescription.FieldName = "Description"
     Me.gcPOIDescription.Name = "gcPOIDescription"
     Me.gcPOIDescription.Visible = True
     Me.gcPOIDescription.VisibleIndex = 1
-    Me.gcPOIDescription.Width = 279
-    '
-    'gcQuantity
-    '
-    Me.gcQuantity.AppearanceCell.Options.UseTextOptions = True
-    Me.gcQuantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcQuantity.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcQuantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcQuantity.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcQuantity.Caption = "Quantity"
-    Me.gcQuantity.ColumnEdit = Me.RepoItemPopupContainerEditPOItemAllocation
-    Me.gcQuantity.DisplayFormat.FormatString = "0.##"
-    Me.gcQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcQuantity.FieldName = "TotalQuantityAllocated"
-    Me.gcQuantity.Name = "gcQuantity"
-    Me.gcQuantity.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QtyRequired", "{0:0.####}")})
-    Me.gcQuantity.Visible = True
-    Me.gcQuantity.VisibleIndex = 5
-    Me.gcQuantity.Width = 54
+    Me.gcPOIDescription.Width = 182
     '
     'RepoItemPopupContainerEditPOItemAllocation
     '
@@ -722,8 +675,8 @@ Partial Class frmPurchaseOrder
     Me.gcPOIUnitPrice.FieldName = "UnitPrice"
     Me.gcPOIUnitPrice.Name = "gcPOIUnitPrice"
     Me.gcPOIUnitPrice.Visible = True
-    Me.gcPOIUnitPrice.VisibleIndex = 8
-    Me.gcPOIUnitPrice.Width = 57
+    Me.gcPOIUnitPrice.VisibleIndex = 4
+    Me.gcPOIUnitPrice.Width = 53
     '
     'RepositoryItemSpinEditUnitValue
     '
@@ -731,20 +684,6 @@ Partial Class frmPurchaseOrder
     Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n2"
     Me.RepositoryItemSpinEditUnitValue.Name = "RepositoryItemSpinEditUnitValue"
-    '
-    'gcPOIUnit
-    '
-    Me.gcPOIUnit.AppearanceCell.Options.UseTextOptions = True
-    Me.gcPOIUnit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcPOIUnit.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcPOIUnit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcPOIUnit.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcPOIUnit.Caption = "Unit"
-    Me.gcPOIUnit.FieldName = "PricingUnit"
-    Me.gcPOIUnit.Name = "gcPOIUnit"
-    Me.gcPOIUnit.Visible = True
-    Me.gcPOIUnit.VisibleIndex = 6
-    Me.gcPOIUnit.Width = 54
     '
     'gcPOINetValue
     '
@@ -764,26 +703,8 @@ Partial Class frmPurchaseOrder
     Me.gcPOINetValue.OptionsColumn.ReadOnly = True
     Me.gcPOINetValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmount", "{0:c}")})
     Me.gcPOINetValue.Visible = True
-    Me.gcPOINetValue.VisibleIndex = 9
-    Me.gcPOINetValue.Width = 122
-    '
-    'gcQtyReceived
-    '
-    Me.gcQtyReceived.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.gcQtyReceived.AppearanceCell.Options.UseBackColor = True
-    Me.gcQtyReceived.AppearanceCell.Options.UseTextOptions = True
-    Me.gcQtyReceived.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcQtyReceived.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcQtyReceived.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcQtyReceived.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcQtyReceived.Caption = "Qty Received"
-    Me.gcQtyReceived.ColumnEdit = Me.RepoItemPopupContainerEditQtyReceived
-    Me.gcQtyReceived.DisplayFormat.FormatString = "0.##"
-    Me.gcQtyReceived.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcQtyReceived.FieldName = "QtyReceived"
-    Me.gcQtyReceived.Name = "gcQtyReceived"
-    Me.gcQtyReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QtyReceived", "{0:0.#}")})
-    Me.gcQtyReceived.Width = 76
+    Me.gcPOINetValue.VisibleIndex = 5
+    Me.gcPOINetValue.Width = 123
     '
     'RepoItemPopupContainerEditQtyReceived
     '
@@ -793,51 +714,11 @@ Partial Class frmPurchaseOrder
     Me.RepoItemPopupContainerEditQtyReceived.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.RepoItemPopupContainerEditQtyReceived.Name = "RepoItemPopupContainerEditQtyReceived"
     '
-    'GridColumn7
-    '
-    Me.GridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.GridColumn7.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-    Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-    Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.GridColumn7.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.GridColumn7.Caption = "Qty Outstanding"
-    Me.GridColumn7.DisplayFormat.FormatString = "0.####"
-    Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.GridColumn7.FieldName = "QtyOutstanding"
-    Me.GridColumn7.Name = "GridColumn7"
-    Me.GridColumn7.OptionsColumn.AllowEdit = False
-    Me.GridColumn7.OptionsColumn.ReadOnly = True
-    Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QtyOutstanding", "{0:0.#}")})
-    Me.GridColumn7.Width = 79
-    '
-    'gcStockCode
-    '
-    Me.gcStockCode.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcStockCode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcStockCode.Caption = "Part No"
-    Me.gcStockCode.ColumnEdit = Me.RepoItemButtonEditStockItem
-    Me.gcStockCode.FieldName = "PartNo"
-    Me.gcStockCode.Name = "gcStockCode"
-    Me.gcStockCode.Width = 140
-    '
     'RepoItemButtonEditStockItem
     '
     Me.RepoItemButtonEditStockItem.AutoHeight = False
     Me.RepoItemButtonEditStockItem.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
     Me.RepoItemButtonEditStockItem.Name = "RepoItemButtonEditStockItem"
-    '
-    'gcSuppCode
-    '
-    Me.gcSuppCode.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcSuppCode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcSuppCode.Caption = "Supplier Code"
-    Me.gcSuppCode.FieldName = "SupplierCode"
-    Me.gcSuppCode.Name = "gcSuppCode"
-    Me.gcSuppCode.Visible = True
-    Me.gcSuppCode.VisibleIndex = 0
-    Me.gcSuppCode.Width = 97
     '
     'GridColumn11
     '
@@ -847,66 +728,8 @@ Partial Class frmPurchaseOrder
     Me.GridColumn11.FieldName = "Notes"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 2
-    Me.GridColumn11.Width = 101
-    '
-    'gcStdOrderQty
-    '
-    Me.gcStdOrderQty.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcStdOrderQty.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcStdOrderQty.Caption = "Std Order Qty"
-    Me.gcStdOrderQty.DisplayFormat.FormatString = "0.#"
-    Me.gcStdOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcStdOrderQty.FieldName = "gcStdOrderQty"
-    Me.gcStdOrderQty.Name = "gcStdOrderQty"
-    Me.gcStdOrderQty.OptionsColumn.ReadOnly = True
-    Me.gcStdOrderQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-    Me.gcStdOrderQty.Width = 67
-    '
-    'gcUnitName
-    '
-    Me.gcUnitName.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcUnitName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcUnitName.Caption = "Unit Name"
-    Me.gcUnitName.FieldNameSortGroup = "CostUnitType"
-    Me.gcUnitName.Name = "gcUnitName"
-    Me.gcUnitName.Width = 67
-    '
-    'GridColumn13
-    '
-    Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
-    Me.GridColumn13.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.GridColumn13.Caption = "Stock Multiple"
-    Me.GridColumn13.FieldName = "PurchaseMultiple"
-    Me.GridColumn13.Name = "GridColumn13"
-    Me.GridColumn13.OptionsColumn.ReadOnly = True
-    Me.GridColumn13.Width = 55
-    '
-    'gcSupplierItem
-    '
-    Me.gcSupplierItem.AppearanceHeader.Options.UseTextOptions = True
-    Me.gcSupplierItem.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gcSupplierItem.Caption = "Supplier Item"
-    Me.gcSupplierItem.FieldName = "SupplierPriced"
-    Me.gcSupplierItem.Name = "gcSupplierItem"
-    Me.gcSupplierItem.OptionsColumn.ReadOnly = True
-    Me.gcSupplierItem.Width = 86
-    '
-    'gcNominalAccountCode
-    '
-    Me.gcNominalAccountCode.Caption = "Nominal Code"
-    Me.gcNominalAccountCode.FieldName = "gcNominalAccountCode"
-    Me.gcNominalAccountCode.Name = "gcNominalAccountCode"
-    Me.gcNominalAccountCode.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-    Me.gcNominalAccountCode.Width = 82
-    '
-    'gcNominalCostCentre
-    '
-    Me.gcNominalCostCentre.Caption = "Cost Centre"
-    Me.gcNominalCostCentre.FieldName = "gcNominalCostCentre"
-    Me.gcNominalCostCentre.Name = "gcNominalCostCentre"
-    Me.gcNominalCostCentre.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-    Me.gcNominalCostCentre.Width = 69
+    Me.GridColumn11.VisibleIndex = 6
+    Me.GridColumn11.Width = 94
     '
     'gcVATRateCode
     '
@@ -915,85 +738,8 @@ Partial Class frmPurchaseOrder
     Me.gcVATRateCode.Name = "gcVATRateCode"
     Me.gcVATRateCode.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
     Me.gcVATRateCode.Visible = True
-    Me.gcVATRateCode.VisibleIndex = 7
-    Me.gcVATRateCode.Width = 84
-    '
-    'gcVATValue
-    '
-    Me.gcVATValue.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.gcVATValue.AppearanceCell.Options.UseBackColor = True
-    Me.gcVATValue.Caption = "Unit V.A.T"
-    Me.gcVATValue.DisplayFormat.FormatString = "C2"
-    Me.gcVATValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcVATValue.FieldName = "VatValue"
-    Me.gcVATValue.Name = "gcVATValue"
-    Me.gcVATValue.OptionsColumn.AllowEdit = False
-    Me.gcVATValue.OptionsColumn.ReadOnly = True
-    Me.gcVATValue.Width = 67
-    '
-    'GridColumn9
-    '
-    Me.GridColumn9.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-    Me.GridColumn9.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn9.Caption = "Barcode"
-    Me.GridColumn9.FieldName = "Barcode"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.OptionsColumn.ReadOnly = True
-    Me.GridColumn9.Width = 71
-    '
-    'GridColumn10
-    '
-    Me.GridColumn10.AppearanceCell.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.GridColumn10.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn10.Caption = "Sage Code"
-    Me.GridColumn10.FieldName = "SageCode"
-    Me.GridColumn10.Name = "GridColumn10"
-    Me.GridColumn10.Width = 71
-    '
-    'gcPOINominalAccountCode
-    '
-    Me.gcPOINominalAccountCode.Caption = "Nominal Code"
-    Me.gcPOINominalAccountCode.FieldName = "NominalAccountCode"
-    Me.gcPOINominalAccountCode.Name = "gcPOINominalAccountCode"
-    Me.gcPOINominalAccountCode.Width = 66
-    '
-    'gcPOINominalCostCentre
-    '
-    Me.gcPOINominalCostCentre.Caption = "Cost Centre"
-    Me.gcPOINominalCostCentre.FieldName = "NominalCostCentre"
-    Me.gcPOINominalCostCentre.Name = "gcPOINominalCostCentre"
-    Me.gcPOINominalCostCentre.Width = 52
-    '
-    'GridColumn22
-    '
-    Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
-    Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
-    Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.GridColumn22.Caption = "Pack Qty"
-    Me.GridColumn22.DisplayFormat.FormatString = "0.##;;#"
-    Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.GridColumn22.FieldName = "PackQuantity"
-    Me.GridColumn22.Name = "GridColumn22"
-    Me.GridColumn22.Width = 58
-    '
-    'gcCoCType
-    '
-    Me.gcCoCType.Caption = "CoC Type"
-    Me.gcCoCType.FieldName = "CoCType"
-    Me.gcCoCType.Name = "gcCoCType"
-    Me.gcCoCType.Visible = True
-    Me.gcCoCType.VisibleIndex = 4
-    '
-    'gcDensity
-    '
-    Me.gcDensity.Caption = "Density"
-    Me.gcDensity.DisplayFormat.FormatString = "0.###"
-    Me.gcDensity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcDensity.FieldName = "Density"
-    Me.gcDensity.Name = "gcDensity"
-    Me.gcDensity.Visible = True
-    Me.gcDensity.VisibleIndex = 3
+    Me.gcVATRateCode.VisibleIndex = 3
+    Me.gcVATRateCode.Width = 78
     '
     'xtpCallOffs
     '
@@ -1002,6 +748,29 @@ Partial Class frmPurchaseOrder
     Me.xtpCallOffs.PageVisible = False
     Me.xtpCallOffs.Size = New System.Drawing.Size(1146, 308)
     Me.xtpCallOffs.Text = "Call Offs"
+    '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "PurchaseOrderID"
+    Me.GridColumn1.FieldName = "PurchaseOrderID"
+    Me.GridColumn1.Name = "GridColumn1"
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Código Proveedor"
+    Me.GridColumn2.FieldName = "PartNo"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 0
+    Me.GridColumn2.Width = 62
+    '
+    'GridColumn3
+    '
+    Me.GridColumn3.Caption = "Cantidad Requerida"
+    Me.GridColumn3.FieldName = "QtyRequired"
+    Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.Visible = True
+    Me.GridColumn3.VisibleIndex = 2
     '
     'frmPurchaseOrder
     '
@@ -1025,11 +794,11 @@ Partial Class frmPurchaseOrder
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()
-    CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtCountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtTown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtAddress1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtCarriage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.btnEditPurchaseOrderPDF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboBuyer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1078,47 +847,26 @@ Partial Class frmPurchaseOrder
   Friend WithEvents gpnlPOItems As DevExpress.XtraEditors.GroupControl
   Friend WithEvents grdPurchaseOrderItems As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvPurchaseOrderItems As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcPOIDescription As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcQuantity As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepoItemPopupContainerEditPOItemAllocation As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
   Friend WithEvents gcPOIUnitPrice As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemSpinEditUnitValue As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-  Friend WithEvents gcPOIUnit As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcPOINetValue As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcQtyReceived As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepoItemPopupContainerEditQtyReceived As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
-  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcStockCode As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepoItemButtonEditStockItem As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-  Friend WithEvents gcSuppCode As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcStdOrderQty As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcUnitName As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcSupplierItem As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcNominalAccountCode As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcNominalCostCentre As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcVATRateCode As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcVATValue As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcPOINominalAccountCode As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcPOINominalCostCentre As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcCoCType As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcDensity As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents xtpCallOffs As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
   Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtCountry As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtTown As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
   Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtAddress1 As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents txtCarriage As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
@@ -1139,4 +887,7 @@ Partial Class frmPurchaseOrder
   Friend WithEvents btedSupplier As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents txtPONum As DevExpress.XtraEditors.TextEdit
   Friend WithEvents lblTitle As DevExpress.XtraEditors.LabelControl
+  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

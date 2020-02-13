@@ -24,7 +24,6 @@ Public Class dmSupplier : Inherits dmBase
   Private pDefaultAddressID As Int32
   Private pDefaultContactID As Int32
   Private pInvoiceParentCompany As Boolean
-
   Private pRazonSocial As String
   Private pBancoIntermediario As String
   Private pNumero_SWIFT As String
@@ -32,14 +31,19 @@ Public Class dmSupplier : Inherits dmBase
   Private pRucnumber As String
   Private pSupplierReferenceID As String
   Private pPurchasingTermsType As Int32
-
-
+  Private pMainAddress1 As String
+  Private pMainAddress2 As String
+  Private pMainTown As String
+  Private pMainCounty As String
+  Private pMainCountry As String
+  Private pSupplierContacts As colSupplierContacts
   Public Sub New()
     MyBase.New()
   End Sub
 
   Protected Overrides Sub NewSetup()
-    ''Add object/collection instantiations here
+    pSupplierContacts = New colSupplierContacts
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -88,12 +92,18 @@ Public Class dmSupplier : Inherits dmBase
       .DefaultAddressID = DefaultAddressID
       .DefaultContactID = DefaultContactID
       .InvoiceParentCompany = InvoiceParentCompany
+      .RazonSocial = RazonSocial
       .BancoIntermediario = BancoIntermediario
       .Numero_SWIFT = Numero_SWIFT
       .Numero_ABA = Numero_ABA
       .Rucnumber = Rucnumber
       .SupplierReferenceID = SupplierReferenceID
       .PurchasingTermsType = PurchasingTermsType
+      .MainAddress1 = MainAddress1
+      .MainAddress2 = MainAddress2
+      .MainTown = MainTown
+      .MainCounty = MainCounty
+      .MainCountry = MainCountry
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -103,9 +113,6 @@ Public Class dmSupplier : Inherits dmBase
 
   End Sub
 
-
-
-
   Public Property SupplierID() As Int32
     Get
       Return pSupplierID
@@ -114,6 +121,13 @@ Public Class dmSupplier : Inherits dmBase
       If pSupplierID <> value Then IsDirty = True
       pSupplierID = value
     End Set
+  End Property
+
+  Public ReadOnly Property SupplierContacts() As colSupplierContacts
+    Get
+      Return pSupplierContacts
+    End Get
+
   End Property
 
   Public Property CompanyName() As String
@@ -396,6 +410,55 @@ Public Class dmSupplier : Inherits dmBase
     End Set
   End Property
 
+  Public Property MainAddress1() As String
+    Get
+      Return pMainAddress1
+    End Get
+    Set(ByVal value As String)
+      If pMainAddress1 <> value Then IsDirty = True
+      pMainAddress1 = value
+    End Set
+  End Property
+
+  Public Property MainAddress2() As String
+    Get
+      Return pMainAddress2
+    End Get
+    Set(ByVal value As String)
+      If pMainAddress2 <> value Then IsDirty = True
+      pMainAddress2 = value
+    End Set
+  End Property
+
+  Public Property MainTown() As String
+    Get
+      Return pMainTown
+    End Get
+    Set(ByVal value As String)
+      If pMainTown <> value Then IsDirty = True
+      pMainTown = value
+    End Set
+  End Property
+
+  Public Property MainCounty() As String
+    Get
+      Return pMainCounty
+    End Get
+    Set(ByVal value As String)
+      If pMainCounty <> value Then IsDirty = True
+      pMainCounty = value
+    End Set
+  End Property
+
+  Public Property MainCountry() As String
+    Get
+      Return pMainCountry
+    End Get
+    Set(ByVal value As String)
+      If pMainCountry <> value Then IsDirty = True
+      pMainCountry = value
+    End Set
+  End Property
 
 
 End Class
@@ -445,6 +508,10 @@ Public Class colSuppliers : Inherits colBase(Of dmSupplier)
   End Sub
 
 End Class
+
+
+''DTO Definition - Supplier (to Supplier)'Generated from Table:Supplier
+
 
 
 

@@ -142,6 +142,10 @@ Public Class dsoAppRefLists
           mDso.LoadShiftsDownConnected(mShifts)
           mItem.IList = mShifts
 
+        Case appRefLists.PurchaseTermType
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 10", "Value", "Description")
+          mItem.IList = mValueItems
       End Select
       mItem = Nothing
     Else
