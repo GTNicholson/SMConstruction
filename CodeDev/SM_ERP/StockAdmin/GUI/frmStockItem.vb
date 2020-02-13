@@ -272,23 +272,15 @@ Public Class frmStockItem
 
         mFileName = clsSMSharedFuncs.GetStockItemImageFileName(pFormController.CurrentStockItem)
         If IO.File.Exists(mFileName) Then
-
-          mImage = Drawing.Image.FromFile(mFileName)
+          mImage = Image.FromStream(New IO.MemoryStream(IO.File.ReadAllBytes(mFileName)))
+          ''  mImage = Drawing.Image.FromFile(mFileName)
 
         Else
           mImage = Nothing
 
         End If
 
-
-
       End If
-
-
-
-
-
-
 
 
     End If
@@ -691,7 +683,7 @@ Public Class frmStockItem
       End If
     End If
 
-    RefreshControls()
+    ''RefreshControls()
 
   End Sub
 
@@ -713,6 +705,11 @@ Public Class frmStockItem
       UpdateObject()
       Dim mFileName As String = ""
       If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
+
+        ''// make sure that we clear the current image first so that it can be overwritten
+        peImage.Image = Nothing
+        peImage.Refresh()
+
         If pFormController.CreateSIImageFile(mFileName) = False Then
           MsgBox("¡No Funcionó!")
         End If
