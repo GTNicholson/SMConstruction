@@ -21,6 +21,16 @@ Public Enum eActivityCode
 
 End Enum
 
+Public Enum ePurchaseCategories
+  <Description("Ninguna")> None = 0
+  <Description("Compra de Madera")> Madera = 1
+  <Description("Compra de Insumos Producción")> InsumosProduccion = 2
+  <Description("Compra de Consumible Producción")> ConsumibleProduccion = 3
+  <Description("Compra Administrativa")> CompraAdmon = 4
+  <Description("Compra de Ingeniería")> CompraIngenieria = 5
+  <Description("Otras")> Otro = 8
+End Enum
+
 Public Enum eObjectType
   SalesOrder = 1
   WorkOrder = 2
@@ -43,6 +53,11 @@ Public Enum eCustomerStatus
   <Description("Inactivo")> Inactive = 0
 End Enum
 
+Public Enum eSupplierStatus
+  <Description("Activo")> Active = 1
+  <Description("Inactivo")> Inactive = 0
+End Enum
+
 Public Enum eGridViewType
   Grid = 1
   Card = 2
@@ -60,6 +75,7 @@ Public Enum eBrowseList
   Inventory = 7
   PurchaseOrder = 8
   StockTake = 9
+  Supplier = 10
 End Enum
 
 

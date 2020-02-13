@@ -34,6 +34,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pStdImportCost As Decimal
   Private pImageFile As String
   Private pASISID As Integer
+  Private pSupplier As dmSupplier
 
   Private ptmpIsFullyLoadedDown As Boolean
 
@@ -42,6 +43,7 @@ Public Class dmStockItem : Inherits dmBase
   End Sub
 
   Protected Overrides Sub NewSetup()
+    pSupplier = New dmSupplier
     ''Add object/collection instantiations here
   End Sub
 
@@ -60,6 +62,15 @@ Public Class dmStockItem : Inherits dmBase
       '' Check Objects and Collections
       IsAnyDirty = mAnyDirty
     End Get
+  End Property
+
+  Public Property Supplier As dmSupplier
+    Get
+      Return pSupplier
+    End Get
+    Set(value As dmSupplier)
+      pSupplier = value
+    End Set
   End Property
 
   Public Overrides Sub ClearKeys()
@@ -97,6 +108,8 @@ Public Class dmStockItem : Inherits dmBase
       .StdCost = StdCost
       .StdImportCost = StdImportCost
       .ImageFile = ImageFile
+
+      Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management

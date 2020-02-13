@@ -109,11 +109,11 @@ Partial Class frmPickMaterials
     '
     Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.LabelControl5.Appearance.Options.UseFont = True
-    Me.LabelControl5.Location = New System.Drawing.Point(194, 86)
+    Me.LabelControl5.Location = New System.Drawing.Point(186, 86)
     Me.LabelControl5.Name = "LabelControl5"
-    Me.LabelControl5.Size = New System.Drawing.Size(107, 16)
+    Me.LabelControl5.Size = New System.Drawing.Size(115, 16)
     Me.LabelControl5.TabIndex = 10
-    Me.LabelControl5.Text = "Fech Planificada"
+    Me.LabelControl5.Text = "Fecha Planificada"
     '
     'LabelControl4
     '
@@ -257,7 +257,7 @@ Partial Class frmPickMaterials
     '
     Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
     Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
-    Me.GridColumn2.Caption = "Description"
+    Me.GridColumn2.Caption = "Descripción"
     Me.GridColumn2.FieldName = "Description"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.OptionsColumn.ReadOnly = True
@@ -471,7 +471,7 @@ Partial Class frmPickMaterials
     Me.Controls.Add(Me.grpMaterialRequirements)
     Me.Controls.Add(Me.GroupControl1)
     Me.Name = "frmPickMaterials"
-    Me.Text = "frmPickMaterials"
+    Me.Text = "Salida de Materiales"
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl1.ResumeLayout(False)
     Me.GroupControl1.PerformLayout()

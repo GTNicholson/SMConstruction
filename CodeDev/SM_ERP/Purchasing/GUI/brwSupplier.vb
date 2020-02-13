@@ -170,7 +170,7 @@ Public Class brwSupplier : Inherits brwBrowserListBase
 
         .AddListOption("Activar Proveedor", eListOption.DefaultListOption)
         .AddListOption("Nuevo Proveedor", eListOption.DefaultListOption)
-        .AddListOption("Proveedores Caducados", eListOption.DefaultListOption)
+        .AddListOption("Proveedores Inactivos", eListOption.DefaultListOption)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
@@ -228,16 +228,14 @@ Public Class brwSupplier : Inherits brwBrowserListBase
       mGridView = gridBrowseList.MainView
       ''Set lookup columns
 
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(ePartType)))
-      ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
-      ' gridBrowseList.Refresh()
+      gridBrowseList.Refresh()
 
 
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SupplierStatusID"), clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)))
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SupplierStatusID"), clsEnumsConstants.EnumToVIs(GetType(eSupplierStatus)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PurchaseTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
 
 
       Me.SaveButton = eActiveVisibleState.Invisible

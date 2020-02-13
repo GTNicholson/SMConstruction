@@ -7,6 +7,51 @@ Public Class dsoPurchasing
     pDBConn = vDBConn
   End Sub
 
+  Public Function LoadSupplierDown(ByRef rSupplier As dmSupplier, ByVal vID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSupplier
+    Dim mdtoSC As dtoSupplierContact
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSupplier(pDBConn)
+      mdto.LoadSupplier(rSupplier, vID)
+      mdtoSC = New dtoSupplierContact(pDBConn)
+      mdtoSC.LoadSupplierContactCollection(rSupplier.SupplierContacts, rSupplier.SupplierID)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function LoadSuppliers(ByRef rSuppliers As colSuppliers) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSupplier
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSupplier(pDBConn)
+      mdto.LoadSupplierCollection(rSuppliers)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
 
   Public Function SavePurchaseOrderDown(ByRef rPurchaseOrder As dmPurchaseOrder) As Boolean
     Dim mRetVal As Boolean
@@ -85,6 +130,29 @@ Public Class dsoPurchasing
     Return mRetVal
   End Function
 
+  Public Function SaveSupplierDown(ByRef rSupplier As dmSupplier) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSupplier
+    Dim mdtoCC As dtoSupplierContact
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSupplier(pDBConn)
+      mdto.SaveSupplier(rSupplier)
+      mdtoCC = New dtoSupplierContact(pDBConn)
+      mdtoCC.SaveSupplierContactCollection(rSupplier.SupplierContacts, rSupplier.SupplierID)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
 
 
 
@@ -111,7 +179,40 @@ Public Class dsoPurchasing
 
   Public Function LoadPurchaseOrderDown(ByRef rPurchaseOrder As dmPurchaseOrder, ByVal vPurchaseOrderID As Integer) As Boolean
 
+    Dim mRetVal As Boolean
+    Dim mdto As dtoPurchaseOrder
+    Dim mdtoSupplier As dtoSupplier
+    Dim mdtoSupplierContacts As dtoSupplierContact
+    Dim mdtoPOIs As dtoPurchaseOrderItem
+    Dim mdtoProduct As dtoProductBase
+    Dim mdtoOutputDocs As dtoOutputDocument
+    Dim mdtoSOFiles As dtoFileTracker
 
+
+    pDBConn.Connect()
+    mdto = New dtoPurchaseOrder(pDBConn)
+    mdto.LoadPurchaseOrder(rPurchaseOrder, vPurchaseOrderID)
+
+
+    mdtoSupplier = New dtoSupplier(pDBConn)
+    mdtoSupplier.LoadSupplier(rPurchaseOrder.Supplier, rPurchaseOrder.SupplierID)
+
+    mdtoSupplierContacts = New dtoSupplierContact(pDBConn)
+    If rPurchaseOrder.Supplier IsNot Nothing Then
+      mdtoSupplierContacts.LoadSupplierContactCollection(rPurchaseOrder.Supplier.SupplierContacts, rPurchaseOrder.Supplier.SupplierID)
+    End If
+
+    mdtoPOIs = New dtoPurchaseOrderItem(pDBConn)
+    mdtoPOIs.LoadPurchaseOrderItemCollection(rPurchaseOrder.PurchaseOrderItems, rPurchaseOrder.PurchaseOrderID)
+
+
+    mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+
+    pDBConn.Disconnect()
+
+    mRetVal = True
+
+    Return mRetVal
 
   End Function
 

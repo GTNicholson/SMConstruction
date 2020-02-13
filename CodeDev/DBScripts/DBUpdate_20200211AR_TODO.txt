@@ -1,0 +1,28 @@
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+alter TABLE Supplier
+
+	add MainAddress1 varchar (100) NULL,
+	MainAddress2 varchar(100) NULL,
+	MainTown varchar(64) NULL,
+	MainCounty varchar (64) NULL,
+	MainCountry varchar(64) NULL
+
+go
+
+insert ValueItemList (DisplayOrder,Description)
+values(10,'Términos de Compras')
+go
+
+insert ValueItem (ValueItemListID,DisplayOrder,value,Description,Protect,ArchiveOnly)
+Values(10,1,1,'Contado','false','false')
+go
+
+insert LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,ProtectedFieldName,
+					PermissionID,ActivityCode,OrderModeENUM,GroupKeyFieldName,SelectionCode,EnableValidation)
+VALUES(21,'Términos de Compras','ValueItem','ValueItemID','Description',null,4,1,1,10,7,'False')
+
+go

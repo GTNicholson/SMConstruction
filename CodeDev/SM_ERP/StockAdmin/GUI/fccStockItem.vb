@@ -37,6 +37,28 @@ Public Class fccStocktem
     End Get
   End Property
 
+  Public Function GetSupplierList() As colSuppliers
+    Dim mRetVal As New colSuppliers
+    Dim mdso As dsoPurchasing
+    Try
+      mdso = New dsoPurchasing(pDBConn)
+      mdso.LoadSuppliers(mRetVal)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Sub ReloadSupplier()
+    Dim mdso As dsoPurchasing
+    Try
+      mdso = New dsoPurchasing(pDBConn)
+      mdso.LoadSupplierDown(pStockItem.Supplier, pStockItem.DefaultSupplier)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
   Public ReadOnly Property StockItems As colStockItems
     Get
       Return pStockItems
@@ -135,6 +157,8 @@ Public Class fccStocktem
     pStockItems = New colStockItems
     pSIGlobalRegistry = rRegistry
     pShowItemsMode = eShowItems.ShowLive
+    pStockItem = New dmStockItem
+
   End Sub
 
 

@@ -27,20 +27,21 @@ Public Class fccSupplierDetail
 
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+
+    Dim mdso As dsoPurchasing
 
     pSupplier = New dmSupplier
 
     If pPrimaryKeyID <> 0 Then
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoPurchasing(pDBConn)
       mdso.LoadSupplierDown(pSupplier, pPrimaryKeyID)
     End If
 
   End Sub
 
   Public Sub SaveObjects()
-    Dim mdso As dsoSales
-    mdso = New dsoSales(pDBConn)
+    Dim mdso As dsoPurchasing
+    mdso = New dsoPurchasing(pDBConn)
     mdso.SaveSupplierDown(pSupplier)
   End Sub
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn

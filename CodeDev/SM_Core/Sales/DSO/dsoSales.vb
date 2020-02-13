@@ -34,27 +34,7 @@ Public Class dsoSales
   End Function
 
 
-  Public Function LoadSupplierDown(ByRef rSupplier As dmSupplier, ByVal vID As Integer) As Boolean
-    Dim mRetVal As Boolean
-    Dim mdto As dtoSupplier
 
-
-    Try
-
-      pDBConn.Connect()
-      mdto = New dtoSupplier(pDBConn)
-      mdto.LoadSupplier(rSupplier, vID)
-
-      pDBConn.Disconnect()
-      mRetVal = True
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-
-    Return mRetVal
-  End Function
 
 
 
@@ -106,25 +86,6 @@ Public Class dsoSales
   End Function
 
 
-  Public Function SaveSupplierDown(ByRef rSupplier As dmSupplier) As Boolean
-    Dim mRetVal As Boolean
-    Dim mdto As dtoSupplier
-
-    Try
-
-      pDBConn.Connect()
-      mdto = New dtoSupplier(pDBConn)
-      mdto.SaveSupplier(rSupplier)
-      pDBConn.Disconnect()
-      mRetVal = True
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-
-    Return mRetVal
-  End Function
 
 
   Public Function SaveSalesOrderDown(ByRef rSalesOrder As dmSalesOrder) As Boolean
