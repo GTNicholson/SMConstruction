@@ -1,0 +1,82 @@
+Create View vwSalesOrderEngineeringCompleteSum as
+select SalesOrderID, Count(WorkOrderMilestoneStatusID) as EngineeringCompleteQty
+from WorkOrderMilestoneStatus WOMS 
+Inner Join WorkOrder WO on WO.WorkOrderID =  WOMS.WorkOrderID
+Where MilestoneEnum = 1 And Status = 3 and ActualDate is not null
+Group By SalesOrderID
+
+GO
+
+Create View vwSalesOrderDespatchCompleteSum as
+select SalesOrderID, Count(WorkOrderMilestoneStatusID) as DespatchCompleteQty
+from WorkOrderMilestoneStatus WOMS 
+Inner Join WorkOrder WO on WO.WorkOrderID =  WOMS.WorkOrderID
+Where MilestoneEnum = 10 And Status = 3 and ActualDate is not null
+Group By SalesOrderID
+
+GO
+
+Create View vwWorkOrderMatReqOtherSum as
+select 
+WO.WorkOrderID,
+Count(MR.MaterialRequirementID) as QtyMatReqsOther,
+SUM(Case When IsNull(MR.Quantity,0)-IsNull(MR.PickedQty,0) > 0 or IsNull(MR.PickedQty,0) = 0 Then 1 Else 0 End) as QtyMatReqsOtherUnpicked
+from 
+MaterialRequirement MR
+Inner Join ProductFurniture PF on PF.ProductFurnitureID = MR.ObjectID And MR.ObjectType = 1
+Inner Join WorkOrder WO on WO.ProductID = PF.ProductFurnitureID And WO.ProductTypeID = 1
+Left Join StockItem SI on SI.StockItemID = MR.StockItemID
+Where MaterialRequirementType = 2
+Group By WO.WorkOrderID
+
+GO
+
+Create View vwSalesOrderPickedWOsSum as
+Select 
+WO.SalesOrderID,
+Sum(Case When IsNull(QtyMatReqsOther,0) - IsNull(QtyMatReqsOtherUnpicked,0) > 0 Then 1 Else 0 End) as WOsMROtherPicked
+from vwWorkOrderMatReqOtherSum WOMROS
+Inner Join WorkOrder WO on WO.WorkOrderID = WOMROS.WorkOrderID
+Group By WO.SalesOrderID
+
+GO
+
+Create View vwSalesOrderTimeSheetEntrySum as 
+select 
+SalesOrderID,
+Sum((DateDiff(minute,StartTime,EndTime)/60)/8.0) as TimeSheetEntryDays
+from TimeSheetEntry TSE
+Inner Join WorkOrder WO on WO.WorkOrderID = TSE.WorkOrderID
+Where StartTime Is Not Null And EndTime Is Not Null
+Group By SalesOrderID
+
+GO
+
+Create view vwSalesOrderWorkOrderSum as
+Select
+SOI.SalesOrderID,
+Count(WO.WorkOrderID) as QtyWOs
+From WorkOrder WO
+Inner Join SalesOrderItem SOI on SOI.SalesOrderItemID = WO.SalesOrderItemID
+Group By SOI.SalesOrderID
+
+GO
+
+Create View vwSalesOrderProgressInfo as
+select 
+SO.ProjectName,
+WOS.QtyWOs,
+ECS.EngineeringCompleteQty,
+DCS.DespatchCompleteQty,
+PWOS.WOsMROtherPicked,
+TimeSheetEntryDays
+from salesorder SO
+Left Join vwSalesOrderWorkOrderSum WOS on WOS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderEngineeringCompleteSum ECS on ECS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderDespatchCompleteSum DCS on DCS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderPickedWOsSum PWOS on PWOS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderTimeSheetEntrySum TSES on TSES.SalesOrderID = SO.SalesOrderID
+
+GO
+
+GO
