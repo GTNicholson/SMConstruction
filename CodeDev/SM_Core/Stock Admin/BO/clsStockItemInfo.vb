@@ -9,6 +9,7 @@ Public Class clsStockItemInfo
   Private pQty As Decimal
 
 
+
   Public Sub New()
     MyBase.New()
     pStockItem = New dmStockItem
@@ -47,7 +48,7 @@ Public Class clsStockItemInfo
 
   Public Property Balance() As Decimal
     Get
-      Return pBalance
+      Return pCurrentInventory + pOrderQty - pRequiredInventory
     End Get
     Set(ByVal value As Decimal)
       pBalance = value

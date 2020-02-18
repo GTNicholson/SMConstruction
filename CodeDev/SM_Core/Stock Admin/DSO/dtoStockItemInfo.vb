@@ -59,6 +59,8 @@ Public Class dtoStockItemInfo : Inherits dtoBase
       With pStockItemInfo
 
         .CurrentInventory = DBReadDecimal(rDataReader, "Qty")
+        .RequiredInventory = DBReadDecimal(rDataReader, "OSQty")
+        .OrderQty = DBReadDecimal(rDataReader, "POSQty")
         '' .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
         ''.OrderQty = DBReadDecimal(rDataReader, "OrderQty")
         ''.Balance = DBReadDecimal(rDataReader, "Balance")

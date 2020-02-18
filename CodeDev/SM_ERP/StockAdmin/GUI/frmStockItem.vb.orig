@@ -3,6 +3,8 @@ Imports RTIS.CommonVB
 Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraEditors.Controls
+Imports System.IO
 
 Public Class frmStockItem
 
@@ -36,20 +38,85 @@ Public Class frmStockItem
 
   End Sub
 
-  Private Sub barRGObsoleteItems_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barRGObsoleteItems.ItemClick
+  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory), ByRef rRegistry As clsStockItemRegistryBase)
+    Dim mfrm As frmStockItem = Nothing
 
+    mfrm = GetFormIfLoaded()
+    If mfrm Is Nothing Then
+      mfrm = New frmStockItem
+      mfrm.MdiParent = rMDIParent
+      mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal, rRegistry)
+      mfrm.pFormController.Categorys = vCategorys
+      mfrm.Show()
+    Else
+      mfrm.Focus()
+    End If
   End Sub
+
+  Public Shared Function OpenAsModalGetID(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory), ByRef rRegistry As clsStockItemRegistryBase) As Integer
+    Dim mfrm As frmStockItem = Nothing
+    Dim mRetVal As Integer = -1
+
+    mfrm = New frmStockItem
+    mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal, rRegistry)
+    mfrm.pFormController.Categorys = vCategorys
+    mfrm.ShowDialog()
+    If mfrm.pFormController.CurrentStockItem IsNot Nothing Then
+      mRetVal = mfrm.pFormController.CurrentStockItem.StockItemID
+    End If
+    Return mRetVal
+  End Function
+
+
+  Private Shared Function GetFormIfLoaded() As frmStockItem
+    Dim mfrmWanted As frmStockItem = Nothing
+    Dim mFound As Boolean = False
+    Dim mfrm As frmStockItem
+    'Check if exisits already
+    If sActiveForms Is Nothing Then sActiveForms = New Collection
+    For Each mfrm In sActiveForms
+      If TypeOf mfrm Is frmStockItem Then
+        mfrmWanted = mfrm
+        mFound = True
+        Exit For
+      End If
+    Next
+    If Not mFound Then
+      mfrmWanted = Nothing
+    End If
+    Return mfrmWanted
+  End Function
+
+  Public ReadOnly Property FormController As fccStocktem
+    Get
+      Return pFormController
+    End Get
+  End Property
 
   Private Sub frmStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    pIsActive = False
-    pFormController.LoadObject()
-    RefreshAddStockItemOptions()
-    grdStockItems.DataSource = pFormController.StockItems
-    LoadCombos()
+    Dim mOK As Boolean = True
+    Dim mMsg As String = ""
+    Dim mErrorDisplayed As Boolean = False
 
-    RefreshControls()
+    pIsActive = False
+    Try
+      pFormController.LoadObject()
+      RefreshAddStockItemOptions()
+      grdStockItems.DataSource = pFormController.StockItems
+      LoadCombos()
+
+      RefreshControls()
+    Catch ex As Exception
+      mMsg = ex.Message
+      mOK = False
+      mErrorDisplayed = True
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
     pIsActive = True
   End Sub
+
+
 
   Private Sub RefreshAddStockItemOptions()
     Dim mItem As DevExpress.XtraBars.BarButtonItem
@@ -58,7 +125,7 @@ Public Class frmStockItem
 
     For Each mCat As eStockItemCategory In pFormController.Categorys
       mItem = New DevExpress.XtraBars.BarButtonItem
-      mItem.Caption = "Agregar " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), mCat) & " Stock Item"
+      mItem.Caption = "Artículo de " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), mCat)
       mItem.Tag = mCat
       AddHandler mItem.ItemClick, AddressOf AddStockItemCat
       barbtnAddStockItemCat.AddItem(mItem)
@@ -69,13 +136,22 @@ Public Class frmStockItem
   Private Sub AddStockItemCat(sender As Object, e As EventArgs)
     Dim mCategory As eStockItemCategory
     Dim mNewStockItem As dmStockItem
-
+    Dim mRH As Integer
     mCategory = CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
     mNewStockItem = pFormController.AddStockItem(1, mCategory)
 
     gvStockItems.RefreshData()
-    gvStockItems.FindRow(mNewStockItem)
-    gvStockItems.FocusedRowHandle = gvStockItems.FindRow(mNewStockItem)
+
+    mRH = gvStockItems.FindRow(mNewStockItem)
+
+    If mRH >= 0 Then
+      gvStockItems.FocusedRowHandle = mRH
+    Else
+      pFormController.CurrentStockItem = mNewStockItem
+      ShowHideDetails()
+      RefreshCategorySpecificControls()
+      RefreshControls()
+    End If
     pCurrentDetailMode = eCurrentDetailMode.eEdit
     RefreshDetailButtons()
     SetDetailFocus()
@@ -101,39 +177,7 @@ Public Class frmStockItem
     txtDescription.Focus()
   End Sub
 
-  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vCategorys As List(Of eStockItemCategory))
-    Dim mfrm As frmStockItem = Nothing
 
-    mfrm = GetFormIfLoaded()
-    If mfrm Is Nothing Then
-      mfrm = New frmStockItem
-      mfrm.MdiParent = rMDIParent
-      mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal)
-      mfrm.pFormController.Categorys = vCategorys
-
-      mfrm.Show()
-    Else
-      mfrm.Focus()
-    End If
-  End Sub
-  Private Shared Function GetFormIfLoaded() As frmStockItem
-    Dim mfrmWanted As frmStockItem = Nothing
-    Dim mFound As Boolean = False
-    Dim mfrm As frmStockItem
-    'Check if exisits already
-    If sActiveForms Is Nothing Then sActiveForms = New Collection
-    For Each mfrm In sActiveForms
-      If TypeOf mfrm Is frmStockItem Then
-        mfrmWanted = mfrm
-        mFound = True
-        Exit For
-      End If
-    Next
-    If Not mFound Then
-      mfrmWanted = Nothing
-    End If
-    Return mfrmWanted
-  End Function
 
   Private Sub frmStockItem_Closed(sender As Object, e As EventArgs) Handles Me.Closed
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
@@ -150,10 +194,12 @@ Public Class frmStockItem
         pCurrentDetailMode = eCurrentDetailMode.eEdit
         SetDetailsControlsReadonly(False)
         SetDetailFocus()
+        RefreshControls()
         RefreshCategorySpecificControls()
         RefreshControls()
       Case eDetailButtons.Save
-        UpdateObject()
+        UpdateObjects()
+        CheckStockCode()
         pFormController.SaveObject()
         pCurrentDetailMode = eCurrentDetailMode.eView
         gvStockItems.RefreshData()
@@ -162,6 +208,20 @@ Public Class frmStockItem
     End Select
     RefreshDetailButtons()
   End Sub
+
+  Private Function CheckStockCode() As Boolean
+    Dim mRetval As Boolean
+    Dim mProposedCode As String
+    If pFormController.CurrentStockItem.StockCode = "" Then
+      mProposedCode = pFormController.GetProposedCode
+      If mProposedCode <> "" Then
+        If MsgBox("¿Crear el código de artículo : " & mProposedCode & "?", vbYesNo) = vbYes Then
+          pFormController.CurrentStockItem.StockCode = mProposedCode
+        End If
+      End If
+    End If
+    Return mRetval
+  End Function
 
   Private Sub gvStockItems_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvStockItems.FocusedRowObjectChanged
     Dim mSI As dmStockItem
@@ -183,10 +243,13 @@ Public Class frmStockItem
   Private Sub RefreshControls()
 
     Dim mStartActive As Boolean = pIsActive
+    Dim mImage As Image = Nothing
 
     pIsActive = False
 
     If pFormController.CurrentStockItem IsNot Nothing Then
+
+
 
       With pFormController.CurrentStockItem
         txtDescription.Text = .Description
@@ -205,29 +268,43 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
-        clsDEControlLoading.SetDECombo(cboDefaultSupplier, .DefaultSupplier)
         chkcboActiveCondition.RefreshEditValue()
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
-
-        If pFormController.CurrentStockItemOpposite IsNot Nothing Then
-          btedOppositeItem.Text = pFormController.CurrentStockItemOpposite.StockCode
-
-        Else
-          btedOppositeItem.Text = ""
-        End If
+        txtStdCost.Text = .StdCost
+        txtImportCost.Text = .StdImportCost
+        bteImage.Text = .ImageFile
+        btnedSupplier.Text = .DefaultSupplier
 
 
-        If pFormController.CurrentStockItem.InterdenStockItemID <> 0 Then
-          bteInterdenStockItem.Text = pFormController.InterdenStockItem.Description
+        ''If .Supplier Is Nothing Then
+        ''  btnedSupplier.Text = ""
+        ''Else
+        ''  FillSupplierDetail()
 
-        Else
-          bteInterdenStockItem.Text = ""
-        End If
+        ''End If
+
 
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
 
       End With
+
+      Dim mFileName As String
+      If Not String.IsNullOrEmpty(pFormController.CurrentStockItem.ImageFile) Then
+
+        mFileName = clsSMSharedFuncs.GetStockItemImageFileName(pFormController.CurrentStockItem)
+        If IO.File.Exists(mFileName) Then
+          mImage = Image.FromStream(New IO.MemoryStream(IO.File.ReadAllBytes(mFileName)))
+          ''  mImage = Drawing.Image.FromFile(mFileName)
+
+        Else
+          mImage = Nothing
+
+        End If
+
+      End If
+
+
     End If
 
     If pCurrentDetailMode = eCurrentDetailMode.eView Then
@@ -236,7 +313,22 @@ Public Class frmStockItem
       SetDetailsControlsReadonly(False)
     End If
 
+
+    peImage.Image = mImage
     pIsActive = mStartActive
+  End Sub
+
+  Private Sub FillSupplierDetail()
+
+    Try
+      With pFormController.CurrentStockItem
+        btnedSupplier.Text = .Supplier.CompanyName
+      End With
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
   End Sub
 
   Private Sub LoadCombos()
@@ -254,7 +346,7 @@ Public Class frmStockItem
 
   End Sub
 
-  Private Sub UpdateObject()
+  Private Sub UpdateObjects()
 
     If pFormController.CurrentStockItem IsNot Nothing Then
       With pFormController.CurrentStockItem
@@ -273,16 +365,18 @@ Public Class frmStockItem
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
         .StockFinanceCategoryID = clsDEControlLoading.GetDEComboValue(cboStockFinanceCategory)
         .Finish = clsDEControlLoading.GetDEComboValue(cboFinish)
-        .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboDefaultSupplier)
         .IsGeneric = chkIsGeneric.Checked
         .Inactive = chkIsObsolete.Checked
-
+        .StdCost = txtStdCost.Text
+        .StdImportCost = txtImportCost.Text
 
       End With
     End If
 
   End Sub
   Private Sub RefreshCategorySpecificControls()
+
+
     Dim mStartActive As Boolean = pIsActive
     ''Dim mcoltemTypes As colSubItemTypes
     ''Dim mcolSubItemTypes2 As colSubItemTypes
@@ -311,17 +405,24 @@ Public Class frmStockItem
 
           Dim mAbrasivosType As clsStockItemTypeAbrasivos
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
-
-
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
-        Case eStockItemCategory.EPP
-          cboItemType.Enabled = False
+        Case eStockItemCategory.NailsAndBolds
+
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
           cboSpecies.Enabled = True
-          cboItemType.Enabled = False
-          cboSubitemType.Enabled = False
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
+
+
+        Case eStockItemCategory.EPP
+          Dim mEPP As clsStockItemTypeEPP
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeEPP.GetInstance.ValueItems)
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = True
+          cboSubitemType.Enabled = True
 
         Case eStockItemCategory.Herrajes
 
@@ -334,6 +435,9 @@ Public Class frmStockItem
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.Herramientas
+
+          Dim mHerrajesType As clsStockItemTypeHerramientas
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerramientas.GetInstance.ValueItems)
 
           cboItemType.Enabled = False
           cboSpecies.Enabled = True
@@ -362,6 +466,11 @@ Public Class frmStockItem
 
         Case eStockItemCategory.MatVarios
 
+          Dim mMatEmpaque As clsStockItemTypeMatVarios
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarios.GetInstance.ValueItems)
+
+
+
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
@@ -376,14 +485,6 @@ Public Class frmStockItem
           cboSubitemType.Enabled = True
 
 
-        Case eStockItemCategory.NailsAndBolds
-
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
-
-
-          cboSpecies.Enabled = True
-          cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
 
 
         Case eStockItemCategory.PinturaYQuimico
@@ -420,22 +521,8 @@ Public Class frmStockItem
 
         Case eStockItemCategory.VidrioYEspejo
 
-<<<<<<< HEAD
-          Dim mVidrioType As clsStockSubItemTypeVidrioYEspejo
-=======
           Dim mVidrioType As clsStockItemType
->>>>>>> 51b383c603e2de2ec070eace2eaf32f31d2a0c4f
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-          'mVidrioType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
-          ''If mVidrioType IsNot Nothing Then
-
-<<<<<<< HEAD
-            clsDEControlLoading.FillDEComboVIi(cboSubitemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-          End If
-=======
-          ''  clsDEControlLoading.FillDEComboVIi(cboSubitemType, mVidrioType.StockSubItemTypeVidrioYEspejo)
-          ''End If
->>>>>>> 51b383c603e2de2ec070eace2eaf32f31d2a0c4f
 
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
@@ -469,18 +556,20 @@ Public Class frmStockItem
     cboStockFinanceCategory.ReadOnly = vReadOnly
     cboSubitemType.ReadOnly = vReadOnly
     cboFinish.ReadOnly = vReadOnly
-    cboDefaultSupplier.ReadOnly = vReadOnly
     cboCNCOpPrimaryLeaf.ReadOnly = vReadOnly
     cboCNCOpSecondaryLeaf.ReadOnly = vReadOnly
     cboCNCOpHangingJamb.ReadOnly = vReadOnly
     cboCNCOpClosingJamb.ReadOnly = vReadOnly
+    txtImportCost.ReadOnly = vReadOnly
+    txtStdCost.ReadOnly = vReadOnly
     cboCNCOpHead.ReadOnly = vReadOnly
     chkIsGeneric.Enabled = Not vReadOnly
     cboHanding.ReadOnly = vReadOnly
-    btedOppositeItem.ReadOnly = vReadOnly
     spnMinCutLength.ReadOnly = vReadOnly
     spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
+    bteImage.Enabled = Not vReadOnly
+    btnedSupplier.Enabled = Not vReadOnly
 
     ''    btnedImageFile.ReadOnly = vReadOnly
 
@@ -535,6 +624,8 @@ Public Class frmStockItem
 
 
   Private Sub gvStockItems_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItems.CustomUnboundColumnData
+
+
     Dim mRow As dmStockItem
     Dim mVIs As New colValueItems
     ''Dim mSubTypes As colSubItemTypes
@@ -553,8 +644,23 @@ Public Class frmStockItem
               Case eStockItemCategory.Abrasivos
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeAbrasivos), CType(mRow.ItemType, eStockItemTypeAbrasivos.eStockItemAbrasivos))
                 e.Value = mText
+
+
+              Case eStockItemCategory.NailsAndBolds
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+                e.Value = mText
+
+
+              Case eStockItemCategory.EPP
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeEPP), CType(mRow.ItemType, eStockItemTypeEPP.eStockItemMaterialEPP))
+                e.Value = mText
+
               Case eStockItemCategory.Herrajes
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+                e.Value = mText
+
+              Case eStockItemCategory.Herramientas
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerramientas), CType(mRow.ItemType, eStockItemTypeHerramientas.eStockItemMaterialHerramientas))
                 e.Value = mText
 
               Case eStockItemCategory.MatElect
@@ -566,13 +672,24 @@ Public Class frmStockItem
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialEmpaque), CType(mRow.ItemType, eStockItemTypeMaterialEmpaque.StockItemMaterialEmpaque))
                 e.Value = mText
 
+              Case eStockItemCategory.MatVarios
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMatVarios), CType(mRow.ItemType, eStockItemTypeMatVarios.eStockItemMaterialMatVarios))
+                e.Value = mText
+
+
               Case eStockItemCategory.Metal
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
 
-              Case eStockItemCategory.NailsAndBolds
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+
+              Case eStockItemCategory.PinturaYQuimico
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypePintura), CType(mRow.ItemType, eStockItemTypePintura.eStockItemPintura))
                 e.Value = mText
+
+              Case eStockItemCategory.Laminas
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeLamina), CType(mRow.ItemType, eStockItemTypeLamina.eStockItemLamina))
+                e.Value = mText
+
 
               Case eStockItemCategory.Repuestos
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
@@ -583,11 +700,8 @@ Public Class frmStockItem
                 e.Value = mText
 
               Case eStockItemCategory.VidrioYEspejo
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
-                e.Value = mText
 
-              Case eStockItemCategory.Metal
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
                 e.Value = mText
 
               Case Else
@@ -602,7 +716,8 @@ Public Class frmStockItem
       End If
     End If
 
-    RefreshControls()
+    ''RefreshControls()
+
   End Sub
 
   Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
@@ -610,7 +725,97 @@ Public Class frmStockItem
   End Sub
 
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
+    UpdateObjects()
+    RefreshCategorySpecificControls()
+  End Sub
+
+  Private Sub gvStockItems_ColumnChanged(sender As Object, e As EventArgs) Handles gvStockItems.ColumnChanged
 
   End Sub
+
+  Private Sub bteImage_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteImage.ButtonClick
+    Try
+<<<<<<< HEAD
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Ellipsis, ButtonPredefines.Plus
+          UpdateObjects()
+          Dim mFileName As String = ""
+
+          If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
+            If pFormController.CreateSIImageFile(mFileName) = False Then
+              MsgBox("¡No Funcionó!")
+            End If
+          End If
+          RefreshControls()
+
+
+        Case ButtonPredefines.Delete
+          DeleteSIImage()
+
+      End Select
+
+
+=======
+      UpdateObjects()
+      Dim mFileName As String = ""
+      If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar Imagen") = DialogResult.OK Then
+
+        ''// make sure that we clear the current image first so that it can be overwritten
+        peImage.Image = Nothing
+        peImage.Refresh()
+
+        If pFormController.CreateSIImageFile(mFileName) = False Then
+          MsgBox("¡No Funcionó!")
+        End If
+      End If
+      RefreshControls()
+>>>>>>> 907ce9b5f0256882faaff048384bd74caadbcef2
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Public Sub DeleteSIImage()
+    peImage.Image.Dispose()
+    peImage.Image = Nothing
+    File.Delete(pFormController.CurrentStockItem.ImageFile)
+    bteImage.Text = Nothing
+
+  End Sub
+
+  Private Sub btnedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnedSupplier.ButtonClick
+    Try
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Combo
+          Dim mSupplierPicker As clsPickerSupplier
+          Dim mSupplier As dmSupplier
+          UpdateObjects()
+          mSupplierPicker = New clsPickerSupplier(pFormController.GetSupplierList, pFormController.DBConn)
+          mSupplier = frmPickSupplier.OpenPickerSingle(mSupplierPicker)
+          If mSupplier IsNot Nothing Then
+            pFormController.CurrentStockItem.DefaultSupplier = mSupplier.SupplierID
+            pFormController.CurrentStockItem.Supplier = mSupplier
+            pFormController.ReloadSupplier()
+            FillSupplierDetail()
+
+          End If
+          RefreshControls()
+        Case ButtonPredefines.Ellipsis
+          frmSupplierDetail.OpenFormModal(pFormController.StockItem.DefaultSupplier, pFormController.DBConn)
+          If pFormController.StockItem.DefaultSupplier <> 0 Then
+            pFormController.ReloadSupplier()
+            FillSupplierDetail()
+
+          End If
+          RefreshControls()
+      End Select
+
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
 End Class
 

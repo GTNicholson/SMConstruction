@@ -18,7 +18,10 @@ Public Class frmPurchaseOrder
   Private pIsActive As Boolean
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
+  Private Enum eWorkOrder
+    PickWO = 1
 
+  End Enum
 
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
     Dim mfrm As frmPurchaseOrder = Nothing
@@ -136,12 +139,13 @@ Public Class frmPurchaseOrder
     Try
 
 
-      pFormController.LoadObject()
-      RefreshGrid()
-
+      If mOK Then mOK = pFormController.LoadObject()
+      If mOK Then mOK = pFormController.LoadRefData()
       LoadCombos()
       RefreshControls()
-      If mOK Then RefreshControls()
+      RefreshGrid()
+
+
 
       ''If mOK Then SetupUserPermissions()
 
@@ -169,7 +173,7 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub LoadCombos()
-
+    grdWorkOrder.DataSource = pFormController.WorkOrders
   End Sub
 
 
@@ -443,7 +447,7 @@ Public Class frmPurchaseOrder
           End If
           RefreshControls()
         Case ButtonPredefines.Ellipsis
-          frmCustomerDetail.OpenFormModal(pFormController.PurchaseOrder.SupplierID, pFormController.DBConn)
+          frmSupplierDetail.OpenFormModal(pFormController.PurchaseOrder.SupplierID, pFormController.DBConn)
           If pFormController.PurchaseOrder.SupplierID <> 0 Then
             pFormController.ReloadSupplier()
             FillSupplierDetail()
@@ -458,81 +462,6 @@ Public Class frmPurchaseOrder
     End Try
   End Sub
 
-  Private Sub gpnlPOItems_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpnlPOItems.CustomButtonClick
-    ' Dim mPickerStockItem As clsPickerStockItem
-    Dim mSelectedItem As dmStockItem
-    Dim mPOItem As dmPurchaseOrderItem
-    Dim mPOItemEditor As clsPOItemEditor
-    Dim mPicker As clsPickerStockItem
-    Dim mStockItems As New colStockItems
-    Dim mStockItem As dmStockItem
-    Dim mSelectedStockItems As colStockItems
-    Try
-
-      Select Case e.Button.Properties.Tag
-        Case "AddStockItem"
-
-          For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-            mStockItems.Add(mItem.Value)
-          Next
-
-          mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, pFormController.RTISGlobal)
-
-          For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
-            If mPOItem.StockItemID > 0 Then
-              mStockItem = mStockItems.ItemFromKey(mPOItem.StockItemID)
-
-              If Not mPicker.SelectedObjects.Contains(mStockItem) Then
-                mPicker.SelectedObjects.Add(mStockItem)
-              End If
-            End If
-          Next
-
-          If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal) Then
-            For Each mSelectedItem In mPicker.SelectedObjects
-              If mSelectedItem IsNot Nothing Then
-                mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
-                If mPOItem Is Nothing Then
-                  mPOItem = clsPurchaseHandler.AddPOItem(pFormController.PurchaseOrder)
-                  mPOItem.StockItemID = mSelectedItem.StockItemID
-                  mPOItem.Description = mSelectedItem.Description
-                  mPOItem.PartNo = mSelectedItem.PartNo
-                End If
-              End If
-            Next
-          End If
-          mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
-
-          For mindex As Integer = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Count - 1 To 0 Step -1
-            mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem(mindex)
-            If mPOItem.StockItemID > 0 Then
-              mStockItem = mSelectedStockItems.ItemFromKey(mPOItem.StockItemID)
-
-              If Not mPicker.SelectedObjects.Contains(mStockItem) Then
-                pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
-              End If
-            End If
-          Next
-
-
-          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
-
-        Case "DeleteItem"
-
-          mPOItem = gvPurchaseOrderItems.GetFocusedRow
-          If mPOItem IsNot Nothing Then
-            If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
-              pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
-              grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
-            End If
-          End If
-
-      End Select
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
-  End Sub
 
   Private Sub btnEditPurchaseOrderPDF_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnEditPurchaseOrderPDF.ButtonClick
     Try
@@ -635,4 +564,146 @@ Public Class frmPurchaseOrder
     Return mRetVal
   End Function
 
+  Private Sub gpWorkOrder_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpWorkOrder.CustomButtonClick
+    Dim mfcc As New fccPickMaterials(pFormController.DBConn)
+    Select Case e.Button.Properties.Tag
+      Case eWorkOrder.PickWO
+
+        Try
+          Dim mSelectedItems As New Dictionary(Of Integer, Boolean)
+          Dim mPOAllocation As dmPurchaseOrderAllocation
+          Dim mPOItemAllocation As dmPurchaseOrderItemAllocation
+          Dim mPOIAExists As Boolean
+          For Each mPOAllocation In pFormController.PurchaseOrder.PurchaseOrderAllocations
+            mPOIAExists = False
+            For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
+              For Each mPOItemAllocation In mPOItem.PurchaseOrderItemAllocations
+                If mPOItemAllocation.WorkOrderID = mPOAllocation.WorkOrderID Then
+                  mPOIAExists = True
+                  Exit For
+                End If
+              Next
+              If mPOIAExists Then Exit For
+            Next
+            mSelectedItems.Add(mPOAllocation.WorkOrderID, Not mPOIAExists)
+          Next
+
+
+          If frmWorkOrderPickerMulti.GetSelectedIDs(Me, pFormController.DBConn, mSelectedItems) = DialogResult.OK Then
+
+            For Each mWorkOrderID As Integer In mSelectedItems.Keys
+              If pFormController.PurchaseOrder.PurchaseOrderAllocations.IndexFromWorkOrderID(mWorkOrderID) = -1 Then
+                mPOAllocation = New dmPurchaseOrderAllocation
+                mPOAllocation.WorkOrderID = mWorkOrderID
+                pFormController.PurchaseOrder.PurchaseOrderAllocations.Add(mPOAllocation)
+              End If
+              If pFormController.UsedWorkOrders.Contains(mWorkOrderID) = False Then
+                pFormController.UsedWorkOrders.Add(mWorkOrderID)
+              End If
+            Next
+
+            For mIndex As Integer = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 0 Step -1
+              mPOAllocation = pFormController.PurchaseOrder.PurchaseOrderAllocations(mIndex)
+              If Not mSelectedItems.ContainsKey(mPOAllocation.WorkOrderID) Then
+                pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mIndex)
+              End If
+            Next
+
+            For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
+              For mIndex As Integer = mPOItem.PurchaseOrderItemAllocations.Count - 1 To 0 Step -1
+                mPOItemAllocation = mPOItem.PurchaseOrderItemAllocations(mIndex)
+                If Not mSelectedItems.ContainsKey(mPOItemAllocation.WorkOrderID) Then
+                  mPOItem.PurchaseOrderItemAllocations.RemoveAt(mIndex)
+                End If
+              Next
+              mPOItem.QtyRequired = mPOItem.TotalQuantityAllocated
+            Next
+
+            pFormController.LoadRefData()
+            ''  LoadPOItemAllocationCombo()
+            gvPurchaseOrderItems.RefreshData()
+            grdWorkOrder.DataSource = pFormController.WorkOrders
+          End If
+        Catch ex As Exception
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+        End Try
+
+
+    End Select
+  End Sub
+
+  Private Sub gpnlPOItems_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpnlPOItems.CustomButtonClick
+    Dim mSelectedItem As dmStockItem
+    Dim mPOItem As dmPurchaseOrderItem
+    Dim mPOItemEditor As clsPOItemEditor
+    Dim mPicker As clsPickerStockItem
+    Dim mStockItems As New colStockItems
+    Dim mStockItem As dmStockItem
+    Dim mSelectedStockItems As colStockItems
+    Try
+
+      Select Case e.Button.Properties.Tag
+        Case "AddStockItem"
+
+          For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
+            mStockItems.Add(mItem.Value)
+          Next
+
+          mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, pFormController.RTISGlobal)
+
+          For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+            If mPOItem.StockItemID > 0 Then
+              mStockItem = mStockItems.ItemFromKey(mPOItem.StockItemID)
+
+              If Not mPicker.SelectedObjects.Contains(mStockItem) Then
+                mPicker.SelectedObjects.Add(mStockItem)
+              End If
+            End If
+          Next
+
+          If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal) Then
+            For Each mSelectedItem In mPicker.SelectedObjects
+              If mSelectedItem IsNot Nothing Then
+                mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
+                If mPOItem Is Nothing Then
+                  mPOItem = clsPurchaseHandler.AddPOItem(pFormController.PurchaseOrder)
+                  mPOItem.StockItemID = mSelectedItem.StockItemID
+                  mPOItem.Description = mSelectedItem.Description
+                  mPOItem.PartNo = mSelectedItem.PartNo
+                End If
+              End If
+            Next
+          End If
+          mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
+
+          For mindex As Integer = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Count - 1 To 0 Step -1
+            mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem(mindex)
+            If mPOItem.StockItemID > 0 Then
+              mStockItem = mSelectedStockItems.ItemFromKey(mPOItem.StockItemID)
+
+              If Not mPicker.SelectedObjects.Contains(mStockItem) Then
+                pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
+              End If
+            End If
+          Next
+
+
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+
+        Case "DeleteItem"
+
+          mPOItem = gvPurchaseOrderItems.GetFocusedRow
+          If mPOItem IsNot Nothing Then
+            If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
+              pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
+              grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+            End If
+          End If
+
+      End Select
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class

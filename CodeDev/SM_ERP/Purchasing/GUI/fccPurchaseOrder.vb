@@ -10,9 +10,10 @@ Public Class fccPurchaseOrder
   Private pPurchaseOrder As dmPurchaseOrder
   Private pSuppliers As colSuppliers
 
-  Private pUsedCallOffs As List(Of Integer)
+  Private pUsedWorkOrder As List(Of Integer)
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
   Private pPODelivery As dmPODelivery
+  Private pWorkOrders As colWorkOrders
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -27,7 +28,9 @@ Public Class fccPurchaseOrder
     pDBConn = rDBConn
     pPurchaseOrder = New dmPurchaseOrder
     pRTISGlobal = rRTISGlobal
-
+    pWorkOrders = New colWorkOrders
+    pUsedWorkOrder = New List(Of Integer)
+    pSuppliers = New colSuppliers
   End Sub
 
 
@@ -37,6 +40,15 @@ Public Class fccPurchaseOrder
     End Get
     Set(ByVal value As AppRTISGlobal)
       pRTISGlobal = value
+    End Set
+  End Property
+
+  Public Property WorkOrders As colWorkOrders
+    Get
+      Return pWorkOrders
+    End Get
+    Set(value As colWorkOrders)
+      pWorkOrders = value
     End Set
   End Property
 
@@ -79,12 +91,12 @@ Public Class fccPurchaseOrder
   End Property
 
 
-  Public Property UsedCallOffs As List(Of Integer)
+  Public Property UsedWorkOrders As List(Of Integer)
     Get
-      Return pUsedCallOffs
+      Return pUsedWorkOrder
     End Get
     Set(value As List(Of Integer))
-      pUsedCallOffs = value
+      pUsedWorkOrder = value
     End Set
   End Property
 
@@ -100,7 +112,34 @@ Public Class fccPurchaseOrder
 
   Public Function LoadRefData() As Boolean
 
+    Dim mOK As Boolean
+    Dim mdsoSales As New dsoSales(pDBConn)
+    Dim mWorkOrders As dmWorkOrder
+    Try
+
+      mOK = True
+      pWorkOrders = New colWorkOrders
+
+      For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
+        If pWorkOrders.IndexFromKey(mPOAllocation.WorkOrderID) = -1 Then
+          mWorkOrders = New dmWorkOrder
+          mdsoSales.LoadWorkOrder(mWorkOrders, mPOAllocation.WorkOrderID)
+          pWorkOrders.Add(mWorkOrders)
+        End If
+
+        If pUsedWorkOrder.Contains(mPOAllocation.WorkOrderID) = False Then
+          pUsedWorkOrder.Add(mPOAllocation.WorkOrderID)
+        End If
+      Next
+
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mOK
   End Function
+
 
   Public Sub LoadSuppliers()
 
@@ -108,20 +147,33 @@ Public Class fccPurchaseOrder
   End Sub
 
 
-  Public Sub LoadObject()
-    Dim mdso As dsoPurchasing
+  Public Function LoadObject() As Boolean
+    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
+    Dim mOK As Boolean
+    Try
 
-
-    If pPrimaryKeyID = 0 Then
+      mOK = True
       pPurchaseOrder = New dmPurchaseOrder
-    Else
-      pPurchaseOrder = New dmPurchaseOrder
-      mdso = New dsoPurchasing(pDBConn)
-      mdso.LoadPurchaseOrderDown(pPurchaseOrder, pPrimaryKeyID)
-    End If
-    ''pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
+      pUsedWorkOrder = New List(Of Integer)
+      If pPrimaryKeyID > 0 Then
 
-  End Sub
+        mOK = mdsoPurchaseOrder.LoadPurchaseOrderDown(Me.PurchaseOrder, Me.PrimaryKeyID)
+      Else
+        pPurchaseOrder.SubmissionDate = Today
+
+        SaveObject()
+        mOK = True
+      End If
+      ''mdsoPurchaseOrder = Nothing
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      mdsoPurchaseOrder = Nothing
+    End Try
+    Return mOK
+
+  End Function
 
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean = True
@@ -146,12 +198,11 @@ Public Class fccPurchaseOrder
   Public Function SaveObject() As Boolean
     Dim mOK As Boolean = False
     Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
-    Dim mPriceNet As Decimal
-    Dim mPriceGross As Decimal
+
 
     Try
 
-      mOK = mdsoPurchaseOrder.SavePurchaseOrderDown(Me.PurchaseOrder)
+      mOK = mdsoPurchaseOrder.SavePurchaseOrderDownNEW(Me.PurchaseOrder)
 
       If pPrimaryKeyID = 0 Then
         pPrimaryKeyID = PurchaseOrder.PurchaseOrderID

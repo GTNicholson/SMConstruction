@@ -7,11 +7,22 @@ Public Class fccPickMaterials
   Private pMaterialRequirementProcessors As colMaterialRequirementProcessors
   Private pFormController As fccPickMaterials
   Private pCurrentWorkOrderInfo As clsWorkOrderInfo
+  Private pWhere As String
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pMaterialRequirementProcessors = New colMaterialRequirementProcessors
   End Sub
+
+  Public Property WhereSQL() As String
+    Get
+      WhereSQL = pWhere
+    End Get
+    Set(value As String)
+      pWhere = value
+    End Set
+  End Property
+
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -73,7 +84,12 @@ or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
 
   End Sub
 
-
+  Public Function LoadWorkOrderInfoDT() As DataTable
+    Dim mdso As New dsoSales(DBConn)
+    Dim mDT As DataTable = Nothing
+    mdso.LoadWorkOrderDT(mDT, "")
+    Return mDT
+  End Function
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo

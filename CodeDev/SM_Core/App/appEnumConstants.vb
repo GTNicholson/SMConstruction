@@ -134,6 +134,7 @@ End Enum
 Public Enum eTallyIDs
   WorkOrder = 1
   InternalWorkOrder = 2
+  PurchaseOrderNo = 8
 End Enum
 
 Public Enum eWorkCentre

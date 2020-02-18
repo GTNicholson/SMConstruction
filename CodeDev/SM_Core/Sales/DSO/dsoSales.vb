@@ -8,6 +8,27 @@ Public Class dsoSales
     pDBConn = rDBConn
   End Sub
 
+  Public Function LoadWorkOrderDT(ByRef rDT As DataTable, Optional ByVal vWhereStr As String = "") As Boolean
+    Dim mSQL As String
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mSQL = " select * from workorder"
+
+      If vWhereStr.Length > 0 Then
+        mSQL = mSQL & vWhereStr
+      End If
+
+      rDT = pDBConn.CreateDataTable(mSQL)
+      mOK = True
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 
   Public Function LoadCustomerDown(ByRef rCustomer As dmCustomer, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
@@ -35,7 +56,28 @@ Public Class dsoSales
 
 
 
+  Public Function LoadSalesOrderProgressInfos(ByRef rSalesOrderProgressInfos As colSalesOrderProgressInfos, ByVal vWhere As String) As Boolean
 
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSalesOrderProgressInfo
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderProgressInfo(pDBConn)
+      mdto.LoadSalesOrderProgressCollection(rSalesOrderProgressInfos, vWhere)
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+
+
+  End Function
 
 
 
@@ -276,6 +318,27 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadWorkOrder(ByRef rWorkOrder As dmWorkOrder, ByVal vWorkOrderID As Integer) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdtoWorkOrder As New dtoWorkOrder(pDBConn)
+
+        mOk = mdtoWorkOrder.LoadWorkOrder(rWorkOrder, vWorkOrderID)
+
+        mdtoWorkOrder = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
 
   Public Function SaveWorkOrderDown(ByRef rWorkOrder As dmWorkOrder) As Boolean
     Dim mRetVal As Boolean

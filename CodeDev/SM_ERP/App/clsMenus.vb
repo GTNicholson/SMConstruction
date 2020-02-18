@@ -11,6 +11,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.Sales, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Sales)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.Sales)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Ventas por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderProgress, eActivityCode.Sales)
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Sales)
 
     mLastGroup = mMenuList.AddNewGroup("Producción", 0, eActivityCode.Production, True)
@@ -74,6 +75,15 @@ Class clsMenuFunctions
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
+  Public Shared Sub SalesOrderProgress(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmSalesOrderProgress.OpenFormMDI(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+
+  End Sub
+  Public Shared Sub StockInfos(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmStockItemInfo.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+  End Sub
+
+
   Public Shared Sub WorksOrderBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBrw As New brwWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WorkOrder)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
@@ -104,9 +114,6 @@ Class clsMenuFunctions
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
-  Public Shared Sub StockInfos(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmStockItemInfo.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
-  End Sub
 
   Public Shared Sub SupplierBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBrw As New brwSupplier(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Supplier)

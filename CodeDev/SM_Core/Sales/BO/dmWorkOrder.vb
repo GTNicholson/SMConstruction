@@ -544,6 +544,10 @@ Public Class colWorkOrders : Inherits colBase(Of dmWorkOrder)
 
   Private pParentSalesOrderItem As dmSalesOrderItem
 
+  Public Sub New()
+    MyBase.New()
+
+  End Sub
 
   Public Sub New(ByRef rParentSalesOrderItem As dmSalesOrderItem)
     MyBase.New()

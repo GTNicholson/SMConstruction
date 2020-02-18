@@ -1,0 +1,54 @@
+Create View vwStockItemMaterialRequirementSum as
+select 
+StockItemID,
+Sum(Quantity - Isnull(PickedQty,0)) as OSQty
+from MaterialRequirement
+Group By StockItemID
+go
+
+Create View vwStockItemPurchaseOrderSum as
+select 
+SI.StockItemID,
+Sum(POIA.Quantity - Isnull(POIA.ReceivedQty,0)) as POSQty
+from PurchaseOrderItemAllocation POIA
+left join PurchaseOrderItem POI on POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+left join StockItem SI on SI.StockItemID=POI.StockItemID
+Group By SI.StockItemID
+
+GO
+
+ALTER view [dbo].[vwStockItemInfo]
+as
+
+SELECT        
+SI.StockItemID, 
+SI.StockCode,
+SI.PartNo,
+si.ASISID,
+SI.Category, 
+SI.ItemType, 
+SI.Species, 
+SI.Colour, 
+SI.Length, 
+SI.Width, 
+SI.Thickness, 
+SI.DefaultSupplier,
+SI.Description, 
+StdCost,
+sil.qty,
+SIMR.OSQty,
+SIPOS.POSQty
+-- On Order Qty
+FROM dbo.StockItem AS SI
+left join vwSIStockItemLocationSUM as SIL ON SIL.StockItemID = si.StockItemID 
+left join vwStockItemMaterialRequirementSum SIMR on SIMR.StockItemID = SI.StockItemID
+left join vwStockItemPurchaseOrderSum SIPOS ON SIPOS.StockItemID=Si.StockItemID
+GO
+
+alter table PurchaseOrderAllocation
+add WorkOrderID int
+go
+
+alter table PurchaseOrderItemAllocation
+add WorkOrderID int
+go

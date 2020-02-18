@@ -1,4 +1,6 @@
-﻿Public Class repPurchaseOrder
+﻿Imports System.Drawing.Printing
+
+Public Class repPurchaseOrder
   Private i As Integer = 0
   Private pPurchaseOrder As dmPurchaseOrder
   Private pImageList As List(Of Image)
@@ -33,4 +35,25 @@
     MyBase.Finalize()
   End Sub
 
+  Private Sub SetUpDataBindings()
+
+    xrtSupplierCompanyName.DataBindings.Add("Text", pPurchaseOrder.Supplier, "CompanyName")
+
+
+  End Sub
+  Private Sub repPurchaseOrder_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
+
+    SetUpDataBindings()
+
+
+  End Sub
+
+  Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
+
+    Dim mPOI As dmPurchaseOrderItem
+
+    mPOI = Me.GetCurrentRow
+    xrtStockCode.Text = mPOI.Description
+
+  End Sub
 End Class

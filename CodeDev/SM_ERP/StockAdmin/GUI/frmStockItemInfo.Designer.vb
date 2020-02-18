@@ -190,6 +190,7 @@ Partial Class frmStockItemInfo
     'GridColumn10
     '
     Me.GridColumn10.Caption = "Inv. Req"
+    Me.GridColumn10.FieldName = "RequiredInventory"
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
     Me.GridColumn10.VisibleIndex = 9
@@ -198,6 +199,7 @@ Partial Class frmStockItemInfo
     'GridColumn11
     '
     Me.GridColumn11.Caption = "Cant. Pedidas"
+    Me.GridColumn11.FieldName = "OrderQty"
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
     Me.GridColumn11.VisibleIndex = 10
@@ -205,7 +207,8 @@ Partial Class frmStockItemInfo
     '
     'GridColumn12
     '
-    Me.GridColumn12.Caption = "Balance"
+    Me.GridColumn12.Caption = "Inv. Final"
+    Me.GridColumn12.FieldName = "Balance"
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
     Me.GridColumn12.VisibleIndex = 11

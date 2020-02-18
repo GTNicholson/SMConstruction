@@ -5,6 +5,7 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
   Private pPurchaseOrderAllocationID As Int32
   Private pPurchaseOrderID As Int32
   Private pCallOffID As Int32
+  Private pWorkOrderID As Int32
 
   Public Sub New()
     MyBase.New()
@@ -41,6 +42,7 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
       .PurchaseOrderAllocationID = PurchaseOrderAllocationID
       .PurchaseOrderID = PurchaseOrderID
       .CallOffID = CallOffID
+      .pWorkOrderID = WorkOrderID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -57,6 +59,16 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
     Set(ByVal value As Int32)
       If pPurchaseOrderAllocationID <> value Then IsDirty = True
       pPurchaseOrderAllocationID = value
+    End Set
+  End Property
+
+  Public Property WorkOrderID() As Int32
+    Get
+      Return pWorkOrderID
+    End Get
+    Set(ByVal value As Int32)
+      If pWorkOrderID <> value Then IsDirty = True
+      pWorkOrderID = value
     End Set
   End Property
 
@@ -127,7 +139,7 @@ Public Class colPurchaseOrderAllocations : Inherits colBase(Of dmPurchaseOrderAl
     MyBase.New(vList)
   End Sub
 
-  Public Function IndexFromCallOffID(ByVal vCallOffID As Integer) As Integer
+  Public Function IndexFromWorkOrderID(ByVal vCallOffID As Integer) As Integer
     Dim mItem As dmPurchaseOrderAllocation
     Dim mIndex As Integer = -1
     Dim mCount As Integer = -1

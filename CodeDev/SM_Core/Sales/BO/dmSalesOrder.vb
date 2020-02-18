@@ -49,6 +49,7 @@ Public Class dmSalesOrder : Inherits dmBase
     pSalesOrderItems = New colSalesOrderItems
     pOutputDocuments = New colOutputDocuments
     pSalesOrderItemDM = New dmSalesOrderItem
+    pCustomer = New dmCustomer
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -121,6 +122,7 @@ Public Class dmSalesOrder : Inherits dmBase
 
       'Entries for object management
       ''.WorkOrders = WorkOrders.Clone
+      .Customer = Customer.Clone
       .SalesOrderItems = SalesOrderItems.Clone
       .IsDirty = IsDirty
     End With

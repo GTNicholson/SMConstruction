@@ -57,6 +57,7 @@ Public Class dtoPurchaseOrderItemAllocation : Inherits dtoBase
     With pPurchaseOrderItemAllocation
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PurchaseOrderItemID", .PurchaseOrderItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CallOffID", .CallOffID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceivedQty", .ReceivedQty)
     End With
@@ -72,6 +73,7 @@ Public Class dtoPurchaseOrderItemAllocation : Inherits dtoBase
         .PurchaseOrderItemAllocationID = DBReadInt32(rDataReader, "PurchaseOrderItemAllocationID")
         .PurchaseOrderItemID = DBReadInt32(rDataReader, "PurchaseOrderItemID")
         .CallOffID = DBReadInt32(rDataReader, "CallOffID")
+        .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .Quantity = DBReadDecimal(rDataReader, "Quantity")
         .ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
         pPurchaseOrderItemAllocation.IsDirty = False

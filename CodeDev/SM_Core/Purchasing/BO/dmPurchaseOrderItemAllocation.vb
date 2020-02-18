@@ -7,6 +7,7 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   Private pSalesOrderPhaseID As Int32
   Private pQuantity As Decimal
   Private pReceivedQty As Decimal
+  Private pWorkOrderID As Int32
 
   Public Sub New()
     MyBase.New()
@@ -46,7 +47,7 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
       .Quantity = Quantity
       .ReceivedQty = ReceivedQty
       'Add entries here for each collection and class property
-
+      .WorkOrderID = WorkOrderID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -63,6 +64,17 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
       pPurchaseOrderItemAllocationID = value
     End Set
   End Property
+
+  Public Property WorkOrderID() As Int32
+    Get
+      Return pWorkOrderID
+    End Get
+    Set(ByVal value As Int32)
+      If pWorkOrderID <> value Then IsDirty = True
+      pWorkOrderID = value
+    End Set
+  End Property
+
 
   Public Property PurchaseOrderItemID() As Int32
     Get
