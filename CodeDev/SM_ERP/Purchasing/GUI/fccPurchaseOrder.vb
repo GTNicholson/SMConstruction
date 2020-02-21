@@ -14,6 +14,8 @@ Public Class fccPurchaseOrder
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
   Private pPODelivery As dmPODelivery
   Private pWorkOrders As colWorkOrders
+  Private pPOIEditor As clsPOItemEditor
+  Private pcolPOIEditor As colPOItemEditors
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -31,6 +33,9 @@ Public Class fccPurchaseOrder
     pWorkOrders = New colWorkOrders
     pUsedWorkOrder = New List(Of Integer)
     pSuppliers = New colSuppliers
+    pPOIEditor = New clsPOItemEditor
+    pcolPOIEditor = New colPOItemEditors
+
   End Sub
 
 
@@ -52,6 +57,23 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
+  Public Property POIEditor As clsPOItemEditor
+    Get
+      Return pPOIEditor
+    End Get
+    Set(value As clsPOItemEditor)
+      pPOIEditor = value
+    End Set
+  End Property
+
+  Public Property POIEditors As colPOItemEditors
+    Get
+      Return pcolPOIEditor
+    End Get
+    Set(value As colPOItemEditors)
+      pcolPOIEditor = value
+    End Set
+  End Property
   Public Property PrimaryKeyID() As Integer
     Get
       PrimaryKeyID = pPrimaryKeyID

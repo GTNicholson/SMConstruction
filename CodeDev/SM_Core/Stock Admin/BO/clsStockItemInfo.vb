@@ -7,12 +7,22 @@ Public Class clsStockItemInfo
   Private pOrderQty As Decimal
   Private pBalance As Decimal
   Private pQty As Decimal
+  Private pPOStockItem As dmPurchaseOrderItem
+  Private pSupplier As dmSupplier
 
+  Public Sub New(ByRef rPurchaseOrderItem As dmPurchaseOrderItem)
+    pPOStockItem = rPurchaseOrderItem
+
+    pStockItem = New dmStockItem
+    pSupplier = New dmSupplier
+
+  End Sub
 
 
   Public Sub New()
     MyBase.New()
     pStockItem = New dmStockItem
+    pPOStockItem = New dmPurchaseOrderItem
   End Sub
 
   Protected Overrides Sub Finalize()
@@ -87,6 +97,15 @@ Public Class clsStockItemInfo
       Return pStockItem.StockCode
     End Get
 
+  End Property
+
+  Public Property DefaultSupplier() As Int32
+    Get
+      Return pStockItem.DefaultSupplier
+    End Get
+    Set(value As Int32)
+      pStockItem.DefaultSupplier = value
+    End Set
   End Property
 
 

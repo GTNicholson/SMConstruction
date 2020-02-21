@@ -9,17 +9,6 @@ Public Class dtoSupplier : Inherits dtoBase
   Public Sub New(ByRef rDBSource As clsDBConnBase)
     MyBase.New(rDBSource)
   End Sub
-
-  Public Function LoadSupplierCollection(ByRef rSupplier As colSuppliers) As Boolean
-    Dim mParams As New Hashtable
-    Dim mOK As Boolean
-    ''mParams.Add("@ParentID", vParentID)
-    mOK = MyBase.LoadCollection(rSupplier, mParams, "SupplierID")
-    rSupplier.TrackDeleted = True
-    If mOK Then rSupplier.IsDirty = False
-    Return mOK
-  End Function
-
   Protected Overrides Sub SetTableDetails()
     pTableName = "Supplier"
     pKeyFieldName = "SupplierID"
@@ -36,6 +25,20 @@ Public Class dtoSupplier : Inherits dtoBase
       pSupplier.SupplierID = value
     End Set
   End Property
+
+  Public Function LoadSupplierCollection(ByRef rSupplier As colSuppliers) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ''mParams.Add("@ParentID", vParentID)
+    mOK = MyBase.LoadCollection(rSupplier, mParams, "SupplierID")
+    rSupplier.TrackDeleted = True
+    If mOK Then rSupplier.IsDirty = False
+
+
+    Return mOK
+  End Function
+
+
 
   Overrides Property IsDirtyValue() As Boolean
     Get
@@ -179,17 +182,6 @@ Public Class dtoSupplier : Inherits dtoBase
     pSupplier = rSupplier
     mOK = SaveObject()
     pSupplier = Nothing
-    Return mOK
-  End Function
-
-
-  Public Function LoadSupplierCollection(ByRef rSuppliers As colSuppliers, ByVal vParentID As Integer) As Boolean
-    Dim mParams As New Hashtable
-    Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
-    mOK = MyBase.LoadCollection(rSuppliers, mParams, "SupplierID")
-    rSuppliers.TrackDeleted = True
-    If mOK Then rSuppliers.IsDirty = False
     Return mOK
   End Function
 

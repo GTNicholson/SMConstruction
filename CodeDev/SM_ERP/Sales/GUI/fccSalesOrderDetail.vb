@@ -13,11 +13,16 @@ Public Class fccSalesOrderDetail
 
   Private pSOActionHandler As clsSalesOrderActionsHandler
 
+  Private pInvoices As colInvoices
+  Private pCustomerPurchaseOrders As colCustomerPurchaseOrders
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pSOWorkOrderInfos = New colWorkOrderInfos
     pRTISGlobal = rRTISGlobal
     pSOActionHandler = New clsSalesOrderActionsHandler(rDBConn.RTISUser, rDBConn)
+    pInvoices = New colInvoices
+    pCustomerPurchaseOrders = New colCustomerPurchaseOrders
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -46,6 +51,19 @@ Public Class fccSalesOrderDetail
       Return pSOWorkOrderInfos
     End Get
   End Property
+
+  Public ReadOnly Property Invoices As colInvoices
+    Get
+      Return pSalesOrder.Invoices
+    End Get
+  End Property
+
+  Public ReadOnly Property CustomerPurchaseOrders As colCustomerPurchaseOrders
+    Get
+      Return pSalesOrder.CustomerPurchaseOrder
+    End Get
+  End Property
+
 
 
   Public Sub LoadObjects()
@@ -117,6 +135,18 @@ Public Class fccSalesOrderDetail
     Try
       mdso = New dsoSales(pDBConn)
       mdso.LoadCustomers(mRetVal)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function GetInvoicesList() As colInvoices
+    Dim mRetVal As New colInvoices
+    Dim mdso As dsoSales
+    Try
+      mdso = New dsoSales(pDBConn)
+      mdso.LoadInvoices(mRetVal, pSalesOrder.SalesOrderID)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

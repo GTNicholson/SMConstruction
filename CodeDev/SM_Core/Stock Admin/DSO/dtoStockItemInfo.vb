@@ -2,23 +2,41 @@
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
+Imports System.Windows.Forms
 
 Public Class dtoStockItemInfo : Inherits dtoBase
 
   Private pStockItemInfo As clsStockItemInfo
+  Private pMode As AutoCompleteMode
+  Public Enum eMode
+    StockItemAdmin = 1
+    StockItemInfos = 2
+    StockItemProcessor = 3
+  End Enum
 
-
-  Public Sub New(ByRef rDBSource As clsDBConnBase)
+  Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
     MyBase.New(rDBSource)
+    SetTableDetails()
+    pMode = vMode
     SetTableDetails()
   End Sub
 
+
+
   Protected Overrides Sub SetTableDetails()
-    pTableName = "vwStockItemInfo"
+    Select Case pMode
+
+      Case eMode.StockItemInfos
+        pTableName = "vwStockItemInfo"
+      Case eMode.StockItemProcessor
+        pTableName = "StockItem"
+    End Select
     pKeyFieldName = "StockItemId"
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
+
+
   End Sub
 
   Overrides Property ObjectKeyFieldValue() As Integer
@@ -56,15 +74,25 @@ Public Class dtoStockItemInfo : Inherits dtoBase
     Dim mOK As Boolean
     Try
       If pStockItemInfo Is Nothing Then SetObjectToNew()
-      With pStockItemInfo
 
-        .CurrentInventory = DBReadDecimal(rDataReader, "Qty")
-        .RequiredInventory = DBReadDecimal(rDataReader, "OSQty")
-        .OrderQty = DBReadDecimal(rDataReader, "POSQty")
-        '' .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
-        ''.OrderQty = DBReadDecimal(rDataReader, "OrderQty")
-        ''.Balance = DBReadDecimal(rDataReader, "Balance")
-      End With
+      Select Case pMode
+        Case eMode.StockItemInfos
+
+          With pStockItemInfo
+
+            .CurrentInventory = DBReadDecimal(rDataReader, "Qty")
+            .RequiredInventory = DBReadDecimal(rDataReader, "OSQty")
+            .OrderQty = DBReadDecimal(rDataReader, "POSQty")
+            '' .RequiredInventory = DBReadDecimal(rDataReader, "RequiredInventory")
+            ''.OrderQty = DBReadDecimal(rDataReader, "OrderQty")
+            ''.Balance = DBReadDecimal(rDataReader, "Balance")
+          End With
+
+          ''With pStockItemInfo
+          ''.DefaultSupplier = DBReadString(rDataReader, "DefaultSupplier")
+          ''End With
+      End Select
+
       With pStockItemInfo.StockItem
         .StockItemID = DBReadInteger(rDataReader, "StockItemID")
         .Category = DBReadByte(rDataReader, "Category")
@@ -96,7 +124,13 @@ Public Class dtoStockItemInfo : Inherits dtoBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pStockItemInfo = New clsStockItemInfo
+
+    Select Case pMode
+      Case eMode.StockItemInfos
+        pStockItemInfo = New clsStockItemInfo
+      Case eMode.StockItemProcessor
+        pStockItemInfo = New clsStockItemProcessor(New dmPurchaseOrderItem)
+    End Select
     Return pStockItemInfo
 
   End Function
@@ -111,6 +145,21 @@ Public Class dtoStockItemInfo : Inherits dtoBase
   End Function
 
   Public Function LoadStockItemCollection(ByRef rStockItemInfos As colStockItemInfos, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ''mParams.Add("@ParentID", vParentID)
+    If vWhere <> "" Then
+      mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID", vWhere)
+    Else
+      mOK = MyBase.LoadCollection(rStockItemInfos, mParams, "StockItemID")
+    End If
+
+    Return mOK
+
+
+  End Function
+
+  Public Function LoadStockItemProcessorCollection(ByRef rStockItemInfos As colStockItemProcessors, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     ''mParams.Add("@ParentID", vParentID)

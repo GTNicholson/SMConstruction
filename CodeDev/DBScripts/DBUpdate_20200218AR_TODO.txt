@@ -1,0 +1,9 @@
+create view vwCustomerOrderValueSum AS
+SELECT
+CU.CustomerID,
+SUM(ISNULL(SOI.UnitPrice,0)* ISNULL(SOI.Quantity,0)) AS TOTALCUSTOMERORDERVALUE
+
+from Customer CU
+Left join SalesOrder SO on SO.CustomerID=CU.CustomerID
+LEFT JOIN SalesOrderItem SOI ON SOI.SalesOrderID=SO.SalesOrderID
+GROUP BY CU.CustomerID

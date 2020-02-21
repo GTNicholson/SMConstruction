@@ -34,7 +34,7 @@ Partial Class frmStockItemInfo
     Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcItemType = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.gcSupplier = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repitbtCurrentInventory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,7 +91,7 @@ Partial Class frmStockItemInfo
     Me.gvStockItemInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvStockItemInfos.Appearance.Row.Options.UseFont = True
     Me.gvStockItemInfos.ColumnPanelRowHeight = 34
-    Me.gvStockItemInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn8, Me.GridColumn1, Me.GridColumn6, Me.gcCategory, Me.gcItemType, Me.GridColumn5, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcStdCost})
+    Me.gvStockItemInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn8, Me.GridColumn1, Me.GridColumn6, Me.gcCategory, Me.gcItemType, Me.GridColumn5, Me.gcSupplier, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcStdCost})
     Me.gvStockItemInfos.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
     Me.gvStockItemInfos.GridControl = Me.grdStockItemInfos
     Me.gvStockItemInfos.Name = "gvStockItemInfos"
@@ -162,14 +162,14 @@ Partial Class frmStockItemInfo
     Me.GridColumn5.VisibleIndex = 4
     Me.GridColumn5.Width = 50
     '
-    'GridColumn7
+    'gcSupplier
     '
-    Me.GridColumn7.Caption = "Supplier"
-    Me.GridColumn7.FieldName = "DefaultSupplier"
-    Me.GridColumn7.Name = "GridColumn7"
-    Me.GridColumn7.Visible = True
-    Me.GridColumn7.VisibleIndex = 7
-    Me.GridColumn7.Width = 103
+    Me.gcSupplier.Caption = "Supplier"
+    Me.gcSupplier.FieldName = "DefaultSupplier"
+    Me.gcSupplier.Name = "gcSupplier"
+    Me.gcSupplier.Visible = True
+    Me.gcSupplier.VisibleIndex = 7
+    Me.gcSupplier.Width = 103
     '
     'GridColumn9
     '
@@ -250,7 +250,7 @@ Partial Class frmStockItemInfo
   Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcItemType As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcSupplier As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn

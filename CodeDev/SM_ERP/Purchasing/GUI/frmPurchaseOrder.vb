@@ -18,10 +18,46 @@ Public Class frmPurchaseOrder
   Private pIsActive As Boolean
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
+  Private pPOIEditor As clsPOItemEditor
+  Private pcolPOIEditor As colPOItemEditors
+
   Private Enum eWorkOrder
     PickWO = 1
 
   End Enum
+
+  Public Shared Sub OpenFormAsMDIChild(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPrimaryKeyID As Integer, ByVal vFormMode As eFormMode)
+    Dim mfrm As frmPurchaseOrder = Nothing
+    Dim mCreated As Boolean = False
+    'Dim mTableName As String
+
+    '' Add code here if need to check if a Detail Form for this ID is already open
+    If vPrimaryKeyID <> 0 Then
+      mfrm = GetFormIfLoaded(vPrimaryKeyID)
+    End If
+    If mfrm Is Nothing Then
+      mfrm = New frmPurchaseOrder
+      mfrm.FormController = New fccPurchaseOrder(rDBConn, rRTISGlobal)
+      mfrm.FormController.DBConn = rUserSession.CreateMainDBConn
+      mfrm.FormController.RTISGlobal = rRTISGlobal
+      mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
+
+      mfrm.FormMode = vFormMode
+      ''If vPrimaryKeyID = 0 Then
+      ''  mfrm.FormMode = eFormMode.eFMFormModeAdd
+      ''Else
+      ''  mfrm.FormMode = eFormMode.eFMFormModeEdit
+      ''End If
+
+      mfrm.MdiParent = rParentForm 'My.Application.MenuMDIForm
+      mfrm.Show()
+    Else
+      mfrm.Focus()
+    End If
+
+  End Sub
+
+
 
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
     Dim mfrm As frmPurchaseOrder = Nothing
@@ -40,6 +76,7 @@ Public Class frmPurchaseOrder
     End If
 
   End Sub
+
 
 
   Public Shared Sub OpenFormAsModal(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As clsRTISGlobal, ByRef vPrimaryKeyID As Integer, ByVal vFormMode As eFormMode)
@@ -169,7 +206,8 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub RefreshGrid()
-    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
+    pFormController.LoadObject()
+    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
   End Sub
 
   Private Sub LoadCombos()
@@ -636,6 +674,8 @@ Public Class frmPurchaseOrder
     Dim mSelectedItem As dmStockItem
     Dim mPOItem As dmPurchaseOrderItem
     Dim mPOItemEditor As clsPOItemEditor
+    Dim mTest As New colPOItemEditors
+
     Dim mPicker As clsPickerStockItem
     Dim mStockItems As New colStockItems
     Dim mStockItem As dmStockItem
@@ -670,6 +710,8 @@ Public Class frmPurchaseOrder
                   mPOItem.StockItemID = mSelectedItem.StockItemID
                   mPOItem.Description = mSelectedItem.Description
                   mPOItem.PartNo = mSelectedItem.PartNo
+                  pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
+                  pFormController.POIEditors.Add(pPOIEditor)
                 End If
               End If
             Next
@@ -688,6 +730,7 @@ Public Class frmPurchaseOrder
           Next
 
 
+
           grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
 
         Case "DeleteItem"
@@ -697,6 +740,7 @@ Public Class frmPurchaseOrder
             If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
               pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
               grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+
             End If
           End If
 

@@ -29,7 +29,29 @@ Public Class dsoStock
 
   End Sub
 
+  Public Function LoadStockItemProcessors(ByRef rStockItemProcessors As colStockItemProcessors, ByVal vWhere As String, ByVal vMode As dtoStockItemInfo.eMode) As Boolean
 
+    Dim mRetVal As Boolean
+    Dim mdto As dtoStockItemInfo
+
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoStockItemInfo(pDBConn, vMode)
+      mdto.LoadStockItemProcessorCollection(rStockItemProcessors, vWhere)
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+
+
+  End Function
   Public Sub LoadStockItemsByWhere(ByRef rStockItems As colStockItems, ByVal vWhere As String)
     Dim mdto As dtoStockItem
     Try
@@ -208,7 +230,7 @@ Public Class dsoStock
     Return mRetVal
   End Function
 
-  Public Function LoadStockItemInfos(ByRef rStockItemInfos As colStockItemInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadStockItemInfos(ByRef rStockItemInfos As colStockItemInfos, ByVal vWhere As String, ByVal vMode As dtoStockItemInfo.eMode) As Boolean
 
     Dim mRetVal As Boolean
     Dim mdto As dtoStockItemInfo
@@ -217,7 +239,7 @@ Public Class dsoStock
     Try
 
       pDBConn.Connect()
-      mdto = New dtoStockItemInfo(pDBConn)
+      mdto = New dtoStockItemInfo(pDBConn, vMode)
       mdto.LoadStockItemCollection(rStockItemInfos, vWhere)
       pDBConn.Disconnect()
       mRetVal = True

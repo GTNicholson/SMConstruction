@@ -54,7 +54,7 @@ Public Class fccStockItemInfos
 
 
     mdso = New dsoStock(pDBConn)
-    mdso.LoadStockItemInfos(pStockItemInfos, "")
+    mdso.LoadStockItemInfos(pStockItemInfos, "", dtoStockItemInfo.eMode.StockItemInfos)
 
 
   End Sub

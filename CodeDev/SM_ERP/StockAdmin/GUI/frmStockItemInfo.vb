@@ -74,6 +74,9 @@ Public Class frmStockItemInfo
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemInfos, gcCategory, mVIs)
 
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Supplier)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemInfos, gcSupplier, mVIs)
+
   End Sub
 
   Private Sub gvStockItemInfos_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItemInfos.CustomUnboundColumnData

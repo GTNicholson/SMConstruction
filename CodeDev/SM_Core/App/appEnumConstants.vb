@@ -21,6 +21,13 @@ Public Enum eActivityCode
 
 End Enum
 
+Public Enum eMode
+  StockItemAdmin = 1
+  StockItemInfos = 2
+  StockItemProcessor = 3
+End Enum
+
+
 Public Enum ePurchaseCategories
   <Description("Ninguna")> None = 0
   <Description("Compra de Madera")> Madera = 1

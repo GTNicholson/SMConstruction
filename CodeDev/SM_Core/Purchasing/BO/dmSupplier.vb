@@ -2,6 +2,8 @@
 Imports RTIS.CommonVB
 
 Public Class dmSupplier : Inherits dmBase
+  Implements iValueItem
+
   Private pSupplierID As Int32
   Private pCompanyName As String
   Private pSupplierStatusID As Int32
@@ -52,6 +54,7 @@ Public Class dmSupplier : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pSupplierContacts = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -59,6 +62,7 @@ Public Class dmSupplier : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pSupplierContacts.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -105,7 +109,7 @@ Public Class dmSupplier : Inherits dmBase
       .MainCounty = MainCounty
       .MainCountry = MainCountry
       'Add entries here for each collection and class property
-
+      .SupplierContacts = SupplierContacts.Clone
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -113,7 +117,7 @@ Public Class dmSupplier : Inherits dmBase
 
   End Sub
 
-  Public Property SupplierID() As Int32
+  Public Property SupplierID() As Int32 Implements iValueItem.ItemValue
     Get
       Return pSupplierID
     End Get
@@ -123,14 +127,18 @@ Public Class dmSupplier : Inherits dmBase
     End Set
   End Property
 
-  Public ReadOnly Property SupplierContacts() As colSupplierContacts
+  Public Property SupplierContacts() As colSupplierContacts
     Get
       Return pSupplierContacts
     End Get
 
+    Set(value As colSupplierContacts)
+      pSupplierContacts = value
+    End Set
+
   End Property
 
-  Public Property CompanyName() As String
+  Public Property CompanyName() As String Implements iValueItem.DisplayValue
     Get
       Return pCompanyName
     End Get
@@ -460,7 +468,14 @@ Public Class dmSupplier : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
+    Get
+      ''Throw New NotImplementedException()
+    End Get
+    Set(value As Boolean)
+      ''Throw New NotImplementedException()
+    End Set
+  End Property
 End Class
 
 

@@ -57,8 +57,6 @@ Partial Class frmStockItem
     Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
     Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
     Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
-    Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-    Me.bteImage = New DevExpress.XtraEditors.ButtonEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.barRGObsoleteItems = New DevExpress.XtraBars.BarEditItem()
@@ -88,6 +86,8 @@ Partial Class frmStockItem
     Me.RepositoryItemRadioGroup1 = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
     Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
     Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+    Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+    Me.bteImage = New DevExpress.XtraEditors.ButtonEdit()
     Me.peImage = New DevExpress.XtraEditors.PictureEdit()
     Me.txtImportCost = New DevExpress.XtraEditors.SpinEdit()
     Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
@@ -153,7 +153,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.btnedSupplier = New DevExpress.XtraEditors.ButtonEdit()
+    Me.cboSupplier = New DevExpress.XtraEditors.ComboBoxEdit()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,7 +162,6 @@ Partial Class frmStockItem
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpGroupF8.SuspendLayout()
-    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,6 +171,7 @@ Partial Class frmStockItem
     CType(Me.RepositoryItemBreadCrumbEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.peImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtImportCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtStdCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,7 +215,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
-    CType(Me.btnedSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'chkIsObsolete
@@ -504,7 +504,7 @@ Partial Class frmStockItem
     Me.grpGroupF8.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
     Me.grpGroupF8.AppearanceCaption.Options.UseFont = True
     Me.grpGroupF8.AppearanceCaption.Options.UseForeColor = True
-    Me.grpGroupF8.Controls.Add(Me.btnedSupplier)
+    Me.grpGroupF8.Controls.Add(Me.cboSupplier)
     Me.grpGroupF8.Controls.Add(Me.LabelControl21)
     Me.grpGroupF8.Controls.Add(Me.bteImage)
     Me.grpGroupF8.Controls.Add(Me.peImage)
@@ -552,31 +552,6 @@ Partial Class frmStockItem
     Me.grpGroupF8.Size = New System.Drawing.Size(1046, 282)
     Me.grpGroupF8.TabIndex = 94
     Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
-    '
-    'LabelControl21
-    '
-    Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl21.Appearance.Options.UseFont = True
-    Me.LabelControl21.Appearance.Options.UseForeColor = True
-    Me.LabelControl21.Location = New System.Drawing.Point(833, 256)
-    Me.LabelControl21.Name = "LabelControl21"
-    Me.LabelControl21.Size = New System.Drawing.Size(34, 14)
-    Me.LabelControl21.TabIndex = 124
-    Me.LabelControl21.Text = "Imagen"
-    '
-    'bteImage
-    '
-    Me.bteImage.Location = New System.Drawing.Point(873, 250)
-    Me.bteImage.MenuManager = Me.BarManager1
-    Me.bteImage.Name = "bteImage"
-    Me.bteImage.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.bteImage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.bteImage.Properties.Appearance.Options.UseBackColor = True
-    Me.bteImage.Properties.Appearance.Options.UseFont = True
-    Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-    Me.bteImage.Size = New System.Drawing.Size(149, 20)
-    Me.bteImage.TabIndex = 123
     '
     'BarManager1
     '
@@ -788,6 +763,31 @@ Partial Class frmStockItem
     Me.RepoItemRadioGroupCategory.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(0, Byte), "All"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(1, Byte), "Doorblanks"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(2, Byte), "Facings/Substrate"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(3, Byte), "Ironmongery"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(4, Byte), "Glass"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(5, Byte), "Intumescents"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(6, Byte), "Beading"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(8, Byte), "Lips"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(10, Byte), "Timber Components")})
     Me.RepoItemRadioGroupCategory.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
     Me.RepoItemRadioGroupCategory.Name = "RepoItemRadioGroupCategory"
+    '
+    'LabelControl21
+    '
+    Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl21.Appearance.Options.UseFont = True
+    Me.LabelControl21.Appearance.Options.UseForeColor = True
+    Me.LabelControl21.Location = New System.Drawing.Point(833, 256)
+    Me.LabelControl21.Name = "LabelControl21"
+    Me.LabelControl21.Size = New System.Drawing.Size(34, 14)
+    Me.LabelControl21.TabIndex = 124
+    Me.LabelControl21.Text = "Imagen"
+    '
+    'bteImage
+    '
+    Me.bteImage.Location = New System.Drawing.Point(873, 250)
+    Me.bteImage.MenuManager = Me.BarManager1
+    Me.bteImage.Name = "bteImage"
+    Me.bteImage.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
+    Me.bteImage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.bteImage.Properties.Appearance.Options.UseBackColor = True
+    Me.bteImage.Properties.Appearance.Options.UseFont = True
+    Me.bteImage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+    Me.bteImage.Size = New System.Drawing.Size(149, 20)
+    Me.bteImage.TabIndex = 123
     '
     'peImage
     '
@@ -1580,14 +1580,18 @@ Partial Class frmStockItem
     Me.PanelControl1.Size = New System.Drawing.Size(1294, 696)
     Me.PanelControl1.TabIndex = 4
     '
-    'btnedSupplier
+    'cboSupplier
     '
-    Me.btnedSupplier.Location = New System.Drawing.Point(415, 208)
-    Me.btnedSupplier.MenuManager = Me.BarManager1
-    Me.btnedSupplier.Name = "btnedSupplier"
-    Me.btnedSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.btnedSupplier.Size = New System.Drawing.Size(218, 20)
-    Me.btnedSupplier.TabIndex = 125
+    Me.cboSupplier.Location = New System.Drawing.Point(415, 209)
+    Me.cboSupplier.MenuManager = Me.BarManager1
+    Me.cboSupplier.Name = "cboSupplier"
+    Me.cboSupplier.Properties.AllowMouseWheel = False
+    Me.cboSupplier.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboSupplier.Properties.Appearance.Options.UseFont = True
+    Me.cboSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboSupplier.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+    Me.cboSupplier.Size = New System.Drawing.Size(218, 20)
+    Me.cboSupplier.TabIndex = 125
     '
     'frmStockItem
     '
@@ -1611,7 +1615,6 @@ Partial Class frmStockItem
     CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpGroupF8.ResumeLayout(False)
     Me.grpGroupF8.PerformLayout()
-    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1621,6 +1624,7 @@ Partial Class frmStockItem
     CType(Me.RepositoryItemBreadCrumbEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.peImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtImportCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtStdCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1666,7 +1670,7 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
-    CType(Me.btnedSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -1792,5 +1796,5 @@ Partial Class frmStockItem
   Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents btnedSupplier As DevExpress.XtraEditors.ButtonEdit
+  Friend WithEvents cboSupplier As DevExpress.XtraEditors.ComboBoxEdit
 End Class

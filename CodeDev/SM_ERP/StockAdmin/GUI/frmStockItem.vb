@@ -267,22 +267,12 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
+        clsDEControlLoading.SetDECombo(cboSupplier, .DefaultSupplier)
         chkcboActiveCondition.RefreshEditValue()
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
         txtStdCost.Text = .StdCost
         txtImportCost.Text = .StdImportCost
         bteImage.Text = .ImageFile
-        btnedSupplier.Text = .DefaultSupplier
-
-
-        ''If .Supplier Is Nothing Then
-        ''  btnedSupplier.Text = ""
-        ''Else
-        ''  FillSupplierDetail()
-
-        ''End If
-
-
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
 
@@ -319,20 +309,21 @@ Public Class frmStockItem
 
   Private Sub FillSupplierDetail()
 
-    Try
-      With pFormController.CurrentStockItem
-        btnedSupplier.Text = .Supplier.CompanyName
-      End With
+    ''Try
+    ''  With pFormController.CurrentStockItem
+    ''    cboSupplier.Text = .Supplier.CompanyName
+    ''  End With
 
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    ''End Try
 
   End Sub
 
   Private Sub LoadCombos()
 
     Dim mVIs As colValueItems
+    Dim mSuppliers As colSuppliers
 
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     For mLoop As Integer = mVIs.Count - 1 To 0 Step -1
@@ -342,6 +333,10 @@ Public Class frmStockItem
     Next
     clsDEControlLoading.FillDEComboVI(cboCategory, mVIs)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
+
+
+    mSuppliers = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.Supplier)
+    clsDEControlLoading.FillDEComboVIi(cboSupplier, mSuppliers)
 
   End Sub
 
@@ -368,7 +363,7 @@ Public Class frmStockItem
         .Inactive = chkIsObsolete.Checked
         .StdCost = txtStdCost.Text
         .StdImportCost = txtImportCost.Text
-
+        .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
       End With
     End If
 
@@ -568,7 +563,7 @@ Public Class frmStockItem
     spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
     bteImage.Enabled = Not vReadOnly
-    btnedSupplier.Enabled = Not vReadOnly
+    cboSupplier.Enabled = Not vReadOnly
 
     ''    btnedImageFile.ReadOnly = vReadOnly
 
@@ -724,8 +719,10 @@ Public Class frmStockItem
   End Sub
 
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
-    UpdateObjects()
-    RefreshCategorySpecificControls()
+    If pIsActive Then
+      UpdateObjects()
+      RefreshCategorySpecificControls()
+    End If
   End Sub
 
   Private Sub gvStockItems_ColumnChanged(sender As Object, e As EventArgs) Handles gvStockItems.ColumnChanged
@@ -752,7 +749,7 @@ Public Class frmStockItem
     End Try
   End Sub
 
-  Private Sub btnedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnedSupplier.ButtonClick
+  Private Sub btnedSupplier_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
     Try
       Select Case e.Button.Kind
         Case ButtonPredefines.Combo

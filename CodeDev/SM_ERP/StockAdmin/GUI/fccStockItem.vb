@@ -54,7 +54,7 @@ Public Class fccStocktem
     Dim mdso As dsoPurchasing
     Try
       mdso = New dsoPurchasing(pDBConn)
-      mdso.LoadSupplierDown(pStockItem.Supplier, pStockItem.DefaultSupplier)
+      mdso.LoadSupplierDown(pCurrentStockItem.Supplier, pCurrentStockItem.DefaultSupplier)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

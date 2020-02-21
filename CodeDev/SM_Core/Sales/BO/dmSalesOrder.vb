@@ -31,6 +31,9 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pVersion As String
 
   Private pCustomer As dmCustomer
+  Private pInvoices As colInvoices
+  Private pCustomerPurchaseOrder As colCustomerPurchaseOrders
+
   Private pSalesOrderItems As colSalesOrderItems
 
   Private pSalesOrderItemDM As dmSalesOrderItem
@@ -50,6 +53,9 @@ Public Class dmSalesOrder : Inherits dmBase
     pOutputDocuments = New colOutputDocuments
     pSalesOrderItemDM = New dmSalesOrderItem
     pCustomer = New dmCustomer
+    pInvoices = New colInvoices
+    pCustomerPurchaseOrder = New colCustomerPurchaseOrders
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -79,6 +85,11 @@ Public Class dmSalesOrder : Inherits dmBase
       If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
 
       If mAnyDirty = False Then mAnyDirty = pSalesOrderItems.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pInvoices.IsDirty
+
+
+      If mAnyDirty = False Then mAnyDirty = pCustomerPurchaseOrder.IsDirty
 
       IsAnyDirty = mAnyDirty
     End Get
@@ -124,6 +135,8 @@ Public Class dmSalesOrder : Inherits dmBase
       ''.WorkOrders = WorkOrders.Clone
       .Customer = Customer.Clone
       .SalesOrderItems = SalesOrderItems.Clone
+      .Invoices = Invoices.Clone
+      .CustomerPurchaseOrder = CustomerPurchaseOrder.Clone
       .IsDirty = IsDirty
     End With
 
@@ -409,6 +422,16 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
+
+  Public Property Invoices As colInvoices
+    Get
+      Return pInvoices
+    End Get
+    Set(value As colInvoices)
+      pInvoices = value
+    End Set
+  End Property
+
   ''Public Property WorkOrders As colWorkOrders
   ''  Get
   ''    Return pWorkOrders
@@ -435,6 +458,16 @@ Public Class dmSalesOrder : Inherits dmBase
       pSalesOrderItemDM = value
     End Set
   End Property
+
+  Public Property CustomerPurchaseOrder As colCustomerPurchaseOrders
+    Get
+      Return pCustomerPurchaseOrder
+    End Get
+    Set(value As colCustomerPurchaseOrders)
+      pCustomerPurchaseOrder = value
+    End Set
+  End Property
+
 
   Public Property OutputDocuments As colOutputDocuments
     Get

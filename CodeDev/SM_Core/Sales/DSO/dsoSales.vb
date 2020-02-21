@@ -102,6 +102,27 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadInvoices(ByRef rInvoices As colInvoices, ByVal vParentId As Int32) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoInvoice
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoInvoice(pDBConn)
+      mdto.LoadInvoiceCollection(rInvoices, vParentId)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
 
   Public Function SaveCustomerDown(ByRef rCustomer As dmCustomer) As Boolean
     Dim mRetVal As Boolean
@@ -136,6 +157,8 @@ Public Class dsoSales
     Dim mdtoSOI As dtoSalesOrderItem
     Dim mdtoWO As dtoWorkOrder
     Dim mdtoProduct As dtoProductBase
+    Dim mdtoInvoices As dtoInvoice
+    Dim mdtoCustomerPurchaseOrder As dtoCustomerPurchaseOrder
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
 
@@ -147,6 +170,12 @@ Public Class dsoSales
 
       mdtoSOI = New dtoSalesOrderItem(pDBConn)
       mdtoSOI.SaveSalesOrderItemCollection(rSalesOrder.SalesOrderItems, rSalesOrder.SalesOrderID)
+
+      mdtoInvoices = New dtoInvoice(pDBConn)
+      mdtoInvoices.SaveInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
+
+      mdtoCustomerPurchaseOrder = New dtoCustomerPurchaseOrder(pDBConn)
+      mdtoCustomerPurchaseOrder.SaveCustomerPurchaseOrderCollection(rSalesOrder.CustomerPurchaseOrder, rSalesOrder.SalesOrderID)
 
       For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
         mdtoWO = New dtoWorkOrder(pDBConn)
@@ -193,11 +222,14 @@ Public Class dsoSales
     Dim mdtoCust As dtoCustomer
     Dim mdtoCustContacts As dtoCustomerContact
     Dim mdtoWOs As dtoWorkOrder
+    Dim mdtoInvoice As dtoInvoice
+    Dim mdtoCustomerPurchaseOrder As dtoCustomerPurchaseOrder
     Dim mdtoSOIs As dtoSalesOrderItem
     Dim mdtoProduct As dtoProductBase
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoSOFiles As dtoFileTracker
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
+
 
     Dim mdtoMaterialRequirementChanges As dtoMaterialRequirement
 
@@ -210,6 +242,8 @@ Public Class dsoSales
     mdto = New dtoSalesOrder(pDBConn)
     mdto.LoadSalesOrder(rSalesOrder, vID)
 
+    mdtoInvoice = New dtoInvoice(pDBConn)
+    mdtoInvoice.LoadInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
 
     mdtoCust = New dtoCustomer(pDBConn)
     mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
@@ -221,6 +255,9 @@ Public Class dsoSales
 
     mdtoSOIs = New dtoSalesOrderItem(pDBConn)
     mdtoSOIs.LoadSalesOrderItemCollection(rSalesOrder.SalesOrderItems, rSalesOrder.SalesOrderID)
+
+    mdtoCustomerPurchaseOrder = New dtoCustomerPurchaseOrder(pDBConn)
+    mdtoCustomerPurchaseOrder.LoadCustomerPurchaseOrderCollection(rSalesOrder.CustomerPurchaseOrder, rSalesOrder.SalesOrderID)
 
 
     For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
@@ -256,6 +293,8 @@ Public Class dsoSales
       Next
 
     Next
+
+
 
     mdtoOutputDocs = New dtoOutputDocument(pDBConn)
     mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)

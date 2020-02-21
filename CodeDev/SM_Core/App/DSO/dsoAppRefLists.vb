@@ -146,6 +146,10 @@ Public Class dsoAppRefLists
           mValueItems = New colValueItems
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 10", "Value", "Description")
           mItem.IList = mValueItems
+
+        Case appRefLists.Supplier
+          mItem.IList = LoadSupplier()
+          mOK = True
       End Select
       mItem = Nothing
     Else
@@ -174,6 +178,19 @@ Public Class dsoAppRefLists
     mdto.LoadWoodSpecieCollection(mRetVal)
 
     Return mRetVal
+  End Function
+
+  Public Function LoadSupplier() As IList
+    Dim mdto As New dtoFurnitureCategory(pDBConn)
+    Dim mRetVal As New colFurnitureCategorys
+
+    mdto.LoadFurnitureCategoryCollection(mRetVal)
+
+    Dim mdtoSupplier As New dtoSupplier(pDBConn)
+    Dim mRetValSupplier As New colSuppliers
+    mdtoSupplier.LoadSupplierCollection(mRetValSupplier)
+
+    Return mRetValSupplier
   End Function
 
   Public Function LoadFurnitureCategory() As IList

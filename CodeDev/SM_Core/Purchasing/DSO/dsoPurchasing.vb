@@ -7,6 +7,26 @@ Public Class dsoPurchasing
     pDBConn = vDBConn
   End Sub
 
+
+
+  Public Function LoadPurchaseOrderInfos(ByRef rPurchaseOrderInfos As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
+    Dim mdtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = mdtoPurchaseOrderInfo.LoadPurchaseOrderInfoCollection(rPurchaseOrderInfos, vWhere)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
+
+
+
   Public Function LoadSupplierDown(ByRef rSupplier As dmSupplier, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSupplier
@@ -244,6 +264,7 @@ Public Class dsoPurchasing
     Dim mdtoPOAllocation As New dtoPurchaseOrderAllocation(pDBConn)
     Dim mdtoSupplierContact As New dtoSupplierContact(pDBConn)
     Dim mdtoPOItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
+
     Dim mdtoWorkOrder As New dtoWorkOrder(pDBConn)
     Dim mOK As Boolean
 

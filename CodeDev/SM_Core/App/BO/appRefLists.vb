@@ -23,6 +23,7 @@ Public Class appRefLists : Inherits colRefLists
   Public Const SubCategory As Integer = 16
   Public Const Shift As Integer = 17
   Public Const PurchaseTermType As Integer = 18
+  Public Const Supplier As Integer = 19
 
 
 
@@ -49,7 +50,7 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(SubCategory, "SubCategory", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Shift, "Shift", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(PurchaseTermType, "PurchaseTermType", clsRefListItem.eLoadMode.Unloaded)
-
+    Me.AddRefList(Supplier, "Supplier", clsRefListItem.eLoadMode.Unloaded)
   End Sub
 
 

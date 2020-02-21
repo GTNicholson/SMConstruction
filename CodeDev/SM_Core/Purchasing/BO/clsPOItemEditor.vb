@@ -14,6 +14,12 @@ Public Class clsPOItemEditor
 
   End Sub
 
+  Public Sub New()
+    pPurchaseOrder = New dmPurchaseOrder
+    pPOItem = New dmPurchaseOrderItem
+
+
+  End Sub
 
   Public ReadOnly Property POItem As dmPurchaseOrderItem
     Get

@@ -100,6 +100,8 @@ Public Class frmSalesOrderDetail
       pFormController.LoadObjects()
       grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
       grdWorkOrders.DataSource = pFormController.SOWorkOrders
+      grdInvoices.DataSource = pFormController.Invoices
+      grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
       LoadCombos()
       RefreshControls()
       If mOK Then RefreshControls()
@@ -276,6 +278,13 @@ Public Class frmSalesOrderDetail
 
       gvWorkOrders.CloseEditor()
       gvWorkOrders.UpdateCurrentRow()
+
+      gvInvoices.CloseEditor()
+      gvInvoices.UpdateCurrentRow()
+
+
+      gvCustomerPurchaseOrder.CloseEditor()
+      gvCustomerPurchaseOrder.UpdateCurrentRow()
 
 
 
@@ -834,6 +843,10 @@ Public Class frmSalesOrderDetail
     ''Catch ex As Exception
     ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     ''End Try
+
+  End Sub
+
+  Private Sub frmSalesOrderDetail_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
 
   End Sub
 End Class
