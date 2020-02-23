@@ -47,11 +47,11 @@ Partial Class frmWorkOrderTracking
     Me.gcDispatch = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
+    Me.bbtnExportToExcel = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.bbtnExportToExcel = New DevExpress.XtraBars.BarButtonItem()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,11 +62,11 @@ Partial Class frmWorkOrderTracking
     'grdWorksOrders
     '
     Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 33)
+    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 30)
     Me.grdWorksOrders.MainView = Me.gvWorksOrders
     Me.grdWorksOrders.Name = "grdWorksOrders"
     Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 593)
+    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 596)
     Me.grdWorksOrders.TabIndex = 0
     Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
     '
@@ -376,13 +376,20 @@ Partial Class frmWorkOrderTracking
     Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnExportToExcel)})
     Me.Bar1.Text = "Tools"
     '
+    'bbtnExportToExcel
+    '
+    Me.bbtnExportToExcel.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnExportToExcel.Caption = "Export to Excel"
+    Me.bbtnExportToExcel.Id = 0
+    Me.bbtnExportToExcel.Name = "bbtnExportToExcel"
+    '
     'barDockControlTop
     '
     Me.barDockControlTop.CausesValidation = False
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 30)
     '
     'barDockControlBottom
     '
@@ -396,24 +403,17 @@ Partial Class frmWorkOrderTracking
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 593)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 596)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 30)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 593)
-    '
-    'bbtnExportToExcel
-    '
-    Me.bbtnExportToExcel.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnExportToExcel.Caption = "Export to Excel"
-    Me.bbtnExportToExcel.Id = 0
-    Me.bbtnExportToExcel.Name = "bbtnExportToExcel"
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 596)
     '
     'frmWorkOrderTracking
     '

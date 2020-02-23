@@ -1526,3 +1526,8 @@ Public Enum eTransactionType
   <Description("Palletise LI")> PalletiseLI = 11
 
 End Enum
+
+Public Enum ePayPeriodType
+  Month = 1
+  Quincena = 2
+End Enum

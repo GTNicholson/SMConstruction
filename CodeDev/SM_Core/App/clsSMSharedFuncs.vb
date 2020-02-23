@@ -187,4 +187,16 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function GetOverTimeCutOffDate(ByVal vDate As DateTime) As DateTime
+    Dim mRetVal As Date
+    If vDate.Day < 15 Then
+      '// find 3 days before the end of the previous month
+      mRetVal = New Date(vDate.Year, vDate.Month, 1).AddDays(-1).AddDays(-3)
+    Else
+      '// Find the 12th of the month
+      mRetVal = New Date(vDate.Year, vDate.Month, 15).AddDays(-3)
+    End If
+    Return mRetVal
+  End Function
+
 End Class

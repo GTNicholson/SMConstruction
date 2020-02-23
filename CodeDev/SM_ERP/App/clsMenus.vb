@@ -24,7 +24,6 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.Production)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.Production)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Hojas de Tiempo", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetEntryInfoBI, eActivityCode.Production)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Reporte de Hora Extra", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.OvertTimeByEmployee, eActivityCode.Production)
 
 
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.Purchasing, True)
@@ -36,6 +35,11 @@ Public Class MenuFactory
 
 
 
+    mLastGroup = mMenuList.AddNewGroup("Recursos Humanos", 0, eActivityCode.HumanResources, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Empleados", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Employees, eActivityCode.HumanResources)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Hojas de Pago", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.PaySlips, eActivityCode.HumanResources)
+
+
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.Inventory, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.Inventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Picking de Insumos por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.Inventory)
@@ -45,7 +49,6 @@ Public Class MenuFactory
 
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Empleados", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Employees, eActivityCode.Configuration)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tablas de Configuracion", eMenuIconType.Admin, AddressOf clsMenuFunctions.LookUpLists, eActivityCode.Configuration)
 
     ''mLastGroup = mMenuList.AddNewGroup("Contract Management", 0, eActivityCode.ContractManagement, True)
@@ -191,9 +194,9 @@ Class clsMenuFunctions
   End Sub
 
 
-  Public Shared Sub OvertTimeByEmployee(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+  Public Shared Sub PaySlips(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
 
-    frmOverTime.OpenFormMDI(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, rRTISGlobal)
+    frmPaySlipDetails.OpenFormMDI(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, rRTISGlobal)
 
   End Sub
 

@@ -57,6 +57,7 @@ Partial Class frmStockItem
     Me.LabelControl33 = New DevExpress.XtraEditors.LabelControl()
     Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
     Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
+    Me.cboSupplier = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
     Me.barRGObsoleteItems = New DevExpress.XtraBars.BarEditItem()
@@ -153,7 +154,6 @@ Partial Class frmStockItem
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.cboSupplier = New DevExpress.XtraEditors.ComboBoxEdit()
     CType(Me.spnMinCutWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.spnMinCutLength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +162,7 @@ Partial Class frmStockItem
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpGroupF8.SuspendLayout()
+    CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,7 +216,6 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.SuspendLayout()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl1.SuspendLayout()
-    CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'chkIsObsolete
@@ -553,6 +553,19 @@ Partial Class frmStockItem
     Me.grpGroupF8.TabIndex = 94
     Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
     '
+    'cboSupplier
+    '
+    Me.cboSupplier.Location = New System.Drawing.Point(415, 209)
+    Me.cboSupplier.MenuManager = Me.BarManager1
+    Me.cboSupplier.Name = "cboSupplier"
+    Me.cboSupplier.Properties.AllowMouseWheel = False
+    Me.cboSupplier.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboSupplier.Properties.Appearance.Options.UseFont = True
+    Me.cboSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboSupplier.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+    Me.cboSupplier.Size = New System.Drawing.Size(218, 20)
+    Me.cboSupplier.TabIndex = 125
+    '
     'BarManager1
     '
     Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
@@ -613,7 +626,7 @@ Partial Class frmStockItem
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 33)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1294, 30)
     '
     'barDockControlBottom
     '
@@ -627,17 +640,17 @@ Partial Class frmStockItem
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 699)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 33)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1294, 30)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 699)
     '
     'BarButtonItem1
     '
@@ -1159,7 +1172,7 @@ Partial Class frmStockItem
     '
     Me.tabpgIMDetails.Controls.Add(Me.PanelControl3)
     Me.tabpgIMDetails.Name = "tabpgIMDetails"
-    Me.tabpgIMDetails.Size = New System.Drawing.Size(195, 194)
+    Me.tabpgIMDetails.Size = New System.Drawing.Size(193, 193)
     Me.tabpgIMDetails.Tag = "3"
     Me.tabpgIMDetails.Text = "Ironmongery Details"
     '
@@ -1171,7 +1184,7 @@ Partial Class frmStockItem
     Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
     Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
     Me.PanelControl3.Name = "PanelControl3"
-    Me.PanelControl3.Size = New System.Drawing.Size(195, 194)
+    Me.PanelControl3.Size = New System.Drawing.Size(193, 193)
     Me.PanelControl3.TabIndex = 0
     '
     'LabelControl17
@@ -1549,7 +1562,7 @@ Partial Class frmStockItem
     Me.SplitContainerControl1.Panel1.Text = "Panel1"
     Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
     Me.SplitContainerControl1.Panel2.Text = "Panel2"
-    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 692)
+    Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 695)
     Me.SplitContainerControl1.SplitterPosition = 315
     Me.SplitContainerControl1.TabIndex = 0
     Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1575,23 +1588,10 @@ Partial Class frmStockItem
     '
     Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1294, 696)
+    Me.PanelControl1.Size = New System.Drawing.Size(1294, 699)
     Me.PanelControl1.TabIndex = 4
-    '
-    'cboSupplier
-    '
-    Me.cboSupplier.Location = New System.Drawing.Point(415, 209)
-    Me.cboSupplier.MenuManager = Me.BarManager1
-    Me.cboSupplier.Name = "cboSupplier"
-    Me.cboSupplier.Properties.AllowMouseWheel = False
-    Me.cboSupplier.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.cboSupplier.Properties.Appearance.Options.UseFont = True
-    Me.cboSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboSupplier.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-    Me.cboSupplier.Size = New System.Drawing.Size(218, 20)
-    Me.cboSupplier.TabIndex = 125
     '
     'frmStockItem
     '
@@ -1615,6 +1615,7 @@ Partial Class frmStockItem
     CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpGroupF8.ResumeLayout(False)
     Me.grpGroupF8.PerformLayout()
+    CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1670,7 +1671,6 @@ Partial Class frmStockItem
     Me.grpCurrentStockItem.ResumeLayout(False)
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl1.ResumeLayout(False)
-    CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 

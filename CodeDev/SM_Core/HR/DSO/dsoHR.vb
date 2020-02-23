@@ -32,6 +32,30 @@ Public Class dsoHR
     Return mOK
   End Function
 
+  Public Function LoadTimeSheetEntrysEmpIDDateRange(ByRef rTimeSheetEntrys As colTimeSheetEntrys, ByVal vEmployeeID As Integer, ByVal vStartDate As Date, ByVal vEndDate As Date) As Boolean
+    Dim mdto As dtoTimeSheetEntry
+    Dim mWhere As String
+    Dim mOK As Boolean = False
+
+    Try
+
+      pDBConn.Connect()
+
+      mdto = New dtoTimeSheetEntry(pDBConn)
+      mWhere = String.Format("EmployeeID = {0} And StartTime >= '{1}' And StartTime < '{2}'", vEmployeeID, vStartDate.ToString("yyyyMMdd"), vEndDate.AddDays(1).ToString("yyyyMMdd"))
+      mdto.LoadTimeSheetEntryCollectionByWhere(rTimeSheetEntrys, mWhere)
+
+      mOK = True
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function LoadTimeSheetEntrysWorkOrder(ByRef rTimeSheetEntrys As colTimeSheetEntrys, ByVal vWorkOrderID As Integer) As Boolean
     Dim mdto As dtoTimeSheetEntry
     Dim mWhere As String
