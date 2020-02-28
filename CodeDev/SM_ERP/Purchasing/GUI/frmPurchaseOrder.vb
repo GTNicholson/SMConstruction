@@ -211,7 +211,7 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub LoadCombos()
-    grdWorkOrder.DataSource = pFormController.WorkOrders
+
   End Sub
 
 
@@ -602,7 +602,7 @@ Public Class frmPurchaseOrder
     Return mRetVal
   End Function
 
-  Private Sub gpWorkOrder_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpWorkOrder.CustomButtonClick
+  Private Sub gpWorkOrder_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Dim mfcc As New fccPickMaterials(pFormController.DBConn)
     Select Case e.Button.Properties.Tag
       Case eWorkOrder.PickWO
@@ -660,7 +660,7 @@ Public Class frmPurchaseOrder
             pFormController.LoadRefData()
             ''  LoadPOItemAllocationCombo()
             gvPurchaseOrderItems.RefreshData()
-            grdWorkOrder.DataSource = pFormController.WorkOrders
+
           End If
         Catch ex As Exception
           If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

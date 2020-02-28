@@ -101,11 +101,19 @@ Public Enum eOTstatus
 End Enum
 
 Public Enum eEmployeeTimeLogType
-  WorksOrder = 1
-  Maintenance = 2
+  UnDefined = 0
+  WorkOrder = 1
+  Absent = 2
   Holiday = 3
-  Absent = 4
-  Other = 5
+  Maintenance = 4
+  Sick = 5
+  Cleaning = 6
+  cStop = 7
+  WorkAllowance = 8
+  MaterialTransportation = 9
+  Inventory = 10
+  Prototype = 11
+  Permission = 12
 End Enum
 
 Public Enum eReportSource

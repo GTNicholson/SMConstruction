@@ -22,12 +22,20 @@ Public Class frmPaySlipDetails
     mIsActive = pIsActive
     pIsActive = False
 
+
     datPeriodStart.DateTime = pController.PeriodStartDate
     radPayPeriodType.EditValue = CInt(pController.PeriodType)
     datStartDateStd.DateTime = pController.StandardStartDate
     datEndDateStd.DateTime = pController.StandardEndDate
     datStartDateOT.DateTime = pController.OverTimeStartDate
     datEndDateOT.DateTime = pController.OverTimeEndDate
+
+    If pController.Employee IsNot Nothing Then
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboEmployee, pController.Employee.EmployeeID)
+    End If
+
+
+
     pIsActive = mIsActive
   End Sub
 
@@ -39,7 +47,7 @@ Public Class frmPaySlipDetails
     pController.OverTimeStartDate = datStartDateOT.DateTime
     pController.OverTimeEndDate = datEndDateOT.DateTime
 
-    pController.SetCurrentEmployee(1021)
+    pController.SetCurrentEmployee(RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEmployee))
 
   End Sub
 
@@ -48,9 +56,14 @@ Public Class frmPaySlipDetails
     pIsActive = False
     pController.PeriodType = ePayPeriodType.Quincena
     grdPaySlipItems.DataSource = pController.PaySlipItems
+    LoadCombos()
     RefreshControls()
     pIsActive = True
 
+  End Sub
+
+  Private Sub LoadCombos()
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEmployee, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first
@@ -67,8 +80,9 @@ Public Class frmPaySlipDetails
         UpdateObjects()
         pController.LoadPaySlipItems()
         gvPaySlipItems.RefreshData()
+
       Case "Print"
-        repPaySlip.OpenReportPrintPreview(pController.PaySlipItems, pController.Employee, pController.StandardStartDate, pController.StandardEndDate)
+        repPaySlip.OpenReportPrintPreview(pController.PaySlipItems, pController.Employee, pController.StandardStartDate, pController.StandardEndDate, pController.PeriodType, pController.GetEmployeeRateOfPay)
     End Select
   End Sub
 
@@ -126,5 +140,34 @@ Public Class frmPaySlipDetails
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub cboEmployee_EditValueChanged(sender As Object, e As EventArgs) Handles cboEmployee.EditValueChanged
+
+
+
+
+  End Sub
+
+  Private Sub cboEmployee_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboEmployee.SelectedValueChanged
+    Dim mSalary As Decimal
+    Dim mStdSalary As Decimal
+    Dim mOverTime As Decimal
+
+    UpdateObjects()
+
+    mSalary = pController.GetEmployeeRateOfPay()
+    mStdSalary = Math.Round((mSalary / 30 / 8), 2)
+    mOverTime = Math.Round(mStdSalary * 2, 2)
+
+    If mSalary > 0 Then
+      txtSalary.Text = mSalary.ToString()
+      txtStdSalary.Text = mStdSalary.ToString()
+      txtOverTime.Text = mOverTime.ToString()
+    Else
+      txtStdSalary.Text = ""
+      txtSalary.Text = ""
+      txtOverTime.Text = ""
+    End If
   End Sub
 End Class

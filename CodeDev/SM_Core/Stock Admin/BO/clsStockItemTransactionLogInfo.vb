@@ -12,6 +12,7 @@ Public Class clsStockItemTransactionLogInfo
   Private pReferenceNo As String
   Private pAreaDescription As String
   Private pWorkOrderNo As String
+  Private pWODescription As String
   Private pSupplierName As String
   Private pGRNumber As String
   Private pTransQty As Decimal
@@ -87,6 +88,13 @@ Public Class clsStockItemTransactionLogInfo
     End Get
   End Property
 
+  Public ReadOnly Property WODESCRIPTION As String
+    Get
+      Return pWorkOrder.Description
+    End Get
+  End Property
+
+
 
   Public ReadOnly Property TotalValue As Decimal
     Get
@@ -140,6 +148,12 @@ Public Class clsStockItemTransactionLogInfo
   Public ReadOnly Property StdCost As Decimal
     Get
       Return pCurrentStockItem.StdCost
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalStdTransaction As Decimal
+    Get
+      Return pCurrentStockItem.StdCost * pTransQty
     End Get
   End Property
 

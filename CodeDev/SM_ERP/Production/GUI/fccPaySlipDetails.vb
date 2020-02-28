@@ -171,11 +171,34 @@ Public Class fccPaySlipDetails
     PopulatePaySlipItemsFromTSEs()
 
     '//Round the hours entries
+    Dim mHourRate As Decimal
+    mHourRate = Math.Round(GetEmployeeRateOfPay() / 30 / 8, 2)
     For Each mPSI In pPaySlipItems
       mPSI.StandardHours = Math.Round(mPSI.StandardHours * 4, 0, MidpointRounding.AwayFromZero) / 4
+      mPSI.StdPayment = Math.Round(mHourRate * mPSI.StandardHours, 2)
+      mPSI.OverTimePayment = Math.Round(mHourRate * 2 * mPSI.OverTimeHours, 2)
+      mPSI.TotalPayment = mPSI.OverTimePayment + mPSI.StdPayment
     Next
 
   End Sub
+
+  Public Function GetEmployeeRateOfPay() As Decimal
+
+    Dim mretVal As Decimal
+    Dim mdso As dsoHR
+    Try
+      mdso = New dsoHR(pDBConn)
+
+      mretVal = mdso.GetEmployeeRateOfPay(pEmployee.EmployeeID, pPeriodStartDate)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mretVal
+
+
+  End Function
 
   Private Sub LoadTimeSheetEntrys(ByVal vStartDateLoad As Date, ByVal vEndDateLoad As Date)
     Dim mdso As dsoHR
@@ -212,7 +235,9 @@ Public Class fccPaySlipDetails
       End If
       If mTSE.EndTime > mPSI.EndTime Then mPSI.EndTime = mTSE.EndTime
       Select Case mTSE.TimeSheetEntryTypeID
-        Case eEmployeeTimeLogType.WorksOrder, eEmployeeTimeLogType.Maintenance
+        Case eEmployeeTimeLogType.WorkOrder, eEmployeeTimeLogType.Maintenance,
+          eEmployeeTimeLogType.Cleaning, eEmployeeTimeLogType.cStop, eEmployeeTimeLogType.MaterialTransportation,
+             eEmployeeTimeLogType.Inventory, eEmployeeTimeLogType.Prototype
           mStdHrs = Math.Max(0, ((mTSE.Duration * 60) - mTSE.OverTimeMinutes) / 60.0)
           mOTHrs = mTSE.OverTimeMinutes / 60.0
       End Select

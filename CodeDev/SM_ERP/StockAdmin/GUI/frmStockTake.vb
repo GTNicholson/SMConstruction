@@ -1068,20 +1068,7 @@ Public Class frmStockTake
 
   End Sub
 
-  Public Sub CreateReportPDF(ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport)
-    Dim mFilePath As String
-    Dim mFileName As String
-    Dim mExportDirectory As String = String.Empty
 
-    If vReport IsNot Nothing Then
-
-      pFormController.CreateSelectedItemsReport(vReport, "")
-      frmPDFViewer.OpenFormAsModal(Me.ParentForm, "C:\Users\Administrator\Downloads\axel.pdf")
-      vReport.Dispose()
-
-    End If
-
-  End Sub
 
   Public Function GetReport() As DevExpress.XtraReports.UI.XtraReport
     Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing

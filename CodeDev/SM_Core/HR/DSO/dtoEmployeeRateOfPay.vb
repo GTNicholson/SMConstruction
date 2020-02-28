@@ -127,6 +127,16 @@ Public Class dtoEmployeeRateOfPay : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadEmployeeRateOfPayCollectionByWhere(ByRef rEmployeeRateOfPays As colEmployeeRateOfPays, ByVal vParentID As Integer, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mParams.Add("@EmployeeID", vParentID)
+    mOK = MyBase.LoadCollection(rEmployeeRateOfPays, mParams, "EmployeeRateOfPayID", vWhere)
+    rEmployeeRateOfPays.TrackDeleted = True
+    If mOK Then rEmployeeRateOfPays.IsDirty = False
+    Return mOK
+  End Function
+
 
   Public Function SaveEmployeeRateOfPayCollection(ByRef rCollection As colEmployeeRateOfPays, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable

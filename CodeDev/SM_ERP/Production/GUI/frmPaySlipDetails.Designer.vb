@@ -59,11 +59,11 @@ Partial Class frmPaySlipDetails
     Me.RepositoryItemComboBox3 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
     Me.grpPeriodAndEmployee = New DevExpress.XtraEditors.GroupControl()
     Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-    Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+    Me.txtOverTime = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-    Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+    Me.txtStdSalary = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-    Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+    Me.txtSalary = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
     Me.datEndDateOT = New DevExpress.XtraEditors.DateEdit()
     Me.datStartDateOT = New DevExpress.XtraEditors.DateEdit()
@@ -76,7 +76,7 @@ Partial Class frmPaySlipDetails
     Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
     Me.datPeriodStart = New DevExpress.XtraEditors.DateEdit()
     Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+    Me.cboEmployee = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
@@ -91,9 +91,9 @@ Partial Class frmPaySlipDetails
     CType(Me.RepositoryItemComboBox3, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.grpPeriodAndEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpPeriodAndEmployee.SuspendLayout()
-    CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtOverTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtStdSalary.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtSalary.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datEndDateOT.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datEndDateOT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datStartDateOT.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +105,7 @@ Partial Class frmPaySlipDetails
     CType(Me.radPayPeriodType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datPeriodStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.datPeriodStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -121,7 +121,7 @@ Partial Class frmPaySlipDetails
     Me.TableLayoutPanel1.RowCount = 2
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(963, 557)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1152, 725)
     Me.TableLayoutPanel1.TabIndex = 9
     '
     'GroupControl2
@@ -134,7 +134,7 @@ Partial Class frmPaySlipDetails
     Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
     Me.GroupControl2.Location = New System.Drawing.Point(3, 113)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(957, 441)
+    Me.GroupControl2.Size = New System.Drawing.Size(1146, 609)
     Me.GroupControl2.TabIndex = 3
     Me.GroupControl2.Text = "Detalles del Periodo"
     '
@@ -145,7 +145,7 @@ Partial Class frmPaySlipDetails
     Me.grdPaySlipItems.MainView = Me.gvPaySlipItems
     Me.grdPaySlipItems.MenuManager = Me.BarManager1
     Me.grdPaySlipItems.Name = "grdPaySlipItems"
-    Me.grdPaySlipItems.Size = New System.Drawing.Size(953, 416)
+    Me.grdPaySlipItems.Size = New System.Drawing.Size(1142, 584)
     Me.grdPaySlipItems.TabIndex = 0
     Me.grdPaySlipItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPaySlipItems})
     '
@@ -182,7 +182,7 @@ Partial Class frmPaySlipDetails
     '
     'GridColumn2
     '
-    Me.GridColumn2.Caption = "Dia"
+    Me.GridColumn2.Caption = "Día"
     Me.GridColumn2.DisplayFormat.FormatString = "dddd"
     Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
     Me.GridColumn2.FieldName = "ItemDate"
@@ -195,8 +195,6 @@ Partial Class frmPaySlipDetails
     '
     Me.GridColumn3.Caption = "Codigo"
     Me.GridColumn3.Name = "GridColumn3"
-    Me.GridColumn3.Visible = True
-    Me.GridColumn3.VisibleIndex = 2
     Me.GridColumn3.Width = 55
     '
     'GridColumn4
@@ -207,7 +205,7 @@ Partial Class frmPaySlipDetails
     Me.GridColumn4.FieldName = "StartTime"
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 3
+    Me.GridColumn4.VisibleIndex = 2
     Me.GridColumn4.Width = 94
     '
     'GridColumn5
@@ -218,7 +216,7 @@ Partial Class frmPaySlipDetails
     Me.GridColumn5.FieldName = "EndTime"
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
-    Me.GridColumn5.VisibleIndex = 4
+    Me.GridColumn5.VisibleIndex = 3
     Me.GridColumn5.Width = 94
     '
     'gcStandardHrs
@@ -234,7 +232,7 @@ Partial Class frmPaySlipDetails
     Me.gcStandardHrs.Name = "gcStandardHrs"
     Me.gcStandardHrs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "StandardHours", "{0:0.##}")})
     Me.gcStandardHrs.Visible = True
-    Me.gcStandardHrs.VisibleIndex = 5
+    Me.gcStandardHrs.VisibleIndex = 4
     Me.gcStandardHrs.Width = 94
     '
     'gcStandardPay
@@ -244,10 +242,13 @@ Partial Class frmPaySlipDetails
     Me.gcStandardPay.AppearanceHeader.Options.UseTextOptions = True
     Me.gcStandardPay.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
     Me.gcStandardPay.Caption = "Pago Estandar"
+    Me.gcStandardPay.DisplayFormat.FormatString = "C$ #.##"
+    Me.gcStandardPay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.gcStandardPay.FieldName = "StdPayment"
     Me.gcStandardPay.Name = "gcStandardPay"
-    Me.gcStandardPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")})
+    Me.gcStandardPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "StdPayment", "{0:C$#,##0.00;;#}")})
     Me.gcStandardPay.Visible = True
-    Me.gcStandardPay.VisibleIndex = 6
+    Me.gcStandardPay.VisibleIndex = 5
     Me.gcStandardPay.Width = 94
     '
     'gcOTHrs
@@ -256,14 +257,14 @@ Partial Class frmPaySlipDetails
     Me.gcOTHrs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
     Me.gcOTHrs.AppearanceHeader.Options.UseTextOptions = True
     Me.gcOTHrs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-    Me.gcOTHrs.Caption = "Horas Extra"
+    Me.gcOTHrs.Caption = "Horas Extras"
     Me.gcOTHrs.DisplayFormat.FormatString = "#.##"
     Me.gcOTHrs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
     Me.gcOTHrs.FieldName = "OverTimeHours"
     Me.gcOTHrs.Name = "gcOTHrs"
     Me.gcOTHrs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OvertimeHours", "{0:0.##}")})
     Me.gcOTHrs.Visible = True
-    Me.gcOTHrs.VisibleIndex = 7
+    Me.gcOTHrs.VisibleIndex = 6
     Me.gcOTHrs.Width = 94
     '
     'gcOTPay
@@ -273,10 +274,13 @@ Partial Class frmPaySlipDetails
     Me.gcOTPay.AppearanceHeader.Options.UseTextOptions = True
     Me.gcOTPay.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
     Me.gcOTPay.Caption = "Pago Extra"
+    Me.gcOTPay.DisplayFormat.FormatString = "C$ #.##"
+    Me.gcOTPay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.gcOTPay.FieldName = "OverTimePayment"
     Me.gcOTPay.Name = "gcOTPay"
-    Me.gcOTPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")})
+    Me.gcOTPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OverTimePayment", "{0:C$#,##0.00;;#}")})
     Me.gcOTPay.Visible = True
-    Me.gcOTPay.VisibleIndex = 8
+    Me.gcOTPay.VisibleIndex = 7
     Me.gcOTPay.Width = 107
     '
     'gcTotalPay
@@ -286,10 +290,13 @@ Partial Class frmPaySlipDetails
     Me.gcTotalPay.AppearanceHeader.Options.UseTextOptions = True
     Me.gcTotalPay.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
     Me.gcTotalPay.Caption = "Total"
+    Me.gcTotalPay.DisplayFormat.FormatString = "C$ #.##"
+    Me.gcTotalPay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.gcTotalPay.FieldName = "TotalPayment"
     Me.gcTotalPay.Name = "gcTotalPay"
-    Me.gcTotalPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")})
+    Me.gcTotalPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalPayment", "{0:C$#,##0.00;;#}")})
     Me.gcTotalPay.Visible = True
-    Me.gcTotalPay.VisibleIndex = 9
+    Me.gcTotalPay.VisibleIndex = 8
     Me.gcTotalPay.Width = 119
     '
     'BarManager1
@@ -309,15 +316,15 @@ Partial Class frmPaySlipDetails
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1051, 0)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1164, 0)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 557)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1051, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1164, 0)
     '
     'barDockControlLeft
     '
@@ -325,15 +332,15 @@ Partial Class frmPaySlipDetails
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 557)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 729)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1051, 0)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1164, 0)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 557)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
     '
     'BarStaticItem1
     '
@@ -413,11 +420,11 @@ Partial Class frmPaySlipDetails
     Me.grpPeriodAndEmployee.AppearanceCaption.Options.UseFont = True
     Me.grpPeriodAndEmployee.AppearanceCaption.Options.UseForeColor = True
     Me.grpPeriodAndEmployee.Controls.Add(Me.LabelControl10)
-    Me.grpPeriodAndEmployee.Controls.Add(Me.TextEdit3)
+    Me.grpPeriodAndEmployee.Controls.Add(Me.txtOverTime)
     Me.grpPeriodAndEmployee.Controls.Add(Me.LabelControl9)
-    Me.grpPeriodAndEmployee.Controls.Add(Me.TextEdit2)
+    Me.grpPeriodAndEmployee.Controls.Add(Me.txtStdSalary)
     Me.grpPeriodAndEmployee.Controls.Add(Me.LabelControl6)
-    Me.grpPeriodAndEmployee.Controls.Add(Me.TextEdit1)
+    Me.grpPeriodAndEmployee.Controls.Add(Me.txtSalary)
     Me.grpPeriodAndEmployee.Controls.Add(Me.LabelControl7)
     Me.grpPeriodAndEmployee.Controls.Add(Me.datEndDateOT)
     Me.grpPeriodAndEmployee.Controls.Add(Me.datStartDateOT)
@@ -430,13 +437,13 @@ Partial Class frmPaySlipDetails
     Me.grpPeriodAndEmployee.Controls.Add(Me.LabelControl2)
     Me.grpPeriodAndEmployee.Controls.Add(Me.datPeriodStart)
     Me.grpPeriodAndEmployee.Controls.Add(Me.LabelControl1)
-    Me.grpPeriodAndEmployee.Controls.Add(Me.ComboBoxEdit1)
+    Me.grpPeriodAndEmployee.Controls.Add(Me.cboEmployee)
     Me.grpPeriodAndEmployee.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imprimir", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Print", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Cargar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Load", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Reiniciar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Reset", -1)})
     Me.grpPeriodAndEmployee.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpPeriodAndEmployee.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpPeriodAndEmployee.Location = New System.Drawing.Point(3, 3)
     Me.grpPeriodAndEmployee.Name = "grpPeriodAndEmployee"
-    Me.grpPeriodAndEmployee.Size = New System.Drawing.Size(957, 104)
+    Me.grpPeriodAndEmployee.Size = New System.Drawing.Size(1146, 104)
     Me.grpPeriodAndEmployee.TabIndex = 2
     Me.grpPeriodAndEmployee.Text = "Periodo y Empleado"
     '
@@ -452,13 +459,13 @@ Partial Class frmPaySlipDetails
     Me.LabelControl10.TabIndex = 20
     Me.LabelControl10.Text = "Extra"
     '
-    'TextEdit3
+    'txtOverTime
     '
-    Me.TextEdit3.Location = New System.Drawing.Point(730, 73)
-    Me.TextEdit3.MenuManager = Me.BarManager1
-    Me.TextEdit3.Name = "TextEdit3"
-    Me.TextEdit3.Size = New System.Drawing.Size(63, 20)
-    Me.TextEdit3.TabIndex = 19
+    Me.txtOverTime.Location = New System.Drawing.Point(730, 73)
+    Me.txtOverTime.MenuManager = Me.BarManager1
+    Me.txtOverTime.Name = "txtOverTime"
+    Me.txtOverTime.Size = New System.Drawing.Size(63, 20)
+    Me.txtOverTime.TabIndex = 19
     '
     'LabelControl9
     '
@@ -472,13 +479,13 @@ Partial Class frmPaySlipDetails
     Me.LabelControl9.TabIndex = 18
     Me.LabelControl9.Text = "Estandar"
     '
-    'TextEdit2
+    'txtStdSalary
     '
-    Me.TextEdit2.Location = New System.Drawing.Point(610, 73)
-    Me.TextEdit2.MenuManager = Me.BarManager1
-    Me.TextEdit2.Name = "TextEdit2"
-    Me.TextEdit2.Size = New System.Drawing.Size(55, 20)
-    Me.TextEdit2.TabIndex = 16
+    Me.txtStdSalary.Location = New System.Drawing.Point(610, 73)
+    Me.txtStdSalary.MenuManager = Me.BarManager1
+    Me.txtStdSalary.Name = "txtStdSalary"
+    Me.txtStdSalary.Size = New System.Drawing.Size(55, 20)
+    Me.txtStdSalary.TabIndex = 16
     '
     'LabelControl6
     '
@@ -492,13 +499,13 @@ Partial Class frmPaySlipDetails
     Me.LabelControl6.TabIndex = 15
     Me.LabelControl6.Text = "Salario"
     '
-    'TextEdit1
+    'txtSalary
     '
-    Me.TextEdit1.Location = New System.Drawing.Point(460, 73)
-    Me.TextEdit1.MenuManager = Me.BarManager1
-    Me.TextEdit1.Name = "TextEdit1"
-    Me.TextEdit1.Size = New System.Drawing.Size(89, 20)
-    Me.TextEdit1.TabIndex = 14
+    Me.txtSalary.Location = New System.Drawing.Point(460, 73)
+    Me.txtSalary.MenuManager = Me.BarManager1
+    Me.txtSalary.Name = "txtSalary"
+    Me.txtSalary.Size = New System.Drawing.Size(89, 20)
+    Me.txtSalary.TabIndex = 14
     '
     'LabelControl7
     '
@@ -654,22 +661,22 @@ Partial Class frmPaySlipDetails
     Me.LabelControl1.TabIndex = 1
     Me.LabelControl1.Text = "Empleado"
     '
-    'ComboBoxEdit1
+    'cboEmployee
     '
-    Me.ComboBoxEdit1.Location = New System.Drawing.Point(108, 73)
-    Me.ComboBoxEdit1.MenuManager = Me.BarManager1
-    Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
-    Me.ComboBoxEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.ComboBoxEdit1.Properties.Appearance.Options.UseFont = True
-    Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.ComboBoxEdit1.Size = New System.Drawing.Size(237, 20)
-    Me.ComboBoxEdit1.TabIndex = 0
+    Me.cboEmployee.Location = New System.Drawing.Point(108, 73)
+    Me.cboEmployee.MenuManager = Me.BarManager1
+    Me.cboEmployee.Name = "cboEmployee"
+    Me.cboEmployee.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.cboEmployee.Properties.Appearance.Options.UseFont = True
+    Me.cboEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.cboEmployee.Size = New System.Drawing.Size(237, 20)
+    Me.cboEmployee.TabIndex = 0
     '
     'frmPaySlipDetails
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1051, 557)
+    Me.ClientSize = New System.Drawing.Size(1164, 729)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
@@ -692,9 +699,9 @@ Partial Class frmPaySlipDetails
     CType(Me.grpPeriodAndEmployee, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpPeriodAndEmployee.ResumeLayout(False)
     Me.grpPeriodAndEmployee.PerformLayout()
-    CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtOverTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtStdSalary.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtSalary.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datEndDateOT.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datEndDateOT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datStartDateOT.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -706,7 +713,7 @@ Partial Class frmPaySlipDetails
     CType(Me.radPayPeriodType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datPeriodStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.datPeriodStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.cboEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -744,11 +751,11 @@ Partial Class frmPaySlipDetails
   Friend WithEvents gcTotalPay As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents grpPeriodAndEmployee As DevExpress.XtraEditors.GroupControl
   Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtOverTime As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtStdSalary As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtSalary As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents datEndDateOT As DevExpress.XtraEditors.DateEdit
   Friend WithEvents datStartDateOT As DevExpress.XtraEditors.DateEdit
@@ -761,5 +768,5 @@ Partial Class frmPaySlipDetails
   Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents datPeriodStart As DevExpress.XtraEditors.DateEdit
   Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+  Friend WithEvents cboEmployee As DevExpress.XtraEditors.ComboBoxEdit
 End Class

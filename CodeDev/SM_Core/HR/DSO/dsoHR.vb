@@ -126,5 +126,24 @@ Public Class dsoHR
     Return mOK
   End Function
 
+  Public Function GetEmployeeRateOfPay(ByVal rEmployeeID As Int32, ByVal vCurrentDate As Date) As Decimal
+    Dim mRateOfPays As colEmployeeRateOfPays
+    Dim mSQL As String = ""
+    Dim mRetVal As Decimal
+
+    Try
+      pDBConn.Connect()
+      mSQL = "SELECT TOP 1 StandardRate from EmployeeRateOfPay where EmployeeID=" & rEmployeeID & " and StartDate < " & "'" & vCurrentDate & "'"
+      mRateOfPays = New colEmployeeRateOfPays()
+      mRetVal = pDBConn.ExecuteScalar(mSQL)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+    Return mRetVal
+  End Function
 
 End Class

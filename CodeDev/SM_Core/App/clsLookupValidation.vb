@@ -105,7 +105,7 @@ Public Class clsLookUpRowValidation_UserList : Inherits clsLookUpRowValidation
         'End If
       Case eLookupValidationType.eLUV_Delete
         mOK = False
-        rValidationMsg = "Elimación no disponible"
+        rValidationMsg = "Eliminación no disponible"
     End Select
 
     Return mOK
