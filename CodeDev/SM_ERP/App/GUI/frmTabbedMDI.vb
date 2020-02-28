@@ -189,7 +189,7 @@ Public Class frmTabbedMDI
       Me.bbtnDevUtilities.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End If
 
-    If nbcSideMenu.Groups.GetVisibleGroupCount() > 5 Then
+    If nbcSideMenu.Groups.GetVisibleGroupCount() > 7 Then
       For Each mGroup As DevExpress.XtraNavBar.NavBarGroup In nbcSideMenu.Groups
         mGroup.Expanded = False
       Next
