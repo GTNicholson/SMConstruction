@@ -108,7 +108,6 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.xtbDespatchesAndInvoices = New DevExpress.XtraTab.XtraTabPage()
-    Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
     Me.grdCustomerPurchaseOrder = New DevExpress.XtraGrid.GridControl()
     Me.gvCustomerPurchaseOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -186,6 +185,9 @@ Partial Class frmSalesOrderDetail
     Me.Label9 = New System.Windows.Forms.Label()
     Me.txtVisibleNotes = New DevExpress.XtraEditors.MemoEdit()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+    Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,8 +227,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.xtbDespatchesAndInvoices.SuspendLayout()
-    CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.PanelControl2.SuspendLayout()
     CType(Me.grdCustomerPurchaseOrder, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvCustomerPurchaseOrder, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repOrderDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -279,6 +279,12 @@ Partial Class frmSalesOrderDetail
     CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtVisibleNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.TableLayoutPanel1.SuspendLayout()
+    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl1.SuspendLayout()
+    CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl5.SuspendLayout()
+    CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl6.SuspendLayout()
     Me.SuspendLayout()
     '
     'BarManager1
@@ -1017,33 +1023,32 @@ Partial Class frmSalesOrderDetail
     Me.xtbDespatchesAndInvoices.Appearance.Header.Options.UseFont = True
     Me.xtbDespatchesAndInvoices.Appearance.HeaderActive.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
     Me.xtbDespatchesAndInvoices.Appearance.HeaderActive.Options.UseFont = True
-    Me.xtbDespatchesAndInvoices.Controls.Add(Me.PanelControl2)
-    Me.xtbDespatchesAndInvoices.Controls.Add(Me.GridControl2)
+    Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl6)
+    Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl5)
+    Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl1)
     Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
     Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1142, 344)
-    Me.xtbDespatchesAndInvoices.Text = "Facturas y Despachos"
-    '
-    'PanelControl2
-    '
-    Me.PanelControl2.Controls.Add(Me.grdCustomerPurchaseOrder)
-    Me.PanelControl2.Controls.Add(Me.grdInvoices)
-    Me.PanelControl2.Location = New System.Drawing.Point(561, 3)
-    Me.PanelControl2.Name = "PanelControl2"
-    Me.PanelControl2.Size = New System.Drawing.Size(578, 338)
-    Me.PanelControl2.TabIndex = 8
+    Me.xtbDespatchesAndInvoices.Text = "Ordenes de Cliente, Facturas y Despachos"
     '
     'grdCustomerPurchaseOrder
     '
+    Me.grdCustomerPurchaseOrder.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.Edit.Enabled = False
     Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.grdCustomerPurchaseOrder.Location = New System.Drawing.Point(5, 130)
+    Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.Next.Visible = False
+    Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.Prev.Visible = False
+    Me.grdCustomerPurchaseOrder.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdCustomerPurchaseOrder.Location = New System.Drawing.Point(2, 23)
     Me.grdCustomerPurchaseOrder.MainView = Me.gvCustomerPurchaseOrder
     Me.grdCustomerPurchaseOrder.MenuManager = Me.BarManager1
     Me.grdCustomerPurchaseOrder.Name = "grdCustomerPurchaseOrder"
     Me.grdCustomerPurchaseOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.repOrderDate})
-    Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(568, 108)
+    Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(418, 129)
     Me.grdCustomerPurchaseOrder.TabIndex = 8
     Me.grdCustomerPurchaseOrder.UseEmbeddedNavigator = True
     Me.grdCustomerPurchaseOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPurchaseOrder})
@@ -1068,8 +1073,8 @@ Partial Class frmSalesOrderDetail
     Me.gvCustomerPurchaseOrder.Name = "gvCustomerPurchaseOrder"
     Me.gvCustomerPurchaseOrder.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
     Me.gvCustomerPurchaseOrder.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+    Me.gvCustomerPurchaseOrder.OptionsView.ShowFooter = True
     Me.gvCustomerPurchaseOrder.OptionsView.ShowGroupPanel = False
-    Me.gvCustomerPurchaseOrder.OptionsView.ShowViewCaption = True
     Me.gvCustomerPurchaseOrder.ViewCaption = "Órdenes de Compras de Cliente"
     '
     'GridColumn32
@@ -1083,8 +1088,6 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn33.Caption = "SalesOrderID"
     Me.GridColumn33.FieldName = "SalesOrderID"
     Me.GridColumn33.Name = "GridColumn33"
-    Me.GridColumn33.Visible = True
-    Me.GridColumn33.VisibleIndex = 0
     '
     'GridColumn34
     '
@@ -1092,7 +1095,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn34.FieldName = "OrderNo"
     Me.GridColumn34.Name = "GridColumn34"
     Me.GridColumn34.Visible = True
-    Me.GridColumn34.VisibleIndex = 2
+    Me.GridColumn34.VisibleIndex = 0
     '
     'GridColumn35
     '
@@ -1101,7 +1104,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn35.FieldName = "OrderDate"
     Me.GridColumn35.Name = "GridColumn35"
     Me.GridColumn35.Visible = True
-    Me.GridColumn35.VisibleIndex = 3
+    Me.GridColumn35.VisibleIndex = 1
     '
     'repOrderDate
     '
@@ -1115,8 +1118,9 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn36.Caption = "OrderValue"
     Me.GridColumn36.FieldName = "OrderValue"
     Me.GridColumn36.Name = "GridColumn36"
+    Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OrderValue", "{0:0.00}")})
     Me.GridColumn36.Visible = True
-    Me.GridColumn36.VisibleIndex = 1
+    Me.GridColumn36.VisibleIndex = 2
     '
     'RepositoryItemDateEdit1
     '
@@ -1134,16 +1138,23 @@ Partial Class frmSalesOrderDetail
     '
     'grdInvoices
     '
+    Me.grdInvoices.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grdInvoices.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdInvoices.EmbeddedNavigator.Buttons.Edit.Enabled = False
     Me.grdInvoices.EmbeddedNavigator.Buttons.Edit.Visible = False
     Me.grdInvoices.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-    Me.grdInvoices.Location = New System.Drawing.Point(5, 5)
+    Me.grdInvoices.EmbeddedNavigator.Buttons.First.Visible = False
+    Me.grdInvoices.EmbeddedNavigator.Buttons.Last.Visible = False
+    Me.grdInvoices.EmbeddedNavigator.Buttons.Next.Visible = False
+    Me.grdInvoices.EmbeddedNavigator.Buttons.NextPage.Visible = False
+    Me.grdInvoices.EmbeddedNavigator.Buttons.Prev.Visible = False
+    Me.grdInvoices.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+    Me.grdInvoices.Location = New System.Drawing.Point(2, 23)
     Me.grdInvoices.MainView = Me.gvInvoices
     Me.grdInvoices.MenuManager = Me.BarManager1
     Me.grdInvoices.Name = "grdInvoices"
     Me.grdInvoices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repInvoiceDate, Me.repCreatedDate})
-    Me.grdInvoices.Size = New System.Drawing.Size(568, 119)
+    Me.grdInvoices.Size = New System.Drawing.Size(583, 149)
     Me.grdInvoices.TabIndex = 7
     Me.grdInvoices.UseEmbeddedNavigator = True
     Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices})
@@ -1168,8 +1179,8 @@ Partial Class frmSalesOrderDetail
     Me.gvInvoices.Name = "gvInvoices"
     Me.gvInvoices.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
     Me.gvInvoices.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+    Me.gvInvoices.OptionsView.ShowFooter = True
     Me.gvInvoices.OptionsView.ShowGroupPanel = False
-    Me.gvInvoices.OptionsView.ShowViewCaption = True
     Me.gvInvoices.ViewCaption = "Facturas"
     '
     'GridColumn25
@@ -1183,8 +1194,6 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn26.Caption = "SalesOrderID"
     Me.GridColumn26.FieldName = "SalesOrderID"
     Me.GridColumn26.Name = "GridColumn26"
-    Me.GridColumn26.Visible = True
-    Me.GridColumn26.VisibleIndex = 0
     '
     'GridColumn27
     '
@@ -1209,7 +1218,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn28.FieldName = "CreatedDate"
     Me.GridColumn28.Name = "GridColumn28"
     Me.GridColumn28.Visible = True
-    Me.GridColumn28.VisibleIndex = 2
+    Me.GridColumn28.VisibleIndex = 0
     '
     'repCreatedDate
     '
@@ -1223,6 +1232,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn29.Caption = "NetValue"
     Me.GridColumn29.FieldName = "NetValue"
     Me.GridColumn29.Name = "GridColumn29"
+    Me.GridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetValue", "{0:0.00}")})
     Me.GridColumn29.Visible = True
     Me.GridColumn29.VisibleIndex = 3
     '
@@ -1240,17 +1250,16 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn31.FieldName = "InvoiceStatus"
     Me.GridColumn31.Name = "GridColumn31"
     Me.GridColumn31.Visible = True
-    Me.GridColumn31.VisibleIndex = 5
+    Me.GridColumn31.VisibleIndex = 2
     '
     'GridControl2
     '
-    Me.GridControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.GridControl2.Location = New System.Drawing.Point(7, 17)
+    Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.GridControl2.Location = New System.Drawing.Point(2, 23)
     Me.GridControl2.MainView = Me.GridView2
     Me.GridControl2.MenuManager = Me.BarManager1
     Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(538, 324)
+    Me.GridControl2.Size = New System.Drawing.Size(534, 309)
     Me.GridControl2.TabIndex = 2
     Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
     '
@@ -1267,7 +1276,6 @@ Partial Class frmSalesOrderDetail
     Me.GridView2.GridControl = Me.GridControl2
     Me.GridView2.Name = "GridView2"
     Me.GridView2.OptionsView.ShowGroupPanel = False
-    Me.GridView2.OptionsView.ShowViewCaption = True
     Me.GridView2.ViewCaption = "Despachos"
     '
     'gcDetails
@@ -1948,6 +1956,45 @@ Partial Class frmSalesOrderDetail
     Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 696)
     Me.TableLayoutPanel1.TabIndex = 4
     '
+    'GroupControl1
+    '
+    Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl1.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.GridControl2)
+    Me.GroupControl1.Location = New System.Drawing.Point(0, 5)
+    Me.GroupControl1.Name = "GroupControl1"
+    Me.GroupControl1.Size = New System.Drawing.Size(538, 334)
+    Me.GroupControl1.TabIndex = 9
+    Me.GroupControl1.Text = "Despachos"
+    '
+    'GroupControl5
+    '
+    Me.GroupControl5.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl5.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl5.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl5.Controls.Add(Me.grdInvoices)
+    Me.GroupControl5.Location = New System.Drawing.Point(542, 165)
+    Me.GroupControl5.Name = "GroupControl5"
+    Me.GroupControl5.Size = New System.Drawing.Size(587, 174)
+    Me.GroupControl5.TabIndex = 10
+    Me.GroupControl5.Text = "Facturas"
+    '
+    'GroupControl6
+    '
+    Me.GroupControl6.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl6.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl6.Controls.Add(Me.grdCustomerPurchaseOrder)
+    Me.GroupControl6.Location = New System.Drawing.Point(544, 5)
+    Me.GroupControl6.Name = "GroupControl6"
+    Me.GroupControl6.Size = New System.Drawing.Size(422, 154)
+    Me.GroupControl6.TabIndex = 11
+    Me.GroupControl6.Text = "Órdenes de Compras de Cliente"
+    '
     'frmSalesOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1999,8 +2046,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.gvMaterialRequirementOthers, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
     Me.xtbDespatchesAndInvoices.ResumeLayout(False)
-    CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.PanelControl2.ResumeLayout(False)
     CType(Me.grdCustomerPurchaseOrder, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvCustomerPurchaseOrder, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repOrderDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2057,6 +2102,12 @@ Partial Class frmSalesOrderDetail
     CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtVisibleNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     Me.TableLayoutPanel1.ResumeLayout(False)
+    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl1.ResumeLayout(False)
+    CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl5.ResumeLayout(False)
+    CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl6.ResumeLayout(False)
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -2195,7 +2246,6 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
   Friend WithEvents grdInvoices As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvInvoices As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2217,4 +2267,7 @@ Partial Class frmSalesOrderDetail
   Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
   Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+  Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
 End Class

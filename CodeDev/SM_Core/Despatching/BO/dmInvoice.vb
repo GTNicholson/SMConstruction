@@ -4,6 +4,7 @@ Imports RTIS.CommonVB
 Public Class dmInvoice : Inherits dmBase
   Private pInvoiceID As Int32
   Private pSalesOrderID As Int32
+  Private pInvoiceNo As String
   Private pInvoiceDate As DateTime
   Private pCreatedDate As DateTime
   Private pNetValue As Decimal
@@ -45,6 +46,7 @@ Public Class dmInvoice : Inherits dmBase
     With CType(rNewItem, dmInvoice)
       .InvoiceID = InvoiceID
       .SalesOrderID = SalesOrderID
+      .InvoiceNo = InvoiceNo
       .InvoiceDate = InvoiceDate
       .CreatedDate = CreatedDate
       .NetValue = NetValue
@@ -67,6 +69,16 @@ Public Class dmInvoice : Inherits dmBase
     Set(ByVal value As Int32)
       If pInvoiceID <> value Then IsDirty = True
       pInvoiceID = value
+    End Set
+  End Property
+
+  Public Property InvoiceNo() As String
+    Get
+      Return pInvoiceNo
+    End Get
+    Set(ByVal value As String)
+      If pInvoiceNo <> value Then IsDirty = True
+      pInvoiceNo = value
     End Set
   End Property
 

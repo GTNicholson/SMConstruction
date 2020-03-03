@@ -56,6 +56,7 @@ Public Class dtoInvoice : Inherits dtoBase
     End If
     With pInvoice
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InvoiceNo", StringToDBValue(.InvoiceNo))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InvoiceDate", DateToDBValue(.InvoiceDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CreatedDate", DateToDBValue(.CreatedDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetValue", .NetValue)
@@ -74,6 +75,7 @@ Public Class dtoInvoice : Inherits dtoBase
       With pInvoice
         .InvoiceID = DBReadInt32(rDataReader, "InvoiceID")
         .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
+        .InvoiceNo = DBReadString(rDataReader, "InvoiceNo")
         .InvoiceDate = DBReadDateTime(rDataReader, "InvoiceDate")
         .CreatedDate = DBReadDateTime(rDataReader, "CreatedDate")
         .NetValue = DBReadDecimal(rDataReader, "NetValue")

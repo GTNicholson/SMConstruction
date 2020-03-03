@@ -19,6 +19,8 @@ Public Enum eActivityCode
 
   Inventory = 500
 
+  Accounts = 600
+
 End Enum
 
 Public Enum eMode
@@ -120,6 +122,7 @@ Public Enum eReportSource
   WorkOrder = 1
   TimeSheet = 2
   StockItemTransactions = 3
+  Invoice = 4
 End Enum
 
 Public Enum eParentType

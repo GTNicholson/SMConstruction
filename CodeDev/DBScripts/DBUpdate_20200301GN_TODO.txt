@@ -1,0 +1,142 @@
+alter table Invoice Add InvoiceNo Varchar(15)
+GO
+
+Create View vwInvoiceInfo as
+select 
+I.InvoiceID,
+I.InvoiceNo,
+I.InvoiceDate,
+I.NetValue,
+I.InvoiceStatus,
+
+
+SO.OrderNo,
+SO.ProjectName,
+SO.FinishDate,
+SO.DueTime,
+
+C.CompanyName
+
+from Invoice I
+Inner Join SalesOrder SO on SO.SalesOrderID = I.SalesOrderID
+Inner Join Customer C on C.CustomerID = SO.CustomerID
+
+
+GO
+
+Create View vwSalesOrderItemWOMilestonePackedSum
+as
+select SalesOrderItemID, MilestoneENUM, Min(Status) as MinStatus, Max(Status) as MaxStatus, Max(TargetDate) as MaxTargetDate, Max(ActualDate) as ActualDate from 
+WorkOrderMilestoneStatus WOMS
+Inner Join WorkOrder WO on WO.WorkOrderID = WOMS.WorkOrderID
+Where MilestoneEnum = 9
+Group By SalesOrderItemID, MilestoneENUM
+
+GO
+
+Create View vwSalesOrderItemWOMilestoneEngineeringSum
+as
+select SalesOrderItemID, MilestoneENUM, Min(Status) as MinStatus, Max(Status) as MaxStatus, Max(TargetDate) as MaxTargetDate, Max(ActualDate) as ActualDate from 
+WorkOrderMilestoneStatus WOMS
+Inner Join WorkOrder WO on WO.WorkOrderID = WOMS.WorkOrderID
+Where MilestoneEnum = 1
+Group By SalesOrderItemID, MilestoneENUM
+
+GO
+
+Alter Table SalesOrderItem add QtyInvoiced Integer
+
+GO
+
+
+Create View vwSalesOrderItemProgressInfo as
+
+select
+SOI.SalesOrderItemID,
+SOI.Quantity,
+SOI.UnitPrice,
+SOI.QtyInvoiced,
+(IsNull(SOI.Quantity,0) - IsNull(SOI.QtyInvoiced,0)) * IsNull(SOI.UnitPrice,0) as OSInvValue,
+
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+SO.FinishDate,
+SO.DueTime,
+C.CompanyName,
+
+WOPAK.MinStatus as PackingStatus,
+
+WOEng.MinStatus as EngineeringStatus
+ 
+from 
+SalesOrderItem SOI
+Inner Join SalesOrder SO on SO.SalesOrderID = SOI.SalesOrderID
+Inner Join Customer C on C.CustomerID = SO.CustomerID
+Left Join vwSalesOrderItemWOMilestonePackedSum WOPAK on WOPAK.SalesOrderItemID = SOI.SalesOrderItemID
+Left Join vwSalesOrderItemWOMilestoneEngineeringSum WOENG on WOENG.SalesOrderItemID = SOI.SalesOrderItemID
+
+GO
+
+Create View vwInvoiceInfoPredictedPacked as
+select 
+SalesOrderID as InvoiceID,
+'Predicted' as InvoiceNo,
+Max(FinishDate) as InvoiceDate,
+Sum(OSInvValue) as NetValue,
+-1 as InvoiceStatus,
+
+Max(OrderNo) as OrderNo,
+Max(ProjectName) as ProjectName,
+Max(FinishDate) as FinishDate,
+Max(DueTime) as DueTime,
+
+Max(CompanyName) as CompanyName
+
+from  vwSalesOrderItemProgressInfo
+Where PackingStatus = 3
+Group By SalesOrderID
+
+GO
+
+Create View vwInvoiceInfoPredictedEngineering as
+select 
+SalesOrderID as InvoiceID,
+'Predicted' as InvoiceNo,
+Max(FinishDate) as InvoiceDate,
+Sum(OSInvValue) as NetValue,
+-1 as InvoiceStatus,
+
+Max(OrderNo) as OrderNo,
+Max(ProjectName) as ProjectName,
+Max(FinishDate) as FinishDate,
+Max(DueTime) as DueTime,
+
+Max(CompanyName) as CompanyName
+
+from  vwSalesOrderItemProgressInfo
+Where EngineeringStatus = 3 And IsNull(PackingStatus,0) <> 3
+Group By SalesOrderID
+
+GO
+
+Create View vwInvoiceInfoPredictedPending as
+select 
+SalesOrderID as InvoiceID,
+'Predicted' as InvoiceNo,
+Max(FinishDate) as InvoiceDate,
+Sum(OSInvValue) as NetValue,
+-1 as InvoiceStatus,
+
+Max(OrderNo) as OrderNo,
+Max(ProjectName) as ProjectName,
+Max(FinishDate) as FinishDate,
+Max(DueTime) as DueTime,
+
+Max(CompanyName) as CompanyName
+
+from  vwSalesOrderItemProgressInfo
+Where IsNull(EngineeringStatus,0) <> 3 and IsNull(PackingStatus,0) <> 3
+Group By SalesOrderID
+
+GO
