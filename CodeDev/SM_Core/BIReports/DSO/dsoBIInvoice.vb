@@ -71,6 +71,10 @@ Public Class dsoBIInvoice
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
       mSQLWhere = mSQLWhere & mSQLWhere2
 
+      If mSQLWhere <> "" Then mSQLWhere = "(" & mSQLWhere & ") And "
+      mSQLWhere = mSQLWhere & "InvoiceDate Is Not Null"
+
+
       mdto.LoadInvoiceCollectionByWhere(pInvoiceInfos, mSQLWhere)
 
       If pBIReportView.BIReportSource.ColManRepParameter.ItemFromKey(3).FilterValue = 1 Then

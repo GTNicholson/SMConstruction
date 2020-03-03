@@ -20,8 +20,6 @@ Partial Public Class srepWorkOrderSignOffs
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-    Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-    Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLine7 = New DevExpress.XtraReports.UI.XRLine()
     Me.XrLine9 = New DevExpress.XtraReports.UI.XRLine()
@@ -43,6 +41,8 @@ Partial Public Class srepWorkOrderSignOffs
     Me.XrLabel45 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel44 = New DevExpress.XtraReports.UI.XRLabel()
     Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
+    Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+    Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
     CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
     '
     'Detail
@@ -52,20 +52,6 @@ Partial Public Class srepWorkOrderSignOffs
     Me.Detail.Name = "Detail"
     Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
     Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-    '
-    'TopMargin
-    '
-    Me.TopMargin.HeightF = 100.0!
-    Me.TopMargin.Name = "TopMargin"
-    Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-    Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-    '
-    'BottomMargin
-    '
-    Me.BottomMargin.HeightF = 100.0!
-    Me.BottomMargin.Name = "BottomMargin"
-    Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-    Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
     '
     'XrLabel27
     '
@@ -107,7 +93,7 @@ Partial Public Class srepWorkOrderSignOffs
     Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
     Me.XrLabel31.SizeF = New System.Drawing.SizeF(211.5471!, 15.625!)
     Me.XrLabel31.StylePriority.UseFont = False
-    Me.XrLabel31.Text = "Nombre: Planeación y Seguimiento"
+    Me.XrLabel31.Text = "Nombre: Ingeniería"
     '
     'XrLabel35
     '
@@ -248,6 +234,20 @@ Partial Public Class srepWorkOrderSignOffs
     Me.XrLabel24.SizeF = New System.Drawing.SizeF(151.0417!, 15.625!)
     Me.XrLabel24.StylePriority.UseFont = False
     Me.XrLabel24.Text = "Nombre: Asesor Técnico"
+    '
+    'TopMargin
+    '
+    Me.TopMargin.HeightF = 100.0!
+    Me.TopMargin.Name = "TopMargin"
+    Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+    Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+    '
+    'BottomMargin
+    '
+    Me.BottomMargin.HeightF = 100.0!
+    Me.BottomMargin.Name = "BottomMargin"
+    Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+    Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
     '
     'srepWorkOrderSignOffs
     '

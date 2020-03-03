@@ -189,6 +189,13 @@ Public Class clsStockItemInfo
 
   End Property
 
+  Public ReadOnly Property ActualValueInventory() As Decimal
+    Get
+      Return pCurrentInventory * pStockItem.StdCost
+    End Get
+
+  End Property
+
 End Class
 
 

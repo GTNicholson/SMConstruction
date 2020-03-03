@@ -64,9 +64,10 @@ Public Class fccPickMaterials
 
     Dim mdto As dtoWorkOrderInfo
     Dim mwhere As String
-    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-    mwhere += " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)
-or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
+    '' mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+    ''mwhere += " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)
+    mwhere = "  WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
+    mwhere += " or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo)" '') este parentesis sirve"
     Try
 
       pDBConn.Connect()

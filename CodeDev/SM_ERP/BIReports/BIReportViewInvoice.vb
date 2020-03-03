@@ -4,6 +4,7 @@ Public Class BIReportViewInvoice
   Private Enum eBIWorkOrderLayoutID
     InvoiceList = 1
     InvoiceSummary = 2
+    Chart = 3
   End Enum
 
   Private Enum eBIReportDefs
@@ -80,13 +81,13 @@ Public Class BIReportViewInvoice
     Dim mRepDDLayout As New dmBIGridLayout
     Dim mRepLayout As New dmBIGridLayout
 
-    mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.InvoiceList
-    mRepLayout.InterfaceType = 1
-    mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIInvoiceList.xml"
-    mRepLayout.LayoutName = "Faturas Lista"
-    vReportSource.BIGridLayouts.Add(mRepLayout)
+    mRepDDLayout = New dmBIGridLayout
+    mRepDDLayout.BIGridLayoutID = eBIWorkOrderLayoutID.InvoiceList
+    mRepDDLayout.InterfaceType = 1
+    mRepDDLayout.ParentLayoutID = 0
+    mRepDDLayout.LayoutFileName = "BIInvoiceList.xml"
+    mRepDDLayout.LayoutName = "Faturas Lista"
+    vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
     mRepLayout = New dmBIGridLayout
     mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.InvoiceSummary
@@ -94,8 +95,17 @@ Public Class BIReportViewInvoice
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIInvoiceSummary.xml"
     mRepLayout.LayoutName = "Facturas Resumen"
+    mRepLayout.DrillDownLayoutID = eBIWorkOrderLayoutID.InvoiceList
+    mRepLayout.DrillDownLayout = mRepDDLayout
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.Chart
+    mRepLayout.InterfaceType = 3
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BIInvoiceChart.xml"
+    mRepLayout.LayoutName = "Facturas Graphico"
+    vReportSource.BIGridLayouts.Add(mRepLayout)
 
   End Sub
 

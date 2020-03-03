@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChartXmlSerializer version="17.1.4.0">
+  <Chart AppearanceNameSerializable="Default" SelectionMode="None" SeriesSelectionMode="Series">
+    <DataContainer DataMember="" BoundSeriesSorting="None">
+      <SeriesSerializable>
+        <Item1 Name="Factura" ArgumentDataMember="InvoiceDateMC" SummaryFunction="SUM([NetValue])" ArgumentScaleType="DateTime">
+          <View TypeNameSerializable="StackedBarSeriesView" />
+          <DataFilters>
+            <Item1 ColumnNameSerializable="InvoicePredictedType" DataTypeSerializable="System.Int32" InvariantValueSerializable="1" />
+          </DataFilters>
+          <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item1>
+        <Item2 Name="Empacado" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
+          <View TypeNameSerializable="StackedBarSeriesView" />
+          <DataFilters>
+            <Item1 ColumnNameSerializable="InvoicePredictedType" DataTypeSerializable="System.Int32" InvariantValueSerializable="2" />
+          </DataFilters>
+          <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item2>
+        <Item3 Name="Engineriado" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
+          <View TypeNameSerializable="StackedBarSeriesView" />
+          <DataFilters>
+            <Item1 ColumnNameSerializable="InvoicePredictedType" DataTypeSerializable="System.Int32" InvariantValueSerializable="3" />
+          </DataFilters>
+        </Item3>
+        <Item4 Name="Falta" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
+          <View TypeNameSerializable="StackedBarSeriesView" />
+          <DataFilters>
+            <Item1 ColumnNameSerializable="InvoicePredictedType" DataTypeSerializable="System.Int32" InvariantValueSerializable="4" />
+          </DataFilters>
+        </Item4>
+      </SeriesSerializable>
+      <SeriesTemplate>
+        <View TypeNameSerializable="StackedBarSeriesView" />
+        <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+      </SeriesTemplate>
+    </DataContainer>
+    <Diagram TypeNameSerializable="XYDiagram">
+      <AxisX VisibleInPanesSerializable="-1">
+        <DateTimeScaleOptions MeasureUnit="Month" />
+      </AxisX>
+      <AxisY VisibleInPanesSerializable="-1" />
+    </Diagram>
+  </Chart>
+</ChartXmlSerializer>

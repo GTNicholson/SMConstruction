@@ -45,11 +45,11 @@
     End Set
   End Property
 
-  Public Property InvoicePredictedType
+  Public Property InvoicePredictedType As Integer
     Get
       Return pInvoicePredictedType
     End Get
-    Set(value)
+    Set(value As Integer)
       pInvoicePredictedType = value
     End Set
   End Property

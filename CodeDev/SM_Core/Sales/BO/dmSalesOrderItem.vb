@@ -11,6 +11,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pImageFile As String
   Private pWoodSpecieID As Int32
   Private pWoodFinish As Int32
+  Private pQtyInvoiced As Int32
 
   Private pWorkOrders As colWorkOrders
   Private pSalesOrderItem As dmSalesOrderItem
@@ -63,6 +64,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .WorkOrders = WorkOrders.Clone
       .WoodFinish = WoodFinish
       .WoodSpecieID = WoodSpecieID
+      .QtyInvoiced = QtyInvoiced
 
       'Entries for object management
 
@@ -78,6 +80,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Set(ByVal value As Int32)
       If pSalesOrderItemID <> value Then IsDirty = True
       pSalesOrderItemID = value
+    End Set
+  End Property
+
+  Public Property QtyInvoiced() As Int32
+    Get
+      Return pQtyInvoiced
+    End Get
+    Set(ByVal value As Int32)
+      If pQtyInvoiced <> value Then IsDirty = True
+      pQtyInvoiced = value
     End Set
   End Property
 
