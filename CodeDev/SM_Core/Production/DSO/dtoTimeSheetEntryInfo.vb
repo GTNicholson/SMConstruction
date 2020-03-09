@@ -79,6 +79,11 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
         .CompanyName = DBReadString(rDataReader, "CompanyName")
       End With
 
+
+      With pTimeSheetEntryInfo.EmployeeRateOfPay
+        .StandardRate = DBReadDecimal(rDataReader, "StandardRate")
+      End With
+
       mOK = True
     Catch Ex As Exception
       If clsErrorHandler.HandleError(Ex, clsErrorHandler.PolicyDataLayer) Then Throw

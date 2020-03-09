@@ -1,9 +1,9 @@
 ﻿Imports RTIS.BIReport
 Imports RTIS.DataLayer
-Public Class BIReportViewInvoice
+Public Class BIReportViewCompanyDay
   Private Enum eBIWorkOrderLayoutID
-    InvoiceList = 1
-    InvoiceSummary = 2
+    CompanyDayList = 1
+    CompanyDaySummary = 2
     Chart = 3
   End Enum
 
@@ -17,14 +17,14 @@ Public Class BIReportViewInvoice
     IncludePredicted = 3
   End Enum
 
-  Public Shared Function CreateBIReportViewFactorInvoice(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
+  Public Shared Function CreateBIReportViewCompanyDay(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
     Dim mBIReportView As New clsBIReportView
     Dim mLayoutLoader As New clsBILayoutLoaderFromFile
     Dim mConditionSetterList As clsBIConditionSetterList
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
-    mBIReportView.BIReportSource = InvoiceReportSource()
-    mBIReportView.DataSourceLoader = New dsoBIInvoice(rDBConn, rRTISGlobal, mBIReportView)
+    mBIReportView.BIReportSource = CompanyDayReportSource()
+    mBIReportView.DataSourceLoader = New dsoBICompanyDay(rDBConn, rRTISGlobal, mBIReportView)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader
@@ -58,13 +58,13 @@ Public Class BIReportViewInvoice
     Return mBIReportView
   End Function
 
-  Public Shared Function InvoiceReportSource() As dmBIReportSource
+  Public Shared Function CompanyDayReportSource() As dmBIReportSource
     Dim mRepSource As dmBIReportSource
     Dim mThreeMonthsAgo As DateTime = DateTime.Today.AddMonths(-3)
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.Invoice
-    mRepSource.Name = "Facturas"
+    mRepSource.Name = "Company Name"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -82,29 +82,21 @@ Public Class BIReportViewInvoice
     Dim mRepLayout As New dmBIGridLayout
 
     mRepDDLayout = New dmBIGridLayout
-    mRepDDLayout.BIGridLayoutID = eBIWorkOrderLayoutID.InvoiceList
+    mRepDDLayout.BIGridLayoutID = eBIWorkOrderLayoutID.CompanyDayList
     mRepDDLayout.InterfaceType = 1
     mRepDDLayout.ParentLayoutID = 0
-    mRepDDLayout.LayoutFileName = "BIInvoiceList.xml"
-    mRepDDLayout.LayoutName = "Lista de Faturas"
+    mRepDDLayout.LayoutFileName = "BICompanyDayList.xml"
+    mRepDDLayout.LayoutName = "Lista de Company Day"
     vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
-    mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.InvoiceSummary
-    mRepLayout.InterfaceType = 0
-    mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIInvoiceSummary.xml"
-    mRepLayout.LayoutName = "Resumen de Facturas"
-    mRepLayout.DrillDownLayoutID = eBIWorkOrderLayoutID.InvoiceList
-    mRepLayout.DrillDownLayout = mRepDDLayout
-    vReportSource.BIGridLayouts.Add(mRepLayout)
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.Chart
-    mRepLayout.InterfaceType = 3
+    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.CompanyDaySummary
+    mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIInvoiceChart.xml"
-    mRepLayout.LayoutName = "Gráfica de Facturas"
+    mRepLayout.LayoutFileName = "BICompanyDaySummary.xml"
+    mRepLayout.LayoutName = "Resumen de Company Day"
+    mRepLayout.DrillDownLayout = mRepDDLayout
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
   End Sub
@@ -112,39 +104,30 @@ Public Class BIReportViewInvoice
   Private Shared Sub AddParams(ByVal vReportSource As dmBIReportSource)
     Dim mParam As clsManRepParameter
 
-    ''mParam = New clsManRepParameter
-    ''mParam.FieldName = "DateTransferred"
-    ''mParam.ParamOperator = ">="
-    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    ''mParam.ParamLabel = "Posted Date From"
-    ''mParam.FilterGroup = 0
-    ''mParam.ManReportParameterID = eParameters.StartDate
-    ''mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
-    ''mParam.DefaultValue = New Date(Year(Now), Month(Now), 1)
-    ''vReportSource.ColManRepParameter.Add(mParam)
-
-    ''mParam = New clsManRepParameter
-    ''mParam.FieldName = "DateTransferred"
-    ''mParam.ParamOperator = "<="
-    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    ''mParam.ParamLabel = "Posted Date To"
-    ''mParam.FilterGroup = 0
-    ''mParam.ManReportParameterID = eParameters.EndDate
-    ''mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
-    ''mParam.DefaultValue = Now.Date
-    ''vReportSource.ColManRepParameter.Add(mParam)
-
     mParam = New clsManRepParameter
-    mParam.FieldName = "IncludePredicted"
-    mParam.ParamOperator = "="
-    mParam.FieldType = MRConstENUM.eMRFieldType.emrftBoolean
-    mParam.ParamLabel = "Incluir Metas"
+    mParam.FieldName = "TransactionDate"
+    mParam.ParamOperator = ">="
+    mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
+    mParam.ParamLabel = "Desde la Fecha"
     mParam.FilterGroup = 0
-    mParam.ManReportParameterID = eParameters.IncludePredicted
-    mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
-    mParam.DefaultValue = False
+    mParam.ManReportParameterID = eParameters.StartDate
+    mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
+    mParam.DefaultValue = New Date(Year(Now), Month(Now), 1)
     mParam.ExcludeFromSQLBuild = True
     vReportSource.ColManRepParameter.Add(mParam)
+
+    mParam = New clsManRepParameter
+    mParam.FieldName = "TransactionDate"
+    mParam.ParamOperator = "<="
+    mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
+    mParam.ParamLabel = "Hasta la Fecha"
+    mParam.FilterGroup = 0
+    mParam.ManReportParameterID = eParameters.EndDate
+    mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
+    mParam.DefaultValue = Now.Date
+    mParam.ExcludeFromSQLBuild = True
+    vReportSource.ColManRepParameter.Add(mParam)
+
 
 
   End Sub
@@ -156,7 +139,7 @@ Public Class BIReportViewInvoice
     mRepDef.ReportName = "General"
     mRepDef.Description = "Facturas"
     mRepDef.BIReportDefID = eBIReportDefs.General
-    mRepDef.BIGridLayoutID = eBIWorkOrderLayoutID.InvoiceList
+    mRepDef.BIGridLayoutID = eBIWorkOrderLayoutID.CompanyDayList
     Return mRepDef
   End Function
 

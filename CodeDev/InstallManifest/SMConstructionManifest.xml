@@ -502,4 +502,13 @@
   <AuxFiles>
     <Filename>BIStockTransactionItemSummary.xml</Filename>
   </AuxFiles>
+  <AuxFiles>
+    <Filename>BIInvoiceSummary.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIInvoiceList.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIInvoiceChart.xml</Filename>
+  </AuxFiles>
 </AppUpdateManifest>

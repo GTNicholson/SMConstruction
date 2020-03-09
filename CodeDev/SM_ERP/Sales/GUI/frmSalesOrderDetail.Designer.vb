@@ -120,6 +120,9 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+    Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
+    Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
     Me.grdInvoices = New DevExpress.XtraGrid.GridControl()
     Me.gvInvoices = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -133,15 +136,10 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcDetails = New DevExpress.XtraEditors.GroupControl()
     Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
     Me.txtVersion = New DevExpress.XtraEditors.TextEdit()
     Me.Label24 = New System.Windows.Forms.Label()
-    Me.Label23 = New System.Windows.Forms.Label()
-    Me.btnePodio = New DevExpress.XtraEditors.ButtonEdit()
     Me.Label2 = New System.Windows.Forms.Label()
     Me.cboContractManagerID = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.txtSalesOrderID = New DevExpress.XtraEditors.TextEdit()
@@ -171,7 +169,9 @@ Partial Class frmSalesOrderDetail
     Me.Label17 = New System.Windows.Forms.Label()
     Me.Label16 = New System.Windows.Forms.Label()
     Me.Label21 = New System.Windows.Forms.Label()
+    Me.Label23 = New System.Windows.Forms.Label()
     Me.lblSalesOrderID = New System.Windows.Forms.Label()
+    Me.btnePodio = New DevExpress.XtraEditors.ButtonEdit()
     Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
     Me.txtCustomerContact = New DevExpress.XtraEditors.TextEdit()
     Me.Label20 = New System.Windows.Forms.Label()
@@ -239,6 +239,10 @@ Partial Class frmSalesOrderDetail
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl1.SuspendLayout()
+    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl5.SuspendLayout()
     CType(Me.grdInvoices, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,16 +251,11 @@ Partial Class frmSalesOrderDetail
     CType(Me.repInvoiceDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repCreatedDate, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repCreatedDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.GroupControl1.SuspendLayout()
-    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gcDetails, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.gcDetails.SuspendLayout()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl4.SuspendLayout()
     CType(Me.txtVersion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.btnePodio.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,6 +275,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.cboCustomerDelContacID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDelAddress2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.txtDelAddress1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.btnePodio.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl2.SuspendLayout()
     CType(Me.txtCustomerContact.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -342,7 +342,7 @@ Partial Class frmSalesOrderDetail
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 675)
     Me.barDockControlBottom.Manager = Me.BarManager1
     Me.barDockControlBottom.Size = New System.Drawing.Size(1164, 0)
     '
@@ -352,7 +352,7 @@ Partial Class frmSalesOrderDetail
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 642)
     '
     'barDockControlRight
     '
@@ -360,7 +360,7 @@ Partial Class frmSalesOrderDetail
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
     Me.barDockControlRight.Location = New System.Drawing.Point(1164, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 696)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 642)
     '
     'BarButtonItem1
     '
@@ -372,9 +372,9 @@ Partial Class frmSalesOrderDetail
     '
     Me.PanelControl1.Controls.Add(Me.XtraTabControl1)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(3, 307)
+    Me.PanelControl1.Location = New System.Drawing.Point(3, 296)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1158, 386)
+    Me.PanelControl1.Size = New System.Drawing.Size(1158, 343)
     Me.PanelControl1.TabIndex = 14
     '
     'XtraTabControl1
@@ -382,10 +382,10 @@ Partial Class frmSalesOrderDetail
     Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.XtraTabControl1.Location = New System.Drawing.Point(5, 5)
+    Me.XtraTabControl1.Location = New System.Drawing.Point(5, 0)
     Me.XtraTabControl1.Name = "XtraTabControl1"
     Me.XtraTabControl1.SelectedTabPage = Me.xtbSalesAndOT
-    Me.XtraTabControl1.Size = New System.Drawing.Size(1148, 372)
+    Me.XtraTabControl1.Size = New System.Drawing.Size(1148, 346)
     Me.XtraTabControl1.TabIndex = 41
     Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtbSalesAndOT, Me.XtraTabPage1, Me.xtbDespatchesAndInvoices})
     '
@@ -398,7 +398,7 @@ Partial Class frmSalesOrderDetail
     Me.xtbSalesAndOT.Controls.Add(Me.grpOrderItem)
     Me.xtbSalesAndOT.Controls.Add(Me.grpWorkOrders)
     Me.xtbSalesAndOT.Name = "xtbSalesAndOT"
-    Me.xtbSalesAndOT.Size = New System.Drawing.Size(1142, 344)
+    Me.xtbSalesAndOT.Size = New System.Drawing.Size(1142, 306)
     Me.xtbSalesAndOT.Text = "Artículos de Ventas y OTs"
     '
     'grpOrderItem
@@ -412,7 +412,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(7, 6)
     Me.grpOrderItem.Name = "grpOrderItem"
-    Me.grpOrderItem.Size = New System.Drawing.Size(563, 262)
+    Me.grpOrderItem.Size = New System.Drawing.Size(563, 320)
     Me.grpOrderItem.TabIndex = 0
     Me.grpOrderItem.Text = "Articulos"
     '
@@ -424,7 +424,7 @@ Partial Class frmSalesOrderDetail
     Me.grdOrderItem.MenuManager = Me.BarManager1
     Me.grdOrderItem.Name = "grdOrderItem"
     Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-    Me.grdOrderItem.Size = New System.Drawing.Size(559, 234)
+    Me.grdOrderItem.Size = New System.Drawing.Size(559, 292)
     Me.grdOrderItem.TabIndex = 0
     Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem, Me.GridView7})
     '
@@ -584,7 +584,7 @@ Partial Class frmSalesOrderDetail
     Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpWorkOrders.Location = New System.Drawing.Point(574, 6)
     Me.grpWorkOrders.Name = "grpWorkOrders"
-    Me.grpWorkOrders.Size = New System.Drawing.Size(564, 262)
+    Me.grpWorkOrders.Size = New System.Drawing.Size(564, 320)
     Me.grpWorkOrders.TabIndex = 1
     Me.grpWorkOrders.Text = "Ordenes de Trabajo"
     '
@@ -596,7 +596,7 @@ Partial Class frmSalesOrderDetail
     Me.grdWorkOrders.MenuManager = Me.BarManager1
     Me.grdWorkOrders.Name = "grdWorkOrders"
     Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-    Me.grdWorkOrders.Size = New System.Drawing.Size(560, 234)
+    Me.grdWorkOrders.Size = New System.Drawing.Size(560, 292)
     Me.grdWorkOrders.TabIndex = 0
     Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders, Me.GridView6})
     '
@@ -714,7 +714,7 @@ Partial Class frmSalesOrderDetail
     Me.XtraTabPage1.Appearance.HeaderDisabled.Options.UseFont = True
     Me.XtraTabPage1.Controls.Add(Me.XtraTabControl2)
     Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1142, 347)
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1142, 306)
     Me.XtraTabPage1.Text = "Estimación de Madera e Insumos"
     '
     'XtraTabControl2
@@ -725,7 +725,7 @@ Partial Class frmSalesOrderDetail
     Me.XtraTabControl2.Location = New System.Drawing.Point(0, 0)
     Me.XtraTabControl2.Name = "XtraTabControl2"
     Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage2
-    Me.XtraTabControl2.Size = New System.Drawing.Size(1142, 347)
+    Me.XtraTabControl2.Size = New System.Drawing.Size(1142, 306)
     Me.XtraTabControl2.TabIndex = 150
     Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2, Me.XtraTabPage3})
     '
@@ -733,7 +733,7 @@ Partial Class frmSalesOrderDetail
     '
     Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirements)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1014, 341)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1014, 300)
     Me.XtraTabPage2.Text = "Estimación de Madera"
     '
     'grpMaterialRequirements
@@ -748,7 +748,7 @@ Partial Class frmSalesOrderDetail
     Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
     Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-    Me.grpMaterialRequirements.Size = New System.Drawing.Size(1014, 341)
+    Me.grpMaterialRequirements.Size = New System.Drawing.Size(1014, 300)
     Me.grpMaterialRequirements.TabIndex = 149
     Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
     '
@@ -764,7 +764,7 @@ Partial Class frmSalesOrderDetail
     Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
     Me.grdMaterialRequirements.MenuManager = Me.BarManager1
     Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1010, 313)
+    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1010, 272)
     Me.grdMaterialRequirements.TabIndex = 29
     Me.grdMaterialRequirements.UseEmbeddedNavigator = True
     Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements, Me.GridView5})
@@ -909,7 +909,7 @@ Partial Class frmSalesOrderDetail
     '
     Me.XtraTabPage3.Controls.Add(Me.grpMaterialRequirementOthers)
     Me.XtraTabPage3.Name = "XtraTabPage3"
-    Me.XtraTabPage3.Size = New System.Drawing.Size(1014, 341)
+    Me.XtraTabPage3.Size = New System.Drawing.Size(1014, 354)
     Me.XtraTabPage3.Text = "Estimación de Insumos"
     '
     'grpMaterialRequirementOthers
@@ -924,7 +924,7 @@ Partial Class frmSalesOrderDetail
     Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
     Me.grpMaterialRequirementOthers.Name = "grpMaterialRequirementOthers"
-    Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1014, 341)
+    Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1014, 354)
     Me.grpMaterialRequirementOthers.TabIndex = 148
     Me.grpMaterialRequirementOthers.Text = "Lista de Materiales Requeridos (LMR)"
     '
@@ -940,7 +940,7 @@ Partial Class frmSalesOrderDetail
     Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
     Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
     Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
-    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1010, 313)
+    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1010, 326)
     Me.grdMaterialRequirementOthers.TabIndex = 41
     Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
     Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers, Me.GridView4})
@@ -1034,10 +1034,10 @@ Partial Class frmSalesOrderDetail
     Me.xtbDespatchesAndInvoices.Appearance.HeaderActive.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
     Me.xtbDespatchesAndInvoices.Appearance.HeaderActive.Options.UseFont = True
     Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl6)
-    Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl5)
     Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl1)
+    Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl5)
     Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
-    Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1142, 347)
+    Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1142, 318)
     Me.xtbDespatchesAndInvoices.Text = "Ordenes de Cliente, Facturas y Despachos"
     '
     'GroupControl6
@@ -1047,9 +1047,9 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl6.AppearanceCaption.Options.UseFont = True
     Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl6.Controls.Add(Me.grdCustomerPurchaseOrder)
-    Me.GroupControl6.Location = New System.Drawing.Point(544, 5)
+    Me.GroupControl6.Location = New System.Drawing.Point(500, 132)
     Me.GroupControl6.Name = "GroupControl6"
-    Me.GroupControl6.Size = New System.Drawing.Size(422, 123)
+    Me.GroupControl6.Size = New System.Drawing.Size(638, 140)
     Me.GroupControl6.TabIndex = 11
     Me.GroupControl6.Text = "Órdenes de Compras de Cliente"
     '
@@ -1071,7 +1071,7 @@ Partial Class frmSalesOrderDetail
     Me.grdCustomerPurchaseOrder.MenuManager = Me.BarManager1
     Me.grdCustomerPurchaseOrder.Name = "grdCustomerPurchaseOrder"
     Me.grdCustomerPurchaseOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.repOrderDate})
-    Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(418, 98)
+    Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(634, 115)
     Me.grdCustomerPurchaseOrder.TabIndex = 8
     Me.grdCustomerPurchaseOrder.UseEmbeddedNavigator = True
     Me.grdCustomerPurchaseOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPurchaseOrder})
@@ -1159,6 +1159,45 @@ Partial Class frmSalesOrderDetail
     Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
     Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
     '
+    'GroupControl1
+    '
+    Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl1.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl1.Controls.Add(Me.GridControl2)
+    Me.GroupControl1.Location = New System.Drawing.Point(7, 134)
+    Me.GroupControl1.Name = "GroupControl1"
+    Me.GroupControl1.Size = New System.Drawing.Size(435, 153)
+    Me.GroupControl1.TabIndex = 9
+    Me.GroupControl1.Text = "Despachos"
+    '
+    'GridControl2
+    '
+    Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.GridControl2.Location = New System.Drawing.Point(2, 23)
+    Me.GridControl2.MainView = Me.GridView2
+    Me.GridControl2.MenuManager = Me.BarManager1
+    Me.GridControl2.Name = "GridControl2"
+    Me.GridControl2.Size = New System.Drawing.Size(431, 128)
+    Me.GridControl2.TabIndex = 2
+    Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+    '
+    'GridView2
+    '
+    Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
+    Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView2.Appearance.Row.Options.UseFont = True
+    Me.GridView2.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView2.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
+    Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
+    Me.GridView2.GridControl = Me.GridControl2
+    Me.GridView2.Name = "GridView2"
+    Me.GridView2.OptionsView.ShowGroupPanel = False
+    Me.GridView2.ViewCaption = "Despachos"
+    '
     'GroupControl5
     '
     Me.GroupControl5.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1166,9 +1205,9 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl5.AppearanceCaption.Options.UseFont = True
     Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
     Me.GroupControl5.Controls.Add(Me.grdInvoices)
-    Me.GroupControl5.Location = New System.Drawing.Point(542, 132)
+    Me.GroupControl5.Location = New System.Drawing.Point(7, 3)
     Me.GroupControl5.Name = "GroupControl5"
-    Me.GroupControl5.Size = New System.Drawing.Size(587, 114)
+    Me.GroupControl5.Size = New System.Drawing.Size(1131, 125)
     Me.GroupControl5.TabIndex = 10
     Me.GroupControl5.Text = "Facturas"
     '
@@ -1190,7 +1229,7 @@ Partial Class frmSalesOrderDetail
     Me.grdInvoices.MenuManager = Me.BarManager1
     Me.grdInvoices.Name = "grdInvoices"
     Me.grdInvoices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repInvoiceDate, Me.repCreatedDate})
-    Me.grdInvoices.Size = New System.Drawing.Size(583, 89)
+    Me.grdInvoices.Size = New System.Drawing.Size(1127, 100)
     Me.grdInvoices.TabIndex = 7
     Me.grdInvoices.UseEmbeddedNavigator = True
     Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices})
@@ -1296,45 +1335,6 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn38.Visible = True
     Me.GridColumn38.VisibleIndex = 5
     '
-    'GroupControl1
-    '
-    Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GroupControl1.AppearanceCaption.Options.UseFont = True
-    Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
-    Me.GroupControl1.Controls.Add(Me.GridControl2)
-    Me.GroupControl1.Location = New System.Drawing.Point(0, 5)
-    Me.GroupControl1.Name = "GroupControl1"
-    Me.GroupControl1.Size = New System.Drawing.Size(538, 334)
-    Me.GroupControl1.TabIndex = 9
-    Me.GroupControl1.Text = "Despachos"
-    '
-    'GridControl2
-    '
-    Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.GridControl2.Location = New System.Drawing.Point(2, 23)
-    Me.GridControl2.MainView = Me.GridView2
-    Me.GridControl2.MenuManager = Me.BarManager1
-    Me.GridControl2.Name = "GridControl2"
-    Me.GridControl2.Size = New System.Drawing.Size(534, 309)
-    Me.GridControl2.TabIndex = 2
-    Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-    '
-    'GridView2
-    '
-    Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.Row.Options.UseFont = True
-    Me.GridView2.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView2.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
-    Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
-    Me.GridView2.GridControl = Me.GridControl2
-    Me.GridView2.Name = "GridView2"
-    Me.GridView2.OptionsView.ShowGroupPanel = False
-    Me.GridView2.ViewCaption = "Despachos"
-    '
     'gcDetails
     '
     Me.gcDetails.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1343,13 +1343,15 @@ Partial Class frmSalesOrderDetail
     Me.gcDetails.AppearanceCaption.Options.UseForeColor = True
     Me.gcDetails.Controls.Add(Me.GroupControl4)
     Me.gcDetails.Controls.Add(Me.GroupControl3)
+    Me.gcDetails.Controls.Add(Me.Label23)
     Me.gcDetails.Controls.Add(Me.lblSalesOrderID)
+    Me.gcDetails.Controls.Add(Me.btnePodio)
     Me.gcDetails.Controls.Add(Me.GroupControl2)
     Me.gcDetails.Controls.Add(Me.Label9)
     Me.gcDetails.Controls.Add(Me.txtVisibleNotes)
     Me.gcDetails.Location = New System.Drawing.Point(3, 3)
     Me.gcDetails.Name = "gcDetails"
-    Me.gcDetails.Size = New System.Drawing.Size(1149, 298)
+    Me.gcDetails.Size = New System.Drawing.Size(1149, 287)
     Me.gcDetails.TabIndex = 0
     '
     'GroupControl4
@@ -1358,8 +1360,6 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl4.AppearanceCaption.Options.UseFont = True
     Me.GroupControl4.Controls.Add(Me.txtVersion)
     Me.GroupControl4.Controls.Add(Me.Label24)
-    Me.GroupControl4.Controls.Add(Me.Label23)
-    Me.GroupControl4.Controls.Add(Me.btnePodio)
     Me.GroupControl4.Controls.Add(Me.Label2)
     Me.GroupControl4.Controls.Add(Me.cboContractManagerID)
     Me.GroupControl4.Controls.Add(Me.txtSalesOrderID)
@@ -1380,7 +1380,7 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl4.Controls.Add(Me.dteFinishDate)
     Me.GroupControl4.Location = New System.Drawing.Point(5, 26)
     Me.GroupControl4.Name = "GroupControl4"
-    Me.GroupControl4.Size = New System.Drawing.Size(270, 272)
+    Me.GroupControl4.Size = New System.Drawing.Size(270, 260)
     Me.GroupControl4.TabIndex = 40
     Me.GroupControl4.Text = "Detalles Generales de Venta"
     '
@@ -1407,31 +1407,6 @@ Partial Class frmSalesOrderDetail
     Me.Label24.Tag = "c"
     Me.Label24.Text = "V"
     Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-    '
-    'Label23
-    '
-    Me.Label23.AutoSize = True
-    Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.Label23.Location = New System.Drawing.Point(5, 248)
-    Me.Label23.Name = "Label23"
-    Me.Label23.Size = New System.Drawing.Size(38, 14)
-    Me.Label23.TabIndex = 41
-    Me.Label23.Tag = "c"
-    Me.Label23.Text = "Podio"
-    '
-    'btnePodio
-    '
-    Me.btnePodio.Location = New System.Drawing.Point(127, 245)
-    Me.btnePodio.MenuManager = Me.BarManager1
-    Me.btnePodio.Name = "btnePodio"
-    Me.btnePodio.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.btnePodio.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.btnePodio.Properties.Appearance.Options.UseBackColor = True
-    Me.btnePodio.Properties.Appearance.Options.UseFont = True
-    Me.btnePodio.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
-    Me.btnePodio.Size = New System.Drawing.Size(130, 20)
-    Me.btnePodio.TabIndex = 40
     '
     'Label2
     '
@@ -1653,7 +1628,7 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl3.Controls.Add(Me.Label21)
     Me.GroupControl3.Location = New System.Drawing.Point(557, 26)
     Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(270, 267)
+    Me.GroupControl3.Size = New System.Drawing.Size(270, 260)
     Me.GroupControl3.TabIndex = 11
     Me.GroupControl3.Text = "Detalles de Envio del Cliente"
     '
@@ -1773,6 +1748,18 @@ Partial Class frmSalesOrderDetail
     Me.Label21.Tag = "c"
     Me.Label21.Text = "País"
     '
+    'Label23
+    '
+    Me.Label23.AutoSize = True
+    Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.Label23.Location = New System.Drawing.Point(837, 3)
+    Me.Label23.Name = "Label23"
+    Me.Label23.Size = New System.Drawing.Size(38, 14)
+    Me.Label23.TabIndex = 41
+    Me.Label23.Tag = "c"
+    Me.Label23.Text = "Podio"
+    '
     'lblSalesOrderID
     '
     Me.lblSalesOrderID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1787,6 +1774,19 @@ Partial Class frmSalesOrderDetail
     Me.lblSalesOrderID.Tag = "c"
     Me.lblSalesOrderID.Text = "ID:0000"
     Me.lblSalesOrderID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    '
+    'btnePodio
+    '
+    Me.btnePodio.Location = New System.Drawing.Point(881, 1)
+    Me.btnePodio.MenuManager = Me.BarManager1
+    Me.btnePodio.Name = "btnePodio"
+    Me.btnePodio.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
+    Me.btnePodio.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.btnePodio.Properties.Appearance.Options.UseBackColor = True
+    Me.btnePodio.Properties.Appearance.Options.UseFont = True
+    Me.btnePodio.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
+    Me.btnePodio.Size = New System.Drawing.Size(130, 20)
+    Me.btnePodio.TabIndex = 40
     '
     'GroupControl2
     '
@@ -1808,7 +1808,7 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl2.Controls.Add(Me.Label1)
     Me.GroupControl2.Location = New System.Drawing.Point(281, 26)
     Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(270, 267)
+    Me.GroupControl2.Size = New System.Drawing.Size(270, 260)
     Me.GroupControl2.TabIndex = 10
     Me.GroupControl2.Text = "Detalles de Facturación del Cliente"
     '
@@ -2008,16 +2008,16 @@ Partial Class frmSalesOrderDetail
     Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
     Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
     Me.TableLayoutPanel1.RowCount = 2
-    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 304.0!))
+    Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 293.0!))
     Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 696)
+    Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 642)
     Me.TableLayoutPanel1.TabIndex = 4
     '
     'frmSalesOrderDetail
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1164, 729)
+    Me.ClientSize = New System.Drawing.Size(1164, 675)
     Me.Controls.Add(Me.TableLayoutPanel1)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
@@ -2074,6 +2074,10 @@ Partial Class frmSalesOrderDetail
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl1.ResumeLayout(False)
+    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl5.ResumeLayout(False)
     CType(Me.grdInvoices, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2082,10 +2086,6 @@ Partial Class frmSalesOrderDetail
     CType(Me.repInvoiceDate, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repCreatedDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repCreatedDate, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.GroupControl1.ResumeLayout(False)
-    CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gcDetails, System.ComponentModel.ISupportInitialize).EndInit()
     Me.gcDetails.ResumeLayout(False)
     Me.gcDetails.PerformLayout()
@@ -2093,7 +2093,6 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl4.ResumeLayout(False)
     Me.GroupControl4.PerformLayout()
     CType(Me.txtVersion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.btnePodio.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2114,6 +2113,7 @@ Partial Class frmSalesOrderDetail
     CType(Me.cboCustomerDelContacID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDelAddress2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.txtDelAddress1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.btnePodio.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.GroupControl2.ResumeLayout(False)
     Me.GroupControl2.PerformLayout()

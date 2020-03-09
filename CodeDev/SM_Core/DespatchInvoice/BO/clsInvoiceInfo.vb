@@ -54,6 +54,23 @@
     End Set
   End Property
 
+  Public ReadOnly Property InvoicePredictedTypeDescription As String
+    Get
+      Dim mRet As String = ""
+      Select Case pInvoicePredictedType
+        Case eInvoicePredictedType.Invoice
+          mRet = "Factura"
+        Case eInvoicePredictedType.Packed
+          mRet = "Empacado"
+        Case eInvoicePredictedType.Engineered
+          mRet = "Ingeniería"
+        Case eInvoicePredictedType.Pending
+          mRet = "Pendiente"
+      End Select
+      Return mRet
+    End Get
+  End Property
+
   Public ReadOnly Property InvoiceID As Integer
     Get
       Return pInvoice.InvoiceID
@@ -62,6 +79,7 @@
 
   Public ReadOnly Property InvoiceNo As String
     Get
+
       Return pInvoice.InvoiceNo
     End Get
   End Property

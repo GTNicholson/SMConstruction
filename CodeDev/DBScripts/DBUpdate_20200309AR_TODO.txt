@@ -1,0 +1,28 @@
+ALTER view [dbo].[vwTimeSheetEntryInfo]
+as
+
+
+SELECT        
+TS.TimeSheetEntryID, 
+TS.TimeSheetEntryTypeID,
+TS.EmployeeID, 
+TS.WorkOrderID, 
+TS.StartTime, 
+TS.EndTime, 
+TS.Note, 
+TS.WorkcentreID,
+TS.OverTimeMinutes, 
+WO.WorkOrderNo, 
+WO.Description,
+SO.ProjectName,
+C.CompanyName,
+EROP.StandardRate
+FROM dbo.TimeSheetEntry AS TS 
+LEFT OUTER JOIN dbo.WorkOrder AS WO ON WO.WorkOrderID = TS.WorkOrderID
+Left Join SalesOrderItem SOI on SOI.SalesOrderItemID = WO.SalesOrderItemID
+Left Join SalesOrder SO on SO.SalesOrderID = SOI.SalesOrderID
+Left Join Customer C on C.CustomerId = SO.CustomerID
+LEFT JOIN Employee E ON E.EmployeeID=TS.EmployeeID
+left join EmployeeRateOfPay EROP on EROP.EmployeeID=E.EmployeeID
+
+GO

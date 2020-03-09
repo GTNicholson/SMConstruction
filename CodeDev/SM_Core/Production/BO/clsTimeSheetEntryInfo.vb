@@ -3,8 +3,11 @@
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
-
+  Private pEmployeeRateOfPay As dmEmployeeRateOfPay
   Private Shared sEmployeeVIs As RTIS.CommonVB.colValueItems
+  Private pStandarRate As Decimal
+  Private pOverTimeRate As Decimal
+
 
 
   Public Sub New()
@@ -12,6 +15,7 @@
     pWorkOrder = New dmWorkOrder
     pSalesOrder = New dmSalesOrder
     pCustomer = New dmCustomer
+    pEmployeeRateOfPay = New dmEmployeeRateOfPay
 
     If sEmployeeVIs Is Nothing Then
       sEmployeeVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees)
@@ -110,6 +114,50 @@
       Return pTimeSheetEntry.StartTime.Date
     End Get
   End Property
+
+  Public ReadOnly Property EmployeeRateOfPay As dmEmployeeRateOfPay
+    Get
+      Return pEmployeeRateOfPay
+    End Get
+  End Property
+
+  Public Property StandardRate As Decimal
+    Get
+      pStandarRate = (pEmployeeRateOfPay.StandardRate / 30 / 8)
+      Return pStandarRate
+    End Get
+    Set(value As Decimal)
+      pStandarRate = value
+    End Set
+  End Property
+
+  Public Property OverTimeRate As Decimal
+    Get
+      pOverTimeRate = (pEmployeeRateOfPay.StandardRate / 30 / 8) * 2
+
+      Return pOverTimeRate
+    End Get
+    Set(value As Decimal)
+      pOverTimeRate = value
+    End Set
+  End Property
+
+  Public ReadOnly Property TotalStandardValue As Decimal
+    Get
+
+      Return StandardRate * pTimeSheetEntry.Duration
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalOverTimeValue As Decimal
+    Get
+
+      Return OverTimeRate * (pTimeSheetEntry.OverTimeMinutes / 60)
+    End Get
+
+  End Property
+
 
   Public ReadOnly Property TimeSheetDateWC As DateTime
     Get
