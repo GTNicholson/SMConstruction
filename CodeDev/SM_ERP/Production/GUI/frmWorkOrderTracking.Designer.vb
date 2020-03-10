@@ -47,14 +47,14 @@ Partial Class frmWorkOrderTracking
     Me.gcDispatch = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
+    Me.bchkHideDespatched = New DevExpress.XtraBars.BarEditItem()
+    Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+    Me.bbtnReLoad = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnExportToExcel = New DevExpress.XtraBars.BarButtonItem()
     Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.bbtnReLoad = New DevExpress.XtraBars.BarButtonItem()
-    Me.bchkHideDespatched = New DevExpress.XtraBars.BarEditItem()
-    Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,6 +346,7 @@ Partial Class frmWorkOrderTracking
     Me.gcPackaging.OptionsColumn.AllowEdit = False
     Me.gcPackaging.OptionsColumn.ReadOnly = True
     Me.gcPackaging.Tag = "9"
+    Me.gcPackaging.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcPackaging.Visible = True
     Me.gcPackaging.VisibleIndex = 16
     '
@@ -357,6 +358,7 @@ Partial Class frmWorkOrderTracking
     Me.gcDispatch.OptionsColumn.AllowEdit = False
     Me.gcDispatch.OptionsColumn.ReadOnly = True
     Me.gcDispatch.Tag = "10"
+    Me.gcDispatch.UnboundType = DevExpress.Data.UnboundColumnType.[String]
     Me.gcDispatch.Visible = True
     Me.gcDispatch.VisibleIndex = 17
     '
@@ -380,6 +382,26 @@ Partial Class frmWorkOrderTracking
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
     Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(CType((DevExpress.XtraBars.BarLinkUserDefines.PaintStyle Or DevExpress.XtraBars.BarLinkUserDefines.Width), DevExpress.XtraBars.BarLinkUserDefines), Me.bchkHideDespatched, "", False, True, True, 34, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnReLoad), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnExportToExcel)})
     Me.Bar1.Text = "Tools"
+    '
+    'bchkHideDespatched
+    '
+    Me.bchkHideDespatched.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bchkHideDespatched.Caption = "Ocultar Despahados"
+    Me.bchkHideDespatched.Edit = Me.RepositoryItemCheckEdit1
+    Me.bchkHideDespatched.Id = 3
+    Me.bchkHideDespatched.Name = "bchkHideDespatched"
+    '
+    'RepositoryItemCheckEdit1
+    '
+    Me.RepositoryItemCheckEdit1.AutoHeight = False
+    Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+    '
+    'bbtnReLoad
+    '
+    Me.bbtnReLoad.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnReLoad.Caption = "Recargar"
+    Me.bbtnReLoad.Id = 1
+    Me.bbtnReLoad.Name = "bbtnReLoad"
     '
     'bbtnExportToExcel
     '
@@ -419,26 +441,6 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlRight.Location = New System.Drawing.Point(1221, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
     Me.barDockControlRight.Size = New System.Drawing.Size(0, 593)
-    '
-    'bbtnReLoad
-    '
-    Me.bbtnReLoad.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnReLoad.Caption = "Re-Cargar"
-    Me.bbtnReLoad.Id = 1
-    Me.bbtnReLoad.Name = "bbtnReLoad"
-    '
-    'bchkHideDespatched
-    '
-    Me.bchkHideDespatched.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bchkHideDespatched.Caption = "Ocultar Despahados"
-    Me.bchkHideDespatched.Edit = Me.RepositoryItemCheckEdit1
-    Me.bchkHideDespatched.Id = 3
-    Me.bchkHideDespatched.Name = "bchkHideDespatched"
-    '
-    'RepositoryItemCheckEdit1
-    '
-    Me.RepositoryItemCheckEdit1.AutoHeight = False
-    Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
     '
     'frmWorkOrderTracking
     '
