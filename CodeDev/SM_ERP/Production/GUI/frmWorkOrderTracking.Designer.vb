@@ -52,21 +52,25 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
     Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+    Me.bbtnReLoad = New DevExpress.XtraBars.BarButtonItem()
+    Me.bchkHideDespatched = New DevExpress.XtraBars.BarEditItem()
+    Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
     CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grdWorksOrders
     '
     Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 30)
+    Me.grdWorksOrders.Location = New System.Drawing.Point(0, 33)
     Me.grdWorksOrders.MainView = Me.gvWorksOrders
     Me.grdWorksOrders.Name = "grdWorksOrders"
     Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 596)
+    Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 593)
     Me.grdWorksOrders.TabIndex = 0
     Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
     '
@@ -364,8 +368,9 @@ Partial Class frmWorkOrderTracking
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnExportToExcel})
-    Me.BarManager1.MaxItemId = 1
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnExportToExcel, Me.bbtnReLoad, Me.bchkHideDespatched})
+    Me.BarManager1.MaxItemId = 4
+    Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
     '
     'Bar1
     '
@@ -373,7 +378,7 @@ Partial Class frmWorkOrderTracking
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnExportToExcel)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(CType((DevExpress.XtraBars.BarLinkUserDefines.PaintStyle Or DevExpress.XtraBars.BarLinkUserDefines.Width), DevExpress.XtraBars.BarLinkUserDefines), Me.bchkHideDespatched, "", False, True, True, 34, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnReLoad), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnExportToExcel)})
     Me.Bar1.Text = "Tools"
     '
     'bbtnExportToExcel
@@ -389,7 +394,7 @@ Partial Class frmWorkOrderTracking
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 30)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1221, 33)
     '
     'barDockControlBottom
     '
@@ -403,17 +408,37 @@ Partial Class frmWorkOrderTracking
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 596)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 593)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 30)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1221, 33)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 596)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 593)
+    '
+    'bbtnReLoad
+    '
+    Me.bbtnReLoad.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bbtnReLoad.Caption = "Re-Cargar"
+    Me.bbtnReLoad.Id = 1
+    Me.bbtnReLoad.Name = "bbtnReLoad"
+    '
+    'bchkHideDespatched
+    '
+    Me.bchkHideDespatched.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.bchkHideDespatched.Caption = "Ocultar Despahados"
+    Me.bchkHideDespatched.Edit = Me.RepositoryItemCheckEdit1
+    Me.bchkHideDespatched.Id = 3
+    Me.bchkHideDespatched.Name = "bchkHideDespatched"
+    '
+    'RepositoryItemCheckEdit1
+    '
+    Me.RepositoryItemCheckEdit1.AutoHeight = False
+    Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
     '
     'frmWorkOrderTracking
     '
@@ -432,6 +457,7 @@ Partial Class frmWorkOrderTracking
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -466,4 +492,7 @@ Partial Class frmWorkOrderTracking
   Friend WithEvents gcPackaging As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcDispatch As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents bbtnExportToExcel As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents bchkHideDespatched As DevExpress.XtraBars.BarEditItem
+  Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+  Friend WithEvents bbtnReLoad As DevExpress.XtraBars.BarButtonItem
 End Class

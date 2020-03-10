@@ -62,7 +62,7 @@ Public Class dtoSalesOrderProgressInfo : Inherits dtoBase
         .ProjectName = DBReadString(rDataReader, "ProjectName")
         .QtyWOs = DBReadInteger(rDataReader, "QtyWOs")
         .EngineeringCompleteQty = DBReadInteger(rDataReader, "EngineeringCompleteQty")
-        .DespatchCompleteQty = DBReadInteger(rDataReader, "EngineeringCompleteQty")
+        .DespatchCompleteQty = DBReadInteger(rDataReader, "DespatchCompleteQty")
         .WOsMROtherPicked = DBReadInteger(rDataReader, "WOsMROtherPicked")
         .TimeSheetEntryDays = DBReadDecimal(rDataReader, "TimeSheetEntryDays")
         .FinishDate = DBReadDate(rDataReader, "FinishDate")

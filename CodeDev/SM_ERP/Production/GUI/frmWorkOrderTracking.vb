@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraBars
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 
@@ -18,6 +19,9 @@ Public Class frmWorkOrderTracking
     Dim mOK As Boolean
     Dim mErrorDisplayed As Boolean
     Try
+
+      pController.HideDespatched = True
+      bchkHideDespatched.EditValue = pController.HideDespatched
 
       pController.LoadObjects()
       grdWorksOrders.DataSource = pController.WorkOrderTrackings
@@ -219,5 +223,15 @@ Public Class frmWorkOrderTracking
       mOptions.ExportType = DevExpress.Export.ExportType.WYSIWYG
       gvWorksOrders.ExportToXlsx(mFileName, mOptions)
     End If
+  End Sub
+
+  Private Sub bbtnReLoad_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnReLoad.ItemClick
+    Try
+      pController.HideDespatched = bchkHideDespatched.EditValue
+      pController.LoadObjects()
+      grdWorksOrders.DataSource = pController.WorkOrderTrackings
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

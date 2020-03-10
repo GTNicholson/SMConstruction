@@ -46,8 +46,8 @@ Public Class dsoCompanyDay
       Next
 
       '// Calculate Summary values
-      mMatReqOtherTotalCost = 0
       For Each mCD In rCompanyDays
+        mMatReqOtherTotalCost = 0
         For Each mSITLI As clsStockItemTransactionLogInfo In mCD.MatOtherCosts
           mMatReqOtherTotalCost += (mSITLI.StdCost * mSITLI.TransQuantity)
         Next
