@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ChartXmlSerializer version="17.1.4.0">
-  <Chart AppearanceNameSerializable="Default" SelectionMode="None" SeriesSelectionMode="Series">
+  <Chart AppearanceNameSerializable="Light" PaletteName="Pastel Kit" SelectionMode="None" SeriesSelectionMode="Series">
     <DataContainer DataMember="" BoundSeriesSorting="None">
       <SeriesSerializable>
         <Item1 Name="Factura" ArgumentDataMember="InvoiceDateMC" SummaryFunction="SUM([NetValue])" ArgumentScaleType="DateTime">
@@ -17,13 +17,13 @@
           </DataFilters>
           <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
         </Item2>
-        <Item3 Name="Engineriado" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
+        <Item3 Name="Ingenieria" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
           <View TypeNameSerializable="StackedBarSeriesView" />
           <DataFilters>
             <Item1 ColumnNameSerializable="InvoicePredictedType" DataTypeSerializable="System.Int32" InvariantValueSerializable="3" />
           </DataFilters>
         </Item3>
-        <Item4 Name="Falta" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
+        <Item4 Name="Faltante" ArgumentDataMember="InvoiceDateMC" ValueDataMembersSerializable="NetValue" ArgumentScaleType="DateTime">
           <View TypeNameSerializable="StackedBarSeriesView" />
           <DataFilters>
             <Item1 ColumnNameSerializable="InvoicePredictedType" DataTypeSerializable="System.Int32" InvariantValueSerializable="4" />

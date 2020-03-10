@@ -1,6 +1,92 @@
 ﻿<XtraSerializer version="1.0" application="PivotGrid">
   <property name="#LayoutVersion" />
-  <property name="Fields" iskey="true" value="17">
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="Cell" iskey="true" value="Cell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="SelectedCell" iskey="true" value="SelectedCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="CustomTotalCell" iskey="true" value="CustomTotalCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="FieldValue" iskey="true" value="FieldValue">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="FieldHeader" iskey="true" value="FieldHeader">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="HeaderArea" iskey="true" value="HeaderArea">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="FieldValueTotal" iskey="true" value="FieldValueTotal">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="RowHeaderArea" iskey="true" value="RowHeaderArea">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="GrandTotalCell" iskey="true" value="GrandTotalCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="FieldValueGrandTotal" iskey="true" value="FieldValueGrandTotal">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="ColumnHeaderArea" iskey="true" value="ColumnHeaderArea">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="FilterHeaderArea" iskey="true" value="FilterHeaderArea">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="TotalCell" iskey="true" value="TotalCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Tahoma, 8.25pt, style=Bold</property>
+    </property>
+    <property name="DataHeaderArea" iskey="true" value="DataHeaderArea">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+  </property>
+  <property name="Fields" iskey="true" value="18">
     <property name="Item1" isnull="true" iskey="true">
       <property name="CustomTotals" iskey="true" value="0" />
       <property name="Options" isnull="true" iskey="true">
@@ -13,6 +99,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldInvoice</property>
       <property name="FieldName">Invoice</property>
+      <property name="Caption">Factura</property>
       <property name="Index">0</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -27,6 +114,7 @@
       </property>
       <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
+      <property name="Visible">false</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
         <property name="EndValue" isnull="true" />
@@ -47,6 +135,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldSalesOrder</property>
       <property name="FieldName">SalesOrder</property>
+      <property name="Caption">Orden de Venta</property>
       <property name="Index">1</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -59,7 +148,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">1</property>
+      <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -81,6 +170,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldCustomer</property>
       <property name="FieldName">Customer</property>
+      <property name="Caption">Cliente</property>
       <property name="Index">2</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -93,7 +183,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">2</property>
+      <property name="AreaIndex">1</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -114,8 +204,8 @@
       </property>
       <property name="FieldEditName" />
       <property name="Name">fieldInvoicePredictedType</property>
-      <property name="Area">ColumnArea</property>
       <property name="FieldName">InvoicePredictedType</property>
+      <property name="Caption">Tipo de Factura ID</property>
       <property name="Index">3</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -128,7 +218,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">0</property>
+      <property name="AreaIndex">12</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -167,6 +257,7 @@
       <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
       <property name="Width">77</property>
+      <property name="Visible">false</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
         <property name="EndValue" isnull="true" />
@@ -187,6 +278,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldInvoiceNo</property>
       <property name="FieldName">InvoiceNo</property>
+      <property name="Caption">Num. Factura</property>
       <property name="Index">5</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -199,7 +291,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">3</property>
+      <property name="AreaIndex">2</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -221,6 +313,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldInvoiceDate</property>
       <property name="FieldName">InvoiceDate</property>
+      <property name="Caption">Fecha de Factura</property>
       <property name="Index">6</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -233,7 +326,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">4</property>
+      <property name="AreaIndex">3</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -256,6 +349,7 @@
       <property name="Name">fieldInvoiceDateMC</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">InvoiceDateMC</property>
+      <property name="Caption">Fecha Factura Mes</property>
       <property name="Index">7</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -291,6 +385,7 @@
       <property name="Name">fieldNetValue</property>
       <property name="Area">DataArea</property>
       <property name="FieldName">NetValue</property>
+      <property name="Caption">Valor Neto</property>
       <property name="Index">8</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -303,7 +398,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">1</property>
+      <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
       <property name="Width">65</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
@@ -326,6 +421,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldInvoiceStatus</property>
       <property name="FieldName">InvoiceStatus</property>
+      <property name="Caption">Estado de Factura</property>
       <property name="Index">9</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -338,7 +434,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">5</property>
+      <property name="AreaIndex">4</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -360,6 +456,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldOrderNo</property>
       <property name="FieldName">OrderNo</property>
+      <property name="Caption"># Orden</property>
       <property name="Index">10</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -372,7 +469,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">6</property>
+      <property name="AreaIndex">5</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -394,6 +491,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldProjectName</property>
       <property name="FieldName">ProjectName</property>
+      <property name="Caption">Nombre de Proyecto</property>
       <property name="Index">11</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -406,7 +504,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">7</property>
+      <property name="AreaIndex">6</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -428,6 +526,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldFinishDate</property>
       <property name="FieldName">FinishDate</property>
+      <property name="Caption">Fecha de Entrega</property>
       <property name="Index">12</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -440,7 +539,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">8</property>
+      <property name="AreaIndex">7</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -462,6 +561,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldFinishDateMC</property>
       <property name="FieldName">FinishDateMC</property>
+      <property name="Caption">Fecha de Entrega Mes</property>
       <property name="Index">13</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -474,7 +574,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">9</property>
+      <property name="AreaIndex">8</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -496,6 +596,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldDueTime</property>
       <property name="FieldName">DueTime</property>
+      <property name="Caption">Fecha de Acuerdo</property>
       <property name="Index">14</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -508,7 +609,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">10</property>
+      <property name="AreaIndex">9</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -530,6 +631,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldDueTimeMC</property>
       <property name="FieldName">DueTimeMC</property>
+      <property name="Caption">Fecha de Acuerdo Mes</property>
       <property name="Index">15</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -542,7 +644,7 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">11</property>
+      <property name="AreaIndex">10</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -564,6 +666,7 @@
       <property name="FieldEditName" />
       <property name="Name">fieldCompanyName</property>
       <property name="FieldName">CompanyName</property>
+      <property name="Caption">Cliente</property>
       <property name="Index">16</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -576,7 +679,40 @@
         <property name="ShowBlanks">true</property>
         <property name="FilterType">Excluded</property>
       </property>
-      <property name="AreaIndex">12</property>
+      <property name="AreaIndex">11</property>
+      <property name="ActualSortMode">Default</property>
+      <property name="SummaryFilter" isnull="true" iskey="true">
+        <property name="StartValue" isnull="true" />
+        <property name="EndValue" isnull="true" />
+        <property name="Mode">LastLevel</property>
+        <property name="RowFieldComponentName" />
+        <property name="ColumnFieldComponentName" />
+      </property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="CustomTotals" iskey="true" value="0" />
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">PivotGridField1</property>
+      <property name="Area">ColumnArea</property>
+      <property name="FieldName">InvoicePredictedTypeDescription</property>
+      <property name="Caption">Tipo de Factura</property>
+      <property name="Index">17</property>
+      <property name="SortBySummaryInfo" isnull="true" iskey="true">
+        <property name="Conditions" iskey="true" value="0" />
+        <property name="FieldComponentName" />
+      </property>
+      <property name="FilterValues" isnull="true" iskey="true">
+        <property name="Values">~Xtra#Array0, </property>
+        <property name="ValuesCore" iskey="true" value="0" />
+        <property name="DeferFilterString" />
+        <property name="ShowBlanks">true</property>
+        <property name="FilterType">Excluded</property>
+      </property>
+      <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
@@ -599,6 +735,5 @@
     <property name="FieldValuesProvideMode">DisplayText</property>
   </property>
   <property name="Groups" iskey="true" value="0" />
-  <property name="FormatRules" iskey="true" value="0" />
   <property name="FormatConditions" iskey="true" value="0" />
 </XtraSerializer>

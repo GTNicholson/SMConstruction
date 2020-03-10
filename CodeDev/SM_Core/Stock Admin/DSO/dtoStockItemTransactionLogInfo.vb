@@ -75,19 +75,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
         .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
         .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
 
-        ''Select Case pStockItemTransactionLogInfo.RefObjectType
-        ''  Case eDTMObjectType.SOPMaterialRequirement
-        ''    .SalesOrderPhaseID = DBReadInteger(rDataReader, "SalesOrderPhaseID")
-        ''    .SalesOrderNo = DBReadString(rDataReader, "SOPSalesOrderNo")
-        ''    .SalesOrderPhaseNo = DBReadInt32(rDataReader, "SOPPhaseNumber")
-        ''    .InternalOrderNo = DBReadString(rDataReader, "SOPAccountSalesOrderRef")
-        ''  Case eDTMObjectType.PBMaterialRequirement
-        ''    .SalesOrderPhaseID = DBReadInteger(rDataReader, "PBSalesOrderPhaseID")
-        ''    .SalesOrderNo = DBReadString(rDataReader, "PBSalesOrderNo")
-        ''    .SalesOrderPhaseNo = DBReadInt32(rDataReader, "PBPhaseNumber")
-        ''    .ProductionBatchNo = DBReadInt32(rDataReader, "BatchNumber")
-        ''    .InternalOrderNo = DBReadString(rDataReader, "PBAccountSalesOrderRef")
-        ''End Select
+
       End With
       With pStockItemTransactionLogInfo.CurrentStockItem
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")
@@ -139,17 +127,6 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
   End Function
 
 
-  'Public Function LoadStockItemTransactionLogInfo(ByRef rStockItemTransactionLogInfo As clsStockItemTransactionLogInfo, ByVal vInvoiceID As Integer) As Boolean
-  '  Dim mOK As Boolean
-  '  mOK = LoadObject(vInvoiceID)
-  '  If mOK Then
-  '    rStockItemTransactionLogInfo = pStockItemTransactionLogInfo
-  '  Else
-  '    rStockItemTransactionLogInfo = Nothing
-  '  End If
-  '  pStockItemTransactionLogInfo = Nothing
-  '  Return mOK
-  'End Function
 
   Public Function LoadStockItemTransactionLogInfoCollection(ByRef rStockItemTransactionLogInfos As colStockItemTransactionLogInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
@@ -158,6 +135,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
     mOK = MyBase.LoadCollection(rStockItemTransactionLogInfos, mParams, "StockItemTransactionLogID", vWhere)
     Return mOK
   End Function
+
 
 End Class
 

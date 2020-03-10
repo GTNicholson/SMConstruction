@@ -1,5 +1,58 @@
 ﻿<XtraSerializer version="1.0" application="View">
   <property name="#LayoutVersion" />
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="ViewCaption" iskey="true" value="ViewCaption">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="GroupPanel" iskey="true" value="GroupPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="HeaderPanel" iskey="true" value="HeaderPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt, style=Bold</property>
+    </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="GroupFooter" iskey="true" value="GroupFooter">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="Row" iskey="true" value="Row">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="SelectedRow" iskey="true" value="SelectedRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="GroupRow" iskey="true" value="GroupRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+  </property>
+  <property name="OptionsView" isnull="true" iskey="true">
+    <property name="ShowFooter">true</property>
+  </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
   <property name="ColumnPanelRowHeight">-1</property>
@@ -22,6 +75,12 @@
   <property name="FocusRectStyle">CellFocus</property>
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
+  <property name="OptionsLayout" isnull="true" iskey="true">
+    <property name="StoreAllOptions">true</property>
+    <property name="Columns" isnull="true" iskey="true">
+      <property name="StoreAllOptions">true</property>
+    </property>
+  </property>
   <property name="ViewCaptionHeight">-1</property>
   <property name="Columns" iskey="true" value="16">
     <property name="Item1" isnull="true" iskey="true">
@@ -41,11 +100,10 @@
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">colInvoicePredictedType</property>
+      <property name="Caption">Tipo Factura</property>
       <property name="FieldName">InvoicePredictedType</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
-      <property name="Visible">true</property>
-      <property name="Width">114</property>
+      <property name="Width">82</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">colInvoiceID</property>
@@ -54,8 +112,6 @@
       </property>
       <property name="FieldName">InvoiceID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
       <property name="Width">80</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
@@ -63,53 +119,74 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Núm. Factura</property>
       <property name="FieldName">InvoiceNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">80</property>
+      <property name="Width">67</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">colInvoiceDate</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Fecha</property>
       <property name="FieldName">InvoiceDate</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
-      <property name="Width">90</property>
+      <property name="Width">45</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">colNetValue</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Monto</property>
       <property name="FieldName">NetValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">79</property>
+      <property name="Width">56</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">NetValue</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$#,##0.00;;#}</property>
+        </property>
+      </property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">colInvoiceStatus</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Estado</property>
       <property name="FieldName">InvoiceStatus</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">90</property>
+      <property name="Width">36</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">colOrderNo</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Núm. Orden</property>
       <property name="FieldName">OrderNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">86</property>
     </property>
@@ -118,73 +195,95 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Proyecto</property>
       <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">243</property>
+      <property name="Width">118</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">colFinishDate</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Fecha Fin</property>
       <property name="FieldName">FinishDate</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">140</property>
+      <property name="Width">57</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">colFinishDateMC</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Fecha Fin Mes</property>
       <property name="FieldName">FinishDateMC</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">140</property>
+      <property name="Width">57</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">colDueTime</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Entrega</property>
       <property name="FieldName">DueTime</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">140</property>
+      <property name="Width">57</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item15" isnull="true" iskey="true">
       <property name="Name">colDueTimeMC</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Entrega Mes</property>
       <property name="FieldName">DueTimeMC</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
-      <property name="Width">148</property>
+      <property name="Width">61</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item16" isnull="true" iskey="true">
       <property name="Name">colCompanyName</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Cliente</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">261</property>
+      <property name="Width">127</property>
     </property>
   </property>
   <property name="ViewCaption" />
   <property name="BorderStyle">Default</property>
   <property name="SynchronizeClones">true</property>
   <property name="DetailTabHeaderLocation">Top</property>
-  <property name="Name">gridviewManReport</property>
+  <property name="Name">GridView1</property>
   <property name="DetailHeight">350</property>
   <property name="Tag" isnull="true" />
   <property name="GroupSummary" iskey="true" value="0" />
