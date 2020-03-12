@@ -1,0 +1,22 @@
+CREATE VIEW vwWoodMatReqInfo
+as
+
+select 
+MR.MaterialRequirementID,
+MR.Description,
+MR.UnitPiece,
+MR.NetLenght,
+MR.NetWidth,
+MR.NetThickness,
+PF.ProductFurnitureID,
+WO.Description 'WODescription',
+WO.PlannedStartDate,
+SO.ProjectName,
+CU.CompanyName
+
+from MaterialRequirement as MR 
+LEFT JOIN PRODUCTFURNITURE PF ON PF.ProductFurnitureID = MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=PF.ProductFurnitureID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+WHERE MaterialRequirementType=1

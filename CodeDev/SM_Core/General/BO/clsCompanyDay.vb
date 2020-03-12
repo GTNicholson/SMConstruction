@@ -3,11 +3,14 @@
   Private pSOIEngineered As colSalesOrderItemProgressInfos
   Private pSOIPacked As colSalesOrderItemProgressInfos
   Private pTSECosts As colTimeSheetEntryInfos
+  Private pLabourCostStd As Decimal
+  Private pLabourOverTime As Decimal
   Private pMatOtherCosts As colStockItemTransactionLogInfos
   Private pMatOtherCost As Decimal
 
   Public Sub New()
     pMatOtherCosts = New colStockItemTransactionLogInfos
+    pTSECosts = New colTimeSheetEntryInfos
   End Sub
 
   Public Property CompanyDayDate As DateTime
@@ -18,6 +21,13 @@
       pCompanyDayDate = value
     End Set
   End Property
+
+  Public ReadOnly Property TSECosts As colTimeSheetEntryInfos
+    Get
+      Return pTSECosts
+    End Get
+  End Property
+
 
   Public ReadOnly Property MatOtherCosts As colStockItemTransactionLogInfos
     Get
@@ -56,22 +66,22 @@
     End Get
   End Property
 
-  Public ReadOnly Property LabcourCostStd As Decimal
+  Public Property LabourCostStd As Decimal
     Get
-      Dim mRND As New Random
-      Dim mRetVal As Decimal
-      mRetVal = mRND.Next(1, 100)
-      Return mRetVal
+      Return pLabourCostStd
     End Get
+    Set(value As Decimal)
+      pLabourCostStd = value
+    End Set
   End Property
 
-  Public ReadOnly Property LabcourCostOT As Decimal
+  Public Property LabourCostOT As Decimal
     Get
-      Dim mRND As New Random
-      Dim mRetVal As Decimal
-      mRetVal = mRND.Next(1, 100)
-      Return mRetVal
+      Return pLabourOverTime
     End Get
+    Set(value As Decimal)
+      pLabourOverTime = value
+    End Set
   End Property
 
   Public Property MatOtherCost As Decimal
@@ -102,7 +112,7 @@ Public Class colCompanyDays : Inherits List(Of clsCompanyDay)
     Dim mIndex As Integer = -1
     For Each mCompanyDay As clsCompanyDay In Me
       mIndex += 1
-      If mCompanyDay.CompanyDayDate = vDate Then
+      If mCompanyDay.CompanyDayDate.Date = vDate.Date Then
         mRetVal = mIndex
         Exit For
 
