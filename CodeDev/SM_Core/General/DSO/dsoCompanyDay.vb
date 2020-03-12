@@ -20,9 +20,14 @@ Public Class dsoCompanyDay
     Dim mCurDate As DateTime
     Dim mCD As clsCompanyDay
     Dim mMatReqOthers As New colStockItemTransactionLogInfos
+    Dim mTSEntrys As New colTimeSheetEntryInfos
+    Dim mLabourCostStd As Decimal
+    Dim mLabourOverTime As Decimal
     Dim mMatReqOtherTotalCost As Decimal
-    Dim mdto As dtoStockItemTransactionLogInfo
-    Dim mWhere As String = ""
+    Dim mdtoSITL As dtoStockItemTransactionLogInfo
+    Dim mdtoTSE As dtoTimeSheetEntryInfo
+    Dim mWhereTransactionLog As String = ""
+    Dim mWhereTSE As String = ""
 
     Try
       mCurDate = vStartDate
@@ -32,11 +37,12 @@ Public Class dsoCompanyDay
         rCompanyDays.Add(mCD)
         mCurDate = mCurDate.AddDays(1)
       Loop
-      mdto = New dtoStockItemTransactionLogInfo(pDBConn)
+      mdtoSITL = New dtoStockItemTransactionLogInfo(pDBConn)
+      mdtoTSE = New dtoTimeSheetEntryInfo(pDBConn)
 
-      mWhere += "TransactionDate >= '" & vStartDate.ToString("yyyyMMdd") & "' and TransactionDate <= '" & vEndDate.ToString("yyyyMMdd") & "'"
-      mWhere += " and TransactionType =2"
-      mdto.LoadStockItemTransactionLogInfoCollection(mMatReqOthers, mWhere)
+      mWhereTransactionLog += "TransactionDate >= '" & vStartDate.ToString("yyyyMMdd") & "' and TransactionDate <= '" & vEndDate.ToString("yyyyMMdd") & "'"
+      mWhereTransactionLog += " and TransactionType =2"
+      mdtoSITL.LoadStockItemTransactionLogInfoCollection(mMatReqOthers, mWhereTransactionLog)
 
       For Each mSITLI As clsStockItemTransactionLogInfo In mMatReqOthers
         mCD = rCompanyDays.GetItemFromDate(mSITLI.TransDate)
@@ -53,6 +59,31 @@ Public Class dsoCompanyDay
         Next
         mCD.MatOtherCost = mMatReqOtherTotalCost
       Next
+
+      '// Time Sheet Entry Info
+      mWhereTSE += "StartTime >= '" & vStartDate.ToString("yyyyMMdd") & "' and StartTime <= '" & vEndDate.ToString("yyyyMMdd") & "'"
+      mdtoTSE.LoadTimeSheetEntryInfoCollectionByWhere(mTSEntrys, mWhereTSE)
+
+      For Each mTSELI As clsTimeSheetEntryInfo In mTSEntrys
+        mCD = rCompanyDays.GetItemFromDate(mTSELI.StartTime)
+        If mCD IsNot Nothing Then
+          mCD.TSECosts.Add(mTSELI)
+        End If
+      Next
+
+      For Each mCD In rCompanyDays
+        mLabourCostStd = 0
+        For Each mTSEI As clsTimeSheetEntryInfo In mCD.TSECosts
+          mLabourCostStd += (mTSEI.Duration * mTSEI.StandardRate)
+          mLabourOverTime += (mTSEI.OverTimeMinutes / 60 * mTSEI.OverTimeRate)
+        Next
+        mCD.LabourCostStd = mLabourCostStd
+        mCD.LabourCostOT = mLabourOverTime
+      Next
+
+
+
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

@@ -64,7 +64,7 @@
   <property name="Columns" iskey="true" value="7">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
-      <property name="Caption">CompanyDayDateWC</property>
+      <property name="Caption">Fecha Semanal</property>
       <property name="FieldName">CompanyDayDateWC</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
@@ -85,7 +85,7 @@
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
-      <property name="Caption">CompanyDayDateMC</property>
+      <property name="Caption">Fecha Mensual</property>
       <property name="FieldName">CompanyDayDateMC</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
@@ -114,27 +114,39 @@
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="Caption">LabcourCostStd</property>
-      <property name="FieldName">LabcourCostStd</property>
+      <property name="Caption">Costo de Tiempo Std.</property>
+      <property name="FieldName">LabourCostStd</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
-      <property name="Caption">LabcourCostOT</property>
-      <property name="FieldName">LabcourCostOT</property>
+      <property name="Caption">Costo de Tiempo Extra</property>
+      <property name="FieldName">LabourCostOT</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
-      <property name="Caption">MatOtherCost</property>
+      <property name="Caption">Costo de Picking</property>
       <property name="FieldName">MatOtherCost</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />

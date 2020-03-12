@@ -32,32 +32,14 @@ Partial Class Form1
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.PivotGridControl1 = New DevExpress.XtraPivotGrid.PivotGridControl()
-    Me.fieldTimeSheetEntry = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldWorkOrder = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTimeSheetEntryID = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTimeSheetEntryTypeID = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTimeSheetEntryTypeDesc = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldEmployeeID = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldEmployeeName = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldWorkOrderID = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldStartTime = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTimeSheetDate = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTimeSheetDateWC = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldTimeSheetDateMC = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldEndTime = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldDuration = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldNote = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldWorkCentreID = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldWorkCentreDesc = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldWorkOrderNo = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldDescription = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldCustomerName = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.fieldProjectName = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.gcOverTimeMinutes = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.PivotGridField1 = New DevExpress.XtraPivotGrid.PivotGridField()
-    Me.PivotGridField2 = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.PivotGridField3 = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.PivotGridField4 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.PivotGridField5 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.PivotGridField6 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.PivotGridField7 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.PivotGridField8 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.PivotGridField9 = New DevExpress.XtraPivotGrid.PivotGridField()
     CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PivotGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +78,7 @@ Partial Class Form1
     '
     'GridColumn13
     '
-    Me.GridColumn13.Caption = "CompanyDayDateWC"
+    Me.GridColumn13.Caption = "Fecha Semanal"
     Me.GridColumn13.DisplayFormat.FormatString = "d"
     Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
     Me.GridColumn13.FieldName = "CompanyDayDateWC"
@@ -108,7 +90,7 @@ Partial Class Form1
     '
     'GridColumn14
     '
-    Me.GridColumn14.Caption = "CompanyDayDateMC"
+    Me.GridColumn14.Caption = "Fecha Mensual"
     Me.GridColumn14.DisplayFormat.FormatString = "d"
     Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
     Me.GridColumn14.FieldName = "CompanyDayDateMC"
@@ -135,23 +117,29 @@ Partial Class Form1
     '
     'GridColumn2
     '
-    Me.GridColumn2.Caption = "LabcourCostStd"
-    Me.GridColumn2.FieldName = "LabcourCostStd"
+    Me.GridColumn2.Caption = "Costo de Tiempo Std."
+    Me.GridColumn2.DisplayFormat.FormatString = "C$#,##0.00;;#"
+    Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn2.FieldName = "LabourCostStd"
     Me.GridColumn2.Name = "GridColumn2"
     Me.GridColumn2.Visible = True
     Me.GridColumn2.VisibleIndex = 4
     '
     'GridColumn3
     '
-    Me.GridColumn3.Caption = "LabcourCostOT"
-    Me.GridColumn3.FieldName = "LabcourCostOT"
+    Me.GridColumn3.Caption = "Costo de Tiempo Extra"
+    Me.GridColumn3.DisplayFormat.FormatString = "C$#,##0.00;;#"
+    Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn3.FieldName = "LabourCostOT"
     Me.GridColumn3.Name = "GridColumn3"
     Me.GridColumn3.Visible = True
     Me.GridColumn3.VisibleIndex = 5
     '
     'GridColumn4
     '
-    Me.GridColumn4.Caption = "MatOtherCost"
+    Me.GridColumn4.Caption = "Costo de Picking"
+    Me.GridColumn4.DisplayFormat.FormatString = "C$#,##0.00;;#"
+    Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.GridColumn4.FieldName = "MatOtherCost"
     Me.GridColumn4.Name = "GridColumn4"
     Me.GridColumn4.Visible = True
@@ -193,7 +181,7 @@ Partial Class Form1
     Me.PivotGridControl1.Appearance.RowHeaderArea.Options.UseFont = True
     Me.PivotGridControl1.Appearance.TotalCell.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
     Me.PivotGridControl1.Appearance.TotalCell.Options.UseFont = True
-    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.fieldTimeSheetEntry, Me.fieldWorkOrder, Me.fieldTimeSheetEntryID, Me.fieldTimeSheetEntryTypeID, Me.fieldTimeSheetEntryTypeDesc, Me.fieldEmployeeID, Me.fieldEmployeeName, Me.fieldWorkOrderID, Me.fieldStartTime, Me.fieldTimeSheetDate, Me.fieldTimeSheetDateWC, Me.fieldTimeSheetDateMC, Me.fieldEndTime, Me.fieldDuration, Me.fieldNote, Me.fieldWorkCentreID, Me.fieldWorkCentreDesc, Me.fieldWorkOrderNo, Me.fieldDescription, Me.fieldCustomerName, Me.fieldProjectName, Me.gcOverTimeMinutes, Me.PivotGridField1, Me.PivotGridField2, Me.PivotGridField3, Me.PivotGridField4})
+    Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField1, Me.PivotGridField3, Me.PivotGridField4, Me.PivotGridField5, Me.PivotGridField6, Me.PivotGridField7, Me.PivotGridField8, Me.PivotGridField9})
     Me.PivotGridControl1.Location = New System.Drawing.Point(50, 187)
     Me.PivotGridControl1.Name = "PivotGridControl1"
     Me.PivotGridControl1.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
@@ -201,231 +189,73 @@ Partial Class Form1
     Me.PivotGridControl1.Size = New System.Drawing.Size(1002, 200)
     Me.PivotGridControl1.TabIndex = 1
     '
-    'fieldTimeSheetEntry
-    '
-    Me.fieldTimeSheetEntry.AreaIndex = 0
-    Me.fieldTimeSheetEntry.FieldName = "TimeSheetEntry"
-    Me.fieldTimeSheetEntry.Name = "fieldTimeSheetEntry"
-    Me.fieldTimeSheetEntry.Options.AllowRunTimeSummaryChange = True
-    Me.fieldTimeSheetEntry.Visible = False
-    '
-    'fieldWorkOrder
-    '
-    Me.fieldWorkOrder.AreaIndex = 0
-    Me.fieldWorkOrder.FieldName = "WorkOrder"
-    Me.fieldWorkOrder.Name = "fieldWorkOrder"
-    Me.fieldWorkOrder.Options.AllowRunTimeSummaryChange = True
-    Me.fieldWorkOrder.Visible = False
-    '
-    'fieldTimeSheetEntryID
-    '
-    Me.fieldTimeSheetEntryID.AreaIndex = 0
-    Me.fieldTimeSheetEntryID.FieldName = "TimeSheetEntryID"
-    Me.fieldTimeSheetEntryID.Name = "fieldTimeSheetEntryID"
-    Me.fieldTimeSheetEntryID.Options.AllowRunTimeSummaryChange = True
-    Me.fieldTimeSheetEntryID.Visible = False
-    '
-    'fieldTimeSheetEntryTypeID
-    '
-    Me.fieldTimeSheetEntryTypeID.AreaIndex = 0
-    Me.fieldTimeSheetEntryTypeID.Caption = "Tipo de Entrada"
-    Me.fieldTimeSheetEntryTypeID.FieldName = "TimeSheetEntryTypeID"
-    Me.fieldTimeSheetEntryTypeID.Name = "fieldTimeSheetEntryTypeID"
-    Me.fieldTimeSheetEntryTypeID.Options.AllowRunTimeSummaryChange = True
-    Me.fieldTimeSheetEntryTypeID.Visible = False
-    '
-    'fieldTimeSheetEntryTypeDesc
-    '
-    Me.fieldTimeSheetEntryTypeDesc.AreaIndex = 11
-    Me.fieldTimeSheetEntryTypeDesc.Caption = "Tipo de Entrada"
-    Me.fieldTimeSheetEntryTypeDesc.FieldName = "TimeSheetEntryTypeDesc"
-    Me.fieldTimeSheetEntryTypeDesc.Name = "fieldTimeSheetEntryTypeDesc"
-    Me.fieldTimeSheetEntryTypeDesc.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldEmployeeID
-    '
-    Me.fieldEmployeeID.AreaIndex = 0
-    Me.fieldEmployeeID.FieldName = "EmployeeID"
-    Me.fieldEmployeeID.Name = "fieldEmployeeID"
-    Me.fieldEmployeeID.Options.AllowRunTimeSummaryChange = True
-    Me.fieldEmployeeID.Visible = False
-    '
-    'fieldEmployeeName
-    '
-    Me.fieldEmployeeName.AreaIndex = 0
-    Me.fieldEmployeeName.Caption = "Empleado"
-    Me.fieldEmployeeName.FieldName = "EmployeeName"
-    Me.fieldEmployeeName.Name = "fieldEmployeeName"
-    Me.fieldEmployeeName.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldWorkOrderID
-    '
-    Me.fieldWorkOrderID.AreaIndex = 1
-    Me.fieldWorkOrderID.FieldName = "WorkOrderID"
-    Me.fieldWorkOrderID.Name = "fieldWorkOrderID"
-    Me.fieldWorkOrderID.Options.AllowRunTimeSummaryChange = True
-    Me.fieldWorkOrderID.Visible = False
-    '
-    'fieldStartTime
-    '
-    Me.fieldStartTime.AreaIndex = 1
-    Me.fieldStartTime.Caption = "Hora de Inicio"
-    Me.fieldStartTime.FieldName = "StartTime"
-    Me.fieldStartTime.Name = "fieldStartTime"
-    Me.fieldStartTime.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldTimeSheetDate
-    '
-    Me.fieldTimeSheetDate.AreaIndex = 10
-    Me.fieldTimeSheetDate.Caption = "Fecha"
-    Me.fieldTimeSheetDate.FieldName = "TimeSheetDate"
-    Me.fieldTimeSheetDate.Name = "fieldTimeSheetDate"
-    Me.fieldTimeSheetDate.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldTimeSheetDateWC
-    '
-    Me.fieldTimeSheetDateWC.AreaIndex = 12
-    Me.fieldTimeSheetDateWC.Caption = "Fecha Corta"
-    Me.fieldTimeSheetDateWC.CellFormat.FormatString = "dd/MM"
-    Me.fieldTimeSheetDateWC.FieldName = "TimeSheetDateWC"
-    Me.fieldTimeSheetDateWC.Name = "fieldTimeSheetDateWC"
-    Me.fieldTimeSheetDateWC.Options.AllowRunTimeSummaryChange = True
-    Me.fieldTimeSheetDateWC.ValueFormat.FormatString = "dd/MM"
-    Me.fieldTimeSheetDateWC.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-    '
-    'fieldTimeSheetDateMC
-    '
-    Me.fieldTimeSheetDateMC.AreaIndex = 2
-    Me.fieldTimeSheetDateMC.Caption = "Fecha Mensual"
-    Me.fieldTimeSheetDateMC.FieldName = "TimeSheetDateMC"
-    Me.fieldTimeSheetDateMC.Name = "fieldTimeSheetDateMC"
-    Me.fieldTimeSheetDateMC.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldEndTime
-    '
-    Me.fieldEndTime.AreaIndex = 3
-    Me.fieldEndTime.Caption = "Hora Fin"
-    Me.fieldEndTime.FieldName = "EndTime"
-    Me.fieldEndTime.Name = "fieldEndTime"
-    Me.fieldEndTime.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldDuration
-    '
-    Me.fieldDuration.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-    Me.fieldDuration.AreaIndex = 0
-    Me.fieldDuration.Caption = "Duración"
-    Me.fieldDuration.CellFormat.FormatString = "N0"
-    Me.fieldDuration.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.fieldDuration.FieldName = "Duration"
-    Me.fieldDuration.Name = "fieldDuration"
-    Me.fieldDuration.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldNote
-    '
-    Me.fieldNote.AreaIndex = 4
-    Me.fieldNote.Caption = "Notas"
-    Me.fieldNote.FieldName = "Note"
-    Me.fieldNote.Name = "fieldNote"
-    Me.fieldNote.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldWorkCentreID
-    '
-    Me.fieldWorkCentreID.AreaIndex = 5
-    Me.fieldWorkCentreID.FieldName = "WorkCentreID"
-    Me.fieldWorkCentreID.Name = "fieldWorkCentreID"
-    Me.fieldWorkCentreID.Options.AllowRunTimeSummaryChange = True
-    Me.fieldWorkCentreID.Visible = False
-    '
-    'fieldWorkCentreDesc
-    '
-    Me.fieldWorkCentreDesc.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
-    Me.fieldWorkCentreDesc.AreaIndex = 0
-    Me.fieldWorkCentreDesc.Caption = "Centro de Trabajo"
-    Me.fieldWorkCentreDesc.FieldName = "WorkCentreDesc"
-    Me.fieldWorkCentreDesc.Name = "fieldWorkCentreDesc"
-    Me.fieldWorkCentreDesc.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldWorkOrderNo
-    '
-    Me.fieldWorkOrderNo.AreaIndex = 7
-    Me.fieldWorkOrderNo.Caption = "Núm. OT"
-    Me.fieldWorkOrderNo.FieldName = "WorkOrderNo"
-    Me.fieldWorkOrderNo.Name = "fieldWorkOrderNo"
-    Me.fieldWorkOrderNo.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldDescription
-    '
-    Me.fieldDescription.AreaIndex = 5
-    Me.fieldDescription.Caption = "Descripción OT"
-    Me.fieldDescription.FieldName = "Description"
-    Me.fieldDescription.Name = "fieldDescription"
-    Me.fieldDescription.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldCustomerName
-    '
-    Me.fieldCustomerName.AreaIndex = 6
-    Me.fieldCustomerName.Caption = "Cliente"
-    Me.fieldCustomerName.FieldName = "CustomerName"
-    Me.fieldCustomerName.Name = "fieldCustomerName"
-    Me.fieldCustomerName.Options.AllowRunTimeSummaryChange = True
-    '
-    'fieldProjectName
-    '
-    Me.fieldProjectName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-    Me.fieldProjectName.AreaIndex = 0
-    Me.fieldProjectName.Caption = "Proyecto"
-    Me.fieldProjectName.FieldName = "ProjectName"
-    Me.fieldProjectName.Name = "fieldProjectName"
-    Me.fieldProjectName.Options.AllowRunTimeSummaryChange = True
-    '
-    'gcOverTimeMinutes
-    '
-    Me.gcOverTimeMinutes.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-    Me.gcOverTimeMinutes.AreaIndex = 2
-    Me.gcOverTimeMinutes.Caption = "Tiempo Extra (minutos)"
-    Me.gcOverTimeMinutes.CellFormat.FormatString = "N0"
-    Me.gcOverTimeMinutes.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.gcOverTimeMinutes.FieldName = "OverTimeMinutes"
-    Me.gcOverTimeMinutes.Name = "gcOverTimeMinutes"
-    Me.gcOverTimeMinutes.Options.AllowRunTimeSummaryChange = True
-    '
     'PivotGridField1
     '
-    Me.PivotGridField1.AreaIndex = 8
-    Me.PivotGridField1.Caption = "Tasa Hr. Std"
-    Me.PivotGridField1.CellFormat.FormatString = "C$#,##0.00;;#"
-    Me.PivotGridField1.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.PivotGridField1.FieldName = "StandardRate"
+    Me.PivotGridField1.AreaIndex = 0
+    Me.PivotGridField1.Caption = "Fecha Diaria"
+    Me.PivotGridField1.CellFormat.FormatString = "ddd"
+    Me.PivotGridField1.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.PivotGridField1.FieldName = "CompanyDayDate"
     Me.PivotGridField1.Name = "PivotGridField1"
-    '
-    'PivotGridField2
-    '
-    Me.PivotGridField2.AreaIndex = 9
-    Me.PivotGridField2.Caption = "Tasa T. Extra"
-    Me.PivotGridField2.CellFormat.FormatString = "C$#,##0.00;;#"
-    Me.PivotGridField2.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.PivotGridField2.FieldName = "OverTimeRate"
-    Me.PivotGridField2.Name = "PivotGridField2"
     '
     'PivotGridField3
     '
-    Me.PivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-    Me.PivotGridField3.AreaIndex = 1
-    Me.PivotGridField3.Caption = "Monto Total (Std)"
-    Me.PivotGridField3.CellFormat.FormatString = "C$#,##0.00;;#"
-    Me.PivotGridField3.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.PivotGridField3.FieldName = "TotalStandardValue"
+    Me.PivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+    Me.PivotGridField3.AreaIndex = 0
+    Me.PivotGridField3.Caption = "Fecha Semana"
+    Me.PivotGridField3.CellFormat.FormatString = "mm"
+    Me.PivotGridField3.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.PivotGridField3.FieldName = "CompanyDayDateWC"
     Me.PivotGridField3.Name = "PivotGridField3"
     '
     'PivotGridField4
     '
-    Me.PivotGridField4.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-    Me.PivotGridField4.AreaIndex = 3
-    Me.PivotGridField4.Caption = "Monto Total (T. Extra)"
-    Me.PivotGridField4.CellFormat.FormatString = "C$#,##0.00;;#"
-    Me.PivotGridField4.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.PivotGridField4.FieldName = "TotalOverTimeValue"
+    Me.PivotGridField4.AreaIndex = 1
+    Me.PivotGridField4.Caption = "Fecha Mensual"
+    Me.PivotGridField4.CellFormat.FormatString = "yyyy"
+    Me.PivotGridField4.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+    Me.PivotGridField4.FieldName = "CompanyDayDateMC"
     Me.PivotGridField4.Name = "PivotGridField4"
+    '
+    'PivotGridField5
+    '
+    Me.PivotGridField5.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+    Me.PivotGridField5.AreaIndex = 0
+    Me.PivotGridField5.Caption = "Valor en Ingeniería"
+    Me.PivotGridField5.FieldName = "ValueEngineered"
+    Me.PivotGridField5.Name = "PivotGridField5"
+    '
+    'PivotGridField6
+    '
+    Me.PivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+    Me.PivotGridField6.AreaIndex = 1
+    Me.PivotGridField6.Caption = "Valor Empacado"
+    Me.PivotGridField6.FieldName = "ValuePacked"
+    Me.PivotGridField6.Name = "PivotGridField6"
+    '
+    'PivotGridField7
+    '
+    Me.PivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+    Me.PivotGridField7.AreaIndex = 3
+    Me.PivotGridField7.Caption = "Costo Tiempo Std."
+    Me.PivotGridField7.FieldName = "LabourCostStd"
+    Me.PivotGridField7.Name = "PivotGridField7"
+    '
+    'PivotGridField8
+    '
+    Me.PivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+    Me.PivotGridField8.AreaIndex = 4
+    Me.PivotGridField8.Caption = "Costo Tiempo Extra"
+    Me.PivotGridField8.FieldName = "LabourCostOT"
+    Me.PivotGridField8.Name = "PivotGridField8"
+    '
+    'PivotGridField9
+    '
+    Me.PivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+    Me.PivotGridField9.AreaIndex = 2
+    Me.PivotGridField9.Caption = "Costo Picking"
+    Me.PivotGridField9.FieldName = "MatOtherCost"
+    Me.PivotGridField9.Name = "PivotGridField9"
     '
     'Form1
     '
@@ -453,30 +283,12 @@ Partial Class Form1
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents fieldTimeSheetEntry As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldWorkOrder As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTimeSheetEntryID As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTimeSheetEntryTypeID As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTimeSheetEntryTypeDesc As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldEmployeeID As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldEmployeeName As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldWorkOrderID As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldStartTime As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTimeSheetDate As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTimeSheetDateWC As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldTimeSheetDateMC As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldEndTime As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldDuration As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldNote As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldWorkCentreID As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldWorkCentreDesc As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldWorkOrderNo As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldDescription As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldCustomerName As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents fieldProjectName As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents gcOverTimeMinutes As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField1 As DevExpress.XtraPivotGrid.PivotGridField
-  Friend WithEvents PivotGridField2 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField3 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField4 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents PivotGridField5 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents PivotGridField6 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents PivotGridField7 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents PivotGridField8 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents PivotGridField9 As DevExpress.XtraPivotGrid.PivotGridField
 End Class
