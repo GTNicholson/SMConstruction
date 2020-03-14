@@ -4,6 +4,8 @@
   Private pSalesOrderItem As dmSalesOrderItem
   Private pStockItem As dmStockItem
   Private pProductFurniture As dmProductFurniture
+  Private pSalesOrder As dmSalesOrder
+  Private pCustomer As dmCustomer
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -11,6 +13,8 @@
     pSalesOrderItem = New dmSalesOrderItem
     pStockItem = New dmStockItem
     pProductFurniture = New dmProductFurniture
+    pSalesOrder = New dmSalesOrder
+    pCustomer = New dmCustomer
   End Sub
 
   Public Sub New()
@@ -19,6 +23,8 @@
     pSalesOrderItem = New dmSalesOrderItem
     pStockItem = New dmStockItem
     pProductFurniture = New dmProductFurniture
+    pSalesOrder = New dmSalesOrder
+    pCustomer = New dmCustomer
   End Sub
 
   Public Property MaterialRequirement As dmMaterialRequirement
@@ -39,12 +45,58 @@
     End Set
   End Property
 
+
+
   Public Property WorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
     End Get
     Set(ByVal value As dmWorkOrder)
       pWorkOrder = value
+    End Set
+  End Property
+
+  Public Property WorkOrderNo As String
+    Get
+      Return pWorkOrder.WorkOrderNo
+    End Get
+    Set(ByVal value As String)
+      pWorkOrder.WorkOrderNo = value
+    End Set
+  End Property
+
+  Public Property WODescription As String
+    Get
+      Return pWorkOrder.Description
+    End Get
+    Set(ByVal value As String)
+      pWorkOrder.Description = value
+    End Set
+  End Property
+
+  Public Property WoodSpecie As Int32
+    Get
+      Return pWorkOrder.WoodSpecieID
+    End Get
+    Set(ByVal value As Int32)
+      pWorkOrder.WoodSpecieID = value
+    End Set
+  End Property
+
+  Public Property PlannedStartDate As Date
+    Get
+      Return pWorkOrder.PlannedStartDate
+    End Get
+    Set(ByVal value As Date)
+      pWorkOrder.PlannedStartDate = value
+    End Set
+  End Property
+  Public Property ProjectName As String
+    Get
+      Return pSalesOrder.ProjectName
+    End Get
+    Set(ByVal value As String)
+      pSalesOrder.ProjectName = value
     End Set
   End Property
 
@@ -56,12 +108,40 @@
       pProductFurniture = value
     End Set
   End Property
+
+  Public Property CompanyName As String
+    Get
+      Return pCustomer.CompanyName
+    End Get
+    Set(ByVal value As String)
+      pCustomer.CompanyName = value
+    End Set
+  End Property
+
   Public Property SalesOrderItem As dmSalesOrderItem
     Get
       Return pSalesOrderItem
     End Get
     Set(ByVal value As dmSalesOrderItem)
       pSalesOrderItem = value
+    End Set
+  End Property
+
+  Public Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+    Set(ByVal value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
+  End Property
+
+  Public Property Customer As dmCustomer
+    Get
+      Return pCustomer
+    End Get
+    Set(ByVal value As dmCustomer)
+      pCustomer = value
     End Set
   End Property
 
@@ -80,6 +160,14 @@
     End Get
     Set(value As Decimal)
       pStockItem.StdCost = value
+    End Set
+  End Property
+  Public Property ProductFurnitureID As Int32
+    Get
+      Return pProductFurniture.ProductFurnitureID
+    End Get
+    Set(value As Int32)
+      pProductFurniture.ProductFurnitureID = value
     End Set
   End Property
 

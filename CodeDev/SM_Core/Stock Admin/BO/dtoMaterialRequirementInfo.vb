@@ -13,21 +13,35 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
   Public Enum eMode
     Info = 1
     Processor = 2
+    WoodMat = 3
   End Enum
 
 
   Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
     MyBase.New(rDBSource)
-    SetTableDetails()
     pMode = vMode
+    SetTableDetails()
+
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "vwMaterialRequirementPicking"
-    pKeyFieldName = "MaterialRequirementID"
+
+    Select Case pMode
+
+      Case eMode.Info, eMode.Processor
+        pTableName = "vwMaterialRequirementPicking"
+        pKeyFieldName = "MaterialRequirementID"
+      Case eMode.WoodMat
+        pTableName = "vwWoodMatReqInfo"
+        pKeyFieldName = "MaterialRequirementID"
+    End Select
+
+
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
+
+
   End Sub
 
   Overrides Property ObjectKeyFieldValue() As Integer
@@ -67,50 +81,82 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
     Try
       If pMaterialRequirment Is Nothing Then SetObjectToNew()
 
+      Select Case pMode
+        Case eMode.Info, eMode.Processor
+
+          With pMaterialRequirment.MaterialRequirement
+
+            .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
+            .StockCode = DBReadString(rDataReader, "StockCode")
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+            .AreaID = DBReadInt32(rDataReader, "AreaID")
+            .Comments = DBReadString(rDataReader, "Comments")
+            .MaterialRequirementType = DBReadByte(rDataReader, "MaterialRequirementType")
+            .Quantity = DBReadDecimal(rDataReader, "Quantity")
+            .UoM = DBReadString(rDataReader, "UoM")
+            .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
+            .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
+
+            .Description = DBReadString(rDataReader, "Description")
+          End With
 
 
-      With pMaterialRequirment.MaterialRequirement
+          With pMaterialRequirment.StockItem
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+            .StockCode = DBReadString(rDataReader, "STOCKITEMCODE")
+            .Category = DBReadByte(rDataReader, "Category")
+            .PartNo = DBReadString(rDataReader, "PartNo")
+            .Description = DBReadString(rDataReader, "SIDESCRIPTION")
+            .StdCost = DBReadDecimal(rDataReader, "StdCost")
 
-        .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
-        .StockItemID = DBReadInt32(rDataReader, "StockItemID")
-        .StockCode = DBReadString(rDataReader, "StockCode")
-        .Description = DBReadString(rDataReader, "Description")
-        .Quantity = DBReadDecimal(rDataReader, "Quantity")
-        .UoM = DBReadString(rDataReader, "UoM")
-        .AreaID = DBReadInt32(rDataReader, "AreaID")
-        .Comments = DBReadString(rDataReader, "Comments")
-        .MaterialRequirementType = DBReadByte(rDataReader, "MaterialRequirementType")
-        .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
-        .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
+          End With
 
 
-      End With
-      With pMaterialRequirment.StockItem
-        .StockItemID = DBReadInt32(rDataReader, "StockItemID")
-        .StockCode = DBReadString(rDataReader, "STOCKITEMCODE")
-        .Category = DBReadByte(rDataReader, "Category")
-        .PartNo = DBReadString(rDataReader, "PartNo")
-        .Description = DBReadString(rDataReader, "SIDESCRIPTION")
-        .StdCost = DBReadDecimal(rDataReader, "StdCost")
+          With pMaterialRequirment.WorkOrder
+            .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            .Description = DBReadString(rDataReader, "WODESCRIPTION")
 
-      End With
+          End With
+
+        Case eMode.WoodMat
+          With pMaterialRequirment.MaterialRequirement
+
+            .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
+            .Description = DBReadString(rDataReader, "Description")
+            .UnitPiece = DBReadInt32(rDataReader, "UnitPiece")
+            .NetLenght = DBReadDecimal(rDataReader, "NetLenght")
+            .NetWidth = DBReadDecimal(rDataReader, "NetWidth")
+            .NetThickness = DBReadDecimal(rDataReader, "NetThickness")
+            .QualityType = DBReadInt32(rDataReader, "QualityType")
+            .WoodSpecie = DBReadInt32(rDataReader, "WoodSpecie")
+            .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
+          End With
 
 
-      With pMaterialRequirment.WorkOrder
-        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
-        .Description = DBReadString(rDataReader, "WODESCRIPTION")
+          With pMaterialRequirment.ProductFurniture
+            .ProductFurnitureID = DBReadInt32(rDataReader, "ProductFurnitureID")
+          End With
 
-      End With
 
-      ''With pMaterialRequirment.c
-      ''  .CompanyName = DBReadString(rDataReader, "CompanyName")
+          With pMaterialRequirment.WorkOrder
+            .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            .Description = DBReadString(rDataReader, "WODescription")
+            .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
+            .Quantity = DBReadInt32(rDataReader, "Quantity")
+          End With
 
-      ''End With
+          With pMaterialRequirment.SalesOrder
+            .ProjectName = DBReadString(rDataReader, "ProjectName")
+          End With
 
-      ''With pSalesOrder
-      ''  .OrderNo = DBReadString(rDataReader, "OrderNo")
+          With pMaterialRequirment.Customer
+            .CompanyName = DBReadString(rDataReader, "CompanyName")
+          End With
 
-      ''End With
+      End Select
+
+
+
 
       mOK = True
     Catch Ex As Exception
@@ -131,6 +177,8 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         pMaterialRequirment = New clsMaterialRequirementInfo
       Case eMode.Processor
         pMaterialRequirment = New clsMaterialRequirementProcessor(New dmMaterialRequirement)
+      Case eMode.WoodMat
+        pMaterialRequirment = New clsMaterialRequirementInfo
     End Select
 
 
@@ -144,6 +192,14 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
     Dim mOK As Boolean
 
     mOK = MyBase.LoadCollection(rMaterialRequirementProcessors, mParams, "MaterialRequirementID", vWhere)
+    Return mOK
+  End Function
+
+  Public Function LoadWoodMatReqByWhere(ByRef rWoodMatReq As colMaterialRequirementInfos, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+
+    mOK = MyBase.LoadCollection(rWoodMatReq, mParams, "MaterialRequirementID", vWhere)
     Return mOK
   End Function
 

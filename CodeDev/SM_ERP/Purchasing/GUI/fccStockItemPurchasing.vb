@@ -10,6 +10,7 @@ Public Class fccStockItemPurchasing
   Private pCurrentCategory As Integer
   Private pStockItemLocations As colStockItemLocations
   Private pStockItemProcessors As colStockItemProcessors
+  Private pWoodMatReqs As colMaterialRequirementInfos
   Private pPOCOItemAllocationInfos As colPurchaseOrderInfos
   Public ProjectID As Integer
   Public IsBulkOrdering As Boolean
@@ -26,6 +27,11 @@ Public Class fccStockItemPurchasing
     End Get
   End Property
 
+  Public ReadOnly Property WoodMatReqs As colMaterialRequirementInfos
+    Get
+      Return pWoodMatReqs
+    End Get
+  End Property
 
 
   Public ReadOnly Property StockItemProcessors As colStockItemProcessors
@@ -48,6 +54,7 @@ Public Class fccStockItemPurchasing
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pStockItemProcessors = New colStockItemProcessors
+    pWoodMatReqs = New colMaterialRequirementInfos
   End Sub
 
   Public Sub LoadObject()
@@ -55,15 +62,14 @@ Public Class fccStockItemPurchasing
     pStockItemLocations = New colStockItemLocations
     pStockItemProcessors = New colStockItemProcessors
     pPOCOItemAllocationInfos = New colPurchaseOrderInfos
+    pWoodMatReqs = New colMaterialRequirementInfos
     pSuppliers = New colSuppliers
 
   End Sub
 
   Public Sub LoadStockItems()
     Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mdsoPurchaseOrder As New dsoPurchasing(pDBConn)
-    Dim mdsoSalesOrder As New dsoSales(pDBConn)
-    Dim mdsoSuppliers As New dsoPurchasing(pDBConn)
+
     Dim mWhere As String = ""
     Dim mOK As Boolean
     Try
@@ -71,6 +77,27 @@ Public Class fccStockItemPurchasing
       pStockItemProcessors.Clear()
 
       mdsoStock.LoadStockItemProcessors(pStockItemProcessors, mWhere, dtoStockItemInfo.eMode.StockItemProcessor)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      mdsoStock = Nothing
+    End Try
+
+  End Sub
+
+
+  Public Sub LoadWoodMatReq()
+    Dim mdsoStock As New dsoStock(pDBConn)
+
+    Dim mWhere As String = ""
+    Dim mOK As Boolean
+    Try
+
+      pWoodMatReqs.Clear()
+
+      mdsoStock.LoadWoodMatReq(pWoodMatReqs, mWhere, dtoMaterialRequirementInfo.eMode.WoodMat)
 
 
     Catch ex As Exception

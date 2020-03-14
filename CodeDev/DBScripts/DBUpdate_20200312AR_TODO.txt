@@ -1,0 +1,30 @@
+ALTER VIEW [dbo].[vwWoodMatReqInfo]
+as
+
+select 
+MR.MaterialRequirementID,
+MR.Description,
+MR.UnitPiece,
+MR.PiecesPerComponent,
+MR.NetLenght,
+MR.NetWidth,
+MR.NetThickness,
+MR.QualityType,
+MR.WoodSpecie,
+PF.ProductFurnitureID,
+WO.Description 'WODescription',
+WO.PlannedStartDate,
+WO.WorkOrderNo,
+Wo.Quantity,
+SO.ProjectName,
+CU.CompanyName
+
+from MaterialRequirement as MR 
+LEFT JOIN PRODUCTFURNITURE PF ON PF.ProductFurnitureID = MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=PF.ProductFurnitureID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+WHERE MaterialRequirementType=1
+GO
+
+

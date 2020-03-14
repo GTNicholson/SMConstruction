@@ -8,18 +8,39 @@ Public Enum eActivityCode
   OverideUserPassword = 3  'RTIS Project Start Standard
   ForceLockRemoval = 4     'RTIS Project Start Standard
 
-  Sales = 100
+  SalesGroup = 100
+  Customer = 101
+  SalesOrder = 102
+  TrackingSalesOrder = 103
 
-  Production = 200
+  ProductionGroup = 200
+  WorkOrders = 201
+  InternalWorkOrders = 202
+  TrackingWorkOrders = 203
+  TimeSheetEntry = 204
+  ProductionReport = 205
 
-  HumanResources = 300
+  HumanResourcesGroup = 300
   EmployeeSalaries = 301
+  Employees = 302
+  PaymentSlip = 303
 
-  Purchasing = 400
+  PurchasingGroup = 400
+  Suppliers = 401
+  PurchaseOrder = 402
+  POConsole = 403
 
-  Inventory = 500
+  InventoryGroup = 500
+  StockItem = 501
+  PickingMatReq = 502
+  StockTake = 503
+  TransactionReport = 504
+  StockItemInfos = 505
 
-  Accounts = 600
+  AccountsGroup = 600
+  InvoicesReport = 601
+  CompanyDayReport = 602
+  FBConsumeReport = 603
 
 End Enum
 
@@ -52,9 +73,9 @@ End Enum
 
 Public Enum eEmployeeRole
   <Description("Ventas")> Sales = 1
-  <Description("Ingeneria")> Engineering = 2
-  <Description("Production")> Production = 3
-  <Description("Administracion")> Admin = 4
+  <Description("Ingeniería")> Engineering = 2
+  <Description("Producción")> Production = 3
+  <Description("Administración")> Admin = 4
 End Enum
 
 Public Enum eCustomerStatus
@@ -123,6 +144,7 @@ Public Enum eReportSource
   TimeSheet = 2
   StockItemTransactions = 3
   Invoice = 4
+  WoodReqMatInfo = 5
 End Enum
 
 Public Enum eParentType

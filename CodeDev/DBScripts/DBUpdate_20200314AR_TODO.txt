@@ -1,0 +1,169 @@
+insert into ApplicationModule
+(ApplicationModuleID,Module) values (4,'Ventas')
+go
+
+insert into ApplicationModule
+(ApplicationModuleID,Module) values (5,'Produccion')
+go
+
+insert into ApplicationModule
+(ApplicationModuleID,Module) values (6,'RRHH')
+go
+
+insert into ApplicationModule
+(ApplicationModuleID,Module) values (7,'Compras')
+go
+
+insert into ApplicationModule
+(ApplicationModuleID,Module) values (8,'Inventario')
+go
+
+insert into ApplicationModule
+(ApplicationModuleID,Module) values (9,'Contabilidad')
+go
+
+
+/*Inserting grouping*/
+insert into Grouping
+(GroupingName,ApplicationID) values ('Bodega',NULL)
+go
+
+insert into Grouping
+(GroupingName,ApplicationID) values ('Producción',NULL)
+go
+
+insert into Grouping
+(GroupingName,ApplicationID) values ('Gerencia',NULL)
+go
+
+insert into Grouping
+(GroupingName,ApplicationID) values ('Contabilidad',NULL)
+go
+
+insert into Grouping
+(GroupingName,ApplicationID) values ('Compras',NULL)
+go
+
+insert into Grouping
+(GroupingName,ApplicationID) values ('Ingenieria',NULL)
+go
+
+insert into Grouping
+(GroupingName,ApplicationID) values ('Ventas',NULL)
+go
+
+/*Inserting ApplicationActivity*/
+
+/*Sales*/
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (101,'Clientes','',4,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (102,'Órdenes de Ventas','',4,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (103,'Seguimiento de Venta','',4,'FALSE')
+go
+
+/*Produccion*/
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (201,'Órden de Trabajo','',5,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (202,'Órden de Trabajo Interna','',5,'FALSE')
+go
+
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (203,'Seguimiento OT','',5,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (204,'Entrada de Tiempo','',5,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (205,'Reporte de Producción','',5,'FALSE')
+go
+
+/*RRHH*/
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (302,'Empleados','',6,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (303,'Reporte de Salario','',6,'FALSE')
+go
+
+/*Compras*/
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (401,'Proveedores','',7,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (402,'Órden de Compra','',7,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (403,'Admon. Órden Compra','',7,'FALSE')
+go
+
+/*Inventario*/
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (501,'Arto. de Inventario.','',8,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (502,'Picking Materiales','',8,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (503,'Conteo de Inv.','',8,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (504,'Reporte de Transacción','',8,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (505,'Información de Inventario','',8,'FALSE')
+go
+
+/*Contabilidad*/
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (601,'Reporte Invt.','',9,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (602,'Reporte de Compañía','',9,'FALSE')
+go
+
+insert into ApplicationActivity
+(ActivityCode, ActivityArea,Notes,ApplicationModuleID,IsSensitive)
+values (603,'Reporte de Consumo Madera.','',9,'FALSE')
+go
