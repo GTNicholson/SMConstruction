@@ -41,6 +41,7 @@ Public Enum eActivityCode
   InvoicesReport = 601
   CompanyDayReport = 602
   FBConsumeReport = 603
+  InvoiceModule = 604
 
 End Enum
 
@@ -106,6 +107,7 @@ Public Enum eBrowseList
   PurchaseOrder = 8
   StockTake = 9
   Supplier = 10
+  Invoice = 11
 End Enum
 
 

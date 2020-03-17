@@ -11,13 +11,16 @@ Public Class dmInvoice : Inherits dmBase
   Private pTaxValue As Decimal
   Private pInvoiceStatus As Int16
   Private pCustomerPurchaseOrder As String
+  Private pInvoiceItem As colInvoiceItems
 
   Public Sub New()
     MyBase.New()
+
   End Sub
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pInvoiceItem = New colInvoiceItems
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -33,6 +36,7 @@ Public Class dmInvoice : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pInvoiceItem.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -53,6 +57,7 @@ Public Class dmInvoice : Inherits dmBase
       .TaxValue = TaxValue
       .InvoiceStatus = InvoiceStatus
       .CustomerPurchaseOrder = CustomerPurchaseOrder
+      .InvoiceItem = InvoiceItem.clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -61,6 +66,16 @@ Public Class dmInvoice : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property InvoiceItem() As colInvoiceItems
+    Get
+      Return pInvoiceItem
+    End Get
+    Set(ByVal value As colInvoiceItems)
+      pInvoiceItem = value
+    End Set
+  End Property
+
 
   Public Property InvoiceID() As Int32
     Get
@@ -71,6 +86,8 @@ Public Class dmInvoice : Inherits dmBase
       pInvoiceID = value
     End Set
   End Property
+
+
 
   Public Property InvoiceNo() As String
     Get

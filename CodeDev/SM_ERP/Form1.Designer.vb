@@ -24,23 +24,16 @@ Partial Class Form1
   Private Sub InitializeComponent()
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.PivotGridControl1 = New DevExpress.XtraPivotGrid.PivotGridControl()
-    Me.PivotGridField9 = New DevExpress.XtraPivotGrid.PivotGridField()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.PivotGridControl1 = New DevExpress.XtraPivotGrid.PivotGridControl()
+    Me.PivotGridField9 = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.PivotGridField1 = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.PivotGridField2 = New DevExpress.XtraPivotGrid.PivotGridField()
     Me.PivotGridField3 = New DevExpress.XtraPivotGrid.PivotGridField()
@@ -73,36 +66,83 @@ Partial Class Form1
     '
     'GridView1
     '
-    Me.GridView1.Appearance.ColumnFilterButton.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.GridView1.Appearance.ColumnFilterButton.Options.UseFont = True
     Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
     Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
     Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
     Me.GridView1.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
     Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.ColumnPanelRowHeight = 40
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+    Me.GridView1.ColumnPanelRowHeight = 34
+    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
     Me.GridView1.GridControl = Me.GridControl1
-    Me.GridView1.HorzScrollStep = 3
     Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsBehavior.Editable = False
     Me.GridView1.OptionsLayout.Columns.StoreAllOptions = True
     Me.GridView1.OptionsLayout.StoreAllOptions = True
+    Me.GridView1.OptionsView.ColumnAutoWidth = False
     Me.GridView1.OptionsView.ShowAutoFilterRow = True
-    Me.GridView1.OptionsView.ShowFooter = True
     Me.GridView1.OptionsView.ShowGroupPanel = False
+    '
+    'GridColumn3
+    '
+    Me.GridColumn3.Caption = "InvoiceID"
+    Me.GridColumn3.FieldName = "InvoiceID"
+    Me.GridColumn3.Name = "GridColumn3"
+    '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "SalesOrderID"
+    Me.GridColumn1.FieldName = "SalesOrderID"
+    Me.GridColumn1.Name = "GridColumn1"
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Fecha de Facturación"
+    Me.GridColumn2.FieldName = "InvoiceDate"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 3
     '
     'GridColumn4
     '
-    Me.GridColumn4.Caption = "PT"
-    Me.GridColumn4.DisplayFormat.FormatString = "N1"
-    Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    Me.GridColumn4.FieldName = "TotalBoardFeetReport"
+    Me.GridColumn4.Caption = "Fecha de Creación"
+    Me.GridColumn4.FieldName = "CreatedDate"
     Me.GridColumn4.Name = "GridColumn4"
-    Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalBoardFeetReport", "{0:N1}")})
     Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 12
+    Me.GridColumn4.VisibleIndex = 2
+    '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "Valor Neto"
+    Me.GridColumn5.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn5.FieldName = "NetValue"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 1
+    '
+    'GridColumn6
+    '
+    Me.GridColumn6.Caption = "Estado"
+    Me.GridColumn6.FieldName = "InvoiceStatus"
+    Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.Visible = True
+    Me.GridColumn6.VisibleIndex = 4
+    '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "CustomerPurchaseOrder"
+    Me.GridColumn7.FieldName = "CustomerPurchaseOrder"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 5
+    '
+    'GridColumn8
+    '
+    Me.GridColumn8.Caption = "Núm. Factura"
+    Me.GridColumn8.FieldName = "InvoiceNo"
+    Me.GridColumn8.Name = "GridColumn8"
+    Me.GridColumn8.Visible = True
+    Me.GridColumn8.VisibleIndex = 0
     '
     'PivotGridControl1
     '
@@ -155,114 +195,6 @@ Partial Class Form1
     Me.PivotGridField9.FieldName = "MaterialRequirementID"
     Me.PivotGridField9.Name = "PivotGridField9"
     Me.PivotGridField9.Visible = False
-    '
-    'GridColumn1
-    '
-    Me.GridColumn1.Caption = "MaterialRequirementID"
-    Me.GridColumn1.FieldName = "MaterialRequirementID"
-    Me.GridColumn1.Name = "GridColumn1"
-    '
-    'GridColumn2
-    '
-    Me.GridColumn2.Caption = "Descripción"
-    Me.GridColumn2.FieldName = "Description"
-    Me.GridColumn2.Name = "GridColumn2"
-    Me.GridColumn2.Visible = True
-    Me.GridColumn2.VisibleIndex = 0
-    '
-    'GridColumn3
-    '
-    Me.GridColumn3.Caption = "Piezas"
-    Me.GridColumn3.FieldName = "UnitPiece"
-    Me.GridColumn3.Name = "GridColumn3"
-    Me.GridColumn3.Visible = True
-    Me.GridColumn3.VisibleIndex = 1
-    '
-    'GridColumn5
-    '
-    Me.GridColumn5.Caption = "Longitud"
-    Me.GridColumn5.FieldName = "NetLenght"
-    Me.GridColumn5.Name = "GridColumn5"
-    Me.GridColumn5.Visible = True
-    Me.GridColumn5.VisibleIndex = 2
-    '
-    'GridColumn6
-    '
-    Me.GridColumn6.Caption = "Ancho"
-    Me.GridColumn6.FieldName = "NetWidth"
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 3
-    '
-    'GridColumn7
-    '
-    Me.GridColumn7.Caption = "Grosor"
-    Me.GridColumn7.FieldName = "NetThickness"
-    Me.GridColumn7.Name = "GridColumn7"
-    Me.GridColumn7.Visible = True
-    Me.GridColumn7.VisibleIndex = 4
-    '
-    'GridColumn8
-    '
-    Me.GridColumn8.Caption = "Tipo Calidad"
-    Me.GridColumn8.FieldName = "QualityType"
-    Me.GridColumn8.Name = "GridColumn8"
-    Me.GridColumn8.Visible = True
-    Me.GridColumn8.VisibleIndex = 5
-    '
-    'GridColumn9
-    '
-    Me.GridColumn9.Caption = "Especie Madera"
-    Me.GridColumn9.FieldName = "WoodSpecie"
-    Me.GridColumn9.Name = "GridColumn9"
-    Me.GridColumn9.Visible = True
-    Me.GridColumn9.VisibleIndex = 6
-    '
-    'GridColumn10
-    '
-    Me.GridColumn10.Caption = "ProductFurnitureID"
-    Me.GridColumn10.FieldName = "ProductFurnitureID"
-    Me.GridColumn10.Name = "GridColumn10"
-    '
-    'GridColumn11
-    '
-    Me.GridColumn11.Caption = "Desc. de OT"
-    Me.GridColumn11.FieldName = "WODescription"
-    Me.GridColumn11.Name = "GridColumn11"
-    Me.GridColumn11.Visible = True
-    Me.GridColumn11.VisibleIndex = 7
-    '
-    'GridColumn12
-    '
-    Me.GridColumn12.Caption = "Fecha Plan"
-    Me.GridColumn12.FieldName = "PlannedStartDate"
-    Me.GridColumn12.Name = "GridColumn12"
-    Me.GridColumn12.Visible = True
-    Me.GridColumn12.VisibleIndex = 8
-    '
-    'GridColumn13
-    '
-    Me.GridColumn13.Caption = "Núm. OT"
-    Me.GridColumn13.FieldName = "WorkOrderNo"
-    Me.GridColumn13.Name = "GridColumn13"
-    Me.GridColumn13.Visible = True
-    Me.GridColumn13.VisibleIndex = 9
-    '
-    'GridColumn14
-    '
-    Me.GridColumn14.Caption = "Proyecto"
-    Me.GridColumn14.FieldName = "ProjectName"
-    Me.GridColumn14.Name = "GridColumn14"
-    Me.GridColumn14.Visible = True
-    Me.GridColumn14.VisibleIndex = 10
-    '
-    'GridColumn15
-    '
-    Me.GridColumn15.Caption = "Cliente"
-    Me.GridColumn15.FieldName = "CompanyName"
-    Me.GridColumn15.Name = "GridColumn15"
-    Me.GridColumn15.Visible = True
-    Me.GridColumn15.VisibleIndex = 11
     '
     'PivotGridField1
     '
@@ -382,22 +314,8 @@ Partial Class Form1
   Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
   Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents PivotGridControl1 As DevExpress.XtraPivotGrid.PivotGridControl
-  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents PivotGridField9 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents PivotGridField1 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField2 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField3 As DevExpress.XtraPivotGrid.PivotGridField
@@ -414,4 +332,11 @@ Partial Class Form1
   Friend WithEvents PivotGridField15 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField16 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField17 As DevExpress.XtraPivotGrid.PivotGridField
+  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

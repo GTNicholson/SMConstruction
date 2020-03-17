@@ -54,6 +54,30 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadInvoiceDown(ByRef rInvoice As dmInvoice, ByVal vID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoInvoice
+    Dim mdtoInvoiceItem As dtoInvoiceItem
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoInvoice(pDBConn)
+      mdto.LoadInvoice(rInvoice, vID)
+      mdtoInvoiceItem = New dtoInvoiceItem(pDBConn)
+      mdtoInvoiceItem.LoadInvoiceItemCollection(rInvoice.InvoiceItem, rInvoice.InvoiceID)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
 
 
   Public Function LoadSalesOrderProgressInfos(ByRef rSalesOrderProgressInfos As colSalesOrderProgressInfos, ByVal vWhere As String) As Boolean
@@ -123,6 +147,27 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadInvoiceInfos(ByRef rInvoiceInfos As colInvoiceInfos) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoInvoiceInfo
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Invoice)
+      mdto.LoadInvoiceCollectionByWhere(rInvoiceInfos, "")
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
 
   Public Function SaveCustomerDown(ByRef rCustomer As dmCustomer) As Boolean
     Dim mRetVal As Boolean
@@ -148,7 +193,29 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function SaveInvoiceDown(ByRef rInvoice As dmInvoice) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoInvoice
+    Dim mdtoInvoiceItem As dtoInvoiceItem
 
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoInvoice(pDBConn)
+      mdto.SaveInvoice(rInvoice)
+      mdtoInvoiceItem = New dtoInvoiceItem(pDBConn)
+      mdtoInvoiceItem.SaveInvoiceItemCollection(rInvoice.InvoiceItem, rInvoice.InvoiceID)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
 
 
   Public Function SaveSalesOrderDown(ByRef rSalesOrder As dmSalesOrder) As Boolean

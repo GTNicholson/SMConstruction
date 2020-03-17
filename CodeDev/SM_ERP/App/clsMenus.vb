@@ -45,6 +45,7 @@ Public Class MenuFactory
 
 
     mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Facturas", eMenuIconType.Grid, AddressOf clsMenuFunctions.InvoiceModule, eActivityCode.FBConsumeReport)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Facturas", eMenuIconType.Report, AddressOf clsMenuFunctions.InvoiceInfoBI, eActivityCode.InvoicesReport)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de CompanyDay", eMenuIconType.Report, AddressOf clsMenuFunctions.CompanyDayInfoBI, eActivityCode.CompanyDayReport)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Consumo Pies Tablares", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodMatReqInfo, eActivityCode.FBConsumeReport)
@@ -205,6 +206,20 @@ Class clsMenuFunctions
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewInvoice.CreateBIReportViewFactorInvoice(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub InvoiceModule(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mfrm As RTIS.Elements.frmBrowseList
+    Dim mbrwInt As brwInvoices
+
+    mbrwInt = New brwInvoices(rRTISUserSession.CreateMainDBConn, rRTISGlobal, eBrowseList.Invoice)
+    mfrm = RTIS.Elements.frmBrowseList.GetFormIfLoaded(mbrwInt)
+
+    If mfrm Is Nothing Then
+      RTIS.Elements.frmBrowseList.OpenFormAsMDIChild(rParentForm, mbrwInt)
+    Else
+      mfrm.Focus()
+    End If
   End Sub
 
   Public Shared Sub CompanyDayInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
