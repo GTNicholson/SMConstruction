@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors.Controls
+﻿Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraTab
 Imports RTIS.CommonVB
@@ -109,11 +110,11 @@ Public Class frmTimeSheetEntry
 
 
       UpdateObjects()
-        pController.SetCurrentEmployee(clsDEControlLoading.GetDEComboValue(cboEmployee))
-        pController.LoadTimeSheetEntrys()
-        pController.LoadTimeSheetEntryUIs()
-        grdTimeSheet.DataSource = pController.TimeSheetEntryUIs
-        grdTimeSheetEntries.DataSource = pController.TimeSheetEntrys
+      pController.SetCurrentEmployee(clsDEControlLoading.GetDEComboValue(cboEmployee))
+      pController.LoadTimeSheetEntrys()
+      pController.LoadTimeSheetEntryUIs()
+      grdTimeSheet.DataSource = pController.TimeSheetEntryUIs
+      grdTimeSheetEntries.DataSource = pController.TimeSheetEntrys
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -240,5 +241,17 @@ Public Class frmTimeSheetEntry
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
+  End Sub
+
+  Private Sub gpTimeSheetEntries_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpTimeSheetEntries.CustomButtonClick
+    Dim mShift As dmShift
+    Dim mShifts As colShifts
+    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
+    mShift = mShifts(0)
+
+    For Each mTSE As dmTimeSheetEntry In pController.TimeSheetEntrys
+      mTSE.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mTSE, mShift)
+    Next
+    gvTimeSheetEntries.RefreshData()
   End Sub
 End Class

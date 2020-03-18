@@ -267,6 +267,7 @@ Public Class clsTimeSheetEntryUI
     If mExistingTSEntry IsNot Nothing Then
       mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
       mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift)
+
     End If
     vNewTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(vNewTSEntry.StartTime, vNewTSEntry.EndTime)
     vNewTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(vNewTSEntry, mShift)

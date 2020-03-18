@@ -22,6 +22,7 @@ Partial Class frmTimeSheetEntry
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
     Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -50,7 +51,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-    Me.grdTimeSheetEntries = New DevExpress.XtraGrid.GridControl()
+    Me.gpTimeSheetEntries = New DevExpress.XtraEditors.GroupControl()
     Me.gvTimeSheetEntries = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -63,6 +64,9 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.grdTimeSheetEntries = New DevExpress.XtraGrid.GridControl()
     Me.TableLayoutPanel1.SuspendLayout()
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl2.SuspendLayout()
@@ -81,8 +85,10 @@ Partial Class frmTimeSheetEntry
     CType(Me.gvTimeSheet, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repitmemTSEntry, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage2.SuspendLayout()
-    CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gpTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.gpTimeSheetEntries.SuspendLayout()
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'TableLayoutPanel1
@@ -425,20 +431,22 @@ Partial Class frmTimeSheetEntry
     '
     'XtraTabPage2
     '
-    Me.XtraTabPage2.Controls.Add(Me.grdTimeSheetEntries)
+    Me.XtraTabPage2.Controls.Add(Me.gpTimeSheetEntries)
     Me.XtraTabPage2.Name = "XtraTabPage2"
     Me.XtraTabPage2.Size = New System.Drawing.Size(1148, 397)
     Me.XtraTabPage2.Text = "XtraTabPage2"
     '
-    'grdTimeSheetEntries
+    'gpTimeSheetEntries
     '
-    Me.grdTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
-    Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
-    Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1148, 397)
-    Me.grdTimeSheetEntries.TabIndex = 0
-    Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
+    Me.gpTimeSheetEntries.Controls.Add(Me.grdTimeSheetEntries)
+    Me.gpTimeSheetEntries.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Calculate", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Calculate", -1)})
+    Me.gpTimeSheetEntries.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+    Me.gpTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.gpTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
+    Me.gpTimeSheetEntries.Name = "gpTimeSheetEntries"
+    Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1148, 397)
+    Me.gpTimeSheetEntries.TabIndex = 1
+    Me.gpTimeSheetEntries.Text = "GroupControl1"
     '
     'gvTimeSheetEntries
     '
@@ -446,7 +454,7 @@ Partial Class frmTimeSheetEntry
     Me.gvTimeSheetEntries.Appearance.HeaderPanel.Options.UseFont = True
     Me.gvTimeSheetEntries.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvTimeSheetEntries.Appearance.Row.Options.UseFont = True
-    Me.gvTimeSheetEntries.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17})
+    Me.gvTimeSheetEntries.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn20, Me.GridColumn21})
     Me.gvTimeSheetEntries.GridControl = Me.grdTimeSheetEntries
     Me.gvTimeSheetEntries.Name = "gvTimeSheetEntries"
     '
@@ -457,7 +465,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn9.Name = "GridColumn9"
     Me.GridColumn9.Visible = True
     Me.GridColumn9.VisibleIndex = 0
-    Me.GridColumn9.Width = 78
+    Me.GridColumn9.Width = 49
     '
     'GridColumn10
     '
@@ -466,7 +474,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn10.Name = "GridColumn10"
     Me.GridColumn10.Visible = True
     Me.GridColumn10.VisibleIndex = 1
-    Me.GridColumn10.Width = 64
+    Me.GridColumn10.Width = 39
     '
     'GridColumn11
     '
@@ -475,7 +483,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn11.Name = "GridColumn11"
     Me.GridColumn11.Visible = True
     Me.GridColumn11.VisibleIndex = 2
-    Me.GridColumn11.Width = 95
+    Me.GridColumn11.Width = 59
     '
     'GridColumn12
     '
@@ -484,7 +492,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn12.Name = "GridColumn12"
     Me.GridColumn12.Visible = True
     Me.GridColumn12.VisibleIndex = 3
-    Me.GridColumn12.Width = 117
+    Me.GridColumn12.Width = 73
     '
     'GridColumn13
     '
@@ -495,7 +503,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn13.Name = "GridColumn13"
     Me.GridColumn13.Visible = True
     Me.GridColumn13.VisibleIndex = 5
-    Me.GridColumn13.Width = 203
+    Me.GridColumn13.Width = 130
     '
     'GridColumn14
     '
@@ -506,7 +514,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn14.Name = "GridColumn14"
     Me.GridColumn14.Visible = True
     Me.GridColumn14.VisibleIndex = 6
-    Me.GridColumn14.Width = 203
+    Me.GridColumn14.Width = 130
     '
     'GridColumn15
     '
@@ -517,7 +525,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn15.Name = "GridColumn15"
     Me.GridColumn15.Visible = True
     Me.GridColumn15.VisibleIndex = 7
-    Me.GridColumn15.Width = 203
+    Me.GridColumn15.Width = 130
     '
     'GridColumn16
     '
@@ -528,7 +536,7 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn16.Name = "GridColumn16"
     Me.GridColumn16.Visible = True
     Me.GridColumn16.VisibleIndex = 8
-    Me.GridColumn16.Width = 156
+    Me.GridColumn16.Width = 99
     '
     'GridColumn19
     '
@@ -536,8 +544,8 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn19.FieldName = "BreakMins"
     Me.GridColumn19.Name = "GridColumn19"
     Me.GridColumn19.Visible = True
-    Me.GridColumn19.VisibleIndex = 9
-    Me.GridColumn19.Width = 115
+    Me.GridColumn19.VisibleIndex = 11
+    Me.GridColumn19.Width = 65
     '
     'GridColumn18
     '
@@ -545,8 +553,8 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn18.FieldName = "Note"
     Me.GridColumn18.Name = "GridColumn18"
     Me.GridColumn18.Visible = True
-    Me.GridColumn18.VisibleIndex = 10
-    Me.GridColumn18.Width = 200
+    Me.GridColumn18.VisibleIndex = 12
+    Me.GridColumn18.Width = 144
     '
     'GridColumn17
     '
@@ -555,7 +563,35 @@ Partial Class frmTimeSheetEntry
     Me.GridColumn17.Name = "GridColumn17"
     Me.GridColumn17.Visible = True
     Me.GridColumn17.VisibleIndex = 4
-    Me.GridColumn17.Width = 188
+    Me.GridColumn17.Width = 98
+    '
+    'GridColumn20
+    '
+    Me.GridColumn20.Caption = "OverTime"
+    Me.GridColumn20.FieldName = "OverTimeMinutes"
+    Me.GridColumn20.Name = "GridColumn20"
+    Me.GridColumn20.Visible = True
+    Me.GridColumn20.VisibleIndex = 10
+    Me.GridColumn20.Width = 55
+    '
+    'GridColumn21
+    '
+    Me.GridColumn21.Caption = "Duration"
+    Me.GridColumn21.FieldName = "Duration"
+    Me.GridColumn21.Name = "GridColumn21"
+    Me.GridColumn21.Visible = True
+    Me.GridColumn21.VisibleIndex = 9
+    Me.GridColumn21.Width = 59
+    '
+    'grdTimeSheetEntries
+    '
+    Me.grdTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 20)
+    Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
+    Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
+    Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1144, 375)
+    Me.grdTimeSheetEntries.TabIndex = 0
+    Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
     '
     'frmTimeSheetEntry
     '
@@ -585,8 +621,10 @@ Partial Class frmTimeSheetEntry
     CType(Me.gvTimeSheet, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repitmemTSEntry, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage2.ResumeLayout(False)
-    CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gpTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.gpTimeSheetEntries.ResumeLayout(False)
     CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -619,6 +657,7 @@ Partial Class frmTimeSheetEntry
   Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+  Friend WithEvents gpTimeSheetEntries As DevExpress.XtraEditors.GroupControl
   Friend WithEvents grdTimeSheetEntries As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvTimeSheetEntries As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
@@ -629,7 +668,9 @@ Partial Class frmTimeSheetEntry
   Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

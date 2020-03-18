@@ -2,23 +2,31 @@
 
   Public Shared Function getOverTimeMinutes(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByRef rShift As dmShift) As Integer
     Dim mretVal As Integer
-    Dim mSD As dmShiftDetails
+    Dim mSD As dmShiftDetails = Nothing
     Dim mStartMinutes As Int32
     Dim mEndMinutes As Int32
     Dim mTotalMinutes1 As Int32
     Dim mTotalMinutes2 As Int32
+    Dim mShiftFound As Boolean
 
     For Each mSDtem As dmShiftDetails In rShift.ShifDetails
 
       If mSDtem.DayOfWeek = rTimeSheetEntry.StartTime.DayOfWeek Or mSDtem.DayOfWeek = rTimeSheetEntry.EndTime.DayOfWeek Then
         mSD = mSDtem
+        mShiftFound = True
         Exit For
       End If
 
     Next
 
-    If mSD Is Nothing Then
-      mretVal = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.TimeOfDay.ToString)) - 60
+    If mSD IsNot Nothing Then
+      If mSD.StartTime = New Date And mSD.EndTime = New Date Then
+        mShiftFound = False
+      End If
+    End If
+
+    If mShiftFound = False Then
+      mretVal = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.TimeOfDay.ToString)) ''- 60
 
       If mretVal < 0 Then
         mretVal = 0

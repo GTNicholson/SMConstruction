@@ -26,20 +26,23 @@ Partial Class frmSalesOrderProgress
     Me.grdSalesOrderProgress = New DevExpress.XtraGrid.GridControl()
     Me.gvSalesOrderProgress = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repitbtCurrentInventory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.repitbtCurrentInventory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpItemDetail.SuspendLayout()
     CType(Me.grdSalesOrderProgress, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvSalesOrderProgress, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grpItemDetail
@@ -67,7 +70,7 @@ Partial Class frmSalesOrderProgress
     Me.grdSalesOrderProgress.Location = New System.Drawing.Point(2, 21)
     Me.grdSalesOrderProgress.MainView = Me.gvSalesOrderProgress
     Me.grdSalesOrderProgress.Name = "grdSalesOrderProgress"
-    Me.grdSalesOrderProgress.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory})
+    Me.grdSalesOrderProgress.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory, Me.RepositoryItemDateEdit1})
     Me.grdSalesOrderProgress.Size = New System.Drawing.Size(935, 297)
     Me.grdSalesOrderProgress.TabIndex = 6
     Me.grdSalesOrderProgress.UseEmbeddedNavigator = True
@@ -98,11 +101,14 @@ Partial Class frmSalesOrderProgress
     Me.gcStockItemID.FieldName = "SalesOrderID"
     Me.gcStockItemID.Name = "gcStockItemID"
     '
-    'repitbtCurrentInventory
+    'GridColumn6
     '
-    Me.repitbtCurrentInventory.AutoHeight = False
-    Me.repitbtCurrentInventory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-    Me.repitbtCurrentInventory.Name = "repitbtCurrentInventory"
+    Me.GridColumn6.Caption = "Cliente"
+    Me.GridColumn6.FieldName = "CompanyName"
+    Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.Visible = True
+    Me.GridColumn6.VisibleIndex = 0
+    Me.GridColumn6.Width = 227
     '
     'gcStdCost
     '
@@ -112,6 +118,15 @@ Partial Class frmSalesOrderProgress
     Me.gcStdCost.Visible = True
     Me.gcStdCost.VisibleIndex = 1
     Me.gcStdCost.Width = 184
+    '
+    'GridColumn7
+    '
+    Me.GridColumn7.Caption = "Fecha Pactada Desp."
+    Me.GridColumn7.ColumnEdit = Me.RepositoryItemDateEdit1
+    Me.GridColumn7.FieldName = "FinishDate"
+    Me.GridColumn7.Name = "GridColumn7"
+    Me.GridColumn7.Visible = True
+    Me.GridColumn7.VisibleIndex = 2
     '
     'GridColumn1
     '
@@ -168,22 +183,19 @@ Partial Class frmSalesOrderProgress
     Me.GridColumn5.VisibleIndex = 7
     Me.GridColumn5.Width = 111
     '
-    'GridColumn6
+    'repitbtCurrentInventory
     '
-    Me.GridColumn6.Caption = "Cliente"
-    Me.GridColumn6.FieldName = "CompanyName"
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 0
-    Me.GridColumn6.Width = 227
+    Me.repitbtCurrentInventory.AutoHeight = False
+    Me.repitbtCurrentInventory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+    Me.repitbtCurrentInventory.Name = "repitbtCurrentInventory"
     '
-    'GridColumn7
+    'RepositoryItemDateEdit1
     '
-    Me.GridColumn7.Caption = "Fecha Pactada Desp."
-    Me.GridColumn7.FieldName = "FinishDate"
-    Me.GridColumn7.Name = "GridColumn7"
-    Me.GridColumn7.Visible = True
-    Me.GridColumn7.VisibleIndex = 2
+    Me.RepositoryItemDateEdit1.AutoHeight = False
+    Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+    Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
     '
     'frmSalesOrderProgress
     '
@@ -198,6 +210,8 @@ Partial Class frmSalesOrderProgress
     CType(Me.grdSalesOrderProgress, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvSalesOrderProgress, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -215,4 +229,5 @@ Partial Class frmSalesOrderProgress
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class
