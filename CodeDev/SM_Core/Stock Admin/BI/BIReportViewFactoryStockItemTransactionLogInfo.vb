@@ -6,6 +6,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     StockTransList = 1
     StockTransSummary = 2
     TransferList = 3
+    StockByCustomerSummary = 4
   End Enum
 
   Public Enum eBIReportDefs
@@ -103,6 +104,18 @@ Public Class BIReportViewStockItemTransactionLogInfo
     ''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
     mRepLayout.DrillDownLayout = mRepDDLayout
     vReportSource.BIGridLayouts.Add(mRepLayout)
+
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockByCustomerSummary
+    mRepLayout.InterfaceType = 0
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BIStockTransactionItemByCategoryAndCustomerSummary.xml"
+    mRepLayout.LayoutName = "Resumen de Salidas de Inventario por Cliente"
+    ''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
+    mRepLayout.DrillDownLayout = mRepDDLayout
+    vReportSource.BIGridLayouts.Add(mRepLayout)
+
+
 
   End Sub
 

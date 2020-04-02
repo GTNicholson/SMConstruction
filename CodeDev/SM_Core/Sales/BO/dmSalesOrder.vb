@@ -422,6 +422,15 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property CompanyName As String
+    Get
+      Return pCustomer.CompanyName
+    End Get
+    Set(value As String)
+      pCustomer.CompanyName = value
+    End Set
+  End Property
+
 
   Public Property Invoices As colInvoices
     Get

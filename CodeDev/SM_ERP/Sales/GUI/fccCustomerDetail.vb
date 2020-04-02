@@ -5,6 +5,7 @@ Public Class fccCustomerDetail
 
   Private pCustomer As dmCustomer
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
+  Private pHaveLock As Boolean
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
@@ -25,6 +26,11 @@ Public Class fccCustomerDetail
     End Get
   End Property
 
+  Public ReadOnly Property HaveLock As Boolean
+    Get
+      Return pHaveLock
+    End Get
+  End Property
 
   Public Sub LoadObjects()
     Dim mdso As dsoSales
@@ -33,6 +39,9 @@ Public Class fccCustomerDetail
 
     If pPrimaryKeyID <> 0 Then
       mdso = New dsoSales(pDBConn)
+
+      pHaveLock = mdso.LockCustomerDisconnected(pPrimaryKeyID)
+
       mdso.LoadCustomerDown(pCustomer, pPrimaryKeyID)
     End If
 
@@ -41,7 +50,14 @@ Public Class fccCustomerDetail
   Public Sub SaveObjects()
     Dim mdso As dsoSales
     mdso = New dsoSales(pDBConn)
+
     mdso.SaveCustomerDown(pCustomer)
+
+    If pPrimaryKeyID = 0 Then
+      pPrimaryKeyID = pCustomer.CustomerID
+      pHaveLock = mdso.LockCustomerDisconnected(Me.PrimaryKeyID)
+    End If
+
   End Sub
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
     Dim mRetVal As New clsValWarn
@@ -57,9 +73,31 @@ Public Class fccCustomerDetail
   End Function
 
   Public Sub ClearObjects()
+    ClearLocks()
 
     'Me.MainObject = Nothing
 
   End Sub
 
+  Private Function ClearLocks() As Boolean
+    Dim mdso As dsoSales = Nothing
+
+    Dim mOK As Boolean = True
+
+    Try
+      If pHaveLock Then
+        mdso = New dsoSales(pDBConn)
+        mOK = mdso.UnlockCustomerDisconnected(Me.PrimaryKeyID)
+      Else
+        mOK = True
+      End If
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      mdso = Nothing
+    End Try
+
+    Return mOK
+  End Function
 End Class

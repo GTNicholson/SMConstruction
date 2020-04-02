@@ -2,6 +2,7 @@
 Imports RTIS.CommonVB
 
 Public Class dmSalesOrderItem : Inherits dmBase
+  Implements iValueItem
   Private pSalesOrderItemID As Int32
   Private pSalesOrderID As Int32
   Private pItemNumber As String
@@ -73,7 +74,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
   End Sub
 
-  Public Property SalesOrderItemID() As Int32
+  Public Property SalesOrderItemID() As Int32 Implements iValueItem.ItemValue
     Get
       Return pSalesOrderItemID
     End Get
@@ -180,6 +181,24 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Get
     Set(value As colWorkOrders)
       pWorkOrders = value
+    End Set
+  End Property
+
+
+
+  Public Property DisplayValue As String Implements iValueItem.DisplayValue
+    Get
+      Return pItemNumber & " - " & pDescription
+    End Get
+    Set(value As String)
+    End Set
+  End Property
+
+  Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
+    Get
+      Return False
+    End Get
+    Set(value As Boolean)
     End Set
   End Property
 

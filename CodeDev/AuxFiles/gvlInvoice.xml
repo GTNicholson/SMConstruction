@@ -69,7 +69,7 @@
       <property name="Name">GridColumn2</property>
       <property name="Caption">Fecha de Facturación</property>
       <property name="FieldName">InvoiceDate</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
     </property>
@@ -77,7 +77,7 @@
       <property name="Name">GridColumn4</property>
       <property name="Caption">Fecha de Creación</property>
       <property name="FieldName">CreatedDate</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
     </property>
@@ -85,7 +85,7 @@
       <property name="Name">GridColumn5</property>
       <property name="Caption">Valor Neto</property>
       <property name="FieldName">NetValue</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit2</property>
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -97,7 +97,7 @@
       <property name="Name">GridColumn6</property>
       <property name="Caption">Estado</property>
       <property name="FieldName">InvoiceStatus</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit2</property>
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
     </property>

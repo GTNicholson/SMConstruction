@@ -150,6 +150,15 @@ Public Class dsoAppRefLists
         Case appRefLists.Supplier
           mItem.IList = LoadSupplier()
           mOK = True
+
+        Case appRefLists.ExchangeRate
+          mItem.IList = LoadExchangeRate()
+          mOK = True
+
+        Case appRefLists.WoodValue
+          mItem.IList = LoadWoodValue()
+          mOK = True
+
       End Select
       mItem = Nothing
     Else
@@ -169,6 +178,25 @@ Public Class dsoAppRefLists
     ''Next
 
     Return mEmployees
+  End Function
+
+
+  Public Function LoadExchangeRate() As IList
+    Dim mdto As New dtoExchangeRate(pDBConn)
+    Dim mRetVal As New colExchangeRates
+
+    mdto.LoadExchangeRateCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+  Public Function LoadWoodValue() As IList
+    Dim mdto As New dtoWoodValue(pDBConn)
+    Dim mRetVal As New colWoodValues
+
+    mdto.LoadWoodValueCollectionRefList(mRetVal)
+
+    Return mRetVal
   End Function
 
   Public Function LoadWoodSpecie() As IList

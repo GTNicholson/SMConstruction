@@ -91,62 +91,50 @@ Public Class BIReportViewTimeSheet
     mRepLayout.LayoutName = "Hoja de Trabajo Lista"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
-    mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetSummary
-    mRepLayout.InterfaceType = 0
-    mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BITimeSheetSummary.xml"
-    mRepLayout.LayoutName = "Hoja de Trabajo Resumen"
-    vReportSource.BIGridLayouts.Add(mRepLayout)
+    ''mRepLayout = New dmBIGridLayout
+    ''mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetSummary
+    ''mRepLayout.InterfaceType = 0
+    ''mRepLayout.ParentLayoutID = 0
+    ''mRepLayout.LayoutFileName = "BITimeSheetSummary.xml"
+    ''mRepLayout.LayoutName = "Hoja de Trabajo Resumen"
+    ''vReportSource.BIGridLayouts.Add(mRepLayout)
 
     mRepLayout = New dmBIGridLayout
     mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetByDescription
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BITimeSheetByDescription.xml"
-    mRepLayout.LayoutName = "Hoja de Trabajo Resumen Description"
+    mRepLayout.LayoutName = "Hoja de Trabajo Resumen"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 
   End Sub
 
   Private Shared Sub AddParams(ByVal vReportSource As dmBIReportSource)
-    ''Dim mParam As clsManRepParameter
 
-    ''mParam = New clsManRepParameter
-    ''mParam.FieldName = "DateTransferred"
-    ''mParam.ParamOperator = ">="
-    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    ''mParam.ParamLabel = "Posted Date From"
-    ''mParam.FilterGroup = 0
-    ''mParam.ManReportParameterID = eParameters.StartDate
-    ''mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
-    ''mParam.DefaultValue = New Date(Year(Now), Month(Now), 1)
-    ''vReportSource.ColManRepParameter.Add(mParam)
+    Dim mParam As clsManRepParameter
 
-    ''mParam = New clsManRepParameter
-    ''mParam.FieldName = "DateTransferred"
-    ''mParam.ParamOperator = "<="
-    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    ''mParam.ParamLabel = "Posted Date To"
-    ''mParam.FilterGroup = 0
-    ''mParam.ManReportParameterID = eParameters.EndDate
-    ''mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
-    ''mParam.DefaultValue = Now.Date
-    ''vReportSource.ColManRepParameter.Add(mParam)
+    mParam = New clsManRepParameter
+    mParam.FieldName = "StartTime"
+    mParam.ParamOperator = ">="
+    mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
+    mParam.ParamLabel = "Desde la Fecha"
+    mParam.FilterGroup = 0
+    mParam.ManReportParameterID = eParameters.StartDate
+    mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
+    mParam.DefaultValue = New Date(Year(Now), Month(Now), 1)
+    vReportSource.ColManRepParameter.Add(mParam)
 
-    ''mParam = New clsManRepParameter
-    ''mParam.FieldName = "PIStatusENUM"
-    ''mParam.ParamOperator = "="
-    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList
-    ''mParam.LookUpTableID = appRefLists.PurchaseInvoiceStatus
-    ''mParam.ParamLabel = "Status"
-    ''mParam.FilterGroup = 1
-    ''mParam.ManReportParameterID = eParameters.Status
-    ''mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
-    ''mParam.DefaultValue = ePurchaseInvoiceStatus.Posted
-    ''vReportSource.ColManRepParameter.Add(mParam)
-
+    mParam = New clsManRepParameter
+    mParam.FieldName = "EndTime"
+    mParam.ParamOperator = "<="
+    mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
+    mParam.ParamLabel = "Hasta la Fecha"
+    mParam.FilterGroup = 0
+    mParam.ManReportParameterID = eParameters.EndDate
+    mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
+    mParam.DefaultValue = Now.Date
+    vReportSource.ColManRepParameter.Add(mParam)
 
   End Sub
 

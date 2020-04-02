@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChartXmlSerializer version="17.1.4.0">
+  <Chart AppearanceNameSerializable="Nature Colors" BackColor="Transparent" PaletteName="Nature Colors" SelectionMode="None" SeriesSelectionMode="Series">
+    <DataContainer DataMember="" BoundSeriesSorting="None">
+      <SeriesSerializable>
+        <Item1 Name="Duración" ArgumentDataMember="CompanyDayDateMC" SummaryFunction="SUM([LabourCostStd])" ArgumentScaleType="DateTime">
+          <View Color="RoyalBlue" TypeNameSerializable="StackedBarSeriesView">
+            <Border Color="Transparent" />
+            <FillStyle FillMode="Solid" />
+          </View>
+          <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item1>
+        <Item2 Name="Tiempo Extra" ArgumentDataMember="CompanyDayDateMC" SummaryFunction="SUM([LabourCostOT])" ArgumentScaleType="DateTime" CheckedInLegend="false">
+          <View Color="DodgerBlue" TypeNameSerializable="StackedBarSeriesView">
+            <Border Color="Transparent" />
+            <FillStyle FillMode="Solid" />
+          </View>
+          <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item2>
+        <Item3 Name="Insumos" ArgumentDataMember="CompanyDayDateMC" SummaryFunction="SUM([MatOtherCost])" ArgumentScaleType="DateTime">
+          <View Color="LimeGreen" TypeNameSerializable="StackedBarSeriesView">
+            <Border Color="Transparent" />
+            <FillStyle FillMode="Solid" />
+          </View>
+        </Item3>
+        <Item4 Name="Madera" ArgumentDataMember="CompanyDayDateMC" SummaryFunction="SUM([WoodMatReqCost])" ArgumentScaleType="DateTime">
+          <View Color="DarkGreen" TypeNameSerializable="StackedBarSeriesView">
+            <Border Color="Transparent" />
+            <FillStyle FillMode="Solid" />
+          </View>
+        </Item4>
+      </SeriesSerializable>
+      <SeriesTemplate>
+        <View TypeNameSerializable="StackedBarSeriesView" />
+        <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+      </SeriesTemplate>
+    </DataContainer>
+    <Legend HorizontalIndent="2" MarkerSize="@2,Width=12@2,Height=12" BackColor="White" TextColor="Black" Name="Default Legend">
+      <Padding Left="1" Top="1" Right="1" Bottom="1" />
+      <Margins Left="1" Top="1" Right="1" Bottom="1" />
+      <FillStyle FillMode="Solid" />
+      <Border Color="Silver" />
+      <Shadow Size="1" Color="224, 224, 224" Visible="true" />
+    </Legend>
+    <Titles>
+      <Item1 Text="Costos de la Fábrica" />
+    </Titles>
+    <Border Color="White" />
+    <Padding Left="2" Top="2" Right="2" Bottom="2" />
+    <Diagram PaneDistance="8" TypeNameSerializable="XYDiagram">
+      <AxisX Visibility="True" Color="Black" VisibleInPanesSerializable="-1" InterlacedColor="White">
+        <Tickmarks CrossAxis="true" Length="3" />
+        <Title Visibility="True" Text="Mes" Font="Tahoma, 10pt, style=Bold" EnableAntialiasing="True" />
+        <GridLines Color="Black" MinorColor="64, 64, 64" />
+        <DateTimeScaleOptions MeasureUnit="Month" />
+      </AxisX>
+      <AxisY VisibleInPanesSerializable="-1" />
+      <Margins Left="2" Top="2" Right="2" Bottom="2" />
+    </Diagram>
+  </Chart>
+</ChartXmlSerializer>

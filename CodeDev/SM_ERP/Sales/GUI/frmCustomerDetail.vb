@@ -31,11 +31,14 @@ Public Class frmCustomerDetail
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rParentMDI As frmTabbedMDI)
     Dim mfrm As frmCustomerDetail = Nothing
 
-    If vPrimaryKeyID <> 0 Then
-      mfrm = GetFormIfLoaded(vPrimaryKeyID)
-    End If
+    mfrm = GetFormIfLoaded(vPrimaryKeyID)
     If mfrm Is Nothing Then
       mfrm = New frmCustomerDetail
+      If vPrimaryKeyID <> 0 Then
+        mfrm.FormMode = eFormMode.eFMFormModeEdit
+      Else
+        mfrm.FormMode = eFormMode.eFMFormModeAdd
+      End If
       mfrm.pFormController = New fccCustomerDetail(rDBConn)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
@@ -120,6 +123,11 @@ Public Class frmCustomerDetail
       grdContacts.DataSource = pFormController.Customer.CustomerContacts
       LoadCombos()
 
+
+      If FormMode = eFormMode.eFMFormModeEdit And pFormController.HaveLock = False Then
+        FormMode = eFormMode.eFMFormModeView
+      End If
+
       If mOK Then RefreshControls()
 
       ''If mOK Then SetupUserPermissions()
@@ -165,50 +173,71 @@ Public Class frmCustomerDetail
 
     UpdateObjects()
     'pFormController.SaveObjects()
-    If pFormController.IsDirty() Then
-      If rOption Then
-        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
-        Select Case mResponse
-          Case MsgBoxResult.Yes
-            mSaveRequired = True
-            mRetVal = False
-            ExitMode = Windows.Forms.DialogResult.Yes
-          Case MsgBoxResult.No
-            mSaveRequired = False
-            mRetVal = True
-            ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
-          Case MsgBoxResult.Cancel
-            mSaveRequired = False
-            mRetVal = False
-        End Select
+    If Me.FormController.HaveLock Or pFormController.PrimaryKeyID = 0 Or FormMode = eFormMode.eFMFormModeAdd Then
+      If pFormController.IsDirty() Then
+        If rOption Then
+          mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
+          Select Case mResponse
+            Case MsgBoxResult.Yes
+              mSaveRequired = True
+              mRetVal = False
+              ExitMode = Windows.Forms.DialogResult.Yes
+            Case MsgBoxResult.No
+              mSaveRequired = False
+              mRetVal = True
+              ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
+            Case MsgBoxResult.Cancel
+              mSaveRequired = False
+              mRetVal = False
+          End Select
+        Else
+          ExitMode = Windows.Forms.DialogResult.Yes
+          mSaveRequired = True
+          mRetVal = False
+        End If
       Else
-        ExitMode = Windows.Forms.DialogResult.Yes
-        mSaveRequired = True
-        mRetVal = False
+        ExitMode = Windows.Forms.DialogResult.Ignore
+        mSaveRequired = False
+        mRetVal = True
       End If
     Else
       ExitMode = Windows.Forms.DialogResult.Ignore
       mSaveRequired = False
       mRetVal = True
     End If
-
     If mSaveRequired Then
-      Dim mValidate As clsValidate
-      mValidate = pFormController.ValidateObject
-      If mValidate.ValOk Then
+        Dim mValidate As clsValidate
+        mValidate = pFormController.ValidateObject
+        If mValidate.ValOk Then
 
 
-        pFormController.SaveObjects()
+          pFormController.SaveObjects()
 
 
-        mRetVal = True
-      Else
-        MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
-        mRetVal = False
+          mRetVal = True
+        Else
+          MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
+          mRetVal = False
+        End If
       End If
-    End If
-    CheckSave = mRetVal
+
+      CheckSave = mRetVal
   End Function
+
+  Private Sub RefreshPermissionsAndReadOnly()
+    'Dim mPermisionLevel As ePermissionCode
+    'mPermisionLevel = pDBConn.RTISUser.ActivityPermissions.GetActivityPermission(eActivityCode.UserConfig)
+    If FormMode = eFormMode.eFMFormModeView Or (FormMode = eFormMode.eFMFormModeEdit And pFormController.HaveLock = False) Then
+      '' Set controls as Read only
+      Me.GroupControl1.Enabled = False
+      Me.GroupControl2.Enabled = False
+      Me.GroupControl3.Enabled = False
+      Me.btnSaveAndClose.Enabled = False
+      Me.bbtnSave.Enabled = False
+      Me.gvContacts.OptionsBehavior.ReadOnly = True
+      Me.GridView1.OptionsBehavior.ReadOnly = True
+    End If
+  End Sub
 
   'Here put the fields
   Private Sub RefreshControls()
@@ -238,6 +267,7 @@ Public Class frmCustomerDetail
       rgEstatus.EditValue = .CustomerStatusID
 
     End With
+    RefreshPermissionsAndReadOnly()
   End Sub
 
   'Change the fields
@@ -270,8 +300,8 @@ Public Class frmCustomerDetail
     End With
   End Sub
 
-  Private Sub frmCustomerDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-    ''FormController.ClearObjects()
+  Private Sub frmCustomerDetail_FormClosed(sender As Object, e As EventArgs) Handles Me.FormClosed
+    FormController.ClearObjects()
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()
   End Sub
@@ -339,6 +369,7 @@ Public Class frmCustomerDetail
   End Sub
 
   Private Sub frmCustomerDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
 
   End Sub
 End Class

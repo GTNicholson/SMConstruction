@@ -2,10 +2,32 @@
 
 Public Class clsSalesOrderHandler
   Private pSalesOrder As dmSalesOrder
+  Private pInvoice As dmInvoice
 
   Public Sub New(ByRef rSalesOrder As dmSalesOrder)
     pSalesOrder = rSalesOrder
+
   End Sub
+
+  Public Sub New(ByRef rInvoice As dmInvoice)
+    pInvoice = rInvoice
+
+  End Sub
+
+  Public Function AddInvoiceSalesOrderItem() As dmInvoiceItem
+    Dim mNewInvoiceSOI As dmInvoiceItem = Nothing
+    Try
+      mNewInvoiceSOI = New dmInvoiceItem
+      mNewInvoiceSOI.InvoiceID = pInvoice.InvoiceID
+
+
+      ''mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
+      pInvoice.InvoiceItems.Add(mNewInvoiceSOI)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mNewInvoiceSOI
+  End Function
 
   Public Function AddSalesOrderItem(ByVal vProductType As eProductType) As dmSalesOrderItem
     Dim mNewSOI As dmSalesOrderItem = Nothing
@@ -58,6 +80,14 @@ Public Class clsSalesOrderHandler
   Public Sub RemoveSalesOrderItem(ByRef rSalesOrderItem As dmSalesOrderItem)
     Try
       pSalesOrder.SalesOrderItems.Remove(rSalesOrderItem)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub RemoveInvoiceSalesOrderItem(ByRef rInvoiceSalesOrderItem As dmInvoiceItem)
+    Try
+      pInvoice.InvoiceItems.Remove(rInvoiceSalesOrderItem)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

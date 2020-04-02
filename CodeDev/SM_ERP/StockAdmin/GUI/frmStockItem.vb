@@ -270,11 +270,12 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboSupplier, .DefaultSupplier)
         chkcboActiveCondition.RefreshEditValue()
         clsDEControlLoading.SetDECombo(cboHanding, .Handing)
-        txtStdCost.Text = .StdCost
-        txtImportCost.Text = .StdImportCost
+        txtStdCost.EditValue = .StdCost
+        txtImportCost.EditValue = .StdImportCost
         bteImage.Text = .ImageFile
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
+        txtCostQty.EditValue = .CostQty
 
       End With
 
@@ -364,6 +365,7 @@ Public Class frmStockItem
         .StdCost = txtStdCost.Text
         .StdImportCost = txtImportCost.Text
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
+        .CostQty = Val(txtStdCost.Text) / Val(spnQuantity.EditValue)
       End With
     End If
 

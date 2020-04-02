@@ -10,6 +10,8 @@ Public Class clsStockItemInfo
   Private pPOStockItem As dmPurchaseOrderItem
   Private pSupplier As dmSupplier
 
+  Private pCostQty As Decimal
+
   Public Sub New(ByRef rPurchaseOrderItem As dmPurchaseOrderItem)
     pPOStockItem = rPurchaseOrderItem
 
@@ -53,6 +55,15 @@ Public Class clsStockItemInfo
     End Get
     Set(ByVal value As Decimal)
       pOrderQty = value
+    End Set
+  End Property
+
+  Public Property CostQty() As Decimal
+    Get
+      Return pCostQty
+    End Get
+    Set(ByVal value As Decimal)
+      pCostQty = value
     End Set
   End Property
 

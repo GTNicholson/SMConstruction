@@ -1,11 +1,11 @@
 ﻿Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
-Public Class dsoSales
-  Private pDBConn As clsDBConnBase
+Public Class dsoSales : Inherits dsoBase
+  ''  Private pDBConn As clsDBConnBase
 
   Public Sub New(ByRef rDBConn As clsDBConnBase)
-    pDBConn = rDBConn
+    MyBase.New(rDBConn)
   End Sub
 
   Public Function LoadWorkOrderDT(ByRef rDT As DataTable, Optional ByVal vWhereStr As String = "") As Boolean
@@ -29,6 +29,35 @@ Public Class dsoSales
     End Try
     Return mOK
   End Function
+
+  Public Function LockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = MyBase.LockTableRecord(appLockEntitys.cCustomer, vPrimaryKeyID)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
+  Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = MyBase.UnlockTableRecord(appLockEntitys.cCustomer, vPrimaryKeyID)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
 
   Public Function LoadCustomerDown(ByRef rCustomer As dmCustomer, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
@@ -65,7 +94,7 @@ Public Class dsoSales
       mdto = New dtoInvoice(pDBConn)
       mdto.LoadInvoice(rInvoice, vID)
       mdtoInvoiceItem = New dtoInvoiceItem(pDBConn)
-      mdtoInvoiceItem.LoadInvoiceItemCollection(rInvoice.InvoiceItem, rInvoice.InvoiceID)
+      mdtoInvoiceItem.LoadInvoiceItemCollection(rInvoice.InvoiceItems, rInvoice.InvoiceID)
 
       pDBConn.Disconnect()
       mRetVal = True
@@ -168,6 +197,71 @@ Public Class dsoSales
     Return mRetVal
   End Function
 
+  Public Function LoadInvoiceInfosGraph(ByRef rInvoiceInfos As colInvoiceInfos) As Boolean
+    Dim mdto As dtoInvoiceInfo
+    Dim mSQLWhere1 As String
+    Dim mSQLWhere2 As String
+    Dim mSQLWhere As String = ""
+    Dim mMonth As Integer = 0
+    Dim mYear As Int32 = 0
+    Dim mStartDate As Date
+    Dim mEndDate As Date
+
+    mMonth = Now.Month
+
+    If mMonth < 6 Then
+      mYear = Now.Year - 1
+      mMonth = mMonth + 7 ''the last 6 months
+
+      mStartDate = New Date(mYear, mMonth, 1)
+
+
+    Else
+      mYear = Now.Year
+      mMonth = Now.Month - 5
+
+      mStartDate = New Date(mYear, mMonth, 1)
+
+    End If
+
+    mEndDate = New Date(Now.Year, Now.Month, Now.Day)
+
+
+    Try
+
+
+
+      pDBConn.Connect()
+      mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Invoice)
+
+      mSQLWhere1 = "InvoiceDate >= '" & mStartDate.ToShortDateString & "'"
+      mSQLWhere2 = "InvoiceDate <= '" & mEndDate.ToShortDateString & "'"
+
+      mSQLWhere = mSQLWhere1
+      If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
+      mSQLWhere = mSQLWhere & mSQLWhere2
+
+      If mSQLWhere <> "" Then mSQLWhere = "(" & mSQLWhere & ") And "
+      mSQLWhere = mSQLWhere & "InvoiceDate Is Not Null"
+
+
+      mdto.LoadInvoiceCollectionByWhere(rInvoiceInfos, mSQLWhere)
+
+      mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Packed)
+      mdto.LoadInvoiceCollectionByWhere(rInvoiceInfos, mSQLWhere)
+      mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Engineered)
+      mdto.LoadInvoiceCollectionByWhere(rInvoiceInfos, mSQLWhere)
+      mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Pending)
+      mdto.LoadInvoiceCollectionByWhere(rInvoiceInfos, mSQLWhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Function
+
 
   Public Function SaveCustomerDown(ByRef rCustomer As dmCustomer) As Boolean
     Dim mRetVal As Boolean
@@ -204,7 +298,7 @@ Public Class dsoSales
       mdto = New dtoInvoice(pDBConn)
       mdto.SaveInvoice(rInvoice)
       mdtoInvoiceItem = New dtoInvoiceItem(pDBConn)
-      mdtoInvoiceItem.SaveInvoiceItemCollection(rInvoice.InvoiceItem, rInvoice.InvoiceID)
+      mdtoInvoiceItem.SaveInvoiceItemCollection(rInvoice.InvoiceItems, rInvoice.InvoiceID)
 
       pDBConn.Disconnect()
       mRetVal = True

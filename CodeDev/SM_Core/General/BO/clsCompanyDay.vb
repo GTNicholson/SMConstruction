@@ -6,11 +6,14 @@
   Private pLabourCostStd As Decimal
   Private pLabourOverTime As Decimal
   Private pMatOtherCosts As colStockItemTransactionLogInfos
+  Private pMaterialRequirementInfo As colMaterialRequirementInfos
   Private pMatOtherCost As Decimal
+  Private pWoodMatReqCost As Decimal
 
   Public Sub New()
     pMatOtherCosts = New colStockItemTransactionLogInfos
     pTSECosts = New colTimeSheetEntryInfos
+    pMaterialRequirementInfo = New colMaterialRequirementInfos
   End Sub
 
   Public Property CompanyDayDate As DateTime
@@ -35,7 +38,11 @@
     End Get
   End Property
 
-
+  Public ReadOnly Property MaterialRequirementInfo As colMaterialRequirementInfos
+    Get
+      Return pMaterialRequirementInfo
+    End Get
+  End Property
   Public ReadOnly Property CompanyDayDateWC As DateTime
     Get
       Return RTIS.CommonVB.libDateTime.MondayOfWeek(pCompanyDayDate)
@@ -72,6 +79,15 @@
     End Get
     Set(value As Decimal)
       pLabourCostStd = value
+    End Set
+  End Property
+
+  Public Property WoodMatReqCost As Decimal
+    Get
+      Return pWoodMatReqCost
+    End Get
+    Set(value As Decimal)
+      pWoodMatReqCost = value
     End Set
   End Property
 

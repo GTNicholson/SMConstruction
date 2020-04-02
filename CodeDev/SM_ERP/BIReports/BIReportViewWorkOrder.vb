@@ -146,7 +146,7 @@ Public Class BIReportViewWorkOrder
 
     mRepDef = New dmBIReportDef
     mRepDef.ReportName = "General"
-    mRepDef.Description = "Work Orders"
+    mRepDef.Description = "Órdenes de Trabajo"
     mRepDef.BIReportDefID = eBIReportDefs.General
     mRepDef.BIGridLayoutID = eBIWorkOrderLayoutID.WorkOrderList
     Return mRepDef

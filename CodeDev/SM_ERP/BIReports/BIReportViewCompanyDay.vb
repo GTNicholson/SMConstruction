@@ -64,7 +64,7 @@ Public Class BIReportViewCompanyDay
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.Invoice
-    mRepSource.Name = "Company Name"
+    mRepSource.Name = "Informe del Periodo"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -86,7 +86,7 @@ Public Class BIReportViewCompanyDay
     mRepDDLayout.InterfaceType = 1
     mRepDDLayout.ParentLayoutID = 0
     mRepDDLayout.LayoutFileName = "BICompanyDayList.xml"
-    mRepDDLayout.LayoutName = "Lista de Company Day"
+    mRepDDLayout.LayoutName = "Detalle del Periodo"
     vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
 
@@ -95,7 +95,16 @@ Public Class BIReportViewCompanyDay
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BICompanyDaySummary.xml"
-    mRepLayout.LayoutName = "Resumen de Company Day"
+    mRepLayout.LayoutName = "Resumen de Detalle de Periodo"
+    mRepLayout.DrillDownLayout = mRepDDLayout
+    vReportSource.BIGridLayouts.Add(mRepLayout)
+
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBIWorkOrderLayoutID.Chart
+    mRepLayout.InterfaceType = 3
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BICompanyDayCostsChart.xml"
+    mRepLayout.LayoutName = "Gráfica de Costo del Periodo"
     mRepLayout.DrillDownLayout = mRepDDLayout
     vReportSource.BIGridLayouts.Add(mRepLayout)
 

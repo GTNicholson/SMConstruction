@@ -13,12 +13,15 @@ Public Class appLockEntitys : Inherits colLockEntitys
     Me.Add(New clsLockEntity(cEmployee, "EmployeeID", "Employee name:", "LastName"))
     Me.Add(New clsLockEntity(cRole, "RoleID", "Role:", "Role"))
 
-    Me.Add(New clsLockEntity(cCustomer, "CustomerID", "Customer:", "CompanyName"))
+    ''Me.Add(New clsLockEntity(cCustomer, "CustomerID", "Customer:", "CompanyName"))
     ''Example
-    ''Dim mclsLockEntity As clsLockEntity = New clsLockEntity(cTableScope, "PrimaryKeyFieldName", "Ref Caption:", "RefFieldName")
-    ''mclsLockEntity.BaseTableName = "" 'If different to cTableScope, e.g. if TableScope = "TableSubset" .BaseTableName = "Tablename"
-    ''mclsLockEntity.LookUpSQL = "" 'If standard select not enough
-    ''Me.Add(mclsLockEntity)
+    Dim mclsLockEntity As clsLockEntity = New clsLockEntity(cCustomer, "CustomerID", "Customer:", "CDetails")
+    mclsLockEntity.BaseTableName = "Customer" 'If different to cTableScope, e.g. if TableScope = "TableSubset" .BaseTableName = "Tablename"
+    mclsLockEntity.LookUpSQL = "Select CompanyName + ' ' + ISNULL(TelNo,'') As CDetails FROM Customer"
+
+
+    'If standard select not enough
+    Me.Add(mclsLockEntity)
 
 
   End Sub
