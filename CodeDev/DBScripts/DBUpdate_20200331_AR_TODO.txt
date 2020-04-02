@@ -1,0 +1,120 @@
+ALTER VIEW [dbo].[vwWoodMatReqInfo]
+as
+
+select 
+MR.MaterialRequirementID,
+MR.Description,
+MR.UnitPiece,
+MR.PiecesPerComponent,
+MR.NetLenght,
+MR.NetWidth,
+MR.NetThickness,
+MR.QualityType,
+MR.WoodSpecie,
+PF.ProductFurnitureID,
+WO.Description 'WODescription',
+WO.PlannedStartDate,
+WO.WorkOrderNo,
+Wo.Quantity,
+SO.ProjectName,
+SO.SalesOrderID,
+CU.CompanyName
+
+from MaterialRequirement as MR 
+LEFT JOIN PRODUCTFURNITURE PF ON PF.ProductFurnitureID = MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=PF.ProductFurnitureID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+WHERE MaterialRequirementType=1
+
+GO
+
+CREATE TABLE ExchangeRate(
+	ExchangeRateID int IDENTITY(1,1) NOT NULL,
+	ExchangeRateDate datetime,
+	ExchangeRateValue money
+ CONSTRAINT [PK_ExchangeRate] PRIMARY KEY CLUSTERED 
+(
+	ExchangeRateID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] 
+
+GO
+
+Insert into LookUpTable
+(DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,ProtectedFieldName,PermissionID,ActivityCode,OrderModeENUM,GroupKeyFieldName,GroupKeyValue,SelectionCode,EnableValidation,ArchiveFieldName,ValidationCode,LayoutFileName)
+values
+(23,'Tasa de Cambio','ExchangeRate','ExchangeRateID','ExchangeRateValue',Null,4,1,2,Null,0,7,0,Null,Null,Null)
+go
+
+alter table StockItemTransactionLog
+add TransactionValuationDollar money
+go
+
+CREATE TABLE WoodValue (
+	WoodValueID int IDENTITY(1,1) NOT NULL,
+	SpeciesID int,
+	WoodValueDate datetime,
+	WoodValueBF money
+ CONSTRAINT [PK_WoodValue] PRIMARY KEY CLUSTERED 
+(
+	WoodValueID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] 
+
+GO
+
+Insert into LookUpTable
+(DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,ProtectedFieldName,PermissionID,ActivityCode,OrderModeENUM,GroupKeyFieldName,GroupKeyValue,SelectionCode,EnableValidation,ArchiveFieldName,ValidationCode,LayoutFileName)
+values
+(23,'Precio de Especie de Madera','WoodValue','WoodValueID','WoodValueBF',Null,4,1,2,Null,0,5,0,Null,Null,Null)
+GO
+
+ALTER view [dbo].[vwStockItemTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.ReferenceNo,
+SITL.StockValuation, 
+SITL.TransactionValuationDollar,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+MR.AreaID,
+MR.UoM,
+UL.UserName, 
+ST.Description AS StockTakeDescription,
+WO.WorkOrderNo,
+WO.Description AS WODESCRIPTION,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName
+
+FROM dbo.StockItemTransactionLog AS SITL 
+INNER JOIN dbo.UserList AS UL ON SITL.UserID = UL.UserID 
+INNER JOIN dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID 
+INNER JOIN dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID 
+LEFT JOIN dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+LEFT JOIN dbo.MaterialRequirement AS MR ON MR.MaterialRequirementID = SITL.RefObjectID AND SITL.RefObjectType = 6
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=MR.ObjectID
+LEFT JOIN SalesOrder SO on SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+
+
+GO
+
+

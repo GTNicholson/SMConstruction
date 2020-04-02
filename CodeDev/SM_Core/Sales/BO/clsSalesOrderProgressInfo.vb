@@ -9,6 +9,8 @@ Public Class clsSalesOrderProgressInfo
   Private pDespatchCompleteQty As Int32
   Private pWOsMROtherPicked As Int32
   Private pTimeSheetEntryDays As Decimal
+  Private pSumCustomerOrderNetValue As Decimal
+  Private pSumInvoiceItem As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -134,6 +136,26 @@ Public Class clsSalesOrderProgressInfo
     End Get
     Set(value As Decimal)
       pTimeSheetEntryDays = value
+    End Set
+
+  End Property
+
+  Public Property SumCustomerOrderNetValue As Decimal
+    Get
+      Return pSumCustomerOrderNetValue
+    End Get
+    Set(value As Decimal)
+      pSumCustomerOrderNetValue = value
+    End Set
+
+  End Property
+
+  Public Property SumInvoiceItem As Decimal
+    Get
+      Return pSumInvoiceItem
+    End Get
+    Set(value As Decimal)
+      pSumInvoiceItem = value
     End Set
 
   End Property

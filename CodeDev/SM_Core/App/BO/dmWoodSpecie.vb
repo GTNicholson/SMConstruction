@@ -10,6 +10,7 @@ Public Class dmWoodSpecie : Inherits dmBase
   Private pSpanishDescription As String
   Private pDensity As Double
   Private pPriceBracket As Byte
+  Private pWoodValue As colWoodValues
 
   Public Sub New()
     MyBase.New()
@@ -17,6 +18,7 @@ Public Class dmWoodSpecie : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pWoodValue = New colWoodValues
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -25,6 +27,7 @@ Public Class dmWoodSpecie : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pWoodValue = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -32,6 +35,7 @@ Public Class dmWoodSpecie : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pWoodValue.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -48,6 +52,7 @@ Public Class dmWoodSpecie : Inherits dmBase
       .SpanishDescription = SpanishDescription
       .Density = Density
       .PriceBracket = PriceBracket
+      .WoodValue = WoodValue
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -56,6 +61,15 @@ Public Class dmWoodSpecie : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property WoodValue() As colWoodValues
+    Get
+      Return pWoodValue
+    End Get
+    Set(value As colWoodValues)
+      pWoodValue = value
+    End Set
+  End Property
 
   Public Property WoodSpecieID() As Int32
     Get

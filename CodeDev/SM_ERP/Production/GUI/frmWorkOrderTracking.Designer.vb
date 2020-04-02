@@ -406,7 +406,7 @@ Partial Class frmWorkOrderTracking
     'bbtnExportToExcel
     '
     Me.bbtnExportToExcel.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnExportToExcel.Caption = "Export to Excel"
+    Me.bbtnExportToExcel.Caption = "Exportar a Excel"
     Me.bbtnExportToExcel.Id = 0
     Me.bbtnExportToExcel.Name = "bbtnExportToExcel"
     '

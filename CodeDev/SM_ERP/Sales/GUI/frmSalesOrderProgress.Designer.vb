@@ -29,20 +29,22 @@ Partial Class frmSalesOrderProgress
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repitbtCurrentInventory = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpItemDetail.SuspendLayout()
     CType(Me.grdSalesOrderProgress, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvSalesOrderProgress, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'grpItemDetail
@@ -85,7 +87,7 @@ Partial Class frmSalesOrderProgress
     Me.gvSalesOrderProgress.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvSalesOrderProgress.Appearance.Row.Options.UseFont = True
     Me.gvSalesOrderProgress.ColumnPanelRowHeight = 34
-    Me.gvSalesOrderProgress.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn6, Me.gcStdCost, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+    Me.gvSalesOrderProgress.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn6, Me.gcStdCost, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn9})
     Me.gvSalesOrderProgress.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
     Me.gvSalesOrderProgress.GridControl = Me.grdSalesOrderProgress
     Me.gvSalesOrderProgress.Name = "gvSalesOrderProgress"
@@ -127,6 +129,14 @@ Partial Class frmSalesOrderProgress
     Me.GridColumn7.Name = "GridColumn7"
     Me.GridColumn7.Visible = True
     Me.GridColumn7.VisibleIndex = 2
+    '
+    'RepositoryItemDateEdit1
+    '
+    Me.RepositoryItemDateEdit1.AutoHeight = False
+    Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+    Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
     '
     'GridColumn1
     '
@@ -189,13 +199,27 @@ Partial Class frmSalesOrderProgress
     Me.repitbtCurrentInventory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
     Me.repitbtCurrentInventory.Name = "repitbtCurrentInventory"
     '
-    'RepositoryItemDateEdit1
+    'GridColumn8
     '
-    Me.RepositoryItemDateEdit1.AutoHeight = False
-    Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
-    Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+    Me.GridColumn8.Caption = "Valor Neto Facturado"
+    Me.GridColumn8.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn8.FieldName = "SumInvoiceItem"
+    Me.GridColumn8.Name = "GridColumn8"
+    Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumInvoiceItem", "{0:$#,##0.00;;#}")})
+    Me.GridColumn8.Visible = True
+    Me.GridColumn8.VisibleIndex = 8
+    '
+    'GridColumn9
+    '
+    Me.GridColumn9.Caption = "Valor Neto Orden Cliente"
+    Me.GridColumn9.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.GridColumn9.FieldName = "SumCustomerOrderNetValue"
+    Me.GridColumn9.Name = "GridColumn9"
+    Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumCustomerOrderNetValue", "{0:$#,##0.00;;#}")})
+    Me.GridColumn9.Visible = True
+    Me.GridColumn9.VisibleIndex = 9
     '
     'frmSalesOrderProgress
     '
@@ -204,14 +228,14 @@ Partial Class frmSalesOrderProgress
     Me.ClientSize = New System.Drawing.Size(939, 320)
     Me.Controls.Add(Me.grpItemDetail)
     Me.Name = "frmSalesOrderProgress"
-    Me.Text = "frmSalesOrderProgress"
+    Me.Text = "Progreso de Ventas"
     CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpItemDetail.ResumeLayout(False)
     CType(Me.grdSalesOrderProgress, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvSalesOrderProgress, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -230,4 +254,6 @@ Partial Class frmSalesOrderProgress
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+  Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

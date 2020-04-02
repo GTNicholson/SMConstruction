@@ -66,7 +66,7 @@
       <property name="Name">GridColumn2</property>
       <property name="Caption">Descripcion</property>
       <property name="FieldName">Description</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">944</property>
@@ -75,7 +75,7 @@
       <property name="Name">GridColumn3</property>
       <property name="Caption">Fecha de Conteo</property>
       <property name="FieldName">StockTakeDate</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">129</property>

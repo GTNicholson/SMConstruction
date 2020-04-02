@@ -11,8 +11,11 @@ Public Class dmInvoice : Inherits dmBase
   Private pTaxValue As Decimal
   Private pInvoiceStatus As Int16
   Private pCustomerPurchaseOrder As String
-  Private pInvoiceItem As colInvoiceItems
-
+  Private pInvoiceItems As colInvoiceItems
+  Private pInvoiceItem As dmInvoiceItem
+  Private pSalesOrderItem As dmSalesOrderItem
+  Private pOutputDocuments As colOutputDocuments
+  Private pSalesOrder As dmSalesOrder
   Public Sub New()
     MyBase.New()
 
@@ -20,7 +23,11 @@ Public Class dmInvoice : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
-    pInvoiceItem = New colInvoiceItems
+    pInvoiceItems = New colInvoiceItems
+    pInvoiceItem = New dmInvoiceItem
+    pSalesOrderItem = New dmSalesOrderItem
+    pOutputDocuments = New colOutputDocuments
+    pSalesOrder = New dmSalesOrder
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -36,7 +43,7 @@ Public Class dmInvoice : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
-      If mAnyDirty = False Then mAnyDirty = pInvoiceItem.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pInvoiceItems.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -57,7 +64,9 @@ Public Class dmInvoice : Inherits dmBase
       .TaxValue = TaxValue
       .InvoiceStatus = InvoiceStatus
       .CustomerPurchaseOrder = CustomerPurchaseOrder
-      .InvoiceItem = InvoiceItem.clone
+      .InvoiceItems = InvoiceItems.Clone
+      .InvoiceItem = InvoiceItem.Clone
+      .SalesOrderItem = SalesOrderItem.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -67,16 +76,41 @@ Public Class dmInvoice : Inherits dmBase
 
   End Sub
 
-  Public Property InvoiceItem() As colInvoiceItems
+  Public Property SalesOrderItem() As dmSalesOrderItem
     Get
-      Return pInvoiceItem
+      Return pSalesOrderItem
     End Get
-    Set(ByVal value As colInvoiceItems)
-      pInvoiceItem = value
+    Set(ByVal value As dmSalesOrderItem)
+      pSalesOrderItem = value
     End Set
   End Property
 
+  Public Property SalesOrder() As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+    Set(ByVal value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
+  End Property
 
+  Public Property InvoiceItems() As colInvoiceItems
+    Get
+      Return pInvoiceItems
+    End Get
+    Set(ByVal value As colInvoiceItems)
+      pInvoiceItems = value
+    End Set
+  End Property
+
+  Public Property InvoiceItem() As dmInvoiceItem
+    Get
+      Return pInvoiceItem
+    End Get
+    Set(ByVal value As dmInvoiceItem)
+      pInvoiceItem = value
+    End Set
+  End Property
   Public Property InvoiceID() As Int32
     Get
       Return pInvoiceID
@@ -169,7 +203,14 @@ Public Class dmInvoice : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property OutputDocuments As colOutputDocuments
+    Get
+      Return pOutputDocuments
+    End Get
+    Set(value As colOutputDocuments)
+      pOutputDocuments = value
+    End Set
+  End Property
 End Class
 
 

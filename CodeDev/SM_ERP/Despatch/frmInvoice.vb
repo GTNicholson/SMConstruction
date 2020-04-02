@@ -1,4 +1,6 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraGrid.Views.Base
+Imports RTIS.CommonVB
 
 Public Class frmInvoice
   Public FormMode As eFormMode
@@ -13,6 +15,7 @@ Public Class frmInvoice
   Private pIsActive As Boolean
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
+
 
 
   Public Sub New()
@@ -117,6 +120,7 @@ Public Class frmInvoice
 
 
       pFormController.LoadObjects()
+      grdSOI.DataSource = pFormController.Invoice.InvoiceItems
       LoadCombos()
 
       If mOK Then RefreshControls()
@@ -146,7 +150,8 @@ Public Class frmInvoice
 
   Private Sub LoadCombos()
     Try
-
+      'RTIS.Elements.clsDEControlLoading.FillDEComboVIi(cboInvoiceStatus, pFormController.SalesOrder.SalesOrderItems)
+      RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdSOI, gcSalesItemID, pFormController.Invoice.SalesOrder.SalesOrderItems)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -210,25 +215,43 @@ Public Class frmInvoice
   Private Sub RefreshControls()
     With pFormController.Invoice
 
-
-
-      txtCustomerReference.Text = .InvoiceNo
+      txtInvoiceNo.Text = .InvoiceNo
+      txtInvoiceID.Text = .InvoiceID
+      dteCreatedDate.EditValue = .CreatedDate
+      dteInvoiceDate.EditValue = .InvoiceDate
+      txtNetValue.Text = .NetValue
+      txtTaxValue.Text = .TaxValue
+      cboInvoiceStatus.EditValue = .InvoiceStatus
 
 
     End With
+
+
+    With pFormController.Invoice.SalesOrder
+      btneSelectSO.Text = .OrderNo
+      txtOrderNo.Text = .OrderNo
+      txtProjectName.Text = .ProjectName
+      txtCompanyName.Text = .Customer.CompanyName
+
+    End With
+
+
   End Sub
 
   'Change the fields
   Private Sub UpdateObjects()
     With pFormController.Invoice
 
-      .InvoiceNo = txtCustomerReference.Text
-
-
-      '' gvContacts.CloseEditor()
-      ''gvContacts.UpdateCurrentRow()
-
+      .InvoiceNo = txtInvoiceNo.Text
+      .SalesOrderID = pFormController.Invoice.SalesOrder.SalesOrderID
+      .CreatedDate = dteCreatedDate.EditValue
+      .InvoiceDate = dteInvoiceDate.EditValue
+      gvSOI.CloseEditor()
+      gvSOI.UpdateCurrentRow()
     End With
+
+
+
   End Sub
 
   Private Sub frmInvoiceDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -301,5 +324,192 @@ Public Class frmInvoice
 
   Private Sub frmCustomerDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
 
+  End Sub
+
+  Private Sub btneSelectSO_Click(sender As Object, e As EventArgs) Handles btneSelectSO.Click
+    Dim mSOPicker As clsPickerSalesOrder
+    Dim mSOs As New colSalesOrders
+
+    pFormController.LoadSalesOrders(mSOs)
+
+    mSOPicker = New clsPickerSalesOrder(mSOs, pFormController.DBConn)
+
+    Dim mSO As dmSalesOrder
+    mSO = frmSalesOrderPicker.OpenPickerSingle(mSOPicker)
+
+    If mSO IsNot Nothing Then
+      pFormController.Invoice.SalesOrder = mSO
+      RefreshControls()
+
+    End If
+  End Sub
+
+  Private Sub gpSOI_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpSOI.CustomButtonClick
+    Dim mSOI As dmInvoiceItem
+    Try
+
+
+      Select Case e.Button.Properties.Tag
+        Case "Add"
+          UpdateObjects()
+          pFormController.AddInvoiceSalesOrderItem()
+
+          RefreshControls()
+        Case "Delete"
+          mSOI = TryCast(gvSOI.GetFocusedRow, dmInvoiceItem)
+          If mSOI IsNot Nothing Then
+            If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
+              UpdateObjects()
+              pFormController.DeleteInvoiceSalesOrderItem(mSOI)
+              RefreshControls()
+            End If
+          End If
+      End Select
+      gvSOI.RefreshData()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub bbtnGenerateInvoice_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnGenerateInvoice.ItemClick
+    If IsNothing(pFormController.Invoice) Then
+      MessageBox.Show("No existe dato para generar el documento", "Error al ingresar la información")
+      Return
+    End If
+
+    Try
+      Dim mFilePath As String = String.Empty
+      UpdateObjects()
+
+      AddInoviceDocument()
+      RefreshControls()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Public Sub AddInoviceDocument()
+    Dim mValidate As clsValidate
+    Dim mReport As repInvoice
+    Dim mFilePath As String
+
+    mValidate = pFormController.ValidateObject()
+    If mValidate.ValOk Then
+
+      CheckSave(False)
+
+      mReport = GetReport(eDocumentType.Invoice)
+
+      CreateReportPDF(eParentType.Invoice, eDocumentType.Invoice, True, mReport)
+
+      CheckSave(False)
+
+      mFilePath = pFormController.SalesOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
+
+      RefreshControls()
+      If IO.File.Exists(mFilePath) Then
+        frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+      Else
+        ViewSalesOrderDocument()
+      End If
+
+      mReport.Dispose()
+    Else
+      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
+    End If
+
+  End Sub
+  Public Sub ViewSalesOrderDocument()
+    Dim mFilePath As String
+    mFilePath = pFormController.Invoice.OutputDocuments.GetFilePath(eParentType.Invoice, eDocumentType.Invoice, eFileType.PDF)
+
+    If IO.File.Exists(mFilePath) Then
+      frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+    End If
+
+  End Sub
+  Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
+    Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+
+    Select Case vDocType
+      Case eDocumentType.Invoice
+
+        If pFormController.Invoice IsNot Nothing Then
+          mRetVal = repInvoice.GenerateReport(pFormController.Invoice)
+        End If
+
+    End Select
+
+    Return mRetVal
+  End Function
+
+  Public Sub CreateReportPDF(ByVal vParentType As eParentType, ByVal vDocumentType As eDocumentType, ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport)
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
+
+    mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.Invoice.InvoiceID & "_" & pFormController.Invoice.SalesOrderID
+
+    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.InvoiceOrderFileFolderSys, pFormController.Invoice.CreatedDate.Year, clsGeneralA.GetFileSafeName(pFormController.Invoice.InvoiceID.ToString("00000")))
+
+    mFileName &= ".pdf"
+    mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+    mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+    If IO.Directory.Exists(mExportDirectory) = False Then
+      IO.Directory.CreateDirectory(mExportDirectory)
+    End If
+
+    mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+    If IO.File.Exists(mFilePath) Then
+      If vOverride = False Then If MsgBox("Por favor, confirme que desea volver a crear el PDF", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+    End If
+
+    ' mReport = CreateReport(vDocumentType)
+    If vReport IsNot Nothing Then
+
+
+      ''vReport.ExportToPdf(mFilePath, mExportOptions)
+      pFormController.CreateInvoiceOrderPack(vReport, mFilePath)
+
+      vReport.Dispose()
+      'vReport = Nothing
+
+      pFormController.Invoice.OutputDocuments.SetFilePath(eParentType.Invoice, vDocumentType, eFileType.PDF, mFilePath)
+
+    End If
+
+  End Sub
+
+  Private Sub gvSOI_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvSOI.CustomUnboundColumnData
+    Dim mInvoiceItem As dmInvoiceItem
+    Dim mSOI As New dmSalesOrderItem
+    mInvoiceItem = TryCast(e.Row, dmInvoiceItem)
+    If mInvoiceItem IsNot Nothing Then
+
+      Select Case e.Column.Name
+        Case gcUnitPrice.Name
+          If e.IsGetData Then
+
+            mSOI = pFormController.Invoice.SalesOrder.SalesOrderItems.ItemFromKey(mInvoiceItem.SalesItemID)
+            If mSOI IsNot Nothing Then
+
+              e.Value = mSOI.UnitPrice
+              mInvoiceItem.UnitPrice = e.Value
+            End If
+          End If
+
+          If e.IsSetData Then
+            pFormController.Invoice.InvoiceItem.UnitPrice = e.Value
+          End If
+
+        Case gcTotal.Name
+          If e.IsGetData Then
+            e.Value = mInvoiceItem.Quantity * mInvoiceItem.UnitPrice
+          End If
+      End Select
+    End If
   End Sub
 End Class

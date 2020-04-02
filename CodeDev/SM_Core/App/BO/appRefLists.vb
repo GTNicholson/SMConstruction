@@ -24,7 +24,8 @@ Public Class appRefLists : Inherits colRefLists
   Public Const Shift As Integer = 17
   Public Const PurchaseTermType As Integer = 18
   Public Const Supplier As Integer = 19
-
+  Public Const ExchangeRate As Integer = 20
+  Public Const WoodValue As Integer = 21
 
 
   Public Sub New()
@@ -51,6 +52,8 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(Shift, "Shift", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(PurchaseTermType, "PurchaseTermType", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(Supplier, "Supplier", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(ExchangeRate, "ExchangeRate", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(WoodValue, "WoodValue", clsRefListItem.eLoadMode.Unloaded)
   End Sub
 
 

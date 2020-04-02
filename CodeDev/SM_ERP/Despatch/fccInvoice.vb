@@ -4,10 +4,15 @@ Public Class fccInvoice
   Private pPrimaryKeyID As Integer
 
   Private pInvoice As dmInvoice
+  Private pSalesOrder As dmSalesOrder
+  Private pSalesOrderHandler As clsSalesOrderHandler
+
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
+    pSalesOrder = New dmSalesOrder
+
   End Sub
 
   Public Property PrimaryKeyID As Integer
@@ -25,6 +30,56 @@ Public Class fccInvoice
     End Get
   End Property
 
+  Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
+    Get
+      DBConn = pDBConn
+    End Get
+    Set(ByVal value As RTIS.DataLayer.clsDBConnBase)
+      pDBConn = value
+    End Set
+  End Property
+  Public Sub AddInvoiceSalesOrderItem()
+    Dim mdso As dsoSales
+    Dim mSOI As dmInvoiceItem
+    Try
+      SaveObjects()
+      mSOI = pSalesOrderHandler.AddInvoiceSalesOrderItem
+      mdso = New dsoSales(pDBConn)
+      mdso.SaveInvoiceDown(pInvoice)
+      SaveObjects()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub DeleteInvoiceSalesOrderItem(ByRef rInvoiceSOI As dmInvoiceItem)
+    Try
+      pSalesOrderHandler.RemoveInvoiceSalesOrderItem(rInvoiceSOI)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub LoadSalesOrders(ByRef rcolSalesOrders As colSalesOrders)
+
+    Dim mdto As dtoSalesOrder
+    Dim mwhere As String = ""
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrder(pDBConn)
+      mdto.LoadSalesOrderInfo(rcolSalesOrders, "")
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
 
   Public Sub LoadObjects()
     Dim mdso As dsoSales
@@ -34,9 +89,22 @@ Public Class fccInvoice
     If pPrimaryKeyID <> 0 Then
       mdso = New dsoSales(pDBConn)
       mdso.LoadInvoiceDown(pInvoice, pPrimaryKeyID)
-    End If
+      mdso.LoadSalesOrderDown(pInvoice.SalesOrder, pInvoice.SalesOrderID)
 
+    End If
+    pSalesOrderHandler = New clsSalesOrderHandler(pInvoice)
   End Sub
+
+  Public Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+    Set(value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
+  End Property
+
+
 
   Public Sub SaveObjects()
     Dim mdso As dsoSales
@@ -59,6 +127,18 @@ Public Class fccInvoice
   Public Sub ClearObjects()
 
     'Me.MainObject = Nothing
+
+  End Sub
+
+  Public Sub CreateInvoiceOrderPack(ByRef rReport As repInvoice, ByVal vFilePath As String)
+    Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
+    Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
+
+    mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
+    mExportOptions.ConvertImagesToJpeg = False
+
+    rReport.ExportToPdf(vFilePath, mExportOptions)
+
 
   End Sub
 

@@ -35,6 +35,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pImageFile As String
   Private pASISID As Integer
   Private pSupplier As dmSupplier
+  Private pCostQty As Decimal
 
   Private ptmpIsFullyLoadedDown As Boolean
   Private pOutputDocuments As colOutputDocuments
@@ -121,6 +122,7 @@ Public Class dmStockItem : Inherits dmBase
       .ProjectID = ProjectID
       .StdCost = StdCost
       .StdImportCost = StdImportCost
+      .CostQty = CostQty
       .ImageFile = ImageFile
 
       Supplier = Supplier.Clone
@@ -154,6 +156,16 @@ Public Class dmStockItem : Inherits dmBase
     Set(ByVal value As Decimal)
       If pStdImportCost <> value Then IsDirty = True
       pStdImportCost = value
+    End Set
+  End Property
+
+  Public Property CostQty() As Decimal
+    Get
+      Return pCostQty
+    End Get
+    Set(ByVal value As Decimal)
+      If pCostQty <> value Then IsDirty = True
+      pCostQty = value
     End Set
   End Property
 

@@ -129,13 +129,13 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repInvoiceDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repCreatedDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+    Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.repInvoiceDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
     Me.gcDetails = New DevExpress.XtraEditors.GroupControl()
     Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
     Me.txtVersion = New DevExpress.XtraEditors.TextEdit()
@@ -247,10 +247,10 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl5.SuspendLayout()
     CType(Me.grdInvoices, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvInvoices, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repInvoiceDate, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repInvoiceDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repCreatedDate, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.repCreatedDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repInvoiceDate, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.repInvoiceDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gcDetails, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.gcDetails.SuspendLayout()
     CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -398,7 +398,7 @@ Partial Class frmSalesOrderDetail
     Me.xtbSalesAndOT.Controls.Add(Me.grpOrderItem)
     Me.xtbSalesAndOT.Controls.Add(Me.grpWorkOrders)
     Me.xtbSalesAndOT.Name = "xtbSalesAndOT"
-    Me.xtbSalesAndOT.Size = New System.Drawing.Size(1142, 306)
+    Me.xtbSalesAndOT.Size = New System.Drawing.Size(1142, 318)
     Me.xtbSalesAndOT.Text = "Artículos de Ventas y OTs"
     '
     'grpOrderItem
@@ -412,7 +412,7 @@ Partial Class frmSalesOrderDetail
     Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpOrderItem.Location = New System.Drawing.Point(7, 6)
     Me.grpOrderItem.Name = "grpOrderItem"
-    Me.grpOrderItem.Size = New System.Drawing.Size(563, 320)
+    Me.grpOrderItem.Size = New System.Drawing.Size(563, 277)
     Me.grpOrderItem.TabIndex = 0
     Me.grpOrderItem.Text = "Articulos"
     '
@@ -424,7 +424,7 @@ Partial Class frmSalesOrderDetail
     Me.grdOrderItem.MenuManager = Me.BarManager1
     Me.grdOrderItem.Name = "grdOrderItem"
     Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-    Me.grdOrderItem.Size = New System.Drawing.Size(559, 292)
+    Me.grdOrderItem.Size = New System.Drawing.Size(559, 249)
     Me.grdOrderItem.TabIndex = 0
     Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem, Me.GridView7})
     '
@@ -438,11 +438,14 @@ Partial Class frmSalesOrderDetail
     Me.gvOrderItem.Appearance.Row.Options.UseFont = True
     Me.gvOrderItem.ColumnPanelRowHeight = 34
     Me.gvOrderItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn10, Me.gcQuantity, Me.gcUnitPrice, Me.gcTotalAmount, Me.gcWoodSpecie, Me.gcWoodFinish, Me.GridColumn37})
+    Me.gvOrderItem.DetailHeight = 360
     Me.gvOrderItem.GridControl = Me.grdOrderItem
     Me.gvOrderItem.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UnitPrice", Me.gcTotalAmount, "(Precio: SUMA={0:#.##})")})
     Me.gvOrderItem.Name = "gvOrderItem"
     Me.gvOrderItem.OptionsDetail.EnableMasterViewMode = False
+    Me.gvOrderItem.OptionsView.ShowFooter = True
     Me.gvOrderItem.OptionsView.ShowGroupPanel = False
+    Me.gvOrderItem.RowHeight = 20
     '
     'GridColumn4
     '
@@ -459,7 +462,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn5.Name = "GridColumn5"
     Me.GridColumn5.Visible = True
     Me.GridColumn5.VisibleIndex = 0
-    Me.GridColumn5.Width = 33
+    Me.GridColumn5.Width = 38
     '
     'GridColumn7
     '
@@ -468,7 +471,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn7.Name = "GridColumn7"
     Me.GridColumn7.Visible = True
     Me.GridColumn7.VisibleIndex = 1
-    Me.GridColumn7.Width = 118
+    Me.GridColumn7.Width = 126
     '
     'GridColumn10
     '
@@ -479,7 +482,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn10.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
     Me.GridColumn10.Visible = True
     Me.GridColumn10.VisibleIndex = 7
-    Me.GridColumn10.Width = 131
+    Me.GridColumn10.Width = 118
     '
     'RepositoryItemButtonEdit2
     '
@@ -490,31 +493,38 @@ Partial Class frmSalesOrderDetail
     'gcQuantity
     '
     Me.gcQuantity.Caption = "Cantidad"
+    Me.gcQuantity.DisplayFormat.FormatString = "N2"
+    Me.gcQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcQuantity.FieldName = "Quantity"
     Me.gcQuantity.Name = "gcQuantity"
     Me.gcQuantity.Visible = True
     Me.gcQuantity.VisibleIndex = 4
-    Me.gcQuantity.Width = 66
+    Me.gcQuantity.Width = 82
     '
     'gcUnitPrice
     '
     Me.gcUnitPrice.Caption = "Precio"
+    Me.gcUnitPrice.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.gcUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
     Me.gcUnitPrice.FieldName = "UnitPrice"
     Me.gcUnitPrice.Name = "gcUnitPrice"
     Me.gcUnitPrice.Visible = True
     Me.gcUnitPrice.VisibleIndex = 5
-    Me.gcUnitPrice.Width = 63
+    Me.gcUnitPrice.Width = 77
     '
     'gcTotalAmount
     '
     Me.gcTotalAmount.Caption = "Total"
-    Me.gcTotalAmount.FieldName = "gcTotalAmount"
+    Me.gcTotalAmount.DisplayFormat.FormatString = "$#,##0.00;;#"
+    Me.gcTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    Me.gcTotalAmount.FieldName = "uTotalAmount"
     Me.gcTotalAmount.Name = "gcTotalAmount"
+    Me.gcTotalAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "uTotalAmount", "{0:$#,##0.00;;#}")})
     Me.gcTotalAmount.UnboundExpression = "[Quantity] * [UnitPrice]"
     Me.gcTotalAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
     Me.gcTotalAmount.Visible = True
     Me.gcTotalAmount.VisibleIndex = 6
-    Me.gcTotalAmount.Width = 57
+    Me.gcTotalAmount.Width = 106
     '
     'gcWoodSpecie
     '
@@ -524,7 +534,7 @@ Partial Class frmSalesOrderDetail
     Me.gcWoodSpecie.Name = "gcWoodSpecie"
     Me.gcWoodSpecie.Visible = True
     Me.gcWoodSpecie.VisibleIndex = 2
-    Me.gcWoodSpecie.Width = 61
+    Me.gcWoodSpecie.Width = 72
     '
     'RepositoryItemLookUpEdit1
     '
@@ -540,7 +550,7 @@ Partial Class frmSalesOrderDetail
     Me.gcWoodFinish.Name = "gcWoodFinish"
     Me.gcWoodFinish.Visible = True
     Me.gcWoodFinish.VisibleIndex = 3
-    Me.gcWoodFinish.Width = 59
+    Me.gcWoodFinish.Width = 70
     '
     'RepositoryItemLookUpEdit2
     '
@@ -555,6 +565,7 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn37.Name = "GridColumn37"
     Me.GridColumn37.Visible = True
     Me.GridColumn37.VisibleIndex = 8
+    Me.GridColumn37.Width = 89
     '
     'RepositoryItemButtonEdit1
     '
@@ -714,7 +725,7 @@ Partial Class frmSalesOrderDetail
     Me.XtraTabPage1.Appearance.HeaderDisabled.Options.UseFont = True
     Me.XtraTabPage1.Controls.Add(Me.XtraTabControl2)
     Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1142, 306)
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1142, 318)
     Me.XtraTabPage1.Text = "Estimación de Madera e Insumos"
     '
     'XtraTabControl2
@@ -725,7 +736,7 @@ Partial Class frmSalesOrderDetail
     Me.XtraTabControl2.Location = New System.Drawing.Point(0, 0)
     Me.XtraTabControl2.Name = "XtraTabControl2"
     Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage2
-    Me.XtraTabControl2.Size = New System.Drawing.Size(1142, 306)
+    Me.XtraTabControl2.Size = New System.Drawing.Size(1142, 318)
     Me.XtraTabControl2.TabIndex = 150
     Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2, Me.XtraTabPage3})
     '
@@ -733,7 +744,7 @@ Partial Class frmSalesOrderDetail
     '
     Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirements)
     Me.XtraTabPage2.Name = "XtraTabPage2"
-    Me.XtraTabPage2.Size = New System.Drawing.Size(1014, 300)
+    Me.XtraTabPage2.Size = New System.Drawing.Size(1014, 312)
     Me.XtraTabPage2.Text = "Estimación de Madera"
     '
     'grpMaterialRequirements
@@ -748,7 +759,7 @@ Partial Class frmSalesOrderDetail
     Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
     Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-    Me.grpMaterialRequirements.Size = New System.Drawing.Size(1014, 300)
+    Me.grpMaterialRequirements.Size = New System.Drawing.Size(1014, 312)
     Me.grpMaterialRequirements.TabIndex = 149
     Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
     '
@@ -764,7 +775,7 @@ Partial Class frmSalesOrderDetail
     Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
     Me.grdMaterialRequirements.MenuManager = Me.BarManager1
     Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1010, 272)
+    Me.grdMaterialRequirements.Size = New System.Drawing.Size(1010, 284)
     Me.grdMaterialRequirements.TabIndex = 29
     Me.grdMaterialRequirements.UseEmbeddedNavigator = True
     Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements, Me.GridView5})
@@ -909,7 +920,7 @@ Partial Class frmSalesOrderDetail
     '
     Me.XtraTabPage3.Controls.Add(Me.grpMaterialRequirementOthers)
     Me.XtraTabPage3.Name = "XtraTabPage3"
-    Me.XtraTabPage3.Size = New System.Drawing.Size(1014, 354)
+    Me.XtraTabPage3.Size = New System.Drawing.Size(1014, 312)
     Me.XtraTabPage3.Text = "Estimación de Insumos"
     '
     'grpMaterialRequirementOthers
@@ -924,7 +935,7 @@ Partial Class frmSalesOrderDetail
     Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
     Me.grpMaterialRequirementOthers.Name = "grpMaterialRequirementOthers"
-    Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1014, 354)
+    Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1014, 312)
     Me.grpMaterialRequirementOthers.TabIndex = 148
     Me.grpMaterialRequirementOthers.Text = "Lista de Materiales Requeridos (LMR)"
     '
@@ -940,7 +951,7 @@ Partial Class frmSalesOrderDetail
     Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
     Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
     Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
-    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1010, 326)
+    Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1010, 284)
     Me.grdMaterialRequirementOthers.TabIndex = 41
     Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
     Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers, Me.GridView4})
@@ -1273,18 +1284,19 @@ Partial Class frmSalesOrderDetail
     'GridColumn27
     '
     Me.GridColumn27.Caption = "InvoiceDate"
-    Me.GridColumn27.ColumnEdit = Me.repInvoiceDate
+    Me.GridColumn27.ColumnEdit = Me.repCreatedDate
     Me.GridColumn27.FieldName = "InvoiceDate"
     Me.GridColumn27.Name = "GridColumn27"
     Me.GridColumn27.Visible = True
     Me.GridColumn27.VisibleIndex = 1
     '
-    'repInvoiceDate
+    'repCreatedDate
     '
-    Me.repInvoiceDate.AutoHeight = False
-    Me.repInvoiceDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.repInvoiceDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.repInvoiceDate.Name = "repInvoiceDate"
+    Me.repCreatedDate.AutoHeight = False
+    Me.repCreatedDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.repCreatedDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.repCreatedDate.Name = "repCreatedDate"
+    Me.repCreatedDate.NullDate = New Date(CType(0, Long))
     '
     'GridColumn28
     '
@@ -1294,13 +1306,6 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn28.Name = "GridColumn28"
     Me.GridColumn28.Visible = True
     Me.GridColumn28.VisibleIndex = 0
-    '
-    'repCreatedDate
-    '
-    Me.repCreatedDate.AutoHeight = False
-    Me.repCreatedDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.repCreatedDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.repCreatedDate.Name = "repCreatedDate"
     '
     'GridColumn29
     '
@@ -1334,6 +1339,13 @@ Partial Class frmSalesOrderDetail
     Me.GridColumn38.Name = "GridColumn38"
     Me.GridColumn38.Visible = True
     Me.GridColumn38.VisibleIndex = 5
+    '
+    'repInvoiceDate
+    '
+    Me.repInvoiceDate.AutoHeight = False
+    Me.repInvoiceDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.repInvoiceDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+    Me.repInvoiceDate.Name = "repInvoiceDate"
     '
     'gcDetails
     '
@@ -2082,10 +2094,10 @@ Partial Class frmSalesOrderDetail
     Me.GroupControl5.ResumeLayout(False)
     CType(Me.grdInvoices, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvInvoices, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repInvoiceDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repInvoiceDate, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repCreatedDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repCreatedDate, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repInvoiceDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.repInvoiceDate, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gcDetails, System.ComponentModel.ISupportInitialize).EndInit()
     Me.gcDetails.ResumeLayout(False)
     Me.gcDetails.PerformLayout()

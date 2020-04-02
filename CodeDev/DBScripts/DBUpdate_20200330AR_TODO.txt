@@ -1,0 +1,21 @@
+create View vwCustomerPurchaseOrdersSum as
+select
+cpo.CustomerPurchaseOrderID,
+cpo.SalesOrderID, 
+SUM(IsNull(cpo.OrderValue,0)) as SumCustomerOrderNetValue
+from 
+CustomerPurchaseOrder CPO
+group by CPO.CustomerPurchaseOrderID,cpo.SalesOrderID
+GO
+
+create View vwInvoiceSum as
+select
+INV.InvoiceID,
+inv.SalesOrderID, 
+INVITEM.InvoiceItemID,
+SUM(IsNull(INVITEM.Quantity*INVITEM.UnitPrice,0)) as SumInvoiceItem
+from 
+InvoiceItem INVITEM
+LEFT JOIN Invoice INV ON  INV.InvoiceID=INVITEM.InvoiceID
+GROUP BY INV.InvoiceID,INV.SalesOrderID,INVITEM.InvoiceItemID
+GO

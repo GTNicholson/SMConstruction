@@ -174,6 +174,14 @@ Public Class dtoSalesOrder : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadSalesOrderInfo(ByRef rSalesOrder As colSalesOrders, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    '    mParams.Add("@SupplierID", vWhere)
+    mOK = MyBase.LoadCollection(rSalesOrder, mParams, "SalesOrderID", vWhere)
+    '  If mOK Then rPurchaseInvoiceTranCodeInfos.IsDirty = False
+    Return mOK
+  End Function
 
   Public Function SaveSalesOrderCollection(ByRef rCollection As colSalesOrders, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable

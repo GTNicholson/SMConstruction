@@ -35,6 +35,7 @@ Public Class clsStockItemTransactionLogInfo
   Private pStockValuation As Decimal
   Private pStockTakeDesc As String
   Private pStockCheckDesc As String
+  Private pTransactionValuationDollar As Decimal
 
   Private pTotalValue As Decimal
 
@@ -143,6 +144,15 @@ Public Class clsStockItemTransactionLogInfo
     Get
       Return pCurrentStockItem.Description
     End Get
+  End Property
+
+  Public Property TransactionValuationDollar As Decimal
+    Get
+      Return pTransactionValuationDollar
+    End Get
+    Set(value As Decimal)
+      pTransactionValuationDollar = value
+    End Set
   End Property
 
   Public ReadOnly Property StdCost As Decimal

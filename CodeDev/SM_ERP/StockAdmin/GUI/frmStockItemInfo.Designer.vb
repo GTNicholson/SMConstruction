@@ -74,11 +74,11 @@ Partial Class frmStockItemInfo
     'grdStockItemInfos
     '
     Me.grdStockItemInfos.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 24)
+    Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 26)
     Me.grdStockItemInfos.MainView = Me.gvStockItemInfos
     Me.grdStockItemInfos.Name = "grdStockItemInfos"
     Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory})
-    Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 483)
+    Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 481)
     Me.grdStockItemInfos.TabIndex = 6
     Me.grdStockItemInfos.UseEmbeddedNavigator = True
     Me.grdStockItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemInfos})
@@ -166,7 +166,7 @@ Partial Class frmStockItemInfo
     '
     'gcSupplier
     '
-    Me.gcSupplier.Caption = "Supplier"
+    Me.gcSupplier.Caption = "Proveedor"
     Me.gcSupplier.FieldName = "DefaultSupplier"
     Me.gcSupplier.Name = "gcSupplier"
     Me.gcSupplier.Visible = True
