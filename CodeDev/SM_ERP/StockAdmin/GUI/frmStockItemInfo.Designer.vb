@@ -23,7 +23,6 @@ Partial Class frmStockItemInfo
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
     Me.grdStockItemInfos = New DevExpress.XtraGrid.GridControl()
     Me.gvStockItemInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -63,7 +62,7 @@ Partial Class frmStockItemInfo
     Me.grpItemDetail.AppearanceCaption.Options.UseFont = True
     Me.grpItemDetail.AppearanceCaption.Options.UseForeColor = True
     Me.grpItemDetail.Controls.Add(Me.grdStockItemInfos)
-    Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Select All", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "SelectAll", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Clear Selection", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ClearSelection", -1)})
+    Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar a Excel", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Export", -1)})
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpItemDetail.Location = New System.Drawing.Point(3, 12)
     Me.grpItemDetail.Name = "grpItemDetail"

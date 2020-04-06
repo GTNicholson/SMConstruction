@@ -238,4 +238,16 @@ Public Class frmStockItemInfo
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub grpItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpItemDetail.CustomButtonClick
+    Select Case e.Button.Properties.Tag
+      Case "Export"
+        Dim mFileName As String = "Exportar Lista" + ".xlsx"
+        If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+          gvStockItemInfos.ExportToXlsx(mFileName)
+        End If
+
+    End Select
+
+  End Sub
 End Class
