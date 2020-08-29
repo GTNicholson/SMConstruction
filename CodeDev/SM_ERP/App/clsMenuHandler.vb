@@ -2,6 +2,7 @@
 Imports RTIS.DataLayer
 Imports DevExpress.XtraTreeList
 Imports DevExpress.XtraTreeList.Nodes
+Imports RTIS.Elements
 
 ''In MDI InitmenuOptions call PopulateNavBarMenu(MenuFactory.BuildMenu)
 

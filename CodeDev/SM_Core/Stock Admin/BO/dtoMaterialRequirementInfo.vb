@@ -84,6 +84,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
       Select Case pMode
         Case eMode.Info, eMode.Processor
 
+          pMaterialRequirment.OSQty = DBReadDecimal(rDataReader, "OSQty")
           With pMaterialRequirment.MaterialRequirement
 
             .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
@@ -115,8 +116,18 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           With pMaterialRequirment.WorkOrder
             .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
             .Description = DBReadString(rDataReader, "WODESCRIPTION")
-
+            .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
+            .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
           End With
+
+          With pMaterialRequirment.Customer
+            .CompanyName = DBReadString(rDataReader, "CompanyName")
+          End With
+
+          With pMaterialRequirment.SalesOrder
+            .ProjectName = DBReadString(rDataReader, "ProjectName")
+          End With
+
 
         Case eMode.WoodMat
           With pMaterialRequirment.MaterialRequirement

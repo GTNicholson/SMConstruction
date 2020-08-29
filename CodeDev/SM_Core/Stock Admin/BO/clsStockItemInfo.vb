@@ -207,6 +207,16 @@ Public Class clsStockItemInfo
 
   End Property
 
+  Public ReadOnly Property RequiredInventoryNoNegative As Decimal
+    Get
+      If RequiredInventory > 0 Then
+        Return RequiredInventory
+      Else
+        Return 0
+      End If
+    End Get
+  End Property
+
 End Class
 
 

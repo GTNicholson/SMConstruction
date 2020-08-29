@@ -230,8 +230,10 @@ Public Class fccStocktem
 
         mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
 
-        If IO.File.Exists(mFilePath) = True Then
-          pCurrentStockItem.ImageFile = IO.Path.GetFileName(mFilePath)
+        IO.File.Copy(vSourceFile, mFilePath, True)
+        pCurrentStockItem.ImageFile = IO.Path.GetFileName(mFilePath)
+
+        If pCurrentStockItem.ImageFile <> "" Then
           mRetVal = True
 
         Else
@@ -239,13 +241,13 @@ Public Class fccStocktem
           pCurrentStockItem.ImageFile = ""
           mRetVal = False
         End If
-        IO.File.Copy(vSourceFile, mFilePath, True)
-
-
-
-
-
       End If
+
+
+
+
+
+
 
     Catch ex As Exception
 

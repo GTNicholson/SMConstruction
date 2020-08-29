@@ -84,6 +84,7 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
+
   Public Property PurchaseOrder As dmPurchaseOrder
     Get
       Return pPurchaseOrder
@@ -164,7 +165,16 @@ Public Class fccPurchaseOrder
 
 
   Public Sub LoadSuppliers()
+    Dim mdtoSupplier As New dtoSupplier(pDBConn)
+    Dim mOK As Boolean
 
+
+    pSuppliers = New colSuppliers
+
+    If pDBConn.Connect Then
+      mOK = mdtoSupplier.LoadSupplierCollection(pSuppliers)
+
+    End If
 
   End Sub
 
@@ -287,4 +297,9 @@ Public Class fccPurchaseOrder
     End Try
     Return mRetVal
   End Function
+
+  Public Sub GetNextPONo()
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    pPurchaseOrder.PONum = "O.C. " & mdsoGeneral.GetNextTallyPONo().ToString("00000")
+  End Sub
 End Class

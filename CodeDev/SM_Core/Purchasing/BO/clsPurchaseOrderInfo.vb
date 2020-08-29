@@ -46,18 +46,23 @@
     End Set
   End Property
 
-  Public ReadOnly Property PurchaseOrderID() As Int32
+  Public Property PurchaseOrderID() As Int32
     Get
       Return pPurchaseOrder.PurchaseOrderID
     End Get
+    Set(value As Int32)
+      pPurchaseOrder.PurchaseOrderID = value
+    End Set
 
   End Property
 
-  Public ReadOnly Property PONum() As String
+  Public Property PONum() As String
     Get
       Return pPurchaseOrder.PONum
     End Get
-
+    Set(value As String)
+      pPurchaseOrder.PONum = value
+    End Set
   End Property
 
   Public ReadOnly Property SupplierContactName() As String

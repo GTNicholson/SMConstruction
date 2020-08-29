@@ -6,6 +6,7 @@ Public Class dmPODeliveryItem : Inherits dmBase
   Private pPODeliveryID As Int32
   Private pPOCallOffItemAllocationID As Integer
   Private pQtyReceived As Decimal
+  Private pQtyRejected As Decimal
   ''Private pQtyInvoiced As Decimal
 
   Public Sub New()
@@ -43,8 +44,9 @@ Public Class dmPODeliveryItem : Inherits dmBase
       .PODeliveryItemID = PODeliveryItemID
       .PODeliveryID = PODeliveryID
       '.POCallOffItemID = POCallOffItemID
-      .POCallOffItemAllocationID = POCallOffItemAllocationID
+      .POItemAllocationID = POItemAllocationID
       .SetQtyReceived(QtyReceived)
+      .SetQtyRejected(QtyRejected)
       ''.QtyInvoiced = QtyInvoiced
       'Add entries here for each collection and class property
 
@@ -85,7 +87,7 @@ Public Class dmPODeliveryItem : Inherits dmBase
   '  End Set
   'End Property
 
-  Public Property POCallOffItemAllocationID As Integer
+  Public Property POItemAllocationID As Integer
     Get
       Return pPOCallOffItemAllocationID
     End Get
@@ -104,6 +106,17 @@ Public Class dmPODeliveryItem : Inherits dmBase
 
   Public Sub SetQtyReceived(ByVal vNewValue As Decimal)
     pQtyReceived = vNewValue
+  End Sub
+
+  Public ReadOnly Property QtyRejected() As Decimal
+    Get
+      Return pQtyRejected
+    End Get
+
+  End Property
+
+  Public Sub SetQtyRejected(ByVal vNewValue As Decimal)
+    pQtyRejected = vNewValue
   End Sub
 
   ''Public Property QtyInvoiced As Decimal
@@ -178,7 +191,7 @@ Public Class colPODeliveryItems : Inherits colBase(Of dmPODeliveryItem)
     Dim mRetVal As dmPODeliveryItem
 
     For Each mItem As dmPODeliveryItem In MyBase.Items
-      If mItem.POCallOffItemAllocationID = vPOCOItemAllocationID Then
+      If mItem.POItemAllocationID = vPOCOItemAllocationID Then
         mRetVal = mItem
         Exit For
       End If

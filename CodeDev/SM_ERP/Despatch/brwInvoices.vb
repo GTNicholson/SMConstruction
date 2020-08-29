@@ -124,7 +124,7 @@ Public Class brwInvoices : Inherits brwBrowserListBase
 
     Finally
       'mdsoSalesQuote = Nothing
-      DBConn.Disconnect()
+      ''DBConn.Disconnect()
       gridBrowseList.MainView.EndDataUpdate()
     End Try
 

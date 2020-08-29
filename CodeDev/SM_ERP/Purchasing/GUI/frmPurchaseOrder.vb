@@ -1,3 +1,4 @@
+Imports System.ComponentModel
 Imports System.IO
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
@@ -178,6 +179,9 @@ Public Class frmPurchaseOrder
 
       If mOK Then mOK = pFormController.LoadObject()
       If mOK Then mOK = pFormController.LoadRefData()
+
+      pFormController.LoadSuppliers()
+
       LoadCombos()
       RefreshControls()
       RefreshGrid()
@@ -211,10 +215,27 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub LoadCombos()
-
+    clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
+    clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
+    clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
+    clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
+    dteDateOfOrder.Properties.NullDate = Date.MinValue
+    dteDueDate.Properties.NullDate = Date.MinValue
+    grdCallOff.DataSource = pFormController.WorkOrders
+    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+    LoadPOItemAllocationCombo()
   End Sub
 
+  Private Sub LoadPOItemAllocationCombo()
+    Dim mWorkOrderValueItems As New colValueItems
+    mWorkOrderValueItems.AddNewItem(0, "A Inventario")
 
+    For Each mWorkOrder As dmWorkOrder In pFormController.WorkOrders
+      mWorkOrderValueItems.AddNewItem(mWorkOrder.WorkOrderID, mWorkOrder.WorkOrderNo)
+    Next
+
+    clsDEControlLoading.LoadGridLookUpEdit(grdWorkOrderItem, gvWorkOrderItem.Columns("WorkOrderID"), mWorkOrderValueItems)
+  End Sub
 
   Private Sub SetupUserPermissions()
     'Dim mPermisionLevel As ePermissionCode
@@ -280,25 +301,32 @@ Public Class frmPurchaseOrder
 
   Private Sub RefreshControls()
     Try
+      Dim mSupplier As dmSupplier
 
       With pFormController.PurchaseOrder
-
-        txtPONum.Text = .PONum
+        dteDateOfOrder.EditValue = .SubmissionDate
+        txtCarriage.Text = .Carriage
+        mSupplier = pFormController.Suppliers.ItemFromKey(.SupplierID)
+        txtSupplierRef.Text = .SupplierRef
+        btePONum.EditValue = .PONum
         txtSupplierRef.Text = .SupplierRef
         'dteDateEntered.EditValue = .DateEntered
         dteDueDate.EditValue = clsGeneralA.DateToDBValue(.RequiredDate)
 
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
+        clsDEControlLoading.SetDECombo(cboStatus, .Status)
 
-
-        If .Supplier Is Nothing Then
-          btedSupplier.Text = ""
-        Else
+        If mSupplier IsNot Nothing Then
+          btedSupplier.Text = mSupplier.CompanyName
           FillSupplierDetail()
+        Else
+
 
         End If
       End With
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -308,11 +336,11 @@ Public Class frmPurchaseOrder
 
     Try
       With pFormController.PurchaseOrder
-        btedSupplier.Text = .Supplier.CompanyName
+
         txtAddress1.Text = .Supplier.MainAddress1
         txtCountry.Text = .Supplier.MainCountry
         txtTown.Text = .Supplier.MainTown
-
+        btedSupplier.Text = .Supplier.CompanyName
         'CustomerStatusID.Text = .Customer.CustomerStatusID
 
       End With
@@ -325,14 +353,16 @@ Public Class frmPurchaseOrder
 
   Private Sub UpdateObject()
     With pFormController.PurchaseOrder
-      .PONum = txtPONum.Text
+      .SubmissionDate = dteDateOfOrder.EditValue
       .RequiredDate = dteDueDate.DateTime
-
-
+      .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
+      .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
+      .Carriage = txtCarriage.Text
+      .SupplierRef = txtSupplierRef.Text
       gvPurchaseOrderItems.CloseEditor()
       gvPurchaseOrderItems.UpdateCurrentRow()
 
-
+      .BuyerID = Byte.Parse(clsDEControlLoading.GetDEComboValue(cboBuyer).ToString)
 
 
 
@@ -431,13 +461,6 @@ Public Class frmPurchaseOrder
   End Sub
 
 
-  Private Sub LabelControl13_Click(sender As Object, e As EventArgs)
-
-  End Sub
-
-  Private Sub cboStatus_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-  End Sub
 
   Private Sub btnSaveAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
     Try
@@ -602,73 +625,7 @@ Public Class frmPurchaseOrder
     Return mRetVal
   End Function
 
-  Private Sub gpWorkOrder_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
-    Dim mfcc As New fccPickMaterials(pFormController.DBConn)
-    Select Case e.Button.Properties.Tag
-      Case eWorkOrder.PickWO
 
-        Try
-          Dim mSelectedItems As New Dictionary(Of Integer, Boolean)
-          Dim mPOAllocation As dmPurchaseOrderAllocation
-          Dim mPOItemAllocation As dmPurchaseOrderItemAllocation
-          Dim mPOIAExists As Boolean
-          For Each mPOAllocation In pFormController.PurchaseOrder.PurchaseOrderAllocations
-            mPOIAExists = False
-            For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
-              For Each mPOItemAllocation In mPOItem.PurchaseOrderItemAllocations
-                If mPOItemAllocation.WorkOrderID = mPOAllocation.WorkOrderID Then
-                  mPOIAExists = True
-                  Exit For
-                End If
-              Next
-              If mPOIAExists Then Exit For
-            Next
-            mSelectedItems.Add(mPOAllocation.WorkOrderID, Not mPOIAExists)
-          Next
-
-
-          If frmWorkOrderPickerMulti.GetSelectedIDs(Me, pFormController.DBConn, mSelectedItems) = DialogResult.OK Then
-
-            For Each mWorkOrderID As Integer In mSelectedItems.Keys
-              If pFormController.PurchaseOrder.PurchaseOrderAllocations.IndexFromWorkOrderID(mWorkOrderID) = -1 Then
-                mPOAllocation = New dmPurchaseOrderAllocation
-                mPOAllocation.WorkOrderID = mWorkOrderID
-                pFormController.PurchaseOrder.PurchaseOrderAllocations.Add(mPOAllocation)
-              End If
-              If pFormController.UsedWorkOrders.Contains(mWorkOrderID) = False Then
-                pFormController.UsedWorkOrders.Add(mWorkOrderID)
-              End If
-            Next
-
-            For mIndex As Integer = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 0 Step -1
-              mPOAllocation = pFormController.PurchaseOrder.PurchaseOrderAllocations(mIndex)
-              If Not mSelectedItems.ContainsKey(mPOAllocation.WorkOrderID) Then
-                pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mIndex)
-              End If
-            Next
-
-            For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
-              For mIndex As Integer = mPOItem.PurchaseOrderItemAllocations.Count - 1 To 0 Step -1
-                mPOItemAllocation = mPOItem.PurchaseOrderItemAllocations(mIndex)
-                If Not mSelectedItems.ContainsKey(mPOItemAllocation.WorkOrderID) Then
-                  mPOItem.PurchaseOrderItemAllocations.RemoveAt(mIndex)
-                End If
-              Next
-              mPOItem.QtyRequired = mPOItem.TotalQuantityAllocated
-            Next
-
-            pFormController.LoadRefData()
-            ''  LoadPOItemAllocationCombo()
-            gvPurchaseOrderItems.RefreshData()
-
-          End If
-        Catch ex As Exception
-          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-        End Try
-
-
-    End Select
-  End Sub
 
   Private Sub gpnlPOItems_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpnlPOItems.CustomButtonClick
     Dim mSelectedItem As dmStockItem
@@ -746,6 +703,106 @@ Public Class frmPurchaseOrder
 
       End Select
 
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+
+  Private Sub btePONum_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btePONum.ButtonClick
+    Select Case e.Button.Kind
+      Case ButtonPredefines.Plus
+        If pFormController.PurchaseOrder.PONum = "" Then
+          pFormController.GetNextPONo()
+        End If
+
+        RefreshControls()
+    End Select
+
+
+  End Sub
+
+  Private Sub repoPopPutWorkOrderQty_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repoPopupWorkOrder.QueryPopUp
+    Dim mRow As dmPurchaseOrderItem
+    'gvPurchaseOrderItems.CloseEditor()
+    mRow = gvPurchaseOrderItems.GetFocusedRow
+    If mRow IsNot Nothing Then
+      grdWorkOrderItem.DataSource = mRow.PurchaseOrderItemAllocations
+    End If
+  End Sub
+
+  Private Sub repoPopPutWorkOrderQty_CloseUp(sender As Object, e As CloseUpEventArgs) Handles repoPopupWorkOrder.CloseUp
+    Dim mRow As dmPurchaseOrderItem
+    'gvPurchaseOrderItems.CloseEditor()
+    mRow = gvPurchaseOrderItems.GetFocusedRow
+    If mRow IsNot Nothing Then
+
+      gvWorkOrderItem.CloseEditor()
+      UpdateObject()
+      mRow.QtyRequired = mRow.TotalQuantityAllocated
+      gvPurchaseOrderItems.RefreshData()
+
+      RefreshControls()
+
+    End If
+  End Sub
+
+  Private Sub btnManageCOs_Click(sender As Object, e As EventArgs) Handles btnManageCOs.Click
+    Try
+      Dim mSelectedItems As New Dictionary(Of Integer, Boolean)
+      Dim mPOAllocation As dmPurchaseOrderAllocation
+      Dim mPOItemAllocation As dmPurchaseOrderItemAllocation
+      Dim mPOIAExists As Boolean
+      For Each mPOAllocation In pFormController.PurchaseOrder.PurchaseOrderAllocations
+        mPOIAExists = False
+        For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
+          For Each mPOItemAllocation In mPOItem.PurchaseOrderItemAllocations
+            If mPOItemAllocation.WorkOrderID = mPOAllocation.WorkOrderID Then
+              mPOIAExists = True
+              Exit For
+            End If
+          Next
+          If mPOIAExists Then Exit For
+        Next
+        mSelectedItems.Add(mPOAllocation.WorkOrderID, Not mPOIAExists)
+      Next
+
+
+      If frmWorkOrderPickerMulti.GetSelectedIDs(Me, pFormController.DBConn, mSelectedItems) = DialogResult.OK Then
+
+        For Each mWorkOrderID As Integer In mSelectedItems.Keys
+          If pFormController.PurchaseOrder.PurchaseOrderAllocations.IndexFromWorkOrderID(mWorkOrderID) = -1 Then
+            mPOAllocation = New dmPurchaseOrderAllocation
+            mPOAllocation.WorkOrderID = mWorkOrderID
+            pFormController.PurchaseOrder.PurchaseOrderAllocations.Add(mPOAllocation)
+          End If
+          If pFormController.UsedWorkOrders.Contains(mWorkOrderID) = False Then
+            pFormController.UsedWorkOrders.Add(mWorkOrderID)
+          End If
+        Next
+
+        For mIndex As Integer = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 0 Step -1
+          mPOAllocation = pFormController.PurchaseOrder.PurchaseOrderAllocations(mIndex)
+          If Not mSelectedItems.ContainsKey(mPOAllocation.WorkOrderID) Then
+            pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mIndex)
+          End If
+        Next
+
+        For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
+          For mIndex As Integer = mPOItem.PurchaseOrderItemAllocations.Count - 1 To 0 Step -1
+            mPOItemAllocation = mPOItem.PurchaseOrderItemAllocations(mIndex)
+            If Not mSelectedItems.ContainsKey(mPOItemAllocation.WorkOrderID) Then
+              mPOItem.PurchaseOrderItemAllocations.RemoveAt(mIndex)
+            End If
+          Next
+          mPOItem.QtyRequired = mPOItem.TotalQuantityAllocated
+        Next
+
+        pFormController.LoadRefData()
+        LoadPOItemAllocationCombo()
+        gvPurchaseOrderItems.RefreshData()
+        grdCallOff.DataSource = pFormController.WorkOrders
+      End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

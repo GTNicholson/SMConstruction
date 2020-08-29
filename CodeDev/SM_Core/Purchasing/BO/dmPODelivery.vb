@@ -3,7 +3,7 @@ Imports RTIS.CommonVB
 
 Public Class dmPODelivery : Inherits dmBase
   Private pPODeliveryID As Int32
-  Private pPOCallOffID As Int32
+  Private pPurchaseOrderID As Int32
   Private pGRNumber As String
   Private pReceivedDate As DateTime
   Private pComment As String
@@ -17,6 +17,7 @@ Public Class dmPODelivery : Inherits dmBase
   Private pSupplierDelNo As String
   Private pMKReference As String
 
+  Private pPurchaseOrder As dmPurchaseOrder
   Private pPODeliveryItems As colPODeliveryItems
 
   Public Sub New()
@@ -26,6 +27,7 @@ Public Class dmPODelivery : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pPODeliveryItems = New colPODeliveryItems
+    pPurchaseOrder = New dmPurchaseOrder
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -36,6 +38,7 @@ Public Class dmPODelivery : Inherits dmBase
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
     pPODeliveryItems = Nothing
+    pPurchaseOrder = Nothing
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
@@ -43,6 +46,7 @@ Public Class dmPODelivery : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If Not mAnyDirty Then mAnyDirty = PODeliveryItems.IsDirty
+      If Not mAnyDirty Then mAnyDirty = PurchaseOrder.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -56,7 +60,7 @@ Public Class dmPODelivery : Inherits dmBase
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
     With CType(rNewItem, dmPODelivery)
       .PODeliveryID = PODeliveryID
-      .POCallOffID = POCallOffID
+      .PurchaseOrderID = PurchaseOrderID
       .GRNumber = GRNumber
       .ReceivedDate = ReceivedDate
       .Comment = Comment
@@ -67,13 +71,13 @@ Public Class dmPODelivery : Inherits dmBase
       .ActionRequiredID = ActionRequiredID
       .FileExport = FileExport
       .FullyInvoiced = FullyInvoiced
-      .SupplierDelNo = SupplierDelNo
-      .MKReference = MKReference
+      '' .SupplierDelNo = SupplierDelNo
+      ''.MKReference = MKReference
 
       'Add entries here for each collection and class property
       .PODeliveryItems = PODeliveryItems.Clone
       'Entries for object management
-
+      .PurchaseOrder = PurchaseOrder.Clone
       .IsDirty = IsDirty
     End With
 
@@ -89,13 +93,22 @@ Public Class dmPODelivery : Inherits dmBase
     End Set
   End Property
 
-  Public Property POCallOffID() As Int32
+  Public Property PurchaseOrder() As dmPurchaseOrder
     Get
-      Return pPOCallOffID
+      Return pPurchaseOrder
+    End Get
+    Set(ByVal value As dmPurchaseOrder)
+      pPurchaseOrder = value
+    End Set
+  End Property
+
+  Public Property PurchaseOrderID() As Int32
+    Get
+      Return pPurchaseOrderID
     End Get
     Set(ByVal value As Int32)
-      If pPOCallOffID <> value Then IsDirty = True
-      pPOCallOffID = value
+      If pPurchaseOrderID <> value Then IsDirty = True
+      pPurchaseOrderID = value
     End Set
   End Property
 
@@ -208,25 +221,25 @@ Public Class dmPODelivery : Inherits dmBase
     End Set
   End Property
 
-  Public Property SupplierDelNo As String
-    Get
-      Return pSupplierDelNo
-    End Get
-    Set(value As String)
-      If pSupplierDelNo <> value Then IsDirty = True
-      pSupplierDelNo = value
-    End Set
-  End Property
+  ''Public Property SupplierDelNo As String
+  ''  Get
+  ''    Return pSupplierDelNo
+  ''  End Get
+  ''  Set(value As String)
+  ''    If pSupplierDelNo <> value Then IsDirty = True
+  ''    pSupplierDelNo = value
+  ''  End Set
+  ''End Property
 
-  Public Property MKReference As String
-    Get
-      Return pMKReference
-    End Get
-    Set(value As String)
-      If pMKReference <> value Then IsDirty = True
-      pMKReference = value
-    End Set
-  End Property
+  ''Public Property MKReference As String
+  ''  Get
+  ''    Return pMKReference
+  ''  End Get
+  ''  Set(value As String)
+  ''    If pMKReference <> value Then IsDirty = True
+  ''    pMKReference = value
+  ''  End Set
+  ''End Property
 
   Public Shared Function SortPODelivery() As IComparer(Of dmPODelivery)
     Return CType(New clsPODeliverySorter, IComparer(Of dmPODelivery))

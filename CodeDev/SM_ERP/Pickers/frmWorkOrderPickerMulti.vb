@@ -7,16 +7,16 @@ Imports RTIS.CommonVB.clsGeneralA
 Imports DevExpress.XtraGrid.Views.Base
 
 Public Class frmWorkOrderPickerMulti
-  Private pFormController As fccPickMaterials
+  Private pFormController As fccWorkOrderPicker
   Private Shared sActiveForms As Collection
   'Private pSalesOrder As dmSalesOrder
   Private pSelectedIDs As Dictionary(Of Integer, Boolean)
 
-  Public Property FormController() As fccPickMaterials
+  Public Property FormController() As fccWorkOrderPicker
     Get
       FormController = pFormController
     End Get
-    Set(ByVal value As fccPickMaterials)
+    Set(ByVal value As fccWorkOrderPicker)
       pFormController = value
     End Set
   End Property
@@ -34,7 +34,7 @@ Public Class frmWorkOrderPickerMulti
     Dim mfrm As New frmWorkOrderPickerMulti
     Dim mSelectedIDs As New List(Of Integer)
     Dim mDialogResult As DialogResult
-    mfrm.FormController = New fccPickMaterials(rDBConn)
+    mfrm.FormController = New fccWorkOrderPicker
     mfrm.FormController.DBConn = rDBConn
     mfrm.Owner = rParentForm
     mfrm.SelectedIDs = rSelectedIDs
@@ -50,10 +50,10 @@ Public Class frmWorkOrderPickerMulti
     Return mDialogResult
   End Function
 
-  Private Shared Function GetFormIfLoaded() As frmWorkOrderPicker
-    Dim mfrmWanted As frmWorkOrderPicker = Nothing
+  Private Shared Function GetFormIfLoaded() As frmWorkOrderPickerMulti
+    Dim mfrmWanted As frmWorkOrderPickerMulti = Nothing
     Dim mFound As Boolean = False
-    Dim mfrm As frmWorkOrderPicker
+    Dim mfrm As frmWorkOrderPickerMulti
     '  Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
@@ -74,25 +74,25 @@ Public Class frmWorkOrderPickerMulti
       ' LoadCombo()
 
       If mOK Then RefreshControls()
-      ''clsDEControlLoading.LoadGridLookUpEdit(grdSalesOrder, gvSalesOrder.Columns("DespatchStatus"), clsEnumsConstants.EnumToVIs(GetType(eDespatchStatus)))
-      ''pSelectedIDs = New List(Of Integer)
+      '' clsDEControlLoading.LoadGridLookUpEdit(grdWorkOrder, gvWorkOrder.Columns("DespatchStatus"), clsEnumsConstants.EnumToVIs(GetType(eDespatchStatus)))
+      ' pSelectedIDs = New List(Of Integer)
     Catch ex As Exception
       mOK = False
     End Try
 
     If Not mOK Then
       'MsgBox("Problem loading the form... Please try again" & vbCrLf & mMsg, vbExclamation)
-      MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, ""), vbExclamation)
+      MsgBox(String.Format("Problema cargando el formulario... Por favor intente nuevamente{0}{1}", vbCrLf, ""), vbExclamation)
     End If
   End Sub
 
   Private Sub RefreshControls()
     pFormController.WhereSQL = ""
-    Me.grdWorkOrder.DataSource = pFormController.LoadWorkOrderInfoDT
+    Me.grdWorkOrder.DataSource = pFormController.LoadWorkOrderDT
   End Sub
 
   Private Sub LoadCombo()
-    '' clsDEControlLoading.LoadGridLookUpEditiVI(Me.grdSalesOrder, gvSalesOrder.Columns("DespatchStatus"), RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eDespatchStatus)))
+    ''clsDEControlLoading.LoadGridLookUpEditiVI(Me.grdWorkOrder, gvWorkOrder.Columns("DespatchStatus"), RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eDespatchStatus)))
   End Sub
 
   Private Sub RepbtnSelect_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepbtnSelect.ButtonClick
@@ -105,9 +105,7 @@ Public Class frmWorkOrderPickerMulti
     gvWorkOrder.CloseEditor()
   End Sub
 
-  Private Sub grdSalesOrder_Click(sender As Object, e As EventArgs) Handles grdWorkOrder.Click
 
-  End Sub
 
   Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvWorkOrder.CustomRowCellEdit
     Dim mRow As DataRow

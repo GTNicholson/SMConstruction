@@ -6,6 +6,7 @@
   Private pProductFurniture As dmProductFurniture
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
+  Private pOSQty As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -91,6 +92,15 @@
       pWorkOrder.PlannedStartDate = value
     End Set
   End Property
+  Public Property PlannedDeliverDate As Date
+    Get
+      Return pWorkOrder.PlannedDeliverDate
+    End Get
+    Set(ByVal value As Date)
+      pWorkOrder.PlannedDeliverDate = value
+    End Set
+  End Property
+
   Public Property ProjectName As String
     Get
       Return pSalesOrder.ProjectName
@@ -430,6 +440,15 @@
 
     End Get
 
+  End Property
+
+  Public Property OSQty As Decimal
+    Get
+      Return pOSQty
+    End Get
+    Set(value As Decimal)
+      pOSQty = value
+    End Set
   End Property
 
 

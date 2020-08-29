@@ -1,0 +1,7 @@
+insert into Tally (Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+VALUES(1,'OT INTERNA',1000,99999,1,0)
+GO
+
+insert into Tally (Tally,Description,StartingValue,EndingValue,increment,LoopBack)
+VALUES(1,'Orden de Compra',1000,99999,1,0)
+GO

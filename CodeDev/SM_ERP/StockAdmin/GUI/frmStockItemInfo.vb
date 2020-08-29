@@ -4,6 +4,7 @@ Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraEditors.Controls
+Imports System.ComponentModel
 
 Public Class frmStockItemInfo
 
@@ -246,8 +247,41 @@ Public Class frmStockItemInfo
         If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
           gvStockItemInfos.ExportToXlsx(mFileName)
         End If
+      Case "Reload"
+        pFormController.ClearObjects()
+        pFormController.LoadObjects()
 
+        grdStockItemInfos.DataSource = pFormController.StockItemInfos
+        LoadCombos()
+
+        RefreshControls()
     End Select
 
+  End Sub
+
+  Private Sub repoPopupPOAllocationItems_QueryPopUp(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles repoPopupPOAllocationItems.QueryPopUp
+    Dim mAllocations As New colPurchaseOrderItemAllocationInfo
+
+    Dim mStockItemID As Integer
+    Dim mSIP As clsStockItemInfo
+
+    mSIP = gvStockItemInfos.GetFocusedRow
+    mStockItemID = mSIP.StockItemID
+
+    pFormController.LoadPurchaseOrderItemAllocationInfos(mAllocations, mStockItemID)
+    grdPOItemInfo.DataSource = mAllocations
+  End Sub
+
+  Private Sub repoPopuMaterialRequirement_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repoPopuMaterialRequirement.QueryPopUp
+    Dim mMaterialRequirementInfos As New colMaterialRequirementInfos
+
+    Dim mStockItemID As Integer
+    Dim mSIP As clsStockItemInfo
+
+    mSIP = gvStockItemInfos.GetFocusedRow
+    mStockItemID = mSIP.StockItemID
+
+    pFormController.LoadMaterialRequirementInfos(mMaterialRequirementInfos, mStockItemID)
+    grdStockItemAllocations.DataSource = mMaterialRequirementInfos
   End Sub
 End Class

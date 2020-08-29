@@ -174,49 +174,16 @@ Public Class frmPickMaterials
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     Try
-
-
-      Dim mfrm As New frmIssueInventory
-
-      If mfrm.ShowDialog = DialogResult.OK Then
-        Dim mDate As Date = mfrm.SelectedDate
-        Dim mRequisaNo As Decimal = mfrm.ReferenceNo
-        Dim mNotes As String = mfrm.Notes
-        Dim mTransactionValuation As Decimal
-        Dim mCol As GridColumn = gvMaterialRequirementInfos.Columns.ColumnByName("gcStdCost")
-        Dim mIndex As Int32 = gvMaterialRequirementInfos.GetFocusedDataSourceRowIndex
-
-
-        If mCol Is Nothing Then
-          Return
-        End If
-        gvMaterialRequirementInfos.BeginSort()
-
-
-        mTransactionValuation = Convert.ToDecimal(gvMaterialRequirementInfos.GetRowCellValue(mIndex, mCol))
-
-        If mRequisaNo <> Decimal.Zero Then
-
-          gvMaterialRequirementInfos.CloseEditor()
-          gvMaterialRequirementInfos.UpdateCurrentRow()
-          pFormController.ProcessPicks(mRequisaNo.ToString, mDate, mNotes)
-          gvMaterialRequirementInfos.RefreshData()
-        Else
-          MessageBox.Show("Por favor, ingrese el número de referencia para esta salida de materiales", "Advertencia")
-        End If
-
-
-      End If
-      ''mReferenceNo = InputBox("Ingrese el número de Requisa", "Registro de Requis", 1)
-
+      gvMaterialRequirementInfos.CloseEditor()
+      gvMaterialRequirementInfos.UpdateCurrentRow()
+      pFormController.ProcessPicks()
+      gvMaterialRequirementInfos.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 
-    Finally
-      gvMaterialRequirementInfos.EndSort()
-
-
     End Try
+
+
 
   End Sub
 End Class

@@ -1,4 +1,5 @@
 ﻿
+Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 
@@ -28,7 +29,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.PurchasingGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Suppliers)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
-    mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. O.C.", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
+    '' mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. O.C.", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
 
 
     mLastGroup = mMenuList.AddNewGroup("Recursos Humanos", 0, eActivityCode.HumanResourcesGroup, True)
@@ -38,7 +39,9 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.InventoryGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.StockItem)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Picking de Insumos por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.PickingMatReq)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PickingMatReq)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Prod. por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.PickingMatReq)
+
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Stock Infos.", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.StockItemInfos)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.TransactionReport)
@@ -147,7 +150,18 @@ Class clsMenuFunctions
     frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
   End Sub
   Public Shared Sub PickingPurchaseOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmPickingPurchaseOrder.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+    Dim mfrm As RTIS.Elements.frmBrowseList
+    Dim mbrwInt As brwPODelivery
+
+    mbrwInt = New brwPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal, eBrowseList.Supplier)
+    mfrm = RTIS.Elements.frmBrowseList.GetFormIfLoaded(mbrwInt)
+
+    If mfrm Is Nothing Then
+      RTIS.Elements.frmBrowseList.OpenFormAsMDIChild(rParentForm, mbrwInt)
+    Else
+      mfrm.Focus()
+    End If
+
   End Sub
 
 

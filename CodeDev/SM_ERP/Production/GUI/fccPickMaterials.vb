@@ -65,9 +65,9 @@ Public Class fccPickMaterials
     Dim mdto As dtoWorkOrderInfo
     Dim mwhere As String
     mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-    mwhere += " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
+    mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
     '' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
-    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo))" '') este parentesis sirve"
+    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo))"
     Try
 
       pDBConn.Connect()
@@ -112,13 +112,13 @@ Public Class fccPickMaterials
 
   End Sub
 
-  Public Sub ProcessPicks(ByVal vReferenceNo As String, ByVal vDateEntered As Date, ByVal vNotes As String)
+  Public Sub ProcessPicks()
     Try
       Dim mdsoTran As dsoStockTransactions
       Dim mMatReq As dtoMaterialRequirement
 
       Dim mdsoStock As dsoStock
-      Dim mSIL As dmStockItemLocation
+      Dim mSIL As New dmStockItemLocation
 
       mdsoTran = New dsoStockTransactions(pDBConn)
 
@@ -131,7 +131,7 @@ Public Class fccPickMaterials
           Else
             mSIL = Nothing
           End If
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, vDateEntered, vReferenceNo, vNotes, mMRP.StockItem.StdCost * mMRP.ToProcessQty)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now)
           mMRP.ToProcessQty = 0
         End If
 

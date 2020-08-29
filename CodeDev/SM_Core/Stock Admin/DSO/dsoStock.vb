@@ -53,7 +53,7 @@ Public Class dsoStock
 
   End Function
 
-  Public Function LoadWoodMatReq(ByRef rWoodMatReq As colMaterialRequirementInfos, ByVal vWhere As String, ByVal vMode As dtoMaterialRequirementInfo.eMode) As Boolean
+  Public Function LoadWoodMaterialRequirementInfosByWhere(ByRef rWoodMatReq As colMaterialRequirementInfos, ByVal vWhere As String, ByVal vMode As dtoMaterialRequirementInfo.eMode) As Boolean
 
     Dim mRetVal As Boolean
     Dim mdto As dtoMaterialRequirementInfo
@@ -329,4 +329,27 @@ Public Class dsoStock
     Return mRetVal
   End Function
 
+  Public Function GetOrCreateStockItemLocationConnected(ByVal vStockItemID As Integer, vLocationID As Integer, ByVal vBatchID As Integer) As dmStockItemLocation
+    Dim mStockItemLocations As New colStockItemLocations
+    Dim mStockItemLocation As dmStockItemLocation = Nothing
+    Dim mdtoSILocation As New dtoStockItemLocation(pDBConn)
+    Dim mOK As Boolean
+
+    mOK = mdtoSILocation.LoadStockItemLocationCollectionByWhere(mStockItemLocations, "StockItemID =" & vStockItemID & " AND LocationID =" & vLocationID & " AND BatchID =" & vBatchID)
+
+
+    If mStockItemLocations.Count > 0 Then
+      mStockItemLocation = mStockItemLocations(0)
+    Else
+      mStockItemLocation = New dmStockItemLocation
+      mStockItemLocation.StockItemID = vStockItemID
+      mStockItemLocation.LocationID = vLocationID
+
+      ''mStockItemLocation.BatchID = vBatchID
+
+      mStockItemLocations.Add(mStockItemLocation)
+      mOK = mdtoSILocation.SaveStockItemLocationCollection(mStockItemLocations)
+    End If
+    Return mStockItemLocation
+  End Function
 End Class
