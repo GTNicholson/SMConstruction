@@ -234,8 +234,8 @@ Public Class dsoSales : Inherits dsoBase
       pDBConn.Connect()
       mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Invoice)
 
-      mSQLWhere1 = "InvoiceDate >= '" & mStartDate.ToShortDateString & "'"
-      mSQLWhere2 = "InvoiceDate <= '" & mEndDate.ToShortDateString & "'"
+      mSQLWhere1 = "InvoiceDate >= '" & mStartDate.ToString("yyyy/MM/dd") & "'"
+      mSQLWhere2 = "InvoiceDate <= '" & mEndDate.ToString("yyyy/MM/dd") & "'"
 
       mSQLWhere = mSQLWhere1
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
