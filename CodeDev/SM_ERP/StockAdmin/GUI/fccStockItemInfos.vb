@@ -115,7 +115,7 @@ Public Class fccStockItemInfos
         ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
         Select Case vTransactionType
           Case eTransactionType.Adjustment
-            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, "", 0)
+            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment)
           Case eTransactionType.Amendment
             mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment)
         End Select
@@ -139,6 +139,24 @@ Public Class fccStockItemInfos
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+
+  End Sub
+
+  Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rPOIAInfos As colPurchaseOrderItemAllocationInfo, ByVal vStockItemID As Integer)
+    Dim mdso As dsoPurchasing
+
+    mdso = New dsoPurchasing(pDBConn)
+    mdso.LoadPurchaseOrderItemAllocationInfos(rPOIAInfos, "StockItemID = " & vStockItemID)
+
+
+
+  End Sub
+
+  Public Sub LoadMaterialRequirementInfos(ByRef rMatReqInfos As colMaterialRequirementInfos, ByVal vStockItemID As Integer)
+    Dim mdso As dsoStock
+    Dim mWhere As String = "StockItemID = " & vStockItemID & " and OSQty<>0"
+    mdso = New dsoStock(pDBConn)
+    mdso.LoadWoodMaterialRequirementInfosByWhere(rMatReqInfos, mWhere, dtoMaterialRequirementInfo.eMode.Info)
 
   End Sub
 

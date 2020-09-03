@@ -1,0 +1,344 @@
+﻿Imports RTIS.CommonVB
+
+Public Class fccPurchaseOrderDelivery
+
+  Private pDBConn As RTIS.DataLayer.clsDBConnBase
+  Private pPurchaseOrderInfos As colPurchaseOrderInfos
+  Private pPOItemProcessors As colPurchaseOrderItemAllocationProcessor
+  Private pFormController As fccPurchaseOrderDelivery
+  Private pCurrentPurchaseOrderItemAllocationInfo As clsPurchaseOrderItemAllocationInfo
+  Private pPurchaseOrderInfo As clsPurchaseOrderInfo
+  Private pPODelivery As dmPODelivery
+  Private pPurchaseOrder As dmPurchaseOrder
+  Private pPrimaryKey As Integer
+  Private pPurchaseOrderID As Integer
+
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+    pDBConn = rDBConn
+    pPOItemProcessors = New colPurchaseOrderItemAllocationProcessor
+    pCurrentPurchaseOrderItemAllocationInfo = New clsPurchaseOrderItemAllocationInfo
+    pPurchaseOrderInfo = New clsPurchaseOrderInfo
+    pPurchaseOrderInfos = New colPurchaseOrderInfos
+    pPODelivery = New dmPODelivery
+    pPurchaseOrder = New dmPurchaseOrder
+  End Sub
+
+  Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
+    Get
+      DBConn = pDBConn
+    End Get
+    Set(ByVal value As RTIS.DataLayer.clsDBConnBase)
+      pDBConn = value
+    End Set
+  End Property
+
+  Public Property PurchaseOrderInfos() As colPurchaseOrderInfos
+    Get
+      Return pPurchaseOrderInfos
+    End Get
+    Set(ByVal value As colPurchaseOrderInfos)
+      pPurchaseOrderInfos = value
+    End Set
+  End Property
+  Public Property PurchaseOrder() As dmPurchaseOrder
+    Get
+      Return pPurchaseOrder
+    End Get
+    Set(value As dmPurchaseOrder)
+      pPurchaseOrder = value
+    End Set
+  End Property
+  Public Property PurchaseOrderInfo() As clsPurchaseOrderInfo
+    Get
+      Return pPurchaseOrderInfo
+    End Get
+    Set(ByVal value As clsPurchaseOrderInfo)
+      pPurchaseOrderInfo = value
+    End Set
+  End Property
+
+  Public Property PODelivery() As dmPODelivery
+    Get
+      Return pPODelivery
+    End Get
+    Set(ByVal value As dmPODelivery)
+      pPODelivery = value
+    End Set
+  End Property
+
+
+  Public Property PrimaryKey As Integer
+    Get
+      Return pPrimaryKey
+    End Get
+    Set(value As Integer)
+      pPrimaryKey = value
+    End Set
+  End Property
+
+  Public Property PurchaseOrderID As Integer
+    Get
+      Return pPurchaseOrderID
+    End Get
+    Set(value As Integer)
+      pPurchaseOrderID = value
+    End Set
+  End Property
+
+  Public Property CurrentPurchaseOrderItemAllocationInfo() As clsPurchaseOrderItemAllocationInfo
+    Get
+      CurrentPurchaseOrderItemAllocationInfo = pCurrentPurchaseOrderItemAllocationInfo
+    End Get
+    Set(ByVal value As clsPurchaseOrderItemAllocationInfo)
+      pCurrentPurchaseOrderItemAllocationInfo = value
+    End Set
+  End Property
+
+  Public Property PurchaseOrderProcessors() As colPurchaseOrderItemAllocationProcessor
+    Get
+      PurchaseOrderProcessors = pPOItemProcessors
+    End Get
+    Set(ByVal value As colPurchaseOrderItemAllocationProcessor)
+      pPOItemProcessors = value
+    End Set
+  End Property
+
+  Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rcolPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfo)
+
+
+    Dim mdto As dtoPurchaseOrderItemAllocationInfo
+    Dim mwhere As String = ""
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoPurchaseOrderItemAllocationInfo(DBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Info)
+      mdto.LoadPurchaseOrderItemAllocationProgressProcessorCollection(rcolPurchaseOrderItemAllocationInfo, mwhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+  End Sub
+
+  Public Sub LoadObjects()
+    Dim mDSO As dsoPurchasing
+
+    Try
+      If pPrimaryKey = 0 Then
+        pPurchaseOrderInfo = Nothing
+        pPODelivery = Nothing
+
+        If pPurchaseOrderID <> 0 Then
+          mDSO = New dsoPurchasing(pDBConn)
+          pPurchaseOrderInfo = New clsPurchaseOrderInfo
+          pPODelivery = New dmPODelivery
+          pPODelivery.PurchaseOrderID = pPurchaseOrderID
+          mDSO.LoadPurchaseOrderInfo(pPurchaseOrderInfo, pPODelivery.PurchaseOrderID)
+          '//LoadPurchaseOrderItemAllocationProcessorss
+          mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrder.PurchaseOrderID)
+
+          RefreshPOItemAllocationProcessorPODelItems()
+
+        End If
+
+      Else
+        mDSO = New dsoPurchasing(pDBConn)
+        pPODelivery = New dmPODelivery
+        mDSO.LoadPODeliveryDown(pPODelivery, pPrimaryKey)
+
+        pPurchaseOrderID = pPODelivery.PurchaseOrderID
+        mDSO.LoadPurchaseOrderInfo(pPurchaseOrderInfo, pPODelivery.PurchaseOrderID)
+        '//LoadPurchaseOrderItemAllocationProcessorss
+        mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrder.PurchaseOrderID)
+
+        RefreshPOItemAllocationProcessorPODelItems()
+
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+
+  Public Sub RefreshPOItemAllocationProcessorPODelItems()
+    '// hook up the podelivery items into the processors so that we can show and record "Qty This GRN"
+    For Each mPODelItem As dmPODeliveryItem In pPODelivery.PODeliveryItems
+      For Each mPOIP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
+        If mPODelItem.POItemAllocationID = mPOIP.PurchaseOrderItemAllocationID Then
+          mPOIP.PODeliveryItem = mPODelItem
+          Exit For
+        End If
+      Next
+    Next
+  End Sub
+
+  Public Function GetPurchaseOrderInfos() As colPurchaseOrderInfos
+    Dim mRetVal As colPurchaseOrderInfos = New colPurchaseOrderInfos
+    Dim mdso As dsoPurchasing
+    mdso = New dsoPurchasing(pDBConn)
+    mdso.LoadPurchaseOrderInfos(mRetVal, "")
+    Return mRetVal
+  End Function
+
+  Public Sub LoadPurchaseOrderItemAllocationProcessorss()
+    Dim mdso As dsoPurchasing
+    Try
+
+      If pPurchaseOrderInfo IsNot Nothing Then
+        mdso = New dsoPurchasing(pDBConn)
+        pPOItemProcessors.Clear()
+
+        mdso.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderInfo.PurchaseOrderID)
+
+        '// Load any deliveryitems into matechde purchaseorderitemprocessors
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Function IsDirty() As Boolean
+    Dim mIsDirty As Boolean = True
+    If Not PODelivery Is Nothing Then
+      mIsDirty = pPODelivery.IsAnyDirty
+    Else
+      mIsDirty = False
+    End If
+    Return mIsDirty
+  End Function
+
+  Public Function ValidateObject() As clsValidate
+    Dim mValidate As New clsValidate
+    mValidate.ValOk = True
+    If False Then '' Change to perform validation checks
+      mValidate.ValOk = False
+      mValidate.AddMsgLine("Check failed details")
+    End If
+    Return mValidate
+  End Function
+
+  Public Sub ProcessDeliveryQtys(ByVal vCreateTimberPack As Boolean)
+    Try
+      Dim mdsoTran As dsoStockTransactions
+      Dim mDeliveryItem As dmPODeliveryItem
+
+      Dim mdsoStock As dsoStock
+      Dim mSIL As dmStockItemLocation
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+
+      mdsoStock = New dsoStock(pDBConn)
+
+      For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
+        If mPOP.ToProcessQty <> 0 Then
+          If mPOP.StockItem.StockItemID <> 0 Then
+            mSIL = mdsoStock.GetOrCreateStockItemLocation(mPOP.StockItem.StockItemID, 1)
+          Else
+            mSIL = Nothing
+          End If
+          If mPOP.PODeliveryItem Is Nothing Then
+            mDeliveryItem = New dmPODeliveryItem
+            mDeliveryItem.PODeliveryID = pPODelivery.PODeliveryID
+            mDeliveryItem.POItemAllocationID = mPOP.PurchaseOrderItemAllocationID
+            pPODelivery.PODeliveryItems.Add(mDeliveryItem)
+            mPOP.PODeliveryItem = mDeliveryItem
+
+          End If
+          ''If vCreateTimberPack Then
+          ''  mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, True)
+
+          ''Else
+          mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False)
+          ''End If
+          mPOP.ToProcessQty = 0
+        End If
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub ProcessReplacementQtys()
+    Try
+      Dim mdsoTran As dsoStockTransactions
+      Dim mDeliveryItem As dmPODeliveryItem
+
+      Dim mdsoStock As dsoStock
+      Dim mSIL As dmStockItemLocation
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+
+      mdsoStock = New dsoStock(pDBConn)
+
+      For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
+        If mPOP.ToProcessQty <> 0 Then
+          If mPOP.StockItem.StockItemID <> 0 Then
+            mSIL = mdsoStock.GetOrCreateStockItemLocation(mPOP.StockItem.StockItemID, 1)
+          Else
+            mSIL = Nothing
+          End If
+          If mPOP.PODeliveryItem Is Nothing Then
+            mDeliveryItem = New dmPODeliveryItem
+            mDeliveryItem.PODeliveryID = pPODelivery.PODeliveryID
+            mDeliveryItem.POItemAllocationID = mPOP.PurchaseOrderItemAllocationID
+            pPODelivery.PODeliveryItems.Add(mDeliveryItem)
+            mPOP.PODeliveryItem = mDeliveryItem
+
+          End If
+          mdsoTran.UpdateDeliveryStockItemLocationQty(mSIL.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False)
+          mPOP.ToProcessQty = 0
+        End If
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Sub RaisePODelivery()
+    Dim mdso As dsoPurchasing
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+
+
+    pPODelivery = New dmPODelivery
+
+    pPODelivery.GRNumber = mdsoGeneral.getNextTally(eTallyIDs.GRNNumber)
+    If pPurchaseOrder IsNot Nothing Then
+      PODelivery.PurchaseOrderID = pPurchaseOrder.PurchaseOrderID
+    End If
+    mdso = New dsoPurchasing(pDBConn)
+    mdso.SavePODelivery(pPODelivery)
+  End Sub
+
+  Public Function SavePODelivery() As Boolean
+    Dim mdso As dsoPurchasing
+    Dim mOK As Boolean = False
+    Try
+      mdso = New dsoPurchasing(pDBConn)
+
+
+
+      mOK = mdso.SavePODelivery(pPODelivery)
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      mdso = Nothing
+    End Try
+    Return mOK
+  End Function
+
+End Class

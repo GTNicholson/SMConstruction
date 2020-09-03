@@ -189,10 +189,7 @@ Public Class frmWorkOrderDetail
     Dim mRetVal As Boolean
 
     UpdateObject()
-    If cboEmployee.EditValue = "" Then
-      MsgBox("Se debe de ingresar el dibujante en la OT")
-      Return False
-    End If
+
 
 
     If pFormController.IsDirty() Then
@@ -285,12 +282,12 @@ Public Class frmWorkOrderDetail
   End Sub
 
   Private Sub RefreshProductTabPages()
-    tabProductSpec.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
-    For mLoop = tabProductSpec.TabPages.Count - 1 To 0 Step -1
-      If tabProductSpec.TabPages(mLoop).Tag <> pFormController.WorkOrder.ProductTypeID Then
-        tabProductSpec.TabPages(mLoop).PageVisible = False
-      End If
-    Next
+    ''tabProductSpec.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
+    ''For mLoop = tabProductSpec.TabPages.Count - 1 To 0 Step -1
+    ''  If tabProductSpec.TabPages(mLoop).Tag <> pFormController.WorkOrder.ProductTypeID Then
+    ''    tabProductSpec.TabPages(mLoop).PageVisible = False
+    ''  End If
+    ''Next
   End Sub
 
   Private Sub RefreshControls()
@@ -325,13 +322,13 @@ Public Class frmWorkOrderDetail
       clsDEControlLoading.SetDECombo(cboEmployee, .EmployeeID)
 
 
-      ceMaquinado.Checked = .Machining
-      ceCostura.Checked = .Upholstery
-      ceEnsamble.Checked = .Assembley
-      ceLija.Checked = .Sanding
-      ceMetal.Checked = .MetalWork
-      ceSub.Checked = .SubContract
-      cePintura.Checked = .Painting
+      ''ceMaquinado.Checked = .Machining
+      ''ceCostura.Checked = .Upholstery
+      ''ceEnsamble.Checked = .Assembley
+      ''ceLija.Checked = .Sanding
+      ''ceMetal.Checked = .MetalWork
+      ''ceSub.Checked = .SubContract
+      ''cePintura.Checked = .Painting
 
       btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
 
@@ -421,13 +418,18 @@ Public Class frmWorkOrderDetail
 
       .WorkcentreID = getCheckValue()
 
-      .Machining = ceMaquinado.Checked
-      .Upholstery = ceCostura.Checked
-      .Assembley = ceEnsamble.Checked
-      .Sanding = ceLija.Checked
-      .MetalWork = ceMetal.Checked
-      .SubContract = ceSub.Checked
-      .Painting = cePintura.Checked
+      ''.Machining = ceMaquinado.Checked
+      ''.Upholstery = ceCostura.Checked
+      ''.Assembley = ceEnsamble.Checked
+      ''.Sanding = ceLija.Checked
+      ''.MetalWork = ceMetal.Checked
+      ''.SubContract = ceSub.Checked
+      ''.Painting = cePintura.Checked
+
+      If cboEmployee.EditValue = "" Then
+        '' MsgBox("Se debe de ingresar el dibujante en la OT")
+        ''.EmployeeID = clsRTISGlobal.
+      End If
 
     End With
     UpdateProductControls()
@@ -831,7 +833,7 @@ Public Class frmWorkOrderDetail
     mMatReq.PiecesPerComponent = 1
   End Sub
 
-  Private Sub grpWOFiles_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWOFiles.CustomButtonClick
+  Private Sub grpLabels_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpLabels.CustomButtonClick
 
     Dim mlabelDef As New SM_Core.clsLabelDefinition
     Dim mDso As New SM_Core.dsoLabelDefinition(My.Application.RTISUserSession.CreateMainDBConn())
@@ -1211,4 +1213,5 @@ Public Class frmWorkOrderDetail
     gvMaterialRequirementOthers.UpdateCurrentRow()
 
   End Sub
+
 End Class

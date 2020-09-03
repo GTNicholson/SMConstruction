@@ -11,6 +11,22 @@
       </property>
       <property name="Font">Arial, 8.25pt, style=Bold</property>
     </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">White</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
@@ -22,6 +38,8 @@
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowGroupPanel">false</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="EnableAppearanceEvenRow">true</property>
   </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
@@ -69,59 +87,56 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">107</property>
+      <property name="Width">197</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
       <property name="Caption">Tipo de Producto</property>
       <property name="FieldName">ProductTypeID</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">1</property>
-      <property name="Visible">true</property>
       <property name="Width">99</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
       <property name="Caption">Cantidad</property>
       <property name="FieldName">Quantity</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
+      <property name="Width">142</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
       <property name="Caption">Descripción</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">126</property>
+      <property name="Width">375</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="Caption">Fecha Plan</property>
       <property name="FieldName">PlannedStartDate</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">109</property>
+      <property name="Width">166</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
       <property name="Caption">Fecha de Entrega</property>
       <property name="FieldName">PlannedDeliverDate</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">115</property>
+      <property name="Width">146</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
       <property name="Caption">Tipo de OT</property>
       <property name="FieldName">WorkOrderType</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
-      <property name="Visible">true</property>
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="Width">215</property>
     </property>
   </property>

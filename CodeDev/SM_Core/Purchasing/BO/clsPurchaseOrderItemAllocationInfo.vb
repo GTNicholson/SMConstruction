@@ -4,33 +4,40 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Private pStockItem As dmStockItem
   Private pPurchaseOrderItemAllocation As dmPurchaseOrderItemAllocation
   Private pPurchaseOrderItem As dmPurchaseOrderItem
-  Private pPurchaseOrderInfo As clsPurchaseOrderInfo
-
+  Private pPurchaseOrder As dmPurchaseOrder
+  Private pCompanyName As String
+  Private pPONum As String
+  Private pRequiredDates As Date
+  Private pPurchaseOrderID As Int32
+  Private pWorkOrder As dmWorkOrder
   Public Sub New()
     MyBase.New()
     pStockItem = New dmStockItem
     pPurchaseOrderItem = New dmPurchaseOrderItem
     pPurchaseOrderItemAllocation = New dmPurchaseOrderItemAllocation
-    pPurchaseOrderInfo = New clsPurchaseOrderInfo
+    pPurchaseOrder = New dmPurchaseOrder
+    pWorkOrder = New dmWorkOrder
   End Sub
 
   Public Sub New(ByRef rPurchaseOrderItemAllocation As dmPurchaseOrderItemAllocation)
     pPurchaseOrderItemAllocation = rPurchaseOrderItemAllocation
     pPurchaseOrderItem = New dmPurchaseOrderItem
     pStockItem = New dmStockItem
-    pPurchaseOrderInfo = New clsPurchaseOrderInfo
+    pPurchaseOrder = New dmPurchaseOrder
+    pWorkOrder = New dmWorkOrder
+
   End Sub
 
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
   End Sub
 
-  Public Property PurchaseOrder() As clsPurchaseOrderInfo
+  Public Property PurchaseOrder() As dmPurchaseOrder
     Get
-      Return pPurchaseOrderInfo
+      Return pPurchaseOrder
     End Get
-    Set(ByVal value As clsPurchaseOrderInfo)
-      pPurchaseOrderInfo = value
+    Set(ByVal value As dmPurchaseOrder)
+      pPurchaseOrder = value
     End Set
   End Property
   Public Property StockItem() As dmStockItem
@@ -42,6 +49,22 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Set
   End Property
 
+  Public ReadOnly Property QtyOS As Decimal
+    Get
+      Return OutStandingQty
+    End Get
+  End Property
+
+  Public Property WorkOrder() As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+    Set(ByVal value As dmWorkOrder)
+      pWorkOrder = value
+    End Set
+  End Property
+
+
   Public Property PurchaseOrderItem() As dmPurchaseOrderItem
     Get
       Return pPurchaseOrderItem
@@ -51,14 +74,6 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Set
   End Property
 
-  Public Property PurchaseOrderInfo() As clsPurchaseOrderInfo
-    Get
-      Return pPurchaseOrderInfo
-    End Get
-    Set(ByVal value As clsPurchaseOrderInfo)
-      pPurchaseOrderInfo = value
-    End Set
-  End Property
 
   Public Property PurchaseOrderItemAllocation() As dmPurchaseOrderItemAllocation
     Get
@@ -84,12 +99,79 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
+  Public Property PONum() As String
+    Get
+      Return pPONum
+    End Get
+    Set(value As String)
+      pPONum = value
+    End Set
+
+  End Property
+
+  Public Property PurchaseOrderID() As Int32
+    Get
+      Return pPurchaseOrderID
+    End Get
+    Set(value As Int32)
+      pPurchaseOrderID = value
+    End Set
+
+  End Property
+
+  Public Property RequiredDate() As Date
+    Get
+      Return pRequiredDates
+    End Get
+    Set(value As Date)
+      pRequiredDates = value
+    End Set
+
+  End Property
+
+  Public ReadOnly Property ItemRef As String
+    Get
+      Return pPurchaseOrderItemAllocation.ItemRef
+    End Get
+  End Property
+
+
+  Public ReadOnly Property ReplacementQty As Decimal
+    Get
+      Return pPurchaseOrderItemAllocation.ReplacementQty
+    End Get
+  End Property
+
+
+  Public Property SUPPLIERCOMPANYNAME() As String
+    Get
+      Return pCompanyName
+    End Get
+    Set(value As String)
+      pCompanyName = value
+    End Set
+
+  End Property
+
+
   Public ReadOnly Property STOCKDESCRIPTION() As String
     Get
-      Return pStockItem.Description
+      If Not String.IsNullOrEmpty(pStockItem.Description) Then
+        Return pStockItem.Description
+      Else
+        Return pPurchaseOrderItem.Description
+      End If
     End Get
 
   End Property
+
+  Public ReadOnly Property StockCategory() As String
+    Get
+      Return pStockItem.Category
+    End Get
+
+  End Property
+
 
 
   Public ReadOnly Property PurchaseOrderItemAllocationID() As Integer
@@ -172,9 +254,42 @@ Public Class clsPurchaseOrderItemAllocationInfo
   End Property
 
 
+  Public ReadOnly Property OutStandingQty() As Decimal
+    Get
+      Return pPurchaseOrderItem.QtyRequired - pPurchaseOrderItemAllocation.ReceivedQty
+    End Get
+
+  End Property
+
+
+  Public ReadOnly Property SubmissionDate As Date
+    Get
+      Return pPurchaseOrder.SubmissionDate
+    End Get
+  End Property
+
+
+  Public ReadOnly Property WODESCRIPTION As String
+    Get
+      Return pWorkOrder.WorkOrderNo & ": " & pWorkOrder.Description
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderNo() As String
+    Get
+      Return pWorkOrder.WorkOrderNo
+    End Get
+
+  End Property
+
+  Public ReadOnly Property ReceivedValue() As Decimal
+    Get
+      Return UnitPrice * ReceivedQty
+    End Get
+
+  End Property
+
 End Class
-
-
 
 
 

@@ -11,6 +11,18 @@
       </property>
       <property name="Font">Arial, 8.25pt, style=Bold</property>
     </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+      </property>
+      <property name="BackColor">White</property>
+    </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
@@ -22,6 +34,8 @@
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowGroupPanel">false</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="EnableAppearanceEvenRow">true</property>
   </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
@@ -69,7 +83,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">123</property>
+      <property name="Width">228</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">gcSupplierStatusID</property>
@@ -87,7 +101,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">123</property>
+      <property name="Width">134</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcTelNo</property>
@@ -114,14 +128,16 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
+      <property name="Width">155</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
       <property name="Caption">Tipo de Compra</property>
       <property name="FieldName">PurchaseTermsType</property>
-      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
+      <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
+      <property name="Width">138</property>
     </property>
   </property>
   <property name="ViewCaption" />

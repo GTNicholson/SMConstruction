@@ -268,8 +268,6 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
         clsDEControlLoading.SetDECombo(cboSupplier, .DefaultSupplier)
-        chkcboActiveCondition.RefreshEditValue()
-        clsDEControlLoading.SetDECombo(cboHanding, .Handing)
         txtStdCost.EditValue = .StdCost
         txtImportCost.EditValue = .StdImportCost
         bteImage.Text = .ImageFile
@@ -365,7 +363,11 @@ Public Class frmStockItem
         .StdCost = txtStdCost.Text
         .StdImportCost = txtImportCost.Text
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
-        .CostQty = Val(txtStdCost.Text) / Val(spnQuantity.EditValue)
+        If Val(spnQuantity.EditValue) > 0 Then
+          .CostQty = Val(txtStdCost.Text) / Val(spnQuantity.EditValue)
+        Else
+          .CostQty = 0
+        End If
       End With
     End If
 
@@ -552,17 +554,9 @@ Public Class frmStockItem
     cboStockFinanceCategory.ReadOnly = vReadOnly
     cboSubitemType.ReadOnly = vReadOnly
     cboFinish.ReadOnly = vReadOnly
-    cboCNCOpPrimaryLeaf.ReadOnly = vReadOnly
-    cboCNCOpSecondaryLeaf.ReadOnly = vReadOnly
-    cboCNCOpHangingJamb.ReadOnly = vReadOnly
-    cboCNCOpClosingJamb.ReadOnly = vReadOnly
     txtImportCost.ReadOnly = vReadOnly
     txtStdCost.ReadOnly = vReadOnly
-    cboCNCOpHead.ReadOnly = vReadOnly
     chkIsGeneric.Enabled = Not vReadOnly
-    cboHanding.ReadOnly = vReadOnly
-    spnMinCutLength.ReadOnly = vReadOnly
-    spnMinCutWidth.ReadOnly = vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
     bteImage.Enabled = Not vReadOnly
     cboSupplier.Enabled = Not vReadOnly
@@ -579,11 +573,11 @@ Public Class frmStockItem
   Public Sub ShowHideDetails()
     If pFormController.CurrentStockItem IsNot Nothing Then
       If pFormController.CurrentStockItem.tmpIsFullyLoadedDown = True Then
-        tabExtraDetails.Visible = True
+
 
         ShowHideTabs()
       Else
-        tabExtraDetails.Visible = False
+
 
       End If
     End If
@@ -591,30 +585,7 @@ Public Class frmStockItem
 
 
   Private Sub ShowHideTabs()
-    Dim mCurrentTabPage As DevExpress.XtraTab.XtraTabPage
 
-    mCurrentTabPage = tabExtraDetails.SelectedTabPage
-
-    tabExtraDetails.Visible = False
-    For Each mPg As DevExpress.XtraTab.XtraTabPage In tabExtraDetails.TabPages
-      mPg.PageVisible = False
-    Next
-    If pFormController.CurrentStockItem IsNot Nothing Then
-      Select Case pFormController.CurrentStockItem.Category
-        Case eStockItemCategory.Herrajes
-          tabpgIMDetails.PageVisible = True
-          tabpgCNCOperations.PageVisible = True
-          tabExtraDetails.Visible = True
-          ''Case eStockItemCategory.DoorBlank
-          ''  tabpgDoorBlankDetails.PageVisible = True
-          ''  tabExtraDetails.Visible = True
-      End Select
-    End If
-    If mCurrentTabPage IsNot Nothing Then
-      If mCurrentTabPage.PageVisible = True Then
-        tabExtraDetails.SelectedTabPage = mCurrentTabPage
-      End If
-    End If
 
   End Sub
 
@@ -742,7 +713,7 @@ Public Class frmStockItem
         peImage.Refresh()
 
         If pFormController.CreateSIImageFile(mFileName) = False Then
-          MsgBox("¡No Funcionó!")
+
         End If
       End If
       RefreshControls()

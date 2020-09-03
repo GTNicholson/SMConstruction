@@ -90,7 +90,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     Try
 
       DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From PurchaseOrder")
+      mDataTable = Me.DBConn.CreateDataTable("Select * From vwPurchaseOrder")
 
       gridBrowseList.DataSource = mDataTable
 

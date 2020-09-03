@@ -37,8 +37,11 @@ Public Class repPurchaseOrder
 
   Private Sub SetUpDataBindings()
 
-    xrtSupplierCompanyName.DataBindings.Add("Text", pPurchaseOrder.Supplier, "CompanyName")
-
+    xrOrderDate.DataBindings.Add("Text", pPurchaseOrder.SubmissionDate, "SubmissionDate")
+    xrPurchaseOrderNo.DataBindings.Add("Text", pPurchaseOrder.PONum, "PONum")
+    xrRequiredDate.DataBindings.Add("Text", pPurchaseOrder.RequiredDate, "RequiredDate")
+    xrSupplierOrderRef.DataBindings.Add("Text", pPurchaseOrder.SupplierRef, "SupplierRef")
+    xrCarriage.DataBindings.Add("Text", pPurchaseOrder.Carriage, "Carriage")
 
   End Sub
   Private Sub repPurchaseOrder_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
@@ -53,7 +56,12 @@ Public Class repPurchaseOrder
     Dim mPOI As dmPurchaseOrderItem
 
     mPOI = Me.GetCurrentRow
-    xrtStockCode.Text = mPOI.Description
+    xrQuantity.Text = mPOI.QtyRequired
 
+    xrtcStockCode.Text = mPOI.SupplierCode
+    xrtcRefCodes.Text = mPOI.PartNo
+    xrDescription.Text = mPOI.Description
+    xrUnitPrice.Text = mPOI.UnitPrice
+    xrNetTotal.Text = mPOI.NetAmount
   End Sub
 End Class

@@ -39,7 +39,7 @@ Public Class dmStockItem : Inherits dmBase
 
   Private ptmpIsFullyLoadedDown As Boolean
   Private pOutputDocuments As colOutputDocuments
-
+  Private pLastUsedDate As DateTime
   Public Sub New()
     MyBase.New()
   End Sub
@@ -124,7 +124,7 @@ Public Class dmStockItem : Inherits dmBase
       .StdImportCost = StdImportCost
       .CostQty = CostQty
       .ImageFile = ImageFile
-
+      .LastUsedDate = LastUsedDate
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -138,6 +138,18 @@ Public Class dmStockItem : Inherits dmBase
   Public Function SIDefSpecEquals(vStockItemDef As intStockItemDef) As Boolean Implements intStockItemDef.SIDefSpecEquals
     Throw New NotImplementedException()
   End Function
+
+
+  Public Property LastUsedDate() As DateTime
+    Get
+      Return pLastUsedDate
+    End Get
+    Set(ByVal value As DateTime)
+      If pLastUsedDate <> value Then IsDirty = True
+      pLastUsedDate = value
+    End Set
+  End Property
+
 
   Public Property StockItemID() As Int32 Implements intStockItemDef.StockItemID
     Get

@@ -42,7 +42,7 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
       .PurchaseOrderAllocationID = PurchaseOrderAllocationID
       .PurchaseOrderID = PurchaseOrderID
       .CallOffID = CallOffID
-      .pWorkOrderID = WorkOrderID
+      .WorkOrderID = WorkOrderID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -139,13 +139,13 @@ Public Class colPurchaseOrderAllocations : Inherits colBase(Of dmPurchaseOrderAl
     MyBase.New(vList)
   End Sub
 
-  Public Function IndexFromWorkOrderID(ByVal vCallOffID As Integer) As Integer
+  Public Function IndexFromWorkOrderID(ByVal vWorkOrderID As Integer) As Integer
     Dim mItem As dmPurchaseOrderAllocation
     Dim mIndex As Integer = -1
     Dim mCount As Integer = -1
     For Each mItem In MyBase.Items
       mCount += 1
-      If mItem.CallOffID = vCallOffID Then
+      If mItem.WorkOrderID = vWorkOrderID Then
         mIndex = mCount
         Exit For
       End If

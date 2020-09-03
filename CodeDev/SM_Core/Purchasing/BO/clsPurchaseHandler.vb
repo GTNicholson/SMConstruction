@@ -1,43 +1,7 @@
 ﻿Public Class clsPurchaseHandler
 
 
-  Public Function CreateSOPMatReqCatDefaultPO(ByVal vSalesOrderPhaseID As Integer, ByVal vSupplierID As Integer, ByVal vCategory As ePurchaseCategories) As dmPurchaseOrder
-    Dim mPurchaseOrder As New dmPurchaseOrder
-    Dim mPOItem As dmPurchaseOrderItem
-    Dim mPOItemAllocation As dmPurchaseOrderItemAllocation
 
-    mPurchaseOrder.SupplierID = vSupplierID
-    mPurchaseOrder.Category = vCategory
-
-    mPOItem = New dmPurchaseOrderItem
-    mPurchaseOrder.PurchaseOrderItems.Add(mPOItem)
-
-
-    mPOItemAllocation = New dmPurchaseOrderItemAllocation
-    mPOItemAllocation.Quantity = 1
-    mPOItemAllocation.CallOffID = vSalesOrderPhaseID
-    mPOItem.PurchaseOrderItemAllocations.Add(mPOItemAllocation)
-
-    Return mPurchaseOrder
-  End Function
-
-  Public Sub AddMatReqCatToPO(ByRef rPurchaseOrder As dmPurchaseOrder, ByVal vSalesOrderPhaseID As Integer)
-
-    Dim mPOItem As dmPurchaseOrderItem
-    Dim mPOItemAllocation As dmPurchaseOrderItemAllocation
-
-
-    mPOItem = New dmPurchaseOrderItem
-    rPurchaseOrder.PurchaseOrderItems.Add(mPOItem)
-
-
-    mPOItemAllocation = New dmPurchaseOrderItemAllocation
-    mPOItemAllocation.Quantity = 1
-    mPOItemAllocation.CallOffID = vSalesOrderPhaseID
-    mPOItem.PurchaseOrderItemAllocations.Add(mPOItemAllocation)
-
-
-  End Sub
 
   Public Shared Function AddPOItem(ByRef rPurchaseOrder As dmPurchaseOrder) As dmPurchaseOrderItem
     Dim mRetVal As New dmPurchaseOrderItem

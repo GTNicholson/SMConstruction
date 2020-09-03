@@ -78,7 +78,7 @@ Public Class dsoBIWoodMatReqInfo
       mSQLWhere = mSQLWhere & "PlannedStartDate Is Not Null"
 
 
-      mDso.LoadWoodMatReq(pWoodMatReq, mSQLWhere, dtoMaterialRequirementInfo.eMode.WoodMat)
+      mDso.LoadWoodMaterialRequirementInfosByWhere(pWoodMatReq, mSQLWhere, dtoMaterialRequirementInfo.eMode.WoodMat)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

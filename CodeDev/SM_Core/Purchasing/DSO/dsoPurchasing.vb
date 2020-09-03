@@ -159,6 +159,108 @@ Public Class dsoPurchasing
     Return mOK
   End Function
 
+  Public Function LoadPODeliveryDT(ByRef rTable As DataTable) As Boolean
+    Dim mOK As Boolean
+    Dim mDataTable As New DataTable
+    Dim mSQL As String
+    Try
+
+      mSQL = "Select * from vwPODeliveryInfo order by DateCreated desc"
+      If pDBConn.Connect() Then
+        mDataTable = pDBConn.CreateDataTable(mSQL)
+        If mDataTable Is Nothing Then
+          mOK = False
+        Else
+          mOK = True
+        End If
+
+      Else
+        mOK = False
+      End If
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    rTable = mDataTable
+    Return mOK
+  End Function
+  Public Function LoadPODeliveryDown(ByRef rPODelivery As dmPODelivery, ByVal vPrimaryKey As Int32) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoPODelivery
+    Dim mdtoItems As dtoPODeliveryItem
+
+    Try
+      pDBConn.Connect()
+      mdto = New dtoPODelivery(pDBConn)
+      mdto.LoadPODelivery(rPODelivery, vPrimaryKey)
+      mdtoItems = New dtoPODeliveryItem(pDBConn)
+      mdtoItems.LoadPODeliveryItemCollection(rPODelivery.PODeliveryItems, rPODelivery.PODeliveryID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Sub LoadPurchaseOrderItemAllocationProcessorss(ByRef rPOItemAllocationProcessors As colPurchaseOrderItemAllocationProcessor, ByVal vPurchaseOrderID As Integer)
+
+    Dim mdto As dtoPurchaseOrderItemAllocationInfo
+    Dim mWhere As String
+
+    Try
+      mdto = New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Processor)
+
+      pDBConn.Connect()
+
+      mWhere = "PurchaseOrderID = " & vPurchaseOrderID
+      mdto.LoadPurchaseOrderItemAllocationProcessorsByWhere(rPOItemAllocationProcessors, mWhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
+
+  Public Function LoadPurchaseOrderInfo(ByRef rvwPurchaseOrder As clsPurchaseOrderInfo, ByVal vPurchaseOrderID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoPurchaseOrderInfo
+
+    Try
+      pDBConn.Connect()
+      mdto = New dtoPurchaseOrderInfo(pDBConn)
+      mdto.LoadPurchaseOrderInfo(rvwPurchaseOrder, vPurchaseOrderID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rPOIA As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String) As Boolean
+    Dim mdto As New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Info)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = mdto.LoadPurchaseOrderItemAllocationProgressProcessorCollection(rPOIA, vWhere)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 
   Public Sub DeletePuchaseOrder(ByRef rPurchaseOrder As dmPurchaseOrder)
     Try
@@ -172,40 +274,7 @@ Public Class dsoPurchasing
   End Sub
 
 
-  Public Function LoadSOPPurchaseOrdersByForProcessing(ByRef rPurchaseOrders As colPurchaseOrders) As Boolean
-    Dim mRetVal As Boolean
-    Dim mdto As dtoPurchaseOrder
-    Dim mSQL As String
-    Dim mdtoPOItem As New dtoPurchaseOrderItem(pDBConn)
-    Dim mdtOPOItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
-    Try
-      mdto = New dtoPurchaseOrder(pDBConn)
 
-      pDBConn.Connect()
-
-      mSQL = "PurchaseOrderID In (Select Distinct PO.PurchaseOrderID"
-      mSQL = mSQL & " From PurchaseOrder PO"
-      mSQL = mSQL & " Inner Join PurchaseOrderItem POI on POI.PurchaseOrderID = PO.PurchaseOrderID"
-      mSQL = mSQL & " Inner Join PurchaseOrderItemAllocation POIA on POIA.PurchaseOrderItemID = POI.PurchaseOrderItemID"
-      mSQL = mSQL & " Where POIA.CallOffID IN (SELECT ProductionBatchID FROM ProductionBatch WHERE Status <> 4) "
-      mSQL = mSQL & ")"
-
-      mdto.LoadPurchaseOrderCollection(rPurchaseOrders, mSQL)
-      For Each mPO As dmPurchaseOrder In rPurchaseOrders
-        mdtoPOItem.LoadPurchaseOrderItemCollection(mPO.PurchaseOrderItems, mPO.PurchaseOrderID)
-        For Each mPOItem As dmPurchaseOrderItem In mPO.PurchaseOrderItems
-          mdtOPOItemAllocation.LoadPurchaseOrderItemAllocationCollection(mPOItem.PurchaseOrderItemAllocations, mPOItem.PurchaseOrderItemID)
-        Next
-      Next
-      mRetVal = True
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-
-    Return mRetVal
-  End Function
 
   Public Function SaveSupplierDown(ByRef rSupplier As dmSupplier) As Boolean
     Dim mRetVal As Boolean
@@ -231,7 +300,31 @@ Public Class dsoPurchasing
     Return mRetVal
   End Function
 
+  Public Function SavePODelivery(ByRef rPODelivery As dmPODelivery) As Boolean
+    Dim mdto As dtoPODelivery
+    Dim mdtoItems As dtoPODeliveryItem
+    Dim mOK As Boolean
 
+    Try
+      pDBConn.Connect()
+
+      mdto = New dtoPODelivery(pDBConn)
+      ''rPODelivery.MKReference = ""
+      rPODelivery.DateCreated = Now
+      mOK = mdto.SavePODelivery(rPODelivery)
+
+      mdtoItems = New dtoPODeliveryItem(pDBConn)
+      mdtoItems.SavePODeliveryItemCollection(rPODelivery.PODeliveryItems, rPODelivery.PODeliveryID)
+
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 
   Public Function LoadPurchaseOrder(ByRef rPurchaseOrder As dmPurchaseOrder, ByVal vPurchaseOrderID As Integer) As Boolean
     Dim mdtoPurchaseOrder As New dtoPurchaseOrder(pDBConn)

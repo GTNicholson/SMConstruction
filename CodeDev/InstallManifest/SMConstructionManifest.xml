@@ -511,4 +511,28 @@
   <AuxFiles>
     <Filename>BIInvoiceChart.xml</Filename>
   </AuxFiles>
+  <AuxFiles>
+    <Filename>BITimeSheetEmpTSTypeSummary.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BITimeSheetByDescription.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIWoodMatReqList.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIWoodMatReqSummary.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIStockTransactionItemByCategoryAndCustomerSummary.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BICompanyDayList.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BICompanyDaySummary.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BICompanyDayCostsChart.xml</Filename>
+  </AuxFiles>
 </AppUpdateManifest>

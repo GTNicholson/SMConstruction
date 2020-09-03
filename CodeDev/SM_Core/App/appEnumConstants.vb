@@ -1,5 +1,6 @@
 Imports System.ComponentModel
 Imports RTIS.ERPCore
+Imports RTIS.CommonVB
 
 Public Enum eActivityCode
   Undefined = 0            'RTIS Project Start Standard
@@ -51,14 +52,32 @@ Public Enum eMode
   StockItemProcessor = 3
 End Enum
 
+Public Enum eCOCType
+  <Description("None")> None = 0
+  <Description("FSC")> FSC = 1
+  <Description("PEFC")> PEFC = 2
+  <Description("Sin Certificado")> Uncertified = 3
+End Enum
+
+Public Enum ePurchaseOrderDueDateStatus
+  <Description("Ninguna")> None = 0
+  <Description("Estimado")> Estimated = 1
+  <Description("Confirmado")> Confirmed = 2
+  <Description("Revisado")> Revised = 3
+  <Description("Recibido")> Received = 4
+  <Description("Entrega Parcial")> PartDelivered = 5
+  <Description("Cancelado")> Cancelled = 6
+
+End Enum
 
 Public Enum ePurchaseCategories
   <Description("Ninguna")> None = 0
-  <Description("Compra de Madera")> Madera = 1
-  <Description("Compra de Insumos Producción")> InsumosProduccion = 2
-  <Description("Compra de Consumible Producción")> ConsumibleProduccion = 3
+  <Description("Madera")> Madera = 1
+  <Description("Insumos Producción")> InsumosProduccion = 2
+  <Description("Consumible Producción")> ConsumibleProduccion = 3
   <Description("Compra Administrativa")> CompraAdmon = 4
   <Description("Compra de Ingeniería")> CompraIngenieria = 5
+  <Description("Mantenimiento")> Mantenimiento = 6
   <Description("Otras")> Otro = 8
 End Enum
 
@@ -178,7 +197,8 @@ End Enum
 Public Enum eTallyIDs
   WorkOrder = 1
   InternalWorkOrder = 2
-  PurchaseOrderNo = 8
+  PurchaseOrderNo = 3
+  GRNNumber = 1002
 End Enum
 
 Public Enum eWorkCentre
@@ -217,6 +237,8 @@ Public Enum eOrderType
 
 
 End Enum
+
+
 
 Public Enum eStockItemCategory
   <Description("Ninguno")> None = 0
@@ -296,7 +318,7 @@ Public Enum eIVAType
   NoAplica = 2
 End Enum
 
-Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of clsTimeSheetCode)
+Public Class colTimeSheetCodes : Inherits RTIS.CommonVB.colPropertyENUMOfT(Of clsTimeSheetCode)
   Private Shared sTimeSheetCodes As colTimeSheetCodes
 
   Private Sub New()
@@ -338,7 +360,7 @@ Public Class colTimeSheetCodes : Inherits RTIS.ERPCore.colPropertyENUMOfT(Of cls
 
 End Class
 
-Public Class clsTimeSheetCode : Inherits RTIS.ERPCore.clsPropertyENUM
+Public Class clsTimeSheetCode : Inherits RTIS.CommonVB.clsPropertyENUM
   Private pKeyCode As String
   Private pColour As System.Drawing.Color
 

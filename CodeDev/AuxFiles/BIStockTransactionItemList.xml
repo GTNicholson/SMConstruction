@@ -11,6 +11,22 @@
       </property>
       <property name="Font">Arial, 8.25pt, style=Bold</property>
     </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">White</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
@@ -25,6 +41,8 @@
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowFooter">true</property>
     <property name="ShowGroupPanel">false</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="EnableAppearanceEvenRow">true</property>
   </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
@@ -58,6 +76,9 @@
   <property name="Columns" iskey="true" value="26">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">colCurrentStockItem</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="FieldName">CurrentStockItem</property>
       <property name="ColumnEditName" />
     </property>
@@ -86,11 +107,17 @@
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">colStockItemTransactionLogID</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="FieldName">StockItemTransactionLogID</property>
       <property name="ColumnEditName" />
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">colTransQuantity</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Cant. Transf.</property>
       <property name="FieldName">TransQuantity</property>
       <property name="ColumnEditName" />
@@ -104,6 +131,9 @@
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Valor Prev.</property>
       <property name="FieldName">PrevValue</property>
       <property name="ColumnEditName" />
@@ -115,6 +145,9 @@
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Nuevo Valor</property>
       <property name="FieldName">NewValue</property>
       <property name="ColumnEditName" />
@@ -126,6 +159,9 @@
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">colRefInfo1</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Ref. 1</property>
       <property name="FieldName">RefInfo1</property>
       <property name="ColumnEditName" />
@@ -135,6 +171,9 @@
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">colRefInfo2</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Ref. 2</property>
       <property name="FieldName">RefInfo2</property>
       <property name="ColumnEditName" />
@@ -144,11 +183,17 @@
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">colGRNumber</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="FieldName">GRNumber</property>
       <property name="ColumnEditName" />
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">colTransType</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Tipo de Transf.</property>
       <property name="FieldName">TransType</property>
       <property name="ColumnEditName" />
@@ -158,6 +203,9 @@
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">colTransDate</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Fecha</property>
       <property name="FieldName">TransDate</property>
       <property name="ColumnEditName" />
@@ -167,11 +215,17 @@
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">colIsManagedStock</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="FieldName">IsManagedStock</property>
       <property name="ColumnEditName" />
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Time</property>
       <property name="FieldName">TransTime</property>
       <property name="ColumnEditName" />
@@ -183,6 +237,9 @@
     </property>
     <property name="Item15" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Ref. 3</property>
       <property name="FieldName">RefInfo3</property>
       <property name="ColumnEditName" />
@@ -191,6 +248,9 @@
     </property>
     <property name="Item16" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Cambio Cant.</property>
       <property name="FieldName">StockQtyChange</property>
       <property name="ColumnEditName" />
@@ -202,6 +262,9 @@
     </property>
     <property name="Item17" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">User</property>
       <property name="FieldName">UserName</property>
       <property name="ColumnEditName" />
@@ -209,6 +272,9 @@
     </property>
     <property name="Item18" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Barcode</property>
       <property name="FieldName">Barcode</property>
       <property name="ColumnEditName" />
@@ -220,6 +286,9 @@
     </property>
     <property name="Item19" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Valor Transf.</property>
       <property name="FieldName">TransactionValuation</property>
       <property name="ColumnEditName" />
@@ -231,6 +300,9 @@
     </property>
     <property name="Item20" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Stock Valuation</property>
       <property name="FieldName">StockValuation</property>
       <property name="ColumnEditName" />
@@ -246,6 +318,9 @@
     </property>
     <property name="Item21" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Sales Order No</property>
       <property name="FieldName">SalesOrderNo</property>
       <property name="ColumnEditName" />
@@ -253,6 +328,9 @@
     </property>
     <property name="Item22" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Internal Order No</property>
       <property name="FieldName">InternalOrderNo</property>
       <property name="ColumnEditName" />
@@ -260,6 +338,9 @@
     </property>
     <property name="Item23" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Costo</property>
       <property name="FieldName">StdCost</property>
       <property name="ColumnEditName" />
@@ -273,6 +354,9 @@
     </property>
     <property name="Item24" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Valor Total</property>
       <property name="FieldName">TotalValue</property>
       <property name="ColumnEditName" />
@@ -294,6 +378,9 @@
     </property>
     <property name="Item25" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Requisa</property>
       <property name="FieldName">ReferenceNo</property>
       <property name="ColumnEditName" />
@@ -303,6 +390,9 @@
     </property>
     <property name="Item26" isnull="true" iskey="true">
       <property name="Name">GridColumn15</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Descrip. OT</property>
       <property name="FieldName">WODESCRIPTION</property>
       <property name="ColumnEditName" />

@@ -36,7 +36,8 @@ Public Class fccWorkOrderPicker
     End Set
   End Property
 
-  Public Function LoadWorkOrder() As DataTable
+
+  Public Function LoadWorkOrderDT() As DataTable
     Dim mdso As New dsoSales(DBConn)
     Dim mDT As DataTable = Nothing
     mdso.LoadWorkOrderDT(mDT, pWhereSQL)

@@ -97,7 +97,7 @@ Public Class fccStockItemPurchasing
 
       pWoodMatReqs.Clear()
 
-      mdsoStock.LoadWoodMatReq(pWoodMatReqs, mWhere, dtoMaterialRequirementInfo.eMode.WoodMat)
+      mdsoStock.LoadWoodMaterialRequirementInfosByWhere(pWoodMatReqs, mWhere, dtoMaterialRequirementInfo.eMode.WoodMat)
 
 
     Catch ex As Exception

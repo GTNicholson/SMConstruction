@@ -11,6 +11,22 @@
       </property>
       <property name="Font">Arial, 8.25pt, style=Bold</property>
     </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">White</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
@@ -22,6 +38,8 @@
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowGroupPanel">false</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="EnableAppearanceEvenRow">true</property>
   </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
@@ -69,24 +87,25 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">107</property>
+      <property name="Width">187</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
       <property name="Caption">Cantidad</property>
       <property name="FieldName">Quantity</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="ColumnEditName">repitDateDefault</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
+      <property name="Width">90</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
       <property name="Caption">Descripción</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">126</property>
+      <property name="Width">245</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
@@ -95,7 +114,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">109</property>
+      <property name="Width">86</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
@@ -104,7 +123,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">115</property>
+      <property name="Width">90</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
@@ -113,6 +132,7 @@
       <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
+      <property name="Width">122</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
@@ -121,6 +141,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
+      <property name="Width">265</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
@@ -129,6 +150,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
+      <property name="Width">274</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
@@ -137,6 +159,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
+      <property name="Width">102</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>

@@ -144,8 +144,16 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
     Return mOK
   End Function
 
-
-
-
+  Public Function LoadPurchaseOrderInfo(ByRef rvwPurchaseOrder As clsPurchaseOrderInfo, ByVal vPurchaseOrderID As Integer) As Boolean
+    Dim mOK As Boolean
+    mOK = LoadObject(vPurchaseOrderID)
+    If mOK Then
+      rvwPurchaseOrder = pPurchaseOrderInfo
+    Else
+      rvwPurchaseOrder = Nothing
+    End If
+    pPurchaseOrderInfo = Nothing
+    Return mOK
+  End Function
 End Class
 

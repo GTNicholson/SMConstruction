@@ -13,7 +13,10 @@ Public Class dsoSales : Inherits dsoBase
     Dim mOK As Boolean
     Try
       pDBConn.Connect()
-      mSQL = " select * from workorder"
+      mSQL = " select * from vwWorkOrderTracking"
+      mSQL &= " where WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+      mSQL &= " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo) or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
+
 
       If vWhereStr.Length > 0 Then
         mSQL = mSQL & vWhereStr
@@ -713,6 +716,35 @@ Public Class dsoSales : Inherits dsoBase
     End If
 
   End Sub
+
+  Friend Sub SynchroniseWOMatReqPickedConnected(ByVal vStockItemID As Integer, ByVal vProductID As Integer)
+    Dim mSQL As String
+    Dim mSQLUpdate As String
+    Dim mPickedQty As Decimal
+
+    mSQL = "Select SUM(PickedQty) as PickedQty"
+    mSQL = mSQL & " from MaterialRequirement MR"
+    mSQL = mSQL & " Inner Join WorkOrder WO on WO.ProductID = MR.ObjectID"
+    mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And ProductID = " & vProductID
+    mSQL = mSQL & " Group By StockItemID, WorkOrderID"
+
+    mPickedQty = pDBConn.ExecuteScalar(mSQL)
+
+    mSQLUpdate = "Update MaterialRequirement Set PickedQty = " & mPickedQty
+    mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vProductID
+
+    pDBConn.ExecuteNonQuery(mSQLUpdate)
+  End Sub
+
+  Public Function GetProductIDIByObjectIDConnected(ByVal vObjectID As Integer) As Integer
+    Dim mSQL As String
+    Dim mRetVal As Integer
+
+    mSQL = String.Format("Select ProductID from WorkOrder Where ProductID = {0}", vObjectID)
+    mRetVal = pDBConn.ExecuteScalar(mSQL)
+
+    Return mRetVal
+  End Function
 
   Public Function WorkOrderNoFromID(ByVal vID As Integer) As String
     Dim mRetVal As String = ""
