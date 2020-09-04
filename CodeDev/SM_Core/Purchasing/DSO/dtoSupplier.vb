@@ -98,6 +98,7 @@ Public Class dtoSupplier : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainTown", StringToDBValue(.MainTown))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCounty", StringToDBValue(.MainCounty))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCountry", StringToDBValue(.MainCountry))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
     End With
 
   End Sub
@@ -142,6 +143,8 @@ Public Class dtoSupplier : Inherits dtoBase
         .MainTown = DBReadString(rDataReader, "MainTown")
         .MainCounty = DBReadString(rDataReader, "MainCounty")
         .MainCountry = DBReadString(rDataReader, "MainCountry")
+        .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+
         pSupplier.IsDirty = False
       End With
       mOK = True

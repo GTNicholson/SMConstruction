@@ -5,6 +5,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Private pPurchaseOrderItemID As Int32
   Private pPurchaseOrderID As Int32
   Private pStockItemID As Int32
+  Private pStockCode As String
   Private pStatus As Byte
   Private pDescription As String
   Private pPartNo As String
@@ -27,7 +28,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Private pAverageInvoicePrice As Decimal
   Private pDensity As Decimal
   Private pPickedQty As Decimal
-
+  Private pReplacementQty As Decimal
+  Private pQtyReceived As Decimal
   Private pPurchaseOrderItemAllocations As colPurchaseOrderItemAllocations
   Private pParent As dmPurchaseOrder
   Public Sub New()
@@ -79,6 +81,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       .PurchaseOrderItemID = PurchaseOrderItemID
       .PurchaseOrderID = PurchaseOrderID
       .StockItemID = StockItemID
+      .StockCode = StockCode
       .Status = Status
       .Description = Description
       .PartNo = PartNo
@@ -99,6 +102,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       .VatValue = VatValue
       .AverageInvoicePrice = AverageInvoicePrice
       .Density = Density
+      .ReplacementQty = ReplacementQty
       'Add entries here for each collection and class property
       .PurchaseOrderItemAllocations = PurchaseOrderItemAllocations.Clone
       .PickedQty = PickedQty
@@ -148,6 +152,16 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     Set(ByVal value As Int32)
       If pStockItemID <> value Then IsDirty = True
       pStockItemID = value
+    End Set
+  End Property
+
+  Public Property StockCode() As String
+    Get
+      Return pStockCode
+    End Get
+    Set(ByVal value As String)
+      If pStockCode <> value Then IsDirty = True
+      pStockCode = value
     End Set
   End Property
 
@@ -271,6 +285,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     End Set
   End Property
 
+
+
   Public Property QtyRequired() As Decimal
     Get
       Return pQtyRequired
@@ -376,7 +392,15 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property ReplacementQty() As Decimal
+    Get
+      Return pReplacementQty
+    End Get
+    Set(ByVal value As Decimal)
+      If pReplacementQty <> value Then IsDirty = True
+      pReplacementQty = value
+    End Set
+  End Property
 
   Public ReadOnly Property NetAmount As Decimal
     Get
@@ -424,7 +448,21 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     End Set
   End Property
 
+  Public Property TotalQuantityAllocatedReceived As Decimal
+    Get
+      Return pPurchaseOrderItemAllocations.TotalQuantityAllocatedReceived
+    End Get
+    Set(value As Decimal)
 
+      pQtyRequired = pPurchaseOrderItemAllocations.TotalQuantityAllocatedReceived
+    End Set
+  End Property
+
+  Public ReadOnly Property TotalValueReceived As Decimal
+    Get
+      Return pUnitPrice * TotalQuantityAllocatedReceived
+    End Get
+  End Property
 
 End Class
 

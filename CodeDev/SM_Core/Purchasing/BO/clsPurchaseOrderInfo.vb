@@ -4,6 +4,9 @@
   Private pPOItemInfos As colPOItemInfos
   Private pPOItem As dmPurchaseOrderItem
   Private pStockItem As dmStockItem
+  Private pBuyerName As String
+  Private pSupplierContactName As String
+
   Public Sub New()
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
@@ -15,6 +18,25 @@
     pPOItem = New dmPurchaseOrderItem
 
   End Sub
+
+  Public Property BuyerName As String
+    Get
+      Return pBuyerName
+    End Get
+    Set(value As String)
+      pBuyerName = value
+    End Set
+  End Property
+
+  Public Property SupplierContactName As String
+    Get
+      Return pSupplierContactName
+    End Get
+    Set(value As String)
+      pSupplierContactName = value
+    End Set
+  End Property
+
 
   Public ReadOnly Property PurchaseOrderItem As dmPurchaseOrderItem
     Get
@@ -65,13 +87,6 @@
     End Set
   End Property
 
-  Public ReadOnly Property SupplierContactName() As String
-    Get
-      Return pPurchaseOrder.SupplierContactName
-    End Get
-
-  End Property
-
   Public ReadOnly Property SupplierContactTel() As String
     Get
       Return pPurchaseOrder.SupplierContactTel
@@ -86,10 +101,13 @@
 
   End Property
 
-  Public ReadOnly Property SubmissionDate() As DateTime
+  Public Property SubmissionDate() As DateTime
     Get
       Return pPurchaseOrder.SubmissionDate
     End Get
+    Set(value As DateTime)
+      pPurchaseOrder.SubmissionDate = value
+    End Set
   End Property
 
   Public ReadOnly Property Status() As Byte
@@ -146,10 +164,13 @@
     End Get
   End Property
 
-  Public ReadOnly Property RequiredDate() As DateTime
+  Public Property RequiredDate() As DateTime
     Get
       Return pPurchaseOrder.RequiredDate
     End Get
+    Set(value As DateTime)
+      pPurchaseOrder.RequiredDate = value
+    End Set
   End Property
 
   Public ReadOnly Property PurchaseCategory() As Byte
@@ -182,16 +203,25 @@
     End Get
   End Property
 
+
+  Public ReadOnly Property PaymentStatus As Integer
+    Get
+      Return pPurchaseOrder.PaymentStatus
+    End Get
+  End Property
   Public ReadOnly Property DeliveryAddress As String
     Get
       Return pPurchaseOrder.DeliveryAddress.FullAddress(vbCrLf)
     End Get
   End Property
 
-  Public ReadOnly Property CompanyName() As String
+  Public Property CompanyName() As String
     Get
       Return pPurchaseOrder.Supplier.CompanyName
     End Get
+    Set(value As String)
+      pPurchaseOrder.Supplier.CompanyName = value
+    End Set
   End Property
 
   Public ReadOnly Property TotalVAT As Decimal
@@ -227,45 +257,20 @@
     End Get
   End Property
 
-
-
-
-
-  Public Property StockItemCode As String
+  Public ReadOnly Property AnyCoC As Boolean
     Get
-      Return pStockItem.StockCode
+      Dim mRetVal As Boolean = False
+      For Each mPOItem As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
+        If mPOItem.CoCType <> eCOCType.None And mPOItem.CoCType <> eCOCType.Uncertified Then
+          mRetVal = True
+          Exit For
+        End If
+      Next
+      Return mRetVal
     End Get
-    Set(value As String)
-      pStockItem.StockCode = value
-    End Set
   End Property
 
 
-  Public Property STOCKDESCRIPTION As String
-    Get
-      Return pStockItem.Description
-    End Get
-    Set(value As String)
-      pStockItem.Description = value
-    End Set
-  End Property
-  Public Property StockItemID As Int32
-    Get
-      Return pStockItem.StockItemID
-    End Get
-    Set(value As Int32)
-      pStockItem.StockItemID = value
-    End Set
-  End Property
-
-  Public Property StockItem As dmStockItem
-    Get
-      Return pStockItem
-    End Get
-    Set(value As dmStockItem)
-      pStockItem = value
-    End Set
-  End Property
 
 End Class
 
@@ -277,10 +282,34 @@ Public Class clsPOItemInfo
   Private pPOItem As dmPurchaseOrderItem
   Private pStockItem As dmStockItem
 
+
   Public Sub New(ByRef rPOItem As dmPurchaseOrderItem, ByRef rStockItem As dmStockItem)
     pPOItem = rPOItem
     pStockItem = rStockItem
   End Sub
+
+
+  Public ReadOnly Property PurchaseRefCodes As String
+    Get
+      Dim mRetVal As String = ""
+      mRetVal = pPOItem.PartNo
+      If pPOItem.SupplierCode <> "" Then
+        If mRetVal <> "" Then mRetVal &= " / "
+        mRetVal = mRetVal & pPOItem.SupplierCode
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+
+  Public Property StockCode As String
+    Get
+      Return pPOItem.StockCode
+    End Get
+    Set(value As String)
+      pPOItem.StockCode = value
+    End Set
+  End Property
 
   Public ReadOnly Property Qty As Decimal
     Get
@@ -312,7 +341,11 @@ Public Class clsPOItemInfo
     End Get
   End Property
 
-
+  Public ReadOnly Property CoCType As String
+    Get
+      Return RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eCOCType), CType(pPOItem.CoCType, eCOCType))
+    End Get
+  End Property
 
   Public ReadOnly Property Price As Decimal
     Get
@@ -332,6 +365,22 @@ Public Class clsPOItemInfo
       Return pPOItem.GrossAmount
     End Get
   End Property
+
+  Public ReadOnly Property AllocationItemRefSummary As String
+    Get
+      Dim mRetVal As String = ""
+
+      For Each mPOIA As dmPurchaseOrderItemAllocation In pPOItem.PurchaseOrderItemAllocations
+        If mRetVal = "" Then mRetVal &= vbCrLf
+
+        mRetVal &= mPOIA.ItemRef & " / " & mPOIA.Quantity.ToString("N2") & vbCrLf
+
+      Next
+
+      Return Description & vbCrLf & mRetVal
+    End Get
+  End Property
+
 End Class
 
 Public Class colPOItemInfos : Inherits List(Of clsPOItemInfo)

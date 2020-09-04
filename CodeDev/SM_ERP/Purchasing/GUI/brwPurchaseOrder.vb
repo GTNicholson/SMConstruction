@@ -233,6 +233,10 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
       gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
       mGridView = gridBrowseList.MainView
       ''Set lookup columns
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentStatus"), clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Category"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
+
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Status"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
 
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderStatusENUM"), clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus)))
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("OrderTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))

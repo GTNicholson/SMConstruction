@@ -38,6 +38,9 @@ Public Class dmSupplier : Inherits dmBase
   Private pMainTown As String
   Private pMainCounty As String
   Private pMainCountry As String
+  Private pDefaultCurrency As Integer
+
+
   Private pSupplierContacts As colSupplierContacts
   Public Sub New()
     MyBase.New()
@@ -108,6 +111,8 @@ Public Class dmSupplier : Inherits dmBase
       .MainTown = MainTown
       .MainCounty = MainCounty
       .MainCountry = MainCountry
+      .DefaultCurrency = DefaultCurrency
+
       'Add entries here for each collection and class property
       .SupplierContacts = SupplierContacts.Clone
       'Entries for object management
@@ -116,6 +121,20 @@ Public Class dmSupplier : Inherits dmBase
     End With
 
   End Sub
+
+
+
+
+
+  Public Property DefaultCurrency() As Int32
+    Get
+      Return pDefaultCurrency
+    End Get
+    Set(ByVal value As Int32)
+      If pDefaultCurrency <> value Then IsDirty = True
+      pDefaultCurrency = value
+    End Set
+  End Property
 
   Public Property SupplierID() As Int32 Implements iValueItem.ItemValue
     Get

@@ -1,3 +1,4 @@
+Imports DevExpress.CodeParser
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
@@ -12,7 +13,7 @@ Public Class fccPurchaseOrder
 
   Private pUsedWorkOrder As List(Of Integer)
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
-  Private pPODelivery As dmPODelivery
+  Private pPODeliveryInfos As colPODeliveryInfos
   Private pWorkOrders As colWorkOrders
   Private pPOIEditor As clsPOItemEditor
   Private pcolPOIEditor As colPOItemEditors
@@ -35,9 +36,18 @@ Public Class fccPurchaseOrder
     pSuppliers = New colSuppliers
     pPOIEditor = New clsPOItemEditor
     pcolPOIEditor = New colPOItemEditors
-
+    pPODeliveryInfos = New colPODeliveryInfos
   End Sub
 
+
+  Public Property PODeliveryInfos As colPODeliveryInfos
+    Get
+      Return pPODeliveryInfos
+    End Get
+    Set(value As colPODeliveryInfos)
+      pPODeliveryInfos = value
+    End Set
+  End Property
 
   Public Property RTISGlobal() As AppRTISGlobal
     Get
@@ -102,7 +112,18 @@ Public Class fccPurchaseOrder
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
   End Sub
+  Public Sub LoadPODeliveryInfos()
+    Dim mdso As dsoPurchasing
+    Dim mWhere As String = ""
+    Try
+      mdso = New dsoPurchasing(pDBConn)
 
+      mWhere = "PurchaseOrderID = " & PurchaseOrder.PurchaseOrderID
+      mdso.LoadPODeliveryInfoByWhere(pPODeliveryInfos, mWhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 
   Public Property Suppliers As colSuppliers
     Get
@@ -166,18 +187,22 @@ Public Class fccPurchaseOrder
 
   Public Sub LoadSuppliers()
     Dim mdtoSupplier As New dtoSupplier(pDBConn)
-    Dim mOK As Boolean
-
-
     pSuppliers = New colSuppliers
 
     If pDBConn.Connect Then
-      mOK = mdtoSupplier.LoadSupplierCollection(pSuppliers)
+      mdtoSupplier.LoadSupplierCollection(pSuppliers)
 
     End If
+    pDBConn.Disconnect()
+  End Sub
+  Public Sub ReloadPODeliveryInfos()
+    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
+    PODeliveryInfos.Clear()
+    Dim mWhere As String = "PurchaseOrderID = " & pPurchaseOrder.PurchaseOrderID
+
+    mdsoPurchaseOrder.LoadPODeliveryInfoByWhere(PODeliveryInfos, mWhere)
 
   End Sub
-
 
   Public Function LoadObject() As Boolean
     Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
@@ -186,13 +211,17 @@ Public Class fccPurchaseOrder
 
       mOK = True
       pPurchaseOrder = New dmPurchaseOrder
+
       pUsedWorkOrder = New List(Of Integer)
       If pPrimaryKeyID > 0 Then
 
         mOK = mdsoPurchaseOrder.LoadPurchaseOrderDown(Me.PurchaseOrder, Me.PrimaryKeyID)
+
       Else
         pPurchaseOrder.SubmissionDate = Today
-
+        pPurchaseOrder.Supplier.DefaultCurrency = eCurrency.Dollar
+        pPurchaseOrder.ExchangeRateValue = mdsoPurchaseOrder.GetDefaultExchangeRate()
+        GetNextPONo()
         SaveObject()
         mOK = True
       End If
@@ -300,6 +329,74 @@ Public Class fccPurchaseOrder
 
   Public Sub GetNextPONo()
     Dim mdsoGeneral As New dsoGeneral(pDBConn)
-    pPurchaseOrder.PONum = "O.C. " & mdsoGeneral.GetNextTallyPONo().ToString("00000")
+    pPurchaseOrder.PONum = mdsoGeneral.GetNextTallyPONo().ToString("00000")
   End Sub
+
+  Public Sub CreatePurchaseOrderPDF(ByVal vCurrency As eCurrency)
+    Dim mPOInfo As New clsPurchaseOrderInfo
+    Dim mPOItemInfos As New colPOItemInfos
+    Dim mBuyer As dmEmployee
+    Dim mEmployees As colEmployees
+    Dim mRep As repPurchaseOrder
+    Dim mFileName As String
+    Dim mDirectory As String
+    Dim mExportFilename As String
+    Try
+      mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys)
+      If System.IO.Directory.Exists(mDirectory) = False Then
+        System.IO.Directory.CreateDirectory(mDirectory)
+      End If
+      mFileName = String.Format("PurchaseOrder_{0}_{1}.pdf", pPurchaseOrder.PONum, Today.ToString("yyyyMMdd_HHmm"))
+      mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+      mPOInfo.PurchaseOrder = pPurchaseOrder
+      For Each mPOItem As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
+        If String.IsNullOrEmpty(mPOItem.Description) = False Then
+          mPOItemInfos.Add(New clsPOItemInfo(mPOItem, Nothing))
+        End If
+      Next
+      mPOInfo.POItemInfos = mPOItemInfos
+      mEmployees = pRTISGlobal.RefLists.RefIList(appRefLists.Employees)
+      mBuyer = mEmployees.ItemFromKey(pPurchaseOrder.BuyerID)
+
+      ''If pPurchaseOrder.Category = ePurchaseCategories.Timber Then
+      ''  mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, True)
+      ''Else
+      mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, vCurrency)
+      ''End If
+
+      mRep.ExportToPdf(mExportFilename)
+
+      pPurchaseOrder.FileName = mExportFilename
+      SaveObject()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Public ReadOnly Property PlaceHolders As Dictionary(Of String, String)
+    Get
+      Dim mRetVal As New Dictionary(Of String, String)
+      Dim mPrefix As String = "{"
+      Dim mSuffix As String = "}"
+
+      mRetVal.Add(mPrefix & "CompanyName" & mSuffix, pSuppliers(0).CompanyName)
+      mRetVal.Add(mPrefix & "PO" & mSuffix, pPurchaseOrder.PONum)
+      mRetVal.Add(mPrefix & "CalculateNetValue" & mSuffix, pPurchaseOrder.CalculateNetValue.ToString("N2"))
+      mRetVal.Add(mPrefix & "RequiredDate" & mSuffix, Me.pPurchaseOrder.RequiredDate)
+
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public Function GetTotalNetValue() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mPOI As dmPurchaseOrderItem In PurchaseOrder.PurchaseOrderItems
+      mRetVal += mPOI.NetAmount
+    Next
+
+    Return mRetVal
+  End Function
 End Class

@@ -23,7 +23,7 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
   End Sub
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
-    frmPickingPurchaseOrder.OpenAsModal(rForm, Me.DBConn, Me.RTISGlobal, 0, 0, eFormMode.eFMFormModeAdd)
+    frmPODelivery.OpenAsModal(rForm, Me.DBConn, Me.RTISGlobal, 0, 0, eFormMode.eFMFormModeAdd)
     'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
     Return False
   End Function
@@ -35,7 +35,7 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
       ' MsgBox("No row selected")
     Else
       ' frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker, eFormMode.eFMFormModeEdit)
-      frmPickingPurchaseOrder.OpenAsModal(rForm, Me.DBConn, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("PODeliveryID")), 0, eFormMode.eFMFormModeAdd)
+      frmPODelivery.OpenAsModal(rForm, Me.DBConn, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("PODeliveryID")), 0, eFormMode.eFMFormModeAdd)
 
     End If
 

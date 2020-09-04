@@ -17,6 +17,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pWorkOrders As colWorkOrders
   Private pSalesOrderItem As dmSalesOrderItem
 
+  Private pSalesItemComponents As colSalesItemComponents
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -24,6 +26,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pWorkOrders = New colWorkOrders(Me)
+    pSalesItemComponents = New colSalesItemComponents
     pWorkOrders.TrackDeleted = True
     pSalesOrderItem = Me
 
@@ -43,6 +46,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pWorkOrders.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pSalesItemComponents.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -50,6 +54,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     SalesOrderItemID = 0
+    pSalesItemComponents = Nothing
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -66,7 +71,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .WoodFinish = WoodFinish
       .WoodSpecieID = WoodSpecieID
       .QtyInvoiced = QtyInvoiced
-
+      .SalesItemComponents = SalesItemComponents
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -174,6 +179,14 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
+  Public Property SalesItemComponents As colSalesItemComponents
+    Get
+      Return pSalesItemComponents
+    End Get
+    Set(value As colSalesItemComponents)
+      pSalesItemComponents = value
+    End Set
+  End Property
 
   Public Property WorkOrders As colWorkOrders
     Get

@@ -99,6 +99,8 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostQty", .CostQty)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LasUsedDate", DateToDBValue(.LastUsedDate))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AuxCode", StringToDBValue(.AuxCode))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
 
 
     End With
@@ -142,6 +144,9 @@ Public Class dtoStockItem : Inherits dtoBase
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .CostQty = DBReadDecimal(rDataReader, "CostQty")
         .LastUsedDate = DBReadDateTime(rDataReader, "LastUsedDate")
+        .AuxCode = DBReadString(rDataReader, "AuxCode")
+        .UoM = DBReadInt32(rDataReader, "UoM")
+
         pStockItem.IsDirty = False
       End With
       mOK = True

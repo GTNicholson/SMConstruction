@@ -68,10 +68,13 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
     Try
       If pPurchaseOrderInfo Is Nothing Then SetObjectToNew()
       With pPurchaseOrderInfo
+
+        .SupplierContactName = DBReadString(rDataReader, "SupplierContactName")
+        .BuyerName = DBReadString(rDataReader, "BuyerName")
+
         With .PurchaseOrder
           .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
           .PONum = DBReadString(rDataReader, "PONum")
-          .SupplierContactName = DBReadString(rDataReader, "SupplierContactName")
           .SupplierContactTel = DBReadString(rDataReader, "SupplierContactTel")
           .Category = DBReadByte(rDataReader, "Category")
           .SubmissionDate = DBReadDateTime(rDataReader, "SubmissionDate")
@@ -98,7 +101,8 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .DeliveryAddress.PostCode = DBReadString(rDataReader, "DeliveryPostCode")
           .SupplierRef = DBReadString(rDataReader, "SupplierRef")
           .LastStatusChangeDate = DBReadDateTime(rDataReader, "LastStatusChangeDate")
-
+          .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
+          .TotalNetValue = DBReadDecimal(rDataReader, "TotalNetValue")
 
           .Supplier.CompanyName = DBReadString(rDataReader, "CompanyName")
 

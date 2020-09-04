@@ -211,6 +211,17 @@ Public Class colPurchaseOrderItemAllocations : Inherits colBase(Of dmPurchaseOrd
     Return mRetVal
   End Function
 
+  Public Function TotalQuantityAllocatedReceived() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mPOIAllocation As dmPurchaseOrderItemAllocation In MyBase.Items
+      mRetVal += mPOIAllocation.ReceivedQty
+    Next
+
+    Return mRetVal
+  End Function
+
+
 End Class
 
 

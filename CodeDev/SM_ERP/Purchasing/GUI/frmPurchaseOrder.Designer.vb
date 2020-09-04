@@ -20,25 +20,27 @@ Partial Class frmPurchaseOrder
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPurchaseOrder))
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.Bar2 = New DevExpress.XtraBars.Bar()
-    Me.Bar5 = New DevExpress.XtraBars.Bar()
-    Me.Bar6 = New DevExpress.XtraBars.Bar()
-    Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-    Me.Bar4 = New DevExpress.XtraBars.Bar()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar3 = New DevExpress.XtraBars.Bar()
-    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPurchaseOrder))
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.Bar2 = New DevExpress.XtraBars.Bar()
+        Me.Bar5 = New DevExpress.XtraBars.Bar()
+        Me.Bar6 = New DevExpress.XtraBars.Bar()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.Bar4 = New DevExpress.XtraBars.Bar()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar3 = New DevExpress.XtraBars.Bar()
+        Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnSendPOEmail = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnPODelivery = New DevExpress.XtraBars.BarButtonItem()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gpnlPOItems = New DevExpress.XtraEditors.GroupControl()
         Me.PopupContainerControl1 = New DevExpress.XtraEditors.PopupContainerControl()
@@ -63,29 +65,22 @@ Partial Class frmPurchaseOrder
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoPopupWorkOrder = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.gcCoCType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoItemPopupContainerEditPOItemAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepoItemButtonEditStockItem = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepoItemPopupContainerEditQtyReceived = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.btnManageCOs = New DevExpress.XtraEditors.SimpleButton()
-        Me.grdCallOff = New DevExpress.XtraGrid.GridControl()
-        Me.gvCallOff = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gcCallOff = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.btePONum = New DevExpress.XtraEditors.ButtonEdit()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
-        Me.lblTitle = New DevExpress.XtraEditors.LabelControl()
+        Me.txtNetValue = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboPaymentStatus = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.txtCountry = New DevExpress.XtraEditors.TextEdit()
+        Me.cboCountry = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtTown = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -93,6 +88,29 @@ Partial Class frmPurchaseOrder
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.txtAddress1 = New DevExpress.XtraEditors.TextEdit()
+        Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
+        Me.uctDeliveryAddress = New SimplementeMadera.uctAddress()
+        Me.xtab = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnManageCOs = New DevExpress.XtraEditors.SimpleButton()
+        Me.grdWOs = New DevExpress.XtraGrid.GridControl()
+        Me.gvWOs = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcCallOff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+        Me.grdPODeliveryInfos = New DevExpress.XtraGrid.GridControl()
+        Me.gvPODeliveryInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.btnReloadPODeliveryInfos = New DevExpress.XtraEditors.SimpleButton()
+        Me.lblExchangeRate = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtExchangeValue = New DevExpress.XtraEditors.TextEdit()
+        Me.rgDefaultCurrency = New DevExpress.XtraEditors.RadioGroup()
+        Me.btePONum = New DevExpress.XtraEditors.ButtonEdit()
+        Me.lblTitle = New DevExpress.XtraEditors.LabelControl()
         Me.btedSupplier = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -111,6 +129,7 @@ Partial Class frmPurchaseOrder
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gpnlPOItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,25 +150,36 @@ Partial Class frmPurchaseOrder
         CType(Me.RepoItemPopupContainerEditQtyReceived, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl4.SuspendLayout()
-        CType(Me.grdCallOff, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvCallOff, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btePONum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNetValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl2.SuspendLayout()
+        Me.XtraTabPage3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.txtCountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAddress1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage4.SuspendLayout()
+        CType(Me.xtab, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.xtab.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl4.SuspendLayout()
+        CType(Me.grdWOs, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvWOs, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl5.SuspendLayout()
+        CType(Me.grdPODeliveryInfos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvPODeliveryInfos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtExchangeValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rgDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btePONum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btedSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCarriage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateOfOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,6 +191,8 @@ Partial Class frmPurchaseOrder
         CType(Me.dteDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupplierRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Bar1
@@ -238,8 +270,8 @@ Partial Class frmPurchaseOrder
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave, Me.btnSaveAndClose, Me.btnClose})
-        Me.BarManager1.MaxItemId = 3
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave, Me.btnSaveAndClose, Me.btnClose, Me.btnSendPOEmail, Me.btnPODelivery})
+        Me.BarManager1.MaxItemId = 5
         '
         'Bar3
         '
@@ -247,7 +279,7 @@ Partial Class frmPurchaseOrder
         Me.Bar3.DockCol = 0
         Me.Bar3.DockRow = 0
         Me.Bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.btnClose)})
+        Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.btnClose), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSendPOEmail), New DevExpress.XtraBars.LinkPersistInfo(Me.btnPODelivery)})
         Me.Bar3.Text = "Tools"
         '
         'btnSaveAndClose
@@ -271,21 +303,35 @@ Partial Class frmPurchaseOrder
         Me.btnClose.Id = 2
         Me.btnClose.Name = "btnClose"
         '
+        'btnSendPOEmail
+        '
+        Me.btnSendPOEmail.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnSendPOEmail.Caption = "Enviar O.C. por Correo"
+        Me.btnSendPOEmail.Id = 3
+        Me.btnSendPOEmail.Name = "btnSendPOEmail"
+        '
+        'btnPODelivery
+        '
+        Me.btnPODelivery.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnPODelivery.Caption = "Recibir Compra"
+        Me.btnPODelivery.Id = 4
+        Me.btnPODelivery.Name = "btnPODelivery"
+        '
         'barDockControlTop
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1547, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1570, 33)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 702)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 804)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1547, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1570, 0)
         '
         'barDockControlLeft
         '
@@ -293,15 +339,15 @@ Partial Class frmPurchaseOrder
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 669)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 771)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1547, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1570, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 669)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 771)
         '
         'GridView1
         '
@@ -309,9 +355,8 @@ Partial Class frmPurchaseOrder
         '
         'gpnlPOItems
         '
-        Me.gpnlPOItems.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gpnlPOItems.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.gpnlPOItems.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpnlPOItems.Appearance.ForeColor = System.Drawing.Color.Maroon
         Me.gpnlPOItems.Appearance.Options.UseFont = True
@@ -327,9 +372,9 @@ Partial Class frmPurchaseOrder
         ButtonImageOptions2.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
         Me.gpnlPOItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddStockItem", 0), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Artículo", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "DeleteItem", 2)})
         Me.gpnlPOItems.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.gpnlPOItems.Location = New System.Drawing.Point(6, 300)
+        Me.gpnlPOItems.Location = New System.Drawing.Point(6, 332)
         Me.gpnlPOItems.Name = "gpnlPOItems"
-        Me.gpnlPOItems.Size = New System.Drawing.Size(1531, 356)
+        Me.gpnlPOItems.Size = New System.Drawing.Size(1552, 460)
         Me.gpnlPOItems.TabIndex = 243
         Me.gpnlPOItems.Text = "Artículos de Compra"
         '
@@ -447,7 +492,7 @@ Partial Class frmPurchaseOrder
         Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1
         Me.grdPurchaseOrderItems.Name = "grdPurchaseOrderItems"
         Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupWorkOrder})
-        Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1527, 328)
+        Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1548, 432)
         Me.grdPurchaseOrderItems.TabIndex = 86
         Me.grdPurchaseOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPurchaseOrderItems})
         '
@@ -462,7 +507,7 @@ Partial Class frmPurchaseOrder
         Me.gvPurchaseOrderItems.Appearance.OddRow.BackColor = System.Drawing.Color.White
         Me.gvPurchaseOrderItems.Appearance.OddRow.Options.UseBackColor = True
         Me.gvPurchaseOrderItems.ColumnPanelRowHeight = 35
-        Me.gvPurchaseOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.gcPOIDescription, Me.gcPOIUnitPrice, Me.gcPOINetValue, Me.GridColumn11, Me.gcVATRateCode, Me.GridColumn1, Me.GridColumn3, Me.gcCoCType})
+        Me.gvPurchaseOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.gcPOIDescription, Me.gcPOIUnitPrice, Me.gcPOINetValue, Me.GridColumn11, Me.gcVATRateCode, Me.GridColumn1, Me.GridColumn3, Me.gcCoCType, Me.GridColumn8, Me.GridColumn10, Me.GridColumn12})
         Me.gvPurchaseOrderItems.GridControl = Me.grdPurchaseOrderItems
         Me.gvPurchaseOrderItems.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", Me.gcPOINetValue, "")})
         Me.gvPurchaseOrderItems.Name = "gvPurchaseOrderItems"
@@ -476,12 +521,12 @@ Partial Class frmPurchaseOrder
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Código Proveedor"
+        Me.GridColumn2.Caption = "Núm. Parte"
         Me.GridColumn2.FieldName = "PartNo"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 150
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 82
         '
         'gcPOIDescription
         '
@@ -491,8 +536,8 @@ Partial Class frmPurchaseOrder
         Me.gcPOIDescription.FieldName = "Description"
         Me.gcPOIDescription.Name = "gcPOIDescription"
         Me.gcPOIDescription.Visible = True
-        Me.gcPOIDescription.VisibleIndex = 1
-        Me.gcPOIDescription.Width = 442
+        Me.gcPOIDescription.VisibleIndex = 2
+        Me.gcPOIDescription.Width = 224
         '
         'gcPOIUnitPrice
         '
@@ -508,8 +553,8 @@ Partial Class frmPurchaseOrder
         Me.gcPOIUnitPrice.FieldName = "UnitPrice"
         Me.gcPOIUnitPrice.Name = "gcPOIUnitPrice"
         Me.gcPOIUnitPrice.Visible = True
-        Me.gcPOIUnitPrice.VisibleIndex = 4
-        Me.gcPOIUnitPrice.Width = 134
+        Me.gcPOIUnitPrice.VisibleIndex = 6
+        Me.gcPOIUnitPrice.Width = 66
         '
         'RepositoryItemSpinEditUnitValue
         '
@@ -536,8 +581,8 @@ Partial Class frmPurchaseOrder
         Me.gcPOINetValue.OptionsColumn.ReadOnly = True
         Me.gcPOINetValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmount", "{0:c}")})
         Me.gcPOINetValue.Visible = True
-        Me.gcPOINetValue.VisibleIndex = 5
-        Me.gcPOINetValue.Width = 218
+        Me.gcPOINetValue.VisibleIndex = 7
+        Me.gcPOINetValue.Width = 109
         '
         'GridColumn11
         '
@@ -547,8 +592,8 @@ Partial Class frmPurchaseOrder
         Me.GridColumn11.FieldName = "Notes"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
-        Me.GridColumn11.Width = 331
+        Me.GridColumn11.VisibleIndex = 9
+        Me.GridColumn11.Width = 165
         '
         'gcVATRateCode
         '
@@ -573,8 +618,8 @@ Partial Class frmPurchaseOrder
         Me.GridColumn3.FieldName = "QtyRequired"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 181
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 90
         '
         'repoPopupWorkOrder
         '
@@ -590,8 +635,47 @@ Partial Class frmPurchaseOrder
         Me.gcCoCType.FieldName = "CoCType"
         Me.gcCoCType.Name = "gcCoCType"
         Me.gcCoCType.Visible = True
-        Me.gcCoCType.VisibleIndex = 3
-        Me.gcCoCType.Width = 157
+        Me.gcCoCType.VisibleIndex = 5
+        Me.gcCoCType.Width = 78
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Código Proveedor"
+        Me.GridColumn8.FieldName = "SupplierCode"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 101
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Cantidad Recibida"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "TotalQuantityAllocatedReceived"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.Width = 65
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn12.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.Caption = "Valor Recibido"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "TotalValueReceived"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.ReadOnly = True
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 8
+        Me.GridColumn12.Width = 85
         '
         'RepoItemPopupContainerEditPOItemAllocation
         '
@@ -622,11 +706,18 @@ Partial Class frmPurchaseOrder
         Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl3.AppearanceCaption.Options.UseFont = True
         Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl3.Controls.Add(Me.GroupControl4)
-        Me.GroupControl3.Controls.Add(Me.btePONum)
+        Me.GroupControl3.Controls.Add(Me.LabelControl15)
+        Me.GroupControl3.Controls.Add(Me.txtNetValue)
+        Me.GroupControl3.Controls.Add(Me.LabelControl14)
+        Me.GroupControl3.Controls.Add(Me.cboPaymentStatus)
         Me.GroupControl3.Controls.Add(Me.GroupControl2)
+        Me.GroupControl3.Controls.Add(Me.xtab)
+        Me.GroupControl3.Controls.Add(Me.lblExchangeRate)
+        Me.GroupControl3.Controls.Add(Me.LabelControl9)
+        Me.GroupControl3.Controls.Add(Me.txtExchangeValue)
+        Me.GroupControl3.Controls.Add(Me.rgDefaultCurrency)
+        Me.GroupControl3.Controls.Add(Me.btePONum)
         Me.GroupControl3.Controls.Add(Me.lblTitle)
-        Me.GroupControl3.Controls.Add(Me.GroupControl1)
         Me.GroupControl3.Controls.Add(Me.btedSupplier)
         Me.GroupControl3.Controls.Add(Me.LabelControl13)
         Me.GroupControl3.Controls.Add(Me.LabelControl1)
@@ -647,9 +738,216 @@ Partial Class frmPurchaseOrder
         Me.GroupControl3.Controls.Add(Me.LabelControl5)
         Me.GroupControl3.Location = New System.Drawing.Point(6, 39)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1541, 255)
+        Me.GroupControl3.Size = New System.Drawing.Size(1552, 275)
         Me.GroupControl3.TabIndex = 248
         Me.GroupControl3.Text = "Detalles del Proveedor"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl15.Appearance.Options.UseFont = True
+        Me.LabelControl15.Location = New System.Drawing.Point(262, 39)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(57, 14)
+        Me.LabelControl15.TabIndex = 276
+        Me.LabelControl15.Text = "Valor Neto"
+        '
+        'txtNetValue
+        '
+        Me.txtNetValue.EditValue = ""
+        Me.txtNetValue.Location = New System.Drawing.Point(352, 32)
+        Me.txtNetValue.MenuManager = Me.BarManager1
+        Me.txtNetValue.Name = "txtNetValue"
+        Me.txtNetValue.Properties.ReadOnly = True
+        Me.txtNetValue.Size = New System.Drawing.Size(128, 20)
+        Me.txtNetValue.TabIndex = 275
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl14.Appearance.Options.UseFont = True
+        Me.LabelControl14.Location = New System.Drawing.Point(17, 244)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(77, 14)
+        Me.LabelControl14.TabIndex = 273
+        Me.LabelControl14.Text = "Estado del Pago"
+        '
+        'cboPaymentStatus
+        '
+        Me.cboPaymentStatus.Location = New System.Drawing.Point(107, 241)
+        Me.cboPaymentStatus.MenuManager = Me.BarManager1
+        Me.cboPaymentStatus.Name = "cboPaymentStatus"
+        Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboPaymentStatus.Size = New System.Drawing.Size(128, 20)
+        Me.cboPaymentStatus.TabIndex = 274
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.AppearanceCaption.BackColor = System.Drawing.Color.Maroon
+        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupControl2.AppearanceCaption.Options.UseBackColor = True
+        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl2.Controls.Add(Me.XtraTabControl2)
+        Me.GroupControl2.Location = New System.Drawing.Point(511, 30)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(369, 240)
+        Me.GroupControl2.TabIndex = 253
+        Me.GroupControl2.Text = "Detalles de Ubicación"
+        '
+        'XtraTabControl2
+        '
+        Me.XtraTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl2.Location = New System.Drawing.Point(2, 23)
+        Me.XtraTabControl2.Name = "XtraTabControl2"
+        Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage3
+        Me.XtraTabControl2.Size = New System.Drawing.Size(365, 215)
+        Me.XtraTabControl2.TabIndex = 273
+        Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3, Me.XtraTabPage4})
+        '
+        'XtraTabPage3
+        '
+        Me.XtraTabPage3.Controls.Add(Me.GroupControl1)
+        Me.XtraTabPage3.Name = "XtraTabPage3"
+        Me.XtraTabPage3.Size = New System.Drawing.Size(359, 187)
+        Me.XtraTabPage3.Text = "Ubicación del Proveedor"
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.Appearance.BackColor = System.Drawing.Color.White
+        Me.GroupControl1.Appearance.Options.UseBackColor = True
+        Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupControl1.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl1.Controls.Add(Me.cboCountry)
+        Me.GroupControl1.Controls.Add(Me.LabelControl8)
+        Me.GroupControl1.Controls.Add(Me.txtTown)
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
+        Me.GroupControl1.Controls.Add(Me.TextEdit3)
+        Me.GroupControl1.Controls.Add(Me.TextEdit2)
+        Me.GroupControl1.Controls.Add(Me.LabelControl6)
+        Me.GroupControl1.Controls.Add(Me.txtAddress1)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.ShowCaption = False
+        Me.GroupControl1.Size = New System.Drawing.Size(359, 187)
+        Me.GroupControl1.TabIndex = 264
+        '
+        'cboCountry
+        '
+        Me.cboCountry.Location = New System.Drawing.Point(213, 117)
+        Me.cboCountry.Name = "cboCountry"
+        Me.cboCountry.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboCountry.Properties.ReadOnly = True
+        Me.cboCountry.Size = New System.Drawing.Size(106, 20)
+        Me.cboCountry.TabIndex = 240
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl8.Appearance.Options.UseFont = True
+        Me.LabelControl8.Location = New System.Drawing.Point(187, 99)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(20, 14)
+        Me.LabelControl8.TabIndex = 239
+        Me.LabelControl8.Text = "País"
+        '
+        'txtTown
+        '
+        Me.txtTown.EditValue = ""
+        Me.txtTown.Location = New System.Drawing.Point(64, 114)
+        Me.txtTown.MenuManager = Me.BarManager1
+        Me.txtTown.Name = "txtTown"
+        Me.txtTown.Properties.ReadOnly = True
+        Me.txtTown.Size = New System.Drawing.Size(107, 20)
+        Me.txtTown.TabIndex = 238
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl7.Appearance.Options.UseFont = True
+        Me.LabelControl7.Location = New System.Drawing.Point(15, 99)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(33, 14)
+        Me.LabelControl7.TabIndex = 237
+        Me.LabelControl7.Text = "Ciudad"
+        '
+        'TextEdit3
+        '
+        Me.TextEdit3.EditValue = ""
+        Me.TextEdit3.Location = New System.Drawing.Point(64, 78)
+        Me.TextEdit3.MenuManager = Me.BarManager1
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Properties.ReadOnly = True
+        Me.TextEdit3.Size = New System.Drawing.Size(255, 20)
+        Me.TextEdit3.TabIndex = 236
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.EditValue = ""
+        Me.TextEdit2.Location = New System.Drawing.Point(64, 54)
+        Me.TextEdit2.MenuManager = Me.BarManager1
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.ReadOnly = True
+        Me.TextEdit2.Size = New System.Drawing.Size(255, 20)
+        Me.TextEdit2.TabIndex = 235
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl6.Appearance.Options.UseFont = True
+        Me.LabelControl6.Location = New System.Drawing.Point(15, 14)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(45, 14)
+        Me.LabelControl6.TabIndex = 234
+        Me.LabelControl6.Text = "Dirección"
+        '
+        'txtAddress1
+        '
+        Me.txtAddress1.EditValue = ""
+        Me.txtAddress1.Location = New System.Drawing.Point(64, 30)
+        Me.txtAddress1.MenuManager = Me.BarManager1
+        Me.txtAddress1.Name = "txtAddress1"
+        Me.txtAddress1.Properties.ReadOnly = True
+        Me.txtAddress1.Size = New System.Drawing.Size(255, 20)
+        Me.txtAddress1.TabIndex = 233
+        '
+        'XtraTabPage4
+        '
+        Me.XtraTabPage4.Controls.Add(Me.uctDeliveryAddress)
+        Me.XtraTabPage4.Name = "XtraTabPage4"
+        Me.XtraTabPage4.Size = New System.Drawing.Size(359, 187)
+        Me.XtraTabPage4.Text = "Ubicación de Entrega"
+        '
+        'uctDeliveryAddress
+        '
+        Me.uctDeliveryAddress.Address = Nothing
+        Me.uctDeliveryAddress.ControlsReadOnly = False
+        Me.uctDeliveryAddress.Location = New System.Drawing.Point(3, 10)
+        Me.uctDeliveryAddress.MainLabel = Nothing
+        Me.uctDeliveryAddress.Name = "uctDeliveryAddress"
+        Me.uctDeliveryAddress.Size = New System.Drawing.Size(348, 173)
+        Me.uctDeliveryAddress.TabIndex = 1
+        Me.uctDeliveryAddress.ThirdAddressLine = False
+        '
+        'xtab
+        '
+        Me.xtab.Location = New System.Drawing.Point(886, 30)
+        Me.xtab.Name = "xtab"
+        Me.xtab.SelectedTabPage = Me.XtraTabPage1
+        Me.xtab.Size = New System.Drawing.Size(581, 238)
+        Me.xtab.TabIndex = 272
+        Me.xtab.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GroupControl4)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(575, 210)
+        Me.XtraTabPage1.Text = "Admon. OTs"
         '
         'GroupControl4
         '
@@ -658,54 +956,56 @@ Partial Class frmPurchaseOrder
         Me.GroupControl4.AppearanceCaption.Options.UseFont = True
         Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl4.Controls.Add(Me.btnManageCOs)
-        Me.GroupControl4.Controls.Add(Me.grdCallOff)
-        Me.GroupControl4.Location = New System.Drawing.Point(1175, 30)
+        Me.GroupControl4.Controls.Add(Me.grdWOs)
+        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(344, 202)
+        Me.GroupControl4.ShowCaption = False
+        Me.GroupControl4.Size = New System.Drawing.Size(575, 210)
         Me.GroupControl4.TabIndex = 267
         Me.GroupControl4.Text = "Admon. OTs"
         '
         'btnManageCOs
         '
-        Me.btnManageCOs.Location = New System.Drawing.Point(8, 176)
+        Me.btnManageCOs.Location = New System.Drawing.Point(8, 182)
         Me.btnManageCOs.Name = "btnManageCOs"
         Me.btnManageCOs.Size = New System.Drawing.Size(93, 23)
         Me.btnManageCOs.TabIndex = 267
         Me.btnManageCOs.Text = "Seleccionar OTs"
         '
-        'grdCallOff
+        'grdWOs
         '
-        Me.grdCallOff.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.grdWOs.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdCallOff.Location = New System.Drawing.Point(8, 35)
-        Me.grdCallOff.MainView = Me.gvCallOff
-        Me.grdCallOff.MenuManager = Me.BarManager1
-        Me.grdCallOff.Name = "grdCallOff"
-        Me.grdCallOff.Size = New System.Drawing.Size(331, 135)
-        Me.grdCallOff.TabIndex = 266
-        Me.grdCallOff.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCallOff})
+        Me.grdWOs.Location = New System.Drawing.Point(5, 5)
+        Me.grdWOs.MainView = Me.gvWOs
+        Me.grdWOs.MenuManager = Me.BarManager1
+        Me.grdWOs.Name = "grdWOs"
+        Me.grdWOs.Size = New System.Drawing.Size(565, 171)
+        Me.grdWOs.TabIndex = 266
+        Me.grdWOs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWOs})
         '
-        'gvCallOff
+        'gvWOs
         '
-        Me.gvCallOff.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.gvCallOff.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.gvCallOff.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvCallOff.Appearance.EvenRow.Options.UseFont = True
-        Me.gvCallOff.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gvCallOff.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gvCallOff.Appearance.OddRow.BackColor = System.Drawing.Color.White
-        Me.gvCallOff.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.gvCallOff.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvCallOff.Appearance.OddRow.Options.UseFont = True
-        Me.gvCallOff.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcCallOff, Me.GridColumn5})
-        Me.gvCallOff.GridControl = Me.grdCallOff
-        Me.gvCallOff.Name = "gvCallOff"
-        Me.gvCallOff.OptionsBehavior.ReadOnly = True
-        Me.gvCallOff.OptionsView.EnableAppearanceEvenRow = True
-        Me.gvCallOff.OptionsView.EnableAppearanceOddRow = True
-        Me.gvCallOff.OptionsView.ShowDetailButtons = False
-        Me.gvCallOff.OptionsView.ShowGroupPanel = False
-        Me.gvCallOff.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcCallOff, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.gvWOs.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvWOs.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvWOs.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvWOs.Appearance.EvenRow.Options.UseFont = True
+        Me.gvWOs.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvWOs.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvWOs.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvWOs.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvWOs.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvWOs.Appearance.OddRow.Options.UseFont = True
+        Me.gvWOs.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcCallOff, Me.GridColumn5})
+        Me.gvWOs.GridControl = Me.grdWOs
+        Me.gvWOs.Name = "gvWOs"
+        Me.gvWOs.OptionsBehavior.ReadOnly = True
+        Me.gvWOs.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvWOs.OptionsView.EnableAppearanceOddRow = True
+        Me.gvWOs.OptionsView.ShowDetailButtons = False
+        Me.gvWOs.OptionsView.ShowGroupPanel = False
+        Me.gvWOs.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcCallOff, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'gcCallOff
         '
@@ -725,6 +1025,134 @@ Partial Class frmPurchaseOrder
         Me.GridColumn5.VisibleIndex = 1
         Me.GridColumn5.Width = 227
         '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GroupControl5)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(575, 210)
+        Me.XtraTabPage2.Text = "Recepciones"
+        '
+        'GroupControl5
+        '
+        Me.GroupControl5.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl5.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupControl5.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl5.Controls.Add(Me.grdPODeliveryInfos)
+        Me.GroupControl5.Controls.Add(Me.btnReloadPODeliveryInfos)
+        Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl5.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl5.Name = "GroupControl5"
+        Me.GroupControl5.ShowCaption = False
+        Me.GroupControl5.Size = New System.Drawing.Size(575, 210)
+        Me.GroupControl5.TabIndex = 268
+        Me.GroupControl5.Text = "Admon. OTs"
+        '
+        'grdPODeliveryInfos
+        '
+        Me.grdPODeliveryInfos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdPODeliveryInfos.Location = New System.Drawing.Point(5, 5)
+        Me.grdPODeliveryInfos.MainView = Me.gvPODeliveryInfos
+        Me.grdPODeliveryInfos.MenuManager = Me.BarManager1
+        Me.grdPODeliveryInfos.Name = "grdPODeliveryInfos"
+        Me.grdPODeliveryInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
+        Me.grdPODeliveryInfos.Size = New System.Drawing.Size(565, 171)
+        Me.grdPODeliveryInfos.TabIndex = 268
+        Me.grdPODeliveryInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPODeliveryInfos})
+        '
+        'gvPODeliveryInfos
+        '
+        Me.gvPODeliveryInfos.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvPODeliveryInfos.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvPODeliveryInfos.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvPODeliveryInfos.Appearance.EvenRow.Options.UseFont = True
+        Me.gvPODeliveryInfos.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvPODeliveryInfos.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvPODeliveryInfos.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvPODeliveryInfos.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvPODeliveryInfos.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvPODeliveryInfos.Appearance.OddRow.Options.UseFont = True
+        Me.gvPODeliveryInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.gvPODeliveryInfos.GridControl = Me.grdPODeliveryInfos
+        Me.gvPODeliveryInfos.Name = "gvPODeliveryInfos"
+        Me.gvPODeliveryInfos.OptionsBehavior.ReadOnly = True
+        Me.gvPODeliveryInfos.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvPODeliveryInfos.OptionsView.EnableAppearanceOddRow = True
+        Me.gvPODeliveryInfos.OptionsView.ShowDetailButtons = False
+        Me.gvPODeliveryInfos.OptionsView.ShowGroupPanel = False
+        Me.gvPODeliveryInfos.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn13, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "# Recepción"
+        Me.GridColumn13.FieldName = "GRNumber"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 97
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Fecha de Recepción"
+        Me.GridColumn14.ColumnEdit = Me.RepositoryItemDateEdit1
+        Me.GridColumn14.FieldName = "DateCreated"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        Me.GridColumn14.Width = 227
+        '
+        'btnReloadPODeliveryInfos
+        '
+        Me.btnReloadPODeliveryInfos.Location = New System.Drawing.Point(5, 182)
+        Me.btnReloadPODeliveryInfos.Name = "btnReloadPODeliveryInfos"
+        Me.btnReloadPODeliveryInfos.Size = New System.Drawing.Size(119, 23)
+        Me.btnReloadPODeliveryInfos.TabIndex = 267
+        Me.btnReloadPODeliveryInfos.Text = "Cargar Recepciones"
+        '
+        'lblExchangeRate
+        '
+        Me.lblExchangeRate.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.lblExchangeRate.Appearance.Options.UseFont = True
+        Me.lblExchangeRate.Location = New System.Drawing.Point(258, 247)
+        Me.lblExchangeRate.Name = "lblExchangeRate"
+        Me.lblExchangeRate.Size = New System.Drawing.Size(77, 14)
+        Me.lblExchangeRate.TabIndex = 271
+        Me.lblExchangeRate.Text = "Tasa de Cambio"
+        Me.lblExchangeRate.Visible = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl9.Appearance.Options.UseFont = True
+        Me.LabelControl9.Location = New System.Drawing.Point(258, 220)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(38, 14)
+        Me.LabelControl9.TabIndex = 270
+        Me.LabelControl9.Text = "Moneda"
+        '
+        'txtExchangeValue
+        '
+        Me.txtExchangeValue.Location = New System.Drawing.Point(352, 244)
+        Me.txtExchangeValue.MenuManager = Me.BarManager1
+        Me.txtExchangeValue.Name = "txtExchangeValue"
+        Me.txtExchangeValue.Properties.Mask.EditMask = "n4"
+        Me.txtExchangeValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtExchangeValue.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtExchangeValue.Size = New System.Drawing.Size(128, 20)
+        Me.txtExchangeValue.TabIndex = 269
+        Me.txtExchangeValue.Visible = False
+        '
+        'rgDefaultCurrency
+        '
+        Me.rgDefaultCurrency.Location = New System.Drawing.Point(352, 216)
+        Me.rgDefaultCurrency.Name = "rgDefaultCurrency"
+        Me.rgDefaultCurrency.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.rgDefaultCurrency.Properties.Appearance.Options.UseBackColor = True
+        Me.rgDefaultCurrency.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "USD"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "C$")})
+        Me.rgDefaultCurrency.Size = New System.Drawing.Size(128, 22)
+        Me.rgDefaultCurrency.TabIndex = 268
+        '
         'btePONum
         '
         Me.btePONum.Location = New System.Drawing.Point(107, 32)
@@ -735,101 +1163,6 @@ Partial Class frmPurchaseOrder
         Me.btePONum.Properties.ReadOnly = True
         Me.btePONum.Size = New System.Drawing.Size(128, 20)
         Me.btePONum.TabIndex = 265
-        '
-        'GroupControl2
-        '
-        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl2.Controls.Add(Me.TextEdit1)
-        Me.GroupControl2.Controls.Add(Me.LabelControl9)
-        Me.GroupControl2.Controls.Add(Me.TextEdit4)
-        Me.GroupControl2.Controls.Add(Me.LabelControl14)
-        Me.GroupControl2.Controls.Add(Me.TextEdit5)
-        Me.GroupControl2.Controls.Add(Me.TextEdit6)
-        Me.GroupControl2.Controls.Add(Me.LabelControl15)
-        Me.GroupControl2.Controls.Add(Me.TextEdit7)
-        Me.GroupControl2.Location = New System.Drawing.Point(825, 30)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(344, 202)
-        Me.GroupControl2.TabIndex = 264
-        Me.GroupControl2.Text = "Detalles de Entrega"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(224, 110)
-        Me.TextEdit1.MenuManager = Me.BarManager1
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(107, 20)
-        Me.TextEdit1.TabIndex = 240
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.LabelControl9.Appearance.Options.UseFont = True
-        Me.LabelControl9.Location = New System.Drawing.Point(199, 116)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(20, 14)
-        Me.LabelControl9.TabIndex = 239
-        Me.LabelControl9.Text = "País"
-        '
-        'TextEdit4
-        '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(64, 110)
-        Me.TextEdit4.MenuManager = Me.BarManager1
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Size = New System.Drawing.Size(107, 20)
-        Me.TextEdit4.TabIndex = 238
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.LabelControl14.Appearance.Options.UseFont = True
-        Me.LabelControl14.Location = New System.Drawing.Point(15, 116)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(33, 14)
-        Me.LabelControl14.TabIndex = 237
-        Me.LabelControl14.Text = "Ciudad"
-        '
-        'TextEdit5
-        '
-        Me.TextEdit5.EditValue = ""
-        Me.TextEdit5.Location = New System.Drawing.Point(64, 74)
-        Me.TextEdit5.MenuManager = Me.BarManager1
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Size = New System.Drawing.Size(267, 20)
-        Me.TextEdit5.TabIndex = 236
-        '
-        'TextEdit6
-        '
-        Me.TextEdit6.EditValue = ""
-        Me.TextEdit6.Location = New System.Drawing.Point(64, 50)
-        Me.TextEdit6.MenuManager = Me.BarManager1
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Size = New System.Drawing.Size(267, 20)
-        Me.TextEdit6.TabIndex = 235
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.LabelControl15.Appearance.Options.UseFont = True
-        Me.LabelControl15.Location = New System.Drawing.Point(15, 31)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(45, 14)
-        Me.LabelControl15.TabIndex = 234
-        Me.LabelControl15.Text = "Dirección"
-        '
-        'TextEdit7
-        '
-        Me.TextEdit7.EditValue = ""
-        Me.TextEdit7.Location = New System.Drawing.Point(64, 26)
-        Me.TextEdit7.MenuManager = Me.BarManager1
-        Me.TextEdit7.Name = "TextEdit7"
-        Me.TextEdit7.Size = New System.Drawing.Size(267, 20)
-        Me.TextEdit7.TabIndex = 233
         '
         'lblTitle
         '
@@ -842,103 +1175,6 @@ Partial Class frmPurchaseOrder
         Me.lblTitle.Size = New System.Drawing.Size(43, 18)
         Me.lblTitle.TabIndex = 244
         Me.lblTitle.Text = "# O.C."
-        '
-        'GroupControl1
-        '
-        Me.GroupControl1.Appearance.BackColor = System.Drawing.Color.White
-        Me.GroupControl1.Appearance.Options.UseBackColor = True
-        Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupControl1.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl1.Controls.Add(Me.txtCountry)
-        Me.GroupControl1.Controls.Add(Me.LabelControl8)
-        Me.GroupControl1.Controls.Add(Me.txtTown)
-        Me.GroupControl1.Controls.Add(Me.LabelControl7)
-        Me.GroupControl1.Controls.Add(Me.TextEdit3)
-        Me.GroupControl1.Controls.Add(Me.TextEdit2)
-        Me.GroupControl1.Controls.Add(Me.LabelControl6)
-        Me.GroupControl1.Controls.Add(Me.txtAddress1)
-        Me.GroupControl1.Location = New System.Drawing.Point(486, 30)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(333, 200)
-        Me.GroupControl1.TabIndex = 263
-        Me.GroupControl1.Text = "Ubicación del Proveedor"
-        '
-        'txtCountry
-        '
-        Me.txtCountry.EditValue = ""
-        Me.txtCountry.Location = New System.Drawing.Point(212, 114)
-        Me.txtCountry.MenuManager = Me.BarManager1
-        Me.txtCountry.Name = "txtCountry"
-        Me.txtCountry.Size = New System.Drawing.Size(107, 20)
-        Me.txtCountry.TabIndex = 240
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.LabelControl8.Appearance.Options.UseFont = True
-        Me.LabelControl8.Location = New System.Drawing.Point(187, 120)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(20, 14)
-        Me.LabelControl8.TabIndex = 239
-        Me.LabelControl8.Text = "País"
-        '
-        'txtTown
-        '
-        Me.txtTown.EditValue = ""
-        Me.txtTown.Location = New System.Drawing.Point(64, 114)
-        Me.txtTown.MenuManager = Me.BarManager1
-        Me.txtTown.Name = "txtTown"
-        Me.txtTown.Size = New System.Drawing.Size(107, 20)
-        Me.txtTown.TabIndex = 238
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.LabelControl7.Appearance.Options.UseFont = True
-        Me.LabelControl7.Location = New System.Drawing.Point(15, 120)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(33, 14)
-        Me.LabelControl7.TabIndex = 237
-        Me.LabelControl7.Text = "Ciudad"
-        '
-        'TextEdit3
-        '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(64, 78)
-        Me.TextEdit3.MenuManager = Me.BarManager1
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(255, 20)
-        Me.TextEdit3.TabIndex = 236
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(64, 54)
-        Me.TextEdit2.MenuManager = Me.BarManager1
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(255, 20)
-        Me.TextEdit2.TabIndex = 235
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.LabelControl6.Appearance.Options.UseFont = True
-        Me.LabelControl6.Location = New System.Drawing.Point(15, 35)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(45, 14)
-        Me.LabelControl6.TabIndex = 234
-        Me.LabelControl6.Text = "Dirección"
-        '
-        'txtAddress1
-        '
-        Me.txtAddress1.EditValue = ""
-        Me.txtAddress1.Location = New System.Drawing.Point(64, 30)
-        Me.txtAddress1.MenuManager = Me.BarManager1
-        Me.txtAddress1.Name = "txtAddress1"
-        Me.txtAddress1.Size = New System.Drawing.Size(255, 20)
-        Me.txtAddress1.TabIndex = 233
         '
         'btedSupplier
         '
@@ -953,7 +1189,7 @@ Partial Class frmPurchaseOrder
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.LabelControl13.Appearance.Options.UseFont = True
-        Me.LabelControl13.Location = New System.Drawing.Point(258, 77)
+        Me.LabelControl13.Location = New System.Drawing.Point(258, 115)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(53, 14)
         Me.LabelControl13.TabIndex = 262
@@ -973,10 +1209,10 @@ Partial Class frmPurchaseOrder
         '
         'txtCarriage
         '
-        Me.txtCarriage.Location = New System.Drawing.Point(352, 70)
+        Me.txtCarriage.Location = New System.Drawing.Point(352, 108)
         Me.txtCarriage.MenuManager = Me.BarManager1
         Me.txtCarriage.Name = "txtCarriage"
-        Me.txtCarriage.Properties.Mask.EditMask = "c"
+        Me.txtCarriage.Properties.Mask.EditMask = "n2"
         Me.txtCarriage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtCarriage.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCarriage.Size = New System.Drawing.Size(128, 20)
@@ -985,7 +1221,7 @@ Partial Class frmPurchaseOrder
         'dteDateOfOrder
         '
         Me.dteDateOfOrder.EditValue = Nothing
-        Me.dteDateOfOrder.Location = New System.Drawing.Point(352, 32)
+        Me.dteDateOfOrder.Location = New System.Drawing.Point(352, 70)
         Me.dteDateOfOrder.MenuManager = Me.BarManager1
         Me.dteDateOfOrder.Name = "dteDateOfOrder"
         Me.dteDateOfOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1047,7 +1283,7 @@ Partial Class frmPurchaseOrder
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.LabelControl11.Appearance.Options.UseFont = True
-        Me.LabelControl11.Location = New System.Drawing.Point(258, 145)
+        Me.LabelControl11.Location = New System.Drawing.Point(258, 183)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(54, 14)
         Me.LabelControl11.TabIndex = 258
@@ -1064,7 +1300,7 @@ Partial Class frmPurchaseOrder
         '
         'cboBuyer
         '
-        Me.cboBuyer.Location = New System.Drawing.Point(352, 142)
+        Me.cboBuyer.Location = New System.Drawing.Point(352, 180)
         Me.cboBuyer.MenuManager = Me.BarManager1
         Me.cboBuyer.Name = "cboBuyer"
         Me.cboBuyer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1074,7 +1310,7 @@ Partial Class frmPurchaseOrder
         'dteDueDate
         '
         Me.dteDueDate.EditValue = Nothing
-        Me.dteDueDate.Location = New System.Drawing.Point(352, 105)
+        Me.dteDueDate.Location = New System.Drawing.Point(352, 143)
         Me.dteDueDate.MenuManager = Me.BarManager1
         Me.dteDueDate.Name = "dteDueDate"
         Me.dteDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1096,7 +1332,7 @@ Partial Class frmPurchaseOrder
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.LabelControl4.Appearance.Options.UseFont = True
-        Me.LabelControl4.Location = New System.Drawing.Point(258, 112)
+        Me.LabelControl4.Location = New System.Drawing.Point(258, 150)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(82, 14)
         Me.LabelControl4.TabIndex = 252
@@ -1115,17 +1351,25 @@ Partial Class frmPurchaseOrder
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Location = New System.Drawing.Point(258, 39)
+        Me.LabelControl5.Location = New System.Drawing.Point(258, 77)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(78, 14)
         Me.LabelControl5.TabIndex = 254
         Me.LabelControl5.Text = "Fecha de Órden"
         '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+        '
         'frmPurchaseOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1535, 719)
+        Me.ClientSize = New System.Drawing.Size(1570, 804)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.gpnlPOItems)
         Me.Controls.Add(Me.barDockControlLeft)
@@ -1158,27 +1402,37 @@ Partial Class frmPurchaseOrder
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
-        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl4.ResumeLayout(False)
-        CType(Me.grdCallOff, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvCallOff, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btePONum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNetValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
-        Me.GroupControl2.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl2.ResumeLayout(False)
+        Me.XtraTabPage3.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.txtCountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAddress1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage4.ResumeLayout(False)
+        CType(Me.xtab, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.xtab.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl4.ResumeLayout(False)
+        CType(Me.grdWOs, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvWOs, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl5.ResumeLayout(False)
+        CType(Me.grdPODeliveryInfos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvPODeliveryInfos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtExchangeValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rgDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btePONum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btedSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCarriage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateOfOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1190,6 +1444,8 @@ Partial Class frmPurchaseOrder
         CType(Me.dteDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSupplierRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1228,25 +1484,7 @@ Partial Class frmPurchaseOrder
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents btePONum As DevExpress.XtraEditors.ButtonEdit
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit6 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit7 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents lblTitle As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents txtCountry As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtTown As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtAddress1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents btedSupplier As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -1276,10 +1514,47 @@ Partial Class frmPurchaseOrder
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents grdCallOff As DevExpress.XtraGrid.GridControl
-    Friend WithEvents gvCallOff As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents grdWOs As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvWOs As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents gcCallOff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents btnManageCOs As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents repoPopupWorkOrder As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnSendPOEmail As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents lblExchangeRate As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtExchangeValue As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents rgDefaultCurrency As DevExpress.XtraEditors.RadioGroup
+    Friend WithEvents xtab As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents XtraTabControl2 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage3 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents cboCountry As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtTown As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtAddress1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents uctDeliveryAddress As uctAddress
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cboPaymentStatus As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtNetValue As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents btnPODelivery As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents btnReloadPODeliveryInfos As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents grdPODeliveryInfos As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvPODeliveryInfos As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class

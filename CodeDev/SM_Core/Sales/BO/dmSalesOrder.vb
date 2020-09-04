@@ -42,6 +42,9 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pOutputDocuments As colOutputDocuments
   Private pSOFiles As colFileTrackers
 
+  Private pSalesOrderPhasess As colSalesOrderPhases
+  Private pSalesOrderStages As colSalesOrderStages
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -55,7 +58,8 @@ Public Class dmSalesOrder : Inherits dmBase
     pCustomer = New dmCustomer
     pInvoices = New colInvoices
     pCustomerPurchaseOrder = New colCustomerPurchaseOrders
-
+    pSalesOrderPhasess = New colSalesOrderPhases
+    pSalesOrderStages = New colSalesOrderStages
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -64,8 +68,21 @@ Public Class dmSalesOrder : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pSalesOrderPhasess = Nothing
+    pSalesOrderStages = Nothing
     MyBase.Finalize()
   End Sub
+
+
+
+  Public Property SalesOrderStages As colSalesOrderStages
+    Get
+      Return pSalesOrderStages
+    End Get
+    Set(value As colSalesOrderStages)
+      pSalesOrderStages = value
+    End Set
+  End Property
 
   Public Property SOFiles As colFileTrackers
     Get
@@ -90,6 +107,10 @@ Public Class dmSalesOrder : Inherits dmBase
 
 
       If mAnyDirty = False Then mAnyDirty = pCustomerPurchaseOrder.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pSalesOrderPhasess.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pSalesOrderStages.IsDirty
 
       IsAnyDirty = mAnyDirty
     End Get
@@ -129,6 +150,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .WorkOrdersIssued = WorkOrdersIssued
       .PodioPath = PodioPath
       .Version = Version
+      .SalesOrderStages = SalesOrderStages
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -137,6 +159,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .SalesOrderItems = SalesOrderItems.Clone
       .Invoices = Invoices.Clone
       .CustomerPurchaseOrder = CustomerPurchaseOrder.Clone
+      .pSalesOrderPhasess = SalesOrderPhases.Clone
       .IsDirty = IsDirty
     End With
 
@@ -440,6 +463,15 @@ Public Class dmSalesOrder : Inherits dmBase
       pInvoices = value
     End Set
   End Property
+  Public Property SalesOrderPhases As colSalesOrderPhases
+    Get
+      Return pSalesOrderPhasess
+    End Get
+    Set(value As colSalesOrderPhases)
+      pSalesOrderPhasess = value
+    End Set
+  End Property
+
 
   ''Public Property WorkOrders As colWorkOrders
   ''  Get

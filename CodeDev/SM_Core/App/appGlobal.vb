@@ -10,6 +10,8 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   Const cEncryptionIV As String = "RTISGLOBALSTART"    'Make unique for project?
 
   Private Shared mInstance As AppRTISGlobal
+  Private pEmailSettings As RTIS.EmailLib.clsEmailSettings
+  Private pEmailSettingsID As Integer
 
   Private pSessionDataSet As eSessionDataSet
 
@@ -94,6 +96,25 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     End Get
   End Property
 
+  Public Property EmailSettings As RTIS.EmailLib.clsEmailSettings
+    Get
+      Return pEmailSettings
+    End Get
+    Set(value As RTIS.EmailLib.clsEmailSettings)
+      pEmailSettings = value
+    End Set
+  End Property
+
+  Public Property EmailSettingsID As Integer
+    Get
+      Return pEmailSettingsID
+    End Get
+    Set(value As Integer)
+      pEmailSettingsID = value
+    End Set
+  End Property
+
+
   Public Property PodioPath() As String
     Get
       Return pPodioPath
@@ -155,6 +176,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     DecrpytString = mrtisEncrypt.DecryptString(vCodedText)
     mrtisEncrypt = Nothing
   End Function
+
 
 End Class
 

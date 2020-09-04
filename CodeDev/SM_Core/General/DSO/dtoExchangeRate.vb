@@ -57,6 +57,8 @@ Public Class dtoExchangeRate : Inherits dtoBase
     With pExchangeRate
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ExchangeRateDate", DateToDBValue(.ExchangeRateDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ExchangeRateValue", .ExchangeRateValue)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Currency", .Currency)
+
     End With
 
   End Sub
@@ -70,6 +72,7 @@ Public Class dtoExchangeRate : Inherits dtoBase
         .ExchangeRateID = DBReadInt32(rDataReader, "ExchangeRateID")
         .ExchangeRateDate = DBReadDateTime(rDataReader, "ExchangeRateDate")
         .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
+        .Currency = DBReadByte(rDataReader, "Currency")
         pExchangeRate.IsDirty = False
       End With
       mOK = True

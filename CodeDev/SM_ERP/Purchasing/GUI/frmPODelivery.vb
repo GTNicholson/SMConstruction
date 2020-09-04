@@ -3,7 +3,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
-Public Class frmPickingPurchaseOrder
+Public Class frmPODelivery
   Dim pFormController As fccPurchaseOrderDelivery
   ''Dim pMaterialRequirementInfos As colMaterialRequirementInfos
   Public FormMode As eFormMode
@@ -59,11 +59,11 @@ Public Class frmPickingPurchaseOrder
   End Sub
 
   Public Shared Sub OpenAsModal(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vPrimaryKey As Integer, ByVal vPOID As Integer, ByVal vMode As eFormMode)
-    Dim mfrm As frmPickingPurchaseOrder = Nothing
+    Dim mfrm As frmPODelivery = Nothing
 
     '' mfrm = GetFormIfLoaded()
     ''If mfrm Is Nothing Then
-    mfrm = New frmPickingPurchaseOrder
+    mfrm = New frmPODelivery
     mfrm.FormMode = vMode
     '' mfrm.MdiParent = rMDIParent
     mfrm.pFormController = New fccPurchaseOrderDelivery(rDBConn)
@@ -78,16 +78,16 @@ Public Class frmPickingPurchaseOrder
     ''End If
   End Sub
 
-  Private Shared Function GetFormIfLoaded() As frmPickingPurchaseOrder
+  Private Shared Function GetFormIfLoaded() As frmPODelivery
 
 
-    Dim mfrmWanted As frmPickingPurchaseOrder = Nothing
+    Dim mfrmWanted As frmPODelivery = Nothing
     Dim mFound As Boolean = False
-    Dim mfrm As frmPickingPurchaseOrder
+    Dim mfrm As frmPODelivery
     'Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
-      If TypeOf mfrm Is frmPickingPurchaseOrder Then
+      If TypeOf mfrm Is frmPODelivery Then
         mfrmWanted = mfrm
         mFound = True
         Exit For

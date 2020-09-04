@@ -104,6 +104,15 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InvoiceTown", StringToDBValue(.InvoiceAddress.Town))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InvoiceCounty", StringToDBValue(.InvoiceAddress.County))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "InvoicePostCode", StringToDBValue(.InvoiceAddress.PostCode))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ExchangeRateValue", .ExchangeRateValue)
+
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentStatus", .PaymentStatus)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalNetValue", .TotalNetValue)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialRequirementTypeID", .MaterialRequirementTypeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
+
+
+
     End With
 
   End Sub
@@ -164,6 +173,14 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .InvoiceAddress.Town = DBReadString(rDataReader, "InvoiceTown")
         .InvoiceAddress.County = DBReadString(rDataReader, "InvoiceCounty")
         .InvoiceAddress.PostCode = DBReadString(rDataReader, "InvoicePostCode")
+        .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
+
+        .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
+        .TotalNetValue = DBReadDecimal(rDataReader, "TotalNetValue")
+        .MaterialRequirementTypeID = DBReadInt32(rDataReader, "MaterialRequirementTypeID")
+        .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+
+
         pPurchaseOrder.IsDirty = False
         pPurchaseOrder.DeliveryAddress.IsDirty = False
         pPurchaseOrder.SupplierAddress.IsDirty = False
