@@ -78,6 +78,7 @@ Public Class dtoPurchaseOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AverageInvoicePrice", .AverageInvoicePrice)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Density", .Density)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PickedQty", .PickedQty)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockCode", StringToDBValue(.StockCode))
     End With
 
   End Sub
@@ -113,6 +114,7 @@ Public Class dtoPurchaseOrderItem : Inherits dtoBase
         .AverageInvoicePrice = DBReadDecimal(rDataReader, "AverageInvoicePrice")
         .Density = DBReadDecimal(rDataReader, "Density")
         .PickedQty = DBReadDecimal(rDataReader, "PickedQty")
+        .StockCode = DBReadString(rDataReader, "StockCode")
         pPurchaseOrderItem.IsDirty = False
       End With
       mOK = True

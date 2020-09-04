@@ -36,15 +36,20 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pLastStatusChangeDate As Date
   Private pFilename As String
 
+  Private pPaymentStatus As Integer
+  Private pTotalNetValue As Decimal
+  Private pMaterialRequirementTypeID As Integer
+
   Private pDeliveryAddress As RTIS.ERPCore.dmPostalAddress
   Private pSupplierAddress As RTIS.ERPCore.dmPostalAddress
   Private pInvoiceAddress As RTIS.ERPCore.dmPostalAddress
+  Private pDefaultCurrency As Integer
 
   Private pPurchaseOrderItems As colPurchaseOrderItems
   Private pOutputDocuments As colOutputDocuments
   Private pSupplier As dmSupplier
   Private pPurchaseOrderAllocations As colPurchaseOrderAllocations
-
+  Private pExchangeRateValue As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -125,7 +130,11 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .PriceGross = PriceGross
       .TotalPrice = TotalPrice
       .FileName = FileName
-
+      .ExchangeRateValue = ExchangeRateValue
+      .DefaultCurrency = DefaultCurrency
+      .PaymentStatus = PaymentStatus
+      .TotalNetValue = TotalNetValue
+      .MaterialRequirementTypeID = MaterialRequirementTypeID
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -135,6 +144,51 @@ Public Class dmPurchaseOrder : Inherits dmBase
     End With
 
   End Sub
+
+
+
+  Public Property DefaultCurrency() As Int32
+    Get
+      Return pDefaultCurrency
+    End Get
+    Set(ByVal value As Int32)
+      If pDefaultCurrency <> value Then IsDirty = True
+      pDefaultCurrency = value
+    End Set
+  End Property
+
+  Public Property MaterialRequirementTypeID() As Int32
+    Get
+      Return pMaterialRequirementTypeID
+    End Get
+    Set(ByVal value As Int32)
+      If pMaterialRequirementTypeID <> value Then IsDirty = True
+      pMaterialRequirementTypeID = value
+    End Set
+  End Property
+
+
+  Public Property TotalNetValue() As Decimal
+    Get
+      Return pTotalNetValue
+    End Get
+    Set(ByVal value As Decimal)
+      If pTotalNetValue <> value Then IsDirty = True
+      pTotalNetValue = value
+    End Set
+  End Property
+
+
+  Public Property PaymentStatus() As Int32
+    Get
+      Return pPaymentStatus
+    End Get
+    Set(ByVal value As Int32)
+      If pPaymentStatus <> value Then IsDirty = True
+      pPaymentStatus = value
+    End Set
+  End Property
+
 
   Public Property PurchaseOrderID() As Int32
     Get
@@ -394,7 +448,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
       pDeliveryAddress = value
     End Set
   End Property
-
+  Public Property ExchangeRateValue() As Decimal
+    Get
+      Return pExchangeRateValue
+    End Get
+    Set(ByVal value As Decimal)
+      If pExchangeRateValue <> value Then IsDirty = True
+      pExchangeRateValue = value
+    End Set
+  End Property
   Public Property SupplierAddress As RTIS.ERPCore.dmPostalAddress
     Get
       Return pSupplierAddress

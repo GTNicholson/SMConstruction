@@ -36,10 +36,12 @@ Public Class dmStockItem : Inherits dmBase
   Private pASISID As Integer
   Private pSupplier As dmSupplier
   Private pCostQty As Decimal
+  Private pAuxCode As String
 
   Private ptmpIsFullyLoadedDown As Boolean
   Private pOutputDocuments As colOutputDocuments
   Private pLastUsedDate As DateTime
+  Private pUoM As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -125,6 +127,8 @@ Public Class dmStockItem : Inherits dmBase
       .CostQty = CostQty
       .ImageFile = ImageFile
       .LastUsedDate = LastUsedDate
+      .AuxCode = AuxCode
+      .UoM = UoM
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -471,16 +475,24 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-
-  Public Property AuxCode As String Implements intStockItemDef.AuxCode
+  Public Property AuxCode() As String Implements intStockItemDef.AuxCode
     Get
-      '' Throw New NotImplementedException()
+      Return pAuxCode
     End Get
-    Set(value As String)
-      Throw New NotImplementedException()
+    Set(ByVal value As String)
+      If pAuxCode <> value Then IsDirty = True
+      pAuxCode = value
     End Set
   End Property
 
+  Public Property UoM() As Integer
+    Get
+      Return pUoM
+    End Get
+    Set(value As Integer)
+      pUoM = value
+    End Set
+  End Property
 
   Public Property AttributeID As Integer Implements intStockItemDef.AttributeID
     Get

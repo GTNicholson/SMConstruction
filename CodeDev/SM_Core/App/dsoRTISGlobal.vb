@@ -20,6 +20,30 @@ Public Class dsoRTISGlobal
     End Set
   End Property
 
+
+  Public Function LoadEmailSettings(ByRef vEmailSettings As RTIS.EmailLib.clsEmailSettings, ByVal vEmailSettingsID As Integer) As Boolean
+    Dim mIsNewConnection As Boolean
+    Dim mdto As New RTIS.WorkflowCore.dtoEmailSettings(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect(mIsNewConnection) Then
+
+        mOK = mdto.LoadEmailSettings(vEmailSettings, vEmailSettingsID)
+      End If
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mIsNewConnection Then
+        pDBConn.Disconnect()
+      End If
+      mdto = Nothing
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function LoadGlobalDefaults(ByRef rRTISGlobal As AppRTISGlobal) As Boolean
     Dim mIsNewConnection As Boolean
     Dim mReader As IDataReader = Nothing
@@ -29,7 +53,7 @@ Public Class dsoRTISGlobal
     ''TODO - Extend to load different defaults for different datasets, e.g. LIVE, UAT, TRAINING, STANDBY, DEVELOPMENT
     Try
       If pDBConn.Connect(mIsNewConnection) Then
-        mSQL = "Select DefaultExportPath, AuxFilePath, SharedUserFilePath, ErrorLogPath, VersionLogFile,PodioPath FROM RTISGlobal Where RTISGlobalID = " & rRTISGlobal.SessionDataSet
+        mSQL = "Select DefaultExportPath, AuxFilePath, SharedUserFilePath, ErrorLogPath, VersionLogFile,PodioPath,EmailSettingsID FROM RTISGlobal Where RTISGlobalID = " & rRTISGlobal.SessionDataSet
         mReader = pDBConn.LoadReader(mSQL)
         If mReader.Read Then
           mTempRead = clsDBConnBase.DBReadString(mReader, "DefaultExportPath")
@@ -49,6 +73,8 @@ Public Class dsoRTISGlobal
           UpdateStandardFolder(rRTISGlobal, rRTISGlobal.ErrorLogPath, mTempRead)
 
           rRTISGlobal.VersionLogFile = clsDBConnBase.DBReadString(mReader, "VersionLogFile")
+
+          rRTISGlobal.EmailSettingsID = clsDBConnBase.DBReadInt32(mReader, "EmailSettingsID")
 
           mTempRead = clsDBConnBase.DBReadString(mReader, "PodioPath")
           ''If mTempRead.Length > 0 Then rRTISGlobal.DefaultExportPath = mTempRead.Trim
@@ -87,6 +113,28 @@ Public Class dsoRTISGlobal
       End Select
     End If
   End Sub
+
+  Public Function LoadEmailTemplate(ByRef vEmailTemplate As dmEmailTemplate, ByVal vTemplate As eEmailTemplate) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As New dtoEmailTemplate(pDBConn)
+    Try
+      If pDBConn.Connect() Then
+        mRetVal = mdto.LoadEmailTemplate(vEmailTemplate, vTemplate)
+      Else
+        mRetVal = False
+      End If
+    Catch ex As Exception
+      mRetVal = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+
+    Return mRetVal
+  End Function
+
 
   ''Public Function LoadInMemoryCollections() As Boolean
   ''  Dim mIsNewConnection As Boolean

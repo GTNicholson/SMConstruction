@@ -137,10 +137,11 @@ Public Class fccPurchaseOrderDelivery
           mDSO = New dsoPurchasing(pDBConn)
           pPurchaseOrderInfo = New clsPurchaseOrderInfo
           pPODelivery = New dmPODelivery
+
           pPODelivery.PurchaseOrderID = pPurchaseOrderID
           mDSO.LoadPurchaseOrderInfo(pPurchaseOrderInfo, pPODelivery.PurchaseOrderID)
           '//LoadPurchaseOrderItemAllocationProcessorss
-          mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrder.PurchaseOrderID)
+          mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderID)
 
           RefreshPOItemAllocationProcessorPODelItems()
 
@@ -154,7 +155,7 @@ Public Class fccPurchaseOrderDelivery
         pPurchaseOrderID = pPODelivery.PurchaseOrderID
         mDSO.LoadPurchaseOrderInfo(pPurchaseOrderInfo, pPODelivery.PurchaseOrderID)
         '//LoadPurchaseOrderItemAllocationProcessorss
-        mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrder.PurchaseOrderID)
+        mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderID)
 
         RefreshPOItemAllocationProcessorPODelItems()
 

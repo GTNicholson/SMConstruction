@@ -264,6 +264,7 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboCategory, .Category)
         clsDEControlLoading.SetDECombo(cboItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSpecies, .Species)
+        clsDEControlLoading.SetDECombo(cboUoM, .UoM)
         clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
@@ -274,7 +275,7 @@ Public Class frmStockItem
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
         txtCostQty.EditValue = .CostQty
-
+        txtAuxCode.Text = .AuxCode
       End With
 
       Dim mFileName As String
@@ -332,6 +333,7 @@ Public Class frmStockItem
     Next
     clsDEControlLoading.FillDEComboVI(cboCategory, mVIs)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
+    clsDEControlLoading.FillDEComboVI(cboUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
 
     mSuppliers = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.Supplier)
@@ -356,6 +358,7 @@ Public Class frmStockItem
         .ItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
         .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubitemType)
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
+        .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
         .StockFinanceCategoryID = clsDEControlLoading.GetDEComboValue(cboStockFinanceCategory)
         .Finish = clsDEControlLoading.GetDEComboValue(cboFinish)
         .IsGeneric = chkIsGeneric.Checked
@@ -363,6 +366,7 @@ Public Class frmStockItem
         .StdCost = txtStdCost.Text
         .StdImportCost = txtImportCost.Text
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
+        .AuxCode = txtAuxCode.Text
         If Val(spnQuantity.EditValue) > 0 Then
           .CostQty = Val(txtStdCost.Text) / Val(spnQuantity.EditValue)
         Else
@@ -551,6 +555,7 @@ Public Class frmStockItem
     txtDescriptionShort.ReadOnly = vReadOnly
     txtPartNo.ReadOnly = vReadOnly
     cboSpecies.ReadOnly = vReadOnly
+    cboUoM.ReadOnly = vReadOnly
     cboStockFinanceCategory.ReadOnly = vReadOnly
     cboSubitemType.ReadOnly = vReadOnly
     cboFinish.ReadOnly = vReadOnly
@@ -560,7 +565,7 @@ Public Class frmStockItem
     chkIsObsolete.Enabled = Not vReadOnly
     bteImage.Enabled = Not vReadOnly
     cboSupplier.Enabled = Not vReadOnly
-
+    txtAuxCode.ReadOnly = vReadOnly
     ''    btnedImageFile.ReadOnly = vReadOnly
 
     ''gvAlternateCodes.OptionsBehavior.ReadOnly = vReadOnly

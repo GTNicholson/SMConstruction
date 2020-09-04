@@ -3,6 +3,7 @@ Imports RTIS.Elements
 Imports RTIS.CommonVB
 Imports System.IO
 Imports System.Environment
+Imports RTIS.ERPCore
 
 Public Class appInit
   '' New App Checklist - search for: TO CHECK, 
@@ -38,7 +39,7 @@ Public Class appInit
             clsErrorHandler.GetInstance.DebugErrorDisplay = False
           End If
         End If
-      
+
 
       End If
 
@@ -153,6 +154,8 @@ Public Class appInit
         mESettings.AlwaysSendAsPlainText = False
         mESettings.DefaultEmailFromAddress = "support@activeview.co.uk"
 
+        Dim mTestSendTo As String = "grahamn@rtis.co.uk"
+
         ''If rRTISGlobal.SessionDataSet = AppRTISGlobal.eSessionDataSet.Live Then
         ''  RTIS.WorkflowCore.clsMessageHandler.InitNoticiationHandler(rRTISGlobal.EmailSettings, rRTISUserSession, False, "DefaultTestEmail@Domain.co.uk")
         ''Else
@@ -165,7 +168,38 @@ Public Class appInit
 
         ''  RTIS.WorkflowCore.clsMessageHandler.TestSendTo = mCurrentUserEmail
         ''End If
+        Select Case rRTISGlobal.SessionDataSet
+          Case AppRTISGlobal.eSessionDataSet.Live
 
+            If rRTISUserSession.EmployeeID <> 0 Then '' Set Test email address etc.
+              '//Look-up current users email address
+              Dim mCurrentUser As dmEmployee
+              mCurrentUser = CType(rRTISGlobal.RefLists.RefIList(appRefLists.Employees), RTIS.ERPCore.colEmployees).ItemFromKey(rRTISUserSession.EmployeeID)
+              If mCurrentUser IsNot Nothing Then
+                rRTISGlobal.EmailSettings.DefaultEmailFromAddress = mCurrentUser.Email
+                mTestSendTo = mCurrentUser.Email
+
+
+              End If
+            End If
+
+            RTIS.WorkflowCore.clsMessageHandler.InitNoticiationHandler(rRTISGlobal.EmailSettings, rRTISUserSession, False, mTestSendTo)
+          Case Else
+
+            If rRTISUserSession.EmployeeID <> 0 Then '' Set Test email address etc.
+              '//Look-up current users email address
+              Dim mCurrentUser As dmEmployee
+              mCurrentUser = CType(rRTISGlobal.RefLists.RefIList(appRefLists.Employees), RTIS.ERPCore.colEmployees).ItemFromKey(rRTISUserSession.EmployeeID)
+              If mCurrentUser IsNot Nothing Then
+                rRTISGlobal.EmailSettings.DefaultEmailFromAddress = mCurrentUser.Email
+                mTestSendTo = mCurrentUser.Email
+
+
+              End If
+            End If
+
+            RTIS.WorkflowCore.clsMessageHandler.InitNoticiationHandler(rRTISGlobal.EmailSettings, rRTISUserSession, True, mTestSendTo)
+        End Select
 
       End If
     Catch ex As Exception
@@ -478,7 +512,11 @@ Public Class appInit
 
     mAllOK = mdsoAppRefLists.LoadAllLists(rRTISGlobal.RefLists) And mAllOK
 
+
     rRTISGlobal.StockItemRegistry.LoadInitial()
+
+    rRTISGlobal.EmailSettings = New RTIS.EmailLib.clsEmailSettings
+    mAllOK = mdsoGlobal.LoadEmailSettings(rRTISGlobal.EmailSettings, rRTISGlobal.EmailSettingsID)
 
     mdsoGlobal = Nothing
     mdsoAppRefLists = Nothing

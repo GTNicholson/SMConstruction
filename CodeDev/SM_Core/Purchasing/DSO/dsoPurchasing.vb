@@ -108,7 +108,7 @@ Public Class dsoPurchasing
     Dim mdtoPOItem As New dtoPurchaseOrderItem(pDBConn)
     Dim mdtoPOAllocation As New dtoPurchaseOrderAllocation(pDBConn)
     Dim mdtoPOItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
-
+    Dim mdtoSupplier As New dtoSupplier(pDBConn)
     Dim mOK As Boolean
 
     Try
@@ -121,6 +121,9 @@ Public Class dsoPurchasing
           End If
 
           mOK = mdtoPO.SavePurchaseOrder(rPurchaseOrder)
+          If mOK Then mOK = mdtoSupplier.SaveSupplier(rPurchaseOrder.Supplier)
+
+
           If mOK Then mOK = mdtoPOItem.SavePurchaseOrderItemCollection(rPurchaseOrder.PurchaseOrderItems, rPurchaseOrder.PurchaseOrderID)
 
           For Each mPOItem As dmPurchaseOrderItem In rPurchaseOrder.PurchaseOrderItems
@@ -157,6 +160,48 @@ Public Class dsoPurchasing
     End Try
 
     Return mOK
+  End Function
+
+  Public Sub LoadPODeliveryInfoByWhere(ByRef rPODeliveryInfos As colPODeliveryInfos, ByVal vWhere As String)
+
+    Dim mdto As New dtoPODeliveryInfo(pDBConn)
+    Try
+
+      pDBConn.Connect()
+
+      mdto.LoadPODeliveryInfoCollectionByWhere(rPODeliveryInfos, vWhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+
+    End Try
+  End Sub
+
+  Public Function GetDefaultExchangeRate() As Decimal
+    Dim mRetval As Decimal = 0
+    Dim mExchangeRate As New dmExchangeRate
+    Dim mdto As New dtoExchangeRate(pDBConn)
+    Try
+
+      pDBConn.Connect()
+
+      mdto.LoadExchangeRate(mExchangeRate, 1)
+
+      If mExchangeRate IsNot Nothing Then
+        mRetval = mExchangeRate.ExchangeRateValue
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+
+    End Try
+
+
+    Return mRetval
   End Function
 
   Public Function LoadPODeliveryDT(ByRef rTable As DataTable) As Boolean

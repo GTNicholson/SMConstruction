@@ -1,0 +1,122 @@
+alter table PurchaseOrder
+add PaymentStatus int,
+TotalNetValue decimal (10,4),
+MaterialRequirementTypeID int
+go
+
+alter table PurchaseOrder
+add DefaultCurrency int
+GO
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PONum,
+SupplierContactTel,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+AcknowledgementNo,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+Concat (SC.FirstName,' ', SC.Lastname) as SupplierContactName,
+CompanyName
+FROM PurchaseORder PO
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN SupplierContact SC ON SC.SupplierID=S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+GO
+
+alter table StockItem
+add UoM INT
+GO
+
+
+CREATE TABLE StageType(
+	StageTypeID int IDENTITY(1,1) NOT NULL,
+	Description varchar(100) NULL
+ CONSTRAINT [PK_StageType] PRIMARY KEY CLUSTERED 
+(
+	StageTypeID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE SalesOrderStage(
+	SalesOrderStageID int IDENTITY(1,1) NOT NULL,
+	SalesOrderID int NULL,
+	TotalCost decimal (9,3) NULL,
+	StageTypeID int null,
+	Description varchar(100) NULL
+ CONSTRAINT [PK_SalesOrderStage] PRIMARY KEY CLUSTERED 
+(
+	SalesOrderStageID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE SalesItemComponent(
+	SalesItemComponentID int IDENTITY(1,1) NOT NULL,
+	SalesOrderItemID int NULL,
+	ProductID int  NULL,
+	SalesOrderStageID int null,
+	Quantity int null
+ CONSTRAINT [PK_SalesItemComponent] PRIMARY KEY CLUSTERED 
+(
+	SalesItemComponentID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE PhaseItemComponent(
+	PhaseItemComponentID int IDENTITY(1,1) NOT NULL,
+	SalesOrderPhaseID int NULL,
+	Quantity int  NULL
+ CONSTRAINT [PK_PhaseItemComponent] PRIMARY KEY CLUSTERED 
+(
+	PhaseItemComponentID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE WorkOrderAllocation(
+	WorkOrderAllocationID int IDENTITY(1,1) NOT NULL,
+	WorkOrderID int NULL,
+	PhaseItemComponentID int  NULL,
+ CONSTRAINT [PK_WorkOrderAllocation] PRIMARY KEY CLUSTERED 
+(
+	WorkOrderAllocationID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+

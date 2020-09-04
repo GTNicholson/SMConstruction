@@ -149,8 +149,7 @@ Public Class frmSupplierDetail
     Try
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
-      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
-
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPurchaseTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -232,8 +231,9 @@ Public Class frmSupplierDetail
       txtCustomerNotes.Text = .Notes
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
-      RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesTermsType, .PurchasingTermsType)
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboPurchaseTermsType, .PurchasingTermsType)
       rgEstatus.EditValue = .SupplierStatusID
+      rgDefaultCurrency.EditValue = .DefaultCurrency
 
 
 
@@ -259,9 +259,10 @@ Public Class frmSupplierDetail
       .Notes = txtCustomerNotes.Text
       .SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
-      .PurchasingTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesTermsType)
+      .PurchasingTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPurchaseTermsType)
       .SupplierStatusID = rgEstatus.EditValue
 
+      .DefaultCurrency = rgDefaultCurrency.EditValue
       gvSupplierContacts.CloseEditor()
       gvSupplierContacts.UpdateCurrentRow()
 

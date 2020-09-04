@@ -5,7 +5,7 @@ Public Class dmExchangeRate : Inherits dmBase
   Private pExchangeRateID As Int32
   Private pExchangeRateDate As DateTime
   Private pExchangeRateValue As Decimal
-
+  Private pCurrency As Byte
   Public Sub New()
     MyBase.New()
   End Sub
@@ -41,6 +41,7 @@ Public Class dmExchangeRate : Inherits dmBase
       .ExchangeRateID = ExchangeRateID
       .ExchangeRateDate = ExchangeRateDate
       .ExchangeRateValue = ExchangeRateValue
+      .Currency = Currency
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -49,6 +50,17 @@ Public Class dmExchangeRate : Inherits dmBase
     End With
 
   End Sub
+
+
+  Public Property Currency() As Byte
+    Get
+      Return pCurrency
+    End Get
+    Set(ByVal value As Byte)
+      If pCurrency <> value Then IsDirty = True
+      pCurrency = value
+    End Set
+  End Property
 
   Public Property ExchangeRateID() As Int32
     Get

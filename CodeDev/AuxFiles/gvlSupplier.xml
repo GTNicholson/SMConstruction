@@ -78,6 +78,9 @@
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">gcCompanyName</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Nombre de Compañía</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
@@ -87,6 +90,9 @@
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">gcSupplierStatusID</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Estado</property>
       <property name="FieldName">SupplierStatusID</property>
       <property name="ColumnEditName" />
@@ -96,6 +102,9 @@
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">gcAccountCode</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Código de Cuenta</property>
       <property name="FieldName">AccountCode</property>
       <property name="ColumnEditName" />
@@ -105,6 +114,9 @@
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcTelNo</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Te lNo</property>
       <property name="FieldName">TelNo</property>
       <property name="ColumnEditName" />
@@ -114,6 +126,9 @@
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">gcSalesAreaID</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName" />
@@ -123,7 +138,10 @@
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
-      <property name="Caption">Tipo de término de Pago</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Términos de Pagos</property>
       <property name="FieldName">PaymentTermsType</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
@@ -132,8 +150,11 @@
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="Caption">Tipo de Compra</property>
-      <property name="FieldName">PurchaseTermsType</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Términos de Compras</property>
+      <property name="FieldName">PurchasingTermsType</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>

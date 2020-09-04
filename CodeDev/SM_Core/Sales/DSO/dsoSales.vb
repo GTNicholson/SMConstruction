@@ -324,7 +324,11 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoInvoices As dtoInvoice
     Dim mdtoCustomerPurchaseOrder As dtoCustomerPurchaseOrder
     Dim mdtoOutputDocs As dtoOutputDocument
-    Dim mdtoSOFiles As dtoFileTracker
+    Dim mdtoSalesOrderPhase As dtoSalesOrderPhase
+    Dim mdtoSalesOrderPhaseItem As dtoSalesOrderPhaseItem
+    Dim mdtoPhaseItemComponent As dtoPhaseItemComponent
+    Dim mdtoSalesItemComponenent As dtoSalesItemComponent
+    Dim mdtoSalesOrderStage As dtoSalesOrderStage
 
     Try
 
@@ -338,13 +342,32 @@ Public Class dsoSales : Inherits dsoBase
       mdtoInvoices = New dtoInvoice(pDBConn)
       mdtoInvoices.SaveInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
 
+      mdtoSalesOrderStage = New dtoSalesOrderStage(pDBConn)
+      mdtoSalesOrderStage.SaveSalesOrderStageCollection(rSalesOrder.SalesOrderStages, rSalesOrder.SalesOrderID)
+
       mdtoCustomerPurchaseOrder = New dtoCustomerPurchaseOrder(pDBConn)
       mdtoCustomerPurchaseOrder.SaveCustomerPurchaseOrderCollection(rSalesOrder.CustomerPurchaseOrder, rSalesOrder.SalesOrderID)
+
+      mdtoSalesOrderPhase = New dtoSalesOrderPhase(pDBConn)
+      mdtoSalesOrderPhase.SaveSalesOrderPhaseCollection(rSalesOrder.SalesOrderPhases, rSalesOrder.SalesOrderID)
+
+      If rSalesOrder.SalesOrderPhases IsNot Nothing Then
+        mdtoSalesOrderPhaseItem = New dtoSalesOrderPhaseItem(pDBConn)
+        mdtoPhaseItemComponent = New dtoPhaseItemComponent(pDBConn)
+        For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
+
+          mdtoSalesOrderPhaseItem.SaveSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
+          mdtoPhaseItemComponent.LoadPhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
+        Next
+
+      End If
+
 
       For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
         mdtoWO = New dtoWorkOrder(pDBConn)
         mdtoWO.SaveWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
-
+        mdtoSalesItemComponenent = New dtoSalesItemComponent(pDBConn)
+        mdtoSalesItemComponenent.LoadSalesItemComponentCollection(mSOI.SalesItemComponents, mSOI.SalesOrderItemID)
         '// Ensure any product details are also saved
         For Each mWO As dmWorkOrder In mSOI.WorkOrders
           If mWO.Product IsNot Nothing Then
@@ -391,16 +414,17 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoSOIs As dtoSalesOrderItem
     Dim mdtoProduct As dtoProductBase
     Dim mdtoOutputDocs As dtoOutputDocument
-    Dim mdtoSOFiles As dtoFileTracker
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
-
-
+    Dim mdtoSalesOrderPhase As dtoSalesOrderPhase
+    Dim mdtoSalesOrderPhaseItem As dtoSalesOrderPhaseItem
+    Dim mdtoPhaseItemComponent As dtoPhaseItemComponent
     Dim mdtoMaterialRequirementChanges As dtoMaterialRequirement
-
+    Dim mdtoSalesItemComponent As dtoSalesItemComponent
 
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoComponents As dtoProductFurnitureComponent
+    Dim mdtoSalesOrderStage As dtoSalesOrderStage
 
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
@@ -423,10 +447,30 @@ Public Class dsoSales : Inherits dsoBase
     mdtoCustomerPurchaseOrder = New dtoCustomerPurchaseOrder(pDBConn)
     mdtoCustomerPurchaseOrder.LoadCustomerPurchaseOrderCollection(rSalesOrder.CustomerPurchaseOrder, rSalesOrder.SalesOrderID)
 
+    mdtoSalesOrderPhase = New dtoSalesOrderPhase(pDBConn)
+    mdtoSalesOrderPhase.LoadSalesOrderPhaseCollection(rSalesOrder.SalesOrderPhases, rSalesOrder.SalesOrderID)
+
+    mdtoSalesOrderStage = New dtoSalesOrderStage(pDBConn)
+    mdtoSalesOrderStage.LoadSalesOrderStageCollection(rSalesOrder.SalesOrderStages, rSalesOrder.SalesOrderID)
+
+    If rSalesOrder.SalesOrderPhases IsNot Nothing Then
+      mdtoSalesOrderPhaseItem = New dtoSalesOrderPhaseItem(pDBConn)
+      mdtoPhaseItemComponent = New dtoPhaseItemComponent(pDBConn)
+
+
+      For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
+        mdtoSalesOrderPhaseItem.LoadSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
+        mdtoPhaseItemComponent.LoadPhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
+      Next
+
+    End If
 
     For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
       mdtoWOs = New dtoWorkOrder(pDBConn)
       mdtoWOs.LoadWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
+
+      mdtoSalesItemComponent = New dtoSalesItemComponent(pDBConn)
+      mdtoSalesItemComponent.LoadSalesItemComponentCollection(mSOI.SalesItemComponents, mSOI.SalesOrderItemID)
 
       For Each mWO As dmWorkOrder In mSOI.WorkOrders
         '// Instantiate and Load up the details for the specific product type
@@ -481,6 +525,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoOutputDocs As dtoOutputDocument
+    Dim mdtoWorkOrderAllocation As dtoWorkOrderAllocation
     Try
 
       pDBConn.Connect()
@@ -508,6 +553,9 @@ Public Class dsoSales : Inherits dsoBase
         mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
         mdtoOutputDocs.LoadOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID, eParentType.WorkOrder)
+
+        mdtoWorkOrderAllocation = New dtoWorkOrderAllocation(pDBConn)
+        mdtoWorkOrderAllocation.LoadWorkOrderAllocationCollection(rWorkOrder.WorkOrderAllocations, rWorkOrder.WorkOrderID)
       End If
 
       pDBConn.Disconnect()
@@ -552,7 +600,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoWOFiles As dtoFileTracker
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoComponents As dtoProductFurnitureComponent
-
+    Dim mdtoWorkOrderAllocation As dtoWorkOrderAllocation
     Try
       pDBConn.Connect()
       mdto = New dtoWorkOrder(pDBConn)
@@ -585,6 +633,9 @@ Public Class dsoSales : Inherits dsoBase
         mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
         mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
+
+        mdtoWorkOrderAllocation = New dtoWorkOrderAllocation(pDBConn)
+        mdtoWorkOrderAllocation.LoadWorkOrderAllocationCollection(rWorkOrder.WorkOrderAllocations, rWorkOrder.WorkOrderID)
       End If
 
       pDBConn.Disconnect()
@@ -631,30 +682,6 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
-
-  Public Function LoadSalesOrderItemWithWOs(ByRef rSalesOrderItem As dmSalesOrderItem, vID As Integer) As Boolean
-    Dim mdto As dtoSalesOrderItem
-    Dim mdtoWO As dtoWorkOrder
-
-    Dim mRetVal As Boolean
-    Try
-
-      pDBConn.Connect()
-      mdto = New dtoSalesOrderItem(pDBConn)
-      mdto.LoadSalesOrderItem(rSalesOrderItem, vID)
-
-      mdtoWO = New dtoWorkOrder(pDBConn)
-      mdtoWO.LoadWorkOrderCollection(rSalesOrderItem.WorkOrders, rSalesOrderItem.SalesOrderItemID)
-
-
-      mRetVal = True
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-    Return mRetVal
-  End Function
 
   Public Function SaveSalesOrderItemWithWOs(ByRef rSalesOrderItem As dmSalesOrderItem) As Boolean
     Dim mdto As dtoSalesOrderItem

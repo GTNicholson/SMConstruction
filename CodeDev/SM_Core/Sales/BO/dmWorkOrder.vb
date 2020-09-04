@@ -47,7 +47,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pWOFiles As colFileTrackers
 
   Private pSalesOrderItemWOIndex As Int32
-
+  Private pWorkOrderAllocations As colWorkOrderAllocations
 
   Public Sub New()
     MyBase.New()
@@ -57,6 +57,7 @@ Public Class dmWorkOrder : Inherits dmBase
     ''Add object/collection instantiations here
     pOutputDocuments = New colOutputDocuments
     pWOFiles = New colFileTrackers
+    pWorkOrderAllocations = New colWorkOrderAllocations
     pWOFiles.TrackDeleted = True
   End Sub
 
@@ -67,6 +68,7 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Protected Overrides Sub Finalize()
     pOutputDocuments = Nothing
+    pWorkOrderAllocations = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -78,6 +80,7 @@ Public Class dmWorkOrder : Inherits dmBase
         If mAnyDirty = False Then mAnyDirty = pProduct.IsAnyDirty
         If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
         If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
+        If mAnyDirty = False Then mAnyDirty = pWorkOrderAllocations.IsDirty
       End If
       IsAnyDirty = mAnyDirty
     End Get
@@ -126,7 +129,7 @@ Public Class dmWorkOrder : Inherits dmBase
 
       .OutputDocuments = OutputDocuments.Clone
       .WOFiles = WOFiles.Clone
-
+      .WorkOrderAllocations = WorkOrderAllocations.Clone
       'Entries for object management
       .Product = Product.Clone
 
@@ -347,6 +350,15 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As Date)
       If pDrawingDate <> value Then IsDirty = True
       pDrawingDate = value
+    End Set
+  End Property
+
+  Public Property WorkOrderAllocations As colWorkOrderAllocations
+    Get
+      Return pWorkOrderAllocations
+    End Get
+    Set(value As colWorkOrderAllocations)
+      pWorkOrderAllocations = value
     End Set
   End Property
 

@@ -1,5 +1,6 @@
 Imports System.ComponentModel
 Imports System.IO
+Imports DevExpress.Office.Crypto
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
@@ -212,16 +213,25 @@ Public Class frmPurchaseOrder
   Private Sub RefreshGrid()
     pFormController.LoadObject()
     grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+
+    pFormController.LoadPODeliveryInfos()
+    grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+
   End Sub
 
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
+
+    clsDEControlLoading.FillDEComboVI(cboPaymentStatus, clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
     clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+
+
     dteDateOfOrder.Properties.NullDate = Date.MinValue
     dteDueDate.Properties.NullDate = Date.MinValue
-    grdCallOff.DataSource = pFormController.WorkOrders
+    grdWOs.DataSource = pFormController.WorkOrders
     grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
     LoadPOItemAllocationCombo()
   End Sub
@@ -316,6 +326,18 @@ Public Class frmPurchaseOrder
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
+        clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
+        '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
+        txtExchangeValue.Text = .ExchangeRateValue
+
+        uctDeliveryAddress.Address = .DeliveryAddress
+        uctDeliveryAddress.RefreshControls()
+
+        rgDefaultCurrency.EditValue = pFormController.PurchaseOrder.DefaultCurrency
+
+        btnEditPurchaseOrderPDF.Text = .FileName
+
+        txtNetValue.Text = pFormController.GetTotalNetValue().ToString("N2")
 
         If mSupplier IsNot Nothing Then
           btedSupplier.Text = mSupplier.CompanyName
@@ -338,7 +360,7 @@ Public Class frmPurchaseOrder
       With pFormController.PurchaseOrder
 
         txtAddress1.Text = .Supplier.MainAddress1
-        txtCountry.Text = .Supplier.MainCountry
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .Supplier.SalesAreaID)
         txtTown.Text = .Supplier.MainTown
         btedSupplier.Text = .Supplier.CompanyName
         'CustomerStatusID.Text = .Customer.CustomerStatusID
@@ -357,14 +379,24 @@ Public Class frmPurchaseOrder
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
+      .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
       .Carriage = txtCarriage.Text
+      '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .SupplierRef = txtSupplierRef.Text
+      .TotalNetValue = txtNetValue.Text
+      uctDeliveryAddress.UpdateObject()
       gvPurchaseOrderItems.CloseEditor()
       gvPurchaseOrderItems.UpdateCurrentRow()
 
-      .BuyerID = Byte.Parse(clsDEControlLoading.GetDEComboValue(cboBuyer).ToString)
+      .ExchangeRateValue = txtExchangeValue.Text
 
+      .BuyerID = clsDEControlLoading.GetDEComboValue(cboBuyer)
+      pFormController.PurchaseOrder.DefaultCurrency = rgDefaultCurrency.EditValue
+      .DeliveryAddress = uctDeliveryAddress.Address
 
+      If .DeliveryAddress.IsDirty Or .SupplierAddress.IsDirty Or .InvoiceAddress.IsDirty Then
+        .IsDirty = True
+      End If
 
     End With
   End Sub
@@ -527,12 +559,33 @@ Public Class frmPurchaseOrder
   Private Sub btnEditPurchaseOrderPDF_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnEditPurchaseOrderPDF.ButtonClick
     Try
 
+      ''UpdateObject()
+      ''Select Case e.Button.Kind
+      ''  Case ButtonPredefines.Plus
+
+      ''    AddPurchaseOrderDocument()
+      ''    RefreshControls()
+      ''End Select
+      ''RefreshControls()
+
+
       UpdateObject()
       Select Case e.Button.Kind
         Case ButtonPredefines.Plus
+          pFormController.CreatePurchaseOrderPDF(rgDefaultCurrency.EditValue)
 
-          AddPurchaseOrderDocument()
-          RefreshControls()
+          If File.Exists(pFormController.PurchaseOrder.FileName) Then
+            Process.Start(pFormController.PurchaseOrder.FileName)
+          End If
+
+        Case ButtonPredefines.Delete
+          If File.Exists(pFormController.PurchaseOrder.FileName) Then File.Delete(pFormController.PurchaseOrder.FileName)
+          pFormController.PurchaseOrder.FileName = ""
+        Case ButtonPredefines.Ellipsis
+          If File.Exists(pFormController.PurchaseOrder.FileName) Then
+
+            Process.Start(pFormController.PurchaseOrder.FileName)
+          End If
       End Select
       RefreshControls()
 
@@ -541,35 +594,36 @@ Public Class frmPurchaseOrder
     End Try
   End Sub
 
-  Public Sub AddPurchaseOrderDocument()
-    Dim mValidate As clsValidate
-    Dim mReport As repPurchaseOrder
-    Dim mFilePath As String
+  ''Public Sub AddPurchaseOrderDocument()
+  ''  Dim mValidate As clsValidate
+  ''  Dim mReport As repPurchaseOrder_bk
+  ''  Dim mFilePath As String
 
-    mValidate = pFormController.ValidateObject()
-    If mValidate.ValOk Then
+  ''  mValidate = pFormController.ValidateObject()
+  ''  If mValidate.ValOk Then
 
-      CheckSave(False)
+  ''    CheckSave(False)
 
-      mReport = GetReport(eDocumentType.PurchaseOrder)
+  ''    mReport = GetReport(eDocumentType.PurchaseOrder)
 
-      CreateReportPDF(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, True, mReport)
+  ''    CreateReportPDF(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, True, mReport)
 
-      CheckSave(False)
+  ''    CheckSave(False)
 
-      mFilePath = pFormController.PurchaseOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
+  ''    mFilePath = pFormController.PurchaseOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
 
-      RefreshControls()
-      If IO.File.Exists(mFilePath) Then
-        frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
-      End If
-      mReport.ClearImages()
-      mReport.Dispose()
-    Else
-      MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
-    End If
+  ''    RefreshControls()
+  ''    If IO.File.Exists(mFilePath) Then
+  ''      frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+  ''      pFormController.PurchaseOrder.
+  ''    End If
+  ''    mReport.ClearImages()
+  ''    mReport.Dispose()
+  ''  Else
+  ''    MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
+  ''  End If
 
-  End Sub
+  ''End Sub
 
   Public Sub CreateReportPDF(ByVal vParentType As eParentType, ByVal vDocumentType As eDocumentType, ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport)
     Dim mFilePath As String
@@ -609,21 +663,21 @@ Public Class frmPurchaseOrder
     End If
 
   End Sub
-  Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
-    Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
-    Dim mPOs As New colPurchaseOrders
+  ''Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
+  ''  Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+  ''  Dim mPOs As New colPurchaseOrders
 
-    Select Case vDocType
-      Case eDocumentType.PurchaseOrder
+  ''  Select Case vDocType
+  ''    Case eDocumentType.PurchaseOrder
 
-        If pFormController.PurchaseOrder IsNot Nothing Then
-          mRetVal = repPurchaseOrder.GenerateReport(pFormController.PurchaseOrder)
-        End If
+  ''      If pFormController.PurchaseOrder IsNot Nothing Then
+  ''        mRetVal = repPurchaseOrder.GenerateReport(pFormController.PurchaseOrder)
+  ''      End If
 
-    End Select
+  ''  End Select
 
-    Return mRetVal
-  End Function
+  ''  Return mRetVal
+  ''End Function
 
 
 
@@ -667,6 +721,9 @@ Public Class frmPurchaseOrder
                   mPOItem.StockItemID = mSelectedItem.StockItemID
                   mPOItem.Description = mSelectedItem.Description
                   mPOItem.PartNo = mSelectedItem.PartNo
+                  mPOItem.StockCode = mSelectedItem.StockCode
+                  mPOItem.UnitPrice = mSelectedItem.StdCost
+                  mPOItem.SupplierCode = mSelectedItem.AuxCode
                   pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
                   pFormController.POIEditors.Add(pPOIEditor)
                 End If
@@ -796,15 +853,125 @@ Public Class frmPurchaseOrder
             End If
           Next
           mPOItem.QtyRequired = mPOItem.TotalQuantityAllocated
+
         Next
 
         pFormController.LoadRefData()
         LoadPOItemAllocationCombo()
         gvPurchaseOrderItems.RefreshData()
-        grdCallOff.DataSource = pFormController.WorkOrders
+        grdWOs.DataSource = pFormController.WorkOrders
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub btnSendPOEmail_Click(sender As Object, e As EventArgs) Handles btnSendPOEmail.ItemClick
+    Dim mMsg As String = ""
+    Dim mFileName As String
+    Dim mEmail As String = ""
+    Dim mOK As Boolean = True
+
+    Dim mEmailMsg As New RTIS.EmailLib.clsEmailMessage
+    Dim mdsoAdmin As New dsoRTISGlobal(pFormController.DBConn)
+    Dim mEmailTemplate As dmEmailTemplate = Nothing
+    Dim mTaskBoolean As Task(Of Boolean)
+    Dim mSentToCustomer As Boolean
+
+
+    mFileName = pFormController.PurchaseOrder.FileName
+    If mFileName = "" Then
+      mMsg = mMsg & "La Orden de Compra aún no ha sido creada" & vbCrLf
+      mOK = False
+    ElseIf IO.File.Exists(mFileName) = False Then
+      mMsg = mMsg & "El documento " & mFileName & " No se ha encontrado" & vbCrLf
+      mOK = False
+    End If
+
+
+    ''//Verifying if The Customer Contact is linked correctly to this Invoice
+
+    If pFormController.Suppliers(0) IsNot Nothing Then
+      mEmail = pFormController.Suppliers(0).Email
+    Else
+      mMsg = "No se ha registrado un correo válido para este proveedor"
+      mOK = False
+    End If
+
+
+    If mOK Then
+      mMsg = "Confirmar que deseas enviar el documento :" & vbCrLf & System.IO.Path.GetFileName(mFileName) & vbCrLf & " Para:"
+
+      ''//Load all parameters from the Template
+      mdsoAdmin.LoadEmailTemplate(mEmailTemplate, eEmailTemplate.PurchaseOrder)
+      mEmailMsg.Subject = mEmailTemplate.Subject
+      mEmailMsg.BodyHtml = mEmailTemplate.Body
+
+      mEmailMsg.SendTo = pFormController.Suppliers(0).Email
+
+      mEmailMsg.IsBodyHtml = True
+      '' mEmailMsg.Subject = RTIS.WorkflowCore.clsDocumentHelper.SearchReplaceText(mEmailMsg.Subject, pFormController.PlaceHolders())
+
+      mEmailMsg.Subject = "Orden de Compra " & pFormController.PurchaseOrder.PONum & "- AgroForestal"
+      mEmailMsg.BodyHtml = RTIS.WorkflowCore.clsDocumentHelper.SearchReplaceText(mEmailMsg.BodyHtml, pFormController.PlaceHolders())
+      mEmailMsg.AddAttachment(mFileName)
+
+      ''mEmailMsg.SendToBCC = "invoicesent@central-manufacturing.co.uk"
+
+      If RTIS.CandidateElements.frmEmailSimple.OpenSendEmailAsModal(Me, AppRTISGlobal.GetInstance, mEmailMsg, True, True) = True Then
+        MsgBox("Email Enviado") 'OR UPDATE SENT FLAG / AUDIT
+      Else
+        MsgBox("Email no Enviado")
+      End If
+
+    Else
+      MsgBox(mMsg, MsgBoxStyle.Information)
+    End If
+  End Sub
+
+  Private Sub rgDefaultCurrency_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgDefaultCurrency.SelectedIndexChanged
+
+    If rgDefaultCurrency.EditValue = eCurrency.Cordobas Then
+      lblExchangeRate.Visible = True
+      txtExchangeValue.Visible = True
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+
+    Else
+      lblExchangeRate.Visible = False
+      txtExchangeValue.Visible = False
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+    End If
+
+  End Sub
+
+  Private Sub btnPODelivery_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnPODelivery.ItemClick
+
+    UpdateObject()
+    pFormController.SaveObject()
+    frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
+
+  End Sub
+
+  Private Sub btnReloadPODeliveryInfos_Click(sender As Object, e As EventArgs) Handles btnReloadPODeliveryInfos.Click
+
+
+    pFormController.ReloadPODeliveryInfos()
+    grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
   End Sub
 End Class

@@ -168,9 +168,9 @@ Public Class brwSupplier : Inherits brwBrowserListBase
 
         .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar Proveedor", eListOption.DefaultListOption)
+        ''.AddListOption("Activar Proveedor", eListOption.DefaultListOption)
         .AddListOption("Nuevo Proveedor", eListOption.DefaultListOption)
-        .AddListOption("Proveedores Inactivos", eListOption.DefaultListOption)
+        ''.AddListOption("Proveedores Inactivos", eListOption.DefaultListOption)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
@@ -178,10 +178,10 @@ Public Class brwSupplier : Inherits brwBrowserListBase
         '.AddDeleteOption("Delete Option2", eAddEditDeleteView.AlternateForm)
         .AddViewOption("Ver Entrada de Proveedores", eAddEditDeleteView.AlternateForm)
 
-        .AddProcessOption("Mail-shot active suppliers", AddressOf BatchProcessExecute)
+        ''.AddProcessOption("Mail-shot active suppliers", AddressOf BatchProcessExecute)
         .AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
         .AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
-        .AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
+        ''.AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
 
 
         '' If Don't want the first button to be the default
@@ -235,7 +235,7 @@ Public Class brwSupplier : Inherits brwBrowserListBase
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SupplierStatusID"), clsEnumsConstants.EnumToVIs(GetType(eSupplierStatus)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PurchaseTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PurchasingTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
 
 
       Me.SaveButton = eActiveVisibleState.Invisible

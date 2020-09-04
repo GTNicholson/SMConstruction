@@ -193,7 +193,10 @@ Public Enum eDocumentType
   StockItem = 5
   Invoice = 6
 End Enum
-
+Public Enum eEmailTemplate
+  None = 0
+  PurchaseOrder = 1
+End Enum
 Public Enum eTallyIDs
   WorkOrder = 1
   InternalWorkOrder = 2
@@ -201,6 +204,16 @@ Public Enum eTallyIDs
   GRNNumber = 1002
 End Enum
 
+Public Enum ePaymentStatus
+  <Description("Pendiente")> Pending = 1
+  <Description("Aprobado")> Approved = 2
+  <Description("Pagado")> Paid = 3
+End Enum
+
+Public Enum eCurrency
+  <Description("Dólar (USD)")> Dollar = 0
+  <Description("Córdobas")> Cordobas = 1
+End Enum
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
   <Description("Dimensionado")> Dimensionado = 1
@@ -283,8 +296,7 @@ Public Enum eUoM
   <Description("ft")> ft = 6
 
 
-  <Description("m2")> Metros2 = 5
-  <Description("m3")> Metros3 = 6
+
 
   <Description("lt")> lt = 7
   <Description("ml")> ml = 8
@@ -295,7 +307,8 @@ Public Enum eUoM
   <Description("und")> und = 12
   <Description("cja")> cja = 13
 
-
+  <Description("m2")> Metros2 = 14
+  <Description("cm2")> cmm2 = 15
 
 
 
