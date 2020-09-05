@@ -559,6 +559,19 @@ Public Class colPurchaseOrderItems : Inherits colBase(Of dmPurchaseOrderItem)
     Return mRetVal
   End Function
 
+  Public Function ItemByStockItemDescription(ByVal vStockItemDescription As String) As dmPurchaseOrderItem
+    Dim mRetVal As dmPurchaseOrderItem = Nothing
+
+    For Each mItem As dmPurchaseOrderItem In MyBase.Items
+      If mItem.Description = vStockItemDescription Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
   Public Function POItemsMinusAllocatedItem() As colPurchaseOrderItems
     Dim mRetVal As New colPurchaseOrderItems(pParent)
     For Each mPOItem As dmPurchaseOrderItem In MyBase.Items
