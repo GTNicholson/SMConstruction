@@ -399,6 +399,9 @@ Public Class frmPurchaseOrder
       End If
 
     End With
+
+
+
   End Sub
 
   ''Private Sub ControlForceValidateExample()
@@ -758,6 +761,13 @@ Public Class frmPurchaseOrder
             End If
           End If
 
+        Case "ManualItem"
+
+          mPOItem = New dmPurchaseOrderItem
+          pFormController.PurchaseOrder.PurchaseOrderItems.Add(mPOItem)
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+
+
       End Select
 
     Catch ex As Exception
@@ -973,5 +983,76 @@ Public Class frmPurchaseOrder
 
     pFormController.ReloadPODeliveryInfos()
     grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+  End Sub
+
+
+
+  Private Sub gvPurchaseOrderItems_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles gvPurchaseOrderItems.ValidateRow
+    ''Dim mPOI As dmPurchaseOrderItem
+    ''Dim mNewPOI As dmPurchaseOrder
+
+    ''For index = 0 To gvPurchaseOrderItems.RowCount - 1
+    ''  mPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow(), dmPurchaseOrderItem)
+
+
+    ''  If mPOI IsNot Nothing Then
+
+    ''    If pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemDescription(mPOI.Description) Is Nothing Then
+
+    ''      pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Add(mPOI)
+    ''      Exit For
+    ''    End If
+
+    ''  End If
+
+
+    ''Next
+    ''yes
+  End Sub
+
+  Private Sub gvPurchaseOrderItems_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles gvPurchaseOrderItems.ValidatingEditor
+    ''Dim mPOI As dmPurchaseOrderItem
+    ''Dim mNewPOI As dmPurchaseOrder
+
+    ''For index = 0 To gvPurchaseOrderItems.RowCount - 1
+    ''  mPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow(), dmPurchaseOrderItem)
+
+
+    ''  If mPOI IsNot Nothing Then
+
+    ''    If pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mPOI.StockItemID) Is Nothing Then
+
+    ''      pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Add(mPOI)
+    ''      Exit For
+    ''    End If
+
+    ''  End If
+
+
+    ''Next
+
+  End Sub
+
+  Private Sub gvPurchaseOrderItems_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles gvPurchaseOrderItems.RowUpdated
+    Dim mPOI As dmPurchaseOrderItem
+    Dim mNewPOI As dmPurchaseOrder
+
+    For index = 0 To gvPurchaseOrderItems.RowCount - 1
+      mPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow(), dmPurchaseOrderItem)
+
+
+      If mPOI IsNot Nothing Then
+
+        If pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemDescription(mPOI.Description) Is Nothing Then
+
+          pFormController.PurchaseOrder.PurchaseOrderItems.Add(mPOI)
+          Exit For
+        End If
+
+      End If
+
+
+    Next
+
   End Sub
 End Class
