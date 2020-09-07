@@ -1604,3 +1604,8 @@ Public Enum ePayPeriodType
   Month = 1
   Quincena = 2
 End Enum
+
+Public Enum eOrderPhaseType
+  SinglePhase = 1
+  MultiPhase = 2
+End Enum

@@ -71,7 +71,7 @@ Public Class fccSalesOrderDetail
 
 
     If pPrimaryKeyID = 0 Then
-      pSalesOrder = New dmSalesOrder
+      pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
     Else
       pSalesOrder = New dmSalesOrder
       mdso = New dsoSales(pDBConn)

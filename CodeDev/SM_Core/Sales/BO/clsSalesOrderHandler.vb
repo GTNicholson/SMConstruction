@@ -4,9 +4,21 @@ Public Class clsSalesOrderHandler
   Private pSalesOrder As dmSalesOrder
   Private pInvoice As dmInvoice
 
+
+  Public Shared Function CreateNewSalesOrder() As dmSalesOrder
+    Dim mSO As dmSalesOrder
+    Dim mSOP As dmSalesOrderPhase
+
+    mSO = New dmSalesOrder
+    mSO.OrderPhaseType = eOrderPhaseType.SinglePhase
+    mSOP = New dmSalesOrderPhase
+    mSO.SalesOrderPhases.Add(mSOP)
+    Return mSO
+  End Function
+
+
   Public Sub New(ByRef rSalesOrder As dmSalesOrder)
     pSalesOrder = rSalesOrder
-
   End Sub
 
   Public Sub New(ByRef rInvoice As dmInvoice)

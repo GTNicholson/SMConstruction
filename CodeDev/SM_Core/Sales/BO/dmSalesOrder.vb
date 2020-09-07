@@ -29,6 +29,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pWorkOrdersIssued As Boolean
   Private pPodioPath As String
   Private pVersion As String
+  Private pOrderPhaseType As eOrderPhaseType
 
   Private pCustomer As dmCustomer
   Private pInvoices As colInvoices
@@ -150,6 +151,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .WorkOrdersIssued = WorkOrdersIssued
       .PodioPath = PodioPath
       .Version = Version
+      .OrderPhaseType = OrderPhaseType
       .SalesOrderStages = SalesOrderStages
       'Add entries here for each collection and class property
 
@@ -173,6 +175,16 @@ Public Class dmSalesOrder : Inherits dmBase
     Set(ByVal value As String)
       If pVersion <> value Then IsDirty = True
       pVersion = value
+    End Set
+  End Property
+
+  Public Property OrderPhaseType() As eOrderPhaseType
+    Get
+      Return pOrderPhaseType
+    End Get
+    Set(ByVal value As eOrderPhaseType)
+      If pOrderPhaseType <> value Then IsDirty = True
+      pOrderPhaseType = value
     End Set
   End Property
 

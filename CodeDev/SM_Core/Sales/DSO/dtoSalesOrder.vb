@@ -83,6 +83,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PodioPath", StringToDBValue(.PodioPath))
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version", StringToDBValue(.Version))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OrderPhaseType", .OrderPhaseType)
 
     End With
 
@@ -120,6 +121,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .ShippingCost = DBReadDecimal(rDataReader, "ShippingCost")
         .WorkOrdersIssued = DBReadBoolean(rDataReader, "WorkOrdersIssued")
         .PodioPath = DBReadString(rDataReader, "PodioPath")
+        .OrderPhaseType = DBReadByte(rDataReader, "OrderPhaseType")
         pSalesOrder.IsDirty = False
       End With
       mOK = True
