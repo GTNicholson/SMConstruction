@@ -109,6 +109,7 @@ Public Class dsoPurchasing
     Dim mdtoPOAllocation As New dtoPurchaseOrderAllocation(pDBConn)
     Dim mdtoPOItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
     Dim mdtoSupplier As New dtoSupplier(pDBConn)
+
     Dim mOK As Boolean
 
     Try
@@ -210,7 +211,7 @@ Public Class dsoPurchasing
     Dim mSQL As String
     Try
 
-      mSQL = "Select * from vwPODeliveryInfo order by DateCreated desc"
+      mSQL = "Select * from vwPODeliveryInfo where GRNumber<>'' order by DateCreated desc"
       If pDBConn.Connect() Then
         mDataTable = pDBConn.CreateDataTable(mSQL)
         If mDataTable Is Nothing Then

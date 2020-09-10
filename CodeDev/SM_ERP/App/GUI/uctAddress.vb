@@ -84,15 +84,19 @@ Public Class uctAddress
   End Sub
 
   Public Sub UpdateObject()
-    With pAddress
-      .Address1 = Me.txtAdd1.Text
-      .Address2 = Me.txtAdd2.Text
-      '' .Address3 = Me.txtAdd3.Text
-      .Town = Me.txtTown.Text
-      .Country = Me.cboCountry.Text
-      '' .PostCode = Me.txtPostCode.Text
-      ' ''.Country = Me.btedCountry.Text
-    End With
+
+    If pAddress IsNot Nothing Then
+      With pAddress
+        .Address1 = Me.txtAdd1.Text
+        .Address2 = Me.txtAdd2.Text
+        '' .Address3 = Me.txtAdd3.Text
+        .Town = Me.txtTown.Text
+        .Country = Me.cboCountry.Text
+        '' .PostCode = Me.txtPostCode.Text
+        ' ''.Country = Me.btedCountry.Text
+      End With
+    End If
+
   End Sub
 
   Private Sub GroupControl1_Paint(sender As Object, e As PaintEventArgs) Handles GroupControl1.Paint

@@ -3,7 +3,7 @@ Imports RTIS.DataLayer
 Imports RTIS.Elements
 
 
-Public Class fccWorkOrderPicker
+Public Class fccSalesOrderPhasePicker
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
 
@@ -37,10 +37,10 @@ Public Class fccWorkOrderPicker
   End Property
 
 
-  Public Function LoadWorkOrderDT() As DataTable
+  Public Function LoadSalesOrderPhaseDT() As DataTable
     Dim mdso As New dsoSales(DBConn)
     Dim mDT As DataTable = Nothing
-    mdso.LoadWorkOrderDT(mDT, pWhereSQL)
+    mdso.LoadSalesOrderDT(mDT, pWhereSQL)
     Return mDT
   End Function
 End Class

@@ -14,10 +14,10 @@ Public Class fccPurchaseOrder
   Private pUsedItems As List(Of Integer)
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
   Private pPODeliveryInfos As colPODeliveryInfos
-  Private pWorkOrders As colWorkOrders
+  Private pSalesOrderPhases As colSalesOrderPhases
   Private pPOIEditor As clsPOItemEditor
   Private pcolPOIEditor As colPOItemEditors
-
+  Private pSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
       DBConn = pDBConn
@@ -31,14 +31,23 @@ Public Class fccPurchaseOrder
     pDBConn = rDBConn
     pPurchaseOrder = New dmPurchaseOrder
     pRTISGlobal = rRTISGlobal
-    pWorkOrders = New colWorkOrders
+    pSalesOrderPhases = New colSalesOrderPhases
     pUsedItems = New List(Of Integer)
     pSuppliers = New colSuppliers
     pPOIEditor = New clsPOItemEditor
     pcolPOIEditor = New colPOItemEditors
     pPODeliveryInfos = New colPODeliveryInfos
+    pSalesOrderPhaseInfo = New clsSalesOrderPhaseInfo
   End Sub
 
+  Public Property SalesOrderPhaseInfo() As clsSalesOrderPhaseInfo
+    Get
+      Return pSalesOrderPhaseInfo
+    End Get
+    Set(value As clsSalesOrderPhaseInfo)
+      pSalesOrderPhaseInfo = value
+    End Set
+  End Property
 
   Public Property PODeliveryInfos As colPODeliveryInfos
     Get
@@ -58,12 +67,12 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
-  Public Property WorkOrders As colWorkOrders
+  Public Property SalesOrderPhases As colSalesOrderPhases
     Get
-      Return pWorkOrders
+      Return pSalesOrderPhases
     End Get
-    Set(value As colWorkOrders)
-      pWorkOrders = value
+    Set(value As colSalesOrderPhases)
+      pSalesOrderPhases = value
     End Set
   End Property
 
@@ -158,24 +167,32 @@ Public Class fccPurchaseOrder
 
     Dim mOK As Boolean
     Dim mdsoSales As New dsoSales(pDBConn)
-    Dim mWorkOrders As dmWorkOrder
+    Dim mSalesOrderPhase As dmSalesOrderPhase
     Try
 
       mOK = True
-      pWorkOrders = New colWorkOrders
+      pSalesOrderPhases = New colSalesOrderPhases
 
       For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
-        If pWorkOrders.IndexFromKey(mPOAllocation.WorkOrderID) = -1 Then
-          mWorkOrders = New dmWorkOrder
-          mdsoSales.LoadWorkOrder(mWorkOrders, mPOAllocation.WorkOrderID)
-          pWorkOrders.Add(mWorkOrders)
+        If pSalesOrderPhases.IndexFromKey(mPOAllocation.CallOffID) = -1 Then
+          mSalesOrderPhase = New dmSalesOrderPhase
+          mdsoSales.LoadSalesOrderPhase(mSalesOrderPhase, mPOAllocation.CallOffID)
+          pSalesOrderPhases.Add(mSalesOrderPhase)
         End If
 
-        If pUsedItems.Contains(mPOAllocation.WorkOrderID) = False Then
-          pUsedItems.Add(mPOAllocation.WorkOrderID)
+        If pUsedItems.Contains(mPOAllocation.CallOffID) = False Then
+          pUsedItems.Add(mPOAllocation.CallOffID)
         End If
       Next
 
+      If pPurchaseOrder.PurchaseOrderAllocations.Count > 0 Then
+
+        If pPurchaseOrder.PurchaseOrderAllocations.Count = 1 Then
+          mdsoSales.LoadSalesOrderPhaseInfo(Me.SalesOrderPhaseInfo, "SalesOrderPhaseID = " & pPurchaseOrder.PurchaseOrderAllocations(0).CallOffID)
+
+        End If
+
+      End If
 
     Catch ex As Exception
       mOK = False
@@ -206,6 +223,7 @@ Public Class fccPurchaseOrder
 
   Public Function LoadObject() As Boolean
     Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
+
     Dim mOK As Boolean
     Try
 
@@ -215,7 +233,9 @@ Public Class fccPurchaseOrder
       pUsedItems = New List(Of Integer)
       If pPrimaryKeyID > 0 Then
 
+
         mOK = mdsoPurchaseOrder.LoadPurchaseOrderDown(Me.PurchaseOrder, Me.PrimaryKeyID)
+
 
       Else
         pPurchaseOrder.SubmissionDate = Today
@@ -422,5 +442,35 @@ Public Class fccPurchaseOrder
 
     Return mRetVal
   End Function
+
+  Public Sub CreateUpdatePOItemAllocation(ByRef rPOItem As dmPurchaseOrderItem)
+    Dim mPOIA As dmPurchaseOrderItemAllocation
+
+    If rPOItem.PurchaseOrderItemAllocations.Count <= 1 Then
+      '//Check that the POItem has one and only one poItemAllocation
+      If rPOItem.PurchaseOrderItemAllocations.Count = 0 Then
+        '// Create one
+        mPOIA = New dmPurchaseOrderItemAllocation
+        mPOIA.PurchaseOrderItemID = rPOItem.PurchaseOrderItemID
+
+
+
+
+        rPOItem.PurchaseOrderItemAllocations.Add(mPOIA)
+      End If
+      '// if 0 then create one for Stock, or for the only phase that is in 
+      rPOItem.PurchaseOrderItemAllocations(0).Quantity = rPOItem.QtyRequired
+      If pSalesOrderPhaseInfo IsNot Nothing Then
+        rPOItem.PurchaseOrderItemAllocations(0).CallOffID = pSalesOrderPhaseInfo.SalesOrderPhaseID
+        rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = pSalesOrderPhaseInfo.SOPJobNo
+      Else
+        rPOItem.PurchaseOrderItemAllocations(0).CallOffID = 0
+        rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
+      End If
+      '// Update the qty ot the neew value
+    End If
+  End Sub
+
+
 
 End Class

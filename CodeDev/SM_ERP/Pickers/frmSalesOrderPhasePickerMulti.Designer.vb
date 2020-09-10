@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmWorkOrderPickerMulti
+Partial Class frmSalesOrderPhasePickerMulti
   Inherits System.Windows.Forms.Form
 
   'Form overrides dispose to clean up the component list.
@@ -39,10 +39,10 @@ Partial Class frmWorkOrderPickerMulti
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
@@ -88,14 +88,14 @@ Partial Class frmWorkOrderPickerMulti
         '
         'gcCallOffNo
         '
-        Me.gcCallOffNo.Caption = "# OT"
+        Me.gcCallOffNo.Caption = "Ref. Fase"
         Me.gcCallOffNo.ColumnEdit = Me.RepbtnSelect
-        Me.gcCallOffNo.FieldName = "WorkOrderNo"
+        Me.gcCallOffNo.FieldName = "SOPJobNo"
         Me.gcCallOffNo.Name = "gcCallOffNo"
         Me.gcCallOffNo.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcCallOffNo.Visible = True
         Me.gcCallOffNo.VisibleIndex = 0
-        Me.gcCallOffNo.Width = 153
+        Me.gcCallOffNo.Width = 128
         '
         'RepbtnSelect
         '
@@ -105,55 +105,29 @@ Partial Class frmWorkOrderPickerMulti
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Descripción"
-        Me.GridColumn1.FieldName = "Description"
+        Me.GridColumn1.Caption = "Proyecto"
+        Me.GridColumn1.FieldName = "ProjectName"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 78
+        Me.GridColumn1.Width = 347
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Cantidad"
         Me.GridColumn2.FieldName = "Quantity"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 253
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Fecha de Inicio Plan"
-        Me.GridColumn4.FieldName = "PlannedStartDate"
+        Me.GridColumn4.Caption = "Fecha Requerida"
+        Me.GridColumn4.ColumnEdit = Me.RepositoryItemDateEdit1
+        Me.GridColumn4.FieldName = "DateRequired"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 266
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ProductionBatchID"
-        Me.GridColumn5.FieldName = "WorkOrderID"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Width = 108
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Dibujante"
-        Me.GridColumn3.FieldName = "EmployeeID"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 93
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Fecha de Despacho Plan"
-        Me.GridColumn7.FieldName = "PlannedDeliveryDate"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        Me.GridColumn7.Width = 109
+        Me.GridColumn4.Width = 139
         '
         'RepositoryItemDateEdit1
         '
@@ -161,6 +135,33 @@ Partial Class frmWorkOrderPickerMulti
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "SOPID"
+        Me.GridColumn5.FieldName = "SalesOrderPhaseID"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Width = 108
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Cliente"
+        Me.GridColumn3.FieldName = "CompanyName"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 302
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Fecha Enviada"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemDateEdit1
+        Me.GridColumn7.FieldName = "DateCommitted"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 149
         '
         'repbtnUnSelect
         '
@@ -183,7 +184,7 @@ Partial Class frmWorkOrderPickerMulti
         Me.btnConfirmSelection.TabIndex = 3
         Me.btnConfirmSelection.Text = "Aceptar Selección"
         '
-        'frmWorkOrderPickerMulti
+        'frmSalesOrderPhasePickerMulti
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -191,9 +192,9 @@ Partial Class frmWorkOrderPickerMulti
         Me.Controls.Add(Me.btnConfirmSelection)
         Me.Controls.Add(Me.grdWorkOrder)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Name = "frmWorkOrderPickerMulti"
+        Me.Name = "frmSalesOrderPhasePickerMulti"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Lista de OTs"
+        Me.Text = "Lista de Fases"
         CType(Me.grdWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).EndInit()

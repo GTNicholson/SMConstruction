@@ -11,7 +11,7 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   Private pReplacementQty As Decimal
   Private pQtyRejected As Decimal
   Private pItemRef As String
-
+  Private pJobNoTmp As String
   Public Sub New()
     MyBase.New()
   End Sub
@@ -154,7 +154,14 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property JobNoTmp As String
+    Get
+      Return pJobNoTmp
+    End Get
+    Set(value As String)
+      pJobNoTmp = value
+    End Set
+  End Property
 End Class
 
 

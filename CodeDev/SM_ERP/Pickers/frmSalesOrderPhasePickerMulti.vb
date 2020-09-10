@@ -6,17 +6,17 @@ Imports DevExpress.XtraEditors
 Imports RTIS.CommonVB.clsGeneralA
 Imports DevExpress.XtraGrid.Views.Base
 
-Public Class frmWorkOrderPickerMulti
-  Private pFormController As fccWorkOrderPicker
+Public Class frmSalesOrderPhasePickerMulti
+  Private pFormController As fccSalesOrderPhasePicker
   Private Shared sActiveForms As Collection
   'Private pSalesOrder As dmSalesOrder
   Private pSelectedIDs As Dictionary(Of Integer, Boolean)
 
-  Public Property FormController() As fccWorkOrderPicker
+  Public Property FormController() As fccSalesOrderPhasePicker
     Get
       FormController = pFormController
     End Get
-    Set(ByVal value As fccWorkOrderPicker)
+    Set(ByVal value As fccSalesOrderPhasePicker)
       pFormController = value
     End Set
   End Property
@@ -31,10 +31,10 @@ Public Class frmWorkOrderPickerMulti
   End Property
 
   Public Function GetSelectedIDs(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As clsDBConnBase, ByRef rSelectedIDs As Dictionary(Of Integer, Boolean)) As DialogResult
-    Dim mfrm As New frmWorkOrderPickerMulti
+    Dim mfrm As New frmSalesOrderPhasePickerMulti
     Dim mSelectedIDs As New List(Of Integer)
     Dim mDialogResult As DialogResult
-    mfrm.FormController = New fccWorkOrderPicker
+    mfrm.FormController = New fccSalesOrderPhasePicker
     mfrm.FormController.DBConn = rDBConn
     mfrm.Owner = rParentForm
     mfrm.SelectedIDs = rSelectedIDs
@@ -50,10 +50,10 @@ Public Class frmWorkOrderPickerMulti
     Return mDialogResult
   End Function
 
-  Private Shared Function GetFormIfLoaded() As frmWorkOrderPickerMulti
-    Dim mfrmWanted As frmWorkOrderPickerMulti = Nothing
+  Private Shared Function GetFormIfLoaded() As frmSalesOrderPhasePickerMulti
+    Dim mfrmWanted As frmSalesOrderPhasePickerMulti = Nothing
     Dim mFound As Boolean = False
-    Dim mfrm As frmWorkOrderPickerMulti
+    Dim mfrm As frmSalesOrderPhasePickerMulti
     '  Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
@@ -88,7 +88,7 @@ Public Class frmWorkOrderPickerMulti
 
   Private Sub RefreshControls()
     pFormController.WhereSQL = ""
-    Me.grdWorkOrder.DataSource = pFormController.LoadWorkOrderDT
+    Me.grdWorkOrder.DataSource = pFormController.LoadSalesOrderPhaseDT
   End Sub
 
   Private Sub LoadCombo()
@@ -99,7 +99,7 @@ Public Class frmWorkOrderPickerMulti
     Dim mDRow As DataRow
     If Not gvWorkOrder.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       mDRow = Me.gvWorkOrder.GetFocusedDataRow
-      pSelectedIDs.Add(mDRow.Item("WorkOrderID"), True)
+      pSelectedIDs.Add(mDRow.Item("SalesOrderPhaseID"), True)
 
     End If
     gvWorkOrder.CloseEditor()
@@ -114,8 +114,8 @@ Public Class frmWorkOrderPickerMulti
 
       If e.Column.Name = gcCallOffNo.Name Then
 
-        If pSelectedIDs.ContainsKey(mRow.Item("WorkOrderID")) Then
-          If pSelectedIDs(mRow.Item("WorkOrderID")) Then
+        If pSelectedIDs.ContainsKey(mRow.Item("SalesOrderPhaseID")) Then
+          If pSelectedIDs(mRow.Item("SalesOrderPhaseID")) Then
             e.RepositoryItem = repbtnUnSelect
           Else
             e.RepositoryItem = repitTextOnly
@@ -137,7 +137,7 @@ Public Class frmWorkOrderPickerMulti
 
         mItem = gvWorkOrder.GetFocusedDataRow
         If mItem IsNot Nothing Then
-          pSelectedIDs.Remove(mItem.Item("WorkOrderID"))
+          pSelectedIDs.Remove(mItem.Item("SalesOrderPhaseID"))
         End If
         gvWorkOrder.CloseEditor()
       End If
@@ -155,7 +155,7 @@ Public Class frmWorkOrderPickerMulti
     Dim mRow As DataRow
     mRow = gvWorkOrder.GetDataRow(e.RowHandle)
     If mRow IsNot Nothing Then
-      If pSelectedIDs.ContainsKey(mRow.Item("WorkOrderID")) Then
+      If pSelectedIDs.ContainsKey(mRow.Item("SalesOrderPhaseID")) Then
         e.Appearance.BackColor = Color.DodgerBlue
         e.Appearance.ForeColor = Color.Black
       Else

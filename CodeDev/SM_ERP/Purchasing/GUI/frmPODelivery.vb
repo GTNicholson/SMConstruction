@@ -123,6 +123,7 @@ Public Class frmPODelivery
           txtRequiredDate.Text = .RequiredDate
           txtSupplierCompanyName.Text = .CompanyName
 
+
         End With
 
         If pFormController.PODelivery IsNot Nothing Then
@@ -283,7 +284,7 @@ Public Class frmPODelivery
 
             If mPendingValue > 0 Then
               mPOI.ToProcessQty = mPendingValue
-              pFormController.ProcessDeliveryQtys(False)
+              ''pFormController.ProcessDeliveryQtys(False)
             End If
 
           Next
