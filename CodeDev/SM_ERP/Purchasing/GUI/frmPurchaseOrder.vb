@@ -1142,4 +1142,21 @@ Public Class frmPurchaseOrder
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub gvPurchaseOrderItems_ShowingEditor(sender As Object, e As CancelEventArgs) Handles gvPurchaseOrderItems.ShowingEditor
+
+    Dim mPOI As dmPurchaseOrderItem
+    mPOI = CType(gvPurchaseOrderItems.GetFocusedRow, dmPurchaseOrderItem)
+
+    Select Case gvPurchaseOrderItems.FocusedColumn.Name
+      Case gcPOIDescription.Name, gcSupplierCode.Name, gcPartNo.Name
+        If mPOI.StockItemID > 0 Then
+          e.Cancel = True
+        Else
+          e.Cancel = False
+        End If
+    End Select
+
+  End Sub
+
 End Class
