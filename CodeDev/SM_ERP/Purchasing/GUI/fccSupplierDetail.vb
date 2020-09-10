@@ -5,9 +5,11 @@ Public Class fccSupplierDetail
 
   Private pSupplier As dmSupplier
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
+  Private pPurchaseOrders As colPurchaseOrders
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
+    pPurchaseOrders = New colPurchaseOrders
   End Sub
 
   Public Property PrimaryKeyID As Integer
@@ -16,6 +18,16 @@ Public Class fccSupplierDetail
     End Get
     Set(value As Integer)
       pPrimaryKeyID = value
+    End Set
+  End Property
+
+
+  Public Property PurchaseOrders As colPurchaseOrders
+    Get
+      Return pPurchaseOrders
+    End Get
+    Set(value As colPurchaseOrders)
+      pPurchaseOrders = value
     End Set
   End Property
 
@@ -29,12 +41,20 @@ Public Class fccSupplierDetail
   Public Sub LoadObjects()
 
     Dim mdso As dsoPurchasing
-
+    Dim mWhere As String = ""
+    Dim mSubmissionDate As Date = Today
     pSupplier = New dmSupplier
 
     If pPrimaryKeyID <> 0 Then
       mdso = New dsoPurchasing(pDBConn)
       mdso.LoadSupplierDown(pSupplier, pPrimaryKeyID)
+
+      ''//Load POs active and live
+      mSubmissionDate = mSubmissionDate.AddMonths(-3) ''Last 3 months of PO actives
+
+      mWhere = "SupplierID = " & pSupplier.SupplierID & " and (Status <> 6 and Status <>4) and SubmissionDate between '" & mSubmissionDate.ToShortDateString & "' and '" & Today.ToShortDateString & "'"
+
+      mdso.LoadPurchaseOrderCollection(pPurchaseOrders, mWhere)
     End If
 
   End Sub

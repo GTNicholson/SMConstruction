@@ -25,6 +25,7 @@ Public Class frmPODelivery
   Private Enum ePOIProcessorOption
     eProcess = 1
     eTimberPack = 2
+    eProcessAll = 3
   End Enum
 
   Private Sub LoadCombos()
@@ -121,6 +122,7 @@ Public Class frmPODelivery
           txtCategory.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(.Category, ePurchaseCategories))
           txtRequiredDate.Text = .RequiredDate
           txtSupplierCompanyName.Text = .CompanyName
+
         End With
 
         If pFormController.PODelivery IsNot Nothing Then
@@ -128,7 +130,7 @@ Public Class frmPODelivery
           With pFormController.PODelivery
             txtGRNNumber.Text = .GRNumber
             txtReceivedDate.Text = .DateCreated
-
+            txtReceivedValue.Text = pFormController.GetReceivedValue()
             gcQtyToProcess.OptionsColumn.ReadOnly = False
             gcReceivedReplacementQty.OptionsColumn.ReadOnly = False
           End With
@@ -241,6 +243,7 @@ Public Class frmPODelivery
     If pFormController.PODelivery IsNot Nothing Then
       With pFormController.PODelivery
         .GRNumber = txtGRNNumber.Text
+        .PODeliveryValue = txtReceivedValue.Text
         .PurchaseOrder = pFormController.PurchaseOrderInfo.PurchaseOrder
         .PurchaseOrderID = pFormController.PurchaseOrderInfo.PurchaseOrder.PurchaseOrderID
 
@@ -271,6 +274,21 @@ Public Class frmPODelivery
         Case ePOIProcessorOption.eTimberPack
 
           pFormController.ProcessDeliveryQtys(True)
+
+        Case ePOIProcessorOption.eProcessAll
+
+          For Each mPOI As clsPurchaseOrderItemAllocationProcessor In pFormController.PurchaseOrderProcessors
+            Dim mPendingValue As Decimal = 0
+            mPendingValue = mPOI.Quantity - mPOI.ReceivedQty
+
+            If mPendingValue > 0 Then
+              mPOI.ToProcessQty = mPendingValue
+              pFormController.ProcessDeliveryQtys(False)
+            End If
+
+          Next
+
+
       End Select
 
       pFormController.SavePODelivery()

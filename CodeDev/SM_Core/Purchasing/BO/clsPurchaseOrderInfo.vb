@@ -10,6 +10,7 @@
   Public Sub New()
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
+    pPOItemInfos = New colPOItemInfos
   End Sub
 
   Public Sub New(ByRef rPurchaseOrder As dmPurchaseOrder)
@@ -214,6 +215,7 @@
       Return pPurchaseOrder.DeliveryAddress.FullAddress(vbCrLf)
     End Get
   End Property
+
 
   Public Property CompanyName() As String
     Get

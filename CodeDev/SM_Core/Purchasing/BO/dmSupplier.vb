@@ -1,5 +1,6 @@
 ﻿''Class Definition - Supplier (to Supplier)'Generated from Table:Supplier
 Imports RTIS.CommonVB
+Imports RTIS.ERPCore
 
 Public Class dmSupplier : Inherits dmBase
   Implements iValueItem
@@ -39,7 +40,7 @@ Public Class dmSupplier : Inherits dmBase
   Private pMainCounty As String
   Private pMainCountry As String
   Private pDefaultCurrency As Integer
-
+  Protected pMainAddress As dmPostalAddress
 
   Private pSupplierContacts As colSupplierContacts
   Public Sub New()
@@ -48,7 +49,7 @@ Public Class dmSupplier : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     pSupplierContacts = New colSupplierContacts
-
+    pMainAddress = New dmPostalAddress
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -65,6 +66,7 @@ Public Class dmSupplier : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pMainAddress.IsAnyDirty
       If mAnyDirty = False Then mAnyDirty = pSupplierContacts.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
@@ -106,17 +108,17 @@ Public Class dmSupplier : Inherits dmBase
       .Rucnumber = Rucnumber
       .SupplierReferenceID = SupplierReferenceID
       .PurchasingTermsType = PurchasingTermsType
-      .MainAddress1 = MainAddress1
-      .MainAddress2 = MainAddress2
-      .MainTown = MainTown
-      .MainCounty = MainCounty
-      .MainCountry = MainCountry
+      ''.MainAddress1 = MainAddress1
+      ''.MainAddress2 = MainAddress2
+      ''.MainTown = MainTown
+      ''.MainCounty = MainCounty
+      ''.MainCountry = MainCountry
       .DefaultCurrency = DefaultCurrency
 
       'Add entries here for each collection and class property
       .SupplierContacts = SupplierContacts.Clone
       'Entries for object management
-
+      .MainAddress = MainAddress.Clone
       .IsDirty = IsDirty
     End With
 
@@ -396,7 +398,14 @@ Public Class dmSupplier : Inherits dmBase
       pNumero_SWIFT = value
     End Set
   End Property
-
+  Public Property MainAddress() As dmPostalAddress
+    Get
+      Return pMainAddress
+    End Get
+    Set(value As dmPostalAddress)
+      pMainAddress = value
+    End Set
+  End Property
   Public Property Numero_ABA() As String
     Get
       Return pNumero_ABA
@@ -437,54 +446,54 @@ Public Class dmSupplier : Inherits dmBase
     End Set
   End Property
 
-  Public Property MainAddress1() As String
+  Public ReadOnly Property MainAddress1() As String
     Get
-      Return pMainAddress1
+      Return pMainAddress.Address1
     End Get
-    Set(ByVal value As String)
-      If pMainAddress1 <> value Then IsDirty = True
-      pMainAddress1 = value
-    End Set
+    ''Set(ByVal value As String)
+    ''  If pMainAddress1 <> value Then IsDirty = True
+    ''  pMainAddress1 = value
+    ''End Set
   End Property
 
-  Public Property MainAddress2() As String
+  Public ReadOnly Property MainAddress2() As String
     Get
-      Return pMainAddress2
+      Return pMainAddress.Address2
     End Get
-    Set(ByVal value As String)
-      If pMainAddress2 <> value Then IsDirty = True
-      pMainAddress2 = value
-    End Set
+    ''Set(ByVal value As String)
+    ''  If pMainAddress2 <> value Then IsDirty = True
+    ''  pMainAddress2 = value
+    ''End Set
   End Property
 
-  Public Property MainTown() As String
+  Public ReadOnly Property MainTown() As String
     Get
-      Return pMainTown
+      Return pMainAddress.Town
     End Get
-    Set(ByVal value As String)
-      If pMainTown <> value Then IsDirty = True
-      pMainTown = value
-    End Set
+    ''Set(ByVal value As String)
+    ''  If pMainTown <> value Then IsDirty = True
+    ''  pMainTown = value
+    ''End Set
   End Property
 
-  Public Property MainCounty() As String
+  Public ReadOnly Property MainCounty() As String
     Get
-      Return pMainCounty
+      Return pMainAddress.County
     End Get
-    Set(ByVal value As String)
-      If pMainCounty <> value Then IsDirty = True
-      pMainCounty = value
-    End Set
+    ''Set(ByVal value As String)
+    ''  If pMainCounty <> value Then IsDirty = True
+    ''  pMainCounty = value
+    ''End Set
   End Property
 
-  Public Property MainCountry() As String
+  Public ReadOnly Property MainCountry() As String
     Get
-      Return pMainCountry
+      Return pMainAddress.Country
     End Get
-    Set(ByVal value As String)
-      If pMainCountry <> value Then IsDirty = True
-      pMainCountry = value
-    End Set
+    ''Set(ByVal value As String)
+    ''  If pMainCountry <> value Then IsDirty = True
+    ''  pMainCountry = value
+    ''End Set
   End Property
 
   Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly

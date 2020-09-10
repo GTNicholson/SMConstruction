@@ -102,6 +102,9 @@ Public Class frmSalesOrderDetail
       grdWorkOrders.DataSource = pFormController.SOWorkOrders
       grdInvoices.DataSource = pFormController.Invoices
       grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
+
+      grdSalesOrderPhases.DataSource = pFormController.SalesOrder.SalesOrderPhases
+
       LoadCombos()
       RefreshControls()
       If mOK Then RefreshControls()
@@ -173,13 +176,25 @@ Public Class frmSalesOrderDetail
     Try
 
       With pFormController.SalesOrder
+
+        If .OrderPhaseType = eOrderPhaseType.SinglePhase Then
+          If .SalesOrderPhases IsNot Nothing And .SalesOrderPhases.Count > 0 Then
+            With .SalesOrderPhases
+              dteFinishDate.EditValue = .Item(0).DateRequired
+              dteDueTime.EditValue = .Item(0).DateCommitted
+            End With
+          End If
+
+        End If
+
+
         lblSalesOrderID.Text = "ID: " & .SalesOrderID.ToString("0000")
         txtSalesOrderID.Text = .OrderNo
         txtProjectName.Text = .ProjectName
         'dteDateEntered.EditValue = .DateEntered
         dteDateEntered.EditValue = clsGeneralA.DateToDBValue(.DateEntered)
-        dteFinishDate.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
-        dteDueTime.EditValue = clsGeneralA.DateToDBValue(.DueTime)
+
+
         txtVisibleNotes.Text = .VisibleNotes
         txtDelAddress1.Text = .DelAddress1
         btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
@@ -234,6 +249,8 @@ Public Class frmSalesOrderDetail
         End If
 
       End With
+
+      ShowHideTabs()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -256,39 +273,58 @@ Public Class frmSalesOrderDetail
   End Sub
 
   Private Sub UpdateObjects()
-    With pFormController.SalesOrder
-      .OrderNo = txtSalesOrderID.Text
-      .ProjectName = txtProjectName.Text
-      .DateEntered = dteDateEntered.DateTime
-      .DueTime = dteDueTime.DateTime
-      .FinishDate = dteFinishDate.DateTime
-      .VisibleNotes = txtVisibleNotes.Text
-      .DelAddress1 = txtDelAddress1.Text
-      .DelAddress2 = txtDelAddress2.Text
-      .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
-      .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
-      .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
-      .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
-      .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
-      .ShippingCost = txtShippingCost.Text
-      .Version = txtVersion.Text
-      .PodioPath = btnePodio.EditValue
-      gvOrderItem.CloseEditor()
-      gvOrderItem.UpdateCurrentRow()
 
-      gvWorkOrders.CloseEditor()
-      gvWorkOrders.UpdateCurrentRow()
+    If pFormController.SalesOrder IsNot Nothing Then
 
-      gvInvoices.CloseEditor()
-      gvInvoices.UpdateCurrentRow()
+      With pFormController.SalesOrder
 
+        If .OrderPhaseType = eOrderPhaseType.SinglePhase Then
 
-      gvCustomerPurchaseOrder.CloseEditor()
-      gvCustomerPurchaseOrder.UpdateCurrentRow()
+          If .SalesOrderPhases IsNot Nothing And .SalesOrderPhases.Count > 0 Then ''Ensure an SOP
+            With .SalesOrderPhases
+              .Item(0).DateCommitted = dteDueTime.DateTime
+              .Item(0).DateRequired = dteFinishDate.DateTime
+            End With
+          End If
+
+        End If
+
+        .OrderNo = txtSalesOrderID.Text
+        .ProjectName = txtProjectName.Text
+        .DateEntered = dteDateEntered.DateTime
 
 
 
-    End With
+
+        .VisibleNotes = txtVisibleNotes.Text
+        .DelAddress1 = txtDelAddress1.Text
+        .DelAddress2 = txtDelAddress2.Text
+        .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
+        .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
+        .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
+        .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
+        .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
+        .ShippingCost = txtShippingCost.Text
+        .Version = txtVersion.Text
+        .PodioPath = btnePodio.EditValue
+        gvOrderItem.CloseEditor()
+        gvOrderItem.UpdateCurrentRow()
+
+        gvWorkOrders.CloseEditor()
+        gvWorkOrders.UpdateCurrentRow()
+
+        gvInvoices.CloseEditor()
+        gvInvoices.UpdateCurrentRow()
+
+
+        gvCustomerPurchaseOrder.CloseEditor()
+        gvCustomerPurchaseOrder.UpdateCurrentRow()
+
+
+
+      End With
+
+    End If
   End Sub
 
   Private Sub btnedCustomer_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnedCustomer.ButtonClick
@@ -432,7 +468,7 @@ Public Class frmSalesOrderDetail
     Dim mSaveRequired As Boolean
     Dim mResponse As MsgBoxResult
     Dim mRetVal As Boolean
-
+    RefreshControls()
     UpdateObjects()
     'pFormController.SaveObjects()
     If pFormController.IsDirty() Then
@@ -846,7 +882,130 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
-  Private Sub frmSalesOrderDetail_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+  Private Sub gcPhases_CustomButtonChecked(sender As Object, e As BaseButtonEventArgs) Handles gcPhases.CustomButtonChecked
+    Try
+      Dim mSalesOrderPhase As dmSalesOrderPhase
+
+      gvSalesOrderPhases.CloseEditor()
+      gvSalesOrderPhases.UpdateCurrentRow()
+
+
+
+      Select Case e.Button.Properties.Tag
+
+
+        Case eOrderPhaseType.SinglePhase
+          If e.Button.Properties.IsChecked Then
+            pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.SinglePhase
+
+            gcPhases.CustomHeaderButtons.Item(0).Properties.Checked = True
+            gcPhases.CustomHeaderButtons.Item(1).Properties.Checked = False
+
+
+
+            If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing Then
+
+              If pFormController.SalesOrder.SalesOrderPhases.Count >= 2 Then ''//It's a multiple phase
+                pFormController.SalesOrder.SalesOrderPhases.Clear()
+                dteDueTime.EditValue = Date.MinValue
+                dteFinishDate.EditValue = Date.MinValue
+
+                mSalesOrderPhase = New dmSalesOrderPhase
+                mSalesOrderPhase.JobNo = txtSalesOrderID.Text
+                mSalesOrderPhase.DateRequired = dteFinishDate.EditValue
+                mSalesOrderPhase.DateCommitted = dteDueTime.EditValue
+                mSalesOrderPhase.SalesOrderID = pFormController.PrimaryKeyID
+                mSalesOrderPhase.SalesOrderNo = pFormController.SalesOrder.OrderNo
+                mSalesOrderPhase.DateCreated = Now
+                pFormController.SalesOrder.SalesOrderPhases.Add(mSalesOrderPhase)
+
+              ElseIf pFormController.SalesOrder.SalesOrderPhases.Count = 1 Then ''//It's a single phase
+                With pFormController.SalesOrder.SalesOrderPhases
+                  .Item(0).JobNo = txtSalesOrderID.Text
+                  .Item(0).DateRequired = dteFinishDate.EditValue
+                  .Item(0).DateCommitted = dteDueTime.EditValue
+                  .Item(0).SalesOrderID = pFormController.PrimaryKeyID
+                  .Item(0).SalesOrderNo = pFormController.SalesOrder.OrderNo
+                  .Item(0).DateCreated = Now
+                End With
+              Else
+
+
+                mSalesOrderPhase = New dmSalesOrderPhase
+                mSalesOrderPhase.JobNo = txtSalesOrderID.Text
+                mSalesOrderPhase.DateRequired = dteFinishDate.EditValue
+                mSalesOrderPhase.DateCommitted = dteDueTime.EditValue
+                mSalesOrderPhase.SalesOrderID = pFormController.PrimaryKeyID
+                mSalesOrderPhase.SalesOrderNo = pFormController.SalesOrder.OrderNo
+                mSalesOrderPhase.DateCreated = Now
+                pFormController.SalesOrder.SalesOrderPhases.Add(mSalesOrderPhase)
+              End If
+
+
+            End If
+
+
+
+          End If
+
+
+        Case eOrderPhaseType.MultiPhase
+          pFormController.SalesOrder.SalesOrderPhases.Clear()
+          dteDueTime.EditValue = Date.MinValue
+          dteFinishDate.EditValue = Date.MinValue
+          pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.MultiPhase
+
+          gcPhases.CustomHeaderButtons.Item(0).Properties.Checked = False
+          gcPhases.CustomHeaderButtons.Item(1).Properties.Checked = True
+
+        Case Else
+          pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.SinglePhase
+          gcPhases.CustomHeaderButtons.Item(0).Properties.Checked = True
+          gcPhases.CustomHeaderButtons.Item(1).Properties.Checked = False
+      End Select
+      UpdateObjects()
+      RefreshControls()
+
+      ShowHideTabs()
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub ShowHideTabs()
+    Dim mCurrentTabPage As DevExpress.XtraTab.XtraTabPage
+
+    mCurrentTabPage = xtcOrderType.SelectedTabPage
+
+    ''xtabPOReqType.Visible = False
+    For Each mPg As DevExpress.XtraTab.XtraTabPage In xtcOrderType.TabPages
+      mPg.PageVisible = False
+    Next
+    If pFormController.SalesOrder IsNot Nothing Then
+      Select Case pFormController.SalesOrder.OrderPhaseType
+        Case eOrderPhaseType.SinglePhase
+          xtpSingle.PageVisible = True
+          xtpMultiple.PageVisible = False
+
+        Case eOrderPhaseType.MultiPhase
+
+          xtpSingle.PageVisible = False
+          xtpMultiple.PageVisible = True
+        Case Else
+
+          xtpSingle.PageVisible = True
+          xtpMultiple.PageVisible = False
+      End Select
+    End If
+    If mCurrentTabPage IsNot Nothing Then
+      If mCurrentTabPage.PageVisible = True Then
+        xtcOrderType.SelectedTabPage = mCurrentTabPage
+      End If
+    End If
 
   End Sub
+
+
 End Class

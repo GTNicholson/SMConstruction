@@ -42,6 +42,13 @@
     End Get
   End Property
 
+
+  Public ReadOnly Property PODeliveryValue As Decimal
+    Get
+      Return pPODelivery.PODeliveryValue
+    End Get
+  End Property
+
   Public ReadOnly Property GRNumber As String
     Get
       Return pPODelivery.GRNumber

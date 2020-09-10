@@ -85,6 +85,27 @@ Public Class fccPickMaterials
 
   End Sub
 
+  Public Sub LoadSalesOrderPhaseInfos(ByRef rSOPInfos As colSalesOrderPhaseInfos)
+
+    Dim mdto As dtoSalesOrderPhaseInfo
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderPhaseInfo(DBConn)
+      mdto.LoadSOPCollectionByWhere(rSOPInfos, "")
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+
+  End Sub
+
   Public Function LoadWorkOrderInfoDT() As DataTable
     Dim mdso As New dsoSales(DBConn)
     Dim mDT As DataTable = Nothing

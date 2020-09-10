@@ -153,6 +153,20 @@ Public Class colPurchaseOrderAllocations : Inherits colBase(Of dmPurchaseOrderAl
     Return mIndex
   End Function
 
+  Public Function IndexFromCallOffID(ByVal vCallOffID As Integer) As Integer
+    Dim mItem As dmPurchaseOrderAllocation
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.CallOffID = vCallOffID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+
 End Class
 
 

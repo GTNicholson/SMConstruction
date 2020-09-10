@@ -67,6 +67,7 @@ Public Class dtoPODeliveryInfo : Inherits dtoBase
           .ReceivedDate = DBReadDate(rDataReader, "ReceivedDate")
           .Comment = DBReadString(rDataReader, "Comment")
           .DateCreated = DBReadDate(rDataReader, "DateCreated")
+          .PODeliveryValue = DBReadDecimal(rDataReader, "PODeliveryValue")
         End With
 
         With .PurchaseOrder

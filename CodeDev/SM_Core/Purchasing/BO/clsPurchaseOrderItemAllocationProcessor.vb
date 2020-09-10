@@ -3,7 +3,7 @@
 
   Private pToProcessQty As Decimal
   Private pToProcessReplacementQty As Decimal
-
+  Private pToProcessAllQty As Decimal
   Private pReferenceNo As String
 
   Public Sub New(ByRef rPurchaseOrder As dmPurchaseOrderItemAllocation)
@@ -25,6 +25,8 @@
 
     End Set
   End Property
+
+
 
   Public Property ToProcessReplacementQty As Decimal
     Get

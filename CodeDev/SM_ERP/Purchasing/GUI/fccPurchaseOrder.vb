@@ -11,7 +11,7 @@ Public Class fccPurchaseOrder
   Private pPurchaseOrder As dmPurchaseOrder
   Private pSuppliers As colSuppliers
 
-  Private pUsedWorkOrder As List(Of Integer)
+  Private pUsedItems As List(Of Integer)
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
   Private pPODeliveryInfos As colPODeliveryInfos
   Private pWorkOrders As colWorkOrders
@@ -32,7 +32,7 @@ Public Class fccPurchaseOrder
     pPurchaseOrder = New dmPurchaseOrder
     pRTISGlobal = rRTISGlobal
     pWorkOrders = New colWorkOrders
-    pUsedWorkOrder = New List(Of Integer)
+    pUsedItems = New List(Of Integer)
     pSuppliers = New colSuppliers
     pPOIEditor = New clsPOItemEditor
     pcolPOIEditor = New colPOItemEditors
@@ -135,12 +135,12 @@ Public Class fccPurchaseOrder
   End Property
 
 
-  Public Property UsedWorkOrders As List(Of Integer)
+  Public Property UsedItems As List(Of Integer)
     Get
-      Return pUsedWorkOrder
+      Return pUsedItems
     End Get
     Set(value As List(Of Integer))
-      pUsedWorkOrder = value
+      pUsedItems = value
     End Set
   End Property
 
@@ -171,8 +171,8 @@ Public Class fccPurchaseOrder
           pWorkOrders.Add(mWorkOrders)
         End If
 
-        If pUsedWorkOrder.Contains(mPOAllocation.WorkOrderID) = False Then
-          pUsedWorkOrder.Add(mPOAllocation.WorkOrderID)
+        If pUsedItems.Contains(mPOAllocation.WorkOrderID) = False Then
+          pUsedItems.Add(mPOAllocation.WorkOrderID)
         End If
       Next
 
@@ -212,14 +212,14 @@ Public Class fccPurchaseOrder
       mOK = True
       pPurchaseOrder = New dmPurchaseOrder
 
-      pUsedWorkOrder = New List(Of Integer)
+      pUsedItems = New List(Of Integer)
       If pPrimaryKeyID > 0 Then
 
         mOK = mdsoPurchaseOrder.LoadPurchaseOrderDown(Me.PurchaseOrder, Me.PrimaryKeyID)
 
       Else
         pPurchaseOrder.SubmissionDate = Today
-        pPurchaseOrder.Supplier.DefaultCurrency = eCurrency.Dollar
+        pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
         pPurchaseOrder.ExchangeRateValue = mdsoPurchaseOrder.GetDefaultExchangeRate()
         GetNextPONo()
         SaveObject()
@@ -399,4 +399,28 @@ Public Class fccPurchaseOrder
 
     Return mRetVal
   End Function
+
+
+  Public Function LoadSalesOrderPhaseInfo(ByRef rSalesOrderPhaseInfos As colSalesOrderPhaseInfos, ByVal vWhere As String) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSalesOrderPhaseInfo
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderPhaseInfo(pDBConn)
+      mdto.LoadSOPCollectionByWhere(rSalesOrderPhaseInfos, vWhere)
+
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
 End Class

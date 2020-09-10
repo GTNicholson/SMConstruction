@@ -49,6 +49,10 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pOutputDocuments As colOutputDocuments
   Private pSupplier As dmSupplier
   Private pPurchaseOrderAllocations As colPurchaseOrderAllocations
+
+
+
+
   Private pExchangeRateValue As Decimal
   Public Sub New()
     MyBase.New()
@@ -342,7 +346,9 @@ Public Class dmPurchaseOrder : Inherits dmBase
 
   Public Property VatRate() As Decimal
     Get
-      VatRate = pVatRate
+
+      Return pVatRate
+
     End Get
     Set(ByVal value As Decimal)
       If pVatRate <> value Then IsDirty = True
@@ -564,9 +570,29 @@ Public Class dmPurchaseOrder : Inherits dmBase
   End Property
 
 
-  Public Function VATRatePercent(ByVal vPOCORaisedDate) As Decimal
+  ''Public Function VATRatePercent(ByVal vPOCORaisedDate) As Decimal
+  ''  Dim mRetVal As Decimal
+  ''  Dim mVATPercent As Decimal
+  ''  Dim mVATRates As colVATRates
 
-  End Function
+  ''  If IVATemp Then
+
+
+  ''    If pVATRateCode <> 0 Then
+  ''      If RTIS.CommonVB.clsGeneralA.IsBlankDate(vPOCORaisedDate) = False Then
+  ''        mVATRates = TryCast(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.VATRate), colVATRates)
+  ''        If mVATRates IsNot Nothing Then
+  ''          mVATPercent = mVATRates.GetVATRateAtDate(pVATRateCode, vPOCORaisedDate)
+  ''          If mVATPercent > 0 Then
+  ''            mRetVal = mVATPercent / 100
+  ''          End If
+  ''        End If
+  ''      End If
+  ''    End If
+  ''  End If
+  ''  Return mRetVal
+  ''End Function
+
 
   Public Property PurchaseOrderItems() As colPurchaseOrderItems
     Get

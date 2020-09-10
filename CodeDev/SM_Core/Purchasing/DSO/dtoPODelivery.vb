@@ -68,6 +68,7 @@ Public Class dtoPODelivery : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ActionRequiredID", .ActionRequiredID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FileExport", StringToDBValue(.FileExport))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FullyInvoiced", .FullyInvoiced)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PODeliveryValue", .PODeliveryValue)
       '' DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierDelNo", StringToDBValue(.SupplierDelNo))
     End With
 
@@ -91,6 +92,7 @@ Public Class dtoPODelivery : Inherits dtoBase
         .ActionRequiredID = DBReadByte(rDataReader, "ActionRequiredID")
         .FileExport = DBReadString(rDataReader, "FileExport")
         .FullyInvoiced = DBReadBoolean(rDataReader, "FullyInvoiced")
+        .PODeliveryValue = DBReadDecimal(rDataReader, "PODeliveryValue")
         '' .SupplierDelNo = DBReadString(rDataReader, "SupplierDelNo")
         ''.MKReference = DBReadString(rDataReader, "MKReference")
         pPODelivery.IsDirty = False

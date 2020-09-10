@@ -1,4 +1,5 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraGauges.Core.Model
+Imports RTIS.CommonVB
 
 Public Class fccPurchaseOrderDelivery
 
@@ -268,6 +269,29 @@ Public Class fccPurchaseOrderDelivery
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+  End Sub
+
+  Friend Function GetReceivedValue() As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mDSO = New dsoPurchasing(pDBConn)
+    Dim mPOIs As colPurchaseOrderItems
+
+
+    mDSO.LoadPurchaseOrderDown(pPurchaseOrder, pPurchaseOrderInfo.PurchaseOrderID)
+
+
+    For Each mPOI As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
+      mRetVal += mPOI.TotalQuantityAllocatedReceived * mPOI.UnitPrice
+    Next
+
+
+    Return mRetVal
+  End Function
+
+  Public Sub ProcessDeliveryAllPendingQtys()
+
+
+
   End Sub
 
   Public Sub ProcessReplacementQtys()

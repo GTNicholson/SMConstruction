@@ -279,10 +279,13 @@ Public Class dsoPurchasing
     Dim mRetVal As Boolean
     Dim mdto As dtoPurchaseOrderInfo
 
+
     Try
       pDBConn.Connect()
       mdto = New dtoPurchaseOrderInfo(pDBConn)
       mdto.LoadPurchaseOrderInfo(rvwPurchaseOrder, vPurchaseOrderID)
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
@@ -461,5 +464,22 @@ Public Class dsoPurchasing
     Return mInvoiceNo
   End Function
 
+  Public Function LoadPurchaseOrderCollection(ByRef rPurchaseOrders As colPurchaseOrders, ByVal vWhere As String) As Boolean
+    Dim mdtoPurchaseOrder As New dtoPurchaseOrder(pDBConn)
+    Dim mdtoPurchaseORderItem As New dtoPurchaseOrderItem(pDBConn)
+    Dim mdtoPurchaseOrderItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = mdtoPurchaseOrder.LoadPurchaseOrderCollection(rPurchaseOrders, vWhere)
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 
 End Class

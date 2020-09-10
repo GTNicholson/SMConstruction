@@ -1,4 +1,5 @@
 ﻿Imports RTIS.CommonVB
+Imports RTIS.Elements
 
 Public Class frmSupplierDetail
   Public FormMode As eFormMode
@@ -118,6 +119,7 @@ Public Class frmSupplierDetail
 
       pFormController.LoadObjects()
       grdSupplierContact.DataSource = pFormController.Supplier.SupplierContacts
+      grdPOInfo.DataSource = pFormController.PurchaseOrders
       LoadCombos()
 
       If mOK Then RefreshControls()
@@ -147,9 +149,15 @@ Public Class frmSupplierDetail
 
   Private Sub LoadCombos()
     Try
-      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(UctAddress1.cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPurchaseTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
+
+      clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Category"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Status"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("PaymentStatus"), clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
+
+      ''  clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Status"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.sta))
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -219,7 +227,7 @@ Public Class frmSupplierDetail
       txtCompanyName.Text = .CompanyName
       txtRazonSocial.Text = .RazonSocial
       txtRucNumber.Text = .Rucnumber
-      txtMainAddress1.Text = .MainAddress1
+      ''txtMainAddress1.Text = .MainAddress1
       txtTelNo.Text = .TelNo
       txtEmail.Text = .Email
       txtWebUrl.Text = .WebURL
@@ -227,27 +235,34 @@ Public Class frmSupplierDetail
       txtBancoIntermediario.Text = .BancoIntermediario
       txtSwift.Text = .Numero_SWIFT
       txtABA.Text = .Numero_ABA
-      txtMainTown.Text = .MainTown
+      ''txtMainTown.Text = .MainTown
       txtCustomerNotes.Text = .Notes
-      RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
+      ''RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPurchaseTermsType, .PurchasingTermsType)
       rgEstatus.EditValue = .SupplierStatusID
       rgDefaultCurrency.EditValue = .DefaultCurrency
 
-
+      UctAddress1.Address = .MainAddress
+      UctAddress1.RefreshControls()
 
     End With
   End Sub
 
   Private Sub UpdateObjects()
     With pFormController.Supplier
+
+
+      UctAddress1.UpdateObject()
+      .MainAddress = UctAddress1.Address
+
+
       .CompanyName = txtCompanyName.Text
       .SupplierReferenceID = txtSupplierReference.Text
       .CompanyName = txtCompanyName.Text
       .RazonSocial = txtRazonSocial.Text
       .Rucnumber = txtRucNumber.Text
-      .MainAddress1 = txtMainAddress1.Text
+      '' .MainAddress1 = txtMainAddress1.Text
       .TelNo = txtTelNo.Text
       .Email = txtEmail.Text
       .WebURL = txtWebUrl.Text
@@ -255,9 +270,9 @@ Public Class frmSupplierDetail
       .BancoIntermediario = txtBancoIntermediario.Text
       .Numero_SWIFT = txtSwift.Text
       .Numero_ABA = txtABA.Text
-      .MainTown = txtMainTown.Text
+      ''  .MainTown = txtMainTown.Text
       .Notes = txtCustomerNotes.Text
-      .SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
+      ''.SalesAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
       .PurchasingTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPurchaseTermsType)
       .SupplierStatusID = rgEstatus.EditValue
@@ -338,5 +353,21 @@ Public Class frmSupplierDetail
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub rgDefaultCurrency_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgDefaultCurrency.SelectedIndexChanged
+
+    If rgDefaultCurrency.EditValue = eCurrency.Cordobas Then
+
+      gvPOInfo.Columns("TotalNetValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPOInfo.Columns("TotalNetValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+
+    Else
+
+      gvPOInfo.Columns("TotalNetValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPOInfo.Columns("TotalNetValue").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+    End If
   End Sub
 End Class

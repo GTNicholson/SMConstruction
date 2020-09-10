@@ -32,6 +32,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Private pQtyReceived As Decimal
   Private pPurchaseOrderItemAllocations As colPurchaseOrderItemAllocations
   Private pParent As dmPurchaseOrder
+  Private pIVATemp As Boolean
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -121,6 +123,19 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       If pPurchaseOrderItemID <> value Then IsDirty = True
       pPurchaseOrderItemID = value
     End Set
+  End Property
+
+  Public ReadOnly Property IVATemp() As Boolean
+    Get
+
+      If pVatRateCode > 0 Then
+        Return True
+      Else
+        Return False
+      End If
+
+    End Get
+
   End Property
 
   Public Property PickedQty() As Decimal
@@ -337,16 +352,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property VatValue() As Decimal
-    Get
-      Return pVatValue
-    End Get
-    Set(ByVal value As Decimal)
-      Dim mValue As Decimal = Math.Round(value, 4, MidpointRounding.AwayFromZero)
-      If pVatValue <> mValue Then IsDirty = True
-      pVatValue = mValue
-    End Set
-  End Property
+
 
   Public ReadOnly Property UnitPricePlusVAT As Decimal
     Get
@@ -361,6 +367,18 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     mRetVal = Math.Round(UnitPrice * (vPercent / 100), 2, MidpointRounding.AwayFromZero)
     Return mRetVal
   End Function
+
+  Public Property VatValue() As Decimal
+    Get
+      Return pVatValue
+    End Get
+    Set(ByVal value As Decimal)
+      Dim mValue As Decimal = Math.Round(value, 4, MidpointRounding.AwayFromZero)
+      If pVatValue <> mValue Then IsDirty = True
+      pVatValue = mValue
+    End Set
+  End Property
+
 
   Public Property Notes As String
     Get

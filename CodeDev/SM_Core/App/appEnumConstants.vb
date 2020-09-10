@@ -30,6 +30,7 @@ Public Enum eActivityCode
   Suppliers = 401
   PurchaseOrder = 402
   POConsole = 403
+  PODelivery = 404
 
   InventoryGroup = 500
   StockItem = 501
@@ -50,6 +51,12 @@ Public Enum eMode
   StockItemAdmin = 1
   StockItemInfos = 2
   StockItemProcessor = 3
+End Enum
+
+Public Enum eTaxRate
+  <Description("Ninguno")> None = 0
+  <Description("IVA")> IVA = 1
+
 End Enum
 
 Public Enum eCOCType
@@ -127,6 +134,7 @@ Public Enum eBrowseList
   StockTake = 9
   Supplier = 10
   Invoice = 11
+  PODelivery = 12
 End Enum
 
 
@@ -276,6 +284,11 @@ Public Enum eMaterialRequirementType
   Other = 2
   WoodChanges = 3
   OtherChanges = 4
+End Enum
+Public Enum ePOMaterialRequirementType
+  <Description("Inventario")> Inventario = 1
+  <Description("Sencillo")> Sencillo = 2
+  <Description("Multiple")> Multiple = 3
 End Enum
 
 Public Enum eMilestoneStatus
@@ -1606,6 +1619,6 @@ Public Enum ePayPeriodType
 End Enum
 
 Public Enum eOrderPhaseType
-  SinglePhase = 1
-  MultiPhase = 2
+  <Description("Sencillo")> SinglePhase = 1
+  <Description("Multiple ")> MultiPhase = 2
 End Enum

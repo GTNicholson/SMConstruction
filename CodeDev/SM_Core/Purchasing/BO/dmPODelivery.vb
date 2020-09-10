@@ -16,6 +16,7 @@ Public Class dmPODelivery : Inherits dmBase
   Private pFullyInvoiced As Boolean
   Private pSupplierDelNo As String
   Private pMKReference As String
+  Private pPODeliveryValue As Decimal
 
   Private pPurchaseOrder As dmPurchaseOrder
   Private pPODeliveryItems As colPODeliveryItems
@@ -160,6 +161,18 @@ Public Class dmPODelivery : Inherits dmBase
       pIsSupplierReturn = value
     End Set
   End Property
+
+
+  Public Property PODeliveryValue As Decimal
+    Get
+      Return pPODeliveryValue
+    End Get
+    Set(value As Decimal)
+      If pPODeliveryValue <> value Then IsDirty = True
+      pPODeliveryValue = value
+    End Set
+  End Property
+
 
   Public Property DateCreated As DateTime
     Get

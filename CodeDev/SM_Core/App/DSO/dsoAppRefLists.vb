@@ -1,7 +1,7 @@
 Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB
-
+Imports RTIS.ERPCore
 
 Public Class dsoAppRefLists
   Private pDBConn As clsDBConnBase
@@ -159,6 +159,10 @@ Public Class dsoAppRefLists
           mItem.IList = LoadWoodValue()
           mOK = True
 
+        Case appRefLists.VATRate
+          mItem.IList = LoadVATList()
+          mOK = True
+
       End Select
       mItem = Nothing
     Else
@@ -231,23 +235,12 @@ Public Class dsoAppRefLists
   End Function
 
   Private Function LoadVATList() As IList
-    Dim mcolVATCodes As New RTIS.ERPCore.colVATRateCodes
-    Dim mdsoVATRate As New RTIS.ERPCore.dtoVATRate(pDBConn)
-    Dim mdtoVATRateCode As New RTIS.ERPCore.dtoVATRateCode(pDBConn)
-    Dim mVATRateCode As RTIS.ERPCore.clsVATRateCode
-    Try
-      mdtoVATRateCode.LoadVATRateCodeCollection(mcolVATCodes)
-      For Each mVATRateCode In mcolVATCodes
-        mVATRateCode.VATRates = New RTIS.ERPCore.colVATRates
-        mdsoVATRate.LoadVATCodeCollection(mVATRateCode.VATRates, mVATRateCode.VATRateCode)
-      Next
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      mdsoVATRate = Nothing
-      mdtoVATRateCode = Nothing
-    End Try
-    Return mcolVATCodes
+    Dim mdto As New dtoVATRate(pDBConn)
+    Dim mRetVal As New colVATRates
+
+    mdto.LoadVATRateCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
 

@@ -30,6 +30,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Suppliers)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
     '' mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. O.C.", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
 
 
     mLastGroup = mMenuList.AddNewGroup("Recursos Humanos", 0, eActivityCode.HumanResourcesGroup, True)
@@ -39,7 +40,6 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.InventoryGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.StockItem)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PickingMatReq)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Prod. por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.PickingMatReq)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
@@ -153,7 +153,7 @@ Class clsMenuFunctions
     Dim mfrm As RTIS.Elements.frmBrowseList
     Dim mbrwInt As brwPODelivery
 
-    mbrwInt = New brwPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal, eBrowseList.Supplier)
+    mbrwInt = New brwPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal, eBrowseList.PODelivery)
     mfrm = RTIS.Elements.frmBrowseList.GetFormIfLoaded(mbrwInt)
 
     If mfrm Is Nothing Then

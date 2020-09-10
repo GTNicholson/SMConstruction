@@ -109,6 +109,17 @@ Public Class dtoSupplier : Inherits dtoBase
     Try
       If pSupplier Is Nothing Then SetObjectToNew()
       With pSupplier
+
+        With .MainAddress
+          .Address1 = DBReadString(rDataReader, "MainAddress1")
+          .Address2 = DBReadString(rDataReader, "MainAddress2")
+          ''.Address3 = DBReadString(rDataReader, "Address3")
+          .Town = DBReadString(rDataReader, "MainTown")
+          .County = DBReadString(rDataReader, "MainCounty")
+          ''.PostCode = DBReadString(rDataReader, "PostCode")
+          .Country = DBReadString(rDataReader, "MainCountry")
+        End With
+
         .SupplierID = DBReadInt32(rDataReader, "SupplierID")
         .CompanyName = DBReadString(rDataReader, "CompanyName")
         .SupplierStatusID = DBReadInt32(rDataReader, "SupplierStatusID")
@@ -138,11 +149,6 @@ Public Class dtoSupplier : Inherits dtoBase
         .Rucnumber = DBReadString(rDataReader, "Rucnumber")
         .SupplierReferenceID = DBReadString(rDataReader, "SupplierReferenceID")
         .PurchasingTermsType = DBReadInt32(rDataReader, "PurchasingTermsType")
-        .MainAddress1 = DBReadString(rDataReader, "MainAddress1")
-        .MainAddress2 = DBReadString(rDataReader, "MainAddress2")
-        .MainTown = DBReadString(rDataReader, "MainTown")
-        .MainCounty = DBReadString(rDataReader, "MainCounty")
-        .MainCountry = DBReadString(rDataReader, "MainCountry")
         .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
 
         pSupplier.IsDirty = False

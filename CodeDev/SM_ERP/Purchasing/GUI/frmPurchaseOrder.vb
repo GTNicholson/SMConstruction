@@ -22,7 +22,7 @@ Public Class frmPurchaseOrder
   Private pForceExit As Boolean = False
   Private pPOIEditor As clsPOItemEditor
   Private pcolPOIEditor As colPOItemEditors
-
+  Private pSupplier As dmSupplier
   Private Enum eWorkOrder
     PickWO = 1
 
@@ -176,12 +176,14 @@ Public Class frmPurchaseOrder
     pLoadError = False
 
     Try
-
+      pSupplier = New dmSupplier
 
       If mOK Then mOK = pFormController.LoadObject()
       If mOK Then mOK = pFormController.LoadRefData()
 
       pFormController.LoadSuppliers()
+
+      xtabPOReqType.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
 
       LoadCombos()
       RefreshControls()
@@ -226,7 +228,7 @@ Public Class frmPurchaseOrder
     clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
 
 
     dteDateOfOrder.Properties.NullDate = Date.MinValue
@@ -311,12 +313,12 @@ Public Class frmPurchaseOrder
 
   Private Sub RefreshControls()
     Try
-      Dim mSupplier As dmSupplier
+
 
       With pFormController.PurchaseOrder
         dteDateOfOrder.EditValue = .SubmissionDate
         txtCarriage.Text = .Carriage
-        mSupplier = pFormController.Suppliers.ItemFromKey(.SupplierID)
+        pSupplier = pFormController.Suppliers.ItemFromKey(.SupplierID)
         txtSupplierRef.Text = .SupplierRef
         btePONum.EditValue = .PONum
         txtSupplierRef.Text = .SupplierRef
@@ -339,8 +341,8 @@ Public Class frmPurchaseOrder
 
         txtNetValue.Text = pFormController.GetTotalNetValue().ToString("N2")
 
-        If mSupplier IsNot Nothing Then
-          btedSupplier.Text = mSupplier.CompanyName
+        If pSupplier IsNot Nothing Then
+          btedSupplier.Text = pSupplier.CompanyName
           FillSupplierDetail()
         Else
 
@@ -357,13 +359,17 @@ Public Class frmPurchaseOrder
   Private Sub FillSupplierDetail()
 
     Try
-      With pFormController.PurchaseOrder
+      With pFormController.PurchaseOrder.Supplier
 
-        txtAddress1.Text = .Supplier.MainAddress1
-        RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .Supplier.SalesAreaID)
-        txtTown.Text = .Supplier.MainTown
-        btedSupplier.Text = .Supplier.CompanyName
-        'CustomerStatusID.Text = .Customer.CustomerStatusID
+        UctAddress1.Address = .MainAddress
+        UctAddress1.RefreshControls()
+        ''  RTIS.Elements.clsDEControlLoading.FillDEComboVI(UctAddress1.cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+
+        ''txtAddress1.Text = .Supplier.MainAddress1
+        ''RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .Supplier.SalesAreaID)
+        ''txtTown.Text = .Supplier.MainTown
+        ''btedSupplier.Text = .Supplier.CompanyName
+        ''CustomerStatusID.Text = .Customer.CustomerStatusID
 
       End With
 
@@ -375,6 +381,13 @@ Public Class frmPurchaseOrder
 
   Private Sub UpdateObject()
     With pFormController.PurchaseOrder
+
+      With .Supplier
+        UctAddress1.UpdateObject()
+        .MainAddress = UctAddress1.Address
+      End With
+
+
       .SubmissionDate = dteDateOfOrder.EditValue
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
@@ -393,6 +406,8 @@ Public Class frmPurchaseOrder
       .BuyerID = clsDEControlLoading.GetDEComboValue(cboBuyer)
       pFormController.PurchaseOrder.DefaultCurrency = rgDefaultCurrency.EditValue
       .DeliveryAddress = uctDeliveryAddress.Address
+
+
 
       If .DeliveryAddress.IsDirty Or .SupplierAddress.IsDirty Or .InvoiceAddress.IsDirty Then
         .IsDirty = True
@@ -530,13 +545,13 @@ Public Class frmPurchaseOrder
       Select Case e.Button.Kind
         Case ButtonPredefines.Combo
           Dim mSupplierPicker As clsPickerSupplier
-          Dim mSupplier As dmSupplier
+          ''  Dim mSupplier As dmSupplier
           UpdateObject()
           mSupplierPicker = New clsPickerSupplier(pFormController.GetSupplierList, pFormController.DBConn)
-          mSupplier = frmPickSupplier.OpenPickerSingle(mSupplierPicker)
-          If mSupplier IsNot Nothing Then
-            pFormController.PurchaseOrder.SupplierID = mSupplier.SupplierID
-            pFormController.PurchaseOrder.Supplier = mSupplier
+          pSupplier = frmPickSupplier.OpenPickerSingle(mSupplierPicker)
+          If pSupplier IsNot Nothing Then
+            pFormController.PurchaseOrder.SupplierID = pSupplier.SupplierID
+            pFormController.PurchaseOrder.Supplier = pSupplier
             pFormController.ReloadSupplier()
             FillSupplierDetail()
 
@@ -843,8 +858,8 @@ Public Class frmPurchaseOrder
             mPOAllocation.WorkOrderID = mWorkOrderID
             pFormController.PurchaseOrder.PurchaseOrderAllocations.Add(mPOAllocation)
           End If
-          If pFormController.UsedWorkOrders.Contains(mWorkOrderID) = False Then
-            pFormController.UsedWorkOrders.Add(mWorkOrderID)
+          If pFormController.UsedItems.Contains(mWorkOrderID) = False Then
+            pFormController.UsedItems.Add(mWorkOrderID)
           End If
         Next
 
@@ -963,8 +978,8 @@ Public Class frmPurchaseOrder
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
 
-      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
 
     End If
 
@@ -985,74 +1000,146 @@ Public Class frmPurchaseOrder
     grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
   End Sub
 
-
-
-  Private Sub gvPurchaseOrderItems_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles gvPurchaseOrderItems.ValidateRow
-    ''Dim mPOI As dmPurchaseOrderItem
-    ''Dim mNewPOI As dmPurchaseOrder
-
-    ''For index = 0 To gvPurchaseOrderItems.RowCount - 1
-    ''  mPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow(), dmPurchaseOrderItem)
-
-
-    ''  If mPOI IsNot Nothing Then
-
-    ''    If pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemDescription(mPOI.Description) Is Nothing Then
-
-    ''      pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Add(mPOI)
-    ''      Exit For
-    ''    End If
-
-    ''  End If
-
-
-    ''Next
-    ''yes
+  Private Sub btedSupplier_EditValueChanged(sender As Object, e As EventArgs) Handles btedSupplier.EditValueChanged
+    pFormController.PurchaseOrder.DefaultCurrency = pSupplier.DefaultCurrency
   End Sub
 
-  Private Sub gvPurchaseOrderItems_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles gvPurchaseOrderItems.ValidatingEditor
-    ''Dim mPOI As dmPurchaseOrderItem
-    ''Dim mNewPOI As dmPurchaseOrder
-
-    ''For index = 0 To gvPurchaseOrderItems.RowCount - 1
-    ''  mPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow(), dmPurchaseOrderItem)
-
-
-    ''  If mPOI IsNot Nothing Then
-
-    ''    If pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mPOI.StockItemID) Is Nothing Then
-
-    ''      pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Add(mPOI)
-    ''      Exit For
-    ''    End If
-
-    ''  End If
-
-
-    ''Next
-
-  End Sub
-
-  Private Sub gvPurchaseOrderItems_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles gvPurchaseOrderItems.RowUpdated
-    Dim mPOI As dmPurchaseOrderItem
-    Dim mNewPOI As dmPurchaseOrder
-
-    For index = 0 To gvPurchaseOrderItems.RowCount - 1
-      mPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow(), dmPurchaseOrderItem)
-
-
-      If mPOI IsNot Nothing Then
-
-        If pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemDescription(mPOI.Description) Is Nothing Then
-
-          pFormController.PurchaseOrder.PurchaseOrderItems.Add(mPOI)
-          Exit For
+  Private Sub gvPurchaseOrderItems_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvPurchaseOrderItems.CustomUnboundColumnData
+    Dim mPOItem As dmPurchaseOrderItem
+    Dim mVatRates As colVATRates
+    mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
+    mPOItem = e.Row
+    If mPOItem IsNot Nothing Then
+      If e.Column Is gcVATRateCode Then
+        If e.IsGetData Then
+          e.Value = mPOItem.VatRateCode
+        ElseIf e.IsSetData Then
+          mPOItem.VatRateCode = e.Value
+          mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+          'gvPurchaseOrderItems.RefreshRow(gvPurchaseOrderItems.FocusedRowHandle)
         End If
-
       End If
+    End If
+  End Sub
+
+  Private Sub gvPurchaseOrderItems_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles gvPurchaseOrderItems.CellValueChanged
+    Dim mPOItem As dmPurchaseOrderItem
+    Dim mVatRates As colVATRates
+    mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
+    mPOItem = gvPurchaseOrderItems.GetRow(e.RowHandle)
+    If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
+      mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+    End If
+
+  End Sub
 
 
+
+  Private Sub grpPOMaterialType_CustomButtonChecked(sender As Object, e As BaseButtonEventArgs) Handles grpPOMaterialType.CustomButtonChecked
+    Try
+      gvWOs.CloseEditor()
+      gvWOs.UpdateCurrentRow()
+
+
+
+      Select Case e.Button.Properties.Tag
+
+
+        Case ePOMaterialRequirementType.Inventario
+          If e.Button.Properties.IsChecked Then
+            pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
+
+            grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
+            grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = False
+            grpPOMaterialType.CustomHeaderButtons.Item(2).Properties.Checked = False
+          End If
+
+
+        Case ePOMaterialRequirementType.Sencillo
+          pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
+
+          grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
+          grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = True
+          grpPOMaterialType.CustomHeaderButtons.Item(2).Properties.Checked = False
+
+        Case ePOMaterialRequirementType.Multiple
+          pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Multiple
+          grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
+          grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = False
+          grpPOMaterialType.CustomHeaderButtons.Item(2).Properties.Checked = True
+
+        Case Else
+          pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
+          grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
+
+      End Select
+
+      ShowHideTabs()
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+
+  Private Sub ShowHideTabs()
+    Dim mCurrentTabPage As DevExpress.XtraTab.XtraTabPage
+
+    mCurrentTabPage = xtabPOReqType.SelectedTabPage
+
+    ''xtabPOReqType.Visible = False
+    For Each mPg As DevExpress.XtraTab.XtraTabPage In xtabPOReqType.TabPages
+      mPg.PageVisible = False
     Next
+    If pFormController.PurchaseOrder IsNot Nothing Then
+      Select Case pFormController.PurchaseOrder.MaterialRequirementTypeID
+        Case ePOMaterialRequirementType.Inventario
+          xtpInventory.PageVisible = True
+          xtpSingle.PageVisible = False
+          xtpMultiple.PageVisible = False
+        Case ePOMaterialRequirementType.Sencillo
+          xtpInventory.PageVisible = False
+          xtpSingle.PageVisible = True
+          xtpMultiple.PageVisible = False
+        Case ePOMaterialRequirementType.Multiple
+          xtpInventory.PageVisible = False
+          xtpSingle.PageVisible = False
+          xtpMultiple.PageVisible = True
+        Case Else
+          xtpInventory.PageVisible = False
+          xtpSingle.PageVisible = False
+          xtpMultiple.PageVisible = False
+      End Select
+    End If
+    If mCurrentTabPage IsNot Nothing Then
+      If mCurrentTabPage.PageVisible = True Then
+        xtabPOReqType.SelectedTabPage = mCurrentTabPage
+      End If
+    End If
 
+  End Sub
+
+  Private Sub btedSOPhase_Properties_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btedSOPhase.Properties.ButtonClick
+    Try
+      Dim mPicker As clsPickerSalesOrderPhase
+      Dim mSalesOrderPhaseInfos As New colSalesOrderPhaseInfos
+      Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
+
+      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "")
+
+
+      mPicker = New clsPickerSalesOrderPhase(mSalesOrderPhaseInfos, pFormController.DBConn)
+
+      mSalesOrderPhaseInfo = frmSalesOrderPhasePicker.OpenPickerSingle(mPicker)
+
+      btedSOPhase.Text = mSalesOrderPhaseInfo.SOPJobNo
+      txtProjectName.Text = mSalesOrderPhaseInfo.ProjectName
+      txtCustomerName.Text = mSalesOrderPhaseInfo.CustomerName
+      dteDateRequired.EditValue = mSalesOrderPhaseInfo.DateRequired
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class
