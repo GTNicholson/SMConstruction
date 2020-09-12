@@ -137,6 +137,7 @@ Public Class frmPODelivery
           End With
 
         End If
+        SetupReadOnly()
         SetUpUserPermissions()
       End If
 
@@ -147,6 +148,24 @@ Public Class frmPODelivery
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+
+  End Sub
+
+  Private Sub SetupReadOnly()
+
+    If txtGRNNumber.Text = "" Then
+
+      grdPurchaseOrderItemInfo.Enabled = False
+      grpMaterialRequirements.CustomHeaderButtons.Item(0).Properties.Visible = False
+      ''grpMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = False
+      grpMaterialRequirements.CustomHeaderButtons.Item(2).Properties.Visible = False
+    Else
+
+      grdPurchaseOrderItemInfo.Enabled = True
+      grpMaterialRequirements.CustomHeaderButtons.Item(0).Properties.Visible = True
+      ''grpMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = True
+      grpMaterialRequirements.CustomHeaderButtons.Item(2).Properties.Visible = True
+    End If
 
   End Sub
 
@@ -295,7 +314,7 @@ Public Class frmPODelivery
       pFormController.SavePODelivery()
       gvMaterialRequirementInfos.RefreshData()
 
-
+      RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

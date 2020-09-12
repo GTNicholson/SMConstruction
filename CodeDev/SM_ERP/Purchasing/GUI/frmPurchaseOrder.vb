@@ -247,7 +247,7 @@ Public Class frmPurchaseOrder
       mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.JobNo)
     Next
 
-    clsDEControlLoading.LoadGridLookUpEdit(grdSalesOrderPhase, gvSalesOrderPhase.Columns("CallOffID"), mSalesOrderPhaseInv)
+    clsDEControlLoading.LoadGridLookUpEdit(grdSalesOrderPhaseItem, gvSalesOrderPhaseItem.Columns("CallOffID"), mSalesOrderPhaseInv)
   End Sub
 
   Private Sub SetupUserPermissions()
@@ -362,10 +362,13 @@ Public Class frmPurchaseOrder
             grpPOMaterialType.CustomHeaderButtons(1).Properties.Checked = True
             grpPOMaterialType.CustomHeaderButtons(2).Properties.Checked = False
 
-            btedSOPhase.Text = pFormController.SalesOrderPhaseInfo.SOPJobNo
-            txtProjectName.Text = pFormController.SalesOrderPhaseInfo.ProjectName
-            txtCustomerName.Text = pFormController.SalesOrderPhaseInfo.CustomerName
-            dteDateRequired.EditValue = pFormController.SalesOrderPhaseInfo.DateRequired
+            If pFormController.SalesOrderPhaseInfo IsNot Nothing Then
+              btedSOPhase.Text = pFormController.SalesOrderPhaseInfo.SOPJobNo
+              txtProjectName.Text = pFormController.SalesOrderPhaseInfo.ProjectName
+              txtCustomerName.Text = pFormController.SalesOrderPhaseInfo.CustomerName
+              dteDateRequired.EditValue = pFormController.SalesOrderPhaseInfo.DateRequired
+            End If
+
 
 
           Case ePOMaterialRequirementType.Multiple
@@ -442,8 +445,8 @@ Public Class frmPurchaseOrder
       gvPurchaseOrderItems.CloseEditor()
       grdPurchaseOrderItems.Update()
 
-      gvSalesOrderPhase.CloseEditor()
-      grdSalesOrderPhase.Update()
+      gvSalesOrderPhaseItem.CloseEditor()
+      grdSalesOrderPhaseItem.Update()
     End With
 
 
@@ -569,6 +572,7 @@ Public Class frmPurchaseOrder
           If pSupplier IsNot Nothing Then
             pFormController.PurchaseOrder.SupplierID = pSupplier.SupplierID
             pFormController.PurchaseOrder.Supplier = pSupplier
+            rgDefaultCurrency.EditValue = pSupplier.DefaultCurrency
             pFormController.ReloadSupplier()
             FillSupplierDetail()
 
@@ -581,10 +585,11 @@ Public Class frmPurchaseOrder
             FillSupplierDetail()
 
           End If
-          RefreshControls()
+
       End Select
 
       RefreshControls()
+      rgDefaultCurrency.EditValue = pSupplier.DefaultCurrency
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -826,7 +831,7 @@ Public Class frmPurchaseOrder
     'gvPurchaseOrderItems.CloseEditor()
     mRow = gvPurchaseOrderItems.GetFocusedRow
     If mRow IsNot Nothing Then
-      grdSalesOrderPhase.DataSource = mRow.PurchaseOrderItemAllocations
+      grdSalesOrderPhaseItem.DataSource = mRow.PurchaseOrderItemAllocations
     End If
   End Sub
 
@@ -836,7 +841,7 @@ Public Class frmPurchaseOrder
     mRow = gvPurchaseOrderItems.GetFocusedRow
     If mRow IsNot Nothing Then
 
-      gvSalesOrderPhase.CloseEditor()
+      gvSalesOrderPhaseItem.CloseEditor()
       UpdateObject()
       mRow.QtyRequired = mRow.TotalQuantityAllocated
       gvPurchaseOrderItems.RefreshData()
@@ -985,6 +990,8 @@ Public Class frmPurchaseOrder
       gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatString = "C$#,##0.00;;#"
 
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
 
     Else
       lblExchangeRate.Visible = False
@@ -997,6 +1004,9 @@ Public Class frmPurchaseOrder
 
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.00;;#"
 
     End If
 
@@ -1020,7 +1030,8 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub btedSupplier_EditValueChanged(sender As Object, e As EventArgs) Handles btedSupplier.EditValueChanged
-    pFormController.PurchaseOrder.DefaultCurrency = pSupplier.DefaultCurrency
+
+    ''pFormController.PurchaseOrder.DefaultCurrency = pSupplier.DefaultCurrency
   End Sub
 
   Private Sub gvPurchaseOrderItems_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvPurchaseOrderItems.CustomUnboundColumnData
@@ -1069,6 +1080,8 @@ Public Class frmPurchaseOrder
             pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
             pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
             ''pFormController.SalesOrderPhases.Clear()
+            grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+            grdSalesOrderPhases.RefreshDataSource()
             pFormController.SalesOrderPhaseInfo = Nothing
 
             grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
@@ -1077,7 +1090,12 @@ Public Class frmPurchaseOrder
           End If
 
 
+
         Case ePOMaterialRequirementType.Sencillo
+
+          If pFormController.SalesOrderPhaseInfo Is Nothing Then
+            pFormController.SalesOrderPhaseInfo = New clsSalesOrderPhaseInfo
+          End If
           pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
           For mLoop = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 1 Step -1
             pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mLoop)
@@ -1086,7 +1104,8 @@ Public Class frmPurchaseOrder
           grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
           grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = True
           grpPOMaterialType.CustomHeaderButtons.Item(2).Properties.Checked = False
-
+          grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+          grdSalesOrderPhases.RefreshDataSource()
         Case ePOMaterialRequirementType.Multiple
           pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Multiple
           grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
@@ -1096,15 +1115,16 @@ Public Class frmPurchaseOrder
         Case Else
           pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
           grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
-          pFormController.SalesOrderPhases.Clear()
+          ''pFormController.SalesOrderPhases.Clear()
       End Select
 
       pFormController.LoadRefData()
       LoadPOItemAllocationCombo()
 
-
+      RefreshControls()
       ShowHideTabs()
-
+      grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+      grdSalesOrderPhases.RefreshDataSource()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -1179,6 +1199,9 @@ Public Class frmPurchaseOrder
         mSalesOrderPhase.QuantityItems = mSalesOrderPhaseInfo.QuantityItems
         mSalesOrderPhase.SalesOrderID = mSalesOrderPhaseInfo.SalesOrderID
         mSalesOrderPhase.TotalPrice = mSalesOrderPhaseInfo.TotalPrice
+        mSalesOrderPhase.SalesOrderPhaseID = mSalesOrderPhaseInfo.SalesOrderPhaseID
+        pFormController.SalesOrderPhases.Clear()
+        pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 
         pFormController.SalesOrderPhases.Add(mSalesOrderPhase)
 
@@ -1196,6 +1219,7 @@ Public Class frmPurchaseOrder
 
 
       pFormController.SalesOrderPhaseInfo = mSalesOrderPhaseInfo
+      LoadPOItemAllocationCombo()
       RefreshControls()
 
 
@@ -1243,7 +1267,7 @@ Public Class frmPurchaseOrder
 
           End If
       End Select
-
+      LoadPOItemAllocationCombo()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

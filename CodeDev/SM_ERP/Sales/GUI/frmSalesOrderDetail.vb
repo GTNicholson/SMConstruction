@@ -248,9 +248,20 @@ Public Class frmSalesOrderDetail
           Next
         End If
 
+        Select Case .OrderPhaseType
+          Case eOrderPhaseType.SinglePhase
+            gcPhases.CustomHeaderButtons(0).Properties.Checked = True
+            gcPhases.CustomHeaderButtons(1).Properties.Checked = False
+          Case eOrderPhaseType.MultiPhase
+            gcPhases.CustomHeaderButtons(0).Properties.Checked = False
+            gcPhases.CustomHeaderButtons(1).Properties.Checked = True
+        End Select
+
       End With
 
-      ShowHideTabs()
+
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -898,65 +909,40 @@ Public Class frmSalesOrderDetail
           If e.Button.Properties.IsChecked Then
             pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.SinglePhase
 
+            For mLoop = pFormController.SalesOrder.SalesOrderPhases.Count - 1 To 0 Step -1
+              pFormController.SalesOrder.SalesOrderPhases.RemoveAt(mLoop)
+            Next
+
             gcPhases.CustomHeaderButtons.Item(0).Properties.Checked = True
             gcPhases.CustomHeaderButtons.Item(1).Properties.Checked = False
 
+            dteDueTime.EditValue = Date.MinValue
+            dteFinishDate.EditValue = Date.MinValue
 
 
-            If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing Then
+            mSalesOrderPhase = New dmSalesOrderPhase
+            mSalesOrderPhase.JobNo = txtSalesOrderID.Text
+            mSalesOrderPhase.DateRequired = dteFinishDate.EditValue
+            mSalesOrderPhase.DateCommitted = dteDueTime.EditValue
+            mSalesOrderPhase.SalesOrderID = pFormController.PrimaryKeyID
+            mSalesOrderPhase.SalesOrderNo = pFormController.SalesOrder.OrderNo
+            mSalesOrderPhase.DateCreated = Now
+            pFormController.SalesOrder.SalesOrderPhases.Add(mSalesOrderPhase)
 
-              If pFormController.SalesOrder.SalesOrderPhases.Count >= 2 Then ''//It's a multiple phase
-                pFormController.SalesOrder.SalesOrderPhases.Clear()
-                dteDueTime.EditValue = Date.MinValue
-                dteFinishDate.EditValue = Date.MinValue
-
-                mSalesOrderPhase = New dmSalesOrderPhase
-                mSalesOrderPhase.JobNo = txtSalesOrderID.Text
-                mSalesOrderPhase.DateRequired = dteFinishDate.EditValue
-                mSalesOrderPhase.DateCommitted = dteDueTime.EditValue
-                mSalesOrderPhase.SalesOrderID = pFormController.PrimaryKeyID
-                mSalesOrderPhase.SalesOrderNo = pFormController.SalesOrder.OrderNo
-                mSalesOrderPhase.DateCreated = Now
-                pFormController.SalesOrder.SalesOrderPhases.Add(mSalesOrderPhase)
-
-              ElseIf pFormController.SalesOrder.SalesOrderPhases.Count = 1 Then ''//It's a single phase
-                With pFormController.SalesOrder.SalesOrderPhases
-                  .Item(0).JobNo = txtSalesOrderID.Text
-                  .Item(0).DateRequired = dteFinishDate.EditValue
-                  .Item(0).DateCommitted = dteDueTime.EditValue
-                  .Item(0).SalesOrderID = pFormController.PrimaryKeyID
-                  .Item(0).SalesOrderNo = pFormController.SalesOrder.OrderNo
-                  .Item(0).DateCreated = Now
-                End With
-              Else
-
-
-                mSalesOrderPhase = New dmSalesOrderPhase
-                mSalesOrderPhase.JobNo = txtSalesOrderID.Text
-                mSalesOrderPhase.DateRequired = dteFinishDate.EditValue
-                mSalesOrderPhase.DateCommitted = dteDueTime.EditValue
-                mSalesOrderPhase.SalesOrderID = pFormController.PrimaryKeyID
-                mSalesOrderPhase.SalesOrderNo = pFormController.SalesOrder.OrderNo
-                mSalesOrderPhase.DateCreated = Now
-                pFormController.SalesOrder.SalesOrderPhases.Add(mSalesOrderPhase)
-              End If
-
-
-            End If
 
 
 
           End If
 
 
-        Case eOrderPhaseType.MultiPhase
-          pFormController.SalesOrder.SalesOrderPhases.Clear()
-          dteDueTime.EditValue = Date.MinValue
-          dteFinishDate.EditValue = Date.MinValue
-          pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.MultiPhase
 
+        Case eOrderPhaseType.MultiPhase
+          pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.MultiPhase
           gcPhases.CustomHeaderButtons.Item(0).Properties.Checked = False
           gcPhases.CustomHeaderButtons.Item(1).Properties.Checked = True
+
+
+
 
         Case Else
           pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.SinglePhase

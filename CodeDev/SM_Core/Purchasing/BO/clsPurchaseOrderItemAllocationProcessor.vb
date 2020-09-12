@@ -46,6 +46,17 @@
     End Set
   End Property
 
+  Public ReadOnly Property DelItemQty As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      If pPODeliveryItem IsNot Nothing Then
+        mRetVal = pPODeliveryItem.QtyReceived
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+
 End Class
 
 Public Class colPurchaseOrderItemAllocationProcessor : Inherits List(Of clsPurchaseOrderItemAllocationProcessor)

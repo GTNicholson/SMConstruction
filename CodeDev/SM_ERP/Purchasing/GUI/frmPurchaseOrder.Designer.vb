@@ -49,8 +49,8 @@ Partial Class frmPurchaseOrder
         Me.gpnlPOItems = New DevExpress.XtraEditors.GroupControl()
         Me.PopupContainerControl1 = New DevExpress.XtraEditors.PopupContainerControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.grdSalesOrderPhase = New DevExpress.XtraGrid.GridControl()
-        Me.gvSalesOrderPhase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.grdSalesOrderPhaseItem = New DevExpress.XtraGrid.GridControl()
+        Me.gvSalesOrderPhaseItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -88,6 +88,7 @@ Partial Class frmPurchaseOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.gcPODeliveryValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grpPOMaterialType = New DevExpress.XtraEditors.GroupControl()
         Me.xtabPOReqType = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpInventory = New DevExpress.XtraTab.XtraTabPage()
@@ -142,7 +143,6 @@ Partial Class frmPurchaseOrder
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gpnlPOItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,8 +151,8 @@ Partial Class frmPurchaseOrder
         Me.PopupContainerControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.grdSalesOrderPhase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvSalesOrderPhase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoPopPutWorkOrderQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdPurchaseOrderItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvPurchaseOrderItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -406,45 +406,45 @@ Partial Class frmPurchaseOrder
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.grdSalesOrderPhase)
+        Me.PanelControl2.Controls.Add(Me.grdSalesOrderPhaseItem)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(407, 171)
         Me.PanelControl2.TabIndex = 0
         '
-        'grdSalesOrderPhase
+        'grdSalesOrderPhaseItem
         '
-        Me.grdSalesOrderPhase.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.Edit.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.First.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.Last.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.Next.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.NextPage.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.Prev.Visible = False
-        Me.grdSalesOrderPhase.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdSalesOrderPhase.Location = New System.Drawing.Point(2, 2)
-        Me.grdSalesOrderPhase.MainView = Me.gvSalesOrderPhase
-        Me.grdSalesOrderPhase.MenuManager = Me.BarManager1
-        Me.grdSalesOrderPhase.Name = "grdSalesOrderPhase"
-        Me.grdSalesOrderPhase.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoPopPutWorkOrderQty})
-        Me.grdSalesOrderPhase.Size = New System.Drawing.Size(403, 167)
-        Me.grdSalesOrderPhase.TabIndex = 0
-        Me.grdSalesOrderPhase.UseEmbeddedNavigator = True
-        Me.grdSalesOrderPhase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhase})
+        Me.grdSalesOrderPhaseItem.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.Edit.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.First.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.Last.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.Next.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.NextPage.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.Prev.Visible = False
+        Me.grdSalesOrderPhaseItem.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+        Me.grdSalesOrderPhaseItem.Location = New System.Drawing.Point(2, 2)
+        Me.grdSalesOrderPhaseItem.MainView = Me.gvSalesOrderPhaseItem
+        Me.grdSalesOrderPhaseItem.MenuManager = Me.BarManager1
+        Me.grdSalesOrderPhaseItem.Name = "grdSalesOrderPhaseItem"
+        Me.grdSalesOrderPhaseItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoPopPutWorkOrderQty})
+        Me.grdSalesOrderPhaseItem.Size = New System.Drawing.Size(403, 167)
+        Me.grdSalesOrderPhaseItem.TabIndex = 0
+        Me.grdSalesOrderPhaseItem.UseEmbeddedNavigator = True
+        Me.grdSalesOrderPhaseItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItem})
         '
-        'gvSalesOrderPhase
+        'gvSalesOrderPhaseItem
         '
-        Me.gvSalesOrderPhase.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gvSalesOrderPhase.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gvSalesOrderPhase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn4, Me.GridColumn2})
-        Me.gvSalesOrderPhase.GridControl = Me.grdSalesOrderPhase
-        Me.gvSalesOrderPhase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Quantity", Me.GridColumn7, "N2")})
-        Me.gvSalesOrderPhase.Name = "gvSalesOrderPhase"
-        Me.gvSalesOrderPhase.OptionsView.ShowFooter = True
-        Me.gvSalesOrderPhase.OptionsView.ShowGroupPanel = False
+        Me.gvSalesOrderPhaseItem.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvSalesOrderPhaseItem.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvSalesOrderPhaseItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn4, Me.GridColumn2})
+        Me.gvSalesOrderPhaseItem.GridControl = Me.grdSalesOrderPhaseItem
+        Me.gvSalesOrderPhaseItem.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Quantity", Me.GridColumn7, "N2")})
+        Me.gvSalesOrderPhaseItem.Name = "gvSalesOrderPhaseItem"
+        Me.gvSalesOrderPhaseItem.OptionsView.ShowFooter = True
+        Me.gvSalesOrderPhaseItem.OptionsView.ShowGroupPanel = False
         '
         'GridColumn6
         '
@@ -869,7 +869,7 @@ Partial Class frmPurchaseOrder
         Me.gvPODeliveryInfos.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvPODeliveryInfos.Appearance.OddRow.Options.UseBackColor = True
         Me.gvPODeliveryInfos.Appearance.OddRow.Options.UseFont = True
-        Me.gvPODeliveryInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn8})
+        Me.gvPODeliveryInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.gcPODeliveryValue})
         Me.gvPODeliveryInfos.GridControl = Me.grdPODeliveryInfos
         Me.gvPODeliveryInfos.Name = "gvPODeliveryInfos"
         Me.gvPODeliveryInfos.OptionsBehavior.ReadOnly = True
@@ -905,6 +905,16 @@ Partial Class frmPurchaseOrder
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+        '
+        'gcPODeliveryValue
+        '
+        Me.gcPODeliveryValue.Caption = "Valor de Rec."
+        Me.gcPODeliveryValue.DisplayFormat.FormatString = "c2"
+        Me.gcPODeliveryValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcPODeliveryValue.FieldName = "PODeliveryValue"
+        Me.gcPODeliveryValue.Name = "gcPODeliveryValue"
+        Me.gcPODeliveryValue.Visible = True
+        Me.gcPODeliveryValue.VisibleIndex = 2
         '
         'grpPOMaterialType
         '
@@ -1494,14 +1504,6 @@ Partial Class frmPurchaseOrder
         Me.LabelControl5.TabIndex = 254
         Me.LabelControl5.Text = "Fecha de Órden"
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Valor"
-        Me.GridColumn8.FieldName = "P0DeliveryValue"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        '
         'frmPurchaseOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1526,8 +1528,8 @@ Partial Class frmPurchaseOrder
         Me.PopupContainerControl1.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.grdSalesOrderPhase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvSalesOrderPhase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoPopPutWorkOrderQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdPurchaseOrderItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvPurchaseOrderItems, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1648,8 +1650,8 @@ Partial Class frmPurchaseOrder
     Friend WithEvents gcCoCType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PopupContainerControl1 As DevExpress.XtraEditors.PopupContainerControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents grdSalesOrderPhase As DevExpress.XtraGrid.GridControl
-    Friend WithEvents gvSalesOrderPhase As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents grdSalesOrderPhaseItem As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvSalesOrderPhaseItem As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoPopPutWorkOrderQty As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
@@ -1707,5 +1709,5 @@ Partial Class frmPurchaseOrder
     Friend WithEvents gcRequiredQuantitySimple As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repitQtyReqSimp As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPODeliveryValue As DevExpress.XtraGrid.Columns.GridColumn
 End Class

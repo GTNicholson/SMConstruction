@@ -127,7 +127,7 @@ Public Class fccPurchaseOrder
     Try
       mdso = New dsoPurchasing(pDBConn)
 
-      mWhere = "PurchaseOrderID = " & PurchaseOrder.PurchaseOrderID
+      mWhere = "PurchaseOrderID = " & PurchaseOrder.PurchaseOrderID & " and GRNumber<>''"
       mdso.LoadPODeliveryInfoByWhere(pPODeliveryInfos, mWhere)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -215,7 +215,7 @@ Public Class fccPurchaseOrder
   Public Sub ReloadPODeliveryInfos()
     Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
     PODeliveryInfos.Clear()
-    Dim mWhere As String = "PurchaseOrderID = " & pPurchaseOrder.PurchaseOrderID
+    Dim mWhere As String = "PurchaseOrderID = " & pPurchaseOrder.PurchaseOrderID & " and GRNumber<>''"
 
     mdsoPurchaseOrder.LoadPODeliveryInfoByWhere(PODeliveryInfos, mWhere)
 

@@ -257,6 +257,9 @@ Public Class dsoPurchasing
   Public Sub LoadPurchaseOrderItemAllocationProcessorss(ByRef rPOItemAllocationProcessors As colPurchaseOrderItemAllocationProcessor, ByVal vPurchaseOrderID As Integer)
 
     Dim mdto As dtoPurchaseOrderItemAllocationInfo
+    Dim mdtoPODI As dtoPODeliveryItem
+    Dim mPODIs As colPODeliveryItems
+    Dim mPOIA As clsPurchaseOrderItemAllocationProcessor
     Dim mWhere As String
 
     Try
@@ -266,6 +269,8 @@ Public Class dsoPurchasing
 
       mWhere = "PurchaseOrderID = " & vPurchaseOrderID
       mdto.LoadPurchaseOrderItemAllocationProcessorsByWhere(rPOItemAllocationProcessors, mWhere)
+
+      mdtoPODI = New dtoPODeliveryItem(pDBConn)
 
 
     Catch ex As Exception
@@ -287,6 +292,20 @@ Public Class dsoPurchasing
       mdto.LoadPurchaseOrderInfo(rvwPurchaseOrder, vPurchaseOrderID)
 
 
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalPODeliveryValueByID(ByVal vPODeliveryID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+    Try
+      pDBConn.Connect()
+      mRetVal = pDBConn.ExecuteScalar("select * from vwTotalValueSUMPODeliveryItem where PODeliveryID = " & vPODeliveryID)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally

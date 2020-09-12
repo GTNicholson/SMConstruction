@@ -110,8 +110,13 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
       End With
 
       With pPurchaseOrderItemAllocationInfo.WorkOrder
-        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
-        .Description = DBReadString(rDataReader, "WODESCRIPTION")
+        ''.WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+        ''.Description = DBReadString(rDataReader, "WODESCRIPTION")
+      End With
+
+      With pPurchaseOrderItemAllocationInfo.SalesOrderPhase
+        .JobNo = DBReadString(rDataReader, "JobNo")
+
       End With
       mOK = True
     Catch Ex As Exception

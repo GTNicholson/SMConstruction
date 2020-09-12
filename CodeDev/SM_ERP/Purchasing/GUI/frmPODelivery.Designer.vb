@@ -51,6 +51,8 @@ Partial Class frmPODelivery
         Me.txtRequiredDate = New DevExpress.XtraEditors.TextEdit()
         Me.grpPOPicking = New DevExpress.XtraEditors.GroupControl()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtReceivedValue = New DevExpress.XtraEditors.TextEdit()
         Me.txtGRNNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtReceivedDate = New DevExpress.XtraEditors.TextEdit()
@@ -74,8 +76,7 @@ Partial Class frmPODelivery
         Me.gcReceivedReplacementQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtReceivedValue = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.btnSelectPurchaseOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupplierCompanyName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +85,7 @@ Partial Class frmPODelivery
         Me.grpPOPicking.SuspendLayout()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
+        CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +93,6 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.SuspendLayout()
         CType(Me.grdPurchaseOrderItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl3
@@ -354,6 +355,24 @@ Partial Class frmPODelivery
         Me.grpGRN.TabIndex = 13
         Me.grpGRN.Text = "Información de Recepción de O.C."
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Appearance.Options.UseFont = True
+        Me.LabelControl5.Location = New System.Drawing.Point(813, 40)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(125, 16)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Valor de Recepción"
+        '
+        'txtReceivedValue
+        '
+        Me.txtReceivedValue.Location = New System.Drawing.Point(949, 38)
+        Me.txtReceivedValue.Name = "txtReceivedValue"
+        Me.txtReceivedValue.Properties.ReadOnly = True
+        Me.txtReceivedValue.Size = New System.Drawing.Size(158, 20)
+        Me.txtReceivedValue.TabIndex = 9
+        '
         'txtGRNNumber
         '
         Me.txtGRNNumber.Location = New System.Drawing.Point(90, 38)
@@ -429,7 +448,7 @@ Partial Class frmPODelivery
         Me.gvMaterialRequirementInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.75!)
         Me.gvMaterialRequirementInfos.Appearance.Row.Options.UseFont = True
         Me.gvMaterialRequirementInfos.ColumnPanelRowHeight = 40
-        Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcQtyToProcess, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.gcReplacementQty, Me.GridColumn16, Me.gcReceivedReplacementQty, Me.GridColumn17, Me.GridColumn18})
+        Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn10, Me.GridColumn3, Me.GridColumn11, Me.GridColumn12, Me.gcQtyToProcess, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.gcReplacementQty, Me.GridColumn16, Me.gcReceivedReplacementQty, Me.GridColumn17, Me.GridColumn18})
         Me.gvMaterialRequirementInfos.GridControl = Me.grdPurchaseOrderItemInfo
         Me.gvMaterialRequirementInfos.Name = "gvMaterialRequirementInfos"
         Me.gvMaterialRequirementInfos.OptionsView.ShowGroupPanel = False
@@ -497,7 +516,7 @@ Partial Class frmPODelivery
         Me.GridColumn11.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.GridColumn11.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn11.AppearanceCell.Options.UseFont = True
-        Me.GridColumn11.Caption = "Cant. Recibida"
+        Me.GridColumn11.Caption = "Cant. Total Recibida"
         Me.GridColumn11.DisplayFormat.FormatString = "N2"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "ReceivedQty"
@@ -520,7 +539,7 @@ Partial Class frmPODelivery
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 10
+        Me.GridColumn12.VisibleIndex = 11
         Me.GridColumn12.Width = 78
         '
         'gcQtyToProcess
@@ -533,7 +552,7 @@ Partial Class frmPODelivery
         Me.gcQtyToProcess.FieldName = "ToProcessQty"
         Me.gcQtyToProcess.Name = "gcQtyToProcess"
         Me.gcQtyToProcess.Visible = True
-        Me.gcQtyToProcess.VisibleIndex = 11
+        Me.gcQtyToProcess.VisibleIndex = 12
         Me.gcQtyToProcess.Width = 64
         '
         'GridColumn13
@@ -643,23 +662,13 @@ Partial Class frmPODelivery
         Me.GridColumn18.VisibleIndex = 4
         Me.GridColumn18.Width = 99
         '
-        'LabelControl5
+        'GridColumn3
         '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Location = New System.Drawing.Point(813, 40)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(125, 16)
-        Me.LabelControl5.TabIndex = 10
-        Me.LabelControl5.Text = "Valor de Recepción"
-        '
-        'txtReceivedValue
-        '
-        Me.txtReceivedValue.Location = New System.Drawing.Point(949, 38)
-        Me.txtReceivedValue.Name = "txtReceivedValue"
-        Me.txtReceivedValue.Properties.ReadOnly = True
-        Me.txtReceivedValue.Size = New System.Drawing.Size(158, 20)
-        Me.txtReceivedValue.TabIndex = 9
+        Me.GridColumn3.Caption = "Cant. Rec. por Recep."
+        Me.GridColumn3.FieldName = "DelItemQty"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
         '
         'frmPODelivery
         '
@@ -680,6 +689,7 @@ Partial Class frmPODelivery
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
         Me.grpGRN.PerformLayout()
+        CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -687,7 +697,6 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.ResumeLayout(False)
         CType(Me.grdPurchaseOrderItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -738,4 +747,5 @@ Partial Class frmPODelivery
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtReceivedValue As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

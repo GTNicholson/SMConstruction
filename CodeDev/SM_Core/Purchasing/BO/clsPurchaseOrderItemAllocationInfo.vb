@@ -10,6 +10,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Private pRequiredDates As Date
   Private pPurchaseOrderID As Int32
   Private pWorkOrder As dmWorkOrder
+  Private pSalesOrderPhase As dmSalesOrderPhase
   Public Sub New()
     MyBase.New()
     pStockItem = New dmStockItem
@@ -17,6 +18,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
     pPurchaseOrderItemAllocation = New dmPurchaseOrderItemAllocation
     pPurchaseOrder = New dmPurchaseOrder
     pWorkOrder = New dmWorkOrder
+    pSalesOrderPhase = New dmSalesOrderPhase
   End Sub
 
   Public Sub New(ByRef rPurchaseOrderItemAllocation As dmPurchaseOrderItemAllocation)
@@ -25,7 +27,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
     pStockItem = New dmStockItem
     pPurchaseOrder = New dmPurchaseOrder
     pWorkOrder = New dmWorkOrder
-
+    pSalesOrderPhase = New dmSalesOrderPhase
   End Sub
 
   Protected Overrides Sub Finalize()
@@ -64,6 +66,14 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Set
   End Property
 
+  Public Property SalesOrderPhase() As dmSalesOrderPhase
+    Get
+      Return pSalesOrderPhase
+    End Get
+    Set(ByVal value As dmSalesOrderPhase)
+      pSalesOrderPhase = value
+    End Set
+  End Property
 
   Public Property PurchaseOrderItem() As dmPurchaseOrderItem
     Get
@@ -98,6 +108,18 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Get
 
   End Property
+
+  Public Property JobNo() As String
+    Get
+      Return pSalesOrderPhase.JobNo
+    End Get
+    Set(value As String)
+      pSalesOrderPhase.JobNo = value
+    End Set
+
+  End Property
+
+
 
   Public Property PONum() As String
     Get

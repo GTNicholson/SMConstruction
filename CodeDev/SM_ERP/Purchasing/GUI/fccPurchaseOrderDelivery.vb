@@ -272,20 +272,16 @@ Public Class fccPurchaseOrderDelivery
   End Sub
 
   Friend Function GetReceivedValue() As Decimal
-    Dim mRetVal As Decimal = 0
-    Dim mDSO = New dsoPurchasing(pDBConn)
-    Dim mPOIs As colPurchaseOrderItems
 
+    Dim mdso As New dsoPurchasing(Me.DBConn)
+    Dim mTotalPOValue As Decimal = 0
 
-    mDSO.LoadPurchaseOrderDown(pPurchaseOrder, pPurchaseOrderInfo.PurchaseOrderID)
+    If PODelivery.PODeliveryID > 0 Then
+      mTotalPOValue = mdso.GetTotalPODeliveryValueByID(Me.PODelivery.PODeliveryID)
 
+    End If
 
-    For Each mPOI As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
-      mRetVal += mPOI.TotalQuantityAllocatedReceived * mPOI.UnitPrice
-    Next
-
-
-    Return mRetVal
+    Return mTotalPOValue
   End Function
 
   Public Sub ProcessDeliveryAllPendingQtys()
