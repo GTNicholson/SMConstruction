@@ -1,6 +1,6 @@
 ﻿Imports RTIS.CommonVB
 
-Public Class fccSalesOrderDetail
+Public Class fccSalesOrderDetailSM
   Private pPrimaryKeyID As Integer
   Private pRTISGlobal As AppRTISGlobal
 

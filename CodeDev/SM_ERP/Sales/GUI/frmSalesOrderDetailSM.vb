@@ -4,11 +4,11 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 
-Public Class frmSalesOrderDetail
+Public Class frmSalesOrderDetailSM
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
-  Private pFormController As fccSalesOrderDetail
+  Private pFormController As fccSalesOrderDetailSM
 
   Public FormMode As eFormMode
   Public ExitMode As Windows.Forms.DialogResult
@@ -41,14 +41,14 @@ Public Class frmSalesOrderDetail
   End Sub
 
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI)
-    Dim mfrm As frmSalesOrderDetail = Nothing
+    Dim mfrm As frmSalesOrderDetailSM = Nothing
 
     If vPrimaryKeyID <> 0 Then
       mfrm = GetFormIfLoaded(vPrimaryKeyID)
     End If
     If mfrm Is Nothing Then
-      mfrm = New frmSalesOrderDetail
-      mfrm.pFormController = New fccSalesOrderDetail(rDBConn, rRTISGlobal)
+      mfrm = New frmSalesOrderDetailSM
+      mfrm.pFormController = New fccSalesOrderDetailSM(rDBConn, rRTISGlobal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.Show()
@@ -58,10 +58,10 @@ Public Class frmSalesOrderDetail
 
   End Sub
 
-  Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmSalesOrderDetail
-    Dim mfrmWanted As frmSalesOrderDetail = Nothing
+  Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmSalesOrderDetailSM
+    Dim mfrmWanted As frmSalesOrderDetailSM = Nothing
     Dim mFound As Boolean = False
-    Dim mfrm As frmSalesOrderDetail
+    Dim mfrm As frmSalesOrderDetailSM
     'Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
@@ -77,7 +77,7 @@ Public Class frmSalesOrderDetail
     Return mfrmWanted
   End Function
 
-  Public ReadOnly Property FormController As fccSalesOrderDetail
+  Public ReadOnly Property FormController As fccSalesOrderDetailSM
     Get
       Return pFormController
     End Get
@@ -625,7 +625,7 @@ Public Class frmSalesOrderDetail
       If IO.File.Exists(mFilePath) Then
         frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
       End If
-      mReport.ClearImages
+      mReport.ClearImages()
       mReport.Dispose()
     Else
       MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
