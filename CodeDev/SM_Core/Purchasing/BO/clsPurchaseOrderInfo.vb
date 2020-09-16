@@ -111,6 +111,8 @@
     End Set
   End Property
 
+
+
   Public ReadOnly Property Status() As Byte
     Get
       Return pPurchaseOrder.Status

@@ -259,8 +259,8 @@ Public Class dsoSales : Inherits dsoBase
       pDBConn.Connect()
       mdto = New dtoInvoiceInfo(pDBConn, clsInvoiceInfo.eInvoicePredictedType.Invoice)
 
-      mSQLWhere1 = "InvoiceDate >= '" & mStartDate.ToString("yyyy/MM/dd") & "'"
-      mSQLWhere2 = "InvoiceDate <= '" & mEndDate.ToString("yyyy/MM/dd") & "'"
+      mSQLWhere1 = "InvoiceDate >= '" & mStartDate.ToString("yyyyMMdd") & "'"
+      mSQLWhere2 = "InvoiceDate <= '" & mEndDate.ToString("yyyyMMdd") & "'"
 
       mSQLWhere = mSQLWhere1
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
@@ -349,7 +349,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoSalesOrderPhase As dtoSalesOrderPhase
     Dim mdtoSalesOrderPhaseItem As dtoSalesOrderPhaseItem
     Dim mdtoPhaseItemComponent As dtoPhaseItemComponent
-    Dim mdtoSalesItemComponenent As dtoSalesItemComponent
+    Dim mdtodtoSalesItemAssembly As dtoSalesItemAssembly
     Dim mdtoSalesOrderStage As dtoSalesOrderStage
 
     Try
@@ -388,8 +388,8 @@ Public Class dsoSales : Inherits dsoBase
       For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
         mdtoWO = New dtoWorkOrder(pDBConn)
         mdtoWO.SaveWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
-        mdtoSalesItemComponenent = New dtoSalesItemComponent(pDBConn)
-        mdtoSalesItemComponenent.LoadSalesItemComponentCollection(mSOI.SalesItemComponents, mSOI.SalesOrderItemID)
+        mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
+        mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(mSOI.SalesItemAssemblys, mSOI.SalesOrderItemID)
         '// Ensure any product details are also saved
         For Each mWO As dmWorkOrder In mSOI.WorkOrders
           If mWO.Product IsNot Nothing Then
@@ -441,7 +441,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoSalesOrderPhaseItem As dtoSalesOrderPhaseItem
     Dim mdtoPhaseItemComponent As dtoPhaseItemComponent
     Dim mdtoMaterialRequirementChanges As dtoMaterialRequirement
-    Dim mdtoSalesItemComponent As dtoSalesItemComponent
+    Dim mdtodtoSalesItemAssembly As dtoSalesItemAssembly
 
     Dim mdtoWOFiles As dtoFileTracker
     Dim mProdFurniture As dmProductFurniture
@@ -491,8 +491,8 @@ Public Class dsoSales : Inherits dsoBase
       mdtoWOs = New dtoWorkOrder(pDBConn)
       mdtoWOs.LoadWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
 
-      mdtoSalesItemComponent = New dtoSalesItemComponent(pDBConn)
-      mdtoSalesItemComponent.LoadSalesItemComponentCollection(mSOI.SalesItemComponents, mSOI.SalesOrderItemID)
+      mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
+      mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(mSOI.SalesItemAssemblys, mSOI.SalesOrderItemID)
 
       For Each mWO As dmWorkOrder In mSOI.WorkOrders
         '// Instantiate and Load up the details for the specific product type

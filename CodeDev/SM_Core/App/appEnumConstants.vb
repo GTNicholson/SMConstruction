@@ -31,6 +31,8 @@ Public Enum eActivityCode
   PurchaseOrder = 402
   POConsole = 403
   PODelivery = 404
+  POReportList = 405
+  PODeliveryReport = 406
 
   InventoryGroup = 500
   StockItem = 501
@@ -174,6 +176,8 @@ Public Enum eReportSource
   StockItemTransactions = 3
   Invoice = 4
   WoodReqMatInfo = 5
+  PurchaseOrder = 6
+  PODelivery = 7
 End Enum
 
 Public Enum eParentType

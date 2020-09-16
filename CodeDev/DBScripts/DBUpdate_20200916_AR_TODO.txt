@@ -1,0 +1,21 @@
+drop table SalesItemComponent 
+GO
+
+
+
+CREATE TABLE SalesItemAssembly (
+	SalesItemAssemblyID int IDENTITY(1,1) NOT NULL,
+	 SalesOrderID int NULL,
+	 SalesOrderItemID int NULL,
+	 Ref varchar(25) null,
+	Description varchar(100) null
+	
+ CONSTRAINT [PK_SalesItemAssembly] PRIMARY KEY CLUSTERED 
+(
+	SalesItemAssemblyID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+

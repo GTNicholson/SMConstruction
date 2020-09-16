@@ -75,6 +75,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property DateCreatedMC As DateTime
+    Get
+      Return New Date(Year(pPODelivery.DateCreated), Month(pPODelivery.DateCreated), 1)
+    End Get
+  End Property
+
   Public ReadOnly Property PurchaseCategory As Byte
     Get
       Return pPurchaseOrder.PurchaseCategory
@@ -90,6 +96,12 @@
   Public ReadOnly Property RequiredDate As Date
     Get
       Return pPurchaseOrder.RequiredDate
+    End Get
+  End Property
+
+  Public ReadOnly Property RequiredDateMC As DateTime
+    Get
+      Return New Date(Year(pPurchaseOrder.RequiredDate), Month(pPurchaseOrder.RequiredDate), 1)
     End Get
   End Property
 

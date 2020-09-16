@@ -1,5 +1,31 @@
 ﻿<XtraSerializer version="1.0" application="View">
   <property name="#LayoutVersion" />
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="HeaderPanel" iskey="true" value="HeaderPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 10pt, style=Bold</property>
+    </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="Row" iskey="true" value="Row">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+  </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
   <property name="ColumnPanelRowHeight">-1</property>
@@ -22,14 +48,21 @@
   <property name="FocusRectStyle">CellFocus</property>
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
+  <property name="OptionsLayout" isnull="true" iskey="true">
+    <property name="StoreAllOptions">true</property>
+    <property name="Columns" isnull="true" iskey="true">
+      <property name="StoreAllOptions">true</property>
+    </property>
+  </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="10">
+  <property name="Columns" iskey="true" value="7">
     <property name="Item1" isnull="true" iskey="true">
-      <property name="Name">colWorkOrder</property>
+      <property name="Name">gcPurchaseOrderID</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">WorkOrder</property>
+      <property name="Caption">PODeliveryID</property>
+      <property name="FieldName">PODeliveryID</property>
       <property name="ColumnEditName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
@@ -37,92 +70,75 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">SalesOrder</property>
+      <property name="Caption"># Recepción</property>
+      <property name="FieldName">GRNumber</property>
       <property name="ColumnEditName" />
+      <property name="VisibleIndex">0</property>
+      <property name="Visible">true</property>
+      <property name="Width">130</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">colCustomer</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">Customer</property>
+      <property name="Caption"># O.C.</property>
+      <property name="FieldName">PONum</property>
       <property name="ColumnEditName" />
+      <property name="VisibleIndex">1</property>
+      <property name="Visible">true</property>
+      <property name="Width">269</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
-      <property name="Name">colWorkOrderID</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">WorkOrderID</property>
-      <property name="ColumnEditName" />
-    </property>
-    <property name="Item5" isnull="true" iskey="true">
       <property name="Name">colQuantity</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">Quantity</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="Caption">Fecha de Creación</property>
+      <property name="FieldName">DateCreated</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">175</property>
+      <property name="Width">143</property>
     </property>
-    <property name="Item6" isnull="true" iskey="true">
-      <property name="Name">colProductType</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">ProductType</property>
-      <property name="ColumnEditName" />
-    </property>
-    <property name="Item7" isnull="true" iskey="true">
+    <property name="Item5" isnull="true" iskey="true">
       <property name="Name">colOrderNo</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">OrderNo</property>
+      <property name="Caption">Proveedor</property>
+      <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">153</property>
+      <property name="Width">330</property>
     </property>
-    <property name="Item8" isnull="true" iskey="true">
-      <property name="Name">colBusinessSector</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">BusinessSector</property>
-      <property name="ColumnEditName" />
-      <property name="Width">482</property>
-    </property>
-    <property name="Item9" isnull="true" iskey="true">
-      <property name="Name">colProjectName</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">ProjectName</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Name">GridColumn1</property>
+      <property name="Caption">Fecha Requerida</property>
+      <property name="FieldName">RequiredDate</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit1</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">540</property>
     </property>
-    <property name="Item10" isnull="true" iskey="true">
-      <property name="Name">colCustomerName</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">CustomerName</property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Name">GridColumn2</property>
+      <property name="Caption">Valor de Recepción</property>
+      <property name="FieldName">P0DeliveryValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">806</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />
   <property name="BorderStyle">Default</property>
   <property name="SynchronizeClones">true</property>
   <property name="DetailTabHeaderLocation">Top</property>
-  <property name="Name">gridviewManReport</property>
+  <property name="Name">GridView1</property>
   <property name="DetailHeight">350</property>
   <property name="Tag" isnull="true" />
   <property name="GroupSummary" iskey="true" value="0" />
