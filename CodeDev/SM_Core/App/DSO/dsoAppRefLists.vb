@@ -163,11 +163,23 @@ Public Class dsoAppRefLists
           mItem.IList = LoadVATList()
           mOK = True
 
+        Case appRefLists.HouseType
+          mItem.IList = LoadHouseType()
+          mOK = True
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadHouseType() As IList
+    Dim mdto As New dtoHouseType(pDBConn)
+    Dim mRetVal As New colHouseTypes
+
+    mdto.LoadHouseTypeCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Public Function LoadEmployees() As IList

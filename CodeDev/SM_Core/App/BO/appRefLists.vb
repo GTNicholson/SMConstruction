@@ -27,7 +27,7 @@ Public Class appRefLists : Inherits colRefLists
   Public Const ExchangeRate As Integer = 20
   Public Const WoodValue As Integer = 21
   Public Const VATRate As Integer = 22
-
+  Public Const HouseType As Integer = 23
   Public Sub New()
     MyBase.New()
     Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
@@ -55,6 +55,7 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(ExchangeRate, "ExchangeRate", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(WoodValue, "WoodValue", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(VATRate, "VATRate", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(HouseType, "HouseType", clsRefListItem.eLoadMode.Unloaded)
   End Sub
 
 
