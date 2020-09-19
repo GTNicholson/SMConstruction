@@ -1,0 +1,807 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{445B4FF6-2CF1-41D4-BB55-9D117DED7155}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>AgroForestal.My.MyApplication</StartupObject>
+    <RootNamespace>AgroForestal</RootNamespace>
+    <AssemblyName>AgroForestal</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>AgroForestal.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>AgroForestal.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Docs.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.1.Drawing, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v17.1.UI, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v17.1.Wizard, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v17.1.Extensions, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v17.1.UI, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPdfViewer.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1.Extensions, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v17.1.Extensions, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v17.1.Reporting.Extensions, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="RTIS.BIReport.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_17_1\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.CandidateElements.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_CandidateElements_17_1\CodeRep\CandidateElements\bin\Debug\RTIS.CandidateElements.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.CommonVB.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\CommonVB\bin\Debug\RTIS.CommonVB.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.DataLayer.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\DataLayer\bin\Debug\RTIS.DataLayer.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.DeveloperUtilities.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\DeveloperUtilities\bin\Debug\RTIS.DeveloperUtilities.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.Elements.V17.1, Version=17.1.16.14, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\Elements\bin\Debug\RTIS.Elements.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.EmailLib.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\EmailLib\bin\Debug\RTIS.EmailLib.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.ERPCore.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\ERPCore\bin\Debug\RTIS.ERPCore.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.ERPStock.V17.1, Version=17.1.6.12, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_ERPStock_17_1\bin\Debug\RTIS.ERPStock.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.ImageLibrary.R01">
+      <HintPath>..\..\..\..\..\RTISFramework\Resources\RTIS.ImageLibrary.R01.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.PDFUtils.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\PDFUtils\bin\Debug\RTIS.PDFUtils.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.WorkflowCore.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\..\..\RTISFramework\SourceCode\Components\DataLayer\bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="AF_Core" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="App\appInit.vb" />
+    <Compile Include="App\appLockEntitys.vb" />
+    <Compile Include="App\clsMDISystemAdmin.vb" />
+    <Compile Include="App\clsMenuHandler.vb" />
+    <Compile Include="App\clsMenus.vb" />
+    <Compile Include="App\GUI\brwCurrentUserLocks.vb" />
+    <Compile Include="App\GUI\brwCurrentUsersLoggedOn.vb" />
+    <Compile Include="App\GUI\brwTemplateList.vb" />
+    <Compile Include="App\GUI\frmDisplayError.designer.vb">
+      <DependentUpon>frmDisplayError.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmDisplayError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\GUI\frmPDFViewer.designer.vb">
+      <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmPDFViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\GUI\frmTabbedMDI.designer.vb">
+      <DependentUpon>frmTabbedMDI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmTabbedMDI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\GUI\frmTabbedMDI_DevUtil.designer.vb">
+      <DependentUpon>frmTabbedMDI_DevUtil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmTabbedMDI_DevUtil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\GUI\uccFileControl.vb" />
+    <Compile Include="App\GUI\uctAddress.Designer.vb">
+      <DependentUpon>uctAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\uctAddress.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="App\GUI\uctFileControl.Designer.vb">
+      <DependentUpon>uctFileControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\uctFileControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BIReports\BIReportViewCompanyDay.vb" />
+    <Compile Include="BIReports\BIReportViewInvoice.vb" />
+    <Compile Include="BIReports\BIReportViewPODelivery.vb" />
+    <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />
+    <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
+    <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
+    <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
+    <Compile Include="Despatch\brwInvoices.vb" />
+    <Compile Include="Despatch\Documents\repInvoice.Designer.vb">
+      <DependentUpon>repInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Despatch\Documents\repInvoice.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Despatch\fccInvoice.vb" />
+    <Compile Include="Despatch\frmInvoice.Designer.vb">
+      <DependentUpon>frmInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Despatch\frmInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\GUI\fccAdminEmployeeOverride.vb" />
+    <Compile Include="General\GUI\fccHomeManagement.vb" />
+    <Compile Include="General\GUI\fccLookupTableList.vb" />
+    <Compile Include="HR\GUI\frmAdminEmployeeOverride.designer.vb">
+      <DependentUpon>frmAdminEmployeeOverride.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HR\GUI\frmAdminEmployeeOverride.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="General\GUI\frmHomeManagement.Designer.vb">
+      <DependentUpon>frmHomeManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="General\GUI\frmHomeManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="General\GUI\frmLookupTableList.designer.vb">
+      <DependentUpon>frmLookupTableList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="General\GUI\frmLookupTableList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\GUI\uccEmployeeDetailsOverride.vb" />
+    <Compile Include="HR\GUI\uctEmployeeDetailsReplacement.designer.vb">
+      <DependentUpon>uctEmployeeDetailsReplacement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HR\GUI\uctEmployeeDetailsReplacement.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="App\GUI\frmRTISSplash.designer.vb">
+      <DependentUpon>frmRTISSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmRTISSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\clsPickerBase.vb" />
+    <Compile Include="Pickers\clsPickerCustomer.vb" />
+    <Compile Include="Pickers\clsPickerSalesOrder.vb" />
+    <Compile Include="Pickers\clsPickerSalesOrderPhase.vb" />
+    <Compile Include="Pickers\clsPickerStockItem.vb" />
+    <Compile Include="Pickers\clsPickerSupplier.vb" />
+    <Compile Include="Pickers\clsPickerWorkOrder.vb" />
+    <Compile Include="Pickers\frmPickerCustomer.Designer.vb">
+      <DependentUpon>frmPickerCustomer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmPickerCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmPickerStockItem.designer.vb">
+      <DependentUpon>frmPickerStockItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmPickerStockItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmPickSupplier.Designer.vb">
+      <DependentUpon>frmPickSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmPickSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmSalesOrderPhasePickerMulti.Designer.vb">
+      <DependentUpon>frmSalesOrderPhasePickerMulti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmSalesOrderPhasePickerMulti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\fccProductAdmin.vb" />
+    <Compile Include="ProductAdmin\GUI\frmProductAdmin.Designer.vb">
+      <DependentUpon>frmProductAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\frmProductAdmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
+    <Compile Include="Production\GUI\fccPaySlipDetails.vb" />
+    <Compile Include="Production\GUI\fccPickMaterials.vb" />
+    <Compile Include="Production\GUI\fccSalesOrderPhasePicker.vb" />
+    <Compile Include="Production\GUI\fccTimeSheetEntry.vb" />
+    <Compile Include="Production\GUI\fccWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Production\GUI\fccWorkOrderTracking.vb" />
+    <Compile Include="Production\GUI\frmPaySlipDetails.Designer.vb">
+      <DependentUpon>frmPaySlipDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmPaySlipDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmPickMaterials.Designer.vb">
+      <DependentUpon>frmPickMaterials.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmPickMaterials.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmTimeSheetEntry.Designer.vb">
+      <DependentUpon>frmTimeSheetEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmTimeSheetEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderMilestoneStatus.Designer.vb">
+      <DependentUpon>frmWorkOrderMilestoneStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderMilestoneStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderTracking.Designer.vb">
+      <DependentUpon>frmWorkOrderTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderTracking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\repPaySlip.Designer.vb">
+      <DependentUpon>repPaySlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\repPaySlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\brwPODelivery.vb" />
+    <Compile Include="Purchasing\GUI\brwPurchaseOrder.vb" />
+    <Compile Include="Purchasing\GUI\brwSupplier.vb" />
+    <Compile Include="Purchasing\GUI\clsPickerPurchaseOrder.vb" />
+    <Compile Include="Purchasing\GUI\fccPurchaseOrder.vb" />
+    <Compile Include="Purchasing\GUI\fccPurchaseOrderConsole.vb" />
+    <Compile Include="Purchasing\GUI\fccPurchaseOrderDelivery.vb" />
+    <Compile Include="Purchasing\GUI\fccStockItemPurchasing.vb" />
+    <Compile Include="Purchasing\GUI\fccSupplierDetail.vb" />
+    <Compile Include="Purchasing\GUI\frmPickerPurchaseOrder.designer.vb">
+      <DependentUpon>frmPickerPurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPickerPurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPODelivery.Designer.vb">
+      <DependentUpon>frmPODelivery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPODelivery.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPurchaseOrder.Designer.vb">
+      <DependentUpon>frmPurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPurchaseOrderConsole.designer.vb">
+      <DependentUpon>frmPurchaseOrderConsole.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPurchaseOrderConsole.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmStockItemPurchasing.Designer.vb">
+      <DependentUpon>frmStockItemPurchasing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmStockItemPurchasing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmSupplierDetail.Designer.vb">
+      <DependentUpon>frmSupplierDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmSupplierDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\repPurchaseOrder.Designer.vb">
+      <DependentUpon>repPurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\repPurchaseOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\brwClientes.vb" />
+    <Compile Include="Sales\GUI\brwInternalWorkOrder.vb" />
+    <Compile Include="Sales\GUI\brwWorkOrder.vb" />
+    <Compile Include="Sales\GUI\brwSalesOrder.vb" />
+    <Compile Include="Sales\GUI\fccCustomerDetail.vb" />
+    <Compile Include="Sales\GUI\fccSalesOrderDetailSM.vb" />
+    <Compile Include="Sales\GUI\fccSalesOrderDetailHouses.vb" />
+    <Compile Include="Sales\GUI\fccSalesOrderProgress.vb" />
+    <Compile Include="Sales\GUI\fccWorkOrderDetail.vb" />
+    <Compile Include="Sales\GUI\frmCustomerDetail.Designer.vb">
+      <DependentUpon>frmCustomerDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmCustomerDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmInternalWorkOrderDetail.Designer.vb">
+      <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmInternalWorkOrderDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderDetailHouses.Designer.vb">
+      <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderDetailHouses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderDetailSM.Designer.vb">
+      <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderDetailSM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhasePicker.Designer.vb">
+      <DependentUpon>frmSalesOrderPhasePicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhasePicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPicker.Designer.vb">
+      <DependentUpon>frmSalesOrderPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderProgress.Designer.vb">
+      <DependentUpon>frmSalesOrderProgress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderDetail.Designer.vb">
+      <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderPicker.Designer.vb">
+      <DependentUpon>frmWorkOrderPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\Label\repFGLabel.Designer.vb">
+      <DependentUpon>repFGLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\Label\repFGLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repOtherMaterials.Designer.vb">
+      <DependentUpon>repOtherMaterials.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repTempMR.Designer.vb">
+      <DependentUpon>repTempMR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repTempMR.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderDoc.Designer.vb">
+      <DependentUpon>repWorkOrderDoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderDoc.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repProductFurniture.Designer.vb">
+      <DependentUpon>repProductFurniture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repProductFurniture.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderMatReqsWood.Designer.vb">
+      <DependentUpon>repWorkOrderMatReqsWood.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderMatReqsWood.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder.Designer.vb">
+      <DependentUpon>repSalesOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\srepOtherMaterialsChange.Designer.vb">
+      <DependentUpon>srepOtherMaterialsChange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\srepOtherMaterialsChange.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\srepWorkOrderMatReqsWoodChanges.Designer.vb">
+      <DependentUpon>srepWorkOrderMatReqsWoodChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\srepWorkOrderMatReqsWoodChanges.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\srepWorkOrderSignOffs.Designer.vb">
+      <DependentUpon>srepWorkOrderSignOffs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\srepWorkOrderSignOffs.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\srepMaterials.Designer.vb">
+      <DependentUpon>srepMaterials.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\srepMaterials.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\srepOperations.Designer.vb">
+      <DependentUpon>srepOperations.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\srepOperations.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\brwStockTake.vb" />
+    <Compile Include="StockAdmin\GUI\fccStockItem.vb" />
+    <Compile Include="StockAdmin\GUI\fccStockItemInfos.vb" />
+    <Compile Include="StockAdmin\GUI\fccStockTake.vb" />
+    <Compile Include="StockAdmin\GUI\frmIssueInventory.Designer.vb">
+      <DependentUpon>frmIssueInventory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmIssueInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockAdjust.Designer.vb">
+      <DependentUpon>frmStockAdjust.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockAdjust.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockItem.Designer.vb">
+      <DependentUpon>frmStockItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockItemInfo.Designer.vb">
+      <DependentUpon>frmStockItemInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockItemInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockTake.Designer.vb">
+      <DependentUpon>frmStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\Reports\clsExcelExportStockTake.vb" />
+    <Compile Include="StockAdmin\Reports\repSelectedItems.Designer.vb">
+      <DependentUpon>repSelectedItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\Reports\repSelectedItems.vb">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App\GUI\frmDisplayError.resx">
+      <DependentUpon>frmDisplayError.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmPDFViewer.resx">
+      <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmTabbedMDI.resx">
+      <DependentUpon>frmTabbedMDI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmTabbedMDI_DevUtil.resx">
+      <DependentUpon>frmTabbedMDI_DevUtil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\uctAddress.resx">
+      <DependentUpon>uctAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\uctFileControl.resx">
+      <DependentUpon>uctFileControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despatch\Documents\repInvoice.resx">
+      <DependentUpon>repInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despatch\frmInvoice.resx">
+      <DependentUpon>frmInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR\GUI\frmAdminEmployeeOverride.resx">
+      <DependentUpon>frmAdminEmployeeOverride.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\GUI\frmHomeManagement.resx">
+      <DependentUpon>frmHomeManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\GUI\frmLookupTableList.resx">
+      <DependentUpon>frmLookupTableList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR\GUI\uctEmployeeDetailsReplacement.resx">
+      <DependentUpon>uctEmployeeDetailsReplacement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmRTISSplash.resx">
+      <DependentUpon>frmRTISSplash.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmPickerCustomer.resx">
+      <DependentUpon>frmPickerCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmPickerStockItem.resx">
+      <DependentUpon>frmPickerStockItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmPickSupplier.resx">
+      <DependentUpon>frmPickSupplier.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmSalesOrderPhasePickerMulti.resx">
+      <DependentUpon>frmSalesOrderPhasePickerMulti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductAdmin\GUI\frmProductAdmin.resx">
+      <DependentUpon>frmProductAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmPaySlipDetails.resx">
+      <DependentUpon>frmPaySlipDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmPickMaterials.resx">
+      <DependentUpon>frmPickMaterials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmTimeSheetEntry.resx">
+      <DependentUpon>frmTimeSheetEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmWorkOrderMilestoneStatus.resx">
+      <DependentUpon>frmWorkOrderMilestoneStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmWorkOrderTracking.resx">
+      <DependentUpon>frmWorkOrderTracking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\repPaySlip.resx">
+      <DependentUpon>repPaySlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmPickerPurchaseOrder.resx">
+      <DependentUpon>frmPickerPurchaseOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmPODelivery.resx">
+      <DependentUpon>frmPODelivery.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmPurchaseOrder.resx">
+      <DependentUpon>frmPurchaseOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmPurchaseOrderConsole.resx">
+      <DependentUpon>frmPurchaseOrderConsole.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmStockItemPurchasing.resx">
+      <DependentUpon>frmStockItemPurchasing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmSupplierDetail.resx">
+      <DependentUpon>frmSupplierDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\repPurchaseOrder.resx">
+      <DependentUpon>repPurchaseOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmCustomerDetail.resx">
+      <DependentUpon>frmCustomerDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmInternalWorkOrderDetail.resx">
+      <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailHouses.resx">
+      <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailSM.resx">
+      <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhasePicker.resx">
+      <DependentUpon>frmSalesOrderPhasePicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderPicker.resx">
+      <DependentUpon>frmSalesOrderPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderProgress.resx">
+      <DependentUpon>frmSalesOrderProgress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
+      <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmWorkOrderPicker.resx">
+      <DependentUpon>frmWorkOrderPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\Label\repFGLabel.resx">
+      <DependentUpon>repFGLabel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repOtherMaterials.resx">
+      <DependentUpon>repOtherMaterials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
+      <DependentUpon>repProductFurniture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repTempMR.resx">
+      <DependentUpon>repTempMR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderDoc.resx">
+      <DependentUpon>repWorkOrderDoc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderMatReqsWood.resx">
+      <DependentUpon>repWorkOrderMatReqsWood.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repSalesOrder.resx">
+      <DependentUpon>repSalesOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\srepOtherMaterialsChange.resx">
+      <DependentUpon>srepOtherMaterialsChange.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\srepWorkOrderMatReqsWoodChanges.resx">
+      <DependentUpon>srepWorkOrderMatReqsWoodChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\srepWorkOrderSignOffs.resx">
+      <DependentUpon>srepWorkOrderSignOffs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\srepMaterials.resx">
+      <DependentUpon>srepMaterials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmIssueInventory.resx">
+      <DependentUpon>frmIssueInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmStockAdjust.resx">
+      <DependentUpon>frmStockAdjust.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmStockItem.resx">
+      <DependentUpon>frmStockItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmStockItemInfo.resx">
+      <DependentUpon>frmStockItemInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmStockTake.resx">
+      <DependentUpon>frmStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
+      <DependentUpon>repSelectedItems.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AF_Core\AF_Core.vbproj">
+      <Project>{016238eb-7277-4dc7-a99a-c9c9e4a390d0}</Project>
+      <Name>AF_Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
