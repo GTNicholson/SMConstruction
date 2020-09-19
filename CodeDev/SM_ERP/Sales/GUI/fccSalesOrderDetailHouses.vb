@@ -15,6 +15,8 @@ Public Class fccSalesOrderDetailHouses
 
   Private pInvoices As colInvoices
   Private pCustomerPurchaseOrders As colCustomerPurchaseOrders
+  Private pCurrentSalesItemAssembly As dmSalesItemAssembly
+  Private pSalesItemEditors As colSalesItemEditors
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
@@ -23,6 +25,8 @@ Public Class fccSalesOrderDetailHouses
     pSOActionHandler = New clsSalesOrderActionsHandler(rDBConn.RTISUser, rDBConn)
     pInvoices = New colInvoices
     pCustomerPurchaseOrders = New colCustomerPurchaseOrders
+    pCurrentSalesItemAssembly = New dmSalesItemAssembly
+    pSalesItemEditors = New colSalesItemEditors
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -68,10 +72,17 @@ Public Class fccSalesOrderDetailHouses
 
   Public Sub LoadObjects()
     Dim mdso As dsoSales
-
+    Dim mSalesOrderItemAssembly As dmSalesItemAssembly
 
     If pPrimaryKeyID = 0 Then
       pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
+
+      mSalesOrderItemAssembly = New dmSalesItemAssembly
+      mSalesOrderItemAssembly.SalesOrderID = pSalesOrder.SalesOrderID
+      SalesOrder.SalesItemAssemblys.Add(mSalesOrderItemAssembly)
+
+      SaveObjects()
+
     Else
       pSalesOrder = New dmSalesOrder
       mdso = New dsoSales(pDBConn)
@@ -320,6 +331,82 @@ Public Class fccSalesOrderDetailHouses
       mWONo = mDSO.WorkOrderNoFromID(mWO.WorkOrderID)
       mWO.WorkOrderNo = mWONo
     Next
+  End Sub
+
+  Public Function RemoveSalesOrderItemAssembly(ByVal vSalesItemAssembly As dmSalesItemAssembly) As Boolean
+    Dim mOK As Boolean
+    Try
+      If vSalesItemAssembly IsNot Nothing AndAlso SalesOrder.SalesItemAssemblys IsNot Nothing Then
+        mOK = SalesOrder.SalesItemAssemblys.Remove(vSalesItemAssembly)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mOK
+  End Function
+
+  Public ReadOnly Property CurrentSalesItemAssembly() As dmSalesItemAssembly
+    Get
+      Return pCurrentSalesItemAssembly
+    End Get
+  End Property
+
+  Public ReadOnly Property SalesItemEditors() As colSalesItemEditors
+    Get
+      Return pSalesItemEditors
+    End Get
+  End Property
+
+  Public Sub AddNewSalesItemAssembly()
+    Try
+
+      If pCurrentSalesItemAssembly IsNot Nothing Then
+        Dim mNewSIA As New dmSalesItemAssembly
+        Dim mdso As New dsoSales(pDBConn)
+
+
+        mNewSIA.SalesOrderID = pSalesOrder.SalesOrderID
+
+        pSalesOrder.SalesItemAssemblys.Add(mNewSIA)
+
+        mdso.SaveSalesOrderDown(pSalesOrder)
+
+        mdso = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+
+  Public Sub SetCurrentSalemItemAssembly(ByRef rSalesItemAssembly As dmSalesItemAssembly)
+    pCurrentSalesItemAssembly = rSalesItemAssembly
+
+    '// this is where you need to refresh the CurrentSalesItemAssemblySalesitemEditors
+    RefreshCurrentSalesItemEditors()
+
+  End Sub
+
+  Public Sub RefreshCurrentSalesItemEditors()
+    Dim mSIAE As clsSalesItemEditor
+    pSalesItemEditors.Clear()
+
+    If pCurrentSalesItemAssembly IsNot Nothing Then
+      For Each mSalesItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+        If mSalesItem.SalesItemAssemblyID = pCurrentSalesItemAssembly.SalesItemAssemblyID Then
+
+          '// create a new editor based on this salesitem and add to collection
+          mSIAE = New clsSalesItemEditor(pSalesOrder, pCurrentSalesItemAssembly, mSalesItem)
+          pSalesItemEditors.Add(mSIAE)
+
+        End If
+      Next
+    End If
+
+
+
   End Sub
 
 

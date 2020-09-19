@@ -17,7 +17,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pWorkOrders As colWorkOrders
   Private pSalesOrderItem As dmSalesOrderItem
 
-  Private pSalesItemAssemblys As colSalesItemAssemblys
+  Private pSalesItemAssemblyID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -26,7 +26,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pWorkOrders = New colWorkOrders(Me)
-    pSalesItemAssemblys = New colSalesItemAssemblys
+
     pWorkOrders.TrackDeleted = True
     pSalesOrderItem = Me
 
@@ -46,7 +46,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pWorkOrders.IsDirty
-      If mAnyDirty = False Then mAnyDirty = pSalesItemAssemblys.IsDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -54,7 +54,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     SalesOrderItemID = 0
-    pSalesItemAssemblys = Nothing
+
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -71,13 +71,25 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .WoodFinish = WoodFinish
       .WoodSpecieID = WoodSpecieID
       .QtyInvoiced = QtyInvoiced
-      .SalesItemAssemblys = SalesItemAssemblys
+      .SalesItemAssemblyID = SalesItemAssemblyID
       'Entries for object management
 
       .IsDirty = IsDirty
     End With
 
   End Sub
+
+
+
+  Public Property SalesItemAssemblyID() As Int32
+    Get
+      Return pSalesItemAssemblyID
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesItemAssemblyID <> value Then IsDirty = True
+      pSalesItemAssemblyID = value
+    End Set
+  End Property
 
   Public Property SalesOrderItemID() As Int32 Implements iValueItem.ItemValue
     Get
@@ -179,14 +191,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property SalesItemAssemblys As colSalesItemAssemblys
-    Get
-      Return pSalesItemAssemblys
-    End Get
-    Set(value As colSalesItemAssemblys)
-      pSalesItemAssemblys = value
-    End Set
-  End Property
+
 
   Public Property WorkOrders As colWorkOrders
     Get

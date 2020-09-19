@@ -166,11 +166,39 @@ Public Class dsoAppRefLists
         Case appRefLists.HouseType
           mItem.IList = LoadHouseType()
           mOK = True
+
+        Case appRefLists.ProductInstallationType
+          mItem.IList = LoadProductInstallationType()
+          mOK = True
+
+        Case appRefLists.ProductStructureType
+          mItem.IList = LoadProductStructureType()
+          mOK = True
+
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadProductStructureType() As IList
+    Dim mdto As New dtoProductStructureType(pDBConn)
+    Dim mRetVal As New colProductStructureTypes
+
+    mdto.LoadProductStructureTypeCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+
+  Private Function LoadProductInstallationType() As IList
+    Dim mdto As New dtoProductInstallationType(pDBConn)
+    Dim mRetVal As New colProductInstallationTypes
+
+    mdto.LoadProductInstallationTypeCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadHouseType() As IList

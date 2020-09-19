@@ -7,6 +7,10 @@ Public Class dmSalesItemAssembly : Inherits dmBase
   Private pSalesOrderItemID As Int32
   Private pRef As String
   Private pDescription As String
+  Private pHouseTypeID As Integer
+  Private pQuantity As Integer
+  Private pPricePerUnit As Decimal
+  Private pTotalPrice As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -45,6 +49,10 @@ Public Class dmSalesItemAssembly : Inherits dmBase
       .SalesOrderItemID = SalesOrderItemID
       .Ref = Ref
       .Description = Description
+      .HouseTypeID = HouseTypeID
+      .Quantity = Quantity
+      .PricePerUnit = PricePerUnit
+      .TotalPrice = TotalPrice
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -104,6 +112,45 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     End Set
   End Property
 
+  Public Property HouseTypeID() As Integer
+    Get
+      Return pHouseTypeID
+    End Get
+    Set(ByVal value As Integer)
+      If pHouseTypeID <> value Then IsDirty = True
+      pHouseTypeID = value
+    End Set
+  End Property
+
+  Public Property Quantity() As Integer
+    Get
+      Return pQuantity
+    End Get
+    Set(ByVal value As Integer)
+      If pQuantity <> value Then IsDirty = True
+      pQuantity = value
+    End Set
+  End Property
+
+  Public Property PricePerUnit() As Decimal
+    Get
+      Return pPricePerUnit
+    End Get
+    Set(ByVal value As Decimal)
+      If pPricePerUnit <> value Then IsDirty = True
+      pPricePerUnit = value
+    End Set
+  End Property
+
+  Public Property TotalPrice() As Decimal
+    Get
+      Return pTotalPrice
+    End Get
+    Set(ByVal value As Decimal)
+      If pTotalPrice <> value Then IsDirty = True
+      pTotalPrice = value
+    End Set
+  End Property
 
 End Class
 

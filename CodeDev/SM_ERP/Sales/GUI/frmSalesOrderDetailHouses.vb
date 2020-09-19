@@ -98,15 +98,12 @@ Public Class frmSalesOrderDetailHouses
 
 
       pFormController.LoadObjects()
-      grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
-      grdWorkOrders.DataSource = pFormController.SOWorkOrders
-      grdInvoices.DataSource = pFormController.Invoices
-      grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
+      LoadGrids()
 
-      grdSalesOrderPhases.DataSource = pFormController.SalesOrder.SalesOrderPhases
-
+      RefreshHouseTabs()
       LoadCombos()
       RefreshControls()
+
       If mOK Then RefreshControls()
 
       ''If mOK Then SetupUserPermissions()
@@ -131,6 +128,17 @@ Public Class frmSalesOrderDetailHouses
 
 
 
+  End Sub
+
+  Private Sub LoadGrids()
+    grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
+    grdWorkOrders.DataSource = pFormController.SOWorkOrders
+    grdInvoices.DataSource = pFormController.Invoices
+    grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
+
+    grdSalesOrderPhases.DataSource = pFormController.SalesOrder.SalesOrderPhases
+
+    grdSalesItemsSalesItemsAssemblys.DataSource = pFormController.SalesItemEditors
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first
@@ -159,6 +167,9 @@ Public Class frmSalesOrderDetailHouses
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
     RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
+
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType))
+
 
     LoadCustomerContactCombo()
 
@@ -261,7 +272,7 @@ Public Class frmSalesOrderDetailHouses
 
 
 
-
+      ''LoadOrderPhases()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -273,6 +284,7 @@ Public Class frmSalesOrderDetailHouses
     Try
 
       UpdateObjects()
+      UpdateSalesItemAssembly()
       pFormController.SaveObjects()
 
     Catch ex As Exception
@@ -480,7 +492,9 @@ Public Class frmSalesOrderDetailHouses
     Dim mResponse As MsgBoxResult
     Dim mRetVal As Boolean
     RefreshControls()
+
     UpdateObjects()
+    UpdateSalesItemAssembly()
     'pFormController.SaveObjects()
     If pFormController.IsDirty() Then
       If rOption Then
@@ -625,7 +639,7 @@ Public Class frmSalesOrderDetailHouses
       If IO.File.Exists(mFilePath) Then
         frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
       End If
-      mReport.ClearImages
+      mReport.ClearImages()
       mReport.Dispose()
     Else
       MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
@@ -994,4 +1008,213 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
 
+  Private Sub xtraTabHouseType_CustomHeaderButtonClick(sender As Object, e As DevExpress.XtraTab.ViewInfo.CustomHeaderButtonEventArgs) Handles xtraTabHouseType.CustomHeaderButtonClick
+    Dim mSIA As dmSalesItemAssembly
+
+    Try
+
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Plus
+
+          ''If pFormController.SalesOrder IsNot Nothing Then
+          ''  For Each mSOIA As dmSalesItemAssembly In pFormController.SalesOrder.SalesItemAssemblys
+          ''    Dim mTabPage As New DevExpress.XtraTab.XtraTabPage
+
+          ''    mTabPage.Tag = mSOIA
+          ''    mTabPage.Text = String.Format("Modelo de Casa #: {0} \", pFormController.SalesOrder.OrderNo)
+
+          ''    xtraTabHouseType.TabPages.Insert(xtraTabHouseType.TabPages.Count, mTabPage)
+
+
+          ''  Next
+          ''End If
+          Dim m As New dmSalesItemAssembly
+          m.SalesOrderID = pFormController.SalesOrder.SalesOrderID
+          pFormController.SalesOrder.SalesItemAssemblys.Add(m)
+          pFormController.SaveObjects()
+
+          RefreshHouseTabs()
+        Case ButtonPredefines.Delete
+          If xtraTabHouseType.SelectedTabPage.Tag IsNot Nothing Then
+
+            pFormController.RemoveSalesOrderItemAssembly(xtraTabHouseType.SelectedTabPage.Tag)
+
+            RefreshHouseTabs()
+          End If
+
+      End Select
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+
+  Private Sub RefreshHouseTabs()
+    Try
+
+
+      ''For mCount As Integer = tabctrlProductionBatches.TabPages.Count - 2 To 1 Step -1
+      For mCount As Integer = xtraTabHouseType.TabPages.Count To 1 Step -1
+        xtraTabHouseType.TabPages.RemoveAt(mCount - 1)
+      Next
+
+      If pFormController.SalesOrder IsNot Nothing Then
+        For Each mSIA As dmSalesItemAssembly In pFormController.SalesOrder.SalesItemAssemblys
+          Dim mTabPage As New DevExpress.XtraTab.XtraTabPage
+
+          mTabPage.Tag = mSIA
+          mTabPage.Text = String.Format("Casa Modelo {0}/{1}", pFormController.SalesOrder.OrderNo, mSIA.Ref)
+
+
+          xtraTabHouseType.TabPages.Insert(xtraTabHouseType.TabPages.Count, mTabPage)
+        Next
+      End If
+
+      If xtraTabHouseType.TabPages.Count >= 1 Then
+        xtraTabHouseType.SelectedTabPageIndex = 0
+        pFormController.SetCurrentSalemItemAssembly(xtraTabHouseType.SelectedTabPage.Tag)
+      Else
+        pFormController.SetCurrentSalemItemAssembly(Nothing)
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub xtraTabHouseType_MouseUp(sender As Object, e As MouseEventArgs) Handles xtraTabHouseType.MouseUp
+
+  End Sub
+
+  Private Sub xtraTabHouseType_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles xtraTabHouseType.SelectedPageChanged
+    Try
+
+      ''pFormController.CurrentProductionBatch = e.Page.Tag ''this delete
+
+
+
+      UpdateSalesItemAssembly()
+
+      If e.Page IsNot Nothing Then
+        If e.Page.Tag IsNot Nothing Then
+          pnlHouseDetail.Parent = e.Page
+          pFormController.SetCurrentSalemItemAssembly(e.Page.Tag)
+        Else
+          pFormController.SetCurrentSalemItemAssembly(Nothing)
+        End If
+      Else
+        pFormController.SetCurrentSalemItemAssembly(Nothing)
+      End If
+
+
+      RefreshSalesOrderAssembly()
+
+    Catch ex As Exception
+    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub RefreshSalesOrderAssembly()
+    Dim mStartActive As Boolean = pIsActive
+    Dim mValueItems As clsValueItem
+    Dim mIndex As Integer = 0
+
+    pIsActive = False
+
+
+    If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
+
+      If pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID > 0 Then
+        With pFormController.CurrentSalesItemAssembly
+
+          mValueItems = New clsValueItem
+          mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).ItemValueIndex(.HouseTypeID)
+
+          If mIndex <> -1 Then
+            mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).Item(mIndex)
+            cboHouseType.EditValue = mValueItems
+          End If
+
+
+          txtSOARef.Text = .Ref
+          '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboHouseType, .HouseTypeID)
+
+          ''txtTotalPrice.EditValue = .TotalPrice
+          txtQuantity.Text = .Quantity
+          txtPricePerUnit.Text = .PricePerUnit
+          txtTotalPrice.Text = .TotalPrice
+
+          grdOrderItem.RefreshDataSource()
+
+        End With
+      Else
+
+      End If
+      ''here
+
+
+    End If
+    pIsActive = mStartActive
+  End Sub
+
+  Private Sub UpdateSalesItemAssembly()
+    Dim mValueItems As clsValueItem
+
+
+    If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
+
+      mValueItems = New clsValueItem
+
+      mValueItems = TryCast(cboHouseType.EditValue, clsValueItem)
+
+      With pFormController.CurrentSalesItemAssembly
+
+        .Ref = txtSOARef.Text
+
+        ''.HouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboHouseType)
+        .TotalPrice = Val(txtTotalPrice.Text)
+        .PricePerUnit = Val(txtPricePerUnit.Text)
+        .Quantity = Val(txtQuantity.Text)
+
+        If mValueItems IsNot Nothing Then
+          .HouseTypeID = mValueItems.ItemValue
+
+        End If
+      End With
+
+    End If
+
+  End Sub
+
+  Private Sub gcSalesItemsEditor_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpSalesItemsEditor.CustomButtonClick
+
+    Dim mSOI As New dmSalesOrderItem
+
+
+    Select Case e.Button.Properties.Tag
+      Case eOrderItemGroupButtonTags.Add
+
+        CheckSave(False)
+
+        If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
+          mSOI.SalesItemAssemblyID = pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID
+          mSOI.SalesOrderID = pFormController.SalesOrder.SalesOrderID
+
+
+
+          pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
+
+          pFormController.RefreshCurrentSalesItemEditors()
+
+          gvSalesItemsSalesItemsAssemblys.RefreshData()
+        End If
+    End Select
+
+
+
+
+  End Sub
 End Class

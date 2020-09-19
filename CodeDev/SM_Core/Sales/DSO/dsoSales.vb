@@ -379,17 +379,17 @@ Public Class dsoSales : Inherits dsoBase
         For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
 
           mdtoSalesOrderPhaseItem.SaveSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
-          mdtoPhaseItemComponent.LoadPhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
+          mdtoPhaseItemComponent.SavePhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
         Next
 
       End If
-
+      mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
+      mdtodtoSalesItemAssembly.SaveSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
 
       For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
         mdtoWO = New dtoWorkOrder(pDBConn)
         mdtoWO.SaveWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
-        mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
-        mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(mSOI.SalesItemAssemblys, mSOI.SalesOrderItemID)
+
         '// Ensure any product details are also saved
         For Each mWO As dmWorkOrder In mSOI.WorkOrders
           If mWO.Product IsNot Nothing Then
@@ -487,12 +487,14 @@ Public Class dsoSales : Inherits dsoBase
 
     End If
 
+    mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
+    mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
+
     For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
       mdtoWOs = New dtoWorkOrder(pDBConn)
       mdtoWOs.LoadWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
 
-      mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
-      mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(mSOI.SalesItemAssemblys, mSOI.SalesOrderItemID)
+
 
       For Each mWO As dmWorkOrder In mSOI.WorkOrders
         '// Instantiate and Load up the details for the specific product type

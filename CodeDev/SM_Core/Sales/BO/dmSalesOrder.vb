@@ -46,6 +46,8 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pSalesOrderPhasess As colSalesOrderPhases
   Private pSalesOrderStages As colSalesOrderStages
 
+  Private pSalesItemAssemblys As colSalesItemAssemblys
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -61,6 +63,7 @@ Public Class dmSalesOrder : Inherits dmBase
     pCustomerPurchaseOrder = New colCustomerPurchaseOrders
     pSalesOrderPhasess = New colSalesOrderPhases
     pSalesOrderStages = New colSalesOrderStages
+    pSalesItemAssemblys = New colSalesItemAssemblys
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -113,6 +116,8 @@ Public Class dmSalesOrder : Inherits dmBase
 
       If mAnyDirty = False Then mAnyDirty = pSalesOrderStages.IsDirty
 
+      If mAnyDirty = False Then mAnyDirty = pSalesItemAssemblys.IsDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -120,6 +125,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     SalesOrderID = 0
+    pSalesItemAssemblys = Nothing
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -162,12 +168,21 @@ Public Class dmSalesOrder : Inherits dmBase
       .Invoices = Invoices.Clone
       .CustomerPurchaseOrder = CustomerPurchaseOrder.Clone
       .pSalesOrderPhasess = SalesOrderPhases.Clone
+      .SalesItemAssemblys = SalesItemAssemblys
+
       .IsDirty = IsDirty
     End With
 
   End Sub
 
-
+  Public Property SalesItemAssemblys As colSalesItemAssemblys
+    Get
+      Return pSalesItemAssemblys
+    End Get
+    Set(value As colSalesItemAssemblys)
+      pSalesItemAssemblys = value
+    End Set
+  End Property
   Public Property Version() As String
     Get
       Return pVersion

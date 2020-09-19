@@ -249,7 +249,8 @@ End Enum
 
 Public Enum eProductType
   <Description("Mueble")> ProductFurniture = 1
-  <Description("Estructura")> Strucutre = 2
+  <Description("Estructura")> StructureAF = 2
+  <Description("Instalación")> ProductInstallation = 3
 End Enum
 
 Public Enum eOrderType

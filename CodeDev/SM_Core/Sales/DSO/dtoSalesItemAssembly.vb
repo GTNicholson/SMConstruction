@@ -59,6 +59,10 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderItemID", .SalesOrderItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Ref", StringToDBValue(.Ref))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .HouseTypeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PricePerUnit", .PricePerUnit)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPrice", .TotalPrice)
     End With
 
   End Sub
@@ -74,6 +78,10 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
         .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
         .Ref = DBReadString(rDataReader, "Ref")
         .Description = DBReadString(rDataReader, "Description")
+        .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
+        .Quantity = DBReadInt32(rDataReader, "Quantity")
+        .PricePerUnit = DBReadDecimal(rDataReader, "PricePerUnit")
+        .TotalPrice = DBReadDecimal(rDataReader, "TotalPrice")
         pSalesItemAssembly.IsDirty = False
       End With
       mOK = True
@@ -118,10 +126,10 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
   End Function
 
 
-  Public Function LoadSalesItemAssemblyCollection(ByRef rSalesItemAssemblys As colSalesItemAssemblys, ByVal vSalesOrderItemID As Integer) As Boolean
+  Public Function LoadSalesItemAssemblyCollection(ByRef rSalesItemAssemblys As colSalesItemAssemblys, ByVal vSalesOrderID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@SalesOrderItemID", vSalesOrderItemID)
+    mParams.Add("@SalesOrderID", vSalesOrderID)
     mOK = MyBase.LoadCollection(rSalesItemAssemblys, mParams, "SalesItemAssemblyID")
     rSalesItemAssemblys.TrackDeleted = True
     If mOK Then rSalesItemAssemblys.IsDirty = False
@@ -129,13 +137,13 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
   End Function
 
 
-  Public Function SaveSalesItemAssemblyCollection(ByRef rCollection As colSalesItemAssemblys, ByVal vSalesOrderItemID As Integer) As Boolean
+  Public Function SaveSalesItemAssemblyCollection(ByRef rCollection As colSalesItemAssemblys, ByVal vSalesOrderID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mAllOK As Boolean
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@SalesOrderItemID", vSalesOrderItemID)
+      mParams.Add("@SalesOrderID", vSalesOrderID)
       ''Approach where delete items not found in the collection
       ''If rCollection.SomeRemoved Then
       ''  For Each Me.pSalesItemAssembly In rCollection
@@ -163,8 +171,8 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
       End If
 
       For Each Me.pSalesItemAssembly In rCollection
-        If pSalesItemAssembly.IsDirty Or pSalesItemAssembly.SalesOrderItemID <> vSalesOrderItemID Or pSalesItemAssembly.SalesItemAssemblyID = 0 Then 'Or pSalesItemAssembly.SalesItemAssemblyID = 0
-          pSalesItemAssembly.SalesOrderItemID = vSalesOrderItemID
+        If pSalesItemAssembly.IsDirty Or pSalesItemAssembly.SalesOrderID <> vSalesOrderID Or pSalesItemAssembly.SalesItemAssemblyID = 0 Then 'Or pSalesItemAssembly.SalesItemAssemblyID = 0
+          pSalesItemAssembly.SalesOrderID = vSalesOrderID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next
