@@ -286,7 +286,7 @@ Public Class frmSalesOrderDetailHouses
       UpdateObjects()
       UpdateSalesItemAssembly()
       pFormController.SaveObjects()
-
+      RefreshHouseTabs()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -1065,10 +1065,17 @@ Public Class frmSalesOrderDetailHouses
           Dim mTabPage As New DevExpress.XtraTab.XtraTabPage
 
           mTabPage.Tag = mSIA
-          mTabPage.Text = String.Format("Casa Modelo {0}/{1}", pFormController.SalesOrder.OrderNo, mSIA.Ref)
 
+          If mSIA.Description = "" Then
+            mTabPage.Text = "Casa Modelo"
+
+          Else
+            mTabPage.Text = String.Format("{0}/{1}", mSIA.Description, mSIA.Ref)
+
+          End If
 
           xtraTabHouseType.TabPages.Insert(xtraTabHouseType.TabPages.Count, mTabPage)
+
         Next
       End If
 
@@ -1113,7 +1120,7 @@ Public Class frmSalesOrderDetailHouses
       RefreshSalesOrderAssembly()
 
     Catch ex As Exception
-    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
 
@@ -1143,6 +1150,7 @@ Public Class frmSalesOrderDetailHouses
           '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboHouseType, .HouseTypeID)
 
           ''txtTotalPrice.EditValue = .TotalPrice
+          txtSalesItemAssemblyDescription.Text = .Description
           txtQuantity.Text = .Quantity
           txtPricePerUnit.Text = .PricePerUnit
           txtTotalPrice.Text = .TotalPrice
@@ -1178,7 +1186,7 @@ Public Class frmSalesOrderDetailHouses
         .TotalPrice = Val(txtTotalPrice.Text)
         .PricePerUnit = Val(txtPricePerUnit.Text)
         .Quantity = Val(txtQuantity.Text)
-
+        .Description = txtSalesItemAssemblyDescription.Text
         If mValueItems IsNot Nothing Then
           .HouseTypeID = mValueItems.ItemValue
 
@@ -1215,6 +1223,17 @@ Public Class frmSalesOrderDetailHouses
 
 
 
+
+  End Sub
+
+  Private Sub cboHouseType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboHouseType.SelectedIndexChanged
+
+    If txtSalesItemAssemblyDescription.Text = "" Then
+      txtSalesItemAssemblyDescription.Text = cboHouseType.Text
+      xtraTabHouseType.SelectedTabPage.Text = txtSalesItemAssemblyDescription.Text
+
+
+    End If
 
   End Sub
 End Class

@@ -54,6 +54,8 @@ Partial Class frmSalesOrderDetailHouses
         Me.XtraTabPage5 = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.pnlHouseDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.txtSalesItemAssemblyDescription = New DevExpress.XtraEditors.TextEdit()
         Me.txtQuantity = New DevExpress.XtraEditors.TextEdit()
         Me.txtPricePerUnit = New DevExpress.XtraEditors.TextEdit()
         Me.txtTotalPrice = New DevExpress.XtraEditors.TextEdit()
@@ -254,6 +256,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -270,6 +273,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl4.SuspendLayout()
         CType(Me.pnlHouseDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlHouseDetail.SuspendLayout()
+        CType(Me.txtSalesItemAssemblyDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPricePerUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -391,6 +395,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.txtSalesAreaID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -548,6 +553,8 @@ Partial Class frmSalesOrderDetailHouses
         '
         'pnlHouseDetail
         '
+        Me.pnlHouseDetail.Controls.Add(Me.Label32)
+        Me.pnlHouseDetail.Controls.Add(Me.txtSalesItemAssemblyDescription)
         Me.pnlHouseDetail.Controls.Add(Me.txtQuantity)
         Me.pnlHouseDetail.Controls.Add(Me.txtPricePerUnit)
         Me.pnlHouseDetail.Controls.Add(Me.txtTotalPrice)
@@ -565,9 +572,32 @@ Partial Class frmSalesOrderDetailHouses
         Me.pnlHouseDetail.Size = New System.Drawing.Size(1559, 429)
         Me.pnlHouseDetail.TabIndex = 1
         '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label32.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label32.Location = New System.Drawing.Point(193, 19)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(75, 15)
+        Me.Label32.TabIndex = 50
+        Me.Label32.Tag = "c"
+        Me.Label32.Text = "Descripción"
+        '
+        'txtSalesItemAssemblyDescription
+        '
+        Me.txtSalesItemAssemblyDescription.Location = New System.Drawing.Point(274, 15)
+        Me.txtSalesItemAssemblyDescription.MenuManager = Me.BarManager1
+        Me.txtSalesItemAssemblyDescription.Name = "txtSalesItemAssemblyDescription"
+        Me.txtSalesItemAssemblyDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSalesItemAssemblyDescription.Properties.Appearance.Options.UseFont = True
+        Me.txtSalesItemAssemblyDescription.Size = New System.Drawing.Size(241, 22)
+        Me.txtSalesItemAssemblyDescription.TabIndex = 49
+        Me.txtSalesItemAssemblyDescription.Tag = "c"
+        '
         'txtQuantity
         '
-        Me.txtQuantity.Location = New System.Drawing.Point(452, 8)
+        Me.txtQuantity.Location = New System.Drawing.Point(734, 15)
         Me.txtQuantity.MenuManager = Me.BarManager1
         Me.txtQuantity.Name = "txtQuantity"
         Me.txtQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -578,7 +608,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         'txtPricePerUnit
         '
-        Me.txtPricePerUnit.Location = New System.Drawing.Point(687, 6)
+        Me.txtPricePerUnit.Location = New System.Drawing.Point(920, 15)
         Me.txtPricePerUnit.MenuManager = Me.BarManager1
         Me.txtPricePerUnit.Name = "txtPricePerUnit"
         Me.txtPricePerUnit.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -589,7 +619,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         'txtTotalPrice
         '
-        Me.txtTotalPrice.Location = New System.Drawing.Point(888, 8)
+        Me.txtTotalPrice.Location = New System.Drawing.Point(1069, 15)
         Me.txtTotalPrice.MenuManager = Me.BarManager1
         Me.txtTotalPrice.Name = "txtTotalPrice"
         Me.txtTotalPrice.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -601,20 +631,21 @@ Partial Class frmSalesOrderDetailHouses
         'txtSOARef
         '
         Me.txtSOARef.EditValue = ""
-        Me.txtSOARef.Location = New System.Drawing.Point(51, 8)
+        Me.txtSOARef.Location = New System.Drawing.Point(561, 16)
         Me.txtSOARef.MenuManager = Me.BarManager1
         Me.txtSOARef.Name = "txtSOARef"
         Me.txtSOARef.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSOARef.Properties.Appearance.Options.UseFont = True
         Me.txtSOARef.Properties.MaxLength = 15
-        Me.txtSOARef.Size = New System.Drawing.Size(85, 20)
+        Me.txtSOARef.Size = New System.Drawing.Size(99, 20)
         Me.txtSOARef.TabIndex = 27
         Me.txtSOARef.Tag = "c"
         '
         'grpSalesItemsEditor
         '
-        Me.grpSalesItemsEditor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.grpSalesItemsEditor.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpSalesItemsEditor.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpSalesItemsEditor.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpSalesItemsEditor.AppearanceCaption.Options.UseFont = True
@@ -624,7 +655,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpSalesItemsEditor.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpSalesItemsEditor.Location = New System.Drawing.Point(3, 61)
         Me.grpSalesItemsEditor.Name = "grpSalesItemsEditor"
-        Me.grpSalesItemsEditor.Size = New System.Drawing.Size(1551, 363)
+        Me.grpSalesItemsEditor.Size = New System.Drawing.Size(1542, 363)
         Me.grpSalesItemsEditor.TabIndex = 1
         Me.grpSalesItemsEditor.Text = "Componentes"
         '
@@ -636,7 +667,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdSalesItemsSalesItemsAssemblys.MenuManager = Me.BarManager1
         Me.grdSalesItemsSalesItemsAssemblys.Name = "grdSalesItemsSalesItemsAssemblys"
         Me.grdSalesItemsSalesItemsAssemblys.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit4, Me.RepositoryItemButtonEdit3, Me.RepositoryItemLookUpEdit3, Me.RepositoryItemLookUpEdit4, Me.RepositoryItemCalcEdit2})
-        Me.grdSalesItemsSalesItemsAssemblys.Size = New System.Drawing.Size(1547, 335)
+        Me.grdSalesItemsSalesItemsAssemblys.Size = New System.Drawing.Size(1538, 335)
         Me.grdSalesItemsSalesItemsAssemblys.TabIndex = 0
         Me.grdSalesItemsSalesItemsAssemblys.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesItemsSalesItemsAssemblys, Me.GridView3})
         '
@@ -809,7 +840,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label31.Location = New System.Drawing.Point(20, 11)
+        Me.Label31.Location = New System.Drawing.Point(530, 19)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(25, 14)
         Me.Label31.TabIndex = 28
@@ -821,7 +852,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label30.Location = New System.Drawing.Point(194, 11)
+        Me.Label30.Location = New System.Drawing.Point(7, 19)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(48, 15)
         Me.Label30.TabIndex = 26
@@ -833,7 +864,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label27.Location = New System.Drawing.Point(391, 11)
+        Me.Label27.Location = New System.Drawing.Point(673, 19)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(55, 14)
         Me.Label27.TabIndex = 20
@@ -842,7 +873,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         'cboHouseType
         '
-        Me.cboHouseType.Location = New System.Drawing.Point(248, 7)
+        Me.cboHouseType.Location = New System.Drawing.Point(61, 15)
         Me.cboHouseType.MenuManager = Me.BarManager1
         Me.cboHouseType.Name = "cboHouseType"
         Me.cboHouseType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -856,7 +887,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label28.Location = New System.Drawing.Point(577, 11)
+        Me.Label28.Location = New System.Drawing.Point(810, 19)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(104, 14)
         Me.Label28.TabIndex = 22
@@ -868,7 +899,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label29.Location = New System.Drawing.Point(814, 11)
+        Me.Label29.Location = New System.Drawing.Point(992, 19)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(71, 14)
         Me.Label29.TabIndex = 24
@@ -2824,6 +2855,10 @@ Partial Class frmSalesOrderDetailHouses
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1676, 777)
         Me.TableLayoutPanel1.TabIndex = 4
         '
+        'GridView1
+        '
+        Me.GridView1.Name = "GridView1"
+        '
         'frmSalesOrderDetailHouses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2853,6 +2888,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.pnlHouseDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlHouseDetail.ResumeLayout(False)
         Me.pnlHouseDetail.PerformLayout()
+        CType(Me.txtSalesItemAssemblyDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPricePerUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2978,6 +3014,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.txtSalesAreaID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3168,12 +3205,17 @@ Partial Class frmSalesOrderDetailHouses
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label9 As Label
     Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents cpnHouseType As DevExpress.XtraEditors.PanelControl
     Friend WithEvents xtraTabHouseType As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage5 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents Label29 As Label
-    Friend WithEvents Label28 As Label
-    Friend WithEvents Label27 As Label
+    Friend WithEvents pnlHouseDetail As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents Label32 As Label
+    Friend WithEvents txtSalesItemAssemblyDescription As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtQuantity As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtPricePerUnit As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtSOARef As DevExpress.XtraEditors.TextEdit
     Friend WithEvents grpSalesItemsEditor As DevExpress.XtraEditors.GroupControl
     Friend WithEvents grdSalesItemsSalesItemsAssemblys As DevExpress.XtraGrid.GridControl
     Friend WithEvents gvSalesItemsSalesItemsAssemblys As DevExpress.XtraGrid.Views.Grid.GridView
@@ -3193,13 +3235,11 @@ Partial Class frmSalesOrderDetailHouses
     Friend WithEvents RepositoryItemButtonEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemCalcEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents Label30 As Label
-    Friend WithEvents cboHouseType As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents txtSOARef As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label31 As Label
-    Friend WithEvents cpnHouseType As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents pnlHouseDetail As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents txtQuantity As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPricePerUnit As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtTotalPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents cboHouseType As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

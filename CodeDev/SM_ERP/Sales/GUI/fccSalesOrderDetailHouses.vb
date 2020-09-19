@@ -401,6 +401,7 @@ Public Class fccSalesOrderDetailHouses
           mSIAE = New clsSalesItemEditor(pSalesOrder, pCurrentSalesItemAssembly, mSalesItem)
           pSalesItemEditors.Add(mSIAE)
 
+          mSalesItem.Description = mSIAE.Description
         End If
       Next
     End If

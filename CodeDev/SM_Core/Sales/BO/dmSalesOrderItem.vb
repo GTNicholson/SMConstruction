@@ -18,6 +18,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pSalesOrderItem As dmSalesOrderItem
 
   Private pSalesItemAssemblyID As Integer
+  Private pHouseTypeID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -72,6 +73,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .WoodSpecieID = WoodSpecieID
       .QtyInvoiced = QtyInvoiced
       .SalesItemAssemblyID = SalesItemAssemblyID
+      .HouseTypeID = HouseTypeID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -220,11 +222,22 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
+  Public Property HouseTypeID As Boolean
+    Get
+      Return pHouseTypeID
+    End Get
+    Set(value As Boolean)
+      pHouseTypeID = value
+    End Set
+  End Property
+
   Public Function TotalAmount() As Decimal
 
     Return UnitPrice * Quantity
 
   End Function
+
+
 
 End Class
 
