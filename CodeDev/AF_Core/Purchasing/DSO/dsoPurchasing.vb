@@ -51,7 +51,7 @@ Public Class dsoPurchasing
     Return mRetVal
   End Function
 
-  Public Function LoadSuppliers(ByRef rSuppliers As colSuppliers) As Boolean
+  Public Function LoadSuppliersByWhere(ByRef rSuppliers As colSuppliers, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSupplier
 
@@ -59,7 +59,7 @@ Public Class dsoPurchasing
 
       pDBConn.Connect()
       mdto = New dtoSupplier(pDBConn)
-      mdto.LoadSupplierCollection(rSuppliers)
+      mdto.LoadSupplierCollectionByWhere(rSuppliers, vWhere)
 
       pDBConn.Disconnect()
       mRetVal = True

@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{016238EB-7277-4DC7-A99A-C9C9E4A390D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SM_Core</RootNamespace>
+    <AssemblyName>SM_Core</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SM_Core.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SM_Core.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Xpf.Grid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Grid.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v17.1.Extensions, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Grid.v17.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraEditors.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraGrid.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.BIReport.V17.1">
+      <HintPath>..\..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_17_1\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.CandidateElements.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_CandidateElements_17_1\CodeRep\CandidateElements\bin\Debug\RTIS.CandidateElements.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.CommonVB.V17.1">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\CommonVB\bin\Debug\RTIS.CommonVB.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.DataLayer.V17.1">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\DataLayer\bin\Debug\RTIS.DataLayer.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.Elements.V17.1">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\Elements\bin\Debug\RTIS.Elements.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.EmailLib.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\EmailLib\bin\Debug\RTIS.EmailLib.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.ERPCore.V17.1">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\ERPCore\bin\Debug\RTIS.ERPCore.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.ERPStock.V17.1">
+      <HintPath>..\..\..\..\..\RTISFramework\CandidateCode\RTIS_ERPStock_17_1\bin\Debug\RTIS.ERPStock.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.WorkflowCore.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\appEnumConstants.vb" />
+    <Compile Include="App\appGlobal.vb" />
+    <Compile Include="App\appLockEntitys.vb" />
+    <Compile Include="App\BO\appRefLists.vb" />
+    <Compile Include="App\BO\dmFileTracker.vb" />
+    <Compile Include="App\BO\dmFurnitureCategory.vb" />
+    <Compile Include="App\BO\dmHostCompany.vb" />
+    <Compile Include="App\BO\dmOutputDocument.vb" />
+    <Compile Include="App\BO\dmVATRate.vb" />
+    <Compile Include="App\BO\dmWoodSpecie.vb" />
+    <Compile Include="App\clsClipBoard.vb" />
+    <Compile Include="App\clsLabelDefinition.vb" />
+    <Compile Include="App\clsLookupValidation.vb" />
+    <Compile Include="App\clsRTISAppSettings.vb" />
+    <Compile Include="App\clsSMSharedFuncs.vb" />
+    <Compile Include="App\dsoRTISGlobal.vb" />
+    <Compile Include="App\DSO\dsoAppRefLists.vb" />
+    <Compile Include="App\DSO\dsoGeneral.vb" />
+    <Compile Include="App\DSO\dsoLabelDefinition.vb" />
+    <Compile Include="App\DSO\dtoFileTracker.vb" />
+    <Compile Include="App\DSO\dtoFurnitureCategory.vb" />
+    <Compile Include="App\DSO\dtoHostCompany.vb" />
+    <Compile Include="App\DSO\dtoLabelDefinition.vb" />
+    <Compile Include="App\DSO\dtoOutputDocument.vb" />
+    <Compile Include="App\DSO\dtoVATRate.vb" />
+    <Compile Include="App\DSO\dtoWoodSpecie.vb" />
+    <Compile Include="BIReports\DSO\dsoBIInvoice.vb" />
+    <Compile Include="BIReports\DSO\dsoBIPODelivery.vb" />
+    <Compile Include="BIReports\DSO\dsoBIPurchaseOrder.vb" />
+    <Compile Include="BIReports\DSO\dsoBITimeSheet.vb" />
+    <Compile Include="BIReports\DSO\dsoBIWoodMatReqInfo.vb" />
+    <Compile Include="BIReports\DSO\dsoBIWorkOrder.vb" />
+    <Compile Include="DespatchInvoice\BO\clsInvoiceInfo.vb" />
+    <Compile Include="DespatchInvoice\BO\dmInvoice.vb" />
+    <Compile Include="DespatchInvoice\BO\dmInvoiceItem.vb" />
+    <Compile Include="DespatchInvoice\DSO\dtoInvoice.vb" />
+    <Compile Include="DespatchInvoice\DSO\dtoInvoiceInfo.vb" />
+    <Compile Include="DespatchInvoice\DSO\dtoInvoiceItem.vb" />
+    <Compile Include="Email\BO\dmEmailTemplate.vb" />
+    <Compile Include="Email\DTO\dtoEmailTemplate.vb" />
+    <Compile Include="ERPStock\clsDecValueTracker.vb" />
+    <Compile Include="ERPStock\clsStockItemRegistryComp.vb" />
+    <Compile Include="ERPStock\clsStockItemRegistryBase.vb" />
+    <Compile Include="ERPStock\intdtoStockItem.vb" />
+    <Compile Include="General\BO\clsCompanyDay.vb" />
+    <Compile Include="General\BO\dmExchangeRate.vb" />
+    <Compile Include="General\BO\dmWoodValue.vb" />
+    <Compile Include="General\DSO\dsoBICompanyDay.vb" />
+    <Compile Include="General\DSO\dsoCompanyDay.vb" />
+    <Compile Include="General\DSO\dtoExchangeRate.vb" />
+    <Compile Include="General\DSO\dtoWoodValue.vb" />
+    <Compile Include="HR\BO\clsPaySlipItem.vb" />
+    <Compile Include="HR\BO\dmEmployeeRateOfPay.vb" />
+    <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
+    <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
+    <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
+    <Compile Include="Production\BO\clsMaterialRequirementProcessor.vb" />
+    <Compile Include="Production\BO\clsProductSharedFuncs.vb" />
+    <Compile Include="Production\BO\clsTimeSheetSharedFuncs.vb" />
+    <Compile Include="Production\BO\clsWorkOrderTracking.vb" />
+    <Compile Include="Production\BO\dmMaterialRequirement.vb" />
+    <Compile Include="Production\BO\dmShift.vb" />
+    <Compile Include="Production\BO\dmShiftDetails.vb" />
+    <Compile Include="Production\BO\dmWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Production\DSO\dtoWorkOrderAllocation.vb" />
+    <Compile Include="Production\DSO\dsoProduction.vb" />
+    <Compile Include="Production\DSO\dtoMaterialRequirement.vb" />
+    <Compile Include="Production\DSO\dtoProductBase.vb" />
+    <Compile Include="Production\DSO\dtoShift.vb" />
+    <Compile Include="Production\DSO\dtoShiftDetails.vb" />
+    <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />
+    <Compile Include="Production\DSO\dtoWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Purchasing\BO\clsPODeliveryInfo.vb" />
+    <Compile Include="Purchasing\BO\clsPOItemEditor.vb" />
+    <Compile Include="Purchasing\BO\clsPurchaseHandler.vb" />
+    <Compile Include="Purchasing\BO\clsPurchaseOrderInfo.vb" />
+    <Compile Include="Purchasing\BO\clsPurchaseOrderItemAllocationInfo.vb" />
+    <Compile Include="Purchasing\BO\clsPurchaseOrderItemAllocationProcessor.vb" />
+    <Compile Include="Purchasing\BO\clsPurchasingSharedFuncs.vb" />
+    <Compile Include="Purchasing\BO\clsStockItemProcessor.vb" />
+    <Compile Include="Purchasing\BO\dmCustomerPurchaseOrder.vb" />
+    <Compile Include="Purchasing\BO\dmPODelivery.vb" />
+    <Compile Include="Purchasing\BO\dmPODeliveryItem.vb" />
+    <Compile Include="Purchasing\BO\dmPurchaseOrder.vb" />
+    <Compile Include="Purchasing\BO\dmPurchaseOrderAllocation.vb" />
+    <Compile Include="Purchasing\BO\dmPurchaseOrderItem.vb" />
+    <Compile Include="Purchasing\BO\dmPurchaseOrderItemAllocation.vb" />
+    <Compile Include="Purchasing\BO\dmSupplier.vb" />
+    <Compile Include="Purchasing\BO\dmSupplierContact.vb" />
+    <Compile Include="Purchasing\DSO\dtoPODeliveryInfo.vb" />
+    <Compile Include="Purchasing\DSO\dtoPODeliveryItem.vb" />
+    <Compile Include="Purchasing\DSO\dsoPurchasing.vb" />
+    <Compile Include="Purchasing\DSO\dtoCustomerPurchaseOrder.vb" />
+    <Compile Include="Purchasing\DSO\dtoPODelivery.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrder.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderAllocation.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderInfo.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderItem.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderItemAllocation.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderItemAllocationInfo.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderItemInfo.vb" />
+    <Compile Include="Purchasing\DSO\dtoSupplier.vb" />
+    <Compile Include="Purchasing\DSO\dtoSupplierContact.vb" />
+    <Compile Include="Sales\Actions\clsActionSalesOrderGenerateWOs.vb" />
+    <Compile Include="Sales\Actions\clsActionSalesOrderRecallWOs.vb" />
+    <Compile Include="Sales\Actions\clsSalesOrderActionsHandler.vb" />
+    <Compile Include="Sales\BO\dmHouseTypeSalesItems.vb" />
+    <Compile Include="Sales\BO\dmProductInstallationType.vb" />
+    <Compile Include="Sales\BO\dmProductStructureType.vb" />
+    <Compile Include="Sales\BO\dmProductInstallation.vb" />
+    <Compile Include="Sales\BO\dmProductStructure.vb" />
+    <Compile Include="Sales\BO\clsSalesItemEditor.vb" />
+    <Compile Include="Sales\BO\dmHouseType.vb" />
+    <Compile Include="Sales\BO\dmSalesItemAssembly.vb" />
+    <Compile Include="Sales\BO\clsSalesOrderPhaseInfo.vb" />
+    <Compile Include="Sales\BO\dmSalesOrderStage.vb" />
+    <Compile Include="Sales\BO\dmPhaseItemComponent.vb" />
+    <Compile Include="Sales\BO\dmStageType.vb" />
+    <Compile Include="Sales\BO\dmSalesOrderPhaseItem.vb" />
+    <Compile Include="Sales\BO\clsSalesOrderHandler.vb" />
+    <Compile Include="Sales\BO\clsSalesOrderItemProgressInfo.vb" />
+    <Compile Include="Sales\BO\clsSalesOrderProgressInfo.vb" />
+    <Compile Include="Sales\BO\clsWorkOrderHandler.vb" />
+    <Compile Include="Sales\BO\dmCustomerContact.vb" />
+    <Compile Include="Sales\BO\dmSalesOrderItem.vb" />
+    <Compile Include="Sales\BO\dmSalesOrderPhase.vb" />
+    <Compile Include="Sales\DSO\dtoHouseTypeSalesItems.vb" />
+    <Compile Include="Sales\DSO\dtoProductInstallationType.vb" />
+    <Compile Include="Sales\DSO\dtoProductStructureType.vb" />
+    <Compile Include="Sales\DSO\dtoProductInstallation.vb" />
+    <Compile Include="Sales\DSO\dtoProductStructure.vb" />
+    <Compile Include="Sales\DSO\dtoHouseType.vb" />
+    <Compile Include="Sales\DSO\dtoSalesItemAssembly.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderPhaseInfo.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderStage.vb" />
+    <Compile Include="Sales\DSO\dtoPhaseItemComponent.vb" />
+    <Compile Include="Sales\DSO\dtoStageType.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderPhaseItem.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderPhase.vb" />
+    <Compile Include="Sales\DSO\dtoCustomerContact.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderItem.vb" />
+    <Compile Include="Sales\DSO\dtoWorkOrderInfo.vb" />
+    <Compile Include="HR\BO\dmEmployeeSM.vb" />
+    <Compile Include="HR\DSO\dsoAdminEmployeeOverride.vb" />
+    <Compile Include="HR\DSO\dsoHR.vb" />
+    <Compile Include="HR\DSO\dtoEmployeeSM.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Production\BO\clsTimeSheetEntryInfo.vb" />
+    <Compile Include="Production\BO\dmProductFurniture.vb" />
+    <Compile Include="Production\BO\dmProductFurnitureComponent.vb" />
+    <Compile Include="Production\BO\dmProductFurnitureOperation.vb" />
+    <Compile Include="Production\BO\dmTimeSheetEntry.vb" />
+    <Compile Include="Production\DSO\dtoProductFurniture.vb" />
+    <Compile Include="Production\DSO\dtoProductFurnitureComponent.vb" />
+    <Compile Include="Production\DSO\dtoProductFurnitureOperation.vb" />
+    <Compile Include="Production\DSO\dtoTimeSheetEntry.vb" />
+    <Compile Include="Sales\BO\clsWorkOrderInfo.vb" />
+    <Compile Include="Sales\BO\dmCustomer.vb" />
+    <Compile Include="Sales\BO\dmSalesOrder.vb" />
+    <Compile Include="Sales\BO\dmWorkOrder.vb" />
+    <Compile Include="Sales\DSO\dsoSales.vb" />
+    <Compile Include="Sales\DSO\dtoCustomer.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrder.vb" />
+    <Compile Include="Sales\DSO\dtoWorkOrder.vb" />
+    <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\clsStockItemInfo.vb" />
+    <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
+    <Compile Include="Stock Admin\BO\clsStockItemTransactionLogInfo.vb" />
+    <Compile Include="Stock Admin\BO\clsStockTakeItemEditor.vb" />
+    <Compile Include="Stock Admin\BO\dmStockItem.vb" />
+    <Compile Include="Stock Admin\BO\dmStockItemLocation.vb" />
+    <Compile Include="Stock Admin\BO\dmStockItemLocationAmendmentLog.vb" />
+    <Compile Include="Stock Admin\BO\dmStockItemTransactionLog.vb" />
+    <Compile Include="Stock Admin\BO\dmStockTake.vb" />
+    <Compile Include="Stock Admin\BO\dmStockTakeItem.vb" />
+    <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
+    <Compile Include="Stock Admin\DSO\dsoStock.vb" />
+    <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />
+    <Compile Include="Stock Admin\DSO\dtoSalesOrderProgressInfo.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItem.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItemInfo.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItemLocation.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItemLocationAmendmentLog.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItemTransactionLog.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItemTransactionLogInfo.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockTake.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockTakeItem.vb" />
+    <Compile Include="Stock Admin\BI\BIReportViewFactoryStockItemTransactionLogInfo.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Despatching\BO\" />
+    <Folder Include="Despatching\DSO\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

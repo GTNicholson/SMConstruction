@@ -340,7 +340,7 @@ Public Class fccPurchaseOrder
     Dim mdso As dsoPurchasing
     Try
       mdso = New dsoPurchasing(pDBConn)
-      mdso.LoadSuppliers(mRetVal)
+      mdso.LoadSuppliersByWhere(mRetVal, "CompanyName is not null")
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

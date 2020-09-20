@@ -167,7 +167,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .SalesOrderItems = SalesOrderItems.Clone
       .Invoices = Invoices.Clone
       .CustomerPurchaseOrder = CustomerPurchaseOrder.Clone
-      .pSalesOrderPhasess = SalesOrderPhases.Clone
+      .SalesOrderPhases = SalesOrderPhases.Clone
       .SalesItemAssemblys = SalesItemAssemblys
 
       .IsDirty = IsDirty

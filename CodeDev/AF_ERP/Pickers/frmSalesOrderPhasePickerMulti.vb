@@ -87,7 +87,7 @@ Public Class frmSalesOrderPhasePickerMulti
   End Sub
 
   Private Sub RefreshControls()
-    pFormController.WhereSQL = ""
+    pFormController.WhereSQL = " DateCreated is not null"
     Me.grdWorkOrder.DataSource = pFormController.LoadSalesOrderPhaseDT
   End Sub
 

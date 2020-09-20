@@ -84,7 +84,7 @@ Public Class brwSupplier : Inherits brwBrowserListBase
     Try
 
       DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From Supplier Order By CompanyName")
+      mDataTable = Me.DBConn.CreateDataTable("Select * From Supplier where CompanyName is not null Order By CompanyName")
 
       gridBrowseList.DataSource = mDataTable
 
