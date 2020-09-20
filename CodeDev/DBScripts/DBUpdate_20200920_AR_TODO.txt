@@ -1,0 +1,45 @@
+
+ALTER VIEW [dbo].[vwSalesOrderPhaseInfo]
+AS
+SELECT
+	SOP.SalesOrderPhaseID,
+	SOP.DateRequired,
+	SOP.QuantityItems,
+
+	SOP.TotalPrice,
+	SOP.PhaseNumber,
+	SOP.DespatchStatus,
+                         
+	SOP.InvoiceStatus,
+	SOP.ProductionStatus,
+	SOP.MatReqStatus,
+    
+	SOP.DateCreated,
+  	SOP.DateCommitted,
+   	SOP.CommittedBy,
+   	SOP.JobNo As SOPJobNo,
+	SOP.PhaseRef,
+ 
+	SO.SalesOrderID,
+	SO.OrderNo,
+	SO.ContractManagerID,
+
+	SO.DateEntered,
+
+	SO.OrderStatusENUM,
+   	SO.OrderTypeID,
+	
+  	SO.ProjectName,
+	
+  
+	C.CompanyName
+ 
+FROM
+	SalesOrderPhase SOP 
+	LEFT JOIN SalesOrder SO ON SO.SalesOrderID = SOP.SalesOrderID 
+	LEFT JOIN Customer C ON C.CustomerID = SO.CustomerID 
+
+
+GO
+
+

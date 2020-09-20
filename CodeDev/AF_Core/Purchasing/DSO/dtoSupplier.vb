@@ -39,6 +39,17 @@ Public Class dtoSupplier : Inherits dtoBase
   End Function
 
 
+  Public Function LoadSupplierCollectionByWhere(ByRef rSupplier As colSuppliers, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ''mParams.Add("@ParentID", vParentID)
+    mOK = MyBase.LoadCollection(rSupplier, mParams, "SupplierID", vWhere)
+    rSupplier.TrackDeleted = True
+    If mOK Then rSupplier.IsDirty = False
+
+
+    Return mOK
+  End Function
 
   Overrides Property IsDirtyValue() As Boolean
     Get

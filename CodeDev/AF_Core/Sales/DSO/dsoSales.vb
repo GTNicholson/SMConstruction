@@ -8,12 +8,12 @@ Public Class dsoSales : Inherits dsoBase
     MyBase.New(rDBConn)
   End Sub
 
-  Public Function LoadSalesOrderDT(ByRef rDT As DataTable, Optional ByVal vWhereStr As String = "") As Boolean
+  Public Function LoadSalesOrderDT(ByRef rDT As DataTable, ByVal vWhereStr As String) As Boolean
     Dim mSQL As String
     Dim mOK As Boolean
     Try
       pDBConn.Connect()
-      mSQL = " select * from vwSalesOrderPhaseInfo"
+      mSQL = " select * from vwSalesOrderPhaseInfo where "
 
       If vWhereStr.Length > 0 Then
         mSQL = mSQL & vWhereStr
@@ -395,10 +395,13 @@ Public Class dsoSales : Inherits dsoBase
           If mWO.Product IsNot Nothing Then
             mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
             mdtoProduct.SaveProduct(mWO.Product)
+
             Select Case mWO.Product.ItemType
-              Case eProductType.ProductFurniture
-                mWO.ProductID = CType(mWO.Product, dmProductFurniture).ProductFurnitureID
-            End Select
+                Case eProductType.ProductFurniture
+                  mWO.ProductID = CType(mWO.Product, dmProductFurniture).ProductFurnitureID
+              End Select
+
+
           End If
         Next
 

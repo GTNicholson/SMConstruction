@@ -4,7 +4,10 @@ Imports DevExpress.Office.Crypto
 Imports DevExpress.Xpf.RichEdit.Menu
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
@@ -244,7 +247,10 @@ Public Class frmPurchaseOrder
     mSalesOrderPhaseInv.AddNewItem(0, "A Inventario")
 
     For Each mSOP As dmSalesOrderPhase In pFormController.SalesOrderPhases
-      mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.JobNo)
+      If mSOP IsNot Nothing Then
+        mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.JobNo)
+
+      End If
     Next
 
     clsDEControlLoading.LoadGridLookUpEdit(grdSalesOrderPhaseItem, gvSalesOrderPhaseItem.Columns("CallOffID"), mSalesOrderPhaseInv)
@@ -1135,51 +1141,27 @@ Public Class frmPurchaseOrder
   Private Sub ShowHideTabs()
     ''Dim mCurrentTabPage As DevExpress.XtraTab.XtraTabPage
 
-    ''mCurrentTabPage = xtabPOReqType.SelectedTabPage
-
-    ''xtabPOReqType.Visible = False
-    ''For Each mPg As DevExpress.XtraTab.XtraTabPage In xtabPOReqType.TabPages
-    ''  mPg.PageVisible = False
-    ''Next
-    ''If pFormController.PurchaseOrder IsNot Nothing Then
-    ''  Select Case pFormController.PurchaseOrder.MaterialRequirementTypeID
-    ''    Case ePOMaterialRequirementType.Inventario
-    ''      xtpInventory.PageVisible = True
-    ''      xtpSingle.PageVisible = False
-    ''      xtpMultiple.PageVisible = False
-    ''    Case ePOMaterialRequirementType.Sencillo
-    ''      xtpInventory.PageVisible = False
-    ''      xtpSingle.PageVisible = True
-    ''      xtpMultiple.PageVisible = False
-    ''    Case ePOMaterialRequirementType.Multiple
-    ''      xtpInventory.PageVisible = False
-    ''      xtpSingle.PageVisible = False
-    ''      xtpMultiple.PageVisible = True
-    ''    Case Else
-    ''      xtpInventory.PageVisible = False
-    ''      xtpSingle.PageVisible = False
-    ''      xtpMultiple.PageVisible = False
-    ''  End Select
-    ''End If
-    ''If mCurrentTabPage IsNot Nothing Then
-    ''  If mCurrentTabPage.PageVisible = True Then
-    ''    xtabPOReqType.SelectedTabPage = mCurrentTabPage
-    ''  End If
-    ''End If
-
-
     If pFormController.PurchaseOrder IsNot Nothing Then
       Select Case pFormController.PurchaseOrder.MaterialRequirementTypeID
         Case ePOMaterialRequirementType.Inventario
           xtabPOReqType.SelectedTabPage = xtpInventory
+          ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
+
         Case ePOMaterialRequirementType.Sencillo
           xtabPOReqType.SelectedTabPage = xtpSingle
+          ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
+
         Case ePOMaterialRequirementType.Multiple
           xtabPOReqType.SelectedTabPage = xtpMultiple
+          ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantityMultiple", "gcRequiredQuantitySimple")
+
         Case Else
           xtabPOReqType.SelectedTabPage = xtpInventory
+          ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
+
       End Select
     End If
+
 
 
   End Sub
@@ -1191,7 +1173,7 @@ Public Class frmPurchaseOrder
       Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
       Dim mSalesOrderPhase As dmSalesOrderPhase
       Dim mPOAllocation As dmPurchaseOrderAllocation
-      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "")
+      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateCreated is not null")
 
 
       mPicker = New clsPickerSalesOrderPhase(mSalesOrderPhaseInfos, pFormController.DBConn)
@@ -1290,5 +1272,30 @@ Public Class frmPurchaseOrder
 
   Private Sub btedSOPhase_Click(sender As Object, e As EventArgs) Handles btedSOPhase.Click
 
+  End Sub
+
+  Private Sub grdPurchaseOrderItems_ViewRegistered(sender As Object, e As ViewOperationEventArgs) Handles grdPurchaseOrderItems.ViewRegistered
+
+
+
+
+  End Sub
+
+  Public Sub ShowHideGridColumsByName(ByRef rViewBase As BaseView, ByVal vColumnNameToShow As String, ByVal vColumnNameToHide As String)
+    Dim mView As GridView = CType(rViewBase, GridView)
+
+    For Each mColum As GridColumn In mView.Columns
+
+      If mColum.Name = vColumnNameToShow Then
+        mColum.Visible = True
+        mColum.VisibleIndex = 3 ''//To force to have The right position of the column in the view
+      End If
+
+      If mColum.Name = vColumnNameToHide Then
+        mColum.Visible = False
+
+      End If
+
+    Next
   End Sub
 End Class
