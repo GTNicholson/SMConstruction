@@ -216,7 +216,7 @@ Public Enum eTallyIDs
   WorkOrder = 1
   InternalWorkOrder = 2
   PurchaseOrderNo = 3
-  GRNNumber = 1002
+  GRNNumber = 4
 End Enum
 
 Public Enum ePaymentStatus
