@@ -125,6 +125,9 @@
     <Reference Include="RTIS.PDFUtils.V17.1">
       <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\PDFUtils\bin\Debug\RTIS.PDFUtils.V17.1.dll</HintPath>
     </Reference>
+    <Reference Include="RTIS.ProductCore.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_ProductCore_17_1\CodeRep\bin\Debug\RTIS.ProductCore.V17.1.dll</HintPath>
+    </Reference>
     <Reference Include="RTIS.WorkflowCore.V17.1, Version=17.1.6.10, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V17.1.dll</HintPath>
@@ -213,6 +216,7 @@
     <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
+    <Compile Include="BIReports\BIPODeliveryItemInfo.vb" />
     <Compile Include="Despatch\brwInvoices.vb" />
     <Compile Include="Despatch\Documents\repInvoice.Designer.vb">
       <DependentUpon>repInvoice.vb</DependentUpon>
