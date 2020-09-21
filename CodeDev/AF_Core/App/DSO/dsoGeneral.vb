@@ -60,4 +60,31 @@ Public Class dsoGeneral
     Return mOK
   End Function
 
+  Public Function GetExchangeRate(ByVal vDate As Date, ByVal vCurrency As eCurrency) As Decimal
+    Dim mRetval As Decimal = 0
+    Dim mExchangeRate As New dmExchangeRate
+    Dim mReader As IDataReader
+
+    Try
+
+      pDBConn.Connect()
+
+      mReader = pDBConn.LoadReader(String.Format("Select * from ExchangeRate Where ExchangeRateDate >= {0} and Currency = {1} Order By ExchangeRateDate", vDate.ToString("yyyyMMdd"), vCurrency))
+
+      If mReader.Read Then
+        mRetval = RTIS.DataLayer.clsDBConnBase.DBReadDecimal(mReader, "ExchangeRateValue")
+      End If
+
+      mReader.Close()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+
+
+    Return mRetval
+  End Function
+
 End Class

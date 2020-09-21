@@ -222,7 +222,7 @@ Public Class fccPurchaseOrder
   End Sub
 
   Public Function LoadObject() As Boolean
-    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
+    Dim mdsoGeneral As New dsog(DBConn)
 
     Dim mOK As Boolean
     Try
@@ -240,7 +240,7 @@ Public Class fccPurchaseOrder
       Else
         pPurchaseOrder.SubmissionDate = Today
         pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
-        pPurchaseOrder.ExchangeRateValue = mdsoPurchaseOrder.GetDefaultExchangeRate()
+        pPurchaseOrder.ExchangeRateValue = mdsoPurchaseOrder.get()
         GetNextPONo()
         SaveObject()
         mOK = True
