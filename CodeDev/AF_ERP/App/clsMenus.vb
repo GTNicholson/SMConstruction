@@ -226,8 +226,14 @@ Class clsMenuFunctions
 
   Public Shared Sub PODeliveryInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+    Dim mViews As New List(Of RTIS.BIReport.clsBIReportView)
+
+    ''mBIReport = BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+
+    mViews.Add(BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
+    mViews.Add(BIPODeliveryItemInfo.CreateBIReportViewFactoryPODeliveryItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
+
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mViews, rParentForm, rRTISGlobal, rRTISUserSession.IsSecurityAllowAll)
   End Sub
 
 

@@ -2,12 +2,10 @@
 Imports RTIS.BIReport
 Imports RTIS.DataLayer
 
-Public Class BIReportViewPODelivery
-  Private Enum eBIPurchaseOrdersLayout
-    PODList = 1
-    PODSummary = 2
-    PODItemList = 3
-    PODItemSummary = 4
+Public Class BIPODeliveryItemInfo
+  Private Enum eBIPurchaseOrdersLayoutItem
+    PODItemList = 1
+    PODItemSummary = 2
   End Enum
 
   Private Enum eBIReportDefs
@@ -20,14 +18,14 @@ Public Class BIReportViewPODelivery
     Status = 3
   End Enum
 
-  Public Shared Function CreateBIReportViewFactoryPODelivery(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
+  Public Shared Function CreateBIReportViewFactoryPODeliveryItemInfo(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
     Dim mBIReportView As New clsBIReportView
     Dim mLayoutLoader As New clsBILayoutLoaderFromFile
     Dim mConditionSetterList As clsBIConditionSetterList
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
-    mBIReportView.BIReportSource = PODeliveryReportSource()
-    mBIReportView.DataSourceLoader = New dsoBIPODelivery(rDBConn, rRTISGlobal, mBIReportView)
+    mBIReportView.BIReportSource = PODeliveryItemReportSource()
+    mBIReportView.DataSourceLoader = New dsoBIPODeliveryItemInfo(rDBConn, rRTISGlobal, mBIReportView)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader
@@ -61,13 +59,13 @@ Public Class BIReportViewPODelivery
     Return mBIReportView
   End Function
 
-  Public Shared Function PODeliveryReportSource() As dmBIReportSource
+  Public Shared Function PODeliveryItemReportSource() As dmBIReportSource
     Dim mRepSource As dmBIReportSource
 
 
     mRepSource = New dmBIReportSource
-    mRepSource.BIReportSourceID = eReportSource.PODelivery
-    mRepSource.Name = "Recepciones de Compras"
+    mRepSource.BIReportSourceID = eReportSource.PODeliveryItem
+    mRepSource.Name = "Recepciones de Compras por Artículo"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -85,19 +83,19 @@ Public Class BIReportViewPODelivery
     Dim mRepLayout As New dmBIGridLayout
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayout.PODList
+    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayoutItem.PODItemList
     mRepLayout.InterfaceType = 1
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIPODeliveryList.xml"
-    mRepLayout.LayoutName = "Lista de Recepciones por Orden de Compras"
+    mRepLayout.LayoutFileName = "BIPODeliveryItemList.xml"
+    mRepLayout.LayoutName = "Lista de Recepciones por Artículos"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayout.PODSummary
+    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayoutItem.PODItemSummary
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIPODeliverySummary.xml"
-    mRepLayout.LayoutName = "Resumen de Recepciones de Compras"
+    mRepLayout.LayoutFileName = "BIPODeliveryItemSummary.xml"
+    mRepLayout.LayoutName = "Resumen de Recepciones por Artículo"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
   End Sub
@@ -120,7 +118,7 @@ Public Class BIReportViewPODelivery
     mParam.FieldName = "DateCreated"
     mParam.ParamOperator = "<="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Fecha de Entrega"
+    mParam.ParamLabel = "Fecha de Recepción"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.EndDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
@@ -147,9 +145,9 @@ Public Class BIReportViewPODelivery
 
     mRepDef = New dmBIReportDef
     mRepDef.ReportName = "General"
-    mRepDef.Description = "Recepciones de Compras"
+    mRepDef.Description = "Recepciones de Compras por Artículo"
     mRepDef.BIReportDefID = eBIReportDefs.General
-    mRepDef.BIGridLayoutID = eBIPurchaseOrdersLayout.PODList
+    mRepDef.BIGridLayoutID = eBIPurchaseOrdersLayoutItem.PODItemList
     Return mRepDef
   End Function
 

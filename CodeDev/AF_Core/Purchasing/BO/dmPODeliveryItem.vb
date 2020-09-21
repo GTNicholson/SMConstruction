@@ -97,11 +97,13 @@ Public Class dmPODeliveryItem : Inherits dmBase
     End Set
   End Property
 
-  Public ReadOnly Property QtyReceived() As Decimal
+  Public Property QtyReceived() As Decimal
     Get
       Return pQtyReceived
     End Get
-
+    Set(value As Decimal)
+      pQtyReceived=value
+    End Set
   End Property
 
   Public Sub SetQtyReceived(ByVal vNewValue As Decimal)

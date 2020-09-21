@@ -181,6 +181,7 @@ Public Enum eReportSource
   WoodReqMatInfo = 5
   PurchaseOrder = 6
   PODelivery = 7
+  PODeliveryItem = 8
 End Enum
 
 Public Enum eParentType

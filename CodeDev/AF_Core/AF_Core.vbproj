@@ -111,6 +111,9 @@
     <Reference Include="RTIS.PDFUtils.V17.1">
       <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\PDFUtils\bin\Debug\RTIS.PDFUtils.V17.1.dll</HintPath>
     </Reference>
+    <Reference Include="RTIS.ProductCore.V17.1">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_ProductCore_17_1\CodeRep\bin\Debug\RTIS.ProductCore.V17.1.dll</HintPath>
+    </Reference>
     <Reference Include="RTIS.WorkflowCore.V17.1">
       <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V17.1.dll</HintPath>
     </Reference>
@@ -166,6 +169,7 @@
     <Compile Include="App\DSO\dtoOutputDocument.vb" />
     <Compile Include="App\DSO\dtoVATRate.vb" />
     <Compile Include="App\DSO\dtoWoodSpecie.vb" />
+    <Compile Include="BIReports\DSO\dsoBIPODeliveryItemInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBIInvoice.vb" />
     <Compile Include="BIReports\DSO\dsoBIPODelivery.vb" />
     <Compile Include="BIReports\DSO\dsoBIPurchaseOrder.vb" />
@@ -213,6 +217,7 @@
     <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderAllocation.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Purchasing\BO\clsPODeliveryItemInfo.vb" />
     <Compile Include="Purchasing\BO\clsPODeliveryInfo.vb" />
     <Compile Include="Purchasing\BO\clsPOItemEditor.vb" />
     <Compile Include="Purchasing\BO\clsPurchaseHandler.vb" />
@@ -230,6 +235,7 @@
     <Compile Include="Purchasing\BO\dmPurchaseOrderItemAllocation.vb" />
     <Compile Include="Purchasing\BO\dmSupplier.vb" />
     <Compile Include="Purchasing\BO\dmSupplierContact.vb" />
+    <Compile Include="Purchasing\DSO\dtoPODeliveryItemInfo.vb" />
     <Compile Include="Purchasing\DSO\dsoPurchasing.vb" />
     <Compile Include="Purchasing\DSO\dtoCustomerPurchaseOrder.vb" />
     <Compile Include="Purchasing\DSO\dtoPODelivery.vb" />
