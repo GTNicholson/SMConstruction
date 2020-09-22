@@ -110,7 +110,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalNetValue", .TotalNetValue)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialRequirementTypeID", .MaterialRequirementTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
-
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefMatType", StringToDBValue(.RefMatType))
 
 
     End With
@@ -179,6 +179,8 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .TotalNetValue = DBReadDecimal(rDataReader, "TotalNetValue")
         .MaterialRequirementTypeID = DBReadInt32(rDataReader, "MaterialRequirementTypeID")
         .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+
+        .RefMatType = DBReadString(rDataReader, "RefMatType")
 
 
         pPurchaseOrder.IsDirty = False

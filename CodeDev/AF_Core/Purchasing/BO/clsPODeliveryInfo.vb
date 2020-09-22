@@ -141,6 +141,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property ExchangeRateValue As Decimal
+    Get
+      Return pPurchaseOrder.ExchangeRateValue
+    End Get
+  End Property
+
 End Class
 
 Public Class colPODeliveryInfos : Inherits List(Of clsPODeliveryInfo)

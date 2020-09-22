@@ -63,7 +63,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="12">
+  <property name="Columns" iskey="true" value="13">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">gc_PODeliveryItemID</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -78,9 +78,9 @@
       <property name="Caption">Cant. Recibida</property>
       <property name="FieldName">QtyReceived</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">99</property>
+      <property name="Width">85</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -91,36 +91,36 @@
       <property name="Caption">Descripción</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
-      <property name="Width">86</property>
+      <property name="Width">101</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
       <property name="Caption">Núm. Parte</property>
       <property name="FieldName">PartNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
-      <property name="Width">86</property>
+      <property name="Width">74</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
       <property name="Caption">Código</property>
       <property name="FieldName">StockCode</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">86</property>
+      <property name="Width">74</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="Caption">Cant. Requerida</property>
       <property name="FieldName">QtyRequired</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">107</property>
+      <property name="Width">92</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -131,9 +131,9 @@
       <property name="Caption">Precio Unit.</property>
       <property name="FieldName">UnitPrice</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">96</property>
+      <property name="Width">82</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -146,16 +146,16 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">99</property>
+      <property name="Width">92</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
       <property name="Caption">Fecha de Recepción</property>
       <property name="FieldName">DateCreated</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">95</property>
+      <property name="Width">85</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">d</property>
         <property name="FormatType">DateTime</property>
@@ -166,9 +166,9 @@
       <property name="Caption">Ref. Etapa</property>
       <property name="FieldName">JobNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
-      <property name="Width">78</property>
+      <property name="Width">55</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
@@ -177,20 +177,29 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">99</property>
+      <property name="Width">92</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
       <property name="Caption">Valor de Recepción</property>
       <property name="FieldName">TotalReceivedAmount</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">134</property>
+      <property name="Width">117</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
       </property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Name">GridColumn12</property>
+      <property name="Caption">Estado del Pago</property>
+      <property name="FieldName">PaymentStatusDesc</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">2</property>
+      <property name="Visible">true</property>
+      <property name="Width">115</property>
     </property>
   </property>
   <property name="ViewCaption" />

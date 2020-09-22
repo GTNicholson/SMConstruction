@@ -222,8 +222,8 @@ Public Class fccPurchaseOrder
   End Sub
 
   Public Function LoadObject() As Boolean
-    Dim mdsoGeneral As New dsog(DBConn)
 
+    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
     Dim mOK As Boolean
     Try
 
@@ -240,7 +240,7 @@ Public Class fccPurchaseOrder
       Else
         pPurchaseOrder.SubmissionDate = Today
         pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
-        pPurchaseOrder.ExchangeRateValue = mdsoPurchaseOrder.get()
+        pPurchaseOrder.ExchangeRateValue = GetExchangeRate(Today, eCurrency.Cordobas)
         GetNextPONo()
         SaveObject()
         mOK = True
@@ -471,6 +471,22 @@ Public Class fccPurchaseOrder
     End If
   End Sub
 
+  Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(DBConn)
+    Dim mExchangeRate As Decimal = 0
+
+    mExchangeRate = mdsoGeneral.GetExchangeRate(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
+
+  Public Sub ReloadPOItems()
+    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
+    Dim mOK As Boolean = True
 
 
+    PurchaseOrder.PurchaseOrderItems.Clear()
+
+    If mOK Then mOK = mdsoPurchaseOrder.ReloadPurchaseOrderItems(pPurchaseOrder.PurchaseOrderItems, pPurchaseOrder.PurchaseOrderID)
+  End Sub
 End Class

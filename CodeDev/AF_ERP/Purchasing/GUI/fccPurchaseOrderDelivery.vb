@@ -169,15 +169,19 @@ Public Class fccPurchaseOrderDelivery
 
 
   Public Sub RefreshPOItemAllocationProcessorPODelItems()
-    '// hook up the podelivery items into the processors so that we can show and record "Qty This GRN"
-    For Each mPODelItem As dmPODeliveryItem In pPODelivery.PODeliveryItems
-      For Each mPOIP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
-        If mPODelItem.POItemAllocationID = mPOIP.PurchaseOrderItemAllocationID Then
-          mPOIP.PODeliveryItem = mPODelItem
-          Exit For
-        End If
+
+    If PODelivery IsNot Nothing Then
+
+      For Each mPODelItem As dmPODeliveryItem In pPODelivery.PODeliveryItems
+        For Each mPOIP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
+          If mPODelItem.POItemAllocationID = mPOIP.PurchaseOrderItemAllocationID Then
+            mPOIP.PODeliveryItem = mPODelItem
+            Exit For
+          End If
+        Next
       Next
-    Next
+    End If
+
   End Sub
 
   Public Function GetPurchaseOrderInfos() As colPurchaseOrderInfos
@@ -197,7 +201,7 @@ Public Class fccPurchaseOrderDelivery
         pPOItemProcessors.Clear()
 
         mdso.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderInfo.PurchaseOrderID)
-
+        RefreshPOItemAllocationProcessorPODelItems()
         '// Load any deliveryitems into matechde purchaseorderitemprocessors
 
       End If

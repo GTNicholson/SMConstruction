@@ -33,6 +33,7 @@ Public Enum eActivityCode
   PODelivery = 404
   POReportList = 405
   PODeliveryReport = 406
+  PODeliveryItemReport = 407
 
   InventoryGroup = 500
   StockItem = 501
@@ -217,7 +218,7 @@ Public Enum eTallyIDs
   WorkOrder = 1
   InternalWorkOrder = 2
   PurchaseOrderNo = 3
-  GRNNumber = 4
+  GRNNumber = 1002
 End Enum
 
 Public Enum ePaymentStatus

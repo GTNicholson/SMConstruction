@@ -72,7 +72,7 @@ Public Class repSalesOrder
     XrlEmail.Text = pSalesOrder.Customer.Email
     XrlTelNo.Text = pSalesOrder.Customer.TelNo
     xrlDateEntered.Text = pSalesOrder.DateEntered.ToShortDateString
-    XrlDueTime.Text = pSalesOrder.DueTime.ToShortDateString
+    XrlDueTime.Text = pSalesOrder.FinishDate.ToShortDateString
     'xrlPaymentType.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eCustomerStatus), CType(pSalesOrder.Customer.PaymentTermsType, eCustomerStatus))
     xrlPaymentType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).
                                         ItemValueToDisplayValue(pSalesOrder.Customer.PaymentTermsType)
@@ -120,9 +120,8 @@ Public Class repSalesOrder
     Dim mImage As Image
 
     mSOI = Me.GetCurrentRow
-    xrtAmount.Text = mSOI.TotalAmount.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-    xrtUnitPrice.Text = mSOI.UnitPrice.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-    pTotalAmount += Val(xrtAmount.Text)
+
+
 
 
 
@@ -130,6 +129,10 @@ Public Class repSalesOrder
       ''mText = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mWorkOrder.WoodSpecieID)
       ''mText = mText & "/ " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodFinish).ItemValueToDisplayValue(mWorkOrder.WoodFinish)
       ''xrtWood.Text = mText
+      xrtAmount.Text = mSOI.TotalAmount.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+      xrtUnitPrice.Text = mSOI.UnitPrice.ToString("C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+      pTotalAmount += Val(xrtAmount.Text)
+
       mFileName = clsSMSharedFuncs.GetSOItemImageFileName(pSalesOrder, mSOI)
       mWoodAndFinish = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).
                                         ItemValueToDisplayValue(mSOI.WoodSpecieID) & " / " &

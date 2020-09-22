@@ -29,7 +29,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pDeliveryContact As String
   Private pDeliveryTel As String
   Private pDeliveryEmail As String
-
+  Private pRefMatType As String
   Private pCallOffType As Byte
   Private pSupplierContactID As Integer
   Private pSupplierRef As String
@@ -138,6 +138,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .DefaultCurrency = DefaultCurrency
       .PaymentStatus = PaymentStatus
       .TotalNetValue = TotalNetValue
+      .RefMatType = RefMatType
       .MaterialRequirementTypeID = MaterialRequirementTypeID
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
@@ -149,7 +150,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
 
   End Sub
 
-
+  Public Property RefMatType() As String
+    Get
+      Return pRefMatType
+    End Get
+    Set(ByVal value As String)
+      If pRefMatType <> value Then IsDirty = True
+      pRefMatType = value
+    End Set
+  End Property
 
   Public Property DefaultCurrency() As Int32
     Get

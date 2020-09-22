@@ -86,6 +86,7 @@ Public Class dtoPODeliveryItemInfo : Inherits dtoBase
 
         With .PurchaseOrder
           .PONum = DBReadString(rDataReader, "PONum")
+          .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
         End With
 
 

@@ -284,6 +284,26 @@ Public Class dsoAppRefLists
   End Function
 
 
+  Public Function LoadAllListsConnected(ByRef rRefLists As appRefLists) As Boolean
+    Dim mAllOK As Boolean = True
+    Dim mItem As clsRefListItem
+
+    Try
+
+      If pDBConn.Connect Then
+        For Each mItem In rRefLists
+          mAllOK = LoadAList(rRefLists, mItem.RefListType)
+        Next
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return rRefLists.AllListsLoaded
+  End Function
 End Class
 
 

@@ -101,7 +101,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">121</property>
+      <property name="Width">179</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">gcComment</property>
@@ -111,8 +111,6 @@
       <property name="Caption">Comentarios</property>
       <property name="FieldName">Comment</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
-      <property name="Visible">true</property>
       <property name="Width">141</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
@@ -123,9 +121,9 @@
       <property name="Caption">Fecha Creada</property>
       <property name="FieldName">DateCreated</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">104</property>
+      <property name="Width">128</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">gcStatus</property>
@@ -135,8 +133,6 @@
       <property name="Caption">Estado</property>
       <property name="FieldName">Status</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
-      <property name="Visible">true</property>
       <property name="Width">63</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
@@ -147,9 +143,9 @@
       <property name="Caption">Categoría</property>
       <property name="FieldName">PurchaseCategory</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">110</property>
+      <property name="Width">280</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">gcPONum</property>
@@ -161,7 +157,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">122</property>
+      <property name="Width">180</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">gcRequiredDate</property>
@@ -171,9 +167,9 @@
       <property name="Caption">Fecha Req.</property>
       <property name="FieldName">RequiredDate</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">104</property>
+      <property name="Width">135</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">gcDeliveryAddress</property>
@@ -202,9 +198,9 @@
       <property name="Caption">Proveedor</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">151</property>
+      <property name="Width">187</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">gcAccountCode</property>
@@ -238,9 +234,9 @@
       <property name="Caption">Valor de la Recepción</property>
       <property name="FieldName">PODeliveryValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">149</property>
+      <property name="Width">185</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>

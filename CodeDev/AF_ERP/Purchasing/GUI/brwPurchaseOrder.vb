@@ -85,15 +85,20 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     Dim mDataTable As DataTable
     Dim mOK As Boolean
+    Dim mPOInfos As New colPurchaseOrderInfos
+    Dim mdoPurchasing As New dsoPurchasing(pDBConn)
+
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
       DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From vwPurchaseOrder")
+      ''mDataTable = Me.DBConn.CreateDataTable("Select * From vwPurchaseOrder")
 
-      gridBrowseList.DataSource = mDataTable
+      '' gridBrowseList.DataSource = mDataTable
+      mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, "")
 
+      gridBrowseList.DataSource = mPOInfos
       '
       'mOK = mdsoSalesQuote.LoadCustomerTable(mDataTable) 'TODO - Restrict to Live quotes etc.
       'gridBrowseList.DataSource = mDataTable
@@ -119,7 +124,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
     Finally
       'mdsoSalesQuote = Nothing
-      DBConn.Disconnect()
+      ''DBConn.Disconnect()
       gridBrowseList.MainView.EndDataUpdate()
     End Try
 

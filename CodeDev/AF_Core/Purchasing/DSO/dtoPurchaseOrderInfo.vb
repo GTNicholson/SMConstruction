@@ -103,9 +103,10 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .LastStatusChangeDate = DBReadDateTime(rDataReader, "LastStatusChangeDate")
           .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
           .TotalNetValue = DBReadDecimal(rDataReader, "TotalNetValue")
-
+          .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
+          .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
           .Supplier.CompanyName = DBReadString(rDataReader, "CompanyName")
-
+          .RefMatType = DBReadString(rDataReader, "RefMatType")
         End With
       End With
       mOK = True

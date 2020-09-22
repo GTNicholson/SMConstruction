@@ -60,21 +60,35 @@ Public Class dsoGeneral
     Return mOK
   End Function
 
-  Public Function GetExchangeRate(ByVal vDate As Date, ByVal vCurrency As eCurrency) As Decimal
+  Public Function GetExchangeRate(ByVal vDate As Date, ByVal vCurrency As Integer) As Decimal
     Dim mRetval As Decimal = 0
     Dim mExchangeRate As New dmExchangeRate
     Dim mReader As IDataReader
-
+    Dim mSql As String = String.Format("Select * from ExchangeRate Where ExchangeRateDate >= '{0}' and Currency = {1} Order By ExchangeRateDate", vDate.ToString("yyyyMMdd"), vCurrency)
     Try
 
       pDBConn.Connect()
 
-      mReader = pDBConn.LoadReader(String.Format("Select * from ExchangeRate Where ExchangeRateDate >= {0} and Currency = {1} Order By ExchangeRateDate", vDate.ToString("yyyyMMdd"), vCurrency))
+      mReader = pDBConn.LoadReader(mSql)
 
       If mReader.Read Then
         mRetval = RTIS.DataLayer.clsDBConnBase.DBReadDecimal(mReader, "ExchangeRateValue")
       End If
+      mReader.Close()
 
+      ''//If it does not found a value, try to find the last one Rate
+      If mRetval = 0 Then
+
+
+        mSql = String.Format("Select * from ExchangeRate Where ExchangeRateDate <= '{0}' and Currency = {1} Order By ExchangeRateDate", vDate.ToString("yyyyMMdd"), vCurrency)
+
+        mReader = pDBConn.LoadReader(mSql)
+
+        If mReader.Read Then
+          mRetval = RTIS.DataLayer.clsDBConnBase.DBReadDecimal(mReader, "ExchangeRateValue")
+        End If
+
+      End If
       mReader.Close()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

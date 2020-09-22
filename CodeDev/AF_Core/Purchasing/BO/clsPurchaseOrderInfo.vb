@@ -39,6 +39,7 @@
   End Property
 
 
+
   Public ReadOnly Property PurchaseOrderItem As dmPurchaseOrderItem
     Get
       Return pPOItem
@@ -69,23 +70,47 @@
     End Set
   End Property
 
-  Public Property PurchaseOrderID() As Int32
+  Public ReadOnly Property PurchaseOrderID() As Int32
     Get
       Return pPurchaseOrder.PurchaseOrderID
     End Get
-    Set(value As Int32)
-      pPurchaseOrder.PurchaseOrderID = value
-    End Set
 
   End Property
 
-  Public Property PONum() As String
+
+  Public ReadOnly Property ExchangeRateValue() As Decimal
+    Get
+      Return pPurchaseOrder.ExchangeRateValue
+    End Get
+
+  End Property
+
+  Public ReadOnly Property MaterialRequirementTypeID() As Int32
+    Get
+      Return pPurchaseOrder.MaterialRequirementTypeID
+    End Get
+
+  End Property
+
+  Public ReadOnly Property DefaultCurrency() As Int32
+    Get
+      Return pPurchaseOrder.DefaultCurrency
+    End Get
+
+  End Property
+
+  Public ReadOnly Property RefMatType() As String
+    Get
+      Return pPurchaseOrder.RefMatType
+    End Get
+
+
+  End Property
+  Public ReadOnly Property PONum() As String
     Get
       Return pPurchaseOrder.PONum
     End Get
-    Set(value As String)
-      pPurchaseOrder.PONum = value
-    End Set
+
   End Property
 
   Public ReadOnly Property SupplierContactTel() As String
@@ -102,13 +127,11 @@
 
   End Property
 
-  Public Property SubmissionDate() As DateTime
+  Public ReadOnly Property SubmissionDate() As DateTime
     Get
       Return pPurchaseOrder.SubmissionDate
     End Get
-    Set(value As DateTime)
-      pPurchaseOrder.SubmissionDate = value
-    End Set
+
   End Property
 
 
@@ -219,13 +242,11 @@
   End Property
 
 
-  Public Property CompanyName() As String
+  Public ReadOnly Property CompanyName() As String
     Get
       Return pPurchaseOrder.Supplier.CompanyName
     End Get
-    Set(value As String)
-      pPurchaseOrder.Supplier.CompanyName = value
-    End Set
+
   End Property
 
   Public ReadOnly Property TotalVAT As Decimal

@@ -7,10 +7,26 @@
       </property>
       <property name="Font">Arial, 8.25pt, style=Bold</property>
     </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
+      <property name="Font">Arial, 8.25pt</property>
+    </property>
+    <property name="Preview" iskey="true" value="Preview">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">White</property>
       <property name="Font">Arial, 8.25pt</property>
     </property>
   </property>
@@ -18,6 +34,8 @@
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowGroupPanel">false</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="EnableAppearanceEvenRow">true</property>
   </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
@@ -79,7 +97,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">117</property>
+      <property name="Width">207</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">rucnumber</property>
@@ -89,7 +107,7 @@
       <property name="Caption">RUC/NIT</property>
       <property name="FieldName">rucnumber</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
       <property name="Width">59</property>
     </property>
@@ -103,7 +121,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">80</property>
+      <property name="Width">116</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
@@ -115,7 +133,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">56</property>
+      <property name="Width">127</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
@@ -127,7 +145,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">66</property>
+      <property name="Width">102</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
@@ -139,7 +157,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">101</property>
+      <property name="Width">164</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
@@ -151,7 +169,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">89</property>
+      <property name="Width">93</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
@@ -196,8 +214,6 @@
       <property name="Caption">Fecha de Creación</property>
       <property name="FieldName">DateEntered</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">11</property>
-      <property name="Visible">true</property>
       <property name="Width">110</property>
     </property>
     <property name="Item14" isnull="true" iskey="true">
@@ -208,7 +224,7 @@
       <property name="Caption">Número SWIFT</property>
       <property name="FieldName">Numero_SWIFT</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">13</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
       <property name="Width">87</property>
     </property>

@@ -213,6 +213,7 @@ Public Class frmSalesOrderDetailHouses
         txtShippingCost.Text = .ShippingCost
         txtVersion.Text = .Version
         btnePodio.EditValue = .PodioPath
+        dteDateRequiredSO.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
 
         If pFormController.SalesOrder.Customer IsNot Nothing Then
 
@@ -314,7 +315,7 @@ Public Class frmSalesOrderDetailHouses
         .OrderNo = txtSalesOrderID.Text
         .ProjectName = txtProjectName.Text
         .DateEntered = dteDateEntered.DateTime
-
+        .FinishDate = dteDateRequiredSO.EditValue
 
         .VisibleNotes = txtVisibleNotes.Text
         .DelAddress1 = txtDelAddress1.Text
@@ -601,6 +602,7 @@ Public Class frmSalesOrderDetailHouses
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
           AddSalesOrderDocument()
+          ViewSalesOrderDocument()
           RefreshControls()
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
           DeleteSalesOrderDocument()
