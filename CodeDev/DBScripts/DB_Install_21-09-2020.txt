@@ -5006,5 +5006,99 @@ INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
 LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
 GO
 
+ALTER VIEW [dbo].[vwPODeliveryItemInfo]
+AS
 
+select  
+PODI.PODeliveryItemID,
+PODI.QtyReceived,
+POI.Description,
+POI.PartNo,
+POI.StockCode,
+poi.QtyRequired,
+POI.UnitPrice,
+POD.GRNumber,
+POD.DateCreated,
+SOP.JobNo,
+PO.PONum,
+PO.PaymentStatus,
+PO.Category,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+SO.ProjectName
 
+from PODeliveryItem PODI
+INNER JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID= POIA.PurchaseOrderItemID
+INNER JOIN PODelivery POD ON POD.PODeliveryID=PODI.PODeliveryID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+GO
+
+ALTER VIEW [dbo].[vwPODeliveryItemInfo]
+AS
+
+select  
+PODI.PODeliveryItemID,
+PODI.QtyReceived,
+POI.Description,
+POI.PartNo,
+POI.StockCode,
+poi.QtyRequired,
+POI.UnitPrice,
+POD.GRNumber,
+POD.DateCreated,
+SOP.JobNo,
+PO.PONum,
+PO.PaymentStatus,
+PO.Category,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+PO.RefMatType,
+SO.ProjectName
+
+from PODeliveryItem PODI
+INNER JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID= POIA.PurchaseOrderItemID
+INNER JOIN PODelivery POD ON POD.PODeliveryID=PODI.PODeliveryID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+GO
+
+alter table PODelivery
+add PaymentStatus int
+GO
+
+ALTER VIEW [dbo].[vwPODeliveryInfo]
+as
+
+select 
+POD.PODeliveryID,
+POD.GRNumber,
+POD.ReceivedDate,
+POD.Comment,
+POD.DateCreated,
+POD.PODeliveryValue,
+POD.Status,
+POD.PaymentStatus,
+PO.PurchaseOrderID,
+PO.Category as 'PurchaseCategory',
+PO.PONum,
+PO.ExchangeRateValue,
+PO.DefaultCurrency,
+PO.MaterialRequirementTypeID,
+PO.RequiredDate,
+PO.DeliveryAddress1,
+SP.SupplierID,
+SP.CompanyName,
+SP.AccountCode,
+SP.TelNo,
+SP.MainAddress1
+
+from 
+PODelivery POD
+LEFT JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POD.PurchaseOrderID
+LEFT JOIN Supplier SP ON SP.SupplierID=PO.SupplierID
+GO

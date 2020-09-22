@@ -46,11 +46,11 @@ Partial Class frmPickSupplier
         'grdItemList
         '
         Me.grdItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdItemList.Location = New System.Drawing.Point(0, 30)
+        Me.grdItemList.Location = New System.Drawing.Point(0, 33)
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
         Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repItemSelect})
-        Me.grdItemList.Size = New System.Drawing.Size(733, 370)
+        Me.grdItemList.Size = New System.Drawing.Size(733, 367)
         Me.grdItemList.TabIndex = 4
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '
@@ -92,7 +92,7 @@ Partial Class frmPickSupplier
         Me.gcCompanyName.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcCompanyName.Visible = True
         Me.gcCompanyName.VisibleIndex = 1
-        Me.gcCompanyName.Width = 208
+        Me.gcCompanyName.Width = 236
         '
         'gcAddress
         '
@@ -101,7 +101,7 @@ Partial Class frmPickSupplier
         Me.gcAddress.Name = "gcAddress"
         Me.gcAddress.Visible = True
         Me.gcAddress.VisibleIndex = 2
-        Me.gcAddress.Width = 311
+        Me.gcAddress.Width = 354
         '
         'gcAccountCode
         '
@@ -112,7 +112,7 @@ Partial Class frmPickSupplier
         Me.gcAccountCode.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcAccountCode.Visible = True
         Me.gcAccountCode.VisibleIndex = 0
-        Me.gcAccountCode.Width = 90
+        Me.gcAccountCode.Width = 125
         '
         'repItemSelect
         '
@@ -155,7 +155,7 @@ Partial Class frmPickSupplier
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(733, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(733, 33)
         '
         'barDockControlBottom
         '
@@ -169,17 +169,17 @@ Partial Class frmPickSupplier
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 370)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 367)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(733, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(733, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 370)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 367)
         '
         'frmPickSupplier
         '
@@ -193,7 +193,7 @@ Partial Class frmPickSupplier
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmPickSupplier"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmPickSupplier"
+        Me.Text = "Seleccionar Proveedor"
         CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repItemSelect, System.ComponentModel.ISupportInitialize).EndInit()

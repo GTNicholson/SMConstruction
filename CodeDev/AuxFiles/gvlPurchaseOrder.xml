@@ -172,7 +172,7 @@
       <property name="Caption">Monto Total</property>
       <property name="FieldName">TotalNetValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">144</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -188,7 +188,7 @@
       <property name="Caption">Enc. Compras</property>
       <property name="FieldName">BuyerName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
       <property name="Width">169</property>
     </property>
@@ -200,7 +200,7 @@
       <property name="Caption">Flete</property>
       <property name="FieldName">Carriage</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">112</property>
     </property>
@@ -212,8 +212,6 @@
       <property name="Caption">Estado del Pago</property>
       <property name="FieldName">PaymentStatus</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
-      <property name="Visible">true</property>
       <property name="Width">86</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">

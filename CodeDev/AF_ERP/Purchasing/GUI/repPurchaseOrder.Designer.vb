@@ -523,7 +523,7 @@ Partial Public Class repPurchaseOrder
         Me.XrLabel2.StylePriority.UseBorders = False
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "AgroForestal"
+        Me.XrLabel2.Text = "AgroForestal S.A."
         Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel4
@@ -535,11 +535,12 @@ Partial Public Class repPurchaseOrder
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.91667!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(338.2741!, 23.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(457.2935!, 23.0!)
         Me.XrLabel4.StylePriority.UseBorders = False
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "Dirección........"
+        Me.XrLabel4.Text = "Km 13 carretera nueva a león, Empalme Xiloa 300 mts al este. Ciudad Sandino, Mana" &
+    "gua."
         Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel3
@@ -555,7 +556,7 @@ Partial Public Class repPurchaseOrder
         Me.XrLabel3.StylePriority.UseBorders = False
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
-        Me.XrLabel3.Text = "Núm RUC xxxxxxxxxx"
+        Me.XrLabel3.Text = "Núm RUC J0310000096279"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrPictureBox1

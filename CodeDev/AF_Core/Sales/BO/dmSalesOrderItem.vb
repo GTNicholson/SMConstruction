@@ -19,7 +19,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
   Private pSalesItemAssemblyID As Integer
   Private pHouseTypeID As Integer
-
+  Private pProductID As Integer
+  Private pSalesOrderStageID As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -74,6 +75,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .QtyInvoiced = QtyInvoiced
       .SalesItemAssemblyID = SalesItemAssemblyID
       .HouseTypeID = HouseTypeID
+      .ProductID = ProductID
+      .SalesOrderStageID = SalesOrderStageID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -81,7 +84,24 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
   End Sub
 
-
+  Public Property ProductID() As Int32
+    Get
+      Return pProductID
+    End Get
+    Set(ByVal value As Int32)
+      If pProductID <> value Then IsDirty = True
+      pProductID = value
+    End Set
+  End Property
+  Public Property SalesOrderStageID() As Int32
+    Get
+      Return pSalesOrderStageID
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesOrderStageID <> value Then IsDirty = True
+      pSalesOrderStageID = value
+    End Set
+  End Property
 
   Public Property SalesItemAssemblyID() As Int32
     Get

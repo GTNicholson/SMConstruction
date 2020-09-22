@@ -140,6 +140,7 @@ Public Class fccPurchaseOrderDelivery
           pPODelivery = New dmPODelivery
 
           pPODelivery.PurchaseOrderID = pPurchaseOrderID
+          pPODelivery.DateCreated = Now
           mDSO.LoadPurchaseOrderInfo(pPurchaseOrderInfo, pPODelivery.PurchaseOrderID)
           '//LoadPurchaseOrderItemAllocationProcessorss
           mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderID)

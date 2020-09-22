@@ -34,6 +34,7 @@ Public Class frmPODelivery
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItemInfo, gcCategory, mVIs)
 
+    clsDEControlLoading.FillDEComboVI(cboPaymentStatus, clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
 
   End Sub
 
@@ -144,6 +145,8 @@ Public Class frmPODelivery
             txtReceivedDate.Text = .DateCreated
             SetReceivedValueWithCurrencyFormat() ' pFormController.GetReceivedValue()
             gcQtyToProcess.OptionsColumn.ReadOnly = False
+            cboPaymentStatus.Properties.ReadOnly = False
+            clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
 
             If .GRNumber <> "" Then
               grpGRN.CustomHeaderButtons.Item(0).Properties.Enabled = False
@@ -288,6 +291,7 @@ Public Class frmPODelivery
         .PODeliveryValue = pFormController.GetReceivedValue
         .PurchaseOrder = pFormController.PurchaseOrderInfo.PurchaseOrder
         .PurchaseOrderID = pFormController.PurchaseOrderInfo.PurchaseOrder.PurchaseOrderID
+        .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
 
       End With
     End If

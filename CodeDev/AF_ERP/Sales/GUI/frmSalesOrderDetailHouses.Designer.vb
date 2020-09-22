@@ -184,6 +184,8 @@ Partial Class frmSalesOrderDetailHouses
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repInvoiceDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.gcDetails = New DevExpress.XtraEditors.GroupControl()
+        Me.dteDateRequiredSO = New DevExpress.XtraEditors.DateEdit()
+        Me.Label33 = New System.Windows.Forms.Label()
         Me.cboContractManagerID = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtVersion = New DevExpress.XtraEditors.TextEdit()
@@ -257,8 +259,6 @@ Partial Class frmSalesOrderDetailHouses
         Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.dteDateRequiredSO = New DevExpress.XtraEditors.DateEdit()
-        Me.Label33 = New System.Windows.Forms.Label()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -348,6 +348,8 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.repInvoiceDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gcDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gcDetails.SuspendLayout()
+        CType(Me.dteDateRequiredSO.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dteDateRequiredSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtVersion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEstatusENUM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -398,8 +400,6 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dteDateRequiredSO.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dteDateRequiredSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -449,7 +449,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1676, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1676, 33)
         '
         'barDockControlBottom
         '
@@ -463,17 +463,17 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 780)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 777)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1676, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1676, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 780)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 777)
         '
         'BarButtonItem1
         '
@@ -487,7 +487,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(3, 296)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1670, 481)
+        Me.PanelControl1.Size = New System.Drawing.Size(1670, 478)
         Me.PanelControl1.TabIndex = 14
         '
         'tabHouses
@@ -499,7 +499,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.tabHouses.Location = New System.Drawing.Point(2, 2)
         Me.tabHouses.Name = "tabHouses"
         Me.tabHouses.SelectedTabPage = Me.XtraTabPage4
-        Me.tabHouses.Size = New System.Drawing.Size(1666, 477)
+        Me.tabHouses.Size = New System.Drawing.Size(1666, 474)
         Me.tabHouses.TabIndex = 41
         Me.tabHouses.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage4, Me.xtbSalesAndOT, Me.XtraTabPage1, Me.xtbDespatchesAndInvoices})
         '
@@ -507,7 +507,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.XtraTabPage4.Controls.Add(Me.cpnHouseType)
         Me.XtraTabPage4.Name = "XtraTabPage4"
-        Me.XtraTabPage4.Size = New System.Drawing.Size(1658, 445)
+        Me.XtraTabPage4.Size = New System.Drawing.Size(1660, 443)
         Me.XtraTabPage4.Text = "Modelos de Casa"
         '
         'cpnHouseType
@@ -516,7 +516,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.cpnHouseType.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cpnHouseType.Location = New System.Drawing.Point(0, 0)
         Me.cpnHouseType.Name = "cpnHouseType"
-        Me.cpnHouseType.Size = New System.Drawing.Size(1658, 445)
+        Me.cpnHouseType.Size = New System.Drawing.Size(1660, 443)
         Me.cpnHouseType.TabIndex = 1
         '
         'xtraTabHouseType
@@ -534,7 +534,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.xtraTabHouseType.Location = New System.Drawing.Point(2, 2)
         Me.xtraTabHouseType.Name = "xtraTabHouseType"
         Me.xtraTabHouseType.SelectedTabPage = Me.XtraTabPage5
-        Me.xtraTabHouseType.Size = New System.Drawing.Size(1654, 441)
+        Me.xtraTabHouseType.Size = New System.Drawing.Size(1656, 439)
         Me.xtraTabHouseType.TabIndex = 0
         Me.xtraTabHouseType.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage5})
         '
@@ -542,7 +542,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.XtraTabPage5.Controls.Add(Me.PanelControl4)
         Me.XtraTabPage5.Name = "XtraTabPage5"
-        Me.XtraTabPage5.Size = New System.Drawing.Size(1560, 433)
+        Me.XtraTabPage5.Size = New System.Drawing.Size(1563, 433)
         Me.XtraTabPage5.Tag = ""
         Me.XtraTabPage5.Text = "Casa Modelo"
         '
@@ -552,7 +552,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1560, 433)
+        Me.PanelControl4.Size = New System.Drawing.Size(1563, 433)
         Me.PanelControl4.TabIndex = 0
         '
         'pnlHouseDetail
@@ -573,7 +573,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.pnlHouseDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlHouseDetail.Location = New System.Drawing.Point(2, 2)
         Me.pnlHouseDetail.Name = "pnlHouseDetail"
-        Me.pnlHouseDetail.Size = New System.Drawing.Size(1556, 429)
+        Me.pnlHouseDetail.Size = New System.Drawing.Size(1559, 429)
         Me.pnlHouseDetail.TabIndex = 1
         '
         'Label32
@@ -659,19 +659,19 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpSalesItemsEditor.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpSalesItemsEditor.Location = New System.Drawing.Point(3, 61)
         Me.grpSalesItemsEditor.Name = "grpSalesItemsEditor"
-        Me.grpSalesItemsEditor.Size = New System.Drawing.Size(1539, 363)
+        Me.grpSalesItemsEditor.Size = New System.Drawing.Size(1542, 363)
         Me.grpSalesItemsEditor.TabIndex = 1
         Me.grpSalesItemsEditor.Text = "Componentes"
         '
         'grdSalesItemsSalesItemsAssemblys
         '
         Me.grdSalesItemsSalesItemsAssemblys.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdSalesItemsSalesItemsAssemblys.Location = New System.Drawing.Point(2, 24)
+        Me.grdSalesItemsSalesItemsAssemblys.Location = New System.Drawing.Point(2, 26)
         Me.grdSalesItemsSalesItemsAssemblys.MainView = Me.gvSalesItemsSalesItemsAssemblys
         Me.grdSalesItemsSalesItemsAssemblys.MenuManager = Me.BarManager1
         Me.grdSalesItemsSalesItemsAssemblys.Name = "grdSalesItemsSalesItemsAssemblys"
         Me.grdSalesItemsSalesItemsAssemblys.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit4, Me.RepositoryItemButtonEdit3, Me.RepositoryItemLookUpEdit3, Me.RepositoryItemLookUpEdit4, Me.RepositoryItemCalcEdit2})
-        Me.grdSalesItemsSalesItemsAssemblys.Size = New System.Drawing.Size(1535, 337)
+        Me.grdSalesItemsSalesItemsAssemblys.Size = New System.Drawing.Size(1538, 335)
         Me.grdSalesItemsSalesItemsAssemblys.TabIndex = 0
         Me.grdSalesItemsSalesItemsAssemblys.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesItemsSalesItemsAssemblys, Me.GridView3})
         '
@@ -915,7 +915,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.xtbSalesAndOT.Controls.Add(Me.grpOrderItem)
         Me.xtbSalesAndOT.Controls.Add(Me.grpWorkOrders)
         Me.xtbSalesAndOT.Name = "xtbSalesAndOT"
-        Me.xtbSalesAndOT.Size = New System.Drawing.Size(1660, 443)
+        Me.xtbSalesAndOT.Size = New System.Drawing.Size(1660, 446)
         Me.xtbSalesAndOT.Text = "Artículos de Ventas y OTs"
         '
         'grpOrderItem
@@ -1259,7 +1259,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.XtraTabPage1.Controls.Add(Me.XtraTabControl2)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1660, 443)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1660, 446)
         Me.XtraTabPage1.Text = "Estimación de Madera e Insumos"
         '
         'XtraTabControl2
@@ -1270,7 +1270,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.XtraTabControl2.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl2.Name = "XtraTabControl2"
         Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage2
-        Me.XtraTabControl2.Size = New System.Drawing.Size(1660, 443)
+        Me.XtraTabControl2.Size = New System.Drawing.Size(1660, 446)
         Me.XtraTabControl2.TabIndex = 150
         Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2, Me.XtraTabPage3})
         '
@@ -1278,7 +1278,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirements)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1531, 435)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1532, 440)
         Me.XtraTabPage2.Text = "Estimación de Madera"
         '
         'grpMaterialRequirements
@@ -1293,7 +1293,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1531, 435)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1532, 440)
         Me.grpMaterialRequirements.TabIndex = 149
         Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
         '
@@ -1305,11 +1305,11 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 24)
+        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 26)
         Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
         Me.grdMaterialRequirements.MenuManager = Me.BarManager1
         Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1527, 409)
+        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1528, 412)
         Me.grdMaterialRequirements.TabIndex = 29
         Me.grdMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements, Me.GridView5})
@@ -1454,7 +1454,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.XtraTabPage3.Controls.Add(Me.grpMaterialRequirementOthers)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(1532, 437)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(1532, 440)
         Me.XtraTabPage3.Text = "Estimación de Insumos"
         '
         'grpMaterialRequirementOthers
@@ -1469,7 +1469,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirementOthers.Name = "grpMaterialRequirementOthers"
-        Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1532, 437)
+        Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1532, 440)
         Me.grpMaterialRequirementOthers.TabIndex = 148
         Me.grpMaterialRequirementOthers.Text = "Lista de Materiales Requeridos (LMR)"
         '
@@ -1485,7 +1485,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
         Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
         Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
-        Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1528, 409)
+        Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1528, 412)
         Me.grdMaterialRequirementOthers.TabIndex = 41
         Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
         Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers, Me.GridView4})
@@ -1578,7 +1578,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl1)
         Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl5)
         Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
-        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1660, 443)
+        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1660, 446)
         Me.xtbDespatchesAndInvoices.Text = "Pedidos de Cliente, Facturas y Despachos"
         '
         'GroupControl6
@@ -1984,6 +1984,31 @@ Partial Class frmSalesOrderDetailHouses
         Me.gcDetails.TabIndex = 0
         Me.gcDetails.Text = "Detalles de Venta :"
         '
+        'dteDateRequiredSO
+        '
+        Me.dteDateRequiredSO.EditValue = Nothing
+        Me.dteDateRequiredSO.Location = New System.Drawing.Point(863, 65)
+        Me.dteDateRequiredSO.MenuManager = Me.BarManager1
+        Me.dteDateRequiredSO.Name = "dteDateRequiredSO"
+        Me.dteDateRequiredSO.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dteDateRequiredSO.Properties.Appearance.Options.UseFont = True
+        Me.dteDateRequiredSO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteDateRequiredSO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteDateRequiredSO.Size = New System.Drawing.Size(141, 22)
+        Me.dteDateRequiredSO.TabIndex = 44
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label33.Location = New System.Drawing.Point(703, 68)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(154, 15)
+        Me.Label33.TabIndex = 45
+        Me.Label33.Tag = "c"
+        Me.Label33.Text = "Fecha Requerida de Venta"
+        '
         'cboContractManagerID
         '
         Me.cboContractManagerID.Location = New System.Drawing.Point(309, 65)
@@ -2206,7 +2231,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.xtpSingle.Controls.Add(Me.PanelControl3)
         Me.xtpSingle.Name = "xtpSingle"
-        Me.xtpSingle.Size = New System.Drawing.Size(493, 137)
+        Me.xtpSingle.Size = New System.Drawing.Size(494, 139)
         Me.xtpSingle.Text = "Single"
         '
         'PanelControl3
@@ -2227,7 +2252,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(493, 137)
+        Me.PanelControl3.Size = New System.Drawing.Size(494, 139)
         Me.PanelControl3.TabIndex = 1
         '
         'TextEdit3
@@ -2853,42 +2878,17 @@ Partial Class frmSalesOrderDetailHouses
         Me.TableLayoutPanel1.Controls.Add(Me.gcDetails, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.PanelControl1, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 293.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1676, 780)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1676, 777)
         Me.TableLayoutPanel1.TabIndex = 4
         '
         'GridView1
         '
         Me.GridView1.Name = "GridView1"
-        '
-        'dteDateRequiredSO
-        '
-        Me.dteDateRequiredSO.EditValue = Nothing
-        Me.dteDateRequiredSO.Location = New System.Drawing.Point(863, 65)
-        Me.dteDateRequiredSO.MenuManager = Me.BarManager1
-        Me.dteDateRequiredSO.Name = "dteDateRequiredSO"
-        Me.dteDateRequiredSO.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dteDateRequiredSO.Properties.Appearance.Options.UseFont = True
-        Me.dteDateRequiredSO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dteDateRequiredSO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dteDateRequiredSO.Size = New System.Drawing.Size(141, 22)
-        Me.dteDateRequiredSO.TabIndex = 44
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label33.Location = New System.Drawing.Point(703, 68)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(154, 15)
-        Me.Label33.TabIndex = 45
-        Me.Label33.Tag = "c"
-        Me.Label33.Text = "Fecha Requerida de Venta"
         '
         'frmSalesOrderDetailHouses
         '
@@ -2993,6 +2993,8 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.gcDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gcDetails.ResumeLayout(False)
         Me.gcDetails.PerformLayout()
+        CType(Me.dteDateRequiredSO.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dteDateRequiredSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboContractManagerID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtVersion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEstatusENUM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3046,8 +3048,6 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dteDateRequiredSO.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dteDateRequiredSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -87,11 +87,19 @@ Public Class dtoPODeliveryItemInfo : Inherits dtoBase
         With .PurchaseOrder
           .PONum = DBReadString(rDataReader, "PONum")
           .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
+          .Category = DBReadByte(rDataReader, "Category")
+          .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+          .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
+          .RefMatType = DBReadString(rDataReader, "RefMatType")
         End With
 
 
         With .SalesOrderPhase
           .JobNo = DBReadString(rDataReader, "JobNo")
+        End With
+
+        With .SalesOrder
+          .ProjectName = DBReadString(rDataReader, "ProjectName")
         End With
 
       End With

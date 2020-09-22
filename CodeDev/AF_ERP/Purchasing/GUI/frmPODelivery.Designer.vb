@@ -50,6 +50,8 @@ Partial Class frmPODelivery
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.txtRequiredDate = New DevExpress.XtraEditors.TextEdit()
         Me.grpPOPicking = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDefaultCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
@@ -75,14 +77,15 @@ Partial Class frmPODelivery
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
+        Me.cboPaymentStatus = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.btnSelectPurchaseOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupplierCompanyName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRequiredDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpPOPicking.SuspendLayout()
+        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
@@ -94,7 +97,7 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.SuspendLayout()
         CType(Me.grdPurchaseOrderItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl3
@@ -339,6 +342,24 @@ Partial Class frmPODelivery
         Me.grpPOPicking.TabIndex = 11
         Me.grpPOPicking.Text = "Información General de O.C."
         '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Appearance.Options.UseFont = True
+        Me.LabelControl9.Location = New System.Drawing.Point(1349, 39)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(103, 16)
+        Me.LabelControl9.TabIndex = 17
+        Me.LabelControl9.Text = "Tasa de Cambio"
+        '
+        'txtExchangeRate
+        '
+        Me.txtExchangeRate.Location = New System.Drawing.Point(1460, 37)
+        Me.txtExchangeRate.Name = "txtExchangeRate"
+        Me.txtExchangeRate.Properties.ReadOnly = True
+        Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
+        Me.txtExchangeRate.TabIndex = 16
+        '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -365,6 +386,8 @@ Partial Class frmPODelivery
         Me.grpGRN.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpGRN.AppearanceCaption.Options.UseFont = True
         Me.grpGRN.AppearanceCaption.Options.UseForeColor = True
+        Me.grpGRN.Controls.Add(Me.LabelControl10)
+        Me.grpGRN.Controls.Add(Me.cboPaymentStatus)
         Me.grpGRN.Controls.Add(Me.LabelControl5)
         Me.grpGRN.Controls.Add(Me.txtReceivedValue)
         Me.grpGRN.Controls.Add(Me.txtGRNNumber)
@@ -656,23 +679,24 @@ Partial Class frmPODelivery
         Me.GridColumn17.VisibleIndex = 2
         Me.GridColumn17.Width = 91
         '
-        'LabelControl9
+        'cboPaymentStatus
         '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Appearance.Options.UseFont = True
-        Me.LabelControl9.Location = New System.Drawing.Point(1349, 39)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(103, 16)
-        Me.LabelControl9.TabIndex = 17
-        Me.LabelControl9.Text = "Tasa de Cambio"
+        Me.cboPaymentStatus.Location = New System.Drawing.Point(1419, 39)
+        Me.cboPaymentStatus.Name = "cboPaymentStatus"
+        Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboPaymentStatus.Properties.ReadOnly = True
+        Me.cboPaymentStatus.Size = New System.Drawing.Size(148, 20)
+        Me.cboPaymentStatus.TabIndex = 276
         '
-        'txtExchangeRate
+        'LabelControl10
         '
-        Me.txtExchangeRate.Location = New System.Drawing.Point(1460, 37)
-        Me.txtExchangeRate.Name = "txtExchangeRate"
-        Me.txtExchangeRate.Properties.ReadOnly = True
-        Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
-        Me.txtExchangeRate.TabIndex = 16
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Appearance.Options.UseFont = True
+        Me.LabelControl10.Location = New System.Drawing.Point(1299, 40)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(103, 16)
+        Me.LabelControl10.TabIndex = 277
+        Me.LabelControl10.Text = "Estado del Pago"
         '
         'frmPODelivery
         '
@@ -691,6 +715,7 @@ Partial Class frmPODelivery
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpPOPicking.ResumeLayout(False)
         Me.grpPOPicking.PerformLayout()
+        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
@@ -703,7 +728,7 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.ResumeLayout(False)
         CType(Me.grdPurchaseOrderItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -755,4 +780,6 @@ Partial Class frmPODelivery
     Friend WithEvents txtDefaultCurrency As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtExchangeRate As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cboPaymentStatus As DevExpress.XtraEditors.ComboBoxEdit
 End Class

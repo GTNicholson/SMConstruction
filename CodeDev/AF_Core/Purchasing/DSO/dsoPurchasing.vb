@@ -353,7 +353,7 @@ Public Class dsoPurchasing
 
       mdto = New dtoPODelivery(pDBConn)
       ''rPODelivery.MKReference = ""
-      rPODelivery.DateCreated = Now
+      ''rPODelivery.DateCreated = Now
       mOK = mdto.SavePODelivery(rPODelivery)
 
       mdtoItems = New dtoPODeliveryItem(pDBConn)

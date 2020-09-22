@@ -228,7 +228,6 @@ Public Class frmPurchaseOrder
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
 
-    clsDEControlLoading.FillDEComboVI(cboPaymentStatus, clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
     clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
@@ -335,7 +334,6 @@ Public Class frmPurchaseOrder
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
-        clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
         '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
         txtExchangeValue.Text = .ExchangeRateValue
 
@@ -432,7 +430,6 @@ Public Class frmPurchaseOrder
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
-      .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
       .Carriage = txtCarriage.Text
       '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .SupplierRef = txtSupplierRef.Text
@@ -1348,5 +1345,32 @@ Public Class frmPurchaseOrder
       End If
 
     Next
+  End Sub
+
+  Private Sub repoPODelivery_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoPODelivery.ButtonClick
+    Dim mPODI As clsPODeliveryInfo
+
+    Try
+      mPODI = TryCast(gvPODeliveryInfos.GetFocusedRow, clsPODeliveryInfo)
+
+      If mPODI IsNot Nothing Then
+        frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, mPODI.PODeliveryID, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
+
+        pFormController.ReloadPODeliveryInfos()
+        grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+        grdPODeliveryInfos.RefreshDataSource()
+
+        pFormController.ReloadPOItems()
+
+        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+        grdPurchaseOrderItems.RefreshDataSource()
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+
   End Sub
 End Class
