@@ -397,9 +397,9 @@ Public Class dsoSales : Inherits dsoBase
             mdtoProduct.SaveProduct(mWO.Product)
 
             Select Case mWO.Product.ItemType
-                Case eProductType.ProductFurniture
-                  mWO.ProductID = CType(mWO.Product, dmProductFurniture).ProductFurnitureID
-              End Select
+              Case eProductType.ProductFurniture
+                mWO.ProductID = CType(mWO.Product, dmProductFurniture).ProductFurnitureID
+            End Select
 
 
           End If
@@ -426,6 +426,34 @@ Public Class dsoSales : Inherits dsoBase
     End Try
 
     Return mRetVal
+  End Function
+
+  Public Function LoadStandardProducts(ByRef rProducts As colProductBases) As Boolean
+    Dim mRet As Boolean = False
+    Dim mdtoInstallation As New dtoProductInstallation(DBConn)
+    Dim mdtoStructure As New dtoProductStructure(DBConn)
+    Dim mProductInstallations As New colProductInstallations
+    Dim mProductStructures As New colProductStructures
+
+    ''//Connect both dtos
+    Try
+
+      pDBConn.Connect()
+      mdtoInstallation.LoadProductInstallationCollection(mProductInstallations)
+
+      For Each mProduct As dmProductBase In mProductInstallations
+        rProducts.Add(mProduct)
+      Next
+      mdtoStructure.LoadProductStructureCollection(mProductStructures)
+      For Each mProduct As dmProductBase In mProductStructures
+        rProducts.Add(mProduct)
+      Next
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
   End Function
 
   Public Function LoadSalesOrderDown(ByRef rSalesOrder As dmSalesOrder, ByVal vID As Integer) As Boolean

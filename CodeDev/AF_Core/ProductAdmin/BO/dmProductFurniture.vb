@@ -108,23 +108,14 @@ Public Class dmProductFurniture : Inherits dmProductBase
 
   Public Property ProductFurnitureID() As Int32
     Get
-      Return pProductFurnitureID
+      Return ID
     End Get
     Set(ByVal value As Int32)
-      If pProductFurnitureID <> value Then IsDirty = True
-      pProductFurnitureID = value
+      ID = value
     End Set
   End Property
 
-  Public Property Description() As String
-    Get
-      Return pDescription
-    End Get
-    Set(ByVal value As String)
-      If pDescription <> value Then IsDirty = True
-      pDescription = value
-    End Set
-  End Property
+
 
   Public Property Notes() As String
     Get

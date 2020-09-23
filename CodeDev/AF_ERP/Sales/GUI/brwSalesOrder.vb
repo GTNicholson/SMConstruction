@@ -92,7 +92,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Try
 
       DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo Order By SalesOrderID")
+      mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' Order By SalesOrderID desc")
 
       gridBrowseList.DataSource = mDataTable
 

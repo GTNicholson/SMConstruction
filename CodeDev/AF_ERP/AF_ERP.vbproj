@@ -289,6 +289,7 @@
     </Compile>
     <Compile Include="Pickers\clsPickerBase.vb" />
     <Compile Include="Pickers\clsPickerCustomer.vb" />
+    <Compile Include="Pickers\clsPickerProductItem.vb" />
     <Compile Include="Pickers\clsPickerSalesOrder.vb" />
     <Compile Include="Pickers\clsPickerSalesOrderPhase.vb" />
     <Compile Include="Pickers\clsPickerStockItem.vb" />
@@ -310,6 +311,12 @@
       <DependentUpon>frmPickSupplier.vb</DependentUpon>
     </Compile>
     <Compile Include="Pickers\frmPickSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmProductPicker.Designer.vb">
+      <DependentUpon>frmProductPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmProductPicker.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pickers\frmSalesOrderPhasePickerMulti.Designer.vb">
@@ -656,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmPickSupplier.resx">
       <DependentUpon>frmPickSupplier.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmProductPicker.resx">
+      <DependentUpon>frmProductPicker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmSalesOrderPhasePickerMulti.resx">
       <DependentUpon>frmSalesOrderPhasePickerMulti.vb</DependentUpon>

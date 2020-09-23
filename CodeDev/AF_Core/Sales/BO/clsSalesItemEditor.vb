@@ -41,6 +41,33 @@ Public Class clsSalesItemEditor
     End Set
   End Property
 
+  Public Property SalesOrderID As Int32
+    Get
+      Return pSalesOrderItem.SalesOrderID
+    End Get
+    Set(value As Int32)
+      pSalesOrderItem.SalesOrderID = value
+    End Set
+  End Property
+
+  Public Property ProductID As Int32
+    Get
+      Return pSalesOrderItem.ProductID
+    End Get
+    Set(value As Int32)
+      pSalesOrderItem.ProductID = value
+    End Set
+  End Property
+
+  Public Property HouseTypeID As Int32
+    Get
+      Return pSalesOrderItem.HouseTypeID
+    End Get
+    Set(value As Int32)
+      pSalesOrderItem.HouseTypeID = value
+    End Set
+  End Property
+
 End Class
 
 Public Class colSalesItemEditors : Inherits BindingList(Of clsSalesItemEditor)

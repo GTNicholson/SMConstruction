@@ -242,11 +242,11 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property HouseTypeID As Boolean
+  Public Property HouseTypeID As Integer
     Get
       Return pHouseTypeID
     End Get
-    Set(value As Boolean)
+    Set(value As Integer)
       pHouseTypeID = value
     End Set
   End Property
@@ -295,6 +295,20 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
       End If
     Next
     Return mIndex
+  End Function
+
+  Public Function ItemFromProductID(ByVal vProductID As Integer) As dmSalesOrderItem
+    Dim mItem As dmSalesOrderItem
+    Dim mRetVal As dmSalesOrderItem = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.ProductID = vProductID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
   End Function
 
   Public Sub New()
