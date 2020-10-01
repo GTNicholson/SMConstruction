@@ -80,7 +80,7 @@ Public Class dsoGeneral
       If mRetval = 0 Then
 
 
-        mSql = String.Format("Select * from ExchangeRate Where ExchangeRateDate <= '{0}' and Currency = {1} Order By ExchangeRateDate", vDate.ToString("yyyyMMdd"), vCurrency)
+        mSql = String.Format("Select * from ExchangeRate Where ExchangeRateDate <= '{0}' and Currency = {1} Order By ExchangeRateDate desc", vDate.ToString("yyyyMMdd"), vCurrency)
 
         mReader = pDBConn.LoadReader(mSql)
 

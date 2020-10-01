@@ -1,0 +1,15 @@
+ALTER TABLE Supplier
+add DefaultCurrency int
+GO
+
+alter table ExchangeRate
+add Currency smallint
+GO
+
+delete from LookUpTable
+where LookUpTableID in (1023,1024)
+GO
+
+ALTER TABLE PURCHASEORDER
+ADD ExchangeRateValue decimal (9,4)
+GO

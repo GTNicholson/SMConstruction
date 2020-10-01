@@ -1,0 +1,47 @@
+CREATE VIEW [dbo].[vwSalesOrderPhaseInfo]
+AS
+SELECT
+	SOP.SalesOrderPhaseID,
+	SOP.DateRequired,
+	SOP.QuantityItems,
+
+	SOP.TotalPrice,
+	SOP.PhaseNumber,
+	SOP.DespatchStatus,
+                         
+	SOP.InvoiceStatus,
+	SOP.ProductionStatus,
+	SOP.MatReqStatus,
+    
+	SOP.DateCreated,
+  	SOP.DateCommitted,
+   	SOP.CommittedBy,
+   	SOP.JobNo As SOPJobNo,
+	SOP.PhaseRef,
+ 
+	SO.SalesOrderID,
+	SO.OrderNo,
+	SO.ContractManagerID,
+
+	SO.DateEntered,
+
+	SO.OrderStatusENUM,
+   	SO.OrderTypeID,
+	
+  	SO.ProjectName,
+	
+  
+	C.CompanyName
+ 
+FROM
+	SalesOrderPhase SOP 
+	INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOP.SalesOrderID 
+	INNER JOIN Customer C ON C.CustomerID = SO.CustomerID 
+
+GO
+
+insert into LookUpTable
+(DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode)
+values
+(25,'Tasa de Impuestos','VATRate','VATRateRecordID','VATRate',4,1,1,7)
+

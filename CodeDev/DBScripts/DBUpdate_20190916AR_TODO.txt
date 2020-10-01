@@ -1,3 +1,0 @@
-use SMConstruction
-alter table Customer
-add SalesTermsType int

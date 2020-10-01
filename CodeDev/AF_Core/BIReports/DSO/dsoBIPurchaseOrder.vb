@@ -10,7 +10,7 @@ Public Class dsoBIPurchaseOrder
   Private pRTISGlobal As AppRTISGlobal
   Private pBIReportView As clsBIReportView
 
-  Private pPurchaseOrderDT As DataTable
+  Private pPurchaseOrderInfos As colPurchaseOrderInfos
 
   Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView)
     pDBConn = rDBConn
@@ -20,10 +20,10 @@ Public Class dsoBIPurchaseOrder
 
   Public Property DataSource As Object Implements iDataSourceLoader.DataSource
     Get
-      Return pPurchaseOrderDT
+      Return pPurchaseOrderInfos
     End Get
     Set(value As Object)
-      pPurchaseOrderDT = value
+      pPurchaseOrderInfos = value
     End Set
   End Property
 
@@ -56,14 +56,14 @@ Public Class dsoBIPurchaseOrder
     Dim mSQLWhere1 As String
     Dim mSQLWhere2 As String
     Dim mSQLWhere As String = ""
-
+    Dim dtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
 
 
 
 
     Try
 
-      pPurchaseOrderDT = New DataTable()
+      pPurchaseOrderInfos = New colPurchaseOrderInfos()
 
       pDBConn.Connect()
 
@@ -75,7 +75,7 @@ Public Class dsoBIPurchaseOrder
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
       mSQLWhere = mSQLWhere & mSQLWhere2
 
-      pPurchaseOrderDT = pDBConn.CreateDataTable("Select * from vwPurchaseOrder where " & mSQLWhere)
+      dtoPurchaseOrderInfo.LoadPurchaseOrderInfoCollection(pPurchaseOrderInfos, mSQLWhere)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

@@ -1,6 +1,0 @@
-alter table WorkOrder
-add WoodFinish integer,
-go
-
-alter table WorkOrder
-add WoodSpecieID integer

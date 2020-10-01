@@ -71,6 +71,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
 
         .SupplierContactName = DBReadString(rDataReader, "SupplierContactName")
         .BuyerName = DBReadString(rDataReader, "BuyerName")
+        .TotalNetValueInfo = DBReadDecimal(rDataReader, "TotalNetValue")
 
         With .PurchaseOrder
           .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")

@@ -1,3 +1,0 @@
-alter table WorkOrder add ImageFile Varchar(255)
-
-GO

@@ -1,4 +1,0 @@
-Insert Into ApplicationActivity (ActivityCode, ActivityArea, ApplicationModuleID) Values (300,'Human Resources',3)
-Insert Into ApplicationActivity (ActivityCode, ActivityArea, ApplicationModuleID) Values (301,'Employee Salaries',3)
-
-GO

@@ -1,0 +1,20 @@
+alter view vwSalesOrderInfo
+as
+
+SELECT 
+SO.SalesOrderID, 
+SO.OrderNo,
+So.EstimatorEmployeeID, 
+SO.ProjectName,
+SO.OrderStatusENUM, 
+SO.OrderTypeID, 
+SO.DateEntered, 
+So.DueTime,
+Cust.CompanyName, 
+Cust.SalesAreaID, 
+Cust.AccountRef,
+Concat(Emp.FirstName, ' ', Emp.LastName) as FirstName
+FROM dbo.SalesOrder AS SO
+ 
+LEFT OUTER JOIN dbo.Customer AS Cust ON Cust.CustomerID = SO.CustomerID
+LEFT OUTER JOIN dbo.Employee as Emp on So.EstimatorEmployeeID=Emp.EmployeeID

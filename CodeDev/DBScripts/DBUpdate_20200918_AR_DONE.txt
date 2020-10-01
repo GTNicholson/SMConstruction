@@ -1,0 +1,85 @@
+CREATE TABLE ProductStructure(
+	ProductStructureID int IDENTITY(1,1) NOT NULL,
+	Description nchar(100) NULL,
+	ProductStructureTypeID int NULL,
+	Notes text NULL,
+ CONSTRAINT [PK_ProductStructure] PRIMARY KEY CLUSTERED 
+(
+	ProductStructureID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+CREATE TABLE ProductInstallation(
+	ProductInstallationID int IDENTITY(1,1) NOT NULL,
+	Description nchar(100) NULL,
+	ProductInstallationTypeID int NULL,
+	Notes text NULL,
+ CONSTRAINT [PK_ProductInstallation] PRIMARY KEY CLUSTERED 
+(
+	ProductInstallationID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+
+CREATE TABLE ProductStructureType(
+	ProductStructureTypeID int IDENTITY(1,1) NOT NULL,
+	Description nchar(100) NULL
+ CONSTRAINT [PK_ProductStructureType] PRIMARY KEY CLUSTERED 
+(
+	ProductStructureTypeID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] 
+
+GO
+
+CREATE TABLE ProductInstallationType(
+	ProductInstallationTypeID int IDENTITY(1,1) NOT NULL,
+	Description nchar(100) NULL
+ CONSTRAINT [PK_ProductInstallationTypeID] PRIMARY KEY CLUSTERED 
+(
+	ProductInstallationTypeID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] 
+
+GO
+
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values(28,'Tipo de Estructura','ProductStructureType','ProductStructureTypeID','Description',4,1,2,7,0)
+GO
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values(29,'Tipo de Instalación','ProductInstallationType','ProductInstallationTypeID','Description',4,1,2,7,0)
+GO
+
+insert into ProductInstallationType (Description)
+values ('Excavación')
+GO
+
+insert into ProductInstallationType (Description)
+values ('Limpieza Inicial')
+GO
+
+insert into ProductStructureType (Description)
+values ('Paredes')
+GO
+
+
+insert into ProductStructureType (Description)
+values ('Techos')
+GO
+
+insert into ProductStructureType (Description)
+values ('Puertas y Ventanas')
+GO
+
+insert into ProductStructureType (Description)
+values ('Pisos')
+GO
+
+
+

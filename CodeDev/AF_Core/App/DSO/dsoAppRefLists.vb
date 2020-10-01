@@ -254,13 +254,10 @@ Public Class dsoAppRefLists
 
   Public Function LoadSupplier() As IList
     Dim mdto As New dtoFurnitureCategory(pDBConn)
-    Dim mRetVal As New colFurnitureCategorys
-
-    mdto.LoadFurnitureCategoryCollection(mRetVal)
 
     Dim mdtoSupplier As New dtoSupplier(pDBConn)
     Dim mRetValSupplier As New colSuppliers
-    mdtoSupplier.LoadSupplierCollection(mRetValSupplier)
+    mdtoSupplier.LoadSupplierCollectionByWhere(mRetValSupplier, "CompanyName<>''")
 
     Return mRetValSupplier
   End Function

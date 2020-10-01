@@ -448,7 +448,10 @@ Public Class dmSupplier : Inherits dmBase
 
   Public ReadOnly Property MainAddress1() As String
     Get
-      Return pMainAddress.Address1
+      If pMainAddress IsNot Nothing Then
+        Return pMainAddress.Address1
+
+      End If
     End Get
     ''Set(ByVal value As String)
     ''  If pMainAddress1 <> value Then IsDirty = True
@@ -458,7 +461,10 @@ Public Class dmSupplier : Inherits dmBase
 
   Public ReadOnly Property MainAddress2() As String
     Get
-      Return pMainAddress.Address2
+      If pMainAddress IsNot Nothing Then
+        Return pMainAddress.Address2
+
+      End If
     End Get
     ''Set(ByVal value As String)
     ''  If pMainAddress2 <> value Then IsDirty = True
@@ -468,7 +474,11 @@ Public Class dmSupplier : Inherits dmBase
 
   Public ReadOnly Property MainTown() As String
     Get
-      Return pMainAddress.Town
+      If pMainAddress IsNot Nothing Then
+        Return pMainAddress.Town
+
+      End If
+
     End Get
     ''Set(ByVal value As String)
     ''  If pMainTown <> value Then IsDirty = True
@@ -478,7 +488,11 @@ Public Class dmSupplier : Inherits dmBase
 
   Public ReadOnly Property MainCounty() As String
     Get
-      Return pMainAddress.County
+      If pMainAddress IsNot Nothing Then
+        Return pMainAddress.County
+
+      End If
+
     End Get
     ''Set(ByVal value As String)
     ''  If pMainCounty <> value Then IsDirty = True
@@ -488,7 +502,11 @@ Public Class dmSupplier : Inherits dmBase
 
   Public ReadOnly Property MainCountry() As String
     Get
-      Return pMainAddress.Country
+      If pMainAddress IsNot Nothing Then
+        Return pMainAddress.Country
+
+      End If
+
     End Get
     ''Set(ByVal value As String)
     ''  If pMainCountry <> value Then IsDirty = True

@@ -106,7 +106,7 @@
       <property name="Caption">Cant. Recibida</property>
       <property name="FieldName">QtyReceived</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">91</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -122,7 +122,7 @@
       <property name="Caption">Descripción</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">13</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
       <property name="Width">353</property>
     </property>
@@ -134,7 +134,7 @@
       <property name="Caption">Núm. Parte</property>
       <property name="FieldName">PartNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
       <property name="Width">96</property>
     </property>
@@ -146,7 +146,7 @@
       <property name="Caption">Código</property>
       <property name="FieldName">StockCode</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
       <property name="Width">110</property>
     </property>
@@ -158,7 +158,7 @@
       <property name="Caption">Cant. Requerida</property>
       <property name="FieldName">QtyRequired</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">94</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -174,7 +174,7 @@
       <property name="Caption">Precio Unit.</property>
       <property name="FieldName">UnitPrice</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">76</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -202,7 +202,7 @@
       <property name="Caption">Fecha de Recepción</property>
       <property name="FieldName">DateCreated</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">14</property>
+      <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
       <property name="Width">78</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -218,7 +218,7 @@
       <property name="Caption">Ref. Etapa</property>
       <property name="FieldName">RefMatType</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">15</property>
+      <property name="VisibleIndex">14</property>
       <property name="Visible">true</property>
       <property name="Width">107</property>
     </property>
@@ -242,7 +242,7 @@
       <property name="Caption">Valor de Recepción</property>
       <property name="FieldName">TotalReceivedAmount</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">108</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -258,8 +258,6 @@
       <property name="Caption">Estado del Pago</property>
       <property name="FieldName">PaymentStatusDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
-      <property name="Visible">true</property>
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
@@ -289,7 +287,7 @@
       <property name="Caption">Tasa de Cambio</property>
       <property name="FieldName">ExchangeRateValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">63</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -305,7 +303,7 @@
       <property name="Caption">Moneda</property>
       <property name="FieldName">CurrencyDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">64</property>
     </property>
@@ -317,7 +315,7 @@
       <property name="Caption">Moneda</property>
       <property name="FieldName">CurrencyDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">67</property>
     </property>
@@ -329,7 +327,7 @@
       <property name="Caption">Valor en USD</property>
       <property name="FieldName">TotalReceivedAmountUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">111</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -356,6 +354,7 @@
   <property name="GroupSummary" iskey="true" value="0" />
   <property name="ActiveFilterString" />
   <property name="FormatRules" iskey="true" value="0" />
+  <property name="SortInfo">~Xtra#Base64AAEAAAD/////AQAAAAAAAAAMAgAAAF5EZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xLCBWZXJzaW9uPTE3LjEuMTYuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhBQEAAAA4RGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb0NvbGxlY3Rpb24EAAAACmdyb3VwQ291bnQFY2xvbmUPY2xvbmVHcm91cENvdW50E0NvbGxlY3Rpb25CYXNlK2xpc3QAAwADCLMBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tEZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvLCBEZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xLCBWZXJzaW9uPTE3LjEuMTYuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhXV0IHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QCAAAAAAAAAAkDAAAAAAAAAAkEAAAABAMAAACzAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbywgRGV2RXhwcmVzcy5YdHJhR3JpZC52MTcuMSwgVmVyc2lvbj0xNy4xLjE2LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAwRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb1tdAgAAAAgICQUAAAAAAAAAAAAAAAQEAAAAHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QDAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgUAAAgICQYAAAABAAAACAAAAAcFAAAAAAEAAAAAAAAABC5EZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvAgAAABAGAAAABAAAAAkHAAAADQMMCAAAABlEZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xBQcAAAAuRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbwIAAAAJU29ydE9yZGVyCkNvbHVtbk5hbWUAAQgIAAAAAQAAAAYJAAAADEdyaWRDb2x1bW4xNgs=</property>
   <property name="FormatConditions" iskey="true" value="0" />
   <property name="GroupSummarySortInfoState" />
   <property name="FindFilterText" />

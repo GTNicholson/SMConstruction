@@ -1,0 +1,28 @@
+update ApplicationActivity
+set ApplicationModuleID=7
+where ActivityCode=400
+GO
+
+INSERT INTO ApplicationActivity
+(ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+VALUES
+(404,'Recepciones de Compras',7,0)
+GO
+
+INSERT INTO ApplicationActivity
+(ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+VALUES
+(405,'BI Compras',7,0)
+GO
+
+insert into GroupingApplicationActivity
+(GroupingID,ApplicationActivityID,PermissionID)
+values
+(11,1033,4)
+GO
+insert into GroupingApplicationActivity
+(GroupingID,ApplicationActivityID,PermissionID)
+values
+(11,1034,4)
+GO
+

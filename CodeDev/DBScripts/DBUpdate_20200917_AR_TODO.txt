@@ -1,3 +1,0 @@
-alter table SalesOrderItem
-add SalesItemAssemblyID int
-GO

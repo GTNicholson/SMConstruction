@@ -306,6 +306,7 @@ Public Class frmSalesOrderDetailHouses
 
           If .SalesOrderPhases IsNot Nothing And .SalesOrderPhases.Count > 0 Then ''Ensure an SOP
             With .SalesOrderPhases
+              .Item(0).JobNo = txtSalesOrderID.Text
               .Item(0).DateCommitted = dteDueTime.DateTime
               .Item(0).DateRequired = dteFinishDate.DateTime
             End With

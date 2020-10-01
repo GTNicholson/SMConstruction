@@ -55,6 +55,8 @@ Partial Class frmPODelivery
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDefaultCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboPaymentStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.txtReceivedValue = New DevExpress.XtraEditors.TextEdit()
         Me.txtGRNNumber = New DevExpress.XtraEditors.TextEdit()
@@ -77,8 +79,6 @@ Partial Class frmPODelivery
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.cboPaymentStatus = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.btnSelectPurchaseOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupplierCompanyName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +89,7 @@ Partial Class frmPODelivery
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
+        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +98,6 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.SuspendLayout()
         CType(Me.grdPurchaseOrderItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl3
@@ -380,8 +380,6 @@ Partial Class frmPODelivery
         '
         'grpGRN
         '
-        Me.grpGRN.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpGRN.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpGRN.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpGRN.AppearanceCaption.Options.UseFont = True
@@ -401,6 +399,25 @@ Partial Class frmPODelivery
         Me.grpGRN.Size = New System.Drawing.Size(1574, 74)
         Me.grpGRN.TabIndex = 13
         Me.grpGRN.Text = "Información de Recepción de O.C."
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Appearance.Options.UseFont = True
+        Me.LabelControl10.Location = New System.Drawing.Point(1299, 40)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(103, 16)
+        Me.LabelControl10.TabIndex = 277
+        Me.LabelControl10.Text = "Estado del Pago"
+        '
+        'cboPaymentStatus
+        '
+        Me.cboPaymentStatus.Location = New System.Drawing.Point(1419, 39)
+        Me.cboPaymentStatus.Name = "cboPaymentStatus"
+        Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboPaymentStatus.Properties.ReadOnly = True
+        Me.cboPaymentStatus.Size = New System.Drawing.Size(148, 20)
+        Me.cboPaymentStatus.TabIndex = 276
         '
         'LabelControl5
         '
@@ -679,25 +696,6 @@ Partial Class frmPODelivery
         Me.GridColumn17.VisibleIndex = 2
         Me.GridColumn17.Width = 91
         '
-        'cboPaymentStatus
-        '
-        Me.cboPaymentStatus.Location = New System.Drawing.Point(1419, 39)
-        Me.cboPaymentStatus.Name = "cboPaymentStatus"
-        Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboPaymentStatus.Properties.ReadOnly = True
-        Me.cboPaymentStatus.Size = New System.Drawing.Size(148, 20)
-        Me.cboPaymentStatus.TabIndex = 276
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Location = New System.Drawing.Point(1299, 40)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(103, 16)
-        Me.LabelControl10.TabIndex = 277
-        Me.LabelControl10.Text = "Estado del Pago"
-        '
         'frmPODelivery
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -720,6 +718,7 @@ Partial Class frmPODelivery
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
         Me.grpGRN.PerformLayout()
+        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -728,7 +727,6 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.ResumeLayout(False)
         CType(Me.grdPurchaseOrderItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

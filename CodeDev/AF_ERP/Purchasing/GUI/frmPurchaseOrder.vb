@@ -1011,27 +1011,36 @@ Public Class frmPurchaseOrder
 
       gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPODeliveryInfos.Columns("ExchangeRateValue").SummaryItem.DisplayFormat = "{0:c2}"
 
       gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      '' gvPODeliveryInfos.Columns("VatValue").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
 
 
       gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      ''gvPODeliveryInfos.Columns("GrossAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
 
       gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.00;;#"
 
+
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      ''gvPODeliveryInfos.Columns("NetAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
 
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      ''gvPODeliveryInfos.Columns("TotalValueReceived").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
 
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPODeliveryInfos.Columns("PODeliveryValue").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
     Else
       lblExchangeRate.Visible = False
@@ -1221,7 +1230,7 @@ Public Class frmPurchaseOrder
       Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
       Dim mSalesOrderPhase As dmSalesOrderPhase
       Dim mPOAllocation As dmPurchaseOrderAllocation
-      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateCreated is not null")
+      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateRequired is not null")
 
 
       mPicker = New clsPickerSalesOrderPhase(mSalesOrderPhaseInfos, pFormController.DBConn)

@@ -1,4 +1,6 @@
-﻿Public Class clsPurchaseOrderInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsPurchaseOrderInfo
   Private pPurchaseOrder As dmPurchaseOrder
 
   Private pPOItemInfos As colPOItemInfos
@@ -6,7 +8,7 @@
   Private pStockItem As dmStockItem
   Private pBuyerName As String
   Private pSupplierContactName As String
-
+  Private pTotalNetValueInfo As Decimal
   Public Sub New()
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
@@ -98,6 +100,48 @@
     End Get
 
   End Property
+  Public ReadOnly Property CategoryDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property PurchaseStateDes As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseOrderDueDateStatus), CType(pPurchaseOrder.Status, ePurchaseOrderDueDateStatus))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalReceivedAmountUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = pTotalNetValueInfo
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = pTotalNetValueInfo / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property DefaultCurrencyDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(pPurchaseOrder.DefaultCurrency, eCurrency))
+    End Get
+
+  End Property
 
   Public ReadOnly Property RefMatType() As String
     Get
@@ -133,7 +177,12 @@
     End Get
 
   End Property
+  Public ReadOnly Property SubmissionDateWC() As DateTime
+    Get
+      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pPurchaseOrder.SubmissionDate)
+    End Get
 
+  End Property
 
 
   Public ReadOnly Property Status() As Byte
@@ -295,7 +344,14 @@
     End Get
   End Property
 
-
+  Public Property TotalNetValueInfo As Decimal
+    Get
+      Return pTotalNetValueInfo
+    End Get
+    Set(value As Decimal)
+      pTotalNetValueInfo = value
+    End Set
+  End Property
 
 End Class
 

@@ -1,5 +1,0 @@
-use SMConstruction
-go
-alter table SalesOrder
-add DueTime datetime
-go

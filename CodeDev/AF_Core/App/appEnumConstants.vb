@@ -32,8 +32,8 @@ Public Enum eActivityCode
   POConsole = 403
   PODelivery = 404
   POReportList = 405
-  PODeliveryReport = 406
-  PODeliveryItemReport = 407
+  PODeliveryReport = 405
+  PODeliveryItemReport = 405
 
   InventoryGroup = 500
   StockItem = 501
@@ -91,7 +91,12 @@ Public Enum ePurchaseCategories
   <Description("Compra Administrativa")> CompraAdmon = 4
   <Description("Compra de Ingeniería")> CompraIngenieria = 5
   <Description("Mantenimiento")> Mantenimiento = 6
-  <Description("Otras")> Otro = 8
+  <Description("Patio Y Aserrío")> PatioYAserrio = 7
+  <Description("Inversión Herramienta")> InversionHerramienta = 8
+  <Description("Seguridad")> Seguridad = 9
+  <Description("Mejora de Edificio")> MejoraEdificio = 10
+  <Description("Papelería de Oficinas")> Papeleria = 11
+  <Description("Otras")> Otro = 99
 End Enum
 
 Public Enum eObjectType

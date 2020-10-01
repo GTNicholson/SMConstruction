@@ -239,7 +239,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
       mGridView = gridBrowseList.MainView
       ''Set lookup columns
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentStatus"), clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Category"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Category"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
 
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Status"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
 

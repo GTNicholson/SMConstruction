@@ -1,0 +1,16 @@
+Create Table SalesOrderItem
+(
+SalesOrderItemID Int Identity(1,1),
+SalesOrderID Int,
+ItemNumber Int,
+Description Varchar(500),
+Quantity Int,
+UnitPrice Decimal(9,2),
+Constraint pkSalesOrderItem Primary Key (SalesOrderItemID)
+)
+
+GO
+
+alter table WorkOrder Add SalesOrderItemID Int
+
+GO
