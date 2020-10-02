@@ -49,6 +49,7 @@
     <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Docs.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -141,6 +142,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -419,6 +422,12 @@
     </Compile>
     <Compile Include="Purchasing\GUI\frmSupplierDetail.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\repCheckPaymentOrder.Designer.vb">
+      <DependentUpon>repCheckPaymentOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\repCheckPaymentOrder.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Purchasing\GUI\repPurchaseOrder.Designer.vb">
       <DependentUpon>repPurchaseOrder.vb</DependentUpon>
@@ -709,6 +718,9 @@
     <EmbeddedResource Include="Purchasing\GUI\frmSupplierDetail.resx">
       <DependentUpon>frmSupplierDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\repCheckPaymentOrder.resx">
+      <DependentUpon>repCheckPaymentOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\repPurchaseOrder.resx">
       <DependentUpon>repPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
@@ -802,6 +814,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Sales\GUI\frmSalesOrderDetail.vb.orig" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

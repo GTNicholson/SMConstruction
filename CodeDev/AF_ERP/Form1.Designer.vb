@@ -31,7 +31,6 @@ Partial Class Form1
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.gcRequiredDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repitDateDefault = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,6 +45,11 @@ Partial Class Form1
         Me.RepositoryItemDateEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.PivotGridControl1 = New DevExpress.XtraPivotGrid.PivotGridControl()
+        Me.PivotGridField104 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.PivotGridField105 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.PivotGridField106 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.PivotGridField107 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.PivotGridField103 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField81 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField82 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField83 = New DevExpress.XtraPivotGrid.PivotGridField()
@@ -215,11 +219,18 @@ Partial Class Form1
         Me.PivotGridField100 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField101 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField102 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField103 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField104 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField105 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField106 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField107 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.colCurrentStockItem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colStockDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colStockItemTransactionLogID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colTransQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colRefInfo1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colRefInfo2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colGRNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colTransType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colTransDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colIsManagedStock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,13 +274,14 @@ Partial Class Form1
         Me.GridView1.Appearance.OddRow.Options.UseFont = True
         Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.GridView1.Appearance.Row.Options.UseFont = True
-        Me.GridView1.ColumnPanelRowHeight = 34
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn1, Me.GridColumn9, Me.GridColumn8, Me.GridColumn2, Me.gcRequiredDate, Me.GridColumn3, Me.GridColumn4, Me.GridColumn7, Me.GridColumn10, Me.GridColumn6, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GridView1.ColumnPanelRowHeight = 40
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colCurrentStockItem, Me.colStockCode, Me.colStockDesc, Me.colStockItemTransactionLogID, Me.colTransQuantity, Me.GridColumn3, Me.GridColumn4, Me.colRefInfo1, Me.colRefInfo2, Me.colGRNumber, Me.colTransType, Me.colTransDate, Me.colIsManagedStock, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
         Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.HorzScrollStep = 3
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsLayout.Columns.StoreAllOptions = True
         Me.GridView1.OptionsLayout.StoreAllOptions = True
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
         Me.GridView1.OptionsView.EnableAppearanceOddRow = True
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
@@ -278,21 +290,24 @@ Partial Class Form1
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "PurchaseOrderID"
-        Me.GridColumn5.FieldName = "PurchaseOrderID"
+        Me.GridColumn5.Caption = "Cambio Cant."
+        Me.GridColumn5.DisplayFormat.FormatString = "0.##"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "StockQtyChange"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Width = 52
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "# O.C."
+        Me.GridColumn1.Caption = "Time"
         Me.GridColumn1.ColumnEdit = Me.RepositoryItemDateEdit1
-        Me.GridColumn1.FieldName = "PONum"
+        Me.GridColumn1.DisplayFormat.FormatString = "t"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "TransTime"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 101
+        Me.GridColumn1.Width = 32
         '
         'RepositoryItemDateEdit1
         '
@@ -304,34 +319,35 @@ Partial Class Form1
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "Nombre del Proveedor"
-        Me.GridColumn9.FieldName = "CompanyName"
+        Me.GridColumn9.Caption = "Stock Valuation"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "StockValuation"
+        Me.GridColumn9.GroupFormat.FormatString = "0"
+        Me.GridColumn9.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.ReadOnly = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
-        Me.GridColumn9.Width = 183
+        Me.GridColumn9.Width = 83
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Contacto del Proveedor"
-        Me.GridColumn8.FieldName = "SupplierContactName"
+        Me.GridColumn8.Caption = "Valor Transf."
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "TransactionValuation"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.ReadOnly = True
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 151
+        Me.GridColumn8.Width = 55
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Categoría"
+        Me.GridColumn2.Caption = "Ref. 3"
         Me.GridColumn2.ColumnEdit = Me.RepositoryItemDateEdit5
-        Me.GridColumn2.FieldName = "CategoryDesc"
+        Me.GridColumn2.FieldName = "RefInfo3"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 144
+        Me.GridColumn2.VisibleIndex = 10
         '
         'RepositoryItemDateEdit5
         '
@@ -340,17 +356,6 @@ Partial Class Form1
         Me.RepositoryItemDateEdit5.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit5.Name = "RepositoryItemDateEdit5"
         Me.RepositoryItemDateEdit5.NullDate = New Date(CType(0, Long))
-        '
-        'gcRequiredDate
-        '
-        Me.gcRequiredDate.Caption = "Fecha Requerida"
-        Me.gcRequiredDate.ColumnEdit = Me.repitDateDefault
-        Me.gcRequiredDate.FieldName = "RequiredDate"
-        Me.gcRequiredDate.Name = "gcRequiredDate"
-        Me.gcRequiredDate.OptionsColumn.ReadOnly = True
-        Me.gcRequiredDate.Visible = True
-        Me.gcRequiredDate.VisibleIndex = 5
-        Me.gcRequiredDate.Width = 122
         '
         'repitDateDefault
         '
@@ -362,96 +367,92 @@ Partial Class Form1
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Fecha del Pedido"
-        Me.GridColumn3.FieldName = "SubmissionDate"
+        Me.GridColumn3.Caption = "Valor Prev."
+        Me.GridColumn3.DisplayFormat.FormatString = "0.##"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "PrevValue"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.ReadOnly = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
-        Me.GridColumn3.Width = 124
+        Me.GridColumn3.Width = 62
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Estado"
-        Me.GridColumn4.FieldName = "PurchaseStateDes"
+        Me.GridColumn4.Caption = "Nuevo Valor"
+        Me.GridColumn4.DisplayFormat.FormatString = "0.##"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "NewValue"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 7
-        Me.GridColumn4.Width = 120
+        Me.GridColumn4.Width = 61
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Monto Total"
-        Me.GridColumn7.DisplayFormat.FormatString = "n2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "TotalNetValueInfo"
+        Me.GridColumn7.Caption = "Barcode"
+        Me.GridColumn7.FieldName = "Barcode"
+        Me.GridColumn7.GroupFormat.FormatString = "MM/yyyy"
+        Me.GridColumn7.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.ReadOnly = True
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 9
-        Me.GridColumn7.Width = 89
+        Me.GridColumn7.Width = 62
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Enc. Compras"
-        Me.GridColumn10.FieldName = "BuyerName"
+        Me.GridColumn10.Caption = "Sales Order No"
+        Me.GridColumn10.FieldName = "SalesOrderNo"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.ReadOnly = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 12
-        Me.GridColumn10.Width = 163
+        Me.GridColumn10.Width = 66
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Flete"
-        Me.GridColumn6.FieldName = "Carriage"
+        Me.GridColumn6.Caption = "User"
+        Me.GridColumn6.FieldName = "UserName"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ReadOnly = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 11
-        Me.GridColumn6.Width = 112
+        Me.GridColumn6.Width = 42
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Estado del Pago"
-        Me.GridColumn11.FieldName = "PaymentStatus"
+        Me.GridColumn11.Caption = "Internal Order No"
+        Me.GridColumn11.FieldName = "InternalOrderNo"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.ReadOnly = True
-        Me.GridColumn11.Width = 86
+        Me.GridColumn11.Width = 66
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Ref. Material"
-        Me.GridColumn12.FieldName = "RefMatType"
+        Me.GridColumn12.Caption = "Costo"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "StdCost"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
-        Me.GridColumn12.Width = 112
+        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.Width = 86
         '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "Moneda"
-        Me.GridColumn13.FieldName = "DefaultCurrencyDesc"
+        Me.GridColumn13.Caption = "Valor Total (USD)"
+        Me.GridColumn13.DisplayFormat.FormatString = "N2"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "TransactionValuationDollar"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.ReadOnly = True
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TransactionValuationDollar", "{0:N2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 8
-        Me.GridColumn13.Width = 90
+        Me.GridColumn13.VisibleIndex = 7
+        Me.GridColumn13.Width = 91
         '
         'GridColumn14
         '
-        Me.GridColumn14.Caption = "Monto Neto (USD)"
-        Me.GridColumn14.DisplayFormat.FormatString = "$###,##0.00"
-        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
-        Me.GridColumn14.FieldName = "TotalReceivedAmountUSD"
+        Me.GridColumn14.Caption = "Requisa"
+        Me.GridColumn14.FieldName = "ReferenceNo"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.ReadOnly = True
-        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReceivedAmountUSD", "{0:$###,##0.00}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 10
-        Me.GridColumn14.Width = 88
+        Me.GridColumn14.VisibleIndex = 2
+        Me.GridColumn14.Width = 65
         '
         'RepositoryItemDateEdit2
         '
@@ -532,6 +533,58 @@ Partial Class Form1
         Me.PivotGridControl1.OptionsView.ShowColumnGrandTotalHeader = False
         Me.PivotGridControl1.Size = New System.Drawing.Size(1002, 200)
         Me.PivotGridControl1.TabIndex = 1
+        '
+        'PivotGridField104
+        '
+        Me.PivotGridField104.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+        Me.PivotGridField104.AreaIndex = 0
+        Me.PivotGridField104.Caption = "Fecha Semana"
+        Me.PivotGridField104.FieldName = "SubmissionDateWC"
+        Me.PivotGridField104.GroupInterval = DevExpress.XtraPivotGrid.PivotGroupInterval.DateMonthYear
+        Me.PivotGridField104.Name = "PivotGridField104"
+        Me.PivotGridField104.Options.AllowRunTimeSummaryChange = True
+        Me.PivotGridField104.UnboundFieldName = "PivotGridField99"
+        Me.PivotGridField104.Width = 166
+        '
+        'PivotGridField105
+        '
+        Me.PivotGridField105.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+        Me.PivotGridField105.AreaIndex = 0
+        Me.PivotGridField105.Caption = "Proveedor"
+        Me.PivotGridField105.FieldName = "CompanyName"
+        Me.PivotGridField105.Name = "PivotGridField105"
+        Me.PivotGridField105.Options.AllowRunTimeSummaryChange = True
+        Me.PivotGridField105.Width = 180
+        '
+        'PivotGridField106
+        '
+        Me.PivotGridField106.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+        Me.PivotGridField106.AreaIndex = 0
+        Me.PivotGridField106.Caption = "Valor Neto"
+        Me.PivotGridField106.CellFormat.FormatString = "$#,##0.00;;#"
+        Me.PivotGridField106.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PivotGridField106.FieldName = "TotalReceivedAmountUSD"
+        Me.PivotGridField106.Name = "PivotGridField106"
+        Me.PivotGridField106.Options.AllowRunTimeSummaryChange = True
+        '
+        'PivotGridField107
+        '
+        Me.PivotGridField107.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
+        Me.PivotGridField107.AreaIndex = 1
+        Me.PivotGridField107.Caption = "#O.C."
+        Me.PivotGridField107.FieldName = "PONum"
+        Me.PivotGridField107.Name = "PivotGridField107"
+        Me.PivotGridField107.Options.AllowRunTimeSummaryChange = True
+        '
+        'PivotGridField103
+        '
+        Me.PivotGridField103.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+        Me.PivotGridField103.AreaIndex = 1
+        Me.PivotGridField103.Caption = "Categoría"
+        Me.PivotGridField103.FieldName = "CategoryDesc"
+        Me.PivotGridField103.Name = "PivotGridField103"
+        Me.PivotGridField103.Options.AllowRunTimeSummaryChange = True
+        Me.PivotGridField103.Width = 139
         '
         'PivotGridField81
         '
@@ -2034,57 +2087,109 @@ Partial Class Form1
         Me.PivotGridField102.FieldName = "PONum"
         Me.PivotGridField102.Name = "PivotGridField102"
         '
-        'PivotGridField103
+        'colCurrentStockItem
         '
-        Me.PivotGridField103.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
-        Me.PivotGridField103.AreaIndex = 1
-        Me.PivotGridField103.Caption = "Categoría"
-        Me.PivotGridField103.FieldName = "CategoryDesc"
-        Me.PivotGridField103.Name = "PivotGridField103"
-        Me.PivotGridField103.Options.AllowRunTimeSummaryChange = True
-        Me.PivotGridField103.Width = 139
+        Me.colCurrentStockItem.FieldName = "CurrentStockItem"
+        Me.colCurrentStockItem.Name = "colCurrentStockItem"
+        Me.colCurrentStockItem.OptionsColumn.ReadOnly = True
         '
-        'PivotGridField104
+        'colStockCode
         '
-        Me.PivotGridField104.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-        Me.PivotGridField104.AreaIndex = 0
-        Me.PivotGridField104.Caption = "Fecha Semana"
-        Me.PivotGridField104.FieldName = "SubmissionDateWC"
-        Me.PivotGridField104.GroupInterval = DevExpress.XtraPivotGrid.PivotGroupInterval.DateMonthYear
-        Me.PivotGridField104.Name = "PivotGridField104"
-        Me.PivotGridField104.Options.AllowRunTimeSummaryChange = True
-        Me.PivotGridField104.UnboundFieldName = "PivotGridField99"
-        Me.PivotGridField104.Width = 166
+        Me.colStockCode.Caption = "Código"
+        Me.colStockCode.FieldName = "StockCode"
+        Me.colStockCode.Name = "colStockCode"
+        Me.colStockCode.OptionsColumn.ReadOnly = True
+        Me.colStockCode.Visible = True
+        Me.colStockCode.VisibleIndex = 3
         '
-        'PivotGridField105
+        'colStockDesc
         '
-        Me.PivotGridField105.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
-        Me.PivotGridField105.AreaIndex = 0
-        Me.PivotGridField105.Caption = "Proveedor"
-        Me.PivotGridField105.FieldName = "CompanyName"
-        Me.PivotGridField105.Name = "PivotGridField105"
-        Me.PivotGridField105.Options.AllowRunTimeSummaryChange = True
-        Me.PivotGridField105.Width = 180
+        Me.colStockDesc.Caption = "Descripción"
+        Me.colStockDesc.FieldName = "StockDesc"
+        Me.colStockDesc.Name = "colStockDesc"
+        Me.colStockDesc.OptionsColumn.ReadOnly = True
+        Me.colStockDesc.Visible = True
+        Me.colStockDesc.VisibleIndex = 4
+        Me.colStockDesc.Width = 126
         '
-        'PivotGridField106
+        'colStockItemTransactionLogID
         '
-        Me.PivotGridField106.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-        Me.PivotGridField106.AreaIndex = 0
-        Me.PivotGridField106.Caption = "Valor Neto"
-        Me.PivotGridField106.CellFormat.FormatString = "$#,##0.00;;#"
-        Me.PivotGridField106.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField106.FieldName = "TotalReceivedAmountUSD"
-        Me.PivotGridField106.Name = "PivotGridField106"
-        Me.PivotGridField106.Options.AllowRunTimeSummaryChange = True
+        Me.colStockItemTransactionLogID.FieldName = "StockItemTransactionLogID"
+        Me.colStockItemTransactionLogID.Name = "colStockItemTransactionLogID"
+        Me.colStockItemTransactionLogID.OptionsColumn.ReadOnly = True
         '
-        'PivotGridField107
+        'colTransQuantity
         '
-        Me.PivotGridField107.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-        Me.PivotGridField107.AreaIndex = 1
-        Me.PivotGridField107.Caption = "#O.C."
-        Me.PivotGridField107.FieldName = "PONum"
-        Me.PivotGridField107.Name = "PivotGridField107"
-        Me.PivotGridField107.Options.AllowRunTimeSummaryChange = True
+        Me.colTransQuantity.Caption = "Cant. Transf."
+        Me.colTransQuantity.DisplayFormat.FormatString = "0.##"
+        Me.colTransQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colTransQuantity.FieldName = "TransQuantity"
+        Me.colTransQuantity.Name = "colTransQuantity"
+        Me.colTransQuantity.OptionsColumn.ReadOnly = True
+        Me.colTransQuantity.Visible = True
+        Me.colTransQuantity.VisibleIndex = 6
+        Me.colTransQuantity.Width = 73
+        '
+        'colRefInfo1
+        '
+        Me.colRefInfo1.Caption = "Ref. 1"
+        Me.colRefInfo1.FieldName = "RefInfo1"
+        Me.colRefInfo1.Name = "colRefInfo1"
+        Me.colRefInfo1.OptionsColumn.ReadOnly = True
+        Me.colRefInfo1.Visible = True
+        Me.colRefInfo1.VisibleIndex = 8
+        Me.colRefInfo1.Width = 57
+        '
+        'colRefInfo2
+        '
+        Me.colRefInfo2.Caption = "Ref. 2"
+        Me.colRefInfo2.FieldName = "RefInfo2"
+        Me.colRefInfo2.Name = "colRefInfo2"
+        Me.colRefInfo2.OptionsColumn.ReadOnly = True
+        Me.colRefInfo2.Visible = True
+        Me.colRefInfo2.VisibleIndex = 9
+        Me.colRefInfo2.Width = 54
+        '
+        'colGRNumber
+        '
+        Me.colGRNumber.FieldName = "GRNumber"
+        Me.colGRNumber.Name = "colGRNumber"
+        Me.colGRNumber.OptionsColumn.ReadOnly = True
+        '
+        'colTransType
+        '
+        Me.colTransType.Caption = "Tipo de Transf."
+        Me.colTransType.FieldName = "TransType"
+        Me.colTransType.Name = "colTransType"
+        Me.colTransType.OptionsColumn.ReadOnly = True
+        Me.colTransType.Visible = True
+        Me.colTransType.VisibleIndex = 1
+        Me.colTransType.Width = 66
+        '
+        'colTransDate
+        '
+        Me.colTransDate.Caption = "Fecha"
+        Me.colTransDate.FieldName = "TransDate"
+        Me.colTransDate.Name = "colTransDate"
+        Me.colTransDate.OptionsColumn.ReadOnly = True
+        Me.colTransDate.Visible = True
+        Me.colTransDate.VisibleIndex = 0
+        Me.colTransDate.Width = 81
+        '
+        'colIsManagedStock
+        '
+        Me.colIsManagedStock.FieldName = "IsManagedStock"
+        Me.colIsManagedStock.Name = "colIsManagedStock"
+        Me.colIsManagedStock.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Descrip. OT"
+        Me.GridColumn15.FieldName = "WODESCRIPTION"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 11
         '
         'Form1
         '
@@ -2294,7 +2399,6 @@ Partial Class Form1
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcRequiredDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2312,4 +2416,16 @@ Partial Class Form1
     Friend WithEvents PivotGridField105 As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField106 As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField107 As DevExpress.XtraPivotGrid.PivotGridField
+    Friend WithEvents colCurrentStockItem As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colStockCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colStockDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colStockItemTransactionLogID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colTransQuantity As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colRefInfo1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colRefInfo2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colGRNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colTransType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colTransDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colIsManagedStock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

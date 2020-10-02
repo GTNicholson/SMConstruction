@@ -64,6 +64,13 @@ Public Enum eTaxRate
   <Description("IVA")> IVA = 1
 
 End Enum
+Public Enum ePaymentMethod
+  <Description("Ninguno")> None = 0
+  <Description("Efectivo")> Cash = 1
+  <Description("Cheque")> Check = 2
+  <Description("Transferencia Nac.")> BankTransfer = 3
+  <Description("Transferencia Int.")> BankInterTransfer = 4
+End Enum
 
 Public Enum eCOCType
   <Description("None")> None = 0

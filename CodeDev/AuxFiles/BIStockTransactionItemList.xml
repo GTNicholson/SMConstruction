@@ -228,7 +228,7 @@
       </property>
       <property name="Caption">Time</property>
       <property name="FieldName">TransTime</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit1</property>
       <property name="Width">32</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">t</property>
@@ -242,7 +242,7 @@
       </property>
       <property name="Caption">Ref. 3</property>
       <property name="FieldName">RefInfo3</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
     </property>
@@ -357,8 +357,8 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Valor Total</property>
-      <property name="FieldName">TotalValue</property>
+      <property name="Caption">Valor Total (USD)</property>
+      <property name="FieldName">TransactionValuationDollar</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
@@ -370,7 +370,7 @@
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
-          <property name="FieldName">TotalValue</property>
+          <property name="FieldName">TransactionValuationDollar</property>
           <property name="SummaryType">Sum</property>
           <property name="DisplayFormat">{0:N2}</property>
         </property>

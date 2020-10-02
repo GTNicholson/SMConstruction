@@ -41,6 +41,7 @@ Public Class dmSupplier : Inherits dmBase
   Private pMainCountry As String
   Private pDefaultCurrency As Integer
   Protected pMainAddress As dmPostalAddress
+  Private pBankName As String
 
   Private pSupplierContacts As colSupplierContacts
   Public Sub New()
@@ -114,6 +115,7 @@ Public Class dmSupplier : Inherits dmBase
       ''.MainCounty = MainCounty
       ''.MainCountry = MainCountry
       .DefaultCurrency = DefaultCurrency
+      .BankName = BankName
 
       'Add entries here for each collection and class property
       .SupplierContacts = SupplierContacts.Clone
@@ -169,6 +171,16 @@ Public Class dmSupplier : Inherits dmBase
     End Set
   End Property
 
+
+  Public Property BankName() As String
+    Get
+      Return pBankName
+    End Get
+    Set(ByVal value As String)
+      If pBankName <> value Then IsDirty = True
+      pBankName = value
+    End Set
+  End Property
   Public Property SupplierStatusID() As Int32
     Get
       Return pSupplierStatusID

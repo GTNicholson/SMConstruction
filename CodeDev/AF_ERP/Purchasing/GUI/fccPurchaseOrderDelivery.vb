@@ -264,7 +264,7 @@ Public Class fccPurchaseOrderDelivery
           ''  mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, True)
 
           ''Else
-          mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False)
+          mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
           ''End If
           mPOP.ToProcessQty = 0
         End If
@@ -295,43 +295,6 @@ Public Class fccPurchaseOrderDelivery
 
   End Sub
 
-  Public Sub ProcessReplacementQtys()
-    Try
-      Dim mdsoTran As dsoStockTransactions
-      Dim mDeliveryItem As dmPODeliveryItem
-
-      Dim mdsoStock As dsoStock
-      Dim mSIL As dmStockItemLocation
-
-      mdsoTran = New dsoStockTransactions(pDBConn)
-
-      mdsoStock = New dsoStock(pDBConn)
-
-      For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
-        If mPOP.ToProcessQty <> 0 Then
-          If mPOP.StockItem.StockItemID <> 0 Then
-            mSIL = mdsoStock.GetOrCreateStockItemLocation(mPOP.StockItem.StockItemID, 1)
-          Else
-            mSIL = Nothing
-          End If
-          If mPOP.PODeliveryItem Is Nothing Then
-            mDeliveryItem = New dmPODeliveryItem
-            mDeliveryItem.PODeliveryID = pPODelivery.PODeliveryID
-            mDeliveryItem.POItemAllocationID = mPOP.PurchaseOrderItemAllocationID
-            pPODelivery.PODeliveryItems.Add(mDeliveryItem)
-            mPOP.PODeliveryItem = mDeliveryItem
-
-          End If
-          mdsoTran.UpdateDeliveryStockItemLocationQty(mSIL.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False)
-          mPOP.ToProcessQty = 0
-        End If
-
-      Next
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-  End Sub
 
   Public Sub RaisePODelivery()
     Dim mdso As dsoPurchasing

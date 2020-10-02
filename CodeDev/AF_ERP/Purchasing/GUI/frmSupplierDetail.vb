@@ -222,7 +222,7 @@ Public Class frmSupplierDetail
     With pFormController.Supplier
 
       lblSupplierID.Text = "ID:" & .SupplierID.ToString("00000")
-
+      cboBankName.EditValue = .BankName
       txtSupplierReference.Text = .SupplierReferenceID
       txtCompanyName.Text = .CompanyName
       txtRazonSocial.Text = .RazonSocial
@@ -255,7 +255,7 @@ Public Class frmSupplierDetail
 
       UctAddress1.UpdateObject()
       .MainAddress = UctAddress1.Address
-
+      .BankName = cboBankName.EditValue
 
       .CompanyName = txtCompanyName.Text
       .SupplierReferenceID = txtSupplierReference.Text

@@ -232,6 +232,7 @@ Public Class frmPurchaseOrder
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
+    clsDEControlLoading.FillDEComboVI(cboPaymentMethod, clsEnumsConstants.EnumToVIs(GetType(ePaymentMethod)))
 
 
     dteDateOfOrder.Properties.NullDate = Date.MinValue
@@ -331,6 +332,8 @@ Public Class frmPurchaseOrder
         'dteDateEntered.EditValue = .DateEntered
         dteDueDate.EditValue = clsGeneralA.DateToDBValue(.RequiredDate)
 
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentMethod, .PaymentMethod)
+
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
@@ -425,7 +428,7 @@ Public Class frmPurchaseOrder
         .MainAddress = UctAddress1.Address
       End With
 
-
+      .PaymentMethod = clsDEControlLoading.GetDEComboValue(cboPaymentMethod)
       .SubmissionDate = dteDateOfOrder.EditValue
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
@@ -1010,37 +1013,37 @@ Public Class frmPurchaseOrder
       gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = True
 
       gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
-      gvPODeliveryInfos.Columns("ExchangeRateValue").SummaryItem.DisplayFormat = "{0:c2}"
+      gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      gvPODeliveryInfos.Columns("ExchangeRateValue").SummaryItem.DisplayFormat = "{0:c3}"
 
       gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
-      '' gvPODeliveryInfos.Columns("VatValue").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+      gvPurchaseOrderItems.Columns("VatValue").SummaryItem.DisplayFormat = "{0:C$#,##0.000;;#}"
 
 
 
       gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "C$#,##0.000;;#"
       ''gvPODeliveryInfos.Columns("GrossAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
 
       gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.000;;#"
 
 
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.000;;#"
       ''gvPODeliveryInfos.Columns("NetAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
 
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.000;;#"
       ''gvPODeliveryInfos.Columns("TotalValueReceived").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
 
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
-      gvPODeliveryInfos.Columns("PODeliveryValue").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      gvPODeliveryInfos.Columns("PODeliveryValue").SummaryItem.DisplayFormat = "{0:C$#,##0.000;;#}"
 
     Else
       lblExchangeRate.Visible = False
@@ -1049,22 +1052,23 @@ Public Class frmPurchaseOrder
 
 
       gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatString = "$#,##0.000;;#"
+      gvPurchaseOrderItems.Columns("VatValue").SummaryItem.DisplayFormat = "{0:$#,##0.000;;#}"
 
       gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.000;;#"
 
     End If
 

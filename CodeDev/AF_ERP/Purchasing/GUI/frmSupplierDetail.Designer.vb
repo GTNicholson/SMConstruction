@@ -81,8 +81,8 @@ Partial Class frmSupplierDetail
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.UctAddress1 = New uctAddress()
-    Me.rgDefaultCurrency = New DevExpress.XtraEditors.RadioGroup()
+        Me.UctAddress1 = New AgroForestal.uctAddress()
+        Me.rgDefaultCurrency = New DevExpress.XtraEditors.RadioGroup()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.grdPOInfo = New DevExpress.XtraGrid.GridControl()
@@ -96,6 +96,8 @@ Partial Class frmSupplierDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.cboBankName = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdSupplierContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSupplierContacts, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,6 +130,7 @@ Partial Class frmSupplierDetail
         CType(Me.gvPOInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboBankName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -353,11 +356,11 @@ Partial Class frmSupplierDetail
         '
         'cboPurchaseTermsType
         '
-        Me.cboPurchaseTermsType.Location = New System.Drawing.Point(416, 59)
+        Me.cboPurchaseTermsType.Location = New System.Drawing.Point(364, 56)
         Me.cboPurchaseTermsType.MenuManager = Me.BarManager2
         Me.cboPurchaseTermsType.Name = "cboPurchaseTermsType"
         Me.cboPurchaseTermsType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboPurchaseTermsType.Size = New System.Drawing.Size(120, 20)
+        Me.cboPurchaseTermsType.Size = New System.Drawing.Size(98, 20)
         Me.cboPurchaseTermsType.TabIndex = 32
         '
         'Label10
@@ -365,7 +368,7 @@ Partial Class frmSupplierDetail
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(278, 62)
+        Me.Label10.Location = New System.Drawing.Point(226, 59)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(132, 14)
         Me.Label10.TabIndex = 31
@@ -387,11 +390,11 @@ Partial Class frmSupplierDetail
         '
         'cboPaymentTermsType
         '
-        Me.cboPaymentTermsType.Location = New System.Drawing.Point(416, 32)
+        Me.cboPaymentTermsType.Location = New System.Drawing.Point(364, 29)
         Me.cboPaymentTermsType.MenuManager = Me.BarManager2
         Me.cboPaymentTermsType.Name = "cboPaymentTermsType"
         Me.cboPaymentTermsType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboPaymentTermsType.Size = New System.Drawing.Size(120, 20)
+        Me.cboPaymentTermsType.Size = New System.Drawing.Size(98, 20)
         Me.cboPaymentTermsType.TabIndex = 4
         '
         'Label13
@@ -399,7 +402,7 @@ Partial Class frmSupplierDetail
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(278, 35)
+        Me.Label13.Location = New System.Drawing.Point(226, 32)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(108, 14)
         Me.Label13.TabIndex = 29
@@ -407,10 +410,10 @@ Partial Class frmSupplierDetail
         '
         'txtABA
         '
-        Me.txtABA.Location = New System.Drawing.Point(416, 86)
+        Me.txtABA.Location = New System.Drawing.Point(364, 83)
         Me.txtABA.Name = "txtABA"
         Me.txtABA.Properties.MaxLength = 15
-        Me.txtABA.Size = New System.Drawing.Size(120, 20)
+        Me.txtABA.Size = New System.Drawing.Size(98, 20)
         Me.txtABA.TabIndex = 3
         '
         'Label14
@@ -418,7 +421,7 @@ Partial Class frmSupplierDetail
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label14.Location = New System.Drawing.Point(278, 89)
+        Me.Label14.Location = New System.Drawing.Point(226, 86)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(72, 14)
         Me.Label14.TabIndex = 27
@@ -430,6 +433,8 @@ Partial Class frmSupplierDetail
         Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl2.Controls.Add(Me.cboBankName)
+        Me.GroupControl2.Controls.Add(Me.Label5)
         Me.GroupControl2.Controls.Add(Me.cboPurchaseTermsType)
         Me.GroupControl2.Controls.Add(Me.Label10)
         Me.GroupControl2.Controls.Add(Me.lblSupplierID)
@@ -451,10 +456,10 @@ Partial Class frmSupplierDetail
         '
         'txtSwift
         '
-        Me.txtSwift.Location = New System.Drawing.Point(148, 86)
+        Me.txtSwift.Location = New System.Drawing.Point(136, 83)
         Me.txtSwift.Name = "txtSwift"
         Me.txtSwift.Properties.MaxLength = 15
-        Me.txtSwift.Size = New System.Drawing.Size(106, 20)
+        Me.txtSwift.Size = New System.Drawing.Size(84, 20)
         Me.txtSwift.TabIndex = 2
         '
         'Label16
@@ -462,7 +467,7 @@ Partial Class frmSupplierDetail
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(16, 89)
+        Me.Label16.Location = New System.Drawing.Point(4, 86)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(82, 14)
         Me.Label16.TabIndex = 23
@@ -470,10 +475,10 @@ Partial Class frmSupplierDetail
         '
         'txtBancoIntermediario
         '
-        Me.txtBancoIntermediario.Location = New System.Drawing.Point(148, 59)
+        Me.txtBancoIntermediario.Location = New System.Drawing.Point(136, 56)
         Me.txtBancoIntermediario.Name = "txtBancoIntermediario"
         Me.txtBancoIntermediario.Properties.MaxLength = 100
-        Me.txtBancoIntermediario.Size = New System.Drawing.Size(106, 20)
+        Me.txtBancoIntermediario.Size = New System.Drawing.Size(84, 20)
         Me.txtBancoIntermediario.TabIndex = 1
         '
         'Label17
@@ -481,7 +486,7 @@ Partial Class frmSupplierDetail
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label17.Location = New System.Drawing.Point(16, 62)
+        Me.Label17.Location = New System.Drawing.Point(4, 59)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(118, 14)
         Me.Label17.TabIndex = 21
@@ -489,10 +494,10 @@ Partial Class frmSupplierDetail
         '
         'txtAcountRef
         '
-        Me.txtAcountRef.Location = New System.Drawing.Point(148, 32)
+        Me.txtAcountRef.Location = New System.Drawing.Point(136, 29)
         Me.txtAcountRef.Name = "txtAcountRef"
         Me.txtAcountRef.Properties.MaxLength = 25
-        Me.txtAcountRef.Size = New System.Drawing.Size(106, 20)
+        Me.txtAcountRef.Size = New System.Drawing.Size(84, 20)
         Me.txtAcountRef.TabIndex = 0
         '
         'Label20
@@ -500,7 +505,7 @@ Partial Class frmSupplierDetail
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label20.Location = New System.Drawing.Point(16, 35)
+        Me.Label20.Location = New System.Drawing.Point(4, 32)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(110, 14)
         Me.Label20.TabIndex = 11
@@ -868,6 +873,27 @@ Partial Class frmSupplierDetail
         Me.GridColumn13.VisibleIndex = 4
         Me.GridColumn13.Width = 152
         '
+        'cboBankName
+        '
+        Me.cboBankName.Location = New System.Drawing.Point(514, 29)
+        Me.cboBankName.MenuManager = Me.BarManager2
+        Me.cboBankName.Name = "cboBankName"
+        Me.cboBankName.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboBankName.Properties.Items.AddRange(New Object() {"BAC", "BANCENTRO", "BANPRO", "BDF", "FICOSA", "LAFISE", ""})
+        Me.cboBankName.Size = New System.Drawing.Size(98, 20)
+        Me.cboBankName.TabIndex = 33
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label5.Location = New System.Drawing.Point(468, 32)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(40, 14)
+        Me.Label5.TabIndex = 34
+        Me.Label5.Text = "Banco"
+        '
         'frmSupplierDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -922,6 +948,7 @@ Partial Class frmSupplierDetail
         CType(Me.gvPOInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboBankName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -999,4 +1026,6 @@ Partial Class frmSupplierDetail
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents cboBankName As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents Label5 As Label
 End Class

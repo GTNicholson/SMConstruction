@@ -75,6 +75,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
 
         With .PurchaseOrder
           .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
+          .PaymentMethod = DBReadInt32(rDataReader, "PaymentMethod")
           .PONum = DBReadString(rDataReader, "PONum")
           .SupplierContactTel = DBReadString(rDataReader, "SupplierContactTel")
           .Category = DBReadByte(rDataReader, "Category")
@@ -107,6 +108,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
           .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
           .Supplier.CompanyName = DBReadString(rDataReader, "CompanyName")
+          .Supplier.BankName = DBReadString(rDataReader, "BankName")
           .RefMatType = DBReadString(rDataReader, "RefMatType")
         End With
       End With

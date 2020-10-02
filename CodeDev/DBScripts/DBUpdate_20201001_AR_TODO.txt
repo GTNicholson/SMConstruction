@@ -1,0 +1,87 @@
+
+ALTER view [dbo].[vwTotalValueSUMPODeliveryItem]
+AS
+
+select 
+cast (
+SUM( ISNULL(podi.qtyreceived,0) * ISNULL(unitprice,0) ) as decimal (15,4)) AS 'POTotalValue',
+POD.PODeliveryID
+from PODeliveryItem PODI
+inner JOIN PODelivery POD ON POD.PODeliveryID=PODI.PODeliveryID
+inner join PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+GROUP BY POD.PODeliveryID
+
+
+GO
+
+
+alter table PODelivery
+alter column PODeliveryValue decimal(15,4)
+GO
+
+alter table PurchaseOrder
+add PaymentMethod int
+GO
+
+alter table Supplier
+add BankName varchar(30)
+GO
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PONum,
+PO.PaymentMethod,
+SupplierContactTel,
+MaterialRequirementTypeID,
+PO.DefaultCurrency,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+Concat (SC.FirstName,' ', SC.Lastname) as SupplierContactName,
+CompanyName
+FROM PurchaseORder PO
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN SupplierContact SC ON SC.SupplierID=S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+
+GO
+
+alter table PurchaseOrderItem
+alter column UnitPrice decimal (9,4)
+GO
+
+alter table PODelivery
+add RefSupplierDoc  varchar(15)
+GO

@@ -55,6 +55,8 @@ Partial Class frmPODelivery
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDefaultCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtRefDocSupplier = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.cboPaymentStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -89,6 +91,7 @@ Partial Class frmPODelivery
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
+        CType(Me.txtRefDocSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -384,6 +387,8 @@ Partial Class frmPODelivery
         Me.grpGRN.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpGRN.AppearanceCaption.Options.UseFont = True
         Me.grpGRN.AppearanceCaption.Options.UseForeColor = True
+        Me.grpGRN.Controls.Add(Me.LabelControl11)
+        Me.grpGRN.Controls.Add(Me.txtRefDocSupplier)
         Me.grpGRN.Controls.Add(Me.LabelControl10)
         Me.grpGRN.Controls.Add(Me.cboPaymentStatus)
         Me.grpGRN.Controls.Add(Me.LabelControl5)
@@ -400,11 +405,29 @@ Partial Class frmPODelivery
         Me.grpGRN.TabIndex = 13
         Me.grpGRN.Text = "Información de Recepción de O.C."
         '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Appearance.Options.UseFont = True
+        Me.LabelControl11.Location = New System.Drawing.Point(848, 42)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(69, 16)
+        Me.LabelControl11.TabIndex = 279
+        Me.LabelControl11.Text = "Referencia"
+        '
+        'txtRefDocSupplier
+        '
+        Me.txtRefDocSupplier.Location = New System.Drawing.Point(923, 40)
+        Me.txtRefDocSupplier.Name = "txtRefDocSupplier"
+        Me.txtRefDocSupplier.Properties.ReadOnly = True
+        Me.txtRefDocSupplier.Size = New System.Drawing.Size(197, 20)
+        Me.txtRefDocSupplier.TabIndex = 278
+        '
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Location = New System.Drawing.Point(1299, 40)
+        Me.LabelControl10.Location = New System.Drawing.Point(1150, 40)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(103, 16)
         Me.LabelControl10.TabIndex = 277
@@ -412,7 +435,7 @@ Partial Class frmPODelivery
         '
         'cboPaymentStatus
         '
-        Me.cboPaymentStatus.Location = New System.Drawing.Point(1419, 39)
+        Me.cboPaymentStatus.Location = New System.Drawing.Point(1259, 39)
         Me.cboPaymentStatus.Name = "cboPaymentStatus"
         Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboPaymentStatus.Properties.ReadOnly = True
@@ -423,7 +446,7 @@ Partial Class frmPODelivery
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Location = New System.Drawing.Point(813, 40)
+        Me.LabelControl5.Location = New System.Drawing.Point(534, 41)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(125, 16)
         Me.LabelControl5.TabIndex = 10
@@ -431,7 +454,7 @@ Partial Class frmPODelivery
         '
         'txtReceivedValue
         '
-        Me.txtReceivedValue.Location = New System.Drawing.Point(949, 38)
+        Me.txtReceivedValue.Location = New System.Drawing.Point(670, 39)
         Me.txtReceivedValue.Name = "txtReceivedValue"
         Me.txtReceivedValue.Properties.Mask.EditMask = "n2"
         Me.txtReceivedValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -451,7 +474,7 @@ Partial Class frmPODelivery
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Appearance.Options.UseFont = True
-        Me.LabelControl4.Location = New System.Drawing.Point(321, 40)
+        Me.LabelControl4.Location = New System.Drawing.Point(201, 40)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(130, 16)
         Me.LabelControl4.TabIndex = 7
@@ -459,10 +482,10 @@ Partial Class frmPODelivery
         '
         'txtReceivedDate
         '
-        Me.txtReceivedDate.Location = New System.Drawing.Point(457, 38)
+        Me.txtReceivedDate.Location = New System.Drawing.Point(337, 38)
         Me.txtReceivedDate.Name = "txtReceivedDate"
         Me.txtReceivedDate.Properties.ReadOnly = True
-        Me.txtReceivedDate.Size = New System.Drawing.Size(241, 20)
+        Me.txtReceivedDate.Size = New System.Drawing.Size(182, 20)
         Me.txtReceivedDate.TabIndex = 4
         '
         'LabelControl6
@@ -718,6 +741,7 @@ Partial Class frmPODelivery
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
         Me.grpGRN.PerformLayout()
+        CType(Me.txtRefDocSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -780,4 +804,6 @@ Partial Class frmPODelivery
     Friend WithEvents txtExchangeRate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboPaymentStatus As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtRefDocSupplier As DevExpress.XtraEditors.TextEdit
 End Class

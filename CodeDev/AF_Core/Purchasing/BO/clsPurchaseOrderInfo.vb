@@ -47,6 +47,19 @@ Public Class clsPurchaseOrderInfo
       Return pPOItem
     End Get
   End Property
+
+  Public ReadOnly Property PaymentMethod As Int32
+    Get
+      Return pPurchaseOrder.PaymentMethod
+    End Get
+  End Property
+
+  Public ReadOnly Property PaymentMethodDes As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePaymentMethod), CType(pPurchaseOrder.PaymentMethod, ePaymentMethod))
+    End Get
+  End Property
+
   Public ReadOnly Property PurchaseOrderItemID As Int32
     Get
       Return pPOItem.PurchaseOrderItemID
@@ -288,6 +301,14 @@ Public Class clsPurchaseOrderInfo
     Get
       Return pPurchaseOrder.DeliveryAddress.FullAddress(vbCrLf)
     End Get
+  End Property
+
+
+  Public ReadOnly Property BankName() As String
+    Get
+      Return pPurchaseOrder.Supplier.BankName
+    End Get
+
   End Property
 
 

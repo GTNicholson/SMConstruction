@@ -142,15 +142,19 @@ Public Class frmPODelivery
 
           With pFormController.PODelivery
             txtGRNNumber.Text = .GRNumber
+            txtRefDocSupplier.Text = .RefSupplierDoc
             txtReceivedDate.Text = .DateCreated
             SetReceivedValueWithCurrencyFormat() ' pFormController.GetReceivedValue()
             gcQtyToProcess.OptionsColumn.ReadOnly = False
+
             cboPaymentStatus.Properties.ReadOnly = False
             clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
 
             If .GRNumber <> "" Then
               grpGRN.CustomHeaderButtons.Item(0).Properties.Enabled = False
-
+              txtRefDocSupplier.ReadOnly = False
+            Else
+              txtRefDocSupplier.ReadOnly = True
             End If
           End With
 
@@ -292,7 +296,7 @@ Public Class frmPODelivery
         .PurchaseOrder = pFormController.PurchaseOrderInfo.PurchaseOrder
         .PurchaseOrderID = pFormController.PurchaseOrderInfo.PurchaseOrder.PurchaseOrderID
         .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
-
+        .RefSupplierDoc = txtRefDocSupplier.Text
       End With
     End If
   End Sub
@@ -435,4 +439,6 @@ Public Class frmPODelivery
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()
   End Sub
+
+
 End Class
