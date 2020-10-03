@@ -8,6 +8,7 @@ Public Class clsPODeliveryItemInfo
   Private pPurchaseOrderItem As dmPurchaseOrderItem
   Private pSalesOrderPhase As dmSalesOrderPhase
   Private pSalesOrder As dmSalesOrder
+  Private pStockItem As dmStockItem
 
   Public Sub New()
     pPODeliveryItem = New dmPODeliveryItem
@@ -17,7 +18,18 @@ Public Class clsPODeliveryItemInfo
     pPurchaseOrderItem = New dmPurchaseOrderItem
     pSalesOrderPhase = New dmSalesOrderPhase
     pSalesOrder = New dmSalesOrder
+    pStockItem = New dmStockItem
   End Sub
+
+
+  Public Property StockItem As dmStockItem
+    Get
+      Return pStockItem
+    End Get
+    Set(value As dmStockItem)
+      pStockItem = value
+    End Set
+  End Property
 
   Public Property PODeliveryItem As dmPODeliveryItem
     Get
@@ -179,7 +191,93 @@ Public Class clsPODeliveryItemInfo
 
   End Property
 
+  Public ReadOnly Property StockitemCategory As Int32
+    Get
+      Return pStockItem.Category
+    End Get
 
+  End Property
+
+  Public ReadOnly Property StockitemCategoryDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property StockItemType As Int32
+    Get
+      Return pStockItem.ItemType
+    End Get
+  End Property
+
+  Public ReadOnly Property StockItemTypeDesc As String
+    Get
+      Dim mRetVal = ""
+      Select Case pStockItem.Category
+        Case eStockItemCategory.Abrasivos
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeAbrasivos), CType(pStockItem.ItemType, eStockItemTypeAbrasivos.eStockItemAbrasivos))
+
+
+        Case eStockItemCategory.NailsAndBolds
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(pStockItem.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+
+        Case eStockItemCategory.EPP
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeEPP), CType(pStockItem.ItemType, eStockItemTypeEPP.eStockItemMaterialEPP))
+
+
+        Case eStockItemCategory.Herrajes
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(pStockItem.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+
+
+        Case eStockItemCategory.Herramientas
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerramientas), CType(pStockItem.ItemType, eStockItemTypeHerramientas.eStockItemMaterialHerramientas))
+
+
+        Case eStockItemCategory.MatElect
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialElectrico), CType(pStockItem.ItemType, eStockItemTypeMaterialElectrico.eStockItemMaterialElectrico))
+
+
+
+        Case eStockItemCategory.MatEmpaque
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialEmpaque), CType(pStockItem.ItemType, eStockItemTypeMaterialEmpaque.StockItemMaterialEmpaque))
+
+
+        Case eStockItemCategory.MatVarios
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMatVarios), CType(pStockItem.ItemType, eStockItemTypeMatVarios.eStockItemMaterialMatVarios))
+
+
+
+        Case eStockItemCategory.Metal
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(pStockItem.ItemType, eStockItemTypeMetales.eStockItemMetales))
+
+
+
+        Case eStockItemCategory.PinturaYQuimico
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypePintura), CType(pStockItem.ItemType, eStockItemTypePintura.eStockItemPintura))
+
+
+        Case eStockItemCategory.Laminas
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeLamina), CType(pStockItem.ItemType, eStockItemTypeLamina.eStockItemLamina))
+
+
+
+        Case eStockItemCategory.Repuestos
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(pStockItem.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
+
+
+        Case eStockItemCategory.Tapiceria
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTapiceria), CType(pStockItem.ItemType, eStockItemTypeTapiceria.eStockItemTapiceria))
+
+
+        Case eStockItemCategory.VidrioYEspejo
+          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(pStockItem.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
   Public ReadOnly Property DateCreated As Date
     Get
       Return pPODelivery.DateCreated

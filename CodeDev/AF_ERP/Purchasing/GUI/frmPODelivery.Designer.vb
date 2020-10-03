@@ -51,7 +51,6 @@ Partial Class frmPODelivery
         Me.txtRequiredDate = New DevExpress.XtraEditors.TextEdit()
         Me.grpPOPicking = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDefaultCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
@@ -65,6 +64,7 @@ Partial Class frmPODelivery
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtReceivedDate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.grpMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
         Me.grdPurchaseOrderItemInfo = New DevExpress.XtraGrid.GridControl()
@@ -87,7 +87,6 @@ Partial Class frmPODelivery
         CType(Me.txtRequiredDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpPOPicking.SuspendLayout()
-        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
@@ -96,6 +95,7 @@ Partial Class frmPODelivery
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpMaterialRequirements.SuspendLayout()
@@ -107,11 +107,11 @@ Partial Class frmPODelivery
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Appearance.Options.UseFont = True
-        Me.LabelControl3.Location = New System.Drawing.Point(778, 39)
+        Me.LabelControl3.Location = New System.Drawing.Point(590, 39)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(136, 16)
+        Me.LabelControl3.Size = New System.Drawing.Size(99, 16)
         Me.LabelControl3.TabIndex = 7
-        Me.LabelControl3.Text = "Categoría de Compra"
+        Me.LabelControl3.Text = "Cat. de Compra"
         '
         'LabelControl1
         '
@@ -136,10 +136,10 @@ Partial Class frmPODelivery
         '
         'txtCategory
         '
-        Me.txtCategory.Location = New System.Drawing.Point(923, 37)
+        Me.txtCategory.Location = New System.Drawing.Point(698, 37)
         Me.txtCategory.Name = "txtCategory"
         Me.txtCategory.Properties.ReadOnly = True
-        Me.txtCategory.Size = New System.Drawing.Size(173, 20)
+        Me.txtCategory.Size = New System.Drawing.Size(113, 20)
         Me.txtCategory.TabIndex = 6
         '
         'gcPurchaseOrderItemAllocationID
@@ -285,7 +285,7 @@ Partial Class frmPODelivery
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl7.Appearance.Options.UseFont = True
-        Me.LabelControl7.Location = New System.Drawing.Point(214, 39)
+        Me.LabelControl7.Location = New System.Drawing.Point(148, 39)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(67, 16)
         Me.LabelControl7.TabIndex = 7
@@ -293,7 +293,7 @@ Partial Class frmPODelivery
         '
         'txtSupplierCompanyName
         '
-        Me.txtSupplierCompanyName.Location = New System.Drawing.Point(286, 37)
+        Me.txtSupplierCompanyName.Location = New System.Drawing.Point(220, 37)
         Me.txtSupplierCompanyName.Name = "txtSupplierCompanyName"
         Me.txtSupplierCompanyName.Properties.ReadOnly = True
         Me.txtSupplierCompanyName.Size = New System.Drawing.Size(149, 20)
@@ -303,30 +303,28 @@ Partial Class frmPODelivery
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Appearance.Options.UseFont = True
-        Me.LabelControl2.Location = New System.Drawing.Point(467, 39)
+        Me.LabelControl2.Location = New System.Drawing.Point(377, 39)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(109, 16)
+        Me.LabelControl2.Size = New System.Drawing.Size(72, 16)
         Me.LabelControl2.TabIndex = 3
-        Me.LabelControl2.Text = "Fecha Requerida"
+        Me.LabelControl2.Text = "Fecha Req."
         '
         'txtRequiredDate
         '
-        Me.txtRequiredDate.Location = New System.Drawing.Point(584, 37)
+        Me.txtRequiredDate.Location = New System.Drawing.Point(455, 37)
         Me.txtRequiredDate.Name = "txtRequiredDate"
         Me.txtRequiredDate.Properties.ReadOnly = True
-        Me.txtRequiredDate.Size = New System.Drawing.Size(149, 20)
+        Me.txtRequiredDate.Size = New System.Drawing.Size(125, 20)
         Me.txtRequiredDate.TabIndex = 2
         '
         'grpPOPicking
         '
-        Me.grpPOPicking.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpPOPicking.AllowTouchScroll = True
         Me.grpPOPicking.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpPOPicking.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpPOPicking.AppearanceCaption.Options.UseFont = True
         Me.grpPOPicking.AppearanceCaption.Options.UseForeColor = True
         Me.grpPOPicking.Controls.Add(Me.LabelControl9)
-        Me.grpPOPicking.Controls.Add(Me.txtExchangeRate)
         Me.grpPOPicking.Controls.Add(Me.LabelControl8)
         Me.grpPOPicking.Controls.Add(Me.txtDefaultCurrency)
         Me.grpPOPicking.Controls.Add(Me.grpGRN)
@@ -339,9 +337,10 @@ Partial Class frmPODelivery
         Me.grpPOPicking.Controls.Add(Me.btnSelectPurchaseOrder)
         Me.grpPOPicking.Controls.Add(Me.txtCategory)
         Me.grpPOPicking.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.grpPOPicking.Location = New System.Drawing.Point(9, 9)
+        Me.grpPOPicking.FireScrollEventOnMouseWheel = True
+        Me.grpPOPicking.Location = New System.Drawing.Point(9, 4)
         Me.grpPOPicking.Name = "grpPOPicking"
-        Me.grpPOPicking.Size = New System.Drawing.Size(1579, 165)
+        Me.grpPOPicking.Size = New System.Drawing.Size(1283, 170)
         Me.grpPOPicking.TabIndex = 11
         Me.grpPOPicking.Text = "Información General de O.C."
         '
@@ -349,25 +348,17 @@ Partial Class frmPODelivery
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl9.Appearance.Options.UseFont = True
-        Me.LabelControl9.Location = New System.Drawing.Point(1349, 39)
+        Me.LabelControl9.Location = New System.Drawing.Point(1005, 39)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(103, 16)
         Me.LabelControl9.TabIndex = 17
         Me.LabelControl9.Text = "Tasa de Cambio"
         '
-        'txtExchangeRate
-        '
-        Me.txtExchangeRate.Location = New System.Drawing.Point(1460, 37)
-        Me.txtExchangeRate.Name = "txtExchangeRate"
-        Me.txtExchangeRate.Properties.ReadOnly = True
-        Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
-        Me.txtExchangeRate.TabIndex = 16
-        '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl8.Appearance.Options.UseFont = True
-        Me.LabelControl8.Location = New System.Drawing.Point(1141, 39)
+        Me.LabelControl8.Location = New System.Drawing.Point(820, 39)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(51, 16)
         Me.LabelControl8.TabIndex = 15
@@ -375,7 +366,7 @@ Partial Class frmPODelivery
         '
         'txtDefaultCurrency
         '
-        Me.txtDefaultCurrency.Location = New System.Drawing.Point(1204, 37)
+        Me.txtDefaultCurrency.Location = New System.Drawing.Point(883, 37)
         Me.txtDefaultCurrency.Name = "txtDefaultCurrency"
         Me.txtDefaultCurrency.Properties.ReadOnly = True
         Me.txtDefaultCurrency.Size = New System.Drawing.Size(107, 20)
@@ -383,6 +374,8 @@ Partial Class frmPODelivery
         '
         'grpGRN
         '
+        Me.grpGRN.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpGRN.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpGRN.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpGRN.AppearanceCaption.Options.UseFont = True
@@ -401,7 +394,7 @@ Partial Class frmPODelivery
         Me.grpGRN.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpGRN.Location = New System.Drawing.Point(0, 86)
         Me.grpGRN.Name = "grpGRN"
-        Me.grpGRN.Size = New System.Drawing.Size(1574, 74)
+        Me.grpGRN.Size = New System.Drawing.Size(1278, 74)
         Me.grpGRN.TabIndex = 13
         Me.grpGRN.Text = "Información de Recepción de O.C."
         '
@@ -409,7 +402,7 @@ Partial Class frmPODelivery
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl11.Appearance.Options.UseFont = True
-        Me.LabelControl11.Location = New System.Drawing.Point(848, 42)
+        Me.LabelControl11.Location = New System.Drawing.Point(763, 42)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(69, 16)
         Me.LabelControl11.TabIndex = 279
@@ -417,17 +410,17 @@ Partial Class frmPODelivery
         '
         'txtRefDocSupplier
         '
-        Me.txtRefDocSupplier.Location = New System.Drawing.Point(923, 40)
+        Me.txtRefDocSupplier.Location = New System.Drawing.Point(838, 40)
         Me.txtRefDocSupplier.Name = "txtRefDocSupplier"
         Me.txtRefDocSupplier.Properties.ReadOnly = True
-        Me.txtRefDocSupplier.Size = New System.Drawing.Size(197, 20)
+        Me.txtRefDocSupplier.Size = New System.Drawing.Size(149, 20)
         Me.txtRefDocSupplier.TabIndex = 278
         '
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Location = New System.Drawing.Point(1150, 40)
+        Me.LabelControl10.Location = New System.Drawing.Point(997, 40)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(103, 16)
         Me.LabelControl10.TabIndex = 277
@@ -435,18 +428,18 @@ Partial Class frmPODelivery
         '
         'cboPaymentStatus
         '
-        Me.cboPaymentStatus.Location = New System.Drawing.Point(1259, 39)
+        Me.cboPaymentStatus.Location = New System.Drawing.Point(1106, 39)
         Me.cboPaymentStatus.Name = "cboPaymentStatus"
         Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboPaymentStatus.Properties.ReadOnly = True
-        Me.cboPaymentStatus.Size = New System.Drawing.Size(148, 20)
+        Me.cboPaymentStatus.Size = New System.Drawing.Size(115, 20)
         Me.cboPaymentStatus.TabIndex = 276
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Location = New System.Drawing.Point(534, 41)
+        Me.LabelControl5.Location = New System.Drawing.Point(495, 41)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(125, 16)
         Me.LabelControl5.TabIndex = 10
@@ -454,12 +447,12 @@ Partial Class frmPODelivery
         '
         'txtReceivedValue
         '
-        Me.txtReceivedValue.Location = New System.Drawing.Point(670, 39)
+        Me.txtReceivedValue.Location = New System.Drawing.Point(625, 39)
         Me.txtReceivedValue.Name = "txtReceivedValue"
         Me.txtReceivedValue.Properties.Mask.EditMask = "n2"
         Me.txtReceivedValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtReceivedValue.Properties.ReadOnly = True
-        Me.txtReceivedValue.Size = New System.Drawing.Size(158, 20)
+        Me.txtReceivedValue.Size = New System.Drawing.Size(131, 20)
         Me.txtReceivedValue.TabIndex = 9
         '
         'txtGRNNumber
@@ -474,7 +467,7 @@ Partial Class frmPODelivery
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Appearance.Options.UseFont = True
-        Me.LabelControl4.Location = New System.Drawing.Point(201, 40)
+        Me.LabelControl4.Location = New System.Drawing.Point(188, 40)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(130, 16)
         Me.LabelControl4.TabIndex = 7
@@ -482,10 +475,10 @@ Partial Class frmPODelivery
         '
         'txtReceivedDate
         '
-        Me.txtReceivedDate.Location = New System.Drawing.Point(337, 38)
+        Me.txtReceivedDate.Location = New System.Drawing.Point(324, 38)
         Me.txtReceivedDate.Name = "txtReceivedDate"
         Me.txtReceivedDate.Properties.ReadOnly = True
-        Me.txtReceivedDate.Size = New System.Drawing.Size(182, 20)
+        Me.txtReceivedDate.Size = New System.Drawing.Size(161, 20)
         Me.txtReceivedDate.TabIndex = 4
         '
         'LabelControl6
@@ -498,8 +491,17 @@ Partial Class frmPODelivery
         Me.LabelControl6.TabIndex = 1
         Me.LabelControl6.Text = "# Recepción"
         '
+        'txtExchangeRate
+        '
+        Me.txtExchangeRate.Location = New System.Drawing.Point(1123, 46)
+        Me.txtExchangeRate.Name = "txtExchangeRate"
+        Me.txtExchangeRate.Properties.ReadOnly = True
+        Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
+        Me.txtExchangeRate.TabIndex = 16
+        '
         'grpMaterialRequirements
         '
+        Me.grpMaterialRequirements.AllowTouchScroll = True
         Me.grpMaterialRequirements.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -510,9 +512,10 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.Controls.Add(Me.grdPurchaseOrderItemInfo)
         Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Process To Timber", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Pendiente", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1)})
         Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+        Me.grpMaterialRequirements.FireScrollEventOnMouseWheel = True
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(9, 180)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1579, 373)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1285, 373)
         Me.grpMaterialRequirements.TabIndex = 13
         Me.grpMaterialRequirements.Text = "Purchase Order Items"
         '
@@ -522,7 +525,7 @@ Partial Class frmPODelivery
         Me.grdPurchaseOrderItemInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdPurchaseOrderItemInfo.MainView = Me.gvMaterialRequirementInfos
         Me.grdPurchaseOrderItemInfo.Name = "grdPurchaseOrderItemInfo"
-        Me.grdPurchaseOrderItemInfo.Size = New System.Drawing.Size(1575, 345)
+        Me.grdPurchaseOrderItemInfo.Size = New System.Drawing.Size(1281, 345)
         Me.grdPurchaseOrderItemInfo.TabIndex = 0
         Me.grdPurchaseOrderItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementInfos})
         '
@@ -578,7 +581,7 @@ Partial Class frmPODelivery
         Me.GridColumn8.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn8.AppearanceCell.Options.UseFont = True
         Me.GridColumn8.Caption = "Categoría"
-        Me.GridColumn8.FieldName = "StockCategory"
+        Me.GridColumn8.FieldName = "StockCategoryDesc"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
@@ -723,8 +726,10 @@ Partial Class frmPODelivery
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1595, 565)
+        Me.AutoScroll = True
+        Me.ClientSize = New System.Drawing.Size(1296, 565)
         Me.Controls.Add(Me.grpMaterialRequirements)
+        Me.Controls.Add(Me.txtExchangeRate)
         Me.Controls.Add(Me.grpPOPicking)
         Me.Name = "frmPODelivery"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -736,7 +741,6 @@ Partial Class frmPODelivery
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpPOPicking.ResumeLayout(False)
         Me.grpPOPicking.PerformLayout()
-        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
@@ -746,6 +750,7 @@ Partial Class frmPODelivery
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpMaterialRequirements.ResumeLayout(False)

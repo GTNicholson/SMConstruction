@@ -146,6 +146,7 @@ Partial Class frmPurchaseOrder
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gpnlPOItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,6 +215,7 @@ Partial Class frmPurchaseOrder
         CType(Me.dteDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupplierRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Bar1
@@ -522,7 +524,7 @@ Partial Class frmPurchaseOrder
         Me.grdPurchaseOrderItems.MainView = Me.gvPurchaseOrderItems
         Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1
         Me.grdPurchaseOrderItems.Name = "grdPurchaseOrderItems"
-        Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupWorkOrder, Me.repitQtyReqSimp})
+        Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupWorkOrder, Me.repitQtyReqSimp, Me.RepositoryItemTextEdit1})
         Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1315, 386)
         Me.grdPurchaseOrderItems.TabIndex = 86
         Me.grdPurchaseOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPurchaseOrderItems})
@@ -579,7 +581,7 @@ Partial Class frmPurchaseOrder
         Me.gcPOIUnitPrice.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gcPOIUnitPrice.Caption = "Precio Unitario"
         Me.gcPOIUnitPrice.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
-        Me.gcPOIUnitPrice.DisplayFormat.FormatString = "C3"
+        Me.gcPOIUnitPrice.DisplayFormat.FormatString = "c3"
         Me.gcPOIUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPOIUnitPrice.FieldName = "UnitPrice"
         Me.gcPOIUnitPrice.Name = "gcPOIUnitPrice"
@@ -590,8 +592,11 @@ Partial Class frmPurchaseOrder
         'RepositoryItemSpinEditUnitValue
         '
         Me.RepositoryItemSpinEditUnitValue.AutoHeight = False
+        Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatString = "n3"
+        Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatString = "n3"
         Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n3"
         Me.RepositoryItemSpinEditUnitValue.Name = "RepositoryItemSpinEditUnitValue"
         '
         'gcPOINetValue
@@ -1552,6 +1557,16 @@ Partial Class frmPurchaseOrder
         Me.LabelControl5.TabIndex = 254
         Me.LabelControl5.Text = "Fecha de Órden"
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.EditFormat.FormatString = "n3"
+        Me.RepositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "n3"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         'frmPurchaseOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1639,6 +1654,7 @@ Partial Class frmPurchaseOrder
         CType(Me.dteDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSupplierRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1762,4 +1778,5 @@ Partial Class frmPurchaseOrder
     Friend WithEvents repoPODelivery As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboPaymentMethod As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

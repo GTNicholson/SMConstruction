@@ -193,7 +193,12 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Get
 
   End Property
+  Public ReadOnly Property StockCategoryDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+    End Get
 
+  End Property
 
 
   Public ReadOnly Property PurchaseOrderItemAllocationID() As Integer

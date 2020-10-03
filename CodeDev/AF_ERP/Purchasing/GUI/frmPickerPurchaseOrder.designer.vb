@@ -22,106 +22,183 @@ Partial Class frmPickerPurchaseOrder
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Me.grdItemList = New DevExpress.XtraGrid.GridControl()
-    Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPONum = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repoItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.gcRequiredDate = New DevExpress.XtraGrid.Columns.GridColumn()
-    CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.SuspendLayout()
-    '
-    'grdItemList
-    '
-    Me.grdItemList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.grdItemList.Location = New System.Drawing.Point(12, 12)
-    Me.grdItemList.MainView = Me.gvItemList
-    Me.grdItemList.Name = "grdItemList"
-    Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect})
-    Me.grdItemList.Size = New System.Drawing.Size(738, 441)
-    Me.grdItemList.TabIndex = 98
-    Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
-    '
-    'gvItemList
-    '
-    Me.gvItemList.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvItemList.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvItemList.Appearance.HeaderPanel.Options.UseTextOptions = True
-    Me.gvItemList.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
-    Me.gvItemList.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-    Me.gvItemList.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvItemList.Appearance.Row.Options.UseFont = True
-    Me.gvItemList.Appearance.SelectedRow.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvItemList.Appearance.SelectedRow.Options.UseFont = True
-    Me.gvItemList.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvItemList.Appearance.TopNewRow.Options.UseFont = True
-    Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcPONum, Me.gcRequiredDate})
-    Me.gvItemList.GridControl = Me.grdItemList
-    Me.gvItemList.HorzScrollStep = 20
-    Me.gvItemList.Name = "gvItemList"
-    Me.gvItemList.OptionsFind.AlwaysVisible = True
-    Me.gvItemList.OptionsView.ShowAutoFilterRow = True
-    Me.gvItemList.OptionsView.ShowDetailButtons = False
-    Me.gvItemList.OptionsView.ShowGroupPanel = False
-    '
-    'gcID
-    '
-    Me.gcID.Caption = "ID"
-    Me.gcID.FieldName = "PurchaseOrderID"
-    Me.gcID.Name = "gcID"
-    Me.gcID.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
-    Me.gcID.Width = 82
-    '
-    'gcPONum
-    '
-    Me.gcPONum.ColumnEdit = Me.repoItemSelect
-    Me.gcPONum.FieldName = "PONum"
-    Me.gcPONum.Name = "gcPONum"
-    Me.gcPONum.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
-    Me.gcPONum.Visible = True
-    Me.gcPONum.VisibleIndex = 0
-    Me.gcPONum.Width = 191
-    '
-    'repoItemSelect
-    '
-    Me.repoItemSelect.AutoHeight = False
-    Me.repoItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "  Select  ", -1, True, True, True, EditorButtonImageOptions1)})
-    Me.repoItemSelect.Name = "repoItemSelect"
-    '
-    'gcRequiredDate
-    '
-    Me.gcRequiredDate.Caption = "Type"
-    Me.gcRequiredDate.FieldName = "RequiredDate"
-    Me.gcRequiredDate.Name = "gcRequiredDate"
-    Me.gcRequiredDate.Visible = True
-    Me.gcRequiredDate.VisibleIndex = 1
-    Me.gcRequiredDate.Width = 529
-    '
-    'frmPickerPurchaseOrder
-    '
-    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-    Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(762, 465)
-    Me.Controls.Add(Me.grdItemList)
-    Me.Name = "frmPickerPurchaseOrder"
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-    Me.Text = "Picker"
-    CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.ResumeLayout(False)
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Me.grdItemList = New DevExpress.XtraGrid.GridControl()
+        Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPONum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.gcRequiredDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'grdItemList
+        '
+        Me.grdItemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdItemList.Location = New System.Drawing.Point(0, 0)
+        Me.grdItemList.MainView = Me.gvItemList
+        Me.grdItemList.Name = "grdItemList"
+        Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.RepositoryItemDateEdit1})
+        Me.grdItemList.Size = New System.Drawing.Size(845, 465)
+        Me.grdItemList.TabIndex = 98
+        Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
+        '
+        'gvItemList
+        '
+        Me.gvItemList.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvItemList.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvItemList.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvItemList.Appearance.EvenRow.Options.UseFont = True
+        Me.gvItemList.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvItemList.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvItemList.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvItemList.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+        Me.gvItemList.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gvItemList.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvItemList.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvItemList.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvItemList.Appearance.OddRow.Options.UseFont = True
+        Me.gvItemList.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvItemList.Appearance.Row.Options.UseFont = True
+        Me.gvItemList.Appearance.SelectedRow.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvItemList.Appearance.SelectedRow.Options.UseFont = True
+        Me.gvItemList.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvItemList.Appearance.TopNewRow.Options.UseFont = True
+        Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcPONum, Me.gcRequiredDate, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.gvItemList.GridControl = Me.grdItemList
+        Me.gvItemList.HorzScrollStep = 20
+        Me.gvItemList.Name = "gvItemList"
+        Me.gvItemList.OptionsFind.AlwaysVisible = True
+        Me.gvItemList.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvItemList.OptionsView.EnableAppearanceOddRow = True
+        Me.gvItemList.OptionsView.ShowAutoFilterRow = True
+        Me.gvItemList.OptionsView.ShowDetailButtons = False
+        Me.gvItemList.OptionsView.ShowGroupPanel = False
+        '
+        'gcID
+        '
+        Me.gcID.Caption = "ID"
+        Me.gcID.FieldName = "PurchaseOrderID"
+        Me.gcID.Name = "gcID"
+        Me.gcID.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.gcID.Width = 82
+        '
+        'gcPONum
+        '
+        Me.gcPONum.Caption = "# O.C."
+        Me.gcPONum.ColumnEdit = Me.repoItemSelect
+        Me.gcPONum.FieldName = "PONum"
+        Me.gcPONum.Name = "gcPONum"
+        Me.gcPONum.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.gcPONum.Visible = True
+        Me.gcPONum.VisibleIndex = 0
+        Me.gcPONum.Width = 132
+        '
+        'repoItemSelect
+        '
+        Me.repoItemSelect.AutoHeight = False
+        Me.repoItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "  Select  ", -1, True, True, True, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoItemSelect.Name = "repoItemSelect"
+        '
+        'gcRequiredDate
+        '
+        Me.gcRequiredDate.Caption = "Fecha Requerida"
+        Me.gcRequiredDate.ColumnEdit = Me.RepositoryItemDateEdit1
+        Me.gcRequiredDate.FieldName = "RequiredDate"
+        Me.gcRequiredDate.Name = "gcRequiredDate"
+        Me.gcRequiredDate.OptionsColumn.ReadOnly = True
+        Me.gcRequiredDate.Visible = True
+        Me.gcRequiredDate.VisibleIndex = 3
+        Me.gcRequiredDate.Width = 108
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Ref. Mat."
+        Me.GridColumn1.FieldName = "RefMatType"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 86
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Estado"
+        Me.GridColumn2.FieldName = "PurchaseStateDes"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        Me.GridColumn2.Width = 107
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Categoría"
+        Me.GridColumn3.FieldName = "CategoryDesc"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 171
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Proveedor"
+        Me.GridColumn4.FieldName = "CompanyName"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 223
+        '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
+        '
+        'frmPickerPurchaseOrder
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(845, 465)
+        Me.Controls.Add(Me.grdItemList)
+        Me.Name = "frmPickerPurchaseOrder"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "Seleccionar Orden de Compra"
+        CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
-  End Sub
+    End Sub
 
-  Friend WithEvents grdItemList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents grdItemList As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvItemList As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcPONum As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcRequiredDate As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repoItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.Charts.Designer.v17.1</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.Charts.Designer.ChartDesigner">
+
+            <summary>
+                <para>The Chart Designer used to design a chart at runtime.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Charts.Designer.ChartDesigner.#ctor(DevExpress.Xpf.Charts.ChartControl)">
+            <summary>
+                <para>Creates a Chart Designer for the specified chart control.
+
+</para>
+            </summary>
+            <param name="chartControl">
+		A <see cref="T:DevExpress.Xpf.Charts.ChartControl"/> object that is a chart control for which a chart designer is created.
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.Charts.Designer.ChartDesigner.Close">
+            <summary>
+                <para>Closes the chart designer with the chart currently being edited.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="M:DevExpress.Charts.Designer.ChartDesigner.Show(System.Windows.Window,DevExpress.Xpf.Core.Theme)">
+            <summary>
+                <para>Invokes the <b>Chart Designer</b> dialog.
+</para>
+            </summary>
+            <param name="owner">
+		The <see cref="T:System.Windows.Window"/> object specifying the parent window for the Chart Designer dialog.
+
+            </param>
+            <param name="theme">
+		The theme to be applied to the designer.
+
+            </param>
+            <returns><b>true</b> if an end-user modifies the chart within the Chart Designer and saves changes by clicking <b>Save and Exit</b>; otherwise <b>false</b>.
+</returns>
+
+
+        </member>
+    </members>
+</doc>

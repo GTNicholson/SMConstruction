@@ -322,7 +322,7 @@ Public Class frmPurchaseOrderConsole
     Try
 
       ''mPOInfo = frmPickerPurchaseOrder.OpenPickerSinglo(mPicker)''Code original with error in the return value
-      mPOInfo = frmPickerPurchaseOrder.OpenPickerSinglePurchaseOrderInfo(mPicker)
+      '' mPOInfo = frmPickerPurchaseOrder.OpenPickerSinglePurchaseOrderInfo(mPicker)
 
       If mPOInfo IsNot Nothing Then
         ''frmPurchaseOrder.OpenFormAsMDIChild(Me, My.Application.RTISUserSession, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit, Nothing) ''Original Code

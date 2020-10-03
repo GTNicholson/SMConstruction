@@ -1,0 +1,73 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AF_Core
+</name>
+</assembly>
+<members>
+<member name="T:AF_Core.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:AF_Core.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:AF_Core.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:AF_Core.Numalet">
+ <summary>
+ Convierte números en su expresión numérica a su numeral cardinal
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.Decimales">
+ <summary>
+ Indica la cantidad de decimales que se pasarán a entero para la conversión
+ </summary>
+ <remarks>Esta propiedad cambia al cambiar MascaraDecimal por un valor que empieze con '0'</remarks>
+</member>
+<member name="P:AF_Core.Numalet.CultureInfo">
+ <summary>
+ Objeto CultureInfo utilizado para convertir las cadenas de entrada en números
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.SeparadorDecimalSalida">
+ <summary>
+ Indica la cadena a intercalar entre la parte entera y la decimal del número
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.MascaraSalidaDecimal">
+ <summary>
+ Indica el formato que se le dara a la parte decimal del número
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.LetraCapital">
+ <summary>
+ Indica si la primera letra del resultado debe estár en mayúscula
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.ConvertirDecimales">
+ <summary>
+ Indica si se deben convertir los decimales a su expresión nominal
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.ApocoparUnoParteEntera">
+ <summary>
+ Indica si de debe cambiar "uno" por "un" en las unidades.
+ </summary>
+</member>
+<member name="P:AF_Core.Numalet.ApocoparUnoParteDecimal">
+ <summary>
+ Determina si se debe apococopar el "uno" en la parte decimal
+ </summary>
+ <remarks>El valor de esta propiedad cambia al setear ConvertirDecimales</remarks>
+</member>
+</members>
+</doc>

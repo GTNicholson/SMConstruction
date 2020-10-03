@@ -20,20 +20,7 @@ Public Class frmPickerPurchaseOrder
     Return mRetVal
   End Function
 
-  ''AR: Adapted for a clsPurchaseOrderInfo returnig
-  Public Shared Function OpenPickerSinglePurchaseOrderInfo(ByVal vPickerPurchaseOrder As clsPickerPurchaseOrder) As clsPurchaseOrderInfo
-    Dim mfrm As New frmPickerPurchaseOrder
-    Dim mRetVal As clsPurchaseOrderInfo = Nothing
 
-    mfrm.pPickerPurchaseOrder = vPickerPurchaseOrder
-    mfrm.ShowDialog()
-
-    If mfrm.pPickerPurchaseOrder.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerPurchaseOrder.SelectedObjects.Count > 0 Then
-      mRetVal = mfrm.pPickerPurchaseOrder.SelectedObjects(0)
-    End If
-
-    Return mRetVal
-  End Function
 
   Private Sub frmPickerStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Dim mOK As Boolean = True

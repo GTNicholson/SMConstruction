@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.XtraReports.v17.1.Web.Azure</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.XtraReports.Web.Azure.ReportDesigner.AzureReportDesignerContainer">
+
+            <summary>
+                <para>Enables the Web Report Designer to store information about data connections in an Azure Table storage.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.ReportDesigner.AzureReportDesignerContainer.UseAzureEnvironment(System.String)">
+            <summary>
+                <para>Enables the Web Report Designer to store information about data connections in an Azure Table storage.
+</para>
+            </summary>
+            <param name="cloudStorageConnectionString">
+		A <see cref="T:System.String"/> value, specifying the connection to Azure Cloud Storage.
+
+            </param>
+
+
+        </member>
+        <member name="T:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureWebDocumentViewerContainer">
+
+            <summary>
+                <para>Enables the HTML5 Web Document Viewer and Web Report Designer to run on Microsoft Azure.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureWebDocumentViewerContainer.UseAzureEnvironment(System.String)">
+            <summary>
+                <para>Enables the HTML5 Web Document Viewer and Web Report Designer to run on Microsoft Azure.
+</para>
+            </summary>
+            <param name="cloudStorageConnectionString">
+		A <see cref="T:System.String"/> value, specifying the connection to the <a href="https://azure.microsoft.com/en-us/services/storage/">Azure Cloud Storage</a>.
+
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureWebDocumentViewerContainer.UseAzureEnvironment(System.String,System.String)">
+            <summary>
+                <para>Enables the HTML5 Web Document Viewer and Web Report Designer to run on Microsoft Azure.
+</para>
+            </summary>
+            <param name="cloudStorageConnectionString">
+		A <see cref="T:System.String"/> value, specifying the connection to the <a href="https://azure.microsoft.com/en-us/services/storage/">Azure Cloud Storage</a>.
+
+            </param>
+            <param name="serviceBusConnectionString">
+		A System.String value, specifying the connection to the <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions">Azure Service Bus</a>.
+
+            </param>
+
+
+        </member>
+        <member name="T:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureServiceTableProvider">
+
+            <summary>
+                <para>If implemented, provides an Azure table storage customization service.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureServiceTableProvider.GetDocumentTable">
+            <summary>
+                <para>If implemented, returns a <a href="https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-tables">cloud table</a> instance to store service information related to documents (newly created, as well as previously created ones).
+
+</para>
+            </summary>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Table.CloudTable"/> object.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureServiceTableProvider.GetReportTable">
+            <summary>
+                <para>If implemented, returns a <a href="https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-tables">cloud table</a> instance to store service information related to opened reports.
+
+</para>
+            </summary>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Table.CloudTable"/> object.
+</returns>
+
+
+        </member>
+        <member name="T:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureBlobStorageService">
+
+            <summary>
+                <para>If implemented, provides an Azure blob storage customization service.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureBlobStorageService.GetCloudBlobClient">
+            <summary>
+                <para>If implemented, returns a <a href="https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs">cloud blob container</a> instance used to create the required blob containers (if they have not yet been created).
+
+</para>
+            </summary>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient"/> object.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureBlobStorageService.GetCommonBlobContainer">
+            <summary>
+                <para>If implemented, returns a <a href="https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs">cloud blob container</a> instance where additional files should be saved (e.g., document images).
+</para>
+            </summary>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.CloudBlobContainer"/> object.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureBlobStorageService.GetDocumentBlobContainer">
+            <summary>
+                <para>If implemented, returns a <a href="https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs">cloud blob container</a> instance where generated report documents should be saved.
+</para>
+            </summary>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.CloudBlobContainer"/> object.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.IAzureBlobStorageService.GetReportBlobContainer">
+            <summary>
+                <para>If implemented, returns a <a href="https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs">cloud blob container</a> instance where report layouts should be saved.
+</para>
+            </summary>
+            <returns>A <see cref="T:Microsoft.WindowsAzure.Storage.Blob.CloudBlobContainer"/> object.
+</returns>
+
+
+        </member>
+        <member name="T:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureCacheCleanerSettings">
+
+            <summary>
+                <para>Provides settings to clear a cache for storing documents and reports on Microsoft Azure.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureCacheCleanerSettings.#ctor(System.TimeSpan,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+                <para>Initializes a new instance of the AzureCacheCleanerSettings class with the specified settings.
+</para>
+            </summary>
+            <param name="dueTime">
+		A <see cref="T:System.TimeSpan"/> structure, specifying the time interval after which to run the cache cleaner (starting from the moment when the Web Document Viewer was loaded).
+
+            </param>
+            <param name="period">
+		A <see cref="T:System.TimeSpan"/> structure, specifying the period of time between each cleaning of the cache.
+
+            </param>
+            <param name="reportTimeToLive">
+		A <see cref="T:System.TimeSpan"/> structure, specifying the lifetime of a report in the cache.
+
+            </param>
+            <param name="documentTimeToLive">
+		A <see cref="T:System.TimeSpan"/> structure, specifying the lifetime of a report document in the cache.
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureCacheCleanerSettings.CreateDefault">
+            <summary>
+                <para>Creates a new instance of the AzureCacheCleanerSettings class with the default settings.
+</para>
+            </summary>
+            <returns>A AzureCacheCleanerSettings object.
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureCacheCleanerSettings.DocumentTimeToLive">
+            <summary>
+                <para>Indicates the lifetime of a report document in the cache.
+
+</para>
+            </summary>
+            <value>A <see cref="T:System.TimeSpan"/> structure.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraReports.Web.Azure.WebDocumentViewer.AzureCacheCleanerSettings.ReportTimeToLive">
+            <summary>
+                <para>Indicates the lifetime of a report in the cache.
+
+</para>
+            </summary>
+            <value>A <see cref="T:System.TimeSpan"/> structure.
+</value>
+
+
+        </member>
+    </members>
+</doc>

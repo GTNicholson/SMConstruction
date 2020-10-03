@@ -215,8 +215,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       Return pUnitPrice
     End Get
     Set(ByVal value As Decimal)
-      If pUnitPrice <> Math.Round(value, 2, MidpointRounding.AwayFromZero) Then IsDirty = True
-      pUnitPrice = Math.Round(value, 2, MidpointRounding.AwayFromZero)
+      If pUnitPrice <> Math.Round(value, 4, MidpointRounding.AwayFromZero) Then IsDirty = True
+      pUnitPrice = Math.Round(value, 4, MidpointRounding.AwayFromZero)
     End Set
   End Property
 

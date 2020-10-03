@@ -6,6 +6,7 @@ Public Class BIPODeliveryItemInfo
   Private Enum eBIPurchaseOrdersLayoutItem
     PODItemList = 1
     PODItemSummary = 2
+    PODItemCategorySummary = 3
   End Enum
 
   Private Enum eBIReportDefs
@@ -98,6 +99,13 @@ Public Class BIPODeliveryItemInfo
     mRepLayout.LayoutName = "Resumen de Recepciones por Artículo"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayoutItem.PODItemCategorySummary
+    mRepLayout.InterfaceType = 0
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BIPODeliveryItemCategorySummary.xml"
+    mRepLayout.LayoutName = "Resumen de Recepciones por Categoría de Artículo"
+    vReportSource.BIGridLayouts.Add(mRepLayout)
   End Sub
 
   Private Shared Sub AddParams(ByVal vReportSource As dmBIReportSource)

@@ -93,6 +93,11 @@ Public Class dtoPODeliveryItemInfo : Inherits dtoBase
           .RefMatType = DBReadString(rDataReader, "RefMatType")
         End With
 
+        With .StockItem
+          .Category = DBReadByte(rDataReader, "StockItemCategory")
+          .ItemType = DBReadByte(rDataReader, "ItemType")
+
+        End With
 
         With .SalesOrderPhase
           .JobNo = DBReadString(rDataReader, "JobNo")
