@@ -130,7 +130,7 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">País</property>
-      <property name="FieldName">SalesAreaID</property>
+      <property name="FieldName">MainCountry</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
@@ -155,7 +155,7 @@
       </property>
       <property name="Caption">Términos de Compras</property>
       <property name="FieldName">PurchasingTermsType</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">138</property>

@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraBars.Docking2010
+﻿Imports System.Globalization
+Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
@@ -33,6 +34,7 @@ Public Class frmPODelivery
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItemInfo, gcCategory, mVIs)
 
+    clsDEControlLoading.FillDEComboVI(cboPaymentStatus, clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
 
   End Sub
 
@@ -123,6 +125,16 @@ Public Class frmPODelivery
           txtRequiredDate.Text = .RequiredDate
           txtSupplierCompanyName.Text = .CompanyName
 
+          Select Case .PurchaseOrder.DefaultCurrency
+            Case eCurrency.Cordobas
+              txtDefaultCurrency.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(.DefaultCurrency, eCurrency))
+              txtDefaultCurrency.Text &= " (C$)"
+              txtExchangeRate.Text = String.Format(New CultureInfo("es-NI"), "{0:c}", pFormController.PurchaseOrderInfo.ExchangeRateValue)
+            Case eCurrency.Dollar
+              txtDefaultCurrency.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(.DefaultCurrency, eCurrency))
+
+          End Select
+
 
         End With
 
@@ -130,15 +142,28 @@ Public Class frmPODelivery
 
           With pFormController.PODelivery
             txtGRNNumber.Text = .GRNumber
+            txtRefDocSupplier.Text = .RefSupplierDoc
             txtReceivedDate.Text = .DateCreated
-            txtReceivedValue.Text = pFormController.GetReceivedValue()
+            SetReceivedValueWithCurrencyFormat() ' pFormController.GetReceivedValue()
             gcQtyToProcess.OptionsColumn.ReadOnly = False
-            gcReceivedReplacementQty.OptionsColumn.ReadOnly = False
+
+            cboPaymentStatus.Properties.ReadOnly = False
+            clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
+
+            If .GRNumber <> "" Then
+              grpGRN.CustomHeaderButtons.Item(0).Properties.Enabled = False
+              txtRefDocSupplier.ReadOnly = False
+            Else
+              txtRefDocSupplier.ReadOnly = True
+            End If
           End With
 
         End If
         SetupReadOnly()
         SetUpUserPermissions()
+
+
+
       End If
 
 
@@ -150,6 +175,21 @@ Public Class frmPODelivery
     End Try
 
   End Sub
+
+  Public Function SetReceivedValueWithCurrencyFormat()
+
+    If pFormController.PurchaseOrderInfo.DefaultCurrency = eCurrency.Cordobas Then
+      txtReceivedValue.Text = String.Format(New CultureInfo("es-NI"), "{0:c}", pFormController.GetReceivedValue)
+
+
+    Else
+
+      txtReceivedValue.Text = String.Format(New CultureInfo("en-US"), "{0:c}", pFormController.GetReceivedValue)
+
+
+    End If
+
+  End Function
 
   Private Sub SetupReadOnly()
 
@@ -194,7 +234,6 @@ Public Class frmPODelivery
         '' pFormController.PODelivery = Nothing
       Else
         gcQtyToProcess.OptionsColumn.ReadOnly = True
-        gcReceivedReplacementQty.OptionsColumn.ReadOnly = True
       End If
 
     Catch ex As Exception
@@ -249,24 +288,15 @@ Public Class frmPODelivery
 
   Private Sub UpdateObject()
 
-    If pFormController.PurchaseOrder IsNot Nothing Then
-      With pFormController.PurchaseOrderInfo
-
-        If btnSelectPurchaseOrder.Text <> "" Then
-          .PONum = btnSelectPurchaseOrder.Text
-        End If
-
-
-      End With
-    End If
 
     If pFormController.PODelivery IsNot Nothing Then
       With pFormController.PODelivery
         .GRNumber = txtGRNNumber.Text
-        .PODeliveryValue = txtReceivedValue.Text
+        .PODeliveryValue = pFormController.GetReceivedValue
         .PurchaseOrder = pFormController.PurchaseOrderInfo.PurchaseOrder
         .PurchaseOrderID = pFormController.PurchaseOrderInfo.PurchaseOrder.PurchaseOrderID
-
+        .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
+        .RefSupplierDoc = txtRefDocSupplier.Text
       End With
     End If
   End Sub
@@ -335,7 +365,8 @@ Public Class frmPODelivery
         pFormController.RaisePODelivery()
 
         RefreshControls()
-
+        UpdateObject()
+        pFormController.SavePODelivery()
       Case "Edit"
 
       Case "Save"
@@ -408,4 +439,6 @@ Public Class frmPODelivery
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()
   End Sub
+
+
 End Class

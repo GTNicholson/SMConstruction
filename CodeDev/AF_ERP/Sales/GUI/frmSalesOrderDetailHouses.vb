@@ -20,6 +20,7 @@ Public Class frmSalesOrderDetailHouses
   Private Enum eOrderItemGroupButtonTags
     Add = 1
     Delete = 2
+    AddFromPicker = 3
   End Enum
 
   Private Enum eWorkOrderGroupButtonTags
@@ -139,7 +140,7 @@ Public Class frmSalesOrderDetailHouses
 
     grdSalesOrderPhases.DataSource = pFormController.SalesOrder.SalesOrderPhases
 
-    grdSalesItemsSalesItemsAssemblys.DataSource = pFormController.SalesItemEditors
+    grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first
@@ -213,6 +214,7 @@ Public Class frmSalesOrderDetailHouses
         txtShippingCost.Text = .ShippingCost
         txtVersion.Text = .Version
         btnePodio.EditValue = .PodioPath
+        dteDateRequiredSO.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
 
         If pFormController.SalesOrder.Customer IsNot Nothing Then
 
@@ -304,6 +306,7 @@ Public Class frmSalesOrderDetailHouses
 
           If .SalesOrderPhases IsNot Nothing And .SalesOrderPhases.Count > 0 Then ''Ensure an SOP
             With .SalesOrderPhases
+              .Item(0).JobNo = txtSalesOrderID.Text
               .Item(0).DateCommitted = dteDueTime.DateTime
               .Item(0).DateRequired = dteFinishDate.DateTime
             End With
@@ -314,7 +317,7 @@ Public Class frmSalesOrderDetailHouses
         .OrderNo = txtSalesOrderID.Text
         .ProjectName = txtProjectName.Text
         .DateEntered = dteDateEntered.DateTime
-
+        .FinishDate = dteDateRequiredSO.DateTime
 
         .VisibleNotes = txtVisibleNotes.Text
         .DelAddress1 = txtDelAddress1.Text
@@ -601,6 +604,7 @@ Public Class frmSalesOrderDetailHouses
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
           AddSalesOrderDocument()
+          ViewSalesOrderDocument()
           RefreshControls()
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
           DeleteSalesOrderDocument()
@@ -1209,7 +1213,15 @@ Public Class frmSalesOrderDetailHouses
   Private Sub gcSalesItemsEditor_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpSalesItemsEditor.CustomButtonClick
 
     Dim mSOI As New dmSalesOrderItem
+    Dim mSelectedItem As dmProductBase
+    Dim mSalesItem As dmSalesOrderItem
+    Dim mSIEditor As clsSalesItemEditor
 
+
+    Dim mPicker As clsPickerProductItem
+    Dim mProductBases As New colProductBases
+    Dim mProductBase As dmProductBase
+    Dim mSelectedProductBases As colProductBases
 
     Select Case e.Button.Properties.Tag
       Case eOrderItemGroupButtonTags.Add
@@ -1226,9 +1238,126 @@ Public Class frmSalesOrderDetailHouses
 
           pFormController.RefreshCurrentSalesItemEditors()
 
-          gvSalesItemsSalesItemsAssemblys.RefreshData()
+          gvSSalesItemsEditor.RefreshData()
         End If
+
+      Case eOrderItemGroupButtonTags.AddFromPicker
+        ''Dim mProducts As New colProductBases
+
+        ''Dim mPicker As clsPickerProductItem
+
+        ''Dim mSelectedSI As dmProductBase
+        ''Dim mSalesItemEditor As clsSalesItemEditor
+
+        ''pFormController.LoadProducts()
+
+        ''mPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, pFormController.RTISGlobal)
+
+
+        ''For Each mMR As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
+        ''  mSelectedSI = pFormController.Products.ItemFromKey(mMR.ProductID)
+        ''  If mSelectedSI IsNot Nothing Then
+        ''    If mPicker.SelectedObjects.Contains(mSelectedSI) = False Then
+        ''      mPicker.SelectedObjects.Add(mSelectedSI)
+        ''    End If
+        ''  End If
+        ''Next
+        ''frmProductPicker.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal)
+
+        ''If mPicker.SelectedObjects IsNot Nothing Then
+
+        ''  For Each mProductBase As dmProductBase In mPicker.SelectedObjects
+        ''    mSalesItemEditor = New clsSalesItemEditor
+        ''    mSalesItemEditor.SalesOrderID = pFormController.SalesOrder.SalesOrderID
+        ''    mSalesItemEditor.ProductID = mProductBase.ID
+        ''    mSalesItemEditor.HouseTypeID = mProductBase.ItemType
+        ''    mSalesItemEditor.Description = mProductBase.Description
+
+        ''    pFormController.SalesItemEditors.Add(mSalesItemEditor)
+
+
+        ''  Next
+        ''  grdSSalesItemsEditor.RefreshDataSource()
+
+
+
+        pFormController.LoadProducts()
+        For Each mItem As dmProductBase In pFormController.Products
+
+          mProductBases.Add(mItem)
+        Next
+
+        mPicker = New clsPickerProductItem(mProductBases, pFormController.DBConn, pFormController.RTISGlobal)
+
+        For Each mSalesItem In pFormController.SalesOrder.SalesOrderItems
+          If mSalesItem.SalesOrderItemID > 0 Then
+            mProductBase = mProductBases.ItemFromProductID(mSalesItem.ProductID)
+
+            If Not mPicker.SelectedObjects.Contains(mProductBase) Then
+              mPicker.SelectedObjects.Add(mProductBase)
+            End If
+          End If
+        Next
+
+        If frmProductPicker.PickProducts(mPicker, pFormController.RTISGlobal) Then
+          For Each mSelectedItem In mPicker.SelectedObjects
+            If mSelectedItem IsNot Nothing Then
+              mSalesItem = pFormController.SalesOrder.SalesOrderItems.ItemFromProductID(mSelectedItem.ID)
+              If mSalesItem Is Nothing Then
+                mSalesItem = pFormController.CreateSalesItem(pFormController.SalesOrder)
+                mSalesItem.ProductID = mSelectedItem.ID
+                mSalesItem.Description = mSelectedItem.Description
+                mSalesItem.HouseTypeID = mSelectedItem.ItemType
+
+                mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem)
+                pFormController.SalesItemEditors.Add(mSIEditor)
+              End If
+            End If
+          Next
+        End If
+        mSelectedProductBases = New colProductBases(mPicker.SelectedObjects)
+
+        For mindex As Integer = pFormController.SalesOrder.SalesOrderItems.Count - 1 To 0 Step -1
+          mSalesItem = pFormController.SalesOrder.SalesOrderItems(mindex)
+          If mSalesItem.ProductID > 0 Then
+            mProductBase = mSelectedProductBases.ItemFromProductID(mSalesItem.ProductID)
+
+            If Not mPicker.SelectedObjects.Contains(mProductBase) Then
+              pFormController.SalesOrder.SalesOrderItems.Remove(mSalesItem)
+            End If
+          End If
+        Next
+
+        CheckSave(False)
+
+
+        pFormController.RefreshCurrentSalesItemEditors()
+        gvSSalesItemsEditor.RefreshData()
+     ''   grdSSalesItemsEditor.DataSource = pFormController.SalesOrder.SalesOrderItems
+
+
+      Case eOrderItemGroupButtonTags.Delete
+
+        mSIEditor = gvSSalesItemsEditor.GetFocusedRow
+
+
+
+        If mSIEditor IsNot Nothing Then
+
+          mSOI = mSIEditor.SalesOrderItem
+
+          If mSOI IsNot Nothing Then
+            If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
+              pFormController.SalesOrder.SalesOrderItems.Remove(mSOI)
+              grdSSalesItemsEditor.DataSource = pFormController.SalesOrder.SalesOrderItems
+
+            End If
+          End If
+
+        End If
+
     End Select
+
 
 
 

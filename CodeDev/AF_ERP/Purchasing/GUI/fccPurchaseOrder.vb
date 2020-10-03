@@ -222,8 +222,8 @@ Public Class fccPurchaseOrder
   End Sub
 
   Public Function LoadObject() As Boolean
-    Dim mdsoGeneral As New dsog(DBConn)
 
+    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
     Dim mOK As Boolean
     Try
 
@@ -240,7 +240,7 @@ Public Class fccPurchaseOrder
       Else
         pPurchaseOrder.SubmissionDate = Today
         pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
-        pPurchaseOrder.ExchangeRateValue = mdsoPurchaseOrder.get()
+        pPurchaseOrder.ExchangeRateValue = GetExchangeRate(Today, eCurrency.Cordobas)
         GetNextPONo()
         SaveObject()
         mOK = True
@@ -361,11 +361,14 @@ Public Class fccPurchaseOrder
     Dim mFileName As String
     Dim mDirectory As String
     Dim mExportFilename As String
+    Dim mPaymentReportPath As String
     Try
       mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys)
       If System.IO.Directory.Exists(mDirectory) = False Then
         System.IO.Directory.CreateDirectory(mDirectory)
       End If
+
+
       mFileName = String.Format("PurchaseOrder_{0}_{1}.pdf", pPurchaseOrder.PONum, Today.ToString("yyyyMMdd_HHmm"))
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
@@ -379,20 +382,79 @@ Public Class fccPurchaseOrder
       mEmployees = pRTISGlobal.RefLists.RefIList(appRefLists.Employees)
       mBuyer = mEmployees.ItemFromKey(pPurchaseOrder.BuyerID)
 
-      ''If pPurchaseOrder.Category = ePurchaseCategories.Timber Then
-      ''  mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, True)
-      ''Else
+
       mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, vCurrency)
-      ''End If
 
       mRep.ExportToPdf(mExportFilename)
+      Dim mProjectName As String = ""
+      If pSalesOrderPhaseInfo IsNot Nothing Then
+        If pSalesOrderPhaseInfo.ProjectName <> "" Then
+          mProjectName = pSalesOrderPhaseInfo.ProjectName
+        Else
+          mProjectName = "Consumo Interno"
+        End If
+      Else
+        mProjectName = "Consumo Interno"
 
+      End If
+      mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName)
       pPurchaseOrder.FileName = mExportFilename
+
+      ImportPDFs(mExportFilename, mPaymentReportPath)
+
       SaveObject()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub ImportPDFs(ByVal vFilePath As String, ByVal vFilePathPayment As String)
+    Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
+    Dim mFilePath As String
+
+    mPDFAmalg.PDFFileName = vFilePath
+    mPDFAmalg.CreateNewDocument()
+
+    If IO.File.Exists(vFilePath) Then
+      mPDFAmalg.ImportPDFDocument(vFilePath)
+    End If
+
+    mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys, pPurchaseOrder.SubmissionDate.Year, clsGeneralA.GetFileSafeName(pPurchaseOrder.PurchaseOrderID.ToString("00000")), vFilePathPayment)
+
+    If IO.File.Exists(mFilePath) Then
+          mPDFAmalg.ImportPDFDocument(mFilePath)
+
+    End If
+
+
+    mPDFAmalg.SavePDFDocument()
+
+  End Sub
+
+  Public Function CreatePaymetReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String) As String
+
+    Dim mFileName As String
+    Dim mDirectory As String
+    Dim mExportFilename As String
+    Dim mRep As repCheckPaymentOrder
+
+    Try
+      mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys)
+      If System.IO.Directory.Exists(mDirectory) = False Then
+        System.IO.Directory.CreateDirectory(mDirectory)
+      End If
+      mFileName = String.Format("PaymentCheckOrder_{0}_{1}.pdf", pPurchaseOrder.PONum, Today.ToString("yyyyMMdd_HHmm"))
+      mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName)
+
+      mRep.ExportToPdf(mExportFilename)
+
+      Return mExportFilename
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Function
 
   Public ReadOnly Property PlaceHolders As Dictionary(Of String, String)
     Get
@@ -471,6 +533,22 @@ Public Class fccPurchaseOrder
     End If
   End Sub
 
+  Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(DBConn)
+    Dim mExchangeRate As Decimal = 0
+
+    mExchangeRate = mdsoGeneral.GetExchangeRate(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
+
+  Public Sub ReloadPOItems()
+    Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
+    Dim mOK As Boolean = True
 
 
+    PurchaseOrder.PurchaseOrderItems.Clear()
+
+    If mOK Then mOK = mdsoPurchaseOrder.ReloadPurchaseOrderItems(pPurchaseOrder.PurchaseOrderItems, pPurchaseOrder.PurchaseOrderID)
+  End Sub
 End Class

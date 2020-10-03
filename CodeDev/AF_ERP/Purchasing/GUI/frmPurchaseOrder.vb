@@ -228,11 +228,11 @@ Public Class frmPurchaseOrder
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
 
-    clsDEControlLoading.FillDEComboVI(cboPaymentStatus, clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
     clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
+    clsDEControlLoading.FillDEComboVI(cboPaymentMethod, clsEnumsConstants.EnumToVIs(GetType(ePaymentMethod)))
 
 
     dteDateOfOrder.Properties.NullDate = Date.MinValue
@@ -332,10 +332,11 @@ Public Class frmPurchaseOrder
         'dteDateEntered.EditValue = .DateEntered
         dteDueDate.EditValue = clsGeneralA.DateToDBValue(.RequiredDate)
 
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentMethod, .PaymentMethod)
+
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
-        clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
         '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
         txtExchangeValue.Text = .ExchangeRateValue
 
@@ -363,6 +364,9 @@ Public Class frmPurchaseOrder
             grpPOMaterialType.CustomHeaderButtons(0).Properties.Checked = True
             grpPOMaterialType.CustomHeaderButtons(1).Properties.Checked = False
             grpPOMaterialType.CustomHeaderButtons(2).Properties.Checked = False
+
+
+
           Case ePOMaterialRequirementType.Sencillo
             grpPOMaterialType.CustomHeaderButtons(0).Properties.Checked = False
             grpPOMaterialType.CustomHeaderButtons(1).Properties.Checked = True
@@ -373,6 +377,8 @@ Public Class frmPurchaseOrder
               txtProjectName.Text = pFormController.SalesOrderPhaseInfo.ProjectName
               txtCustomerName.Text = pFormController.SalesOrderPhaseInfo.CustomerName
               dteDateRequired.EditValue = pFormController.SalesOrderPhaseInfo.DateRequired
+
+
             End If
 
 
@@ -422,12 +428,11 @@ Public Class frmPurchaseOrder
         .MainAddress = UctAddress1.Address
       End With
 
-
+      .PaymentMethod = clsDEControlLoading.GetDEComboValue(cboPaymentMethod)
       .SubmissionDate = dteDateOfOrder.EditValue
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
-      .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
       .Carriage = txtCarriage.Text
       '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .SupplierRef = txtSupplierRef.Text
@@ -442,7 +447,19 @@ Public Class frmPurchaseOrder
       pFormController.PurchaseOrder.DefaultCurrency = rgDefaultCurrency.EditValue
       .DeliveryAddress = uctDeliveryAddress.Address
 
+      Select Case .MaterialRequirementTypeID
+        Case ePOMaterialRequirementType.Sencillo
 
+          If pFormController.SalesOrderPhaseInfo IsNot Nothing Then
+            .RefMatType = pFormController.SalesOrderPhaseInfo.SOPJobNo
+          End If
+
+        Case ePOMaterialRequirementType.Inventario
+          pFormController.PurchaseOrder.RefMatType = "Ninguno"
+
+        Case ePOMaterialRequirementType.Multiple
+          pFormController.PurchaseOrder.RefMatType = "Múltiple"
+      End Select
 
       If .DeliveryAddress.IsDirty Or .SupplierAddress.IsDirty Or .InvoiceAddress.IsDirty Then
         .IsDirty = True
@@ -987,32 +1004,71 @@ Public Class frmPurchaseOrder
     If rgDefaultCurrency.EditValue = eCurrency.Cordobas Then
       lblExchangeRate.Visible = True
       txtExchangeValue.Visible = True
+
+      If pFormController.PurchaseOrder.ExchangeRateValue = 0 Then
+        pFormController.PurchaseOrder.ExchangeRateValue = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
+        RefreshControls()
+      End If
+
+      gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = True
+
+      gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      gvPODeliveryInfos.Columns("ExchangeRateValue").SummaryItem.DisplayFormat = "{0:c3}"
+
+      gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("VatValue").SummaryItem.DisplayFormat = "{0:C$#,##0.000;;#}"
+
+
+
+      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      ''gvPODeliveryInfos.Columns("GrossAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
+
       gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.000;;#"
+
 
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      ''gvPODeliveryInfos.Columns("NetAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
-      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("TotalQuantityAllocatedReceived").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      ''gvPODeliveryInfos.Columns("TotalValueReceived").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
 
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.000;;#"
+      gvPODeliveryInfos.Columns("PODeliveryValue").SummaryItem.DisplayFormat = "{0:C$#,##0.000;;#}"
 
     Else
       lblExchangeRate.Visible = False
       txtExchangeValue.Visible = False
+      gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = False
+
+
+      gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("VatValue").DisplayFormat.FormatString = "$#,##0.000;;#"
+      gvPurchaseOrderItems.Columns("VatValue").SummaryItem.DisplayFormat = "{0:$#,##0.000;;#}"
+
+      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "$#,##0.000;;#"
+
       gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.000;;#"
 
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.00;;#"
+      gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.000;;#"
 
     End If
 
@@ -1027,6 +1083,11 @@ Public Class frmPurchaseOrder
     pFormController.ReloadPODeliveryInfos()
     grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
     grdPODeliveryInfos.RefreshDataSource()
+
+    pFormController.ReloadPOItems()
+
+    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+    grdPurchaseOrderItems.RefreshDataSource()
   End Sub
 
   Private Sub btnReloadPODeliveryInfos_Click(sender As Object, e As EventArgs)
@@ -1075,8 +1136,8 @@ Public Class frmPurchaseOrder
     Try
       gvSalesOrderPhases.CloseEditor()
       gvSalesOrderPhases.UpdateCurrentRow()
-
-
+      UpdateObject()
+      CheckSave(False)
 
       Select Case e.Button.Properties.Tag
 
@@ -1173,7 +1234,7 @@ Public Class frmPurchaseOrder
       Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
       Dim mSalesOrderPhase As dmSalesOrderPhase
       Dim mPOAllocation As dmPurchaseOrderAllocation
-      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateCreated is not null")
+      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateRequired is not null")
 
 
       mPicker = New clsPickerSalesOrderPhase(mSalesOrderPhaseInfos, pFormController.DBConn)
@@ -1297,5 +1358,32 @@ Public Class frmPurchaseOrder
       End If
 
     Next
+  End Sub
+
+  Private Sub repoPODelivery_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoPODelivery.ButtonClick
+    Dim mPODI As clsPODeliveryInfo
+
+    Try
+      mPODI = TryCast(gvPODeliveryInfos.GetFocusedRow, clsPODeliveryInfo)
+
+      If mPODI IsNot Nothing Then
+        frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, mPODI.PODeliveryID, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
+
+        pFormController.ReloadPODeliveryInfos()
+        grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+        grdPODeliveryInfos.RefreshDataSource()
+
+        pFormController.ReloadPOItems()
+
+        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+        grdPurchaseOrderItems.RefreshDataSource()
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+
   End Sub
 End Class

@@ -11,7 +11,9 @@
     pDecValue = vNewValue
   End Sub
 
-  Public Function CreateTransactionAdjust(ByVal vPrevValue As Decimal, ByVal vAdjustvalue As Decimal, ByVal vObjectType As Byte, ByVal vObjectID As Integer, ByVal vRef As Integer, ByVal vTranDate As Date, ByVal vTranType As Byte, ByVal vUserID As Integer, ByVal vNote As String, ByVal vRefObjectType As Byte, ByVal vRefObjectID As Long, ByVal vAdditionalRef As Int32) As dmStockItemTransactionLog
+  Public Function CreateTransactionAdjust(ByVal vPrevValue As Decimal, ByVal vAdjustvalue As Decimal, ByVal vObjectType As Byte, ByVal vObjectID As Integer, ByVal vRef As Integer, ByVal vTranDate As Date, ByVal vTranType As Byte, ByVal vUserID As Integer,
+                                          ByVal vNote As String, ByVal vRefObjectType As Byte, ByVal vRefObjectID As Long, ByVal vAdditionalRef As Int32, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As dmStockItemTransactionLog
+
     Dim mTransaction As New dmStockItemTransactionLog
     With mTransaction
       .TranValue = vAdjustvalue
@@ -29,12 +31,20 @@
       .PrevValue = vPrevValue
       .NewValue = vPrevValue + vAdjustvalue
 
+
+      Select Case vDefaultCurrency
+        Case eCurrency.Cordobas
+          .TransactionValuationDollar = (vUnitCost * vAdjustvalue) / vExchangeRate
+
+        Case eCurrency.Dollar
+          .TransactionValuationDollar = (vUnitCost * vAdjustvalue)
+      End Select
     End With
     pDecValue = pDecValue + vAdjustvalue
     Return mTransaction
   End Function
 
-  Public Function CreateTransactionSet(ByVal vPrevValue As Decimal, ByVal vSetValue As Decimal, ByVal vObjectType As Byte, ByVal vObjectID As Integer, ByVal vRef As Integer, ByVal vTranDate As Date, ByVal vTranType As Byte, ByVal vUserID As Integer, ByVal vNote As String, ByVal vRefObjectType As Byte, ByVal vRefObjectID As Long) As dmStockItemTransactionLog
+  Public Function CreateTransactionSet(ByVal vPrevValue As Decimal, ByVal vSetValue As Decimal, ByVal vObjectType As Byte, ByVal vObjectID As Integer, ByVal vRef As Integer, ByVal vTranDate As Date, ByVal vTranType As Byte, ByVal vUserID As Integer, ByVal vNote As String, ByVal vRefObjectType As Byte, ByVal vRefObjectID As Long, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As dmStockItemTransactionLog
     Dim mTransaction As New dmStockItemTransactionLog
     mTransaction.TranValue = vSetValue
     mTransaction.ObjectType = vObjectType
@@ -49,6 +59,16 @@
     mTransaction.Note = vNote
     mTransaction.PrevValue = vPrevValue
     mTransaction.NewValue = vSetValue
+
+    Select Case vDefaultCurrency
+      Case eCurrency.Cordobas
+        mTransaction.TransactionValuationDollar = (vUnitCost * vSetValue) / vExchangeRate
+
+      Case eCurrency.Dollar
+        mTransaction.TransactionValuationDollar = (vUnitCost * vSetValue)
+    End Select
+
+
     pDecValue = vSetValue
     Return mTransaction
   End Function

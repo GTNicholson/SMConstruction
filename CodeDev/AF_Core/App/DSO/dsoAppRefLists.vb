@@ -254,13 +254,10 @@ Public Class dsoAppRefLists
 
   Public Function LoadSupplier() As IList
     Dim mdto As New dtoFurnitureCategory(pDBConn)
-    Dim mRetVal As New colFurnitureCategorys
-
-    mdto.LoadFurnitureCategoryCollection(mRetVal)
 
     Dim mdtoSupplier As New dtoSupplier(pDBConn)
     Dim mRetValSupplier As New colSuppliers
-    mdtoSupplier.LoadSupplierCollection(mRetValSupplier)
+    mdtoSupplier.LoadSupplierCollectionByWhere(mRetValSupplier, "CompanyName<>''")
 
     Return mRetValSupplier
   End Function
@@ -284,6 +281,26 @@ Public Class dsoAppRefLists
   End Function
 
 
+  Public Function LoadAllListsConnected(ByRef rRefLists As appRefLists) As Boolean
+    Dim mAllOK As Boolean = True
+    Dim mItem As clsRefListItem
+
+    Try
+
+      If pDBConn.Connect Then
+        For Each mItem In rRefLists
+          mAllOK = LoadAList(rRefLists, mItem.RefListType)
+        Next
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return rRefLists.AllListsLoaded
+  End Function
 End Class
 
 

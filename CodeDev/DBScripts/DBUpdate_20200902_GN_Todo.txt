@@ -1,3 +1,0 @@
-alter table stockitem add CostQty Decimal(9,2)
-
-GO

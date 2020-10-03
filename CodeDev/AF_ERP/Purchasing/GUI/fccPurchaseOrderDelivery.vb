@@ -140,6 +140,7 @@ Public Class fccPurchaseOrderDelivery
           pPODelivery = New dmPODelivery
 
           pPODelivery.PurchaseOrderID = pPurchaseOrderID
+          pPODelivery.DateCreated = Now
           mDSO.LoadPurchaseOrderInfo(pPurchaseOrderInfo, pPODelivery.PurchaseOrderID)
           '//LoadPurchaseOrderItemAllocationProcessorss
           mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderID)
@@ -169,15 +170,19 @@ Public Class fccPurchaseOrderDelivery
 
 
   Public Sub RefreshPOItemAllocationProcessorPODelItems()
-    '// hook up the podelivery items into the processors so that we can show and record "Qty This GRN"
-    For Each mPODelItem As dmPODeliveryItem In pPODelivery.PODeliveryItems
-      For Each mPOIP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
-        If mPODelItem.POItemAllocationID = mPOIP.PurchaseOrderItemAllocationID Then
-          mPOIP.PODeliveryItem = mPODelItem
-          Exit For
-        End If
+
+    If PODelivery IsNot Nothing Then
+
+      For Each mPODelItem As dmPODeliveryItem In pPODelivery.PODeliveryItems
+        For Each mPOIP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
+          If mPODelItem.POItemAllocationID = mPOIP.PurchaseOrderItemAllocationID Then
+            mPOIP.PODeliveryItem = mPODelItem
+            Exit For
+          End If
+        Next
       Next
-    Next
+    End If
+
   End Sub
 
   Public Function GetPurchaseOrderInfos() As colPurchaseOrderInfos
@@ -197,7 +202,7 @@ Public Class fccPurchaseOrderDelivery
         pPOItemProcessors.Clear()
 
         mdso.LoadPurchaseOrderItemAllocationProcessorss(pPOItemProcessors, pPurchaseOrderInfo.PurchaseOrderID)
-
+        RefreshPOItemAllocationProcessorPODelItems()
         '// Load any deliveryitems into matechde purchaseorderitemprocessors
 
       End If
@@ -259,7 +264,7 @@ Public Class fccPurchaseOrderDelivery
           ''  mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, True)
 
           ''Else
-          mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False)
+          mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
           ''End If
           mPOP.ToProcessQty = 0
         End If
@@ -290,43 +295,6 @@ Public Class fccPurchaseOrderDelivery
 
   End Sub
 
-  Public Sub ProcessReplacementQtys()
-    Try
-      Dim mdsoTran As dsoStockTransactions
-      Dim mDeliveryItem As dmPODeliveryItem
-
-      Dim mdsoStock As dsoStock
-      Dim mSIL As dmStockItemLocation
-
-      mdsoTran = New dsoStockTransactions(pDBConn)
-
-      mdsoStock = New dsoStock(pDBConn)
-
-      For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
-        If mPOP.ToProcessQty <> 0 Then
-          If mPOP.StockItem.StockItemID <> 0 Then
-            mSIL = mdsoStock.GetOrCreateStockItemLocation(mPOP.StockItem.StockItemID, 1)
-          Else
-            mSIL = Nothing
-          End If
-          If mPOP.PODeliveryItem Is Nothing Then
-            mDeliveryItem = New dmPODeliveryItem
-            mDeliveryItem.PODeliveryID = pPODelivery.PODeliveryID
-            mDeliveryItem.POItemAllocationID = mPOP.PurchaseOrderItemAllocationID
-            pPODelivery.PODeliveryItems.Add(mDeliveryItem)
-            mPOP.PODeliveryItem = mDeliveryItem
-
-          End If
-          mdsoTran.UpdateDeliveryStockItemLocationQty(mSIL.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False)
-          mPOP.ToProcessQty = 0
-        End If
-
-      Next
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-  End Sub
 
   Public Sub RaisePODelivery()
     Dim mdso As dsoPurchasing

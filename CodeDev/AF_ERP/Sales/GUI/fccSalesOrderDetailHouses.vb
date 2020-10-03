@@ -17,6 +17,7 @@ Public Class fccSalesOrderDetailHouses
   Private pCustomerPurchaseOrders As colCustomerPurchaseOrders
   Private pCurrentSalesItemAssembly As dmSalesItemAssembly
   Private pSalesItemEditors As colSalesItemEditors
+  Private pProducts As colProductBases
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
@@ -27,6 +28,7 @@ Public Class fccSalesOrderDetailHouses
     pCustomerPurchaseOrders = New colCustomerPurchaseOrders
     pCurrentSalesItemAssembly = New dmSalesItemAssembly
     pSalesItemEditors = New colSalesItemEditors
+    pProducts = New colProductBases
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -68,7 +70,11 @@ Public Class fccSalesOrderDetailHouses
     End Get
   End Property
 
-
+  Public ReadOnly Property Products As colProductBases
+    Get
+      Return pProducts
+    End Get
+  End Property
 
   Public Sub LoadObjects()
     Dim mdso As dsoSales
@@ -410,5 +416,26 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
+  Public Sub LoadProducts()
+    Dim mdso As New dsoSales(DBConn)
+    pProducts.Clear()
+    mdso.LoadStandardProducts(pProducts)
 
+  End Sub
+
+
+  Public Function CreateSalesItem(ByRef rSalsesOrder As dmSalesOrder) As dmSalesOrderItem
+    Dim mRetVal As New dmSalesOrderItem
+
+    With mRetVal
+      .SalesOrderID = rSalsesOrder.SalesOrderID
+      If CurrentSalesItemAssembly IsNot Nothing Then
+        .SalesItemAssemblyID = CurrentSalesItemAssembly.SalesItemAssemblyID
+      End If
+
+    End With
+
+    rSalsesOrder.SalesOrderItems.Add(mRetVal)
+    Return mRetVal
+  End Function
 End Class

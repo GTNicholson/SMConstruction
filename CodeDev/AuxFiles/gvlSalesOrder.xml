@@ -132,7 +132,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">286</property>
+      <property name="Width">422</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcOrderStatusEnum</property>
@@ -153,7 +153,7 @@
       </property>
       <property name="Caption">Tipo de Venta</property>
       <property name="FieldName">OrderTypeID</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">70</property>
@@ -201,7 +201,7 @@
       </property>
       <property name="Caption">Referencia de Cuenta</property>
       <property name="FieldName">AccountRef</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="Width">107</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">

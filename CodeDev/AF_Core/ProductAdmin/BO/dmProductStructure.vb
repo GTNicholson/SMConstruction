@@ -5,7 +5,6 @@ Imports RTIS.ERPCore
 Public Class dmProductStructure : Inherits dmProductBase
 
   Private pProductStructureID As Int32
-  Private pDescription As String
   Private pProductStructureTypeID As Int32
   Private pNotes As String
 
@@ -66,23 +65,13 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Public Property ProductStructureID() As Int32
     Get
-      Return pProductStructureID
+      Return ID
     End Get
     Set(ByVal value As Int32)
-      If pProductStructureID <> value Then IsDirty = True
-      pProductStructureID = value
+      ID = value
     End Set
   End Property
 
-  Public Property Description() As String
-    Get
-      Return pDescription
-    End Get
-    Set(ByVal value As String)
-      If pDescription <> value Then IsDirty = True
-      pDescription = value
-    End Set
-  End Property
 
   Public Property ProductStructureTypeID() As Int32
     Get
@@ -113,10 +102,10 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Public Overrides Property ItemType As Integer
     Get
-      Throw New NotImplementedException()
+      Return eProductType.StructureAF
     End Get
     Set(value As Integer)
-      Throw New NotImplementedException()
+
     End Set
   End Property
 End Class

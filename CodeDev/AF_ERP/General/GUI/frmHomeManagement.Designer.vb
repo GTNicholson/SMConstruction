@@ -22,89 +22,89 @@ Partial Class frmHomeManagement
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-    Dim Series1 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesLabel1 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-    Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim Series2 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesLabel2 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-    Dim StackedBarSeriesView2 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim Series3 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesView3 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim Series4 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesView4 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim StackedBarSeriesLabel3 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-    Dim StackedBarSeriesView5 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-    Dim Series5 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesLabel4 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-    Dim StackedBarSeriesView6 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim Series6 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesLabel5 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-    Dim StackedBarSeriesView7 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim Series7 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesView8 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim Series8 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
-    Dim StackedBarSeriesView9 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim StackedBarSeriesLabel6 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-    Dim StackedBarSeriesView10 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-    Dim ChartTitle1 As DevExpress.XtraCharts.ChartTitle = New DevExpress.XtraCharts.ChartTitle()
-    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-    Me.chtInvoice = New DevExpress.XtraCharts.ChartControl()
-    Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-    Me.grdSalesTracking = New DevExpress.XtraGrid.GridControl()
-    Me.gvSalesTracking = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repoDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-    Me.chtCompanyDays = New DevExpress.XtraCharts.ChartControl()
-    Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-    Me.grdWorkOrderInfo = New DevExpress.XtraGrid.GridControl()
-    Me.gvWorkOrderInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcWorkOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSalesOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcProjectName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repositoryDateFinished = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.gcIngenieria = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcMetal = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcDespacho = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.btnRefreshData = New DevExpress.XtraEditors.SimpleButton()
-    Me.lblUserName = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Dim XyDiagram3 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim Series9 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesLabel7 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView11 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Series10 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesLabel8 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView12 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Series11 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesView13 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Series12 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesView14 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim StackedBarSeriesLabel9 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView15 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim XyDiagram4 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim Series13 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesLabel10 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView16 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Series14 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesLabel11 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView17 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Series15 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesView18 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim Series16 As DevExpress.XtraCharts.Series = New DevExpress.XtraCharts.Series()
+        Dim StackedBarSeriesView19 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim StackedBarSeriesLabel12 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView20 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim ChartTitle2 As DevExpress.XtraCharts.ChartTitle = New DevExpress.XtraCharts.ChartTitle()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.chtInvoice = New DevExpress.XtraCharts.ChartControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.grdSalesTracking = New DevExpress.XtraGrid.GridControl()
+        Me.gvSalesTracking = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.chtCompanyDays = New DevExpress.XtraCharts.ChartControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.grdWorkOrderInfo = New DevExpress.XtraGrid.GridControl()
+        Me.gvWorkOrderInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcWorkOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSalesOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcProjectName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repositoryDateFinished = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.gcIngenieria = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcMetal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcDespacho = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.btnRefreshData = New DevExpress.XtraEditors.SimpleButton()
+        Me.lblUserName = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.chtInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.grdSalesTracking, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,19 +114,19 @@ Partial Class frmHomeManagement
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.chtCompanyDays, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Series8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Series16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.grdWorkOrderInfo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,47 +170,47 @@ Partial Class frmHomeManagement
         '
         Me.chtInvoice.AppearanceNameSerializable = "Light"
         Me.chtInvoice.DataBindings = Nothing
-        XyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month
-        XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
-        Me.chtInvoice.Diagram = XyDiagram1
+        XyDiagram3.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month
+        XyDiagram3.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram3.AxisY.VisibleInPanesSerializable = "-1"
+        Me.chtInvoice.Diagram = XyDiagram3
         Me.chtInvoice.Dock = System.Windows.Forms.DockStyle.Fill
         Me.chtInvoice.Legend.Name = "Default Legend"
         Me.chtInvoice.Location = New System.Drawing.Point(2, 2)
         Me.chtInvoice.Name = "chtInvoice"
         Me.chtInvoice.PaletteName = "Pastel Kit"
-        Series1.ArgumentDataMember = "InvoiceDateMC"
-        Series1.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series1.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 1)})
-        StackedBarSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series1.Label = StackedBarSeriesLabel1
-        Series1.Name = "Factura"
-        Series1.SummaryFunction = "SUM([NetValue])"
-        Series1.View = StackedBarSeriesView1
-        Series2.ArgumentDataMember = "InvoiceDateMC"
-        Series2.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series2.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 2)})
-        StackedBarSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series2.Label = StackedBarSeriesLabel2
-        Series2.Name = "Empacado"
-        Series2.ValueDataMembersSerializable = "NetValue"
-        Series2.View = StackedBarSeriesView2
-        Series3.ArgumentDataMember = "InvoiceDateMC"
-        Series3.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series3.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 3)})
-        Series3.Name = "Ingenieria"
-        Series3.ValueDataMembersSerializable = "NetValue"
-        Series3.View = StackedBarSeriesView3
-        Series4.ArgumentDataMember = "InvoiceDateMC"
-        Series4.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series4.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 4)})
-        Series4.Name = "Faltante"
-        Series4.ValueDataMembersSerializable = "NetValue"
-        Series4.View = StackedBarSeriesView4
-        Me.chtInvoice.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series1, Series2, Series3, Series4}
-        StackedBarSeriesLabel3.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Me.chtInvoice.SeriesTemplate.Label = StackedBarSeriesLabel3
-        Me.chtInvoice.SeriesTemplate.View = StackedBarSeriesView5
+        Series9.ArgumentDataMember = "InvoiceDateMC"
+        Series9.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series9.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 1)})
+        StackedBarSeriesLabel7.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series9.Label = StackedBarSeriesLabel7
+        Series9.Name = "Factura"
+        Series9.SummaryFunction = "SUM([NetValue])"
+        Series9.View = StackedBarSeriesView11
+        Series10.ArgumentDataMember = "InvoiceDateMC"
+        Series10.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series10.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 2)})
+        StackedBarSeriesLabel8.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series10.Label = StackedBarSeriesLabel8
+        Series10.Name = "Empacado"
+        Series10.ValueDataMembersSerializable = "NetValue"
+        Series10.View = StackedBarSeriesView12
+        Series11.ArgumentDataMember = "InvoiceDateMC"
+        Series11.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series11.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 3)})
+        Series11.Name = "Ingenieria"
+        Series11.ValueDataMembersSerializable = "NetValue"
+        Series11.View = StackedBarSeriesView13
+        Series12.ArgumentDataMember = "InvoiceDateMC"
+        Series12.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series12.DataFilters.ClearAndAddRange(New DevExpress.XtraCharts.DataFilter() {New DevExpress.XtraCharts.DataFilter("InvoicePredictedType", "System.Int32", DevExpress.XtraCharts.DataFilterCondition.Equal, 4)})
+        Series12.Name = "Faltante"
+        Series12.ValueDataMembersSerializable = "NetValue"
+        Series12.View = StackedBarSeriesView14
+        Me.chtInvoice.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series9, Series10, Series11, Series12}
+        StackedBarSeriesLabel9.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Me.chtInvoice.SeriesTemplate.Label = StackedBarSeriesLabel9
+        Me.chtInvoice.SeriesTemplate.View = StackedBarSeriesView15
         Me.chtInvoice.Size = New System.Drawing.Size(414, 291)
         Me.chtInvoice.TabIndex = 1
         '
@@ -385,26 +385,26 @@ Partial Class frmHomeManagement
         Me.chtCompanyDays.BackColor = System.Drawing.Color.Transparent
         Me.chtCompanyDays.BorderOptions.Color = System.Drawing.Color.White
         Me.chtCompanyDays.DataBindings = Nothing
-        XyDiagram2.AxisX.Color = System.Drawing.Color.Black
-        XyDiagram2.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month
-        XyDiagram2.AxisX.GridLines.Color = System.Drawing.Color.Black
-        XyDiagram2.AxisX.GridLines.MinorColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        XyDiagram2.AxisX.InterlacedColor = System.Drawing.Color.White
-        XyDiagram2.AxisX.Tickmarks.CrossAxis = True
-        XyDiagram2.AxisX.Tickmarks.Length = 3
-        XyDiagram2.AxisX.Title.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.[True]
-        XyDiagram2.AxisX.Title.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        XyDiagram2.AxisX.Title.Text = "Mes"
-        XyDiagram2.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
-        XyDiagram2.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.[True]
-        XyDiagram2.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram2.AxisY.VisibleInPanesSerializable = "-1"
-        XyDiagram2.Margins.Bottom = 2
-        XyDiagram2.Margins.Left = 2
-        XyDiagram2.Margins.Right = 2
-        XyDiagram2.Margins.Top = 2
-        XyDiagram2.PaneDistance = 8
-        Me.chtCompanyDays.Diagram = XyDiagram2
+        XyDiagram4.AxisX.Color = System.Drawing.Color.Black
+        XyDiagram4.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month
+        XyDiagram4.AxisX.GridLines.Color = System.Drawing.Color.Black
+        XyDiagram4.AxisX.GridLines.MinorColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        XyDiagram4.AxisX.InterlacedColor = System.Drawing.Color.White
+        XyDiagram4.AxisX.Tickmarks.CrossAxis = True
+        XyDiagram4.AxisX.Tickmarks.Length = 3
+        XyDiagram4.AxisX.Title.EnableAntialiasing = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram4.AxisX.Title.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        XyDiagram4.AxisX.Title.Text = "Mes"
+        XyDiagram4.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram4.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram4.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram4.AxisY.VisibleInPanesSerializable = "-1"
+        XyDiagram4.Margins.Bottom = 2
+        XyDiagram4.Margins.Left = 2
+        XyDiagram4.Margins.Right = 2
+        XyDiagram4.Margins.Top = 2
+        XyDiagram4.PaneDistance = 8
+        Me.chtCompanyDays.Diagram = XyDiagram4
         Me.chtCompanyDays.Dock = System.Windows.Forms.DockStyle.Fill
         Me.chtCompanyDays.Legend.BackColor = System.Drawing.Color.White
         Me.chtCompanyDays.Legend.Border.Color = System.Drawing.Color.Silver
@@ -431,51 +431,51 @@ Partial Class frmHomeManagement
         Me.chtCompanyDays.Padding.Right = 2
         Me.chtCompanyDays.Padding.Top = 2
         Me.chtCompanyDays.PaletteName = "Nature Colors"
-        Series5.ArgumentDataMember = "CompanyDayDateMC"
-        Series5.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        StackedBarSeriesLabel4.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series5.Label = StackedBarSeriesLabel4
-        Series5.Name = "Duración"
-        Series5.SummaryFunction = "SUM([LabourCostStd])"
-        StackedBarSeriesView6.Border.Color = System.Drawing.Color.Transparent
-        StackedBarSeriesView6.Color = System.Drawing.Color.RoyalBlue
-        StackedBarSeriesView6.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
-        Series5.View = StackedBarSeriesView6
-        Series6.ArgumentDataMember = "CompanyDayDateMC"
-        Series6.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series6.CheckedInLegend = False
-        StackedBarSeriesLabel5.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Series6.Label = StackedBarSeriesLabel5
-        Series6.Name = "Tiempo Extra"
-        Series6.SummaryFunction = "SUM([LabourCostOT])"
-        StackedBarSeriesView7.Border.Color = System.Drawing.Color.Transparent
-        StackedBarSeriesView7.Color = System.Drawing.Color.DodgerBlue
-        StackedBarSeriesView7.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
-        Series6.View = StackedBarSeriesView7
-        Series7.ArgumentDataMember = "CompanyDayDateMC"
-        Series7.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series7.Name = "Insumos"
-        Series7.SummaryFunction = "SUM([MatOtherCost])"
-        StackedBarSeriesView8.Border.Color = System.Drawing.Color.Transparent
-        StackedBarSeriesView8.Color = System.Drawing.Color.LimeGreen
-        StackedBarSeriesView8.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
-        Series7.View = StackedBarSeriesView8
-        Series8.ArgumentDataMember = "CompanyDayDateMC"
-        Series8.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        Series8.Name = "Madera"
-        Series8.SummaryFunction = "SUM([WoodMatReqCost])"
-        StackedBarSeriesView9.Border.Color = System.Drawing.Color.Transparent
-        StackedBarSeriesView9.Color = System.Drawing.Color.DarkGreen
-        StackedBarSeriesView9.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
-        Series8.View = StackedBarSeriesView9
-        Me.chtCompanyDays.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series5, Series6, Series7, Series8}
-        StackedBarSeriesLabel6.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Me.chtCompanyDays.SeriesTemplate.Label = StackedBarSeriesLabel6
-        Me.chtCompanyDays.SeriesTemplate.View = StackedBarSeriesView10
+        Series13.ArgumentDataMember = "CompanyDayDateMC"
+        Series13.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        StackedBarSeriesLabel10.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series13.Label = StackedBarSeriesLabel10
+        Series13.Name = "Duración"
+        Series13.SummaryFunction = "SUM([LabourCostStd])"
+        StackedBarSeriesView16.Border.Color = System.Drawing.Color.Transparent
+        StackedBarSeriesView16.Color = System.Drawing.Color.RoyalBlue
+        StackedBarSeriesView16.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
+        Series13.View = StackedBarSeriesView16
+        Series14.ArgumentDataMember = "CompanyDayDateMC"
+        Series14.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series14.CheckedInLegend = False
+        StackedBarSeriesLabel11.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Series14.Label = StackedBarSeriesLabel11
+        Series14.Name = "Tiempo Extra"
+        Series14.SummaryFunction = "SUM([LabourCostOT])"
+        StackedBarSeriesView17.Border.Color = System.Drawing.Color.Transparent
+        StackedBarSeriesView17.Color = System.Drawing.Color.DodgerBlue
+        StackedBarSeriesView17.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
+        Series14.View = StackedBarSeriesView17
+        Series15.ArgumentDataMember = "CompanyDayDateMC"
+        Series15.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series15.Name = "Insumos"
+        Series15.SummaryFunction = "SUM([MatOtherCost])"
+        StackedBarSeriesView18.Border.Color = System.Drawing.Color.Transparent
+        StackedBarSeriesView18.Color = System.Drawing.Color.LimeGreen
+        StackedBarSeriesView18.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
+        Series15.View = StackedBarSeriesView18
+        Series16.ArgumentDataMember = "CompanyDayDateMC"
+        Series16.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Series16.Name = "Madera"
+        Series16.SummaryFunction = "SUM([WoodMatReqCost])"
+        StackedBarSeriesView19.Border.Color = System.Drawing.Color.Transparent
+        StackedBarSeriesView19.Color = System.Drawing.Color.DarkGreen
+        StackedBarSeriesView19.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
+        Series16.View = StackedBarSeriesView19
+        Me.chtCompanyDays.SeriesSerializable = New DevExpress.XtraCharts.Series() {Series13, Series14, Series15, Series16}
+        StackedBarSeriesLabel12.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        Me.chtCompanyDays.SeriesTemplate.Label = StackedBarSeriesLabel12
+        Me.chtCompanyDays.SeriesTemplate.View = StackedBarSeriesView20
         Me.chtCompanyDays.Size = New System.Drawing.Size(414, 291)
         Me.chtCompanyDays.TabIndex = 0
-        ChartTitle1.Text = "Costos de la Fábrica"
-        Me.chtCompanyDays.Titles.AddRange(New DevExpress.XtraCharts.ChartTitle() {ChartTitle1})
+        ChartTitle2.Text = "Costos de la Fábrica"
+        Me.chtCompanyDays.Titles.AddRange(New DevExpress.XtraCharts.ChartTitle() {ChartTitle2})
         '
         'PanelControl2
         '
@@ -754,19 +754,19 @@ Partial Class frmHomeManagement
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
-        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chtInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
@@ -776,19 +776,19 @@ Partial Class frmHomeManagement
         CType(Me.repoDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Series8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Series16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chtCompanyDays, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)

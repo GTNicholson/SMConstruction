@@ -1,0 +1,10 @@
+use SMConstruction
+go
+
+ALTER TABLE Customer
+add RazonSocial varchar(100),
+	BancoIntermediario varchar(100),
+	Numero_SWIFT varchar(15),
+	Numero_ABA varchar (15)
+
+go

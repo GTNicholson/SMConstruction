@@ -152,7 +152,7 @@ Public Class fccPickMaterials
           Else
             mSIL = Nothing
           End If
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Dollar, mMRP.StockItem.StdCost, 1)
           mMRP.ToProcessQty = 0
         End If
 

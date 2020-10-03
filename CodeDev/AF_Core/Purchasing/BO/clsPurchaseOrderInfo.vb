@@ -1,4 +1,6 @@
-﻿Public Class clsPurchaseOrderInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsPurchaseOrderInfo
   Private pPurchaseOrder As dmPurchaseOrder
 
   Private pPOItemInfos As colPOItemInfos
@@ -6,7 +8,7 @@
   Private pStockItem As dmStockItem
   Private pBuyerName As String
   Private pSupplierContactName As String
-
+  Private pTotalNetValueInfo As Decimal
   Public Sub New()
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
@@ -39,11 +41,25 @@
   End Property
 
 
+
   Public ReadOnly Property PurchaseOrderItem As dmPurchaseOrderItem
     Get
       Return pPOItem
     End Get
   End Property
+
+  Public ReadOnly Property PaymentMethod As Int32
+    Get
+      Return pPurchaseOrder.PaymentMethod
+    End Get
+  End Property
+
+  Public ReadOnly Property PaymentMethodDes As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePaymentMethod), CType(pPurchaseOrder.PaymentMethod, ePaymentMethod))
+    End Get
+  End Property
+
   Public ReadOnly Property PurchaseOrderItemID As Int32
     Get
       Return pPOItem.PurchaseOrderItemID
@@ -69,23 +85,89 @@
     End Set
   End Property
 
-  Public Property PurchaseOrderID() As Int32
+  Public ReadOnly Property PurchaseOrderID() As Int32
     Get
       Return pPurchaseOrder.PurchaseOrderID
     End Get
-    Set(value As Int32)
-      pPurchaseOrder.PurchaseOrderID = value
-    End Set
 
   End Property
 
-  Public Property PONum() As String
+
+  Public ReadOnly Property ExchangeRateValue() As Decimal
+    Get
+      Return pPurchaseOrder.ExchangeRateValue
+    End Get
+
+  End Property
+
+  Public ReadOnly Property MaterialRequirementTypeID() As Int32
+    Get
+      Return pPurchaseOrder.MaterialRequirementTypeID
+    End Get
+
+  End Property
+
+  Public ReadOnly Property DefaultCurrency() As Int32
+    Get
+      Return pPurchaseOrder.DefaultCurrency
+    End Get
+
+  End Property
+  Public ReadOnly Property CategoryDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property PurchaseStateDes As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseOrderDueDateStatus), CType(pPurchaseOrder.Status, ePurchaseOrderDueDateStatus))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalReceivedAmountUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = pTotalNetValueInfo
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = pTotalNetValueInfo / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property DefaultCurrencyDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(pPurchaseOrder.DefaultCurrency, eCurrency))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property RefMatType() As String
+    Get
+      Return pPurchaseOrder.RefMatType
+    End Get
+
+
+  End Property
+  Public ReadOnly Property PONum() As String
     Get
       Return pPurchaseOrder.PONum
     End Get
-    Set(value As String)
-      pPurchaseOrder.PONum = value
-    End Set
+
   End Property
 
   Public ReadOnly Property SupplierContactTel() As String
@@ -102,15 +184,18 @@
 
   End Property
 
-  Public Property SubmissionDate() As DateTime
+  Public ReadOnly Property SubmissionDate() As DateTime
     Get
       Return pPurchaseOrder.SubmissionDate
     End Get
-    Set(value As DateTime)
-      pPurchaseOrder.SubmissionDate = value
-    End Set
-  End Property
 
+  End Property
+  Public ReadOnly Property SubmissionDateWC() As DateTime
+    Get
+      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pPurchaseOrder.SubmissionDate)
+    End Get
+
+  End Property
 
 
   Public ReadOnly Property Status() As Byte
@@ -219,13 +304,19 @@
   End Property
 
 
-  Public Property CompanyName() As String
+  Public ReadOnly Property BankName() As String
+    Get
+      Return pPurchaseOrder.Supplier.BankName
+    End Get
+
+  End Property
+
+
+  Public ReadOnly Property CompanyName() As String
     Get
       Return pPurchaseOrder.Supplier.CompanyName
     End Get
-    Set(value As String)
-      pPurchaseOrder.Supplier.CompanyName = value
-    End Set
+
   End Property
 
   Public ReadOnly Property TotalVAT As Decimal
@@ -274,7 +365,14 @@
     End Get
   End Property
 
-
+  Public Property TotalNetValueInfo As Decimal
+    Get
+      Return pTotalNetValueInfo
+    End Get
+    Set(value As Decimal)
+      pTotalNetValueInfo = value
+    End Set
+  End Property
 
 End Class
 

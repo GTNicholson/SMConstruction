@@ -1,0 +1,86 @@
+CREATE TABLE [dbo].[SalesOrderPhaseItem](
+	[SalesOrderPhaseItemID] [int] IDENTITY(1,1) NOT NULL,
+	[SalesOrderID] [int] NULL,
+	[SalesOrderPhaseID] [int] NULL,
+	[SalesItemID] [int] NULL,
+	[Qty] [int] NULL
+ CONSTRAINT [PK_SalesOrderPhaseItem] PRIMARY KEY NONCLUSTERED 
+(
+	[SalesOrderPhaseItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+alter TABLE [dbo].[EmailSettings]
+
+	add [SecurityProtocol] [int] NULL,
+	[DefaultToSpooler] [bit] NULL,
+	[SendAllToTest] [bit] NULL,
+	[DefaultEmailFromAddress] [varchar](32) NULL,
+	[AlwaysSendAsPlainText] [bit] NULL
+
+GO
+
+alter table StockItem
+add AuxCode varchar(15)
+GO
+
+ALTER TABLE PurchaseOrderItem
+ADD StockCode varchar (20)
+GO
+
+insert into EmailSettings
+(Description,DelMethod,Port,SMTP,UseDefaultCredentials,EnableSSL,SecurityProtocol,DefaultToSpooler,SendAllToTest,AlwaysSendAsPlainText)
+values(
+'Live',0,25,'mail.simplementemadera.com',0,0,0,0,0,0)
+go
+
+
+CREATE TABLE [dbo].[EmailTemplate](
+	[EmailTemplateID] [int] IDENTITY(1,1) NOT NULL,
+	[EmailTemplateEnum] [tinyint] NULL,
+	[DistributionEnum] [tinyint] NULL,
+	[Subject] [varchar](256) NULL,
+	[Body] [varchar](max) NULL,
+ CONSTRAINT [PK_EmailTemplate] PRIMARY KEY CLUSTERED 
+(
+	[EmailTemplateID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+insert into LookUpTable (LookUpTableDescription,TableName,KeyIDFieldName,PermissionID,SelectionCode,EnableValidation)
+values('Plantilla de Email', 'EmailTemplate','EmailTemplateID',4,6,0)
+
+GO
+
+insert into LookUpField
+(LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TallyID)
+values (2023,1,'EmailTemplateID','EmailTemplateID',4,0,0)
+GO
+
+insert into LookUpField
+(LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TallyID)
+values (2023,2,'EmailTemplateEnum','EmailTemplateEnum',4,0,0)
+GO
+
+insert into LookUpField
+(LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TallyID)
+values (2023,3,'DistributionEnum','DistributionEnum',4,0,0)
+GO
+
+insert into LookUpField
+(LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TallyID)
+values (2023,4,'Subject','Subject',4,0,0)
+GO
+
+insert into LookUpField
+(LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TallyID,TranslationTableName)
+values (2023,5,'Body','Body',4,0,0,'popupHTML')
+GO
+
+
+

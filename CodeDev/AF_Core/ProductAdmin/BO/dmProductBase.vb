@@ -11,10 +11,12 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pSalesPrice As Decimal
   Protected pProcessCost As Decimal
 
+  Protected pDescription As String
+  Protected pID As Integer
+
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
   Public MustOverride Property ItemType As Integer Implements intItemSpecCore.ItemType
-
   Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
     Get
       Return pLeadTime
@@ -24,6 +26,27 @@ Public MustInherit Class dmProductBase : Inherits dmBase
       pLeadTime = value
     End Set
   End Property
+
+  Public Property ID As Integer
+    Get
+      Return pID
+    End Get
+    Set(value As Integer)
+      If value <> pID Then pIsDirty = True
+      pID = value
+    End Set
+  End Property
+
+  Public Property Description As String
+    Get
+      Return pDescription
+    End Get
+    Set(value As String)
+      If value <> pDescription Then pIsDirty = True
+      pDescription = value
+    End Set
+  End Property
+
 
   Public Property Margin As Decimal Implements intItemSpecCore.Margin
     Get
@@ -75,6 +98,7 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     End Set
   End Property
 
+
   Public MustOverride Sub CalculateCostAndPrice() Implements intItemSpecCore.CalculateCostAndPrice
 
   Public MustOverride Overrides Sub ClearKeys() Implements intItemSpecCore.ClearKeys
@@ -82,3 +106,29 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Public MustOverride Overrides Function Clone() As Object Implements intItemSpecCore.Clone
 
 End Class
+
+Public Class colProductBases : Inherits List(Of dmProductBase)
+  Public Function ItemFromProductID(ByVal vID As Integer) As dmProductBase
+    Dim mItem As dmProductBase
+    Dim mRetVal As dmProductBase = Nothing
+
+
+    For Each mItem In Me
+
+      If mItem.ID = vID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Sub New()
+    MyBase.New()
+  End Sub
+  Public Sub New(ByVal vList As List(Of dmProductBase))
+    MyBase.New(vList)
+  End Sub
+End Class
+
+

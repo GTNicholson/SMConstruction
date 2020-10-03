@@ -19,7 +19,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
   Private pSalesItemAssemblyID As Integer
   Private pHouseTypeID As Integer
-
+  Private pProductID As Integer
+  Private pSalesOrderStageID As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -74,6 +75,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .QtyInvoiced = QtyInvoiced
       .SalesItemAssemblyID = SalesItemAssemblyID
       .HouseTypeID = HouseTypeID
+      .ProductID = ProductID
+      .SalesOrderStageID = SalesOrderStageID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -81,7 +84,24 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
   End Sub
 
-
+  Public Property ProductID() As Int32
+    Get
+      Return pProductID
+    End Get
+    Set(ByVal value As Int32)
+      If pProductID <> value Then IsDirty = True
+      pProductID = value
+    End Set
+  End Property
+  Public Property SalesOrderStageID() As Int32
+    Get
+      Return pSalesOrderStageID
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesOrderStageID <> value Then IsDirty = True
+      pSalesOrderStageID = value
+    End Set
+  End Property
 
   Public Property SalesItemAssemblyID() As Int32
     Get
@@ -222,11 +242,11 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property HouseTypeID As Boolean
+  Public Property HouseTypeID As Integer
     Get
       Return pHouseTypeID
     End Get
-    Set(value As Boolean)
+    Set(value As Integer)
       pHouseTypeID = value
     End Set
   End Property
@@ -275,6 +295,20 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
       End If
     Next
     Return mIndex
+  End Function
+
+  Public Function ItemFromProductID(ByVal vProductID As Integer) As dmSalesOrderItem
+    Dim mItem As dmSalesOrderItem
+    Dim mRetVal As dmSalesOrderItem = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.ProductID = vProductID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
   End Function
 
   Public Sub New()

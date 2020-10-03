@@ -246,9 +246,9 @@ Partial Public Class repOtherMaterials
         '
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
         Me.XrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 33.21603!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 33.21603!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(257.8603!, 50.25003!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(338.0687!, 45.04169!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'XrLabel1

@@ -17,9 +17,10 @@ Public Class dmPODelivery : Inherits dmBase
   Private pSupplierDelNo As String
   Private pMKReference As String
   Private pPODeliveryValue As Decimal
-
+  Private pPaymentStatus As Int32
   Private pPurchaseOrder As dmPurchaseOrder
   Private pPODeliveryItems As colPODeliveryItems
+  Private pRefSupplierDoc As String
 
   Public Sub New()
     MyBase.New()
@@ -66,7 +67,7 @@ Public Class dmPODelivery : Inherits dmBase
       .ReceivedDate = ReceivedDate
       .Comment = Comment
       .IsSupplierReturn = IsSupplierReturn
-
+      .RefSupplierDoc = RefSupplierDoc
       ''.Status = Status
       .ReturnReasonID = ReturnReasonID
       .ActionRequiredID = ActionRequiredID
@@ -74,7 +75,7 @@ Public Class dmPODelivery : Inherits dmBase
       .FullyInvoiced = FullyInvoiced
       '' .SupplierDelNo = SupplierDelNo
       ''.MKReference = MKReference
-
+      .PaymentStatus = PaymentStatus
       'Add entries here for each collection and class property
       .PODeliveryItems = PODeliveryItems.Clone
       'Entries for object management
@@ -83,6 +84,28 @@ Public Class dmPODelivery : Inherits dmBase
     End With
 
   End Sub
+
+
+  Public Property RefSupplierDoc() As String
+    Get
+      Return pRefSupplierDoc
+    End Get
+    Set(ByVal value As String)
+      If pRefSupplierDoc <> value Then IsDirty = True
+      pRefSupplierDoc = value
+    End Set
+  End Property
+
+
+  Public Property PaymentStatus() As Int32
+    Get
+      Return pPaymentStatus
+    End Get
+    Set(ByVal value As Int32)
+      If pPaymentStatus <> value Then IsDirty = True
+      pPaymentStatus = value
+    End Set
+  End Property
 
   Public Property PODeliveryID() As Int32
     Get

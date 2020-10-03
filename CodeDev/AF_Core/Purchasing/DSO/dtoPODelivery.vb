@@ -67,8 +67,11 @@ Public Class dtoPODelivery : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReturnReasonID", .ReturnReasonID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ActionRequiredID", .ActionRequiredID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FileExport", StringToDBValue(.FileExport))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefSupplierDoc", StringToDBValue(.RefSupplierDoc))
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FullyInvoiced", .FullyInvoiced)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PODeliveryValue", .PODeliveryValue)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentStatus", .PaymentStatus)
       '' DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierDelNo", StringToDBValue(.SupplierDelNo))
     End With
 
@@ -91,8 +94,11 @@ Public Class dtoPODelivery : Inherits dtoBase
         .ReturnReasonID = DBReadByte(rDataReader, "ReturnReasonID")
         .ActionRequiredID = DBReadByte(rDataReader, "ActionRequiredID")
         .FileExport = DBReadString(rDataReader, "FileExport")
+        .RefSupplierDoc = DBReadString(rDataReader, "RefSupplierDoc")
+
         .FullyInvoiced = DBReadBoolean(rDataReader, "FullyInvoiced")
         .PODeliveryValue = DBReadDecimal(rDataReader, "PODeliveryValue")
+        .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
         '' .SupplierDelNo = DBReadString(rDataReader, "SupplierDelNo")
         ''.MKReference = DBReadString(rDataReader, "MKReference")
         pPODelivery.IsDirty = False

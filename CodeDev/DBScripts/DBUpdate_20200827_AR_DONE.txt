@@ -1,0 +1,164 @@
+Create view vwPurchaseOrderItemAllocationInfo
+as
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+po.Category as PO_CATEGORY,
+S.CompanyName,
+WO.WorkOrderNo,
+wo.Description 'WODESCRIPTION'
+
+from PurchaseOrderItemAllocation as POIA
+LEFT JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+left join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID 
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join WorkOrder WO on WO.WorkOrderID =POIA.WorkOrderID
+
+
+GO
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty'
+
+from MaterialRequirement MR
+LEFT JOIN StockItem SI ON SI.StockItemID=MR.StockItemID 
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=MR.ObjectID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+WHERE MR.MaterialRequirementType IN (2,4)
+
+
+GO
+
+CREATE TABLE [dbo].[PODelivery](
+	[PODeliveryID] [int] IDENTITY(1,1) NOT NULL,
+	[POCallOffID] [int] NULL,
+	[GRNumber] [varchar](32) NULL,
+	[ReceivedDate] [datetime] NULL,
+	[Comment] [varchar](512) NULL,
+	[IsSupplierReturn] [bit] NULL,
+	[DateCreated] [datetime] NULL,
+	[Status] [tinyint] NULL,
+	[ReturnReasonID] [tinyint] NULL,
+	[ActionRequiredID] [tinyint] NULL,
+	[FileExport] [varchar](256) NULL,
+	[FullyInvoiced] [bit] NULL,
+	[PurchaseOrderID] [int] NULL,
+	[SupplierDelNo] [varchar](50) NULL,
+ CONSTRAINT [pkPODeliveryID] PRIMARY KEY CLUSTERED 
+(
+	[PODeliveryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+CREATE TABLE [dbo].[PODeliveryItem](
+	[PODeliveryItemID] [int] IDENTITY(1,1) NOT NULL,
+	[PODeliveryID] [int] NULL,
+	[POCallOffItemID] [int] NULL,
+	[QtyReceived] [decimal](10, 4) NULL,
+	[POItemAllocationID] [int] NULL,
+	[QtyInvoiced] [decimal](10, 4) NULL,
+	[QtyRejected] [decimal](10, 4) NULL,
+ CONSTRAINT [pkPODeliveryItemID] PRIMARY KEY CLUSTERED 
+(
+	[PODeliveryItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+insert into Tally
+(Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values(1,'GRN Number',1000,99999,1,0)
+GO
+
+ALTER TABLE StockItemLocation
+add BatchID int
+GO
+
+CREATE VIEW [dbo].[vwPODeliveryInfo]
+as
+
+select 
+POD.PODeliveryID,
+POD.GRNumber,
+POD.ReceivedDate,
+POD.Comment,
+POD.DateCreated,
+POD.Status,
+PO.PurchaseOrderID,
+PO.PurchaseCategory,
+PO.PONum,
+PO.RequiredDate,
+PO.DeliveryAddress1,
+SP.SupplierID,
+SP.CompanyName,
+SP.AccountCode,
+SP.TelNo,
+SP.MainAddress1
+
+from 
+PODelivery POD
+LEFT JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POD.PurchaseOrderID
+LEFT JOIN Supplier SP ON SP.SupplierID=PO.SupplierID
+
+GO
+
+alter table  StockItem
+add LastUsedDate datetime
+GO
+
+
+

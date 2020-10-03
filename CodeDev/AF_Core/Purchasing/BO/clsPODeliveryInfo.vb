@@ -1,4 +1,6 @@
-﻿Public Class clsPODeliveryInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsPODeliveryInfo
   Private pPODelivery As dmPODelivery
   Private pPurchaseOrder As dmPurchaseOrder
   Private pSupplier As dmSupplier
@@ -67,7 +69,18 @@
     End Get
   End Property
 
+  Public ReadOnly Property PaymentStatus As Int32
+    Get
+      Return pPODelivery.PaymentStatus
+    End Get
+  End Property
 
+  Public ReadOnly Property PaymentStatusDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePaymentStatus), CType(pPODelivery.PaymentStatus, ePaymentStatus))
+    End Get
+
+  End Property
 
   Public ReadOnly Property DateCreated As DateTime
     Get
@@ -138,6 +151,12 @@
   Public ReadOnly Property MainAddress1 As String
     Get
       Return pSupplier.MainAddress1
+    End Get
+  End Property
+
+  Public ReadOnly Property ExchangeRateValue As Decimal
+    Get
+      Return pPurchaseOrder.ExchangeRateValue
     End Get
   End Property
 

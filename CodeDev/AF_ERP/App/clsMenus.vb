@@ -34,6 +34,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Compras", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.PurchasingGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras por Fecha", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderInfo, eActivityCode.POReportList)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryInfoBI, eActivityCode.PODeliveryReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones de Artículos Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryItemInfoBI, eActivityCode.PODeliveryItemReport)
 
 
     mLastGroup = mMenuList.AddNewGroup("Recursos Humanos", 0, eActivityCode.HumanResourcesGroup, True)
@@ -224,6 +225,15 @@ Class clsMenuFunctions
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
+
+  Public Shared Sub PODeliveryItemInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    Dim mViews As New List(Of RTIS.BIReport.clsBIReportView)
+    mViews.Add(BIPODeliveryItemInfo.CreateBIReportViewFactoryPODeliveryItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
+
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mViews, rParentForm, rRTISGlobal, rRTISUserSession.IsSecurityAllowAll)
+  End Sub
+
   Public Shared Sub PODeliveryInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     Dim mViews As New List(Of RTIS.BIReport.clsBIReportView)
@@ -231,7 +241,6 @@ Class clsMenuFunctions
     ''mBIReport = BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
 
     mViews.Add(BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
-    mViews.Add(BIPODeliveryItemInfo.CreateBIReportViewFactoryPODeliveryItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
 
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mViews, rParentForm, rRTISGlobal, rRTISUserSession.IsSecurityAllowAll)
   End Sub

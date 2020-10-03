@@ -11,10 +11,6 @@
       .VatRateCode = 1
     End With
 
-    ''If rPurchaseOrder.CallOffType = eCallOffMode.SingleCO And rPurchaseOrder.POCallOffs IsNot Nothing AndAlso rPurchaseOrder.POCallOffs.Count > 0 Then
-    ''  mMRSI.POItem = mRetVal
-    ''  rPurchaseOrder.POCallOffs(0).POCallOffItems.Add(mMRSI)
-    ''End If
     rPurchaseOrder.PurchaseOrderItems.Add(mRetVal)
     Return mRetVal
   End Function

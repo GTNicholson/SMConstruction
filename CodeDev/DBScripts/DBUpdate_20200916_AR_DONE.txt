@@ -1,0 +1,36 @@
+drop table SalesItemComponent 
+GO
+
+
+
+CREATE TABLE SalesItemAssembly (
+	SalesItemAssemblyID int IDENTITY(1,1) NOT NULL,
+	 SalesOrderID int NULL,
+	 SalesOrderItemID int NULL,
+	 Ref varchar(25) null,
+	Description varchar(100) null
+	
+ CONSTRAINT [PK_SalesItemAssembly] PRIMARY KEY CLUSTERED 
+(
+	SalesItemAssemblyID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE HouseType(
+	HouseTypeID int IDENTITY(1,1) NOT NULL,
+	Name varchar(256) NULL
+ CONSTRAINT [pk_HouseType] PRIMARY KEY CLUSTERED 
+(
+	HouseTypeID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+insert into LookUpTable(DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values(
+27,'Tipos de Casas','HouseType','HouseTypeID','Name',4,1,2,6,0)
+
+

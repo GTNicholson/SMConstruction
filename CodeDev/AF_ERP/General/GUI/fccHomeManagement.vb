@@ -105,7 +105,7 @@ Public Class fccHomeManagement
     pCompanyDays = New colCompanyDays
     pInvoiceInfos = New colInvoiceInfos
 
-    mdsoSalesOrder.LoadSalesOrderProgressInfos(pSalesOrderProgressInfos, "")
+    mdsoSalesOrder.LoadSalesOrderProgressInfos(pSalesOrderProgressInfos, "OrderNo<>''")
     mdsoCompanyDays.LoadCompanyDays(pCompanyDays, mStartDate, mEndDate)
     mdsoSalesOrder.LoadInvoiceInfosGraph(pInvoiceInfos)
   End Sub

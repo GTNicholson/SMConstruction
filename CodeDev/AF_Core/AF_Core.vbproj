@@ -153,6 +153,7 @@
     <Compile Include="App\BO\dmOutputDocument.vb" />
     <Compile Include="App\BO\dmVATRate.vb" />
     <Compile Include="App\BO\dmWoodSpecie.vb" />
+    <Compile Include="App\Numalet.vb" />
     <Compile Include="App\clsClipBoard.vb" />
     <Compile Include="App\clsLabelDefinition.vb" />
     <Compile Include="App\clsLookupValidation.vb" />

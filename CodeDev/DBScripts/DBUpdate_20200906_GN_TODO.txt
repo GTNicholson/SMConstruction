@@ -1,3 +1,0 @@
-alter table salesorder add OrderPhaseType tinyint
-
-GO

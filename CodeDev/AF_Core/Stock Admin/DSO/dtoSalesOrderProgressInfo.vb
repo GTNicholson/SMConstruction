@@ -67,7 +67,7 @@ Public Class dtoSalesOrderProgressInfo : Inherits dtoBase
         .WOsMROtherPicked = DBReadInteger(rDataReader, "WOsMROtherPicked")
         .TimeSheetEntryDays = DBReadDecimal(rDataReader, "TimeSheetEntryDays")
         .CompanyName = DBReadString(rDataReader, "CompanyName")
-
+        .OrderNo = DBReadString(rDataReader, "OrderNo")
         .SumCustomerOrderNetValue = DBReadDecimal(rDataReader, "SumCustomerOrderNetValue")
 
         .SumInvoiceItem = DBReadDecimal(rDataReader, "SumInvoiceItem")

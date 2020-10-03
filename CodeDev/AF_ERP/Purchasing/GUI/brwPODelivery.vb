@@ -64,6 +64,7 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
     Dim mdsoSalesOrder As New dsoPurchasing(Me.DBConn)
     Dim mDataTable As New DataTable
     Dim mOK As Boolean
+    Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
 
     Try
       'Me.gridBrowseList.BeginUpdate()
@@ -72,11 +73,10 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
 
       gridBrowseList.DataSource = mDataTable
       ''Set lookup columns
-      ''mGridView = gridBrowseList.MainView
+      mGridView = gridBrowseList.MainView
 
       ''gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
 
-      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PartDefType"), clsEnumsConstants.EnumToVIs(GetType(libProductDefinition.PartType)))
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
       gridBrowseList.Update()
@@ -147,6 +147,16 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
 
       'gridBrowseList.BeginUpdate()
 
+
+      BrowseRefreshTracker = New clsBasicBrowseRefreshTracker(1, clsUpdateNotification.GetInstance)
+
+
+
+      With CType(Me.BrowseForm, frmBrowseList)
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+
+      End With
+
       gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
       mGridView = gridBrowseList.MainView
       ''Set lookup columns
@@ -186,6 +196,7 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
 
 
 
+
       GridEditable = False
 
       mGridView = gridBrowseList.MainView
@@ -202,6 +213,7 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
       Me.DeleteButton = eActiveVisibleState.Active
 
       Me.PrintAndExportAvailable = True
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PurchaseCategory"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
 
 
       mOK = True

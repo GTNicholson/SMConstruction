@@ -32,7 +32,8 @@ Public Enum eActivityCode
   POConsole = 403
   PODelivery = 404
   POReportList = 405
-  PODeliveryReport = 406
+  PODeliveryReport = 405
+  PODeliveryItemReport = 405
 
   InventoryGroup = 500
   StockItem = 501
@@ -63,6 +64,13 @@ Public Enum eTaxRate
   <Description("IVA")> IVA = 1
 
 End Enum
+Public Enum ePaymentMethod
+  <Description("Ninguno")> None = 0
+  <Description("Efectivo")> Cash = 1
+  <Description("Cheque")> Check = 2
+  <Description("Transferencia Nac.")> BankTransfer = 3
+  <Description("Transferencia Int.")> BankInterTransfer = 4
+End Enum
 
 Public Enum eCOCType
   <Description("None")> None = 0
@@ -90,7 +98,12 @@ Public Enum ePurchaseCategories
   <Description("Compra Administrativa")> CompraAdmon = 4
   <Description("Compra de Ingeniería")> CompraIngenieria = 5
   <Description("Mantenimiento")> Mantenimiento = 6
-  <Description("Otras")> Otro = 8
+  <Description("Patio Y Aserrío")> PatioYAserrio = 7
+  <Description("Inversión Herramienta")> InversionHerramienta = 8
+  <Description("Seguridad")> Seguridad = 9
+  <Description("Mejora de Edificio")> MejoraEdificio = 10
+  <Description("Papelería de Oficinas")> Papeleria = 11
+  <Description("Otras")> Otro = 99
 End Enum
 
 Public Enum eObjectType
@@ -217,7 +230,7 @@ Public Enum eTallyIDs
   WorkOrder = 1
   InternalWorkOrder = 2
   PurchaseOrderNo = 3
-  GRNNumber = 4
+  GRNNumber = 1002
 End Enum
 
 Public Enum ePaymentStatus

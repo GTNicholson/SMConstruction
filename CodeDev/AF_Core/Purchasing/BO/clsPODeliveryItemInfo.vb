@@ -1,10 +1,13 @@
-﻿Public Class clsPODeliveryItemInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsPODeliveryItemInfo
   Private pPODeliveryItem As dmPODeliveryItem
   Private pPurchaseOrderItemAllocation As dmPurchaseOrderItemAllocation
   Private pPODelivery As dmPODelivery
   Private pPurchaseOrder As dmPurchaseOrder
   Private pPurchaseOrderItem As dmPurchaseOrderItem
   Private pSalesOrderPhase As dmSalesOrderPhase
+  Private pSalesOrder As dmSalesOrder
 
   Public Sub New()
     pPODeliveryItem = New dmPODeliveryItem
@@ -13,6 +16,7 @@
     pPurchaseOrder = New dmPurchaseOrder
     pPurchaseOrderItem = New dmPurchaseOrderItem
     pSalesOrderPhase = New dmSalesOrderPhase
+    pSalesOrder = New dmSalesOrder
   End Sub
 
   Public Property PODeliveryItem As dmPODeliveryItem
@@ -68,7 +72,14 @@
     End Set
   End Property
 
-
+  Public Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+    Set(value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
+  End Property
   Public ReadOnly Property PODeliveryItemID As Integer
     Get
       Return pPODeliveryItem.PODeliveryItemID
@@ -112,7 +123,30 @@
 
   Public ReadOnly Property UnitPrice As Decimal
     Get
+
+
       Return pPurchaseOrderItem.UnitPrice
+    End Get
+
+  End Property
+
+  Public ReadOnly Property UnitPriceCordoba As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+
+
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = pPurchaseOrderItem.UnitPrice * ExchangeRateValue
+
+        Case eCurrency.Cordobas
+          mRetVal = pPurchaseOrderItem.UnitPrice
+
+      End Select
+
+      Return mRetVal
+
     End Get
 
   End Property
@@ -121,8 +155,30 @@
     Get
       Return pPurchaseOrderItem.UnitPrice * pPODeliveryItem.QtyReceived
     End Get
+  End Property
+
+  Public ReadOnly Property TotalReceivedAmountUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalReceivedAmount
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = (pPurchaseOrderItem.UnitPrice * pPODeliveryItem.QtyReceived) / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
 
   End Property
+
 
   Public ReadOnly Property DateCreated As Date
     Get
@@ -157,12 +213,108 @@
 
   End Property
 
+
+
+  Public ReadOnly Property RefMatType As String
+    Get
+      Return pPurchaseOrder.RefMatType
+    End Get
+
+  End Property
+
+  Public ReadOnly Property PaymentStatus As Integer
+    Get
+      Return pPurchaseOrder.PaymentStatus
+    End Get
+
+  End Property
+
+  Public ReadOnly Property PaymentStatusDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePaymentStatus), CType(pPODelivery.PaymentStatus, ePaymentStatus))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property Category As Byte
+    Get
+      Return pPurchaseOrder.Category
+    End Get
+
+  End Property
+
+  Public ReadOnly Property DefaultCurrency As Integer
+    Get
+      Return pPurchaseOrder.DefaultCurrency
+    End Get
+
+  End Property
+
+
+  Public ReadOnly Property CurrencyDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(pPurchaseOrder.DefaultCurrency, eCurrency))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property ExchangeRateValue As Decimal
+    Get
+      Return pPurchaseOrder.ExchangeRateValue
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalReceivedAmountCordoba As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+
+      Select Case DefaultCurrency
+        Case eCurrency.Cordobas
+
+          mRetVal = pPurchaseOrderItem.UnitPrice * pPODeliveryItem.QtyReceived
+
+        Case eCurrency.Dollar
+          If pPurchaseOrder.ExchangeRateValue > 0 Then
+            mRetVal = (pPurchaseOrderItem.UnitPrice * pPODeliveryItem.QtyReceived) * ExchangeRateValue
+
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property CategoryDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
+    End Get
+
+  End Property
+
   Public ReadOnly Property PONum As String
     Get
       Return pPurchaseOrder.PONum
     End Get
 
   End Property
+
+  Public ReadOnly Property ProjectName As String
+    Get
+      Dim mRetVal As String = pSalesOrder.ProjectName
+
+      If pSalesOrder.ProjectName = "" Then
+        mRetVal = "S/P-Inventario"
+      End If
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+
 
 End Class
 

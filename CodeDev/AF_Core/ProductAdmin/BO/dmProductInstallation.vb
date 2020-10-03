@@ -5,7 +5,6 @@ Imports RTIS.ERPCore
 Public Class dmProductInstallation : Inherits dmProductBase
 
   Private pProductInstallationID As Int32
-  Private pDescription As String
   Private pProductInstallationTypeID As Int32
   Private pNotes As String
 
@@ -67,23 +66,13 @@ Public Class dmProductInstallation : Inherits dmProductBase
 
   Public Property ProductInstallationID() As Int32
     Get
-      Return pProductInstallationID
+      Return ID
     End Get
     Set(ByVal value As Int32)
-      If pProductInstallationID <> value Then IsDirty = True
-      pProductInstallationID = value
+      ID = value
     End Set
   End Property
 
-  Public Property Description() As String
-    Get
-      Return pDescription
-    End Get
-    Set(ByVal value As String)
-      If pDescription <> value Then IsDirty = True
-      pDescription = value
-    End Set
-  End Property
 
   Public Property ProductInstallationTypeID() As Int32
     Get

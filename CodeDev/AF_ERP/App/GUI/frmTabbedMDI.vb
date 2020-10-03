@@ -390,6 +390,42 @@ Public Class frmTabbedMDI
 
   End Sub
 
+  Private Sub barbtnReloadLists_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnReloadLists.ItemClick
+    Try
+      ReloadLists()
+
+      MsgBox("LISTA DE REFERENCIAS ACTUALIZADAS")
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Public Sub ReloadLists()
+    Try
+      Dim mDBConn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+      Dim mdsoRefLists As New dsoAppRefLists(mDBConn)
+
+      mdsoRefLists.LoadAllListsConnected(AppRTISGlobal.GetInstance.RefLists)
+
+      mdsoRefLists = Nothing
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Private Sub bbiClearAllLocks_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbiClearAllLocks.ItemClick
+    Dim mdbconn As clsDBConnBase = Nothing
+    Try
+      mdbconn = My.Application.RTISUserSession.CreateMainDBConn
+      mdbconn.Connect()
+      mdbconn.ExecuteNonQuery("Delete from CurrentLock")
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    Finally
+      If mdbconn.IsConnected Then mdbconn.Disconnect()
+    End Try
+  End Sub
+
   ''Private Sub nbiTestBrowse_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles nbiTestBrowse.LinkClicked
   ''  'frmBrowseList.OpenFormAsMDIChild(Me, New brwTemplateList(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Undefined))
 

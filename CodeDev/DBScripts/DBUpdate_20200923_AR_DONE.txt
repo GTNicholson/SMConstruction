@@ -1,0 +1,26 @@
+
+ALTER View [dbo].[vwSalesOrderProgressInfo] as
+select 
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.FinishDate,
+WOS.QtyWOs,
+ECS.EngineeringCompleteQty,
+DCS.DespatchCompleteQty,
+PWOS.WOsMROtherPicked,
+TimeSheetEntryDays,
+CU.CompanyName,
+vwCPOS.SumCustomerOrderNetValue,
+vwInvSum.SumInvoiceItem
+
+
+from salesorder SO
+Left Join vwSalesOrderWorkOrderSum WOS on WOS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderEngineeringCompleteSum ECS on ECS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderDespatchCompleteSum DCS on DCS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderPickedWOsSum PWOS on PWOS.SalesOrderID = SO.SalesOrderID
+Left Join vwSalesOrderTimeSheetEntrySum TSES on TSES.SalesOrderID = SO.SalesOrderID
+LEFT JOIN Customer as CU on SO.CustomerID=CU.CustomerID
+left join vwCustomerPurchaseOrdersSum as vwCPOS on vwCPOS.SalesOrderID=SO.SalesOrderID
+LEFT JOIN vwInvoiceSum vwInvSum on vwInvSum.SalesOrderID = SO.SalesOrderID

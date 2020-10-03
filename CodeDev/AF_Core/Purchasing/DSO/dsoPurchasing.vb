@@ -353,7 +353,7 @@ Public Class dsoPurchasing
 
       mdto = New dtoPODelivery(pDBConn)
       ''rPODelivery.MKReference = ""
-      rPODelivery.DateCreated = Now
+      ''rPODelivery.DateCreated = Now
       mOK = mdto.SavePODelivery(rPODelivery)
 
       mdtoItems = New dtoPODeliveryItem(pDBConn)
@@ -380,6 +380,31 @@ Public Class dsoPurchasing
       mOK = mOK AndAlso mdtoPurchaseORderItem.LoadPurchaseOrderItemCollection(rPurchaseOrder.PurchaseOrderItems, vPurchaseOrderID)
       For Each mPurchaseOrderItem As dmPurchaseOrderItem In rPurchaseOrder.PurchaseOrderItems
         mOK = mOK AndAlso mdtoPurchaseOrderItemAllocation.LoadPurchaseOrderItemAllocationCollection(mPurchaseOrderItem.PurchaseOrderItemAllocations, mPurchaseOrderItem.PurchaseOrderItemID)
+      Next
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
+  Public Function ReloadPurchaseOrderItems(ByRef rPurchaseOrderItems As colPurchaseOrderItems, ByVal vPurchaseOrderID As Integer) As Boolean
+
+    Dim mdtoPOItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
+    Dim mdtoPOIs As New dtoPurchaseOrderItem(pDBConn)
+    Dim mOK As Boolean = True
+    Try
+      pDBConn.Connect()
+
+      If mOK Then mOK = mdtoPOIs.LoadPurchaseOrderItemCollection(rPurchaseOrderItems, vPurchaseOrderID)
+
+
+      For Each mPOItem As dmPurchaseOrderItem In rPurchaseOrderItems
+        If mOK Then
+          mOK = mdtoPOItemAllocation.LoadPurchaseOrderItemAllocationCollection(mPOItem.PurchaseOrderItemAllocations, mPOItem.PurchaseOrderItemID)
+        End If
       Next
     Catch ex As Exception
       mOK = False

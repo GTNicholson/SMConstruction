@@ -234,7 +234,6 @@ Public Class brwSupplier : Inherits brwBrowserListBase
 
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SupplierStatusID"), clsEnumsConstants.EnumToVIs(GetType(eSupplierStatus)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PaymentTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("SalesAreaID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PurchasingTermsType"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
 
 

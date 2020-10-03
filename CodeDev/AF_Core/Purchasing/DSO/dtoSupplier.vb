@@ -109,6 +109,8 @@ Public Class dtoSupplier : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainTown", StringToDBValue(.MainTown))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCounty", StringToDBValue(.MainCounty))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCountry", StringToDBValue(.MainCountry))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BankName", StringToDBValue(.BankName))
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
     End With
 
@@ -161,6 +163,7 @@ Public Class dtoSupplier : Inherits dtoBase
         .SupplierReferenceID = DBReadString(rDataReader, "SupplierReferenceID")
         .PurchasingTermsType = DBReadInt32(rDataReader, "PurchasingTermsType")
         .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+        .BankName = DBReadString(rDataReader, "BankName")
 
         pSupplier.IsDirty = False
       End With

@@ -68,15 +68,16 @@ Public Class dtoPODeliveryInfo : Inherits dtoBase
           .Comment = DBReadString(rDataReader, "Comment")
           .DateCreated = DBReadDate(rDataReader, "DateCreated")
           .PODeliveryValue = DBReadDecimal(rDataReader, "PODeliveryValue")
+          .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
         End With
 
         With .PurchaseOrder
           .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
           .PurchaseCategory = DBReadByte(rDataReader, "PurchaseCategory")
           .PONum = DBReadString(rDataReader, "PONum")
+          .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
           .RequiredDate = DBReadDate(rDataReader, "RequiredDate")
           .DeliveryAddress.Address1 = DBReadString(rDataReader, "DeliveryAddress1")
-
 
         End With
 

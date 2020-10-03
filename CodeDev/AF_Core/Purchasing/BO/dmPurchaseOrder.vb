@@ -29,7 +29,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pDeliveryContact As String
   Private pDeliveryTel As String
   Private pDeliveryEmail As String
-
+  Private pRefMatType As String
   Private pCallOffType As Byte
   Private pSupplierContactID As Integer
   Private pSupplierRef As String
@@ -49,7 +49,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pOutputDocuments As colOutputDocuments
   Private pSupplier As dmSupplier
   Private pPurchaseOrderAllocations As colPurchaseOrderAllocations
-
+  Private pPaymentMethod As Integer
 
 
 
@@ -138,7 +138,9 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .DefaultCurrency = DefaultCurrency
       .PaymentStatus = PaymentStatus
       .TotalNetValue = TotalNetValue
+      .RefMatType = RefMatType
       .MaterialRequirementTypeID = MaterialRequirementTypeID
+      .PaymentMethod = PaymentMethod
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -149,7 +151,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
 
   End Sub
 
-
+  Public Property RefMatType() As String
+    Get
+      Return pRefMatType
+    End Get
+    Set(ByVal value As String)
+      If pRefMatType <> value Then IsDirty = True
+      pRefMatType = value
+    End Set
+  End Property
 
   Public Property DefaultCurrency() As Int32
     Get
@@ -183,6 +193,16 @@ Public Class dmPurchaseOrder : Inherits dmBase
   End Property
 
 
+
+  Public Property PaymentMethod() As Int32
+    Get
+      Return pPaymentMethod
+    End Get
+    Set(ByVal value As Int32)
+      If pPaymentMethod <> value Then IsDirty = True
+      pPaymentMethod = value
+    End Set
+  End Property
   Public Property PaymentStatus() As Int32
     Get
       Return pPaymentStatus

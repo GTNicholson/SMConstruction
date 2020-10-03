@@ -80,6 +80,16 @@ Public Class clsSalesOrderProgressInfo
 
   End Property
 
+  Public Property OrderNo As String
+    Get
+      Return pSalesOrder.OrderNo
+    End Get
+    Set(value As String)
+      pSalesOrder.OrderNo = value
+    End Set
+
+  End Property
+
   Public Property SalesOrderID As String
     Get
       Return pSalesOrder.SalesOrderID
