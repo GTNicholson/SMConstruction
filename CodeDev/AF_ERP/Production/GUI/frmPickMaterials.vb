@@ -20,6 +20,12 @@ Public Class frmPickMaterials
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
 
+  Private Enum eGroupItemButtons
+    Process = 1
+    AddItems = 2
+  End Enum
+
+
   Private Enum eCurrentDetailMode
     eView = 1
     eEdit = 2
@@ -174,10 +180,22 @@ Public Class frmPickMaterials
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     Try
-      gvMaterialRequirementInfos.CloseEditor()
-      gvMaterialRequirementInfos.UpdateCurrentRow()
-      pFormController.ProcessPicks()
-      gvMaterialRequirementInfos.RefreshData()
+      Select Case e.Button.Properties.Tag
+        Case eGroupItemButtons.Process
+          gvMaterialRequirementInfos.CloseEditor()
+          gvMaterialRequirementInfos.UpdateCurrentRow()
+          pFormController.ProcessPicks()
+          gvMaterialRequirementInfos.RefreshData()
+        Case eGroupItemButtons.AddItems
+          Dim mPicker As clsPickerStockItem
+          Dim mSIList As List(Of RTIS.ERPStock.intStockItemDef)
+          mPicker = New clsPickerStockItem(AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemCollection, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          mSIList = frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          If mSIList.Count > 0 Then
+            pFormController.CreateAdditionalMatReqs(mSIList)
+          End If
+      End Select
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 

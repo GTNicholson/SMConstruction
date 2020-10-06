@@ -1,0 +1,2 @@
+C:\RTISProjects\SimplementeMadera\SimplementeMadera\SimplementeMadera\bin\Debug\SimplementeMadera.exe.config
+C:\RTISProjects\SimplementeMadera\SimplementeMadera\CodeDev\bin\Debug\SimplementeMadera.exe.config

@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+<SetupData>
+  <Parameters>
+
+<!-- The executable file name e.g. Application.exe -->
+    <MainExeFile>SimplementeMadera.exe</MainExeFile>                       
+
+<!-- Folder on the client PC to install the executable file, e.g. C:\realtime\AppName -->     
+    <LocalExeInstallPath>C:\realtime\Application</LocalExeInstallPath>    
+
+<!-- Folder on the client PC to install the Aux Files, e.g. C:\realtime\AuxFiles, this should match the one defined for the system, leave blank and no folder will be created -->
+    <LocalAuxFilePath></LocalAuxFilePath>  
+
+<!-- Full Path/filename of the UpdateManifestFileName, the manifest file is ised to copy across the applicaiton files, dlls etc. -->         
+    <UpdateManifestFile>C:\Server\realtime\CurrentVersion\SMConstructionManifest.xml</UpdateManifestFile>  
+
+<!-- Visible title for the application, used as the name of Shortcuts -->
+    <AppTitle>SMConstruction</AppTitle>        
+
+<!-- If used, the command line parameter to set the suffix of the settings file, e.g. AppSuffix=Test -->                       
+    <AppSuffixCLP></AppSuffixCLP>                                            
+
+<!-- Sub-folder that should be created for the setting file, placed under C:\Program Data\RTIS\, this should match the Application.ProductName being installed -->
+    <LocalProgramDataRTISFolder>Simplemente Madera</LocalProgramDataRTISFolder>   
+
+<!-- The file name of the settings file for the application, defined in the Application.Settings, if a copy exists in the UpdateManifestFileName folder then this is copied across -->
+    <LocalProgramDataFile>SM_ERP.Xml</LocalProgramDataFile>             
+
+  </Parameters>
+</SetupData>
