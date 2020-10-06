@@ -76,7 +76,8 @@ Public Class repCheckPaymentOrder
         mNumalet.SeparadorDecimalSalida = "Dólares con"
     End Select
 
-    xrtTotalAmount.Text = pPOInfo.TotalGrossValue.ToString(mToString)
+    xrtTotalAmount.Text = Math.Round(pPOInfo.TotalGrossValue, 2, MidpointRounding.AwayFromZero).ToString(mToString)
+
     xrtDateCreated.Text = pPOInfo.SubmissionDate
     xrtPaymentMethod.Text = pPOInfo.PaymentMethodDes
     xrtBankName.Text = pPOInfo.BankName
@@ -87,13 +88,13 @@ Public Class repCheckPaymentOrder
     mNumalet.MascaraSalidaDecimal = "centavos"
     mNumalet.LetraCapital = True
 
-    xrtValueInLetter.Text = mNumalet.ToCustomCardinal(pPOInfo.TotalGrossValue.ToString)
+    xrtValueInLetter.Text = mNumalet.ToCustomCardinal(Math.Round(pPOInfo.TotalGrossValue, 2, MidpointRounding.AwayFromZero).ToString())
 
     Dim mText As String = "Compra de"
 
     For Each mPOI As clsPOItemInfo In pPOInfo.POItemInfos
       mText &= " " & vbCrLf
-      mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.Description
+      mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.UoMDesc & " de " & mPOI.Description
     Next
 
 

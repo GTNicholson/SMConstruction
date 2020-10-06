@@ -326,6 +326,7 @@ Public Class frmPurchaseOrder
       With pFormController.PurchaseOrder
         dteDateOfOrder.EditValue = .SubmissionDate
         txtCarriage.Text = .Carriage
+        txtComments.Text = .Comments
         pSupplier = pFormController.Suppliers.ItemFromKey(.SupplierID)
         txtSupplierRef.Text = .SupplierRef
         btePONum.EditValue = .PONum
@@ -437,6 +438,7 @@ Public Class frmPurchaseOrder
       .Carriage = txtCarriage.Text
       '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .SupplierRef = txtSupplierRef.Text
+      .Comments = txtComments.Text
       .TotalNetValue = txtNetValue.Text
       uctDeliveryAddress.UpdateObject()
       gvPurchaseOrderItems.CloseEditor()

@@ -28,6 +28,7 @@ Partial Public Class repPurchaseOrder
         Me.xrtcStockCode = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrtcRefCodes = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrDescription = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xrtcUoM = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrUnitPrice = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrNetTotal = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
@@ -89,13 +90,14 @@ Partial Public Class repPurchaseOrder
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrDescriptionHeader = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xrtcUoM = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.txtComment = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,6 +107,7 @@ Partial Public Class repPurchaseOrder
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtComment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -193,9 +196,22 @@ Partial Public Class repPurchaseOrder
         Me.xrDescription.StylePriority.UseFont = False
         Me.xrDescription.StylePriority.UseForeColor = False
         Me.xrDescription.StylePriority.UseTextAlignment = False
-        Me.xrDescription.Text = "Description"
         Me.xrDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.xrDescription.Weight = 1.6415536110286932R
+        Me.xrDescription.Weight = 0.32546663571026069R
+        '
+        'xrtcUoM
+        '
+        Me.xrtcUoM.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xrtcUoM.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.xrtcUoM.ForeColor = System.Drawing.Color.Black
+        Me.xrtcUoM.Name = "xrtcUoM"
+        Me.xrtcUoM.StylePriority.UseBorders = False
+        Me.xrtcUoM.StylePriority.UseFont = False
+        Me.xrtcUoM.StylePriority.UseForeColor = False
+        Me.xrtcUoM.StylePriority.UseTextAlignment = False
+        Me.xrtcUoM.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.xrtcUoM.Weight = 1.7258124722269637R
         '
         'xrUnitPrice
         '
@@ -573,8 +589,8 @@ Partial Public Class repPurchaseOrder
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable5, Me.XrTable4})
-        Me.ReportFooter.HeightF = 133.9061!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.txtComment, Me.XrTable5, Me.XrTable4})
+        Me.ReportFooter.HeightF = 191.1978!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable5
@@ -714,7 +730,7 @@ Partial Public Class repPurchaseOrder
         Me.XrTable4.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.99996!)
+        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 99.99987!)
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Padding = New DevExpress.XtraPrinting.PaddingInfo(3, 3, 3, 3, 100.0!)
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow18, Me.XrTableRow6})
@@ -854,8 +870,20 @@ Partial Public Class repPurchaseOrder
         Me.xrDescriptionHeader.StylePriority.UseBorders = False
         Me.xrDescriptionHeader.StylePriority.UseFont = False
         Me.xrDescriptionHeader.StylePriority.UseForeColor = False
-        Me.xrDescriptionHeader.Text = "Descripción"
-        Me.xrDescriptionHeader.Weight = 1.6426099939937662R
+        Me.xrDescriptionHeader.Text = "UoM"
+        Me.xrDescriptionHeader.Weight = 0.32567603367488218R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell1.ForeColor = System.Drawing.Color.White
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseBorders = False
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.StylePriority.UseForeColor = False
+        Me.XrTableCell1.Text = "Descripción"
+        Me.XrTableCell1.Weight = 1.7269226996262748R
         '
         'XrTableCell21
         '
@@ -918,31 +946,27 @@ Partial Public Class repPurchaseOrder
         Me.XrPageInfo2.StylePriority.UseTextAlignment = False
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'XrTableCell1
+        'txtComment
         '
-        Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell1.ForeColor = System.Drawing.Color.White
-        Me.XrTableCell1.Name = "XrTableCell1"
-        Me.XrTableCell1.StylePriority.UseBorders = False
-        Me.XrTableCell1.StylePriority.UseFont = False
-        Me.XrTableCell1.StylePriority.UseForeColor = False
-        Me.XrTableCell1.Text = "UdM"
-        Me.XrTableCell1.Weight = 0.40998873930739077R
-        '
-        'xrtcUoM
-        '
-        Me.xrtcUoM.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.txtComment.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.xrtcUoM.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.xrtcUoM.ForeColor = System.Drawing.Color.Black
-        Me.xrtcUoM.Name = "xrtcUoM"
-        Me.xrtcUoM.StylePriority.UseBorders = False
-        Me.xrtcUoM.StylePriority.UseFont = False
-        Me.xrtcUoM.StylePriority.UseForeColor = False
-        Me.xrtcUoM.StylePriority.UseTextAlignment = False
-        Me.xrtcUoM.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.xrtcUoM.Weight = 0.40972549690853122R
+        Me.txtComment.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.txtComment.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.99996!)
+        Me.txtComment.Name = "txtComment"
+        Me.txtComment.SerializableRtfString = resources.GetString("txtComment.SerializableRtfString")
+        Me.txtComment.SizeF = New System.Drawing.SizeF(363.7614!, 46.95835!)
+        Me.txtComment.StylePriority.UseBorders = False
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.99994!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.Text = "Comentarios"
         '
         'repPurchaseOrder
         '
@@ -959,6 +983,7 @@ Partial Public Class repPurchaseOrder
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtComment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -1037,4 +1062,6 @@ Partial Public Class repPurchaseOrder
     Friend WithEvents XrPageInfo2 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents xrtcUoM As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents txtComment As DevExpress.XtraReports.UI.XRRichText
 End Class

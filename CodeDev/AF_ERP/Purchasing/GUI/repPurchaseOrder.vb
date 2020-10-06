@@ -65,17 +65,17 @@ Public Class repPurchaseOrder
     xrSupplierOrderRef.Text = pPOInfo.PurchaseOrder.SupplierRef
     xrSupplier.Text = pPOInfo.PurchaseOrder.Supplier.CompanyName
     xrSupplierAddress.Text = pPOInfo.PurchaseOrder.Supplier.MainAddress1 & vbCrLf & pPOInfo.PurchaseOrder.Supplier.MainAddress2
-
+    txtComment.Text = pPOInfo.Comments
 
     xrQuantity.DataBindings.Add("Text", DataSource, "Qty", "{0:0.###}")
     xrtcStockCode.DataBindings.Add("Text", DataSource, "StockCode")
     xrtcRefCodes.DataBindings.Add("Text", DataSource, "PurchaseRefCodes")
-    xrtcUoM.DataBindings.Add("Text", DataSource, "UoMDesc")
+    xrDescription.DataBindings.Add("Text", DataSource, "UoMDesc")
 
 
 
 
-    xrDescription.DataBindings.Add("Text", DataSource, "Description")
+    xrtcUoM.DataBindings.Add("Text", DataSource, "Description")
 
 
     Select Case pCurrency
