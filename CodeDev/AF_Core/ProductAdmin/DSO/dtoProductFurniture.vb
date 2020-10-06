@@ -56,7 +56,8 @@ Public Class dtoProductFurniture : Inherits dtoProductBase
     With CType(pProduct, dmProductFurniture)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Notes", StringToDBValue(.Notes))
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FurnitureType", .FurnitureType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Code", StringToDBValue(.Code))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .FurnitureType)
     End With
 
   End Sub
@@ -70,7 +71,8 @@ Public Class dtoProductFurniture : Inherits dtoProductBase
         .ProductFurnitureID = DBReadInt32(rDataReader, "ProductFurnitureID")
         .Description = DBReadString(rDataReader, "Description")
         .Notes = DBReadString(rDataReader, "notes")
-        .FurnitureType = DBReadInt32(rDataReader, "FurnitureType")
+        .Code = DBReadString(rDataReader, "Code")
+        .FurnitureType = DBReadInt32(rDataReader, "ItemType")
         CType(pProduct, dmProductFurniture).IsDirty = False
       End With
       mOK = True

@@ -295,7 +295,6 @@ C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmPickerCust
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmPickerStockItem.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmPickSupplier.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmSalesOrderPhasePickerMulti.resources
-C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmProductAdmin.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmPaySlipDetails.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmPickMaterials.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmTimeSheetEntry.resources
@@ -348,3 +347,4 @@ C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\bin\Debug\RTIS.ProductCore.V17.1.pdb
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmProductPicker.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.repCheckPaymentOrder.resources
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmHouseType.resources
+C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmProductAdmin.resources

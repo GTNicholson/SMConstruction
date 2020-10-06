@@ -42,8 +42,10 @@ Public Class dmProductStructure : Inherits dmProductBase
     With CType(rNewItem, dmProductStructure)
       .ProductStructureID = ProductStructureID
       .Description = Description
+      .Code = Code
       .ProductStructureTypeID = ProductStructureTypeID
       .Notes = Notes
+      .SubItemType = SubItemType
       'Add entries here for each collection and class property
 
       'Entries for object management

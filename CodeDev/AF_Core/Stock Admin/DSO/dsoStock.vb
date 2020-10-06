@@ -90,6 +90,25 @@ Public Class dsoStock
     End Try
   End Sub
 
+  Public Sub LoadProductInfosByWhere(ByRef rProductInfos As colProductBaseInfos, ByVal vWhere As String)
+    Dim mdto As dtoProductInfo
+    Try
+      pDBConn.Connect()
+
+      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.Installation)
+      mdto.LoadProductInfosCollection(rProductInfos)
+
+      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
+      mdto.LoadProductInfosCollection(rProductInfos)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
   Public Function SaveStockItem(ByRef rStockItem As dmStockItem) As Boolean
     Dim mdto As dtoStockItem
     Dim mOK As Boolean
@@ -107,6 +126,28 @@ Public Class dsoStock
 
     Return mOK
   End Function
+
+
+  Public Function SaveProductBase(ByRef rProductBase As clsProductBaseInfo) As Boolean
+    Dim mdtoProductBase As dtoProductBase
+    Try
+      pDBConn.Connect()
+
+      If rProductBase.Product IsNot Nothing Then
+        mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ItemType, pDBConn)
+        mdtoProductBase.SaveProduct(rProductBase.Product)
+
+      End If
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Function
+
 
   Public Function LoadStockTakeDown(ByRef rStockTake As dmStockTake, ByVal vStockTakeID As Integer) As Boolean
     Dim mdto As dtoStockTake

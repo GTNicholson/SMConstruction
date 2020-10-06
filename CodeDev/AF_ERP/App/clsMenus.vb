@@ -203,7 +203,20 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub ProductAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
-    frmProductAdmin.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, rRTISGlobal.StockItemRegistry)
+
+    Dim mProductTypes As New List(Of eProductType)
+    Dim mValueItems As New colValueItems
+
+    mValueItems = clsEnumsConstants.EnumToVIs(GetType(eProductType))
+
+    If mValueItems IsNot Nothing Then
+
+      For Each mValueItem As clsValueItem In mValueItems
+        mProductTypes.Add(mValueItem.ItemValue)
+      Next
+    End If
+
+    frmProductAdmin.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mProductTypes)
   End Sub
 
   Public Shared Sub WorkOrderInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)

@@ -1,5 +1,4 @@
-﻿Imports RTIS.CommonVB
-Imports RTIS.DataLayer
+﻿Imports RTIS.DataLayer
 
 Public MustInherit Class dtoProductBase : Inherits dtoBase
   Public pProductType As eProductType
@@ -17,6 +16,17 @@ Public MustInherit Class dtoProductBase : Inherits dtoBase
       Case eProductType.ProductFurniture
         mRetVal = New dtoProductFurniture(rDBConn)
         mRetVal.pProductType = vProductType
+
+      Case eProductType.ProductInstallation
+        mRetVal = New dtoProductInstallation(rDBConn)
+        mRetVal.pProductType = vProductType
+        ''mRetVal.SetObjectToNew()
+
+      Case eProductType.StructureAF
+        mRetVal = New dtoProductStructure(rDBConn)
+        mRetVal.pProductType = vProductType
+
+        '' mRetVal.SetObjectToNew()
     End Select
     Return mRetVal
   End Function
@@ -27,7 +37,14 @@ Public MustInherit Class dtoProductBase : Inherits dtoBase
     Dim mRetVal As dtoProductBase = Nothing
     Select Case pProductType
       Case eProductType.ProductFurniture
-        pProduct = New dmProductFurniture ' Or .NewBlankProductFurniture
+        pProduct = New dmProductFurniture
+
+      Case eProductType.ProductInstallation
+        pProduct = New dmProductInstallation
+
+      Case eProductType.StructureAF
+        pProduct = New dmProductStructure
+
     End Select
 
     Return pProduct
@@ -54,7 +71,6 @@ Public MustInherit Class dtoProductBase : Inherits dtoBase
     pProduct = Nothing
     Return mOK
   End Function
-
 
 
   Public Function SaveProduct(ByRef rProduct As RTIS.ERPCore.intItemSpecCore) As Boolean

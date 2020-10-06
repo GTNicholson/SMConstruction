@@ -73,10 +73,10 @@ Public Class dmProductStructureType : Inherits dmBase
 
   Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
     Get
-      Throw New NotImplementedException()
+
     End Get
     Set(value As Boolean)
-      Throw New NotImplementedException()
+
     End Set
   End Property
 End Class

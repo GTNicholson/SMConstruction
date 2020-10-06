@@ -4,6 +4,13 @@
     Select Case vProductType
       Case eProductType.ProductFurniture
         mRetVal = New dmProductFurniture
+
+      Case eProductType.ProductInstallation
+        mRetVal = New dmProductInstallation
+
+      Case eProductType.StructureAF
+        mRetVal = New dmProductStructure
+
     End Select
     Return mRetVal
   End Function

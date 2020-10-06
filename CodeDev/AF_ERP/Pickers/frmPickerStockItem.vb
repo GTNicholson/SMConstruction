@@ -107,6 +107,7 @@ Public Class frmPickerStockItem
     Dim mVIs As colValueItems
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcCategory, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcUoM, RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
   End Sub
 

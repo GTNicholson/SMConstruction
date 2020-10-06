@@ -33,7 +33,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Private pPurchaseOrderItemAllocations As colPurchaseOrderItemAllocations
   Private pParent As dmPurchaseOrder
   Private pIVATemp As Boolean
-
+  Private pUoM As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -207,6 +207,16 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     Set(ByVal value As String)
       If pPartNo <> value Then IsDirty = True
       pPartNo = value
+    End Set
+  End Property
+
+  Public Property UoM() As Int32
+    Get
+      Return pUoM
+    End Get
+    Set(ByVal value As Int32)
+      If pUoM <> value Then IsDirty = True
+      pUoM = value
     End Set
   End Property
 

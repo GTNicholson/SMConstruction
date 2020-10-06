@@ -6,7 +6,7 @@ Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
 
-Public Class dtoProductStructure : Inherits dtoBase
+Public Class dtoProductStructure : Inherits dtoProductBase
   Private pProductStructure As dmProductStructure
 
   Public Sub New(ByRef rDBSource As clsDBConnBase)
@@ -23,19 +23,19 @@ Public Class dtoProductStructure : Inherits dtoBase
 
   Overrides Property ObjectKeyFieldValue() As Integer
     Get
-      ObjectKeyFieldValue = pProductStructure.ProductStructureID
+      ObjectKeyFieldValue = CType(pProduct, dmProductStructure).ProductStructureID
     End Get
     Set(ByVal value As Integer)
-      pProductStructure.ProductStructureID = value
+      CType(pProduct, dmProductStructure).ProductStructureID = value
     End Set
   End Property
 
   Overrides Property IsDirtyValue() As Boolean
     Get
-      IsDirtyValue = pProductStructure.IsDirty
+      IsDirtyValue = CType(pProduct, dmProductStructure).IsDirty
     End Get
     Set(ByVal value As Boolean)
-      pProductStructure.IsDirty = value
+      CType(pProduct, dmProductStructure).IsDirty = value
     End Set
   End Property
 
@@ -45,19 +45,20 @@ Public Class dtoProductStructure : Inherits dtoBase
     Set(ByVal value As ULong)
     End Set
   End Property
-
-
   Overrides Sub ObjectToSQLInfo(ByRef rFieldList As String, ByRef rParamList As String, ByRef rParameterValues As System.Data.IDataParameterCollection, ByVal vSetList As Boolean)
 
     Dim mDummy As String = ""
     Dim mDummy2 As String = ""
     If vSetList Then
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "ProductStructureID", pProductStructure.ProductStructureID)
+      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "ProductStructureID", CType(pProduct, dmProductStructure).ProductStructureID)
     End If
-    With pProductStructure
+    With CType(pProduct, dmProductStructure)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductStructureTypeID", .ProductStructureTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Notes", StringToDBValue(.Notes))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Code", StringToDBValue(.Code))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .ItemType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubItemType", .SubItemType)
+
     End With
 
   End Sub
@@ -66,13 +67,16 @@ Public Class dtoProductStructure : Inherits dtoBase
   Overrides Function ReaderToObject(ByRef rDataReader As IDataReader) As Boolean
     Dim mOK As Boolean
     Try
-      If pProductStructure Is Nothing Then SetObjectToNew()
-      With pProductStructure
+      If CType(pProduct, dmProductStructure) Is Nothing Then SetObjectToNew()
+      With CType(pProduct, dmProductStructure)
         .ProductStructureID = DBReadInt32(rDataReader, "ProductStructureID")
         .Description = DBReadString(rDataReader, "Description")
-        .ProductStructureTypeID = DBReadInt32(rDataReader, "ProductStructureTypeID")
         .Notes = DBReadString(rDataReader, "Notes")
-        pProductStructure.IsDirty = False
+        .Code = DBReadString(rDataReader, "Code")
+        .ItemType = DBReadInt32(rDataReader, "ItemType")
+        .SubItemType = DBReadInt32(rDataReader, "SubItemType")
+
+        CType(pProduct, dmProductStructure).IsDirty = False
       End With
       mOK = True
     Catch Ex As Exception

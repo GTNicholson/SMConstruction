@@ -27,11 +27,8 @@ Partial Class frmWorkOrderPicker
     Me.gvWorkOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.repbtnSelectOt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +74,7 @@ Partial Class frmWorkOrderPicker
         Me.gvWorkOrder.Appearance.OddRow.Options.UseFont = True
         Me.gvWorkOrder.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWorkOrder.Appearance.Row.Options.UseFont = True
-        Me.gvWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn7})
+        Me.gvWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn1})
         Me.gvWorkOrder.GridControl = Me.grdWorkOrder
         Me.gvWorkOrder.Name = "gvWorkOrder"
         Me.gvWorkOrder.OptionsView.EnableAppearanceEvenRow = True
@@ -98,35 +95,12 @@ Partial Class frmWorkOrderPicker
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Cliente"
-        Me.GridColumn1.FieldName = "CompanyName"
+        Me.GridColumn1.Caption = "Descripción"
+        Me.GridColumn1.FieldName = "Description"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 422
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Proyecto"
-        Me.GridColumn2.FieldName = "ProjectName"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        Me.GridColumn2.Width = 407
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ProductionBatchID"
-        Me.GridColumn5.FieldName = "WorkOrderID"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Width = 108
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Despatch Status"
-        Me.GridColumn7.FieldName = "DespatchStatus"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Width = 107
         '
         'RepbtnSelect
         '
@@ -164,10 +138,7 @@ Partial Class frmWorkOrderPicker
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepbtnSelects As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-  Friend WithEvents repbtnSelectOt As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents repbtnSelectOt As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents RepbtnSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

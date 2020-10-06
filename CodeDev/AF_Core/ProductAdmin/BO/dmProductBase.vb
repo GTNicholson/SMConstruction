@@ -13,6 +13,8 @@ Public MustInherit Class dmProductBase : Inherits dmBase
 
   Protected pDescription As String
   Protected pID As Integer
+  Protected pCode As String
+  Protected pSubItemType As Integer
 
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
@@ -37,6 +39,16 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     End Set
   End Property
 
+  Public Property SubItemType As Integer
+    Get
+      Return pSubItemType
+    End Get
+    Set(value As Integer)
+      If value <> pSubItemType Then pIsDirty = True
+      pSubItemType = value
+    End Set
+  End Property
+
   Public Property Description As String
     Get
       Return pDescription
@@ -46,6 +58,17 @@ Public MustInherit Class dmProductBase : Inherits dmBase
       pDescription = value
     End Set
   End Property
+
+  Public Property Code As String
+    Get
+      Return pCode
+    End Get
+    Set(value As String)
+      If value <> pCode Then pIsDirty = True
+      pCode = value
+    End Set
+  End Property
+
 
 
   Public Property Margin As Decimal Implements intItemSpecCore.Margin

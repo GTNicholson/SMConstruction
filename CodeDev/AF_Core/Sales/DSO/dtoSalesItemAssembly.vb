@@ -14,8 +14,8 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "SalesItemAssembly"
-    pKeyFieldName = "SalesItemAssemblyID"
+    pTableName = "SalesOrderItemAssembly"
+    pKeyFieldName = "SalesOrderItemAssemblyID"
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
@@ -52,14 +52,12 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
     Dim mDummy As String = ""
     Dim mDummy2 As String = ""
     If vSetList Then
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "SalesItemAssemblyID", pSalesItemAssembly.SalesItemAssemblyID)
+      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "SalesOrderItemAssemblyID", pSalesItemAssembly.SalesItemAssemblyID)
     End If
     With pSalesItemAssembly
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderItemID", .SalesOrderItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Ref", StringToDBValue(.Ref))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .HouseTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PricePerUnit", .PricePerUnit)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPrice", .TotalPrice)
@@ -73,12 +71,10 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
     Try
       If pSalesItemAssembly Is Nothing Then SetObjectToNew()
       With pSalesItemAssembly
-        .SalesItemAssemblyID = DBReadInt32(rDataReader, "SalesItemAssemblyID")
+        .SalesItemAssemblyID = DBReadInt32(rDataReader, "SalesOrderItemAssemblyID")
         .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
-        .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
         .Ref = DBReadString(rDataReader, "Ref")
         .Description = DBReadString(rDataReader, "Description")
-        .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .PricePerUnit = DBReadDecimal(rDataReader, "PricePerUnit")
         .TotalPrice = DBReadDecimal(rDataReader, "TotalPrice")
@@ -130,7 +126,7 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mParams.Add("@SalesOrderID", vSalesOrderID)
-    mOK = MyBase.LoadCollection(rSalesItemAssemblys, mParams, "SalesItemAssemblyID")
+    mOK = MyBase.LoadCollection(rSalesItemAssemblys, mParams, "SalesOrderItemAssemblyID")
     rSalesItemAssemblys.TrackDeleted = True
     If mOK Then rSalesItemAssemblys.IsDirty = False
     Return mOK

@@ -1,20 +1,20 @@
-﻿''DTO Definition - HouseType (to HouseType)'Generated from Table:HouseType
+﻿''DTO Definition - GroupType (to GroupType)'Generated from Table:GroupType
 
 Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
 
-Public Class dtoHouseType : Inherits dtoBase
-  Private pHouseType As dmHouseType
+Public Class dtoGroupType : Inherits dtoBase
+  Private pGroupType As dmGroupType
 
   Public Sub New(ByRef rDBSource As clsDBConnBase)
     MyBase.New(rDBSource)
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "HouseType"
-    pKeyFieldName = "HouseTypeID"
+    pTableName = "GroupType"
+    pKeyFieldName = "GroupTypeID"
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
@@ -22,19 +22,19 @@ Public Class dtoHouseType : Inherits dtoBase
 
   Overrides Property ObjectKeyFieldValue() As Integer
     Get
-      ObjectKeyFieldValue = pHouseType.HouseTypeID
+      ObjectKeyFieldValue = pGroupType.GroupTypeID
     End Get
     Set(ByVal value As Integer)
-      pHouseType.HouseTypeID = value
+      pGroupType.GroupTypeID = value
     End Set
   End Property
 
   Overrides Property IsDirtyValue() As Boolean
     Get
-      IsDirtyValue = pHouseType.IsDirty
+      IsDirtyValue = pGroupType.IsDirty
     End Get
     Set(ByVal value As Boolean)
-      pHouseType.IsDirty = value
+      pGroupType.IsDirty = value
     End Set
   End Property
 
@@ -51,15 +51,10 @@ Public Class dtoHouseType : Inherits dtoBase
     Dim mDummy As String = ""
     Dim mDummy2 As String = ""
     If vSetList Then
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "HouseTypeID", pHouseType.HouseTypeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "GroupTypeID", pGroupType.GroupTypeID)
     End If
-    With pHouseType
+    With pGroupType
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Name", StringToDBValue(.Name))
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "Area", pHouseType.Area)
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "GroupID", pHouseType.GroupID)
-
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "ModelID", pHouseType.ModelID)
-
     End With
 
   End Sub
@@ -68,16 +63,11 @@ Public Class dtoHouseType : Inherits dtoBase
   Overrides Function ReaderToObject(ByRef rDataReader As IDataReader) As Boolean
     Dim mOK As Boolean
     Try
-      If pHouseType Is Nothing Then SetObjectToNew()
-      With pHouseType
-        .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
+      If pGroupType Is Nothing Then SetObjectToNew()
+      With pGroupType
+        .GroupTypeID = DBReadInt32(rDataReader, "GroupTypeID")
         .Name = DBReadString(rDataReader, "Name")
-        .GroupID = DBReadInt32(rDataReader, "GroupID")
-        .ModelID = DBReadInt32(rDataReader, "ModelID")
-
-        .Area = DBReadDecimal(rDataReader, "Area")
-
-        pHouseType.IsDirty = False
+        pGroupType.IsDirty = False
       End With
       mOK = True
     Catch Ex As Exception
@@ -93,59 +83,59 @@ Public Class dtoHouseType : Inherits dtoBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pHouseType = New dmHouseType ' Or .NewBlankHouseType
-    Return pHouseType
+    pGroupType = New dmGroupType ' Or .NewBlankGroupType
+    Return pGroupType
 
   End Function
 
 
-  Public Function LoadHouseType(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
+  Public Function LoadGroupType(ByRef rGroupType As dmGroupType, ByVal vGroupTypeID As Integer) As Boolean
     Dim mOK As Boolean
-    mOK = LoadObject(vHouseTypeID)
+    mOK = LoadObject(vGroupTypeID)
     If mOK Then
-      rHouseType = pHouseType
+      rGroupType = pGroupType
     Else
-      rHouseType = Nothing
+      rGroupType = Nothing
     End If
-    pHouseType = Nothing
+    pGroupType = Nothing
     Return mOK
   End Function
 
 
-  Public Function SaveHouseType(ByRef rHouseType As dmHouseType) As Boolean
+  Public Function SaveGroupType(ByRef rGroupType As dmGroupType) As Boolean
     Dim mOK As Boolean
-    pHouseType = rHouseType
+    pGroupType = rGroupType
     mOK = SaveObject()
-    pHouseType = Nothing
+    pGroupType = Nothing
     Return mOK
   End Function
 
 
-  Public Function LoadHouseTypeCollection(ByRef rHouseTypes As colHouseTypes) As Boolean
+  Public Function LoadGroupTypeCollection(ByRef rGroupTypes As colGroupTypes) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    ''  mParams.Add("@ParentID", vParentID)
-    mOK = MyBase.LoadCollection(rHouseTypes, mParams, "HouseTypeID")
-    rHouseTypes.TrackDeleted = True
-    If mOK Then rHouseTypes.IsDirty = False
+    ''mParams.Add("@ParentID", vParentID)
+    mOK = MyBase.LoadCollection(rGroupTypes, mParams, "GroupTypeID")
+    rGroupTypes.TrackDeleted = True
+    If mOK Then rGroupTypes.IsDirty = False
     Return mOK
   End Function
 
 
-  Public Function SaveHouseTypeCollection(ByRef rCollection As colHouseTypes, ByVal vParentID As Integer) As Boolean
+  Public Function SaveGroupTypeCollection(ByRef rCollection As colGroupTypes) As Boolean
     Dim mParams As New Hashtable
     Dim mAllOK As Boolean
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      ''mParams.Add("@ParentID", vParentID)
+      '' mParams.Add("@ParentID", vParentID)
       ''Approach where delete items not found in the collection
       ''If rCollection.SomeRemoved Then
-      ''  For Each Me.pHouseType In rCollection
-      ''    If pHouseType.HouseTypeID <> 0 Then
+      ''  For Each Me.pGroupType In rCollection
+      ''    If pGroupType.GroupTypeID <> 0 Then
       ''      mCount = mCount + 1
       ''      If mCount > 1 Then mIDs = mIDs & ", "
-      ''       mIDs = mIDs & pHouseType.HouseTypeID.ToString
+      ''       mIDs = mIDs & pGroupType.GroupTypeID.ToString
       ''    End If
       ''  Next
       ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
@@ -156,18 +146,18 @@ Public Class dtoHouseType : Inherits dtoBase
       ''Alternative Approach - where maintain collection of deleted items
       If rCollection.SomeDeleted Then
         mAllOK = True
-        For Each Me.pHouseType In rCollection.DeletedItems
-          If pHouseType.HouseTypeID <> 0 Then
-            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pHouseType.HouseTypeID)
+        For Each Me.pGroupType In rCollection.DeletedItems
+          If pGroupType.GroupTypeID <> 0 Then
+            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pGroupType.GroupTypeID)
           End If
         Next
       Else
         mAllOK = True
       End If
 
-      For Each Me.pHouseType In rCollection
-        If pHouseType.IsDirty Or pHouseType.HouseTypeID = 0 Then 'Or pHouseType.HouseTypeID = 0
-          ''pHouseType.ParentID = vParentID
+      For Each Me.pGroupType In rCollection
+        If pGroupType.IsDirty Or pGroupType.GroupTypeID = 0 Then 'Or pGroupType.GroupTypeID = 0
+          ''pGroupType.ParentID = vParentID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next
@@ -180,4 +170,5 @@ Public Class dtoHouseType : Inherits dtoBase
   End Function
 
 End Class
+
 

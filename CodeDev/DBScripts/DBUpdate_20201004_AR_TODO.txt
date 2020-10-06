@@ -1,0 +1,19 @@
+Create View vwProductInstallationInfo 
+as
+select 
+ProductInstallationID,
+Description,
+ItemType,
+Notes,
+Code
+from ProductInstallation
+
+Create View vwProductStructureInfo 
+as
+select 
+ProductStructureID,
+Description,
+ItemType,
+Notes,
+Code
+from ProductStructure

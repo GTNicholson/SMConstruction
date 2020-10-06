@@ -33,4 +33,63 @@ LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
 
 GO
 
+alter table ProductFurniture
+add Code varchar(30)
+GO
+
+alter table ProductInstallation
+add Code varchar(30)
+GO
+
+alter table ProductStructure
+add Code varchar(30)
+GO
+
+EXEC sp_RENAME 'ProductFurniture.FurnitureType' , 'ItemType', 'COLUMN'
+GO
+EXEC sp_RENAME 'ProductInstallation.ProductInstallationTypeID' , 'ItemType', 'COLUMN'
+GO
+EXEC sp_RENAME 'ProductStructure.ProductStructureTypeID', 'ItemType', 'COLUMN'
+GO
+
+GO
+alter table HouseType
+add GroupID int,
+ModelID int,
+Area decimal (9,2)
+GO
+
+create view vwHouseTypeInfo
+as
+SELECT
+HT.HouseTypeID,
+HT.Name,
+HT.GroupID,
+HT.ModelID,
+HT.Area
+FROM HouseType HT
+GO
+
+CREATE TABLE [dbo].[GroupType](
+	[GroupTypeID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](256) NULL,
+ CONSTRAINT [pk_GroupTypeID] PRIMARY KEY CLUSTERED 
+(
+	[GroupTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+CREATE TABLE [dbo].[Model](
+	[ModelID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](256) NULL,
+ CONSTRAINT [pk_Model] PRIMARY KEY CLUSTERED 
+(
+	[ModelID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
 

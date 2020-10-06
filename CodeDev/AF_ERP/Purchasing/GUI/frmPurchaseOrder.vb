@@ -233,6 +233,7 @@ Public Class frmPurchaseOrder
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
     clsDEControlLoading.FillDEComboVI(cboPaymentMethod, clsEnumsConstants.EnumToVIs(GetType(ePaymentMethod)))
+    clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
 
     dteDateOfOrder.Properties.NullDate = Date.MinValue
@@ -786,6 +787,7 @@ Public Class frmPurchaseOrder
                   mPOItem.PartNo = mSelectedItem.PartNo
                   mPOItem.StockCode = mSelectedItem.StockCode
                   mPOItem.UnitPrice = mSelectedItem.StdCost
+                  mPOItem.UoM = mSelectedItem.SupplierUoM
                   mPOItem.SupplierCode = mSelectedItem.AuxCode
                   pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
                   pFormController.POIEditors.Add(pPOIEditor)

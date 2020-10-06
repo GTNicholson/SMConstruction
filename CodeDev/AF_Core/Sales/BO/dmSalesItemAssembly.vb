@@ -4,10 +4,8 @@ Imports RTIS.CommonVB
 Public Class dmSalesItemAssembly : Inherits dmBase
   Private pSalesItemAssemblyID As Int32
   Private pSalesOrderID As Int32
-  Private pSalesOrderItemID As Int32
   Private pRef As String
   Private pDescription As String
-  Private pHouseTypeID As Integer
   Private pQuantity As Integer
   Private pPricePerUnit As Decimal
   Private pTotalPrice As Decimal
@@ -46,10 +44,8 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     With CType(rNewItem, dmSalesItemAssembly)
       .SalesItemAssemblyID = SalesItemAssemblyID
       .SalesOrderID = SalesOrderID
-      .SalesOrderItemID = SalesOrderItemID
       .Ref = Ref
       .Description = Description
-      .HouseTypeID = HouseTypeID
       .Quantity = Quantity
       .PricePerUnit = PricePerUnit
       .TotalPrice = TotalPrice
@@ -82,16 +78,6 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     End Set
   End Property
 
-  Public Property SalesOrderItemID() As Int32
-    Get
-      Return pSalesOrderItemID
-    End Get
-    Set(ByVal value As Int32)
-      If pSalesOrderItemID <> value Then IsDirty = True
-      pSalesOrderItemID = value
-    End Set
-  End Property
-
   Public Property Ref() As String
     Get
       Return pRef
@@ -112,15 +98,6 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     End Set
   End Property
 
-  Public Property HouseTypeID() As Integer
-    Get
-      Return pHouseTypeID
-    End Get
-    Set(ByVal value As Integer)
-      If pHouseTypeID <> value Then IsDirty = True
-      pHouseTypeID = value
-    End Set
-  End Property
 
   Public Property Quantity() As Integer
     Get

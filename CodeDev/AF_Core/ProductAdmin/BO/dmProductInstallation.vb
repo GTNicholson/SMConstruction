@@ -7,7 +7,7 @@ Public Class dmProductInstallation : Inherits dmProductBase
   Private pProductInstallationID As Int32
   Private pProductInstallationTypeID As Int32
   Private pNotes As String
-
+  Private pSubItemType As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -42,8 +42,10 @@ Public Class dmProductInstallation : Inherits dmProductBase
     With CType(rNewItem, dmProductInstallation)
       .ProductInstallationID = ProductInstallationID
       .Description = Description
+      .Code = Code
       .ProductInstallationTypeID = ProductInstallationTypeID
       .Notes = Notes
+      .SubItemType = SubItemType
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -93,6 +95,8 @@ Public Class dmProductInstallation : Inherits dmProductBase
       pNotes = value
     End Set
   End Property
+
+
 
   Public Overrides Property ItemType As Integer
     Get

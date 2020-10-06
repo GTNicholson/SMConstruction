@@ -6,7 +6,8 @@ Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
 
-Public Class dtoProductInstallation : Inherits dtoBase
+Public Class dtoProductInstallation : Inherits dtoProductBase
+
   Private pProductInstallation As dmProductInstallation
 
   Public Sub New(ByRef rDBSource As clsDBConnBase)
@@ -20,22 +21,21 @@ Public Class dtoProductInstallation : Inherits dtoBase
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
   End Sub
-
   Overrides Property ObjectKeyFieldValue() As Integer
     Get
-      ObjectKeyFieldValue = pProductInstallation.ProductInstallationID
+      ObjectKeyFieldValue = CType(pProduct, dmProductInstallation).ProductInstallationID
     End Get
     Set(ByVal value As Integer)
-      pProductInstallation.ProductInstallationID = value
+      CType(pProduct, dmProductInstallation).ProductInstallationID = value
     End Set
   End Property
 
   Overrides Property IsDirtyValue() As Boolean
     Get
-      IsDirtyValue = pProductInstallation.IsDirty
+      IsDirtyValue = CType(pProduct, dmProductInstallation).IsDirty
     End Get
     Set(ByVal value As Boolean)
-      pProductInstallation.IsDirty = value
+      CType(pProduct, dmProductInstallation).IsDirty = value
     End Set
   End Property
 
@@ -48,31 +48,35 @@ Public Class dtoProductInstallation : Inherits dtoBase
 
 
   Overrides Sub ObjectToSQLInfo(ByRef rFieldList As String, ByRef rParamList As String, ByRef rParameterValues As System.Data.IDataParameterCollection, ByVal vSetList As Boolean)
-
     Dim mDummy As String = ""
     Dim mDummy2 As String = ""
     If vSetList Then
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "ProductInstallationID", pProductInstallation.ProductInstallationID)
+      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "ProductInstallationID", CType(pProduct, dmProductInstallation).ProductInstallationID)
     End If
-    With pProductInstallation
+    With CType(pProduct, dmProductInstallation)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductInstallationTypeID", .ProductInstallationTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Notes", StringToDBValue(.Notes))
-    End With
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Code", StringToDBValue(.Code))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .ItemType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubItemType", .SubItemType)
 
+    End With
   End Sub
 
 
   Overrides Function ReaderToObject(ByRef rDataReader As IDataReader) As Boolean
     Dim mOK As Boolean
     Try
-      If pProductInstallation Is Nothing Then SetObjectToNew()
-      With pProductInstallation
+      If CType(pProduct, dmProductInstallation) Is Nothing Then SetObjectToNew()
+      With CType(pProduct, dmProductInstallation)
         .ProductInstallationID = DBReadInt32(rDataReader, "ProductInstallationID")
         .Description = DBReadString(rDataReader, "Description")
-        .ProductInstallationTypeID = DBReadInt32(rDataReader, "ProductInstallationTypeID")
-        .Notes = DBReadString(rDataReader, "Notes")
-        pProductInstallation.IsDirty = False
+        .Notes = DBReadString(rDataReader, "notes")
+        .Code = DBReadString(rDataReader, "Code")
+        .ItemType = DBReadInt32(rDataReader, "ItemType")
+        .SubItemType = DBReadInt32(rDataReader, "SubItemType")
+
+        CType(pProduct, dmProductStructure).IsDirty = False
       End With
       mOK = True
     Catch Ex As Exception

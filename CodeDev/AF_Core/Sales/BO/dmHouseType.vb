@@ -6,6 +6,9 @@ Public Class dmHouseType : Inherits dmBase
 
   Private pHouseTypeID As Int32
   Private pName As String
+  Private pGroupID As Integer
+  Private pModelID As Integer
+  Private pArea As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -41,6 +44,9 @@ Public Class dmHouseType : Inherits dmBase
     With CType(rNewItem, dmHouseType)
       .HouseTypeID = HouseTypeID
       .Name = Name
+      .GroupID = GroupID
+      .ModelID = ModelID
+      .Area = Area
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -50,6 +56,35 @@ Public Class dmHouseType : Inherits dmBase
 
   End Sub
 
+  Public Property GroupID() As Int32
+    Get
+      Return pGroupID
+    End Get
+    Set(ByVal value As Int32)
+      If pGroupID <> value Then IsDirty = True
+      pGroupID = value
+    End Set
+  End Property
+
+  Public Property ModelID() As Int32
+    Get
+      Return pModelID
+    End Get
+    Set(ByVal value As Int32)
+      If pModelID <> value Then IsDirty = True
+      pModelID = value
+    End Set
+  End Property
+
+  Public Property Area() As Decimal
+    Get
+      Return pArea
+    End Get
+    Set(ByVal value As Decimal)
+      If pArea <> value Then IsDirty = True
+      pArea = value
+    End Set
+  End Property
   Public Property HouseTypeID() As Int32
     Get
       Return pHouseTypeID

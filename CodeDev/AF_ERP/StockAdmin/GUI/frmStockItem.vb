@@ -265,6 +265,7 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSpecies, .Species)
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
+        clsDEControlLoading.SetDECombo(cboSupplierUoM, .SupplierUoM)
         clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboFinish, .Finish)
@@ -334,6 +335,7 @@ Public Class frmStockItem
     clsDEControlLoading.FillDEComboVI(cboCategory, mVIs)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
     clsDEControlLoading.FillDEComboVI(cboUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
+    clsDEControlLoading.FillDEComboVI(cboSupplierUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
 
     mSuppliers = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.Supplier)
@@ -359,6 +361,7 @@ Public Class frmStockItem
         .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubitemType)
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
         .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
+        .SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSupplierUoM)
         .StockFinanceCategoryID = clsDEControlLoading.GetDEComboValue(cboStockFinanceCategory)
         .Finish = clsDEControlLoading.GetDEComboValue(cboFinish)
         .IsGeneric = chkIsGeneric.Checked
@@ -556,6 +559,7 @@ Public Class frmStockItem
     txtPartNo.ReadOnly = vReadOnly
     cboSpecies.ReadOnly = vReadOnly
     cboUoM.ReadOnly = vReadOnly
+    cboSupplierUoM.ReadOnly = vReadOnly
     cboStockFinanceCategory.ReadOnly = vReadOnly
     cboSubitemType.ReadOnly = vReadOnly
     cboFinish.ReadOnly = vReadOnly
@@ -761,5 +765,8 @@ Public Class frmStockItem
 
   End Sub
 
+  Private Sub cboSupplierUoM_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboSupplierUoM.SelectedIndexChanged
+    ''  pFormController.StockItem.SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSubitemType)
+  End Sub
 End Class
 

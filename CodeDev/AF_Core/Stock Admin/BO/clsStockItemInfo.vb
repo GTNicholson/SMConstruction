@@ -193,6 +193,21 @@ Public Class clsStockItemInfo
 
   End Property
 
+  Public ReadOnly Property UoM() As Integer
+    Get
+      Return pStockItem.UoM
+    End Get
+
+  End Property
+
+
+  Public ReadOnly Property SupplierUoM() As Integer
+    Get
+      Return pStockItem.SupplierUoM
+    End Get
+
+  End Property
+
   Public ReadOnly Property qty() As Decimal
     Get
       Return pQty

@@ -239,6 +239,8 @@ Public Enum ePaymentStatus
   <Description("Pagado")> Paid = 3
 End Enum
 
+
+
 Public Enum eCurrency
   <Description("Dólar (USD)")> Dollar = 0
   <Description("Córdobas")> Cordobas = 1

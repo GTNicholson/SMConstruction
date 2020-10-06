@@ -199,7 +199,9 @@
     <Compile Include="HR\BO\clsPaySlipItem.vb" />
     <Compile Include="HR\BO\dmEmployeeRateOfPay.vb" />
     <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
+    <Compile Include="ProductAdmin\BO\clsProductBaseInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmProductBase.vb" />
+    <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementProcessor.vb" />
     <Compile Include="ProductAdmin\BO\clsProductSharedFuncs.vb" />
@@ -254,6 +256,9 @@
     <Compile Include="Sales\Actions\clsActionSalesOrderGenerateWOs.vb" />
     <Compile Include="Sales\Actions\clsActionSalesOrderRecallWOs.vb" />
     <Compile Include="Sales\Actions\clsSalesOrderActionsHandler.vb" />
+    <Compile Include="Sales\BO\dmGroupType.vb" />
+    <Compile Include="Sales\BO\dmModel.vb" />
+    <Compile Include="Sales\BO\clsHouseTypeInfo.vb" />
     <Compile Include="Sales\BO\clsSalesItemEditor.vb" />
     <Compile Include="Sales\BO\clsSalesOrderHandler.vb" />
     <Compile Include="Sales\BO\clsSalesOrderItemProgressInfo.vb" />
@@ -275,8 +280,11 @@
     <Compile Include="Sales\BO\dmSalesOrderPhaseItem.vb" />
     <Compile Include="Sales\BO\dmSalesOrderStage.vb" />
     <Compile Include="Sales\BO\dmStageType.vb" />
+    <Compile Include="Sales\DSO\dmModel.vb" />
     <Compile Include="Sales\DSO\dtoCustomerContact.vb" />
+    <Compile Include="Sales\DSO\dtoGroupType.vb" />
     <Compile Include="Sales\DSO\dtoHouseType.vb" />
+    <Compile Include="Sales\DSO\dtoHouseTypeInfo.vb" />
     <Compile Include="Sales\DSO\dtoHouseTypeSalesItems.vb" />
     <Compile Include="Sales\DSO\dtoPhaseItemComponent.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />

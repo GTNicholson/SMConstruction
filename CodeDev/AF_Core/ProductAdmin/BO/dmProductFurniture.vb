@@ -75,6 +75,7 @@ Public Class dmProductFurniture : Inherits dmProductBase
     With CType(rNewItem, dmProductFurniture)
       .ProductFurnitureID = ProductFurnitureID
       .Description = Description
+      .Code = Code
       .Notes = Notes
       .FurnitureType = FurnitureType
       .MaterialRequirments = MaterialRequirments.Clone

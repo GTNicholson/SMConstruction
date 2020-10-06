@@ -101,6 +101,7 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LasUsedDate", DateToDBValue(.LastUsedDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AuxCode", StringToDBValue(.AuxCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierUoM", .SupplierUoM)
 
 
     End With
@@ -146,6 +147,7 @@ Public Class dtoStockItem : Inherits dtoBase
         .LastUsedDate = DBReadDateTime(rDataReader, "LastUsedDate")
         .AuxCode = DBReadString(rDataReader, "AuxCode")
         .UoM = DBReadInt32(rDataReader, "UoM")
+        .SupplierUoM = DBReadInt32(rDataReader, "SupplierUoM")
 
         pStockItem.IsDirty = False
       End With

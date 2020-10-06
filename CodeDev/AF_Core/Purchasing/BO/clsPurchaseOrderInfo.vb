@@ -449,6 +449,17 @@ Public Class clsPOItemInfo
     End Get
   End Property
 
+  Public ReadOnly Property UoM As Integer
+    Get
+      Return pPOItem.UoM
+    End Get
+  End Property
+
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Return RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pPOItem.UoM, eUoM))
+    End Get
+  End Property
   Public ReadOnly Property Price As Decimal
     Get
       Return pPOItem.NetAmount

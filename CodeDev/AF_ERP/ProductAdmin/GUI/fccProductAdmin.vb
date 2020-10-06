@@ -1,34 +1,51 @@
-﻿Imports RTIS.CommonVB
-Imports RTIS.DataLayer
+﻿Imports RTIS.DataLayer
+Imports RTIS.CommonVB
 
 Public Class fccProductAdmin
+
+
+  Private pCurrentProductType As eProductType
+  Private pIsLocked As Boolean
+  Private pProductTypes As List(Of eProductType)
+  Private pIsCostingOnly As Boolean
+  Private pIsGeneric As Boolean
+  Private pSelectedItems As colProductBaseInfos
   Private pDBConn As clsDBConnBase
+  Private pCurrentProductInfo As clsProductBaseInfo
+  Private pCurrentProductBase As dmProductBase
+  Private pProductBaseInfos As colProductBaseInfos
   Private pRTISGlobal As AppRTISGlobal
-  Private pPrimaryKeyID As Integer
-  Private pStockItems As colStockItems
-  ''  Private pStockItemsPicker As colStockItems
-  Private pCurrentStockItem As dmStockItem
-  ''  Private pCurrentAlternateCodes As colStockItemAlternateCodes
-  Private pCategorys As List(Of eProductType)
-  Private pCurrentCategory As eStockItemCategory
-  Private pCurrentStockItemOpposite As dmStockItem
-  Private pInterdenStockItem As dmStockItem
-  Private ptmpIsFullyLoadedDown As Boolean
-  Private pShowItemsMode As Integer
-  Private pStockItem As dmStockItem
-
-  Private pSIGlobalRegistry As clsStockItemRegistryBase
-
-  Public Enum eShowItems
-    ShowAll = 0
-    ShowLive = 1
-    ShowObsolete = 2
-  End Enum
 
   Public ReadOnly Property DBConn As clsDBConnBase
     Get
       Return pDBConn
     End Get
+  End Property
+
+  Public Property IsGeneric As Boolean
+    Get
+      Return pIsGeneric
+    End Get
+    Set(value As Boolean)
+      pIsGeneric = value
+    End Set
+  End Property
+  Public Property IsCostingOnly As Boolean
+    Get
+      Return pIsCostingOnly
+    End Get
+    Set(value As Boolean)
+      pIsCostingOnly = value
+    End Set
+  End Property
+
+  Public Property IsLocked As Boolean
+    Get
+      IsLocked = pIsLocked
+    End Get
+    Set(value As Boolean)
+      pIsLocked = value
+    End Set
   End Property
 
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
@@ -37,175 +54,87 @@ Public Class fccProductAdmin
     End Get
   End Property
 
-  Public Function GetSupplierList() As colSuppliers
-    Dim mRetVal As New colSuppliers
-    Dim mdso As dsoPurchasing
-    Try
-      mdso = New dsoPurchasing(pDBConn)
-      mdso.LoadSuppliersByWhere(mRetVal, "CompanyName is not null")
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-    Return mRetVal
-  End Function
 
-  Public Sub ReloadSupplier()
-    Dim mdso As dsoPurchasing
-    Try
-      mdso = New dsoPurchasing(pDBConn)
-      mdso.LoadSupplierDown(pCurrentStockItem.Supplier, pCurrentStockItem.DefaultSupplier)
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-  End Sub
-
-  Public ReadOnly Property StockItems As colStockItems
+  Public Property CurrentEmodeProductType As eProductType
     Get
-      Return pStockItems
+      Return pCurrentProductType
     End Get
-  End Property
-
-  Public ReadOnly Property SIGlobalRegistry As clsStockItemRegistryBase
-    Get
-      Return pSIGlobalRegistry
-    End Get
-  End Property
-
-  Public Property CurrentStockItem As dmStockItem
-    Get
-      Return pCurrentStockItem
-    End Get
-    Set(value As dmStockItem)
-      pCurrentStockItem = value
+    Set(value As eProductType)
+      pCurrentProductType = value
     End Set
   End Property
 
-  Public ReadOnly Property StockItem As dmStockItem
+  Public Property ProductTypes As List(Of eProductType)
     Get
-      Return pStockItem
-    End Get
-  End Property
-
-
-  Public Property tmpIsFullyLoadedDown() As Boolean
-    Get
-      tmpIsFullyLoadedDown = ptmpIsFullyLoadedDown
-    End Get
-    Set(ByVal value As Boolean)
-      ptmpIsFullyLoadedDown = value
-    End Set
-  End Property
-
-  Public Property CurrentStockItemOpposite As dmStockItem
-    Get
-      Return pCurrentStockItemOpposite
-    End Get
-    Set(value As dmStockItem)
-      pCurrentStockItemOpposite = value
-    End Set
-  End Property
-
-  Public Property PrimaryKeyID As Integer
-    Get
-      Return pPrimaryKeyID
-    End Get
-    Set(value As Integer)
-      pPrimaryKeyID = value
-    End Set
-  End Property
-
-  Public Property InterdenStockItem As dmStockItem
-    Get
-      Return pInterdenStockItem
-    End Get
-    Set(value As dmStockItem)
-      pInterdenStockItem = value
-    End Set
-  End Property
-
-
-  Public Property Categorys As List(Of eProductType)
-    Get
-      Return pCategorys
+      Return pProductTypes
     End Get
     Set(value As List(Of eProductType))
-      pCategorys = value
+      pProductTypes = value
     End Set
   End Property
 
-  Public Property CurrentCategory As eStockItemCategory
-    Get
-      Return pCurrentCategory
-    End Get
-    Set(value As eStockItemCategory)
-      pCurrentCategory = value
-    End Set
-  End Property
-
-  Public Property ShowItemsMode As eShowItems
-    Get
-      Return pShowItemsMode
-    End Get
-    Set(value As eShowItems)
-      pShowItemsMode = value
-    End Set
-  End Property
-
-  Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rRegistry As clsStockItemRegistryBase)
+  Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
-    pStockItems = New colStockItems
-    pSIGlobalRegistry = rRegistry
-    pShowItemsMode = eShowItems.ShowLive
-    pStockItem = New dmStockItem
+    pProductBaseInfos = New colProductBaseInfos
 
-    InitialiseCategories
-
+    pSelectedItems = New colProductBaseInfos
   End Sub
+  Public ReadOnly Property CurrentStockItemInfo() As clsProductBaseInfo
+    Get
+      Return pCurrentProductInfo
+    End Get
+  End Property
 
-  Private Sub InitialiseCategories()
-    pCategorys = New List(Of eProductType)
-    For Each mVI As clsValueItem In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
-      pCategorys.Add(mVI.ItemValue)
-    Next
-  End Sub
+  Public Property CurrentProductBase As dmProductBase
+    Get
+      Return pCurrentProductBase
+    End Get
+    Set(value As dmProductBase)
+      pCurrentProductBase = value
+    End Set
+  End Property
 
+  Public ReadOnly Property ProductBaseInfos As colProductBaseInfos
+    Get
+      Return pProductBaseInfos
+    End Get
+  End Property
 
   Public Sub LoadObject()
-    pCurrentCategory = 0 '// All
-    LoadStockItems()
-
-    ''pStockItemRegistry = AppRTISGlobal.GetInstance.StockItemRegistry.CreateClone
-
+    pCurrentProductType = 0 '// All
+    LoadMainCollection()
   End Sub
+  Public Function IsAnyDirty() As Boolean
 
-  Public Sub LoadStockItems()
+
+    Dim mIsDirty As Boolean = True
+
+    If CurrentProductBase IsNot Nothing Then
+      mIsDirty = CurrentProductBase.IsDirty
+    Else
+      mIsDirty = False
+    End If
+    Return mIsDirty
+
+  End Function
+
+  Public Function ValidateObject() As clsValidate
+    Dim mValidate As New clsValidate
+    mValidate.ValOk = True
+    If False Then '' Change to perform validation checks
+      mValidate.ValOk = False
+      mValidate.AddMsgLine("Check failed details")
+    End If
+    Return mValidate
+  End Function
+
+  Public Sub LoadMainCollection()
     Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mWhere As String = ""
-    Dim mCatString As String = ""
     Try
-      pStockItems = New colStockItems
-      mWhere = "(ProjectID is null or ProjectID = 0)"
+      pProductBaseInfos.Clear()
 
-      For Each mCat As eStockItemCategory In pCategorys
-        If mCatString <> "" Then mCatString = mCatString & ", "
-        mCatString = mCatString & CInt(mCat).ToString
-      Next
-
-      If pCurrentCategory <> 0 Then
-        ''If pCurrentCategory = eStockItemCategory.Facing Or pCurrentCategory = eStockItemCategory.Substrate Then
-        ''  mWhere = mWhere & " And Category In (2, 11)"
-        ''Else
-        ''  mWhere = mWhere & " And Category=" & pCurrentCategory
-        ''End If
-      End If
-      mWhere = mWhere & " And Category in (" & mCatString & ")"
-      If pShowItemsMode = eShowItems.ShowLive Then
-        mWhere = mWhere & " And (Inactive = 0 Or Inactive Is Null) "
-      ElseIf pShowItemsMode = eShowItems.ShowObsolete Then
-        mWhere = mWhere & " And (Inactive = 1) "
-      End If
-      mdsoStock.LoadStockItemsByWhere(pStockItems, mWhere)
+      mdsoStock.LoadProductInfosByWhere(pProductBaseInfos, "")
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -214,69 +143,14 @@ Public Class fccProductAdmin
     End Try
 
   End Sub
-  Public Function CreateSIImageFile(ByVal vSourceFile As String) As Boolean
-    Dim mFilePath As String
-    Dim mFileName As String
-    Dim mExportDirectory As String = String.Empty
-    Dim mRetVal As Boolean = False
 
-    Try
-      If IO.File.Exists(vSourceFile) Then
-        mFileName = "IMG _" & pCurrentStockItem.StockItemID
-
-
-        mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.StockItemFileFolderSys, clsGeneralA.GetFileSafeName(pCurrentStockItem.StockItemID.ToString("00000")))
-
-        mFileName &= IO.Path.GetExtension(vSourceFile)
-        mFileName = clsGeneralA.GetFileSafeName(mFileName)
-
-        mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
-        If IO.Directory.Exists(mExportDirectory) = False Then
-          IO.Directory.CreateDirectory(mExportDirectory)
-
-        End If
-
-        mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
-
-        IO.File.Copy(vSourceFile, mFilePath, True)
-        pCurrentStockItem.ImageFile = IO.Path.GetFileName(mFilePath)
-
-        If pCurrentStockItem.ImageFile <> "" Then
-          mRetVal = True
-
-        Else
-
-          pCurrentStockItem.ImageFile = ""
-          mRetVal = False
-        End If
-      End If
-
-
-
-
-
-
-
-    Catch ex As Exception
-
-
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-
-    Return mRetVal
-  End Function
-  Public Sub LoadStockItemExtraDetails()
+  Public Sub LoadMainCollectionByStockOptionFilter(ByVal vWhere As String)
     Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mWhere As String = ""
     Try
-      If pCurrentStockItem IsNot Nothing Then
-        Dim mSI As dmStockItem
-        mSI = pCurrentStockItem
-        mdsoStock.LoadStockItem(pCurrentStockItem, pCurrentStockItem.StockItemID)
-        mdsoStock.LoadStockItem(pCurrentStockItemOpposite, pCurrentStockItem.OppositeStockItemID)
-        mdsoStock.LoadStockItem(pInterdenStockItem, pCurrentStockItem.InterdenStockItemID)
-        pCurrentStockItem.tmpIsFullyLoadedDown = True
-      End If
+      pProductBaseInfos.Clear()
+
+      mdsoStock.LoadProductInfosByWhere(pProductBaseInfos, vWhere)
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     Finally
@@ -288,150 +162,203 @@ Public Class fccProductAdmin
   Public Sub SaveObject()
     Try
 
-      If pCurrentStockItem IsNot Nothing Then
-        Dim mdsoStock As New dsoStock(pDBConn)
+      If pCurrentProductInfo IsNot Nothing Then
 
-        mdsoStock.SaveStockItem(pCurrentStockItem)
-        If pSIGlobalRegistry.GetStockItemFromID(pCurrentStockItem.StockItemID) IsNot Nothing Then
-          pSIGlobalRegistry.RefreshStockItem(pCurrentStockItem.StockItemID)
-        Else
-          pSIGlobalRegistry.LoadByID(pCurrentStockItem.StockItemID)
+        If pCurrentProductInfo.Product IsNot Nothing Then
+          Dim mdsoStock As New dsoStock(pDBConn)
+
+
+          mdsoStock.SaveProductBase(pCurrentProductInfo)
+
+          mdsoStock = Nothing
         End If
-        mdsoStock = Nothing
+
       End If
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
 
-  Public Function AddStockItem(ByVal vClassType As Integer, ByVal vCategory As eStockItemCategory) As dmStockItem
-    Dim mRetVal As dmStockItem = Nothing
-    Dim mStockItem As dmStockItem
-    Dim mProvisional As Boolean = False
+
+  Public Function CheckStockCodeExists(ByVal vStockCode As String) As Boolean
+    ''Dim mRetval As Boolean
+    ''Dim mdsoStock As New dsoStock(pDBConn)
+
+    ''Try
+
+    ''  mRetval = mdsoStock.CheckStockcodeExists(pCurrentProductBase.StockItemID, vStockCode)
+
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    ''End Try
+
+    ''Return mRetval
+
+  End Function
+
+  Public Sub AddProductItem_SetToCurrent(ByVal vProductType As eProductType)
     Try
+      Dim mProductBaseInfo As New clsProductBaseInfo
+      Dim mProvisional As Boolean = False
+      mProductBaseInfo.Product = clsProductSharedFuncs.NewProductInstance(vProductType)
 
-      Select Case vClassType
-        ''Case eStockType.Basic
-        Case 1
-          mStockItem = New dmStockItem '(mProvisional)
-        Case Else
-          mStockItem = New dmStockItem '(mProvisional)
-      End Select
+      mProductBaseInfo.Product.ItemType = vProductType
+      pProductBaseInfos.Add(mProductBaseInfo)
 
-      ''mStockItem.ClassTypeID = CInt(vClassType)
-      mStockItem.Category = vCategory
-      ''mStockItem.tmpIsFullyLoadedDown = True
-      pStockItems.Add(mStockItem)
-
-      mRetVal = mStockItem
+      pCurrentProductBase = mProductBaseInfo.Product
+      pCurrentProductInfo = mProductBaseInfo
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
-    Return mRetVal
+  End Sub
+
+
+  Public Sub GotoGridRowByRowObject(ByVal vGridView As DevExpress.XtraGrid.Views.Grid.GridView, ByVal vRowObject As Object)
+    Dim rowHandle As Integer = GetRowHandleByRowObject(vGridView, vRowObject)
+    If rowHandle <> DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
+      vGridView.FocusedColumn = vGridView.Columns(0)
+      vGridView.FocusedRowHandle = rowHandle
+      vGridView.ShowEditor()
+    Else
+      'MessageBox.Show("Not found!")
+    End If
+  End Sub
+
+  Private Function GetRowHandleByRowObject(ByVal vGridView As DevExpress.XtraGrid.Views.Grid.GridView, ByVal vRowObject As Object) As Integer
+    Dim result As Integer = DevExpress.XtraGrid.GridControl.InvalidRowHandle
+    Dim i As Integer
+    For i = 0 To vGridView.RowCount - 1
+      If Object.ReferenceEquals(vGridView.GetRow(i), vRowObject) Then
+        Return i
+      End If
+    Next
+    Return result
   End Function
 
-  ''Public Function GetStockItemFixings() As colStockItems
+  Public Function GetVisibleRowHandleByRowObject(ByVal vGridView As DevExpress.XtraGrid.Views.Grid.GridView, ByVal vRowObject As Object) As Integer
+    Dim result As Integer = DevExpress.XtraGrid.GridControl.InvalidRowHandle
+    Dim i As Integer
+    For i = 0 To vGridView.DataRowCount - 1
+      If Object.ReferenceEquals(vGridView.GetRow(i), vRowObject) Then
+        Return i
+      End If
+    Next
+    Return result
+  End Function
 
-  ''  pStockItemsPicker = New colStockItems
-  ''  Dim mdsoStock As New dsoStock(pDBConn)
+  ''Public Function CreateStockItemDuplicates(rStockItem As dmStockItem, rThicknessList As List(Of Integer), rWidthList As List(Of Integer), rLengthList As List(Of Integer)) As Int32
+  ''  Dim mNewSI As dmStockItem
+  ''  Dim mdso As New dsoStock(pDBConn)
+  ''  Dim mStockItems As New colStockItems
+  ''  Dim mReturn As Integer = 0
+  ''  Dim mDescription As clsStockItemDescription
 
-  ''  Try
-  ''    mdsoStock.LoadStockItems(pStockItemsPicker, String.Format("Category = {0}", CInt(eStockItemCategory.Fixing)))
-  ''  Catch ex As Exception
-  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''  Finally
-  ''    mdsoStock = Nothing
-  ''  End Try
+  ''  For Each mThick As Integer In rThicknessList
+  ''    For Each mWidth As Integer In rWidthList
+  ''      For Each mLength As Integer In rLengthList
+
+  ''        mNewSI = rStockItem.Clone
+  ''        mNewSI.ClearKeys()
+  ''        mDescription = New clsStockItemDescription(mNewSI)
+  ''        mNewSI.Thickness = mThick
+  ''        mNewSI.Width = mWidth
+  ''        mNewSI.Length = mLength
+  ''        mNewSI.Description = clsStockItemSharedFuncs.DeriveDescription(False, mNewSI)
+  ''        mNewSI.StockCode = clsStockItemSharedFuncs.GetStockCode(mNewSI) ''mDescription.DeriveStockCode
+  ''        'Check in data (in dso function) if this stockitem definition already exists
 
 
-  ''  Return pStockItemsPicker
+  ''        mStockItems = mdso.GetStockItemsBySpecs(mThick, mWidth, mLength, rStockItem.Category, rStockItem.ItemType, rStockItem.SubItemType, rStockItem.Colour, rStockItem.Species)
+
+
+  ''        If mStockItems.Count = 0 Then
+  ''          mdso.SaveStockItem(mNewSI)
+  ''          mReturn = mReturn + 1
+  ''        End If
+
+
+  ''        'Save the mNewSI
+  ''      Next
+  ''    Next
+  ''  Next
+  ''  Return mReturn
   ''End Function
 
-  ''  Public Function GetStockItems() As colStockItems
+  Public Sub SetCurrentStockItemInfo(ByRef rProductBaseInfo As clsProductBaseInfo)
+    pCurrentProductInfo = rProductBaseInfo
+    pCurrentProductBase = rProductBaseInfo.Product
 
-  ''    pStockItemsPicker = New colStockItems
-  ''    Dim mdsoStock As New dsoStock(pDBConn)
-
-  ''      Try
-  ''      mdsoStock.LoadStockItems(pStockItemsPicker, String.Format("Category = {0}", CInt(eStockItemCategory.Ironmongery)))
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''    Finally
-  ''        mdsoStock = Nothing
-  ''      End Try
+  End Sub
+  Public Sub LoadStockItemExtraDetails()
+    ''Dim mdsoStock As New dsoStock(pDBConn)
+    ''Dim mWhere As String = ""
+    ''Try
+    ''  If pCurrentProductBase IsNot Nothing Then
+    ''    mdsoStock.LoadStockItem(pCurrentProductBase, pCurrentProductBase.StockItemID)
 
 
-  ''    Return pStockItemsPicker
-  ''  End Function
+    ''    pCurrentProductBase.tmpIsFullyLoadedDown = True
 
-  ''  Public Function MergeStockItems(ByVal vObsoleteItemID As Int32, ByVal vMergeItemID As Int32) As Boolean
-  ''    Dim mOK As Boolean = True
-  ''    Dim mParams As New Hashtable
 
-  ''    If pDBConn.Connect Then
-  ''      mParams.Add("@ObsoleteItemID", vObsoleteItemID)
-  ''      mParams.Add("@MergeIntoID", vMergeItemID)
 
-  ''      Dim mDR As IDataReader = pDBConn.LoadReaderSP("spMergeStockItem", mParams)
+    ''    pCurrentProductInfo.StockItem = pCurrentProductBase ''//It's neccesary due to the behavior of the instance of the dto
 
-  ''      mDR.Close()
-  ''      mDR = Nothing
-  ''    End If
+    ''  End If
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    ''Finally
+    ''  mdsoStock = Nothing
+    ''End Try
 
-  ''    Return mOK
-  ''  End Function
+  End Sub
+  Public Sub ClearObjects()
+    ''If pIsLocked And pCurrentProductBase.ID > 0 Then
+    ''  Dim mdso As New dsoStock(pDBConn)
+    ''  mdso.UnlockStockItem(pCurrentProductBase.StockItemID)
+    ''End If
+    ''pCurrentProductBase = Nothing
+  End Sub
 
-  ''  Public Function GetReleventCategories() As colValueItems
-  ''    Dim mRetval As colValueItems
-  ''    Dim mVI As clsValueItem
-  ''    mRetval = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
-
-  ''    '// Change the None description to All for the drop down
-  ''    mVI = mRetval.ItemValueToObject(eStockItemCategory.None)
-  ''    mVI.DisplayValue = "All"
-
-  ''    '// Remove the items that are not relevent
-  ''    For mLoop As Integer = mRetval.Count - 1 To 0 Step -1
-  ''      ''Select Case mRetval(mLoop).ItemValue
-  ''      ''  Case eStockItemCategory.DoorLeaf, eStockItemCategory.FrameCompSet, eStockItemCategory.KittedItem, eStockItemCategory.LeafSetBespoke, eStockItemCategory.LeafSetProduct
-  ''      ''    mRetval.RemoveAt(mLoop)
-  ''      ''  Case Else
-  ''      ''    Select Case pFormController.FormView
-  ''      ''      Case eFormView.Ironmongery
-  ''      ''        Select Case mRetval(mLoop).ItemValue
-  ''      ''          Case eStockItemCategory.None, eStockItemCategory.Ironmongery, eStockItemCategory.IntumescentStripSeals
-  ''      ''          Case Else
-  ''      ''            mRetval.RemoveAt(mLoop)
-  ''      ''        End Select
-  ''      ''      Case eFormView.Other
-  ''      ''      Case eFormView.Ironmongery
-  ''      ''        Select Case mRetval(mLoop).ItemValue
-  ''      ''          Case eStockItemCategory.Ironmongery, eStockItemCategory.IntumescentStripSeals
-  ''      ''            mRetval.RemoveAt(mLoop)
-  ''      ''        End Select
-  ''      ''    End Select
-  ''      ''End Select
-  ''    Next
-
-  ''    Return mRetval
-  ''  End Function
-
-  Public Function GetProposedCode()
-    Dim mDSO As dsoStock
-    Dim mStem As String
-    Dim mSuffix As Integer
-    Dim mRetVal As String = ""
-
-    mStem = clsStockItemSharedFuncs.GetStockCodeStem(pCurrentStockItem)
-    mDSO = New dsoStock(pDBConn)
-    If mStem <> "" Then
-      mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
-
-      mRetVal = mStem & mSuffix.ToString("000")
-    End If
-    Return mRetVal
+  Public Function LockStockItem(ByVal vStockItemID As Integer) As Boolean
+    ''Dim mRetVal As Boolean
+    ''Dim mdso As New dsoStock(pDBConn)
+    ''Try
+    ''  If pDBConn.Connect() Then
+    ''    mRetVal = mdso.LockStockItem(vStockItemID)
+    ''    pIsLocked = mRetVal
+    ''  End If
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    ''Finally
+    ''  If pDBConn.IsConnected Then pDBConn.Disconnect()
+    ''End Try
+    ''Return mRetVal
   End Function
 
+  Public Function UnLockStockItem(ByVal vStockItemID As Integer) As Boolean
+    ''Dim mRetVal As Boolean
+    ''Dim mdso As New dsoStock(pDBConn)
+    ''Try
+    ''  If pDBConn.Connect() Then
+    ''    mRetVal = mdso.UnlockStockItem(vStockItemID)
+    ''    pIsLocked = mRetVal
+    ''  End If
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    ''Finally
+    ''  If pDBConn.IsConnected Then pDBConn.Disconnect()
+    ''End Try
+    ''Return mRetVal
+  End Function
 
+  Public Property SelectedItems As colProductBaseInfos
+    Get
+      Return pSelectedItems
+    End Get
+    Set(value As colProductBaseInfos)
+      pSelectedItems = value
+    End Set
+  End Property
 End Class

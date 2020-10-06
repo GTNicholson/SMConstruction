@@ -42,6 +42,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pOutputDocuments As colOutputDocuments
   Private pLastUsedDate As DateTime
   Private pUoM As Integer
+  Private pSupplierUoM As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -129,6 +130,7 @@ Public Class dmStockItem : Inherits dmBase
       .LastUsedDate = LastUsedDate
       .AuxCode = AuxCode
       .UoM = UoM
+      .SupplierUoM = SupplierUoM
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -316,15 +318,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property DefaultSupplier() As Int32
-    Get
-      Return pDefaultSupplier
-    End Get
-    Set(ByVal value As Int32)
-      If pDefaultSupplier <> value Then IsDirty = True
-      pDefaultSupplier = value
-    End Set
-  End Property
+
 
   Public Property Finish() As Byte
     Get
@@ -491,6 +485,25 @@ Public Class dmStockItem : Inherits dmBase
     End Get
     Set(value As Integer)
       pUoM = value
+    End Set
+  End Property
+
+  Public Property DefaultSupplier() As Int32
+    Get
+      Return pDefaultSupplier
+    End Get
+    Set(ByVal value As Int32)
+      If pDefaultSupplier <> value Then IsDirty = True
+      pDefaultSupplier = value
+    End Set
+  End Property
+
+  Public Property SupplierUoM() As Integer
+    Get
+      Return pSupplierUoM
+    End Get
+    Set(value As Integer)
+      pSupplierUoM = value
     End Set
   End Property
 

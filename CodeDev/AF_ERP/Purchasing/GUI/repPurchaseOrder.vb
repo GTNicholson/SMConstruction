@@ -70,6 +70,8 @@ Public Class repPurchaseOrder
     xrQuantity.DataBindings.Add("Text", DataSource, "Qty", "{0:0.###}")
     xrtcStockCode.DataBindings.Add("Text", DataSource, "StockCode")
     xrtcRefCodes.DataBindings.Add("Text", DataSource, "PurchaseRefCodes")
+    xrtcUoM.DataBindings.Add("Text", DataSource, "UoMDesc")
+
 
 
 

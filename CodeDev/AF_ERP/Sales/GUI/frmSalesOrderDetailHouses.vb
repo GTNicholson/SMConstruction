@@ -1151,12 +1151,12 @@ Public Class frmSalesOrderDetailHouses
         With pFormController.CurrentSalesItemAssembly
 
           mValueItems = New clsValueItem
-          mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).ItemValueIndex(.HouseTypeID)
+          ''mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).ItemValueIndex(.HouseTypeID)
 
-          If mIndex <> -1 Then
-            mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).Item(mIndex)
-            cboHouseType.EditValue = mValueItems
-          End If
+          ''If mIndex <> -1 Then
+          ''  mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).Item(mIndex)
+          ''  cboHouseType.EditValue = mValueItems
+          ''End If
 
 
           txtSOARef.Text = .Ref
@@ -1201,7 +1201,7 @@ Public Class frmSalesOrderDetailHouses
         .Quantity = Val(txtQuantity.Text)
         .Description = txtSalesItemAssemblyDescription.Text
         If mValueItems IsNot Nothing Then
-          .HouseTypeID = mValueItems.ItemValue
+          ''.HouseTypeID = mValueItems.ItemValue
 
         End If
       End With
@@ -1366,12 +1366,12 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub cboHouseType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboHouseType.SelectedIndexChanged
 
-    If txtSalesItemAssemblyDescription.Text = "" Then
-      txtSalesItemAssemblyDescription.Text = cboHouseType.Text
-      xtraTabHouseType.SelectedTabPage.Text = txtSalesItemAssemblyDescription.Text
+    ''If txtSalesItemAssemblyDescription.Text = "" Then
+    ''  txtSalesItemAssemblyDescription.Text = cboHouseType.Text
+    ''  xtraTabHouseType.SelectedTabPage.Text = txtSalesItemAssemblyDescription.Text
 
 
-    End If
+    ''End If
 
   End Sub
 End Class
