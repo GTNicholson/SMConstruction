@@ -112,6 +112,7 @@ Public Class fccPickMaterials
     mdso.LoadWorkOrderDT(mDT, "")
     Return mDT
   End Function
+
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
@@ -161,6 +162,31 @@ Public Class fccPickMaterials
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+  End Sub
+
+  Public Sub CreateAdditionalMatReqs(ByRef rStockItemList As List(Of RTIS.ERPStock.intStockItemDef))
+    Dim mMatReqs As New colMaterialRequirements
+    Dim mMatReq As dmMaterialRequirement
+    Dim mdso As dsoSales
+    Try
+
+      mdso = New dsoSales(pDBConn)
+
+      For Each mSI As dmStockItem In rStockItemList
+        mMatReq = New dmMaterialRequirement
+        mMatReq.ObjectType = eObjectType.WorkOrder
+        mMatReq.ObjectID = pCurrentWorkOrderInfo.WorkOrderID
+        mMatReq.StockItemID = mSI.StockItemID
+        mMatReq.MaterialRequirementType = eMaterialRequirementType.Other
+        mMatReqs.Add(mMatReq)
+      Next
+
+      mdso.SaveMaterialRequirementsCollection(mMatReqs, eObjectType.WorkOrder, pCurrentWorkOrderInfo.WorkOrderID, eMaterialRequirementType.Other)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
   End Sub
 
 End Class

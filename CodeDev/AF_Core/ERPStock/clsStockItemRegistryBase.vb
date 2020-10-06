@@ -18,6 +18,7 @@ Public MustInherit Class clsStockItemRegistryBase
     End Set
   End Property
 
+
   Public Function GetStockItemFromID(ByVal vStockItemID As Integer) As dmStockItem
     Dim mRetVal As dmStockItem = Nothing
     If pStockItemsDict.ContainsKey(vStockItemID) Then mRetVal = pStockItemsDict.Item(vStockItemID)

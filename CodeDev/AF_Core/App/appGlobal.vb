@@ -90,11 +90,12 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     pStockItemRegistry = New clsStockItemRegistryComp(rDBConn)
   End Sub
 
-  Public ReadOnly Property StockItemRegistry As clsStockItemRegistryBase
+  Public ReadOnly Property StockItemRegistry As clsStockItemRegistryComp
     Get
       Return pStockItemRegistry
     End Get
   End Property
+
 
   Public Property EmailSettings As RTIS.EmailLib.clsEmailSettings
     Get

@@ -908,4 +908,23 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Function SaveMaterialRequirementsCollection(ByRef rMaterialRequirents As colMaterialRequirements, ByVal vObjectType As eObjectType, ByVal vObjectID As Integer, ByVal vMatReqType As eMaterialRequirementType) As Boolean
+    Dim mdto As dtoMaterialRequirement
+
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirement(pDBConn)
+      mdto.SaveMaterialRequirementCollection(rMaterialRequirents, vObjectType, vObjectID, vMatReqType)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
 End Class
