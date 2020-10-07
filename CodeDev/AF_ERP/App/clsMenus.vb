@@ -52,6 +52,7 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Productos", 0, eActivityCode.ProductionGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Directorio de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductAdmin, eActivityCode.ProductAdmin)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Configuracion de Casa", eMenuIconType.Grid, AddressOf clsMenuFunctions.HouseConfig, eActivityCode.ProductAdmin)
 
 
     mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
@@ -217,6 +218,11 @@ Class clsMenuFunctions
     End If
 
     frmProductAdmin.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mProductTypes)
+  End Sub
+
+  Public Shared Sub HouseConfig(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwHouseType(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.HouseType)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
   Public Shared Sub WorkOrderInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)

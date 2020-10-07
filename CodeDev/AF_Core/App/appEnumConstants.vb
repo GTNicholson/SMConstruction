@@ -154,6 +154,7 @@ Public Enum eBrowseList
   Supplier = 10
   Invoice = 11
   PODelivery = 12
+  HouseType = 13
 End Enum
 
 

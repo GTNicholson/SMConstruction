@@ -92,8 +92,8 @@ Public Class dtoProductStructure : Inherits dtoProductBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pProductStructure = New dmProductStructure ' Or .NewBlankProductStructure
-    Return pProductStructure
+    pProduct = New dmProductStructure ' Or .NewBlankProductStructure
+    Return pProduct
 
   End Function
 

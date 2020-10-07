@@ -56,7 +56,7 @@ Public Class dtoHouseTypeInfo : Inherits dtoBase
 
       With pHouseTypeInfo.HouseType
         .HouseTypeID = DBReadInteger(rDataReader, "HouseTypeID")
-        .Name = DBReadString(rDataReader, "Name")
+        .ModelName = DBReadString(rDataReader, "ModelName")
         .GroupID = DBReadInt32(rDataReader, "GroupID")
         .ModelID = DBReadInt32(rDataReader, "ModelID")
         .Area = DBReadDecimal(rDataReader, "Area")

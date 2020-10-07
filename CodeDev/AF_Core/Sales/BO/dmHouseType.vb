@@ -5,7 +5,7 @@ Public Class dmHouseType : Inherits dmBase
   Implements iValueItem
 
   Private pHouseTypeID As Int32
-  Private pName As String
+  Private pModelName As String
   Private pGroupID As Integer
   Private pModelID As Integer
   Private pArea As Decimal
@@ -43,7 +43,7 @@ Public Class dmHouseType : Inherits dmBase
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
     With CType(rNewItem, dmHouseType)
       .HouseTypeID = HouseTypeID
-      .Name = Name
+      .ModelName = ModelName
       .GroupID = GroupID
       .ModelID = ModelID
       .Area = Area
@@ -95,13 +95,13 @@ Public Class dmHouseType : Inherits dmBase
     End Set
   End Property
 
-  Public Property Name() As String
+  Public Property ModelName() As String
     Get
-      Return pName
+      Return pModelName
     End Get
     Set(ByVal value As String)
-      If pName <> value Then IsDirty = True
-      pName = value
+      If pModelName <> value Then IsDirty = True
+      pModelName = value
     End Set
   End Property
 
@@ -116,10 +116,10 @@ Public Class dmHouseType : Inherits dmBase
 
   Public Property DisplayValue As String Implements iValueItem.DisplayValue
     Get
-      Return pName
+      Return pModelName
     End Get
     Set(value As String)
-      pName = value
+      pModelName = value
     End Set
   End Property
 
