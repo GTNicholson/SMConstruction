@@ -498,6 +498,12 @@
     <Compile Include="Sales\GUI\frmWorkOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderDetailConstruction.Designer.vb">
+      <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderDetailConstruction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmWorkOrderPicker.Designer.vb">
       <DependentUpon>frmWorkOrderPicker.vb</DependentUpon>
     </Compile>
@@ -756,6 +762,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
       <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetailConstruction.resx">
+      <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderPicker.resx">
       <DependentUpon>frmWorkOrderPicker.vb</DependentUpon>
