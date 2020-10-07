@@ -54,7 +54,7 @@ Public Class dtoHouseType : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "HouseTypeID", pHouseType.HouseTypeID)
     End If
     With pHouseType
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Name", StringToDBValue(.Name))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ModelName", StringToDBValue(.ModelName))
       DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "Area", pHouseType.Area)
       DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "GroupID", pHouseType.GroupID)
 
@@ -71,7 +71,7 @@ Public Class dtoHouseType : Inherits dtoBase
       If pHouseType Is Nothing Then SetObjectToNew()
       With pHouseType
         .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
-        .Name = DBReadString(rDataReader, "Name")
+        .ModelName = DBReadString(rDataReader, "ModelName")
         .GroupID = DBReadInt32(rDataReader, "GroupID")
         .ModelID = DBReadInt32(rDataReader, "ModelID")
 

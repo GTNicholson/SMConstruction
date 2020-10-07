@@ -76,7 +76,8 @@ Public Class dtoProductInstallation : Inherits dtoProductBase
         .ItemType = DBReadInt32(rDataReader, "ItemType")
         .SubItemType = DBReadInt32(rDataReader, "SubItemType")
 
-        CType(pProduct, dmProductStructure).IsDirty = False
+        CType(pProduct, dmProductInstallation).IsDirty = False
+
       End With
       mOK = True
     Catch Ex As Exception
@@ -92,8 +93,8 @@ Public Class dtoProductInstallation : Inherits dtoProductBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pProductInstallation = New dmProductInstallation ' Or .NewBlankProductInstallation
-    Return pProductInstallation
+    pProduct = New dmProductInstallation ' Or .NewBlankProductInstallation
+    Return pProduct
 
   End Function
 

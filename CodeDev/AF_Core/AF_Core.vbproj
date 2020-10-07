@@ -201,6 +201,7 @@
     <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
     <Compile Include="ProductAdmin\BO\clsProductBaseInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmProductBase.vb" />
+    <Compile Include="ProductAdmin\DSO\dsoProductAdmin.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementProcessor.vb" />

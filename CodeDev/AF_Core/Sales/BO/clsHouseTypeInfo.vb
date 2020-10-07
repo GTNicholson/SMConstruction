@@ -26,7 +26,7 @@
 
   Public ReadOnly Property Name As String
     Get
-      Return pHouseType.Name
+      Return pHouseType.ModelName
     End Get
   End Property
 

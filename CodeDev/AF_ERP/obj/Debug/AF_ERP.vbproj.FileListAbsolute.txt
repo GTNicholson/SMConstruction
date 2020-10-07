@@ -371,3 +371,4 @@ C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\bin\Debug\VectorDraw.Generics.xml
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\bin\Debug\vdCommandLine.xml
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\bin\Debug\vdPropertyGrid.xml
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AF_ERP.vbprojResolveAssemblyReference.cache
+C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmWorkOrderDetailConstruction.resources

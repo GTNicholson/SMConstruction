@@ -13,13 +13,14 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pWoodSpecieID As Int32
   Private pWoodFinish As Int32
   Private pQtyInvoiced As Int32
+  Private pProductTypeID As eProductType
+  Private pProductID As Integer
 
   Private pWorkOrders As colWorkOrders
   Private pSalesOrderItem As dmSalesOrderItem
 
   Private pSalesItemAssemblyID As Integer
   Private pHouseTypeID As Integer
-  Private pProductID As Integer
   Private pSalesOrderStageID As Integer
   Public Sub New()
     MyBase.New()
@@ -83,6 +84,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property ProductTypeID() As eProductType
+    Get
+      Return pProductTypeID
+    End Get
+    Set(ByVal value As eProductType)
+      If pProductTypeID <> value Then IsDirty = True
+      pProductTypeID = value
+    End Set
+  End Property
 
   Public Property ProductID() As Int32
     Get
