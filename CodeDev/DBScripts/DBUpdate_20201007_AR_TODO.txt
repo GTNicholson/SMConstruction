@@ -1,0 +1,27 @@
+
+CREATE TABLE ProductConstructionType(
+	ProductConstructionTypeID int IDENTITY(1,1) NOT NULL,
+	Description nvarchar(max) NULL,
+	Abbreviation varchar(5) null,
+ CONSTRAINT [pk_ProductConstructionType] PRIMARY KEY CLUSTERED 
+(
+	[ProductConstructionTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+
+CREATE TABLE ProductConstructionSubType(
+	ProductConstructionSubTypeID int IDENTITY(1,1) NOT NULL,
+	ProductConstructionTypeID int,
+	Description nvarchar(max) NULL,
+	Abbreviation varchar(5) null,
+ CONSTRAINT [pk_ProductConstructionSubType] PRIMARY KEY CLUSTERED 
+(
+	[ProductConstructionSubTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+

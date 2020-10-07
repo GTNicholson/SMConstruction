@@ -195,7 +195,8 @@ Public Class frmPickMaterials
             pFormController.CreateAdditionalMatReqs(mSIList)
           End If
       End Select
-
+      pFormController.LoadMaterialRequirementProcessorss()
+      grdMaterialRequirementInfo.RefreshDataSource()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 

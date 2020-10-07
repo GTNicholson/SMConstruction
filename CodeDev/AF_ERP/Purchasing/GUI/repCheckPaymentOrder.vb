@@ -89,6 +89,7 @@ Public Class repCheckPaymentOrder
     mNumalet.LetraCapital = True
 
     xrtValueInLetter.Text = mNumalet.ToCustomCardinal(Math.Round(pPOInfo.TotalGrossValue, 2, MidpointRounding.AwayFromZero).ToString())
+    txtComment.Text = pPOInfo.Comments
 
     Dim mText As String = "Compra de"
 

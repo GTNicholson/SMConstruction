@@ -201,7 +201,11 @@
     <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
     <Compile Include="ProductAdmin\BO\clsProductBaseInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmProductBase.vb" />
+    <Compile Include="ProductAdmin\BO\dmProductInstallation.vb" />
+    <Compile Include="ProductAdmin\BO\dmProductStructure.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
+    <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
+    <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementProcessor.vb" />
     <Compile Include="ProductAdmin\BO\clsProductSharedFuncs.vb" />
@@ -270,10 +274,6 @@
     <Compile Include="Sales\BO\dmHouseTypeSalesItems.vb" />
     <Compile Include="Sales\BO\dmMaterialRequirementForcasting.vb" />
     <Compile Include="Sales\BO\dmPhaseItemComponent.vb" />
-    <Compile Include="ProductAdmin\BO\dmProductInstallation.vb" />
-    <Compile Include="ProductAdmin\BO\dmProductInstallationType.vb" />
-    <Compile Include="ProductAdmin\BO\dmProductStructure.vb" />
-    <Compile Include="ProductAdmin\BO\dmProductStructureType.vb" />
     <Compile Include="Sales\BO\dmSalesItemAssembly.vb" />
     <Compile Include="Sales\BO\dmSalesOrderItem.vb" />
     <Compile Include="Sales\BO\dmSalesOrderPhase.vb" />
@@ -287,10 +287,6 @@
     <Compile Include="Sales\DSO\dtoHouseTypeInfo.vb" />
     <Compile Include="Sales\DSO\dtoHouseTypeSalesItems.vb" />
     <Compile Include="Sales\DSO\dtoPhaseItemComponent.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoProductInstallationType.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoProductStructureType.vb" />
     <Compile Include="Sales\DSO\dtoSalesItemAssembly.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderItem.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderPhase.vb" />

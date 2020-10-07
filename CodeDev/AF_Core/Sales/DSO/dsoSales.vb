@@ -430,24 +430,22 @@ Public Class dsoSales : Inherits dsoBase
 
   Public Function LoadStandardProducts(ByRef rProducts As colProductBases) As Boolean
     Dim mRet As Boolean = False
-    Dim mdtoInstallation As New dtoProductInstallation(DBConn)
-    Dim mdtoStructure As New dtoProductStructure(DBConn)
-    Dim mProductInstallations As New colProductInstallations
-    Dim mProductStructures As New colProductStructures
+    ''Dim mdtoInstallation As New dtoProductInstallation(DBConn)
+
 
     ''//Connect both dtos
     Try
 
       pDBConn.Connect()
-      mdtoInstallation.LoadProductInstallationCollection(mProductInstallations)
+      ''mdtoInstallation.LoadProductInstallationCollection(mProductInstallations)
 
-      For Each mProduct As dmProductBase In mProductInstallations
-        rProducts.Add(mProduct)
-      Next
-      mdtoStructure.LoadProductStructureCollection(mProductStructures)
-      For Each mProduct As dmProductBase In mProductStructures
-        rProducts.Add(mProduct)
-      Next
+      ''For Each mProduct As dmProductBase In mProductInstallations
+      ''  rProducts.Add(mProduct)
+      ''Next
+      ''mdtoStructure.LoadProductStructureCollection(mProductStructures)
+      ''For Each mProduct As dmProductBase In mProductStructures
+      ''  rProducts.Add(mProduct)
+      ''Next
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally

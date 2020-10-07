@@ -114,6 +114,7 @@ Public Enum eObjectType
   StockItemAmmendmentLog = 5
   MaterialRequirement = 6
   PODeliveryItem = 7
+  PurchaseOrder = 8
 End Enum
 
 Public Enum eEmployeeRole

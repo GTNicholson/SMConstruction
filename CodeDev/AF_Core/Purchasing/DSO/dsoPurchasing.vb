@@ -111,7 +111,7 @@ Public Class dsoPurchasing
     Dim mdtoSupplier As New dtoSupplier(pDBConn)
 
     Dim mOK As Boolean
-
+    Dim mdtoPOFiles As dtoFileTracker
     Try
       If pDBConn.Connect() Then
         Try
@@ -133,6 +133,10 @@ Public Class dsoPurchasing
             End If
           Next
           If mOK Then mOK = mdtoPOAllocation.SavePurchaseOrderAllocationCollection(rPurchaseOrder.PurchaseOrderAllocations, rPurchaseOrder.PurchaseOrderID)
+
+          mdtoPOFiles = New dtoFileTracker(pDBConn)
+          mdtoPOFiles.LoadFileTrackerCollection(rPurchaseOrder.POFiles, eObjectType.StockItemAmmendmentLog, rPurchaseOrder.PurchaseOrderID)
+
 
         Catch ex As Exception
           mOK = False
@@ -425,6 +429,7 @@ Public Class dsoPurchasing
     Dim mdtoPOAllocation As New dtoPurchaseOrderAllocation(pDBConn)
     Dim mdtoSupplierContact As New dtoSupplierContact(pDBConn)
     Dim mdtoPOItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
+    Dim mdtoPOFileTracker As dtoFileTracker
 
     Dim mdtoWorkOrder As New dtoWorkOrder(pDBConn)
     Dim mOK As Boolean
@@ -450,7 +455,10 @@ Public Class dsoPurchasing
       If mOK Then mOK = mdtoPOAllocation.LoadPurchaseOrderAllocationCollection(rPurchaseOrder.PurchaseOrderAllocations, vPurchaseOrderID)
 
 
-      mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+
+      mdtoPOFileTracker = New dtoFileTracker(pDBConn)
+      mdtoPOFileTracker.LoadFileTrackerCollection(rPurchaseOrder.POFiles, eObjectType.PurchaseOrder, rPurchaseOrder.PurchaseOrderID)
+
 
       pDBConn.Disconnect()
 

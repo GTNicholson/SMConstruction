@@ -50,7 +50,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pSupplier As dmSupplier
   Private pPurchaseOrderAllocations As colPurchaseOrderAllocations
   Private pPaymentMethod As Integer
-
+  Private pPOFiles As colFileTrackers
 
 
   Private pExchangeRateValue As Decimal
@@ -68,7 +68,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
     pPurchaseOrderAllocations = New colPurchaseOrderAllocations
     pSupplier = New dmSupplier
     pOutputDocuments = New colOutputDocuments
-
+    pPOFiles = New colFileTrackers
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -80,6 +80,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
     MyBase.Finalize()
     pPurchaseOrderItems = Nothing
     pPurchaseOrderAllocations = Nothing
+    pPOFiles = Nothing
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
@@ -90,10 +91,21 @@ Public Class dmPurchaseOrder : Inherits dmBase
       If Not mAnyDirty Then mAnyDirty = pDeliveryAddress.IsDirty
       If Not mAnyDirty Then mAnyDirty = pSupplierAddress.IsDirty
       If Not mAnyDirty Then mAnyDirty = pInvoiceAddress.IsDirty
+      If Not mAnyDirty Then mAnyDirty = pPOFiles.IsDirty
       If Not mAnyDirty Then mAnyDirty = PurchaseOrderAllocations.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
+
+  Public Property POFiles As colFileTrackers
+    Get
+      Return pPOFiles
+    End Get
+    Set(value As colFileTrackers)
+      pPOFiles = value
+    End Set
+  End Property
+
   Public Property OutputDocuments As colOutputDocuments
     Get
       Return pOutputDocuments
@@ -107,6 +119,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
     PurchaseOrderID = 0
     PurchaseOrderItems.ClearKeys()
     PurchaseOrderAllocations.ClearKeys()
+    pPOFiles.ClearKeys()
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -145,7 +158,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
       'Entries for object management
-
+      .POFiles = POFiles.Clone
       .IsDirty = IsDirty
     End With
 
