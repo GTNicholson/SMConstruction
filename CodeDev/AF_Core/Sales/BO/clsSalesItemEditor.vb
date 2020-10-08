@@ -68,6 +68,31 @@ Public Class clsSalesItemEditor
     End Set
   End Property
 
+  Public Property SalesItemType As Int32
+    Get
+      Return pSalesOrderItem.SalesItemType
+    End Get
+    Set(value As Int32)
+      pSalesOrderItem.SalesItemType = value
+    End Set
+  End Property
+  Public Property SalesSubItemType As Int32
+    Get
+      Return pSalesOrderItem.SalesSubItemType
+    End Get
+    Set(value As Int32)
+      pSalesOrderItem.SalesSubItemType = value
+    End Set
+  End Property
+
+  Public Property Quantity As Decimal
+    Get
+      Return pSalesOrderItem.Quantity
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.Quantity = value
+    End Set
+  End Property
 End Class
 
 Public Class colSalesItemEditors : Inherits BindingList(Of clsSalesItemEditor)

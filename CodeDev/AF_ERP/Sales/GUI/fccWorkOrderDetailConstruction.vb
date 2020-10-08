@@ -10,6 +10,7 @@ Public Class fccWorkOrderDetailConstruction
   Private pRTISGlobal As AppRTISGlobal
   Private pTimeSheetEntrys As colTimeSheetEntrys
   Private pIsInternal As Boolean
+  Private pCurrentProduct As dmProductBase
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     pDBConn = rDBConn
@@ -82,6 +83,14 @@ Public Class fccWorkOrderDetailConstruction
     End Get
   End Property
 
+  Public Property CurrentProduct As dmProductBase
+    Get
+      Return pCurrentProduct
+    End Get
+    Set(value As dmProductBase)
+      pCurrentProduct = value
+    End Set
+  End Property
 
   Public Sub LoadObjects()
     Dim mdso As dsoSales
@@ -419,6 +428,14 @@ Public Class fccWorkOrderDetailConstruction
     End If
 
 
+
+  End Sub
+
+
+  Public Sub LoadProducts(ByRef rProducts As colProductBases)
+    Dim mdso As New dsoSales(DBConn)
+    rProducts.Clear()
+    mdso.LoadStandardProducts(rProducts)
 
   End Sub
 End Class

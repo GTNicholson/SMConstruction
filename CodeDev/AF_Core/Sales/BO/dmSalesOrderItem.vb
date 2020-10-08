@@ -22,6 +22,9 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pSalesItemAssemblyID As Integer
   Private pHouseTypeID As Integer
   Private pSalesOrderStageID As Integer
+
+  Private pSalesSubItemType As Integer
+  Private pSalesItemType As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -77,6 +80,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .SalesItemAssemblyID = SalesItemAssemblyID
       .HouseTypeID = HouseTypeID
       .ProductID = ProductID
+      .SalesItemType = SalesItemType
+      .SalesSubItemType = SalesSubItemType
       .SalesOrderStageID = SalesOrderStageID
       'Entries for object management
 
@@ -104,6 +109,26 @@ Public Class dmSalesOrderItem : Inherits dmBase
       pProductID = value
     End Set
   End Property
+
+  Public Property SalesItemType() As Int32
+    Get
+      Return pSalesItemType
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesItemType <> value Then IsDirty = True
+      pSalesItemType = value
+    End Set
+  End Property
+  Public Property SalesSubItemType() As Int32
+    Get
+      Return pSalesSubItemType
+    End Get
+    Set(ByVal value As Int32)
+      If pSalesSubItemType <> value Then IsDirty = True
+      pSalesSubItemType = value
+    End Set
+  End Property
+
   Public Property SalesOrderStageID() As Int32
     Get
       Return pSalesOrderStageID
@@ -308,13 +333,13 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
     Return mIndex
   End Function
 
-  Public Function ItemFromProductID(ByVal vProductID As Integer) As dmSalesOrderItem
+  Public Function ItemFromProductID_ItemType_SubItemType(ByVal vProductID As Integer, ByVal vItemType As Integer, ByVal vSubItemType As Integer) As dmSalesOrderItem
     Dim mItem As dmSalesOrderItem
     Dim mRetVal As dmSalesOrderItem = Nothing
 
     For Each mItem In MyBase.Items
 
-      If mItem.ProductID = vProductID Then
+      If mItem.ProductID = vProductID And mItem.SalesItemType = vItemType And mItem.SalesSubItemType = vSubItemType Then
         mRetVal = mItem
         Exit For
       End If

@@ -23,16 +23,16 @@ Partial Class frmProductPicker
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject17 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject18 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject19 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject20 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject21 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject22 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject23 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject24 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.grdItemList = New DevExpress.XtraGrid.GridControl()
         Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -40,8 +40,8 @@ Partial Class frmProductPicker
         Me.gcStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.gcDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcItemType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSubItemType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSystemQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoItemRemove = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -100,7 +100,7 @@ Partial Class frmProductPicker
         Me.gvItemList.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.gvItemList.Appearance.TopNewRow.Options.UseFont = True
         Me.gvItemList.ColumnPanelRowHeight = 34
-        Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcStockCode, Me.gcDescription, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSystemQty})
+        Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcStockCode, Me.gcDescription, Me.gcItemType, Me.gcSubItemType, Me.gcPartNo, Me.gcSystemQty})
         Me.gvItemList.GridControl = Me.grdItemList
         Me.gvItemList.HorzScrollStep = 20
         Me.gvItemList.Name = "gvItemList"
@@ -133,7 +133,7 @@ Partial Class frmProductPicker
         'repoItemSelect
         '
         Me.repoItemSelect.AutoHeight = False
-        Me.repoItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Seleccionar", -1, True, True, True, EditorButtonImageOptions5, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject17, SerializableAppearanceObject18, SerializableAppearanceObject19, SerializableAppearanceObject20, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Seleccionar", -1, True, True, True, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoItemSelect.Name = "repoItemSelect"
         Me.repoItemSelect.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -145,22 +145,23 @@ Partial Class frmProductPicker
         Me.gcDescription.OptionsColumn.ReadOnly = True
         Me.gcDescription.Width = 258
         '
-        'gcCategory
-        '
-        Me.gcCategory.Caption = "Categoría"
-        Me.gcCategory.FieldName = "ItemType"
-        Me.gcCategory.Name = "gcCategory"
-        Me.gcCategory.Visible = True
-        Me.gcCategory.VisibleIndex = 1
-        Me.gcCategory.Width = 225
-        '
         'gcItemType
         '
-        Me.gcItemType.Caption = "Sub Categoría"
-        Me.gcItemType.FieldName = "gc"
+        Me.gcItemType.Caption = "Tipo"
+        Me.gcItemType.FieldName = "ItemType"
         Me.gcItemType.Name = "gcItemType"
-        Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.gcItemType.Width = 124
+        Me.gcItemType.Visible = True
+        Me.gcItemType.VisibleIndex = 1
+        Me.gcItemType.Width = 225
+        '
+        'gcSubItemType
+        '
+        Me.gcSubItemType.Caption = "Sub Tipo"
+        Me.gcSubItemType.FieldName = "SubItemType"
+        Me.gcSubItemType.Name = "gcSubItemType"
+        Me.gcSubItemType.Visible = True
+        Me.gcSubItemType.VisibleIndex = 2
+        Me.gcSubItemType.Width = 124
         '
         'gcPartNo
         '
@@ -179,7 +180,7 @@ Partial Class frmProductPicker
         'repoItemRemove
         '
         Me.repoItemRemove.AutoHeight = False
-        Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remove", -1, True, True, True, EditorButtonImageOptions6, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject21, SerializableAppearanceObject22, SerializableAppearanceObject23, SerializableAppearanceObject24, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remove", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoItemRemove.Name = "repoItemRemove"
         Me.repoItemRemove.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -300,8 +301,8 @@ Partial Class frmProductPicker
     Friend WithEvents gcStockCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents gcDescription As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcItemType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcSubItemType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcPartNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcSystemQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoItemRemove As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit

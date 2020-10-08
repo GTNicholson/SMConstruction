@@ -678,6 +678,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoComponents As dtoProductFurnitureComponent
     Dim mdtoWorkOrderAllocation As dtoWorkOrderAllocation
+
     Try
       pDBConn.Connect()
       mdto = New dtoWorkOrder(pDBConn)
@@ -699,6 +700,8 @@ Public Class dsoSales : Inherits dsoBase
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
           mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
 
+
+
           mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
           mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
 
@@ -706,6 +709,8 @@ Public Class dsoSales : Inherits dsoBase
           mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
           mdtoComponents.SaveProductFurnitureComponentCollection(mProductFurniture.ProductFurnitureComponents, mProductFurniture.ProductFurnitureID)
         End If
+
+
         mdtoWOFiles = New dtoFileTracker(pDBConn)
         mdtoWOFiles.SaveFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)

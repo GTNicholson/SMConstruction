@@ -332,6 +332,17 @@ Public Class frmWorkOrderDetailConstruction
         End With
       End If
 
+      If .Product IsNot Nothing Then
+        Dim mProductBase As dmProductBase
+
+        mProductBase = TryCast(.Product, dmProductBase)
+        If mProductBase IsNot Nothing Then
+          bteProductPicker.Text = mProductBase.Description
+
+        End If
+
+      End If
+
     End With
 
     pIsActive = mIsActive
@@ -1163,4 +1174,28 @@ Public Class frmWorkOrderDetailConstruction
 
   End Sub
 
+  Private Sub bteProductPicker_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteProductPicker.ButtonClick
+    Dim mProductPicker As clsPickerProductItem
+    Dim mProducts As New colProductBases
+    Dim mProductBase As dmProductBase
+
+    pFormController.LoadProducts(mProducts)
+
+    mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
+
+
+    mProductBase = frmProductPicker.OpenPickerSingle(mProductPicker)
+
+    If mProductBase IsNot Nothing Then
+      pFormController.WorkOrder.Product = mProductBase
+      pFormController.WorkOrder.ProductTypeID = mProductBase.ItemType
+      pFormController.WorkOrder.ProductID = mProductBase.ID
+      bteProductPicker.Text = mProductBase.Description
+      UpdateObject()
+      pFormController.SaveObjects()
+
+      RefreshControls()
+
+    End If
+  End Sub
 End Class

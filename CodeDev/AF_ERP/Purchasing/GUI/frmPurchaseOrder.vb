@@ -184,7 +184,7 @@ Public Class frmPurchaseOrder
 
       If mOK Then mOK = pFormController.LoadObject()
       If mOK Then mOK = pFormController.LoadRefData()
-
+      ConfigureFileControl()
       pFormController.LoadSuppliers()
 
       xtabPOReqType.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
@@ -324,6 +324,10 @@ Public Class frmPurchaseOrder
 
 
       With pFormController.PurchaseOrder
+        UctFileControl1.LoadControls()
+        UctFileControl1.RefreshControls()
+
+
         dteDateOfOrder.EditValue = .SubmissionDate
         txtCarriage.Text = .Carriage
         txtComments.Text = .Comments
@@ -478,6 +482,22 @@ Public Class frmPurchaseOrder
 
 
   End Sub
+
+  Private Sub ConfigureFileControl()
+    Dim mFileDirectory As String
+
+
+
+    mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys, pFormController.PurchaseOrder.SubmissionDate.Year, clsGeneralA.GetFileSafeName(pFormController.PurchaseOrder.PurchaseOrderID.ToString("00000")))
+
+    UctFileControl1.UserController = New uccFileControl(Me)
+      UctFileControl1.UserController.Directory = mFileDirectory
+    UctFileControl1.UserController.FileTrackers = pFormController.PurchaseOrder.POFiles
+    UctFileControl1.UserController.ConfigSystemWatcher()
+
+
+  End Sub
+
 
   ''Private Sub ControlForceValidateExample()
   ''  '' knock on effects of a property/control change - example event template

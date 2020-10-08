@@ -5,7 +5,8 @@ Public Class dmWorkOrderAllocation : Inherits dmBase
   Private pWorkOrderAllocationID As Int32
   Private pWorkOrderID As Int32
   Private pPhaseItemComponentID As Int32
-
+  Private PQuantityDone As Int32
+  Private pQuantityRequired As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -41,6 +42,8 @@ Public Class dmWorkOrderAllocation : Inherits dmBase
       .WorkOrderAllocationID = WorkOrderAllocationID
       .WorkOrderID = WorkOrderID
       .PhaseItemComponentID = PhaseItemComponentID
+      .QuantityDone = QuantityDone
+      .QuantityRequired = QuantityRequired
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -80,7 +83,25 @@ Public Class dmWorkOrderAllocation : Inherits dmBase
     End Set
   End Property
 
+  Public Property QuantityRequired() As Int32
+    Get
+      Return PQuantityRequired
+    End Get
+    Set(ByVal value As Int32)
+      If PQuantityRequired <> value Then IsDirty = True
+      PQuantityRequired = value
+    End Set
+  End Property
 
+  Public Property QuantityDone() As Int32
+    Get
+      Return PQuantityDone
+    End Get
+    Set(ByVal value As Int32)
+      If PQuantityDone <> value Then IsDirty = True
+      PQuantityDone = value
+    End Set
+  End Property
 End Class
 
 
