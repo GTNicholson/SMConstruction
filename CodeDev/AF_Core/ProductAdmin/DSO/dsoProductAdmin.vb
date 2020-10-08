@@ -10,11 +10,35 @@ Public Class dsoProductAdmin : Inherits dsoBase
   End Sub
 
   Public Function LoadHouseTypeDown(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
-
+    Dim mdto As dtoHouseType
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdto = New dtoHouseType(pDBConn)
+      mdto.LoadHouseType(rHouseType, vHouseTypeID)
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+    Return mRetVal
   End Function
 
   Public Function SaveHouseTypeDown(ByRef rHouseType As dmHouseType) As Boolean
-
+    Dim mdto As dtoHouseType
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdto = New dtoHouseType(pDBConn)
+      mdto.SaveHouseType(rHouseType)
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+    Return mRetVal
   End Function
 
   Public Function LoadHouseTypeInfos(ByRef rHouseTypeInfos As colHouseTypeInfos) As Boolean

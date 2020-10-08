@@ -122,11 +122,26 @@ Public Class frmHouseType
   End Sub
 
   Private Sub RefreshControls()
-
+    Dim mIsActive As Boolean
+    Try
+      mIsActive = pIsActive
+      pIsActive = False
+      txtModelo.Text = pFormController.HouseType.ModelName
+      pIsActive = mIsActive
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 
   Private Sub UpdateObjects()
+    Try
+      With pFormController.HouseType
 
+        .ModelName = txtModelo.Text
+      End With
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 
   Private Function CheckSave(ByVal rOption As Boolean) As Boolean
@@ -213,4 +228,12 @@ Public Class frmHouseType
 
   End Sub
 
+  Private Sub bbtnSaveExit_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSaveExit.ItemClick
+    Try
+      CheckSave(False)
+      CloseForm()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 End Class
