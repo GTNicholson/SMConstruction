@@ -7,7 +7,7 @@ Public Class dmProductInstallation : Inherits dmProductBase
   Private pProductInstallationID As Int32
   Private pProductInstallationTypeID As Int32
   Private pNotes As String
-  Private pSubItemType As Int32
+
   Public Sub New()
     MyBase.New()
   End Sub

@@ -25,3 +25,340 @@ CREATE TABLE ProductConstructionSubType(
 
 GO
 
+
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('PRELIMINARES','PRE')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('MOVIMIENTO DE TIERRA','MDT')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('FUNDACIONES','FND')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('PAREDES','PRD')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('TECHO','TEC')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('CIELO RASO','CLR')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('PISO','PSO')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('PUERTAS Y VENTANAS','PYV')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('ACABADOS','ACD')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('LIMPIEZA FINAL Y ENTREGAS','LFE')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('EXCAVACIÓN LETRINA','EXL')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('OBRAS HIDROSANITARIAS','HID')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('ELECTRICIDAD','ELE')
+GO
+
+insert into ProductConstructionType
+(Description,Abbreviation)
+VALUES
+('CONEXIONES ESTRUCTURALES','CET')
+GO
+
+
+
+--Preliminares
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(1,'LIMPIEZA','LMP')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(1,'TRAZO Y NIVELACIÓN','TRN')
+GO
+
+
+--MOVIMIENTO TIERRA
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(2,'CORTE','CRT')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(2,'RELLENO Y COMPACTACIÓN','RYC')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(2,'BOTAR TIERRA','BTR')
+GO
+
+--FUNDACIONES
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(3,'EXCAVACIÓN','EXC')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(3,'RELLENO Y COMPACTACIÓN','RYC')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(3,'BOTAR TIERRA','BTR')
+GO
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(3,'CONCRETO RECUBRIMIENTO','CONC')
+GO
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(3,'PILOTE MADERA','PLM')
+GO
+
+--PAREDES
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(4,'ARMADO E INSTALACIÓN','AEI')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(4,'HERRAJES DE FIJACIÓN','HRJ')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(4,'INSTALACIÓN FRAMING','INF')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(4,'FORRO EXTERIOR PAREDES LAMINA FIBROCEMENTO','FLF')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(4,'FORRO EXTERIOR PAREDES MACHIMBRE HORIZONTAL','FMH')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(4,'FORRO EXTERIOR PAREDES MACHIMBRE VERTICAL','FMV')
+GO
+
+
+--TECHO
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(5,'ALFAJIAS DE MADERA','AJM')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(5,'CUBIERTA TECHO LAM. ZINC ALUM.','CLZ')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(5,'CLAVADO DE TECHO','CDT')
+GO
+--CIELO RAZO
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(6,'CIELO RASO MACHIHEMBRADO','CMH')
+GO
+
+--PISO
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(7,'ENTRAMADO DE MADERA','EMD')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(7,'FORRO ENTRAMADO LAMINA FIBROCEMENTO','FLF')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(7,'CUBIERTA PISO CERAMICA INTERIORES','CPI')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(7,'CASCOTE CONCRETO','CCO')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(7,'ARENILLADO DE LOSA CONCRETO','ALC')
+GO
+
+--PUERTAS Y VENTANAS
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(8,'PUERTA MARCO MADERA AMBAS CARAS','PMA')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(8,'VENTANA CELOSIA','VCE')
+GO
+
+--ACABADOS
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(9,'PINTURA PAREDES INTERNAS','PPI')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(9,'PINTURA DE PAREDES EXTERNAS','PPE')
+GO
+
+
+--LIMPIEZA FINAL
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(10,'LIMPIEZA Y ENTREGA DE OBRA','LEO')
+GO
+
+
+--EXCAVACIÓN LETRINA
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(11,'EXCAVACIÓN MANUAL','EXM')
+GO
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(11,'BOTAR TIERRA','BTR')
+GO
+
+--OBRAS HID
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(12,'SUMINISTRO E INSTALACIÓN TUBERÍAS','SIT')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(12,'SUMINISTRO E INSTALACIÓN DE PANTRY','SIP')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(12,'SUMINISTRO E INSTALACIÓN DE LETRINA','SIL')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(12,'SUMINISTRO E INSTALACIÓN DE LAVANDERO','SIV')
+GO
+
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(12,'POZO DE INFILSTRACIÓN AGUAS RESIDUALES','PIA')
+GO
+
+--ELECTRICIDAD
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(13,'CANALIZACIÓN, ALAMBRADO E INSTALACIÓN','CAI')
+GO
+
+
+--CONEXIONES EST
+insert into ProductConstructionSubType (ProductConstructionTypeID,Description,Abbreviation)
+VALUES
+(14,'CONEXIONES ESTRUCTURALES ENTRAMADO','CEE')
+GO
+
+alter table SalesOrderItem
+add SalesItemType int,
+SalesSubItemType int
+GO
+
+alter table WorkOrderAllocation
+add QuantityRequired int,
+QuantityDone int
+GO
+
+create view vwSalesOrderPhaseItemInfo
+as
+
+select
+SOPI.SalesOrderPhaseItemID,
+SOPI.Qty,
+
+
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+
+SOP.SalesOrderPhaseID,
+SOP.DateRequired,
+
+SOI.SalesOrderItemID,
+SOI.Description,
+
+CU.CompanyName
+
+
+
+from SalesOrderPhaseItem SOPI
+INNER JOIN SalesOrder SO on SO.SalesOrderID=SOPI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+LEFT JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+LEFT JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+GO

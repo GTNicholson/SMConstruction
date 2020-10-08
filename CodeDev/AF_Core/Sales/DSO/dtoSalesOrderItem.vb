@@ -68,6 +68,8 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID ", .HouseTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID ", .ProductTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID ", .ProductID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesItemType ", .SalesItemType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesSubItemType ", .SalesSubItemType)
     End With
 
   End Sub
@@ -92,6 +94,9 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
         .ProductTypeID = DBReadByte(rDataReader, "ProductTypeID")
         .ProductID = DBReadInt32(rDataReader, "ProductID")
+        .SalesSubItemType = DBReadInt32(rDataReader, "SalesSubItemType")
+        .SalesItemType = DBReadInt32(rDataReader, "SalesItemType")
+
         pSalesOrderItem.IsDirty = False
       End With
       mOK = True

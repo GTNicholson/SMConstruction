@@ -14,7 +14,12 @@ Public Class frmProductPicker
   Private pRemainOpen As Boolean
   Private pProductBase As dmProductBase
   Private pActive As Boolean
+  Private pMode As ePickerMode
 
+  Public Enum ePickerMode
+    SinglePick = 1
+    MultiPick = 2
+  End Enum
 
   Public Property ProductBase As dmProductBase
     Get
@@ -26,7 +31,7 @@ Public Class frmProductPicker
   End Property
 
 
-  Public Shared Function PickProducts(ByRef rPickerProductBase As clsPickerProductItem, ByRef rRTISGlobal As clsRTISGlobal) As Boolean
+  Public Shared Function PickProducts(ByRef rPickerProductBase As clsPickerProductItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPickMode As ePickerMode) As Boolean
     Dim mfrm As frmProductPicker
     Dim mCreated As Boolean = False
     'Dim mTableName As String
@@ -35,20 +40,33 @@ Public Class frmProductPicker
     mfrm.pPickerProductBase = rPickerProductBase
     mfrm.pRTISGlobal = rRTISGlobal
     mfrm.pRemainOpen = True
-
+    mfrm.pMode = vPickMode
 
 
 
     mfrm.ShowDialog()
     Return True
   End Function
+  Public Shared Function OpenPickerSingle(ByVal vPickerProductBase As clsPickerProductItem) As dmProductBase
+    Dim mfrm As New frmProductPicker
+    Dim mRetVal As dmProductBase
 
+    mfrm.pMode = ePickerMode.SinglePick
+    mfrm.pPickerProductBase = vPickerProductBase
+    mfrm.ShowDialog()
+
+    If mfrm.pPickerProductBase.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerProductBase.SelectedObjects.Count > 0 Then
+      mRetVal = mfrm.pPickerProductBase.SelectedObjects(0)
+    End If
+
+    Return mRetVal
+  End Function
 
   Public Shared Function OpenPickerMulti(ByVal vPickerProductBase As clsPickerProductItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of dmProductBase)
     Dim mfrm As New frmProductPicker
     Dim mRetVal As New List(Of dmProductBase)
 
-
+    mfrm.pMode = ePickerMode.MultiPick
     mfrm.pPickerProductBase = vPickerProductBase
     mfrm.pRemainOpen = vRemainOpen
     mfrm.ShowDialog()
@@ -86,7 +104,7 @@ Public Class frmProductPicker
   Private Sub LoadCombo()
     Dim mVIs As colValueItems
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcCategory, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcItemType, mVIs)
 
   End Sub
 
@@ -94,11 +112,25 @@ Public Class frmProductPicker
   Private Sub repoItemSelect_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repoItemSelect.ButtonClick
     Try
       Dim mProductBase As dmProductBase
-      mProductBase = TryCast(gvItemList.GetFocusedRow, dmProductBase)
-      If mProductBase IsNot Nothing Then
-        pPickerProductBase.SelectedObjects.Add(mProductBase)
-        If pRemainOpen = False Then Me.Close()
-      End If
+
+      Select Case pMode
+        Case ePickerMode.SinglePick
+
+          mProductBase = TryCast(gvItemList.GetFocusedRow, dmProductBase)
+          If mProductBase IsNot Nothing Then
+            pPickerProductBase.SelectedObjects.Add(mProductBase)
+            Me.Close()
+          End If
+
+        Case ePickerMode.MultiPick
+          mProductBase = TryCast(gvItemList.GetFocusedRow, dmProductBase)
+          If mProductBase IsNot Nothing Then
+            pPickerProductBase.SelectedObjects.Add(mProductBase)
+            If pRemainOpen = False Then Me.Close()
+          End If
+      End Select
+
+
       gvItemList.CloseEditor()
       RefeshTabCaption(pPickerProductBase.CurrentCategory)
     Catch ex As Exception
@@ -130,7 +162,7 @@ Public Class frmProductPicker
     If mRow IsNot Nothing Then
       If e.IsGetData Then
         Select Case e.Column.Name
-          Case gcItemType.Name
+          Case gcSubItemType.Name
             Select Case mRow.Category
 
               Case eProductType.ProductInstallation, eProductType.ProductFurniture, eProductType.StructureAF

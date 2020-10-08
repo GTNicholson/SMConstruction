@@ -348,3 +348,4 @@ C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmProductAdm
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AF_ERP.vbprojAssemblyReference.cache
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AF_ERP.vbproj.CoreCompileInputs.cache
 C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AF_ERP.vbproj.CopyComplete
+C:\RTISProjects\AgroForestal\CodeDev\AF_ERP\obj\Debug\AgroForestal.frmWorkOrderDetailConstruction.resources

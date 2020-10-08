@@ -15,7 +15,7 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pID As Integer
   Protected pCode As String
   Protected pSubItemType As Integer
-
+  Protected pItemType As Integer
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
   Public MustOverride Property ItemType As Integer Implements intItemSpecCore.ItemType
@@ -68,7 +68,6 @@ Public MustInherit Class dmProductBase : Inherits dmBase
       pCode = value
     End Set
   End Property
-
 
 
   Public Property Margin As Decimal Implements intItemSpecCore.Margin
@@ -131,14 +130,14 @@ Public MustInherit Class dmProductBase : Inherits dmBase
 End Class
 
 Public Class colProductBases : Inherits List(Of dmProductBase)
-  Public Function ItemFromProductID(ByVal vID As Integer) As dmProductBase
+  Public Function ItemFromProductID_ItemTye_SubItemType(ByVal vID As Integer, ByVal vItemType As Integer, ByVal vSubItemType As Integer) As dmProductBase
     Dim mItem As dmProductBase
     Dim mRetVal As dmProductBase = Nothing
 
 
     For Each mItem In Me
 
-      If mItem.ID = vID Then
+      If mItem.ID = vID And mItem.ItemType = vItemType And mItem.SubItemType = vSubItemType Then
         mRetVal = mItem
         Exit For
       End If

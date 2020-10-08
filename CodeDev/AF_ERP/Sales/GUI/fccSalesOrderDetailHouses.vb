@@ -339,6 +339,50 @@ Public Class fccSalesOrderDetailHouses
     Next
   End Sub
 
+  Public Sub CreateSalesOrderPhaseItem(ByRef rSalesOrderPhase As dmSalesOrderPhase, ByVal vSalesOrderID As Integer)
+    Dim SOPI As dmSalesOrderPhaseItem
+    Dim mFoundSOPI As dmSalesOrderPhaseItem
+
+    ''rSalesOrderPhase.SalesOrderPhaseItems.Clear()
+
+    If rSalesOrderPhase IsNot Nothing And rSalesOrderPhase.SalesOrderPhaseID > 0 Then
+
+      If pSalesItemEditors IsNot Nothing Then
+
+        For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+
+          mFoundSOPI = rSalesOrderPhase.SalesOrderPhaseItems.ItemFromSalesItemKey(mSOI.SalesOrderItemID)
+          If mFoundSOPI Is Nothing Then
+            SOPI = New dmSalesOrderPhaseItem
+            SOPI.SalesOrderID = vSalesOrderID
+            SOPI.SalesOrderPhaseID = rSalesOrderPhase.SalesOrderPhaseID
+            SOPI.SalesItemID = mSOI.SalesOrderItemID
+            SOPI.Qty = mSOI.Quantity
+
+            rSalesOrderPhase.SalesOrderPhaseItems.Add(SOPI)
+
+          Else
+            ''//Only update qty and ref
+            Dim mIndex As Integer = -1
+
+            mIndex = rSalesOrderPhase.SalesOrderPhaseItems.IndexFromKey(mFoundSOPI.SalesOrderPhaseItemID)
+
+            If mIndex > -1 Then
+              rSalesOrderPhase.SalesOrderPhaseItems(mIndex).Qty = mSOI.Quantity
+              rSalesOrderPhase.SalesOrderPhaseItems(mIndex).SalesItemID = mSOI.SalesOrderItemID
+            End If
+
+          End If
+
+
+        Next
+        SaveObjects()
+      End If
+
+    End If
+
+  End Sub
+
   Public Function RemoveSalesOrderItemAssembly(ByVal vSalesItemAssembly As dmSalesItemAssembly) As Boolean
     Dim mOK As Boolean
     Try
@@ -436,6 +480,24 @@ Public Class fccSalesOrderDetailHouses
     End With
 
     rSalsesOrder.SalesOrderItems.Add(mRetVal)
+
+
     Return mRetVal
   End Function
+
+  Public Sub DeleteSalesOrderPhaseItemBySalesOrderIDAndSalesItemID(ByVal vSalesOrderID As Integer, ByVal vSalesOrderItemID As Integer)
+
+    If pSalesOrder.SalesOrderPhases IsNot Nothing Then
+      For Each mSOPI In pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems
+
+        If mSOPI.SalesOrderID = vSalesOrderID And mSOPI.SalesItemID = vSalesOrderItemID Then
+          pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Remove(mSOPI)
+          Exit For
+        End If
+      Next
+    End If
+
+    SaveObjects()
+
+  End Sub
 End Class

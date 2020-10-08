@@ -57,6 +57,9 @@ Public Class dtoWorkOrderAllocation : Inherits dtoBase
     With pWorkOrderAllocation
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PhaseItemComponentID", .PhaseItemComponentID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QuantityRequired", .QuantityRequired)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PhaseItemComponentID", .PhaseItemComponentID)
+
     End With
 
   End Sub
@@ -70,6 +73,10 @@ Public Class dtoWorkOrderAllocation : Inherits dtoBase
         .WorkOrderAllocationID = DBReadInt32(rDataReader, "WorkOrderAllocationID")
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .PhaseItemComponentID = DBReadInt32(rDataReader, "PhaseItemComponentID")
+        .QuantityRequired = DBReadInt32(rDataReader, "QuantityRequired")
+        .QuantityDone = DBReadInt32(rDataReader, "QuantityDone")
+
+
         pWorkOrderAllocation.IsDirty = False
       End With
       mOK = True

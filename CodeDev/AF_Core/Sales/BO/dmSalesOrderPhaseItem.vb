@@ -151,5 +151,20 @@ Public Class colSalesOrderPhaseItems : Inherits colBase(Of dmSalesOrderPhaseItem
     MyBase.New(vList)
   End Sub
 
+  Public Function ItemFromSalesItemKey(ByVal vSalesOrderID As Integer) As dmSalesOrderPhaseItem
+    Dim mItem As dmSalesOrderPhaseItem
+    Dim mRetVal As dmSalesOrderPhaseItem = Nothing
+
+
+    For Each mItem In Me
+
+      If mItem.SalesItemID = vSalesOrderID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
 End Class
 

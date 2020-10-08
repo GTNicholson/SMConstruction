@@ -203,6 +203,7 @@
     <Compile Include="ProductAdmin\BO\dmProductBase.vb" />
     <Compile Include="ProductAdmin\BO\dmProductInstallation.vb" />
     <Compile Include="ProductAdmin\BO\dmProductStructure.vb" />
+    <Compile Include="ProductAdmin\DSO\dsoProductAdmin.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
@@ -260,6 +261,7 @@
     <Compile Include="Sales\Actions\clsActionSalesOrderGenerateWOs.vb" />
     <Compile Include="Sales\Actions\clsActionSalesOrderRecallWOs.vb" />
     <Compile Include="Sales\Actions\clsSalesOrderActionsHandler.vb" />
+    <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />
     <Compile Include="Sales\BO\dmModel.vb" />
     <Compile Include="Sales\BO\clsHouseTypeInfo.vb" />
@@ -292,6 +294,7 @@
     <Compile Include="Sales\DSO\dtoSalesOrderPhase.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderPhaseInfo.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderPhaseItem.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderPhaseItemInfo.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderStage.vb" />
     <Compile Include="Sales\DSO\dtoStageType.vb" />
     <Compile Include="Sales\DSO\dtoWorkOrderInfo.vb" />
