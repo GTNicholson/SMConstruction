@@ -3,7 +3,7 @@ Imports RTIS.CommonVB
 
 Public Class dmSalesItemAssembly : Inherits dmBase
   Private pSalesItemAssemblyID As Int32
-  Private pSalesOrderID As Int32
+  Private pParentID As Int32
   Private pRef As String
   Private pDescription As String
   Private pQuantity As Integer
@@ -43,7 +43,7 @@ Public Class dmSalesItemAssembly : Inherits dmBase
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
     With CType(rNewItem, dmSalesItemAssembly)
       .SalesItemAssemblyID = SalesItemAssemblyID
-      .SalesOrderID = SalesOrderID
+      .ParentID = ParentID
       .Ref = Ref
       .Description = Description
       .Quantity = Quantity
@@ -68,13 +68,13 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     End Set
   End Property
 
-  Public Property SalesOrderID() As Int32
+  Public Property ParentID() As Int32
     Get
-      Return pSalesOrderID
+      Return pParentID
     End Get
     Set(ByVal value As Int32)
-      If pSalesOrderID <> value Then IsDirty = True
-      pSalesOrderID = value
+      If pParentID <> value Then IsDirty = True
+      pParentID = value
     End Set
   End Property
 

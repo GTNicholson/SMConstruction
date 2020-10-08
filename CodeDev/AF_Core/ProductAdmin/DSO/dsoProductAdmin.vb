@@ -11,11 +11,17 @@ Public Class dsoProductAdmin : Inherits dsoBase
 
   Public Function LoadHouseTypeDown(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
     Dim mdto As dtoHouseType
+    Dim mdtoSIA As dtoSalesItemAssembly
+
     Dim mRetVal As Boolean = False
     Try
       pDBConn.Connect()
       mdto = New dtoHouseType(pDBConn)
       mdto.LoadHouseType(rHouseType, vHouseTypeID)
+
+      mdtoSIA = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.HouseTypeSalesItemAssembly)
+      mdtoSIA.LoadSalesItemAssemblyCollection(rHouseType.SalesItemAssemblys, rHouseType.HouseTypeID)
+
       mRetVal = True
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -27,11 +33,16 @@ Public Class dsoProductAdmin : Inherits dsoBase
 
   Public Function SaveHouseTypeDown(ByRef rHouseType As dmHouseType) As Boolean
     Dim mdto As dtoHouseType
+    Dim mdtoSIA As dtoSalesItemAssembly
     Dim mRetVal As Boolean = False
     Try
       pDBConn.Connect()
       mdto = New dtoHouseType(pDBConn)
       mdto.SaveHouseType(rHouseType)
+
+      mdtoSIA = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.HouseTypeSalesItemAssembly)
+      mdtoSIA.SaveSalesItemAssemblyCollection(rHouseType.SalesItemAssemblys, rHouseType.HouseTypeID)
+
       mRetVal = True
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

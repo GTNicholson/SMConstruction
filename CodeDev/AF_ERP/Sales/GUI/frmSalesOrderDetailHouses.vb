@@ -1058,7 +1058,7 @@ Public Class frmSalesOrderDetailHouses
           ''  Next
           ''End If
           Dim m As New dmSalesItemAssembly
-          m.SalesOrderID = pFormController.SalesOrder.SalesOrderID
+          m.ParentID = pFormController.SalesOrder.SalesOrderID
           pFormController.SalesOrder.SalesItemAssemblys.Add(m)
           pFormController.SaveObjects()
 

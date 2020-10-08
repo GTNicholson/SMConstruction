@@ -84,7 +84,7 @@ Public Class fccSalesOrderDetailHouses
       pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
 
       mSalesOrderItemAssembly = New dmSalesItemAssembly
-      mSalesOrderItemAssembly.SalesOrderID = pSalesOrder.SalesOrderID
+      mSalesOrderItemAssembly.ParentID = pSalesOrder.SalesOrderID
       SalesOrder.SalesItemAssemblys.Add(mSalesOrderItemAssembly)
 
       SaveObjects()
@@ -416,7 +416,7 @@ Public Class fccSalesOrderDetailHouses
         Dim mdso As New dsoSales(pDBConn)
 
 
-        mNewSIA.SalesOrderID = pSalesOrder.SalesOrderID
+        mNewSIA.ParentID = pSalesOrder.SalesOrderID
 
         pSalesOrder.SalesItemAssemblys.Add(mNewSIA)
 

@@ -23,6 +23,10 @@ Partial Class frmHouseType
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
     Me.PictureEdit2 = New DevExpress.XtraEditors.PictureEdit()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -42,6 +46,31 @@ Partial Class frmHouseType
     Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
     Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
     Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+    Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+    Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+    Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+    Me.tabHouseTypeAssemblys = New DevExpress.XtraTab.XtraTabControl()
+    Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
+    Me.pnlHouseTypeAssembly = New DevExpress.XtraEditors.PanelControl()
+    Me.btnAddProducts = New DevExpress.XtraEditors.SimpleButton()
+    Me.txtAssRef = New DevExpress.XtraEditors.TextEdit()
+    Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+    Me.txtAssDescription = New DevExpress.XtraEditors.TextEdit()
+    Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+    Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+    Me.grdHouseSalesItems = New DevExpress.XtraGrid.GridControl()
+    Me.gvHouseSalesItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
     Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
     Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
@@ -70,28 +99,6 @@ Partial Class frmHouseType
     Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-    Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-    Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
-    Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
-    Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-    Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-    Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.grdHouseSalesItems = New DevExpress.XtraGrid.GridControl()
-    Me.gvHouseSalesItems = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
     CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.GroupControl1.SuspendLayout()
@@ -103,6 +110,25 @@ Partial Class frmHouseType
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabControl1.SuspendLayout()
+    Me.XtraTabPage1.SuspendLayout()
+    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.PanelControl1.SuspendLayout()
+    CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl3.SuspendLayout()
+    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupControl2.SuspendLayout()
+    CType(Me.tabHouseTypeAssemblys, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.tabHouseTypeAssemblys.SuspendLayout()
+    Me.XtraTabPage3.SuspendLayout()
+    CType(Me.pnlHouseTypeAssembly, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.pnlHouseTypeAssembly.SuspendLayout()
+    CType(Me.txtAssRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.txtAssDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.grdHouseSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
+    CType(Me.gvHouseSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.XtraTabPage2.SuspendLayout()
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.PanelControl2.SuspendLayout()
@@ -122,24 +148,6 @@ Partial Class frmHouseType
     Me.GroupControl4.SuspendLayout()
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.XtraTabPage1.SuspendLayout()
-    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.PanelControl1.SuspendLayout()
-    CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.GroupControl3.SuspendLayout()
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.GroupControl2.SuspendLayout()
-    CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.XtraTabControl2.SuspendLayout()
-    Me.XtraTabPage3.SuspendLayout()
-    CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.PanelControl3.SuspendLayout()
-    CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.grdHouseSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
-    CType(Me.gvHouseSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'GroupControl1
@@ -332,6 +340,272 @@ Partial Class frmHouseType
     Me.XtraTabControl1.Size = New System.Drawing.Size(1292, 673)
     Me.XtraTabControl1.TabIndex = 5
     Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+    '
+    'XtraTabPage1
+    '
+    Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
+    Me.XtraTabPage1.Name = "XtraTabPage1"
+    Me.XtraTabPage1.Size = New System.Drawing.Size(1286, 639)
+    Me.XtraTabPage1.Text = "Configuracion"
+    '
+    'PanelControl1
+    '
+    Me.PanelControl1.Controls.Add(Me.GroupControl3)
+    Me.PanelControl1.Controls.Add(Me.GroupControl2)
+    Me.PanelControl1.Controls.Add(Me.GroupControl1)
+    Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+    Me.PanelControl1.Name = "PanelControl1"
+    Me.PanelControl1.Size = New System.Drawing.Size(1286, 639)
+    Me.PanelControl1.TabIndex = 0
+    '
+    'GroupControl3
+    '
+    Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl3.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl3.Controls.Add(Me.GridControl1)
+    Me.GroupControl3.Location = New System.Drawing.Point(5, 284)
+    Me.GroupControl3.Name = "GroupControl3"
+    Me.GroupControl3.Size = New System.Drawing.Size(632, 352)
+    Me.GroupControl3.TabIndex = 3
+    Me.GroupControl3.Text = "Archivos"
+    '
+    'GridControl1
+    '
+    Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.GridControl1.Location = New System.Drawing.Point(2, 25)
+    Me.GridControl1.MainView = Me.GridView1
+    Me.GridControl1.MenuManager = Me.BarManager1
+    Me.GridControl1.Name = "GridControl1"
+    Me.GridControl1.Size = New System.Drawing.Size(628, 325)
+    Me.GridControl1.TabIndex = 1
+    Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+    '
+    'GridView1
+    '
+    Me.GridView1.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView1.Appearance.GroupRow.Options.UseFont = True
+    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
+    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GridView1.Appearance.Row.Options.UseFont = True
+    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+    Me.GridView1.GridControl = Me.GridControl1
+    Me.GridView1.Name = "GridView1"
+    Me.GridView1.OptionsView.ShowGroupPanel = False
+    '
+    'GridColumn4
+    '
+    Me.GridColumn4.Caption = "Tipo"
+    Me.GridColumn4.Name = "GridColumn4"
+    Me.GridColumn4.Visible = True
+    Me.GridColumn4.VisibleIndex = 0
+    '
+    'GridColumn5
+    '
+    Me.GridColumn5.Caption = "Nombre del Archivo"
+    Me.GridColumn5.Name = "GridColumn5"
+    Me.GridColumn5.Visible = True
+    Me.GridColumn5.VisibleIndex = 1
+    '
+    'GridColumn6
+    '
+    Me.GridColumn6.Caption = "Nota"
+    Me.GridColumn6.Name = "GridColumn6"
+    Me.GridColumn6.Visible = True
+    Me.GridColumn6.VisibleIndex = 2
+    '
+    'GroupControl2
+    '
+    Me.GroupControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+    Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+    Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+    Me.GroupControl2.Controls.Add(Me.tabHouseTypeAssemblys)
+    Me.GroupControl2.Location = New System.Drawing.Point(643, 5)
+    Me.GroupControl2.Name = "GroupControl2"
+    Me.GroupControl2.Size = New System.Drawing.Size(638, 627)
+    Me.GroupControl2.TabIndex = 2
+    Me.GroupControl2.Text = "Detalles Generales"
+    '
+    'tabHouseTypeAssemblys
+    '
+    Me.tabHouseTypeAssemblys.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.tabHouseTypeAssemblys.AppearancePage.Header.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.tabHouseTypeAssemblys.AppearancePage.Header.Options.UseFont = True
+    Me.tabHouseTypeAssemblys.AppearancePage.Header.Options.UseForeColor = True
+    Me.tabHouseTypeAssemblys.CustomHeaderButtons.AddRange(New DevExpress.XtraTab.Buttons.CustomHeaderButton() {New DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, EditorButtonImageOptions1, SerializableAppearanceObject1, "", "Add", Nothing), New DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Minus, "", -1, True, True, EditorButtonImageOptions2, SerializableAppearanceObject2, "", "Delete", Nothing)})
+    Me.tabHouseTypeAssemblys.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.tabHouseTypeAssemblys.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+    Me.tabHouseTypeAssemblys.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
+    Me.tabHouseTypeAssemblys.Location = New System.Drawing.Point(2, 25)
+    Me.tabHouseTypeAssemblys.Name = "tabHouseTypeAssemblys"
+    Me.tabHouseTypeAssemblys.SelectedTabPage = Me.XtraTabPage3
+    Me.tabHouseTypeAssemblys.Size = New System.Drawing.Size(634, 600)
+    Me.tabHouseTypeAssemblys.TabIndex = 1
+    Me.tabHouseTypeAssemblys.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3})
+    '
+    'XtraTabPage3
+    '
+    Me.XtraTabPage3.Controls.Add(Me.pnlHouseTypeAssembly)
+    Me.XtraTabPage3.Name = "XtraTabPage3"
+    Me.XtraTabPage3.Size = New System.Drawing.Size(566, 594)
+    Me.XtraTabPage3.Text = "Room 1"
+    '
+    'pnlHouseTypeAssembly
+    '
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.btnAddProducts)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.txtAssRef)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.LabelControl10)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.txtAssDescription)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.LabelControl9)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.TextEdit1)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.LabelControl1)
+    Me.pnlHouseTypeAssembly.Controls.Add(Me.grdHouseSalesItems)
+    Me.pnlHouseTypeAssembly.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.pnlHouseTypeAssembly.Location = New System.Drawing.Point(0, 0)
+    Me.pnlHouseTypeAssembly.Name = "pnlHouseTypeAssembly"
+    Me.pnlHouseTypeAssembly.Size = New System.Drawing.Size(566, 594)
+    Me.pnlHouseTypeAssembly.TabIndex = 0
+    '
+    'btnAddProducts
+    '
+    Me.btnAddProducts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.btnAddProducts.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.btnAddProducts.Appearance.Options.UseFont = True
+    Me.btnAddProducts.Location = New System.Drawing.Point(451, 50)
+    Me.btnAddProducts.Name = "btnAddProducts"
+    Me.btnAddProducts.Size = New System.Drawing.Size(106, 19)
+    Me.btnAddProducts.TabIndex = 7
+    Me.btnAddProducts.Text = "Add Products"
+    '
+    'txtAssRef
+    '
+    Me.txtAssRef.Location = New System.Drawing.Point(100, 10)
+    Me.txtAssRef.MenuManager = Me.BarManager1
+    Me.txtAssRef.Name = "txtAssRef"
+    Me.txtAssRef.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtAssRef.Properties.Appearance.Options.UseFont = True
+    Me.txtAssRef.Size = New System.Drawing.Size(69, 20)
+    Me.txtAssRef.TabIndex = 6
+    '
+    'LabelControl10
+    '
+    Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl10.Appearance.Options.UseFont = True
+    Me.LabelControl10.Appearance.Options.UseForeColor = True
+    Me.LabelControl10.Location = New System.Drawing.Point(19, 13)
+    Me.LabelControl10.Name = "LabelControl10"
+    Me.LabelControl10.Size = New System.Drawing.Size(59, 14)
+    Me.LabelControl10.TabIndex = 5
+    Me.LabelControl10.Text = "Referencia"
+    '
+    'txtAssDescription
+    '
+    Me.txtAssDescription.Location = New System.Drawing.Point(277, 10)
+    Me.txtAssDescription.MenuManager = Me.BarManager1
+    Me.txtAssDescription.Name = "txtAssDescription"
+    Me.txtAssDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.txtAssDescription.Properties.Appearance.Options.UseFont = True
+    Me.txtAssDescription.Size = New System.Drawing.Size(279, 20)
+    Me.txtAssDescription.TabIndex = 4
+    '
+    'LabelControl9
+    '
+    Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl9.Appearance.Options.UseFont = True
+    Me.LabelControl9.Appearance.Options.UseForeColor = True
+    Me.LabelControl9.Location = New System.Drawing.Point(195, 13)
+    Me.LabelControl9.Name = "LabelControl9"
+    Me.LabelControl9.Size = New System.Drawing.Size(65, 14)
+    Me.LabelControl9.TabIndex = 3
+    Me.LabelControl9.Text = "Descripcion"
+    '
+    'TextEdit1
+    '
+    Me.TextEdit1.Location = New System.Drawing.Point(100, 43)
+    Me.TextEdit1.MenuManager = Me.BarManager1
+    Me.TextEdit1.Name = "TextEdit1"
+    Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextEdit1.Properties.Appearance.Options.UseFont = True
+    Me.TextEdit1.Size = New System.Drawing.Size(69, 20)
+    Me.TextEdit1.TabIndex = 2
+    '
+    'LabelControl1
+    '
+    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+    Me.LabelControl1.Appearance.Options.UseFont = True
+    Me.LabelControl1.Appearance.Options.UseForeColor = True
+    Me.LabelControl1.Location = New System.Drawing.Point(19, 46)
+    Me.LabelControl1.Name = "LabelControl1"
+    Me.LabelControl1.Size = New System.Drawing.Size(73, 14)
+    Me.LabelControl1.TabIndex = 1
+    Me.LabelControl1.Text = "Area del Piso"
+    '
+    'grdHouseSalesItems
+    '
+    Me.grdHouseSalesItems.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.grdHouseSalesItems.Location = New System.Drawing.Point(0, 69)
+    Me.grdHouseSalesItems.MainView = Me.gvHouseSalesItems
+    Me.grdHouseSalesItems.MenuManager = Me.BarManager1
+    Me.grdHouseSalesItems.Name = "grdHouseSalesItems"
+    Me.grdHouseSalesItems.Size = New System.Drawing.Size(558, 520)
+    Me.grdHouseSalesItems.TabIndex = 0
+    Me.grdHouseSalesItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvHouseSalesItems})
+    '
+    'gvHouseSalesItems
+    '
+    Me.gvHouseSalesItems.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvHouseSalesItems.Appearance.GroupRow.Options.UseFont = True
+    Me.gvHouseSalesItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvHouseSalesItems.Appearance.HeaderPanel.Options.UseFont = True
+    Me.gvHouseSalesItems.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.gvHouseSalesItems.Appearance.Row.Options.UseFont = True
+    Me.gvHouseSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn15})
+    Me.gvHouseSalesItems.GridControl = Me.grdHouseSalesItems
+    Me.gvHouseSalesItems.GroupCount = 1
+    Me.gvHouseSalesItems.Name = "gvHouseSalesItems"
+    Me.gvHouseSalesItems.OptionsView.ShowGroupPanel = False
+    Me.gvHouseSalesItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
+    '
+    'GridColumn1
+    '
+    Me.GridColumn1.Caption = "ProductTypeDesc"
+    Me.GridColumn1.Name = "GridColumn1"
+    Me.GridColumn1.Visible = True
+    Me.GridColumn1.VisibleIndex = 0
+    '
+    'GridColumn2
+    '
+    Me.GridColumn2.Caption = "Producto"
+    Me.GridColumn2.Name = "GridColumn2"
+    Me.GridColumn2.Visible = True
+    Me.GridColumn2.VisibleIndex = 0
+    '
+    'GridColumn3
+    '
+    Me.GridColumn3.Caption = "Cantidad"
+    Me.GridColumn3.Name = "GridColumn3"
+    Me.GridColumn3.Visible = True
+    Me.GridColumn3.VisibleIndex = 1
+    '
+    'GridColumn15
+    '
+    Me.GridColumn15.Caption = "Criteria"
+    Me.GridColumn15.Name = "GridColumn15"
+    Me.GridColumn15.Visible = True
+    Me.GridColumn15.VisibleIndex = 2
+    Me.GridColumn15.Width = 266
     '
     'XtraTabPage2
     '
@@ -621,236 +895,6 @@ Partial Class frmHouseType
     Me.GridColumn9.Visible = True
     Me.GridColumn9.VisibleIndex = 2
     '
-    'XtraTabPage1
-    '
-    Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
-    Me.XtraTabPage1.Name = "XtraTabPage1"
-    Me.XtraTabPage1.Size = New System.Drawing.Size(1286, 639)
-    Me.XtraTabPage1.Text = "Configuracion"
-    '
-    'PanelControl1
-    '
-    Me.PanelControl1.Controls.Add(Me.GroupControl3)
-    Me.PanelControl1.Controls.Add(Me.GroupControl2)
-    Me.PanelControl1.Controls.Add(Me.GroupControl1)
-    Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-    Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1286, 639)
-    Me.PanelControl1.TabIndex = 0
-    '
-    'GroupControl3
-    '
-    Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GroupControl3.AppearanceCaption.Options.UseFont = True
-    Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
-    Me.GroupControl3.Controls.Add(Me.GridControl1)
-    Me.GroupControl3.Location = New System.Drawing.Point(5, 284)
-    Me.GroupControl3.Name = "GroupControl3"
-    Me.GroupControl3.Size = New System.Drawing.Size(632, 352)
-    Me.GroupControl3.TabIndex = 3
-    Me.GroupControl3.Text = "Archivos"
-    '
-    'GridControl1
-    '
-    Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.GridControl1.Location = New System.Drawing.Point(2, 25)
-    Me.GridControl1.MainView = Me.GridView1
-    Me.GridControl1.MenuManager = Me.BarManager1
-    Me.GridControl1.Name = "GridControl1"
-    Me.GridControl1.Size = New System.Drawing.Size(628, 325)
-    Me.GridControl1.TabIndex = 1
-    Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-    '
-    'GridView1
-    '
-    Me.GridView1.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.GroupRow.Options.UseFont = True
-    Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-    Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GridView1.Appearance.Row.Options.UseFont = True
-    Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
-    Me.GridView1.GridControl = Me.GridControl1
-    Me.GridView1.Name = "GridView1"
-    Me.GridView1.OptionsView.ShowGroupPanel = False
-    '
-    'GridColumn4
-    '
-    Me.GridColumn4.Caption = "Tipo"
-    Me.GridColumn4.Name = "GridColumn4"
-    Me.GridColumn4.Visible = True
-    Me.GridColumn4.VisibleIndex = 0
-    '
-    'GridColumn5
-    '
-    Me.GridColumn5.Caption = "Nombre del Archivo"
-    Me.GridColumn5.Name = "GridColumn5"
-    Me.GridColumn5.Visible = True
-    Me.GridColumn5.VisibleIndex = 1
-    '
-    'GridColumn6
-    '
-    Me.GridColumn6.Caption = "Nota"
-    Me.GridColumn6.Name = "GridColumn6"
-    Me.GridColumn6.Visible = True
-    Me.GridColumn6.VisibleIndex = 2
-    '
-    'GroupControl2
-    '
-    Me.GroupControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-    Me.GroupControl2.AppearanceCaption.Options.UseFont = True
-    Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
-    Me.GroupControl2.Controls.Add(Me.XtraTabControl2)
-    Me.GroupControl2.Location = New System.Drawing.Point(643, 5)
-    Me.GroupControl2.Name = "GroupControl2"
-    Me.GroupControl2.Size = New System.Drawing.Size(638, 627)
-    Me.GroupControl2.TabIndex = 2
-    Me.GroupControl2.Text = "Detalles Generales"
-    '
-    'XtraTabControl2
-    '
-    Me.XtraTabControl2.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.XtraTabControl2.AppearancePage.Header.ForeColor = System.Drawing.Color.Maroon
-    Me.XtraTabControl2.AppearancePage.Header.Options.UseFont = True
-    Me.XtraTabControl2.AppearancePage.Header.Options.UseForeColor = True
-    Me.XtraTabControl2.CustomHeaderButtons.AddRange(New DevExpress.XtraTab.Buttons.CustomHeaderButton() {New DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
-    Me.XtraTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.XtraTabControl2.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
-    Me.XtraTabControl2.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-    Me.XtraTabControl2.Location = New System.Drawing.Point(2, 25)
-    Me.XtraTabControl2.Name = "XtraTabControl2"
-    Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage3
-    Me.XtraTabControl2.Size = New System.Drawing.Size(634, 600)
-    Me.XtraTabControl2.TabIndex = 1
-    Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3})
-    '
-    'XtraTabPage3
-    '
-    Me.XtraTabPage3.Controls.Add(Me.PanelControl3)
-    Me.XtraTabPage3.Name = "XtraTabPage3"
-    Me.XtraTabPage3.Size = New System.Drawing.Size(561, 594)
-    Me.XtraTabPage3.Text = "Room 1"
-    '
-    'PanelControl3
-    '
-    Me.PanelControl3.Controls.Add(Me.TextEdit5)
-    Me.PanelControl3.Controls.Add(Me.LabelControl9)
-    Me.PanelControl3.Controls.Add(Me.TextEdit1)
-    Me.PanelControl3.Controls.Add(Me.LabelControl1)
-    Me.PanelControl3.Controls.Add(Me.grdHouseSalesItems)
-    Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-    Me.PanelControl3.Name = "PanelControl3"
-    Me.PanelControl3.Size = New System.Drawing.Size(561, 594)
-    Me.PanelControl3.TabIndex = 0
-    '
-    'TextEdit5
-    '
-    Me.TextEdit5.Location = New System.Drawing.Point(99, 13)
-    Me.TextEdit5.MenuManager = Me.BarManager1
-    Me.TextEdit5.Name = "TextEdit5"
-    Me.TextEdit5.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TextEdit5.Properties.Appearance.Options.UseFont = True
-    Me.TextEdit5.Size = New System.Drawing.Size(279, 20)
-    Me.TextEdit5.TabIndex = 4
-    '
-    'LabelControl9
-    '
-    Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl9.Appearance.Options.UseFont = True
-    Me.LabelControl9.Appearance.Options.UseForeColor = True
-    Me.LabelControl9.Location = New System.Drawing.Point(17, 16)
-    Me.LabelControl9.Name = "LabelControl9"
-    Me.LabelControl9.Size = New System.Drawing.Size(65, 14)
-    Me.LabelControl9.TabIndex = 3
-    Me.LabelControl9.Text = "Descripcion"
-    '
-    'TextEdit1
-    '
-    Me.TextEdit1.Location = New System.Drawing.Point(99, 43)
-    Me.TextEdit1.MenuManager = Me.BarManager1
-    Me.TextEdit1.Name = "TextEdit1"
-    Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-    Me.TextEdit1.Size = New System.Drawing.Size(69, 20)
-    Me.TextEdit1.TabIndex = 2
-    '
-    'LabelControl1
-    '
-    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-    Me.LabelControl1.Appearance.Options.UseFont = True
-    Me.LabelControl1.Appearance.Options.UseForeColor = True
-    Me.LabelControl1.Location = New System.Drawing.Point(17, 46)
-    Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(73, 14)
-    Me.LabelControl1.TabIndex = 1
-    Me.LabelControl1.Text = "Area del Piso"
-    '
-    'grdHouseSalesItems
-    '
-    Me.grdHouseSalesItems.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.grdHouseSalesItems.Location = New System.Drawing.Point(5, 96)
-    Me.grdHouseSalesItems.MainView = Me.gvHouseSalesItems
-    Me.grdHouseSalesItems.MenuManager = Me.BarManager1
-    Me.grdHouseSalesItems.Name = "grdHouseSalesItems"
-    Me.grdHouseSalesItems.Size = New System.Drawing.Size(553, 484)
-    Me.grdHouseSalesItems.TabIndex = 0
-    Me.grdHouseSalesItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvHouseSalesItems})
-    '
-    'gvHouseSalesItems
-    '
-    Me.gvHouseSalesItems.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvHouseSalesItems.Appearance.GroupRow.Options.UseFont = True
-    Me.gvHouseSalesItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvHouseSalesItems.Appearance.HeaderPanel.Options.UseFont = True
-    Me.gvHouseSalesItems.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.gvHouseSalesItems.Appearance.Row.Options.UseFont = True
-    Me.gvHouseSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn15})
-    Me.gvHouseSalesItems.GridControl = Me.grdHouseSalesItems
-    Me.gvHouseSalesItems.GroupCount = 1
-    Me.gvHouseSalesItems.Name = "gvHouseSalesItems"
-    Me.gvHouseSalesItems.OptionsView.ShowGroupPanel = False
-    Me.gvHouseSalesItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
-    '
-    'GridColumn1
-    '
-    Me.GridColumn1.Caption = "ProductTypeDesc"
-    Me.GridColumn1.Name = "GridColumn1"
-    Me.GridColumn1.Visible = True
-    Me.GridColumn1.VisibleIndex = 0
-    '
-    'GridColumn2
-    '
-    Me.GridColumn2.Caption = "Producto"
-    Me.GridColumn2.Name = "GridColumn2"
-    Me.GridColumn2.Visible = True
-    Me.GridColumn2.VisibleIndex = 0
-    '
-    'GridColumn3
-    '
-    Me.GridColumn3.Caption = "Cantidad"
-    Me.GridColumn3.Name = "GridColumn3"
-    Me.GridColumn3.Visible = True
-    Me.GridColumn3.VisibleIndex = 1
-    '
-    'GridColumn15
-    '
-    Me.GridColumn15.Caption = "Criteria"
-    Me.GridColumn15.Name = "GridColumn15"
-    Me.GridColumn15.Visible = True
-    Me.GridColumn15.VisibleIndex = 2
-    Me.GridColumn15.Width = 266
-    '
     'frmHouseType
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -874,6 +918,26 @@ Partial Class frmHouseType
     CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabControl1.ResumeLayout(False)
+    Me.XtraTabPage1.ResumeLayout(False)
+    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.PanelControl1.ResumeLayout(False)
+    CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl3.ResumeLayout(False)
+    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupControl2.ResumeLayout(False)
+    CType(Me.tabHouseTypeAssemblys, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.tabHouseTypeAssemblys.ResumeLayout(False)
+    Me.XtraTabPage3.ResumeLayout(False)
+    CType(Me.pnlHouseTypeAssembly, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.pnlHouseTypeAssembly.ResumeLayout(False)
+    Me.pnlHouseTypeAssembly.PerformLayout()
+    CType(Me.txtAssRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.txtAssDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.grdHouseSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
+    CType(Me.gvHouseSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
     Me.XtraTabPage2.ResumeLayout(False)
     CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.PanelControl2.ResumeLayout(False)
@@ -894,25 +958,6 @@ Partial Class frmHouseType
     Me.GroupControl4.ResumeLayout(False)
     CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.XtraTabPage1.ResumeLayout(False)
-    CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.PanelControl1.ResumeLayout(False)
-    CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.GroupControl3.ResumeLayout(False)
-    CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.GroupControl2.ResumeLayout(False)
-    CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.XtraTabControl2.ResumeLayout(False)
-    Me.XtraTabPage3.ResumeLayout(False)
-    CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.PanelControl3.ResumeLayout(False)
-    Me.PanelControl3.PerformLayout()
-    CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.grdHouseSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
-    CType(Me.gvHouseSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
@@ -930,9 +975,9 @@ Partial Class frmHouseType
   Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
   Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-  Friend WithEvents XtraTabControl2 As DevExpress.XtraTab.XtraTabControl
+  Friend WithEvents tabHouseTypeAssemblys As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents XtraTabPage3 As DevExpress.XtraTab.XtraTabPage
-  Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+  Friend WithEvents pnlHouseTypeAssembly As DevExpress.XtraEditors.PanelControl
   Friend WithEvents PictureEdit2 As DevExpress.XtraEditors.PictureEdit
   Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
@@ -982,10 +1027,13 @@ Partial Class frmHouseType
   Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
   Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtAssDescription As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents bbtnSaveExit As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bbtnSave As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bbtnClose As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents txtAssRef As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+  Friend WithEvents btnAddProducts As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -6,6 +6,8 @@ Public Class fccHouseType
   Private pHouseType As dmHouseType
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pHaveLock As Boolean
+  Private pCurrentHouseTypeAssembly As dmSalesItemAssembly
+  Private pHouseTypeManager As clsHouseTypeManager
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
@@ -17,6 +19,15 @@ Public Class fccHouseType
     End Get
     Set(value As Integer)
       pPrimaryKeyID = value
+    End Set
+  End Property
+
+  Public Property DBConn As RTIS.DataLayer.clsDBConnBase
+    Get
+      Return pDBConn
+    End Get
+    Set(value As RTIS.DataLayer.clsDBConnBase)
+      pDBConn = value
     End Set
   End Property
 
@@ -44,6 +55,7 @@ Public Class fccHouseType
 
       mdso.LoadHouseTypeDown(pHouseType, pPrimaryKeyID)
     End If
+    pHouseTypeManager = New clsHouseTypeManager(pHouseType)
 
   End Sub
 
@@ -101,5 +113,56 @@ Public Class fccHouseType
     Return mOK
   End Function
 
+  Public ReadOnly Property CurrentHouseTypeAssembly As dmSalesItemAssembly
+    Get
+      Return pCurrentHouseTypeAssembly
+    End Get
+  End Property
+
+  Public Sub SetCurrentHouseTypeAssembly(ByRef rHouseTypeAssembly As dmSalesItemAssembly)
+    pCurrentHouseTypeAssembly = rHouseTypeAssembly
+  End Sub
+
+  Public Sub AddAssembly()
+    pHouseTypeManager.AddSalesItemAssembly()
+    SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys.Last)
+  End Sub
+
+  Public Sub DeleteAssembly(ByRef rHouseTypeAssembly As dmSalesItemAssembly)
+    Dim mPos As Integer
+    Dim mNewPos As Integer = -1
+    If rHouseTypeAssembly IsNot Nothing Then
+      'Find the position of the item we are going to delete
+      mPos = 0
+    For Each mHTA As dmSalesItemAssembly In pHouseType.SalesItemAssemblys
+      If mHTA Is rHouseTypeAssembly Then
+        mNewPos = mPos 'This will be the next one in the list a we will take out this position
+        Exit For
+      End If
+      mPos += 1
+    Next
+
+    pHouseTypeManager.DeleteSalesItemAssembly(rHouseTypeAssembly)
+
+    If pHouseType.SalesItemAssemblys.Count = 0 Then
+      SetCurrentHouseTypeAssembly(Nothing)
+    ElseIf mNewPos <= pHouseType.SalesItemAssemblys.Count - 1 Then
+      SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys(mNewPos))
+    Else
+      SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys.Last)
+    End If
+    End If
+  End Sub
+
+  Public Sub LoadProducts(ByRef rProducts As colProductBases)
+    Dim mdso As New dsoSales(DBConn)
+    rProducts.Clear()
+    mdso.LoadStandardProducts(rProducts)
+
+  End Sub
+
+  Public Sub AddProducts(ByRef rProducts As colProductBases)
+    pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts)
+  End Sub
 
 End Class

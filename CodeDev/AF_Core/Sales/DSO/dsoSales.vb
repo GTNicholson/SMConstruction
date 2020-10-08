@@ -383,7 +383,7 @@ Public Class dsoSales : Inherits dsoBase
         Next
 
       End If
-      mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
+      mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
       mdtodtoSalesItemAssembly.SaveSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
 
       For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
@@ -518,7 +518,7 @@ Public Class dsoSales : Inherits dsoBase
 
     End If
 
-    mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn)
+    mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
     mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
 
     For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems

@@ -1,4 +1,6 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.XtraTab
+Imports DevExpress.XtraTab.ViewInfo
+Imports RTIS.CommonVB
 Public Class frmHouseType
 
   Public FormMode As eFormMode
@@ -93,6 +95,8 @@ Public Class frmHouseType
       If FormMode = eFormMode.eFMFormModeEdit And pFormController.HaveLock = False Then
         FormMode = eFormMode.eFMFormModeView
       End If
+
+      RefreshTabs()
 
       If mOK Then RefreshControls()
 
@@ -232,6 +236,123 @@ Public Class frmHouseType
     Try
       CheckSave(False)
       CloseForm()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub RefreshTabs()
+    Dim mPos As Integer = 0
+    Dim mPage As DevExpress.XtraTab.XtraTabPage
+    Dim mIsActive As Boolean
+    Dim mCurrentPage As DevExpress.XtraTab.XtraTabPage = Nothing
+
+    mIsActive = pIsActive
+    pIsActive = False
+
+    'First remove excess tabs
+    For mloop As Integer = tabHouseTypeAssemblys.TabPages.Count - 1 To 1 Step -1 'Note that it only counts down to 1 so it doesn't remove the last tab
+      If mloop >= pFormController.HouseType.SalesItemAssemblys.Count - 1 Then
+        tabHouseTypeAssemblys.TabPages.RemoveAt(mloop)
+      End If
+    Next
+
+    'If there are no items then make page 0 invisible
+    If pFormController.HouseType.SalesItemAssemblys.Count = 0 Then
+      tabHouseTypeAssemblys.TabPages(0).PageVisible = False
+    Else
+      tabHouseTypeAssemblys.TabPages(0).PageVisible = True
+    End If
+
+    'Name and Add in tabs
+    mPos = 0
+    mCurrentPage = Nothing
+    For Each mHTA As dmSalesItemAssembly In pFormController.HouseType.SalesItemAssemblys
+      If mPos > tabHouseTypeAssemblys.TabPages.Count - 1 Then
+        tabHouseTypeAssemblys.TabPages.Add()
+      End If
+      mPage = tabHouseTypeAssemblys.TabPages(mPos)
+      mPage.Tag = mHTA
+      mPage.Text = mHTA.Ref
+      If mHTA Is pFormController.CurrentHouseTypeAssembly Then mCurrentPage = mPage
+      mPos += 1
+    Next
+
+    If mCurrentPage Is Nothing Then
+      tabHouseTypeAssemblys.SelectedTabPageIndex = 0
+      pnlHouseTypeAssembly.Parent = tabHouseTypeAssemblys.TabPages(0)
+    Else
+      tabHouseTypeAssemblys.SelectedTabPage = mCurrentPage
+      pnlHouseTypeAssembly.Parent = mCurrentPage
+    End If
+    RefreshHouseTypePanel()
+
+    pIsActive = mIsActive
+
+  End Sub
+
+  Public Sub RefreshHouseTypePanel()
+    If pFormController.CurrentHouseTypeAssembly IsNot Nothing Then
+      With pFormController.CurrentHouseTypeAssembly
+        txtAssDescription.Text = .Description
+        txtAssRef.Text = .Ref
+      End With
+    End If
+  End Sub
+
+  Public Sub UpdateHouseTypePanel()
+    If pFormController.CurrentHouseTypeAssembly IsNot Nothing Then
+      With pFormController.CurrentHouseTypeAssembly
+        .Description = txtAssDescription.Text
+        .Ref = txtAssRef.Text
+      End With
+    End If
+  End Sub
+
+  Private Sub tabHouseTypeAssemblys_CustomHeaderButtonClick(sender As Object, e As CustomHeaderButtonEventArgs) Handles tabHouseTypeAssemblys.CustomHeaderButtonClick
+    Try
+      Dim mIsActive As Boolean
+      mIsActive = pIsActive
+      Select Case e.Button.Tag
+        Case "Add"
+          pFormController.AddAssembly()
+        Case "Delete"
+          pFormController.DeleteAssembly(pFormController.CurrentHouseTypeAssembly)
+      End Select
+      RefreshTabs()
+      pIsActive = mIsActive
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub tabHouseTypeAssemblys_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles tabHouseTypeAssemblys.SelectedPageChanged
+    Try
+      If pIsActive Then
+        UpdateHouseTypePanel()
+        pFormController.SetCurrentHouseTypeAssembly(e.Page.Tag)
+        pnlHouseTypeAssembly.Parent = e.Page
+        RefreshHouseTypePanel()
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub btnAddProducts_Click(sender As Object, e As EventArgs) Handles btnAddProducts.Click
+    Try
+      Dim mProductPicker As clsPickerProductItem
+      Dim mProductBases As New colProductBases
+      Dim mProductsToAdd As New List(Of dmProductBase)
+
+      pFormController.LoadProducts(mProductBases)
+
+      mProductPicker = New clsPickerProductItem(mProductBases, pFormController.DBConn, AppRTISGlobal.GetInstance)
+      mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+
+
+      pFormController.AddProducts(mProductsToAdd)
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
