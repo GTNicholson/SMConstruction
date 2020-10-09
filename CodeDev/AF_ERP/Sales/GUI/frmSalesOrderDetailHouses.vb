@@ -1270,7 +1270,7 @@ Public Class frmSalesOrderDetailHouses
 
         For Each mSalesItem In pFormController.SalesOrder.SalesOrderItems
           If mSalesItem.SalesOrderItemID > 0 Then
-            mProductBase = mProductBases.ItemFromProductID_ItemTye_SubItemType(mSalesItem.ProductID, mSalesItem.SalesItemType, mSalesItem.SalesSubItemType)
+            mProductBase = mProductBases.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
 
             If Not mPicker.SelectedObjects.Contains(mProductBase) Then
               mPicker.SelectedObjects.Add(mProductBase)
@@ -1306,7 +1306,7 @@ Public Class frmSalesOrderDetailHouses
         For mindex As Integer = pFormController.SalesOrder.SalesOrderItems.Count - 1 To 0 Step -1
           mSalesItem = pFormController.SalesOrder.SalesOrderItems(mindex)
           If mSalesItem.ProductID > 0 Then
-            mProductBase = mSelectedProductBases.ItemFromProductID_ItemTye_SubItemType(mSalesItem.ProductID, mSalesItem.SalesItemType, mSalesItem.SalesSubItemType)
+            mProductBase = mSelectedProductBases.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
 
             If Not mPicker.SelectedObjects.Contains(mProductBase) Then
               pFormController.SalesOrder.SalesOrderItems.Remove(mSalesItem)

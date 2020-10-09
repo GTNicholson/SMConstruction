@@ -1,19 +1,21 @@
 ﻿''Class Definition - HouseTypeSalesItems (to HouseTypeSalesItems)'Generated from Table:HouseTypeSalesItems
 Imports RTIS.CommonVB
 
-Public Class dmHouseTypeSalesItems : Inherits dmBase
-  Private pHouseTypeSalesItemsID As Int32
+Public Class dmHouseTypeSalesItem : Inherits dmBase
+  Private pHouseTypeSalesItemID As Int32
   Private pHouseTypeID As Int32
+  Private pProductID As Integer
+  Private pProductTypeID As eProductType
+  Private pHouseTypeSalesItemAssemblyID As Int32
   Private pItemNumber As String
   Private pDescription As String
   Private pQuantity As Int32
   Private pUnitPrice As Decimal
   Private pImageFile As String
-  Private pWoodSpecieID As Int32
+  Private pWoodSpeciesID As Int32
   Private pWoodFinish As Int32
-  Private pQtyInvoiced As Int32
 
-  Private pHouseTypeSalesItemAssemblyID As Int32
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -41,22 +43,23 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
 
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
-    HouseTypeSalesItemsID = 0
+    HouseTypeSalesItemID = 0
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
-    With CType(rNewItem, dmHouseTypeSalesItems)
-      .HouseTypeSalesItemsID = HouseTypeSalesItemsID
+    With CType(rNewItem, dmHouseTypeSalesItem)
+      .HouseTypeSalesItemID = HouseTypeSalesItemID
       .HouseTypeID = HouseTypeID
+      .ProductID = ProductID
+      .ProductTypeID = ProductTypeID
+      .HouseTypeSalesItemAssemblyID = HouseTypeSalesItemAssemblyID
       .ItemNumber = ItemNumber
       .Description = Description
       .Quantity = Quantity
       .UnitPrice = UnitPrice
       .ImageFile = ImageFile
-      .WoodSpecieID = WoodSpecieID
+      .WoodSpeciesID = WoodSpeciesID
       .WoodFinish = WoodFinish
-      .QtyInvoiced = QtyInvoiced
-      .HouseTypeSalesItemAssemblyID = HouseTypeSalesItemAssemblyID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -66,13 +69,13 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
 
   End Sub
 
-  Public Property HouseTypeSalesItemsID() As Int32
+  Public Property HouseTypeSalesItemID() As Int32
     Get
-      Return pHouseTypeSalesItemsID
+      Return pHouseTypeSalesItemID
     End Get
     Set(ByVal value As Int32)
-      If pHouseTypeSalesItemsID <> value Then IsDirty = True
-      pHouseTypeSalesItemsID = value
+      If pHouseTypeSalesItemID <> value Then IsDirty = True
+      pHouseTypeSalesItemID = value
     End Set
   End Property
 
@@ -83,6 +86,26 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
     Set(ByVal value As Int32)
       If pHouseTypeID <> value Then IsDirty = True
       pHouseTypeID = value
+    End Set
+  End Property
+
+  Public Property ProductID() As Int32
+    Get
+      Return pProductID
+    End Get
+    Set(ByVal value As Int32)
+      If pProductID <> value Then IsDirty = True
+      pProductID = value
+    End Set
+  End Property
+
+  Public Property ProductTypeID() As eProductType
+    Get
+      Return pProductTypeID
+    End Get
+    Set(ByVal value As eProductType)
+      If pProductTypeID <> value Then IsDirty = True
+      pProductTypeID = value
     End Set
   End Property
 
@@ -136,13 +159,13 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
     End Set
   End Property
 
-  Public Property WoodSpecieID() As Int32
+  Public Property WoodSpeciesID() As Int32
     Get
-      Return pWoodSpecieID
+      Return pWoodSpeciesID
     End Get
     Set(ByVal value As Int32)
-      If pWoodSpecieID <> value Then IsDirty = True
-      pWoodSpecieID = value
+      If pWoodSpeciesID <> value Then IsDirty = True
+      pWoodSpeciesID = value
     End Set
   End Property
 
@@ -153,16 +176,6 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
     Set(ByVal value As Int32)
       If pWoodFinish <> value Then IsDirty = True
       pWoodFinish = value
-    End Set
-  End Property
-
-  Public Property QtyInvoiced() As Int32
-    Get
-      Return pQtyInvoiced
-    End Get
-    Set(ByVal value As Int32)
-      If pQtyInvoiced <> value Then IsDirty = True
-      pQtyInvoiced = value
     End Set
   End Property
 
@@ -196,15 +209,15 @@ End Class
 '  HouseTypeSalesItemss.ClearKeys 'Add to ClearKeys
 '    If Not mAnyDirty Then mAnyDirty = HouseTypeSalesItemss.IsDirty 'Add to IsAnyDirty
 
-Public Class colHouseTypeSalesItemss : Inherits colBase(Of dmHouseTypeSalesItems)
+Public Class colHouseTypeSalesItems : Inherits colBase(Of dmHouseTypeSalesItem)
 
   Public Overrides Function IndexFromKey(ByVal vHouseTypeSalesItemsID As Integer) As Integer
-    Dim mItem As dmHouseTypeSalesItems
+    Dim mItem As dmHouseTypeSalesItem
     Dim mIndex As Integer = -1
     Dim mCount As Integer = -1
     For Each mItem In MyBase.Items
       mCount += 1
-      If mItem.HouseTypeSalesItemsID = vHouseTypeSalesItemsID Then
+      If mItem.HouseTypeSalesItemID = vHouseTypeSalesItemsID Then
         mIndex = mCount
         Exit For
       End If
@@ -216,7 +229,7 @@ Public Class colHouseTypeSalesItemss : Inherits colBase(Of dmHouseTypeSalesItems
     MyBase.New()
   End Sub
 
-  Public Sub New(ByVal vList As List(Of dmHouseTypeSalesItems))
+  Public Sub New(ByVal vList As List(Of dmHouseTypeSalesItem))
     MyBase.New(vList)
   End Sub
 

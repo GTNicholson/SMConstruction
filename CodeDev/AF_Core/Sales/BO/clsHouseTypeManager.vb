@@ -48,10 +48,12 @@
   End Function
 
   Public Sub AddProducts(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProducts As List(Of dmProductBase))
-    Dim mSalesItem As dmHouseTypeSalesItems
+    Dim mSalesItem As dmHouseTypeSalesItem
     For Each mProduct As dmProductBase In rProducts
-      mSalesItem = New dmHouseTypeSalesItems
+      mSalesItem = New dmHouseTypeSalesItem
       mSalesItem.HouseTypeID = pHouseType.HouseTypeID
+      mSalesItem.ProductID = mProduct.ID
+      mSalesItem.ProductTypeID = mProduct.ProductTypeID
       mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
       mSalesItem.Description = mProduct.Description
       pHouseType.HTSalesItems.Add(mSalesItem)
@@ -59,5 +61,19 @@
 
   End Sub
 
+  Public Function GetHTItemInfosForAssembly(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProducts As colProductBases) As colHouseTypeSalesItemInfos
+    Dim mRetVal As New colHouseTypeSalesItemInfos
+    Dim mHTSII As clsHouseTypeSalesItemInfo
+    Dim mProduct As dmProductBase
+
+    For Each mHTSI As dmHouseTypeSalesItem In pHouseType.HTSalesItems
+      If mHTSI.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID Then
+        mProduct = rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID)
+        mHTSII = New clsHouseTypeSalesItemInfo(mHTSI, mProduct)
+        mRetVal.Add(mHTSII)
+      End If
+    Next
+    Return mRetVal
+  End Function
 
 End Class

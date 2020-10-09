@@ -102,12 +102,13 @@ Public Class dmProductStructure : Inherits dmProductBase
     End Get
   End Property
 
-  Public Overrides Property ItemType As Integer
+
+  Public Overrides Property ProductTypeID As Integer
     Get
       Return eProductType.StructureAF
     End Get
     Set(value As Integer)
-
+      Throw New NotImplementedException()
     End Set
   End Property
 End Class

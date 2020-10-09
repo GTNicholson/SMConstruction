@@ -262,6 +262,7 @@
     <Compile Include="Sales\Actions\clsActionSalesOrderRecallWOs.vb" />
     <Compile Include="Sales\Actions\clsSalesOrderActionsHandler.vb" />
     <Compile Include="Sales\BO\clsHouseTypeManager.vb" />
+    <Compile Include="Sales\BO\clsHouseTypeSalesItemInfo.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />
     <Compile Include="Sales\BO\dmModel.vb" />
     <Compile Include="Sales\BO\clsHouseTypeInfo.vb" />
@@ -273,7 +274,7 @@
     <Compile Include="Sales\BO\clsWorkOrderHandler.vb" />
     <Compile Include="Sales\BO\dmCustomerContact.vb" />
     <Compile Include="Sales\BO\dmHouseType.vb" />
-    <Compile Include="Sales\BO\dmHouseTypeSalesItems.vb" />
+    <Compile Include="Sales\BO\dmHouseTypeSalesItem.vb" />
     <Compile Include="Sales\BO\dmMaterialRequirementForcasting.vb" />
     <Compile Include="Sales\BO\dmPhaseItemComponent.vb" />
     <Compile Include="Sales\BO\dmProductConstructionSubItemType.vb" />
@@ -289,7 +290,7 @@
     <Compile Include="Sales\DSO\dtoGroupType.vb" />
     <Compile Include="Sales\DSO\dtoHouseType.vb" />
     <Compile Include="Sales\DSO\dtoHouseTypeInfo.vb" />
-    <Compile Include="Sales\DSO\dtoHouseTypeSalesItems.vb" />
+    <Compile Include="Sales\DSO\dtoHouseTypeSalesItem.vb" />
     <Compile Include="Sales\DSO\dtoPhaseItemComponent.vb" />
     <Compile Include="Sales\DSO\dtoProductConstructionSubType.vb" />
     <Compile Include="Sales\DSO\dtoProductConstructionType.vb" />

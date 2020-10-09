@@ -90,6 +90,12 @@ Public Class frmHouseType
 
 
       pFormController.LoadObjects()
+      pFormController.LoadProducts()
+
+      '// set it to the first Assembly
+      If pFormController.HouseType.SalesItemAssemblys.Count >= 1 Then
+        pFormController.SetCurrentHouseTypeAssembly(pFormController.HouseType.SalesItemAssemblys(0))
+      End If
 
       LoadCombos()
       LoadGrids()
@@ -124,7 +130,7 @@ Public Class frmHouseType
   End Sub
 
   Public Sub LoadGrids()
-    grdHouseSalesItems.DataSource = pFormController.HouseType.HTSalesItems
+    grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
   End Sub
 
   Private Sub LoadCombos()
@@ -340,6 +346,8 @@ Public Class frmHouseType
       Select Case e.Button.Tag
         Case "Add"
           pFormController.AddAssembly()
+          grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+          gvHouseSalesItems.RefreshData()
         Case "Delete"
           pFormController.DeleteAssembly(pFormController.CurrentHouseTypeAssembly)
       End Select
@@ -355,6 +363,7 @@ Public Class frmHouseType
       If pIsActive Then
         UpdateHouseTypePanel()
         pFormController.SetCurrentHouseTypeAssembly(e.Page.Tag)
+        grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
         pnlHouseTypeAssembly.Parent = e.Page
         RefreshHouseTypePanel()
       End If
@@ -366,18 +375,15 @@ Public Class frmHouseType
   Private Sub btnAddProducts_Click(sender As Object, e As EventArgs) Handles btnAddProducts.Click
     Try
       Dim mProductPicker As clsPickerProductItem
-      Dim mProductBases As New colProductBases
       Dim mProductsToAdd As New List(Of dmProductBase)
 
-      pFormController.LoadProducts(mProductBases)
-
-      mProductPicker = New clsPickerProductItem(mProductBases, pFormController.DBConn, AppRTISGlobal.GetInstance)
+      mProductPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, AppRTISGlobal.GetInstance)
       mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
-
 
 
       CheckSave(False)
       pFormController.AddProducts(mProductsToAdd)
+      grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
       gvHouseSalesItems.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

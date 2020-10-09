@@ -11,12 +11,12 @@ Public Class dmHouseType : Inherits dmBase
   Private pArea As Decimal
 
   Private pSalesItemAssemblys As colSalesItemAssemblys
-  Private pHTSalesItems As colHouseTypeSalesItemss
+  Private pHTSalesItems As colHouseTypeSalesItems
 
   Public Sub New()
     MyBase.New()
     pSalesItemAssemblys = New colSalesItemAssemblys
-    pHTSalesItems = New colHouseTypeSalesItemss
+    pHTSalesItems = New colHouseTypeSalesItems
   End Sub
 
   Protected Overrides Sub NewSetup()
@@ -151,11 +151,11 @@ Public Class dmHouseType : Inherits dmBase
     End Set
   End Property
 
-  Public Property HTSalesItems As colHouseTypeSalesItemss
+  Public Property HTSalesItems As colHouseTypeSalesItems
     Get
       Return pHTSalesItems
     End Get
-    Set(value As colHouseTypeSalesItemss)
+    Set(value As colHouseTypeSalesItems)
       pHTSalesItems = value
     End Set
   End Property

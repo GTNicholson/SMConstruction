@@ -186,9 +186,9 @@ Public Class dmProductFurniture : Inherits dmProductBase
     End Set
   End Property
 
-  Public Overrides Property ItemType As Integer
+  Public Overrides Property ProductTypeID As Integer
     Get
-      Throw New NotImplementedException()
+      Return eProductType.ProductFurniture
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
