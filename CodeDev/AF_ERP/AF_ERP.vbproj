@@ -343,6 +343,12 @@
     <Compile Include="ProductAdmin\GUI\frmProductAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ProductAdmin\GUI\uctHouseTypeOptions.Designer.vb">
+      <DependentUpon>uctHouseTypeOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\uctHouseTypeOptions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
     <Compile Include="Production\GUI\fccPaySlipDetails.vb" />
     <Compile Include="Production\GUI\fccPickMaterials.vb" />
@@ -699,6 +705,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductAdmin\GUI\frmProductAdmin.resx">
       <DependentUpon>frmProductAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductAdmin\GUI\uctHouseTypeOptions.resx">
+      <DependentUpon>uctHouseTypeOptions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmPaySlipDetails.resx">
       <DependentUpon>frmPaySlipDetails.vb</DependentUpon>

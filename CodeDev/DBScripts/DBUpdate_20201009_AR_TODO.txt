@@ -1,0 +1,19 @@
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TranslationTableName,TranslationKeyFieldName,TranslationFieldName,TallyID)
+values
+(5025,1,'ProductConstructionSubTypeID','ProductConstructionSubTypeID',4,0,NULL,NULL,NULL,0)
+go
+
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TranslationTableName,TranslationKeyFieldName,TranslationFieldName,TallyID)
+values
+(5025,2,'Description','Description',4,0,NULL,NULL,NULL,0)
+go
+
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TranslationTableName,TranslationKeyFieldName,TranslationFieldName,TallyID)
+values
+(5025,3,'Abbreviation','Abbreviation',4,0,NULL,NULL,NULL,0)
+go
+
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TranslationTableName,TranslationKeyFieldName,TranslationFieldName,TallyID)
+values
+(5025,4,'ProductConstructionTypeID','ProductConstructionTypeID',4,0,'ProductConstructionType','ProductConstructionTypeID','Description',0)
+go

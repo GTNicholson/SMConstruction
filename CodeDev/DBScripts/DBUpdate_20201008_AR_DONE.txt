@@ -1,0 +1,35 @@
+update LookUpTable
+set DisplayFieldName='ModelName'
+where LookUpTableDescription='Tipos de Casas'
+go
+
+EXEC sp_RENAME 'GroupType.Name' , 'Description', 'COLUMN'
+go
+
+EXEC sp_RENAME 'Model.Name' , 'Description', 'COLUMN'
+go
+
+delete from LookUpTable
+where TableName ='ProductStructureType' or TableName='ProductInstallationType'
+
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values
+(28,'Configuración de Sub tipo Producto','ProductConstructionSubType','ProductConstructionSubTypeID','Description',4,1,2,6,0)
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values
+(29,'Configuración tipo Producto','ProductConstructionType','ProductConstructionTypeID','Description',4,1,2,6,0)
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values
+(30,'Configuración Modelos de Casas','Model','ModelID','Description',4,1,2,6,0)
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values
+(31,'Configuración Grupos de Casas','GroupType','GroupTypeID','Description',4,1,2,6,0)
+go

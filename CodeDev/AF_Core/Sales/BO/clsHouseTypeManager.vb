@@ -52,7 +52,8 @@
     For Each mProduct As dmProductBase In rProducts
       mSalesItem = New dmHouseTypeSalesItems
       mSalesItem.HouseTypeID = pHouseType.HouseTypeID
-      mSalesItem.HouseTypeAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
+      mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
+      mSalesItem.Description = mProduct.Description
       pHouseType.HTSalesItems.Add(mSalesItem)
     Next
 

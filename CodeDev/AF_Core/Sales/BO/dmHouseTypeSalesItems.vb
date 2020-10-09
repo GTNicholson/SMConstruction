@@ -13,6 +13,7 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
   Private pWoodFinish As Int32
   Private pQtyInvoiced As Int32
 
+  Private pHouseTypeSalesItemAssemblyID As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -55,6 +56,7 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
       .WoodSpecieID = WoodSpecieID
       .WoodFinish = WoodFinish
       .QtyInvoiced = QtyInvoiced
+      .HouseTypeSalesItemAssemblyID = HouseTypeSalesItemAssemblyID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -164,7 +166,14 @@ Public Class dmHouseTypeSalesItems : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property HouseTypeSalesItemAssemblyID As Integer
+    Get
+      Return pHouseTypeSalesItemAssemblyID
+    End Get
+    Set(value As Integer)
+      pHouseTypeSalesItemAssemblyID = value
+    End Set
+  End Property
 End Class
 
 

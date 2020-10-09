@@ -1,4 +1,6 @@
-﻿Public Class clsHouseTypeInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsHouseTypeInfo
   Private pHouseType As dmHouseType
 
 
@@ -37,9 +39,30 @@
     End Get
   End Property
 
+
+  Public ReadOnly Property GroupDesc As String
+    Get
+      Dim mValueItems As colValueItems
+
+      mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.GroupType)
+
+      Return mValueItems.DisplayValueString(pHouseType.GroupID)
+    End Get
+  End Property
+
   Public ReadOnly Property ModelID As Int32
     Get
       Return pHouseType.ModelID
+    End Get
+  End Property
+
+  Public ReadOnly Property ModelDesc As String
+    Get
+      Dim mValueItems As colValueItems
+
+      mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
+
+      Return mValueItems.DisplayValueString(pHouseType.ModelID)
     End Get
   End Property
 

@@ -507,11 +507,11 @@ Public Class frmProductAdmin
 
         Case eProductType.ProductInstallation
 
-          clsDEControlLoading.FillDEComboVIi(cboSubItemType, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.ProductInstallationType))
+         '' clsDEControlLoading.FillDEComboVIi(cboSubItemType, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.ProductInstallationType))
 
         Case eProductType.StructureAF
 
-          clsDEControlLoading.FillDEComboVIi(cboSubItemType, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.ProductStructureType))
+          ''clsDEControlLoading.FillDEComboVIi(cboSubItemType, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.ProductStructureType))
 
       End Select
 

@@ -28,8 +28,10 @@ Public Class appRefLists : Inherits colRefLists
   Public Const WoodValue As Integer = 21
   Public Const VATRate As Integer = 22
   Public Const HouseType As Integer = 23
-  Public Const ProductInstallationType As Integer = 24
-  Public Const ProductStructureType As Integer = 25
+  Public Const ProductConstructionSubType As Integer = 24
+  Public Const ProductConstructionType As Integer = 25
+  Public Const Model As Integer = 26
+  Public Const GroupType As Integer = 27
   Public Sub New()
     MyBase.New()
     Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
@@ -59,8 +61,12 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(VATRate, "VATRate", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(HouseType, "HouseType", clsRefListItem.eLoadMode.Unloaded)
 
-    Me.AddRefList(ProductStructureType, "ProductStructureType", clsRefListItem.eLoadMode.Unloaded)
-    Me.AddRefList(ProductInstallationType, "ProductInstallationType", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(ProductConstructionSubType, "ProductConstructionSubType", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(ProductConstructionType, "ProductConstructionType", clsRefListItem.eLoadMode.Unloaded)
+
+    Me.AddRefList(Model, "Model", clsRefListItem.eLoadMode.Unloaded)
+
+    Me.AddRefList(GroupType, "GroupType", clsRefListItem.eLoadMode.Unloaded)
   End Sub
 
 

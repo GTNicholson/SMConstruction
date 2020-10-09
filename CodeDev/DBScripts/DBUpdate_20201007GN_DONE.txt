@@ -1,0 +1,24 @@
+alter table SalesOrderItem add ProductTypeID TinyInt, ProductID Int
+
+GO
+
+alter table housetype drop column Name
+
+GO
+
+Alter Table HouseType Add ModelName Varchar(100)
+
+GO
+
+
+ALTER view vwHouseTypeInfo
+as
+SELECT
+HT.HouseTypeID,
+HT.ModelName,
+HT.GroupID,
+HT.ModelID,
+HT.Area
+FROM HouseType HT
+
+GO

@@ -16,6 +16,7 @@ Public Class dmHouseType : Inherits dmBase
   Public Sub New()
     MyBase.New()
     pSalesItemAssemblys = New colSalesItemAssemblys
+    pHTSalesItems = New colHouseTypeSalesItemss
   End Sub
 
   Protected Overrides Sub NewSetup()
@@ -36,6 +37,7 @@ Public Class dmHouseType : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pSalesItemAssemblys.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pHTSalesItems.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -55,7 +57,7 @@ Public Class dmHouseType : Inherits dmBase
 
       'Add entries here for each collection and class property
       .SalesItemAssemblys = SalesItemAssemblys.Clone
-
+      .HTSalesItems = HTSalesItems.Clone
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -149,6 +151,14 @@ Public Class dmHouseType : Inherits dmBase
     End Set
   End Property
 
+  Public Property HTSalesItems As colHouseTypeSalesItemss
+    Get
+      Return pHTSalesItems
+    End Get
+    Set(value As colHouseTypeSalesItemss)
+      pHTSalesItems = value
+    End Set
+  End Property
 End Class
 
 

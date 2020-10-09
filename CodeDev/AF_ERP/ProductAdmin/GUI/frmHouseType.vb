@@ -1,6 +1,8 @@
 ﻿Imports DevExpress.XtraTab
 Imports DevExpress.XtraTab.ViewInfo
 Imports RTIS.CommonVB
+Imports RTIS.Elements
+
 Public Class frmHouseType
 
   Public FormMode As eFormMode
@@ -90,7 +92,7 @@ Public Class frmHouseType
       pFormController.LoadObjects()
 
       LoadCombos()
-
+      LoadGrids()
 
       If FormMode = eFormMode.eFMFormModeEdit And pFormController.HaveLock = False Then
         FormMode = eFormMode.eFMFormModeView
@@ -121,7 +123,18 @@ Public Class frmHouseType
 
   End Sub
 
+  Public Sub LoadGrids()
+    grdHouseSalesItems.DataSource = pFormController.HouseType.HTSalesItems
+  End Sub
+
   Private Sub LoadCombos()
+    Dim mVIs As colValueItems
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.GroupType)
+    clsDEControlLoading.FillDEComboVI(cboGroupType, mVIs)
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
+    clsDEControlLoading.FillDEComboVI(cboModelType, mVIs)
 
   End Sub
 
@@ -129,9 +142,17 @@ Public Class frmHouseType
     Dim mIsActive As Boolean
     Try
       mIsActive = pIsActive
-      pIsActive = False
-      txtModelo.Text = pFormController.HouseType.ModelName
-      pIsActive = mIsActive
+
+      With pFormController.HouseType
+
+        clsDEControlLoading.SetDECombo(cboModelType, .ModelID)
+        clsDEControlLoading.SetDECombo(cboGroupType, .GroupID)
+        txtArea.Text = .Area
+
+        pIsActive = mIsActive
+
+      End With
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -141,7 +162,10 @@ Public Class frmHouseType
     Try
       With pFormController.HouseType
 
-        .ModelName = txtModelo.Text
+        .ModelID = clsDEControlLoading.GetDEComboValue(cboModelType)
+        .GroupID = clsDEControlLoading.GetDEComboValue(cboGroupType)
+        .Area = txtArea.Text
+
       End With
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -351,8 +375,30 @@ Public Class frmHouseType
       mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
 
 
-      pFormController.AddProducts(mProductsToAdd)
 
+      CheckSave(False)
+      pFormController.AddProducts(mProductsToAdd)
+      gvHouseSalesItems.RefreshData()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
+    Try
+
+      UpdateObjects()
+      pFormController.SaveObjects()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
+  Private Sub bbtnClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnClose.ItemClick
+    Try
+      InitiateCloseExit(True)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

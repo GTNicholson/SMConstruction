@@ -167,14 +167,22 @@ Public Class dsoAppRefLists
           mItem.IList = LoadHouseType()
           mOK = True
 
-        Case appRefLists.ProductInstallationType
-          ''mItem.IList = LoadProductInstallationType()
+        Case appRefLists.ProductConstructionSubType
+          mItem.IList = LoadProductConstructionSubType()
           mOK = True
 
-        Case appRefLists.ProductStructureType
-          ''mItem.IList = LoadProductStructureType()
+        Case appRefLists.ProductConstructionType
+          mItem.IList = LoadProductConstructionType()
           mOK = True
 
+
+        Case appRefLists.Model
+          mItem.IList = LoadModelType()
+          mOK = True
+
+        Case appRefLists.GroupType
+          mItem.IList = LoadGroupType()
+          mOK = True
       End Select
       mItem = Nothing
     Else
@@ -182,23 +190,41 @@ Public Class dsoAppRefLists
     End If
   End Function
 
-  Private Function LoadProductStructureType() As IList
-    ''Dim mdto As New dtoProductStructureType(pDBConn)
-    ''Dim mRetVal As New colProductStructureTypes
+  Private Function LoadProductConstructionSubType() As IList
+    Dim mdto As New dtoProductConstructionSubType(pDBConn)
+    Dim mRetVal As New colProductConstructionSubTypes
 
-    ''mdto.LoadProductStructureTypeCollection(mRetVal)
+    mdto.LoadAllProductConstructionSubTypeCollection(mRetVal)
 
-    ''Return mRetVal
+    Return mRetVal
+  End Function
+
+  Private Function LoadProductConstructionType() As IList
+    Dim mdto As New dtoProductConstructionType(pDBConn)
+    Dim mRetVal As New colProductConstructionTypes
+
+    mdto.LoadProductConstructionTypeCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+  Private Function LoadGroupType() As IList
+    Dim mdto As New dtoGroupType(pDBConn)
+    Dim mRetVal As New colGroupTypes
+
+    mdto.LoadGroupTypeCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
 
-  Private Function LoadProductInstallationType() As IList
-    ''Dim mdto As New dtoProductInstallationType(pDBConn)
-    ''Dim mRetVal As New colProductInstallationTypes
+  Private Function LoadModelType() As IList
+    Dim mdto As New dtoModel(pDBConn)
+    Dim mRetVal As New colModels
 
-    ''mdto.LoadProductInstallationTypeCollection(mRetVal)
+    mdto.LoadModelCollection(mRetVal)
 
-    ''Return mRetVal
+    Return mRetVal
   End Function
 
   Private Function LoadHouseType() As IList

@@ -2,6 +2,8 @@
 Imports RTIS.CommonVB
 
 Public Class dmModel : Inherits dmBase
+  Implements iValueItem
+
   Private pModelID As Int32
   Private pName As String
 
@@ -38,7 +40,7 @@ Public Class dmModel : Inherits dmBase
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
     With CType(rNewItem, dmModel)
       .ModelID = ModelID
-      .Name = Name
+      .Description = Description
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -48,7 +50,7 @@ Public Class dmModel : Inherits dmBase
 
   End Sub
 
-  Public Property ModelID() As Int32
+  Public Property ModelID() As Int32 Implements iValueItem.ItemValue
     Get
       Return pModelID
     End Get
@@ -58,7 +60,7 @@ Public Class dmModel : Inherits dmBase
     End Set
   End Property
 
-  Public Property Name() As String
+  Public Property Description() As String Implements iValueItem.DisplayValue
     Get
       Return pName
     End Get
@@ -69,6 +71,14 @@ Public Class dmModel : Inherits dmBase
   End Property
 
 
+  Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
+    Get
+
+    End Get
+    Set(value As Boolean)
+
+    End Set
+  End Property
 End Class
 
 

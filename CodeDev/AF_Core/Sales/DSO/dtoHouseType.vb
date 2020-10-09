@@ -55,10 +55,10 @@ Public Class dtoHouseType : Inherits dtoBase
     End If
     With pHouseType
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ModelName", StringToDBValue(.ModelName))
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "Area", pHouseType.Area)
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "GroupID", pHouseType.GroupID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Area", pHouseType.Area)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "GroupID", pHouseType.GroupID)
 
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "ModelID", pHouseType.ModelID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ModelID", pHouseType.ModelID)
 
     End With
 

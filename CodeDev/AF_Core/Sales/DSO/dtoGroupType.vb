@@ -54,7 +54,7 @@ Public Class dtoGroupType : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "GroupTypeID", pGroupType.GroupTypeID)
     End If
     With pGroupType
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Name", StringToDBValue(.Name))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
     End With
 
   End Sub
@@ -66,7 +66,7 @@ Public Class dtoGroupType : Inherits dtoBase
       If pGroupType Is Nothing Then SetObjectToNew()
       With pGroupType
         .GroupTypeID = DBReadInt32(rDataReader, "GroupTypeID")
-        .Name = DBReadString(rDataReader, "Name")
+        .Description = DBReadString(rDataReader, "Description")
         pGroupType.IsDirty = False
       End With
       mOK = True

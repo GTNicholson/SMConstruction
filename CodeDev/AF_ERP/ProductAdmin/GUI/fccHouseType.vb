@@ -161,7 +161,8 @@ Public Class fccHouseType
 
   End Sub
 
-  Public Sub AddProducts(ByRef rProducts As colProductBases)
+  Public Sub AddProducts(ByRef rProducts As List(Of dmProductBase))
+
     pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts)
   End Sub
 
