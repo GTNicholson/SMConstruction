@@ -14,11 +14,12 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pDescription As String
   Protected pID As Integer
   Protected pCode As String
-  Protected pSubItemType As Integer
-  Protected pItemType As Integer
+  Protected pSubItemType As Integer '// from productconstructionsubtype
+  Protected pItemType As Integer '// from productconstructiontype
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
-  Public MustOverride Property ItemType As Integer Implements intItemSpecCore.ItemType
+  Public MustOverride Property ProductTypeID As Integer Implements intItemSpecCore.ItemType '// from eProductType
+
   Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
     Get
       Return pLeadTime
@@ -36,6 +37,16 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     Set(value As Integer)
       If value <> pID Then pIsDirty = True
       pID = value
+    End Set
+  End Property
+
+  Public Property ItemType As Integer
+    Get
+      Return pItemType
+    End Get
+    Set(value As Integer)
+      If value <> pItemType Then pIsDirty = True
+      pItemType = value
     End Set
   End Property
 
@@ -130,14 +141,14 @@ Public MustInherit Class dmProductBase : Inherits dmBase
 End Class
 
 Public Class colProductBases : Inherits List(Of dmProductBase)
-  Public Function ItemFromProductID_ItemTye_SubItemType(ByVal vID As Integer, ByVal vItemType As Integer, ByVal vSubItemType As Integer) As dmProductBase
+  Public Function ItemFromProductTypeAndID(ByVal vProductType As eProductType, ByVal vID As Integer) As dmProductBase
     Dim mItem As dmProductBase
     Dim mRetVal As dmProductBase = Nothing
 
 
     For Each mItem In Me
 
-      If mItem.ID = vID And mItem.ItemType = vItemType And mItem.SubItemType = vSubItemType Then
+      If mItem.ID = vID And mItem.ProductTypeID = vProductType Then
         mRetVal = mItem
         Exit For
       End If

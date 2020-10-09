@@ -12,7 +12,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
   Public Function LoadHouseTypeDown(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
     Dim mdto As dtoHouseType
     Dim mdtoSIA As dtoSalesItemAssembly
-    Dim mdtoHouseTypeSalesItems As dtoHouseTypeSalesItems
+    Dim mdtoHouseTypeSalesItems As dtoHouseTypeSalesItem
 
     Dim mRetVal As Boolean = False
     Try
@@ -23,7 +23,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
       mdtoSIA = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.HouseTypeSalesItemAssembly)
       mdtoSIA.LoadSalesItemAssemblyCollection(rHouseType.SalesItemAssemblys, rHouseType.HouseTypeID)
 
-      mdtoHouseTypeSalesItems = New dtoHouseTypeSalesItems(pDBConn)
+      mdtoHouseTypeSalesItems = New dtoHouseTypeSalesItem(pDBConn)
       mdtoHouseTypeSalesItems.LoadHouseTypeSalesItemsCollection(rHouseType.HTSalesItems, rHouseType.HouseTypeID)
       mRetVal = True
     Catch ex As Exception
@@ -37,7 +37,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
   Public Function SaveHouseTypeDown(ByRef rHouseType As dmHouseType) As Boolean
     Dim mdto As dtoHouseType
     Dim mdtoSIA As dtoSalesItemAssembly
-    Dim mdtoHouseTypeSalesItems As dtoHouseTypeSalesItems
+    Dim mdtoHouseTypeSalesItems As dtoHouseTypeSalesItem
     Dim mRetVal As Boolean = False
     Try
       pDBConn.Connect()
@@ -47,7 +47,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
       mdtoSIA = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.HouseTypeSalesItemAssembly)
       mdtoSIA.SaveSalesItemAssemblyCollection(rHouseType.SalesItemAssemblys, rHouseType.HouseTypeID)
 
-      mdtoHouseTypeSalesItems = New dtoHouseTypeSalesItems(pDBConn)
+      mdtoHouseTypeSalesItems = New dtoHouseTypeSalesItem(pDBConn)
 
       mdtoHouseTypeSalesItems.SaveHouseTypeSalesItemsCollection(rHouseType.HTSalesItems, rHouseType.HouseTypeID)
       mRetVal = True

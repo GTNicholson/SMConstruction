@@ -9,8 +9,13 @@ Public Class fccHouseType
   Private pCurrentHouseTypeAssembly As dmSalesItemAssembly
   Private pHouseTypeManager As clsHouseTypeManager
 
+  Private pProducts As colProductBases
+
+  Private pCurrentHTSalesItemInfos As colHouseTypeSalesItemInfos
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
+    pProducts = New colProductBases
   End Sub
 
   Public Property PrimaryKeyID As Integer
@@ -56,6 +61,7 @@ Public Class fccHouseType
       mdso.LoadHouseTypeDown(pHouseType, pPrimaryKeyID)
     End If
     pHouseTypeManager = New clsHouseTypeManager(pHouseType)
+
 
   End Sub
 
@@ -113,6 +119,18 @@ Public Class fccHouseType
     Return mOK
   End Function
 
+  Public ReadOnly Property Products As colProductBases
+    Get
+      Return pProducts
+    End Get
+  End Property
+
+  Public ReadOnly Property CurrentHTSalesItemInfos As colHouseTypeSalesItemInfos
+    Get
+      Return pCurrentHTSalesItemInfos
+    End Get
+  End Property
+
   Public ReadOnly Property CurrentHouseTypeAssembly As dmSalesItemAssembly
     Get
       Return pCurrentHouseTypeAssembly
@@ -121,6 +139,7 @@ Public Class fccHouseType
 
   Public Sub SetCurrentHouseTypeAssembly(ByRef rHouseTypeAssembly As dmSalesItemAssembly)
     pCurrentHouseTypeAssembly = rHouseTypeAssembly
+    pCurrentHTSalesItemInfos = pHouseTypeManager.GetHTItemInfosForAssembly(rHouseTypeAssembly, pProducts)
   End Sub
 
   Public Sub AddAssembly()
@@ -154,16 +173,18 @@ Public Class fccHouseType
     End If
   End Sub
 
-  Public Sub LoadProducts(ByRef rProducts As colProductBases)
+  Public Sub LoadProducts()
     Dim mdso As New dsoSales(DBConn)
-    rProducts.Clear()
-    mdso.LoadStandardProducts(rProducts)
+    pProducts = New colProductBases
+    mdso.LoadStandardProducts(pProducts)
 
   End Sub
 
   Public Sub AddProducts(ByRef rProducts As List(Of dmProductBase))
 
     pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts)
+    pCurrentHTSalesItemInfos = pHouseTypeManager.GetHTItemInfosForAssembly(pCurrentHouseTypeAssembly, pProducts)
+
   End Sub
 
 End Class

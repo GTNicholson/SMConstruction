@@ -5,16 +5,16 @@ Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
 
-Public Class dtoHouseTypeSalesItems : Inherits dtoBase
-  Private pHouseTypeSalesItems As dmHouseTypeSalesItems
+Public Class dtoHouseTypeSalesItem : Inherits dtoBase
+  Private pHouseTypeSalesItems As dmHouseTypeSalesItem
 
   Public Sub New(ByRef rDBSource As clsDBConnBase)
     MyBase.New(rDBSource)
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "HouseTypeSalesItems"
-    pKeyFieldName = "HouseTypeSalesItemsID"
+    pTableName = "HouseTypeSalesItem"
+    pKeyFieldName = "HouseTypeSalesItemID"
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
@@ -22,10 +22,10 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
 
   Overrides Property ObjectKeyFieldValue() As Integer
     Get
-      ObjectKeyFieldValue = pHouseTypeSalesItems.HouseTypeSalesItemsID
+      ObjectKeyFieldValue = pHouseTypeSalesItems.HouseTypeSalesItemID
     End Get
     Set(ByVal value As Integer)
-      pHouseTypeSalesItems.HouseTypeSalesItemsID = value
+      pHouseTypeSalesItems.HouseTypeSalesItemID = value
     End Set
   End Property
 
@@ -51,18 +51,18 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
     Dim mDummy As String = ""
     Dim mDummy2 As String = ""
     If vSetList Then
-      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "HouseTypeSalesItemsID", pHouseTypeSalesItems.HouseTypeSalesItemsID)
+      DBSource.AddParamPropertyInfo(rParameterValues, mDummy, mDummy2, vSetList, "HouseTypeSalesItemID", pHouseTypeSalesItems.HouseTypeSalesItemID)
     End If
     With pHouseTypeSalesItems
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .HouseTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemNumber", StringToDBValue(.ItemNumber))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID", .ProductID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID", .ProductTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", .UnitPrice)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ImageFile", StringToDBValue(.ImageFile))
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecieID", .WoodSpecieID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpeciesID", .WoodSpeciesID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QtyInvoiced", .QtyInvoiced)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeSalesItemAssemblyID", .HouseTypeSalesItemAssemblyID)
 
     End With
@@ -75,16 +75,16 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
     Try
       If pHouseTypeSalesItems Is Nothing Then SetObjectToNew()
       With pHouseTypeSalesItems
-        .HouseTypeSalesItemsID = DBReadInt32(rDataReader, "HouseTypeSalesItemsID")
+        .HouseTypeSalesItemID = DBReadInt32(rDataReader, "HouseTypeSalesItemID")
         .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
+        .ProductID = DBReadInt32(rDataReader, "ProductID")
+        .ProductTypeID = DBReadByte(rDataReader, "ProductTypeID")
         .ItemNumber = DBReadString(rDataReader, "ItemNumber")
         .Description = DBReadString(rDataReader, "Description")
         .Quantity = DBReadInt32(rDataReader, "Quantity")
-        .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
-        .WoodSpecieID = DBReadInt32(rDataReader, "WoodSpecieID")
+        .WoodSpeciesID = DBReadInt32(rDataReader, "WoodSpeciesID")
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
-        .QtyInvoiced = DBReadInt32(rDataReader, "QtyInvoiced")
         .HouseTypeSalesItemAssemblyID = DBReadInt32(rDataReader, "HouseTypeSalesItemAssemblyID")
 
         pHouseTypeSalesItems.IsDirty = False
@@ -103,15 +103,15 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    pHouseTypeSalesItems = New dmHouseTypeSalesItems ' Or .NewBlankHouseTypeSalesItems
+    pHouseTypeSalesItems = New dmHouseTypeSalesItem ' Or .NewBlankHouseTypeSalesItems
     Return pHouseTypeSalesItems
 
   End Function
 
 
-  Public Function LoadHouseTypeSalesItems(ByRef rHouseTypeSalesItems As dmHouseTypeSalesItems, ByVal vHouseTypeSalesItemsID As Integer) As Boolean
+  Public Function LoadHouseTypeSalesItems(ByRef rHouseTypeSalesItems As dmHouseTypeSalesItem, ByVal vHouseTypeSalesItemID As Integer) As Boolean
     Dim mOK As Boolean
-    mOK = LoadObject(vHouseTypeSalesItemsID)
+    mOK = LoadObject(vHouseTypeSalesItemID)
     If mOK Then
       rHouseTypeSalesItems = pHouseTypeSalesItems
     Else
@@ -122,7 +122,7 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
   End Function
 
 
-  Public Function SaveHouseTypeSalesItems(ByRef rHouseTypeSalesItems As dmHouseTypeSalesItems) As Boolean
+  Public Function SaveHouseTypeSalesItems(ByRef rHouseTypeSalesItems As dmHouseTypeSalesItem) As Boolean
     Dim mOK As Boolean
     pHouseTypeSalesItems = rHouseTypeSalesItems
     mOK = SaveObject()
@@ -131,44 +131,32 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
   End Function
 
 
-  Public Function LoadHouseTypeSalesItemsCollection(ByRef rHouseTypeSalesItemss As colHouseTypeSalesItemss, ByVal vHouseTypeID As Integer) As Boolean
+  Public Function LoadHouseTypeSalesItemsCollection(ByRef rHouseTypeSalesItemss As colHouseTypeSalesItems, ByVal vHouseTypeID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mParams.Add("@HouseTypeID", vHouseTypeID)
-    mOK = MyBase.LoadCollection(rHouseTypeSalesItemss, mParams, "HouseTypeSalesItemsID")
+    mOK = MyBase.LoadCollection(rHouseTypeSalesItemss, mParams, "HouseTypeSalesItemID")
     rHouseTypeSalesItemss.TrackDeleted = True
     If mOK Then rHouseTypeSalesItemss.IsDirty = False
     Return mOK
   End Function
 
 
-  Public Function SaveHouseTypeSalesItemsCollection(ByRef rCollection As colHouseTypeSalesItemss, ByVal vHouseTypeID As Integer) As Boolean
+  Public Function SaveHouseTypeSalesItemsCollection(ByRef rCollection As colHouseTypeSalesItems, ByVal vHouseTypeID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mAllOK As Boolean
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
       mParams.Add("@HouseTypeID", vHouseTypeID)
-      ''Approach where delete items not found in the collection
-      ''If rCollection.SomeRemoved Then
-      ''  For Each Me.pHouseTypeSalesItems In rCollection
-      ''    If pHouseTypeSalesItems.HouseTypeSalesItemsID <> 0 Then
-      ''      mCount = mCount + 1
-      ''      If mCount > 1 Then mIDs = mIDs & ", "
-      ''       mIDs = mIDs & pHouseTypeSalesItems.HouseTypeSalesItemsID.ToString
-      ''    End If
-      ''  Next
-      ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
-      ''Else
-      ''   mAllOK = True
-      ''End If
+
 
       ''Alternative Approach - where maintain collection of deleted items
       If rCollection.SomeDeleted Then
         mAllOK = True
         For Each Me.pHouseTypeSalesItems In rCollection.DeletedItems
-          If pHouseTypeSalesItems.HouseTypeSalesItemsID <> 0 Then
-            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pHouseTypeSalesItems.HouseTypeSalesItemsID)
+          If pHouseTypeSalesItems.HouseTypeSalesItemID <> 0 Then
+            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pHouseTypeSalesItems.HouseTypeSalesItemID)
           End If
         Next
       Else
@@ -176,7 +164,7 @@ Public Class dtoHouseTypeSalesItems : Inherits dtoBase
       End If
 
       For Each Me.pHouseTypeSalesItems In rCollection
-        If pHouseTypeSalesItems.IsDirty Or pHouseTypeSalesItems.HouseTypeID <> vHouseTypeID Or pHouseTypeSalesItems.HouseTypeSalesItemsID = 0 Then 'Or pHouseTypeSalesItems.HouseTypeSalesItemsID = 0
+        If pHouseTypeSalesItems.IsDirty Or pHouseTypeSalesItems.HouseTypeID <> vHouseTypeID Or pHouseTypeSalesItems.HouseTypeSalesItemID = 0 Then 'Or pHouseTypeSalesItems.HouseTypeSalesItemID = 0
           pHouseTypeSalesItems.HouseTypeID = vHouseTypeID
           If mAllOK Then mAllOK = SaveObject()
         End If

@@ -98,7 +98,7 @@ Public Class dmProductInstallation : Inherits dmProductBase
 
 
 
-  Public Overrides Property ItemType As Integer
+  Public Overrides Property ProductTypeID As Integer
     Get
       Return eProductType.ProductInstallation
     End Get
