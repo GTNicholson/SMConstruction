@@ -59,6 +59,11 @@ Public Enum eMode
   StockItemProcessor = 3
 End Enum
 
+Public Enum eSupplirPrintOption
+  MainAccount = 1
+  SecondaryAccount = 2
+End Enum
+
 Public Enum eTaxRate
   <Description("Ninguno")> None = 0
   <Description("IVA")> IVA = 1

@@ -352,7 +352,7 @@ Public Class fccPurchaseOrder
     pPurchaseOrder.PONum = mdsoGeneral.GetNextTallyPONo().ToString("00000")
   End Sub
 
-  Public Sub CreatePurchaseOrderPDF(ByVal vCurrency As eCurrency)
+  Public Sub CreatePurchaseOrderPDF(ByVal vCurrency As eCurrency, ByVal vAccountOption As Int32, ByVal vIsPaymentOrder As Boolean)
     Dim mPOInfo As New clsPurchaseOrderInfo
     Dim mPOItemInfos As New colPOItemInfos
     Dim mBuyer As dmEmployee
@@ -382,10 +382,10 @@ Public Class fccPurchaseOrder
       mEmployees = pRTISGlobal.RefLists.RefIList(appRefLists.Employees)
       mBuyer = mEmployees.ItemFromKey(pPurchaseOrder.BuyerID)
 
-
       mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, vCurrency)
 
       mRep.ExportToPdf(mExportFilename)
+
       Dim mProjectName As String = ""
       If pSalesOrderPhaseInfo IsNot Nothing Then
         If pSalesOrderPhaseInfo.ProjectName <> "" Then
@@ -397,10 +397,24 @@ Public Class fccPurchaseOrder
         mProjectName = "Consumo Interno"
 
       End If
-      mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName)
-      pPurchaseOrder.FileName = mExportFilename
 
-      ImportPDFs(mExportFilename, mPaymentReportPath)
+      If vIsPaymentOrder Then
+
+        Select Case vAccountOption
+          Case eSupplirPrintOption.MainAccount
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountCode)
+
+          Case eSupplirPrintOption.SecondaryAccount
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountSecondaryNumber)
+
+          Case Else
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountCode)
+
+        End Select
+        pPurchaseOrder.FileName = mExportFilename
+        ImportPDFs(mExportFilename, mPaymentReportPath)
+
+      End If
 
       SaveObject()
     Catch ex As Exception
@@ -431,7 +445,7 @@ Public Class fccPurchaseOrder
 
   End Sub
 
-  Public Function CreatePaymetReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String) As String
+  Public Function CreatePaymetReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String) As String
 
     Dim mFileName As String
     Dim mDirectory As String
@@ -446,7 +460,7 @@ Public Class fccPurchaseOrder
       mFileName = String.Format("PaymentCheckOrder_{0}_{1}.pdf", pPurchaseOrder.PONum, Today.ToString("yyyyMMdd_HHmm"))
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
-      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName)
+      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName, vAccountCode)
 
       mRep.ExportToPdf(mExportFilename)
 

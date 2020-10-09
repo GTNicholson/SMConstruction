@@ -15,6 +15,7 @@ Public Class repCheckPaymentOrder
   Private pToStringDollar As String = "$#,##0.00;;#"
   Private pCurrency As eCurrency
   Private pProjectName As String
+  Private pAccountCode As String
   Public Sub New()
 
     InitializeComponent()
@@ -24,8 +25,8 @@ Public Class repCheckPaymentOrder
 
 
 
-  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vProjectName As String) As XtraReport
-    Dim mRep As New repCheckPaymentOrder(rPOInfo, rBuyer, vCurrency, vProjectName)
+  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String) As XtraReport
+    Dim mRep As New repCheckPaymentOrder(rPOInfo, rBuyer, vCurrency, vProjectName, vAccountCode)
     Dim mPrintTool As ReportPrintTool
     mRep.CreateDocument()
     ''If vPreview Then
@@ -38,7 +39,7 @@ Public Class repCheckPaymentOrder
     Return mRep
   End Function
 
-  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String)
+  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String)
 
     ' This call is required by the designer.
     InitializeComponent()
@@ -49,6 +50,7 @@ Public Class repCheckPaymentOrder
     pBuyer = rBuyer
     DataSource = rPOInfo.POItemInfos
     pProjectName = vProjectName
+    pAccountCode = vAccountCode
   End Sub
 
 
@@ -63,7 +65,7 @@ Public Class repCheckPaymentOrder
 
     xrtSupplierName.Text = pPOInfo.CompanyName
 
-    xrtAccountNumber.Text = pPOInfo.PurchaseOrder.Supplier.AccountCode
+    xrtAccountNumber.Text = pAccountCode
 
     Select Case pCurrency
       Case eCurrency.Cordobas

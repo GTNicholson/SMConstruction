@@ -17,3 +17,11 @@ insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,Permis
 values
 (5025,4,'ProductConstructionTypeID','ProductConstructionTypeID',4,0,'ProductConstructionType','ProductConstructionTypeID','Description',0)
 go
+
+alter table Supplier
+add AccountSecondaryNumber nvarchar(20)
+go
+
+alter table Supplier
+add PrintAccountOption int
+go

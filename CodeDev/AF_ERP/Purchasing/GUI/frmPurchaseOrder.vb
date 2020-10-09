@@ -658,7 +658,16 @@ Public Class frmPurchaseOrder
       UpdateObject()
       Select Case e.Button.Kind
         Case ButtonPredefines.Plus
-          pFormController.CreatePurchaseOrderPDF(rgDefaultCurrency.EditValue)
+
+
+          If ckeAccountOrder.Checked Then
+            pFormController.CreatePurchaseOrderPDF(rgDefaultCurrency.EditValue, pFormController.PurchaseOrder.Supplier.PrintAccountOption, True)
+          Else
+            pFormController.CreatePurchaseOrderPDF(rgDefaultCurrency.EditValue, pFormController.PurchaseOrder.Supplier.PrintAccountOption, False)
+
+          End If
+
+
 
           If File.Exists(pFormController.PurchaseOrder.FileName) Then
             Process.Start(pFormController.PurchaseOrder.FileName)

@@ -7,6 +7,7 @@ Public Class fccSupplierDetail
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pPurchaseOrders As colPurchaseOrders
 
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pPurchaseOrders = New colPurchaseOrders
@@ -55,6 +56,9 @@ Public Class fccSupplierDetail
       mWhere = "SupplierID = " & pSupplier.SupplierID & " and (Status <> 6 and Status <>4) and SubmissionDate between '" & mSubmissionDate.ToShortDateString & "' and '" & Today.ToShortDateString & "'"
 
       mdso.LoadPurchaseOrderCollection(pPurchaseOrders, mWhere)
+
+    Else
+      pSupplier.PrintAccountOption = eSupplirPrintOption.MainAccount
     End If
 
   End Sub

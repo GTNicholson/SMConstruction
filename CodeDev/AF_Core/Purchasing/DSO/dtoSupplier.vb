@@ -110,6 +110,8 @@ Public Class dtoSupplier : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCounty", StringToDBValue(.MainCounty))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MainCountry", StringToDBValue(.MainCountry))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BankName", StringToDBValue(.BankName))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AccountSecondaryNumber", StringToDBValue(.AccountSecondaryNumber))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PrintAccountOption", .PrintAccountOption)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
     End With
@@ -132,6 +134,7 @@ Public Class dtoSupplier : Inherits dtoBase
           ''.PostCode = DBReadString(rDataReader, "PostCode")
           .Country = DBReadString(rDataReader, "MainCountry")
         End With
+        .PrintAccountOption = DBReadInt32(rDataReader, "PrintAccountOption")
 
         .SupplierID = DBReadInt32(rDataReader, "SupplierID")
         .CompanyName = DBReadString(rDataReader, "CompanyName")
@@ -164,6 +167,7 @@ Public Class dtoSupplier : Inherits dtoBase
         .PurchasingTermsType = DBReadInt32(rDataReader, "PurchasingTermsType")
         .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
         .BankName = DBReadString(rDataReader, "BankName")
+        .AccountSecondaryNumber = DBReadString(rDataReader, "AccountSecondaryNumber")
 
         pSupplier.IsDirty = False
       End With

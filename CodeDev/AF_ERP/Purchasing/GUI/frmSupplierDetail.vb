@@ -224,8 +224,10 @@ Public Class frmSupplierDetail
       lblSupplierID.Text = "ID:" & .SupplierID.ToString("00000")
       cboBankName.EditValue = .BankName
       txtSupplierReference.Text = .SupplierReferenceID
+      txtAccountSecondaryNumber.Text = .AccountSecondaryNumber
       txtCompanyName.Text = .CompanyName
       txtRazonSocial.Text = .RazonSocial
+      rgPrintAccountOption.EditValue = .PrintAccountOption
       txtRucNumber.Text = .Rucnumber
       ''txtMainAddress1.Text = .MainAddress1
       txtTelNo.Text = .TelNo
@@ -256,9 +258,10 @@ Public Class frmSupplierDetail
       UctAddress1.UpdateObject()
       .MainAddress = UctAddress1.Address
       .BankName = cboBankName.EditValue
-
+      .PrintAccountOption = rgPrintAccountOption.EditValue
       .CompanyName = txtCompanyName.Text
       .SupplierReferenceID = txtSupplierReference.Text
+      .AccountSecondaryNumber = txtAccountSecondaryNumber.Text
       .CompanyName = txtCompanyName.Text
       .RazonSocial = txtRazonSocial.Text
       .Rucnumber = txtRucNumber.Text
@@ -370,4 +373,6 @@ Public Class frmSupplierDetail
 
     End If
   End Sub
+
+
 End Class

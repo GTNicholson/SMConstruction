@@ -42,7 +42,8 @@ Public Class dmSupplier : Inherits dmBase
   Private pDefaultCurrency As Integer
   Protected pMainAddress As dmPostalAddress
   Private pBankName As String
-
+  Private pAccountSecondaryNumber As String
+  Private pPrintAccountOption As Int32
   Private pSupplierContacts As colSupplierContacts
   Public Sub New()
     MyBase.New()
@@ -109,6 +110,8 @@ Public Class dmSupplier : Inherits dmBase
       .Rucnumber = Rucnumber
       .SupplierReferenceID = SupplierReferenceID
       .PurchasingTermsType = PurchasingTermsType
+      .AccountSecondaryNumber = AccountSecondaryNumber
+      .PrintAccountOption = PrintAccountOption
       ''.MainAddress1 = MainAddress1
       ''.MainAddress2 = MainAddress2
       ''.MainTown = MainTown
@@ -129,6 +132,16 @@ Public Class dmSupplier : Inherits dmBase
 
 
 
+
+  Public Property PrintAccountOption() As Int32
+    Get
+      Return pPrintAccountOption
+    End Get
+    Set(ByVal value As Int32)
+      If pPrintAccountOption <> value Then IsDirty = True
+      pPrintAccountOption = value
+    End Set
+  End Property
 
   Public Property DefaultCurrency() As Int32
     Get
@@ -435,6 +448,17 @@ Public Class dmSupplier : Inherits dmBase
     Set(ByVal value As String)
       If pRucnumber <> value Then IsDirty = True
       pRucnumber = value
+    End Set
+  End Property
+
+
+  Public Property AccountSecondaryNumber() As String
+    Get
+      Return pAccountSecondaryNumber
+    End Get
+    Set(ByVal value As String)
+      If pAccountSecondaryNumber <> value Then IsDirty = True
+      pAccountSecondaryNumber = value
     End Set
   End Property
 
