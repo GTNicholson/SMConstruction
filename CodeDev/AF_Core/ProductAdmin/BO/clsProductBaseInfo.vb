@@ -24,7 +24,7 @@ Public Class clsProductBaseInfo
     End Get
   End Property
 
-  Public ReadOnly Property ItemType As eProductType
+  Public ReadOnly Property ItemType As Int32
     Get
       Return pProduct.ItemType
     End Get
@@ -37,7 +37,13 @@ Public Class clsProductBaseInfo
   End Property
   Public ReadOnly Property ItemTypeDesc As String
     Get
-      Return clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ItemType, eProductType))
+      Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType).DisplayValueString(pProduct.ItemType)
+    End Get
+  End Property
+
+  Public ReadOnly Property SubItemTypeDesc As String
+    Get
+      Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionSubType).DisplayValueString(pProduct.SubItemType)
     End Get
   End Property
 End Class

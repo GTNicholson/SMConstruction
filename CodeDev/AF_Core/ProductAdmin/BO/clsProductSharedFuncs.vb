@@ -15,4 +15,30 @@
     Return mRetVal
   End Function
 
+  Public Shared Function GetProductCode(ByRef rProductBase As dmProductBase) As String
+    Dim mRetVal As String = ""
+    Dim mRefLists As RTIS.CommonVB.colRefLists
+    Dim mPCItemType As New dmProductConstructionType
+    Dim mPCSubItemType As New dmProductConstructionSubType
+
+
+    mRefLists = AppRTISGlobal.GetInstance.RefLists
+
+    mPCItemType = CType(mRefLists.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes).ItemFromKey(rProductBase.ItemType)
+
+    If mPCItemType IsNot Nothing Then
+
+      mRetVal &= mPCItemType.Abbreviation
+
+      mPCSubItemType = CType(mRefLists.RefIList(appRefLists.ProductConstructionSubType), colProductConstructionSubTypes).ItemFromKey(rProductBase.SubItemType)
+
+      If mPCSubItemType IsNot Nothing Then
+        mRetVal &= "-" & mPCSubItemType.Abbreviation & "."
+      End If
+
+    End If
+
+    Return mRetVal
+  End Function
+
 End Class

@@ -75,6 +75,11 @@ Public Class clsPurchaseOrderInfo
     End Set
   End Property
 
+  Public ReadOnly Property FileName As String
+    Get
+      Return pPurchaseOrder.FileName
+    End Get
+  End Property
 
   Public Property POItemInfos As colPOItemInfos
     Get

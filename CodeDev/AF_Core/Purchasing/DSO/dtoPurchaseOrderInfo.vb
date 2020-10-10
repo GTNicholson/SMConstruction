@@ -77,6 +77,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
           .PaymentMethod = DBReadInt32(rDataReader, "PaymentMethod")
           .PONum = DBReadString(rDataReader, "PONum")
+          .FileName = DBReadString(rDataReader, "FileName")
           .SupplierContactTel = DBReadString(rDataReader, "SupplierContactTel")
           .Category = DBReadByte(rDataReader, "Category")
           .SubmissionDate = DBReadDateTime(rDataReader, "SubmissionDate")

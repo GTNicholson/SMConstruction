@@ -134,7 +134,7 @@ Public Class dsoStock
       pDBConn.Connect()
 
       If rProductBase.Product IsNot Nothing Then
-        mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ItemType, pDBConn)
+        mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ProductTypeID, pDBConn)
         mdtoProductBase.SaveProduct(rProductBase.Product)
 
       End If

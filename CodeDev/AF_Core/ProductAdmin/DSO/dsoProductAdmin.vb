@@ -9,6 +9,25 @@ Public Class dsoProductAdmin : Inherits dsoBase
     MyBase.New(rDBConn)
   End Sub
 
+  Public Function LoadProductConstructionSubTypes(ByRef rProductConstructionSubTypes As colProductConstructionSubTypes, ByVal vProductConstructionItemType As Integer) As Boolean
+    Dim mdto As dtoProductConstructionSubType
+
+
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdto = New dtoProductConstructionSubType(pDBConn)
+      mdto.LoadProductConstructionSubTypeCollectionByItemTypeID(rProductConstructionSubTypes, vProductConstructionItemType)
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+    Return mRetVal
+  End Function
+
+
   Public Function LoadHouseTypeDown(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
     Dim mdto As dtoHouseType
     Dim mdtoSIA As dtoSalesItemAssembly
@@ -105,5 +124,63 @@ Public Class dsoProductAdmin : Inherits dsoBase
     End Try
     Return mOK
   End Function
+  Public Function GetNextProductConstructionCodeNo(ByVal vProductCode As String, ByVal vProductType As Integer) As Integer
+    Dim mRetVal As Integer
 
+    Try
+
+      pDBConn.Connect()
+      mRetVal = GetNextProductCodeNoConnected(vProductCode, vProductType)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function GetNextProductCodeNoConnected(ByVal vProductCode As String, ByVal vProductType As Integer) As Integer
+    Dim mReader As IDataReader
+    Dim mSQL As String = ""
+    Dim mRetVal As Integer = -1
+    Dim mExistingCode As String
+    Dim mLastDotPos As Integer
+    Try
+
+      Select Case vProductType
+        Case eProductType.ProductInstallation
+          mSQL = "Select Top 1 Code from ProductInstallation where Code Like '" & vProductCode & "%' Order By Code Desc"
+
+        Case eProductType.StructureAF
+          mSQL = "Select Top 1 Code from ProductStructure where Code Like '" & vProductCode & "%' Order By Code Desc"
+
+      End Select
+
+      If mSQL <> "" Then
+        mReader = pDBConn.LoadReader(mSQL)
+        If mReader.Read Then
+          mExistingCode = RTIS.DataLayer.clsDBConnBase.DBReadString(mReader, "Code")
+          mLastDotPos = mExistingCode.LastIndexOf(".")
+          If mLastDotPos <> -1 And mExistingCode.Length >= mLastDotPos + 1 Then
+            mRetVal = Val(mExistingCode.Substring(mLastDotPos + 1)) + 1
+          Else
+            '// invalid code
+            mRetVal = -1
+          End If
+        Else
+          mRetVal = 1
+        End If
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mReader IsNot Nothing Then
+        If mReader.IsClosed = False Then mReader.Close()
+        mReader.Dispose()
+        mReader = Nothing
+      End If
+    End Try
+    Return mRetVal
+  End Function
 End Class

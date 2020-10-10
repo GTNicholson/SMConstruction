@@ -1,4 +1,5 @@
-﻿Imports RTIS.CommonVB
+﻿Imports System.IO
+Imports RTIS.CommonVB
 
 Public Class frmPickerPurchaseOrder
 
@@ -55,6 +56,26 @@ Public Class frmPickerPurchaseOrder
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub repoOpenPO_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repoOpenPO.ButtonClick
+    Try
+      Dim mItem As clsPurchaseOrderInfo
+      mItem = TryCast(gvItemList.GetFocusedRow, clsPurchaseOrderInfo)
+
+      If mItem IsNot Nothing Then
+        If File.Exists(mItem.PurchaseOrder.FileName) Then
+
+          Process.Start(mItem.PurchaseOrder.FileName)
+        Else
+          MessageBox.Show("Órden de Compra no encontrada, revise si existe un documento de Compra para este elemento seleccionado", "Seleccionar Órden de Compra", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
 
 
 End Class

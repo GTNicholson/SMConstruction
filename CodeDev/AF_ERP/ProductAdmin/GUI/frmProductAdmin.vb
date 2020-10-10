@@ -73,7 +73,7 @@ Public Class frmProductAdmin
       RefreshAddBtn()
 
 
-      grdStockItems.DataSource = pFormController.ProductBaseInfos
+      grdProductBase.DataSource = pFormController.ProductBaseInfos
       RefreshControls()
 
 
@@ -141,7 +141,7 @@ Public Class frmProductAdmin
 
             ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
             pFormController.LoadMainCollection()
-            grdStockItems.RefreshDataSource()
+            grdProductBase.RefreshDataSource()
             RefreshControls()
             gvStockItems.RefreshData()
           Case MsgBoxResult.Cancel
@@ -181,13 +181,9 @@ Public Class frmProductAdmin
     Dim mVIs As colValueItems
     Dim mSuppliers As colSuppliers
 
-    mVIs = clsEnumsConstants.EnumToVIs(GetType(eProductType))
-    For mLoop As Integer = mVIs.Count - 1 To 0 Step -1
-      If pFormController.ProductTypes.Contains(mVIs(mLoop).ItemValue) = False Then
-        mVIs.RemoveAt(mLoop)
-      End If
-    Next
-    clsDEControlLoading.FillDEComboVI(cboItemType, mVIs)
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ProductConstructionType)
+
+    clsDEControlLoading.FillDEComboVI(cboProductItemType, mVIs)
     '' clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
     ''clsDEControlLoading.FillDEComboVI(cboUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
@@ -210,7 +206,7 @@ Public Class frmProductAdmin
         txtDescription.Text = .Description
         txtStockCode.Text = .Code
         lblStockItemID.Text = "ID: " & .ID
-        clsDEControlLoading.SetDECombo(cboItemType, .ItemType)
+        clsDEControlLoading.SetDECombo(cboProductItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSubItemType, .SubItemType)
       End With
     End If
@@ -234,7 +230,7 @@ Public Class frmProductAdmin
         .Description = txtDescription.Text
 
         .Code = txtStockCode.Text
-        .ItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
+        .ItemType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
         .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubItemType)
       End With
     End If
@@ -264,9 +260,11 @@ Public Class frmProductAdmin
           End If
         End If
         pFormController.SetCurrentStockItemInfo(mSII)
+        RefreshPCSubItemTypes()
+
         RefreshControls()
         SwitchTab()
-        RefreshTabControls()
+
         RefreshControls()
         pCurrentDetailMode = eCurrentDetailMode.eView
         RefreshDetailButtons()
@@ -285,7 +283,7 @@ Public Class frmProductAdmin
 
     pFormController.AddProductItem_SetToCurrent(pFormController.CurrentEmodeProductType)
 
-    grdStockItems.RefreshDataSource()
+    grdProductBase.RefreshDataSource()
     pFormController.GotoGridRowByRowObject(gvStockItems, pFormController.CurrentStockItemInfo)
 
     pCurrentDetailMode = eCurrentDetailMode.eEdit
@@ -371,9 +369,9 @@ Public Class frmProductAdmin
 
       ''pFormController.CurrentProductType = bargCategory.EditValue
       pFormController.LoadMainCollection()
-      grdStockItems.DataSource = pFormController.ProductBaseInfos
-      grdStockItems.RefreshDataSource()
-      RefreshTabControls()
+      grdProductBase.DataSource = pFormController.ProductBaseInfos
+      grdProductBase.RefreshDataSource()
+      RefreshPCSubItemTypes()
       RefreshAddBtn()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -382,7 +380,7 @@ Public Class frmProductAdmin
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
     txtDescription.ReadOnly = vReadOnly
-    cboItemType.ReadOnly = vReadOnly
+    cboProductItemType.ReadOnly = vReadOnly
     txtStockCode.ReadOnly = vReadOnly
     cboSubItemType.ReadOnly = vReadOnly
   End Sub
@@ -396,7 +394,7 @@ Public Class frmProductAdmin
         Case eDetailButtons.Edit
           pFormController.LoadStockItemExtraDetails()
 
-          RefreshAddBtn()
+          '' RefreshAddBtn()
 
           If pFormController.CurrentProductBase IsNot Nothing Then
             pFormController.LockStockItem(pFormController.CurrentProductBase.ID)
@@ -406,16 +404,21 @@ Public Class frmProductAdmin
           pCurrentDetailMode = eCurrentDetailMode.eEdit
           SetDetailsControlsReadonly(False)
           SetDetailFocus()
+          RefreshPCSubItemTypes()
           RefreshControls()
 
           RefreshDetailButtons()
-          RefreshTabControls()
+
+
+
         Case eDetailButtons.Save
 
           If pFormController.CurrentProductBase IsNot Nothing Then
             UpdateObject()
             If pFormController.CurrentProductBase.Code = "" Then
-              CheckCreateStockCodeSave()
+              '' CheckCreateStockCodeSave()
+              pFormController.SaveObject()
+
               RefreshControls()
             Else
               pFormController.SaveObject()
@@ -461,40 +464,28 @@ Public Class frmProductAdmin
 
   End Sub
 
-  Private Sub CheckCreateStockCodeSave()
-    ''Dim mStockCodeStem As String
-    ''Dim mVal As clsValidate
-    ''Dim mOK As Boolean = True
-    ''mVal = clsStockItemSharedFuncs.IsStockCodeSpecValid(pFormController.CurrentProductBase)
-
-    ''If mVal.ValOk Then
-    ''  mStockCodeStem = clsStockItemSharedFuncs.GetStockCode(pFormController.CurrentProductBase)
-
-    ''  If pFormController.CheckStockCodeExists(mStockCodeStem) Then
-    ''    If MsgBox("Stock code " & mStockCodeStem & " already exists. Please check" & vbCrLf & mVal.Msg & vbCrLf & "Do you want to save anyway?", vbYesNo) = vbYes Then
-    ''      pFormController.SaveObject(False, "")
-    ''    End If
-    ''    Exit Sub
-    ''  End If
-
-    ''  If MsgBox("This stock item will be allocated a Stock Code of the following form:" & vbCrLf & mStockCodeStem & "###" & vbCrLf & "Do you want to proceed?", vbYesNo) = vbYes Then
-    ''    pFormController.SaveObject(True, mStockCodeStem)
-    ''  End If
-    ''Else
-    ''  If MsgBox("The Information is not sufficient to generate a stock code" & vbCrLf & mVal.Msg & vbCrLf & "Do you want to save anyway?", vbYesNo) = vbYes Then
-    ''    pFormController.SaveObject(False, "")
-    ''  End If
-    ''End If
-  End Sub
+  Private Function CheckCreateStockCodeSave() As Boolean
+    Dim mRetval As Boolean
+    Dim mProposedCode As String
+    If pFormController.CurrentProductBase.Code = "" Then
+      mProposedCode = pFormController.GetProposedCode
+      If mProposedCode <> "" Then
+        If MsgBox("¿Crear el código de producto : " & mProposedCode & "?", vbYesNo) = vbYes Then
+          pFormController.CurrentProductBase.Code = mProposedCode
+        End If
+      End If
+    End If
+    Return mRetval
+  End Function
 
   Private Sub SetDetailFocus()
     txtDescription.Focus()
   End Sub
-  Private Sub RefreshTabControls()
+  Private Sub RefreshPCSubItemTypes()
 
     Dim mStartActive As Boolean = pIsActive
-    Dim mItem As clsRefListItem
-    Dim mVIs As New colValueItems
+    Dim mProductConstructionSubTypes As New colProductConstructionSubTypes
+
     pIsActive = False
 
     If pFormController.CurrentProductBase IsNot Nothing Then
@@ -503,29 +494,24 @@ Public Class frmProductAdmin
         pFormController.CurrentEmodeProductType = pFormController.CurrentProductBase.ItemType
       End If
 
-      Select Case pFormController.CurrentEmodeProductType
 
-        Case eProductType.ProductInstallation
+      pFormController.LoadProductConstructionSubTypes(mProductConstructionSubTypes, pFormController.CurrentProductBase.ItemType)
 
-         '' clsDEControlLoading.FillDEComboVIi(cboSubItemType, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.ProductInstallationType))
+      clsDEControlLoading.FillDEComboVIi(cboSubItemType, mProductConstructionSubTypes)
 
-        Case eProductType.StructureAF
 
-          ''clsDEControlLoading.FillDEComboVIi(cboSubItemType, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.ProductStructureType))
-
-      End Select
 
     End If
 
     pIsActive = mStartActive
   End Sub
 
-  Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboItemType.SelectedIndexChanged
+  Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboProductItemType.SelectedIndexChanged
     If pIsActive Then
-      pFormController.CurrentEmodeProductType = clsDEControlLoading.GetDEComboValue(cboItemType)
+      pFormController.CurrentEmodeProductType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
       pFormController.CurrentProductBase.ItemType = pFormController.CurrentEmodeProductType
       UpdateObject()
-      RefreshTabControls()
+      RefreshPCSubItemTypes()
       RefreshControls()
     End If
   End Sub
@@ -550,8 +536,8 @@ Public Class frmProductAdmin
 
       pFormController.CurrentEmodeProductType = mItem.Tag
       pFormController.LoadMainCollection()
-      grdStockItems.DataSource = pFormController.ProductBaseInfos
-      grdStockItems.RefreshDataSource()
+      grdProductBase.DataSource = pFormController.ProductBaseInfos
+      grdProductBase.RefreshDataSource()
       RefreshAddBtn()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -566,7 +552,7 @@ Public Class frmProductAdmin
 
 
 
-    grdStockItems.RefreshDataSource()
+    grdProductBase.RefreshDataSource()
   End Sub
 
 
@@ -577,7 +563,9 @@ Public Class frmProductAdmin
     vGridView.FocusedRowHandle = rowHandle
   End Sub
 
-
-
-
+  Private Sub btnGenerateCode_Click(sender As Object, e As EventArgs) Handles btnGenerateCode.Click
+    UpdateObject()
+    CheckCreateStockCodeSave()
+    RefreshControls()
+  End Sub
 End Class

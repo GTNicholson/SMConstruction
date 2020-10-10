@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraTab
+﻿Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraTab
 Imports DevExpress.XtraTab.ViewInfo
 Imports RTIS.CommonVB
 Imports RTIS.Elements
@@ -372,23 +373,7 @@ Public Class frmHouseType
     End Try
   End Sub
 
-  Private Sub btnAddProducts_Click(sender As Object, e As EventArgs) Handles btnAddProducts.Click
-    Try
-      Dim mProductPicker As clsPickerProductItem
-      Dim mProductsToAdd As New List(Of dmProductBase)
 
-      mProductPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, AppRTISGlobal.GetInstance)
-      mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
-
-
-      CheckSave(False)
-      pFormController.AddProducts(mProductsToAdd)
-      grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
-      gvHouseSalesItems.RefreshData()
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
-  End Sub
 
   Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
     Try
@@ -409,4 +394,58 @@ Public Class frmHouseType
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+  Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpProductLists.CustomButtonClick
+
+
+    If pFormController.CurrentHTSalesItemInfos.Count <> 0 Then
+
+      Select Case e.Button.Properties.Tag
+
+        Case "Add"
+          Try
+            Dim mProductPicker As clsPickerProductItem
+            Dim mProductsToAdd As New List(Of dmProductBase)
+
+            mProductPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, AppRTISGlobal.GetInstance)
+            mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+
+
+            CheckSave(False)
+            pFormController.AddProducts(mProductsToAdd)
+            grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+            gvHouseSalesItems.RefreshData()
+          Catch ex As Exception
+            If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+          End Try
+
+        Case "AddDuplicates"
+          ''  Dim mCount As Integer
+          Dim mProductBaseList As New List(Of dmProductBase)
+          Dim mHTSalesItemInfo As clsHouseTypeSalesItemInfo
+          Dim mProductBase As dmProductBase
+
+          mHTSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow, clsHouseTypeSalesItemInfo)
+
+          If mHTSalesItemInfo IsNot Nothing Then
+            mProductBase = mHTSalesItemInfo.Product.Clone
+
+            If mProductBase IsNot Nothing Then
+              mProductBaseList.Add(mProductBase)
+              CheckSave(False)
+
+              pFormController.AddProducts(mProductBaseList)
+              grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+              gvHouseSalesItems.RefreshData()
+            End If
+
+          End If
+
+
+          ''  MessageBox.Show("" & mCount & " items duplicated!")
+      End Select
+    End If
+
+  End Sub
+
 End Class

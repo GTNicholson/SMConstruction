@@ -12,6 +12,23 @@
     End If
   End Sub
 
+
+  Public Property Product As dmProductBase
+    Get
+      Return pProduct
+    End Get
+    Set(value As dmProductBase)
+      pProduct = value
+    End Set
+  End Property
+  Public Property HouseTypeSalesItem As dmHouseTypeSalesItem
+    Get
+      Return pHouseTypeSalesItem
+    End Get
+    Set(value As dmHouseTypeSalesItem)
+      pHouseTypeSalesItem = value
+    End Set
+  End Property
   Public ReadOnly Property Description As String
     Get
       Return pHouseTypeSalesItem.Description
@@ -32,7 +49,14 @@
     End Get
   End Property
 
-
+  Public Property Quantity As Integer
+    Get
+      Return pHouseTypeSalesItem.Quantity
+    End Get
+    Set(value As Integer)
+      pHouseTypeSalesItem.Quantity = value
+    End Set
+  End Property
 End Class
 
 Public Class colHouseTypeSalesItemInfos : Inherits List(Of clsHouseTypeSalesItemInfo)

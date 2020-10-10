@@ -361,4 +361,34 @@ Public Class fccProductAdmin
       pSelectedItems = value
     End Set
   End Property
+
+  Public Sub LoadProductConstructionSubTypes(ByRef rProductConstructionSubTypes As colProductConstructionSubTypes, ByVal vProductItemType As Integer)
+    Dim mdso As New dsoProductAdmin(pDBConn)
+    Dim mWhere As String = "ProductConstructionTypeID = " & vProductItemType
+    Try
+      mdso.LoadProductConstructionSubTypes(rProductConstructionSubTypes, vProductItemType)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
+
+  Public Function GetProposedCode()
+    Dim mDSO As dsoProductAdmin
+    Dim mStem As String
+    Dim mSuffix As Integer
+    Dim mRetVal As String = ""
+
+    mStem = clsProductSharedFuncs.GetProductCode(pCurrentProductBase)
+    mDSO = New dsoProductAdmin(pDBConn)
+    If mStem <> "" Then
+      mSuffix = mDSO.GetNextProductConstructionCodeNo(mStem, pCurrentProductBase.ProductTypeID)
+
+      mRetVal = mStem & mSuffix.ToString("000")
+    End If
+    Return mRetVal
+  End Function
+
 End Class
