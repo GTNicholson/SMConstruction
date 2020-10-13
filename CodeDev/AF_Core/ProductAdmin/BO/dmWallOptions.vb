@@ -50,7 +50,7 @@ Public Class dmWallOptions : Inherits dmBase
 
   End Sub
 
-  Public Property WallOptionsID() As Int32 Implements iValueItem.ItemValue
+  Public Property WallOptionsID() As Int32
     Get
       Return pWallOptionsID
     End Get
@@ -60,7 +60,16 @@ Public Class dmWallOptions : Inherits dmBase
     End Set
   End Property
 
-  Public Property Description() As String Implements iValueItem.DisplayValue
+  Public Property ItemValue() As Int32 Implements iValueItem.ItemValue
+    Get
+      Return WallOptionsID
+    End Get
+    Set(ByVal value As Int32)
+      WallOptionsID = value
+    End Set
+  End Property
+
+  Public Property Description() As String
     Get
       Return pDescription
     End Get
@@ -70,6 +79,14 @@ Public Class dmWallOptions : Inherits dmBase
     End Set
   End Property
 
+  Public Property DisplayValue() As String Implements iValueItem.DisplayValue
+    Get
+      Return Description
+    End Get
+    Set(ByVal value As String)
+      Description = value
+    End Set
+  End Property
 
 
   Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly

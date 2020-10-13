@@ -10,7 +10,7 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pParentID As Integer
   Protected pSalesPrice As Decimal
   Protected pProcessCost As Decimal
-
+  Protected pUoM As String
   Protected pDescription As String
   Protected pID As Integer
   Protected pCode As String
@@ -79,7 +79,15 @@ Public MustInherit Class dmProductBase : Inherits dmBase
       pCode = value
     End Set
   End Property
-
+  Public Property UoM As Int32
+    Get
+      Return pUoM
+    End Get
+    Set(value As Int32)
+      If value <> pUoM Then pIsDirty = True
+      pUoM = value
+    End Set
+  End Property
 
   Public Property Margin As Decimal Implements intItemSpecCore.Margin
     Get

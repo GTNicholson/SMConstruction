@@ -12,10 +12,11 @@ Public Class fccHouseType
   Private pProducts As colProductBases
 
   Private pCurrentHTSalesItemInfos As colHouseTypeSalesItemInfos
-
+  Private pPrevtHTSalesItemInfos As colHouseTypeSalesItemInfos
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pProducts = New colProductBases
+    pPrevtHTSalesItemInfos = New colHouseTypeSalesItemInfos
   End Sub
 
   Public Property PrimaryKeyID As Integer
@@ -131,6 +132,15 @@ Public Class fccHouseType
     End Get
   End Property
 
+  Public Property PrevtHTSalesItemInfos As colHouseTypeSalesItemInfos
+    Get
+      Return pPrevtHTSalesItemInfos
+    End Get
+    Set(value As colHouseTypeSalesItemInfos)
+      pPrevtHTSalesItemInfos = value
+    End Set
+  End Property
+
   Public ReadOnly Property CurrentHouseTypeAssembly As dmSalesItemAssembly
     Get
       Return pCurrentHouseTypeAssembly
@@ -184,6 +194,13 @@ Public Class fccHouseType
 
     pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts)
     pCurrentHTSalesItemInfos = pHouseTypeManager.GetHTItemInfosForAssembly(pCurrentHouseTypeAssembly, pProducts)
+
+  End Sub
+
+  Public Sub SetPrevlHTSalesItemInfos()
+    Dim mRetVal As New colHouseTypeSalesItemInfos
+    pPrevtHTSalesItemInfos = pHouseTypeManager.GetTotalHTSalesItemInfos(pProducts)
+
 
   End Sub
 

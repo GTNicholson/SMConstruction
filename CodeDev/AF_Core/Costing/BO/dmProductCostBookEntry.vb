@@ -51,6 +51,7 @@ Public Class dmProductCostBookEntry : Inherits dmBase
       .CostUnit = CostUnit
       .MinCost = MinCost
       .RetailPrice = RetailPrice
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -89,6 +90,9 @@ Public Class dmProductCostBookEntry : Inherits dmBase
       pProductID = value
     End Set
   End Property
+
+
+
 
   Public Property ProductTypeID() As Int32
     Get
@@ -164,6 +168,22 @@ End Class
 '    If Not mAnyDirty Then mAnyDirty = ProductCostBookEntrys.IsDirty 'Add to IsAnyDirty
 
 Public Class colProductCostBookEntrys : Inherits colBase(Of dmProductCostBookEntry)
+
+  Public Function IndexFromProductID_ItemTypeID(vProductID As Integer, ByVal vItemTypeID As Integer) As Integer
+    Dim mItem As dmProductCostBookEntry
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In Me
+      mCount += 1
+
+      If mItem.ProductID = vProductID And mItem.ProductTypeID = vItemTypeID Then
+        mIndex = mCount
+        Exit For
+      End If
+
+    Next
+    Return mIndex
+  End Function
 
   Public Overrides Function IndexFromKey(ByVal vProductCostBookEntryID As Integer) As Integer
     Dim mItem As dmProductCostBookEntry

@@ -23,10 +23,10 @@ Partial Class frmHouseType
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -79,6 +79,15 @@ Partial Class frmHouseType
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.grdPrevHouseTypeSalesItems = New DevExpress.XtraGrid.GridControl()
+        Me.gvPrevHouseTypeSalesItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPopupContainerEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
         Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -90,13 +99,8 @@ Partial Class frmHouseType
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.UctHouseTypeOptions1 = New AgroForestal.uctHouseTypeOptions()
-        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
@@ -135,6 +139,9 @@ Partial Class frmHouseType
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.grdPrevHouseTypeSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvPrevHouseTypeSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPopupContainerEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl6.SuspendLayout()
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,10 +150,6 @@ Partial Class frmHouseType
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
-        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl4.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -231,7 +234,7 @@ Partial Class frmHouseType
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 706)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 761)
         Me.barDockControlBottom.Manager = Me.BarManager1
         Me.barDockControlBottom.Size = New System.Drawing.Size(1531, 0)
         '
@@ -241,7 +244,7 @@ Partial Class frmHouseType
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 673)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 728)
         '
         'barDockControlRight
         '
@@ -249,7 +252,7 @@ Partial Class frmHouseType
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1531, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 673)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 728)
         '
         'cboGroupType
         '
@@ -334,7 +337,7 @@ Partial Class frmHouseType
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 33)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1531, 673)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1531, 728)
         Me.XtraTabControl1.TabIndex = 5
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -342,7 +345,7 @@ Partial Class frmHouseType
         '
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1525, 639)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1525, 694)
         Me.XtraTabPage1.Text = "Configuracion"
         '
         'PanelControl1
@@ -353,7 +356,7 @@ Partial Class frmHouseType
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1525, 639)
+        Me.PanelControl1.Size = New System.Drawing.Size(1525, 694)
         Me.PanelControl1.TabIndex = 0
         '
         'GroupControl3
@@ -426,7 +429,7 @@ Partial Class frmHouseType
         Me.GroupControl2.Controls.Add(Me.tabHouseTypeAssemblys)
         Me.GroupControl2.Location = New System.Drawing.Point(643, 5)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(877, 627)
+        Me.GroupControl2.Size = New System.Drawing.Size(877, 682)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Detalles Generales"
         '
@@ -443,7 +446,7 @@ Partial Class frmHouseType
         Me.tabHouseTypeAssemblys.Location = New System.Drawing.Point(2, 25)
         Me.tabHouseTypeAssemblys.Name = "tabHouseTypeAssemblys"
         Me.tabHouseTypeAssemblys.SelectedTabPage = Me.XtraTabPage3
-        Me.tabHouseTypeAssemblys.Size = New System.Drawing.Size(873, 600)
+        Me.tabHouseTypeAssemblys.Size = New System.Drawing.Size(873, 655)
         Me.tabHouseTypeAssemblys.TabIndex = 1
         Me.tabHouseTypeAssemblys.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3})
         '
@@ -451,7 +454,7 @@ Partial Class frmHouseType
         '
         Me.XtraTabPage3.Controls.Add(Me.pnlHouseTypeAssembly)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(805, 594)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(805, 649)
         Me.XtraTabPage3.Text = "Room 1"
         '
         'pnlHouseTypeAssembly
@@ -466,7 +469,7 @@ Partial Class frmHouseType
         Me.pnlHouseTypeAssembly.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlHouseTypeAssembly.Location = New System.Drawing.Point(0, 0)
         Me.pnlHouseTypeAssembly.Name = "pnlHouseTypeAssembly"
-        Me.pnlHouseTypeAssembly.Size = New System.Drawing.Size(805, 594)
+        Me.pnlHouseTypeAssembly.Size = New System.Drawing.Size(805, 649)
         Me.pnlHouseTypeAssembly.TabIndex = 0
         '
         'grpProductLists
@@ -579,7 +582,6 @@ Partial Class frmHouseType
         Me.repoPopupContainerCriteria.AutoHeight = False
         Me.repoPopupContainerCriteria.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.repoPopupContainerCriteria.Name = "repoPopupContainerCriteria"
-        Me.repoPopupContainerCriteria.PopupControl = Me.popupConditions
         '
         'txtAssRef
         '
@@ -651,19 +653,104 @@ Partial Class frmHouseType
         '
         Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1525, 639)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1525, 694)
         Me.XtraTabPage2.Text = "Previsto"
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.grdPrevHouseTypeSalesItems)
         Me.PanelControl2.Controls.Add(Me.GroupControl6)
         Me.PanelControl2.Controls.Add(Me.GroupControl5)
-        Me.PanelControl2.Controls.Add(Me.GroupControl4)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1525, 639)
+        Me.PanelControl2.Size = New System.Drawing.Size(1525, 694)
         Me.PanelControl2.TabIndex = 1
+        '
+        'grdPrevHouseTypeSalesItems
+        '
+        Me.grdPrevHouseTypeSalesItems.Location = New System.Drawing.Point(351, 5)
+        Me.grdPrevHouseTypeSalesItems.MainView = Me.gvPrevHouseTypeSalesItems
+        Me.grdPrevHouseTypeSalesItems.MenuManager = Me.BarManager1
+        Me.grdPrevHouseTypeSalesItems.Name = "grdPrevHouseTypeSalesItems"
+        Me.grdPrevHouseTypeSalesItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPopupContainerEdit1})
+        Me.grdPrevHouseTypeSalesItems.Size = New System.Drawing.Size(1171, 682)
+        Me.grdPrevHouseTypeSalesItems.TabIndex = 7
+        Me.grdPrevHouseTypeSalesItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPrevHouseTypeSalesItems})
+        '
+        'gvPrevHouseTypeSalesItems
+        '
+        Me.gvPrevHouseTypeSalesItems.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvPrevHouseTypeSalesItems.Appearance.GroupRow.Options.UseFont = True
+        Me.gvPrevHouseTypeSalesItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvPrevHouseTypeSalesItems.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvPrevHouseTypeSalesItems.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvPrevHouseTypeSalesItems.Appearance.Row.Options.UseFont = True
+        Me.gvPrevHouseTypeSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.gvPrevHouseTypeSalesItems.GridControl = Me.grdPrevHouseTypeSalesItems
+        Me.gvPrevHouseTypeSalesItems.GroupCount = 2
+        Me.gvPrevHouseTypeSalesItems.Name = "gvPrevHouseTypeSalesItems"
+        Me.gvPrevHouseTypeSalesItems.OptionsBehavior.AutoExpandAllGroups = True
+        Me.gvPrevHouseTypeSalesItems.OptionsView.ShowGroupPanel = False
+        Me.gvPrevHouseTypeSalesItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn19, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ProductTypeDesc"
+        Me.GridColumn7.FieldName = "ProductConstructionTypeDesc"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Codigo"
+        Me.GridColumn8.FieldName = "ProductCode"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 141
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Producto"
+        Me.GridColumn9.FieldName = "Description"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.Width = 267
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Cantidad"
+        Me.GridColumn17.FieldName = "Quantity"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        Me.GridColumn17.Width = 87
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Criteria"
+        Me.GridColumn18.ColumnEdit = Me.RepositoryItemPopupContainerEdit1
+        Me.GridColumn18.FieldName = "ConditionString"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Width = 280
+        '
+        'RepositoryItemPopupContainerEdit1
+        '
+        Me.RepositoryItemPopupContainerEdit1.AutoHeight = False
+        Me.RepositoryItemPopupContainerEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemPopupContainerEdit1.Name = "RepositoryItemPopupContainerEdit1"
+        Me.RepositoryItemPopupContainerEdit1.PopupControl = Me.popupConditions
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Descripción"
+        Me.GridColumn19.FieldName = "AssemblyDescription"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
         '
         'GroupControl6
         '
@@ -673,9 +760,9 @@ Partial Class frmHouseType
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl6.Controls.Add(Me.GridControl4)
         Me.GroupControl6.Controls.Add(Me.GridControl3)
-        Me.GroupControl6.Location = New System.Drawing.Point(11, 265)
+        Me.GroupControl6.Location = New System.Drawing.Point(11, 288)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(334, 369)
+        Me.GroupControl6.Size = New System.Drawing.Size(334, 399)
         Me.GroupControl6.TabIndex = 6
         Me.GroupControl6.Text = "Resumen"
         '
@@ -768,83 +855,34 @@ Partial Class frmHouseType
         Me.GroupControl5.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl5.AppearanceCaption.Options.UseFont = True
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl5.Controls.Add(Me.btnGenerate)
         Me.GroupControl5.Controls.Add(Me.UctHouseTypeOptions1)
         Me.GroupControl5.Location = New System.Drawing.Point(11, 5)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(334, 254)
+        Me.GroupControl5.Size = New System.Drawing.Size(334, 277)
         Me.GroupControl5.TabIndex = 5
         Me.GroupControl5.Text = "Opciones"
         '
+        'btnGenerate
+        '
+        Me.btnGenerate.Location = New System.Drawing.Point(88, 233)
+        Me.btnGenerate.Name = "btnGenerate"
+        Me.btnGenerate.Size = New System.Drawing.Size(75, 20)
+        Me.btnGenerate.TabIndex = 29
+        Me.btnGenerate.Text = "Generar"
+        '
         'UctHouseTypeOptions1
         '
-        Me.UctHouseTypeOptions1.Location = New System.Drawing.Point(17, 25)
+        Me.UctHouseTypeOptions1.Location = New System.Drawing.Point(5, 28)
         Me.UctHouseTypeOptions1.Name = "UctHouseTypeOptions1"
-        Me.UctHouseTypeOptions1.Size = New System.Drawing.Size(230, 229)
+        Me.UctHouseTypeOptions1.Size = New System.Drawing.Size(230, 199)
         Me.UctHouseTypeOptions1.TabIndex = 0
-        '
-        'GroupControl4
-        '
-        Me.GroupControl4.AppearanceCaption.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupControl4.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupControl4.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl4.Controls.Add(Me.GridControl2)
-        Me.GroupControl4.Location = New System.Drawing.Point(351, 5)
-        Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(928, 631)
-        Me.GroupControl4.TabIndex = 4
-        Me.GroupControl4.Text = "Detalles"
-        '
-        'GridControl2
-        '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(2, 25)
-        Me.GridControl2.MainView = Me.GridView2
-        Me.GridControl2.MenuManager = Me.BarManager1
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(924, 604)
-        Me.GridControl2.TabIndex = 1
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView2.Appearance.GroupRow.Options.UseFont = True
-        Me.GridView2.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView2.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView2.Appearance.Row.Options.UseFont = True
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
-        Me.GridView2.GridControl = Me.GridControl2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Tipo"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Nombre del Archivo"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Nota"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
         '
         'frmHouseType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1531, 706)
+        Me.ClientSize = New System.Drawing.Size(1531, 761)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -891,6 +929,9 @@ Partial Class frmHouseType
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.grdPrevHouseTypeSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvPrevHouseTypeSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPopupContainerEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl6.ResumeLayout(False)
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -899,10 +940,6 @@ Partial Class frmHouseType
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
-        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl4.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -940,12 +977,6 @@ Partial Class frmHouseType
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents GridControl4 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -977,4 +1008,14 @@ Partial Class frmHouseType
     Friend WithEvents popupConditions As DevExpress.XtraEditors.PopupContainerControl
     Friend WithEvents UctConditionFilter1 As RTIS.ProductCore.uctConditionFilter
     Friend WithEvents repoPopupContainerCriteria As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
+    Friend WithEvents grdPrevHouseTypeSalesItems As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvPrevHouseTypeSalesItems As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemPopupContainerEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnGenerate As DevExpress.XtraEditors.SimpleButton
 End Class

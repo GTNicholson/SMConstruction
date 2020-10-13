@@ -62,6 +62,7 @@ Public Class dtoProductCostBookEntry : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostUnit", .CostUnit)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MinCost", .MinCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RetailPrice", .RetailPrice)
+
     End With
 
   End Sub

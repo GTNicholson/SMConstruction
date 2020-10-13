@@ -1,17 +1,26 @@
 ﻿Public Class clsHouseTypeSalesItemInfo
   Private pHouseTypeSalesItem As dmHouseTypeSalesItem
   Private pProduct As dmProductBase
-
+  Private pAssemblyDescription As String
   Private Shared sProductConstructionTypes As RTIS.CommonVB.colValueItems
 
-  Public Sub New(ByRef rHouseTypeSalesItem As dmHouseTypeSalesItem, ByRef rProduct As dmProductBase)
+  Public Sub New(ByRef rHouseTypeSalesItem As dmHouseTypeSalesItem, ByRef rProduct As dmProductBase, ByVal vAssemblyDescription As String)
     pHouseTypeSalesItem = rHouseTypeSalesItem
     pProduct = rProduct
+    pAssemblyDescription = vAssemblyDescription
     If sProductConstructionTypes Is Nothing Then
       sProductConstructionTypes = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType)
     End If
   End Sub
 
+  Public Property AssemblyDescription As String
+    Get
+      Return pAssemblyDescription
+    End Get
+    Set(value As String)
+      pAssemblyDescription = value
+    End Set
+  End Property
 
   Public Property Product As dmProductBase
     Get
@@ -65,6 +74,20 @@
       pHouseTypeSalesItem.ConditionString = value
     End Set
   End Property
+
+  Public ReadOnly Property HouseTypeSalesItemAssemblyID As Int32
+    Get
+      Return pHouseTypeSalesItem.HouseTypeSalesItemAssemblyID
+    End Get
+  End Property
+
+  Public ReadOnly Property UoM As Int32
+    Get
+      Return pProduct.UoM
+    End Get
+  End Property
+
+
 End Class
 
 

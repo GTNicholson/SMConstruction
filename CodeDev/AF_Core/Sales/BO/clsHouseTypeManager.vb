@@ -69,11 +69,22 @@
     For Each mHTSI As dmHouseTypeSalesItem In pHouseType.HTSalesItems
       If mHTSI.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID Then
         mProduct = rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID)
-        mHTSII = New clsHouseTypeSalesItemInfo(mHTSI, mProduct)
+        mHTSII = New clsHouseTypeSalesItemInfo(mHTSI, mProduct, rSalesItemAssembly.Description)
         mRetVal.Add(mHTSII)
       End If
     Next
     Return mRetVal
   End Function
 
+  Public Function GetTotalHTSalesItemInfos(ByRef rProducts As colProductBases) As colHouseTypeSalesItemInfos
+    Dim mTmpHTSalesItems As New colHouseTypeSalesItemInfos
+    Dim mHTSIInfo As clsHouseTypeSalesItemInfo
+
+    For Each mHTSI In HouseType.HTSalesItems
+      mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID), HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
+      mTmpHTSalesItems.Add(mHTSIInfo)
+    Next
+
+    Return mTmpHTSalesItems
+  End Function
 End Class

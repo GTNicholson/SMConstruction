@@ -108,6 +108,9 @@ Public Class frmHouseType
 
       RefreshTabs()
 
+      UctHouseTypeOptions1.cboModel.ReadOnly = True
+      UctHouseTypeOptions1.cboGroup.ReadOnly = True
+
       If mOK Then RefreshControls()
 
       ''If mOK Then SetupUserPermissions()
@@ -140,10 +143,25 @@ Public Class frmHouseType
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.GroupType)
     clsDEControlLoading.FillDEComboVI(cboGroupType, mVIs)
+    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboGroup, mVIs)
+
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
     clsDEControlLoading.FillDEComboVI(cboModelType, mVIs)
+    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboModel, mVIs)
 
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FoundationOptions)
+    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboFoundations, mVIs)
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FloorOptions)
+    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboFloor, mVIs)
+
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WallOptions)
+    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWalls, mVIs)
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WindowOptions)
+    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWindows, mVIs)
     '// Load the Filter editor control
     ConfigureFilterControl()
   End Sub
@@ -176,6 +194,11 @@ Public Class frmHouseType
 
         clsDEControlLoading.SetDECombo(cboModelType, .ModelID)
         clsDEControlLoading.SetDECombo(cboGroupType, .GroupID)
+
+        ''Refreshing UCT Option controls
+        clsDEControlLoading.SetDECombo(UctHouseTypeOptions1.cboModel, .ModelID)
+        clsDEControlLoading.SetDECombo(UctHouseTypeOptions1.cboGroup, .GroupID)
+
         txtArea.Text = .Area
 
         pIsActive = mIsActive
@@ -511,5 +534,9 @@ Public Class frmHouseType
     End Try
   End Sub
 
+  Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
 
+    pFormController.SetPrevlHTSalesItemInfos()
+    grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
+  End Sub
 End Class

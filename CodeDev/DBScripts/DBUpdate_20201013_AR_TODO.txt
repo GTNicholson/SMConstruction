@@ -1,0 +1,8 @@
+alter table ProductInstallation
+add UoM int
+GO
+
+alter table ProductStructure
+add UoM int
+GO
+

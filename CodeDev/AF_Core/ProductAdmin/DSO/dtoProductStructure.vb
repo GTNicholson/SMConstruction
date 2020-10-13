@@ -58,6 +58,7 @@ Public Class dtoProductStructure : Inherits dtoProductBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Code", StringToDBValue(.Code))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .ItemType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubItemType", .SubItemType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
 
     End With
 
@@ -75,6 +76,7 @@ Public Class dtoProductStructure : Inherits dtoProductBase
         .Code = DBReadString(rDataReader, "Code")
         .ItemType = DBReadInt32(rDataReader, "ItemType")
         .SubItemType = DBReadInt32(rDataReader, "SubItemType")
+        .UoM = DBReadInt32(rDataReader, "UoM")
 
         CType(pProduct, dmProductStructure).IsDirty = False
       End With

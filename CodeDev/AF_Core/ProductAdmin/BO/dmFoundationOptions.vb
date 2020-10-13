@@ -50,7 +50,7 @@ Public Class dmFoundationOptions : Inherits dmBase
 
   End Sub
 
-  Public Property FoundationOptionsID() As Int32 Implements iValueItem.ItemValue
+  Public Property FoundationOptionsID() As Int32
     Get
       Return pFoundationOptionsID
     End Get
@@ -59,8 +59,16 @@ Public Class dmFoundationOptions : Inherits dmBase
       pFoundationOptionsID = value
     End Set
   End Property
+  Public Property ItemValue() As Int32 Implements iValueItem.ItemValue
+    Get
+      Return FoundationOptionsID
+    End Get
+    Set(ByVal value As Int32)
+      FoundationOptionsID = value
+    End Set
+  End Property
 
-  Public Property Description() As String Implements iValueItem.DisplayValue
+  Public Property Description() As String
     Get
       Return pDescription
     End Get
@@ -69,7 +77,14 @@ Public Class dmFoundationOptions : Inherits dmBase
       pDescription = value
     End Set
   End Property
-
+  Public Property DisplayValue() As String Implements iValueItem.DisplayValue
+    Get
+      Return Description
+    End Get
+    Set(ByVal value As String)
+      Description = value
+    End Set
+  End Property
 
   Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
     Get
@@ -79,6 +94,8 @@ Public Class dmFoundationOptions : Inherits dmBase
 
     End Set
   End Property
+
+
 End Class
 
 

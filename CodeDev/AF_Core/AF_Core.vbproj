@@ -177,6 +177,7 @@
     <Compile Include="BIReports\DSO\dsoBITimeSheet.vb" />
     <Compile Include="BIReports\DSO\dsoBIWoodMatReqInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBIWorkOrder.vb" />
+    <Compile Include="Costing\BO\clsProductCostBookEntryEditor.vb" />
     <Compile Include="DespatchInvoice\BO\clsInvoiceInfo.vb" />
     <Compile Include="DespatchInvoice\BO\dmInvoice.vb" />
     <Compile Include="DespatchInvoice\BO\dmInvoiceItem.vb" />
@@ -203,8 +204,8 @@
     <Compile Include="ProductAdmin\BO\dmFloorOptions.vb" />
     <Compile Include="ProductAdmin\BO\dmFoundationOptions.vb" />
     <Compile Include="ProductAdmin\BO\dmProductBase.vb" />
-    <Compile Include="ProductAdmin\BO\dmProductCostBook.vb" />
-    <Compile Include="ProductAdmin\BO\dmProductCostBookEntry.vb" />
+    <Compile Include="Costing\BO\dmProductCostBook.vb" />
+    <Compile Include="Costing\BO\dmProductCostBookEntry.vb" />
     <Compile Include="ProductAdmin\BO\dmProductInstallation.vb" />
     <Compile Include="ProductAdmin\BO\dmProductStructure.vb" />
     <Compile Include="ProductAdmin\BO\dmWallOptions.vb" />
@@ -212,8 +213,8 @@
     <Compile Include="ProductAdmin\DSO\dsoProductAdmin.vb" />
     <Compile Include="ProductAdmin\DSO\dtoFloorOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoFoundationOptions.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoProductCostBook.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoProductCostBookEntry.vb" />
+    <Compile Include="Costing\DSO\dtoProductCostBook.vb" />
+    <Compile Include="Costing\DSO\dtoProductCostBookEntry.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />

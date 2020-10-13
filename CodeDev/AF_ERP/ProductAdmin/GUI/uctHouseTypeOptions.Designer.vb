@@ -1,27 +1,27 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class uctHouseTypeOptions
-  Inherits System.Windows.Forms.UserControl
+    Inherits System.Windows.Forms.UserControl
 
-  'UserControl overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    Try
-      If disposing AndAlso components IsNot Nothing Then
-        components.Dispose()
-      End If
-    Finally
-      MyBase.Dispose(disposing)
-    End Try
-  End Sub
+    'UserControl overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
 
-  'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
 
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
-  Private Sub InitializeComponent()
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
         Me.cboWindows = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.cboWalls = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -34,7 +34,6 @@ Partial Class uctHouseTypeOptions
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.cboGroup = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.btnGenerate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.cboWindows.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboWalls.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFloor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,19 +162,10 @@ Partial Class uctHouseTypeOptions
         Me.LabelControl2.TabIndex = 26
         Me.LabelControl2.Text = "Grupo"
         '
-        'btnGenerate
-        '
-        Me.btnGenerate.Location = New System.Drawing.Point(83, 198)
-        Me.btnGenerate.Name = "btnGenerate"
-        Me.btnGenerate.Size = New System.Drawing.Size(75, 20)
-        Me.btnGenerate.TabIndex = 28
-        Me.btnGenerate.Text = "Generar"
-        '
         'uctHouseTypeOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.btnGenerate)
         Me.Controls.Add(Me.cboGroup)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.cboModel)
@@ -189,7 +179,7 @@ Partial Class uctHouseTypeOptions
         Me.Controls.Add(Me.cboFoundations)
         Me.Controls.Add(Me.LabelControl5)
         Me.Name = "uctHouseTypeOptions"
-        Me.Size = New System.Drawing.Size(225, 224)
+        Me.Size = New System.Drawing.Size(225, 203)
         CType(Me.cboWindows.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboWalls.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFloor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -213,5 +203,4 @@ Partial Class uctHouseTypeOptions
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboGroup As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents btnGenerate As DevExpress.XtraEditors.SimpleButton
 End Class

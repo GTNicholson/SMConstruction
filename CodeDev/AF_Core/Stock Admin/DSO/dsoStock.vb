@@ -90,24 +90,7 @@ Public Class dsoStock
     End Try
   End Sub
 
-  Public Sub LoadProductInfosByWhere(ByRef rProductInfos As colProductBaseInfos, ByVal vWhere As String)
-    Dim mdto As dtoProductInfo
-    Try
-      pDBConn.Connect()
 
-      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.Installation)
-      mdto.LoadProductInfosCollection(rProductInfos)
-
-      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
-      mdto.LoadProductInfosCollection(rProductInfos)
-
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-  End Sub
 
   Public Function SaveStockItem(ByRef rStockItem As dmStockItem) As Boolean
     Dim mdto As dtoStockItem

@@ -54,6 +54,9 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Directorio de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductAdmin, eActivityCode.ProductAdmin)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Configuracion de Casa", eMenuIconType.Grid, AddressOf clsMenuFunctions.HouseConfig, eActivityCode.ProductAdmin)
 
+    mLastGroup = mMenuList.AddNewGroup("Lista de Costos", 0, eActivityCode.CostingGroup, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductCost, eActivityCode.ProductCost)
+
 
     mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Facturas", eMenuIconType.Grid, AddressOf clsMenuFunctions.InvoiceModule, eActivityCode.FBConsumeReport)
@@ -218,6 +221,11 @@ Class clsMenuFunctions
     End If
 
     frmProductAdmin.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mProductTypes)
+  End Sub
+
+  Public Shared Sub ProductCost(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwProductCostBook(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.ProductCost)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
   Public Shared Sub HouseConfig(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)

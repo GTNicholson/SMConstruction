@@ -108,6 +108,81 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Function LockFromTableRecord(ByVal vTableName As String, ByVal vPrimaryKeyID As Integer) As Boolean
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = MyBase.LockTableRecord(vTableName, vPrimaryKeyID)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
+  Public Sub LoadProductCostBook(ByRef rProductCostBook As dmProductCostBook, ByVal vProductCostBookID As Integer)
+    Dim mdtoProductCostBook As New dtoProductCostBook(pDBConn)
+    Try
+      If pDBConn.Connect() Then
+        mdtoProductCostBook.LoadProductCostBook(rProductCostBook, vProductCostBookID)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub LoadProductCostBookEntry(ByRef rProductCostBookEntrys As colProductCostBookEntrys, ByVal vProductCostBookID As Integer)
+    Dim mdtoProductCostBookEntry As dtoProductCostBookEntry = New dtoProductCostBookEntry(pDBConn)
+    Try
+      If pDBConn.Connect() Then
+        mdtoProductCostBookEntry.LoadProductCostBookEntryCollection(rProductCostBookEntrys, vProductCostBookID)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Function SaveProductCostBookEntryCollection(ByRef rProductCostBookEntrys As colProductCostBookEntrys, ByVal vProductCostBookID As Integer) As Boolean
+    Dim mdto As New dtoProductCostBookEntry(pDBConn)
+    Dim mOK As Boolean
+    Try
+      If pDBConn.Connect() Then
+        mOK = mdto.SaveProductCostBookEntryCollection(rProductCostBookEntrys, vProductCostBookID)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
+  Public Function SaveProductCostBook(ByRef rProductCostBook As dmProductCostBook) As Boolean
+    Dim mdtoProductCostBook As New dtoProductCostBook(pDBConn)
+    Dim mOK As Boolean = False
+    Try
+      If pDBConn.Connect() Then
+
+        mOK = mdtoProductCostBook.SaveProductCostBook(rProductCostBook)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function LoadInvoiceDown(ByRef rInvoice As dmInvoice, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoInvoice
@@ -132,7 +207,22 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Function UnlockProductCostBook(ByVal vTableName As String, ByVal vCostBookID As Integer) As Boolean
 
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = MyBase.UnlockTableRecord(vTableName, vCostBookID)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+
+
+  End Function
 
   Public Function LoadSalesOrderProgressInfos(ByRef rSalesOrderProgressInfos As colSalesOrderProgressInfos, ByVal vWhere As String) As Boolean
 
@@ -200,6 +290,25 @@ Public Class dsoSales : Inherits dsoBase
 
     Return mRetVal
   End Function
+
+
+  Public Sub SetDefaultProductCostBook(ByVal vProductCostBookID As Integer)
+    Dim mWhere As String = "Update ProductCostBook set IsDefault = " & vbFalse & " where ProductCostBookID <> " & vProductCostBookID
+    ''call a dso to set true to the actual costbookid
+    Try
+      If pDBConn.Connect Then
+        pDBConn.ExecuteNonQuery(mWhere)
+
+        mWhere = "Update ProductCostBook set IsDefault = " & vbTrue & " where ProductCostBookID = " & vProductCostBookID
+        pDBConn.ExecuteNonQuery(mWhere)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 
   Public Function LoadInvoiceInfos(ByRef rInvoiceInfos As colInvoiceInfos) As Boolean
     Dim mRetVal As Boolean

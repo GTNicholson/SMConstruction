@@ -85,6 +85,8 @@ Public Class dtoProductInfo : Inherits dtoBase
         .Product.Code = DBReadString(rDataReader, "Code")
         .Product.ItemType = DBReadInt32(rDataReader, "ItemType")
         .Product.SubItemType = DBReadInt32(rDataReader, "SubItemType")
+        .Product.UoM = DBReadInt32(rDataReader, "UoM")
+
         ''pProductInfo.is = False
       End With
       mOK = True

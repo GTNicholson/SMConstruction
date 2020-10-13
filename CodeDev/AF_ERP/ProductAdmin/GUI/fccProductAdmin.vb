@@ -130,31 +130,31 @@ Public Class fccProductAdmin
   End Function
 
   Public Sub LoadMainCollection()
-    Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
     Try
       pProductBaseInfos.Clear()
 
-      mdsoStock.LoadProductInfosByWhere(pProductBaseInfos, "")
+      mdsoProductAdmin.LoadProductInfosByWhere(pProductBaseInfos, "")
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     Finally
-      mdsoStock = Nothing
+      mdsoProductAdmin = Nothing
     End Try
 
   End Sub
 
   Public Sub LoadMainCollectionByStockOptionFilter(ByVal vWhere As String)
-    Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
     Try
       pProductBaseInfos.Clear()
 
-      mdsoStock.LoadProductInfosByWhere(pProductBaseInfos, vWhere)
+      mdsoProductAdmin.LoadProductInfosByWhere(pProductBaseInfos, vWhere)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     Finally
-      mdsoStock = Nothing
+      mdsoProductAdmin = Nothing
     End Try
 
   End Sub

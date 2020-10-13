@@ -35,10 +35,10 @@ Public Class clsHouseTypePropertyDef
 
         pPropertyList = New colPropertyDef
         pPropertyList.AddPropertyDef(ePropertyDefENUM.None, "None", GetType(Integer), appRefLists.None, True)
-        pPropertyList.AddPropertyDef(ePropertyDefENUM.FoundationOption, "Fundación", GetType(Byte), appRefLists.FoundationOptions, True)
-        pPropertyList.AddPropertyDef(ePropertyDefENUM.FloorOption, "Piso", GetType(Byte), appRefLists.FloorOptions, True)
-        pPropertyList.AddPropertyDef(ePropertyDefENUM.WallOptions, "Paredes", GetType(Byte), appRefLists.WallOptions, True)
-        pPropertyList.AddPropertyDef(ePropertyDefENUM.WindowOptions, "Ventanas", GetType(Byte), appRefLists.WindowOptions, True)
+        pPropertyList.AddPropertyDef(ePropertyDefENUM.FoundationOption, "Fundación", GetType(Int32), appRefLists.FoundationOptions, True)
+        pPropertyList.AddPropertyDef(ePropertyDefENUM.FloorOption, "Piso", GetType(Int32), appRefLists.FloorOptions, True)
+        pPropertyList.AddPropertyDef(ePropertyDefENUM.WallOptions, "Paredes", GetType(Int32), appRefLists.WallOptions, True)
+        pPropertyList.AddPropertyDef(ePropertyDefENUM.WindowOptions, "Ventanas", GetType(Int32), appRefLists.WindowOptions, True)
       End If
 
       Return pPropertyList

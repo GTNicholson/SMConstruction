@@ -185,8 +185,8 @@ Public Class frmProductAdmin
 
     clsDEControlLoading.FillDEComboVI(cboProductItemType, mVIs)
     '' clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
-    ''clsDEControlLoading.FillDEComboVI(cboUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
+    clsDEControlLoading.FillDEComboVI(cboUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
     mSuppliers = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.Supplier)
     '' clsDEControlLoading.FillDEComboVIi(cboSupplier, mSuppliers)
@@ -208,6 +208,8 @@ Public Class frmProductAdmin
         lblStockItemID.Text = "ID: " & .ID
         clsDEControlLoading.SetDECombo(cboProductItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSubItemType, .SubItemType)
+        clsDEControlLoading.SetDECombo(cboUoM, .UoM)
+
       End With
     End If
 
@@ -232,6 +234,8 @@ Public Class frmProductAdmin
         .Code = txtStockCode.Text
         .ItemType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
         .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubItemType)
+        .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
+
       End With
     End If
 
@@ -383,6 +387,7 @@ Public Class frmProductAdmin
     cboProductItemType.ReadOnly = vReadOnly
     txtStockCode.ReadOnly = vReadOnly
     cboSubItemType.ReadOnly = vReadOnly
+    cboUoM.ReadOnly = vReadOnly
   End Sub
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemDetail.CustomButtonClick
 

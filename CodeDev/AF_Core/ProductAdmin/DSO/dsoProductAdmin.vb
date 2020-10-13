@@ -139,6 +139,67 @@ Public Class dsoProductAdmin : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Sub LoadProductInfosByWhere(ByRef rProductInfos As colProductBaseInfos, ByVal vWhere As String)
+    Dim mdto As dtoProductInfo
+    Try
+      pDBConn.Connect()
+
+      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.Installation)
+      mdto.LoadProductInfosCollection(rProductInfos)
+
+      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
+      mdto.LoadProductInfosCollection(rProductInfos)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub LoadProductInstallations(ByRef rProducts As colProductBases)
+    Dim mdtoInstallation As dtoProductInstallation
+    Dim mProductInstallations As New colProductInstallations
+    Try
+      pDBConn.Connect()
+
+      mdtoInstallation = New dtoProductInstallation(pDBConn)
+      mdtoInstallation.LoadProductInstallationCollection(mProductInstallations)
+
+      For Each mProduct As dmProductBase In mProductInstallations
+        rProducts.Add(mProduct)
+      Next
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub LoadProductStructures(ByRef rProducts As colProductBases)
+    Dim mdtoInstallation As dtoProductStructure
+    Dim mProductStructures As New colProductStructures
+    Try
+      pDBConn.Connect()
+
+      mdtoInstallation = New dtoProductStructure(pDBConn)
+      mdtoInstallation.LoadProductStructureCollection(mProductStructures)
+
+      For Each mProduct As dmProductBase In mProductStructures
+        rProducts.Add(mProduct)
+      Next
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
   Public Function GetNextProductCodeNoConnected(ByVal vProductCode As String, ByVal vProductType As Integer) As Integer
     Dim mReader As IDataReader
     Dim mSQL As String = ""

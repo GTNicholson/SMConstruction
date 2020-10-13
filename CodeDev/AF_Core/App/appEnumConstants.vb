@@ -51,6 +51,9 @@ Public Enum eActivityCode
   ProductsGroup = 700
   ProductAdmin = 701
 
+  CostingGroup = 800
+  ProductCost = 801
+
 End Enum
 
 Public Enum eMode
@@ -160,6 +163,7 @@ Public Enum eBrowseList
   Invoice = 11
   PODelivery = 12
   HouseType = 13
+  ProductCost = 14
 End Enum
 
 
@@ -351,9 +355,10 @@ Public Enum eUoM
   <Description("und")> und = 12
   <Description("cja")> cja = 13
 
-  <Description("m2")> Metros2 = 14
+  <Description("mt2")> Metros2 = 14
   <Description("cm2")> cmm2 = 15
 
+  <Description("PT")> PT = 16
 
 
 End Enum
