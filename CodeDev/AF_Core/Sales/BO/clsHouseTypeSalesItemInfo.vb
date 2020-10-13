@@ -48,7 +48,6 @@
       Return mRetVal
     End Get
   End Property
-
   Public Property Quantity As Integer
     Get
       Return pHouseTypeSalesItem.Quantity
@@ -57,7 +56,19 @@
       pHouseTypeSalesItem.Quantity = value
     End Set
   End Property
+
+  Public Property ConditionString As String
+    Get
+      Return pHouseTypeSalesItem.ConditionString
+    End Get
+    Set(value As String)
+      pHouseTypeSalesItem.ConditionString = value
+    End Set
+  End Property
 End Class
+
+
+
 
 Public Class colHouseTypeSalesItemInfos : Inherits List(Of clsHouseTypeSalesItemInfo)
 

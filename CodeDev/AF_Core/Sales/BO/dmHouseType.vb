@@ -10,6 +10,12 @@ Public Class dmHouseType : Inherits dmBase
   Private pModelID As Integer
   Private pArea As Decimal
 
+  Private pTmpFoundationOption As Integer
+  Private pTmpWallOptions As Integer
+  Private pTmpWindowOptions As Integer
+  Private pTmpFloorOptions As Integer
+
+
   Private pSalesItemAssemblys As colSalesItemAssemblys
   Private pHTSalesItems As colHouseTypeSalesItems
 
@@ -138,6 +144,42 @@ Public Class dmHouseType : Inherits dmBase
     End Get
     Set(value As Boolean)
 
+    End Set
+  End Property
+
+
+
+
+  Public Property TmpWallOptions As Integer
+    Get
+      Return pTmpWallOptions
+    End Get
+    Set(value As Integer)
+      pTmpWallOptions = value
+    End Set
+  End Property
+  Public Property TmpWindowOptions As Integer
+    Get
+      Return pTmpWindowOptions
+    End Get
+    Set(value As Integer)
+      pTmpWindowOptions = value
+    End Set
+  End Property
+  Public Property TmpFloorOptions As Integer
+    Get
+      Return pTmpFloorOptions
+    End Get
+    Set(value As Integer)
+      pTmpFloorOptions = value
+    End Set
+  End Property
+  Public Property TmpFoundationOption As Integer
+    Get
+      Return pTmpFoundationOption
+    End Get
+    Set(value As Integer)
+      pTmpFoundationOption = value
     End Set
   End Property
 

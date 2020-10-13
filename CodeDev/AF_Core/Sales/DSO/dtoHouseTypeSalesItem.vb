@@ -64,6 +64,7 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpeciesID", .WoodSpeciesID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeSalesItemAssemblyID", .HouseTypeSalesItemAssemblyID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ConditionString", StringToDBValue(.ConditionString))
 
     End With
 
@@ -81,6 +82,8 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
         .ProductTypeID = DBReadByte(rDataReader, "ProductTypeID")
         .ItemNumber = DBReadString(rDataReader, "ItemNumber")
         .Description = DBReadString(rDataReader, "Description")
+        .ConditionString = DBReadString(rDataReader, "ConditionString")
+
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WoodSpeciesID = DBReadInt32(rDataReader, "WoodSpeciesID")

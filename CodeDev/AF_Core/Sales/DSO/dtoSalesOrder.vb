@@ -58,6 +58,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPrice", StringToDBValue(.ProjectName))
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CustomerContactID", .CustomerContactID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductCostBookID", .ProductCostBookID)
+
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProjectName", StringToDBValue(.ProjectName))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EstimatorEmployeeID", .EstimatorEmployeeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OrderTypeID", .OrderTypeID)
@@ -113,6 +115,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .DelAddress2 = DBReadString(rDataReader, "DelAddress2")
         .HostCompanyID = DBReadInt32(rDataReader, "HostCompanyID")
         .BusinessSectorID = DBReadInt32(rDataReader, "BusinessSectorID")
+        .ProductCostBookID = DBReadInt32(rDataReader, "ProductCostBookID")
+
         .ClientInfo = DBReadString(rDataReader, "ClientInfo")
         .FinishDate = DBReadDateTime(rDataReader, "FinishDate")
         .DueTime = DBReadDateTime(rDataReader, "DueTime")

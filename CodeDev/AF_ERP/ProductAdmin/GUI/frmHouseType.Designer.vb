@@ -61,6 +61,8 @@ Partial Class frmHouseType
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
         Me.pnlHouseTypeAssembly = New DevExpress.XtraEditors.PanelControl()
         Me.grpProductLists = New DevExpress.XtraEditors.GroupControl()
+        Me.popupConditions = New DevExpress.XtraEditors.PopupContainerControl()
+        Me.UctConditionFilter1 = New RTIS.ProductCore.uctConditionFilter()
         Me.grdHouseSalesItems = New DevExpress.XtraGrid.GridControl()
         Me.gvHouseSalesItems = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,6 +70,7 @@ Partial Class frmHouseType
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoPopupContainerCriteria = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.txtAssRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.txtAssDescription = New DevExpress.XtraEditors.TextEdit()
@@ -121,8 +124,11 @@ Partial Class frmHouseType
         Me.pnlHouseTypeAssembly.SuspendLayout()
         CType(Me.grpProductLists, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpProductLists.SuspendLayout()
+        CType(Me.popupConditions, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.popupConditions.SuspendLayout()
         CType(Me.grdHouseSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvHouseSalesItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoPopupContainerCriteria, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAssRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAssDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -469,6 +475,7 @@ Partial Class frmHouseType
         Me.grpProductLists.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpProductLists.AppearanceCaption.Options.UseFont = True
         Me.grpProductLists.AppearanceCaption.Options.UseForeColor = True
+        Me.grpProductLists.Controls.Add(Me.popupConditions)
         Me.grpProductLists.Controls.Add(Me.grdHouseSalesItems)
         Me.grpProductLists.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Productos", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Add", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Duplicado", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddDuplicates", -1)})
         Me.grpProductLists.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
@@ -478,6 +485,22 @@ Partial Class frmHouseType
         Me.grpProductLists.TabIndex = 8
         Me.grpProductLists.Text = "Lista de Productos"
         '
+        'popupConditions
+        '
+        Me.popupConditions.Controls.Add(Me.UctConditionFilter1)
+        Me.popupConditions.Location = New System.Drawing.Point(59, 118)
+        Me.popupConditions.Name = "popupConditions"
+        Me.popupConditions.Size = New System.Drawing.Size(605, 172)
+        Me.popupConditions.TabIndex = 2
+        '
+        'UctConditionFilter1
+        '
+        Me.UctConditionFilter1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.UctConditionFilter1.Location = New System.Drawing.Point(0, 0)
+        Me.UctConditionFilter1.Name = "UctConditionFilter1"
+        Me.UctConditionFilter1.Size = New System.Drawing.Size(605, 172)
+        Me.UctConditionFilter1.TabIndex = 0
+        '
         'grdHouseSalesItems
         '
         Me.grdHouseSalesItems.Dock = System.Windows.Forms.DockStyle.Fill
@@ -485,6 +508,7 @@ Partial Class frmHouseType
         Me.grdHouseSalesItems.MainView = Me.gvHouseSalesItems
         Me.grdHouseSalesItems.MenuManager = Me.BarManager1
         Me.grdHouseSalesItems.Name = "grdHouseSalesItems"
+        Me.grdHouseSalesItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoPopupContainerCriteria})
         Me.grdHouseSalesItems.Size = New System.Drawing.Size(791, 468)
         Me.grdHouseSalesItems.TabIndex = 1
         Me.grdHouseSalesItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvHouseSalesItems})
@@ -543,10 +567,19 @@ Partial Class frmHouseType
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Criteria"
+        Me.GridColumn15.ColumnEdit = Me.repoPopupContainerCriteria
+        Me.GridColumn15.FieldName = "ConditionString"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 280
+        '
+        'repoPopupContainerCriteria
+        '
+        Me.repoPopupContainerCriteria.AutoHeight = False
+        Me.repoPopupContainerCriteria.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.repoPopupContainerCriteria.Name = "repoPopupContainerCriteria"
+        Me.repoPopupContainerCriteria.PopupControl = Me.popupConditions
         '
         'txtAssRef
         '
@@ -618,7 +651,7 @@ Partial Class frmHouseType
         '
         Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1389, 639)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1525, 639)
         Me.XtraTabPage2.Text = "Previsto"
         '
         'PanelControl2
@@ -629,7 +662,7 @@ Partial Class frmHouseType
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1389, 639)
+        Me.PanelControl2.Size = New System.Drawing.Size(1525, 639)
         Me.PanelControl2.TabIndex = 1
         '
         'GroupControl6
@@ -847,8 +880,11 @@ Partial Class frmHouseType
         Me.pnlHouseTypeAssembly.PerformLayout()
         CType(Me.grpProductLists, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpProductLists.ResumeLayout(False)
+        CType(Me.popupConditions, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.popupConditions.ResumeLayout(False)
         CType(Me.grdHouseSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvHouseSalesItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoPopupContainerCriteria, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAssRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAssDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -938,4 +974,7 @@ Partial Class frmHouseType
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents popupConditions As DevExpress.XtraEditors.PopupContainerControl
+    Friend WithEvents UctConditionFilter1 As RTIS.ProductCore.uctConditionFilter
+    Friend WithEvents repoPopupContainerCriteria As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
 End Class

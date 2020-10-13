@@ -183,11 +183,66 @@ Public Class dsoAppRefLists
         Case appRefLists.GroupType
           mItem.IList = LoadGroupType()
           mOK = True
+
+        Case appRefLists.FloorOptions
+          mItem.IList = LoadFloorOptions()
+          mOK = True
+
+        Case appRefLists.FoundationOptions
+          mItem.IList = LoadFoundationOptions()
+          mOK = True
+
+        Case appRefLists.WallOptions
+          mItem.IList = LoadWallOptions()
+          mOK = True
+
+        Case appRefLists.WindowOptions
+          mItem.IList = LoadWindowOptions()
+          mOK = True
+
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadWindowOptions() As IList
+    Dim mdto As New dtoWindowOptions(pDBConn)
+    Dim mRetVal As New colWindowOptionss
+
+    mdto.LoadWindowOptionsCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+
+  Private Function LoadWallOptions() As IList
+    Dim mdto As New dtoWallOptions(pDBConn)
+    Dim mRetVal As New colWallOptionss
+
+    mdto.LoadWallOptionsCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+  Private Function LoadFoundationOptions() As IList
+    Dim mdto As New dtoFoundationOptions(pDBConn)
+    Dim mRetVal As New colFoundationOptionss
+
+    mdto.LoadFoundationOptionsCollection(mRetVal)
+
+    Return mRetVal
+  End Function
+
+
+  Private Function LoadFloorOptions() As IList
+    Dim mdto As New dtoFloorOptions(pDBConn)
+    Dim mRetVal As New colFloorOptionss
+
+    mdto.LoadFloorOptionsCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadProductConstructionSubType() As IList

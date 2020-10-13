@@ -14,7 +14,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
   Private pImageFile As String
   Private pWoodSpeciesID As Int32
   Private pWoodFinish As Int32
-
+  Private pConditionString As String
 
   Public Sub New()
     MyBase.New()
@@ -60,6 +60,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
       .ImageFile = ImageFile
       .WoodSpeciesID = WoodSpeciesID
       .WoodFinish = WoodFinish
+      .ConditionString = ConditionString
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -68,6 +69,17 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
     End With
 
   End Sub
+
+
+  Public Property ConditionString() As String
+    Get
+      Return pConditionString
+    End Get
+    Set(ByVal value As String)
+      If pConditionString <> value Then IsDirty = True
+      pConditionString = value
+    End Set
+  End Property
 
   Public Property HouseTypeSalesItemID() As Int32
     Get

@@ -48,6 +48,8 @@ Public Class dmSalesOrder : Inherits dmBase
 
   Private pSalesItemAssemblys As colSalesItemAssemblys
 
+  Private pProductCostBookID As Int32
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -158,6 +160,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .PodioPath = PodioPath
       .Version = Version
       .OrderPhaseType = OrderPhaseType
+      .ProductCostBookID = ProductCostBookID
       .SalesOrderStages = SalesOrderStages
       'Add entries here for each collection and class property
 
@@ -202,6 +205,18 @@ Public Class dmSalesOrder : Inherits dmBase
       pOrderPhaseType = value
     End Set
   End Property
+
+
+  Public Property ProductCostBookID() As Int32
+    Get
+      Return pProductCostBookID
+    End Get
+    Set(ByVal value As Int32)
+      If pProductCostBookID <> value Then IsDirty = True
+      pProductCostBookID = value
+    End Set
+  End Property
+
 
   Public Property SalesOrderID() As Int32
     Get

@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraBars.Docking2010
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraTab
 Imports DevExpress.XtraTab.ViewInfo
 Imports RTIS.CommonVB
@@ -143,7 +144,28 @@ Public Class frmHouseType
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
     clsDEControlLoading.FillDEComboVI(cboModelType, mVIs)
 
+    '// Load the Filter editor control
+    ConfigureFilterControl()
   End Sub
+
+
+  Private Sub ConfigureFilterControl()
+    ''Dim mFilterProperties As RTIS.ProductCore.clsFilterProperties
+    ''Dim mComponentProps As intComponentProperties
+    Dim mObject As RTIS.ProductCore.intObjectProperties
+
+    ''mComponentProps = colDoorsetObjectTypes.GetInstance(FormController.Part.ComponentType).ObjectCompProps()
+    ''mObject = colDoorsetObjectTypes.GetInstance(FormController.Part.ComponentType).CreateObject
+    mObject = New clsHouseTypePropertyDef
+
+    If Not mObject Is Nothing Then
+      UctConditionFilter1.SetUp(AppRTISGlobal.GetInstance.RefLists, Nothing)
+      UctConditionFilter1.RefreshControl(New RTIS.ProductCore.clsCondition(RTIS.ProductCore.eNodeTypes.eNT_Container), mObject)
+    End If
+
+  End Sub
+
+
 
   Private Sub RefreshControls()
     Dim mIsActive As Boolean
@@ -398,54 +420,96 @@ Public Class frmHouseType
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpProductLists.CustomButtonClick
 
 
-    If pFormController.CurrentHTSalesItemInfos.Count <> 0 Then
-
-      Select Case e.Button.Properties.Tag
-
-        Case "Add"
-          Try
-            Dim mProductPicker As clsPickerProductItem
-            Dim mProductsToAdd As New List(Of dmProductBase)
-
-            mProductPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, AppRTISGlobal.GetInstance)
-            mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
 
 
+    Select Case e.Button.Properties.Tag
+
+      Case "Add"
+        Try
+          Dim mProductPicker As clsPickerProductItem
+          Dim mProductsToAdd As New List(Of dmProductBase)
+
+          mProductPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+
+
+          CheckSave(False)
+          pFormController.AddProducts(mProductsToAdd)
+          grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+          gvHouseSalesItems.RefreshData()
+        Catch ex As Exception
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+        End Try
+
+      Case "AddDuplicates"
+        ''  Dim mCount As Integer
+        Dim mProductBaseList As New List(Of dmProductBase)
+        Dim mHTSalesItemInfo As clsHouseTypeSalesItemInfo
+        Dim mProductBase As dmProductBase
+
+        mHTSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow, clsHouseTypeSalesItemInfo)
+
+        If mHTSalesItemInfo IsNot Nothing Then
+          mProductBase = mHTSalesItemInfo.Product.Clone
+
+          If mProductBase IsNot Nothing Then
+            mProductBaseList.Add(mProductBase)
             CheckSave(False)
-            pFormController.AddProducts(mProductsToAdd)
+
+            pFormController.AddProducts(mProductBaseList)
             grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
             gvHouseSalesItems.RefreshData()
-          Catch ex As Exception
-            If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-          End Try
-
-        Case "AddDuplicates"
-          ''  Dim mCount As Integer
-          Dim mProductBaseList As New List(Of dmProductBase)
-          Dim mHTSalesItemInfo As clsHouseTypeSalesItemInfo
-          Dim mProductBase As dmProductBase
-
-          mHTSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow, clsHouseTypeSalesItemInfo)
-
-          If mHTSalesItemInfo IsNot Nothing Then
-            mProductBase = mHTSalesItemInfo.Product.Clone
-
-            If mProductBase IsNot Nothing Then
-              mProductBaseList.Add(mProductBase)
-              CheckSave(False)
-
-              pFormController.AddProducts(mProductBaseList)
-              grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
-              gvHouseSalesItems.RefreshData()
-            End If
-
           End If
 
+        End If
 
-          ''  MessageBox.Show("" & mCount & " items duplicated!")
-      End Select
+
+        ''  MessageBox.Show("" & mCount & " items duplicated!")
+    End Select
+
+
+  End Sub
+
+  Private Sub repoPopupContainerCriteria_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repoPopupContainerCriteria.QueryPopUp
+    Dim mFC As DevExpress.XtraEditors.FilterControl
+    Dim mHouseTypeSalesItemInfo As clsHouseTypeSalesItemInfo
+    mHouseTypeSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow(), clsHouseTypeSalesItemInfo)
+
+    mFC = CType(UctConditionFilter1.Controls(0), DevExpress.XtraEditors.FilterControl)
+    If mHouseTypeSalesItemInfo IsNot Nothing AndAlso mFC IsNot Nothing Then
+      '’ If storing condition as string
+      mFC.FilterString = mHouseTypeSalesItemInfo.ConditionString
+      mFC.Refresh()
+
+      '’ If not storing condition as string then 
+      '’mFC.RefreshControl(mPartBOM.ProfilePartCondition, pObject)  ‘’ need pObject (intObjectProperties) available
+
     End If
 
   End Sub
+
+  Private Sub repoPopupContainerCriteria_CloseUp(sender As Object, e As DevExpress.XtraEditors.Controls.CloseUpEventArgs) Handles repoPopupContainerCriteria.CloseUp
+    Try
+      Dim mFC As DevExpress.XtraEditors.FilterControl
+      Dim mHouseTypeSalesItemInfo As clsHouseTypeSalesItemInfo
+
+      mHouseTypeSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow(), clsHouseTypeSalesItemInfo)
+      mFC = CType(UctConditionFilter1.Controls(0), DevExpress.XtraEditors.FilterControl)
+      If mHouseTypeSalesItemInfo IsNot Nothing AndAlso mFC IsNot Nothing Then
+
+        If mFC.ActiveEditor IsNot Nothing Then
+          mFC.ActiveEditor.DoValidate()
+        End If
+
+        mHouseTypeSalesItemInfo.ConditionString = mFC.FilterString
+        e.Value = mFC.FilterString
+      Else
+        e.Value = ""
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
 
 End Class

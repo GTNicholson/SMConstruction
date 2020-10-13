@@ -32,6 +32,11 @@ Public Class appRefLists : Inherits colRefLists
   Public Const ProductConstructionType As Integer = 25
   Public Const Model As Integer = 26
   Public Const GroupType As Integer = 27
+  Public Const FoundationOptions As Integer = 28
+
+  Public Const FloorOptions As Integer = 29
+  Public Const WallOptions As Integer = 30
+  Public Const WindowOptions As Integer = 31
   Public Sub New()
     MyBase.New()
     Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
@@ -67,6 +72,14 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(Model, "Model", clsRefListItem.eLoadMode.Unloaded)
 
     Me.AddRefList(GroupType, "GroupType", clsRefListItem.eLoadMode.Unloaded)
+
+    Me.AddRefList(FoundationOptions, "FoundationOptions", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(FloorOptions, "FloorOptions", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(WallOptions, "WallOptions", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(WindowOptions, "WindowOptions", clsRefListItem.eLoadMode.Unloaded)
+
+
+
   End Sub
 
 
