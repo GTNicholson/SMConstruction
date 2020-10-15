@@ -170,7 +170,7 @@ Public Class frmSalesOrderDetailHouses
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
     RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
 
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType))
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model))
 
 
     LoadCustomerContactCombo()
@@ -1289,6 +1289,7 @@ Public Class frmSalesOrderDetailHouses
                 mSalesItem.HouseTypeID = mSelectedItem.ItemType
                 mSalesItem.SalesSubItemType = mSelectedItem.SubItemType
                 mSalesItem.SalesItemType = mSelectedItem.ItemType
+                mSalesItem.ProductTypeID = mSelectedItem.ProductTypeID
                 mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem)
                 pFormController.SalesItemEditors.Add(mSIEditor)
 

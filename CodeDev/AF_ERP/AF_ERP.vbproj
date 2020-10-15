@@ -307,6 +307,7 @@
     <Compile Include="Pickers\clsPickerProductItem.vb" />
     <Compile Include="Pickers\clsPickerSalesOrder.vb" />
     <Compile Include="Pickers\clsPickerSalesOrderPhase.vb" />
+    <Compile Include="Pickers\clsPickerSalesOrderPhaseItem.vb" />
     <Compile Include="Pickers\clsPickerStockItem.vb" />
     <Compile Include="Pickers\clsPickerSupplier.vb" />
     <Compile Include="Pickers\clsPickerWorkOrder.vb" />
@@ -332,6 +333,12 @@
       <DependentUpon>frmProductPicker.vb</DependentUpon>
     </Compile>
     <Compile Include="Pickers\frmProductPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmSalesOrderPhaseItemPickerMulti.Designer.vb">
+      <DependentUpon>frmSalesOrderPhaseItemPickerMulti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmSalesOrderPhaseItemPickerMulti.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pickers\frmSalesOrderPhasePickerMulti.Designer.vb">
@@ -364,6 +371,7 @@
     <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
     <Compile Include="Production\GUI\fccPaySlipDetails.vb" />
     <Compile Include="Production\GUI\fccPickMaterials.vb" />
+    <Compile Include="Production\GUI\fccSalesOrderPhaseItemPicker.vb" />
     <Compile Include="Production\GUI\fccSalesOrderPhasePicker.vb" />
     <Compile Include="Production\GUI\fccTimeSheetEntry.vb" />
     <Compile Include="Production\GUI\fccWorkOrderMilestoneStatus.vb" />
@@ -711,6 +719,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmProductPicker.resx">
       <DependentUpon>frmProductPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmSalesOrderPhaseItemPickerMulti.resx">
+      <DependentUpon>frmSalesOrderPhaseItemPickerMulti.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmSalesOrderPhasePickerMulti.resx">
       <DependentUpon>frmSalesOrderPhasePickerMulti.vb</DependentUpon>

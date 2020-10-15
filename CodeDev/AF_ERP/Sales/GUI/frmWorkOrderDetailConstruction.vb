@@ -32,7 +32,10 @@ Public Class frmWorkOrderDetailConstruction
     CopyChange = 5
     PasteChange = 6
   End Enum
+  Private Enum eAllocationsButtons
+    Add = 1
 
+  End Enum
   Public Sub New()
 
     ' Esta llamada es exigida por el diseñador.
@@ -138,11 +141,17 @@ Public Class frmWorkOrderDetailConstruction
     Try
 
       pFormController.LoadObjects()
+      pFormController.LoadRefData()
+
       ConfigureFileControl()
       LoadCombos()
       grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
+      grdWorkOrderAllocationsInfos.DataSource = pFormController.WorkOrderAllocationEditors
+
       RefreshProductTabPages()
       RefreshControls()
+      pFormController.RefreshCurrentWorkOrderAllocationEditors()
+
       pIsActive = True
 
       If mOK Then RefreshControls()
@@ -1197,5 +1206,100 @@ Public Class frmWorkOrderDetailConstruction
       RefreshControls()
 
     End If
+  End Sub
+
+  Private Sub grpWorkOrderAllocations_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrderAllocations.CustomButtonClick
+    Dim mPicker As clsPickerSalesOrderPhaseItem
+    Dim mSalesOrderPhaseItemInfos As New colSalesOrderPhaseItemInfos()
+    Dim mSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo
+    Dim mSelectedItem As clsSalesOrderPhaseItemInfo
+    Dim mWOAllocationEditor As clsWorkOrderAllocationEditor
+    Dim mSelectedProductBases As colSalesOrderPhaseItemInfos
+    Dim mWorkderAllocation As dmWorkOrderAllocation
+
+
+    Dim mSOI As New dmSalesOrderItem
+
+
+
+    Try
+      Select Case e.Button.Properties.Tag
+        Case eAllocationsButtons.Add
+          Try
+
+            LoadSalesOrderPhaseItemInfos(pFormController.SalesOrderPhaseItemInfos)
+
+            For Each mSOPII As clsSalesOrderPhaseItemInfo In pFormController.SalesOrderPhaseItemInfos
+
+              mSalesOrderPhaseItemInfos.Add(mSOPII)
+            Next
+
+            mPicker = New clsPickerSalesOrderPhaseItem(mSalesOrderPhaseItemInfos, pFormController.DBConn)
+
+            For Each mWorkderAllocation In pFormController.WorkOrder.WorkOrderAllocations
+              If mWorkderAllocation.PhaseItemComponentID > 0 Then
+                mSalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfos.ItemFromPhaseItemComponentID(mWorkderAllocation.PhaseItemComponentID)
+
+                If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseItemInfo) Then
+                  mPicker.SelectedObjects.Add(mSalesOrderPhaseItemInfo)
+                End If
+              End If
+            Next
+
+            If frmSalesOrderPhaseItemPickerMulti.PickSalesOrderPhaseItemInfo(mPicker, pFormController.RTISGlobal, frmSalesOrderPhaseItemPickerMulti.ePickerMode.SinglePick) Then
+              For Each mSelectedItem In mPicker.SelectedObjects
+                If mSelectedItem IsNot Nothing Then
+
+                  mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseID(mSelectedItem.SalesOrderPhaseItemID)
+                  If mWorkderAllocation Is Nothing Then
+                    mWorkderAllocation = pFormController.CreateWorkOrderAllocation(pFormController.WorkOrder, mSelectedItem.SalesOrderPhaseItemID)
+
+                    mWorkderAllocation.QuantityRequired = mSelectedItem.Qty
+
+                    mWOAllocationEditor = New clsWorkOrderAllocationEditor(pFormController.WorkOrder, mWorkderAllocation)
+
+
+                    pFormController.WorkOrderAllocationEditors.Add(mWOAllocationEditor)
+
+
+                  End If
+                End If
+              Next
+            End If
+
+
+            mSelectedProductBases = New colSalesOrderPhaseItemInfos(mPicker.SelectedObjects)
+
+            For mindex As Integer = pFormController.WorkOrder.WorkOrderAllocations.Count - 1 To 0 Step -1
+              mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations(mindex)
+              If mWorkderAllocation.PhaseItemComponentID > 0 Then
+                mSalesOrderPhaseItemInfo = mSelectedProductBases.ItemFromPhaseItemComponentID(mWorkderAllocation.PhaseItemComponentID)
+
+                If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseItemInfo) Then
+                  pFormController.WorkOrder.WorkOrderAllocations.Remove(mWorkderAllocation)
+                End If
+              End If
+            Next
+            pFormController.RefreshCurrentWorkOrderAllocationEditors()
+
+            CheckSave(False)
+
+
+          Catch ex As Exception
+            If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+          End Try
+
+      End Select
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Public Sub LoadSalesOrderPhaseItemInfos(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos)
+
+
+    pFormController.LoadSalesOrderPhaseItemsByWhere(rSalesOrderPhaseItemInfos, "")
+
   End Sub
 End Class

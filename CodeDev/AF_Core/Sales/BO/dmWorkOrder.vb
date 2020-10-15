@@ -283,6 +283,8 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+
+
   Public Property ProductID() As Int32
     Get
       Return pProductID

@@ -118,6 +118,15 @@ Public Class dtoSalesOrderPhaseItem : Inherits dtoBase
   End Function
 
 
+  Public Function LoadSalesOrderPhaseItemCollectionByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItems, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    '' mParams.Add("@SalesOrderPhaseID")
+    mOK = MyBase.LoadCollection(rSalesOrderPhaseItems, mParams, "SalesOrderPhaseItemID", vWhere)
+    rSalesOrderPhaseItems.TrackDeleted = True
+    If mOK Then rSalesOrderPhaseItems.IsDirty = False
+    Return mOK
+  End Function
   Public Function LoadSalesOrderPhaseItemCollection(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItems, ByVal vSalesOrderPhaseID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean

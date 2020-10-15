@@ -62,9 +62,18 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
         .ProjectName = DBReadString(rDataReader, "ProjectName")
       End With
 
+      With pSalesOrderPhaseItemInfo.WorkOrderAllocation
+        .QuantityDone = DBReadInt32(rDataReader, "QuantityDone")
+      End With
+
       With pSalesOrderPhaseItemInfo.SalesOrderPhase
         .SalesOrderPhaseID = DBReadInt32(rDataReader, "SalesOrderPhaseID")
         .DateRequired = DBReadDate(rDataReader, "DateRequired")
+
+        .PhaseNumber = DBReadInt32(rDataReader, "PhaseNumber")
+        .PhaseRef = DBReadString(rDataReader, "PhaseRef")
+        .JobNo = DBReadString(rDataReader, "JobNo")
+
       End With
 
       With pSalesOrderPhaseItemInfo.SalesOrderItem
