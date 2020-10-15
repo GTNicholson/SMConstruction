@@ -485,6 +485,12 @@
     <Compile Include="Sales\GUI\frmCustomerDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmHousePopUp.Designer.vb">
+      <DependentUpon>frmHousePopUp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmHousePopUp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmInternalWorkOrderDetail.Designer.vb">
       <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
     </Compile>
@@ -779,6 +785,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmCustomerDetail.resx">
       <DependentUpon>frmCustomerDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmHousePopUp.resx">
+      <DependentUpon>frmHousePopUp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmInternalWorkOrderDetail.resx">
       <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>

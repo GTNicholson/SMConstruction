@@ -34,3 +34,6 @@ LEFT JOIN WorkOrderAllocation WOA ON WOA.PhaseItemComponentID=SOPI.SalesOrderPha
 GO
 
 
+alter table SalesOrderItemAssembly
+add HouseTypeID int
+go
