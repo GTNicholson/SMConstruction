@@ -37,8 +37,6 @@ Public Class dmSalesOrder : Inherits dmBase
 
   Private pSalesOrderItems As colSalesOrderItems
 
-  Private pSalesOrderItemDM As dmSalesOrderItem
-  ''Private pWorkOrders As colWorkOrders
 
   Private pOutputDocuments As colOutputDocuments
   Private pSOFiles As colFileTrackers
@@ -59,7 +57,6 @@ Public Class dmSalesOrder : Inherits dmBase
     ''pWorkOrders = New colWorkOrders
     pSalesOrderItems = New colSalesOrderItems
     pOutputDocuments = New colOutputDocuments
-    pSalesOrderItemDM = New dmSalesOrderItem
     pCustomer = New dmCustomer
     pInvoices = New colInvoices
     pCustomerPurchaseOrder = New colCustomerPurchaseOrders
@@ -533,14 +530,6 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
-  Public Property SalesOrderItemsDM As dmSalesOrderItem
-    Get
-      Return pSalesOrderItemDM
-    End Get
-    Set(value As dmSalesOrderItem)
-      pSalesOrderItemDM = value
-    End Set
-  End Property
 
   Public Property CustomerPurchaseOrder As colCustomerPurchaseOrders
     Get

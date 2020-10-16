@@ -47,9 +47,9 @@ Public Class frmProductPicker
     mfrm.ShowDialog()
     Return True
   End Function
-  Public Shared Function OpenPickerSingle(ByVal vPickerProductBase As clsPickerProductItem) As dmProductBase
+  Public Shared Function OpenPickerSingle(ByVal vPickerProductBase As clsPickerProductItem) As clsProductBaseInfo
     Dim mfrm As New frmProductPicker
-    Dim mRetVal As dmProductBase
+    Dim mRetVal As clsProductBaseInfo
 
     mfrm.pMode = ePickerMode.SinglePick
     mfrm.pPickerProductBase = vPickerProductBase
@@ -62,9 +62,9 @@ Public Class frmProductPicker
     Return mRetVal
   End Function
 
-  Public Shared Function OpenPickerMulti(ByVal vPickerProductBase As clsPickerProductItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of dmProductBase)
+  Public Shared Function OpenPickerMulti(ByVal vPickerProductBase As clsPickerProductItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of clsProductBaseInfo)
     Dim mfrm As New frmProductPicker
-    Dim mRetVal As New List(Of dmProductBase)
+    Dim mRetVal As New List(Of clsProductBaseInfo)
 
     mfrm.pMode = ePickerMode.MultiPick
     mfrm.pPickerProductBase = vPickerProductBase
@@ -72,7 +72,7 @@ Public Class frmProductPicker
     mfrm.ShowDialog()
 
     If mfrm.pPickerProductBase.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerProductBase.SelectedObjects.Count > 0 Then
-      For Each mItem As dmProductBase In mfrm.pPickerProductBase.SelectedObjects
+      For Each mItem As clsProductBaseInfo In mfrm.pPickerProductBase.SelectedObjects
         mRetVal.Add(mItem)
       Next
     End If
@@ -111,19 +111,19 @@ Public Class frmProductPicker
 
   Private Sub repoItemSelect_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repoItemSelect.ButtonClick
     Try
-      Dim mProductBase As dmProductBase
+      Dim mProductBase As clsProductBaseInfo
 
       Select Case pMode
         Case ePickerMode.SinglePick
 
-          mProductBase = TryCast(gvItemList.GetFocusedRow, dmProductBase)
+          mProductBase = TryCast(gvItemList.GetFocusedRow, clsProductBaseInfo)
           If mProductBase IsNot Nothing Then
             pPickerProductBase.SelectedObjects.Add(mProductBase)
             Me.Close()
           End If
 
         Case ePickerMode.MultiPick
-          mProductBase = TryCast(gvItemList.GetFocusedRow, dmProductBase)
+          mProductBase = TryCast(gvItemList.GetFocusedRow, clsProductBaseInfo)
           If mProductBase IsNot Nothing Then
             pPickerProductBase.SelectedObjects.Add(mProductBase)
             If pRemainOpen = False Then Me.Close()
@@ -183,8 +183,8 @@ Public Class frmProductPicker
   End Sub
 
   Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvItemList.CustomRowCellEdit
-    Dim mRow As dmProductBase
-    mRow = TryCast(gvItemList.GetRow(e.RowHandle), dmProductBase)
+    Dim mRow As clsProductBaseInfo
+    mRow = TryCast(gvItemList.GetRow(e.RowHandle), clsProductBaseInfo)
     If mRow IsNot Nothing Then
 
       If e.Column.Name = gcStockCode.Name Then
@@ -228,17 +228,17 @@ Public Class frmProductPicker
       End If
     Next
 
-    SetCurrentTab(eStockItemCategory.Abrasivos)
+    SetCurrentTab(eProductType.ProductFurniture)
 
   End Sub
 
-  Private Sub SetCurrentTab(ByVal vCategory As eStockItemCategory)
+  Private Sub SetCurrentTab(ByVal vCategory As eProductType)
     For Each mTabPage As DevExpress.XtraTab.XtraTabPage In xtabCategories.TabPages
       If mTabPage.Tag IsNot Nothing AndAlso mTabPage.Tag = vCategory Then
         xtabCategories.SelectedTabPage = mTabPage
         grdItemList.Parent = mTabPage
         pPickerProductBase.CurrentCategory = vCategory
-        gvItemList.ActiveFilterString = "ItemType = " & pPickerProductBase.CurrentCategory
+        gvItemList.ActiveFilterString = "Category = " & pPickerProductBase.CurrentCategory
       End If
     Next
 

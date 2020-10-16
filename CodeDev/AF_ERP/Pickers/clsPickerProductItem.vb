@@ -1,9 +1,9 @@
-﻿Public Class clsPickerProductItem : Inherits clsPickerBase(Of dmProductBase)
+﻿Public Class clsPickerProductItem : Inherits clsPickerBase(Of clsProductBaseInfo)
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
   Private pCurrentCategory As eProductType
 
-  Public Sub New(ByRef rDataSource As colProductBases, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, rRTISGlobal As AppRTISGlobal)
+  Public Sub New(ByRef rDataSource As colProductBaseInfos, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, rRTISGlobal As AppRTISGlobal)
     MyBase.New
     DataSource = rDataSource
     pDBConn = rDBConn

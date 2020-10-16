@@ -78,11 +78,20 @@ Public Class dmProductInstallation : Inherits dmProductBase
 
   Public Property ProductInstallationTypeID() As Int32
     Get
-      Return pProductInstallationTypeID
+      Return pID
     End Get
     Set(ByVal value As Int32)
-      If pProductInstallationTypeID <> value Then IsDirty = True
-      pProductInstallationTypeID = value
+      If pID <> value Then IsDirty = True
+      pID = value
+    End Set
+  End Property
+
+  Public Overrides Property ID As Integer
+    Get
+      Return ProductInstallationTypeID
+    End Get
+    Set(ByVal value As Int32)
+      ProductInstallationTypeID = value
     End Set
   End Property
 

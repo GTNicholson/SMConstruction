@@ -30,15 +30,8 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     End Set
   End Property
 
-  Public Property ID As Integer
-    Get
-      Return pID
-    End Get
-    Set(value As Integer)
-      If value <> pID Then pIsDirty = True
-      pID = value
-    End Set
-  End Property
+  Public MustOverride Property ID As Integer
+
 
   Public Property ItemType As Integer
     Get

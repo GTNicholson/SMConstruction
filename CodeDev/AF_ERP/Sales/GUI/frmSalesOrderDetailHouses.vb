@@ -1223,15 +1223,15 @@ Public Class frmSalesOrderDetailHouses
   Private Sub gcSalesItemsEditor_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpSalesItemsEditor.CustomButtonClick
 
     Dim mSOI As New dmSalesOrderItem
-    Dim mSelectedItem As dmProductBase
+    Dim mSelectedItem As clsProductBaseInfo
     Dim mSalesItem As dmSalesOrderItem
     Dim mSIEditor As clsSalesItemEditor
 
 
     Dim mPicker As clsPickerProductItem
-    Dim mProductBases As New colProductBases
-    Dim mProductBase As dmProductBase
-    Dim mSelectedProductBases As colProductBases
+    Dim mProductBaseInfos As New colProductBaseInfos
+    Dim mProductBaseInfo As clsProductBaseInfo
+    Dim mSelectedProductBaseInfos As colProductBaseInfos
 
     Select Case e.Button.Properties.Tag
       Case eOrderItemGroupButtonTags.Add
@@ -1254,20 +1254,19 @@ Public Class frmSalesOrderDetailHouses
 
       Case eOrderItemGroupButtonTags.AddFromPicker
 
-        pFormController.LoadProducts()
-        For Each mItem As dmProductBase In pFormController.Products
+        mProductBaseInfos = pFormController.GetProductInfos
+        ''For Each mItem As clsProductBaseInfo In mProductBaseInfos
 
-          mProductBases.Add(mItem)
-        Next
+        ''  mProductBaseInfos.Add(mItem)
+        ''Next
 
-        mPicker = New clsPickerProductItem(mProductBases, pFormController.DBConn, pFormController.RTISGlobal)
+        mPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, pFormController.RTISGlobal)
 
         For Each mSalesItem In pFormController.SalesOrder.SalesOrderItems
           If mSalesItem.SalesOrderItemID > 0 Then
-            mProductBase = mProductBases.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
-
-            If Not mPicker.SelectedObjects.Contains(mProductBase) Then
-              mPicker.SelectedObjects.Add(mProductBase)
+            mProductBaseInfo = mProductBaseInfos.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
+            If Not mPicker.SelectedObjects.Contains(mProductBaseInfo) Then
+              mPicker.SelectedObjects.Add(mProductBaseInfo)
             End If
           End If
         Next
@@ -1283,43 +1282,14 @@ Public Class frmSalesOrderDetailHouses
                 ''mSalesItem.HouseTypeID = mSelectedItem.HouseTypeID
                 mSalesItem.SalesSubItemType = mSelectedItem.SubItemType
                 mSalesItem.SalesItemType = mSelectedItem.ItemType
-                mSalesItem.ProductTypeID = mSelectedItem.ProductTypeID
+                mSalesItem.ProductTypeID = mSelectedItem.Category
                 mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem)
                 pFormController.SalesItemEditors.Add(mSIEditor)
-
-
-
 
               End If
             End If
           Next
         End If
-
-
-        mSelectedProductBases = New colProductBases(mPicker.SelectedObjects)
-
-        For mindex As Integer = pFormController.SalesOrder.SalesOrderItems.Count - 1 To 0 Step -1
-          mSalesItem = pFormController.SalesOrder.SalesOrderItems(mindex)
-          If mSalesItem.ProductID > 0 Then
-            mProductBase = mSelectedProductBases.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
-
-            If Not mPicker.SelectedObjects.Contains(mProductBase) Then
-              pFormController.SalesOrder.SalesOrderItems.Remove(mSalesItem)
-            End If
-          End If
-        Next
-        pFormController.RefreshCurrentSalesItemEditors()
-        ''gvSSalesItemsEditor.RefreshData()
-        CheckSave(False)
-        If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing Then
-
-          If pFormController.SalesOrder.OrderPhaseType = eOrderPhaseType.SinglePhase Then
-            pFormController.CreateSalesOrderPhaseItem(pFormController.SalesOrder.SalesOrderPhases(0), pFormController.SalesOrder.SalesOrderID)
-
-          End If
-
-        End If
-
 
 
      ''   grdSSalesItemsEditor.DataSource = pFormController.SalesOrder.SalesOrderItems

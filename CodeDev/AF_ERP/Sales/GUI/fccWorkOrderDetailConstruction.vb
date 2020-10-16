@@ -472,13 +472,12 @@ Public Class fccWorkOrderDetailConstruction
 
   End Sub
 
-
-  Public Sub LoadProducts(ByRef rProducts As colProductBases)
-    Dim mdso As New dsoSales(DBConn)
-    rProducts.Clear()
-    mdso.LoadStandardProducts(rProducts)
-
-  End Sub
+  Public Function GetProductInfos() As colProductBaseInfos
+    Dim mRetVal As New colProductBaseInfos
+    Dim mdso As New dsoProductAdmin(DBConn)
+    mdso.LoadProductInfosByWhere(mRetVal, "")
+    Return mRetVal
+  End Function
 
   Public Function LoadRefData() As Boolean
 

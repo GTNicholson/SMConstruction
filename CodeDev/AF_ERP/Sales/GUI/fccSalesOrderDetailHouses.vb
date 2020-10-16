@@ -460,13 +460,12 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
-  Public Sub LoadProducts()
-    Dim mdso As New dsoSales(DBConn)
-    pProducts.Clear()
-    mdso.LoadStandardProducts(pProducts)
-
-  End Sub
-
+  Public Function GetProductInfos() As colProductBaseInfos
+    Dim mRetVal As New colProductBaseInfos
+    Dim mdso As New dsoProductAdmin(DBConn)
+    mdso.LoadProductInfosByWhere(mRetVal, "")
+    Return mRetVal
+  End Function
 
   Public Function CreateSalesItem(ByRef rSalsesOrder As dmSalesOrder) As dmSalesOrderItem
     Dim mRetVal As New dmSalesOrderItem
