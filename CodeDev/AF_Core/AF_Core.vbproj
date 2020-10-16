@@ -277,6 +277,7 @@
     <Compile Include="Sales\BO\clsHouseTypeManager.vb" />
     <Compile Include="Sales\BO\clsHouseTypePropertyDef.vb" />
     <Compile Include="Sales\BO\clsHouseTypeSalesItemInfo.vb" />
+    <Compile Include="Sales\BO\clsSalesOrderManager.vb" />
     <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationEditor.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />
