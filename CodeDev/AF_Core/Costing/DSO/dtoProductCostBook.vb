@@ -55,10 +55,6 @@ Public Class dtoProductCostBook : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostBookName", StringToDBValue(.CostBookName))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostBookDate", DateToDBValue(.CostBookDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsDefault", .IsDefault)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectLabourCost", .DirectLabourCost)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectMaterialCost", .DirectMaterialCost)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectTransportationAndEquipment", .DirectTransportationAndEquipment)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OutsourcingCost", .OutsourcingCost)
     End With
 
   End Sub
@@ -73,10 +69,6 @@ Public Class dtoProductCostBook : Inherits dtoBase
         .CostBookName = DBReadString(rDataReader, "CostBookName")
         .CostBookDate = DBReadDateTime(rDataReader, "CostBookDate")
         .IsDefault = DBReadBoolean(rDataReader, "IsDefault")
-        .DirectLabourCost = DBReadDecimal(rDataReader, "DirectLabourCost")
-        .DirectMaterialCost = DBReadDecimal(rDataReader, "DirectMaterialCost")
-        .DirectTransportationAndEquipment = DBReadDecimal(rDataReader, "DirectTransportationAndEquipment")
-        .OutsourcingCost = DBReadDecimal(rDataReader, "OutsourcingCost")
         pProductCostBook.IsDirty = False
       End With
       mOK = True

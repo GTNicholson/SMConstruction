@@ -35,7 +35,7 @@ Public Class frmProductCostBook
     UpdateObject()
     If pFormController.IsDirty() Then
       If rOption Then
-        mResponse = MsgBox("Changes have been made. Do you wish to save them?", MsgBoxStyle.YesNoCancel)
+        mResponse = MsgBox("Se han realizado cambios. ¿Desea guardarlos?", MsgBoxStyle.YesNoCancel)
         Select Case mResponse
           Case MsgBoxResult.Yes
             mSaveRequired = True
