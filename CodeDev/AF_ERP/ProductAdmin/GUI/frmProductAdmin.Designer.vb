@@ -81,6 +81,8 @@ Partial Class frmProductAdmin
         Me.tabBasicStockItem = New DevExpress.XtraTab.XtraTabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpStockItemDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.btnGenerateCode = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.cboSubItemType = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -93,8 +95,6 @@ Partial Class frmProductAdmin
         Me.txtStockCode = New DevExpress.XtraEditors.TextEdit()
         Me.tabLockStockItem = New DevExpress.XtraTab.XtraTabPage()
         Me.tabBlank = New DevExpress.XtraTab.XtraTabPage()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,11 +119,11 @@ Partial Class frmProductAdmin
         Me.Panel1.SuspendLayout()
         CType(Me.grpStockItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpStockItemDetail.SuspendLayout()
+        CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSubItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -590,6 +590,32 @@ Partial Class frmProductAdmin
         Me.grpStockItemDetail.TabIndex = 94
         Me.grpStockItemDetail.Text = "Detalles del Producto"
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl3.Appearance.Options.UseFont = True
+        Me.LabelControl3.Appearance.Options.UseForeColor = True
+        Me.LabelControl3.Location = New System.Drawing.Point(5, 121)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 14)
+        Me.LabelControl3.TabIndex = 118
+        Me.LabelControl3.Text = "UdM"
+        '
+        'cboUoM
+        '
+        Me.cboUoM.Location = New System.Drawing.Point(95, 118)
+        Me.cboUoM.MenuManager = Me.BarManager1
+        Me.cboUoM.Name = "cboUoM"
+        Me.cboUoM.Properties.AllowMouseWheel = False
+        Me.cboUoM.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboUoM.Properties.Appearance.Options.UseFont = True
+        Me.cboUoM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboUoM.Properties.ReadOnly = True
+        Me.cboUoM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cboUoM.Size = New System.Drawing.Size(242, 20)
+        Me.cboUoM.TabIndex = 117
+        '
         'btnGenerateCode
         '
         Me.btnGenerateCode.Location = New System.Drawing.Point(251, 74)
@@ -725,32 +751,6 @@ Partial Class frmProductAdmin
         Me.tabBlank.Size = New System.Drawing.Size(1096, 265)
         Me.tabBlank.Text = "XtraTabPage1"
         '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl3.Appearance.Options.UseFont = True
-        Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(5, 121)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(21, 14)
-        Me.LabelControl3.TabIndex = 118
-        Me.LabelControl3.Text = "UdM"
-        '
-        'cboUoM
-        '
-        Me.cboUoM.Location = New System.Drawing.Point(95, 118)
-        Me.cboUoM.MenuManager = Me.BarManager1
-        Me.cboUoM.Name = "cboUoM"
-        Me.cboUoM.Properties.AllowMouseWheel = False
-        Me.cboUoM.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboUoM.Properties.Appearance.Options.UseFont = True
-        Me.cboUoM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboUoM.Properties.ReadOnly = True
-        Me.cboUoM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboUoM.Size = New System.Drawing.Size(242, 20)
-        Me.cboUoM.TabIndex = 117
-        '
         'frmProductAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -763,7 +763,7 @@ Partial Class frmProductAdmin
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmProductAdmin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Stock Item Admin"
+        Me.Text = "Administración de Productos de Producción"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -789,11 +789,11 @@ Partial Class frmProductAdmin
         CType(Me.grpStockItemDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpStockItemDetail.ResumeLayout(False)
         Me.grpStockItemDetail.PerformLayout()
+        CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSubItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -1377,6 +1377,8 @@ Public Class frmSalesOrderDetailHouses
 
     Dim mHouseTypeConfig As dmHouseType
 
+    Dim mSOPI As dmSalesOrderPhaseItem
+
     UpdateObjects()
     mHouseTypeConfig = New dmHouseType()
 
@@ -1384,6 +1386,21 @@ Public Class frmSalesOrderDetailHouses
 
 
     If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
+
+      For Each mSOI As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
+        mSOPI = New dmSalesOrderPhaseItem
+
+        mSOPI.Qty = mSOI.Quantity
+        mSOPI.SalesItemID = mSOI.SalesOrderItemID
+        mSOPI.SalesOrderID = mSOI.SalesOrderID
+
+        If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing And pFormController.SalesOrder.SalesOrderPhases.Count > 0 Then
+          mSOPI.SalesOrderPhaseID = pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+          pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+        End If
+
+      Next
+
 
       pFormController.RefreshCurrentSalesItemEditors()
       grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors

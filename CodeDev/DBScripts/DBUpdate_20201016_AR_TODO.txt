@@ -1,9 +1,3 @@
-drop table ProductCostBook
-go
-
-drop table ProductCostBookEntry
-go
-
 CREATE TABLE [dbo].[ProductCostBook](
 	[ProductCostBookID] [int] IDENTITY(1,1) NOT NULL,
 	[CostBookName] [varchar](50) NULL,
@@ -37,7 +31,3 @@ CREATE TABLE [dbo].[ProductCostBookEntry](
 ) ON [PRIMARY]
 
 GO
-
-delete from StockTake
-where StockTakeID>1
-go

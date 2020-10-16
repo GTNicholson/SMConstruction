@@ -582,6 +582,7 @@ Partial Class frmHouseType
         Me.repoPopupContainerCriteria.AutoHeight = False
         Me.repoPopupContainerCriteria.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.repoPopupContainerCriteria.Name = "repoPopupContainerCriteria"
+        Me.repoPopupContainerCriteria.PopupControl = Me.popupConditions
         '
         'txtAssRef
         '
@@ -742,7 +743,6 @@ Partial Class frmHouseType
         Me.RepositoryItemPopupContainerEdit1.AutoHeight = False
         Me.RepositoryItemPopupContainerEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemPopupContainerEdit1.Name = "RepositoryItemPopupContainerEdit1"
-        Me.RepositoryItemPopupContainerEdit1.PopupControl = Me.popupConditions
         '
         'GridColumn19
         '
