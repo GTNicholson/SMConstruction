@@ -9,7 +9,7 @@ Public Class dmSalesItemAssembly : Inherits dmBase
   Private pQuantity As Integer
   Private pPricePerUnit As Decimal
   Private pTotalPrice As Decimal
-
+  Private pHouseTypeID As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -49,6 +49,7 @@ Public Class dmSalesItemAssembly : Inherits dmBase
       .Quantity = Quantity
       .PricePerUnit = PricePerUnit
       .TotalPrice = TotalPrice
+      .HouseTypeID = HouseTypeID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -85,6 +86,16 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     Set(ByVal value As String)
       If pRef <> value Then IsDirty = True
       pRef = value
+    End Set
+  End Property
+
+  Public Property HouseTypeID() As Int32
+    Get
+      Return pHouseTypeID
+    End Get
+    Set(ByVal value As Int32)
+      If pHouseTypeID <> value Then IsDirty = True
+      pHouseTypeID = value
     End Set
   End Property
 

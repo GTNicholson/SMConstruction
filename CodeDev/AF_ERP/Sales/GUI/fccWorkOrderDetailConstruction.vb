@@ -11,13 +11,19 @@ Public Class fccWorkOrderDetailConstruction
   Private pTimeSheetEntrys As colTimeSheetEntrys
   Private pIsInternal As Boolean
   Private pCurrentProduct As dmProductBase
-
+  Private pSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
+  Private pUsedItems As List(Of Integer)
+  Private pSalesOrderPhaseItems As colSalesOrderPhaseItems
+  Private pWorkOrderAllocationEditors As colWorkOrderAllocationEditors
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pTimeSheetEntrys = New colTimeSheetEntrys
     pIsInternal = vIsInternal
-
+    pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
+    pUsedItems = New List(Of Integer)
+    pSalesOrderPhaseItems = New colSalesOrderPhaseItems
+    pWorkOrderAllocationEditors = New colWorkOrderAllocationEditors
   End Sub
 
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
@@ -40,6 +46,25 @@ Public Class fccWorkOrderDetailConstruction
       pPrimaryKeyID = value
     End Set
   End Property
+
+  Public Property WorkOrderAllocationEditors() As colWorkOrderAllocationEditors
+    Get
+      Return pWorkOrderAllocationEditors
+    End Get
+    Set(value As colWorkOrderAllocationEditors)
+      pWorkOrderAllocationEditors = value
+    End Set
+  End Property
+
+  Public Property SalesOrderPhaseItems As colSalesOrderPhaseItems
+    Get
+      Return pSalesOrderPhaseItems
+    End Get
+    Set(value As colSalesOrderPhaseItems)
+      pSalesOrderPhaseItems = value
+    End Set
+  End Property
+
 
   Public Property WorkOrder As dmWorkOrder
     Get
@@ -74,6 +99,22 @@ Public Class fccWorkOrderDetailConstruction
     End Get
     Set(value As dmSalesOrderItem)
       pSalesOrderItem = value
+    End Set
+  End Property
+  Public Property UsedItems As List(Of Integer)
+    Get
+      Return pUsedItems
+    End Get
+    Set(value As List(Of Integer))
+      pUsedItems = value
+    End Set
+  End Property
+  Public Property SalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
+    Get
+      Return pSalesOrderPhaseItemInfos
+    End Get
+    Set(value As colSalesOrderPhaseItemInfos)
+      pSalesOrderPhaseItemInfos = value
     End Set
   End Property
 
@@ -438,4 +479,87 @@ Public Class fccWorkOrderDetailConstruction
     mdso.LoadStandardProducts(rProducts)
 
   End Sub
+
+  Public Function LoadRefData() As Boolean
+
+    Dim mOK As Boolean
+    Dim mdsoSales As New dsoSales(pDBConn)
+    Dim mSalesOrderPhaseItem As dmSalesOrderPhaseItem
+    Try
+
+      mOK = True
+      pSalesOrderPhaseItems = New colSalesOrderPhaseItems
+
+      For Each mWOAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+        If pSalesOrderPhaseItems.IndexFromKey(mWOAllocation.PhaseItemComponentID) = -1 Then
+          mSalesOrderPhaseItem = New dmSalesOrderPhaseItem
+          mdsoSales.LoadSalesOrderPhaseItem(mSalesOrderPhaseItem, mWOAllocation.PhaseItemComponentID)
+          pSalesOrderPhaseItems.Add(mSalesOrderPhaseItem)
+        End If
+
+        If pUsedItems.Contains(mWOAllocation.PhaseItemComponentID) = False Then
+          pUsedItems.Add(mWOAllocation.PhaseItemComponentID)
+        End If
+      Next
+
+      If pWorkOrder.WorkOrderAllocations.Count > 0 Then
+
+        If pWorkOrder.WorkOrderAllocations.Count = 1 Then
+          mdsoSales.LoadSalesOrderPhaseItemInfo(Me.SalesOrderPhaseItemInfos, "SalesOrderPhaseID = " & pWorkOrder.WorkOrderAllocations(0).PhaseItemComponentID)
+
+        End If
+
+      End If
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mOK
+  End Function
+
+  Public Sub LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItemInfo As colSalesOrderPhaseItemInfos, ByVal vWhere As String)
+
+    Dim mdso As New dsoSales(DBConn)
+
+
+    mdso.LoadSalesOrderPhaseItemsByWhere(rSalesOrderPhaseItemInfo, vWhere)
+
+
+
+
+
+  End Sub
+
+  Friend Function CreateWorkOrderAllocation(ByRef rWorkOrder As dmWorkOrder, ByVal vPhaseItemComponentID As Integer) As dmWorkOrderAllocation
+    Dim mRetVal As New dmWorkOrderAllocation
+
+    With mRetVal
+      .WorkOrderID = rWorkOrder.WorkOrderID
+      .PhaseItemComponentID = vPhaseItemComponentID
+    End With
+
+    rWorkOrder.WorkOrderAllocations.Add(mRetVal)
+
+
+    Return mRetVal
+  End Function
+
+  Public Sub RefreshCurrentWorkOrderAllocationEditors()
+    Dim mWOAE As clsWorkOrderAllocationEditor
+    pWorkOrderAllocationEditors.Clear()
+
+
+    For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+      '// create a new editor based on this salesitem and add to collection
+      mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
+      pWorkOrderAllocationEditors.Add(mWOAE)
+      mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
+
+    Next
+
+
+  End Sub
+
+
 End Class

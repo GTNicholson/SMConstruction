@@ -132,6 +132,15 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
     pHouseTypeSalesItems = Nothing
     Return mOK
   End Function
+  Public Function LoadHouseTypeSalesItemsCollectionByWhere(ByRef rHouseTypeSalesItemss As colHouseTypeSalesItems, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    ''mParams.Add("@HouseTypeID", vHouseTypeID)
+    mOK = MyBase.LoadCollection(rHouseTypeSalesItemss, mParams, "HouseTypeSalesItemID", vWhere)
+    rHouseTypeSalesItemss.TrackDeleted = True
+    If mOK Then rHouseTypeSalesItemss.IsDirty = False
+    Return mOK
+  End Function
 
 
   Public Function LoadHouseTypeSalesItemsCollection(ByRef rHouseTypeSalesItemss As colHouseTypeSalesItems, ByVal vHouseTypeID As Integer) As Boolean

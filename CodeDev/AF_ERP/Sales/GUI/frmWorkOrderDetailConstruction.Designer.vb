@@ -60,9 +60,9 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblUnidad = New System.Windows.Forms.Label()
         Me.txtQuantity = New DevExpress.XtraEditors.TextEdit()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.grpWorkOrderAllocations = New DevExpress.XtraEditors.GroupControl()
+        Me.grdWorkOrderAllocationsInfos = New DevExpress.XtraGrid.GridControl()
+        Me.gvWorkOrderAllocationsInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -162,6 +162,10 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,10 +177,10 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl6.SuspendLayout()
         CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grpWorkOrderAllocations, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpWorkOrderAllocations.SuspendLayout()
+        CType(Me.grdWorkOrderAllocationsInfos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvWorkOrderAllocationsInfos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -416,7 +420,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.Controls.Add(Me.lblUnidad)
         Me.GroupControl6.Controls.Add(Me.txtQuantity)
         Me.GroupControl6.Controls.Add(Me.Label8)
-        Me.GroupControl6.Controls.Add(Me.GroupControl2)
+        Me.GroupControl6.Controls.Add(Me.grpWorkOrderAllocations)
         Me.GroupControl6.Controls.Add(Me.Label10)
         Me.GroupControl6.Controls.Add(Me.btnWorkOrderNumber)
         Me.GroupControl6.Controls.Add(Me.Label12)
@@ -470,83 +474,86 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label8.TabIndex = 169
         Me.Label8.Text = "Cantidad Total"
         '
-        'GroupControl2
+        'grpWorkOrderAllocations
         '
-        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl2.Controls.Add(Me.GridControl1)
-        Me.GroupControl2.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
-        Me.GroupControl2.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.GroupControl2.Location = New System.Drawing.Point(13, 180)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(623, 102)
-        Me.GroupControl2.TabIndex = 167
-        Me.GroupControl2.Text = "Allocaciones"
+        Me.grpWorkOrderAllocations.AppearanceCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grpWorkOrderAllocations.AppearanceCaption.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.grpWorkOrderAllocations.AppearanceCaption.Options.UseFont = True
+        Me.grpWorkOrderAllocations.AppearanceCaption.Options.UseForeColor = True
+        Me.grpWorkOrderAllocations.Controls.Add(Me.grdWorkOrderAllocationsInfos)
+        Me.grpWorkOrderAllocations.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1)})
+        Me.grpWorkOrderAllocations.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+        Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(13, 180)
+        Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
+        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(623, 102)
+        Me.grpWorkOrderAllocations.TabIndex = 167
+        Me.grpWorkOrderAllocations.Text = "Calendarización de OTs"
         '
-        'GridControl1
+        'grdWorkOrderAllocationsInfos
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(2, 26)
-        Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.MenuManager = Me.BarManager1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(619, 74)
-        Me.GridControl1.TabIndex = 157
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2, Me.GridView3})
+        Me.grdWorkOrderAllocationsInfos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 26)
+        Me.grdWorkOrderAllocationsInfos.MainView = Me.gvWorkOrderAllocationsInfos
+        Me.grdWorkOrderAllocationsInfos.MenuManager = Me.BarManager1
+        Me.grdWorkOrderAllocationsInfos.Name = "grdWorkOrderAllocationsInfos"
+        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(619, 74)
+        Me.grdWorkOrderAllocationsInfos.TabIndex = 157
+        Me.grdWorkOrderAllocationsInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderAllocationsInfos, Me.GridView3})
         '
-        'GridView2
+        'gvWorkOrderAllocationsInfos
         '
-        Me.GridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.GridView2.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.GridView2.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView2.Appearance.EvenRow.Options.UseFont = True
-        Me.GridView2.Appearance.OddRow.BackColor = System.Drawing.Color.White
-        Me.GridView2.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.GridView2.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView2.Appearance.OddRow.Options.UseFont = True
-        Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView2.Appearance.Row.Options.UseFont = True
-        Me.GridView2.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView2.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GridView2.Appearance.ViewCaption.Options.UseFont = True
-        Me.GridView2.Appearance.ViewCaption.Options.UseForeColor = True
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn20})
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView2.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView2.OptionsView.ShowColumnHeaders = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        Me.GridView2.ViewCaption = "Componentes para Empacar"
+        Me.gvWorkOrderAllocationsInfos.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvWorkOrderAllocationsInfos.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvWorkOrderAllocationsInfos.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.EvenRow.Options.UseFont = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.gvWorkOrderAllocationsInfos.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvWorkOrderAllocationsInfos.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvWorkOrderAllocationsInfos.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.OddRow.Options.UseFont = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.Row.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvWorkOrderAllocationsInfos.Appearance.Row.Options.UseFont = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.Options.UseFont = True
+        Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.Options.UseForeColor = True
+        Me.gvWorkOrderAllocationsInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn6, Me.GridColumn8, Me.GridColumn20, Me.GridColumn22, Me.GridColumn23, Me.GridColumn26})
+        Me.gvWorkOrderAllocationsInfos.GridControl = Me.grdWorkOrderAllocationsInfos
+        Me.gvWorkOrderAllocationsInfos.Name = "gvWorkOrderAllocationsInfos"
+        Me.gvWorkOrderAllocationsInfos.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.gvWorkOrderAllocationsInfos.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvWorkOrderAllocationsInfos.OptionsView.EnableAppearanceOddRow = True
+        Me.gvWorkOrderAllocationsInfos.OptionsView.ShowGroupPanel = False
+        Me.gvWorkOrderAllocationsInfos.ViewCaption = "Componentes para Empacar"
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Descripcion"
-        Me.GridColumn6.FieldName = "Description"
+        Me.GridColumn6.Caption = "WorkOrderAllocationID"
+        Me.GridColumn6.FieldName = "WorkOrderAllocationID"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "GridColumn8"
+        Me.GridColumn8.Caption = "Proyecto"
+        Me.GridColumn8.FieldName = "ProjectName"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.Width = 143
         '
         'GridColumn20
         '
-        Me.GridColumn20.Caption = "GridColumn20"
+        Me.GridColumn20.Caption = "Cliente"
+        Me.GridColumn20.FieldName = "CompanyName"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 2
+        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn20.Width = 118
         '
         'GridView3
         '
-        Me.GridView3.GridControl = Me.GridControl1
+        Me.GridView3.GridControl = Me.grdWorkOrderAllocationsInfos
         Me.GridView3.Name = "GridView3"
         '
         'Label10
@@ -1626,6 +1633,42 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcDuration.VisibleIndex = 2
         Me.gcDuration.Width = 186
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "# Orden"
+        Me.GridColumn7.FieldName = "OrderNo"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 72
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Fecha Requerida"
+        Me.GridColumn22.FieldName = "DateRequired"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
+        Me.GridColumn22.Width = 109
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Cantidad Hecha"
+        Me.GridColumn23.FieldName = "QuantityDone"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 5
+        Me.GridColumn23.Width = 98
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "# Etapa"
+        Me.GridColumn26.FieldName = "PhaseNumber"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 1
+        Me.GridColumn26.Width = 63
+        '
         'frmWorkOrderDetailConstruction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1652,10 +1695,10 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.ResumeLayout(False)
         Me.GroupControl6.PerformLayout()
         CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grpWorkOrderAllocations, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpWorkOrderAllocations.ResumeLayout(False)
+        CType(Me.grdWorkOrderAllocationsInfos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvWorkOrderAllocationsInfos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnWorkOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboProductType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1827,13 +1870,13 @@ Partial Class frmWorkOrderDetailConstruction
   Friend WithEvents gcTSEmployee As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcDuration As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GroupControl7 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-  Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents grdWorkOrderAllocationsInfos As DevExpress.XtraGrid.GridControl
+  Friend WithEvents gvWorkOrderAllocationsInfos As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+  Friend WithEvents grpWorkOrderAllocations As DevExpress.XtraEditors.GroupControl
   Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
   Friend WithEvents Label4 As Label
   Friend WithEvents bteProductPicker As DevExpress.XtraEditors.ButtonEdit
@@ -1841,4 +1884,8 @@ Partial Class frmWorkOrderDetailConstruction
   Friend WithEvents lblUnidad As Label
   Friend WithEvents txtQuantity As DevExpress.XtraEditors.TextEdit
   Friend WithEvents Label8 As Label
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

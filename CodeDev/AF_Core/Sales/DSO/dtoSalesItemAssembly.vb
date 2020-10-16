@@ -82,6 +82,8 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
           DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
           DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PricePerUnit", .PricePerUnit)
           DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPrice", .TotalPrice)
+          DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .HouseTypeID)
+
 
         Case eMode.HouseTypeSalesItemAssembly
           DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .ParentID)
@@ -106,6 +108,8 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
             .Quantity = DBReadInt32(rDataReader, "Quantity")
             .PricePerUnit = DBReadDecimal(rDataReader, "PricePerUnit")
             .TotalPrice = DBReadDecimal(rDataReader, "TotalPrice")
+            .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
+
           Case eMode.HouseTypeSalesItemAssembly
             .SalesItemAssemblyID = DBReadInt32(rDataReader, "HouseTypeSalesItemAssemblyID")
             .ParentID = DBReadInt32(rDataReader, "HouseTypeID")

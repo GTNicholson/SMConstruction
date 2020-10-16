@@ -83,7 +83,6 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.cboHouseType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.xtbSalesAndOT = New DevExpress.XtraTab.XtraTabPage()
@@ -261,6 +260,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.btnModel = New DevExpress.XtraEditors.ButtonEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,7 +292,6 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.RepositoryItemButtonEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboHouseType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtbSalesAndOT.SuspendLayout()
         CType(Me.grpOrderItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpOrderItem.SuspendLayout()
@@ -404,6 +403,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnModel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -561,6 +561,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         'pnlHouseDetail
         '
+        Me.pnlHouseDetail.Controls.Add(Me.btnModel)
         Me.pnlHouseDetail.Controls.Add(Me.Label32)
         Me.pnlHouseDetail.Controls.Add(Me.txtSalesItemAssemblyDescription)
         Me.pnlHouseDetail.Controls.Add(Me.txtQuantity)
@@ -571,7 +572,6 @@ Partial Class frmSalesOrderDetailHouses
         Me.pnlHouseDetail.Controls.Add(Me.Label31)
         Me.pnlHouseDetail.Controls.Add(Me.Label30)
         Me.pnlHouseDetail.Controls.Add(Me.Label27)
-        Me.pnlHouseDetail.Controls.Add(Me.cboHouseType)
         Me.pnlHouseDetail.Controls.Add(Me.Label28)
         Me.pnlHouseDetail.Controls.Add(Me.Label29)
         Me.pnlHouseDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -878,17 +878,6 @@ Partial Class frmSalesOrderDetailHouses
         Me.Label27.TabIndex = 20
         Me.Label27.Tag = "c"
         Me.Label27.Text = "Cantidad"
-        '
-        'cboHouseType
-        '
-        Me.cboHouseType.Location = New System.Drawing.Point(61, 15)
-        Me.cboHouseType.MenuManager = Me.BarManager1
-        Me.cboHouseType.Name = "cboHouseType"
-        Me.cboHouseType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboHouseType.Properties.Appearance.Options.UseFont = True
-        Me.cboHouseType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboHouseType.Size = New System.Drawing.Size(119, 22)
-        Me.cboHouseType.TabIndex = 25
         '
         'Label28
         '
@@ -2907,6 +2896,15 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.GridView1.Name = "GridView1"
         '
+        'btnModel
+        '
+        Me.btnModel.Location = New System.Drawing.Point(61, 17)
+        Me.btnModel.MenuManager = Me.BarManager1
+        Me.btnModel.Name = "btnModel"
+        Me.btnModel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.btnModel.Size = New System.Drawing.Size(126, 20)
+        Me.btnModel.TabIndex = 51
+        '
         'frmSalesOrderDetailHouses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2951,7 +2949,6 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.RepositoryItemButtonEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCalcEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboHouseType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtbSalesAndOT.ResumeLayout(False)
         CType(Me.grpOrderItem, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpOrderItem.ResumeLayout(False)
@@ -3067,6 +3064,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnModel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3290,11 +3288,11 @@ Partial Class frmSalesOrderDetailHouses
     Friend WithEvents Label31 As Label
     Friend WithEvents Label30 As Label
     Friend WithEvents Label27 As Label
-    Friend WithEvents cboHouseType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents Label28 As Label
     Friend WithEvents Label29 As Label
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents dteDateRequiredSO As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label33 As Label
     Friend WithEvents RepositoryItemDateEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents btnModel As DevExpress.XtraEditors.ButtonEdit
 End Class

@@ -148,6 +148,35 @@ Public Class colWorkOrderAllocations : Inherits colBase(Of dmWorkOrderAllocation
     MyBase.New(vList)
   End Sub
 
+
+  Public Function IndexFromSalesPhaseItem(ByVal vSalesPhaseItem As Integer) As Integer
+    Dim mItem As dmWorkOrderAllocation
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.PhaseItemComponentID = vSalesPhaseItem Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+
+  End Function
+
+  Public Function ItemFromSalesOrderPhaseID(ByVal vSalesOrderPhaseItemID As Integer) As dmWorkOrderAllocation
+    Dim mItem As dmWorkOrderAllocation
+    Dim mRetVal As dmWorkOrderAllocation = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.PhaseItemComponentID = vSalesOrderPhaseItemID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 

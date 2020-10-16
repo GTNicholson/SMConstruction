@@ -8,6 +8,28 @@ Public Class dsoSales : Inherits dsoBase
     MyBase.New(rDBConn)
   End Sub
 
+  Public Function LoadSalesOrderPhaseItemDT(ByRef rDT As DataTable, ByVal vWhereStr As String) As Boolean
+    Dim mSQL As String
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mSQL = " select * from vwSalesOrderPhaseItemInfo where "
+
+      If vWhereStr.Length > 0 Then
+        mSQL = mSQL & vWhereStr
+      End If
+
+      rDT = pDBConn.CreateDataTable(mSQL)
+      mOK = True
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
   Public Function LoadSalesOrderDT(ByRef rDT As DataTable, ByVal vWhereStr As String) As Boolean
     Dim mSQL As String
     Dim mOK As Boolean
@@ -755,6 +777,72 @@ Public Class dsoSales : Inherits dsoBase
     Return mOk
   End Function
 
+  Public Function LoadSalesOrderPhasesByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhases, ByVal vWhere As String) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoSalesOrderPhase(pDBConn)
+
+        mOk = mdto.LoadSalesOrderPhaseCollectionByWhere(rSalesOrderPhaseItems, vWhere)
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
+
+  Public Function LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoSalesOrderPhaseItemInfo(pDBConn)
+
+        mOk = mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItems, vWhere)
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
+
+  Public Function LoadSalesOrderPhaseItem(ByRef rSalesOrderPhaseItem As dmSalesOrderPhaseItem, ByVal vSalesOrderPhaseItemID As Integer) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoSalesOrderPhaseItem(pDBConn)
+
+        mOk = mdto.LoadSalesOrderPhaseItem(rSalesOrderPhaseItem, vSalesOrderPhaseItemID)
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
+
   Public Function LoadSalesOrderPhase(ByRef rSalesOrderPhase As dmSalesOrderPhase, ByVal vSalesOrderPhaseID As Integer) As Boolean
     Dim mOk As Boolean
 
@@ -826,7 +914,7 @@ Public Class dsoSales : Inherits dsoBase
         mdtoOutputDocs.SaveOutputDocumentCollection(rWorkOrder.OutputDocuments, rWorkOrder.WorkOrderID)
 
         mdtoWorkOrderAllocation = New dtoWorkOrderAllocation(pDBConn)
-        mdtoWorkOrderAllocation.LoadWorkOrderAllocationCollection(rWorkOrder.WorkOrderAllocations, rWorkOrder.WorkOrderID)
+        mdtoWorkOrderAllocation.SaveWorkOrderAllocationCollection(rWorkOrder.WorkOrderAllocations, rWorkOrder.WorkOrderID)
       End If
 
       pDBConn.Disconnect()
@@ -855,7 +943,24 @@ Public Class dsoSales : Inherits dsoBase
     End Try
     Return mRetVal
   End Function
+  Public Function LoadSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
+    Dim mdto As dtoSalesOrderPhaseItemInfo
+    Dim mRetVal As Boolean
 
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderPhaseItemInfo(pDBConn)
+      mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItemInfos, vWhere)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
 
   Public Function LoadSalesOrderPhaseInfo(ByRef rSalesOrderPhaseInfo As clsSalesOrderPhaseInfo, ByVal vWhere As String) As Boolean
     Dim mdto As dtoSalesOrderPhaseInfo

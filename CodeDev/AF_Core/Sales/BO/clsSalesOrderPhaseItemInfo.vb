@@ -4,6 +4,7 @@
   Private pSalesOrderPhase As dmSalesOrderPhase
   Private pSalesOrderItem As dmSalesOrderItem
   Private pCustomer As dmCustomer
+  Private pWorkOrderAllocation As dmWorkOrderAllocation
 
   Public Sub New()
     pSalesOrderPhaseItem = New dmSalesOrderPhaseItem
@@ -11,8 +12,18 @@
     pSalesOrderPhase = New dmSalesOrderPhase
     pSalesOrderItem = New dmSalesOrderItem
     pCustomer = New dmCustomer
+    pWorkOrderAllocation = New dmWorkOrderAllocation
   End Sub
 
+
+  Public Property WorkOrderAllocation As dmWorkOrderAllocation
+    Get
+      Return pWorkOrderAllocation
+    End Get
+    Set(value As dmWorkOrderAllocation)
+      pWorkOrderAllocation = value
+    End Set
+  End Property
   Public Property SalesOrderPhaseItem As dmSalesOrderPhaseItem
     Get
       Return pSalesOrderPhaseItem
@@ -105,7 +116,23 @@
     End Get
   End Property
 
+  Public ReadOnly Property PhaseNumber As Integer
+    Get
+      Return pSalesOrderPhase.PhaseNumber
+    End Get
+  End Property
 
+  Public ReadOnly Property PhaseRef As String
+    Get
+      Return pSalesOrderPhase.PhaseRef
+    End Get
+  End Property
+
+  Public ReadOnly Property JobNo As String
+    Get
+      Return pSalesOrderPhase.JobNo
+    End Get
+  End Property
 
   Public ReadOnly Property CompanyName As String
     Get
@@ -125,10 +152,25 @@
     End Get
   End Property
 
+  Public ReadOnly Property QuantityDone As Int32
+    Get
+      Return pWorkOrderAllocation.QuantityDone
+    End Get
+
+  End Property
+
 End Class
 
 
 Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseItemInfo)
+
+  Public Sub New()
+
+  End Sub
+
+  Public Sub New(ByVal vList As List(Of clsSalesOrderPhaseItemInfo))
+    MyBase.New(vList)
+  End Sub
 
   Public Function IndexFromSOPhaseID(ByVal vSalesOrderPhaseID As Integer) As Integer
     Dim mRetVal As Integer = -1
@@ -142,6 +184,22 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
     Return mRetVal
   End Function
 
+  Public Function ItemFromPhaseItemComponentID(ByVal vPhaseItemComponentID As Integer) As clsSalesOrderPhaseItemInfo
+    Dim mItem As clsSalesOrderPhaseItemInfo
+    Dim mRetVal As clsSalesOrderPhaseItemInfo = Nothing
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
 
 
+        If mItem.SalesOrderPhaseItemID = vPhaseItemComponentID Then
+          mRetVal = mItem
+          Exit For
+        End If
+      End If
+    Next
+
+    Return mRetVal
+  End Function
 End Class

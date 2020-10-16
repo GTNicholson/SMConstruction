@@ -170,7 +170,7 @@ Public Class frmSalesOrderDetailHouses
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
     RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
 
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType))
+    ''RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model))
 
 
     LoadCustomerContactCombo()
@@ -1176,7 +1176,7 @@ Public Class frmSalesOrderDetailHouses
 
 
           txtSOARef.Text = .Ref
-          '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboHouseType, .HouseTypeID)
+          btnModel.EditValue = .HouseTypeID
 
           ''txtTotalPrice.EditValue = .TotalPrice
           txtSalesItemAssemblyDescription.Text = .Description
@@ -1198,28 +1198,22 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub UpdateSalesItemAssembly()
-    Dim mValueItems As clsValueItem
 
 
     If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
 
-      mValueItems = New clsValueItem
-
-      mValueItems = TryCast(cboHouseType.EditValue, clsValueItem)
 
       With pFormController.CurrentSalesItemAssembly
 
         .Ref = txtSOARef.Text
 
-        ''.HouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboHouseType)
+        .HouseTypeID = btnModel.EditValue
         .TotalPrice = Val(txtTotalPrice.Text)
         .PricePerUnit = Val(txtPricePerUnit.Text)
         .Quantity = Val(txtQuantity.Text)
         .Description = txtSalesItemAssemblyDescription.Text
-        If mValueItems IsNot Nothing Then
-          ''.HouseTypeID = mValueItems.ItemValue
 
-        End If
+
       End With
 
     End If
@@ -1286,9 +1280,10 @@ Public Class frmSalesOrderDetailHouses
                 mSalesItem = pFormController.CreateSalesItem(pFormController.SalesOrder)
                 mSalesItem.ProductID = mSelectedItem.ID
                 mSalesItem.Description = mSelectedItem.Description
-                mSalesItem.HouseTypeID = mSelectedItem.ItemType
+                ''mSalesItem.HouseTypeID = mSelectedItem.HouseTypeID
                 mSalesItem.SalesSubItemType = mSelectedItem.SubItemType
                 mSalesItem.SalesItemType = mSelectedItem.ItemType
+                mSalesItem.ProductTypeID = mSelectedItem.ProductTypeID
                 mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem)
                 pFormController.SalesItemEditors.Add(mSIEditor)
 
@@ -1367,7 +1362,7 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub cboHouseType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboHouseType.SelectedIndexChanged
+  Private Sub cboHouseType_SelectedIndexChanged(sender As Object, e As EventArgs)
 
     ''If txtSalesItemAssemblyDescription.Text = "" Then
     ''  txtSalesItemAssemblyDescription.Text = cboHouseType.Text
@@ -1375,6 +1370,25 @@ Public Class frmSalesOrderDetailHouses
 
 
     ''End If
+
+  End Sub
+
+  Private Sub btnModel_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnModel.ButtonClick
+
+    Dim mHouseTypeConfig As dmHouseType
+
+    UpdateObjects()
+    mHouseTypeConfig = New dmHouseType()
+
+    pFormController.SalesOrder.SalesOrderItems = frmHousePopUp.GetGeneratedSalesItems(pFormController.SalesOrder, pFormController.DBConn, pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID)
+
+
+    If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
+
+      pFormController.RefreshCurrentSalesItemEditors()
+      grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
+    End If
+    RefreshControls()
 
   End Sub
 End Class
