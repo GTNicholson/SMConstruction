@@ -6,10 +6,7 @@ Public Class dmProductCostBook : Inherits dmBase
   Private pCostBookName As String
   Private pCostBookDate As DateTime
   Private pIsDefault As Boolean
-  Private pDirectLabourCost As Decimal
-  Private pDirectMaterialCost As Decimal
-  Private pDirectTransportationAndEquipment As Decimal
-  Private pOutsourcingCost As Decimal
+
 
   Public Sub New()
     MyBase.New()
@@ -47,10 +44,6 @@ Public Class dmProductCostBook : Inherits dmBase
       .CostBookName = CostBookName
       .CostBookDate = CostBookDate
       .IsDefault = IsDefault
-      .DirectLabourCost = DirectLabourCost
-      .DirectMaterialCost = DirectMaterialCost
-      .DirectTransportationAndEquipment = DirectTransportationAndEquipment
-      .OutsourcingCost = OutsourcingCost
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -100,45 +93,7 @@ Public Class dmProductCostBook : Inherits dmBase
     End Set
   End Property
 
-  Public Property DirectLabourCost() As Decimal
-    Get
-      Return pDirectLabourCost
-    End Get
-    Set(ByVal value As Decimal)
-      If pDirectLabourCost <> value Then IsDirty = True
-      pDirectLabourCost = value
-    End Set
-  End Property
 
-  Public Property DirectMaterialCost() As Decimal
-    Get
-      Return pDirectMaterialCost
-    End Get
-    Set(ByVal value As Decimal)
-      If pDirectMaterialCost <> value Then IsDirty = True
-      pDirectMaterialCost = value
-    End Set
-  End Property
-
-  Public Property DirectTransportationAndEquipment() As Decimal
-    Get
-      Return pDirectTransportationAndEquipment
-    End Get
-    Set(ByVal value As Decimal)
-      If pDirectTransportationAndEquipment <> value Then IsDirty = True
-      pDirectTransportationAndEquipment = value
-    End Set
-  End Property
-
-  Public Property OutsourcingCost() As Decimal
-    Get
-      Return pOutsourcingCost
-    End Get
-    Set(ByVal value As Decimal)
-      If pOutsourcingCost <> value Then IsDirty = True
-      pOutsourcingCost = value
-    End Set
-  End Property
 
 
 End Class

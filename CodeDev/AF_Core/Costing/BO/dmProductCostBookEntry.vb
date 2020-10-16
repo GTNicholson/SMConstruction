@@ -11,6 +11,10 @@ Public Class dmProductCostBookEntry : Inherits dmBase
   Private pMinCost As Decimal
   Private pRetailPrice As Decimal
 
+  Private pDirectLabourCost As Decimal
+  Private pDirectMaterialCost As Decimal
+  Private pDirectTransportationAndEquipment As Decimal
+  Private pOutsourcingCost As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -51,6 +55,10 @@ Public Class dmProductCostBookEntry : Inherits dmBase
       .CostUnit = CostUnit
       .MinCost = MinCost
       .RetailPrice = RetailPrice
+      .DirectLabourCost = DirectLabourCost
+      .DirectMaterialCost = DirectMaterialCost
+      .DirectTransportationAndEquipment = DirectTransportationAndEquipment
+      .OutsourcingCost = OutsourcingCost
 
       'Add entries here for each collection and class property
 
@@ -144,6 +152,45 @@ Public Class dmProductCostBookEntry : Inherits dmBase
     End Set
   End Property
 
+  Public Property DirectLabourCost() As Decimal
+    Get
+      Return pDirectLabourCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pDirectLabourCost <> value Then IsDirty = True
+      pDirectLabourCost = value
+    End Set
+  End Property
+
+  Public Property DirectMaterialCost() As Decimal
+    Get
+      Return pDirectMaterialCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pDirectMaterialCost <> value Then IsDirty = True
+      pDirectMaterialCost = value
+    End Set
+  End Property
+
+  Public Property DirectTransportationAndEquipment() As Decimal
+    Get
+      Return pDirectTransportationAndEquipment
+    End Get
+    Set(ByVal value As Decimal)
+      If pDirectTransportationAndEquipment <> value Then IsDirty = True
+      pDirectTransportationAndEquipment = value
+    End Set
+  End Property
+
+  Public Property OutsourcingCost() As Decimal
+    Get
+      Return pOutsourcingCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pOutsourcingCost <> value Then IsDirty = True
+      pOutsourcingCost = value
+    End Set
+  End Property
 
 End Class
 

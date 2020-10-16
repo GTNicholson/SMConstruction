@@ -94,7 +94,54 @@
     End Set
   End Property
 
-
+  Public Property DirectLabourCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pProductCostBookEntry IsNot Nothing Then
+        mRetVal = pProductCostBookEntry.DirectLabourCost
+      End If
+      Return mRetVal
+    End Get
+    Set(value As Decimal)
+      pProductCostBookEntry.DirectLabourCost = value
+    End Set
+  End Property
+  Public Property DirectMaterialCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pProductCostBookEntry IsNot Nothing Then
+        mRetVal = pProductCostBookEntry.DirectMaterialCost
+      End If
+      Return mRetVal
+    End Get
+    Set(value As Decimal)
+      pProductCostBookEntry.DirectMaterialCost = value
+    End Set
+  End Property
+  Public Property DirectTransportationAndEquipment As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pProductCostBookEntry IsNot Nothing Then
+        mRetVal = pProductCostBookEntry.DirectTransportationAndEquipment
+      End If
+      Return mRetVal
+    End Get
+    Set(value As Decimal)
+      pProductCostBookEntry.DirectTransportationAndEquipment = value
+    End Set
+  End Property
+  Public Property OutsourcingCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      If pProductCostBookEntry IsNot Nothing Then
+        mRetVal = pProductCostBookEntry.OutsourcingCost
+      End If
+      Return mRetVal
+    End Get
+    Set(value As Decimal)
+      pProductCostBookEntry.OutsourcingCost = value
+    End Set
+  End Property
   Public ReadOnly Property ProductDescription As String
     Get
       Dim mRetVal As String = ""
