@@ -12,6 +12,25 @@ Public Class clsProductBaseInfo
     End Set
   End Property
 
+
+  Public ReadOnly Property Category As eProductType
+    Get
+      Return pProduct.ProductTypeID
+    End Get
+  End Property
+
+  Public ReadOnly Property CategoryDesc As String
+    Get
+      Return RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ProductTypeID, eProductType))
+    End Get
+  End Property
+
+  Public ReadOnly Property ID As Integer
+    Get
+      Return pProduct.ID
+    End Get
+  End Property
+
   Public ReadOnly Property Code As String
     Get
       Return pProduct.Code
@@ -49,5 +68,20 @@ Public Class clsProductBaseInfo
 End Class
 
 Public Class colProductBaseInfos : Inherits List(Of clsProductBaseInfo)
+
+  Public Function ItemFromProductTypeAndID(ByVal vProductType As eProductType, ByVal vID As Integer) As clsProductBaseInfo
+    Dim mItem As clsProductBaseInfo
+    Dim mRetVal As clsProductBaseInfo = Nothing
+
+
+    For Each mItem In Me
+
+      If mItem.ID = vID And mItem.Category = vProductType Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
 
 End Class

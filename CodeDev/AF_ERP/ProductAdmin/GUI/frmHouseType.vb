@@ -450,9 +450,9 @@ Public Class frmHouseType
       Case "Add"
         Try
           Dim mProductPicker As clsPickerProductItem
-          Dim mProductsToAdd As New List(Of dmProductBase)
+          Dim mProductsToAdd As New List(Of clsProductBaseInfo)
 
-          mProductPicker = New clsPickerProductItem(pFormController.Products, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, AppRTISGlobal.GetInstance)
           mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
 
 
@@ -466,20 +466,22 @@ Public Class frmHouseType
 
       Case "AddDuplicates"
         ''  Dim mCount As Integer
-        Dim mProductBaseList As New List(Of dmProductBase)
+        Dim mProductBaseInfoList As New List(Of clsProductBaseInfo)
         Dim mHTSalesItemInfo As clsHouseTypeSalesItemInfo
-        Dim mProductBase As dmProductBase
+        Dim mProductBaseInfo As clsProductBaseInfo
+        Dim mProductInfos As colProductBaseInfos
 
         mHTSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow, clsHouseTypeSalesItemInfo)
 
         If mHTSalesItemInfo IsNot Nothing Then
-          mProductBase = mHTSalesItemInfo.Product.Clone
+          mProductInfos = pFormController.GetProductInfos
+          mProductBaseInfo = mProductInfos.ItemFromProductTypeAndID(mHTSalesItemInfo.Product.ProductTypeID, mHTSalesItemInfo.Product.ID)
 
-          If mProductBase IsNot Nothing Then
-            mProductBaseList.Add(mProductBase)
+          If mProductBaseInfo IsNot Nothing Then
+            mProductBaseInfoList.Add(mProductBaseInfo)
             CheckSave(False)
 
-            pFormController.AddProducts(mProductBaseList)
+            pFormController.AddProducts(mProductBaseInfoList)
             grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
             gvHouseSalesItems.RefreshData()
           End If

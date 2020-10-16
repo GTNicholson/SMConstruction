@@ -24,6 +24,16 @@
 
     mRefLists = AppRTISGlobal.GetInstance.RefLists
 
+    Select Case rProductBase.ProductTypeID
+      Case eProductType.ProductFurniture
+        mRetVal = "M-"
+      Case eProductType.ProductInstallation
+        mRetVal = "I-"
+      Case eProductType.StructureAF
+        mRetVal = "E-"
+    End Select
+
+
     mPCItemType = CType(mRefLists.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes).ItemFromKey(rProductBase.ItemType)
 
     If mPCItemType IsNot Nothing Then

@@ -109,10 +109,20 @@ Public Class dmProductFurniture : Inherits dmProductBase
 
   Public Property ProductFurnitureID() As Int32
     Get
-      Return ID
+      Return pID
     End Get
     Set(ByVal value As Int32)
-      ID = value
+      If pID <> value Then IsDirty = True
+      pID = value
+    End Set
+  End Property
+
+  Public Overrides Property ID As Integer
+    Get
+      Return ProductFurnitureID
+    End Get
+    Set(ByVal value As Int32)
+      ProductFurnitureID = value
     End Set
   End Property
 

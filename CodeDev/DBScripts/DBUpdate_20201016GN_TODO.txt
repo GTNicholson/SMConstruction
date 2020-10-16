@@ -1,0 +1,34 @@
+ALTER view [dbo].[vwSalesOrderPhaseItemInfo]
+as
+
+select
+SOPI.SalesOrderPhaseItemID,
+SOPI.Qty,
+
+
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+
+SOP.SalesOrderPhaseID,
+SOP.DateRequired,
+SOP.PhaseNumber,
+SOP.PhaseRef,
+SOP.JobNo,
+
+SOI.SalesOrderItemID,
+SOI.Description,
+
+CU.CompanyName,
+
+WOA.QuantityDone
+
+
+
+from SalesOrderPhaseItem SOPI
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO on SO.SalesOrderID=SOI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+LEFT JOIN WorkOrderAllocation WOA ON WOA.PhaseItemComponentID=SOPI.SalesOrderPhaseItemID
+GO

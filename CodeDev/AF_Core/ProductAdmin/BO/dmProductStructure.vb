@@ -67,10 +67,20 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Public Property ProductStructureID() As Int32
     Get
-      Return ID
+      Return pID
     End Get
     Set(ByVal value As Int32)
-      ID = value
+      If pID <> value Then IsDirty = True
+      pID = value
+    End Set
+  End Property
+
+  Public Overrides Property ID As Integer
+    Get
+      Return ProductStructureID
+    End Get
+    Set(ByVal value As Int32)
+      ProductStructureID = value
     End Set
   End Property
 

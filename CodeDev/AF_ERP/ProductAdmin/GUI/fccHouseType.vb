@@ -190,7 +190,7 @@ Public Class fccHouseType
 
   End Sub
 
-  Public Sub AddProducts(ByRef rProducts As List(Of dmProductBase))
+  Public Sub AddProducts(ByRef rProducts As List(Of clsProductBaseInfo))
 
     pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts)
     pCurrentHTSalesItemInfos = pHouseTypeManager.GetHTItemInfosForAssembly(pCurrentHouseTypeAssembly, pProducts)
@@ -203,5 +203,12 @@ Public Class fccHouseType
 
 
   End Sub
+
+  Public Function GetProductInfos() As colProductBaseInfos
+    Dim mRetVal As New colProductBaseInfos
+    Dim mdso As New dsoProductAdmin(DBConn)
+    mdso.LoadProductInfosByWhere(mRetVal, "")
+    Return mRetVal
+  End Function
 
 End Class

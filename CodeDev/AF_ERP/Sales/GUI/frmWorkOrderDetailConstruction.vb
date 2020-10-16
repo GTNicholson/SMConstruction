@@ -1185,21 +1185,21 @@ Public Class frmWorkOrderDetailConstruction
 
   Private Sub bteProductPicker_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteProductPicker.ButtonClick
     Dim mProductPicker As clsPickerProductItem
-    Dim mProducts As New colProductBases
-    Dim mProductBase As dmProductBase
+    Dim mProducts As New colProductBaseInfos
+    Dim mProductBaseInfo As clsProductBaseInfo
 
-    pFormController.LoadProducts(mProducts)
+    mProducts = pFormController.GetProductInfos()
 
     mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
 
 
-    mProductBase = frmProductPicker.OpenPickerSingle(mProductPicker)
+    mProductBaseInfo = frmProductPicker.OpenPickerSingle(mProductPicker)
 
-    If mProductBase IsNot Nothing Then
-      pFormController.WorkOrder.Product = mProductBase
-      pFormController.WorkOrder.ProductTypeID = mProductBase.ItemType
-      pFormController.WorkOrder.ProductID = mProductBase.ID
-      bteProductPicker.Text = mProductBase.Description
+    If mProductBaseInfo IsNot Nothing Then
+      pFormController.WorkOrder.Product = mProductBaseInfo.Product
+      pFormController.WorkOrder.ProductTypeID = mProductBaseInfo.Category
+      pFormController.WorkOrder.ProductID = mProductBaseInfo.ID
+      bteProductPicker.Text = mProductBaseInfo.Description
       UpdateObject()
       pFormController.SaveObjects()
 
@@ -1227,7 +1227,7 @@ Public Class frmWorkOrderDetailConstruction
         Case eAllocationsButtons.Add
           Try
 
-            LoadSalesOrderPhaseItemInfos(pFormController.SalesOrderPhaseItemInfos)
+            pFormController.LoadSalesOrderPhaseItemsByWhere(pFormController.SalesOrderPhaseItemInfos, "")
 
             For Each mSOPII As clsSalesOrderPhaseItemInfo In pFormController.SalesOrderPhaseItemInfos
 
@@ -1296,10 +1296,5 @@ Public Class frmWorkOrderDetailConstruction
     End Try
   End Sub
 
-  Public Sub LoadSalesOrderPhaseItemInfos(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos)
 
-
-    pFormController.LoadSalesOrderPhaseItemsByWhere(rSalesOrderPhaseItemInfos, "")
-
-  End Sub
 End Class

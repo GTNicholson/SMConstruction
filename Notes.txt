@@ -1,0 +1,40 @@
+Product Definitions
+ - get rid of Tipo de Producto drop down and have the ada as a drop down for the 3 categories. 
+ - Genreate code only if in edit mode
+ - Preface Code with E or I or M
+ -# Show the Category in the grid
+ - get rid of radio buttons for the moment
+ - Title of window says Stock Item Admin
+
+
+House Group and Model
+ - Rename these HouseGroup and HouseModel
+ - HouseModel to have a HouseGroupID field and work in lookup
+
+House Configuration
+ - Delete individual HouseTypeSalesItems
+ - Error on deleteing last assembly
+ - problem if you delete an assembly it leaves housetypesalesitem orphans
+ - Qty needs to except delimals
+ - Products need an index type field
+ - Get costing into the Preview
+
+Product Picker
+ - add product code
+ - Can't find all the products we need
+
+Sales Order Form
+ - House model doesn't stay
+ - Delete item asks then deletes anyway
+ - Provide a short desc for the house tab caption
+ - need the stage grouping in the grid
+ - Apply the Sequence Number to the salesitems
+ - Sales Order Phase Items are not getting created
+
+Product Costing
+ - Costs need to be Labour, Materials, Transport, Sub-Con
+ - what is the Costo Unit column
+
+Works Order Form
+ - Fell over when I tried to add an Installation type product
+ - Change Calendarizacion to Allocation or Sales Requirements
