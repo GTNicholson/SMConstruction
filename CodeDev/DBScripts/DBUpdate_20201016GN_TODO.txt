@@ -1,3 +1,4 @@
+
 ALTER view [dbo].[vwSalesOrderPhaseItemInfo]
 as
 
