@@ -310,7 +310,7 @@ Partial Class frmProductCostBook
         '
         Me.XtraTabPage2.Controls.Add(Me.grdProductStructureCostBookEntry)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1616, 418)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1851, 418)
         Me.XtraTabPage2.Text = "Costeo de Productos de Estructuras"
         '
         'grdProductStructureCostBookEntry
@@ -321,7 +321,7 @@ Partial Class frmProductCostBook
         Me.grdProductStructureCostBookEntry.MenuManager = Me.BarManager1
         Me.grdProductStructureCostBookEntry.Name = "grdProductStructureCostBookEntry"
         Me.grdProductStructureCostBookEntry.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox2})
-        Me.grdProductStructureCostBookEntry.Size = New System.Drawing.Size(1616, 418)
+        Me.grdProductStructureCostBookEntry.Size = New System.Drawing.Size(1851, 418)
         Me.grdProductStructureCostBookEntry.TabIndex = 133
         Me.grdProductStructureCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvProductStructureCostBookEntry})
         '
@@ -796,13 +796,13 @@ Partial Class frmProductCostBook
         Me.GridColumn12.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
         Me.GridColumn12.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn12.AppearanceCell.Options.UseFont = True
-        Me.GridColumn12.Caption = "Cost"
+        Me.GridColumn12.Caption = "Cost0"
         Me.GridColumn12.DisplayFormat.FormatString = "f2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "Cost"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 4
         Me.GridColumn12.Width = 117
         '
         'GridColumn13
@@ -852,8 +852,6 @@ Partial Class frmProductCostBook
         Me.GridColumn16.Caption = "Costo Unit."
         Me.GridColumn16.FieldName = "CostUnit"
         Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 4
         Me.GridColumn16.Width = 164
         '
         'GridColumn17
@@ -864,7 +862,7 @@ Partial Class frmProductCostBook
         Me.GridColumn17.FieldName = "MinCost"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 6
+        Me.GridColumn17.VisibleIndex = 5
         Me.GridColumn17.Width = 99
         '
         'GridColumn18
@@ -886,7 +884,7 @@ Partial Class frmProductCostBook
         Me.GridColumn21.FieldName = "DirectLabourCost"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 7
+        Me.GridColumn21.VisibleIndex = 6
         Me.GridColumn21.Width = 191
         '
         'GridColumn22
@@ -897,7 +895,7 @@ Partial Class frmProductCostBook
         Me.GridColumn22.FieldName = "DirectMaterialCost"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 8
+        Me.GridColumn22.VisibleIndex = 7
         Me.GridColumn22.Width = 218
         '
         'GridColumn23
@@ -908,7 +906,7 @@ Partial Class frmProductCostBook
         Me.GridColumn23.FieldName = "DirectTransportationAndEquipment"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 9
+        Me.GridColumn23.VisibleIndex = 8
         Me.GridColumn23.Width = 187
         '
         'GridColumn24
@@ -919,7 +917,7 @@ Partial Class frmProductCostBook
         Me.GridColumn24.FieldName = "OutsourcingCost"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 10
+        Me.GridColumn24.VisibleIndex = 9
         Me.GridColumn24.Width = 170
         '
         'RepositoryItemComboBox1

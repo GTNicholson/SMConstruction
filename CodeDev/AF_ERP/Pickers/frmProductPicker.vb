@@ -102,9 +102,6 @@ Public Class frmProductPicker
   End Sub
 
   Private Sub LoadCombo()
-    Dim mVIs As colValueItems
-    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdItemList, gcItemType, mVIs)
 
   End Sub
 

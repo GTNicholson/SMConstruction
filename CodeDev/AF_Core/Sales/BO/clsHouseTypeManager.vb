@@ -72,13 +72,16 @@
     Dim mHTSII As clsHouseTypeSalesItemInfo
     Dim mProduct As dmProductBase
 
-    For Each mHTSI As dmHouseTypeSalesItem In pHouseType.HTSalesItems
-      If mHTSI.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID Then
-        mProduct = rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID)
-        mHTSII = New clsHouseTypeSalesItemInfo(mHTSI, mProduct, rSalesItemAssembly.Description)
-        mRetVal.Add(mHTSII)
-      End If
-    Next
+    If rSalesItemAssembly IsNot Nothing Then
+      For Each mHTSI As dmHouseTypeSalesItem In pHouseType.HTSalesItems
+        If mHTSI.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID Then
+          mProduct = rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID)
+          mHTSII = New clsHouseTypeSalesItemInfo(mHTSI, mProduct, rSalesItemAssembly.Description)
+          mRetVal.Add(mHTSII)
+        End If
+      Next
+
+    End If
     Return mRetVal
   End Function
 
@@ -93,4 +96,8 @@
 
     Return mTmpHTSalesItems
   End Function
+
+  Public Sub RemoveHTSalesOrderItem(rHTSalesItemInfo As clsHouseTypeSalesItemInfo)
+    pHouseType.HTSalesItems.Remove(rHTSalesItemInfo.HouseTypeSalesItem)
+  End Sub
 End Class

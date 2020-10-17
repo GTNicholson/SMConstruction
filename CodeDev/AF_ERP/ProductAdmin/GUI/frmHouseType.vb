@@ -441,16 +441,18 @@ Public Class frmHouseType
   End Sub
 
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpProductLists.CustomButtonClick
-
-
-
+    Dim mProductBaseInfoList As New List(Of clsProductBaseInfo)
+    Dim mHTSalesItemInfo As clsHouseTypeSalesItemInfo
+    Dim mProductBaseInfo As clsProductBaseInfo
+    Dim mProductInfos As colProductBaseInfos
+    Dim mProductPicker As clsPickerProductItem
+    Dim mProductsToAdd As New List(Of clsProductBaseInfo)
 
     Select Case e.Button.Properties.Tag
 
       Case "Add"
         Try
-          Dim mProductPicker As clsPickerProductItem
-          Dim mProductsToAdd As New List(Of clsProductBaseInfo)
+
 
           mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, AppRTISGlobal.GetInstance)
           mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
@@ -466,10 +468,7 @@ Public Class frmHouseType
 
       Case "AddDuplicates"
         ''  Dim mCount As Integer
-        Dim mProductBaseInfoList As New List(Of clsProductBaseInfo)
-        Dim mHTSalesItemInfo As clsHouseTypeSalesItemInfo
-        Dim mProductBaseInfo As clsProductBaseInfo
-        Dim mProductInfos As colProductBaseInfos
+
 
         mHTSalesItemInfo = CType(gvHouseSalesItems.GetFocusedRow, clsHouseTypeSalesItemInfo)
 
@@ -488,8 +487,18 @@ Public Class frmHouseType
 
         End If
 
+      Case "Delete"
+        mHTSalesItemInfo = TryCast(gvHouseSalesItems.GetFocusedRow, clsHouseTypeSalesItemInfo)
+        If mHTSalesItemInfo IsNot Nothing Then
+          If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
+            UpdateObjects()
+            pFormController.DeleteHTSalesItemInfo(mHTSalesItemInfo)
+            grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+            gvHouseSalesItems.RefreshData()
+            RefreshControls()
+          End If
+        End If
 
-        ''  MessageBox.Show("" & mCount & " items duplicated!")
     End Select
 
 

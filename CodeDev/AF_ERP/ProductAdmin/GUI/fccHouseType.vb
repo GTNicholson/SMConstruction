@@ -211,4 +211,22 @@ Public Class fccHouseType
     Return mRetVal
   End Function
 
+  Friend Sub DeleteHTSalesItemInfo(ByRef rHTSalesItemInfo As clsHouseTypeSalesItemInfo)
+    Try
+      If pHouseType.HTSalesItems IsNot Nothing And pHouseType.HTSalesItems.Count > 0 Then
+        pHouseTypeManager.RemoveHTSalesOrderItem(rHTSalesItemInfo)
+        pHouseType.HTSalesItems.Remove(rHTSalesItemInfo.HouseTypeSalesItem)
+        pPrevtHTSalesItemInfos.Remove(rHTSalesItemInfo)
+        pCurrentHTSalesItemInfos = pHouseTypeManager.GetHTItemInfosForAssembly(pCurrentHouseTypeAssembly, pProducts)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+
+  Public Sub RefreshHTSalesItems()
+
+  End Sub
 End Class
