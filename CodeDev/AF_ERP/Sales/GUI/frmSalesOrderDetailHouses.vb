@@ -354,15 +354,18 @@ Public Class frmSalesOrderDetailHouses
   Public Sub UpdateSalesOrderPhaseItem(ByRef rSalesOrderPhase As dmSalesOrderPhase)
     Dim mSOI As dmSalesOrderItem
 
-    For Each mSOPI As dmSalesOrderPhaseItem In rSalesOrderPhase.SalesOrderPhaseItems
+    If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
+      For Each mSOPI As dmSalesOrderPhaseItem In rSalesOrderPhase.SalesOrderPhaseItems
 
-      mSOI = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOPI.SalesItemID)
+        mSOI = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOPI.SalesItemID)
 
-      If mSOI IsNot Nothing Then
-        mSOPI.Qty = mSOI.Quantity
-      End If
+        If mSOI IsNot Nothing Then
+          mSOPI.Qty = mSOI.Quantity
+        End If
 
-    Next
+      Next
+    End If
+
 
   End Sub
 

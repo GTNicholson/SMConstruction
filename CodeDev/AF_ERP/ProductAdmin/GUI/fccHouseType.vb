@@ -174,8 +174,8 @@ Public Class fccHouseType
     pHouseTypeManager.DeleteSalesItemAssembly(rHouseTypeAssembly)
 
     If pHouseType.SalesItemAssemblys.Count = 0 Then
-      SetCurrentHouseTypeAssembly(Nothing)
-    ElseIf mNewPos <= pHouseType.SalesItemAssemblys.Count - 1 Then
+        SetCurrentHouseTypeAssembly(Nothing)
+      ElseIf mNewPos <= pHouseType.SalesItemAssemblys.Count - 1 Then
       SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys(mNewPos))
     Else
       SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys.Last)

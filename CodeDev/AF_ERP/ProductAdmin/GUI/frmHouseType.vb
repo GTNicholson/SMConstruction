@@ -493,7 +493,7 @@ Public Class frmHouseType
           If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
             UpdateObjects()
             pFormController.DeleteHTSalesItemInfo(mHTSalesItemInfo)
-            grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+                grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
             gvHouseSalesItems.RefreshData()
             RefreshControls()
           End If
