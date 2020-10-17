@@ -17,7 +17,6 @@ Public Class fccSalesOrderDetailHouses
   Private pCustomerPurchaseOrders As colCustomerPurchaseOrders
   Private pCurrentSalesItemAssembly As dmSalesItemAssembly
   Private pSalesItemEditors As colSalesItemEditors
-  Private pProducts As colProductBases
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
@@ -28,7 +27,6 @@ Public Class fccSalesOrderDetailHouses
     pCustomerPurchaseOrders = New colCustomerPurchaseOrders
     pCurrentSalesItemAssembly = New dmSalesItemAssembly
     pSalesItemEditors = New colSalesItemEditors
-    pProducts = New colProductBases
   End Sub
 
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
@@ -67,12 +65,6 @@ Public Class fccSalesOrderDetailHouses
   Public ReadOnly Property CustomerPurchaseOrders As colCustomerPurchaseOrders
     Get
       Return pSalesOrder.CustomerPurchaseOrder
-    End Get
-  End Property
-
-  Public ReadOnly Property Products As colProductBases
-    Get
-      Return pProducts
     End Get
   End Property
 
@@ -441,14 +433,20 @@ Public Class fccSalesOrderDetailHouses
 
   Public Sub RefreshCurrentSalesItemEditors()
     Dim mSIAE As clsSalesItemEditor
+    Dim mProductInfo As clsProductBaseInfo
+    Dim mPIs As colProductBaseInfos
     pSalesItemEditors.Clear()
 
+
     If pCurrentSalesItemAssembly IsNot Nothing Then
+      mPIs = GetProductInfos()
+
       For Each mSalesItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
         If mSalesItem.SalesItemAssemblyID = pCurrentSalesItemAssembly.SalesItemAssemblyID Then
 
           '// create a new editor based on this salesitem and add to collection
-          mSIAE = New clsSalesItemEditor(pSalesOrder, pCurrentSalesItemAssembly, mSalesItem)
+          mProductInfo = mPIs.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
+          mSIAE = New clsSalesItemEditor(pSalesOrder, pCurrentSalesItemAssembly, mSalesItem, mProductInfo.Product)
           pSalesItemEditors.Add(mSIAE)
 
           mSalesItem.Description = mSIAE.Description

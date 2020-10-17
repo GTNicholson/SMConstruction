@@ -62,8 +62,8 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
         .ProjectName = DBReadString(rDataReader, "ProjectName")
       End With
 
-      With pSalesOrderPhaseItemInfo.WorkOrderAllocation
-        .QuantityDone = DBReadInt32(rDataReader, "QuantityDone")
+      With pSalesOrderPhaseItemInfo.SalesItemAssembly
+        .Ref = DBReadString(rDataReader, "Ref")
       End With
 
       With pSalesOrderPhaseItemInfo.SalesOrderPhase
@@ -79,6 +79,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
       With pSalesOrderPhaseItemInfo.SalesOrderItem
         .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
         .Description = DBReadString(rDataReader, "Description")
+        .ItemNumber = DBReadString(rDataReader, "ItemNumber")
       End With
 
 

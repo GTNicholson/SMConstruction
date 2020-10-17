@@ -15,6 +15,7 @@ Public Class fccWorkOrderDetailConstruction
   Private pUsedItems As List(Of Integer)
   Private pSalesOrderPhaseItems As colSalesOrderPhaseItems
   Private pWorkOrderAllocationEditors As colWorkOrderAllocationEditors
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
@@ -481,52 +482,47 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Function LoadRefData() As Boolean
 
-    Dim mOK As Boolean
-    Dim mdsoSales As New dsoSales(pDBConn)
-    Dim mSalesOrderPhaseItem As dmSalesOrderPhaseItem
-    Try
+    ''Dim mOK As Boolean
+    ''Dim mdsoSales As New dsoSales(pDBConn)
+    ''Dim mSalesOrderPhaseItem As dmSalesOrderPhaseItem
+    ''Try
 
-      mOK = True
-      pSalesOrderPhaseItems = New colSalesOrderPhaseItems
+    ''  mOK = True
+    ''  pSalesOrderPhaseItems = New colSalesOrderPhaseItems
 
-      For Each mWOAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
-        If pSalesOrderPhaseItems.IndexFromKey(mWOAllocation.PhaseItemComponentID) = -1 Then
-          mSalesOrderPhaseItem = New dmSalesOrderPhaseItem
-          mdsoSales.LoadSalesOrderPhaseItem(mSalesOrderPhaseItem, mWOAllocation.PhaseItemComponentID)
-          pSalesOrderPhaseItems.Add(mSalesOrderPhaseItem)
-        End If
+    ''  For Each mWOAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+    ''    If pSalesOrderPhaseItems.IndexFromKey(mWOAllocation.SalesOrderPhaseItemID) = -1 Then
+    ''      mSalesOrderPhaseItem = New dmSalesOrderPhaseItem
+    ''      mdsoSales.LoadSalesOrderPhaseItem(mSalesOrderPhaseItem, mWOAllocation.SalesOrderPhaseItemID)
+    ''      pSalesOrderPhaseItems.Add(mSalesOrderPhaseItem)
+    ''    End If
 
-        If pUsedItems.Contains(mWOAllocation.PhaseItemComponentID) = False Then
-          pUsedItems.Add(mWOAllocation.PhaseItemComponentID)
-        End If
-      Next
+    ''    If pUsedItems.Contains(mWOAllocation.SalesOrderPhaseItemID) = False Then
+    ''      pUsedItems.Add(mWOAllocation.SalesOrderPhaseItemID)
+    ''    End If
+    ''  Next
 
-      If pWorkOrder.WorkOrderAllocations.Count > 0 Then
+    ''  If pWorkOrder.WorkOrderAllocations.Count > 0 Then
 
-        If pWorkOrder.WorkOrderAllocations.Count = 1 Then
-          mdsoSales.LoadSalesOrderPhaseItemInfo(Me.SalesOrderPhaseItemInfos, "SalesOrderPhaseID = " & pWorkOrder.WorkOrderAllocations(0).PhaseItemComponentID)
+    ''    If pWorkOrder.WorkOrderAllocations.Count = 1 Then
+    ''      mdsoSales.LoadSalesOrderPhaseItemInfos(Me.SalesOrderPhaseItemInfos, "SalesOrderPhaseID = " & pWorkOrder.WorkOrderAllocations(0).SalesOrderPhaseItemID)
 
-        End If
+    ''    End If
 
-      End If
+    ''  End If
 
-    Catch ex As Exception
-      mOK = False
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-    Return mOK
+    ''Catch ex As Exception
+    ''  mOK = False
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    ''End Try
+    ''Return mOK
   End Function
 
   Public Sub LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItemInfo As colSalesOrderPhaseItemInfos, ByVal vWhere As String)
 
     Dim mdso As New dsoSales(DBConn)
 
-
     mdso.LoadSalesOrderPhaseItemsByWhere(rSalesOrderPhaseItemInfo, vWhere)
-
-
-
-
 
   End Sub
 
@@ -535,7 +531,7 @@ Public Class fccWorkOrderDetailConstruction
 
     With mRetVal
       .WorkOrderID = rWorkOrder.WorkOrderID
-      .PhaseItemComponentID = vPhaseItemComponentID
+      .SalesOrderPhaseItemID = vPhaseItemComponentID
     End With
 
     rWorkOrder.WorkOrderAllocations.Add(mRetVal)
@@ -546,17 +542,31 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Sub RefreshCurrentWorkOrderAllocationEditors()
     Dim mWOAE As clsWorkOrderAllocationEditor
-    pWorkOrderAllocationEditors.Clear()
+    Dim mdsoSales As dsoSales
+    Dim mSOPIs As New colSalesOrderPhaseItemInfos
+    Dim mSOPI As clsSalesOrderPhaseItemInfo
+    Dim mWhere As String = ""
 
+    pWorkOrderAllocationEditors.Clear()
 
     For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
       '// create a new editor based on this salesitem and add to collection
       mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
       pWorkOrderAllocationEditors.Add(mWOAE)
       mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
-
+      If mWhere <> "" Then mWhere &= ","
+      mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseItemID
     Next
 
+    mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
+
+    mdsoSales = New dsoSales(pDBConn)
+    mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere)
+
+    For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
+      mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
+      mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
+    Next
 
   End Sub
 

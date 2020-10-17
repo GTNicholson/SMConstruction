@@ -1237,8 +1237,8 @@ Public Class frmWorkOrderDetailConstruction
             mPicker = New clsPickerSalesOrderPhaseItem(mSalesOrderPhaseItemInfos, pFormController.DBConn)
 
             For Each mWorkderAllocation In pFormController.WorkOrder.WorkOrderAllocations
-              If mWorkderAllocation.PhaseItemComponentID > 0 Then
-                mSalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfos.ItemFromPhaseItemComponentID(mWorkderAllocation.PhaseItemComponentID)
+              If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
+                mSalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfos.ItemFromKey(mWorkderAllocation.SalesOrderPhaseItemID)
 
                 If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseItemInfo) Then
                   mPicker.SelectedObjects.Add(mSalesOrderPhaseItemInfo)
@@ -1272,8 +1272,8 @@ Public Class frmWorkOrderDetailConstruction
 
             For mindex As Integer = pFormController.WorkOrder.WorkOrderAllocations.Count - 1 To 0 Step -1
               mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations(mindex)
-              If mWorkderAllocation.PhaseItemComponentID > 0 Then
-                mSalesOrderPhaseItemInfo = mSelectedProductBases.ItemFromPhaseItemComponentID(mWorkderAllocation.PhaseItemComponentID)
+              If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
+                mSalesOrderPhaseItemInfo = mSelectedProductBases.ItemFromKey(mWorkderAllocation.SalesOrderPhaseItemID)
 
                 If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseItemInfo) Then
                   pFormController.WorkOrder.WorkOrderAllocations.Remove(mWorkderAllocation)

@@ -1283,7 +1283,7 @@ Public Class frmSalesOrderDetailHouses
                 mSalesItem.SalesSubItemType = mSelectedItem.SubItemType
                 mSalesItem.SalesItemType = mSelectedItem.ItemType
                 mSalesItem.ProductTypeID = mSelectedItem.Category
-                mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem)
+                mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem, mSelectedItem.Product)
                 pFormController.SalesItemEditors.Add(mSIEditor)
 
               End If

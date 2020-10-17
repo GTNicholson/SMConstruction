@@ -1,14 +1,22 @@
 ﻿Imports System.ComponentModel
+Imports RTIS.CommonVB
 
 Public Class clsWorkOrderAllocationEditor
 
   Private pWorkOrder As dmWorkOrder
   Private pWorkOrderAllocation As dmWorkOrderAllocation
 
+  Private pSalesOrderNo As String
+  Private pItemNumber As String
+  Private pClientName As String
+  Private pProjectName As String
+  Private pRequiredDate As Date
+  Private pAssemblyRef As String
+
+
   Public Sub New(ByRef rWorkOrder As dmWorkOrder, ByRef rWorkOrderAllocation As dmWorkOrderAllocation)
     pWorkOrder = rWorkOrder
     pWorkOrderAllocation = rWorkOrderAllocation
-
   End Sub
 
   Public Sub New()
@@ -16,13 +24,22 @@ Public Class clsWorkOrderAllocationEditor
     pWorkOrderAllocation = New dmWorkOrderAllocation
   End Sub
 
-
+  Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo)
+    pSalesOrderNo = rSalesOrderPhaseItemInfo.OrderNo
+    If rSalesOrderPhaseItemInfo.PhaseRef <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseItemInfo.PhaseRef
+    pItemNumber = rSalesOrderPhaseItemInfo.ItemNumber
+    pClientName = rSalesOrderPhaseItemInfo.CompanyName
+    pProjectName = rSalesOrderPhaseItemInfo.ProjectName
+    pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
+    pAssemblyRef = rSalesOrderPhaseItemInfo.AssemblyRef
+  End Sub
 
   Public ReadOnly Property WorkOrderAllocation As dmWorkOrderAllocation
     Get
       Return pWorkOrderAllocation
     End Get
   End Property
+
   Public Property QuantityDone As Decimal
     Get
       Return pWorkOrderAllocation.QuantityDone
@@ -59,29 +76,72 @@ Public Class clsWorkOrderAllocationEditor
     End Set
   End Property
 
-  Public Property PhaseItemComponentID As Int32
+  Public Property SalesOrderPhaseItemID As Int32
     Get
-      Return pWorkOrderAllocation.PhaseItemComponentID
+      Return pWorkOrderAllocation.SalesOrderPhaseItemID
     End Get
     Set(value As Int32)
-      pWorkOrderAllocation.PhaseItemComponentID = value
+      pWorkOrderAllocation.SalesOrderPhaseItemID = value
     End Set
   End Property
 
-  Public Property SalesItemType As Decimal
+  Public Property SalesOrderNo As String
     Get
-      Return pWorkOrderAllocation.QuantityDone
+      Return pSalesOrderNo
     End Get
-    Set(value As Decimal)
-      pWorkOrderAllocation.QuantityDone = value
+    Set(value As String)
+      pSalesOrderNo = value
+    End Set
+  End Property
+
+  Public Property ItemNumber As String
+    Get
+      Return pItemNumber
+    End Get
+    Set(value As String)
+      pItemNumber = value
+    End Set
+  End Property
+
+  Public Property ClientName As String
+    Get
+      Return pClientName
+    End Get
+    Set(value As String)
+      pClientName = value
+    End Set
+  End Property
+
+  Public Property ProjectName As String
+    Get
+      Return pProjectName
+    End Get
+    Set(value As String)
+      pProjectName = value
+    End Set
+  End Property
+
+  Public Property RequiredDate As Date
+    Get
+      Return pRequiredDate
+    End Get
+    Set(value As Date)
+      pRequiredDate = value
+    End Set
+  End Property
+
+  Public Property AssemblyRef As String
+    Get
+      Return pAssemblyRef
+    End Get
+    Set(value As String)
+      pAssemblyRef = value
     End Set
   End Property
 
 End Class
 
 Public Class colWorkOrderAllocationEditors : Inherits BindingList(Of clsWorkOrderAllocationEditor)
-
-
 
 
 End Class
