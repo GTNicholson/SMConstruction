@@ -4,7 +4,7 @@
   Private pSalesOrderPhase As dmSalesOrderPhase
   Private pSalesOrderItem As dmSalesOrderItem
   Private pCustomer As dmCustomer
-  Private pWorkOrderAllocation As dmWorkOrderAllocation
+  Private pSalesItemAssembly As dmSalesItemAssembly
 
   Public Sub New()
     pSalesOrderPhaseItem = New dmSalesOrderPhaseItem
@@ -12,18 +12,19 @@
     pSalesOrderPhase = New dmSalesOrderPhase
     pSalesOrderItem = New dmSalesOrderItem
     pCustomer = New dmCustomer
-    pWorkOrderAllocation = New dmWorkOrderAllocation
+    pSalesItemAssembly = New dmSalesItemAssembly
   End Sub
 
 
-  Public Property WorkOrderAllocation As dmWorkOrderAllocation
+  Public Property SalesItemAssembly As dmSalesItemAssembly
     Get
-      Return pWorkOrderAllocation
+      Return pSalesItemAssembly
     End Get
-    Set(value As dmWorkOrderAllocation)
-      pWorkOrderAllocation = value
+    Set(value As dmSalesItemAssembly)
+      pSalesItemAssembly = value
     End Set
   End Property
+
   Public Property SalesOrderPhaseItem As dmSalesOrderPhaseItem
     Get
       Return pSalesOrderPhaseItem
@@ -152,11 +153,17 @@
     End Get
   End Property
 
-  Public ReadOnly Property QuantityDone As Int32
+  Public ReadOnly Property AssemblyRef As String
     Get
-      Return pWorkOrderAllocation.QuantityDone
+      Return pSalesItemAssembly.Ref
     End Get
 
+  End Property
+
+  Public ReadOnly Property ItemNumber As String
+    Get
+      Return pSalesOrderItem.ItemNumber
+    End Get
   End Property
 
 End Class
@@ -184,7 +191,7 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
     Return mRetVal
   End Function
 
-  Public Function ItemFromPhaseItemComponentID(ByVal vPhaseItemComponentID As Integer) As clsSalesOrderPhaseItemInfo
+  Public Function ItemFromKey(ByVal vPhaseItemComponentID As Integer) As clsSalesOrderPhaseItemInfo
     Dim mItem As clsSalesOrderPhaseItemInfo
     Dim mRetVal As clsSalesOrderPhaseItemInfo = Nothing
 

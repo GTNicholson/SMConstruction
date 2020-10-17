@@ -943,7 +943,8 @@ Public Class dsoSales : Inherits dsoBase
     End Try
     Return mRetVal
   End Function
-  Public Function LoadSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
+
+  Public Function LoadSalesOrderPhaseItemInfos(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
     Dim mdto As dtoSalesOrderPhaseItemInfo
     Dim mRetVal As Boolean
 

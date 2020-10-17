@@ -5,12 +5,13 @@ Public Class clsSalesItemEditor
   Private pSalesOrder As dmSalesOrder
   Private pSalesItemAssembly As dmSalesItemAssembly
   Private pSalesOrderItem As dmSalesOrderItem
+  Private pProduct As dmProductBase
 
-  Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rCurrentSalesItemAssembly As dmSalesItemAssembly, ByRef rSalesOrderItem As dmSalesOrderItem)
+  Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rCurrentSalesItemAssembly As dmSalesItemAssembly, ByRef rSalesOrderItem As dmSalesOrderItem, ByRef rProductBase As dmProductBase)
     pSalesOrder = rSalesOrder
     pSalesItemAssembly = rCurrentSalesItemAssembly
     pSalesOrderItem = rSalesOrderItem
-
+    pProduct = rProductBase
   End Sub
 
   Public Sub New()
@@ -93,6 +94,30 @@ Public Class clsSalesItemEditor
       pSalesOrderItem.Quantity = value
     End Set
   End Property
+
+  Public Property ItemNumber As String
+    Get
+      Return pSalesOrderItem.ItemNumber
+    End Get
+    Set(value As String)
+      pSalesOrderItem.ItemNumber = value
+    End Set
+  End Property
+
+  Public ReadOnly Property ProductTypeDesc As String
+    Get
+      Dim mRetVal As String
+      mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ProductTypeID, eProductType))
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property ProductCode As String
+    Get
+      Return pProduct.Code
+    End Get
+  End Property
+
 End Class
 
 Public Class colSalesItemEditors : Inherits BindingList(Of clsSalesItemEditor)
