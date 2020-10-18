@@ -56,7 +56,7 @@ Public Class dtoWorkOrderAllocation : Inherits dtoBase
     End If
     With pWorkOrderAllocation
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderPhaseItemID, ", .SalesOrderPhaseItemID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderPhaseItemID", .SalesOrderPhaseItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QuantityRequired", .QuantityRequired)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QuantityDone", .QuantityDone)
 

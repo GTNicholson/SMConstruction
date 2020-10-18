@@ -2,14 +2,18 @@
 Imports RTIS.CommonVB
 
 Public Class dmProductCostBook : Inherits dmBase
+  Implements iValueItem
+
   Private pProductCostBookID As Int32
   Private pCostBookName As String
   Private pCostBookDate As DateTime
   Private pIsDefault As Boolean
 
+  Private pProductCostBookEntrys As colProductCostBookEntrys
 
   Public Sub New()
     MyBase.New()
+    pProductCostBookEntrys = New colProductCostBookEntrys
   End Sub
 
   Protected Overrides Sub NewSetup()
@@ -22,12 +26,16 @@ Public Class dmProductCostBook : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pProductCostBookEntrys = Nothing
     MyBase.Finalize()
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
     Get
       Dim mAnyDirty = IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pProductCostBookEntrys.IsDirty
+
       '' Check Objects and Collections
       IsAnyDirty = mAnyDirty
     End Get
@@ -44,6 +52,8 @@ Public Class dmProductCostBook : Inherits dmBase
       .CostBookName = CostBookName
       .CostBookDate = CostBookDate
       .IsDefault = IsDefault
+
+      .ProductCostBookEntrys = ProductCostBookEntrys.clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -52,6 +62,15 @@ Public Class dmProductCostBook : Inherits dmBase
     End With
 
   End Sub
+
+  Public Property ProductCostBookEntrys As colProductCostBookEntrys
+    Get
+      Return pProductCostBookEntrys
+    End Get
+    Set(value As colProductCostBookEntrys)
+      pProductCostBookEntrys = value
+    End Set
+  End Property
 
   Public Property ProductCostBookID() As Int32
     Get
@@ -93,9 +112,30 @@ Public Class dmProductCostBook : Inherits dmBase
     End Set
   End Property
 
+  Public Property ItemValue As Integer Implements iValueItem.ItemValue
+    Get
+      Return ProductCostBookID
+    End Get
+    Set(value As Integer)
+      ProductCostBookID = value
+    End Set
+  End Property
 
+  Public Property DisplayValue As String Implements iValueItem.DisplayValue
+    Get
+      Return CostBookName
+    End Get
+    Set(value As String)
+      CostBookName = value
+    End Set
+  End Property
 
-
+  Public Property ArchiveOnly As Boolean Implements iValueItem.ArchiveOnly
+    Get
+    End Get
+    Set(value As Boolean)
+    End Set
+  End Property
 End Class
 
 

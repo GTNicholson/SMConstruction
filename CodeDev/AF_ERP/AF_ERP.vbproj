@@ -470,7 +470,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\GUI\brwClientes.vb" />
-    <Compile Include="Sales\GUI\brwInternalWorkOrder.vb" />
+    <Compile Include="Sales\GUI\brwInstallationWorkOrder.vb" />
+    <Compile Include="Sales\GUI\brwStructureWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwSalesOrder.vb" />
     <Compile Include="Sales\GUI\fccCustomerDetail.vb" />

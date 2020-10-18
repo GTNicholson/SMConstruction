@@ -547,26 +547,31 @@ Public Class fccWorkOrderDetailConstruction
     Dim mSOPI As clsSalesOrderPhaseItemInfo
     Dim mWhere As String = ""
 
-    pWorkOrderAllocationEditors.Clear()
 
-    For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
-      '// create a new editor based on this salesitem and add to collection
-      mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
-      pWorkOrderAllocationEditors.Add(mWOAE)
-      mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
-      If mWhere <> "" Then mWhere &= ","
-      mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseItemID
-    Next
 
-    mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
+    If pWorkOrder.WorkOrderAllocations IsNot Nothing And pWorkOrder.WorkOrderAllocations.Count > 0 Then
 
-    mdsoSales = New dsoSales(pDBConn)
-    mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere)
+      pWorkOrderAllocationEditors.Clear()
+      For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+        '// create a new editor based on this salesitem and add to collection
+        mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
+        pWorkOrderAllocationEditors.Add(mWOAE)
+        mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
+        If mWhere <> "" Then mWhere &= ","
+        mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseItemID
+      Next
 
-    For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
-      mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
-      mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
-    Next
+      mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
+
+      mdsoSales = New dsoSales(pDBConn)
+      mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere)
+
+      For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
+        mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
+        mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
+      Next
+
+    End If
 
   End Sub
 

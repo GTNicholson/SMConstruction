@@ -200,11 +200,24 @@ Public Class dsoAppRefLists
           mItem.IList = LoadWindowOptions()
           mOK = True
 
+        Case appRefLists.ProductCostBook
+          mItem.IList = LoadProductCostBook()
+          mOK = True
+
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadProductCostBook() As IList
+    Dim mdto As New dtoProductCostBook(pDBConn)
+    Dim mRetVal As New colProductCostBooks
+
+    mdto.LoadProductCostBookCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadWindowOptions() As IList

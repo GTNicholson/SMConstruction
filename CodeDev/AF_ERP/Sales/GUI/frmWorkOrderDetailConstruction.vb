@@ -23,6 +23,7 @@ Public Class frmWorkOrderDetailConstruction
   Public pSOI As dmSalesOrderItem
   Public pDBCon As RTIS.DataLayer.clsDBConnBase
   Public pAppRTISGlobal As AppRTISGlobal
+  Public pProductType As eProductType
 
   Private Enum eMaterialRequirementsButtons
     Copy = 1
@@ -66,10 +67,17 @@ Public Class frmWorkOrderDetailConstruction
       pAppRTISGlobal = value
     End Set
   End Property
+  Public Property ProductType As eProductType
+    Get
+      Return pProductType
+    End Get
+    Set(value As eProductType)
+      pProductType = value
+    End Set
+  End Property
 
 
-
-  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByVal vIsInternal As Boolean)
+  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByVal vIsInternal As Boolean, ByVal vProductType As eProductType)
     Dim mfrm As frmWorkOrderDetailConstruction = Nothing
 
 
@@ -83,6 +91,7 @@ Public Class frmWorkOrderDetailConstruction
       mfrm.MdiParent = rParentMDI
       mfrm.DBCon = rDBConn
       mfrm.RTISGlobal = rRTISGlobal
+      mfrm.ProductType = vProductType
       mfrm.Show()
     Else
       mfrm.Focus()

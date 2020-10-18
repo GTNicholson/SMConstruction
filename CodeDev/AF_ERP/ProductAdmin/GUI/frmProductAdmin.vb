@@ -70,7 +70,7 @@ Public Class frmProductAdmin
 
       pFormController.LoadObject()
       LoadCombos()
-      RefreshAddBtn()
+      ''RefreshAddBtn()
 
 
       grdProductBase.DataSource = pFormController.ProductBaseInfos
@@ -343,43 +343,43 @@ Public Class frmProductAdmin
         Next
     End Select
   End Sub
-  Private Sub RefreshAddBtn()
+  ''Private Sub RefreshAddBtn()
 
-    Dim mValueItems As colValueItems
-
-
-    repoCategory.Items.Clear()
+  ''  Dim mValueItems As colValueItems
 
 
-
-    btnAddStockItem.Caption = "Agregar Producto de " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), pFormController.CurrentEmodeProductType)
-
-    mValueItems = clsEnumsConstants.EnumToVIs(GetType(eProductType))
-
-    clsDEControlLoading.FillDERepComboVI(repoCategory, mValueItems)
+  ''  repoCategory.Items.Clear()
 
 
 
-  End Sub
+  ''  btnAddStockItem.Caption = "Agregar Producto de " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), pFormController.CurrentEmodeProductType)
+
+  ''  mValueItems = clsEnumsConstants.EnumToVIs(GetType(eProductType))
+
+  ''  clsDEControlLoading.FillDERepComboVI(repoCategory, mValueItems)
+
+
+
+  ''End Sub
 
   Private Sub repoCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles repoCategory.SelectedIndexChanged
-    Try
-      Dim mValueItem As clsValueItem
-      UpdateObject()
-      pFormController.SaveObject()
-      mValueItem = beCategory.EditValue
-      pFormController.CurrentEmodeProductType = mValueItem.ItemValue
+    ''Try
+    ''  Dim mValueItem As clsValueItem
+    ''  UpdateObject()
+    ''  pFormController.SaveObject()
+    ''  mValueItem = beCategory.EditValue
+    ''  pFormController.CurrentEmodeProductType = mValueItem.ItemValue
 
 
-      ''pFormController.CurrentProductType = bargCategory.EditValue
-      pFormController.LoadMainCollection()
-      grdProductBase.DataSource = pFormController.ProductBaseInfos
-      grdProductBase.RefreshDataSource()
-      RefreshPCSubItemTypes()
-      RefreshAddBtn()
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
+    ''  ''pFormController.CurrentProductType = bargCategory.EditValue
+    ''  pFormController.LoadMainCollection()
+    ''  grdProductBase.DataSource = pFormController.ProductBaseInfos
+    ''  grdProductBase.RefreshDataSource()
+    ''  RefreshPCSubItemTypes()
+    ''  RefreshAddBtn()
+    ''Catch ex As Exception
+    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    ''End Try
   End Sub
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
@@ -388,6 +388,8 @@ Public Class frmProductAdmin
     txtStockCode.ReadOnly = vReadOnly
     cboSubItemType.ReadOnly = vReadOnly
     cboUoM.ReadOnly = vReadOnly
+
+    btnGenerateCode.Enabled = Not vReadOnly
   End Sub
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemDetail.CustomButtonClick
 
@@ -420,18 +422,19 @@ Public Class frmProductAdmin
 
           If pFormController.CurrentProductBase IsNot Nothing Then
             UpdateObject()
-            If pFormController.CurrentProductBase.Code = "" Then
-              '' CheckCreateStockCodeSave()
-              pFormController.SaveObject()
 
-              RefreshControls()
+            If cboSubItemType.SelectedIndex = -1 Then
+              MessageBox.Show("No se ha seleccionado el sub tipo del producto. Por favor, ingrese un valor válido en la lista desplegable")
+              gvStockItems.RefreshData()
+              SetDetailsControlsReadonly(False)
+              pCurrentDetailMode = eCurrentDetailMode.eView
             Else
               pFormController.SaveObject()
-
+              gvStockItems.RefreshData()
+              SetDetailsControlsReadonly(True)
+              pCurrentDetailMode = eCurrentDetailMode.eView
             End If
-            gvStockItems.RefreshData()
-            SetDetailsControlsReadonly(True)
-            pCurrentDetailMode = eCurrentDetailMode.eView
+
           End If
           If pFormController.IsLocked Then
             pFormController.UnLockStockItem(pFormController.CurrentProductBase.ID)
@@ -543,7 +546,7 @@ Public Class frmProductAdmin
       pFormController.LoadMainCollection()
       grdProductBase.DataSource = pFormController.ProductBaseInfos
       grdProductBase.RefreshDataSource()
-      RefreshAddBtn()
+      ''  RefreshAddBtn()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -570,7 +573,24 @@ Public Class frmProductAdmin
 
   Private Sub btnGenerateCode_Click(sender As Object, e As EventArgs) Handles btnGenerateCode.Click
     UpdateObject()
-    CheckCreateStockCodeSave()
-    RefreshControls()
+
+    If cboSubItemType.SelectedIndex = -1 Then
+      MessageBox.Show("No se ha seleccionado el sub tipo del producto. Por favor, ingrese un valor válido en la lista desplegable")
+
+    Else
+      CheckCreateStockCodeSave()
+      RefreshControls()
+    End If
+
+  End Sub
+
+  Private Sub bbtnAddStructure_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnAddStructure.ItemClick
+    pFormController.CurrentEmodeProductType = eProductType.StructureAF
+    AddStockItemCat(sender, e)
+  End Sub
+
+  Private Sub bbtnAddProductInstallation_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnAddProductInstallation.ItemClick
+    pFormController.CurrentEmodeProductType = eProductType.ProductInstallation
+    AddStockItemCat(sender, e)
   End Sub
 End Class

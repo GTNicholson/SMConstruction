@@ -162,6 +162,11 @@ Public Class frmHouseType
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WindowOptions)
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWindows, mVIs)
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductCostBook)
+    clsDEControlLoading.FillDEComboVI(cboProductCostBook, mVIs)
+
+
     '// Load the Filter editor control
     ConfigureFilterControl()
   End Sub
@@ -191,7 +196,6 @@ Public Class frmHouseType
       mIsActive = pIsActive
 
       With pFormController.HouseType
-
         clsDEControlLoading.SetDECombo(cboModelType, .ModelID)
         clsDEControlLoading.SetDECombo(cboGroupType, .GroupID)
 
@@ -395,7 +399,12 @@ Public Class frmHouseType
           grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
           gvHouseSalesItems.RefreshData()
         Case "Delete"
-          pFormController.DeleteAssembly(pFormController.CurrentHouseTypeAssembly)
+          If pFormController.HouseType.SalesItemAssemblys.Count = 1 Then
+            MessageBox.Show("No se puede eliminar esta pestaña, debido a que la configuración de la casa requiere al menos un elemento")
+          Else
+            pFormController.DeleteAssembly(pFormController.CurrentHouseTypeAssembly)
+
+          End If
       End Select
       RefreshTabs()
       pIsActive = mIsActive
@@ -452,6 +461,8 @@ Public Class frmHouseType
 
       Case "Add"
         Try
+          ''Load CostBook
+          pFormController.LoadProductCostBookDown(clsDEControlLoading.GetDEComboValue(cboProductCostBook))
 
 
           mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, AppRTISGlobal.GetInstance)

@@ -34,12 +34,14 @@ Partial Class uctHouseTypeOptions
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.cboGroup = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.chkDeck = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.cboWindows.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboWalls.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFloor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFoundations.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboModel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkDeck.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cboWindows
@@ -162,10 +164,21 @@ Partial Class uctHouseTypeOptions
         Me.LabelControl2.TabIndex = 26
         Me.LabelControl2.Text = "Grupo"
         '
+        'chkDeck
+        '
+        Me.chkDeck.Location = New System.Drawing.Point(83, 201)
+        Me.chkDeck.Name = "chkDeck"
+        Me.chkDeck.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.chkDeck.Properties.Appearance.Options.UseFont = True
+        Me.chkDeck.Properties.Caption = "Con Deck?"
+        Me.chkDeck.Size = New System.Drawing.Size(131, 19)
+        Me.chkDeck.TabIndex = 28
+        '
         'uctHouseTypeOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.chkDeck)
         Me.Controls.Add(Me.cboGroup)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.cboModel)
@@ -179,13 +192,14 @@ Partial Class uctHouseTypeOptions
         Me.Controls.Add(Me.cboFoundations)
         Me.Controls.Add(Me.LabelControl5)
         Me.Name = "uctHouseTypeOptions"
-        Me.Size = New System.Drawing.Size(225, 203)
+        Me.Size = New System.Drawing.Size(225, 231)
         CType(Me.cboWindows.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboWalls.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFloor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFoundations.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboModel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkDeck.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -203,4 +217,5 @@ Partial Class uctHouseTypeOptions
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboGroup As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents chkDeck As DevExpress.XtraEditors.CheckEdit
 End Class

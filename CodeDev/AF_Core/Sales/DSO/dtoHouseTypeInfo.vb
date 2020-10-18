@@ -60,7 +60,6 @@ Public Class dtoHouseTypeInfo : Inherits dtoBase
         .GroupID = DBReadInt32(rDataReader, "GroupID")
         .ModelID = DBReadInt32(rDataReader, "ModelID")
         .Area = DBReadDecimal(rDataReader, "Area")
-
       End With
 
       mOK = True

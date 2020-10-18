@@ -66,6 +66,51 @@
     End Set
   End Property
 
+  Public Property Cost As Decimal
+    Get
+      Return pHouseTypeSalesItem.Cost
+    End Get
+    Set(value As Decimal)
+      pHouseTypeSalesItem.Cost = value
+    End Set
+  End Property
+
+  Public Property DirectLabourCost As Decimal
+    Get
+      Return pHouseTypeSalesItem.DirectLabourCost
+    End Get
+    Set(value As Decimal)
+      pHouseTypeSalesItem.DirectLabourCost = value
+    End Set
+  End Property
+
+  Public Property DirectMaterialCost As Decimal
+    Get
+      Return pHouseTypeSalesItem.DirectMaterialCost
+    End Get
+    Set(value As Decimal)
+      pHouseTypeSalesItem.DirectMaterialCost = value
+    End Set
+  End Property
+
+  Public Property DirectTransportationAndEquipment As Decimal
+    Get
+      Return pHouseTypeSalesItem.DirectTransportationAndEquipment
+    End Get
+    Set(value As Decimal)
+      pHouseTypeSalesItem.DirectTransportationAndEquipment = value
+    End Set
+  End Property
+
+  Public Property OutsourcingCost As Decimal
+    Get
+      Return pHouseTypeSalesItem.OutsourcingCost
+    End Get
+    Set(value As Decimal)
+      pHouseTypeSalesItem.OutsourcingCost = value
+    End Set
+  End Property
+
   Public Property ConditionString As String
     Get
       Return pHouseTypeSalesItem.ConditionString

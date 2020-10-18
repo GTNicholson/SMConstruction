@@ -7,6 +7,7 @@ Public Class frmHousePopUp
   Private pDBConn As clsDBConnBase
   Private pSalesOrder As dmSalesOrder
   Private pSalesItemAssemblyID As Int32
+  Private pHouseTypeInfo As clsHouseTypeInfo
   Public Sub New()
 
     ' This call is required by the designer.
@@ -34,6 +35,15 @@ Public Class frmHousePopUp
     End Set
   End Property
 
+  Public Property HouseTypeInfo As clsHouseTypeInfo
+    Get
+      Return pHouseTypeInfo
+    End Get
+    Set(value As clsHouseTypeInfo)
+      pHouseTypeInfo = value
+    End Set
+  End Property
+
   Public Property SalesItemAssemblyID As Int32
     Get
       Return pSalesItemAssemblyID
@@ -50,22 +60,24 @@ Public Class frmHousePopUp
       pSalesItems = value
     End Set
   End Property
-  Public Shared Function GetGeneratedSalesItems(ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As clsDBConnBase, ByVal vSalesItemAssemblyID As Int32) As colSalesOrderItems
+  Public Shared Function GetGeneratedSalesItems(ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As clsDBConnBase, ByVal vSalesItemAssemblyID As Int32) As clsHouseTypeInfo
     Dim mfrm As New frmHousePopUp
 
 
     Dim mRetVal As colSalesOrderItems = Nothing
     mfrm.DBConn = rDBConn
+    mfrm.pHouseTypeInfo = New clsHouseTypeInfo
+
     mfrm.SalesOrder = rSalesOrder
     mfrm.SalesItemAssemblyID = vSalesItemAssemblyID
     mfrm.ShowDialog()
 
-    If mfrm.pSalesItems IsNot Nothing AndAlso mfrm.pSalesItems.Count > 0 Then
-      mRetVal = mfrm.pSalesItems
-    End If
+    ''If mfrm.pSalesItems IsNot Nothing AndAlso mfrm.pSalesItems.Count > 0 Then
+    ''  mRetVal = mfrm.pSalesItems
+    ''End If
 
-    Return mRetVal
-
+    ''Return mRetVal
+    Return mfrm.pHouseTypeInfo
   End Function
 
 
@@ -89,8 +101,13 @@ Public Class frmHousePopUp
         mSalesItem.SalesItemAssemblyID = pSalesItemAssemblyID
         mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
         mSalesItem.UnitPrice = mHouseTypeSalesItem.UnitPrice
+
         pSalesItems.Add(mSalesItem)
       Next
+
+      pHouseTypeInfo.SalesOrderItems = pSalesItems
+      pHouseTypeInfo.GroupID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboGroup)
+      pHouseTypeInfo.ModelID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
 
     End If
     Me.Close()

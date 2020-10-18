@@ -65,6 +65,12 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeSalesItemAssemblyID", .HouseTypeSalesItemAssemblyID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ConditionString", StringToDBValue(.ConditionString))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Cost", .Cost)
+
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectLabourCost", .DirectLabourCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectMaterialCost", .DirectMaterialCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectTransportationAndEquipment", .DirectTransportationAndEquipment)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OutsourcingCost", .OutsourcingCost)
 
     End With
 
@@ -83,6 +89,12 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
         .ItemNumber = DBReadString(rDataReader, "ItemNumber")
         .Description = DBReadString(rDataReader, "Description")
         .ConditionString = DBReadString(rDataReader, "ConditionString")
+        .Cost = DBReadDecimal(rDataReader, "Cost")
+        .DirectLabourCost = DBReadDecimal(rDataReader, "DirectLabourCost")
+        .DirectMaterialCost = DBReadDecimal(rDataReader, "DirectMaterialCost")
+        .DirectTransportationAndEquipment = DBReadDecimal(rDataReader, "DirectTransportationAndEquipment")
+        .OutsourcingCost = DBReadDecimal(rDataReader, "OutsourcingCost")
+
 
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .ImageFile = DBReadString(rDataReader, "ImageFile")

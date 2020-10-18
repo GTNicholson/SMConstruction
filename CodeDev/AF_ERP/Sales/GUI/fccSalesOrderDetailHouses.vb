@@ -450,6 +450,7 @@ Public Class fccSalesOrderDetailHouses
           pSalesItemEditors.Add(mSIAE)
 
           mSalesItem.Description = mSIAE.Description
+
         End If
       Next
     End If

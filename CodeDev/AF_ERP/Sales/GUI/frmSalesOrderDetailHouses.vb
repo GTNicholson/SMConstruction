@@ -1158,7 +1158,7 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub RefreshSalesOrderAssembly()
     Dim mStartActive As Boolean = pIsActive
-    Dim mValueItems As clsValueItem
+    Dim mValueItem As clsValueItem
     Dim mIndex As Integer = 0
 
     pIsActive = False
@@ -1169,17 +1169,16 @@ Public Class frmSalesOrderDetailHouses
       If pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID > 0 Then
         With pFormController.CurrentSalesItemAssembly
 
-          mValueItems = New clsValueItem
-          ''mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).ItemValueIndex(.HouseTypeID)
+          mValueItem = New clsValueItem
+          mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).ItemValueIndex(.HouseTypeID)
 
-          ''If mIndex <> -1 Then
-          ''  mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType).Item(mIndex)
-          ''  cboHouseType.EditValue = mValueItems
-          ''End If
-
+          If mIndex <> -1 Then
+            mValueItem = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).Item(mIndex)
+            btnModel.EditValue = mValueItem
+          End If
 
           txtSOARef.Text = .Ref
-          btnModel.EditValue = .HouseTypeID
+
 
           ''txtTotalPrice.EditValue = .TotalPrice
           txtSalesItemAssemblyDescription.Text = .Description
@@ -1201,7 +1200,7 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub UpdateSalesItemAssembly()
-
+    Dim mValueItem As New clsValueItem
 
     If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
 
@@ -1210,7 +1209,12 @@ Public Class frmSalesOrderDetailHouses
 
         .Ref = txtSOARef.Text
 
-        .HouseTypeID = btnModel.EditValue
+        mValueItem = btnModel.EditValue
+
+        If mValueItem IsNot Nothing Then
+          .HouseTypeID = mValueItem.ItemValue
+        End If
+
         .TotalPrice = Val(txtTotalPrice.Text)
         .PricePerUnit = Val(txtPricePerUnit.Text)
         .Quantity = Val(txtQuantity.Text)
@@ -1312,7 +1316,7 @@ Public Class frmSalesOrderDetailHouses
           mSOI = mSIEditor.SalesOrderItem
 
           If mSOI IsNot Nothing Then
-            If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
+            If MsgBox("¿Está seguro que desea eliminar este ítem de venta?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
               pFormController.SalesOrder.SalesOrderItems.Remove(mSOI)
 
               pFormController.DeleteSalesOrderPhaseItemBySalesOrderIDAndSalesItemID(mSOI.SalesOrderID, mSOI.SalesOrderItemID)
@@ -1351,34 +1355,51 @@ Public Class frmSalesOrderDetailHouses
     Dim mHouseTypeConfig As dmHouseType
 
     Dim mSOPI As dmSalesOrderPhaseItem
+    Dim mHouseTypeInfo As New clsHouseTypeInfo
+    Dim mIndex As Integer = -1
+    Dim mValueItem As New clsValueItem
 
     UpdateObjects()
     mHouseTypeConfig = New dmHouseType()
 
-    pFormController.SalesOrder.SalesOrderItems = frmHousePopUp.GetGeneratedSalesItems(pFormController.SalesOrder, pFormController.DBConn, pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID)
+    mHouseTypeInfo = frmHousePopUp.GetGeneratedSalesItems(pFormController.SalesOrder, pFormController.DBConn, pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID)
+
+    If mHouseTypeInfo IsNot Nothing Then
+      pFormController.SalesOrder.SalesOrderItems = mHouseTypeInfo.SalesOrderItems
+
+      mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).ItemValueIndex(mHouseTypeInfo.ModelID)
+
+      If mIndex <> -1 Then
+        mValueItem = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).Item(mIndex)
+        btnModel.EditValue = mValueItem
+      End If
+
+      CheckSave(False)
+
+      If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
+
+        For Each mSOI As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
+          mSOPI = New dmSalesOrderPhaseItem
+
+          mSOPI.Qty = mSOI.Quantity
+          mSOPI.SalesItemID = mSOI.SalesOrderItemID
+          mSOPI.SalesOrderID = mSOI.SalesOrderID
+
+          If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing And pFormController.SalesOrder.SalesOrderPhases.Count > 0 Then
+            mSOPI.SalesOrderPhaseID = pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+            pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+          End If
+
+        Next
 
 
-    If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
-
-      For Each mSOI As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
-        mSOPI = New dmSalesOrderPhaseItem
-
-        mSOPI.Qty = mSOI.Quantity
-        mSOPI.SalesItemID = mSOI.SalesOrderItemID
-        mSOPI.SalesOrderID = mSOI.SalesOrderID
-
-        If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing And pFormController.SalesOrder.SalesOrderPhases.Count > 0 Then
-          mSOPI.SalesOrderPhaseID = pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
-          pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
-        End If
-
-      Next
-
-
-      pFormController.RefreshCurrentSalesItemEditors()
-      grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
+        pFormController.RefreshCurrentSalesItemEditors()
+        grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
+      End If
+      RefreshControls()
     End If
-    RefreshControls()
+
+
 
   End Sub
 End Class

@@ -13,12 +13,26 @@ Public Class fccHouseType
 
   Private pCurrentHTSalesItemInfos As colHouseTypeSalesItemInfos
   Private pPrevtHTSalesItemInfos As colHouseTypeSalesItemInfos
+
+  Private pProductCostBook As dmProductCostBook
+
+  Private pProductCostBookID As Integer
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pProducts = New colProductBases
     pPrevtHTSalesItemInfos = New colHouseTypeSalesItemInfos
+    pProductCostBook = New dmProductCostBook
   End Sub
 
+
+  Public Property ProductCostBookID As Integer
+    Get
+      Return pProductCostBookID
+    End Get
+    Set(value As Integer)
+      pProductCostBookID = value
+    End Set
+  End Property
   Public Property PrimaryKeyID As Integer
     Get
       Return pPrimaryKeyID
@@ -43,6 +57,16 @@ Public Class fccHouseType
     End Get
   End Property
 
+  Public Property ProductCostBook As dmProductCostBook
+    Get
+      Return pProductCostBook
+    End Get
+    Set(value As dmProductCostBook)
+      pProductCostBook = value
+    End Set
+  End Property
+
+
   Public ReadOnly Property HaveLock As Boolean
     Get
       Return pHaveLock
@@ -52,6 +76,7 @@ Public Class fccHouseType
   Public Sub LoadObjects()
     Dim mdso As dsoProductAdmin
 
+
     pHouseType = New dmHouseType
 
     If pPrimaryKeyID <> 0 Then
@@ -60,6 +85,7 @@ Public Class fccHouseType
       pHaveLock = mdso.LockHouseTypeDisconnected(pPrimaryKeyID)
 
       mdso.LoadHouseTypeDown(pHouseType, pPrimaryKeyID)
+
     End If
     pHouseTypeManager = New clsHouseTypeManager(pHouseType)
 
@@ -163,23 +189,23 @@ Public Class fccHouseType
     If rHouseTypeAssembly IsNot Nothing Then
       'Find the position of the item we are going to delete
       mPos = 0
-    For Each mHTA As dmSalesItemAssembly In pHouseType.SalesItemAssemblys
-      If mHTA Is rHouseTypeAssembly Then
-        mNewPos = mPos 'This will be the next one in the list a we will take out this position
-        Exit For
-      End If
-      mPos += 1
-    Next
+      For Each mHTA As dmSalesItemAssembly In pHouseType.SalesItemAssemblys
+        If mHTA Is rHouseTypeAssembly Then
+          mNewPos = mPos 'This will be the next one in the list a we will take out this position
+          Exit For
+        End If
+        mPos += 1
+      Next
 
-    pHouseTypeManager.DeleteSalesItemAssembly(rHouseTypeAssembly)
+      pHouseTypeManager.DeleteSalesItemAssembly(rHouseTypeAssembly)
 
-    If pHouseType.SalesItemAssemblys.Count = 0 Then
+      If pHouseType.SalesItemAssemblys.Count = 0 Then
         SetCurrentHouseTypeAssembly(Nothing)
       ElseIf mNewPos <= pHouseType.SalesItemAssemblys.Count - 1 Then
-      SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys(mNewPos))
-    Else
-      SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys.Last)
-    End If
+        SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys(mNewPos))
+      Else
+        SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys.Last)
+      End If
     End If
   End Sub
 
@@ -192,7 +218,7 @@ Public Class fccHouseType
 
   Public Sub AddProducts(ByRef rProducts As List(Of clsProductBaseInfo))
 
-    pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts)
+    pHouseTypeManager.AddProducts(pCurrentHouseTypeAssembly, rProducts, pProductCostBook)
     pCurrentHTSalesItemInfos = pHouseTypeManager.GetHTItemInfosForAssembly(pCurrentHouseTypeAssembly, pProducts)
 
   End Sub
@@ -227,6 +253,14 @@ Public Class fccHouseType
 
 
   Public Sub RefreshHTSalesItems()
+
+  End Sub
+
+  Public Sub LoadProductCostBookDown(ByVal vProductCostBookID As Integer)
+    Dim mdso As New dsoProductAdmin(DBConn)
+
+    mdso.LoadProductCostDown(pProductCostBook, vProductCostBookID)
+
 
   End Sub
 End Class

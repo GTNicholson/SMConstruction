@@ -244,4 +244,29 @@ Public Class dsoProductAdmin : Inherits dsoBase
     End Try
     Return mRetVal
   End Function
+
+  Public Sub LoadProductCostDown(ByRef rProductCostBook As dmProductCostBook, ByVal vProductCostBookID As Integer)
+    Dim mdtoProductCostBook As dtoProductCostBook
+    Dim mdtoProductCostBookEntry As dtoProductCostBookEntry
+    Try
+
+      pDBConn.Connect()
+      mdtoProductCostBook = New dtoProductCostBook(pDBConn)
+
+      mdtoProductCostBook.LoadProductCostBook(rProductCostBook, vProductCostBookID)
+
+      If rProductCostBook IsNot Nothing Then
+
+        mdtoProductCostBookEntry = New dtoProductCostBookEntry(pDBConn)
+
+        mdtoProductCostBookEntry.LoadProductCostBookEntryCollection(rProductCostBook.ProductCostBookEntrys, vProductCostBookID)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
 End Class

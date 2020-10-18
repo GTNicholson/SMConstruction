@@ -47,22 +47,41 @@
     Return mRetVal
   End Function
 
-  Public Sub AddProducts(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProducts As List(Of clsProductBaseInfo))
+  Public Sub AddProducts(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProducts As List(Of clsProductBaseInfo), ByRef rProductCostBook As dmProductCostBook)
+
     For Each mProduct As clsProductBaseInfo In rProducts
-      AddProduct(rSalesItemAssembly, mProduct)
+      AddProduct(rSalesItemAssembly, mProduct, rProductCostBook)
     Next
 
   End Sub
 
-  Public Sub AddProduct(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProduct As clsProductBaseInfo)
+  Public Sub AddProduct(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProduct As clsProductBaseInfo, ByRef rProductCostBook As dmProductCostBook)
     Dim mSalesItem As dmHouseTypeSalesItem
+    Dim mCostBookEntryIndex As Integer = -1
+
     mSalesItem = New dmHouseTypeSalesItem
     mSalesItem.HouseTypeID = pHouseType.HouseTypeID
     mSalesItem.ProductID = rProduct.ID
     mSalesItem.ProductTypeID = rProduct.Category
     mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
+
+    If rProductCostBook IsNot Nothing Then
+      mCostBookEntryIndex = rProductCostBook.ProductCostBookEntrys.IndexFromProductID_ItemTypeID(rProduct.ID, rProduct.ItemType)
+
+      If mCostBookEntryIndex <> -1 Then
+        mSalesItem.Cost = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).Cost
+
+        mSalesItem.DirectLabourCost = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).DirectLabourCost
+        mSalesItem.DirectMaterialCost = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).DirectMaterialCost
+        mSalesItem.OutsourcingCost = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).OutsourcingCost
+        mSalesItem.DirectTransportationAndEquipment = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).DirectTransportationAndEquipment
+
+      End If
+
+    End If
     pHouseType.HTSalesItems.Add(mSalesItem)
+
 
   End Sub
 

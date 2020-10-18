@@ -25,13 +25,17 @@ Public Class clsWorkOrderAllocationEditor
   End Sub
 
   Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo)
-    pSalesOrderNo = rSalesOrderPhaseItemInfo.OrderNo
-    If rSalesOrderPhaseItemInfo.PhaseRef <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseItemInfo.PhaseRef
-    pItemNumber = rSalesOrderPhaseItemInfo.ItemNumber
-    pClientName = rSalesOrderPhaseItemInfo.CompanyName
-    pProjectName = rSalesOrderPhaseItemInfo.ProjectName
-    pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
-    pAssemblyRef = rSalesOrderPhaseItemInfo.AssemblyRef
+
+    If rSalesOrderPhaseItemInfo IsNot Nothing Then
+      pSalesOrderNo = rSalesOrderPhaseItemInfo.OrderNo
+      If rSalesOrderPhaseItemInfo.PhaseRef <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseItemInfo.PhaseRef
+      pItemNumber = rSalesOrderPhaseItemInfo.ItemNumber
+      pClientName = rSalesOrderPhaseItemInfo.CompanyName
+      pProjectName = rSalesOrderPhaseItemInfo.ProjectName
+      pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
+      pAssemblyRef = rSalesOrderPhaseItemInfo.AssemblyRef
+
+    End If
   End Sub
 
   Public ReadOnly Property WorkOrderAllocation As dmWorkOrderAllocation

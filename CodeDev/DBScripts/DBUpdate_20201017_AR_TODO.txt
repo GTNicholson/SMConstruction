@@ -1,0 +1,6 @@
+alter table HouseTypeSalesItem
+add DirectLabourCost decimal (10,4),
+DirectMaterialCost decimal (10,4),
+DirectTransportationAndEquipment decimal (10,4),
+OutsourcingCost decimal (10,4)
+GO

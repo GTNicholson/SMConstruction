@@ -16,10 +16,11 @@ Public Enum eActivityCode
 
   ProductionGroup = 200
   WorkOrders = 201
-  InternalWorkOrders = 202
+  StructureWorkOrder = 202
   TrackingWorkOrders = 203
   TimeSheetEntry = 204
   ProductionReport = 205
+  InstallationWorkOrder = 206
 
   HumanResourcesGroup = 300
   EmployeeSalaries = 301
@@ -155,7 +156,7 @@ Public Enum eBrowseList
   Customer = 3
   SalesOrders = 4
   WorkOrder = 5
-  InternalWorkOrder = 6
+  InstallationWorkOrder = 6
   Inventory = 7
   PurchaseOrder = 8
   StockTake = 9
@@ -164,6 +165,7 @@ Public Enum eBrowseList
   PODelivery = 12
   HouseType = 13
   ProductCost = 14
+  StructureWorkOrder = 15
 End Enum
 
 

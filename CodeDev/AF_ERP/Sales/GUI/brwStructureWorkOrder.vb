@@ -2,7 +2,7 @@
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 
-Public Class brwInternalWorkOrder : Inherits brwBrowserListBase
+Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
   Public Enum eListOption
     DefaultListOption = 1
@@ -22,7 +22,7 @@ Public Class brwInternalWorkOrder : Inherits brwBrowserListBase
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
-    frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True)
+    frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
     Return mReloadData
   End Function
 
@@ -33,7 +33,7 @@ Public Class brwInternalWorkOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmWorkOrderDetailConstruction.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True)
+      frmWorkOrderDetailConstruction.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
     End If
     Return mReloadData
   End Function
@@ -85,7 +85,7 @@ Public Class brwInternalWorkOrder : Inherits brwBrowserListBase
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
-      mDSO.LoadInternalWorkOrderInfos(mWOIs, "")
+      mDSO.LoadInternalWorkOrderInfos(mWOIs, "ProductTypeID =" & eProductType.StructureAF)
 
       gridBrowseList.DataSource = mWOIs
 
@@ -217,7 +217,7 @@ Public Class brwInternalWorkOrder : Inherits brwBrowserListBase
     Dim mOK As Boolean = True
     Try
       LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlInternalWorkOrder.xml")
-      ListTitle = "Lista de Ordenes de Trabajos Internas"
+      ListTitle = "Lista de Ordenes de Trabajos de Estructuras"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 
@@ -345,7 +345,7 @@ Public Class brwInternalWorkOrder : Inherits brwBrowserListBase
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlInternalWorkOrder.xml")
-    ListTitle = "Lista de Órdenes de Trabajos Internas"
+    ListTitle = "Lista de Órdenes de Trabajos de Estructuras"
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"
 

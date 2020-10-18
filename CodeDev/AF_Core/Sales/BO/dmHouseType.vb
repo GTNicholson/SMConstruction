@@ -15,7 +15,6 @@ Public Class dmHouseType : Inherits dmBase
   Private pTmpWindowOptions As Integer
   Private pTmpFloorOptions As Integer
 
-
   Private pSalesItemAssemblys As colSalesItemAssemblys
   Private pHTSalesItems As colHouseTypeSalesItems
 
@@ -60,7 +59,6 @@ Public Class dmHouseType : Inherits dmBase
       .GroupID = GroupID
       .ModelID = ModelID
       .Area = Area
-
       'Add entries here for each collection and class property
       .SalesItemAssemblys = SalesItemAssemblys.Clone
       .HTSalesItems = HTSalesItems.Clone
@@ -70,6 +68,8 @@ Public Class dmHouseType : Inherits dmBase
     End With
 
   End Sub
+
+
 
   Public Property GroupID() As Int32
     Get

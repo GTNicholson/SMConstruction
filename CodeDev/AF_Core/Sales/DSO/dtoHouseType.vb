@@ -74,7 +74,6 @@ Public Class dtoHouseType : Inherits dtoBase
         .ModelName = DBReadString(rDataReader, "ModelName")
         .GroupID = DBReadInt32(rDataReader, "GroupID")
         .ModelID = DBReadInt32(rDataReader, "ModelID")
-
         .Area = DBReadDecimal(rDataReader, "Area")
 
         pHouseType.IsDirty = False
