@@ -4,6 +4,7 @@ Imports DevExpress.XtraTab
 Imports DevExpress.XtraTab.ViewInfo
 Imports RTIS.CommonVB
 Imports RTIS.Elements
+Imports RTIS.ProductCore
 
 Public Class frmHouseType
 
@@ -20,6 +21,8 @@ Public Class frmHouseType
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
 
+  Private pFilterGrid As DevExpress.XtraGrid.GridControl
+
   Public Sub New()
 
     ' Esta llamada es exigida por el diseñador.
@@ -30,6 +33,8 @@ Public Class frmHouseType
     Me.pMySharedIndex = sFormIndex
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     sActiveForms.Add(Me, Me.pMySharedIndex.ToString)
+
+    pFilterGrid = New DevExpress.XtraGrid.GridControl
 
   End Sub
 
@@ -99,6 +104,9 @@ Public Class frmHouseType
         pFormController.SetCurrentHouseTypeAssembly(pFormController.HouseType.SalesItemAssemblys(0))
       End If
 
+      UctHouseTypeOptions1.RTISGlobal = AppRTISGlobal.GetInstance
+      UctHouseTypeOptions1.HouseType = pFormController.HouseType
+
       LoadCombos()
       LoadGrids()
 
@@ -143,28 +151,12 @@ Public Class frmHouseType
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.GroupType)
     clsDEControlLoading.FillDEComboVI(cboGroupType, mVIs)
-    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboGroup, mVIs)
-
-
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType)
-    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboModel, mVIs)
-
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FoundationOptions)
-    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboFoundations, mVIs)
-
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FloorOptions)
-    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboFloor, mVIs)
-
-
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WallOptions)
-    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWalls, mVIs)
-
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WindowOptions)
-    clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWindows, mVIs)
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductCostBook)
     clsDEControlLoading.FillDEComboVI(cboProductCostBook, mVIs)
 
+
+    UctHouseTypeOptions1.LoadCombos()
 
     '// Load the Filter editor control
     ConfigureFilterControl()
@@ -523,7 +515,7 @@ Public Class frmHouseType
           If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
             UpdateObjects()
             pFormController.DeleteHTSalesItemInfo(mHTSalesItemInfo)
-                grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+            grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
             gvHouseSalesItems.RefreshData()
             RefreshControls()
           End If
@@ -576,10 +568,43 @@ Public Class frmHouseType
   End Sub
 
   Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
-
+    UctHouseTypeOptions1.UpdateObjects()
     pFormController.SetPrevlHTSalesItemInfos()
     grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
     pFormController.RefreshProductCostSummaryInfo(pFormController.PrevtHTSalesItemInfos)
     grdSummaryCostBookEntry.DataSource = pFormController.ProductCostSummaryInfo
   End Sub
+
+
+  ''Private Function GetDisplayText(ByVal vFilterControl As DevExpress.XtraEditors.FilterControl) As String
+  ''  Dim mFilterString As String = String.Empty
+  ''  Dim mObject As intObjectProperties = pUserController.GetObjectProperties
+
+  ''  If mObject IsNot Nothing Then
+  ''    Dim mGrid As New DevExpress.XtraGrid.GridControl
+  ''    Dim mGridView As New DevExpress.XtraGrid.Views.Grid.GridView
+
+  ''    mGrid.MainView = mGridView
+
+
+  ''    For Each mProp As clsPropertyDef In mObject.PropertyList
+  ''      Dim mCol As New DevExpress.XtraGrid.Columns.GridColumn()
+
+  ''      mCol.FieldName = mProp.PropertyName
+
+  ''      If mProp.LookUpRef > 0 Then
+  ''        RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(mGrid, mCol, pUserController.RTISGlobal.RefLists.RefIList(mProp.LookUpRef))
+  ''      End If
+
+  ''      mGridView.Columns.Add(mCol)
+  ''    Next
+
+  ''    mGridView.ActiveFilterString = vFilterControl.FilterString
+  ''    mFilterString = mGridView.FilterPanelText
+  ''  End If
+
+  ''  Return mFilterString
+  ''End Function
+
+
 End Class

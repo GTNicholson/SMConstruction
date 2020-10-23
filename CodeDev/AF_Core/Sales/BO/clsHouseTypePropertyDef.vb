@@ -15,6 +15,14 @@ Public Class clsHouseTypePropertyDef
     DeckOptions = 5
   End Enum
 
+  Public Sub New()
+
+  End Sub
+
+  Public Sub New(ByRef rHouseType As dmHouseType)
+    pHouseType = rHouseType
+  End Sub
+
   Public ReadOnly Property ObjectType As Integer Implements intObjectProperties.ObjectType
     Get
       Throw New NotImplementedException()
