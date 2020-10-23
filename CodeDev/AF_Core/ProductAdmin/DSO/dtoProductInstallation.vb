@@ -60,6 +60,7 @@ Public Class dtoProductInstallation : Inherits dtoProductBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .ItemType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubItemType", .SubItemType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingFileName", StringToDBValue(.DrawingFileName))
 
     End With
   End Sub
@@ -77,6 +78,7 @@ Public Class dtoProductInstallation : Inherits dtoProductBase
         .ItemType = DBReadInt32(rDataReader, "ItemType")
         .SubItemType = DBReadInt32(rDataReader, "SubItemType")
         .UoM = DBReadInt32(rDataReader, "UoM")
+        .DrawingFileName = DBReadString(rDataReader, "DrawingFileName")
 
         CType(pProduct, dmProductInstallation).IsDirty = False
 

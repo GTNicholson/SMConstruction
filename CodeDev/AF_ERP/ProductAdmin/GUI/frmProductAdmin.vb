@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraBars
 Imports DevExpress.XtraEditors
+Imports System.IO
 
 Public Class frmProductAdmin
   Private pFormController As fccProductAdmin
@@ -209,7 +210,7 @@ Public Class frmProductAdmin
         clsDEControlLoading.SetDECombo(cboProductItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSubItemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
-
+        bteDrawing.Text = .DrawingFileName
       End With
     End If
 
@@ -388,7 +389,7 @@ Public Class frmProductAdmin
     txtStockCode.ReadOnly = vReadOnly
     cboSubItemType.ReadOnly = vReadOnly
     cboUoM.ReadOnly = vReadOnly
-
+    bteDrawing.Enabled = Not vReadOnly
     btnGenerateCode.Enabled = Not vReadOnly
   End Sub
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemDetail.CustomButtonClick
@@ -592,5 +593,40 @@ Public Class frmProductAdmin
   Private Sub bbtnAddProductInstallation_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnAddProductInstallation.ItemClick
     pFormController.CurrentEmodeProductType = eProductType.ProductInstallation
     AddStockItemCat(sender, e)
+  End Sub
+
+  Private Sub bteDrawing_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles bteDrawing.ButtonClick
+    Try
+
+      Try
+        Select Case e.Button.Kind
+          Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
+
+
+          Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
+            Dim mFileName As String = ""
+            If RTIS.CommonVB.clsGeneralA.GetOpenFileName(mFileName, "Selecionar el Plano") = DialogResult.OK Then
+
+
+              If pFormController.CreateDrawingPDF(mFileName) = False Then
+
+              End If
+            End If
+            RefreshControls()
+
+          Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
+            If File.Exists(pFormController.CurrentProductBase.DrawingFileName) Then
+
+              Process.Start(pFormController.CurrentProductBase.DrawingFileName)
+            End If
+        End Select
+      Catch ex As Exception
+        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+      End Try
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

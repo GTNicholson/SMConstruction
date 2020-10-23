@@ -391,4 +391,48 @@ Public Class fccProductAdmin
     Return mRetVal
   End Function
 
+  Public Function CreateDrawingPDF(ByVal vFileName As String) As Boolean
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    Dim mRetVal As Boolean = False
+
+    Try
+      If IO.File.Exists(vFileName) Then
+        mFileName = "DRAWING_" & pCurrentProductBase.ID
+
+        mExportDirectory = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.ProductFileFolderSys, clsGeneralA.GetFileSafeName(pCurrentProductBase.ID.ToString("00000")))
+
+        mFileName &= IO.Path.GetExtension(vFileName)
+        mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+        mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+        If IO.Directory.Exists(mExportDirectory) = False Then
+          IO.Directory.CreateDirectory(mExportDirectory)
+
+        End If
+
+        mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+
+        IO.File.Copy(vFileName, mFilePath, True)
+        pCurrentProductBase.DrawingFileName = mFilePath
+
+        If pCurrentProductBase.DrawingFileName <> "" Then
+          mRetVal = True
+
+        Else
+
+          pCurrentProductBase.DrawingFileName = ""
+          mRetVal = False
+        End If
+      End If
+
+    Catch ex As Exception
+
+
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mRetVal
+  End Function
 End Class

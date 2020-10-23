@@ -362,7 +362,7 @@ Public Enum eUoM
   <Description("cm2")> cmm2 = 15
 
   <Description("PT")> PT = 16
-
+  <Description("kg")> KG = 17
 
 End Enum
 
@@ -470,6 +470,7 @@ Public Class clsConstants
   Public Const WorkOrderFileFolderSys As String = "OTArchivosSys"
   Public Const WorkOrderFileFolderUsr As String = "OTArchivosUsr"
   Public Const StockItemFileFolderSys As String = "SIArchivosSys"
+  Public Const ProductFileFolderSys As String = "ProductArchivosSys"
 
   Public Const SalesOrderFileFolderSys As String = "SOArchivosSys"
   Public Const InvoiceOrderFileFolderSys As String = "InvoiceArchivosSys"
