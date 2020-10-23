@@ -1,4 +1,6 @@
-﻿Public Class clsHouseTypeManager
+﻿Imports RTIS.ProductCore
+
+Public Class clsHouseTypeManager
   Private pHouseType As dmHouseType
 
   Public Sub New(ByRef rHouseType As dmHouseType)
@@ -109,12 +111,45 @@
     Dim mHTSIInfo As clsHouseTypeSalesItemInfo
 
     For Each mHTSI In HouseType.HTSalesItems
-      mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID), HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
-      mTmpHTSalesItems.Add(mHTSIInfo)
+      If EvaluateCondition(mHTSI.ConditionString) = True Then
+        mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID), HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
+        mTmpHTSalesItems.Add(mHTSIInfo)
+      End If
     Next
 
     Return mTmpHTSalesItems
   End Function
+
+  Public Function EvaluateCondition(ByVal vConditionString As String) As Boolean
+    Dim mCond As uctConditionFilter
+    Dim mCondition As clsCondition
+    Dim mRetVal As Boolean
+
+    ' Initialise the condition
+    mCond = New uctConditionFilter
+    mCond.SetUp(AppRTISGlobal.GetInstance.RefLists, Nothing)
+    mCondition = New clsCondition(eNodeTypes.eNT_Container)
+    mCond.RefreshControl(mCondition, New clsHouseTypePropertyDef(pHouseType))
+    'IF going to evaluate many instances in a list/collection then best if just instantiate this once for each rule in the class it get used in, for performance reasons, e.g. have a property on the editor class
+
+
+    'Check the condition
+    If Not String.IsNullOrWhiteSpace(vConditionString) Then
+      mCond.SetFilterString(vConditionString)
+      mCond.GetUpdatedConditionFilter(mCondition)
+      If mCondition Is Nothing OrElse mCondition.EvaluateNode(New clsHouseTypePropertyDef(pHouseType), Nothing) Then
+        mRetVal = True
+      Else
+        mRetVal = False
+      End If
+    Else
+      mRetVal = True
+    End If
+
+    Return mRetVal
+
+  End Function
+
 
   Public Sub RemoveHTSalesOrderItem(rHTSalesItemInfo As clsHouseTypeSalesItemInfo)
     pHouseType.HTSalesItems.Remove(rHTSalesItemInfo.HouseTypeSalesItem)
