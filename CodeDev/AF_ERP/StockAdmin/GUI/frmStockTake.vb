@@ -540,7 +540,7 @@ Public Class frmStockTake
       Dim mFileName As String = String.Empty
       Dim mTitle As String = Me.Text
       Dim mExcel As clsExcelExportStockTake
-      If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName, mTitle, String.Empty, "Excel |*.xls") = DialogResult.OK Then
+      If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName, mTitle, String.Empty, "Excel |*.xlsx") = DialogResult.OK Then
         ''grdStockCheckItem.ExportToXls(mFileName)
         mExcel = New clsExcelExportStockTake(pFormController.StockTake, pFormController.StockTakeItemEditors)
         mExcel.CreateSpreadSheet()

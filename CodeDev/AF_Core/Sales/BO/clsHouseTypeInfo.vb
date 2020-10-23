@@ -28,16 +28,22 @@ Public Class clsHouseTypeInfo
     End Set
   End Property
 
-  Public ReadOnly Property HouseTypeID As Int32
+  Public Property HouseTypeID As Int32
     Get
       Return pHouseType.HouseTypeID
     End Get
+    Set(value As Int32)
+      pHouseType.HouseTypeID = value
+    End Set
   End Property
 
-  Public ReadOnly Property Name As String
+  Public Property ModelName As String
     Get
       Return pHouseType.ModelName
     End Get
+    Set(value As String)
+      pHouseType.ModelName = value
+    End Set
   End Property
 
 
@@ -70,15 +76,6 @@ Public Class clsHouseTypeInfo
 
   End Property
 
-  Public ReadOnly Property ModelDesc As String
-    Get
-      Dim mValueItems As colValueItems
-
-      mValueItems = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
-
-      Return mValueItems.DisplayValueString(pHouseType.ModelID)
-    End Get
-  End Property
 
   Public ReadOnly Property Area As Decimal
     Get
@@ -89,5 +86,32 @@ Public Class clsHouseTypeInfo
 End Class
 
 Public Class colHouseTypeInfos : Inherits List(Of clsHouseTypeInfo)
+
+  Public Function ItemFromKey(ByVal vhouseTypeID As Integer) As clsHouseTypeInfo
+    Dim mRetVal As clsHouseTypeInfo = Nothing
+    Dim mIndex As Integer
+
+    mIndex = IndexFromHouseTypeID(vhouseTypeID)
+    If mIndex <> -1 Then
+      mRetVal = Me.Item(mIndex)
+    End If
+    Return mRetVal
+  End Function
+
+  Public Function IndexFromHouseTypeID(vhouseTypeID As Integer) As Integer
+    Dim mItem As clsHouseTypeInfo
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In Me
+      mCount += 1
+      If mItem.HouseType IsNot Nothing Then
+        If mItem.HouseType.HouseTypeID = vhouseTypeID Then
+          mIndex = mCount
+          Exit For
+        End If
+      End If
+    Next
+    Return mIndex
+  End Function
 
 End Class

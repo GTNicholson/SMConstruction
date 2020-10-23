@@ -84,8 +84,13 @@ Public Class frmHousePopUp
   Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
     Dim mHouseTypeSalesItems As New colHouseTypeSalesItems
     Dim mSalesItem As dmSalesOrderItem
+    Dim mHouseTypeID As Integer = -1
 
-    LoadHouseTypeSalesItems(mHouseTypeSalesItems)
+    If UctHouseTypeOptions1.cboModel.SelectedIndex <> -1 Then
+      mHouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
+    End If
+
+    LoadHouseTypeSalesItemsByHouseTypeID(mHouseTypeSalesItems, mHouseTypeID)
     pSalesItems = New colSalesOrderItems
 
     If mHouseTypeSalesItems IsNot Nothing Then
@@ -107,17 +112,19 @@ Public Class frmHousePopUp
 
       pHouseTypeInfo.SalesOrderItems = pSalesItems
       pHouseTypeInfo.GroupID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboGroup)
-      pHouseTypeInfo.ModelID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
-
+      pHouseTypeInfo.HouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
+      pHouseTypeInfo.ModelName = UctHouseTypeOptions1.cboModel.Text
     End If
     Me.Close()
   End Sub
 
-  Private Sub LoadHouseTypeSalesItems(ByRef rHTSalesItems As colHouseTypeSalesItems)
+  Private Sub LoadHouseTypeSalesItemsByHouseTypeID(ByRef rHTSalesItems As colHouseTypeSalesItems, ByVal vHouseTypeID As Integer)
     Dim mdto As New dtoHouseTypeSalesItem(pDBConn)
+    Dim mwhere As String = ""
     Try
       pDBConn.Connect()
-      mdto.LoadHouseTypeSalesItemsCollectionByWhere(rHTSalesItems, "")
+      mwhere = "HouseTypeID = " & vHouseTypeID.ToString
+      mdto.LoadHouseTypeSalesItemsCollectionByWhere(rHTSalesItems, mwhere)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -134,12 +141,28 @@ Public Class frmHousePopUp
 
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
-
+    Dim mHouseTypes As New colHouseTypes
+    Dim mdso As New dsoProductAdmin(pDBConn)
+    Dim mValueItem As clsValueItem
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.GroupType)
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboGroup, mVIs)
 
 
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
+    ''mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType)
+    '' clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboModel, mVIs)
+
+    mdso.LoadHouseTypes(mHouseTypes)
+
+    If mHouseTypes IsNot Nothing Then
+      mVIs.Clear()
+
+      For Each mHT As dmHouseType In mHouseTypes
+        mValueItem = New clsValueItem
+        mValueItem.ItemValue = mHT.ItemValue
+        mValueItem.DisplayValue = mHT.DisplayValue
+        mVIs.Add(mValueItem)
+      Next
+    End If
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboModel, mVIs)
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FoundationOptions)

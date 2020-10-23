@@ -377,16 +377,35 @@ Public Class fccSalesOrderDetailHouses
 
   Public Function RemoveSalesOrderItemAssembly(ByVal vSalesItemAssembly As dmSalesItemAssembly) As Boolean
     Dim mOK As Boolean
+    Dim mSIAID As Integer
     Try
       If vSalesItemAssembly IsNot Nothing AndAlso SalesOrder.SalesItemAssemblys IsNot Nothing Then
+        mSIAID = vSalesItemAssembly.SalesItemAssemblyID
         mOK = SalesOrder.SalesItemAssemblys.Remove(vSalesItemAssembly)
 
+        If mOK Then
+          RemoveSalesItemsBySalesOrderItemAssemblyID(mSIAID)
+        End If
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
     Return mOK
   End Function
+
+  Private Sub RemoveSalesItemsBySalesOrderItemAssemblyID(ByVal vSalesItemAssemblyID As Integer)
+    Dim mRemovedItems As New colSalesOrderItems
+    For Each mSI As dmSalesOrderItem In SalesOrder.SalesOrderItems
+
+      If mSI.SalesItemAssemblyID = vSalesItemAssemblyID Then
+        mRemovedItems.Add(mSI)
+      End If
+    Next
+
+    For Each mSOI As dmSalesOrderItem In mRemovedItems
+      SalesOrder.SalesOrderItems.Remove(mSOI)
+    Next
+  End Sub
 
   Public ReadOnly Property CurrentSalesItemAssembly() As dmSalesItemAssembly
     Get

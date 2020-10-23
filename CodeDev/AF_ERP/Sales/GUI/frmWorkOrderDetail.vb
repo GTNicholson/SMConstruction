@@ -891,14 +891,28 @@ Public Class frmWorkOrderDetail
   Private Sub btnWorkOrderNumber_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnWorkOrderNumber.ButtonClick
     Dim mNewWO As String
     Try
-      UpdateObject()
-      mNewWO = pFormController.WorkOrder.WorkOrderNo
-      mNewWO = InputBox("Modificar el Numero de OT",, mNewWO)
-      If mNewWO <> "" Then
-        pFormController.WorkOrder.WorkOrderNo = mNewWO
-      End If
-      pFormController.SaveObjects()
-      RefreshControls()
+
+      Select Case e.Button.Kind
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Undo
+
+          UpdateObject()
+          mNewWO = pFormController.WorkOrder.WorkOrderNo
+          mNewWO = InputBox("Modificar el Numero de OT",, mNewWO)
+          If mNewWO <> "" Then
+            pFormController.WorkOrder.WorkOrderNo = mNewWO
+          End If
+          pFormController.SaveObjects()
+          RefreshControls()
+
+        Case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis
+          If pFormController.WorkOrder.WorkOrderNo = "" Then
+            pFormController.GetNextWONumber()
+          End If
+
+          RefreshControls()
+      End Select
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

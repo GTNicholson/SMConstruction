@@ -17,11 +17,14 @@ Public Class fccHouseType
   Private pProductCostBook As dmProductCostBook
 
   Private pProductCostBookID As Integer
+
+  Private pProductCostSummaryInfos As colProductCostSummaryInfos
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pProducts = New colProductBases
     pPrevtHTSalesItemInfos = New colHouseTypeSalesItemInfos
     pProductCostBook = New dmProductCostBook
+    pProductCostSummaryInfos = New colProductCostSummaryInfos
   End Sub
 
 
@@ -72,6 +75,16 @@ Public Class fccHouseType
       Return pHaveLock
     End Get
   End Property
+
+  Public Property ProductCostSummaryInfo As colProductCostSummaryInfos
+    Get
+      Return pProductCostSummaryInfos
+    End Get
+    Set(value As colProductCostSummaryInfos)
+      pProductCostSummaryInfos = value
+    End Set
+  End Property
+
 
   Public Sub LoadObjects()
     Dim mdso As dsoProductAdmin
@@ -262,5 +275,13 @@ Public Class fccHouseType
     mdso.LoadProductCostDown(pProductCostBook, vProductCostBookID)
 
 
+  End Sub
+
+  Public Sub RefreshProductCostSummaryInfo(ByRef rPrevtHTSalesItemInfos As colHouseTypeSalesItemInfos)
+    pProductCostSummaryInfos.Clear()
+    Dim mProductCostSummaryInfo = New clsProductCostSummaryInfo(rPrevtHTSalesItemInfos)
+    mProductCostSummaryInfo.UpdateTotalLabourCost()
+
+    pProductCostSummaryInfos.Add(mProductCostSummaryInfo)
   End Sub
 End Class

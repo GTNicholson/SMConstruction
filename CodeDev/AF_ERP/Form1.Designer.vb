@@ -25,6 +25,8 @@ Partial Class Form1
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.repitDateDefault = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -208,9 +210,6 @@ Partial Class Form1
         Me.PivotGridField100 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField101 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField102 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,89 +239,60 @@ Partial Class Form1
         '
         'GridView1
         '
-        Me.GridView1.Appearance.ColumnFilterButton.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.ColumnFilterButton.Options.UseFont = True
-        Me.GridView1.Appearance.ColumnFilterButtonActive.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.ColumnFilterButtonActive.Options.UseFont = True
-        Me.GridView1.Appearance.CustomizationFormHint.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.CustomizationFormHint.Options.UseFont = True
-        Me.GridView1.Appearance.DetailTip.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.DetailTip.Options.UseFont = True
-        Me.GridView1.Appearance.Empty.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.Empty.Options.UseFont = True
         Me.GridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.GridView1.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 11.0!)
+        Me.GridView1.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.GridView1.Appearance.EvenRow.Options.UseBackColor = True
         Me.GridView1.Appearance.EvenRow.Options.UseFont = True
-        Me.GridView1.Appearance.FilterCloseButton.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.FilterCloseButton.Options.UseFont = True
-        Me.GridView1.Appearance.FilterPanel.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.FilterPanel.Options.UseFont = True
-        Me.GridView1.Appearance.FixedLine.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.FixedLine.Options.UseFont = True
-        Me.GridView1.Appearance.FocusedCell.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.FocusedCell.Options.UseFont = True
-        Me.GridView1.Appearance.FocusedRow.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.FocusedRow.Options.UseFont = True
-        Me.GridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
-        Me.GridView1.Appearance.GroupButton.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.GroupButton.Options.UseFont = True
-        Me.GridView1.Appearance.GroupFooter.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.GroupFooter.Options.UseFont = True
-        Me.GridView1.Appearance.GroupPanel.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.GroupPanel.Options.UseFont = True
-        Me.GridView1.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.GroupRow.Options.UseFont = True
-        Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridView1.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridView1.Appearance.HideSelectionRow.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.HideSelectionRow.Options.UseFont = True
-        Me.GridView1.Appearance.HorzLine.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.HorzLine.Options.UseFont = True
         Me.GridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White
-        Me.GridView1.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 11.0!)
+        Me.GridView1.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.GridView1.Appearance.OddRow.Options.UseBackColor = True
         Me.GridView1.Appearance.OddRow.Options.UseFont = True
-        Me.GridView1.Appearance.Preview.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.Preview.Options.UseFont = True
-        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 11.0!)
+        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.GridView1.Appearance.Row.Options.UseFont = True
-        Me.GridView1.Appearance.RowSeparator.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.RowSeparator.Options.UseFont = True
-        Me.GridView1.Appearance.SelectedRow.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.SelectedRow.Options.UseFont = True
-        Me.GridView1.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.TopNewRow.Options.UseFont = True
-        Me.GridView1.Appearance.VertLine.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.VertLine.Options.UseFont = True
-        Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 11.0!)
-        Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
         Me.GridView1.ColumnPanelRowHeight = 40
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn39, Me.GridColumn40, Me.GridColumn1})
-        Me.GridView1.DetailHeight = 360
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.HorzScrollStep = 3
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsLayout.Columns.StoreAllOptions = True
         Me.GridView1.OptionsLayout.StoreAllOptions = True
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
         Me.GridView1.OptionsView.EnableAppearanceOddRow = True
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        Me.GridView1.OptionsView.ShowDetailButtons = False
+        Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
-        Me.GridView1.RowHeight = 25
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Default"
-        Me.GridColumn1.FieldName = "IsDefault"
+        Me.GridColumn1.Caption = "#"
+        Me.GridColumn1.FieldName = "HouseTypeID"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 59
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Modelo"
+        Me.GridColumn2.FieldName = "ModelName"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.Width = 780
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Grupo"
+        Me.GridColumn3.FieldName = "GroupDesc"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 783
         '
         'RepositoryItemDateEdit1
         '
@@ -1999,32 +1969,6 @@ Partial Class Form1
         Me.PivotGridField102.FieldName = "PONum"
         Me.PivotGridField102.Name = "PivotGridField102"
         '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ProductCostBookID"
-        Me.GridColumn6.FieldName = "ProductCostBookID"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.Caption = "Descripción"
-        Me.GridColumn39.FieldName = "CostBookName"
-        Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.OptionsColumn.ReadOnly = True
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 0
-        Me.GridColumn39.Width = 434
-        '
-        'GridColumn40
-        '
-        Me.GridColumn40.Caption = "Fecha de la Lista de Costo"
-        Me.GridColumn40.FieldName = "CostBookDate"
-        Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.OptionsColumn.ReadOnly = True
-        Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 1
-        Me.GridColumn40.Width = 280
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2239,7 +2183,6 @@ Partial Class Form1
   Friend WithEvents PivotGridField108 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents PivotGridField109 As DevExpress.XtraPivotGrid.PivotGridField
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

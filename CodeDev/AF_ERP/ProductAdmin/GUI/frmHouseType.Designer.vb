@@ -31,7 +31,7 @@ Partial Class frmHouseType
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.cboModelType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtModelName = New DevExpress.XtraEditors.TextEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.bbtnSaveExit = New DevExpress.XtraBars.BarButtonItem()
@@ -81,7 +81,7 @@ Partial Class frmHouseType
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.txtAssDescription = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtAssArea = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -95,13 +95,17 @@ Partial Class frmHouseType
         Me.RepositoryItemPopupContainerEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
         Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.grdSummaryCostBookEntry = New DevExpress.XtraGrid.GridControl()
+        Me.gvSummaryCostBookEntry = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,13 +115,12 @@ Partial Class frmHouseType
         Me.btnGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.UctHouseTypeOptions1 = New AgroForestal.uctHouseTypeOptions()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.cboModelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtModelName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboGroupType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,7 +151,7 @@ Partial Class frmHouseType
         CType(Me.repoPopupContainerCriteria, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAssRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAssDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtAssArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -159,8 +162,8 @@ Partial Class frmHouseType
         Me.GroupControl6.SuspendLayout()
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdSummaryCostBookEntry, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvSummaryCostBookEntry, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
         CType(Me.cboProductCostBook.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,7 +175,7 @@ Partial Class frmHouseType
         Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl1.Controls.Add(Me.cboModelType)
+        Me.GroupControl1.Controls.Add(Me.txtModelName)
         Me.GroupControl1.Controls.Add(Me.cboGroupType)
         Me.GroupControl1.Controls.Add(Me.PictureEdit2)
         Me.GroupControl1.Controls.Add(Me.PictureEdit1)
@@ -186,14 +189,13 @@ Partial Class frmHouseType
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Detalles Generales"
         '
-        'cboModelType
+        'txtModelName
         '
-        Me.cboModelType.Location = New System.Drawing.Point(263, 39)
-        Me.cboModelType.MenuManager = Me.BarManager1
-        Me.cboModelType.Name = "cboModelType"
-        Me.cboModelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboModelType.Size = New System.Drawing.Size(154, 20)
-        Me.cboModelType.TabIndex = 12
+        Me.txtModelName.Location = New System.Drawing.Point(263, 39)
+        Me.txtModelName.MenuManager = Me.BarManager1
+        Me.txtModelName.Name = "txtModelName"
+        Me.txtModelName.Size = New System.Drawing.Size(159, 20)
+        Me.txtModelName.TabIndex = 12
         '
         'BarManager1
         '
@@ -478,7 +480,7 @@ Partial Class frmHouseType
         Me.pnlHouseTypeAssembly.Controls.Add(Me.LabelControl10)
         Me.pnlHouseTypeAssembly.Controls.Add(Me.txtAssDescription)
         Me.pnlHouseTypeAssembly.Controls.Add(Me.LabelControl9)
-        Me.pnlHouseTypeAssembly.Controls.Add(Me.TextEdit1)
+        Me.pnlHouseTypeAssembly.Controls.Add(Me.txtAssArea)
         Me.pnlHouseTypeAssembly.Controls.Add(Me.LabelControl1)
         Me.pnlHouseTypeAssembly.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlHouseTypeAssembly.Location = New System.Drawing.Point(0, 0)
@@ -594,7 +596,7 @@ Partial Class frmHouseType
         Me.GridColumn15.FieldName = "ConditionString"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 7
+        Me.GridColumn15.VisibleIndex = 3
         Me.GridColumn15.Width = 211
         '
         'repoPopupContainerCriteria
@@ -611,8 +613,6 @@ Partial Class frmHouseType
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "Cost"
         Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
         Me.GridColumn20.Width = 74
         '
         'GridColumn22
@@ -622,8 +622,6 @@ Partial Class frmHouseType
         Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "DirectLabourCost"
         Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 4
         Me.GridColumn22.Width = 73
         '
         'GridColumn23
@@ -633,8 +631,6 @@ Partial Class frmHouseType
         Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn23.FieldName = "DirectMaterialCost"
         Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 5
         Me.GridColumn23.Width = 80
         '
         'GridColumn24
@@ -644,8 +640,6 @@ Partial Class frmHouseType
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "DirectTransportationAndEquipment"
         Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 6
         Me.GridColumn24.Width = 84
         '
         'GridColumn25
@@ -655,8 +649,6 @@ Partial Class frmHouseType
         Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "OutsourcingCost"
         Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 8
         Me.GridColumn25.Width = 97
         '
         'txtAssRef
@@ -703,15 +695,15 @@ Partial Class frmHouseType
         Me.LabelControl9.TabIndex = 3
         Me.LabelControl9.Text = "Descripcion"
         '
-        'TextEdit1
+        'txtAssArea
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(100, 43)
-        Me.TextEdit1.MenuManager = Me.BarManager1
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Size = New System.Drawing.Size(69, 20)
-        Me.TextEdit1.TabIndex = 2
+        Me.txtAssArea.Location = New System.Drawing.Point(100, 43)
+        Me.txtAssArea.MenuManager = Me.BarManager1
+        Me.txtAssArea.Name = "txtAssArea"
+        Me.txtAssArea.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAssArea.Properties.Appearance.Options.UseFont = True
+        Me.txtAssArea.Size = New System.Drawing.Size(69, 20)
+        Me.txtAssArea.TabIndex = 2
         '
         'LabelControl1
         '
@@ -831,13 +823,53 @@ Partial Class frmHouseType
         '
         'GridColumn21
         '
-        Me.GridColumn21.Caption = "Costo"
+        Me.GridColumn21.Caption = "Costo Total"
         Me.GridColumn21.DisplayFormat.FormatString = "f2"
         Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "Cost"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 3
+        Me.GridColumn21.VisibleIndex = 7
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Costo MO"
+        Me.GridColumn26.DisplayFormat.FormatString = "f2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "DirectLabourCost"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 3
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Costo Materiales"
+        Me.GridColumn27.DisplayFormat.FormatString = "f2"
+        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn27.FieldName = "DirectMaterialCost"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 4
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Costo Transporte & Eq."
+        Me.GridColumn28.DisplayFormat.FormatString = "f2"
+        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn28.FieldName = "DirectTransportationAndEquipment"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 5
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Costo Sub Contr."
+        Me.GridColumn29.DisplayFormat.FormatString = "f2"
+        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn29.FieldName = "OutsourcingCost"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 6
         '
         'GroupControl6
         '
@@ -846,7 +878,7 @@ Partial Class frmHouseType
         Me.GroupControl6.AppearanceCaption.Options.UseFont = True
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl6.Controls.Add(Me.GridControl4)
-        Me.GroupControl6.Controls.Add(Me.GridControl3)
+        Me.GroupControl6.Controls.Add(Me.grdSummaryCostBookEntry)
         Me.GroupControl6.Location = New System.Drawing.Point(11, 302)
         Me.GroupControl6.Name = "GroupControl6"
         Me.GroupControl6.Size = New System.Drawing.Size(437, 364)
@@ -892,49 +924,52 @@ Partial Class frmHouseType
         Me.GridColumn14.VisibleIndex = 1
         Me.GridColumn14.Width = 96
         '
-        'GridControl3
+        'grdSummaryCostBookEntry
         '
-        Me.GridControl3.Location = New System.Drawing.Point(5, 28)
-        Me.GridControl3.MainView = Me.GridView3
-        Me.GridControl3.MenuManager = Me.BarManager1
-        Me.GridControl3.Name = "GridControl3"
-        Me.GridControl3.Size = New System.Drawing.Size(427, 172)
-        Me.GridControl3.TabIndex = 2
-        Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        Me.grdSummaryCostBookEntry.Location = New System.Drawing.Point(5, 28)
+        Me.grdSummaryCostBookEntry.MainView = Me.gvSummaryCostBookEntry
+        Me.grdSummaryCostBookEntry.MenuManager = Me.BarManager1
+        Me.grdSummaryCostBookEntry.Name = "grdSummaryCostBookEntry"
+        Me.grdSummaryCostBookEntry.Size = New System.Drawing.Size(427, 172)
+        Me.grdSummaryCostBookEntry.TabIndex = 2
+        Me.grdSummaryCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSummaryCostBookEntry})
         '
-        'GridView3
+        'gvSummaryCostBookEntry
         '
-        Me.GridView3.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView3.Appearance.GroupRow.Options.UseFont = True
-        Me.GridView3.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView3.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridView3.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView3.Appearance.Row.Options.UseFont = True
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
-        Me.GridView3.GridControl = Me.GridControl3
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.gvSummaryCostBookEntry.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvSummaryCostBookEntry.Appearance.GroupRow.Options.UseFont = True
+        Me.gvSummaryCostBookEntry.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvSummaryCostBookEntry.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvSummaryCostBookEntry.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvSummaryCostBookEntry.Appearance.Row.Options.UseFont = True
+        Me.gvSummaryCostBookEntry.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32})
+        Me.gvSummaryCostBookEntry.GridControl = Me.grdSummaryCostBookEntry
+        Me.gvSummaryCostBookEntry.GroupCount = 5
+        Me.gvSummaryCostBookEntry.Name = "gvSummaryCostBookEntry"
+        Me.gvSummaryCostBookEntry.OptionsView.ShowGroupPanel = False
+        Me.gvSummaryCostBookEntry.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn11, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn32, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn31, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn30, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Area"
+        Me.GridColumn10.FieldName = "SubItemType"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Costo Total"
+        Me.GridColumn11.FieldName = "TotalCost"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.VisibleIndex = 0
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Costo Fab"
+        Me.GridColumn12.Caption = "Costo MO"
+        Me.GridColumn12.FieldName = "TotalLabourCost"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.VisibleIndex = 0
         '
         'GroupControl5
         '
@@ -988,45 +1023,31 @@ Partial Class frmHouseType
         Me.UctHouseTypeOptions1.Size = New System.Drawing.Size(230, 218)
         Me.UctHouseTypeOptions1.TabIndex = 0
         '
-        'GridColumn26
+        'GridColumn30
         '
-        Me.GridColumn26.Caption = "Costo MO"
-        Me.GridColumn26.DisplayFormat.FormatString = "f2"
-        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn26.FieldName = "DirectLabourCost"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 4
+        Me.GridColumn30.Caption = "Costo SubCont."
+        Me.GridColumn30.FieldName = "TotalOutsourcingCost"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
         '
-        'GridColumn27
+        'GridColumn31
         '
-        Me.GridColumn27.Caption = "Costo Materiales"
-        Me.GridColumn27.DisplayFormat.FormatString = "f2"
-        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn27.FieldName = "DirectMaterialCost"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 5
+        Me.GridColumn31.Caption = "Costo Mat."
+        Me.GridColumn31.FieldName = "TotalMaterialCost"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 0
+        Me.GridColumn31.Width = 83
         '
-        'GridColumn28
+        'GridColumn32
         '
-        Me.GridColumn28.Caption = "Costo Transporte & Eq."
-        Me.GridColumn28.DisplayFormat.FormatString = "f2"
-        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn28.FieldName = "DirectTransportationAndEquipment"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 6
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Costo Sub Contr."
-        Me.GridColumn29.DisplayFormat.FormatString = "f2"
-        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn29.FieldName = "OutsourcingCost"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 7
+        Me.GridColumn32.Caption = "Costo Transporte"
+        Me.GridColumn32.FieldName = "TotalTransportationCost"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        Me.GridColumn32.Width = 104
         '
         'frmHouseType
         '
@@ -1043,7 +1064,7 @@ Partial Class frmHouseType
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.cboModelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtModelName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboGroupType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1075,7 +1096,7 @@ Partial Class frmHouseType
         CType(Me.repoPopupContainerCriteria, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAssRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAssDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtAssArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -1086,8 +1107,8 @@ Partial Class frmHouseType
         Me.GroupControl6.ResumeLayout(False)
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdSummaryCostBookEntry, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvSummaryCostBookEntry, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
         Me.GroupControl5.PerformLayout()
@@ -1120,7 +1141,7 @@ Partial Class frmHouseType
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtAssArea As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
@@ -1134,8 +1155,8 @@ Partial Class frmHouseType
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl3 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents grdSummaryCostBookEntry As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvSummaryCostBookEntry As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1146,7 +1167,6 @@ Partial Class frmHouseType
     Friend WithEvents bbtnClose As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents txtAssRef As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents cboModelType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboGroupType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents UctHouseTypeOptions1 As uctHouseTypeOptions
     Friend WithEvents grpProductLists As DevExpress.XtraEditors.GroupControl
@@ -1182,4 +1202,8 @@ Partial Class frmHouseType
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtModelName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -13,7 +13,7 @@ Public Class clsProductBaseInfo
   End Property
 
 
-  Public ReadOnly Property Category As eProductType
+  Public ReadOnly Property ProductTypeID As eProductType
     Get
       Return pProduct.ProductTypeID
     End Get
@@ -76,7 +76,7 @@ Public Class colProductBaseInfos : Inherits List(Of clsProductBaseInfo)
 
     For Each mItem In Me
 
-      If mItem.ID = vID And mItem.Category = vProductType Then
+      If mItem.ID = vID And mItem.ProductTypeID = vProductType Then
         mRetVal = mItem
         Exit For
       End If

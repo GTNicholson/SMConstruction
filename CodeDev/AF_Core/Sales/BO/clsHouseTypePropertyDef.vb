@@ -12,6 +12,7 @@ Public Class clsHouseTypePropertyDef
     FloorOption = 2
     WallOptions = 3
     WindowOptions = 4
+    DeckOptions = 5
   End Enum
 
   Public ReadOnly Property ObjectType As Integer Implements intObjectProperties.ObjectType
@@ -39,6 +40,8 @@ Public Class clsHouseTypePropertyDef
         pPropertyList.AddPropertyDef(ePropertyDefENUM.FloorOption, "Piso", GetType(Int32), appRefLists.FloorOptions, True)
         pPropertyList.AddPropertyDef(ePropertyDefENUM.WallOptions, "Paredes", GetType(Int32), appRefLists.WallOptions, True)
         pPropertyList.AddPropertyDef(ePropertyDefENUM.WindowOptions, "Ventanas", GetType(Int32), appRefLists.WindowOptions, True)
+        pPropertyList.AddPropertyDef(ePropertyDefENUM.DeckOptions, "Con Deck", GetType(Boolean), appRefLists.None, True)
+
       End If
 
       Return pPropertyList
@@ -69,6 +72,10 @@ Public Class clsHouseTypePropertyDef
 
       Case ePropertyDefENUM.WallOptions
         mRetVal = pHouseType.TmpWallOptions
+
+      Case ePropertyDefENUM.DeckOptions
+        mRetVal = pHouseType.TmpWallOptions
+
     End Select
 
     Return mRetVal

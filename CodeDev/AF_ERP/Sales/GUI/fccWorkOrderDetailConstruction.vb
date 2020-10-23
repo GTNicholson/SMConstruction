@@ -575,5 +575,8 @@ Public Class fccWorkOrderDetailConstruction
 
   End Sub
 
-
+  Public Sub GetNextWONumber()
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    pWorkOrder.WorkOrderNo = "S-" & mdsoGeneral.GetNextTallyWONo().ToString("00000")
+  End Sub
 End Class

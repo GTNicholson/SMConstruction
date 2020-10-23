@@ -171,9 +171,12 @@ Partial Class frmWorkOrderDetail
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-    Me.UctFileControl1 = New uctFileControl()
-    Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
+        Me.UctFileControl1 = New AgroForestal.uctFileControl()
+        Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
+        Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
         Me.grdTimeSheetEntries = New DevExpress.XtraGrid.GridControl()
         Me.gvTimeSheetEntries = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -181,9 +184,6 @@ Partial Class frmWorkOrderDetail
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,14 +269,14 @@ Partial Class frmWorkOrderDetail
         Me.XtraTabPage4.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl8.SuspendLayout()
-        CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl9.SuspendLayout()
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl8.SuspendLayout()
+        CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -585,7 +585,7 @@ Partial Class frmWorkOrderDetail
         Me.btnWorkOrderNumber.Name = "btnWorkOrderNumber"
         Me.btnWorkOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnWorkOrderNumber.Properties.Appearance.Options.UseFont = True
-        Me.btnWorkOrderNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo)})
+        Me.btnWorkOrderNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
         Me.btnWorkOrderNumber.Properties.ReadOnly = True
         Me.btnWorkOrderNumber.Size = New System.Drawing.Size(145, 20)
         Me.btnWorkOrderNumber.TabIndex = 156
@@ -1833,6 +1833,47 @@ Partial Class frmWorkOrderDetail
         Me.PanelControl1.Size = New System.Drawing.Size(1412, 369)
         Me.PanelControl1.TabIndex = 0
         '
+        'GroupControl9
+        '
+        Me.GroupControl9.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupControl9.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl9.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupControl9.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl9.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl9.Controls.Add(Me.GridControl4)
+        Me.GroupControl9.Location = New System.Drawing.Point(775, 5)
+        Me.GroupControl9.Name = "GroupControl9"
+        Me.GroupControl9.Size = New System.Drawing.Size(637, 359)
+        Me.GroupControl9.TabIndex = 167
+        Me.GroupControl9.Text = "Compras"
+        '
+        'GridControl4
+        '
+        Me.GridControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl4.Location = New System.Drawing.Point(2, 23)
+        Me.GridControl4.MainView = Me.GridView4
+        Me.GridControl4.MenuManager = Me.BarManager1
+        Me.GridControl4.Name = "GridControl4"
+        Me.GridControl4.Size = New System.Drawing.Size(633, 334)
+        Me.GridControl4.TabIndex = 14
+        Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
+        '
+        'GridView4
+        '
+        Me.GridView4.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridView4.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridView4.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridView4.Appearance.Row.Options.UseFont = True
+        Me.GridView4.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridView4.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GridView4.Appearance.ViewCaption.Options.UseFont = True
+        Me.GridView4.Appearance.ViewCaption.Options.UseForeColor = True
+        Me.GridView4.GridControl = Me.GridControl4
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
         'GroupControl8
         '
         Me.GroupControl8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1932,47 +1973,6 @@ Partial Class frmWorkOrderDetail
         Me.gcDuration.Visible = True
         Me.gcDuration.VisibleIndex = 2
         Me.gcDuration.Width = 186
-        '
-        'GroupControl9
-        '
-        Me.GroupControl9.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupControl9.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupControl9.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupControl9.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl9.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl9.Controls.Add(Me.GridControl4)
-        Me.GroupControl9.Location = New System.Drawing.Point(775, 5)
-        Me.GroupControl9.Name = "GroupControl9"
-        Me.GroupControl9.Size = New System.Drawing.Size(637, 359)
-        Me.GroupControl9.TabIndex = 167
-        Me.GroupControl9.Text = "Compras"
-        '
-        'GridControl4
-        '
-        Me.GridControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl4.Location = New System.Drawing.Point(2, 23)
-        Me.GridControl4.MainView = Me.GridView4
-        Me.GridControl4.MenuManager = Me.BarManager1
-        Me.GridControl4.Name = "GridControl4"
-        Me.GridControl4.Size = New System.Drawing.Size(633, 334)
-        Me.GridControl4.TabIndex = 14
-        Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
-        '
-        'GridView4
-        '
-        Me.GridView4.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView4.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridView4.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView4.Appearance.Row.Options.UseFont = True
-        Me.GridView4.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridView4.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GridView4.Appearance.ViewCaption.Options.UseFont = True
-        Me.GridView4.Appearance.ViewCaption.Options.UseForeColor = True
-        Me.GridView4.GridControl = Me.GridControl4
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsView.ShowGroupPanel = False
         '
         'frmWorkOrderDetail
         '
@@ -2078,14 +2078,14 @@ Partial Class frmWorkOrderDetail
         Me.XtraTabPage4.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl8.ResumeLayout(False)
-        CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl9.ResumeLayout(False)
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl8.ResumeLayout(False)
+        CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

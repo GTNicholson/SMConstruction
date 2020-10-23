@@ -112,6 +112,7 @@ Public Enum ePurchaseCategories
   <Description("Seguridad")> Seguridad = 9
   <Description("Mejora de Edificio")> MejoraEdificio = 10
   <Description("Papelería de Oficinas")> Papeleria = 11
+  <Description("Caja Chica")> CajaChica = 12
   <Description("Otras")> Otro = 99
 End Enum
 
@@ -241,7 +242,7 @@ Public Enum eEmailTemplate
 End Enum
 Public Enum eTallyIDs
   WorkOrder = 1
-  InternalWorkOrder = 2
+  StructureWO = 2
   PurchaseOrderNo = 3
   GRNNumber = 1002
 End Enum

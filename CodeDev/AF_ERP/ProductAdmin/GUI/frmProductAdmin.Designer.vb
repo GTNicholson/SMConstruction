@@ -29,7 +29,7 @@ Partial Class frmProductAdmin
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
     Me.grdProductBase = New DevExpress.XtraGrid.GridControl()
-    Me.gvStockItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+    Me.gvProductBase = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,84 +39,84 @@ Partial Class frmProductAdmin
     Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
     Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.BarStaticItem2 = New DevExpress.XtraBars.BarStaticItem()
-    Me.beCategory = New DevExpress.XtraBars.BarEditItem()
-    Me.repoCategory = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-    Me.btnAddStockItem = New DevExpress.XtraBars.BarButtonItem()
-    Me.rgbStockItemOptions = New DevExpress.XtraBars.BarEditItem()
-    Me.repoStockItemOption = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
-    Me.bbtnmnuAddProduct = New DevExpress.XtraBars.BarSubItem()
-    Me.bbtnAddProductFurniture = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnAddStructure = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnAddProductInstallation = New DevExpress.XtraBars.BarButtonItem()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnAddBasicItem = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnAddLockItem = New DevExpress.XtraBars.BarButtonItem()
-    Me.bargCostingOnly = New DevExpress.XtraBars.BarEditItem()
-    Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-    Me.barbtnAddStockItem = New DevExpress.XtraBars.BarButtonItem()
-    Me.df = New DevExpress.XtraBars.BarButtonItem()
-    Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-    Me.barbtnAddStockItemCats = New DevExpress.XtraBars.BarSubItem()
-    Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
-    Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-    Me.barbtnAddStockItemCat = New DevExpress.XtraBars.BarSubItem()
-    Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
-    Me.BarEditItem2 = New DevExpress.XtraBars.BarEditItem()
-    Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-    Me.BarEditItem3 = New DevExpress.XtraBars.BarEditItem()
-    Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.BarEditItem4 = New DevExpress.XtraBars.BarEditItem()
-    Me.RepositoryItemRadioGroup1 = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
-    Me.BarStaticItem3 = New DevExpress.XtraBars.BarStaticItem()
-    Me.BarCheckItem1 = New DevExpress.XtraBars.BarCheckItem()
-    Me.BarEditItem5 = New DevExpress.XtraBars.BarEditItem()
-    Me.repoIsTemplate = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-    Me.btnSelectAll = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnSelectVisible = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnClear = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnGenerateDescriptionItem = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnGlobalChanges = New DevExpress.XtraBars.BarButtonItem()
-    Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
-    Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-    Me.tabBasicStockItem = New DevExpress.XtraTab.XtraTabPage()
-    Me.Panel1 = New System.Windows.Forms.Panel()
-    Me.grpStockItemDetail = New DevExpress.XtraEditors.GroupControl()
-    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.btnGenerateCode = New DevExpress.XtraEditors.SimpleButton()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboSubItemType = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.lblStockItemID = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboProductItemType = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtDescription = New DevExpress.XtraEditors.TextEdit()
-    Me.txtStockCode = New DevExpress.XtraEditors.TextEdit()
-    Me.tabLockStockItem = New DevExpress.XtraTab.XtraTabPage()
-    Me.tabBlank = New DevExpress.XtraTab.XtraTabPage()
+        Me.bbtnmnuAddProduct = New DevExpress.XtraBars.BarSubItem()
+        Me.bbtnAddProductFurniture = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnAddStructure = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnAddProductInstallation = New DevExpress.XtraBars.BarButtonItem()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnAddBasicItem = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnAddLockItem = New DevExpress.XtraBars.BarButtonItem()
+        Me.bargCostingOnly = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.barbtnAddStockItem = New DevExpress.XtraBars.BarButtonItem()
+        Me.df = New DevExpress.XtraBars.BarButtonItem()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.barbtnAddStockItemCats = New DevExpress.XtraBars.BarSubItem()
+        Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.barbtnAddStockItemCat = New DevExpress.XtraBars.BarSubItem()
+        Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
+        Me.BarStaticItem2 = New DevExpress.XtraBars.BarStaticItem()
+        Me.BarEditItem2 = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.beCategory = New DevExpress.XtraBars.BarEditItem()
+        Me.repoCategory = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.btnAddStockItem = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarEditItem3 = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BarEditItem4 = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemRadioGroup1 = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+        Me.BarStaticItem3 = New DevExpress.XtraBars.BarStaticItem()
+        Me.BarCheckItem1 = New DevExpress.XtraBars.BarCheckItem()
+        Me.BarEditItem5 = New DevExpress.XtraBars.BarEditItem()
+        Me.repoIsTemplate = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.rgbStockItemOptions = New DevExpress.XtraBars.BarEditItem()
+        Me.repoStockItemOption = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+        Me.btnSelectAll = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnSelectVisible = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnClear = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnGenerateDescriptionItem = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnGlobalChanges = New DevExpress.XtraBars.BarButtonItem()
+        Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.tabBasicStockItem = New DevExpress.XtraTab.XtraTabPage()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.grpStockItemDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.btnGenerateCode = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboSubItemType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.lblStockItemID = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboProductItemType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtDescription = New DevExpress.XtraEditors.TextEdit()
+        Me.txtStockCode = New DevExpress.XtraEditors.TextEdit()
+        Me.tabLockStockItem = New DevExpress.XtraTab.XtraTabPage()
+        Me.tabBlank = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.grdProductBase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvProductBase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoSelectedItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.repoCategory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.repoStockItemOption, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoCategory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoIsTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoStockItemOption, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -160,38 +160,38 @@ Partial Class frmProductAdmin
         '
         Me.grdProductBase.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grdProductBase.Location = New System.Drawing.Point(0, 0)
-        Me.grdProductBase.MainView = Me.gvStockItems
+        Me.grdProductBase.MainView = Me.gvProductBase
         Me.grdProductBase.MenuManager = Me.BarManager1
         Me.grdProductBase.Name = "grdProductBase"
         Me.grdProductBase.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectedItem})
         Me.grdProductBase.Size = New System.Drawing.Size(1102, 283)
         Me.grdProductBase.TabIndex = 0
-        Me.grdProductBase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItems})
+        Me.grdProductBase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvProductBase})
         '
-        'gvStockItems
+        'gvProductBase
         '
-        Me.gvStockItems.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.gvStockItems.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.gvStockItems.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvStockItems.Appearance.EvenRow.Options.UseFont = True
-        Me.gvStockItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.gvStockItems.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gvStockItems.Appearance.OddRow.BackColor = System.Drawing.Color.White
-        Me.gvStockItems.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.gvStockItems.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvStockItems.Appearance.OddRow.Options.UseFont = True
-        Me.gvStockItems.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.gvStockItems.Appearance.Row.Options.UseBackColor = True
-        Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.gcCategory, Me.GridColumn7, Me.GridColumn3})
-        Me.gvStockItems.GridControl = Me.grdProductBase
-        Me.gvStockItems.GroupCount = 1
-        Me.gvStockItems.Name = "gvStockItems"
-        Me.gvStockItems.OptionsView.EnableAppearanceEvenRow = True
-        Me.gvStockItems.OptionsView.EnableAppearanceOddRow = True
-        Me.gvStockItems.OptionsView.ShowAutoFilterRow = True
-        Me.gvStockItems.OptionsView.ShowDetailButtons = False
-        Me.gvStockItems.OptionsView.ShowGroupPanel = False
-        Me.gvStockItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.gvProductBase.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvProductBase.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvProductBase.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvProductBase.Appearance.EvenRow.Options.UseFont = True
+        Me.gvProductBase.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.gvProductBase.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvProductBase.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvProductBase.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvProductBase.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvProductBase.Appearance.OddRow.Options.UseFont = True
+        Me.gvProductBase.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvProductBase.Appearance.Row.Options.UseBackColor = True
+        Me.gvProductBase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.gcCategory, Me.GridColumn7, Me.GridColumn3})
+        Me.gvProductBase.GridControl = Me.grdProductBase
+        Me.gvProductBase.GroupCount = 1
+        Me.gvProductBase.Name = "gvProductBase"
+        Me.gvProductBase.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvProductBase.OptionsView.EnableAppearanceOddRow = True
+        Me.gvProductBase.OptionsView.ShowAutoFilterRow = True
+        Me.gvProductBase.OptionsView.ShowDetailButtons = False
+        Me.gvProductBase.OptionsView.ShowGroupPanel = False
+        Me.gvProductBase.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn4
         '
@@ -279,43 +279,6 @@ Partial Class frmProductAdmin
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
         Me.Bar1.Text = "Tools"
-        '
-        'BarStaticItem2
-        '
-        Me.BarStaticItem2.Caption = "Tipo de Producto"
-        Me.BarStaticItem2.Id = 11
-        Me.BarStaticItem2.Name = "BarStaticItem2"
-        '
-        'beCategory
-        '
-        Me.beCategory.Edit = Me.repoCategory
-        Me.beCategory.Id = 13
-        Me.beCategory.Name = "beCategory"
-        '
-        'repoCategory
-        '
-        Me.repoCategory.AutoHeight = False
-        Me.repoCategory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.repoCategory.Name = "repoCategory"
-        '
-        'btnAddStockItem
-        '
-        Me.btnAddStockItem.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.btnAddStockItem.Caption = "Agregar Producto"
-        Me.btnAddStockItem.Id = 14
-        Me.btnAddStockItem.Name = "btnAddStockItem"
-        '
-        'rgbStockItemOptions
-        '
-        Me.rgbStockItemOptions.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.rgbStockItemOptions.Edit = Me.repoStockItemOption
-        Me.rgbStockItemOptions.Id = 20
-        Me.rgbStockItemOptions.Name = "rgbStockItemOptions"
-        '
-        'repoStockItemOption
-        '
-        Me.repoStockItemOption.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "All", True, "All"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Instalación", True, "ProductInstallation"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Estructura", True, "ProductStructure")})
-        Me.repoStockItemOption.Name = "repoStockItemOption"
         '
         'bbtnmnuAddProduct
         '
@@ -462,6 +425,12 @@ Partial Class frmProductAdmin
         Me.BarStaticItem1.Id = 10
         Me.BarStaticItem1.Name = "BarStaticItem1"
         '
+        'BarStaticItem2
+        '
+        Me.BarStaticItem2.Caption = "Tipo de Producto"
+        Me.BarStaticItem2.Id = 11
+        Me.BarStaticItem2.Name = "BarStaticItem2"
+        '
         'BarEditItem2
         '
         Me.BarEditItem2.Caption = "BarEditItem2"
@@ -473,6 +442,25 @@ Partial Class frmProductAdmin
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'beCategory
+        '
+        Me.beCategory.Edit = Me.repoCategory
+        Me.beCategory.Id = 13
+        Me.beCategory.Name = "beCategory"
+        '
+        'repoCategory
+        '
+        Me.repoCategory.AutoHeight = False
+        Me.repoCategory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.repoCategory.Name = "repoCategory"
+        '
+        'btnAddStockItem
+        '
+        Me.btnAddStockItem.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnAddStockItem.Caption = "Agregar Producto"
+        Me.btnAddStockItem.Id = 14
+        Me.btnAddStockItem.Name = "btnAddStockItem"
         '
         'BarEditItem3
         '
@@ -524,6 +512,18 @@ Partial Class frmProductAdmin
         '
         Me.repoIsTemplate.AutoHeight = False
         Me.repoIsTemplate.Name = "repoIsTemplate"
+        '
+        'rgbStockItemOptions
+        '
+        Me.rgbStockItemOptions.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.rgbStockItemOptions.Edit = Me.repoStockItemOption
+        Me.rgbStockItemOptions.Id = 20
+        Me.rgbStockItemOptions.Name = "rgbStockItemOptions"
+        '
+        'repoStockItemOption
+        '
+        Me.repoStockItemOption.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "All", True, "All"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Instalación", True, "ProductInstallation"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Estructura", True, "ProductStructure")})
+        Me.repoStockItemOption.Name = "repoStockItemOption"
         '
         'btnSelectAll
         '
@@ -810,18 +810,18 @@ Partial Class frmProductAdmin
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.grdProductBase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvProductBase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoSelectedItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.repoCategory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.repoStockItemOption, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoCategory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoIsTemplate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoStockItemOption, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
@@ -849,7 +849,7 @@ Partial Class frmProductAdmin
   Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
   Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
   Friend WithEvents grdProductBase As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvStockItems As DevExpress.XtraGrid.Views.Grid.GridView
+  Friend WithEvents gvProductBase As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
   Friend WithEvents tabBasicStockItem As DevExpress.XtraTab.XtraTabPage
   Friend WithEvents tabLockStockItem As DevExpress.XtraTab.XtraTabPage

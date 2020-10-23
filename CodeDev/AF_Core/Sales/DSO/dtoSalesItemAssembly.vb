@@ -87,6 +87,7 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
 
         Case eMode.HouseTypeSalesItemAssembly
           DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .ParentID)
+          DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Area", .Area)
       End Select
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Ref", StringToDBValue(.Ref))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
@@ -113,6 +114,7 @@ Public Class dtoSalesItemAssembly : Inherits dtoBase
           Case eMode.HouseTypeSalesItemAssembly
             .SalesItemAssemblyID = DBReadInt32(rDataReader, "HouseTypeSalesItemAssemblyID")
             .ParentID = DBReadInt32(rDataReader, "HouseTypeID")
+            .Area = DBReadDecimal(rDataReader, "Area")
         End Select
         .Ref = DBReadString(rDataReader, "Ref")
         .Description = DBReadString(rDataReader, "Description")

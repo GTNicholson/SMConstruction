@@ -35,6 +35,8 @@
 
   Public Property Cost As Decimal
     Get
+      pProductCostBookEntry.Cost = pProductCostBookEntry.DirectLabourCost + pProductCostBookEntry.DirectMaterialCost + pProductCostBookEntry.DirectTransportationAndEquipment + pProductCostBookEntry.OutsourcingCost
+
       Return pProductCostBookEntry.Cost
     End Get
     Set(value As Decimal)

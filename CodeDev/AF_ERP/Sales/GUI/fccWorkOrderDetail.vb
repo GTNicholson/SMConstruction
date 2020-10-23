@@ -171,11 +171,11 @@ Public Class fccWorkOrderDetail
       mMat = mFurniture.MaterialRequirmentOthers(mLoop)
       If mMat.StockItemID <> 0 Then '// this leaves the manual ones alone
         For Each mSI As dmStockItem In rStockItems
-        If mMat.StockItemID = mSI.StockItemID Then
-          mFound = True
-          Exit For
-        End If
-      Next
+          If mMat.StockItemID = mSI.StockItemID Then
+            mFound = True
+            Exit For
+          End If
+        Next
         If mFound = False Then
           mFurniture.MaterialRequirmentOthers.RemoveAt(mLoop)
         End If
@@ -422,4 +422,8 @@ Public Class fccWorkOrderDetail
 
   End Sub
 
+  Public Sub GetNextWONumber()
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    pWorkOrder.WorkOrderNo = "S-" & mdsoGeneral.GetNextTallyWONo().ToString("00000")
+  End Sub
 End Class

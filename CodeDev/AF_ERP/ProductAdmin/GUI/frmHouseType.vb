@@ -146,8 +146,7 @@ Public Class frmHouseType
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboGroup, mVIs)
 
 
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model)
-    clsDEControlLoading.FillDEComboVI(cboModelType, mVIs)
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.HouseType)
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboModel, mVIs)
 
     mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FoundationOptions)
@@ -196,11 +195,11 @@ Public Class frmHouseType
       mIsActive = pIsActive
 
       With pFormController.HouseType
-        clsDEControlLoading.SetDECombo(cboModelType, .ModelID)
+        txtModelName.Text = .ModelName
         clsDEControlLoading.SetDECombo(cboGroupType, .GroupID)
 
         ''Refreshing UCT Option controls
-        clsDEControlLoading.SetDECombo(UctHouseTypeOptions1.cboModel, .ModelID)
+        clsDEControlLoading.SetDECombo(UctHouseTypeOptions1.cboModel, .HouseTypeID)
         clsDEControlLoading.SetDECombo(UctHouseTypeOptions1.cboGroup, .GroupID)
 
         txtArea.Text = .Area
@@ -218,7 +217,7 @@ Public Class frmHouseType
     Try
       With pFormController.HouseType
 
-        .ModelID = clsDEControlLoading.GetDEComboValue(cboModelType)
+        .ModelName = txtModelName.Text
         .GroupID = clsDEControlLoading.GetDEComboValue(cboGroupType)
         .Area = txtArea.Text
 
@@ -353,7 +352,8 @@ Public Class frmHouseType
       End If
       mPage = tabHouseTypeAssemblys.TabPages(mPos)
       mPage.Tag = mHTA
-      mPage.Text = mHTA.Ref
+      mPage.Text = String.Format("{0}/{1}", mHTA.Ref, mHTA.Description)
+
       If mHTA Is pFormController.CurrentHouseTypeAssembly Then mCurrentPage = mPage
       mPos += 1
     Next
@@ -376,6 +376,7 @@ Public Class frmHouseType
       With pFormController.CurrentHouseTypeAssembly
         txtAssDescription.Text = .Description
         txtAssRef.Text = .Ref
+        txtAssArea.Text = .Area
       End With
     End If
   End Sub
@@ -385,6 +386,7 @@ Public Class frmHouseType
       With pFormController.CurrentHouseTypeAssembly
         .Description = txtAssDescription.Text
         .Ref = txtAssRef.Text
+        .Area = txtAssArea.Text
       End With
     End If
   End Sub
@@ -395,6 +397,7 @@ Public Class frmHouseType
       mIsActive = pIsActive
       Select Case e.Button.Tag
         Case "Add"
+          ClearAssemblyControls()
           pFormController.AddAssembly()
           grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
           gvHouseSalesItems.RefreshData()
@@ -413,15 +416,30 @@ Public Class frmHouseType
     End Try
   End Sub
 
+  Private Sub ClearAssemblyControls()
+    txtAssArea.Text = ""
+    txtAssDescription.Text = ""
+    txtAssRef.Text = ""
+  End Sub
+
   Private Sub tabHouseTypeAssemblys_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles tabHouseTypeAssemblys.SelectedPageChanged
     Try
       If pIsActive Then
         UpdateHouseTypePanel()
-        pFormController.SetCurrentHouseTypeAssembly(e.Page.Tag)
-        grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
-        pnlHouseTypeAssembly.Parent = e.Page
-        RefreshHouseTypePanel()
+        If e.Page.Tag IsNot Nothing Then
+
+          pnlHouseTypeAssembly.Parent = e.Page
+          pFormController.SetCurrentHouseTypeAssembly(e.Page.Tag)
+
+        Else
+          pFormController.SetCurrentHouseTypeAssembly(Nothing)
+        End If
+      Else
+        pFormController.SetCurrentHouseTypeAssembly(Nothing)
       End If
+      RefreshHouseTypePanel()
+      grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -433,8 +451,9 @@ Public Class frmHouseType
     Try
 
       UpdateObjects()
+      UpdateHouseTypePanel()
       pFormController.SaveObjects()
-
+      RefreshTabs()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -560,5 +579,7 @@ Public Class frmHouseType
 
     pFormController.SetPrevlHTSalesItemInfos()
     grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
+    pFormController.RefreshProductCostSummaryInfo(pFormController.PrevtHTSalesItemInfos)
+    grdSummaryCostBookEntry.DataSource = pFormController.ProductCostSummaryInfo
   End Sub
 End Class

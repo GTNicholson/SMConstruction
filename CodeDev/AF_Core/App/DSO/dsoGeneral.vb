@@ -31,7 +31,17 @@ Public Class dsoGeneral
 
     Return mRetVal
   End Function
-
+  Public Function GetNextTallyWONo() As Integer
+    Dim mRetVal As Integer
+    Try
+      pDBConn.Connect()
+      mRetVal = pDBConn.NextTally(eTallyIDs.StructureWO)
+    Catch ex As Exception
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
   Public Function GetNextTallyPONo() As Integer
     Dim mRetVal As Integer
     Try

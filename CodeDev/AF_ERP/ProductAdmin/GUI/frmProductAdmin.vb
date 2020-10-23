@@ -143,7 +143,7 @@ Public Class frmProductAdmin
             pFormController.LoadMainCollection()
             grdProductBase.RefreshDataSource()
             RefreshControls()
-            gvStockItems.RefreshData()
+            gvProductBase.RefreshData()
           Case MsgBoxResult.Cancel
             mSaveRequired = False
             mRetVal = False
@@ -241,7 +241,7 @@ Public Class frmProductAdmin
 
   End Sub
 
-  Private Sub gvStockItems_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvStockItems.FocusedRowObjectChanged
+  Private Sub gvStockItems_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvProductBase.FocusedRowObjectChanged
     Try
       Dim mSII As clsProductBaseInfo
 
@@ -260,7 +260,7 @@ Public Class frmProductAdmin
             End If
 
           Else
-            gvStockItems.RefreshData()
+            gvProductBase.RefreshData()
           End If
         End If
         pFormController.SetCurrentStockItemInfo(mSII)
@@ -272,7 +272,7 @@ Public Class frmProductAdmin
         RefreshControls()
         pCurrentDetailMode = eCurrentDetailMode.eView
         RefreshDetailButtons()
-        gvStockItems.RefreshData()
+        gvProductBase.RefreshData()
       End If
 
 
@@ -288,7 +288,7 @@ Public Class frmProductAdmin
     pFormController.AddProductItem_SetToCurrent(pFormController.CurrentEmodeProductType)
 
     grdProductBase.RefreshDataSource()
-    pFormController.GotoGridRowByRowObject(gvStockItems, pFormController.CurrentStockItemInfo)
+    pFormController.GotoGridRowByRowObject(gvProductBase, pFormController.CurrentStockItemInfo)
 
     pCurrentDetailMode = eCurrentDetailMode.eEdit
     RefreshControls()
@@ -425,12 +425,12 @@ Public Class frmProductAdmin
 
             If cboSubItemType.SelectedIndex = -1 Then
               MessageBox.Show("No se ha seleccionado el sub tipo del producto. Por favor, ingrese un valor válido en la lista desplegable")
-              gvStockItems.RefreshData()
+              gvProductBase.RefreshData()
               SetDetailsControlsReadonly(False)
               pCurrentDetailMode = eCurrentDetailMode.eView
             Else
               pFormController.SaveObject()
-              gvStockItems.RefreshData()
+              gvProductBase.RefreshData()
               SetDetailsControlsReadonly(True)
               pCurrentDetailMode = eCurrentDetailMode.eView
             End If
@@ -524,7 +524,7 @@ Public Class frmProductAdmin
     End If
   End Sub
 
-  Private Sub gvStockItems_BeforeLeaveRow(sender As Object, e As RowAllowEventArgs) Handles gvStockItems.BeforeLeaveRow
+  Private Sub gvStockItems_BeforeLeaveRow(sender As Object, e As RowAllowEventArgs) Handles gvProductBase.BeforeLeaveRow
     RefreshControls()
     UpdateObject()
 

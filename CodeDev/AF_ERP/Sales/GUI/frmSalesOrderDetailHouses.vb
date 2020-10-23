@@ -1124,9 +1124,6 @@ Public Class frmSalesOrderDetailHouses
     End Try
   End Sub
 
-  Private Sub xtraTabHouseType_MouseUp(sender As Object, e As MouseEventArgs) Handles xtraTabHouseType.MouseUp
-
-  End Sub
 
   Private Sub xtraTabHouseType_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles xtraTabHouseType.SelectedPageChanged
     Try
@@ -1158,8 +1155,8 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub RefreshSalesOrderAssembly()
     Dim mStartActive As Boolean = pIsActive
-    Dim mValueItem As clsValueItem
-    Dim mIndex As Integer = 0
+    Dim mHouseTypeInfos As New colHouseTypeInfos
+    Dim mdso As dsoProductAdmin
 
     pIsActive = False
 
@@ -1168,14 +1165,6 @@ Public Class frmSalesOrderDetailHouses
 
       If pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID > 0 Then
         With pFormController.CurrentSalesItemAssembly
-
-          mValueItem = New clsValueItem
-          mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).ItemValueIndex(.HouseTypeID)
-
-          If mIndex <> -1 Then
-            mValueItem = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).Item(mIndex)
-            btnModel.EditValue = mValueItem
-          End If
 
           txtSOARef.Text = .Ref
 
@@ -1186,7 +1175,23 @@ Public Class frmSalesOrderDetailHouses
           txtPricePerUnit.Text = .PricePerUnit
           txtTotalPrice.Text = .TotalPrice
 
-          grdOrderItem.RefreshDataSource()
+          mdso = New dsoProductAdmin(pFormController.DBConn)
+          mdso.LoadHouseTypeInfos(mHouseTypeInfos)
+
+          If mHouseTypeInfos IsNot Nothing Then
+            If mHouseTypeInfos.ItemFromKey(.HouseTypeID) IsNot Nothing Then
+
+
+              btnModel.Text = mHouseTypeInfos.ItemFromKey(.HouseTypeID).ModelName
+
+            Else
+              btnModel.Text = ""
+            End If
+
+          End If
+
+
+            grdOrderItem.RefreshDataSource()
 
         End With
       Else
@@ -1200,7 +1205,7 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub UpdateSalesItemAssembly()
-    Dim mValueItem As New clsValueItem
+
 
     If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
 
@@ -1208,12 +1213,6 @@ Public Class frmSalesOrderDetailHouses
       With pFormController.CurrentSalesItemAssembly
 
         .Ref = txtSOARef.Text
-
-        mValueItem = btnModel.EditValue
-
-        If mValueItem IsNot Nothing Then
-          .HouseTypeID = mValueItem.ItemValue
-        End If
 
         .TotalPrice = Val(txtTotalPrice.Text)
         .PricePerUnit = Val(txtPricePerUnit.Text)
@@ -1253,7 +1252,7 @@ Public Class frmSalesOrderDetailHouses
 
           pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
 
-
+          CheckSave(False)
           pFormController.RefreshCurrentSalesItemEditors()
 
           gvSSalesItemsEditor.RefreshData()
@@ -1289,7 +1288,7 @@ Public Class frmSalesOrderDetailHouses
                 ''mSalesItem.HouseTypeID = mSelectedItem.HouseTypeID
                 mSalesItem.SalesSubItemType = mSelectedItem.SubItemType
                 mSalesItem.SalesItemType = mSelectedItem.ItemType
-                mSalesItem.ProductTypeID = mSelectedItem.Category
+                mSalesItem.ProductTypeID = mSelectedItem.ProductTypeID
                 mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem, mSelectedItem.Product)
                 pFormController.SalesItemEditors.Add(mSIEditor)
 
@@ -1352,33 +1351,37 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub btnModel_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnModel.ButtonClick
 
-    Dim mHouseTypeConfig As dmHouseType
+
 
     Dim mSOPI As dmSalesOrderPhaseItem
     Dim mHouseTypeInfo As New clsHouseTypeInfo
-    Dim mIndex As Integer = -1
-    Dim mValueItem As New clsValueItem
+
+    Dim mSOItems As colSalesOrderItems
+
 
     UpdateObjects()
-    mHouseTypeConfig = New dmHouseType()
+
 
     mHouseTypeInfo = frmHousePopUp.GetGeneratedSalesItems(pFormController.SalesOrder, pFormController.DBConn, pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID)
 
     If mHouseTypeInfo IsNot Nothing Then
-      pFormController.SalesOrder.SalesOrderItems = mHouseTypeInfo.SalesOrderItems
+      mSOItems = mHouseTypeInfo.SalesOrderItems
+      pFormController.CurrentSalesItemAssembly.HouseTypeID = mHouseTypeInfo.HouseTypeID
+      btnModel.Text = mHouseTypeInfo.ModelName
 
-      mIndex = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).ItemValueIndex(mHouseTypeInfo.ModelID)
 
-      If mIndex <> -1 Then
-        mValueItem = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model).Item(mIndex)
-        btnModel.EditValue = mValueItem
-      End If
 
-      CheckSave(False)
 
-      If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
+      If mSOItems IsNot Nothing Then
 
-        For Each mSOI As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
+
+
+
+        ''//Filling SOPHaseItems and new SOItem
+        For Each mSOI As dmSalesOrderItem In mSOItems
+
+          pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
+
           mSOPI = New dmSalesOrderPhaseItem
 
           mSOPI.Qty = mSOI.Quantity
@@ -1390,11 +1393,11 @@ Public Class frmSalesOrderDetailHouses
             pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
           End If
 
+
         Next
 
-
         pFormController.RefreshCurrentSalesItemEditors()
-        grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
+        gvSSalesItemsEditor.RefreshData()
       End If
       RefreshControls()
     End If

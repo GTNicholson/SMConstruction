@@ -16,8 +16,8 @@
 
     mSalesItemAssembly.Ref = GetDefaultNextAreaRef()
     mSalesItemAssembly.Description = mSalesItemAssembly.Ref
-
     mSalesItemAssembly.ParentID = pHouseType.HouseTypeID
+    mSalesItemAssembly.Area = 0
     pHouseType.SalesItemAssemblys.Add(mSalesItemAssembly)
   End Sub
 
@@ -62,7 +62,7 @@
     mSalesItem = New dmHouseTypeSalesItem
     mSalesItem.HouseTypeID = pHouseType.HouseTypeID
     mSalesItem.ProductID = rProduct.ID
-    mSalesItem.ProductTypeID = rProduct.Category
+    mSalesItem.ProductTypeID = rProduct.ProductTypeID
     mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
 

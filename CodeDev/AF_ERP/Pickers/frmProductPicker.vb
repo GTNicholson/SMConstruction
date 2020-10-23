@@ -235,7 +235,7 @@ Public Class frmProductPicker
         xtabCategories.SelectedTabPage = mTabPage
         grdItemList.Parent = mTabPage
         pPickerProductBase.CurrentCategory = vCategory
-        gvItemList.ActiveFilterString = "Category = " & pPickerProductBase.CurrentCategory
+        gvItemList.ActiveFilterString = "ProductTypeID = " & pPickerProductBase.CurrentCategory
       End If
     Next
 

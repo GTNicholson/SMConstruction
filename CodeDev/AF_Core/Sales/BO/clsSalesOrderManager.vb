@@ -26,7 +26,7 @@
     mSalesItem = New dmSalesOrderItem
     mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
     mSalesItem.ProductID = rProduct.ID
-    mSalesItem.ProductTypeID = rProduct.Category
+    mSalesItem.ProductTypeID = rProduct.ProductTypeID
     mSalesItem.SalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
     pSalesOrder.SalesOrderItems.Add(mSalesItem)

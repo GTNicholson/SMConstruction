@@ -86,7 +86,7 @@
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
       <property name="Caption">Modelo</property>
-      <property name="FieldName">ModelDesc</property>
+      <property name="FieldName">ModelName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>

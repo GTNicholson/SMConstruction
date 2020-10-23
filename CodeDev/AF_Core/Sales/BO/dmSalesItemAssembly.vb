@@ -10,6 +10,8 @@ Public Class dmSalesItemAssembly : Inherits dmBase
   Private pPricePerUnit As Decimal
   Private pTotalPrice As Decimal
   Private pHouseTypeID As Int32
+  Private pArea As Decimal
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -50,6 +52,7 @@ Public Class dmSalesItemAssembly : Inherits dmBase
       .PricePerUnit = PricePerUnit
       .TotalPrice = TotalPrice
       .HouseTypeID = HouseTypeID
+      .Area = Area
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -140,6 +143,17 @@ Public Class dmSalesItemAssembly : Inherits dmBase
     End Set
   End Property
 
+  Public Property Area() As Decimal
+    Get
+      Return pArea
+    End Get
+    Set(ByVal value As Decimal)
+      If pArea <> value Then IsDirty = True
+      pArea = value
+    End Set
+  End Property
+
+
 End Class
 
 
@@ -176,6 +190,21 @@ Public Class colSalesItemAssemblys : Inherits colBase(Of dmSalesItemAssembly)
       End If
     Next
     Return mIndex
+  End Function
+
+  Public Function ItemFromHouseTypeModel(ByVal vHouseTypeID As Integer) As dmSalesItemAssembly
+    Dim mItem As dmSalesItemAssembly
+    Dim mRetVal As dmSalesItemAssembly = Nothing
+
+
+    For Each mItem In MyBase.Items
+
+      If mItem.HouseTypeID = vHouseTypeID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
   End Function
 
   Public Sub New()

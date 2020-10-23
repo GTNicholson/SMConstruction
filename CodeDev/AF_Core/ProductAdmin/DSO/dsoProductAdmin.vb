@@ -139,6 +139,19 @@ Public Class dsoProductAdmin : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Sub LoadHouseTypes(ByRef rHouseTypes As colHouseTypes)
+    Try
+      Dim mdto As New dtoHouseType(pDBConn)
+      pDBConn.Connect()
+      mdto.LoadHouseTypeCollection(rHouseTypes)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
+
   Public Sub LoadProductInfosByWhere(ByRef rProductInfos As colProductBaseInfos, ByVal vWhere As String)
     Dim mdto As dtoProductInfo
     Try

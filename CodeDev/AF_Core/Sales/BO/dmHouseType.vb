@@ -14,6 +14,7 @@ Public Class dmHouseType : Inherits dmBase
   Private pTmpWallOptions As Integer
   Private pTmpWindowOptions As Integer
   Private pTmpFloorOptions As Integer
+  Private pTmpDeckOption As Boolean
 
   Private pSalesItemAssemblys As colSalesItemAssemblys
   Private pHTSalesItems As colHouseTypeSalesItems
@@ -148,7 +149,14 @@ Public Class dmHouseType : Inherits dmBase
   End Property
 
 
-
+  Public Property TmpDeckOption As Boolean
+    Get
+      Return pTmpDeckOption
+    End Get
+    Set(value As Boolean)
+      pTmpDeckOption = value
+    End Set
+  End Property
 
   Public Property TmpWallOptions As Integer
     Get

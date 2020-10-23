@@ -22,30 +22,30 @@ Partial Class frmHousePopUp
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-        Me.UctHouseTypeOptions1 = New AgroForestal.uctHouseTypeOptions()
         Me.btnGenerate = New DevExpress.XtraEditors.SimpleButton()
+        Me.UctHouseTypeOptions1 = New AgroForestal.uctHouseTypeOptions()
         Me.SuspendLayout()
-        '
-        'UctHouseTypeOptions1
-        '
-        Me.UctHouseTypeOptions1.Location = New System.Drawing.Point(12, 12)
-        Me.UctHouseTypeOptions1.Name = "UctHouseTypeOptions1"
-        Me.UctHouseTypeOptions1.Size = New System.Drawing.Size(224, 201)
-        Me.UctHouseTypeOptions1.TabIndex = 0
         '
         'btnGenerate
         '
-        Me.btnGenerate.Location = New System.Drawing.Point(92, 219)
+        Me.btnGenerate.Location = New System.Drawing.Point(91, 241)
         Me.btnGenerate.Name = "btnGenerate"
         Me.btnGenerate.Size = New System.Drawing.Size(75, 23)
         Me.btnGenerate.TabIndex = 1
         Me.btnGenerate.Text = "Generar"
         '
+        'UctHouseTypeOptions1
+        '
+        Me.UctHouseTypeOptions1.Location = New System.Drawing.Point(12, 12)
+        Me.UctHouseTypeOptions1.Name = "UctHouseTypeOptions1"
+        Me.UctHouseTypeOptions1.Size = New System.Drawing.Size(224, 223)
+        Me.UctHouseTypeOptions1.TabIndex = 0
+        '
         'frmHousePopUp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(253, 254)
+        Me.ClientSize = New System.Drawing.Size(253, 276)
         Me.Controls.Add(Me.btnGenerate)
         Me.Controls.Add(Me.UctHouseTypeOptions1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
