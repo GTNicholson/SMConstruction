@@ -278,7 +278,6 @@
     <Compile Include="Sales\BO\clsHouseTypeManager.vb" />
     <Compile Include="Sales\BO\clsHouseTypePropertyDef.vb" />
     <Compile Include="Sales\BO\clsHouseTypeSalesItemInfo.vb" />
-    <Compile Include="Sales\BO\clsSalesOrderManager.vb" />
     <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationEditor.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />
@@ -298,6 +297,7 @@
     <Compile Include="Sales\BO\dmProductConstructionSubItemType.vb" />
     <Compile Include="Sales\BO\dmProductConstructionType.vb" />
     <Compile Include="Sales\BO\dmSalesItemAssembly.vb" />
+    <Compile Include="Sales\BO\dmSalesOrderHouse.vb" />
     <Compile Include="Sales\BO\dmSalesOrderItem.vb" />
     <Compile Include="Sales\BO\dmSalesOrderPhase.vb" />
     <Compile Include="Sales\BO\dmSalesOrderPhaseItem.vb" />
@@ -313,6 +313,7 @@
     <Compile Include="Sales\DSO\dtoProductConstructionSubType.vb" />
     <Compile Include="Sales\DSO\dtoProductConstructionType.vb" />
     <Compile Include="Sales\DSO\dtoSalesItemAssembly.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderHouse.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderItem.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderPhase.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrderPhaseInfo.vb" />

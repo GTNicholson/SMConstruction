@@ -33,6 +33,16 @@ Public Class clsSalesItemEditor
   End Property
 
 
+  Public ReadOnly Property AssemblyDescription As String
+    Get
+      Dim mRetVal As String = ""
+      If pSalesItemAssembly IsNot Nothing Then
+        mRetVal = pSalesItemAssembly.Description
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
   Public Property Description As String
     Get
       Return pSalesOrderItem.Description

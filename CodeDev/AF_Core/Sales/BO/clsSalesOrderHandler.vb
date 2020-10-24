@@ -118,4 +118,75 @@ Public Class clsSalesOrderHandler
     Return pSalesOrder.ShippingCost
   End Function
 
+
+  Public Sub AddProducts(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProducts As List(Of clsProductBaseInfo))
+    For Each mProduct As clsProductBaseInfo In rProducts
+      AddProduct(rSalesItemAssembly, mProduct)
+    Next
+
+  End Sub
+
+  Public Sub AddProduct(ByRef rSalesItemAssembly As dmSalesItemAssembly, ByRef rProduct As clsProductBaseInfo)
+    Dim mSalesItem As dmSalesOrderItem
+    mSalesItem = New dmSalesOrderItem
+    mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
+    mSalesItem.ProductID = rProduct.ID
+    mSalesItem.ProductTypeID = rProduct.ProductTypeID
+    mSalesItem.SalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
+    mSalesItem.Description = rProduct.Description
+    pSalesOrder.SalesOrderItems.Add(mSalesItem)
+
+  End Sub
+
+
+  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rTargetSalesOrderHouse As dmSalesOrderHouse, ByRef rConfiguredHouseType As dmHouseType, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+    Dim mDict As New Dictionary(Of Integer, dmSalesItemAssembly)
+    Dim mSOSIA As dmSalesItemAssembly
+    Dim mdso As dsoSales
+    Dim mProducts As colProductBases
+    Dim mHTSIIs As colHouseTypeSalesItemInfos
+    Dim mSalesItem As dmSalesOrderItem
+    Dim mHouseTypeManager As clsHouseTypeManager
+
+    mdso = New dsoSales(rDBConn)
+
+    '// Create the SalesItemAssembleys first
+    '// and Make a dictionary of oldID to new SalesItem
+    For Each mSIA As dmSalesItemAssembly In rConfiguredHouseType.SalesItemAssemblys
+      mSOSIA = mSIA.Clone
+      mSOSIA.ClearKeys()
+      mSOSIA.ParentID = pSalesOrder.SalesOrderID
+      mDict.Add(mSIA.SalesItemAssemblyID, mSOSIA)
+      pSalesOrder.SalesItemAssemblys.Add(mSOSIA)
+    Next
+
+    mProducts = New colProductBases
+    mdso.LoadStandardProducts(mProducts)
+
+    mdso.SaveSalesOrderDown(pSalesOrder)
+
+    '// Now create the SalesItems and move the salesitemassembley to the new version
+
+    mHouseTypeManager = New clsHouseTypeManager(rConfiguredHouseType)
+    mHTSIIs = mHouseTypeManager.GetTotalHTSalesItemInfos(mProducts)
+
+    For Each mHouseTypeSalesItem As clsHouseTypeSalesItemInfo In mHTSIIs
+
+      mSalesItem = New dmSalesOrderItem
+      mSalesItem.Description = mHouseTypeSalesItem.Description
+      mSalesItem.HouseTypeID = rTargetSalesOrderHouse.SalesOrderHouseID
+      mSalesItem.ProductID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductID
+      mSalesItem.ProductTypeID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductTypeID
+      mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
+      mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
+
+      mSOSIA = mDict(mHouseTypeSalesItem.HouseTypeSalesItem.HouseTypeSalesItemAssemblyID)
+      mSalesItem.SalesItemAssemblyID = mSOSIA.SalesItemAssemblyID
+
+      pSalesOrder.SalesOrderItems.Add(mSalesItem)
+
+    Next
+
+  End Sub
+
 End Class

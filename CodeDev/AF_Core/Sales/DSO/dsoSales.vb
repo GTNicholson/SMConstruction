@@ -480,6 +480,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoSalesOrderPhase As dtoSalesOrderPhase
     Dim mdtoSalesOrderPhaseItem As dtoSalesOrderPhaseItem
     Dim mdtoPhaseItemComponent As dtoPhaseItemComponent
+    Dim mdtoSalesOrderHouse As dtoSalesOrderHouse
     Dim mdtodtoSalesItemAssembly As dtoSalesItemAssembly
     Dim mdtoSalesOrderStage As dtoSalesOrderStage
 
@@ -514,6 +515,10 @@ Public Class dsoSales : Inherits dsoBase
         Next
 
       End If
+
+      mdtoSalesOrderHouse = New dtoSalesOrderHouse(pDBConn)
+      mdtoSalesOrderHouse.SaveSalesOrderHouseCollection(rSalesOrder.SalesOrderHouses, rSalesOrder.SalesOrderID)
+
       mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
       mdtodtoSalesItemAssembly.SaveSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
 
@@ -603,6 +608,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoSalesOrderPhaseItem As dtoSalesOrderPhaseItem
     Dim mdtoPhaseItemComponent As dtoPhaseItemComponent
     Dim mdtoMaterialRequirementChanges As dtoMaterialRequirement
+    Dim mdtoSalesOrderHouse As dtoSalesOrderHouse
     Dim mdtodtoSalesItemAssembly As dtoSalesItemAssembly
 
     Dim mdtoWOFiles As dtoFileTracker
@@ -648,6 +654,9 @@ Public Class dsoSales : Inherits dsoBase
       Next
 
     End If
+
+    mdtoSalesOrderHouse = New dtoSalesOrderHouse(pDBConn)
+    mdtoSalesOrderHouse.LoadSalesOrderHouseCollection(rSalesOrder.SalesOrderHouses, rSalesOrder.SalesOrderID)
 
     mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
     mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)

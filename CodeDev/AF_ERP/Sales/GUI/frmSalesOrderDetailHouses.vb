@@ -1041,7 +1041,6 @@ Public Class frmSalesOrderDetailHouses
 
 
   Private Sub xtraTabHouseType_CustomHeaderButtonClick(sender As Object, e As DevExpress.XtraTab.ViewInfo.CustomHeaderButtonEventArgs) Handles xtraTabHouseType.CustomHeaderButtonClick
-    Dim mSIA As dmSalesItemAssembly
 
     Try
 
@@ -1060,16 +1059,16 @@ Public Class frmSalesOrderDetailHouses
 
           ''  Next
           ''End If
-          Dim m As New dmSalesItemAssembly
-          m.ParentID = pFormController.SalesOrder.SalesOrderID
-          pFormController.SalesOrder.SalesItemAssemblys.Add(m)
+          Dim mSOH As New dmSalesOrderHouse
+          mSOH.SalesOrderID = pFormController.SalesOrder.SalesOrderID
+          pFormController.SalesOrder.SalesOrderHouses.Add(mSOH)
           pFormController.SaveObjects()
 
           RefreshHouseTabs()
         Case ButtonPredefines.Delete
           If xtraTabHouseType.SelectedTabPage.Tag IsNot Nothing Then
 
-            pFormController.RemoveSalesOrderItemAssembly(xtraTabHouseType.SelectedTabPage.Tag)
+            pFormController.RemoveSalesOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)
 
             RefreshHouseTabs()
           End If
@@ -1093,16 +1092,16 @@ Public Class frmSalesOrderDetailHouses
       Next
 
       If pFormController.SalesOrder IsNot Nothing Then
-        For Each mSIA As dmSalesItemAssembly In pFormController.SalesOrder.SalesItemAssemblys
+        For Each mSOH As dmSalesOrderHouse In pFormController.SalesOrder.SalesOrderHouses
           Dim mTabPage As New DevExpress.XtraTab.XtraTabPage
 
-          mTabPage.Tag = mSIA
+          mTabPage.Tag = mSOH
 
-          If mSIA.Description = "" Then
+          If mSOH.Description = "" Then
             mTabPage.Text = "Casa Modelo"
 
           Else
-            mTabPage.Text = String.Format("{0}/{1}", mSIA.Description, mSIA.Ref)
+            mTabPage.Text = String.Format("{0}/{1}", mSOH.Description, mSOH.Ref)
 
           End If
 
@@ -1113,9 +1112,9 @@ Public Class frmSalesOrderDetailHouses
 
       If xtraTabHouseType.TabPages.Count >= 1 Then
         xtraTabHouseType.SelectedTabPageIndex = 0
-        pFormController.SetCurrentSalemItemAssembly(xtraTabHouseType.SelectedTabPage.Tag)
+        pFormController.SetCurrentSalemOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)
       Else
-        pFormController.SetCurrentSalemItemAssembly(Nothing)
+        pFormController.SetCurrentSalemOrderHouse(Nothing)
       End If
 
 
@@ -1137,12 +1136,12 @@ Public Class frmSalesOrderDetailHouses
       If e.Page IsNot Nothing Then
         If e.Page.Tag IsNot Nothing Then
           pnlHouseDetail.Parent = e.Page
-          pFormController.SetCurrentSalemItemAssembly(e.Page.Tag)
+          pFormController.SetCurrentSalemOrderHouse(e.Page.Tag)
         Else
-          pFormController.SetCurrentSalemItemAssembly(Nothing)
+          pFormController.SetCurrentSalemOrderHouse(Nothing)
         End If
       Else
-        pFormController.SetCurrentSalemItemAssembly(Nothing)
+        pFormController.SetCurrentSalemOrderHouse(Nothing)
       End If
 
 
@@ -1350,55 +1349,48 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub btnModel_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnModel.ButtonClick
-
-
-
     Dim mSOPI As dmSalesOrderPhaseItem
-    Dim mHouseTypeInfo As New clsHouseTypeInfo
+    Dim mHouseType As dmHouseType
 
     Dim mSOItems As colSalesOrderItems
 
 
     UpdateObjects()
 
+    mHouseType = frmHousePopUp.GetConfiguredHouseType(pFormController.DBConn)
 
-    mHouseTypeInfo = frmHousePopUp.GetGeneratedSalesItems(pFormController.SalesOrder, pFormController.DBConn, pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID)
+    If mHouseType IsNot Nothing Then
 
-    If mHouseTypeInfo IsNot Nothing Then
-      mSOItems = mHouseTypeInfo.SalesOrderItems
-      pFormController.CurrentSalesItemAssembly.HouseTypeID = mHouseTypeInfo.HouseTypeID
-      btnModel.Text = mHouseTypeInfo.ModelName
+      pFormController.CreateSalesItemsFromHouseTypeConfig(mHouseType)
 
 
+      ''mSOItems = mHouseTypeInfo.SalesOrderItems
+      ''pFormController.CurrentSalesItemAssembly.HouseTypeID = mHouseTypeInfo.HouseTypeID
+      ''btnModel.Text = mHouseTypeInfo.ModelName
+
+      ''If mSOItems IsNot Nothing Then
+
+      ''  ''//Filling SOPHaseItems and new SOItem
+      ''  For Each mSOI As dmSalesOrderItem In mSOItems
+
+      ''    pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
+
+      ''    mSOPI = New dmSalesOrderPhaseItem
+
+      ''    mSOPI.Qty = mSOI.Quantity
+      ''    mSOPI.SalesItemID = mSOI.SalesOrderItemID
+      ''    mSOPI.SalesOrderID = mSOI.SalesOrderID
+
+      ''    If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing And pFormController.SalesOrder.SalesOrderPhases.Count > 0 Then
+      ''      mSOPI.SalesOrderPhaseID = pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+      ''      pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+      ''    End If
 
 
-      If mSOItems IsNot Nothing Then
+      ''  Next
 
-
-
-
-        ''//Filling SOPHaseItems and new SOItem
-        For Each mSOI As dmSalesOrderItem In mSOItems
-
-          pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
-
-          mSOPI = New dmSalesOrderPhaseItem
-
-          mSOPI.Qty = mSOI.Quantity
-          mSOPI.SalesItemID = mSOI.SalesOrderItemID
-          mSOPI.SalesOrderID = mSOI.SalesOrderID
-
-          If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing And pFormController.SalesOrder.SalesOrderPhases.Count > 0 Then
-            mSOPI.SalesOrderPhaseID = pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
-            pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
-          End If
-
-
-        Next
-
-        pFormController.RefreshCurrentSalesItemEditors()
-        gvSSalesItemsEditor.RefreshData()
-      End If
+      pFormController.RefreshCurrentSalesItemEditors()
+      gvSSalesItemsEditor.RefreshData()
       RefreshControls()
     End If
 

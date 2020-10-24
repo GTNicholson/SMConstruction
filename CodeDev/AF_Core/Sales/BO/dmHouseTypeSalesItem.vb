@@ -15,6 +15,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
   Private pWoodSpeciesID As Int32
   Private pWoodFinish As Int32
   Private pConditionString As String
+  Private pConditionStringUI As String
   Private pCost As Decimal
   Private pDirectLabourCost As Decimal
   Private pDirectMaterialCost As Decimal
@@ -66,6 +67,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
       .WoodSpeciesID = WoodSpeciesID
       .WoodFinish = WoodFinish
       .ConditionString = ConditionString
+      .ConditionStringUI = ConditionStringUI
       .Cost = Cost
       .DirectLabourCost = DirectLabourCost
       .DirectMaterialCost = DirectMaterialCost
@@ -134,6 +136,16 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
     Set(ByVal value As String)
       If pConditionString <> value Then IsDirty = True
       pConditionString = value
+    End Set
+  End Property
+
+  Public Property ConditionStringUI() As String
+    Get
+      Return pConditionStringUI
+    End Get
+    Set(ByVal value As String)
+      If pConditionStringUI <> value Then IsDirty = True
+      pConditionStringUI = value
     End Set
   End Property
 

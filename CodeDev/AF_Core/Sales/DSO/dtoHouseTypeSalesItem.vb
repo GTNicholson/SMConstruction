@@ -65,6 +65,7 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeSalesItemAssemblyID", .HouseTypeSalesItemAssemblyID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ConditionString", StringToDBValue(.ConditionString))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ConditionStringUI", StringToDBValue(.ConditionStringUI))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Cost", .Cost)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectLabourCost", .DirectLabourCost)
@@ -89,6 +90,7 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
         .ItemNumber = DBReadString(rDataReader, "ItemNumber")
         .Description = DBReadString(rDataReader, "Description")
         .ConditionString = DBReadString(rDataReader, "ConditionString")
+        .ConditionStringUI = DBReadString(rDataReader, "ConditionStringUI")
         .Cost = DBReadDecimal(rDataReader, "Cost")
         .DirectLabourCost = DBReadDecimal(rDataReader, "DirectLabourCost")
         .DirectMaterialCost = DBReadDecimal(rDataReader, "DirectMaterialCost")

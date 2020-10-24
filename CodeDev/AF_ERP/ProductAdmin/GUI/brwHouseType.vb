@@ -25,7 +25,7 @@ Public Class brwHouseType : Inherits brwBrowserListBase
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
 
-    frmHouseType.OpenFormMDI(0, pDBConn, rForm.ParentForm)
+    frmHouseType.OpenFormMDI(0, pDBConn, rForm.ParentForm, AppRTISGlobal.GetInstance)
 
     'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, 0, BrowseRefreshTracker,eFormMode.eFMFormModeAdd)
     'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
@@ -39,7 +39,7 @@ Public Class brwHouseType : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmHouseType.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("HouseTypeID")), pDBConn, rForm.ParentForm)
+      frmHouseType.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("HouseTypeID")), pDBConn, rForm.ParentForm, AppRTISGlobal.GetInstance)
 
       'End Select
     End If

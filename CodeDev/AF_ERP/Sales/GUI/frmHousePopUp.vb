@@ -7,7 +7,7 @@ Public Class frmHousePopUp
   Private pDBConn As clsDBConnBase
   Private pSalesOrder As dmSalesOrder
   Private pSalesItemAssemblyID As Int32
-  Private pHouseTypeInfo As clsHouseTypeInfo
+  Private pHouseType As dmHouseType
   Public Sub New()
 
     ' This call is required by the designer.
@@ -16,15 +16,6 @@ Public Class frmHousePopUp
     ' Add any initialization after the InitializeComponent() call.
 
   End Sub
-  Public Property SalesOrder As dmSalesOrder
-    Get
-      Return pSalesOrder
-    End Get
-    Set(value As dmSalesOrder)
-      pSalesOrder = value
-    End Set
-  End Property
-
 
   Public Property DBConn As clsDBConnBase
     Get
@@ -35,49 +26,28 @@ Public Class frmHousePopUp
     End Set
   End Property
 
-  Public Property HouseTypeInfo As clsHouseTypeInfo
+  Public Property HouseType As dmHouseType
     Get
-      Return pHouseTypeInfo
+      Return pHouseType
     End Get
-    Set(value As clsHouseTypeInfo)
-      pHouseTypeInfo = value
+    Set(value As dmHouseType)
+      pHouseType = value
     End Set
   End Property
 
-  Public Property SalesItemAssemblyID As Int32
-    Get
-      Return pSalesItemAssemblyID
-    End Get
-    Set(value As Int32)
-      pSalesItemAssemblyID = value
-    End Set
-  End Property
-  Public Property SalesItems As colSalesOrderItems
-    Get
-      Return pSalesItems
-    End Get
-    Set(value As colSalesOrderItems)
-      pSalesItems = value
-    End Set
-  End Property
-  Public Shared Function GetGeneratedSalesItems(ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As clsDBConnBase, ByVal vSalesItemAssemblyID As Int32) As clsHouseTypeInfo
+
+  Public Shared Function GetConfiguredHouseType(ByRef rDBConn As clsDBConnBase) As dmHouseType
     Dim mfrm As New frmHousePopUp
 
 
     Dim mRetVal As colSalesOrderItems = Nothing
     mfrm.DBConn = rDBConn
-    mfrm.pHouseTypeInfo = New clsHouseTypeInfo
+    mfrm.pHouseType = New dmHouseType
 
-    mfrm.SalesOrder = rSalesOrder
-    mfrm.SalesItemAssemblyID = vSalesItemAssemblyID
     mfrm.ShowDialog()
 
-    ''If mfrm.pSalesItems IsNot Nothing AndAlso mfrm.pSalesItems.Count > 0 Then
-    ''  mRetVal = mfrm.pSalesItems
-    ''End If
 
-    ''Return mRetVal
-    Return mfrm.pHouseTypeInfo
+    Return mfrm.pHouseType
   End Function
 
 
@@ -85,46 +55,60 @@ Public Class frmHousePopUp
     Dim mHouseTypeSalesItems As New colHouseTypeSalesItems
     Dim mSalesItem As dmSalesOrderItem
     Dim mHouseTypeID As Integer = -1
+    Dim mConfiguredHouseType As New dmHouseType
+    Dim mSOHandler As clsSalesOrderHandler
+
+    Dim mProducts As New colProductBases
+    Dim mdsoSales As dsoSales
+
+    Dim mHTSIIs As New colHouseTypeSalesItemInfos
+
+    mdsoSales = New dsoSales(pDBConn)
+    mdsoSales.LoadStandardProducts(mProducts)
 
     If UctHouseTypeOptions1.cboModel.SelectedIndex <> -1 Then
-      mHouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
+      UctHouseTypeOptions1.HouseType = mConfiguredHouseType
+      UctHouseTypeOptions1.UpdateObjects()
+      mHouseTypeID = UctHouseTypeOptions1.HouseType.ModelID
+      LoadHouseTypeSalesItemsByHouseTypeID(mConfiguredHouseType, mHouseTypeID)
+      pHouseType = mConfiguredHouseType
     End If
 
-    LoadHouseTypeSalesItemsByHouseTypeID(mHouseTypeSalesItems, mHouseTypeID)
-    pSalesItems = New colSalesOrderItems
+    ''pSalesItems = New colSalesOrderItems
 
-    If mHouseTypeSalesItems IsNot Nothing Then
+    ''If mHouseTypeSalesItems IsNot Nothing Then
 
-      For Each mHouseTypeSalesItem In mHouseTypeSalesItems
+    ''  For Each mHouseTypeSalesItem In mHouseTypeSalesItems
 
-        mSalesItem = New dmSalesOrderItem
-        mSalesItem.Description = mHouseTypeSalesItem.Description
-        mSalesItem.HouseTypeID = mHouseTypeSalesItem.HouseTypeID
-        mSalesItem.ProductID = mHouseTypeSalesItem.ProductID
-        mSalesItem.ProductTypeID = mHouseTypeSalesItem.ProductTypeID
-        mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
-        mSalesItem.SalesItemAssemblyID = pSalesItemAssemblyID
-        mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
-        mSalesItem.UnitPrice = mHouseTypeSalesItem.UnitPrice
+    ''    mSalesItem = New dmSalesOrderItem
+    ''    mSalesItem.Description = mHouseTypeSalesItem.Description
+    ''    mSalesItem.HouseTypeID = mHouseTypeSalesItem.HouseTypeID
+    ''    mSalesItem.ProductID = mHouseTypeSalesItem.ProductID
+    ''    mSalesItem.ProductTypeID = mHouseTypeSalesItem.ProductTypeID
+    ''    mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
+    ''    mSalesItem.SalesItemAssemblyID = pSalesItemAssemblyID
+    ''    mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
+    ''    mSalesItem.UnitPrice = mHouseTypeSalesItem.UnitPrice
 
-        pSalesItems.Add(mSalesItem)
-      Next
+    ''    pSalesItems.Add(mSalesItem)
+    ''  Next
 
-      pHouseTypeInfo.SalesOrderItems = pSalesItems
-      pHouseTypeInfo.GroupID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboGroup)
-      pHouseTypeInfo.HouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
-      pHouseTypeInfo.ModelName = UctHouseTypeOptions1.cboModel.Text
-    End If
+    ''  pHouseTypeInfo.SalesOrderItems = pSalesItems
+    ''  pHouseTypeInfo.GroupID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboGroup)
+    ''  pHouseTypeInfo.HouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
+    ''  pHouseTypeInfo.ModelName = UctHouseTypeOptions1.cboModel.Text
+    ''End If
     Me.Close()
   End Sub
 
-  Private Sub LoadHouseTypeSalesItemsByHouseTypeID(ByRef rHTSalesItems As colHouseTypeSalesItems, ByVal vHouseTypeID As Integer)
+  Private Sub LoadHouseTypeSalesItemsByHouseTypeID(ByRef rConfiguredHouseType As dmHouseType, ByVal vHouseTypeID As Integer)
+    Dim mdso As dsoProductAdmin
     Dim mdto As New dtoHouseTypeSalesItem(pDBConn)
     Dim mwhere As String = ""
     Try
-      pDBConn.Connect()
-      mwhere = "HouseTypeID = " & vHouseTypeID.ToString
-      mdto.LoadHouseTypeSalesItemsCollectionByWhere(rHTSalesItems, mwhere)
+
+      mdso = New dsoProductAdmin(pDBConn)
+      mdso.LoadHouseTypeDown(rConfiguredHouseType, vHouseTypeID)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraTab
 Imports DevExpress.XtraTab.ViewInfo
 Imports RTIS.CommonVB
@@ -38,7 +39,7 @@ Public Class frmHouseType
 
   End Sub
 
-  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rParentMDI As frmTabbedMDI)
+  Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rParentMDI As frmTabbedMDI, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mfrm As frmHouseType = Nothing
 
     mfrm = GetFormIfLoaded(vPrimaryKeyID)
@@ -49,7 +50,7 @@ Public Class frmHouseType
       Else
         mfrm.FormMode = eFormMode.eFMFormModeAdd
       End If
-      mfrm.pFormController = New fccHouseType(rDBConn)
+      mfrm.pFormController = New fccHouseType(rDBConn, rRTISGlobal)
       mfrm.pFormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.Show()
@@ -104,7 +105,7 @@ Public Class frmHouseType
         pFormController.SetCurrentHouseTypeAssembly(pFormController.HouseType.SalesItemAssemblys(0))
       End If
 
-      UctHouseTypeOptions1.RTISGlobal = AppRTISGlobal.GetInstance
+      UctHouseTypeOptions1.RTISGlobal = pFormController.RTISGlobal
       UctHouseTypeOptions1.HouseType = pFormController.HouseType
 
       LoadCombos()
@@ -149,10 +150,10 @@ Public Class frmHouseType
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
 
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.GroupType)
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.GroupType)
     clsDEControlLoading.FillDEComboVI(cboGroupType, mVIs)
 
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductCostBook)
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ProductCostBook)
     clsDEControlLoading.FillDEComboVI(cboProductCostBook, mVIs)
 
 
@@ -173,7 +174,7 @@ Public Class frmHouseType
     mObject = New clsHouseTypePropertyDef
 
     If Not mObject Is Nothing Then
-      UctConditionFilter1.SetUp(AppRTISGlobal.GetInstance.RefLists, Nothing)
+      UctConditionFilter1.SetUp(pFormController.RTISGlobal.RefLists, Nothing)
       UctConditionFilter1.RefreshControl(New RTIS.ProductCore.clsCondition(RTIS.ProductCore.eNodeTypes.eNT_Container), mObject)
     End If
 
@@ -476,9 +477,8 @@ Public Class frmHouseType
           pFormController.LoadProductCostBookDown(clsDEControlLoading.GetDEComboValue(cboProductCostBook))
 
 
-          mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, AppRTISGlobal.GetInstance)
-          mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
-
+          mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, pFormController.RTISGlobal)
+          mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, pFormController.RTISGlobal)
 
           CheckSave(False)
           pFormController.AddProducts(mProductsToAdd)
@@ -558,7 +558,8 @@ Public Class frmHouseType
         End If
 
         mHouseTypeSalesItemInfo.ConditionString = mFC.FilterString
-        e.Value = mFC.FilterString
+        mHouseTypeSalesItemInfo.ConditionStringUI = GetDisplayText(mFC)
+        e.Value = mHouseTypeSalesItemInfo.ConditionStringUI
       Else
         e.Value = ""
       End If
@@ -569,42 +570,42 @@ Public Class frmHouseType
 
   Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
     UctHouseTypeOptions1.UpdateObjects()
-    pFormController.SetPrevlHTSalesItemInfos()
+    pFormController.SetPrevHTSalesItemInfos()
     grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
     pFormController.RefreshProductCostSummaryInfo(pFormController.PrevtHTSalesItemInfos)
     grdSummaryCostBookEntry.DataSource = pFormController.ProductCostSummaryInfo
   End Sub
 
 
-  ''Private Function GetDisplayText(ByVal vFilterControl As DevExpress.XtraEditors.FilterControl) As String
-  ''  Dim mFilterString As String = String.Empty
-  ''  Dim mObject As intObjectProperties = pUserController.GetObjectProperties
+  Private Function GetDisplayText(ByVal vFilterControl As DevExpress.XtraEditors.FilterControl) As String
+    Dim mFilterString As String = String.Empty
+    Dim mObject As intObjectProperties = New clsHouseTypePropertyDef(pFormController.HouseType)
 
-  ''  If mObject IsNot Nothing Then
-  ''    Dim mGrid As New DevExpress.XtraGrid.GridControl
-  ''    Dim mGridView As New DevExpress.XtraGrid.Views.Grid.GridView
+    If mObject IsNot Nothing Then
+      Dim mGrid As New DevExpress.XtraGrid.GridControl
+      Dim mGridView As New DevExpress.XtraGrid.Views.Grid.GridView
 
-  ''    mGrid.MainView = mGridView
+      mGrid.MainView = mGridView
 
 
-  ''    For Each mProp As clsPropertyDef In mObject.PropertyList
-  ''      Dim mCol As New DevExpress.XtraGrid.Columns.GridColumn()
+      For Each mProp As clsPropertyDef In mObject.PropertyList
+        Dim mCol As New DevExpress.XtraGrid.Columns.GridColumn()
 
-  ''      mCol.FieldName = mProp.PropertyName
+        mCol.FieldName = mProp.PropertyName
 
-  ''      If mProp.LookUpRef > 0 Then
-  ''        RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(mGrid, mCol, pUserController.RTISGlobal.RefLists.RefIList(mProp.LookUpRef))
-  ''      End If
+        If mProp.LookUpRef > 0 Then
+          RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(mGrid, mCol, pFormController.RTISGlobal.RefLists.RefListVI(mProp.LookUpRef))
+        End If
 
-  ''      mGridView.Columns.Add(mCol)
-  ''    Next
+        mGridView.Columns.Add(mCol)
+      Next
 
-  ''    mGridView.ActiveFilterString = vFilterControl.FilterString
-  ''    mFilterString = mGridView.FilterPanelText
-  ''  End If
+      mGridView.ActiveFilterString = vFilterControl.FilterString
+      mFilterString = mGridView.FilterPanelText
+    End If
 
-  ''  Return mFilterString
-  ''End Function
+    Return mFilterString
+  End Function
 
 
 End Class

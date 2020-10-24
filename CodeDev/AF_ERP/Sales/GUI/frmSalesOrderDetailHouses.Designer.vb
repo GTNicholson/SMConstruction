@@ -66,7 +66,9 @@ Partial Class frmSalesOrderDetailHouses
     Me.grdSSalesItemsEditor = New DevExpress.XtraGrid.GridControl()
     Me.gvSSalesItemsEditor = New DevExpress.XtraGrid.Views.Grid.GridView()
     Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepositoryItemButtonEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -261,8 +263,7 @@ Partial Class frmSalesOrderDetailHouses
     Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
     Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+    Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -707,10 +708,10 @@ Partial Class frmSalesOrderDetailHouses
     Me.gvSSalesItemsEditor.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
     Me.gvSSalesItemsEditor.Appearance.Row.Options.UseFont = True
     Me.gvSSalesItemsEditor.ColumnPanelRowHeight = 34
-    Me.gvSSalesItemsEditor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn61, Me.GridColumn52, Me.GridColumn62, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60})
+    Me.gvSSalesItemsEditor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn63, Me.GridColumn61, Me.GridColumn52, Me.GridColumn62, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60})
     Me.gvSSalesItemsEditor.DetailHeight = 360
     Me.gvSSalesItemsEditor.GridControl = Me.grdSSalesItemsEditor
-    Me.gvSSalesItemsEditor.GroupCount = 1
+    Me.gvSSalesItemsEditor.GroupCount = 2
     Me.gvSSalesItemsEditor.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UnitPrice", Me.GridColumn57, "(Precio: SUMA={0:#.##})")})
     Me.gvSSalesItemsEditor.Name = "gvSSalesItemsEditor"
     Me.gvSSalesItemsEditor.OptionsDetail.EnableMasterViewMode = False
@@ -719,13 +720,21 @@ Partial Class frmSalesOrderDetailHouses
     Me.gvSSalesItemsEditor.OptionsView.ShowFooter = True
     Me.gvSSalesItemsEditor.OptionsView.ShowGroupPanel = False
     Me.gvSSalesItemsEditor.RowHeight = 20
-    Me.gvSSalesItemsEditor.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn61, DevExpress.Data.ColumnSortOrder.Ascending)})
+    Me.gvSSalesItemsEditor.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn63, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn61, DevExpress.Data.ColumnSortOrder.Ascending)})
     '
     'GridColumn51
     '
     Me.GridColumn51.Caption = "ID"
     Me.GridColumn51.FieldName = "WorkOrderID"
     Me.GridColumn51.Name = "GridColumn51"
+    '
+    'GridColumn61
+    '
+    Me.GridColumn61.Caption = "Tipo de Producto"
+    Me.GridColumn61.FieldName = "ProductTypeDesc"
+    Me.GridColumn61.Name = "GridColumn61"
+    Me.GridColumn61.Visible = True
+    Me.GridColumn61.VisibleIndex = 1
     '
     'GridColumn52
     '
@@ -737,6 +746,15 @@ Partial Class frmSalesOrderDetailHouses
     Me.GridColumn52.Visible = True
     Me.GridColumn52.VisibleIndex = 0
     Me.GridColumn52.Width = 84
+    '
+    'GridColumn62
+    '
+    Me.GridColumn62.Caption = "Codigo"
+    Me.GridColumn62.FieldName = "ProductCode"
+    Me.GridColumn62.Name = "GridColumn62"
+    Me.GridColumn62.Visible = True
+    Me.GridColumn62.VisibleIndex = 1
+    Me.GridColumn62.Width = 135
     '
     'GridColumn53
     '
@@ -2909,22 +2927,13 @@ Partial Class frmSalesOrderDetailHouses
     '
     Me.GridView1.Name = "GridView1"
     '
-    'GridColumn61
+    'GridColumn63
     '
-    Me.GridColumn61.Caption = "Tipo de Producto"
-    Me.GridColumn61.FieldName = "ProductTypeDesc"
-    Me.GridColumn61.Name = "GridColumn61"
-    Me.GridColumn61.Visible = True
-    Me.GridColumn61.VisibleIndex = 1
-    '
-    'GridColumn62
-    '
-    Me.GridColumn62.Caption = "Codigo"
-    Me.GridColumn62.FieldName = "ProductCode"
-    Me.GridColumn62.Name = "GridColumn62"
-    Me.GridColumn62.Visible = True
-    Me.GridColumn62.VisibleIndex = 1
-    Me.GridColumn62.Width = 135
+    Me.GridColumn63.Caption = "Area"
+    Me.GridColumn63.FieldName = "AssemblyDescription"
+    Me.GridColumn63.Name = "GridColumn63"
+    Me.GridColumn63.Visible = True
+    Me.GridColumn63.VisibleIndex = 1
     '
     'frmSalesOrderDetailHouses
     '
@@ -3318,4 +3327,5 @@ Partial Class frmSalesOrderDetailHouses
     Friend WithEvents btnModel As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

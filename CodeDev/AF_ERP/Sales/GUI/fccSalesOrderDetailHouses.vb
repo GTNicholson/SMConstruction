@@ -15,6 +15,7 @@ Public Class fccSalesOrderDetailHouses
 
   Private pInvoices As colInvoices
   Private pCustomerPurchaseOrders As colCustomerPurchaseOrders
+  Private pCurrentSalesOrderHouse As dmSalesOrderHouse
   Private pCurrentSalesItemAssembly As dmSalesItemAssembly
   Private pSalesItemEditors As colSalesItemEditors
 
@@ -25,6 +26,7 @@ Public Class fccSalesOrderDetailHouses
     pSOActionHandler = New clsSalesOrderActionsHandler(rDBConn.RTISUser, rDBConn)
     pInvoices = New colInvoices
     pCustomerPurchaseOrders = New colCustomerPurchaseOrders
+    pCurrentSalesOrderHouse = New dmSalesOrderHouse
     pCurrentSalesItemAssembly = New dmSalesItemAssembly
     pSalesItemEditors = New colSalesItemEditors
   End Sub
@@ -375,17 +377,12 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
-  Public Function RemoveSalesOrderItemAssembly(ByVal vSalesItemAssembly As dmSalesItemAssembly) As Boolean
+  Public Function RemoveSalesOrderHouse(ByRef rSalesOrderHouse As dmSalesOrderHouse) As Boolean
     Dim mOK As Boolean
-    Dim mSIAID As Integer
     Try
-      If vSalesItemAssembly IsNot Nothing AndAlso SalesOrder.SalesItemAssemblys IsNot Nothing Then
-        mSIAID = vSalesItemAssembly.SalesItemAssemblyID
-        mOK = SalesOrder.SalesItemAssemblys.Remove(vSalesItemAssembly)
+      If rSalesOrderHouse IsNot Nothing AndAlso SalesOrder.SalesOrderHouses IsNot Nothing Then
+        mOK = SalesOrder.SalesOrderHouses.Remove(rSalesOrderHouse)
 
-        If mOK Then
-          RemoveSalesItemsBySalesOrderItemAssemblyID(mSIAID)
-        End If
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -407,6 +404,12 @@ Public Class fccSalesOrderDetailHouses
     Next
   End Sub
 
+  Public ReadOnly Property CurrentSalesOrderHouse As dmSalesOrderHouse
+    Get
+      Return pCurrentSalesOrderHouse
+    End Get
+  End Property
+
   Public ReadOnly Property CurrentSalesItemAssembly() As dmSalesItemAssembly
     Get
       Return pCurrentSalesItemAssembly
@@ -419,31 +422,31 @@ Public Class fccSalesOrderDetailHouses
     End Get
   End Property
 
-  Public Sub AddNewSalesItemAssembly()
-    Try
+  ''Public Sub AddNewSalesItemAssembly()
+  ''  Try
 
-      If pCurrentSalesItemAssembly IsNot Nothing Then
-        Dim mNewSIA As New dmSalesItemAssembly
-        Dim mdso As New dsoSales(pDBConn)
-
-
-        mNewSIA.ParentID = pSalesOrder.SalesOrderID
-
-        pSalesOrder.SalesItemAssemblys.Add(mNewSIA)
-
-        mdso.SaveSalesOrderDown(pSalesOrder)
-
-        mdso = Nothing
-      End If
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-  End Sub
+  ''    If pCurrentSalesItemAssembly IsNot Nothing Then
+  ''      Dim mNewSIA As New dmSalesItemAssembly
+  ''      Dim mdso As New dsoSales(pDBConn)
 
 
-  Public Sub SetCurrentSalemItemAssembly(ByRef rSalesItemAssembly As dmSalesItemAssembly)
-    pCurrentSalesItemAssembly = rSalesItemAssembly
+  ''      mNewSIA.ParentID = pSalesOrder.SalesOrderID
+
+  ''      pSalesOrder.SalesItemAssemblys.Add(mNewSIA)
+
+  ''      mdso.SaveSalesOrderDown(pSalesOrder)
+
+  ''      mdso = Nothing
+  ''    End If
+
+  ''  Catch ex As Exception
+  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+  ''  End Try
+  ''End Sub
+
+
+  Public Sub SetCurrentSalemOrderHouse(ByRef rSalesOrderHouse As dmSalesOrderHouse)
+    pCurrentSalesOrderHouse = rSalesOrderHouse
 
     '// this is where you need to refresh the CurrentSalesItemAssemblySalesitemEditors
     RefreshCurrentSalesItemEditors()
@@ -454,18 +457,22 @@ Public Class fccSalesOrderDetailHouses
     Dim mSIAE As clsSalesItemEditor
     Dim mProductInfo As clsProductBaseInfo
     Dim mPIs As colProductBaseInfos
+    Dim mSIA As dmSalesItemAssembly
+
     pSalesItemEditors.Clear()
 
 
-    If pCurrentSalesItemAssembly IsNot Nothing Then
+    If pCurrentSalesOrderHouse IsNot Nothing Then
       mPIs = GetProductInfos()
 
       For Each mSalesItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-        If mSalesItem.SalesItemAssemblyID = pCurrentSalesItemAssembly.SalesItemAssemblyID Then
+        If mSalesItem.HouseTypeID = pCurrentSalesOrderHouse.SalesOrderHouseID Then
+
+          mSIA = pSalesOrder.SalesItemAssemblys.ItemFromKey(mSalesItem.SalesItemAssemblyID)
 
           '// create a new editor based on this salesitem and add to collection
           mProductInfo = mPIs.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
-          mSIAE = New clsSalesItemEditor(pSalesOrder, pCurrentSalesItemAssembly, mSalesItem, mProductInfo.Product)
+          mSIAE = New clsSalesItemEditor(pSalesOrder, mSIA, mSalesItem, mProductInfo.Product)
           pSalesItemEditors.Add(mSIAE)
 
           mSalesItem.Description = mSIAE.Description
@@ -515,6 +522,12 @@ Public Class fccSalesOrderDetailHouses
     End If
 
     SaveObjects()
+
+  End Sub
+
+  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rHouseType As dmHouseType)
+
+    pSalesOrderHandler.CreateSalesItemsFromHouseTypeConfig(pCurrentSalesOrderHouse, rHouseType, pDBConn)
 
   End Sub
 End Class

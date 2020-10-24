@@ -5,6 +5,7 @@ Public Class fccHouseType
 
   Private pHouseType As dmHouseType
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
+  Private pRTISGlobal As AppRTISGlobal
   Private pHaveLock As Boolean
   Private pCurrentHouseTypeAssembly As dmSalesItemAssembly
   Private pHouseTypeManager As clsHouseTypeManager
@@ -19,8 +20,9 @@ Public Class fccHouseType
   Private pProductCostBookID As Integer
 
   Private pProductCostSummaryInfos As colProductCostSummaryInfos
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
+    pRTISGlobal = rRTISGlobal
     pProducts = New colProductBases
     pPrevtHTSalesItemInfos = New colHouseTypeSalesItemInfos
     pProductCostBook = New dmProductCostBook
@@ -51,6 +53,15 @@ Public Class fccHouseType
     End Get
     Set(value As RTIS.DataLayer.clsDBConnBase)
       pDBConn = value
+    End Set
+  End Property
+
+  Public Property RTISGlobal As AppRTISGlobal
+    Get
+      Return pRTISGlobal
+    End Get
+    Set(value As AppRTISGlobal)
+      pRTISGlobal = value
     End Set
   End Property
 
@@ -236,11 +247,9 @@ Public Class fccHouseType
 
   End Sub
 
-  Public Sub SetPrevlHTSalesItemInfos()
+  Public Sub SetPrevHTSalesItemInfos()
     Dim mRetVal As New colHouseTypeSalesItemInfos
     pPrevtHTSalesItemInfos = pHouseTypeManager.GetTotalHTSalesItemInfos(pProducts)
-
-
   End Sub
 
   Public Function GetProductInfos() As colProductBaseInfos

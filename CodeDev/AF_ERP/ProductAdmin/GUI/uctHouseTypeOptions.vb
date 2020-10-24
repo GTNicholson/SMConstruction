@@ -25,6 +25,7 @@ Public Class uctHouseTypeOptions
   End Property
 
   Public Sub UpdateObjects()
+    pHouseType.ModelID = clsDEControlLoading.GetDEComboValue(cboModel)
     pHouseType.TmpFoundationOption = clsDEControlLoading.GetDEComboValue(cboFoundations)
     pHouseType.TmpFloorOptions = clsDEControlLoading.GetDEComboValue(cboFloor)
     pHouseType.TmpWallOptions = clsDEControlLoading.GetDEComboValue(cboWalls)

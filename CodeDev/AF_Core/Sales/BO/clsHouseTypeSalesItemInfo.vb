@@ -120,6 +120,15 @@
     End Set
   End Property
 
+  Public Property ConditionStringUI As String
+    Get
+      Return pHouseTypeSalesItem.ConditionStringUI
+    End Get
+    Set(value As String)
+      pHouseTypeSalesItem.ConditionStringUI = value
+    End Set
+  End Property
+
   Public ReadOnly Property HouseTypeSalesItemAssemblyID As Int32
     Get
       Return pHouseTypeSalesItem.HouseTypeSalesItemAssemblyID
