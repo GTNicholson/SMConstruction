@@ -46,6 +46,7 @@ Public Class dmProductStructure : Inherits dmProductBase
       .ProductStructureTypeID = ProductStructureTypeID
       .Notes = Notes
       .SubItemType = SubItemType
+      .DrawingFileName = DrawingFileName
       'Add entries here for each collection and class property
 
       'Entries for object management

@@ -86,6 +86,7 @@ Public Class dtoProductInfo : Inherits dtoBase
         .Product.ItemType = DBReadInt32(rDataReader, "ItemType")
         .Product.SubItemType = DBReadInt32(rDataReader, "SubItemType")
         .Product.UoM = DBReadInt32(rDataReader, "UoM")
+        .Product.DrawingFileName = DBReadString(rDataReader, "DrawingFileName")
 
         ''pProductInfo.is = False
       End With

@@ -232,6 +232,21 @@ Public Class colProductCostBookEntrys : Inherits colBase(Of dmProductCostBookEnt
     Return mIndex
   End Function
 
+  Public Function ItemFromProductID_ItemTypeID(vProductID As Integer, ByVal vItemTypeID As Integer) As dmProductCostBookEntry
+    Dim mItem As dmProductCostBookEntry
+    Dim mRetVal As dmProductCostBookEntry = Nothing
+
+
+    For Each mItem In Me
+
+      If mItem.ProductID = vProductID And mItem.ProductTypeID = vItemTypeID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
   Public Overrides Function IndexFromKey(ByVal vProductCostBookEntryID As Integer) As Integer
     Dim mItem As dmProductCostBookEntry
     Dim mIndex As Integer = -1

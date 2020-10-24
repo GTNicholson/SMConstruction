@@ -46,6 +46,7 @@ Public Class dmProductInstallation : Inherits dmProductBase
       .ProductInstallationTypeID = ProductInstallationTypeID
       .Notes = Notes
       .SubItemType = SubItemType
+      .DrawingFileName = DrawingFileName
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -104,7 +105,6 @@ Public Class dmProductInstallation : Inherits dmProductBase
       pNotes = value
     End Set
   End Property
-
 
 
   Public Overrides Property ProductTypeID As Integer

@@ -35,7 +35,7 @@
     Dim mRetVal As Integer = 0
     For Each mProduct In SelectedObjects
       If mProduct IsNot Nothing Then
-        If mProduct.ItemType = vCategory Then
+        If mProduct.ProductTypeID = vCategory Then
           mRetVal += 1
         End If
       End If

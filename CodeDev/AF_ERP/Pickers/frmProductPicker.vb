@@ -137,12 +137,30 @@ Public Class frmProductPicker
 
   Private Sub repoItemRemove_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repoItemRemove.ButtonClick
     Try
-      Dim mItem As intStockItemDef
-      mItem = TryCast(gvItemList.GetFocusedRow, intStockItemDef)
+      Dim mItem As clsProductBaseInfo
+      Dim mProductBaseInfos As New colProductBaseInfos
+      Dim mSelectedItem As clsProductBaseInfo
+      For Each mProductBaseInfo As clsProductBaseInfo In pPickerProductBase.SelectedObjects
+        mProductBaseInfos.Add(mProductBaseInfo)
+      Next
+
+      mItem = TryCast(gvItemList.GetFocusedRow, clsProductBaseInfo)
+
       If mItem IsNot Nothing Then
-        pPickerProductBase.SelectedObjects.Remove(mItem)
-        If pRemainOpen = False Then Me.Close()
+        mSelectedItem = mProductBaseInfos.ItemFromProductTypeAndID(mItem.ProductTypeID, mItem.ID)
+
+        If mSelectedItem IsNot Nothing Then
+          mProductBaseInfos.Remove(mSelectedItem)
+          If pRemainOpen = False Then Me.Close()
+        End If
       End If
+
+      pPickerProductBase.SelectedObjects.Clear()
+
+      For Each mProductBaseInfo As clsProductBaseInfo In mProductBaseInfos
+        pPickerProductBase.SelectedObjects.Add(mProductBaseInfo)
+      Next
+
       gvItemList.CloseEditor()
       RefeshTabCaption(pPickerProductBase.CurrentCategory)
     Catch ex As Exception
@@ -181,12 +199,18 @@ Public Class frmProductPicker
 
   Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvItemList.CustomRowCellEdit
     Dim mRow As clsProductBaseInfo
+    Dim mProductBaseInfos As New colProductBaseInfos
+
+    For Each mProductBaseInfo As clsProductBaseInfo In pPickerProductBase.SelectedObjects
+      mProductBaseInfos.Add(mProductBaseInfo)
+    Next
+
     mRow = TryCast(gvItemList.GetRow(e.RowHandle), clsProductBaseInfo)
     If mRow IsNot Nothing Then
 
       If e.Column.Name = gcStockCode.Name Then
 
-        If pPickerProductBase.SelectedObjects.Contains(mRow) Then
+        If mProductBaseInfos.ItemFromProductTypeAndID(mRow.ProductTypeID, mRow.ID) IsNot Nothing Then
           e.RepositoryItem = repoItemRemove
         Else
           e.RepositoryItem = repoItemSelect

@@ -25,6 +25,12 @@ Public Class clsProductBaseInfo
     End Get
   End Property
 
+  Public ReadOnly Property DrawingFileName As String
+    Get
+      Return pProduct.DrawingFileName
+    End Get
+  End Property
+
   Public ReadOnly Property ID As Integer
     Get
       Return pProduct.ID

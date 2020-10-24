@@ -86,6 +86,8 @@ Partial Class frmProductAdmin
         Me.tabBasicStockItem = New DevExpress.XtraTab.XtraTabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpStockItemDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.bteDrawing = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.btnGenerateCode = New DevExpress.XtraEditors.SimpleButton()
@@ -100,6 +102,7 @@ Partial Class frmProductAdmin
         Me.txtStockCode = New DevExpress.XtraEditors.TextEdit()
         Me.tabLockStockItem = New DevExpress.XtraTab.XtraTabPage()
         Me.tabBlank = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +127,7 @@ Partial Class frmProductAdmin
         Me.Panel1.SuspendLayout()
         CType(Me.grpStockItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpStockItemDetail.SuspendLayout()
+        CType(Me.bteDrawing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSubItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,7 +186,7 @@ Partial Class frmProductAdmin
         Me.gvProductBase.Appearance.OddRow.Options.UseFont = True
         Me.gvProductBase.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
         Me.gvProductBase.Appearance.Row.Options.UseBackColor = True
-        Me.gvProductBase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.gcCategory, Me.GridColumn7, Me.GridColumn3})
+        Me.gvProductBase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.gcCategory, Me.GridColumn7, Me.GridColumn3, Me.GridColumn5})
         Me.gvProductBase.GridControl = Me.grdProductBase
         Me.gvProductBase.GroupCount = 1
         Me.gvProductBase.Name = "gvProductBase"
@@ -611,6 +615,8 @@ Partial Class frmProductAdmin
         Me.grpStockItemDetail.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpStockItemDetail.AppearanceCaption.Options.UseFont = True
         Me.grpStockItemDetail.AppearanceCaption.Options.UseForeColor = True
+        Me.grpStockItemDetail.Controls.Add(Me.LabelControl4)
+        Me.grpStockItemDetail.Controls.Add(Me.bteDrawing)
         Me.grpStockItemDetail.Controls.Add(Me.LabelControl3)
         Me.grpStockItemDetail.Controls.Add(Me.cboUoM)
         Me.grpStockItemDetail.Controls.Add(Me.btnGenerateCode)
@@ -630,6 +636,31 @@ Partial Class frmProductAdmin
         Me.grpStockItemDetail.Size = New System.Drawing.Size(1088, 249)
         Me.grpStockItemDetail.TabIndex = 94
         Me.grpStockItemDetail.Text = "Detalles del Producto"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl4.Appearance.Options.UseFont = True
+        Me.LabelControl4.Appearance.Options.UseForeColor = True
+        Me.LabelControl4.Location = New System.Drawing.Point(696, 42)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(26, 14)
+        Me.LabelControl4.TabIndex = 125
+        Me.LabelControl4.Text = "Plano"
+        '
+        'bteDrawing
+        '
+        Me.bteDrawing.Location = New System.Drawing.Point(750, 39)
+        Me.bteDrawing.MenuManager = Me.BarManager1
+        Me.bteDrawing.Name = "bteDrawing"
+        Me.bteDrawing.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.bteDrawing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bteDrawing.Properties.Appearance.Options.UseBackColor = True
+        Me.bteDrawing.Properties.Appearance.Options.UseFont = True
+        Me.bteDrawing.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.bteDrawing.Size = New System.Drawing.Size(329, 20)
+        Me.bteDrawing.TabIndex = 124
         '
         'LabelControl3
         '
@@ -792,6 +823,12 @@ Partial Class frmProductAdmin
         Me.tabBlank.Size = New System.Drawing.Size(1096, 265)
         Me.tabBlank.Text = "XtraTabPage1"
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn5"
+        Me.GridColumn5.FieldName = "DrawingFileName"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
         'frmProductAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -830,6 +867,7 @@ Partial Class frmProductAdmin
         CType(Me.grpStockItemDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpStockItemDetail.ResumeLayout(False)
         Me.grpStockItemDetail.PerformLayout()
+        CType(Me.bteDrawing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSubItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -914,4 +952,7 @@ Partial Class frmProductAdmin
   Friend WithEvents bbtnAddStructure As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents bbtnAddProductInstallation As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents bteDrawing As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

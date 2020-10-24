@@ -16,6 +16,7 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pCode As String
   Protected pSubItemType As Integer '// from productconstructionsubtype
   Protected pItemType As Integer '// from productconstructiontype
+  Protected pDrawingFileName As String
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
   Public MustOverride Property ProductTypeID As Integer Implements intItemSpecCore.ItemType '// from eProductType
@@ -132,6 +133,15 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     End Set
   End Property
 
+  Public Property DrawingFileName As String
+    Get
+      Return pDrawingFileName
+    End Get
+    Set(value As String)
+      If value <> pDrawingFileName Then pIsDirty = True
+      pDrawingFileName = value
+    End Set
+  End Property
 
   Public MustOverride Sub CalculateCostAndPrice() Implements intItemSpecCore.CalculateCostAndPrice
 

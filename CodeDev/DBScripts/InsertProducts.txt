@@ -1,0 +1,386 @@
+drop table GroupType
+go
+drop table ProductConstructionSubType
+go
+drop table ProductConstructionType
+go
+
+drop table ProductInstallation
+go
+
+drop table ProductInstallationType
+go
+
+drop table ProductStructure
+go
+
+drop table ProductStructureType
+go
+
+/******************************************************
+  Tables  Begin
+******************************************************/
+GO
+----------------------------------------------------
+-- dbo.GroupType
+----------------------------------------------------
+CREATE TABLE dbo.GroupType
+(
+GroupTypeID                         INT IDENTITY(1,1) NOT NULL,
+Description                         VARCHAR(256),
+CONSTRAINT pk_GroupTypeID PRIMARY KEY CLUSTERED ( GroupTypeID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductConstructionSubType
+----------------------------------------------------
+CREATE TABLE dbo.ProductConstructionSubType
+(
+ProductConstructionSubTypeID        INT IDENTITY(1,1) NOT NULL,
+ProductConstructionTypeID           INT,
+Description                         NVARCHAR(max),
+Abbreviation                        VARCHAR(5),
+CONSTRAINT pk_ProductConstructionSubType PRIMARY KEY CLUSTERED ( ProductConstructionSubTypeID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductConstructionType
+----------------------------------------------------
+CREATE TABLE dbo.ProductConstructionType
+(
+ProductConstructionTypeID           INT IDENTITY(1,1) NOT NULL,
+Description                         NVARCHAR(max),
+Abbreviation                        VARCHAR(5),
+CONSTRAINT pk_ProductConstructionType PRIMARY KEY CLUSTERED ( ProductConstructionTypeID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductInstallation
+----------------------------------------------------
+CREATE TABLE dbo.ProductInstallation
+(
+ProductInstallationID               INT IDENTITY(1,1) NOT NULL,
+Description                         TEXT,
+ItemType                            INT,
+Notes                               TEXT,
+Code                                VARCHAR(30),
+SubItemType                         INT,
+UoM                                 INT,
+DrawingFileName                     NVARCHAR(max),
+CONSTRAINT PK_ProductInstallation PRIMARY KEY CLUSTERED ( ProductInstallationID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductInstallationType
+----------------------------------------------------
+CREATE TABLE dbo.ProductInstallationType
+(
+ProductInstallationTypeID           INT IDENTITY(1,1) NOT NULL,
+Description                         NCHAR(100),
+CONSTRAINT PK_ProductInstallationTypeID PRIMARY KEY CLUSTERED ( ProductInstallationTypeID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductStructure
+----------------------------------------------------
+CREATE TABLE dbo.ProductStructure
+(
+ProductStructureID                  INT IDENTITY(1,1) NOT NULL,
+Description                         TEXT,
+ItemType                            INT,
+Notes                               TEXT,
+Code                                VARCHAR(30),
+SubItemType                         INT,
+UoM                                 INT,
+DrawingFileName                     NVARCHAR(max),
+CONSTRAINT PK_ProductStructure PRIMARY KEY CLUSTERED ( ProductStructureID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductStructureType
+----------------------------------------------------
+CREATE TABLE dbo.ProductStructureType
+(
+ProductStructureTypeID              INT IDENTITY(1,1) NOT NULL,
+Description                         NCHAR(100),
+CONSTRAINT PK_ProductStructureType PRIMARY KEY CLUSTERED ( ProductStructureTypeID )
+)
+ON [PRIMARY]
+
+GO
+
+/******************************************************
+  Tables  End
+******************************************************/
+GO
+/******************************************************
+  Insert data   Begin
+******************************************************/
+GO
+-----------------------------------------------------------
+--Insert data into dbo.GroupType
+-----------------------------------------------------------
+
+TRUNCATE TABLE dbo.GroupType
+GO
+
+INSERT INTO dbo.GroupType (Description) VALUES('VIVIENDAS RURALES')
+INSERT INTO dbo.GroupType (Description) VALUES('VIVIENDAS URBANAS')
+GO
+GO
+ALTER TABLE dbo.GroupType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductConstructionSubType
+-----------------------------------------------------------
+SET IDENTITY_INSERT ProductConstructionSubType ON
+ALTER TABLE dbo.ProductConstructionSubType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductConstructionSubType
+GO
+
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('1','1','LIMPIEZA','LMP')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('2','1','TRAZO Y NIVELACIÓN','TRN')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('3','2','CORTE','CRT')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('4','2','RELLENO Y COMPACTACIÓN','RYC')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('5','2','BOTAR TIERRA','BTR')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('6','3','EXCAVACIÓN','EXC')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('7','3','RELLENO Y COMPACTACIÓN','RYC')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('8','3','BOTAR TIERRA','BTR')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('9','3','CONCRETO RECUBRIMIENTO','CONC')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('10','3','PILOTE MADERA','PLM')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('11','4','ARMADO E INSTALACIÓN','AEI')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('12','4','HERRAJES DE FIJACIÓN','HRJ')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('13','4','INSTALACIÓN FRAMING','INF')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('14','4','FORRO EXTERIOR PAREDES LAMINA FIBROCEMENTO','FLF')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('15','4','FORRO EXTERIOR PAREDES','FMH')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('16','4','FORRO EXTERIOR PAREDES MACHIMBRE VERTICAL','FMV')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('17','5','ALFAJIAS DE MADERA','AJM')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('18','5','CUBIERTA TECHO LAM. ZINC ALUM.','CLZ')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('19','5','CLAVADO DE TECHO','CDT')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('20','6','CIELO RASO','CIR')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('21','7','ENTRAMADO DE MADERA','EMD')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('22','7','FORRO ENTRAMADO LAMINA FIBROCEMENTO','FLF')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('23','7','CUBIERTA PISO CERAMICA INTERIORES','CPI')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('24','7','CASCOTE CONCRETO','CCO')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('25','7','ARENILLADO DE LOSA CONCRETO','ALC')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('26','8','PUERTAS','PTA')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('27','8','VENTANAS','VNT')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('28','9','PINTURA PAREDES INTERNAS','PPI')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('29','9','PINTURA DE PAREDES EXTERNAS','PPE')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('30','10','LIMPIEZA Y ENTREGA DE OBRA','LEO')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('31','11','EXCAVACIÓN MANUAL','EXM')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('32','11','BOTAR TIERRA','BTR')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('33','12','SUMINISTRO E INSTALACIÓN TUBERÍAS','SIT')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('34','12','SUMINISTRO E INSTALACIÓN DE PANTRY','SIP')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('35','12','SUMINISTRO E INSTALACIÓN DE LETRINA','SIL')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('36','12','SUMINISTRO E INSTALACIÓN DE LAVANDERO','SIV')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('37','12','POZO DE INFILSTRACIÓN AGUAS RESIDUALES','PIA')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('38','13','CANALIZACIÓN, ALAMBRADO E INSTALACIÓN','CAI')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('39','14','CONEXIONES ESTRUCTURALES ENTRAMADO','CEE')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('40','15','PIEZAS DE EJE O MARCO','PEM')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('41','15','VIGAS PRINCIPALES','VPR')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('42','15','INSTALACIÓN DE PIEZAS DE EJE','IPE')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('43','15','FIJACION ESTRUCTURAL','FES')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('44','4','FABRICACION PIEZAS FRAMING','FFR')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('45','4','FORRO INTERIOR DE PAREDES','FIP')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('46','4','VENTANA CELOSIA','VCS')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('47','5','PANELES TECHO','PTC')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation) VALUES('48','7','FIJACIÓN ESTRUCTURAL','FJS')
+GO
+GO
+ALTER TABLE dbo.ProductConstructionSubType CHECK CONSTRAINT ALL
+GO
+SET IDENTITY_INSERT ProductConstructionSubType OFF
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductConstructionType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductConstructionType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductConstructionType
+GO
+SET IDENTITY_INSERT ProductConstructionType ON
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('1','PRELIMINARES','PRE')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('2','MOVIMIENTO DE TIERRA','MDT')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('3','FUNDACIONES','FND')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('4','PAREDES','PRD')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('5','TECHO','TEC')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('6','CIELO RASO','CLR')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('7','PISO','PSO')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('8','PUERTAS Y VENTANAS','PYV')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('9','ACABADOS','ACD')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('10','LIMPIEZA FINAL Y ENTREGAS','LFE')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('11','EXCAVACIÓN LETRINA','EXL')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('12','OBRAS HIDROSANITARIAS','HID')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('13','ELECTRICIDAD','ELE')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('14','CONEXIONES ESTRUCTURALES','CET')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation) VALUES('15','ESTRUCTURA PRINCIPAL','ESP')
+GO
+GO
+ALTER TABLE dbo.ProductConstructionType CHECK CONSTRAINT ALL
+GO
+SET IDENTITY_INSERT ProductConstructionType OFF
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductInstallation
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductInstallation NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductInstallation
+GO
+
+SET IDENTITY_INSERT ProductInstallation ON
+
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('1','Limpieza Inicial','3',NULL,NULL,'0','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('2','Trazo y Nivelacion','3',NULL,NULL,'1',NULL,NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('3','Corte','3',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('4','Relleno y Compactacion','3',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('5','Botar tierra Sobrante de Excavación a 2 km de Distancia (considerar abundamiento de 27%)','3',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('6','Alfajias de Madera, utilizando Piezas de Medidas Comerciales de 2" x 6" + Clavadores de Madera utilizando Medidas de 2" x 2"','3',NULL,NULL,'3',NULL,NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('7','Cubierta de Techo con Lamina de Zinc Aluminizada Cal.26 y 14.25 de longitud. Incluye Elementos de Fijacion','3',NULL,NULL,'3',NULL,NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('8','Limpieza y Entrega Final de la Obra','10',NULL,'I-LFE-LEO.001','30','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('9','Instalación de Pilote de madera de 6'''' x 6'''' (12 unds)','3',NULL,'I-FND-PLM.001','10','16',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('10','Armado e Instalacion de paneles de Piso en Madera, utlizando piezas con dimensiones comerciales de 2" x 6"','7',NULL,'I-PSO-EMD.001','21','16',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('11','Instalación de Eje Estructural + Vigas Principales','15',NULL,'I-ESP-IPE.001','42','16',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('12','Fijacion estructural','7',NULL,'I-PSO-FJS.001','48','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('13','Fijacion estructural de Ejes o Marcos Principales + Vigas','15',NULL,'I-ESP-FES.001','43','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('14','Fijacion de Framing','4',NULL,'I-PRD-INF.001','13','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('15','Aislante Termico de Celulosa entre forros de pared','4',NULL,'I-PRD-INF.002','13','17',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('16','Fijacion de Paneles de Techo','5',NULL,'I-TEC-PTC.001','47','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('17','Canalizacion y alambrado','13',NULL,'I-ELE-CAI.001','38','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('18','Instalacion de Accesorios de Iluminacion y Poder','13',NULL,'I-ELE-CAI.002','38','0',NULL)
+GO
+GO
+ALTER TABLE dbo.ProductInstallation CHECK CONSTRAINT ALL
+GO
+
+SET IDENTITY_INSERT ProductInstallation OFF
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductInstallationType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductInstallationType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductInstallationType
+GO
+SET IDENTITY_INSERT ProductInstallationType ON
+
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES(1,'PRELIMINARES')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES(2,'MOVIMIENTO DE TIERRA')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES(3,'TECHO')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES(4,'LIMPIEZA FINAL Y ENTREGA')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES(5,'EXCAVACIÓN LETRINA')
+GO
+GO
+ALTER TABLE dbo.ProductInstallationType CHECK CONSTRAINT ALL
+GO
+
+SET IDENTITY_INSERT ProductInstallationType OFF
+-----------------------------------------------------------
+--Insert data into dbo.ProductStructure
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductStructure NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductStructure
+GO
+SET IDENTITY_INSERT ProductStructure ON
+
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('1','Armado e instalacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared','4',NULL,'E-PRD-AEI.001','11','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('2','Herrajes de fijacion de Framing. Clavo Hilti BK 27','2',NULL,NULL,'0','0',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('3','Instalacion de Framing - Esqueleteado de Madera, utlizando piezas con dimensiones comerciales de 2" x 4", con parales de distanciamiento maximo @ 36"','2',NULL,NULL,'0','0',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('4','Forro Exterior de paredes, con lamina de Fibrocemento (Plyrock) con t=10 mm, empastado y lijado listo para pintar','2',NULL,NULL,'1',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('5','Forro Exterior de paredes con Machimbre Horizontal de Madera, Espejo de 5", t= 3/4". Especie Caoba Africana. Incluye Acabado Aceite Natural para Exteriores + Fijacion con Clavo de Pistola + Tapajuntas de 3/4" x 2 1/2"','2',NULL,NULL,'1',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('6','Forro Exterior de paredes con Machimbre Vertical de Madera, Espejo de 5", t= 3/4". Especie Caoba Africana. Incluye Acabado Aceite Natural para Exteriores + Fijacion con Clavo de Pistola','2',NULL,NULL,'1',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('7','Excavacion Manual en Suelo Natural','2',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('8','Relleno y Compactacion Manual, Mejoramiento de Suelo del 0.20 m de alto.','2',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('9','Botar tierra Sobrante de Excavación a 2 km de Distancia (considerar abundamiento de 27%)','2',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('10','Concreto de 3,000 PSI. Como Recubrimiento de Pilote.','2',NULL,NULL,'2',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('11','Fabricación de Pilote de Madera de 6'''' x 6'''' (12 unds)','3',NULL,'E-FND-PLM.001','10','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('12','Fabricacion de piezas para paneles de Piso en Madera, utlizando piezas con dimensiones comerciales de 2" x 6"','7',NULL,'E-PSO-EMD.001','21','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('13','Forro de Entramado de madera con lamina de Fibrocemento (Plycem) de 18 mm','2',NULL,NULL,'3',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('14','Cubierta de Piso de Ceramica para interiores, ladrillo 45cm x 45cm','2',NULL,NULL,'3',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('15','Suministro e Instalacion de Forro de Saran negro. Incluye empaque y elementos de fijacion','2',NULL,NULL,'1',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('16','Cascote de Concreto de 2,500 PSI, t=2','2',NULL,NULL,'3',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('17','Arenillado de Losa de Concreto para Area de Lavandero','2',NULL,NULL,'3',NULL,NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('18','Forro en Paneles de Piso en madera con lamina de Fibrocemento (Plycem) de 20 mm','7',NULL,'E-PSO-FLF.001','22','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('19','Piso de Ceramica','7',NULL,'E-PSO-CPI.001','23','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('21','Piso de Deck con  Acabado Tropical Extreme de Messmers','7',NULL,'E-PSO-CPI.002','23','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('22','Fabricación de Eje Estructural','15',NULL,'E-ESP-PEM.001','40','16','C:\RTISProjects\AgroForestal\SystemFiles\SIArchivosSys\00022\DRAWING_22.pdf')
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('23','FABRICACIÓN VIGAS PRINCIPALES','15',NULL,'E-ESP-VPR.001','41','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('25','Fabricacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared','4',NULL,'E-PRD-FFR.001','44','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('26','Forro Interior de Paredes, con lámina de Plywood fenolico de 1/2'''' de espesor. Incluye acabado','4',NULL,'E-PRD-FIP.001','45','1',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('27','Fabricación e Instalación de Ventana de Celosia de Madera','4',NULL,'E-PRD-VCS.001','46','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('28','Fabricación e Instalación de Forro Exterior de Paredes con Machimbre de Madera','4',NULL,'E-PRD-FMH.001','15','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('29','Forro Exterior de Paredes con Teja DECRA Shake Chestnut','4',NULL,'E-PRD-FMH.002','15','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('30','Forro Exterior de Pared contiguo a puertas con lámina de Plycem tipo Machimbre (Siding), Incluye Acabado','4',NULL,'E-PRD-FMH.003','15','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('31','Fabricación de piezas de Paneles de Techo de Madera, utilizando piezas con dimensiones comerciales de 2'''' x 4'''' + Clavadores de Forro de Techo','5',NULL,'E-TEC-PTC.001','47','0',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('32','Armado e Instalación de piezas de Paneles de Techo de Madera, utilizando piezas con dimensiones comerciales de 2'''' x 4'''' + Clavadores de Forro de Techo','5',NULL,'E-TEC-PTC.002','47','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('33','Cubierta de Techo con Teja DECRA Shake Chestnut','5',NULL,'E-TEC-PTC.003','47','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('34','Cielo Raso de Lámina de Plywood Fenólico de 1/2'''', Incluye Acabado','6',NULL,'E-CLR-CIR.001','20','14','C:\RTISProjects\AgroForestal\SystemFiles\SIArchivosSys\00034\DRAWING_34.pdf')
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('36','P-1: Puerta Corrediza de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor con Dimensiones de 226.00 cm x 276.00 cm, Incluye 2 hojas de puerta corrediza + 1 puerta de Cedazo','8',NULL,'E-PYV-PTA.001','26','12',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('37','P-2: Puerta Batiente de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor con Dimensiones de 90.00 cm x 222.00 cm, Incluye Haladera de lujo','8',NULL,'E-PYV-PTA.002','26','12',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('38','V-1: Ventana Fija de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor, de forma triangular','8',NULL,'E-PYV-VNT.001','27','12',NULL)
+GO
+GO
+ALTER TABLE dbo.ProductStructure CHECK CONSTRAINT ALL
+GO
+SET IDENTITY_INSERT ProductStructure OFF
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductStructureType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductStructureType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductStructureType
+GO
+
+SET IDENTITY_INSERT ProductStructureType ON
+
+INSERT INTO dbo.ProductStructureType (ProductStructureTypeID,Description) VALUES('1','FUNDACIONES')
+INSERT INTO dbo.ProductStructureType (ProductStructureTypeID,Description) VALUES('2','PAREDES')
+INSERT INTO dbo.ProductStructureType (ProductStructureTypeID,Description) VALUES('3','PISO')
+GO
+GO
+ALTER TABLE dbo.ProductStructureType CHECK CONSTRAINT ALL
+GO
+
+SET IDENTITY_INSERT ProductStructureType OFF
+
+/******************************************************
+  Insert data  End
+******************************************************/
+GO
+/******************************************************
+  Foreign keys  Begin
+******************************************************/
+GO
+
+/******************************************************
+  Foreign keys  End
+******************************************************/
+GO
