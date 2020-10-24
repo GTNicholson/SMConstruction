@@ -236,9 +236,17 @@ Public Class fccHouseType
 
   End Sub
 
-  Public Sub SetPrevlHTSalesItemInfos()
+  Public Sub SetPrevlHTSalesItemInfos(ByVal vProductCostBookID As Integer)
     Dim mRetVal As New colHouseTypeSalesItemInfos
-    pPrevtHTSalesItemInfos = pHouseTypeManager.GetTotalHTSalesItemInfos(pProducts)
+    Dim mProductCost As New dmProductCostBook
+    Dim mdso As New dsoProductAdmin(DBConn)
+
+    mdso.LoadProductCostDown(mProductCost, vProductCostBookID)
+
+    If mProductCost IsNot Nothing Then
+      pPrevtHTSalesItemInfos = pHouseTypeManager.GetTotalHTSalesItemInfos(pProducts, mProductCost.ProductCostBookEntrys)
+
+    End If
 
 
   End Sub

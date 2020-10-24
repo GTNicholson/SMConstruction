@@ -301,6 +301,19 @@ Public Class colHouseTypeSalesItems : Inherits colBase(Of dmHouseTypeSalesItem)
     MyBase.New(vList)
   End Sub
 
+  Public Function ItemFromProductID_ProductType(ByVal vProductID As Integer, ByVal vProductType As eProductType) As dmHouseTypeSalesItem
+    Dim mItem As dmHouseTypeSalesItem
+    Dim mRetVal As dmHouseTypeSalesItem = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.ProductID = vProductID And mItem.ProductTypeID = vProductType Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 

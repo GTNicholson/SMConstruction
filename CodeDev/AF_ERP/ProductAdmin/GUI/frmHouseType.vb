@@ -467,13 +467,54 @@ Public Class frmHouseType
     Dim mProductInfos As colProductBaseInfos
     Dim mProductPicker As clsPickerProductItem
     Dim mProductsToAdd As New List(Of clsProductBaseInfo)
+    Dim mProductBaseInfos As colProductBaseInfos
+
 
     Select Case e.Button.Properties.Tag
 
       Case "Add"
         Try
           ''Load CostBook
-          pFormController.LoadProductCostBookDown(clsDEControlLoading.GetDEComboValue(cboProductCostBook))
+          ''pFormController.LoadProductCostBookDown(clsDEControlLoading.GetDEComboValue(cboProductCostBook))
+
+
+          ''mProductBaseInfos = pFormController.GetProductInfos
+          ''''For Each mItem As clsProductBaseInfo In mProductBaseInfos
+
+          ''''  mProductBaseInfos.Add(mItem)
+          ''''Next
+
+          ''mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, AppRTISGlobal.GetInstance)
+
+          ''For Each mHTSalesItem In pFormController.HouseType.HTSalesItems
+          ''  If mHTSalesItem.ProductID > 0 Then
+          ''    mProductBaseInfo = mProductBaseInfos.ItemFromProductTypeAndID(mHTSalesItem.ProductTypeID, mHTSalesItem.ProductID)
+          ''    If Not mProductPicker.SelectedObjects.Contains(mProductBaseInfo) Then
+          ''      mProductPicker.SelectedObjects.Add(mProductBaseInfo)
+          ''    End If
+          ''  End If
+          ''Next
+
+          ''mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          ''For Each mSelectedItem In mProductPicker.SelectedObjects
+          ''  If mSelectedItem IsNot Nothing Then
+
+          ''    If pFormController.HouseType.HTSalesItems.ItemFromProductID_ProductType(mSelectedItem.ID, mSelectedItem.ProductTypeID) Is Nothing Then
+          ''      CheckSave(False)
+          ''      pFormController.AddProducts(mProductsToAdd)
+          ''      grdHouseSalesItems.DataSource = pFormController.CurrentHTSalesItemInfos
+          ''      gvHouseSalesItems.RefreshData()
+
+          ''    End If
+
+
+
+
+          ''  End If
+          ''Next
+
+
+          ''''-------------------------
 
 
           mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, AppRTISGlobal.GetInstance)
@@ -569,42 +610,15 @@ Public Class frmHouseType
 
   Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
     UctHouseTypeOptions1.UpdateObjects()
-    pFormController.SetPrevlHTSalesItemInfos()
+    pFormController.ProductCostBookID = clsDEControlLoading.GetDEComboValue(cboProductCostBook)
+    pFormController.SetPrevlHTSalesItemInfos(pFormController.ProductCostBookID)
     grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
     pFormController.RefreshProductCostSummaryInfo(pFormController.PrevtHTSalesItemInfos)
     grdSummaryCostBookEntry.DataSource = pFormController.ProductCostSummaryInfo
   End Sub
 
 
-  ''Private Function GetDisplayText(ByVal vFilterControl As DevExpress.XtraEditors.FilterControl) As String
-  ''  Dim mFilterString As String = String.Empty
-  ''  Dim mObject As intObjectProperties = pUserController.GetObjectProperties
 
-  ''  If mObject IsNot Nothing Then
-  ''    Dim mGrid As New DevExpress.XtraGrid.GridControl
-  ''    Dim mGridView As New DevExpress.XtraGrid.Views.Grid.GridView
-
-  ''    mGrid.MainView = mGridView
-
-
-  ''    For Each mProp As clsPropertyDef In mObject.PropertyList
-  ''      Dim mCol As New DevExpress.XtraGrid.Columns.GridColumn()
-
-  ''      mCol.FieldName = mProp.PropertyName
-
-  ''      If mProp.LookUpRef > 0 Then
-  ''        RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(mGrid, mCol, pUserController.RTISGlobal.RefLists.RefIList(mProp.LookUpRef))
-  ''      End If
-
-  ''      mGridView.Columns.Add(mCol)
-  ''    Next
-
-  ''    mGridView.ActiveFilterString = vFilterControl.FilterString
-  ''    mFilterString = mGridView.FilterPanelText
-  ''  End If
-
-  ''  Return mFilterString
-  ''End Function
 
 
 End Class

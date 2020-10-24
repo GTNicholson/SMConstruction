@@ -67,7 +67,6 @@ Public Class clsHouseTypeManager
     mSalesItem.ProductTypeID = rProduct.ProductTypeID
     mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
-
     If rProductCostBook IsNot Nothing Then
       mCostBookEntryIndex = rProductCostBook.ProductCostBookEntrys.IndexFromProductID_ItemTypeID(rProduct.ID, rProduct.ItemType)
 
@@ -106,14 +105,32 @@ Public Class clsHouseTypeManager
     Return mRetVal
   End Function
 
-  Public Function GetTotalHTSalesItemInfos(ByRef rProducts As colProductBases) As colHouseTypeSalesItemInfos
+  Public Function GetTotalHTSalesItemInfos(ByRef rProducts As colProductBases, ByRef rProductCostBookEntry As colProductCostBookEntrys) As colHouseTypeSalesItemInfos
     Dim mTmpHTSalesItems As New colHouseTypeSalesItemInfos
     Dim mHTSIInfo As clsHouseTypeSalesItemInfo
+    Dim mCBE As dmProductCostBookEntry
+    Dim mProductBase As dmProductBase
 
     For Each mHTSI In HouseType.HTSalesItems
       If EvaluateCondition(mHTSI.ConditionString) = True Then
-        mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID), HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
-        mTmpHTSalesItems.Add(mHTSIInfo)
+
+        mProductBase = rProducts.ItemFromProductTypeAndID(mHTSI.ProductTypeID, mHTSI.ProductID)
+
+        If mProductBase IsNot Nothing Then
+          mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, mProductBase, HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
+          mCBE = New dmProductCostBookEntry
+          mCBE = rProductCostBookEntry.ItemFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ItemType)
+
+          If mCBE IsNot Nothing Then
+            mHTSIInfo.Cost = mCBE.Cost
+            mHTSIInfo.DirectLabourCost = mCBE.DirectLabourCost
+            mHTSIInfo.DirectMaterialCost = mCBE.DirectMaterialCost
+            mHTSIInfo.DirectTransportationAndEquipment = mCBE.DirectTransportationAndEquipment
+            mHTSIInfo.OutsourcingCost = mCBE.OutsourcingCost
+          End If
+          mTmpHTSalesItems.Add(mHTSIInfo)
+
+        End If
       End If
     Next
 
