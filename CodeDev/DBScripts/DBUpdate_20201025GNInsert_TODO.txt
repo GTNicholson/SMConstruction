@@ -1,0 +1,6 @@
+
+IF (IDENT_SEED('LookUpField') IS NOT NULL )	SET IDENTITY_INSERT LookUpField ON
+INSERT INTO LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TranslationTableName,TranslationKeyFieldName,TranslationFieldName,TranslationNullDisplay,SetValue,TallyID) VALUES('5025','5','SequenceNo','SequenceNo','4','0',NULL,NULL,NULL,NULL,NULL,'0')
+IF (IDENT_SEED('LookUpField') IS NOT NULL )	SET IDENTITY_INSERT LookUpField OFF
+
+GO

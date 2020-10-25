@@ -7,6 +7,7 @@ Public Class dmProductConstructionType : Inherits dmBase
   Private pProductConstructionTypeID As Int32
   Private pDescription As String
   Private pAbbreviation As String
+  Private pSequenceNo As Integer
 
   Public Sub New()
     MyBase.New()
@@ -43,6 +44,7 @@ Public Class dmProductConstructionType : Inherits dmBase
       .ProductConstructionTypeID = ProductConstructionTypeID
       .Description = Description
       .Abbreviation = Abbreviation
+      .SequenceNo = SequenceNo
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -69,6 +71,16 @@ Public Class dmProductConstructionType : Inherits dmBase
     Set(ByVal value As String)
       If pDescription <> value Then IsDirty = True
       pDescription = value
+    End Set
+  End Property
+
+  Public Property SequenceNo As Integer
+    Get
+      Return pSequenceNo
+    End Get
+    Set(value As Integer)
+      If pSequenceNo <> value Then IsDirty = True
+      pSequenceNo = value
     End Set
   End Property
 

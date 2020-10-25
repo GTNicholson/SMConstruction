@@ -1,0 +1,5 @@
+alter table ProductConstructionType add SequenceNo Int
+go
+
+alter table ProductConstructionSubType add SequenceNo Int
+go

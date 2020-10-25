@@ -147,6 +147,10 @@ Public Class clsSalesOrderHandler
     Dim mHTSIIs As colHouseTypeSalesItemInfos
     Dim mSalesItem As dmSalesOrderItem
     Dim mHouseTypeManager As clsHouseTypeManager
+    Dim mProductCost As New dmProductCostBook
+    Dim mdsoCB As New dsoProductAdmin(rDBConn)
+
+    mdsoCB.LoadProductCostDown(mProductCost, pSalesOrder.ProductCostBookID)
 
     mdso = New dsoSales(rDBConn)
 
@@ -168,7 +172,7 @@ Public Class clsSalesOrderHandler
     '// Now create the SalesItems and move the salesitemassembley to the new version
 
     mHouseTypeManager = New clsHouseTypeManager(rConfiguredHouseType)
-    mHTSIIs = mHouseTypeManager.GetTotalHTSalesItemInfos(mProducts)
+    mHTSIIs = mHouseTypeManager.GetTotalHTSalesItemInfos(mProducts, mProductCost.ProductCostBookEntrys)
 
     For Each mHouseTypeSalesItem As clsHouseTypeSalesItemInfo In mHTSIIs
 

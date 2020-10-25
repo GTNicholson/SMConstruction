@@ -56,6 +56,7 @@ Public Class dtoProductConstructionType : Inherits dtoBase
     With pProductConstructionType
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Abbreviation", StringToDBValue(.Abbreviation))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SequenceNo", .SequenceNo)
     End With
 
   End Sub
@@ -69,6 +70,7 @@ Public Class dtoProductConstructionType : Inherits dtoBase
         .ProductConstructionTypeID = DBReadInt32(rDataReader, "ProductConstructionTypeID")
         .Description = DBReadString(rDataReader, "Description")
         .Abbreviation = DBReadString(rDataReader, "Abbreviation")
+        .SequenceNo = DBReadInt32(rDataReader, "SequenceNo")
         pProductConstructionType.IsDirty = False
       End With
       mOK = True
