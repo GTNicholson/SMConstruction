@@ -247,7 +247,7 @@ Public Class brwHouseType : Inherits brwBrowserListBase
       ''clsDEControlLoading.LoadGridLookUpEditIList(Me.gridBrowseList, mGridView.Columns("ComponentType"), colWindowComponentType.GetInstance, "ComponentType", "Description")
 
       ' gridBrowseList.Refresh()
-
+      mGridView.ExpandAllGroups()
       Me.SaveButton = eActiveVisibleState.Invisible
 
       Me.AddButton = eActiveVisibleState.Active
@@ -264,6 +264,7 @@ Public Class brwHouseType : Inherits brwBrowserListBase
       ''Me.SelectColumnName = "IncludeRow"
 
       Me.PrintAndExportAvailable = True
+
 
     Catch ex As Exception
       mOK = False

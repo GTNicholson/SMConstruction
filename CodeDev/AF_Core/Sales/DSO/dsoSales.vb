@@ -91,6 +91,23 @@ Public Class dsoSales : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function GetDefaultProductCostBook() As Integer
+    Dim mRetval As Integer
+    Dim mWhere As String = "Select ProductCostBookID from ProductCostBook where IsDefault = 1"
+    Try
+      If pDBConn.Connect Then
+        mRetval = Convert.ToInt32(pDBConn.ExecuteScalar(mWhere))
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetval
+  End Function
+
   Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
     Try

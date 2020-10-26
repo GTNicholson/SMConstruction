@@ -216,7 +216,7 @@ End Class
 
 Public Class colProductCostBookEntrys : Inherits colBase(Of dmProductCostBookEntry)
 
-  Public Function IndexFromProductID_ItemTypeID(vProductID As Integer, ByVal vItemTypeID As Integer) As Integer
+  Public Function IndexFromProductID_ItemTypeID(vProductID As Integer, ByVal vItemTypeID As eProductType) As Integer
     Dim mItem As dmProductCostBookEntry
     Dim mIndex As Integer = -1
     Dim mCount As Integer = -1

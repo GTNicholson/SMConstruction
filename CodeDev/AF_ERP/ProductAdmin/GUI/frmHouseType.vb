@@ -614,8 +614,11 @@ Public Class frmHouseType
     pFormController.ProductCostBookID = clsDEControlLoading.GetDEComboValue(cboProductCostBook)
     pFormController.SetPrevHTSalesItemInfos(pFormController.ProductCostBookID)
     grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
+
+
     pFormController.RefreshProductCostSummaryInfo(pFormController.PrevtHTSalesItemInfos)
     grdSummaryCostBookEntry.DataSource = pFormController.ProductCostSummaryInfo
+    gvSummaryCostBookEntry.RefreshData()
   End Sub
 
 

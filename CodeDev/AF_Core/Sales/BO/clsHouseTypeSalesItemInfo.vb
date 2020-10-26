@@ -1,4 +1,6 @@
-﻿Public Class clsHouseTypeSalesItemInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsHouseTypeSalesItemInfo
   Private pHouseTypeSalesItem As dmHouseTypeSalesItem
   Private pProduct As dmProductBase
   Private pAssemblyDescription As String
@@ -44,6 +46,18 @@
     End Get
   End Property
 
+  Public ReadOnly Property SubItemType As Int32
+    Get
+      Return pProduct.SubItemType
+    End Get
+  End Property
+
+  Public ReadOnly Property ItemType As Int32
+    Get
+      Return pProduct.ItemType
+    End Get
+  End Property
+
   Public ReadOnly Property ProductCode As String
     Get
       Return pProduct.Code
@@ -57,11 +71,11 @@
       Return mRetVal
     End Get
   End Property
-  Public Property Quantity As Integer
+  Public Property Quantity As Decimal
     Get
       Return pHouseTypeSalesItem.Quantity
     End Get
-    Set(value As Integer)
+    Set(value As Decimal)
       pHouseTypeSalesItem.Quantity = value
     End Set
   End Property
@@ -135,13 +149,17 @@
     End Get
   End Property
 
-  Public ReadOnly Property UoM As Int32
+  Public ReadOnly Property UoM As String
     Get
-      Return pProduct.UoM
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pProduct.UoM, eUoM))
     End Get
   End Property
 
-
+  Public ReadOnly Property TotalCostValue As Decimal
+    Get
+      Return pHouseTypeSalesItem.Quantity * pHouseTypeSalesItem.Cost
+    End Get
+  End Property
 End Class
 
 

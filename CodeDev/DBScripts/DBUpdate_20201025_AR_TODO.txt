@@ -1,0 +1,3 @@
+alter table HouseTypeSalesItem
+alter column Quantity decimal (10,4)
+go

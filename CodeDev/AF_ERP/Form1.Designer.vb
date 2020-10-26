@@ -25,8 +25,6 @@ Partial Class Form1
     Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
     Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.repitDateDefault = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -210,6 +208,8 @@ Partial Class Form1
         Me.PivotGridField100 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField101 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField102 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -256,6 +256,7 @@ Partial Class Form1
         Me.GridView1.ColumnPanelRowHeight = 40
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.GroupCount = 1
         Me.GridView1.HorzScrollStep = 3
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -266,6 +267,7 @@ Partial Class Form1
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
@@ -275,24 +277,6 @@ Partial Class Form1
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 59
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Modelo"
-        Me.GridColumn2.FieldName = "ModelName"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        Me.GridColumn2.Width = 780
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Grupo"
-        Me.GridColumn3.FieldName = "GroupDesc"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 783
         '
         'RepositoryItemDateEdit1
         '
@@ -1968,6 +1952,24 @@ Partial Class Form1
         Me.PivotGridField102.Caption = "#O.C."
         Me.PivotGridField102.FieldName = "PONum"
         Me.PivotGridField102.Name = "PivotGridField102"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Modelo"
+        Me.GridColumn2.FieldName = "ModelName"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 780
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Grupo"
+        Me.GridColumn3.FieldName = "GroupDesc"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 783
         '
         'Form1
         '

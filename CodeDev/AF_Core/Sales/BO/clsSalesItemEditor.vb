@@ -6,6 +6,7 @@ Public Class clsSalesItemEditor
   Private pSalesItemAssembly As dmSalesItemAssembly
   Private pSalesOrderItem As dmSalesOrderItem
   Private pProduct As dmProductBase
+  Private Shared sProductConstructionTypes As RTIS.CommonVB.colValueItems
 
   Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rCurrentSalesItemAssembly As dmSalesItemAssembly, ByRef rSalesOrderItem As dmSalesOrderItem, ByRef rProductBase As dmProductBase)
     pSalesOrder = rSalesOrder
@@ -18,6 +19,12 @@ Public Class clsSalesItemEditor
     pSalesOrder = New dmSalesOrder
     pSalesItemAssembly = New dmSalesItemAssembly
     pSalesOrderItem = New dmSalesOrderItem
+
+    If sProductConstructionTypes Is Nothing Then
+      sProductConstructionTypes = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType)
+    End If
+
+
   End Sub
 
   Public ReadOnly Property SalesItemAssembly As dmSalesItemAssembly
@@ -118,6 +125,14 @@ Public Class clsSalesItemEditor
     Get
       Dim mRetVal As String
       mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ProductTypeID, eProductType))
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property ProductConstructionTypeDesc As String
+    Get
+      Dim mRetVal As String
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType).DisplayValueString(pProduct.ItemType)
       Return mRetVal
     End Get
   End Property

@@ -88,7 +88,7 @@
       <property name="Caption">Modelo</property>
       <property name="FieldName">ModelName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">780</property>
     </property>
@@ -112,6 +112,7 @@
   <property name="GroupSummary" iskey="true" value="0" />
   <property name="ActiveFilterString" />
   <property name="FormatRules" iskey="true" value="0" />
+  <property name="SortInfo">~Xtra#Base64AAEAAAD/////AQAAAAAAAAAMAgAAAF5EZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xLCBWZXJzaW9uPTE3LjEuMTYuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhBQEAAAA4RGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb0NvbGxlY3Rpb24EAAAACmdyb3VwQ291bnQFY2xvbmUPY2xvbmVHcm91cENvdW50E0NvbGxlY3Rpb25CYXNlK2xpc3QAAwADCLMBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tEZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvLCBEZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xLCBWZXJzaW9uPTE3LjEuMTYuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhXV0IHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QCAAAAAQAAAAkDAAAAAAAAAAkEAAAABAMAAACzAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbywgRGV2RXhwcmVzcy5YdHJhR3JpZC52MTcuMSwgVmVyc2lvbj0xNy4xLjE2LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAwRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb1tdAgAAAAgICQUAAAAAAAAAAAAAAAQEAAAAHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QDAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgUAAAgICQYAAAABAAAABAAAAAcFAAAAAAEAAAAAAAAABC5EZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvAgAAABAGAAAABAAAAAkHAAAADQMMCAAAABlEZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xBQcAAAAuRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbwIAAAAJU29ydE9yZGVyCkNvbHVtbk5hbWUAAQgIAAAAAQAAAAYJAAAAC0dyaWRDb2x1bW4zCw==</property>
   <property name="FormatConditions" iskey="true" value="0" />
   <property name="GroupSummarySortInfoState" />
   <property name="FindFilterText" />

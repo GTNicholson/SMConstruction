@@ -3,6 +3,7 @@ Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
+Imports RTIS.Elements
 
 Public Class frmSalesOrderDetailHouses
   Private Shared sActiveForms As Collection
@@ -159,19 +160,20 @@ Public Class frmSalesOrderDetailHouses
 
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus))
 
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
+    clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
 
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboContractManagerID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
+    clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
+    clsDEControlLoading.FillDEComboVI(cboContractManagerID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
-    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodSpecie, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodSpecie, mVIs)
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
-    RTIS.Elements.clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
 
     ''RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model))
 
+    clsDEControlLoading.FillDEComboVI(cboProductCostBook, CType(pFormController.RTISGlobal, iRefListHolder).RefLists.RefListVI(appRefLists.ProductCostBook))
 
     LoadCustomerContactCombo()
 
@@ -226,7 +228,7 @@ Public Class frmSalesOrderDetailHouses
         Else
           txtCustomerContact.Text = ""
         End If
-
+        clsDEControlLoading.SetDECombo(cboProductCostBook, .ProductCostBookID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesDelAreaID, .SalesDelAreaID)
@@ -269,8 +271,15 @@ Public Class frmSalesOrderDetailHouses
             gcPhases.CustomHeaderButtons(1).Properties.Checked = True
         End Select
 
+
       End With
 
+      If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
+        btnModel.Text = pFormController.GetHouseModelNameByHouseTypeID(pFormController.CurrentSalesOrderHouse.HouseTypeID)
+
+      Else
+        btnModel.Text = ""
+      End If
 
 
       ''LoadOrderPhases()
@@ -286,6 +295,7 @@ Public Class frmSalesOrderDetailHouses
 
       UpdateObjects()
       UpdateSalesItemAssembly()
+      UpdateSalesOrderHouse()
       pFormController.SaveObjects()
       RefreshHouseTabs()
     Catch ex As Exception
@@ -328,6 +338,7 @@ Public Class frmSalesOrderDetailHouses
         .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
         .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
         .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
+        .ProductCostBookID = clsDEControlLoading.GetDEComboValue(cboProductCostBook)
         .ShippingCost = txtShippingCost.Text
         .Version = txtVersion.Text
         .PodioPath = btnePodio.EditValue
@@ -514,6 +525,7 @@ Public Class frmSalesOrderDetailHouses
 
     UpdateObjects()
     UpdateSalesItemAssembly()
+    UpdateSalesOrderHouse()
     'pFormController.SaveObjects()
     If pFormController.IsDirty() Then
       If rOption Then
@@ -1132,6 +1144,7 @@ Public Class frmSalesOrderDetailHouses
 
 
       UpdateSalesItemAssembly()
+      UpdateSalesOrderHouse()
 
       If e.Page IsNot Nothing Then
         If e.Page.Tag IsNot Nothing Then
@@ -1145,25 +1158,22 @@ Public Class frmSalesOrderDetailHouses
       End If
 
 
-      RefreshSalesOrderAssembly()
+      RefreshSalesOrderHouse()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
 
-  Private Sub RefreshSalesOrderAssembly()
+  Private Sub RefreshSalesOrderHouse()
     Dim mStartActive As Boolean = pIsActive
-    Dim mHouseTypeInfos As New colHouseTypeInfos
-    Dim mdso As dsoProductAdmin
-
     pIsActive = False
 
 
-    If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
+    If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
 
-      If pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID > 0 Then
-        With pFormController.CurrentSalesItemAssembly
+      If pFormController.CurrentSalesOrderHouse.SalesOrderHouseID > 0 Then
+        With pFormController.CurrentSalesOrderHouse
 
           txtSOARef.Text = .Ref
 
@@ -1173,24 +1183,8 @@ Public Class frmSalesOrderDetailHouses
           txtQuantity.Text = .Quantity
           txtPricePerUnit.Text = .PricePerUnit
           txtTotalPrice.Text = .TotalPrice
-
-          mdso = New dsoProductAdmin(pFormController.DBConn)
-          mdso.LoadHouseTypeInfos(mHouseTypeInfos)
-
-          If mHouseTypeInfos IsNot Nothing Then
-            If mHouseTypeInfos.ItemFromKey(.HouseTypeID) IsNot Nothing Then
-
-
-              btnModel.Text = mHouseTypeInfos.ItemFromKey(.HouseTypeID).ModelName
-
-            Else
-              btnModel.Text = ""
-            End If
-
-          End If
-
-
-            grdOrderItem.RefreshDataSource()
+          btnModel.Text = pFormController.GetHouseModelNameByHouseTypeID(.HouseTypeID)
+          grdOrderItem.RefreshDataSource()
 
         End With
       Else
@@ -1203,6 +1197,62 @@ Public Class frmSalesOrderDetailHouses
     pIsActive = mStartActive
   End Sub
 
+  ''Private Sub RefreshSalesOrderAssembly()
+  ''  Dim mStartActive As Boolean = pIsActive
+  ''  Dim mHouseTypeInfos As New colHouseTypeInfos
+  ''  Dim mdso As dsoProductAdmin
+
+  ''  pIsActive = False
+
+
+  ''  If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
+
+  ''    If pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID > 0 Then
+  ''      With pFormController.CurrentSalesItemAssembly
+
+  ''        txtSOARef.Text = .Ref
+
+
+  ''        ''txtTotalPrice.EditValue = .TotalPrice
+  ''        txtSalesItemAssemblyDescription.Text = .Description
+  ''        txtQuantity.Text = .Quantity
+  ''        txtPricePerUnit.Text = .PricePerUnit
+  ''        txtTotalPrice.Text = .TotalPrice
+
+  ''        grdOrderItem.RefreshDataSource()
+
+  ''      End With
+  ''    Else
+
+  ''    End If
+  ''    ''here
+
+
+  ''  End If
+  ''  pIsActive = mStartActive
+  ''End Sub
+
+  Private Sub UpdateSalesOrderHouse()
+
+
+    If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
+
+
+      With pFormController.CurrentSalesOrderHouse
+
+        .Ref = txtSOARef.Text
+        .TotalPrice = Val(txtTotalPrice.Text)
+        .PricePerUnit = Val(txtPricePerUnit.Text)
+        .Quantity = Val(txtQuantity.Text)
+        .Description = txtSalesItemAssemblyDescription.Text
+
+
+      End With
+
+    End If
+
+  End Sub
+
   Private Sub UpdateSalesItemAssembly()
 
 
@@ -1212,7 +1262,10 @@ Public Class frmSalesOrderDetailHouses
       With pFormController.CurrentSalesItemAssembly
 
         .Ref = txtSOARef.Text
+        If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
+          .HouseTypeID = pFormController.CurrentSalesOrderHouse.SalesOrderHouseID
 
+        End If
         .TotalPrice = Val(txtTotalPrice.Text)
         .PricePerUnit = Val(txtPricePerUnit.Text)
         .Quantity = Val(txtQuantity.Text)
@@ -1361,12 +1414,12 @@ Public Class frmSalesOrderDetailHouses
 
     If mHouseType IsNot Nothing Then
 
-      pFormController.CreateSalesItemsFromHouseTypeConfig(mHouseType)
+      pFormController.CreateSalesItemsFromHouseTypeConfig(mHouseType, pFormController.SalesOrder.ProductCostBookID)
 
 
       ''mSOItems = mHouseTypeInfo.SalesOrderItems
-      ''pFormController.CurrentSalesItemAssembly.HouseTypeID = mHouseTypeInfo.HouseTypeID
-      ''btnModel.Text = mHouseTypeInfo.ModelName
+      '' pFormController.CurrentSalesItemAssembly.HouseTypeID = mHouseType.HouseTypeID
+      btnModel.Text = mHouseType.ModelName
 
       ''If mSOItems IsNot Nothing Then
 
@@ -1396,5 +1449,16 @@ Public Class frmSalesOrderDetailHouses
 
 
 
+  End Sub
+
+  Private Sub gvSSalesItemsEditor_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles gvSSalesItemsEditor.FocusedRowChanged
+    Dim view As DevExpress.XtraGrid.Views.Grid.GridView = sender
+    If view Is Nothing Then
+      Return
+    End If
+    If view.IsGroupRow(e.FocusedRowHandle) Then
+      Dim expanded As Boolean = view.GetRowExpanded(e.FocusedRowHandle)
+      view.SetRowExpanded(e.FocusedRowHandle, Not expanded)
+    End If
   End Sub
 End Class

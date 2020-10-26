@@ -98,7 +98,7 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
         .OutsourcingCost = DBReadDecimal(rDataReader, "OutsourcingCost")
 
 
-        .Quantity = DBReadInt32(rDataReader, "Quantity")
+        .Quantity = DBReadDecimal(rDataReader, "Quantity")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WoodSpeciesID = DBReadInt32(rDataReader, "WoodSpeciesID")
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")

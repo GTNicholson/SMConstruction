@@ -139,7 +139,7 @@ Public Class clsSalesOrderHandler
   End Sub
 
 
-  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rTargetSalesOrderHouse As dmSalesOrderHouse, ByRef rConfiguredHouseType As dmHouseType, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rTargetSalesOrderHouse As dmSalesOrderHouse, ByRef rConfiguredHouseType As dmHouseType, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vProductCostBookID As Integer)
     Dim mDict As New Dictionary(Of Integer, dmSalesItemAssembly)
     Dim mSOSIA As dmSalesItemAssembly
     Dim mdso As dsoSales
@@ -149,7 +149,9 @@ Public Class clsSalesOrderHandler
     Dim mHouseTypeManager As clsHouseTypeManager
     Dim mProductCost As New dmProductCostBook
     Dim mdsoCB As New dsoProductAdmin(rDBConn)
+    Dim mSOPI As dmSalesOrderPhaseItem
 
+    pSalesOrder.ProductCostBookID = vProductCostBookID
     mdsoCB.LoadProductCostDown(mProductCost, pSalesOrder.ProductCostBookID)
 
     mdso = New dsoSales(rDBConn)
@@ -183,13 +185,36 @@ Public Class clsSalesOrderHandler
       mSalesItem.ProductTypeID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductTypeID
       mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
       mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
+      mSalesItem.SalesItemType = mHouseTypeSalesItem.ItemType
+      mSalesItem.SalesSubItemType = mHouseTypeSalesItem.SubItemType
 
       mSOSIA = mDict(mHouseTypeSalesItem.HouseTypeSalesItem.HouseTypeSalesItemAssemblyID)
       mSalesItem.SalesItemAssemblyID = mSOSIA.SalesItemAssemblyID
 
+
+
       pSalesOrder.SalesOrderItems.Add(mSalesItem)
 
     Next
+
+    mdso.SaveSalesOrderDown(pSalesOrder)
+    ''//Creating the salesorderphaseitems if it's a single phase
+
+    For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+
+      mSOPI = New dmSalesOrderPhaseItem
+
+      mSOPI.Qty = mSalesOrderItem.Quantity
+      mSOPI.SalesItemID = mSalesOrderItem.SalesOrderItemID
+      mSOPI.SalesOrderID = mSalesOrderItem.SalesOrderID
+
+      If pSalesOrder.SalesOrderPhases IsNot Nothing And pSalesOrder.SalesOrderPhases.Count > 0 Then
+        mSOPI.SalesOrderPhaseID = pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+        pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+      End If
+    Next
+
+    mdso.SaveSalesOrderDown(pSalesOrder)
 
   End Sub
 

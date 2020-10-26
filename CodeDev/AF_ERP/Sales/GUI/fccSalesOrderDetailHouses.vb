@@ -81,6 +81,8 @@ Public Class fccSalesOrderDetailHouses
       mSalesOrderItemAssembly.ParentID = pSalesOrder.SalesOrderID
       SalesOrder.SalesItemAssemblys.Add(mSalesOrderItemAssembly)
 
+      mdso = New dsoSales(pDBConn)
+      pSalesOrder.ProductCostBookID = mdso.GetDefaultProductCostBook()
       SaveObjects()
 
     Else
@@ -321,7 +323,19 @@ Public Class fccSalesOrderDetailHouses
 
   End Function
 
+  Public Function GetHouseModelNameByHouseTypeID(ByVal vHouseTypeID As Integer) As String
+    Dim mdso As New dsoProductAdmin(DBConn)
+    Dim mHouseType As New dmHouseType
 
+    mdso.LoadHouseType(mHouseType, vHouseTypeID)
+
+    If mHouseType IsNot Nothing Then
+      Return mHouseType.ModelName
+
+    Else
+      Return ""
+    End If
+  End Function
 
   Public Sub RefreshWorkOrderNos(ByRef rSalesOrderItem As dmSalesOrderItem)
     Dim mDSO As dsoSales
@@ -525,9 +539,9 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
-  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rHouseType As dmHouseType)
-
-    pSalesOrderHandler.CreateSalesItemsFromHouseTypeConfig(pCurrentSalesOrderHouse, rHouseType, pDBConn)
+  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rHouseType As dmHouseType, ByVal vProductCostBookID As Integer)
+    pCurrentSalesOrderHouse.HouseTypeID = rHouseType.HouseTypeID
+    pSalesOrderHandler.CreateSalesItemsFromHouseTypeConfig(pCurrentSalesOrderHouse, rHouseType, pDBConn, vProductCostBookID)
 
   End Sub
 End Class

@@ -9,7 +9,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
   Private pHouseTypeSalesItemAssemblyID As Int32
   Private pItemNumber As String
   Private pDescription As String
-  Private pQuantity As Int32
+  Private pQuantity As Decimal
   Private pUnitPrice As Decimal
   Private pImageFile As String
   Private pWoodSpeciesID As Int32
@@ -209,11 +209,11 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Quantity() As Int32
+  Public Property Quantity() As Decimal
     Get
       Return pQuantity
     End Get
-    Set(ByVal value As Int32)
+    Set(ByVal value As Decimal)
       If pQuantity <> value Then IsDirty = True
       pQuantity = value
     End Set

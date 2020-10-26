@@ -327,13 +327,13 @@ Public Class fccProductCostBook
 
     For Each mProductBase In mProductInstallations
 
-      mCBEIndex = pInstallationProductCostBookEntrys.IndexFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ItemType)
+      mCBEIndex = pInstallationProductCostBookEntrys.IndexFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ProductTypeID)
       If mCBEIndex = -1 Then
         '// If this stock item is not part of the Cost Book Entry collection create it
         mProductCostBookEntry = New dmProductCostBookEntry
         mProductCostBookEntry.ProductID = mProductBase.ID
         mProductCostBookEntry.CostBookID = ProductCostBookID
-        mProductCostBookEntry.ProductTypeID = mProductBase.ItemType
+        mProductCostBookEntry.ProductTypeID = mProductBase.ProductTypeID
 
         pInstallationProductCostBookEntrys.Add(mProductCostBookEntry)
       Else
@@ -349,16 +349,16 @@ Public Class fccProductCostBook
 
     Next
 
-
+    mProductBase = Nothing
     For Each mProductBase In mProductStructures
 
-      mCBEIndex = pStructureProductCostBookEntrys.IndexFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ItemType)
+      mCBEIndex = pStructureProductCostBookEntrys.IndexFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ProductTypeID)
       If mCBEIndex = -1 Then
         '// If this stock item is not part of the Cost Book Entry collection create it
         mProductCostBookEntry = New dmProductCostBookEntry
         mProductCostBookEntry.ProductID = mProductBase.ID
         mProductCostBookEntry.CostBookID = ProductCostBookID
-        mProductCostBookEntry.ProductTypeID = mProductBase.ItemType
+        mProductCostBookEntry.ProductTypeID = mProductBase.ProductTypeID
         pStructureProductCostBookEntrys.Add(mProductCostBookEntry)
       Else
         mProductCostBookEntry = pStructureProductCostBookEntrys(mCBEIndex)

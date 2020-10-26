@@ -68,7 +68,7 @@ Public Class clsHouseTypeManager
     mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
     If rProductCostBook IsNot Nothing Then
-      mCostBookEntryIndex = rProductCostBook.ProductCostBookEntrys.IndexFromProductID_ItemTypeID(rProduct.ID, rProduct.ItemType)
+      mCostBookEntryIndex = rProductCostBook.ProductCostBookEntrys.IndexFromProductID_ItemTypeID(rProduct.ID, rProduct.ProductTypeID)
 
       If mCostBookEntryIndex <> -1 Then
         mSalesItem.Cost = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).Cost
@@ -119,7 +119,7 @@ Public Class clsHouseTypeManager
         If mProductBase IsNot Nothing Then
           mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, mProductBase, HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
           mCBE = New dmProductCostBookEntry
-          mCBE = rProductCostBookEntry.ItemFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ItemType)
+          mCBE = rProductCostBookEntry.ItemFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ProductTypeID)
 
           If mCBE IsNot Nothing Then
             mHTSIInfo.Cost = mCBE.Cost
@@ -127,6 +127,13 @@ Public Class clsHouseTypeManager
             mHTSIInfo.DirectMaterialCost = mCBE.DirectMaterialCost
             mHTSIInfo.DirectTransportationAndEquipment = mCBE.DirectTransportationAndEquipment
             mHTSIInfo.OutsourcingCost = mCBE.OutsourcingCost
+
+          Else
+            mHTSIInfo.Cost = 0
+            mHTSIInfo.DirectLabourCost = 0
+            mHTSIInfo.DirectMaterialCost = 0
+            mHTSIInfo.DirectTransportationAndEquipment = 0
+            mHTSIInfo.OutsourcingCost = 0
           End If
           mTmpHTSalesItems.Add(mHTSIInfo)
 

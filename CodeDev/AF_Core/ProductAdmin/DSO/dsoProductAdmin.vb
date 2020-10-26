@@ -282,4 +282,20 @@ Public Class dsoProductAdmin : Inherits dsoBase
     End Try
 
   End Sub
+
+  Public Function LoadHouseType(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
+    Dim mdto As New dtoHouseType(DBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+
+      mOK = mdto.LoadHouseType(rHouseType, vHouseTypeID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 End Class
