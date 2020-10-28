@@ -1,3 +1,0 @@
-alter table HouseTypeSalesItem
-add Cost decimal (10,4)
-go

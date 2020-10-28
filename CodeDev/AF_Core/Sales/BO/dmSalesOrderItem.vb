@@ -25,6 +25,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
   Private pSalesSubItemType As Integer
   Private pSalesItemType As Integer
+
+  Private pProductConstructionType As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -83,6 +85,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .SalesItemType = SalesItemType
       .SalesSubItemType = SalesSubItemType
       .SalesOrderStageID = SalesOrderStageID
+      .ProductConstructionType = ProductConstructionType
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -246,6 +249,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Set(ByVal value As Decimal)
       If pUnitPrice <> value Then IsDirty = True
       pUnitPrice = value
+    End Set
+  End Property
+
+  Public Property ProductConstructionType() As Int32
+    Get
+      Return pProductConstructionType
+    End Get
+    Set(ByVal value As Int32)
+      If pProductConstructionType <> value Then IsDirty = True
+      pProductConstructionType = value
     End Set
   End Property
 

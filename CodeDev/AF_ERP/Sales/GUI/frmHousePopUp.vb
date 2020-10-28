@@ -63,15 +63,24 @@ Public Class frmHousePopUp
     mdsoSales.LoadStandardProducts(mProducts)
 
     If UctHouseTypeOptions1.cboModel.SelectedIndex <> -1 Then
+
       UctHouseTypeOptions1.HouseType = mConfiguredHouseType
       UctHouseTypeOptions1.UpdateObjects()
       mHouseTypeID = UctHouseTypeOptions1.HouseType.ModelID
+
       LoadHouseTypeSalesItemsByHouseTypeID(mConfiguredHouseType, mHouseTypeID)
-      pHouseType = mConfiguredHouseType
+      UctHouseTypeOptions1.HouseType.HTSalesItems = mConfiguredHouseType.HTSalesItems
+      UctHouseTypeOptions1.HouseType.SalesItemAssemblys = mConfiguredHouseType.SalesItemAssemblys
+      UctHouseTypeOptions1.HouseType.HouseTypeID = mHouseTypeID
+
+
+
+      pHouseType = UctHouseTypeOptions1.HouseType
     End If
 
 
     Me.Close()
+
   End Sub
 
   Private Sub LoadHouseTypeSalesItemsByHouseTypeID(ByRef rConfiguredHouseType As dmHouseType, ByVal vHouseTypeID As Integer)
@@ -136,4 +145,7 @@ Public Class frmHousePopUp
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWindows, mVIs)
 
   End Sub
+
+
+
 End Class

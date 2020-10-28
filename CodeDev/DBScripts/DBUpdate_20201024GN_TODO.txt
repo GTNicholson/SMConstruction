@@ -1,3 +1,0 @@
-alter table HouseTypeSalesItem Add ConditionStringUI Varchar(1000)
-
-GO

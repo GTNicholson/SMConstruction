@@ -595,7 +595,7 @@ Partial Class frmPurchaseOrder
         Me.gcPOIUnitPrice.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gcPOIUnitPrice.Caption = "Precio Unitario"
         Me.gcPOIUnitPrice.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
-        Me.gcPOIUnitPrice.DisplayFormat.FormatString = "c3"
+        Me.gcPOIUnitPrice.DisplayFormat.FormatString = "c4"
         Me.gcPOIUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPOIUnitPrice.FieldName = "UnitPrice"
         Me.gcPOIUnitPrice.Name = "gcPOIUnitPrice"
@@ -606,11 +606,11 @@ Partial Class frmPurchaseOrder
         'RepositoryItemSpinEditUnitValue
         '
         Me.RepositoryItemSpinEditUnitValue.AutoHeight = False
-        Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatString = "n3"
+        Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatString = "n4"
         Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatString = "n3"
         Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n3"
+        Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n4"
         Me.RepositoryItemSpinEditUnitValue.Name = "RepositoryItemSpinEditUnitValue"
         '
         'gcPOINetValue
@@ -623,7 +623,7 @@ Partial Class frmPurchaseOrder
         Me.gcPOINetValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.gcPOINetValue.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gcPOINetValue.Caption = "Valor Neto"
-        Me.gcPOINetValue.DisplayFormat.FormatString = "C3"
+        Me.gcPOINetValue.DisplayFormat.FormatString = "C4"
         Me.gcPOINetValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPOINetValue.FieldName = "NetAmount"
         Me.gcPOINetValue.Name = "gcPOINetValue"
@@ -739,7 +739,7 @@ Partial Class frmPurchaseOrder
         Me.GridColumn16.AppearanceCell.BackColor = System.Drawing.Color.Lavender
         Me.GridColumn16.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn16.Caption = "Valor IVA"
-        Me.GridColumn16.DisplayFormat.FormatString = "C3"
+        Me.GridColumn16.DisplayFormat.FormatString = "C4"
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "VatValue"
         Me.GridColumn16.Name = "GridColumn16"
@@ -758,7 +758,7 @@ Partial Class frmPurchaseOrder
         Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn15.Caption = "Valor Total"
-        Me.GridColumn15.DisplayFormat.FormatString = "N3"
+        Me.GridColumn15.DisplayFormat.FormatString = "N4"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn15.FieldName = "GrossAmount"
         Me.GridColumn15.Name = "GridColumn15"
@@ -1046,7 +1046,7 @@ Partial Class frmPurchaseOrder
         Me.xtraTabAppendDoc.Appearance.Header.Options.UseForeColor = True
         Me.xtraTabAppendDoc.Controls.Add(Me.UctFileControl1)
         Me.xtraTabAppendDoc.Name = "xtraTabAppendDoc"
-        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(442, 250)
+        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(442, 276)
         Me.xtraTabAppendDoc.Text = "Documentos Adjuntos"
         '
         'UctFileControl1
@@ -1054,7 +1054,7 @@ Partial Class frmPurchaseOrder
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(0, 0)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(442, 250)
+        Me.UctFileControl1.Size = New System.Drawing.Size(442, 276)
         Me.UctFileControl1.TabIndex = 1
         Me.UctFileControl1.UserController = Nothing
         '
@@ -1153,7 +1153,7 @@ Partial Class frmPurchaseOrder
         '
         Me.xtpSingle.Controls.Add(Me.GroupControl5)
         Me.xtpSingle.Name = "xtpSingle"
-        Me.xtpSingle.Size = New System.Drawing.Size(239, 248)
+        Me.xtpSingle.Size = New System.Drawing.Size(239, 272)
         Me.xtpSingle.Text = "Senc."
         '
         'GroupControl5
@@ -1174,7 +1174,7 @@ Partial Class frmPurchaseOrder
         Me.GroupControl5.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl5.Name = "GroupControl5"
         Me.GroupControl5.ShowCaption = False
-        Me.GroupControl5.Size = New System.Drawing.Size(239, 248)
+        Me.GroupControl5.Size = New System.Drawing.Size(239, 272)
         Me.GroupControl5.TabIndex = 268
         Me.GroupControl5.Text = "Admon. OTs"
         '
@@ -1265,7 +1265,7 @@ Partial Class frmPurchaseOrder
         '
         Me.xtpMultiple.Controls.Add(Me.GroupControl4)
         Me.xtpMultiple.Name = "xtpMultiple"
-        Me.xtpMultiple.Size = New System.Drawing.Size(239, 248)
+        Me.xtpMultiple.Size = New System.Drawing.Size(239, 272)
         Me.xtpMultiple.Text = "Mult."
         '
         'GroupControl4
@@ -1280,7 +1280,7 @@ Partial Class frmPurchaseOrder
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.ShowCaption = False
-        Me.GroupControl4.Size = New System.Drawing.Size(239, 248)
+        Me.GroupControl4.Size = New System.Drawing.Size(239, 272)
         Me.GroupControl4.TabIndex = 267
         Me.GroupControl4.Text = "Admon. OTs"
         '

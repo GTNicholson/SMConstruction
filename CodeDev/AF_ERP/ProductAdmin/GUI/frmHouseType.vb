@@ -156,6 +156,9 @@ Public Class frmHouseType
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ProductCostBook)
     clsDEControlLoading.FillDEComboVI(cboProductCostBook, mVIs)
 
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ProductConstructionType)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdHouseSalesItems, gcHouseTypeProductConstructionType, mVIs)
+
 
     UctHouseTypeOptions1.LoadCombos()
 
@@ -613,6 +616,8 @@ Public Class frmHouseType
     UctHouseTypeOptions1.UpdateObjects()
     pFormController.ProductCostBookID = clsDEControlLoading.GetDEComboValue(cboProductCostBook)
     pFormController.SetPrevHTSalesItemInfos(pFormController.ProductCostBookID)
+
+    pFormController.OrderPrevHTSalesItemInfos()
     grdPrevHouseTypeSalesItems.DataSource = pFormController.PrevtHTSalesItemInfos
 
 

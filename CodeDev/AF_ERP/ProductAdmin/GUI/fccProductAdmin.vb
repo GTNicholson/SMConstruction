@@ -366,7 +366,7 @@ Public Class fccProductAdmin
     Dim mdso As New dsoProductAdmin(pDBConn)
     Dim mWhere As String = "ProductConstructionTypeID = " & vProductItemType
     Try
-      mdso.LoadProductConstructionSubTypes(rProductConstructionSubTypes, vProductItemType)
+      mdso.LoadProductConstructionSubTypesByTypeID(rProductConstructionSubTypes, vProductItemType)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     Finally

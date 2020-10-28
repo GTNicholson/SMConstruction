@@ -111,7 +111,7 @@ Public Class fccHouseType
       mdso.LoadHouseTypeDown(pHouseType, pPrimaryKeyID)
 
     End If
-    pHouseTypeManager = New clsHouseTypeManager(pHouseType)
+    pHouseTypeManager = New clsHouseTypeManager(pHouseType, DBConn)
 
 
   End Sub
@@ -300,5 +300,21 @@ Public Class fccHouseType
     mProductCostSummaryInfo.UpdateTotalLabourCost()
 
     pProductCostSummaryInfos.Add(mProductCostSummaryInfo)
+  End Sub
+
+  Public Sub OrderPrevHTSalesItemInfos()
+    Dim mProductTypes As New colProductConstructionTypes
+    Dim mProductSubTypes As New colProductConstructionSubTypes
+
+    mProductTypes = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes)
+    mProductSubTypes = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.ProductConstructionSubType), colProductConstructionSubTypes)
+
+
+    For Each mPrevHTSalesItemInfo As clsHouseTypeSalesItemInfo In PrevtHTSalesItemInfos
+      Dim mstring As String = mProductTypes.ItemFromKey(mPrevHTSalesItemInfo.ItemType).SequenceNo & "." & mProductSubTypes.ItemFromKey(mPrevHTSalesItemInfo.SubItemType).SequenceNo
+      mPrevHTSalesItemInfo.ItemNumber = mstring
+
+    Next
+
   End Sub
 End Class

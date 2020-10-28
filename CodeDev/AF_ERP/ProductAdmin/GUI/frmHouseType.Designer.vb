@@ -77,6 +77,7 @@ Partial Class frmHouseType
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcHouseTypeProductConstructionType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtAssRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.txtAssDescription = New DevExpress.XtraEditors.TextEdit()
@@ -101,6 +102,7 @@ Partial Class frmHouseType
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
         Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -540,9 +542,9 @@ Partial Class frmHouseType
         Me.gvHouseSalesItems.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvHouseSalesItems.Appearance.EvenRow.Options.UseBackColor = True
         Me.gvHouseSalesItems.Appearance.EvenRow.Options.UseFont = True
-        Me.gvHouseSalesItems.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvHouseSalesItems.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.gvHouseSalesItems.Appearance.GroupRow.Options.UseFont = True
-        Me.gvHouseSalesItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvHouseSalesItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gvHouseSalesItems.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvHouseSalesItems.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.gvHouseSalesItems.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
@@ -550,10 +552,10 @@ Partial Class frmHouseType
         Me.gvHouseSalesItems.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvHouseSalesItems.Appearance.OddRow.Options.UseBackColor = True
         Me.gvHouseSalesItems.Appearance.OddRow.Options.UseFont = True
-        Me.gvHouseSalesItems.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvHouseSalesItems.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvHouseSalesItems.Appearance.Row.Options.UseFont = True
         Me.gvHouseSalesItems.ColumnPanelRowHeight = 40
-        Me.gvHouseSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn16, Me.GridColumn2, Me.GridColumn3, Me.gcConditionString, Me.GridColumn20, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25})
+        Me.gvHouseSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn16, Me.GridColumn2, Me.GridColumn3, Me.gcConditionString, Me.GridColumn20, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.gcHouseTypeProductConstructionType})
         Me.gvHouseSalesItems.GridControl = Me.grdHouseSalesItems
         Me.gvHouseSalesItems.GroupCount = 1
         Me.gvHouseSalesItems.GroupRowHeight = 30
@@ -567,8 +569,8 @@ Partial Class frmHouseType
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "ProductTypeDesc"
-        Me.GridColumn1.FieldName = "ProductConstructionTypeDesc"
+        Me.GridColumn1.Caption = "Etapa"
+        Me.GridColumn1.FieldName = "HouseTypeProductConstructionTypeDesc"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -580,7 +582,7 @@ Partial Class frmHouseType
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
-        Me.GridColumn16.Width = 99
+        Me.GridColumn16.Width = 151
         '
         'GridColumn2
         '
@@ -589,7 +591,7 @@ Partial Class frmHouseType
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 170
+        Me.GridColumn2.Width = 259
         '
         'GridColumn3
         '
@@ -599,8 +601,8 @@ Partial Class frmHouseType
         Me.GridColumn3.FieldName = "Quantity"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 77
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 83
         '
         'gcConditionString
         '
@@ -609,8 +611,8 @@ Partial Class frmHouseType
         Me.gcConditionString.FieldName = "ConditionStringUI"
         Me.gcConditionString.Name = "gcConditionString"
         Me.gcConditionString.Visible = True
-        Me.gcConditionString.VisibleIndex = 3
-        Me.gcConditionString.Width = 211
+        Me.gcConditionString.VisibleIndex = 4
+        Me.gcConditionString.Width = 361
         '
         'repoPopupContainerCriteria
         '
@@ -663,6 +665,15 @@ Partial Class frmHouseType
         Me.GridColumn25.FieldName = "OutsourcingCost"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Width = 97
+        '
+        'gcHouseTypeProductConstructionType
+        '
+        Me.gcHouseTypeProductConstructionType.Caption = "Etapa"
+        Me.gcHouseTypeProductConstructionType.FieldName = "ProductConstructionType"
+        Me.gcHouseTypeProductConstructionType.Name = "gcHouseTypeProductConstructionType"
+        Me.gcHouseTypeProductConstructionType.Visible = True
+        Me.gcHouseTypeProductConstructionType.VisibleIndex = 2
+        Me.gcHouseTypeProductConstructionType.Width = 111
         '
         'txtAssRef
         '
@@ -774,21 +785,22 @@ Partial Class frmHouseType
         Me.gvPrevHouseTypeSalesItems.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvPrevHouseTypeSalesItems.Appearance.Row.Options.UseFont = True
         Me.gvPrevHouseTypeSalesItems.ColumnPanelRowHeight = 40
-        Me.gvPrevHouseTypeSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn17, Me.GridColumn18, Me.gcArea, Me.GridColumn21, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn15, Me.GridColumn19})
+        Me.gvPrevHouseTypeSalesItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn17, Me.GridColumn18, Me.gcArea, Me.GridColumn21, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn15, Me.GridColumn19, Me.GridColumn33})
         Me.gvPrevHouseTypeSalesItems.GridControl = Me.grdPrevHouseTypeSalesItems
-        Me.gvPrevHouseTypeSalesItems.GroupCount = 2
+        Me.gvPrevHouseTypeSalesItems.GroupCount = 1
         Me.gvPrevHouseTypeSalesItems.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCostValue", Nothing, "{0:$#,##0.00;;#}")})
         Me.gvPrevHouseTypeSalesItems.Name = "gvPrevHouseTypeSalesItems"
         Me.gvPrevHouseTypeSalesItems.OptionsBehavior.AutoExpandAllGroups = True
         Me.gvPrevHouseTypeSalesItems.OptionsView.ShowAutoFilterRow = True
         Me.gvPrevHouseTypeSalesItems.OptionsView.ShowFooter = True
         Me.gvPrevHouseTypeSalesItems.OptionsView.ShowGroupPanel = False
-        Me.gvPrevHouseTypeSalesItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcArea, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.gvPrevHouseTypeSalesItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Etapa:"
-        Me.GridColumn7.FieldName = "ProductConstructionTypeDesc"
+        Me.GridColumn7.FieldName = "HouseTypeProductConstructionTypeDesc"
+        Me.GridColumn7.FieldNameSortGroup = "HouseTypeProductConstructionSequence"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
@@ -799,7 +811,7 @@ Partial Class frmHouseType
         Me.GridColumn8.FieldName = "ProductCode"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.VisibleIndex = 1
         Me.GridColumn8.Width = 190
         '
         'GridColumn9
@@ -808,7 +820,7 @@ Partial Class frmHouseType
         Me.GridColumn9.FieldName = "Description"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
+        Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 541
         '
         'GridColumn17
@@ -819,7 +831,7 @@ Partial Class frmHouseType
         Me.GridColumn17.FieldName = "Quantity"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 3
+        Me.GridColumn17.VisibleIndex = 4
         Me.GridColumn17.Width = 120
         '
         'GridColumn18
@@ -842,7 +854,7 @@ Partial Class frmHouseType
         Me.gcArea.FieldName = "AssemblyDescription"
         Me.gcArea.Name = "gcArea"
         Me.gcArea.Visible = True
-        Me.gcArea.VisibleIndex = 4
+        Me.gcArea.VisibleIndex = 5
         '
         'GridColumn21
         '
@@ -860,7 +872,7 @@ Partial Class frmHouseType
         Me.GridColumn21.FieldName = "Cost"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 8
+        Me.GridColumn21.VisibleIndex = 10
         Me.GridColumn21.Width = 120
         '
         'GridColumn26
@@ -871,7 +883,7 @@ Partial Class frmHouseType
         Me.GridColumn26.FieldName = "DirectLabourCost"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 4
+        Me.GridColumn26.VisibleIndex = 6
         Me.GridColumn26.Width = 81
         '
         'GridColumn27
@@ -882,7 +894,7 @@ Partial Class frmHouseType
         Me.GridColumn27.FieldName = "DirectMaterialCost"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 5
+        Me.GridColumn27.VisibleIndex = 7
         Me.GridColumn27.Width = 82
         '
         'GridColumn28
@@ -893,7 +905,7 @@ Partial Class frmHouseType
         Me.GridColumn28.FieldName = "DirectTransportationAndEquipment"
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 6
+        Me.GridColumn28.VisibleIndex = 8
         Me.GridColumn28.Width = 139
         '
         'GridColumn29
@@ -904,7 +916,7 @@ Partial Class frmHouseType
         Me.GridColumn29.FieldName = "OutsourcingCost"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 7
+        Me.GridColumn29.VisibleIndex = 9
         Me.GridColumn29.Width = 129
         '
         'GridColumn15
@@ -924,7 +936,7 @@ Partial Class frmHouseType
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCostValue", "{0:$#,##0.00;;#}")})
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 9
+        Me.GridColumn15.VisibleIndex = 11
         Me.GridColumn15.Width = 126
         '
         'GridColumn19
@@ -933,8 +945,16 @@ Partial Class frmHouseType
         Me.GridColumn19.FieldName = "UoM"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 2
+        Me.GridColumn19.VisibleIndex = 3
         Me.GridColumn19.Width = 94
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "TempSequenceNumber"
+        Me.GridColumn33.FieldName = "ItemNumber"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 0
         '
         'GroupControl6
         '
@@ -1289,4 +1309,6 @@ Partial Class frmHouseType
   Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcHouseTypeProductConstructionType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

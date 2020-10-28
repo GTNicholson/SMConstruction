@@ -1,0 +1,123 @@
+
+alter table SalesOrder
+add ProductCostBookID int
+GO
+
+CREATE TABLE FoundationOptions(
+	[FoundationOptionsID] [int] IDENTITY(1,1) NOT NULL,
+	[Description] [varchar](256) NULL,
+ CONSTRAINT [pk_FoundationOptions] PRIMARY KEY CLUSTERED 
+(
+	[FoundationOptionsID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].FloorOptions(
+	[FloorOptionsID] [int] IDENTITY(1,1) NOT NULL,
+	[Description] [varchar](256) NULL,
+ CONSTRAINT [pk_FloorOptions] PRIMARY KEY CLUSTERED 
+(
+	[FloorOptionsID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE WallOptions(
+	WallOptionsID [int] IDENTITY(1,1) NOT NULL,
+	[Description] [varchar](256) NULL,
+ CONSTRAINT [pk_WallOptions] PRIMARY KEY CLUSTERED 
+(
+	WallOptionsID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE WindowOptions(
+	WindowOptionsID [int] IDENTITY(1,1) NOT NULL,
+	[Description] [varchar](256) NULL,
+ CONSTRAINT [pk_WindowOptions] PRIMARY KEY CLUSTERED 
+(
+	WindowOptionsID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+update LookUpTable
+set SelectionCode=9
+where LookUpTableID in (4023,5025,5026,5027,5028)
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values(
+33,'Opciones de Pisos', 'FloorOptions','FloorOptionsID','Description',4,1,2,9,0)
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values(
+34,'Opciones de Paredes', 'WallOptions','WallOptionsID','Description',4,1,2,9,0)
+go
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values(
+35,'Opciones de Ventanas', 'WindowOptions','WindowOptionsID','Description',4,1,2,9,0)
+go
+
+insert into FoundationOptions (Description)
+values ('PILOTES DE MADERA')
+GO
+
+insert into FoundationOptions (Description)
+values ('PEDESTAL DE CONCRETO')
+GO
+
+insert into FoundationOptions (Description)
+values ('LOSA DE CONCRETO')
+GO
+
+--PISO
+insert into FloorOptions (Description)
+values ('PLYCEM Y CERAMICA DE CONCRETO')
+GO
+insert into FloorOptions (Description)
+values ('MACHIMBRE')
+GO
+
+insert into FloorOptions (Description)
+values ('CERÁMICA (LC)')
+GO
+
+insert into FloorOptions (Description)
+values ('MACHIMBRE (LC)')
+GO
+
+-- WALLS
+insert into WallOptions (Description)
+values ('MACHIMBRE')
+GO
+insert into WallOptions (Description)
+values ('PLYCEM')
+GO
+insert into WallOptions (Description)
+values ('MACHIMBRE Y PLYCEM')
+GO
+
+--WINDOWS
+
+insert into WindowOptions (Description)
+values ('MADERA')
+GO
+insert into WindowOptions (Description)
+values ('CORREDIZAS DE ALUMINIO Y VIDRIO')
+GO
+insert into WindowOptions (Description)
+values ('CELOSIA DE ALUMINIO Y VIDRIO')
+GO
+
+alter table housetypesalesitem
+add ConditionString  varchar(max)
+go

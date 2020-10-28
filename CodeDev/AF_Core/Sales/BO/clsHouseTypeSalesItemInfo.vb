@@ -5,6 +5,8 @@ Public Class clsHouseTypeSalesItemInfo
   Private pProduct As dmProductBase
   Private pAssemblyDescription As String
   Private Shared sProductConstructionTypes As RTIS.CommonVB.colValueItems
+  Private pItemNumber As String
+
 
   Public Sub New(ByRef rHouseTypeSalesItem As dmHouseTypeSalesItem, ByRef rProduct As dmProductBase, ByVal vAssemblyDescription As String)
     pHouseTypeSalesItem = rHouseTypeSalesItem
@@ -160,6 +162,54 @@ Public Class clsHouseTypeSalesItemInfo
       Return pHouseTypeSalesItem.Quantity * pHouseTypeSalesItem.Cost
     End Get
   End Property
+
+  Public Property ProductConstructionType As Int32
+    Get
+      Return pHouseTypeSalesItem.ProductConstructionType
+    End Get
+    Set(value As Int32)
+      pHouseTypeSalesItem.ProductConstructionType = value
+    End Set
+  End Property
+  Public ReadOnly Property HouseTypeProductConstructionTypeDesc As String
+
+    Get
+      Dim mRetVal As String
+      mRetVal = sProductConstructionTypes.ItemValueToDisplayValue(pHouseTypeSalesItem.ProductConstructionType)
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property HouseTypeProductConstructionSequence As Integer
+    Get
+      Dim mProductTypes As New colProductConstructionTypes
+      Dim mRetVal As Integer
+      Dim mProductType As dmProductConstructionType
+
+      mProductTypes = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes)
+
+      mProductType = mProductTypes.ItemFromKey(pHouseTypeSalesItem.ProductConstructionType)
+
+      If mProductType IsNot Nothing Then
+        mRetVal = mProductType.SequenceNo
+      Else
+        mRetVal = -1
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
+  Public Property ItemNumber As String
+    Get
+      Return pItemNumber
+    End Get
+    Set(value As String)
+      pItemNumber = value
+    End Set
+  End Property
+
+
 End Class
 
 

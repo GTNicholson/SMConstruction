@@ -132,7 +132,7 @@ Public Class clsSalesItemEditor
   Public ReadOnly Property ProductConstructionTypeDesc As String
     Get
       Dim mRetVal As String
-      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType).DisplayValueString(pProduct.ItemType)
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType).DisplayValueString(pSalesOrderItem.SalesItemType)
       Return mRetVal
     End Get
   End Property

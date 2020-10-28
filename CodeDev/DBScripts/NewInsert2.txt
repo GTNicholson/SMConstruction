@@ -1,0 +1,823 @@
+/******************************************************
+  Tables  Begin
+******************************************************/
+GO
+----------------------------------------------------
+-- dbo.FloorOptions
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.FloorOptions') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.FloorOptions
+GO
+CREATE TABLE dbo.FloorOptions
+(
+FloorOptionsID                      INT IDENTITY(1,1) NOT NULL,
+Description                         VARCHAR(256),
+CONSTRAINT pk_FloorOptions PRIMARY KEY CLUSTERED ( FloorOptionsID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.FoundationOptions
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.FoundationOptions') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.FoundationOptions
+GO
+CREATE TABLE dbo.FoundationOptions
+(
+FoundationOptionsID                 INT IDENTITY(1,1) NOT NULL,
+Description                         VARCHAR(256),
+CONSTRAINT pk_FoundationOptions PRIMARY KEY CLUSTERED ( FoundationOptionsID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.GroupType
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.GroupType') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.GroupType
+GO
+CREATE TABLE dbo.GroupType
+(
+GroupTypeID                         INT IDENTITY(1,1) NOT NULL,
+Description                         VARCHAR(256),
+CONSTRAINT pk_GroupTypeID PRIMARY KEY CLUSTERED ( GroupTypeID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.HouseType
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.HouseType') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.HouseType
+GO
+CREATE TABLE dbo.HouseType
+(
+HouseTypeID                         INT IDENTITY(1,1) NOT NULL,
+GroupID                             INT,
+ModelID                             INT,
+Area                                DECIMAL(9, 2),
+ModelName                           VARCHAR(100),
+CONSTRAINT pk_HouseType PRIMARY KEY CLUSTERED ( HouseTypeID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.HouseTypeProductOption
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.HouseTypeProductOption') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.HouseTypeProductOption
+GO
+CREATE TABLE dbo.HouseTypeProductOption
+(
+HouseTypeProductOptionID            INT IDENTITY(1,1) NOT NULL,
+HouseTypeSalesItemAssemblyID        INT,
+ProductTypeID                       INT,
+ProductID                           INT,
+Quantity                            DECIMAL(9, 4),
+Condition                           VARCHAR(max),
+CONSTRAINT pk_HouseTypeProductOption PRIMARY KEY CLUSTERED ( HouseTypeProductOptionID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.HouseTypeSalesItem
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.HouseTypeSalesItem') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.HouseTypeSalesItem
+GO
+CREATE TABLE dbo.HouseTypeSalesItem
+(
+HouseTypeSalesItemID                INT IDENTITY(1,1) NOT NULL,
+HouseTypeID                         INT,
+ProductTypeID                       TINYINT,
+ProductID                           INT,
+ItemNumber                          VARCHAR(15),
+HouseTypeSalesItemAssemblyID        INT,
+Description                         VARCHAR(255),
+Quantity                            DECIMAL(10, 4),
+ImageFile                           VARCHAR(255),
+WoodSpeciesID                       INT,
+WoodFinish                          INT,
+ConditionString                     VARCHAR(max),
+DirectLabourCost                    DECIMAL(10, 4),
+DirectMaterialCost                  DECIMAL(10, 4),
+DirectTransportationAndEquipment    DECIMAL(10, 4),
+OutsourcingCost                     DECIMAL(10, 4),
+Cost                                DECIMAL(10, 4),
+ConditionStringUI                   VARCHAR(1000),
+ProductConstructionType             INT,
+CONSTRAINT pk_HouseTypeSalesItem PRIMARY KEY CLUSTERED ( HouseTypeSalesItemID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.HouseTypeSalesItemAssembly
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.HouseTypeSalesItemAssembly') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.HouseTypeSalesItemAssembly
+GO
+CREATE TABLE dbo.HouseTypeSalesItemAssembly
+(
+HouseTypeSalesItemAssemblyID        INT IDENTITY(1,1) NOT NULL,
+HouseTypeID                         INT,
+Ref                                 VARCHAR(25),
+Description                         VARCHAR(100),
+Area                                DECIMAL(10, 4),
+CONSTRAINT pk_HouseTypeSalesItemAssembly PRIMARY KEY CLUSTERED ( HouseTypeSalesItemAssemblyID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductConstructionSubType
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductConstructionSubType') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductConstructionSubType
+GO
+CREATE TABLE dbo.ProductConstructionSubType
+(
+ProductConstructionSubTypeID        INT IDENTITY(1,1) NOT NULL,
+ProductConstructionTypeID           INT,
+Description                         NVARCHAR(max),
+Abbreviation                        VARCHAR(5),
+SequenceNo                          INT,
+CONSTRAINT pk_ProductConstructionSubType PRIMARY KEY CLUSTERED ( ProductConstructionSubTypeID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductConstructionType
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductConstructionType') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductConstructionType
+GO
+CREATE TABLE dbo.ProductConstructionType
+(
+ProductConstructionTypeID           INT IDENTITY(1,1) NOT NULL,
+Description                         NVARCHAR(max),
+Abbreviation                        VARCHAR(5),
+SequenceNo                          INT,
+CONSTRAINT pk_ProductConstructionType PRIMARY KEY CLUSTERED ( ProductConstructionTypeID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductCostBook
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductCostBook') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductCostBook
+GO
+CREATE TABLE dbo.ProductCostBook
+(
+ProductCostBookID                   INT IDENTITY(1,1) NOT NULL,
+CostBookName                        VARCHAR(50),
+CostBookDate                        DATETIME,
+IsDefault                           BIT,
+CONSTRAINT pk_ProductCostBook PRIMARY KEY CLUSTERED ( ProductCostBookID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductCostBookEntry
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductCostBookEntry') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductCostBookEntry
+GO
+CREATE TABLE dbo.ProductCostBookEntry
+(
+ProductCostBookEntryID              INT IDENTITY(1,1) NOT NULL,
+CostBookID                          INT,
+ProductID                           INT,
+ProductTypeID                       INT,
+Cost                                DECIMAL(9, 2),
+CostUnit                            INT,
+MinCost                             DECIMAL(9, 2),
+RetailPrice                         DECIMAL(9, 2),
+DirectLabourCost                    DECIMAL(9, 4),
+DirectMaterialCost                  DECIMAL(9, 4),
+DirectTransportationAndEquipment    DECIMAL(9, 4),
+OutsourcingCost                     DECIMAL(9, 4),
+CONSTRAINT pk_ProductCostBookEntry PRIMARY KEY CLUSTERED ( ProductCostBookEntryID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductInstallation
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductInstallation') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductInstallation
+GO
+CREATE TABLE dbo.ProductInstallation
+(
+ProductInstallationID               INT IDENTITY(1,1) NOT NULL,
+Description                         TEXT,
+ItemType                            INT,
+Notes                               TEXT,
+Code                                VARCHAR(30),
+SubItemType                         INT,
+UoM                                 INT,
+DrawingFileName                     NVARCHAR(max),
+CONSTRAINT PK_ProductInstallation PRIMARY KEY CLUSTERED ( ProductInstallationID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductInstallationType
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductInstallationType') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductInstallationType
+GO
+CREATE TABLE dbo.ProductInstallationType
+(
+ProductInstallationTypeID           INT IDENTITY(1,1) NOT NULL,
+Description                         NCHAR(100),
+CONSTRAINT PK_ProductInstallationTypeID PRIMARY KEY CLUSTERED ( ProductInstallationTypeID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductStructure
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductStructure') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductStructure
+GO
+CREATE TABLE dbo.ProductStructure
+(
+ProductStructureID                  INT IDENTITY(1,1) NOT NULL,
+Description                         TEXT,
+ItemType                            INT,
+Notes                               TEXT,
+Code                                VARCHAR(30),
+SubItemType                         INT,
+UoM                                 INT,
+DrawingFileName                     NVARCHAR(max),
+CONSTRAINT PK_ProductStructure PRIMARY KEY CLUSTERED ( ProductStructureID )
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.ProductStructureType
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.ProductStructureType') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.ProductStructureType
+GO
+CREATE TABLE dbo.ProductStructureType
+(
+ProductStructureTypeID              INT IDENTITY(1,1) NOT NULL,
+Description                         NCHAR(100),
+CONSTRAINT PK_ProductStructureType PRIMARY KEY CLUSTERED ( ProductStructureTypeID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.WallOptions
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.WallOptions') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.WallOptions
+GO
+CREATE TABLE dbo.WallOptions
+(
+WallOptionsID                       INT IDENTITY(1,1) NOT NULL,
+Description                         VARCHAR(256),
+CONSTRAINT pk_WallOptions PRIMARY KEY CLUSTERED ( WallOptionsID )
+)
+ON [PRIMARY]
+
+GO
+----------------------------------------------------
+-- dbo.WindowOptions
+----------------------------------------------------
+if exists (select * from dbo.sysobjects where id = object_id(N'dbo.WindowOptions') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table dbo.WindowOptions
+GO
+CREATE TABLE dbo.WindowOptions
+(
+WindowOptionsID                     INT IDENTITY(1,1) NOT NULL,
+Description                         VARCHAR(256),
+CONSTRAINT pk_WindowOptions PRIMARY KEY CLUSTERED ( WindowOptionsID )
+)
+ON [PRIMARY]
+
+GO
+
+/******************************************************
+  Tables  End
+******************************************************/
+GO
+/******************************************************
+  Insert data   Begin
+******************************************************/
+GO
+-----------------------------------------------------------
+--Insert data into dbo.FloorOptions
+-----------------------------------------------------------
+ALTER TABLE dbo.FloorOptions NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.FloorOptions
+GO
+
+IF (IDENT_SEED('dbo.FloorOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.FloorOptions ON
+INSERT INTO dbo.FloorOptions (FloorOptionsID,Description) VALUES('1','PLYCEM Y CERAMICA DE CONCRETO')
+INSERT INTO dbo.FloorOptions (FloorOptionsID,Description) VALUES('2','MACHIMBRE')
+INSERT INTO dbo.FloorOptions (FloorOptionsID,Description) VALUES('3','CERÁMICA (LC)')
+INSERT INTO dbo.FloorOptions (FloorOptionsID,Description) VALUES('4','MACHIMBRE (LC)')
+IF (IDENT_SEED('dbo.FloorOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.FloorOptions OFF
+GO
+GO
+ALTER TABLE dbo.FloorOptions CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.FoundationOptions
+-----------------------------------------------------------
+ALTER TABLE dbo.FoundationOptions NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.FoundationOptions
+GO
+
+IF (IDENT_SEED('dbo.FoundationOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.FoundationOptions ON
+INSERT INTO dbo.FoundationOptions (FoundationOptionsID,Description) VALUES('1','PILOTES DE MADERA')
+INSERT INTO dbo.FoundationOptions (FoundationOptionsID,Description) VALUES('2','PEDESTAL DE CONCRETO')
+INSERT INTO dbo.FoundationOptions (FoundationOptionsID,Description) VALUES('3','LOSA DE CONCRETO')
+IF (IDENT_SEED('dbo.FoundationOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.FoundationOptions OFF
+GO
+GO
+ALTER TABLE dbo.FoundationOptions CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.GroupType
+-----------------------------------------------------------
+ALTER TABLE dbo.GroupType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.GroupType
+GO
+
+IF (IDENT_SEED('dbo.GroupType') IS NOT NULL )	SET IDENTITY_INSERT dbo.GroupType ON
+INSERT INTO dbo.GroupType (GroupTypeID,Description) VALUES('1','VIVIENDAS RURALES')
+INSERT INTO dbo.GroupType (GroupTypeID,Description) VALUES('2','VIVIENDAS URBANAS')
+IF (IDENT_SEED('dbo.GroupType') IS NOT NULL )	SET IDENTITY_INSERT dbo.GroupType OFF
+GO
+GO
+ALTER TABLE dbo.GroupType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.HouseType
+-----------------------------------------------------------
+ALTER TABLE dbo.HouseType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.HouseType
+GO
+
+IF (IDENT_SEED('dbo.HouseType') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseType ON
+INSERT INTO dbo.HouseType (HouseTypeID,GroupID,ModelID,Area,ModelName) VALUES('1','2','1',16.3,'BARN X')
+INSERT INTO dbo.HouseType (HouseTypeID,GroupID,ModelID,Area,ModelName) VALUES('2','2','2',19.8,'BARN S')
+IF (IDENT_SEED('dbo.HouseType') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseType OFF
+GO
+GO
+ALTER TABLE dbo.HouseType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.HouseTypeProductOption
+-----------------------------------------------------------
+ALTER TABLE dbo.HouseTypeProductOption NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.HouseTypeProductOption
+GO
+
+IF (IDENT_SEED('dbo.HouseTypeProductOption') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseTypeProductOption ON
+IF (IDENT_SEED('dbo.HouseTypeProductOption') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseTypeProductOption OFF
+GO
+GO
+ALTER TABLE dbo.HouseTypeProductOption CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.HouseTypeSalesItem
+-----------------------------------------------------------
+ALTER TABLE dbo.HouseTypeSalesItem NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.HouseTypeSalesItem
+GO
+
+IF (IDENT_SEED('dbo.HouseTypeSalesItem') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseTypeSalesItem ON
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('157','1','3','9',NULL,'1','Instalación de Pilote de madera de 6'''' x 6'''' (12 unds)',211.25,NULL,'0','0',NULL,0.2,0.1,0,0,0.3,NULL,'3')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('158','1','2','11',NULL,'1','Fabricación de Pilote de Madera de 6'''' x 6'''' (12 unds)',211.25,NULL,'0','0',NULL,0.5,1.9,0,0,2.4,NULL,'3')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('159','1','2','12',NULL,'1','Fabricacion de piezas para paneles de Piso en Madera, utlizando piezas con dimensiones comerciales de 2" x 6"',475.33,NULL,'0','0',NULL,0.5,1.9,0,0,2.4,NULL,'7')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('160','1','3','10',NULL,'1','Armado e Instalacion de paneles de Piso en Madera, utlizando piezas con dimensiones comerciales de 2" x 6"',475.33,NULL,'0','0',NULL,0.2,0.1,0,0,0.3,NULL,'7')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('161','1','3','12',NULL,'1','Fijacion estructural',1,NULL,'0','0',NULL,45,120,0,0,165,NULL,'7')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('162','1','2','18',NULL,'1','Forro en Paneles de Piso en madera con lamina de Fibrocemento (Plycem) de 20 mm',16.22,NULL,'0','0',NULL,5.5,27.5,0,0,33,NULL,'7')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('163','1','2','19',NULL,'1','Piso de Ceramica',16.22,NULL,'0','0',NULL,6,19,0,0,25,NULL,'7')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('164','1','2','21',NULL,'1','Piso de Deck con  Acabado Tropical Extreme de Messmers',7.35,NULL,'0','0',NULL,15,30,0,0,45,NULL,'7')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('165','1','2','22',NULL,'1','Fabricación de Eje Estructural',273.38,NULL,'0','0',NULL,0.5,1.9,0,0,2.4,NULL,'15')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('166','1','2','23',NULL,'1','Fabricacion de Vigas principales',101.25,NULL,'0','0',NULL,0.5,1.9,0,0,2.4,NULL,'15')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('167','1','3','11',NULL,'1','Instalación de Eje Estructural + Vigas Principales',374.63,NULL,'0','0',NULL,0.2,0.1,0,0,0.3,NULL,'15')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('168','1','3','13',NULL,'1','Fijacion estructural de Ejes Principales + Vigas',1,NULL,'0','0',NULL,45,110,0,0,155,NULL,'15')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('169','1','2','25',NULL,'1','Fabricacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared',436.5,NULL,'0','0','[Paredes] = 5',0.5,1.9,0,0,2.4,'[Paredes] = ''DECRA''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('170','1','2','1',NULL,'1','Armado e instalacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared',436.5,NULL,'0','0','[Paredes] = 5',0.2,0.1,0,0,0.3,'[Paredes] = ''DECRA''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('171','1','3','14',NULL,'1','Fijacion de Framing',1,NULL,'0','0',NULL,65,85,0,0,150,NULL,'4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('172','1','2','26',NULL,'1','Forro interior de paredes, con lamina de Plywood Fenolico de 1/2" de espesor. Incluye acabado',22.33,NULL,'0','0','[Paredes] = 5',6,19.35,0,0,25.35,'[Paredes] = ''DECRA''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('173','1','2','27',NULL,'1','Fabricacion e Instalacion de Ventana de Celosia de Madera',110.25,NULL,'0','0',NULL,0.85,2.05,0,0,2.9,NULL,'4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('174','1','2','28',NULL,'1','Fabricacion e Instalacion de Forro Exterior de Paredes con Machimbre de Madera',156.38,NULL,'0','0',NULL,0.8,2.05,0,0,2.85,NULL,'4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('175','1','2','29',NULL,'1','Forro Exterior de paredes con Teja DECRA Shake Chestnut',27.4,NULL,'0','0','[Paredes] = 5',7.5,38.25,0,0,45.75,'[Paredes] = ''DECRA''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('176','1','2','30',NULL,'1','Forro Exterior de pared contiguo a puertas con lamina de Plycem tipo Machimbre (Siding), Incluye Acabado',3.1,NULL,'0','0',NULL,6.5,18.5,0,0,25,NULL,'4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('177','1','3','15',NULL,'1','Aislante Termico de Celulosa entre forros de pared',137.5,NULL,'0','0','[Paredes] = 5',0.55,0.75,0,0,1.3,'[Paredes] = ''DECRA''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('178','1','2','31',NULL,'1','Fabricacion de piezas de Paneles de Techo de Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de Techo',355.33,NULL,'0','0',NULL,0.5,1.9,0,0,2.4,NULL,'5')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('179','1','2','32',NULL,'1','Armado e instalacion de piezas de Paneles de Techo de Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de Techo',355.33,NULL,'0','0',NULL,0.2,0.1,0,0,0.3,NULL,'5')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('180','1','3','16',NULL,'1','Fijacion de Paneles de Techo',1,NULL,'0','0',NULL,45,110,0,0,155,NULL,'5')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('181','1','2','33',NULL,'1','Cubierta de Techo con Teja DECRA Shake Chestnut',25.02,NULL,'0','0','[Paredes] = 5',8.5,38.25,0,0,46.75,'[Paredes] = ''DECRA''','5')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('182','1','3','15',NULL,'1','Aislante Termico de Celulosa entre forros de pared',125.15,NULL,'0','0','[Paredes] = 5',0.55,0.75,0,0,1.3,'[Paredes] = ''DECRA''','5')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('183','1','2','34',NULL,'1','Cielo raso de Lamina de Plywood Fenolico de 1/2", Incluye Acabado',18.2,NULL,'0','0','[Paredes] = 5',6,19.35,0,0,25.35,'[Paredes] = ''DECRA''','6')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('184','1','2','36',NULL,'1','P-1: Puerta Corrediza de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor con Dimensiones de 226.00 cm x 276.00 cm, Incluye 2 hojas de puerta corrediza + 1 puerta de Cedazo',1,NULL,'0','0',NULL,0,0,0,770,770,NULL,'8')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('185','1','2','37',NULL,'1','P-2: Puerta Batiente de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor con Dimensiones de 90.00 cm x 222.00 cm, Incluye Haladera de lujo',1,NULL,'0','0',NULL,0,0,0,315,315,NULL,'8')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('186','1','2','38',NULL,'1','V-1: Ventana Fija de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor, de forma triangular',1,NULL,'0','0',NULL,0,0,0,370,370,NULL,'8')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('187','1','2','39',NULL,'1','Forro Exterior de paredes con Panel HUURRE',27.4,NULL,'0','0','[Paredes] = 4',12,32.75,0,0,44.75,'[Paredes] = ''HUURRE''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('188','1','2','40',NULL,'1','Cubierta de Techo con Panel HUURRE',25.02,NULL,'0','0','[Paredes] = 4',12,32.75,0,0,44.75,'[Paredes] = ''HUURRE''','5')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('189','1','3','17',NULL,'1','Canalizacion y alambrado',1,NULL,'0','0',NULL,180,270,0,0,450,NULL,'13')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('190','1','3','18',NULL,'1','Instalacion de Accesorios de Iluminacion y Poder',1,NULL,'0','0',NULL,30,185,0,0,215,NULL,'13')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('191','1','3','8',NULL,'1','Limpieza y Entrega Final de la Obra',80.73,NULL,'0','0',NULL,0.15,0,0,0,0.15,NULL,'10')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('192','1','2','25',NULL,'1','Fabricacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared',340.5,NULL,'0','0','[Paredes] = 4',0.5,1.9,0,0,2.4,'[Paredes] = ''HUURRE''','4')
+INSERT INTO dbo.HouseTypeSalesItem (HouseTypeSalesItemID,HouseTypeID,ProductTypeID,ProductID,ItemNumber,HouseTypeSalesItemAssemblyID,Description,Quantity,ImageFile,WoodSpeciesID,WoodFinish,ConditionString,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost,Cost,ConditionStringUI,ProductConstructionType) VALUES('193','1','2','1',NULL,'1','Armado e instalacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared',340.5,NULL,'0','0','[Paredes] = 4',0.2,0.1,0,0,0.3,'[Paredes] = ''HUURRE''','4')
+IF (IDENT_SEED('dbo.HouseTypeSalesItem') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseTypeSalesItem OFF
+GO
+GO
+ALTER TABLE dbo.HouseTypeSalesItem CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.HouseTypeSalesItemAssembly
+-----------------------------------------------------------
+ALTER TABLE dbo.HouseTypeSalesItemAssembly NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.HouseTypeSalesItemAssembly
+GO
+
+IF (IDENT_SEED('dbo.HouseTypeSalesItemAssembly') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseTypeSalesItemAssembly ON
+INSERT INTO dbo.HouseTypeSalesItemAssembly (HouseTypeSalesItemAssemblyID,HouseTypeID,Ref,Description,Area) VALUES('1','1','BX','Barn X',0)
+INSERT INTO dbo.HouseTypeSalesItemAssembly (HouseTypeSalesItemAssemblyID,HouseTypeID,Ref,Description,Area) VALUES('3','2','BS','BARNS',0)
+IF (IDENT_SEED('dbo.HouseTypeSalesItemAssembly') IS NOT NULL )	SET IDENTITY_INSERT dbo.HouseTypeSalesItemAssembly OFF
+GO
+GO
+ALTER TABLE dbo.HouseTypeSalesItemAssembly CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductConstructionSubType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductConstructionSubType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductConstructionSubType
+GO
+
+IF (IDENT_SEED('dbo.ProductConstructionSubType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductConstructionSubType ON
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('1','1','LIMPIEZA','LMP','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('2','1','TRAZO Y NIVELACIÓN','TRN','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('3','2','CORTE','CRT','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('4','2','RELLENO Y COMPACTACIÓN','RYC','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('5','2','BOTAR TIERRA','BTR','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('6','3','EXCAVACIÓN','EXC','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('7','3','RELLENO Y COMPACTACIÓN','RYC','5')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('8','3','BOTAR TIERRA','BTR','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('9','3','CONCRETO RECUBRIMIENTO','CONC','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('10','3','PILOTE MADERA','PLM','4')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('11','4','ARMADO E INSTALACIÓN','AEI','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('12','4','HERRAJES DE FIJACIÓN','HRJ','7')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('13','4','INSTALACIÓN FRAMING','INF','8')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('14','4','FORRO EXTERIOR PAREDES LAMINA FIBROCEMENTO','FLF','4')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('15','4','FORRO EXTERIOR PAREDES','FMH','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('16','4','FORRO EXTERIOR PAREDES MACHIMBRE VERTICAL','FMV','5')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('17','5','ALFAJIAS DE MADERA','AJM','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('18','5','CUBIERTA TECHO LAM. ZINC ALUM.','CLZ','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('19','5','CLAVADO DE TECHO','CDT','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('20','6','CIELO RASO','CIR','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('21','7','ENTRAMADO DE MADERA','EMD','4')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('22','7','FORRO ENTRAMADO LAMINA FIBROCEMENTO','FLF','6')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('23','7','CUBIERTA PISO CERAMICA INTERIORES','CPI','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('24','7','CASCOTE CONCRETO','CCO','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('25','7','ARENILLADO DE LOSA CONCRETO','ALC','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('26','8','PUERTAS','PTA','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('27','8','VENTANAS','VNT','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('28','9','PINTURA PAREDES INTERNAS','PPI','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('29','9','PINTURA DE PAREDES EXTERNAS','PPE','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('30','10','LIMPIEZA Y ENTREGA DE OBRA','LEO','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('31','11','EXCAVACIÓN MANUAL','EXM','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('32','11','BOTAR TIERRA','BTR','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('33','12','SUMINISTRO E INSTALACIÓN TUBERÍAS','SIT','5')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('34','12','SUMINISTRO E INSTALACIÓN DE PANTRY','SIP','4')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('35','12','SUMINISTRO E INSTALACIÓN DE LETRINA','SIL','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('36','12','SUMINISTRO E INSTALACIÓN DE LAVANDERO','SIV','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('37','12','POZO DE INFILSTRACIÓN AGUAS RESIDUALES','PIA','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('38','13','CANALIZACIÓN, ALAMBRADO E INSTALACIÓN','CAI','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('39','14','CONEXIONES ESTRUCTURALES ENTRAMADO','CEE','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('40','15','PIEZAS DE EJE O MARCO','PEM','3')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('41','15','VIGAS PRINCIPALES','VPR','4')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('42','15','INSTALACIÓN DE PIEZAS DE EJE','IPE','2')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('43','15','FIJACION ESTRUCTURAL','FES','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('44','4','FABRICACION PIEZAS FRAMING','FFR','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('45','4','FORRO INTERIOR DE PAREDES','FIP','6')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('46','4','VENTANA CELOSIA','VCS','9')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('47','5','PANELES TECHO','PTC','4')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('48','7','FIJACIÓN ESTRUCTURAL','FJS','5')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('49','16','FABRICACIÓN PIEZAS ENTRAMADO MADERA','FPE','1')
+INSERT INTO dbo.ProductConstructionSubType (ProductConstructionSubTypeID,ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('50','16','ARMADO E INSTALACIÓN ENTRAMADO','AIE','2')
+IF (IDENT_SEED('dbo.ProductConstructionSubType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductConstructionSubType OFF
+GO
+GO
+ALTER TABLE dbo.ProductConstructionSubType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductConstructionType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductConstructionType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductConstructionType
+GO
+
+IF (IDENT_SEED('dbo.ProductConstructionType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductConstructionType ON
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('1','PRELIMINARES','PRE','10')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('2','MOVIMIENTO DE TIERRA','MDT','2')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('3','FUNDACIONES','FND','1')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('4','PAREDES','PRD','4')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('5','TECHO','TEC','13')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('6','CIELO RASO','CLR','6')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('7','PISO','PSO','5')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('8','PUERTAS Y VENTANAS','PYV','11')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('9','ACABADOS','ACD','16')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('10','LIMPIEZA FINAL Y ENTREGAS','LFE','8')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('11','EXCAVACIÓN LETRINA','EXL','14')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('12','OBRAS HIDROSANITARIAS','HID','12')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('13','ELECTRICIDAD','ELE','7')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('14','CONEXIONES ESTRUCTURALES','CET','15')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('15','ESTRUCTURA PRINCIPAL','ESP','3')
+INSERT INTO dbo.ProductConstructionType (ProductConstructionTypeID,Description,Abbreviation,SequenceNo) VALUES('16','MEZZANINE','MZN','9')
+IF (IDENT_SEED('dbo.ProductConstructionType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductConstructionType OFF
+GO
+GO
+ALTER TABLE dbo.ProductConstructionType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductCostBook
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductCostBook NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductCostBook
+GO
+
+IF (IDENT_SEED('dbo.ProductCostBook') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductCostBook ON
+INSERT INTO dbo.ProductCostBook (ProductCostBookID,CostBookName,CostBookDate,IsDefault) VALUES('1','Costeo Octubre','2020-10-1 0:0:0',1)
+IF (IDENT_SEED('dbo.ProductCostBook') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductCostBook OFF
+GO
+GO
+ALTER TABLE dbo.ProductCostBook CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductCostBookEntry
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductCostBookEntry NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductCostBookEntry
+GO
+
+IF (IDENT_SEED('dbo.ProductCostBookEntry') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductCostBookEntry ON
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('131','1','8','3',0.15,'0',0,0,0.15,0,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('132','1','9','3',0.3,'0',0,0,0.2,0.1,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('133','1','10','3',0.3,'0',0,0,0.2,0.1,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('134','1','11','3',0.3,'0',0,0,0.2,0.1,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('135','1','12','3',165,'0',0,0,45,120,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('136','1','13','3',155,'0',0,0,45,110,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('137','1','14','3',150,'0',0,0,65,85,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('138','1','15','3',1.3,'0',0,0,0.55,0.75,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('139','1','16','3',155,'0',0,0,45,110,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('140','1','17','3',450,'0',0,0,180,270,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('141','1','18','3',215,'0',0,0,30,185,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('142','1','19','3',0.3,'0',0,0,0.2,0.1,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('143','1','1','2',0.3,'0',0,0,0.2,0.1,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('144','1','11','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('145','1','12','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('146','1','18','2',33,'0',0,0,5.5,27.5,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('147','1','19','2',25,'0',0,0,6,19,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('148','1','21','2',45,'0',0,0,15,30,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('149','1','22','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('150','1','23','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('151','1','25','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('152','1','26','2',25.35,'0',0,0,6,19.35,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('153','1','27','2',2.9,'0',0,0,0.85,2.05,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('154','1','28','2',2.85,'0',0,0,0.8,2.05,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('155','1','29','2',45.75,'0',0,0,7.5,38.25,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('156','1','30','2',25,'0',0,0,6.5,18.5,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('157','1','31','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('158','1','32','2',0.3,'0',0,0,0.2,0.1,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('159','1','33','2',46.75,'0',0,0,8.5,38.25,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('160','1','34','2',25.35,'0',0,0,6,19.35,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('161','1','36','2',770,'0',0,0,0,0,0,770)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('162','1','37','2',315,'0',0,0,0,0,0,315)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('163','1','38','2',370,'0',0,0,0,0,0,370)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('164','1','39','2',44.75,'0',0,0,12,32.75,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('165','1','40','2',44.75,'0',0,0,12,32.75,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('166','1','41','2',2.4,'0',0,0,0.5,1.9,0,0)
+INSERT INTO dbo.ProductCostBookEntry (ProductCostBookEntryID,CostBookID,ProductID,ProductTypeID,Cost,CostUnit,MinCost,RetailPrice,DirectLabourCost,DirectMaterialCost,DirectTransportationAndEquipment,OutsourcingCost) VALUES('167','1','42','2',225,'0',0,0,0,0,0,225)
+IF (IDENT_SEED('dbo.ProductCostBookEntry') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductCostBookEntry OFF
+GO
+GO
+ALTER TABLE dbo.ProductCostBookEntry CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductInstallation
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductInstallation NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductInstallation
+GO
+
+IF (IDENT_SEED('dbo.ProductInstallation') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductInstallation ON
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('8','Limpieza y Entrega Final de la Obra','10',NULL,'I-LFE-LEO.001','30','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('9','Instalación de Pilote de madera de 6'''' x 6'''' (12 unds)','3',NULL,'I-FND-PLM.001','10','16',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('10','Armado e Instalacion de paneles de Piso en Madera, utlizando piezas con dimensiones comerciales de 2" x 6"','7',NULL,'I-PSO-EMD.001','21','16',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('11','Instalación de Eje Estructural + Vigas Principales','15',NULL,'I-ESP-IPE.001','42','16',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('12','Fijacion estructural','7',NULL,'I-PSO-FJS.001','48','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('13','Fijacion estructural de Ejes Principales + Vigas','15',NULL,'I-ESP-FES.001','43','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('14','Fijacion de Framing','4',NULL,'I-PRD-INF.001','13','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('15','Aislante Termico de Celulosa entre forros de pared','4',NULL,'I-PRD-INF.002','13','17',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('16','Fijacion de Paneles de Techo','5',NULL,'I-TEC-PTC.001','47','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('17','Canalizacion y alambrado','13',NULL,'I-ELE-CAI.001','38','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('18','Instalacion de Accesorios de Iluminacion y Poder','13',NULL,'I-ELE-CAI.002','38','0',NULL)
+INSERT INTO dbo.ProductInstallation (ProductInstallationID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('19','Armado e Instalacion de entramado de Madera, utlizando piezas con dimensiones comerciales de 2" x 5" y 2" x 4"','16',NULL,'I-MZN-AIE.001','50','16',NULL)
+IF (IDENT_SEED('dbo.ProductInstallation') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductInstallation OFF
+GO
+GO
+ALTER TABLE dbo.ProductInstallation CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductInstallationType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductInstallationType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductInstallationType
+GO
+
+IF (IDENT_SEED('dbo.ProductInstallationType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductInstallationType ON
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES('1','PRELIMINARES')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES('2','MOVIMIENTO DE TIERRA')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES('3','TECHO')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES('4','LIMPIEZA FINAL Y ENTREGA')
+INSERT INTO dbo.ProductInstallationType (ProductInstallationTypeID,Description) VALUES('5','EXCAVACIÓN LETRINA')
+IF (IDENT_SEED('dbo.ProductInstallationType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductInstallationType OFF
+GO
+GO
+ALTER TABLE dbo.ProductInstallationType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductStructure
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductStructure NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductStructure
+GO
+
+IF (IDENT_SEED('dbo.ProductStructure') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductStructure ON
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('1','Armado e instalacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared','4',NULL,'E-PRD-AEI.001','11','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('11','Fabricación de Pilote de Madera de 6'''' x 6'''' (12 unds)','3',NULL,'E-FND-PLM.001','10','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('12','Fabricacion de piezas para paneles de Piso en Madera, utlizando piezas con dimensiones comerciales de 2" x 6"','7',NULL,'E-PSO-EMD.001','21','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('18','Forro en Paneles de Piso en madera con lamina de Fibrocemento (Plycem) de 20 mm','7',NULL,'E-PSO-FLF.001','22','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('19','Piso de Ceramica','7',NULL,'E-PSO-CPI.001','23','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('21','Piso de Deck con  Acabado Tropical Extreme de Messmers','7',NULL,'E-PSO-CPI.002','23','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('22','Fabricación de Eje Estructural','15',NULL,'E-ESP-PEM.001','40','16','C:\RTISProjects\AgroForestal\SystemFiles\SIArchivosSys\00022\DRAWING_22.pdf')
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('23','Fabricacion de Vigas principales','15',NULL,'E-ESP-VPR.001','41','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('25','Fabricacion de piezas de Framing - Paneles de Pared en Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de pared','4',NULL,'E-PRD-FFR.001','44','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('26','Forro interior de paredes, con lamina de Plywood Fenolico de 1/2" de espesor. Incluye acabado','4',NULL,'E-PRD-FIP.001','45','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('27','Fabricacion e Instalacion de Ventana de Celosia de Madera','4',NULL,'E-PRD-VCS.001','46','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('28','Fabricacion e Instalacion de Forro Exterior de Paredes con Machimbre de Madera','4',NULL,'E-PRD-FMH.001','15','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('29','Forro Exterior de paredes con Teja DECRA Shake Chestnut','4',NULL,'E-PRD-FMH.002','15','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('30','Forro Exterior de pared contiguo a puertas con lamina de Plycem tipo Machimbre (Siding), Incluye Acabado','4',NULL,'E-PRD-FMH.003','15','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('31','Fabricacion de piezas de Paneles de Techo de Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de Techo','5',NULL,'E-TEC-PTC.001','47','0',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('32','Armado e instalacion de piezas de Paneles de Techo de Madera, utlizando piezas con dimensiones comerciales de 2" x 4" + Clavadores de Forro de Techo','5',NULL,'E-TEC-PTC.002','47','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('33','Cubierta de Techo con Teja DECRA Shake Chestnut','5',NULL,'E-TEC-PTC.003','47','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('34','Cielo raso de Lamina de Plywood Fenolico de 1/2", Incluye Acabado','6',NULL,'E-CLR-CIR.001','20','14','C:\RTISProjects\AgroForestal\SystemFiles\SIArchivosSys\00034\DRAWING_34.pdf')
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('36','P-1: Puerta Corrediza de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor con Dimensiones de 226.00 cm x 276.00 cm, Incluye 2 hojas de puerta corrediza + 1 puerta de Cedazo','8',NULL,'E-PYV-PTA.001','26','12',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('37','P-2: Puerta Batiente de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor con Dimensiones de 90.00 cm x 222.00 cm, Incluye Haladera de lujo','8',NULL,'E-PYV-PTA.002','26','12',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('38','V-1: Ventana Fija de Aluminio Color Nogal Oscuro y Vidrio Claro de 5 mm de espesor, de forma triangular','8',NULL,'E-PYV-VNT.001','27','12',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('39','Forro Exterior de paredes con Panel HUURRE','4',NULL,'E-PRD-FMH.004','15','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('40','Cubierta de Techo con Panel HUURRE','5',NULL,'E-TEC-PTC.004','47','14',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('41','Fabricacion de piezas de entramado de Madera, utlizando piezas con dimensiones comerciales de 2" x 5" y 2" X 4"','16',NULL,'E-MZN-FPE.001','49','16',NULL)
+INSERT INTO dbo.ProductStructure (ProductStructureID,Description,ItemType,Notes,Code,SubItemType,UoM,DrawingFileName) VALUES('42','P-3: Puerta corrediza de madera, forrada ambas caras con Plywood de 1/4" y estructura interna de 1 1/2" x 1 1/2" + espejo en una cara','8',NULL,'E-PYV-PTA.003','26','12',NULL)
+IF (IDENT_SEED('dbo.ProductStructure') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductStructure OFF
+GO
+GO
+ALTER TABLE dbo.ProductStructure CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.ProductStructureType
+-----------------------------------------------------------
+ALTER TABLE dbo.ProductStructureType NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.ProductStructureType
+GO
+
+IF (IDENT_SEED('dbo.ProductStructureType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductStructureType ON
+INSERT INTO dbo.ProductStructureType (ProductStructureTypeID,Description) VALUES('1','FUNDACIONES')
+INSERT INTO dbo.ProductStructureType (ProductStructureTypeID,Description) VALUES('2','PAREDES')
+INSERT INTO dbo.ProductStructureType (ProductStructureTypeID,Description) VALUES('3','PISO')
+IF (IDENT_SEED('dbo.ProductStructureType') IS NOT NULL )	SET IDENTITY_INSERT dbo.ProductStructureType OFF
+GO
+GO
+ALTER TABLE dbo.ProductStructureType CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.WallOptions
+-----------------------------------------------------------
+ALTER TABLE dbo.WallOptions NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.WallOptions
+GO
+
+IF (IDENT_SEED('dbo.WallOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.WallOptions ON
+INSERT INTO dbo.WallOptions (WallOptionsID,Description) VALUES('1','MACHIMBRE')
+INSERT INTO dbo.WallOptions (WallOptionsID,Description) VALUES('2','PLYCEM')
+INSERT INTO dbo.WallOptions (WallOptionsID,Description) VALUES('3','MACHIMBRE Y PLYCEM')
+INSERT INTO dbo.WallOptions (WallOptionsID,Description) VALUES('4','HUURRE')
+INSERT INTO dbo.WallOptions (WallOptionsID,Description) VALUES('5','DECRA')
+IF (IDENT_SEED('dbo.WallOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.WallOptions OFF
+GO
+GO
+ALTER TABLE dbo.WallOptions CHECK CONSTRAINT ALL
+GO
+
+
+-----------------------------------------------------------
+--Insert data into dbo.WindowOptions
+-----------------------------------------------------------
+ALTER TABLE dbo.WindowOptions NOCHECK CONSTRAINT ALL
+GO
+
+TRUNCATE TABLE dbo.WindowOptions
+GO
+
+IF (IDENT_SEED('dbo.WindowOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.WindowOptions ON
+INSERT INTO dbo.WindowOptions (WindowOptionsID,Description) VALUES('1','MADERA')
+INSERT INTO dbo.WindowOptions (WindowOptionsID,Description) VALUES('2','CORREDIZAS DE ALUMINIO Y VIDRIO')
+INSERT INTO dbo.WindowOptions (WindowOptionsID,Description) VALUES('3','CELOSIA DE ALUMINIO Y VIDRIO')
+IF (IDENT_SEED('dbo.WindowOptions') IS NOT NULL )	SET IDENTITY_INSERT dbo.WindowOptions OFF
+GO
+GO
+ALTER TABLE dbo.WindowOptions CHECK CONSTRAINT ALL
+GO
+
+
+
+/******************************************************
+  Insert data  End
+******************************************************/
+GO
+/******************************************************
+  Foreign keys  Begin
+******************************************************/
+GO
+
+/******************************************************
+  Foreign keys  End
+******************************************************/
+GO

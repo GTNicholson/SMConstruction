@@ -1,0 +1,40 @@
+alter table ProductStructure
+add DrawingFileName nvarchar(max)
+go
+
+alter table ProductInstallation
+add DrawingFileName nvarchar(max)
+go
+
+
+ALTER View [dbo].[vwProductInstallationInfo] 
+as
+select 
+ProductInstallationID,
+Description,
+ItemType,
+Notes,
+Code,
+DrawingFileName,
+SubItemType
+from ProductInstallation
+
+
+GO
+
+
+
+ALTER View [dbo].[vwProductStructureInfo] 
+as
+select 
+ProductStructureID,
+Description,
+ItemType,
+DrawingFileName,
+Notes,
+Code,
+SubItemType
+from ProductStructure
+
+
+GO

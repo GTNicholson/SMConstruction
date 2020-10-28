@@ -71,8 +71,8 @@ Public Class fccSalesOrderDetailHouses
   End Property
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
     Dim mSalesOrderItemAssembly As dmSalesItemAssembly
+    Dim mdso As dsoSales
 
     If pPrimaryKeyID = 0 Then
       pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
@@ -81,8 +81,8 @@ Public Class fccSalesOrderDetailHouses
       mSalesOrderItemAssembly.ParentID = pSalesOrder.SalesOrderID
       SalesOrder.SalesItemAssemblys.Add(mSalesOrderItemAssembly)
 
-      mdso = New dsoSales(pDBConn)
-      pSalesOrder.ProductCostBookID = mdso.GetDefaultProductCostBook()
+      pSalesOrder.ProductCostBookID = GetDefaultProductCostBook()
+
       SaveObjects()
 
     Else
@@ -93,6 +93,13 @@ Public Class fccSalesOrderDetailHouses
     pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
     RefreshSOWorkOrders()
   End Sub
+
+  Public Function GetDefaultProductCostBook() As Integer
+    Dim mdso As dsoSales
+
+    mdso = New dsoSales(pDBConn)
+    Return mdso.GetDefaultProductCostBook()
+  End Function
 
   Public Sub SaveObjects()
     Try
@@ -542,6 +549,22 @@ Public Class fccSalesOrderDetailHouses
   Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rHouseType As dmHouseType, ByVal vProductCostBookID As Integer)
     pCurrentSalesOrderHouse.HouseTypeID = rHouseType.HouseTypeID
     pSalesOrderHandler.CreateSalesItemsFromHouseTypeConfig(pCurrentSalesOrderHouse, rHouseType, pDBConn, vProductCostBookID)
+
+  End Sub
+
+  Public Sub GenerateSequence()
+    Dim mProductTypes As New colProductConstructionTypes
+    Dim mProductSubTypes As New colProductConstructionSubTypes
+    Dim mRefList As colRefLists = AppRTISGlobal.GetInstance.RefLists
+
+    mProductTypes = CType(mRefList.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes)
+    mProductSubTypes = CType(mRefList.RefIList(appRefLists.ProductConstructionSubType), colProductConstructionSubTypes)
+
+    For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+      Dim mstring As String = mProductTypes.ItemFromKey(mSalesOrderItem.SalesItemType).SequenceNo & "." & mProductSubTypes.ItemFromKey(mSalesOrderItem.SalesSubItemType).SequenceNo
+      mSalesOrderItem.ItemNumber = mstring
+
+    Next
 
   End Sub
 End Class

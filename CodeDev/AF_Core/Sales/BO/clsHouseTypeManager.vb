@@ -1,11 +1,15 @@
-﻿Imports RTIS.ProductCore
+﻿Imports RTIS.DataLayer
+Imports RTIS.ProductCore
 
 Public Class clsHouseTypeManager
   Private pHouseType As dmHouseType
+  Private pDBConn As clsDBConnBase
 
-  Public Sub New(ByRef rHouseType As dmHouseType)
+  Public Sub New(ByRef rHouseType As dmHouseType, ByRef rDBConn As clsDBConnBase)
     pHouseType = rHouseType
+    pDBConn = rDBConn
   End Sub
+
 
   Public ReadOnly Property HouseType As dmHouseType
     Get
@@ -65,6 +69,7 @@ Public Class clsHouseTypeManager
     mSalesItem.HouseTypeID = pHouseType.HouseTypeID
     mSalesItem.ProductID = rProduct.ID
     mSalesItem.ProductTypeID = rProduct.ProductTypeID
+    mSalesItem.ProductConstructionType = rProduct.ItemType
     mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
     If rProductCostBook IsNot Nothing Then
@@ -111,6 +116,13 @@ Public Class clsHouseTypeManager
     Dim mCBE As dmProductCostBookEntry
     Dim mProductBase As dmProductBase
 
+    Dim mProductConstructionTypes As New colProductConstructionTypes
+    Dim mProductConstructionSubTypes As New colProductConstructionSubTypes
+    Dim mdso As New dsoProductAdmin(pDBConn)
+
+    mdso.LoadProductConstructionTypesAll(mProductConstructionTypes)
+    mdso.LoadProductConstructionSubTypesAll(mProductConstructionSubTypes)
+
     For Each mHTSI In HouseType.HTSalesItems
       If EvaluateCondition(mHTSI.ConditionString) = True Then
 
@@ -135,6 +147,7 @@ Public Class clsHouseTypeManager
             mHTSIInfo.DirectTransportationAndEquipment = 0
             mHTSIInfo.OutsourcingCost = 0
           End If
+
           mTmpHTSalesItems.Add(mHTSIInfo)
 
         End If

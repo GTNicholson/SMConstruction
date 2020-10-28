@@ -22,6 +22,7 @@ Public Class frmSalesOrderDetailHouses
     Add = 1
     Delete = 2
     AddFromPicker = 3
+    GenerateSequence = 4
   End Enum
 
   Private Enum eWorkOrderGroupButtonTags
@@ -177,7 +178,12 @@ Public Class frmSalesOrderDetailHouses
 
     LoadCustomerContactCombo()
 
+
+
   End Sub
+
+
+
   Private Sub LoadCustomerContactCombo()
 
     If pFormController.SalesOrder.Customer IsNot Nothing Then
@@ -1382,6 +1388,11 @@ Public Class frmSalesOrderDetailHouses
         End If
         pFormController.RefreshCurrentSalesItemEditors()
         ''gvSSalesItemsEditor.RefreshData()
+
+
+      Case eOrderItemGroupButtonTags.GenerateSequence
+        pFormController.GenerateSequence()
+        pFormController.RefreshCurrentSalesItemEditors()
     End Select
 
 
@@ -1410,9 +1421,16 @@ Public Class frmSalesOrderDetailHouses
 
     UpdateObjects()
 
+    If cboProductCostBook.SelectedIndex = -1 Then
+      pFormController.SalesOrder.ProductCostBookID = pFormController.GetDefaultProductCostBook
+
+    End If
+
+
     mHouseType = frmHousePopUp.GetConfiguredHouseType(pFormController.DBConn)
 
     If mHouseType IsNot Nothing Then
+
 
       pFormController.CreateSalesItemsFromHouseTypeConfig(mHouseType, pFormController.SalesOrder.ProductCostBookID)
 

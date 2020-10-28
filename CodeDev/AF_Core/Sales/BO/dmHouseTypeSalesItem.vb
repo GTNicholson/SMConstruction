@@ -21,7 +21,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
   Private pDirectMaterialCost As Decimal
   Private pDirectTransportationAndEquipment As Decimal
   Private pOutsourcingCost As Decimal
-
+  Private pProductConstructionType As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -73,6 +73,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
       .DirectMaterialCost = DirectMaterialCost
       .DirectTransportationAndEquipment = DirectTransportationAndEquipment
       .OutsourcingCost = OutsourcingCost
+      .ProductConstructionType = ProductConstructionType
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -218,6 +219,16 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
       pQuantity = value
     End Set
   End Property
+  Public Property ProductConstructionType() As Int32
+    Get
+      Return pProductConstructionType
+    End Get
+    Set(ByVal value As Int32)
+      If pProductConstructionType <> value Then IsDirty = True
+      pProductConstructionType = value
+    End Set
+  End Property
+
 
   Public Property UnitPrice() As Decimal
     Get

@@ -1,8 +1,0 @@
-alter table HouseTypeSalesItemAssembly
-add Area decimal(10,4)
-go
-
-update Tally
-Set Description='Structure OT'
-where TallyID=2
-go

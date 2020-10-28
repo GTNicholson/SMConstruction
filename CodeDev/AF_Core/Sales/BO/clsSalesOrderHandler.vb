@@ -1,9 +1,10 @@
 ﻿Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class clsSalesOrderHandler
   Private pSalesOrder As dmSalesOrder
   Private pInvoice As dmInvoice
-
+  Private pDBConn As clsDBConnBase
 
   Public Shared Function CreateNewSalesOrder() As dmSalesOrder
     Dim mSO As dmSalesOrder
@@ -17,8 +18,10 @@ Public Class clsSalesOrderHandler
   End Function
 
 
+
   Public Sub New(ByRef rSalesOrder As dmSalesOrder)
     pSalesOrder = rSalesOrder
+
   End Sub
 
   Public Sub New(ByRef rInvoice As dmInvoice)
@@ -173,7 +176,7 @@ Public Class clsSalesOrderHandler
 
     '// Now create the SalesItems and move the salesitemassembley to the new version
 
-    mHouseTypeManager = New clsHouseTypeManager(rConfiguredHouseType)
+    mHouseTypeManager = New clsHouseTypeManager(rConfiguredHouseType, rDBConn)
     mHTSIIs = mHouseTypeManager.GetTotalHTSalesItemInfos(mProducts, mProductCost.ProductCostBookEntrys)
 
     For Each mHouseTypeSalesItem As clsHouseTypeSalesItemInfo In mHTSIIs
@@ -185,7 +188,7 @@ Public Class clsSalesOrderHandler
       mSalesItem.ProductTypeID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductTypeID
       mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
       mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
-      mSalesItem.SalesItemType = mHouseTypeSalesItem.ItemType
+      mSalesItem.SalesItemType = mHouseTypeSalesItem.ProductConstructionType
       mSalesItem.SalesSubItemType = mHouseTypeSalesItem.SubItemType
 
       mSOSIA = mDict(mHouseTypeSalesItem.HouseTypeSalesItem.HouseTypeSalesItemAssemblyID)
