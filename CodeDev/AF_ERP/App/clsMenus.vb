@@ -34,6 +34,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Compras", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.PurchasingGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras por Fecha", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderInfo, eActivityCode.POReportList)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras por Artículo", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderItemInfo, eActivityCode.POReportList)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryInfoBI, eActivityCode.PODeliveryReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones de Artículos Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryItemInfoBI, eActivityCode.PODeliveryItemReport)
 
@@ -250,13 +251,19 @@ Class clsMenuFunctions
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
+
+
   Public Shared Sub PurchaseOrderInfo(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewPurchaseOrders.CreateBIReportViewFactoryPurchaseOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
-
+  Public Shared Sub PurchaseOrderItemInfo(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewPurchaseOrderItemInfo.CreateBIReportViewFactoryPurchaseOrderItem(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
   Public Shared Sub PODeliveryItemInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     Dim mViews As New List(Of RTIS.BIReport.clsBIReportView)

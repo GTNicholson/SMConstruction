@@ -72,6 +72,7 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectMaterialCost", .DirectMaterialCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectTransportationAndEquipment", .DirectTransportationAndEquipment)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OutsourcingCost", .OutsourcingCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductConstructionType", .ProductConstructionType)
 
     End With
 
@@ -98,12 +99,12 @@ Public Class dtoHouseTypeSalesItem : Inherits dtoBase
         .OutsourcingCost = DBReadDecimal(rDataReader, "OutsourcingCost")
 
 
-        .Quantity = DBReadInt32(rDataReader, "Quantity")
+        .Quantity = DBReadDecimal(rDataReader, "Quantity")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WoodSpeciesID = DBReadInt32(rDataReader, "WoodSpeciesID")
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
         .HouseTypeSalesItemAssemblyID = DBReadInt32(rDataReader, "HouseTypeSalesItemAssemblyID")
-
+        .ProductConstructionType = DBReadInt32(rDataReader, "ProductConstructionType")
         pHouseTypeSalesItems.IsDirty = False
       End With
       mOK = True

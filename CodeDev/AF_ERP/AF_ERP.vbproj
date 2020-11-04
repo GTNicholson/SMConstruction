@@ -219,6 +219,7 @@
     <Compile Include="BIReports\BIReportViewCompanyDay.vb" />
     <Compile Include="BIReports\BIReportViewInvoice.vb" />
     <Compile Include="BIReports\BIReportViewPODelivery.vb" />
+    <Compile Include="BIReports\BIReportViewPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />
     <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
@@ -461,6 +462,12 @@
       <DependentUpon>repCheckPaymentOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\GUI\repCheckPaymentOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\repPODelivery.Designer.vb">
+      <DependentUpon>repPODelivery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\repPODelivery.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Purchasing\GUI\repPurchaseOrder.Designer.vb">
@@ -780,6 +787,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\repCheckPaymentOrder.resx">
       <DependentUpon>repCheckPaymentOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\repPODelivery.resx">
+      <DependentUpon>repPODelivery.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\repPurchaseOrder.resx">
       <DependentUpon>repPurchaseOrder.vb</DependentUpon>

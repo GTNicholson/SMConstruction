@@ -9,7 +9,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
   Private pHouseTypeSalesItemAssemblyID As Int32
   Private pItemNumber As String
   Private pDescription As String
-  Private pQuantity As Int32
+  Private pQuantity As Decimal
   Private pUnitPrice As Decimal
   Private pImageFile As String
   Private pWoodSpeciesID As Int32
@@ -21,7 +21,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
   Private pDirectMaterialCost As Decimal
   Private pDirectTransportationAndEquipment As Decimal
   Private pOutsourcingCost As Decimal
-
+  Private pProductConstructionType As Int32
   Public Sub New()
     MyBase.New()
   End Sub
@@ -73,6 +73,7 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
       .DirectMaterialCost = DirectMaterialCost
       .DirectTransportationAndEquipment = DirectTransportationAndEquipment
       .OutsourcingCost = OutsourcingCost
+      .ProductConstructionType = ProductConstructionType
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -209,15 +210,25 @@ Public Class dmHouseTypeSalesItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property Quantity() As Int32
+  Public Property Quantity() As Decimal
     Get
       Return pQuantity
     End Get
-    Set(ByVal value As Int32)
+    Set(ByVal value As Decimal)
       If pQuantity <> value Then IsDirty = True
       pQuantity = value
     End Set
   End Property
+  Public Property ProductConstructionType() As Int32
+    Get
+      Return pProductConstructionType
+    End Get
+    Set(ByVal value As Int32)
+      If pProductConstructionType <> value Then IsDirty = True
+      pProductConstructionType = value
+    End Set
+  End Property
+
 
   Public Property UnitPrice() As Decimal
     Get

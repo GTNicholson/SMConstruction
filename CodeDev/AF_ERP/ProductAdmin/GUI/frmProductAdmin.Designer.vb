@@ -23,22 +23,25 @@ Partial Class frmProductAdmin
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
-    Me.grdProductBase = New DevExpress.XtraGrid.GridControl()
-    Me.gvProductBase = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repoSelectedItem = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.grdProductBase = New DevExpress.XtraGrid.GridControl()
+        Me.gvProductBase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoSelectedItem = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.bbtnmnuAddProduct = New DevExpress.XtraBars.BarSubItem()
         Me.bbtnAddProductFurniture = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnAddStructure = New DevExpress.XtraBars.BarButtonItem()
@@ -86,6 +89,15 @@ Partial Class frmProductAdmin
         Me.tabBasicStockItem = New DevExpress.XtraTab.XtraTabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpStockItemDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gpStockItemBOM = New DevExpress.XtraEditors.GroupControl()
+        Me.grdStockItemBOM = New DevExpress.XtraGrid.GridControl()
+        Me.gvStockItemBOM = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.bteDrawing = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -102,7 +114,7 @@ Partial Class frmProductAdmin
         Me.txtStockCode = New DevExpress.XtraEditors.TextEdit()
         Me.tabLockStockItem = New DevExpress.XtraTab.XtraTabPage()
         Me.tabBlank = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,12 +139,22 @@ Partial Class frmProductAdmin
         Me.Panel1.SuspendLayout()
         CType(Me.grpStockItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpStockItemDetail.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gpStockItemBOM, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gpStockItemBOM.SuspendLayout()
+        CType(Me.grdStockItemBOM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvStockItemBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bteDrawing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSubItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -141,7 +163,7 @@ Partial Class frmProductAdmin
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1106, 562)
+        Me.PanelControl1.Size = New System.Drawing.Size(1238, 616)
         Me.PanelControl1.TabIndex = 0
         '
         'SplitContainerControl1
@@ -155,8 +177,8 @@ Partial Class frmProductAdmin
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XtraTabControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1102, 558)
-        Me.SplitContainerControl1.SplitterPosition = 270
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1234, 612)
+        Me.SplitContainerControl1.SplitterPosition = 296
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
@@ -168,7 +190,7 @@ Partial Class frmProductAdmin
         Me.grdProductBase.MenuManager = Me.BarManager1
         Me.grdProductBase.Name = "grdProductBase"
         Me.grdProductBase.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectedItem})
-        Me.grdProductBase.Size = New System.Drawing.Size(1102, 283)
+        Me.grdProductBase.Size = New System.Drawing.Size(1234, 311)
         Me.grdProductBase.TabIndex = 0
         Me.grdProductBase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvProductBase})
         '
@@ -258,6 +280,12 @@ Partial Class frmProductAdmin
         Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 142
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn5"
+        Me.GridColumn5.FieldName = "DrawingFileName"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
         'BarManager1
         '
         Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
@@ -316,15 +344,15 @@ Partial Class frmProductAdmin
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1106, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1238, 33)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 595)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 649)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1106, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1238, 0)
         '
         'barDockControlLeft
         '
@@ -332,15 +360,15 @@ Partial Class frmProductAdmin
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 562)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 616)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1106, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1238, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 562)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 616)
         '
         'BarButtonItem1
         '
@@ -580,7 +608,7 @@ Partial Class frmProductAdmin
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.tabBasicStockItem
         Me.XtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1102, 271)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1234, 297)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabBasicStockItem, Me.tabLockStockItem, Me.tabBlank})
         '
@@ -588,7 +616,7 @@ Partial Class frmProductAdmin
         '
         Me.tabBasicStockItem.Controls.Add(Me.Panel1)
         Me.tabBasicStockItem.Name = "tabBasicStockItem"
-        Me.tabBasicStockItem.Size = New System.Drawing.Size(1096, 265)
+        Me.tabBasicStockItem.Size = New System.Drawing.Size(1228, 291)
         Me.tabBasicStockItem.Text = "XtraTabPage1"
         '
         'Panel1
@@ -599,7 +627,7 @@ Partial Class frmProductAdmin
         Me.Panel1.Controls.Add(Me.grpStockItemDetail)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1094, 255)
+        Me.Panel1.Size = New System.Drawing.Size(1226, 281)
         Me.Panel1.TabIndex = 98
         '
         'grpStockItemDetail
@@ -615,6 +643,7 @@ Partial Class frmProductAdmin
         Me.grpStockItemDetail.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpStockItemDetail.AppearanceCaption.Options.UseFont = True
         Me.grpStockItemDetail.AppearanceCaption.Options.UseForeColor = True
+        Me.grpStockItemDetail.Controls.Add(Me.PanelControl2)
         Me.grpStockItemDetail.Controls.Add(Me.LabelControl4)
         Me.grpStockItemDetail.Controls.Add(Me.bteDrawing)
         Me.grpStockItemDetail.Controls.Add(Me.LabelControl3)
@@ -629,13 +658,121 @@ Partial Class frmProductAdmin
         Me.grpStockItemDetail.Controls.Add(Me.LabelControl1)
         Me.grpStockItemDetail.Controls.Add(Me.txtDescription)
         Me.grpStockItemDetail.Controls.Add(Me.txtStockCode)
-        Me.grpStockItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Create Duplicates", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
+        Me.grpStockItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Create Duplicates", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
         Me.grpStockItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpStockItemDetail.Location = New System.Drawing.Point(3, 3)
         Me.grpStockItemDetail.Name = "grpStockItemDetail"
-        Me.grpStockItemDetail.Size = New System.Drawing.Size(1088, 249)
+        Me.grpStockItemDetail.Size = New System.Drawing.Size(1220, 275)
         Me.grpStockItemDetail.TabIndex = 94
         Me.grpStockItemDetail.Text = "Detalles del Producto"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl2.Controls.Add(Me.GridControl2)
+        Me.GroupControl2.Location = New System.Drawing.Point(432, 7)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(414, 186)
+        Me.GroupControl2.TabIndex = 128
+        Me.GroupControl2.Text = "Lista de Artículos de Madera"
+        '
+        'GridControl2
+        '
+        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl2.Location = New System.Drawing.Point(2, 21)
+        Me.GridControl2.MainView = Me.GridView2
+        Me.GridControl2.MenuManager = Me.BarManager1
+        Me.GridControl2.Name = "GridControl2"
+        Me.GridControl2.Size = New System.Drawing.Size(410, 163)
+        Me.GridControl2.TabIndex = 126
+        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GridControl2
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'gpStockItemBOM
+        '
+        Me.gpStockItemBOM.AppearanceCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gpStockItemBOM.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.gpStockItemBOM.AppearanceCaption.Options.UseFont = True
+        Me.gpStockItemBOM.AppearanceCaption.Options.UseForeColor = True
+        Me.gpStockItemBOM.Controls.Add(Me.grdStockItemBOM)
+        Me.gpStockItemBOM.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Add", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Delete", -1)})
+        Me.gpStockItemBOM.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+        Me.gpStockItemBOM.Enabled = False
+        Me.gpStockItemBOM.Location = New System.Drawing.Point(8, 7)
+        Me.gpStockItemBOM.Name = "gpStockItemBOM"
+        Me.gpStockItemBOM.Size = New System.Drawing.Size(414, 186)
+        Me.gpStockItemBOM.TabIndex = 127
+        Me.gpStockItemBOM.Text = "Lista de Artículos de Inventario"
+        '
+        'grdStockItemBOM
+        '
+        Me.grdStockItemBOM.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.Append.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.Edit.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.Next.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.NextPage.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.Prev.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+        Me.grdStockItemBOM.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.grdStockItemBOM.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemBOM.MainView = Me.gvStockItemBOM
+        Me.grdStockItemBOM.MenuManager = Me.BarManager1
+        Me.grdStockItemBOM.Name = "grdStockItemBOM"
+        Me.grdStockItemBOM.Size = New System.Drawing.Size(410, 158)
+        Me.grdStockItemBOM.TabIndex = 126
+        Me.grdStockItemBOM.UseEmbeddedNavigator = True
+        Me.grdStockItemBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemBOM})
+        '
+        'gvStockItemBOM
+        '
+        Me.gvStockItemBOM.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvStockItemBOM.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvStockItemBOM.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvStockItemBOM.Appearance.EvenRow.Options.UseFont = True
+        Me.gvStockItemBOM.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvStockItemBOM.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvStockItemBOM.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvStockItemBOM.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gvStockItemBOM.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvStockItemBOM.Appearance.OddRow.Options.UseFont = True
+        Me.gvStockItemBOM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn8, Me.GridColumn9})
+        Me.gvStockItemBOM.GridControl = Me.grdStockItemBOM
+        Me.gvStockItemBOM.Name = "gvStockItemBOM"
+        Me.gvStockItemBOM.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Código"
+        Me.GridColumn6.FieldName = "StockCode"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Descripción"
+        Me.GridColumn8.FieldName = "Description"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Cantidad"
+        Me.GridColumn9.FieldName = "Quantity"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
         '
         'LabelControl4
         '
@@ -643,7 +780,7 @@ Partial Class frmProductAdmin
         Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl4.Appearance.Options.UseFont = True
         Me.LabelControl4.Appearance.Options.UseForeColor = True
-        Me.LabelControl4.Location = New System.Drawing.Point(696, 42)
+        Me.LabelControl4.Location = New System.Drawing.Point(620, 42)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(26, 14)
         Me.LabelControl4.TabIndex = 125
@@ -651,7 +788,7 @@ Partial Class frmProductAdmin
         '
         'bteDrawing
         '
-        Me.bteDrawing.Location = New System.Drawing.Point(750, 39)
+        Me.bteDrawing.Location = New System.Drawing.Point(652, 39)
         Me.bteDrawing.MenuManager = Me.BarManager1
         Me.bteDrawing.Name = "bteDrawing"
         Me.bteDrawing.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
@@ -668,7 +805,7 @@ Partial Class frmProductAdmin
         Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl3.Appearance.Options.UseFont = True
         Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(5, 121)
+        Me.LabelControl3.Location = New System.Drawing.Point(5, 138)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(21, 14)
         Me.LabelControl3.TabIndex = 118
@@ -676,7 +813,7 @@ Partial Class frmProductAdmin
         '
         'cboUoM
         '
-        Me.cboUoM.Location = New System.Drawing.Point(95, 118)
+        Me.cboUoM.Location = New System.Drawing.Point(95, 135)
         Me.cboUoM.MenuManager = Me.BarManager1
         Me.cboUoM.Name = "cboUoM"
         Me.cboUoM.Properties.AllowMouseWheel = False
@@ -690,7 +827,7 @@ Partial Class frmProductAdmin
         '
         'btnGenerateCode
         '
-        Me.btnGenerateCode.Location = New System.Drawing.Point(251, 74)
+        Me.btnGenerateCode.Location = New System.Drawing.Point(251, 86)
         Me.btnGenerateCode.Name = "btnGenerateCode"
         Me.btnGenerateCode.Size = New System.Drawing.Size(86, 23)
         Me.btnGenerateCode.TabIndex = 116
@@ -702,7 +839,7 @@ Partial Class frmProductAdmin
         Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Appearance.Options.UseForeColor = True
-        Me.LabelControl2.Location = New System.Drawing.Point(5, 200)
+        Me.LabelControl2.Location = New System.Drawing.Point(5, 234)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(103, 14)
         Me.LabelControl2.TabIndex = 115
@@ -710,7 +847,7 @@ Partial Class frmProductAdmin
         '
         'cboSubItemType
         '
-        Me.cboSubItemType.Location = New System.Drawing.Point(114, 197)
+        Me.cboSubItemType.Location = New System.Drawing.Point(114, 231)
         Me.cboSubItemType.MenuManager = Me.BarManager1
         Me.cboSubItemType.Name = "cboSubItemType"
         Me.cboSubItemType.Properties.AllowMouseWheel = False
@@ -732,7 +869,7 @@ Partial Class frmProductAdmin
         Me.lblStockItemID.Appearance.Options.UseTextOptions = True
         Me.lblStockItemID.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.lblStockItemID.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
-        Me.lblStockItemID.Location = New System.Drawing.Point(750, 3)
+        Me.lblStockItemID.Location = New System.Drawing.Point(882, 3)
         Me.lblStockItemID.Name = "lblStockItemID"
         Me.lblStockItemID.Size = New System.Drawing.Size(123, 15)
         Me.lblStockItemID.TabIndex = 113
@@ -744,7 +881,7 @@ Partial Class frmProductAdmin
         Me.LabelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl22.Appearance.Options.UseFont = True
         Me.LabelControl22.Appearance.Options.UseForeColor = True
-        Me.LabelControl22.Location = New System.Drawing.Point(5, 162)
+        Me.LabelControl22.Location = New System.Drawing.Point(5, 186)
         Me.LabelControl22.Name = "LabelControl22"
         Me.LabelControl22.Size = New System.Drawing.Size(66, 14)
         Me.LabelControl22.TabIndex = 94
@@ -752,7 +889,7 @@ Partial Class frmProductAdmin
         '
         'cboProductItemType
         '
-        Me.cboProductItemType.Location = New System.Drawing.Point(95, 159)
+        Me.cboProductItemType.Location = New System.Drawing.Point(95, 183)
         Me.cboProductItemType.MenuManager = Me.BarManager1
         Me.cboProductItemType.Name = "cboProductItemType"
         Me.cboProductItemType.Properties.AllowMouseWheel = False
@@ -782,7 +919,7 @@ Partial Class frmProductAdmin
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl1.Appearance.Options.UseFont = True
         Me.LabelControl1.Appearance.Options.UseForeColor = True
-        Me.LabelControl1.Location = New System.Drawing.Point(5, 80)
+        Me.LabelControl1.Location = New System.Drawing.Point(5, 90)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(33, 14)
         Me.LabelControl1.TabIndex = 43
@@ -801,7 +938,7 @@ Partial Class frmProductAdmin
         '
         'txtStockCode
         '
-        Me.txtStockCode.Location = New System.Drawing.Point(95, 77)
+        Me.txtStockCode.Location = New System.Drawing.Point(95, 87)
         Me.txtStockCode.MenuManager = Me.BarManager1
         Me.txtStockCode.Name = "txtStockCode"
         Me.txtStockCode.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -814,26 +951,29 @@ Partial Class frmProductAdmin
         'tabLockStockItem
         '
         Me.tabLockStockItem.Name = "tabLockStockItem"
-        Me.tabLockStockItem.Size = New System.Drawing.Size(1096, 265)
+        Me.tabLockStockItem.Size = New System.Drawing.Size(1196, 279)
         Me.tabLockStockItem.Text = "XtraTabPage2"
         '
         'tabBlank
         '
         Me.tabBlank.Name = "tabBlank"
-        Me.tabBlank.Size = New System.Drawing.Size(1096, 265)
+        Me.tabBlank.Size = New System.Drawing.Size(1196, 279)
         Me.tabBlank.Text = "XtraTabPage1"
         '
-        'GridColumn5
+        'PanelControl2
         '
-        Me.GridColumn5.Caption = "GridColumn5"
-        Me.GridColumn5.FieldName = "DrawingFileName"
-        Me.GridColumn5.Name = "GridColumn5"
+        Me.PanelControl2.Controls.Add(Me.gpStockItemBOM)
+        Me.PanelControl2.Controls.Add(Me.GroupControl2)
+        Me.PanelControl2.Location = New System.Drawing.Point(359, 65)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(856, 203)
+        Me.PanelControl2.TabIndex = 129
         '
         'frmProductAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1106, 595)
+        Me.ClientSize = New System.Drawing.Size(1238, 649)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -867,12 +1007,22 @@ Partial Class frmProductAdmin
         CType(Me.grpStockItemDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpStockItemDetail.ResumeLayout(False)
         Me.grpStockItemDetail.PerformLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gpStockItemBOM, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gpStockItemBOM.ResumeLayout(False)
+        CType(Me.grdStockItemBOM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvStockItemBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bteDrawing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSubItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -955,4 +1105,14 @@ Partial Class frmProductAdmin
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents bteDrawing As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents gpStockItemBOM As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents grdStockItemBOM As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvStockItemBOM As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class

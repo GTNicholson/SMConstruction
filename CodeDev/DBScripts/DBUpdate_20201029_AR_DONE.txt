@@ -1,0 +1,2 @@
+update PODelivery
+set status=0

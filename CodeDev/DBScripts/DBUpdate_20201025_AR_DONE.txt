@@ -1,0 +1,7 @@
+alter table HouseTypeSalesItem
+alter column Quantity decimal (10,4)
+go
+
+alter table SalesOrderItem
+add ProductConstructionType int
+go

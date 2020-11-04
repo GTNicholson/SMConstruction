@@ -53,7 +53,7 @@
 
   Public ReadOnly Property TotalCost As Decimal
     Get
-      pTotalCost = TotalLabourCost + TotalMaterialCost + TotalOutsourcingCost + TotalTransportationCost
+
 
       Return pTotalCost
     End Get
@@ -67,11 +67,12 @@
 
       For Each mHTSII As clsHouseTypeSalesItemInfo In pHouseTypeSalesItemInfos
 
-        pTotalLabourCost += mHTSII.DirectLabourCost
-        pTotalMaterialCost += mHTSII.DirectMaterialCost
-        pTotalOutsourcingCost += mHTSII.OutsourcingCost
-        pTotalTransportationCost += mHTSII.DirectTransportationAndEquipment
+        pTotalLabourCost += mHTSII.DirectLabourCost * mHTSII.Quantity
+        pTotalMaterialCost += mHTSII.DirectMaterialCost * mHTSII.Quantity
+        pTotalOutsourcingCost += mHTSII.OutsourcingCost * mHTSII.Quantity
+        pTotalTransportationCost += mHTSII.DirectTransportationAndEquipment * mHTSII.Quantity
       Next
+      pTotalCost = TotalLabourCost + TotalMaterialCost + TotalOutsourcingCost + TotalTransportationCost
     End If
 
   End Sub

@@ -67,14 +67,7 @@ Public Class frmWorkOrderDetailConstruction
       pAppRTISGlobal = value
     End Set
   End Property
-  Public Property ProductType As eProductType
-    Get
-      Return pProductType
-    End Get
-    Set(value As eProductType)
-      pProductType = value
-    End Set
-  End Property
+
 
 
   Public Shared Sub OpenFormMDI(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByVal vIsInternal As Boolean, ByVal vProductType As eProductType)
@@ -91,7 +84,7 @@ Public Class frmWorkOrderDetailConstruction
       mfrm.MdiParent = rParentMDI
       mfrm.DBCon = rDBConn
       mfrm.RTISGlobal = rRTISGlobal
-      mfrm.ProductType = vProductType
+      mfrm.FormController.ProductType = vProductType
       mfrm.Show()
     Else
       mfrm.Focus()

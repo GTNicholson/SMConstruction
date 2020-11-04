@@ -21,6 +21,8 @@ Public MustInherit Class dmProductBase : Inherits dmBase
 
   Public MustOverride Property ProductTypeID As Integer Implements intItemSpecCore.ItemType '// from eProductType
 
+  Public MustOverride Property StockItemBOMs As colStockItemBOMs
+
   Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
     Get
       Return pLeadTime
@@ -142,6 +144,8 @@ Public MustInherit Class dmProductBase : Inherits dmBase
       pDrawingFileName = value
     End Set
   End Property
+
+
 
   Public MustOverride Sub CalculateCostAndPrice() Implements intItemSpecCore.CalculateCostAndPrice
 

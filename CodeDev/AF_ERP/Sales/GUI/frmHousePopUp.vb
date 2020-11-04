@@ -53,52 +53,34 @@ Public Class frmHousePopUp
 
   Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
     Dim mHouseTypeSalesItems As New colHouseTypeSalesItems
-    Dim mSalesItem As dmSalesOrderItem
     Dim mHouseTypeID As Integer = -1
     Dim mConfiguredHouseType As New dmHouseType
-    Dim mSOHandler As clsSalesOrderHandler
-
     Dim mProducts As New colProductBases
     Dim mdsoSales As dsoSales
-
     Dim mHTSIIs As New colHouseTypeSalesItemInfos
 
     mdsoSales = New dsoSales(pDBConn)
     mdsoSales.LoadStandardProducts(mProducts)
 
     If UctHouseTypeOptions1.cboModel.SelectedIndex <> -1 Then
+
       UctHouseTypeOptions1.HouseType = mConfiguredHouseType
       UctHouseTypeOptions1.UpdateObjects()
       mHouseTypeID = UctHouseTypeOptions1.HouseType.ModelID
+
       LoadHouseTypeSalesItemsByHouseTypeID(mConfiguredHouseType, mHouseTypeID)
-      pHouseType = mConfiguredHouseType
+      UctHouseTypeOptions1.HouseType.HTSalesItems = mConfiguredHouseType.HTSalesItems
+      UctHouseTypeOptions1.HouseType.SalesItemAssemblys = mConfiguredHouseType.SalesItemAssemblys
+      UctHouseTypeOptions1.HouseType.HouseTypeID = mHouseTypeID
+
+
+
+      pHouseType = UctHouseTypeOptions1.HouseType
     End If
 
-    ''pSalesItems = New colSalesOrderItems
 
-    ''If mHouseTypeSalesItems IsNot Nothing Then
-
-    ''  For Each mHouseTypeSalesItem In mHouseTypeSalesItems
-
-    ''    mSalesItem = New dmSalesOrderItem
-    ''    mSalesItem.Description = mHouseTypeSalesItem.Description
-    ''    mSalesItem.HouseTypeID = mHouseTypeSalesItem.HouseTypeID
-    ''    mSalesItem.ProductID = mHouseTypeSalesItem.ProductID
-    ''    mSalesItem.ProductTypeID = mHouseTypeSalesItem.ProductTypeID
-    ''    mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
-    ''    mSalesItem.SalesItemAssemblyID = pSalesItemAssemblyID
-    ''    mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
-    ''    mSalesItem.UnitPrice = mHouseTypeSalesItem.UnitPrice
-
-    ''    pSalesItems.Add(mSalesItem)
-    ''  Next
-
-    ''  pHouseTypeInfo.SalesOrderItems = pSalesItems
-    ''  pHouseTypeInfo.GroupID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboGroup)
-    ''  pHouseTypeInfo.HouseTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(UctHouseTypeOptions1.cboModel)
-    ''  pHouseTypeInfo.ModelName = UctHouseTypeOptions1.cboModel.Text
-    ''End If
     Me.Close()
+
   End Sub
 
   Private Sub LoadHouseTypeSalesItemsByHouseTypeID(ByRef rConfiguredHouseType As dmHouseType, ByVal vHouseTypeID As Integer)
@@ -163,4 +145,7 @@ Public Class frmHousePopUp
     clsDEControlLoading.FillDEComboVI(UctHouseTypeOptions1.cboWindows, mVIs)
 
   End Sub
+
+
+
 End Class

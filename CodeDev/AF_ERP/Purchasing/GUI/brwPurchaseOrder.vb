@@ -6,8 +6,10 @@ Imports RTIS.Elements
 Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
   Public Enum eListOption
-    DefaultListOption = 1
-
+    LivePO = 1
+    '' Paid = 2
+    Cancelled = 3
+    All = 4
   End Enum
 
   Public Enum eAddEditDeleteView
@@ -16,7 +18,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
   End Enum
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.LivePO)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
 
   End Sub
@@ -62,24 +64,30 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
   End Function
 
-  ''Public Overrides Function ListChangeLoadData() As Boolean
-  ''  Static sDataOption As Integer = -1
-  ''  Dim mNewGroup As Integer = 0
-  ''  Dim mOK As Boolean
-  ''  Select Case Me.ListOptionID
-  ''    Case eListOption.DefaultListOption
-  ''      mNewGroup = 1
-  ''    Case Else
-  ''      mNewGroup = 0
-  ''  End Select
-  ''  If mNewGroup <> sDataOption Then
-  ''    mNewGroup = sDataOption
-  ''    mOK = LoadData()
-  ''  Else
-  ''    mOK = True
-  ''  End If
-  ''  Return mOK
-  ''End Function
+  Public Overrides Function ListChangeLoadData() As Boolean
+    Static sDataOption As Integer = -1
+    Dim mNewGroup As Integer = 0
+    Dim mOK As Boolean
+    Select Case Me.ListOptionID
+      Case eListOption.LivePO
+        mNewGroup = 1
+      ''Case eListOption.Paid
+      ''  mNewGroup = 2
+      Case eListOption.Cancelled
+        mNewGroup = 3
+      Case eListOption.All
+        mNewGroup = 4
+      Case Else
+        mNewGroup = 0
+    End Select
+    If mNewGroup <> sDataOption Then
+      mNewGroup = sDataOption
+      mOK = LoadData()
+    Else
+      mOK = True
+    End If
+    Return mOK
+  End Function
 
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
@@ -87,16 +95,36 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     Dim mOK As Boolean
     Dim mPOInfos As New colPurchaseOrderInfos
     Dim mdoPurchasing As New dsoPurchasing(pDBConn)
-
+    Dim mWhere As String = ""
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
-      DBConn.Connect()
+      Select Case Me.ListOptionID
+        Case eListOption.LivePO
+          mWhere = String.Format("Status not in ({0},{1})", CInt(ePurchaseOrderDueDateStatus.Cancelled), CInt(ePurchaseOrderDueDateStatus.Received))
+          '' mWhere &= " and"
+          '' mWhere &= String.Format(" PaymentStatus <> {0}", CInt(ePaymentStatus.Paid))
+          mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
+
+        Case eListOption.Cancelled
+          mWhere = String.Format("Status = {0}", CInt(ePurchaseOrderDueDateStatus.Cancelled))
+          mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
+
+        ''Case eListOption.Paid
+
+        ''  mWhere &= String.Format(" PaymentStatus = {0}", CInt(ePaymentStatus.Paid))
+        ''  mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
+
+        Case eListOption.All
+          mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, "")
+      End Select
+
+
+      ''DBConn.Connect()
       ''mDataTable = Me.DBConn.CreateDataTable("Select * From vwPurchaseOrder")
 
       '' gridBrowseList.DataSource = mDataTable
-      mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, "")
 
       gridBrowseList.DataSource = mPOInfos
       '
@@ -132,6 +160,40 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     Return mOK
   End Function
 
+  Private Sub GridRowCellStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs)
+    Dim mGView As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+    Dim mCurrentRow As clsPurchaseOrderInfo
+
+
+
+    mCurrentRow = TryCast(mGView.GetRow(e.RowHandle), clsPurchaseOrderInfo)
+    If mCurrentRow IsNot Nothing Then
+
+      If mCurrentRow.Status <> ePurchaseOrderDueDateStatus.Received Then
+        Select Case e.Column.FieldName
+          Case "Status"
+            e.Appearance.BackColor = Color.Red
+            e.Appearance.ForeColor = Color.White
+          Case Else
+            e.Appearance.BackColor = Color.Transparent
+            e.Appearance.ForeColor = Color.Black
+        End Select
+
+
+
+      Else
+
+
+      End If
+
+
+
+    End If
+
+
+
+
+  End Sub
   Public Overrides Sub RefreshSingleRecord(ByVal vPrimaryKey As Integer)
     ''Dim mOrigRow As Data.DataRow
     ''Dim mNewRow As Data.DataRow = Nothing
@@ -168,31 +230,37 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
   Public Overrides Function PrepareForm() As Boolean 'Implements intBrowseList.PrepareForm
     Dim mOK As Boolean = True
+    Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
+
+
     Try
       'XtraGridPrintExport = New appXtraGridPrintExport()
 
       BrowseRefreshTracker = New clsBasicBrowseRefreshTracker(1, clsUpdateNotification.GetInstance)
 
+      mGridView = gridBrowseList.Views(0)
+      mGridView = CType(Me.gridBrowseList.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
 
 
       With CType(Me.BrowseForm, frmBrowseList)
 
         .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar Órden de Compra", eListOption.DefaultListOption)
-        .AddListOption("Nueva Órden de Compra", eListOption.DefaultListOption)
-        .AddListOption("Orden de Compra caducada", eListOption.DefaultListOption)
+        .AddListOption("Órden de Compras: Activas", eListOption.LivePO)
+        ''.AddListOption("Órden de Compras: Pagadas", eListOption.Paid)
+        .AddListOption("Órden de Compras: Canceladas", eListOption.Cancelled)
+        .AddListOption("Órden de Compras: Todas", eListOption.All)
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
         '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)
         '.AddDeleteOption("Delete Option2", eAddEditDeleteView.AlternateForm)
-        .AddViewOption("Ver Consultas de Orden de Compra", eAddEditDeleteView.AlternateForm)
+        ''.AddViewOption("Ver Consultas de Orden de Compra", eAddEditDeleteView.AlternateForm)
 
-        .AddProcessOption("Mail-shot active Orden de Compra", AddressOf BatchProcessExecute)
-        .AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
-        .AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
-        .AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
+        ''.AddProcessOption("Mail-shot active Orden de Compra", AddressOf BatchProcessExecute)
+        ''.AddPrintOption("Print Current Statement", AddressOf PrintOptionExecute)
+        ''.AddExportOption("Export Current Enquiries", AddressOf AddOptionExecute)
+        ''.AddExportOption("Export Current Orders", AddressOf AddOptionExecute)
 
 
         '' If Don't want the first button to be the default
@@ -212,6 +280,8 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
         ''Next
 
       End With
+      AddHandler mGridView.RowCellStyle, AddressOf GridRowCellStyle
+
       PrepareList()
 
     Catch ex As Exception
@@ -228,9 +298,31 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     'Dim mdsoProfile As New dsoProfile(Me.DBConn)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
+
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
-      ListTitle = "Lista de Compras"
+      Select Case Me.ListOptionID
+        Case eListOption.LivePO
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
+          ListTitle = "Órden de Compra: Activas y en Proceso"
+
+
+        Case eListOption.All
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
+          ListTitle = "Órden de Compra: Todas las Órdenes de Compras"
+
+
+        Case eListOption.Cancelled
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
+          ListTitle = "Órden de Compra: Órdenes de Compras Canceladas"
+
+
+          ''Case eListOption.Paid
+          ''  LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlPurchaseOrder.xml")
+          ''  ListTitle = "Órden de Compra: Órdenes de Compras Pagadas"
+
+      End Select
+
+
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 

@@ -9,7 +9,43 @@ Public Class dsoProductAdmin : Inherits dsoBase
     MyBase.New(rDBConn)
   End Sub
 
-  Public Function LoadProductConstructionSubTypes(ByRef rProductConstructionSubTypes As colProductConstructionSubTypes, ByVal vProductConstructionItemType As Integer) As Boolean
+  Public Function LoadProductConstructionTypesAll(ByRef rProductConstructionTypes As colProductConstructionTypes) As Boolean
+    Dim mdto As dtoProductConstructionType
+
+
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdto = New dtoProductConstructionType(pDBConn)
+      mdto.LoadProductConstructionTypeCollection(rProductConstructionTypes)
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function LoadProductConstructionSubTypesAll(ByRef rProductConstructionSubTypes As colProductConstructionSubTypes) As Boolean
+    Dim mdto As dtoProductConstructionSubType
+
+
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdto = New dtoProductConstructionSubType(pDBConn)
+      mdto.LoadAllProductConstructionSubTypeCollection(rProductConstructionSubTypes)
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function LoadProductConstructionSubTypesByTypeID(ByRef rProductConstructionSubTypes As colProductConstructionSubTypes, ByVal vProductConstructionItemType As Integer) As Boolean
     Dim mdto As dtoProductConstructionSubType
 
 
@@ -282,4 +318,36 @@ Public Class dsoProductAdmin : Inherits dsoBase
     End Try
 
   End Sub
+
+  Public Function LoadHouseType(ByRef rHouseType As dmHouseType, ByVal vHouseTypeID As Integer) As Boolean
+    Dim mdto As New dtoHouseType(DBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+
+      mOK = mdto.LoadHouseType(rHouseType, vHouseTypeID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
+
+  Public Function LoadStockItemBOM(ByRef rStockItemBOMs As colStockItemBOMs, ByVal vProductID As Integer) As Boolean
+    Dim mdto As New dtoStockItemBOM(DBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+
+      mOK = mdto.LoadStockItemBOMCollection(rStockItemBOMs, vProductID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 End Class

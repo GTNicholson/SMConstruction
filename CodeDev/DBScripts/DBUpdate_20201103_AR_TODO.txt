@@ -1,0 +1,64 @@
+CREATE TABLE [dbo].StockItemBOM(
+	StockItemBOMID [int] IDENTITY(1,1) NOT NULL,
+	ProductID int,
+	StockItemID int,
+	Quantity decimal (9,4),
+	StockCode varchar(15),
+	[Description] [varchar](max) NULL,
+ CONSTRAINT [pk_StockItemBOM] PRIMARY KEY CLUSTERED 
+(
+	StockItemBOMID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+ALTER view [dbo].[vwSalesOrderPhaseItemInfo]
+as
+
+select
+SOPI.SalesOrderPhaseItemID,
+SOPI.Qty,
+
+
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+
+SOP.SalesOrderPhaseID,
+SOP.DateRequired,
+SOP.PhaseNumber,
+SOP.PhaseRef,
+SOP.JobNo,
+
+SOI.SalesOrderItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.ProductTypeID,
+SOI.ProductConstructionType,
+
+SOIA.Ref,
+
+CU.CompanyName,
+
+PS.ProductStructureID,
+PS.Code as 'StructureCode',
+
+PIN.ProductInstallationID,
+PIN.Code AS 'InstallationCode'
+
+
+from SalesOrderPhaseItem SOPI
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO on SO.SalesOrderID=SOI.SalesOrderID
+Left Join SalesOrderItemAssembly SOIA on SOIA.SalesOrderItemAssemblyID = SOI.SalesItemAssemblyID
+LEFT JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+LEFT JOIN ProductStructure PS on PS.ProductStructureID=SOI.ProductID
+LEFT JOIN ProductInstallation PIN ON PIN.ProductInstallationID=SOI.ProductID
+
+GO
+
+
+

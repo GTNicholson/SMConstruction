@@ -91,6 +91,23 @@ Public Class dsoSales : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function GetDefaultProductCostBook() As Integer
+    Dim mRetval As Integer
+    Dim mWhere As String = "Select ProductCostBookID from ProductCostBook where IsDefault = 1"
+    Try
+      If pDBConn.Connect Then
+        mRetval = Convert.ToInt32(pDBConn.ExecuteScalar(mWhere))
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetval
+  End Function
+
   Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
     Try
@@ -896,25 +913,25 @@ Public Class dsoSales : Inherits dsoBase
 
         '// Now record the the productID in the workorder in case it was a new product
         If rWorkOrder.ProductID = 0 Then
-          rWorkOrder.ProductID = CType(rWorkOrder.Product, dmProductFurniture).ProductFurnitureID
+          rWorkOrder.ProductID = CType(rWorkOrder.Product, dmProductBase).ID
           mdto.SaveWorkOrder(rWorkOrder)
         End If
 
-        mProductFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
-        If mProductFurniture IsNot Nothing Then
-          mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
-          mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
-          mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
+        ''mProductFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
+        ''If mProductFurniture IsNot Nothing Then
+        ''  mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
+        ''  mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirments, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Wood)
+        ''  mdtoMaterialRequirement.SaveMaterialRequirementCollection(mProductFurniture.MaterialRequirmentOthers, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.Other)
 
 
 
-          mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
-          mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
+        ''  mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentsChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.WoodChanges)
+        ''  mdtoMaterialRequirement.SaveMaterialRequirementCollectionChanges(mProductFurniture.MaterialRequirmentOthersChanges, eProductType.ProductFurniture, mProductFurniture.ProductFurnitureID, eMaterialRequirementType.OtherChanges)
 
 
-          mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
-          mdtoComponents.SaveProductFurnitureComponentCollection(mProductFurniture.ProductFurnitureComponents, mProductFurniture.ProductFurnitureID)
-        End If
+        ''  mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
+        ''  mdtoComponents.SaveProductFurnitureComponentCollection(mProductFurniture.ProductFurnitureComponents, mProductFurniture.ProductFurnitureID)
+        ''End If
 
 
         mdtoWOFiles = New dtoFileTracker(pDBConn)

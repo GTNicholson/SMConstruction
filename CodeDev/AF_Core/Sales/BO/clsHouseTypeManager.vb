@@ -1,11 +1,15 @@
-﻿Imports RTIS.ProductCore
+﻿Imports RTIS.DataLayer
+Imports RTIS.ProductCore
 
 Public Class clsHouseTypeManager
   Private pHouseType As dmHouseType
+  Private pDBConn As clsDBConnBase
 
-  Public Sub New(ByRef rHouseType As dmHouseType)
+  Public Sub New(ByRef rHouseType As dmHouseType, ByRef rDBConn As clsDBConnBase)
     pHouseType = rHouseType
+    pDBConn = rDBConn
   End Sub
+
 
   Public ReadOnly Property HouseType As dmHouseType
     Get
@@ -65,10 +69,11 @@ Public Class clsHouseTypeManager
     mSalesItem.HouseTypeID = pHouseType.HouseTypeID
     mSalesItem.ProductID = rProduct.ID
     mSalesItem.ProductTypeID = rProduct.ProductTypeID
+    mSalesItem.ProductConstructionType = rProduct.ItemType
     mSalesItem.HouseTypeSalesItemAssemblyID = rSalesItemAssembly.SalesItemAssemblyID
     mSalesItem.Description = rProduct.Description
     If rProductCostBook IsNot Nothing Then
-      mCostBookEntryIndex = rProductCostBook.ProductCostBookEntrys.IndexFromProductID_ItemTypeID(rProduct.ID, rProduct.ItemType)
+      mCostBookEntryIndex = rProductCostBook.ProductCostBookEntrys.IndexFromProductID_ItemTypeID(rProduct.ID, rProduct.ProductTypeID)
 
       If mCostBookEntryIndex <> -1 Then
         mSalesItem.Cost = rProductCostBook.ProductCostBookEntrys(mCostBookEntryIndex).Cost
@@ -111,6 +116,13 @@ Public Class clsHouseTypeManager
     Dim mCBE As dmProductCostBookEntry
     Dim mProductBase As dmProductBase
 
+    Dim mProductConstructionTypes As New colProductConstructionTypes
+    Dim mProductConstructionSubTypes As New colProductConstructionSubTypes
+    Dim mdso As New dsoProductAdmin(pDBConn)
+
+    mdso.LoadProductConstructionTypesAll(mProductConstructionTypes)
+    mdso.LoadProductConstructionSubTypesAll(mProductConstructionSubTypes)
+
     For Each mHTSI In HouseType.HTSalesItems
       If EvaluateCondition(mHTSI.ConditionString) = True Then
 
@@ -119,7 +131,7 @@ Public Class clsHouseTypeManager
         If mProductBase IsNot Nothing Then
           mHTSIInfo = New clsHouseTypeSalesItemInfo(mHTSI, mProductBase, HouseType.SalesItemAssemblys.ItemFromKey(mHTSI.HouseTypeSalesItemAssemblyID).Description)
           mCBE = New dmProductCostBookEntry
-          mCBE = rProductCostBookEntry.ItemFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ItemType)
+          mCBE = rProductCostBookEntry.ItemFromProductID_ItemTypeID(mProductBase.ID, mProductBase.ProductTypeID)
 
           If mCBE IsNot Nothing Then
             mHTSIInfo.Cost = mCBE.Cost
@@ -127,7 +139,15 @@ Public Class clsHouseTypeManager
             mHTSIInfo.DirectMaterialCost = mCBE.DirectMaterialCost
             mHTSIInfo.DirectTransportationAndEquipment = mCBE.DirectTransportationAndEquipment
             mHTSIInfo.OutsourcingCost = mCBE.OutsourcingCost
+
+          Else
+            mHTSIInfo.Cost = 0
+            mHTSIInfo.DirectLabourCost = 0
+            mHTSIInfo.DirectMaterialCost = 0
+            mHTSIInfo.DirectTransportationAndEquipment = 0
+            mHTSIInfo.OutsourcingCost = 0
           End If
+
           mTmpHTSalesItems.Add(mHTSIInfo)
 
         End If

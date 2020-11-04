@@ -69,7 +69,6 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
       If pPurchaseOrderInfo Is Nothing Then SetObjectToNew()
       With pPurchaseOrderInfo
 
-        .SupplierContactName = DBReadString(rDataReader, "SupplierContactName")
         .BuyerName = DBReadString(rDataReader, "BuyerName")
         .TotalNetValueInfo = DBReadDecimal(rDataReader, "TotalNetValue")
 
@@ -149,7 +148,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
   Public Function LoadPurchaseOrderInfoCollection(ByRef rvwPurchaseOrders As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mOK = MyBase.LoadCollection(rvwPurchaseOrders, mParams, "PurchaseOrderID")
+    mOK = MyBase.LoadCollection(rvwPurchaseOrders, mParams, "SubmissionDate desc", vWhere)
     Return mOK
   End Function
 

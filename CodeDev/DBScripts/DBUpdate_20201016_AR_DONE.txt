@@ -1,0 +1,33 @@
+CREATE TABLE [dbo].[ProductCostBook](
+	[ProductCostBookID] [int] IDENTITY(1,1) NOT NULL,
+	[CostBookName] [varchar](50) NULL,
+	[CostBookDate] [datetime] NULL,
+	[IsDefault] [bit] NULL,
+ CONSTRAINT [pk_ProductCostBook] PRIMARY KEY CLUSTERED 
+(
+	[ProductCostBookID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[ProductCostBookEntry](
+	[ProductCostBookEntryID] [int] IDENTITY(1,1) NOT NULL,
+	[CostBookID] [int] NULL,
+	[ProductID] [int] NULL,
+	[ProductTypeID] [int] NULL,
+	[Cost] [decimal](9, 2) NULL,
+	[CostUnit] [int] NULL,
+	[MinCost] [decimal](9, 2) NULL,
+	[RetailPrice] [decimal](9, 2) NULL,
+	[DirectLabourCost] [decimal](9, 4) NULL,
+	[DirectMaterialCost] [decimal](9, 4) NULL,
+	[DirectTransportationAndEquipment] [decimal](9, 4) NULL,
+	[OutsourcingCost] [decimal](9, 4) NULL,
+ CONSTRAINT [pk_ProductCostBookEntry] PRIMARY KEY CLUSTERED 
+(
+	[ProductCostBookEntryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

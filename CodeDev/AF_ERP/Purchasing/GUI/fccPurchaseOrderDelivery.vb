@@ -330,4 +330,34 @@ Public Class fccPurchaseOrderDelivery
     Return mOK
   End Function
 
+  Public Sub CreatePurchaseOrderPDF(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery)
+    Dim mReportPath As String
+
+    mReportPath = CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
+    pPODelivery.FileExport = mReportPath
+  End Sub
+
+  Public Function CreatePODeliveryReport(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery) As String
+    Dim mFileName As String
+    Dim mDirectory As String
+    Dim mExportFilename As String
+    Dim mRep As repPODelivery
+
+    Try
+      mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.PODeliveryFileFolderSys)
+      If System.IO.Directory.Exists(mDirectory) = False Then
+        System.IO.Directory.CreateDirectory(mDirectory)
+      End If
+      mFileName = String.Format("PODelivery_{0}_{1}_{2}.pdf", rPODelivery.PODeliveryID, rPODelivery.GRNumber, Today.ToString("yyyyMMdd_HHmm"))
+      mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+      mRep = repPODelivery.CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
+
+      mRep.ExportToPdf(mExportFilename)
+
+      Return mExportFilename
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Function
 End Class

@@ -1,9 +1,10 @@
 ﻿Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class clsSalesOrderHandler
   Private pSalesOrder As dmSalesOrder
   Private pInvoice As dmInvoice
-
+  Private pDBConn As clsDBConnBase
 
   Public Shared Function CreateNewSalesOrder() As dmSalesOrder
     Dim mSO As dmSalesOrder
@@ -17,8 +18,10 @@ Public Class clsSalesOrderHandler
   End Function
 
 
+
   Public Sub New(ByRef rSalesOrder As dmSalesOrder)
     pSalesOrder = rSalesOrder
+
   End Sub
 
   Public Sub New(ByRef rInvoice As dmInvoice)
@@ -139,7 +142,7 @@ Public Class clsSalesOrderHandler
   End Sub
 
 
-  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rTargetSalesOrderHouse As dmSalesOrderHouse, ByRef rConfiguredHouseType As dmHouseType, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+  Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rTargetSalesOrderHouse As dmSalesOrderHouse, ByRef rConfiguredHouseType As dmHouseType, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vProductCostBookID As Integer)
     Dim mDict As New Dictionary(Of Integer, dmSalesItemAssembly)
     Dim mSOSIA As dmSalesItemAssembly
     Dim mdso As dsoSales
@@ -149,7 +152,9 @@ Public Class clsSalesOrderHandler
     Dim mHouseTypeManager As clsHouseTypeManager
     Dim mProductCost As New dmProductCostBook
     Dim mdsoCB As New dsoProductAdmin(rDBConn)
+    Dim mSOPI As dmSalesOrderPhaseItem
 
+    pSalesOrder.ProductCostBookID = vProductCostBookID
     mdsoCB.LoadProductCostDown(mProductCost, pSalesOrder.ProductCostBookID)
 
     mdso = New dsoSales(rDBConn)
@@ -171,7 +176,7 @@ Public Class clsSalesOrderHandler
 
     '// Now create the SalesItems and move the salesitemassembley to the new version
 
-    mHouseTypeManager = New clsHouseTypeManager(rConfiguredHouseType)
+    mHouseTypeManager = New clsHouseTypeManager(rConfiguredHouseType, rDBConn)
     mHTSIIs = mHouseTypeManager.GetTotalHTSalesItemInfos(mProducts, mProductCost.ProductCostBookEntrys)
 
     For Each mHouseTypeSalesItem As clsHouseTypeSalesItemInfo In mHTSIIs
@@ -183,13 +188,36 @@ Public Class clsSalesOrderHandler
       mSalesItem.ProductTypeID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductTypeID
       mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
       mSalesItem.SalesOrderID = pSalesOrder.SalesOrderID
+      mSalesItem.SalesItemType = mHouseTypeSalesItem.ProductConstructionType
+      mSalesItem.SalesSubItemType = mHouseTypeSalesItem.SubItemType
 
       mSOSIA = mDict(mHouseTypeSalesItem.HouseTypeSalesItem.HouseTypeSalesItemAssemblyID)
       mSalesItem.SalesItemAssemblyID = mSOSIA.SalesItemAssemblyID
 
+
+
       pSalesOrder.SalesOrderItems.Add(mSalesItem)
 
     Next
+
+    mdso.SaveSalesOrderDown(pSalesOrder)
+    ''//Creating the salesorderphaseitems if it's a single phase
+
+    For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+
+      mSOPI = New dmSalesOrderPhaseItem
+
+      mSOPI.Qty = mSalesOrderItem.Quantity
+      mSOPI.SalesItemID = mSalesOrderItem.SalesOrderItemID
+      mSOPI.SalesOrderID = mSalesOrderItem.SalesOrderID
+
+      If pSalesOrder.SalesOrderPhases IsNot Nothing And pSalesOrder.SalesOrderPhases.Count > 0 Then
+        mSOPI.SalesOrderPhaseID = pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+        pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+      End If
+    Next
+
+    mdso.SaveSalesOrderDown(pSalesOrder)
 
   End Sub
 

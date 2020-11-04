@@ -142,6 +142,7 @@ Public Class frmProductAdmin
 
             ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
             pFormController.LoadMainCollection()
+            pFormController.LoadStockItemBOM()
             grdProductBase.RefreshDataSource()
             RefreshControls()
             gvProductBase.RefreshData()
@@ -211,6 +212,7 @@ Public Class frmProductAdmin
         clsDEControlLoading.SetDECombo(cboSubItemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
         bteDrawing.Text = .DrawingFileName
+
       End With
     End If
 
@@ -267,9 +269,10 @@ Public Class frmProductAdmin
         pFormController.SetCurrentStockItemInfo(mSII)
         RefreshPCSubItemTypes()
 
+
         RefreshControls()
         SwitchTab()
-
+        LoadStockItemBOM()
         RefreshControls()
         pCurrentDetailMode = eCurrentDetailMode.eView
         RefreshDetailButtons()
@@ -391,6 +394,9 @@ Public Class frmProductAdmin
     cboUoM.ReadOnly = vReadOnly
     bteDrawing.Enabled = Not vReadOnly
     btnGenerateCode.Enabled = Not vReadOnly
+
+    gpStockItemBOM.Enabled = Not vReadOnly
+
   End Sub
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemDetail.CustomButtonClick
 
@@ -489,6 +495,10 @@ Public Class frmProductAdmin
 
   Private Sub SetDetailFocus()
     txtDescription.Focus()
+  End Sub
+  Public Sub LoadStockItemBOM()
+    pFormController.LoadStockItemBOM()
+    grdStockItemBOM.DataSource = pFormController.CurrentProductBase.StockItemBOMs
   End Sub
   Private Sub RefreshPCSubItemTypes()
 
@@ -628,5 +638,60 @@ Public Class frmProductAdmin
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub gpStockItemBOM_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpStockItemBOM.CustomButtonClick
+    Try
+      Select Case e.Button.Properties.Tag
+
+        Case "Add"
+          Dim mSIs As New colStockItems
+          Dim mPicker As clsPickerStockItem
+          Dim mSelectedSI As dmStockItem
+
+          For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
+            mSIs.Add(mItem.Value)
+          Next
+
+          mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
+
+
+          For Each mSIBOM As dmStockItemBOM In pFormController.CurrentProductBase.StockItemBOMs
+            mSelectedSI = mSIs.ItemFromKey(mSIBOM.StockItemID)
+            If mSelectedSI IsNot Nothing Then
+              If mPicker.SelectedObjects.Contains(mSelectedSI) = False Then
+                mPicker.SelectedObjects.Add(mSelectedSI)
+              End If
+            End If
+          Next
+
+          frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal)
+
+          pFormController.RefreshStockItemBOMs(mPicker.SelectedObjects)
+
+          RefreshProductStockItemBOM()
+
+          gvStockItemBOM.RefreshData()
+
+
+
+      End Select
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub RefreshProductStockItemBOM()
+    Dim mProduct As dmProductBase
+    mProduct = pFormController.CurrentProductBase
+
+    If mProduct IsNot Nothing Then
+      With mProduct
+
+        grdStockItemBOM.DataSource = mProduct.StockItemBOMs
+
+      End With
+    End If
   End Sub
 End Class

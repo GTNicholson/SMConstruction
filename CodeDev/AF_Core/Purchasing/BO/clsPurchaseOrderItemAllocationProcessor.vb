@@ -56,7 +56,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property TotalPrice() As Decimal
+    Get
+      Return UnitPrice * ToProcessQty
+    End Get
 
+  End Property
 End Class
 
 Public Class colPurchaseOrderItemAllocationProcessor : Inherits List(Of clsPurchaseOrderItemAllocationProcessor)

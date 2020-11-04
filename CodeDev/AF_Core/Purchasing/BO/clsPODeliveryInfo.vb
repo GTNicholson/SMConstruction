@@ -88,6 +88,13 @@ Public Class clsPODeliveryInfo
     End Get
   End Property
 
+
+  Public ReadOnly Property FileExport As String
+    Get
+      Return pPODelivery.FileExport
+    End Get
+  End Property
+
   Public ReadOnly Property DateCreatedMC As DateTime
     Get
       Return New Date(Year(pPODelivery.DateCreated), Month(pPODelivery.DateCreated), 1)

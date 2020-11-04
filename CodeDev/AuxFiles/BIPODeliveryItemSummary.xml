@@ -124,7 +124,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField81</property>
+      <property name="Name">PivotGridField110</property>
       <property name="FieldName">DateCreatedMC</property>
       <property name="Caption">Fecha Creación (Mes)</property>
       <property name="Index">0</property>
@@ -164,7 +164,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField82</property>
+      <property name="Name">PivotGridField111</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">PODeliveryItemID</property>
       <property name="Caption">PODeliveryItemID</property>
@@ -205,7 +205,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField83</property>
+      <property name="Name">PivotGridField112</property>
       <property name="FieldName">QtyReceived</property>
       <property name="Caption">Cant. Recib.</property>
       <property name="Index">2</property>
@@ -249,7 +249,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField84</property>
+      <property name="Name">PivotGridField113</property>
       <property name="FieldName">Description</property>
       <property name="Caption">Descripción</property>
       <property name="Index">3</property>
@@ -285,7 +285,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField85</property>
+      <property name="Name">PivotGridField114</property>
       <property name="FieldName">PartNo</property>
       <property name="Caption">Núm. Parte</property>
       <property name="Index">4</property>
@@ -321,7 +321,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField86</property>
+      <property name="Name">PivotGridField115</property>
       <property name="FieldName">StockCode</property>
       <property name="Caption">Código</property>
       <property name="Index">5</property>
@@ -358,7 +358,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField87</property>
+      <property name="Name">PivotGridField116</property>
       <property name="FieldName">QtyRequired</property>
       <property name="Caption">Cant. Req.</property>
       <property name="Index">6</property>
@@ -405,7 +405,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField88</property>
+      <property name="Name">PivotGridField117</property>
       <property name="FieldName">UnitPrice</property>
       <property name="Caption">Precio Unt. (USD)</property>
       <property name="Index">7</property>
@@ -450,7 +450,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField89</property>
+      <property name="Name">PivotGridField118</property>
       <property name="FieldName">GRNumber</property>
       <property name="Caption"># Recep.</property>
       <property name="Index">8</property>
@@ -486,7 +486,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField90</property>
+      <property name="Name">PivotGridField119</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">RefMatType</property>
       <property name="Caption">Ref. Etapa</property>
@@ -523,7 +523,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField91</property>
+      <property name="Name">PivotGridField120</property>
       <property name="FieldName">PONum</property>
       <property name="Caption">#O.C.</property>
       <property name="Index">10</property>
@@ -559,9 +559,9 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField92</property>
+      <property name="Name">PivotGridField121</property>
       <property name="Area">DataArea</property>
-      <property name="FieldName">TotalReceivedAmount</property>
+      <property name="FieldName">TotalReceivedAmountUSD</property>
       <property name="Caption">Valor Total (USD)</property>
       <property name="Index">11</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
@@ -600,7 +600,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField93</property>
+      <property name="Name">PivotGridField122</property>
       <property name="Area">RowArea</property>
       <property name="GroupInterval">Date</property>
       <property name="FieldName">DateCreated</property>
@@ -643,7 +643,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField94</property>
+      <property name="Name">PivotGridField123</property>
       <property name="Area">ColumnArea</property>
       <property name="FieldName">CategoryDesc</property>
       <property name="Caption">Categoría Compra</property>
@@ -681,7 +681,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField95</property>
+      <property name="Name">PivotGridField124</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">ProjectName</property>
       <property name="Caption">Proyecto</property>
@@ -719,7 +719,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField96</property>
+      <property name="Name">PivotGridField125</property>
       <property name="FieldName">JobNo</property>
       <property name="Caption">Ref. Etapa</property>
       <property name="Index">15</property>
@@ -756,7 +756,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField97</property>
+      <property name="Name">PivotGridField126</property>
       <property name="FieldName">TotalReceivedAmountCordoba</property>
       <property name="Caption">Valor Total (C$)</property>
       <property name="Index">16</property>
@@ -792,7 +792,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField98</property>
+      <property name="Name">PivotGridField127</property>
       <property name="FieldName">UnitPriceCordoba</property>
       <property name="Caption">Precio Unit. (C$)</property>
       <property name="Index">17</property>

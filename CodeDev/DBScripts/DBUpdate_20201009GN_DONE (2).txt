@@ -1,0 +1,20 @@
+CREATE TABLE dbo.HouseTypeSalesItem
+(
+HouseTypeSalesItemID               INT IDENTITY(1,1) NOT NULL,
+HouseTypeID                         INT,
+ProductTypeID TINYINT, 
+ProductID INT,
+ItemNumber                          VARCHAR(15),
+HouseTypeSalesItemAssemblyID        INT,
+Description                         Varchar(255),
+Quantity                            INT,
+ImageFile                           VARCHAR(255),
+WoodSpeciesID                        INT,
+WoodFinish                          INT,
+
+
+CONSTRAINT pk_HouseTypeSalesItem PRIMARY KEY CLUSTERED ( HouseTypeSalesItemID )
+)
+ON [PRIMARY]
+
+GO

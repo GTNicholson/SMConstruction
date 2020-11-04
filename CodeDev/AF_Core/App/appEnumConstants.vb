@@ -88,6 +88,12 @@ Public Enum eCOCType
   <Description("Sin Certificado")> Uncertified = 3
 End Enum
 
+Public Enum ePODelivery
+  <Description("Recibido")> Received = 1
+  <Description("Pendiente")> Pending = 2
+  <Description("Cancelado")> Cancelled = 3
+End Enum
+
 Public Enum ePurchaseOrderDueDateStatus
   <Description("Ninguna")> None = 0
   <Description("Estimado")> Estimated = 1
@@ -96,7 +102,7 @@ Public Enum ePurchaseOrderDueDateStatus
   <Description("Recibido")> Received = 4
   <Description("Entrega Parcial")> PartDelivered = 5
   <Description("Cancelado")> Cancelled = 6
-
+  <Description("En Proceso")> InProcess = 7
 End Enum
 
 Public Enum ePurchaseCategories
@@ -209,6 +215,7 @@ Public Enum eReportSource
   PurchaseOrder = 6
   PODelivery = 7
   PODeliveryItem = 8
+  PurchaseOrderItem = 9
 End Enum
 
 Public Enum eParentType
@@ -475,6 +482,7 @@ Public Class clsConstants
   Public Const SalesOrderFileFolderSys As String = "SOArchivosSys"
   Public Const InvoiceOrderFileFolderSys As String = "InvoiceArchivosSys"
   Public Const PurchaseOrderFileFolderSys As String = "POArchivosSys"
+  Public Const PODeliveryFileFolderSys As String = "PODeliveryArchivosSys"
   Public Const SalesOrderFileFolderUsr As String = "SOArchivosUsr"
 
   Public Const WorkOrderNoPrefix = "OT"

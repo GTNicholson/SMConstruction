@@ -15,6 +15,7 @@ Public Class fccWorkOrderDetailConstruction
   Private pUsedItems As List(Of Integer)
   Private pSalesOrderPhaseItems As colSalesOrderPhaseItems
   Private pWorkOrderAllocationEditors As colWorkOrderAllocationEditors
+  Private pProductType As eProductType
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     pDBConn = rDBConn
@@ -47,7 +48,14 @@ Public Class fccWorkOrderDetailConstruction
       pPrimaryKeyID = value
     End Set
   End Property
-
+  Public Property ProductType As eProductType
+    Get
+      Return pProductType
+    End Get
+    Set(value As eProductType)
+      pProductType = value
+    End Set
+  End Property
   Public Property WorkOrderAllocationEditors() As colWorkOrderAllocationEditors
     Get
       Return pWorkOrderAllocationEditors
@@ -143,7 +151,7 @@ Public Class fccWorkOrderDetailConstruction
 
     If pPrimaryKeyID = 0 Then
       '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
-      pWorkOrder = clsWorkOrderHandler.CreateInternalWorkOrder(eProductType.ProductFurniture)
+      pWorkOrder = clsWorkOrderHandler.CreateInternalWorkOrder(pProductType)
     Else
       If pWorkOrder Is Nothing Then '//Not already loaded
         pWorkOrder = New dmWorkOrder

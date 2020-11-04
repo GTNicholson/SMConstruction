@@ -113,13 +113,19 @@ Public Class dsoStock
 
   Public Function SaveProductBase(ByRef rProductBase As clsProductBaseInfo) As Boolean
     Dim mdtoProductBase As dtoProductBase
+    Dim mdtoStockItemBOM As dtoStockItemBOM
     Try
       pDBConn.Connect()
 
       If rProductBase.Product IsNot Nothing Then
         mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ProductTypeID, pDBConn)
+
+        mdtoStockItemBOM = New dtoStockItemBOM(pDBConn)
+
+
         mdtoProductBase.SaveProduct(rProductBase.Product)
 
+        mdtoStockItemBOM.SaveStockItemBOMCollection(rProductBase.Product.StockItemBOMs, rProductBase.Product.ID)
       End If
 
 
