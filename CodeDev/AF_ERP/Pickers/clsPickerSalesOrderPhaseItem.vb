@@ -2,6 +2,7 @@
 
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
+  Private pCurrentProductID As Integer
 
   Public Sub New(ByVal vDataSource As colSalesOrderPhaseItemInfos, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     MyBase.New
@@ -21,6 +22,14 @@
     End Get
   End Property
 
+  Public Property CurrentProductID As Integer
+    Get
+      Return pCurrentProductID
+    End Get
+    Set(value As Integer)
+      pCurrentProductID = value
+    End Set
+  End Property
 
 
 End Class

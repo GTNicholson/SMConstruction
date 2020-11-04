@@ -122,12 +122,17 @@ Public Class frmSalesOrderPhaseItemPickerMulti
           End If
       End Select
 
+      ApplyFilter
 
       gvSalesOrderPhaseItem.CloseEditor()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub ApplyFilter()
+
   End Sub
 
   Private Sub repoItemRemove_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repbtnUnSelect.ButtonClick
