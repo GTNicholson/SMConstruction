@@ -31,15 +31,6 @@ Public Class clsPurchaseOrderInfo
     End Set
   End Property
 
-  Public Property SupplierContactName As String
-    Get
-      Return pSupplierContactName
-    End Get
-    Set(value As String)
-      pSupplierContactName = value
-    End Set
-  End Property
-
 
 
   Public ReadOnly Property PurchaseOrderItem As dmPurchaseOrderItem

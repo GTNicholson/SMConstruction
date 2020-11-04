@@ -2,19 +2,19 @@
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraBars.Commands.Design
 
 Public Class brwPODelivery : Inherits brwBrowserListBase
 
+  Public Enum eListOption
+    LivePODelivery = 1
+    Received = 2
+    Cancelled = 3
+    All = 4
+  End Enum
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer)
-    MyBase.New(rDBConn, rRTISGlobal, vBrowseID)
-    Me.RTISGlobal = rRTISGlobal
-    Me.DBConn = rDBConn
-    Me.BrowseID = vBrowseID
-    MyBase.BrowseRefreshTracker = New clsBasicBrowseRefreshTracker
-  End Sub
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, ByVal vListOption As Integer)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.LivePODelivery)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
     Me.RTISGlobal = rRTISGlobal
     Me.DBConn = rDBConn
@@ -58,18 +58,60 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
   End Function
 
-
+  Public Overrides Function ListChangeLoadData() As Boolean
+    Static sDataOption As Integer = -1
+    Dim mNewGroup As Integer = 0
+    Dim mOK As Boolean
+    Select Case Me.ListOptionID
+      Case eListOption.LivePODelivery
+        mNewGroup = 1
+      Case eListOption.Received
+        mNewGroup = 2
+      Case eListOption.Cancelled
+        mNewGroup = 3
+      Case eListOption.All
+        mNewGroup = 4
+      Case Else
+        mNewGroup = 0
+    End Select
+    If mNewGroup <> sDataOption Then
+      mNewGroup = sDataOption
+      mOK = LoadData()
+    Else
+      mOK = True
+    End If
+    Return mOK
+  End Function
 
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     Dim mdsoSalesOrder As New dsoPurchasing(Me.DBConn)
     Dim mDataTable As New DataTable
     Dim mOK As Boolean
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
+    Dim mWhere As String = ""
 
     Try
       'Me.gridBrowseList.BeginUpdate()
+      Select Case Me.ListOptionID
+        Case eListOption.LivePODelivery
+          mWhere = String.Format("where GRNumber<>'' and Status not in ({0},{1}) order by DateCreated desc ", CInt(ePODelivery.Cancelled), CInt(ePODelivery.Received))
+          mOK = mdsoSalesOrder.LoadPODeliveryDT(mDataTable, mWhere)
 
-      mOK = mdsoSalesOrder.LoadPODeliveryDT(mDataTable)
+        Case eListOption.Received
+          mWhere = String.Format("where GRNumber<>'' and Status = {0} order by DateCreated desc ", CInt(ePODelivery.Received))
+          mOK = mdsoSalesOrder.LoadPODeliveryDT(mDataTable, mWhere)
+
+
+        Case eListOption.All
+          mWhere = String.Format("where GRNumber<>'' order by DateCreated desc")
+          mOK = mdsoSalesOrder.LoadPODeliveryDT(mDataTable, mWhere)
+
+
+        Case eListOption.Cancelled
+          mWhere = String.Format("where GRNumber<>'' and Status = {0} order by DateCreated desc ", CInt(ePODelivery.Cancelled))
+          mOK = mdsoSalesOrder.LoadPODeliveryDT(mDataTable, mWhere)
+
+      End Select
 
       gridBrowseList.DataSource = mDataTable
       ''Set lookup columns
@@ -140,25 +182,26 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
 
 
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvPODeliveryList.xml")
-      ListTitle = "Lista de Entrada de Inventario"
-      GridEditable = False
-      'PrimaryKeyColumnName = "PrimaryID"
-
-      'gridBrowseList.BeginUpdate()
-
 
       BrowseRefreshTracker = New clsBasicBrowseRefreshTracker(1, clsUpdateNotification.GetInstance)
+
+      mGridView = gridBrowseList.Views(0)
+      mGridView = CType(Me.gridBrowseList.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
 
 
 
       With CType(Me.BrowseForm, frmBrowseList)
         .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
+        .AddListOption("Activas", eListOption.LivePODelivery)
+        .AddListOption("Recibidas", eListOption.Received)
+        .AddListOption("Todas", eListOption.All)
+        .AddListOption("Canceladas", eListOption.Cancelled)
+
       End With
 
-      gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
-      mGridView = gridBrowseList.MainView
+      ''gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
+      ''mGridView = gridBrowseList.MainView
       ''Set lookup columns
 
       ''Set lookup columns
@@ -192,20 +235,51 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
     Dim mDateRep As New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Dim mPersistentRepository1 As New PersistentRepository
 
+    Dim mRepButton As New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Try
 
 
+      Select Case Me.ListOptionID
+        Case eListOption.LivePODelivery
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvPODeliveryList.xml")
+          ListTitle = "Recepción de Artículos: Activas"
 
+
+        Case eListOption.All
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvPODeliveryList.xml")
+          ListTitle = "Recepción de Artículos: Todas"
+
+
+        Case eListOption.Cancelled
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvPODeliveryList.xml")
+          ListTitle = "Recepción de Artículos: Canceladas"
+
+
+        Case eListOption.Received
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvPODeliveryList.xml")
+          ListTitle = "Recepción de Artículos: Recibidas"
+
+      End Select
 
       GridEditable = False
+      'PrimaryKeyColumnName = "PrimaryID"
 
+      gridBrowseList.RepositoryItems.Clear()
+      gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)
       mGridView = gridBrowseList.MainView
 
       If Not gridBrowseList.RepositoryItems.Contains(mDateRep) Then
         gridBrowseList.RepositoryItems.Add(mDateRep)
       End If
 
+      mRepButton.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default
+      mRepButton.Buttons.Item(0).Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph
+      mRepButton.Buttons.Item(0).Caption = "Ver"
 
+      mGridView.Columns("FileExport").ColumnEdit = mRepButton
+
+
+      gridBrowseList.RepositoryItems.Add(mRepButton)
 
       Me.AddButton = eActiveVisibleState.Active
       Me.ViewButton = eActiveVisibleState.Invisible
@@ -216,7 +290,9 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("PurchaseCategory"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
 
 
+
       mOK = True
+      AddHandler mRepButton.ButtonClick, AddressOf Me.OpenPODeliveryDocument
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -226,4 +302,21 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
 
     Return mOK
   End Function
+
+  Public Sub OpenPODeliveryDocument(ByVal sender As System.Object, ByVal e As EventArgs)
+    Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
+    Dim mDocument As String = ""
+    mGridView = gridBrowseList.MainView
+
+    If Not IsDBNull(mGridView.GetFocusedRowCellValue(mGridView.Columns("FileExport"))) Then
+      mDocument = mGridView.GetFocusedRowCellValue(mGridView.Columns("FileExport"))
+
+      If mDocument <> "" Then
+        Process.Start(mDocument)
+      End If
+    End If
+
+
+
+  End Sub
 End Class

@@ -267,6 +267,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -712,7 +713,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.gvSSalesItemsEditor.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvSSalesItemsEditor.Appearance.Row.Options.UseFont = True
         Me.gvSSalesItemsEditor.ColumnPanelRowHeight = 34
-        Me.gvSSalesItemsEditor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn63, Me.GridColumn61, Me.GridColumn52, Me.GridColumn62, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60})
+        Me.gvSSalesItemsEditor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn63, Me.GridColumn61, Me.GridColumn52, Me.GridColumn62, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn64})
         Me.gvSSalesItemsEditor.DetailHeight = 360
         Me.gvSSalesItemsEditor.GridControl = Me.grdSSalesItemsEditor
         Me.gvSSalesItemsEditor.GroupCount = 1
@@ -738,6 +739,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.GridColumn63.Caption = "Area"
         Me.GridColumn63.FieldName = "ProductConstructionTypeDesc"
+        Me.GridColumn63.FieldNameSortGroup = "SalesItemTypeSequence"
         Me.GridColumn63.Name = "GridColumn63"
         Me.GridColumn63.Visible = True
         Me.GridColumn63.VisibleIndex = 1
@@ -2962,6 +2964,11 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.GridView1.Name = "GridView1"
         '
+        'GridColumn64
+        '
+        Me.GridColumn64.Caption = "SalesItemTypeSequence"
+        Me.GridColumn64.Name = "GridColumn64"
+        '
         'frmSalesOrderDetailHouses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3358,4 +3365,5 @@ Partial Class frmSalesOrderDetailHouses
   Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label34 As Label
     Friend WithEvents cboProductCostBook As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

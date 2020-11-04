@@ -241,6 +241,7 @@ Public Class fccPurchaseOrder
         pPurchaseOrder.SubmissionDate = Today
         pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
         pPurchaseOrder.ExchangeRateValue = GetExchangeRate(Today, eCurrency.Cordobas)
+        pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Confirmed
         GetNextPONo()
         SaveObject()
         mOK = True

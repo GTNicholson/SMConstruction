@@ -334,4 +334,20 @@ Public Class dsoProductAdmin : Inherits dsoBase
     End Try
     Return mOK
   End Function
+
+  Public Function LoadStockItemBOM(ByRef rStockItemBOMs As colStockItemBOMs, ByVal vProductID As Integer) As Boolean
+    Dim mdto As New dtoStockItemBOM(DBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+
+      mOK = mdto.LoadStockItemBOMCollection(rStockItemBOMs, vProductID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 End Class

@@ -54,15 +54,15 @@ Partial Class frmPODelivery
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDefaultCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
+        Me.dteReceived = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.txtRefDocSupplier = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.cboPaymentStatus = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.txtReceivedValue = New DevExpress.XtraEditors.TextEdit()
         Me.txtGRNNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtReceivedDate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
@@ -90,11 +90,12 @@ Partial Class frmPODelivery
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
+        CType(Me.dteReceived.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dteReceived.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRefDocSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -380,15 +381,15 @@ Partial Class frmPODelivery
         Me.grpGRN.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpGRN.AppearanceCaption.Options.UseFont = True
         Me.grpGRN.AppearanceCaption.Options.UseForeColor = True
+        Me.grpGRN.Controls.Add(Me.dteReceived)
         Me.grpGRN.Controls.Add(Me.LabelControl11)
         Me.grpGRN.Controls.Add(Me.txtRefDocSupplier)
         Me.grpGRN.Controls.Add(Me.LabelControl10)
-        Me.grpGRN.Controls.Add(Me.cboPaymentStatus)
+        Me.grpGRN.Controls.Add(Me.cboStatus)
         Me.grpGRN.Controls.Add(Me.LabelControl5)
         Me.grpGRN.Controls.Add(Me.txtReceivedValue)
         Me.grpGRN.Controls.Add(Me.txtGRNNumber)
         Me.grpGRN.Controls.Add(Me.LabelControl4)
-        Me.grpGRN.Controls.Add(Me.txtReceivedDate)
         Me.grpGRN.Controls.Add(Me.LabelControl6)
         Me.grpGRN.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Generar # Recep.", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Raise", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, "Edit", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Save", -1)})
         Me.grpGRN.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
@@ -398,11 +399,24 @@ Partial Class frmPODelivery
         Me.grpGRN.TabIndex = 13
         Me.grpGRN.Text = "Información de Recepción de O.C."
         '
+        'dteReceived
+        '
+        Me.dteReceived.EditValue = New Date(2020, 10, 28, 10, 51, 22, 313)
+        Me.dteReceived.Location = New System.Drawing.Point(324, 38)
+        Me.dteReceived.Name = "dteReceived"
+        Me.dteReceived.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteReceived.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteReceived.Properties.DisplayFormat.FormatString = "G"
+        Me.dteReceived.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dteReceived.Properties.Mask.EditMask = "G"
+        Me.dteReceived.Size = New System.Drawing.Size(165, 20)
+        Me.dteReceived.TabIndex = 280
+        '
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl11.Appearance.Options.UseFont = True
-        Me.LabelControl11.Location = New System.Drawing.Point(763, 42)
+        Me.LabelControl11.Location = New System.Drawing.Point(763, 40)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(69, 16)
         Me.LabelControl11.TabIndex = 279
@@ -410,7 +424,7 @@ Partial Class frmPODelivery
         '
         'txtRefDocSupplier
         '
-        Me.txtRefDocSupplier.Location = New System.Drawing.Point(838, 40)
+        Me.txtRefDocSupplier.Location = New System.Drawing.Point(838, 38)
         Me.txtRefDocSupplier.Name = "txtRefDocSupplier"
         Me.txtRefDocSupplier.Properties.ReadOnly = True
         Me.txtRefDocSupplier.Size = New System.Drawing.Size(149, 20)
@@ -420,26 +434,26 @@ Partial Class frmPODelivery
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Location = New System.Drawing.Point(997, 40)
+        Me.LabelControl10.Location = New System.Drawing.Point(1054, 39)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(103, 16)
+        Me.LabelControl10.Size = New System.Drawing.Size(46, 16)
         Me.LabelControl10.TabIndex = 277
-        Me.LabelControl10.Text = "Estado del Pago"
+        Me.LabelControl10.Text = "Estado "
         '
-        'cboPaymentStatus
+        'cboStatus
         '
-        Me.cboPaymentStatus.Location = New System.Drawing.Point(1106, 39)
-        Me.cboPaymentStatus.Name = "cboPaymentStatus"
-        Me.cboPaymentStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboPaymentStatus.Properties.ReadOnly = True
-        Me.cboPaymentStatus.Size = New System.Drawing.Size(115, 20)
-        Me.cboPaymentStatus.TabIndex = 276
+        Me.cboStatus.Location = New System.Drawing.Point(1106, 38)
+        Me.cboStatus.Name = "cboStatus"
+        Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboStatus.Properties.ReadOnly = True
+        Me.cboStatus.Size = New System.Drawing.Size(115, 20)
+        Me.cboStatus.TabIndex = 276
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Location = New System.Drawing.Point(495, 41)
+        Me.LabelControl5.Location = New System.Drawing.Point(495, 40)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(125, 16)
         Me.LabelControl5.TabIndex = 10
@@ -447,7 +461,7 @@ Partial Class frmPODelivery
         '
         'txtReceivedValue
         '
-        Me.txtReceivedValue.Location = New System.Drawing.Point(625, 39)
+        Me.txtReceivedValue.Location = New System.Drawing.Point(625, 38)
         Me.txtReceivedValue.Name = "txtReceivedValue"
         Me.txtReceivedValue.Properties.Mask.EditMask = "n2"
         Me.txtReceivedValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -472,14 +486,6 @@ Partial Class frmPODelivery
         Me.LabelControl4.Size = New System.Drawing.Size(130, 16)
         Me.LabelControl4.TabIndex = 7
         Me.LabelControl4.Text = "Fecha de Recepción"
-        '
-        'txtReceivedDate
-        '
-        Me.txtReceivedDate.Location = New System.Drawing.Point(324, 38)
-        Me.txtReceivedDate.Name = "txtReceivedDate"
-        Me.txtReceivedDate.Properties.ReadOnly = True
-        Me.txtReceivedDate.Size = New System.Drawing.Size(161, 20)
-        Me.txtReceivedDate.TabIndex = 4
         '
         'LabelControl6
         '
@@ -745,11 +751,12 @@ Partial Class frmPODelivery
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
         Me.grpGRN.PerformLayout()
+        CType(Me.dteReceived.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dteReceived.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtRefDocSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtReceivedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
@@ -784,7 +791,6 @@ Partial Class frmPODelivery
     Friend WithEvents grpGRN As DevExpress.XtraEditors.GroupControl
     Friend WithEvents txtGRNNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtReceivedDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents grpMaterialRequirements As DevExpress.XtraEditors.GroupControl
     Friend WithEvents grdPurchaseOrderItemInfo As DevExpress.XtraGrid.GridControl
@@ -808,7 +814,8 @@ Partial Class frmPODelivery
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtExchangeRate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents cboPaymentStatus As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents cboStatus As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtRefDocSupplier As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents dteReceived As DevExpress.XtraEditors.DateEdit
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.Globalization
+Imports System.IO
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
@@ -34,7 +35,7 @@ Public Class frmPODelivery
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItemInfo, gcCategory, mVIs)
 
-    clsDEControlLoading.FillDEComboVI(cboPaymentStatus, clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
+    clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePODelivery)))
 
   End Sub
 
@@ -143,12 +144,12 @@ Public Class frmPODelivery
           With pFormController.PODelivery
             txtGRNNumber.Text = .GRNumber
             txtRefDocSupplier.Text = .RefSupplierDoc
-            txtReceivedDate.Text = .DateCreated
+            dteReceived.Text = .DateCreated
             SetReceivedValueWithCurrencyFormat() ' pFormController.GetReceivedValue()
             gcQtyToProcess.OptionsColumn.ReadOnly = False
 
-            cboPaymentStatus.Properties.ReadOnly = False
-            clsDEControlLoading.SetDECombo(cboPaymentStatus, .PaymentStatus)
+            cboStatus.Properties.ReadOnly = False
+            clsDEControlLoading.SetDECombo(cboStatus, .Status)
 
             If .GRNumber <> "" Then
               grpGRN.CustomHeaderButtons.Item(0).Properties.Enabled = False
@@ -295,8 +296,9 @@ Public Class frmPODelivery
         .PODeliveryValue = pFormController.GetReceivedValue
         .PurchaseOrder = pFormController.PurchaseOrderInfo.PurchaseOrder
         .PurchaseOrderID = pFormController.PurchaseOrderInfo.PurchaseOrder.PurchaseOrderID
-        .PaymentStatus = clsDEControlLoading.GetDEComboValue(cboPaymentStatus)
+        .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
         .RefSupplierDoc = txtRefDocSupplier.Text
+        .DateCreated = dteReceived.EditValue
       End With
     End If
   End Sub
@@ -319,7 +321,15 @@ Public Class frmPODelivery
 
         Case ePOIProcessorOption.eProcess ''//Click on Process Button
 
+          pFormController.CreatePurchaseOrderPDF(pFormController.PurchaseOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PODelivery)
+
           pFormController.ProcessDeliveryQtys(False)
+
+
+          If File.Exists(pFormController.PODelivery.FileExport) Then
+            ''  Process.Start(pFormController.PODelivery.FileExport)
+
+          End If
 
         Case ePOIProcessorOption.eTimberPack
 

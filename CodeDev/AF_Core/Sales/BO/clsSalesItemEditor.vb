@@ -143,6 +143,29 @@ Public Class clsSalesItemEditor
     End Get
   End Property
 
+
+
+  Public ReadOnly Property SalesItemTypeSequence As Integer
+    Get
+      Dim mProductTypes As New colProductConstructionTypes
+      Dim mRetVal As Integer
+      Dim mProductType As dmProductConstructionType
+
+      mProductTypes = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes)
+
+      mProductType = mProductTypes.ItemFromKey(pSalesOrderItem.SalesItemType)
+
+      If mProductType IsNot Nothing Then
+        mRetVal = mProductType.SequenceNo
+      Else
+        mRetVal = -1
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
+
+
 End Class
 
 Public Class colSalesItemEditors : Inherits BindingList(Of clsSalesItemEditor)

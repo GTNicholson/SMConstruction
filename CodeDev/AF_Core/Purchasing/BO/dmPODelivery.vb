@@ -21,6 +21,7 @@ Public Class dmPODelivery : Inherits dmBase
   Private pPurchaseOrder As dmPurchaseOrder
   Private pPODeliveryItems As colPODeliveryItems
   Private pRefSupplierDoc As String
+  Private pPODeliveryPath As String
 
   Public Sub New()
     MyBase.New()
@@ -68,7 +69,7 @@ Public Class dmPODelivery : Inherits dmBase
       .Comment = Comment
       .IsSupplierReturn = IsSupplierReturn
       .RefSupplierDoc = RefSupplierDoc
-      ''.Status = Status
+      .Status = Status
       .ReturnReasonID = ReturnReasonID
       .ActionRequiredID = ActionRequiredID
       .FileExport = FileExport
@@ -96,7 +97,15 @@ Public Class dmPODelivery : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property Status() As Int32
+    Get
+      Return pStatus
+    End Get
+    Set(ByVal value As Int32)
+      If pStatus <> value Then IsDirty = True
+      pStatus = value
+    End Set
+  End Property
   Public Property PaymentStatus() As Int32
     Get
       Return pPaymentStatus

@@ -184,13 +184,13 @@ Public Class dsoPurchasing
     End Try
   End Sub
 
-  Public Function LoadPODeliveryDT(ByRef rTable As DataTable) As Boolean
+  Public Function LoadPODeliveryDT(ByRef rTable As DataTable, ByVal vWhere As String) As Boolean
     Dim mOK As Boolean
     Dim mDataTable As New DataTable
     Dim mSQL As String
     Try
 
-      mSQL = "Select * from vwPODeliveryInfo where GRNumber<>'' order by DateCreated desc"
+      mSQL = "Select * from vwPODeliveryInfo " & vWhere
       If pDBConn.Connect() Then
         mDataTable = pDBConn.CreateDataTable(mSQL)
         If mDataTable Is Nothing Then

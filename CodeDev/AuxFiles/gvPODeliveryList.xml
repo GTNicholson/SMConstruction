@@ -77,7 +77,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="17">
+  <property name="Columns" iskey="true" value="18">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">gcPODeliveryID</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -107,7 +107,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">250</property>
+      <property name="Width">79</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">gcComment</property>
@@ -129,7 +129,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">151</property>
+      <property name="Width">113</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">gcStatus</property>
@@ -151,7 +151,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">336</property>
+      <property name="Width">195</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">gcPONum</property>
@@ -163,7 +163,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">252</property>
+      <property name="Width">156</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">gcRequiredDate</property>
@@ -175,7 +175,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">110</property>
+      <property name="Width">128</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">gcDeliveryAddress</property>
@@ -206,7 +206,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">223</property>
+      <property name="Width">373</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">gcAccountCode</property>
@@ -260,6 +260,19 @@
       <property name="FieldName">PaymentStatusDesc</property>
       <property name="ColumnEditName" />
       <property name="Width">160</property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="Name">GridColumn2</property>
+      <property name="ShowButtonMode">ShowAlways</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Doc. Recepción</property>
+      <property name="FieldName">FileExport</property>
+      <property name="ColumnEditName">repoViewDocument</property>
+      <property name="VisibleIndex">7</property>
+      <property name="Visible">true</property>
+      <property name="Width">438</property>
     </property>
   </property>
   <property name="ViewCaption" />

@@ -15,6 +15,14 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
   End Enum
 
+
+  Public Enum eAddingOption
+    SalesRequirement = 0
+    ToInventory = 1
+
+  End Enum
+
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
 
@@ -22,7 +30,18 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
-    frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
+    Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
+
+
+
+    Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
+      Case eAddingOption.SalesRequirement
+
+        frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
+
+    End Select
+
+
     Return mReloadData
   End Function
 
@@ -164,12 +183,13 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("Agregar OT Interna", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("Agregar OT de Venta", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Activar OT", eListOption.DefaultListOption)
         .AddListOption("Nueva OT", eListOption.DefaultListOption)
         .AddListOption("OT Caducada", eListOption.DefaultListOption)
 
+        .AddAddOption("Agregar para Inventario", eAddingOption.ToInventory)
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
         '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)

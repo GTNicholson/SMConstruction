@@ -174,6 +174,7 @@
     <Compile Include="BIReports\DSO\dsoBIInvoice.vb" />
     <Compile Include="BIReports\DSO\dsoBIPODelivery.vb" />
     <Compile Include="BIReports\DSO\dsoBIPurchaseOrder.vb" />
+    <Compile Include="BIReports\DSO\dsoBIPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBITimeSheet.vb" />
     <Compile Include="BIReports\DSO\dsoBIWoodMatReqInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBIWorkOrder.vb" />
@@ -201,6 +202,7 @@
     <Compile Include="HR\BO\clsPaySlipItem.vb" />
     <Compile Include="HR\BO\dmEmployeeRateOfPay.vb" />
     <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
+    <Compile Include="ProductAdmin\BO\dmStockItemBOM.vb" />
     <Compile Include="ProductAdmin\BO\clsProductBaseInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmFloorOptions.vb" />
     <Compile Include="ProductAdmin\BO\dmFoundationOptions.vb" />
@@ -219,6 +221,7 @@
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
+    <Compile Include="ProductAdmin\DSO\dtoStockItemBOM.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
@@ -246,6 +249,7 @@
     <Compile Include="Purchasing\BO\clsPurchaseOrderInfo.vb" />
     <Compile Include="Purchasing\BO\clsPurchaseOrderItemAllocationInfo.vb" />
     <Compile Include="Purchasing\BO\clsPurchaseOrderItemAllocationProcessor.vb" />
+    <Compile Include="Purchasing\BO\clsPurchaseOrderItemInfo.vb" />
     <Compile Include="Purchasing\BO\clsPurchasingSharedFuncs.vb" />
     <Compile Include="Purchasing\BO\clsStockItemProcessor.vb" />
     <Compile Include="Purchasing\BO\dmCustomerPurchaseOrder.vb" />

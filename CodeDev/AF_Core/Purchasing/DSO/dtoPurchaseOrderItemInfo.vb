@@ -1,27 +1,20 @@
-﻿Imports RTIS.DataLayer
+﻿
+''DTO Definition - vwPurchaseOrder (to vwPurchaseOrder)'Generated from Table:vwPurchaseOrder
+
+Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
 
-Public Class dtoPurchaseorderItemInfo : Inherits dtoBase
-
-  Private pStockItem As dmStockItem
-  Private pPurchaseOrderItemAllocationInfo As clsPurchaseOrderItemAllocationInfo
-
-  Private pMode As eMode
-
-  Public Enum eMode
-    Info = 1
-    Processor = 2
-  End Enum
+Public Class dtoPurchaseOrderItemInfo : Inherits dtoBase
+  Private pPurchaseOrderItemInfo As clsPurchaseOrderItemInfo
 
 
-  Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
+
+  Public Sub New(ByRef rDBSource As clsDBConnBase)
     MyBase.New(rDBSource)
     SetTableDetails()
-    pMode = vMode
   End Sub
-
   Protected Overrides Sub SetTableDetails()
     pTableName = "vwPurchaseOrderItemInfo"
     pKeyFieldName = "PurchaseOrderItemID"
@@ -32,17 +25,16 @@ Public Class dtoPurchaseorderItemInfo : Inherits dtoBase
 
   Overrides Property ObjectKeyFieldValue() As Integer
     Get
-      ObjectKeyFieldValue = pPurchaseOrderItemAllocationInfo.PurchaseOrderItem.PurchaseOrderItemID
-
+      ObjectKeyFieldValue = pPurchaseOrderItemInfo.PurchaseOrderItemID
     End Get
     Set(ByVal value As Integer)
-      ''pStockItemTransactionLogInfo.StockCode = value
+      pPurchaseOrderItemInfo.PurchaseOrderItem.PurchaseOrderItemID = value
     End Set
   End Property
 
   Overrides Property IsDirtyValue() As Boolean
     Get
-      IsDirtyValue = False
+      Return False
     End Get
     Set(ByVal value As Boolean)
     End Set
@@ -50,7 +42,6 @@ Public Class dtoPurchaseorderItemInfo : Inherits dtoBase
 
   Overrides Property RowVersionValue() As ULong
     Get
-      Return Nothing
     End Get
     Set(ByVal value As ULong)
     End Set
@@ -59,40 +50,74 @@ Public Class dtoPurchaseorderItemInfo : Inherits dtoBase
 
   Overrides Sub ObjectToSQLInfo(ByRef rFieldList As String, ByRef rParamList As String, ByRef rParameterValues As System.Data.IDataParameterCollection, ByVal vSetList As Boolean)
 
+
+
   End Sub
 
 
   Overrides Function ReaderToObject(ByRef rDataReader As IDataReader) As Boolean
     Dim mOK As Boolean
     Try
-      If pPurchaseOrderItemAllocationInfo Is Nothing Then SetObjectToNew()
+      If pPurchaseOrderItemInfo Is Nothing Then SetObjectToNew()
+      With pPurchaseOrderItemInfo
+
+        With .PurchaseOrderItem
+
+          .PurchaseOrderItemID = DBReadInt32(rDataReader, "PurchaseOrderItemID")
+          .Description = DBReadString(rDataReader, "Description")
+          .PartNo = DBReadString(rDataReader, "PartNo")
+          .UoM = DBReadInt32(rDataReader, "UoM")
+          .StockCode = DBReadString(rDataReader, "StockCode")
+          .QtyRequired = DBReadDecimal(rDataReader, "QtyRequired")
+          .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
+
+        End With
+
+        With .PurchaseOrderItemAllocation
+          .PurchaseOrderItemAllocationID = DBReadInt32(rDataReader, "PurchaseOrderItemAllocationID")
+          .ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
+
+        End With
 
 
+        With .PurchaseOrder
+          .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
+          .Category = DBReadByte(rDataReader, "PurchaseCategory")
+          .Carriage = DBReadDouble(rDataReader, "Carriage")
+          .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+          .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
+          .MaterialRequirementTypeID = DBReadInt32(rDataReader, "MaterialRequirementTypeID")
+          .RefMatType = DBReadString(rDataReader, "RefMatType")
+          .RequiredDate = DBReadDate(rDataReader, "RequiredDate")
+          .Status = DBReadByte(rDataReader, "Status")
+          .SubmissionDate = DBReadDate(rDataReader, "SubmissionDate")
+          .PONum = DBReadString(rDataReader, "PONum")
+          .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
+        End With
 
-      With pPurchaseOrderItemAllocationInfo.PurchaseOrderItem
+        With .StockItem
+          .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+          .Category = DBReadByte(rDataReader, "Category")
+          .ItemType = DBReadByte(rDataReader, "ItemType")
 
-        .PurchaseOrderItemID = DBReadInt32(rDataReader, "PurchaseOrderItemID")
-        .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
-        .Status = DBReadByte(rDataReader, "Status")
-        .Description = DBReadString(rDataReader, "Description")
-        .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
+        End With
 
-        .QtyRequired = DBReadDecimal(rDataReader, "QtyRequired")
-        .UoM = DBReadInt32(rDataReader, "UoM")
+        With .SalesOrderPhase
+          .SalesOrderPhaseID = DBReadInt32(rDataReader, "SalesOrderPhaseID")
+        End With
 
+        With .SalesOrder
+          .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
+          .ProjectName = DBReadString(rDataReader, "ProjectName")
+          .OrderNo = DBReadString(rDataReader, "OrderNo")
+        End With
+
+        With .Customer
+          .CustomerID = DBReadInt32(rDataReader, "CustomerID")
+          .CompanyName = DBReadString(rDataReader, "CompanyName")
+        End With
 
       End With
-      With pPurchaseOrderItemAllocationInfo.StockItem
-        .StockItemID = DBReadInt32(rDataReader, "StockItemID")
-        .StockCode = DBReadString(rDataReader, "StockCode")
-        .Description = DBReadString(rDataReader, "Description")
-        .Length = DBReadDecimal(rDataReader, "Length")
-        .Width = DBReadDecimal(rDataReader, "Width")
-        .Thickness = DBReadDecimal(rDataReader, "Thickness")
-        .Category = DBReadByte(rDataReader, "Category")
-      End With
-
-
       mOK = True
     Catch Ex As Exception
       mOK = False
@@ -107,29 +132,33 @@ Public Class dtoPurchaseorderItemInfo : Inherits dtoBase
 
 
   Protected Overrides Function SetObjectToNew() As Object
-    Select Case pMode
-      Case eMode.Info
-        pPurchaseOrderItemAllocationInfo = New clsPurchaseOrderItemAllocationInfo
-      Case eMode.Processor
-        pPurchaseOrderItemAllocationInfo = New clsPurchaseOrderItemAllocationProcessor(New dmPurchaseOrderItemAllocation)
-    End Select
-
-
-    Return pPurchaseOrderItemAllocationInfo
+    pPurchaseOrderItemInfo = New clsPurchaseOrderItemInfo
+    Return pPurchaseOrderItemInfo
 
   End Function
 
 
-  Public Function LoadPurchaseOrderProcessorsByWhere(ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByVal vWhere As String) As Boolean
-    Dim mParams As New Hashtable
+  Public Function LoadPODeliveryItemInfoByID(ByRef rPurchaseOrderItemInfo As clsPurchaseOrderItemInfo, ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
-
-    mOK = MyBase.LoadCollection(rPurchaseOrderProcessors, mParams, "PurchaseOrderItemID", vWhere)
+    mOK = LoadObject(vPrimaryKeyID)
+    If mOK Then
+      rPurchaseOrderItemInfo = pPurchaseOrderItemInfo
+    Else
+      rPurchaseOrderItemInfo = Nothing
+    End If
+    pPurchaseOrderItemInfo = Nothing
     Return mOK
   End Function
 
 
+  Public Function LoadPODeliveryItemInfoCollectionByWhere(ByRef rPurchaseOrderItemInfos As colPurchaseOrderItemInfos, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rPurchaseOrderItemInfos, mParams, "PurchaseOrderItemID", vWhere)
+    Return mOK
+  End Function
 
 
 End Class
+
 

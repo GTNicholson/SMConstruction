@@ -7,6 +7,7 @@ Public Class dmProductStructure : Inherits dmProductBase
   Private pProductStructureID As Int32
   Private pProductStructureTypeID As Int32
   Private pNotes As String
+  Private pStockItemBOMs As colStockItemBOMs
 
   Public Sub New()
     MyBase.New()
@@ -14,6 +15,7 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pStockItemBOMs = New colStockItemBOMs
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -22,6 +24,7 @@ Public Class dmProductStructure : Inherits dmProductBase
   End Sub
 
   Protected Overrides Sub Finalize()
+    pStockItemBOMs = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -29,6 +32,8 @@ Public Class dmProductStructure : Inherits dmProductBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+      If mAnyDirty = False Then mAnyDirty = pStockItemBOMs.IsDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -36,6 +41,7 @@ Public Class dmProductStructure : Inherits dmProductBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     ProductStructureID = 0
+    pStockItemBOMs = Nothing
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -47,6 +53,7 @@ Public Class dmProductStructure : Inherits dmProductBase
       .Notes = Notes
       .SubItemType = SubItemType
       .DrawingFileName = DrawingFileName
+      .StockItemBOMs = StockItemBOMs
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -120,6 +127,15 @@ Public Class dmProductStructure : Inherits dmProductBase
     End Get
     Set(value As Integer)
       Throw New NotImplementedException()
+    End Set
+  End Property
+
+  Public Overrides Property StockItemBOMs As colStockItemBOMs
+    Get
+      Return pStockItemBOMs
+    End Get
+    Set(value As colStockItemBOMs)
+      pStockItemBOMs = value
     End Set
   End Property
 End Class

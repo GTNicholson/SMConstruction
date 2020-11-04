@@ -556,15 +556,47 @@ Public Class fccSalesOrderDetailHouses
     Dim mProductTypes As New colProductConstructionTypes
     Dim mProductSubTypes As New colProductConstructionSubTypes
     Dim mRefList As colRefLists = AppRTISGlobal.GetInstance.RefLists
+    Dim mMatchingSIs As colSalesOrderItems
+    Dim mCount As Integer
 
     mProductTypes = CType(mRefList.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes)
     mProductSubTypes = CType(mRefList.RefIList(appRefLists.ProductConstructionSubType), colProductConstructionSubTypes)
 
-    For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-      Dim mstring As String = mProductTypes.ItemFromKey(mSalesOrderItem.SalesItemType).SequenceNo & "." & mProductSubTypes.ItemFromKey(mSalesOrderItem.SalesSubItemType).SequenceNo
-      mSalesOrderItem.ItemNumber = mstring
+    ''For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+    ''  Dim mstring As String = mProductTypes.ItemFromKey(mSalesOrderItem.SalesItemType).SequenceNo & "." & mProductSubTypes.ItemFromKey(mSalesOrderItem.SalesSubItemType).SequenceNo
+    ''  mSalesOrderItem.ItemNumber = mstring
 
+    ''Next
+
+
+    For Each mPCT As dmProductConstructionType In mProductTypes
+      For Each mPCTST As dmProductConstructionSubType In mProductSubTypes
+        mMatchingSIs = GetProductosFromProductionConstructionTypeSubType(mPCT.ProductConstructionTypeID, mPCTST.ProductConstructionSubTypeID)
+        If mMatchingSIs.Count > 1 Then
+          mCount = 97
+          For Each mSI As dmSalesOrderItem In mMatchingSIs
+            mSI.ItemNumber = mSI.ItemNumber & Chr(mCount)
+            mCount += 1
+            pSalesOrder.SalesOrderItems.ItemFromKey(mSI.SalesOrderItemID).ItemNumber = mSI.ItemNumber
+          Next
+        End If
+      Next
     Next
 
+
+
   End Sub
+
+  Public Function GetProductosFromProductionConstructionTypeSubType(ByVal vPCT As Integer, ByVal vPCTST As Integer) As colSalesOrderItems
+    Dim mRetVal As New colSalesOrderItems
+
+    For Each mSI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+
+      If mSI.SalesItemType = vPCT And mSI.SalesSubItemType = vPCTST Then
+        mRetVal.Add(mSI)
+      End If
+
+    Next
+    Return mRetVal
+  End Function
 End Class

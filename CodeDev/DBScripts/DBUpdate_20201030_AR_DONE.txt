@@ -1,0 +1,104 @@
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+SupplierContactTel,
+MaterialRequirementTypeID,
+PO.DefaultCurrency,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left JOIN PurchaseOrderAllocation POA ON POA.PurchaseOrderID=po.PurchaseOrderID
+
+where po.Status<>6
+GO
+
+create VIEW vwPurchaseOrderItemInfo
+AS
+
+select  
+POI.PurchaseOrderItemID,
+POI.Description,
+POI.PartNo,
+POI.UoM,
+POI.StockCode,
+poi.QtyRequired,
+POI.UnitPrice,
+
+POIA.PurchaseOrderItemAllocationID,
+POIA.ReceivedQty,
+
+PO.PurchaseOrderID,
+PO.Category 'PurchaseCategory',
+ISNULL(PO.Carriage,0) 'Carriage',
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+PO.MaterialRequirementTypeID,
+PO.RefMatType,
+PO.RequiredDate,
+PO.Status,
+PO.SubmissionDate,
+PO.PONum,
+PO.PaymentStatus,
+
+SI.StockItemID,
+SI.Category,
+SI.ItemType,
+
+
+SOP.SalesOrderPhaseID,
+
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+
+cu.CustomerID,
+CU.CompanyName
+
+from PurchaseOrderItem POI
+left JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemID=POI.PurchaseOrderItemID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN StockItem SI on SI.StockItemID = POI.StockItemID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+LEFT JOIN Customer CU on CU.CustomerID=so.CustomerID
+where po.Status<>6
+GO
+
+

@@ -144,6 +144,21 @@ Public Class fccProductAdmin
 
   End Sub
 
+  Public Sub LoadStockItemBOM()
+    Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
+    Try
+      pCurrentProductBase.StockItemBOMs.Clear()
+
+      mdsoProductAdmin.LoadStockItemBOM(pCurrentProductBase.StockItemBOMs, pCurrentProductBase.ID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    Finally
+      mdsoProductAdmin = Nothing
+    End Try
+
+  End Sub
+
   Public Sub LoadMainCollectionByStockOptionFilter(ByVal vWhere As String)
     Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
     Try
@@ -169,6 +184,8 @@ Public Class fccProductAdmin
 
 
           mdsoStock.SaveProductBase(pCurrentProductInfo)
+
+
 
           mdsoStock = Nothing
         End If
@@ -435,4 +452,42 @@ Public Class fccProductAdmin
 
     Return mRetVal
   End Function
+
+  Public Sub RefreshStockItemBOMs(ByRef rStockItems As List(Of dmStockItem))
+    Dim mStockItemBOM As dmStockItemBOM
+    Dim mProduct As dmProductBase
+    Dim mFound As Boolean
+
+    mProduct = pCurrentProductBase
+
+    For Each mSI As dmStockItem In rStockItems
+      If mProduct.StockItemBOMs.IndexFromStockItemID(mSI.StockItemID) = -1 Then
+        mStockItemBOM = New dmStockItemBOM
+
+        mStockItemBOM.ProductID = pCurrentProductBase.ID
+        mStockItemBOM.StockItemID = mSI.StockItemID
+        mStockItemBOM.Description = mSI.Description
+        mStockItemBOM.StockCode = mSI.StockCode
+        mProduct.StockItemBOMs.Add(mStockItemBOM)
+      End If
+    Next
+
+    For mLoop As Integer = mProduct.StockItemBOMs.Count - 1 To 0 Step -1
+      mFound = False
+      mStockItemBOM = mProduct.StockItemBOMs(mLoop)
+      If mStockItemBOM.StockItemID <> 0 Then '// this leaves the manual ones alone
+        For Each mSI As dmStockItem In rStockItems
+          If mStockItemBOM.StockItemID = mSI.StockItemID Then
+            mFound = True
+            Exit For
+          End If
+        Next
+        If mFound = False Then
+          mProduct.StockItemBOMs.RemoveAt(mLoop)
+        End If
+      End If
+    Next
+
+
+  End Sub
 End Class
