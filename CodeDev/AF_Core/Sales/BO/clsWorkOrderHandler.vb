@@ -18,4 +18,15 @@ Public Class clsWorkOrderHandler
     Return mRetVal
   End Function
 
+  Public Shared Function CreateFromSalesOrderPhaseItems(ByRef rSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo)) As dmWorkOrder
+    Dim mRetVal As dmWorkOrder
+
+    mRetVal = New dmWorkOrder
+    mRetVal.DateCreated = Now.Date
+    mRetVal.Product = clsProductSharedFuncs.NewProductInstance(mRetVal.ProductTypeID)
+
+    Return mRetVal
+  End Function
+
+
 End Class

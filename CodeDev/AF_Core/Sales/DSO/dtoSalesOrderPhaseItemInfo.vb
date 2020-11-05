@@ -78,6 +78,8 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
 
       With pSalesOrderPhaseItemInfo.SalesOrderItem
         .SalesOrderItemID = DBReadInt32(rDataReader, "SalesOrderItemID")
+        .ProductTypeID = DBReadByte(rDataReader, "ProductTypeID")
+        .ProductID = DBReadInt32(rDataReader, "ProductID")
         .Description = DBReadString(rDataReader, "Description")
         .ItemNumber = DBReadString(rDataReader, "ItemNumber")
       End With
@@ -86,6 +88,11 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
       With pSalesOrderPhaseItemInfo.Customer
         .CompanyName = DBReadString(rDataReader, "CompanyName")
       End With
+
+      With pSalesOrderPhaseItemInfo.WorkOrder
+        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+      End With
+
       mOK = True
     Catch Ex As Exception
       mOK = False

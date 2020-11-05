@@ -189,6 +189,7 @@
     <Compile Include="Email\BO\dmEmailTemplate.vb" />
     <Compile Include="Email\DTO\dtoEmailTemplate.vb" />
     <Compile Include="ERPStock\clsDecValueTracker.vb" />
+    <Compile Include="ERPStock\clsProductRegistry.vb" />
     <Compile Include="ERPStock\clsStockItemRegistryComp.vb" />
     <Compile Include="ERPStock\clsStockItemRegistryBase.vb" />
     <Compile Include="ERPStock\intdtoStockItem.vb" />

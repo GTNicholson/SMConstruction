@@ -515,6 +515,8 @@ Public Class appInit
 
     rRTISGlobal.StockItemRegistry.LoadInitial()
 
+    rRTISGlobal.ProductRegistry.LoadInitial()
+
     rRTISGlobal.EmailSettings = New RTIS.EmailLib.clsEmailSettings
     mAllOK = mdsoGlobal.LoadEmailSettings(rRTISGlobal.EmailSettings, rRTISGlobal.EmailSettingsID)
 

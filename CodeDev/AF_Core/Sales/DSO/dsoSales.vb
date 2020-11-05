@@ -970,7 +970,7 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
-  Public Function LoadSalesOrderPhaseItemInfos(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadSalesOrderPhaseItemInfos(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByVal vWhere As String, ByRef rProductRegistry As clsProductRegistry) As Boolean
     Dim mdto As dtoSalesOrderPhaseItemInfo
     Dim mRetVal As Boolean
 
@@ -979,6 +979,10 @@ Public Class dsoSales : Inherits dsoBase
       pDBConn.Connect()
       mdto = New dtoSalesOrderPhaseItemInfo(pDBConn)
       mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItemInfos, vWhere)
+
+      For Each mSOPII As clsSalesOrderPhaseItemInfo In rSalesOrderPhaseItemInfos
+        mSOPII.Product = rProductRegistry.GetProductFromTypeAndID(mSOPII.SalesOrderItem.ProductTypeID, mSOPII.SalesOrderItem.ProductID)
+      Next
 
       mRetVal = True
     Catch ex As Exception

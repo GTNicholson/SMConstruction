@@ -35,6 +35,9 @@ Public Class dsoAppRefLists
         'Load the Stock Item Regestry
         AppRTISGlobal.GetInstance.StockItemRegistryInitialise(pDBConn)
 
+        'Load the Product Registry
+        AppRTISGlobal.GetInstance.ProductRegistryInitialise(pDBConn)
+
       Else
         mAllOK = False
       End If

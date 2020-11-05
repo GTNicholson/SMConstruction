@@ -18,12 +18,18 @@ Public Class frmWorkOrderDetailConstruction
   Private pLoadError As Boolean
   Private pIsActive As Boolean
   Private pFormController As fccWorkOrderDetailConstruction
+  Private pInitialSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo)
   Public ExitMode As Windows.Forms.DialogResult
-  Public IsInternal As New Boolean
-  Public pSOI As dmSalesOrderItem
   Public pDBCon As RTIS.DataLayer.clsDBConnBase
   Public pAppRTISGlobal As AppRTISGlobal
-  Public pProductType As eProductType
+
+  Private pCreateMode As eCreateMode
+
+  Private Enum eCreateMode
+    None = 0
+    SalesRequirements = 1
+    Inventory = 2
+  End Enum
 
   Private Enum eMaterialRequirementsButtons
     Copy = 1
@@ -47,7 +53,6 @@ Public Class frmWorkOrderDetailConstruction
     Me.pMySharedIndex = sFormIndex
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     sActiveForms.Add(Me, Me.pMySharedIndex.ToString)
-    pSOI = New dmSalesOrderItem()
   End Sub
 
   Public Property DBCon As clsDBConnBase
@@ -79,7 +84,7 @@ Public Class frmWorkOrderDetailConstruction
     End If
     If mfrm Is Nothing Then
       mfrm = New frmWorkOrderDetailConstruction
-      mfrm.pFormController = New fccWorkOrderDetailConstruction(rDBConn, rRTISGlobal, vIsInternal)
+      mfrm.pFormController = New fccWorkOrderDetailConstruction(rDBConn, rRTISGlobal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
       mfrm.MdiParent = rParentMDI
       mfrm.DBCon = rDBConn
@@ -92,12 +97,34 @@ Public Class frmWorkOrderDetailConstruction
 
   End Sub
 
+  Public Shared Sub OpenFormMDINewSalesRequirements(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByRef rSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo))
+    Dim mfrm As frmWorkOrderDetailConstruction = Nothing
+
+    If vPrimaryKeyID <> 0 Then
+      mfrm = GetFormIfLoaded(vPrimaryKeyID)
+    End If
+    If mfrm Is Nothing Then
+      mfrm = New frmWorkOrderDetailConstruction
+      mfrm.pFormController = New fccWorkOrderDetailConstruction(rDBConn, rRTISGlobal)
+      mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
+      mfrm.MdiParent = rParentMDI
+      mfrm.DBCon = rDBConn
+      mfrm.RTISGlobal = rRTISGlobal
+      mfrm.pCreateMode = eCreateMode.SalesRequirements
+      mfrm.pInitialSalesOrderPhaseItems = rSalesOrderPhaseItems
+      mfrm.Show()
+    Else
+      mfrm.Focus()
+    End If
+
+  End Sub
+
   Public Shared Sub OpenFormModalWithObjects(ByRef rWorkOrder As dmWorkOrder, ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
     Dim mfrm As frmWorkOrderDetailConstruction = Nothing
 
 
     mfrm = New frmWorkOrderDetailConstruction
-    mfrm.pFormController = New fccWorkOrderDetailConstruction(rDBConn, rRTISGlobal, vIsInternal)
+    mfrm.pFormController = New fccWorkOrderDetailConstruction(rDBConn, rRTISGlobal)
     mfrm.pFormController.WorkOrder = rWorkOrder
     mfrm.pFormController.SalesOrder = rSalesOrder
     mfrm.FormController.PrimaryKeyID = rWorkOrder.WorkOrderID
@@ -142,7 +169,14 @@ Public Class frmWorkOrderDetailConstruction
 
     Try
 
-      pFormController.LoadObjects()
+      Select Case pCreateMode
+        Case eCreateMode.None
+          pFormController.LoadObjects()
+        Case eCreateMode.SalesRequirements
+          pFormController.CreateFromSalesOrderPhaseItems(pInitialSalesOrderPhaseItems)
+        Case eCreateMode.Inventory
+      End Select
+
       pFormController.LoadRefData()
 
       ConfigureFileControl()

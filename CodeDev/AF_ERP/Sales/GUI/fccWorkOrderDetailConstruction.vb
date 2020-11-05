@@ -9,7 +9,6 @@ Public Class fccWorkOrderDetailConstruction
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
   Private pTimeSheetEntrys As colTimeSheetEntrys
-  Private pIsInternal As Boolean
   Private pCurrentProduct As dmProductBase
   Private pSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
   Private pUsedItems As List(Of Integer)
@@ -17,11 +16,10 @@ Public Class fccWorkOrderDetailConstruction
   Private pWorkOrderAllocationEditors As colWorkOrderAllocationEditors
   Private pProductType As eProductType
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsInternal As Boolean)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pTimeSheetEntrys = New colTimeSheetEntrys
-    pIsInternal = vIsInternal
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
     pUsedItems = New List(Of Integer)
     pSalesOrderPhaseItems = New colSalesOrderPhaseItems
@@ -159,15 +157,14 @@ Public Class fccWorkOrderDetailConstruction
       End If
 
       '// if it is a salesorder, check that the remaining details have been loaded and assigned
-      If pIsInternal = False Then
-        If pSalesOrder Is Nothing Then
-          mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
+      If pSalesOrder Is Nothing Then
+        mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
 
-          pSalesOrder = New dmSalesOrder
-          mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
+        pSalesOrder = New dmSalesOrder
+        mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
 
-        End If
-        For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+      End If
+      For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
           For Each mWO As dmWorkOrder In mSOI.WorkOrders
             If mWO.WorkOrderID = pPrimaryKeyID Then
               pWorkOrder = mWO
@@ -180,13 +177,16 @@ Public Class fccWorkOrderDetailConstruction
 
         '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
         pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
-      End If
 
       mdsoHR = New dsoHR(pDBConn)
       pTimeSheetEntrys = New colTimeSheetEntrys
       mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)
 
     End If
+  End Sub
+
+  Public Sub CreateFromSalesOrderPhaseItems(ByRef rSalesOrderPhaseItemInfos As List(Of clsSalesOrderPhaseItemInfo))
+    clsWorkOrderHandler.CreateFromSalesOrderPhaseItems(rSalesOrderPhaseItemInfos)
   End Sub
 
   Public Function SaveObjects() As Boolean
@@ -572,7 +572,7 @@ Public Class fccWorkOrderDetailConstruction
       mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
 
       mdsoSales = New dsoSales(pDBConn)
-      mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere)
+      mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
 
       For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
         mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)

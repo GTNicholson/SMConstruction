@@ -5,6 +5,8 @@
   Private pSalesOrderItem As dmSalesOrderItem
   Private pCustomer As dmCustomer
   Private pSalesItemAssembly As dmSalesItemAssembly
+  Private pProduct As dmProductBase
+  Private pWorkOrder As dmWorkOrder
 
   Public Sub New()
     pSalesOrderPhaseItem = New dmSalesOrderPhaseItem
@@ -13,6 +15,7 @@
     pSalesOrderItem = New dmSalesOrderItem
     pCustomer = New dmCustomer
     pSalesItemAssembly = New dmSalesItemAssembly
+    pWorkOrder = New dmWorkOrder
   End Sub
 
 
@@ -67,6 +70,24 @@
     End Get
     Set(value As dmCustomer)
       pCustomer = value
+    End Set
+  End Property
+
+  Public Property Product As dmProductBase
+    Get
+      Return pProduct
+    End Get
+    Set(value As dmProductBase)
+      pProduct = value
+    End Set
+  End Property
+
+  Public Property WorkOrder As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+    Set(value As dmWorkOrder)
+      pWorkOrder = value
     End Set
   End Property
 
@@ -163,6 +184,16 @@
   Public ReadOnly Property ItemNumber As String
     Get
       Return pSalesOrderItem.ItemNumber
+    End Get
+  End Property
+
+  Public ReadOnly Property ProductCode As String
+    Get
+      Dim mRetVal As String = ""
+      If pProduct IsNot Nothing Then
+        mRetVal = pProduct.Code
+      End If
+      Return mRetVal
     End Get
   End Property
 

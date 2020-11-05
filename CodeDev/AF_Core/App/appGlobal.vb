@@ -29,6 +29,8 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
 
   Private pStockItemRegistry As clsStockItemRegistryBase
 
+  Private pProductRegistry As clsProductRegistry
+
 
   Public Sub ProcessUnhandledException(ByRef rException As Exception, ByVal rLogError As Boolean, ByVal rDisplayError As Boolean)
     If rDisplayError Then
@@ -96,6 +98,15 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     End Get
   End Property
 
+  Public Sub ProductRegistryInitialise(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
+    pProductRegistry = New clsProductRegistry(rDBConn)
+  End Sub
+
+  Public ReadOnly Property ProductRegistry As clsProductRegistry
+    Get
+      Return pProductRegistry
+    End Get
+  End Property
 
   Public Property EmailSettings As RTIS.EmailLib.clsEmailSettings
     Get

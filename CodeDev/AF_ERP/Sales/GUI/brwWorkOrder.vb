@@ -33,13 +33,6 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
 
 
 
-    Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
-      Case eAddingOption.SalesRequirement
-
-        frmWorkOrderDetailConstruction.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, False, eProductType.StructureAF)
-
-    End Select
-
 
 
     Return mReloadData

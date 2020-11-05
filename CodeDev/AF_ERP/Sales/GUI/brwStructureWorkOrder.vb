@@ -31,12 +31,26 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
+    Dim mSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo)
+    Dim mSOPIPicker As clsPickerSalesOrderPhaseItem
+    Dim mSOIPs As colSalesOrderPhaseItemInfos
+    Dim mdso As dsoSales
 
 
 
     Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
       Case eAddingOption.SalesRequirement
+        Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
+          Case eAddingOption.SalesRequirement
+            mdso = New dsoSales(pDBConn)
+            mSOIPs = New colSalesOrderPhaseItemInfos
+            mdso.LoadSalesOrderPhaseItemInfos(mSOIPs, "", AppRTISGlobal.GetInstance.ProductRegistry)
+            mSOPIPicker = New clsPickerSalesOrderPhaseItem(mSOIPs, pDBConn)
+            mSalesOrderPhaseItems = frmSalesOrderPhaseItemPickerMulti.OpenPickerMulti(mSOPIPicker, True, pDBConn, pRTISGlobal)
 
+            frmWorkOrderDetailConstruction.OpenFormMDINewSalesRequirements(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, mSalesOrderPhaseItems)
+
+        End Select
         frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
 
     End Select
