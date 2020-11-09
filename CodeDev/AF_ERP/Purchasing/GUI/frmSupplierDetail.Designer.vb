@@ -134,6 +134,7 @@ Partial Class frmSupplierDetail
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1419, 33)
+        Me.barDockControlRight.Manager = Nothing
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 488)
         '
         'grdSupplierContact
@@ -426,7 +427,7 @@ Partial Class frmSupplierDetail
         Me.cboBankName.MenuManager = Me.BarManager2
         Me.cboBankName.Name = "cboBankName"
         Me.cboBankName.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboBankName.Properties.Items.AddRange(New Object() {"BAC", "BANCENTRO", "BANPRO", "BDF", "FICOSA", "LAFISE", ""})
+        Me.cboBankName.Properties.Items.AddRange(New Object() {"BAC", "BANCENTRO", "BANPRO", "BDF", "FICOSA", "LAFISE", "INTERBANCO GUATEMALA"})
         Me.cboBankName.Size = New System.Drawing.Size(150, 20)
         Me.cboBankName.TabIndex = 33
         '

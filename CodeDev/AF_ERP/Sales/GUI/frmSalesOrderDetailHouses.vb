@@ -473,7 +473,7 @@ Public Class frmSalesOrderDetailHouses
           If mWOI IsNot Nothing Then
             UpdateObjects()
             pFormController.SaveObjects()
-            frmWorkOrderDetail.OpenFormModalWithObjects(mWOI.WorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance, False)
+            ''frmWorkOrderDetail.OpenFormModalWithObjects(mWOI.WorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance, False)
             '// in one work order form it is possible
             pFormController.RefreshWorkOrderNos(mWOI.WorkOrder.ParentSalesOrderItem)
             RefreshControls()
@@ -1391,8 +1391,15 @@ Public Class frmSalesOrderDetailHouses
 
 
       Case eOrderItemGroupButtonTags.GenerateSequence
-        pFormController.GenerateSequence()
+
+        For Each mSalesOrderHouse In pFormController.SalesOrder.SalesOrderHouses
+
+          pFormController.GenerateSequenceBySalesHouse(mSalesOrderHouse.SalesOrderHouseID)
+
+
+        Next
         pFormController.RefreshCurrentSalesItemEditors()
+
     End Select
 
 

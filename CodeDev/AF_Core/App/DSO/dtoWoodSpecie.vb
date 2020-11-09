@@ -60,6 +60,8 @@ Public Class dtoWoodSpecie : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SpanishDescription", StringToDBValue(.SpanishDescription))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Density", .Density)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PriceBracket", .PriceBracket)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Abbreviation", StringToDBValue(.Abbreviation))
+
     End With
 
   End Sub
@@ -75,6 +77,8 @@ Public Class dtoWoodSpecie : Inherits dtoBase
         .SpanishDescription = DBReadString(rDataReader, "SpanishDescription")
         .Density = DBReadDouble(rDataReader, "Density")
         .PriceBracket = DBReadByte(rDataReader, "PriceBracket")
+        .Abbreviation = DBReadString(rDataReader, "Abbreviation")
+
         pWoodSpecie.IsDirty = False
       End With
       mOK = True

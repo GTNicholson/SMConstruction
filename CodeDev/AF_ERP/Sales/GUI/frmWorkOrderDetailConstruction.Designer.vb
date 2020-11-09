@@ -575,7 +575,7 @@ Partial Class frmWorkOrderDetailConstruction
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Cliente"
-        Me.GridColumn20.FieldName = "CompanyName"
+        Me.GridColumn20.FieldName = "ClientName"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 4

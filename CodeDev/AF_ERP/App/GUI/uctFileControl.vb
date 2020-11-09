@@ -17,13 +17,13 @@ Public Class uctFileControl
   End Property
 
   Public Sub LoadControls()
-    pUserController.SynchroniseFiles()
-    grdFiles.DataSource = pUserController.FileTrackers
+    ''pUserController.SynchroniseFiles()
+    ''grdFiles.DataSource = pUserController.FileTrackers
   End Sub
 
   Public Sub RefreshControls()
-    gvFiles.RefreshData()
-    bbtnOpenFolder.Caption = pUserController.Directory
+    ''gvFiles.RefreshData()
+    ''bbtnOpenFolder.Caption = pUserController.Directory
   End Sub
 
   Public Sub UpdateObject()

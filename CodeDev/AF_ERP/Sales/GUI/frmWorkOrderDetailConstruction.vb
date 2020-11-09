@@ -173,13 +173,13 @@ Public Class frmWorkOrderDetailConstruction
         Case eCreateMode.None
           pFormController.LoadObjects()
         Case eCreateMode.SalesRequirements
-          pFormController.CreateFromSalesOrderPhaseItems(pInitialSalesOrderPhaseItems)
+          pFormController.CreateFromSalesOrderPhaseItems(pInitialSalesOrderPhaseItems, eProductType.StructureAF)
         Case eCreateMode.Inventory
       End Select
 
       pFormController.LoadRefData()
 
-      ConfigureFileControl()
+      ''ConfigureFileControl()
       LoadCombos()
       grdTimeSheetEntries.DataSource = pFormController.TimeSheetEntrys
       grdWorkOrderAllocationsInfos.DataSource = pFormController.WorkOrderAllocationEditors
@@ -215,17 +215,21 @@ Public Class frmWorkOrderDetailConstruction
   Private Sub ConfigureFileControl()
     Dim mFileDirectory As String
 
+    If pFormController.WorkOrder IsNot Nothing Then
 
-    If pFormController.WorkOrder.isInternal Then
-      UctFileControl1.Enabled = False
-    Else
-      mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+      If pFormController.WorkOrder.isInternal Then
+        UctFileControl1.Enabled = False
+      Else
+        ''mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
 
-      UctFileControl1.UserController = New uccFileControl(Me)
-      UctFileControl1.UserController.Directory = mFileDirectory
-      UctFileControl1.UserController.FileTrackers = pFormController.WorkOrder.WOFiles
-      UctFileControl1.UserController.ConfigSystemWatcher()
+        UctFileControl1.UserController = New uccFileControl(Me)
+        UctFileControl1.UserController.Directory = mFileDirectory
+        UctFileControl1.UserController.FileTrackers = pFormController.WorkOrder.WOFiles
+        UctFileControl1.UserController.ConfigSystemWatcher()
+      End If
+
     End If
+
 
   End Sub
 
@@ -337,58 +341,61 @@ Public Class frmWorkOrderDetailConstruction
     Dim mIsActive As Boolean
     mIsActive = pIsActive
 
-    With pFormController.WorkOrder
-      lblWorkOrderID.Text = "ID:" & .WorkOrderID.ToString("00000")
-      If .WorkOrderNo = "" Then
-        Me.Text = "O.T. Nuevo"
-      Else
-        Me.Text = "O.T. " & .WorkOrderNo
-      End If
+    If pFormController.WorkOrder IsNot Nothing Then
+      With pFormController.WorkOrder
+        lblWorkOrderID.Text = "ID:" & .WorkOrderID.ToString("00000")
+        If .WorkOrderNo = "" Then
+          Me.Text = "O.T. Nuevo"
+        Else
+          Me.Text = "O.T. " & .WorkOrderNo
+        End If
 
 
-      txtQuantity.Text = .Quantity
+        txtQuantity.Text = .Quantity
 
-      btnWorkOrderNumber.EditValue = .WorkOrderNo
-      txtDescription.Text = .Description
-
-
-      clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
-      ''clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
-      clsDEControlLoading.SetDECombo(cboFurnitureCategory, .FurnitureCategoryID)
+        btnWorkOrderNumber.EditValue = .WorkOrderNo
+        txtDescription.Text = .Description
 
 
-      ''ceMaquinado.Checked = .Machining
-      ''ceCostura.Checked = .Upholstery
-      ''ceEnsamble.Checked = .Assembley
-      ''ceLija.Checked = .Sanding
-      ''ceMetal.Checked = .MetalWork
-      ''ceSub.Checked = .SubContract
-      ''cePintura.Checked = .Painting
-
-      btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
+        clsDEControlLoading.SetDECombo(cboProductType, .ProductTypeID)
+        ''clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
+        clsDEControlLoading.SetDECombo(cboFurnitureCategory, .FurnitureCategoryID)
 
 
-      RefreshProductControls()
+        ''ceMaquinado.Checked = .Machining
+        ''ceCostura.Checked = .Upholstery
+        ''ceEnsamble.Checked = .Assembley
+        ''ceLija.Checked = .Sanding
+        ''ceMetal.Checked = .MetalWork
+        ''ceSub.Checked = .SubContract
+        ''cePintura.Checked = .Painting
 
-      If pFormController.WorkOrder.isInternal = False Then
-        UctFileControl1.LoadControls()
-        UctFileControl1.RefreshControls()
-        With pFormController.SalesOrderItem
-        End With
-      End If
+        btneWorkOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, eFileType.PDF)
 
-      If .Product IsNot Nothing Then
-        Dim mProductBase As dmProductBase
 
-        mProductBase = TryCast(.Product, dmProductBase)
-        If mProductBase IsNot Nothing Then
-          bteProductPicker.Text = mProductBase.Description
+        RefreshProductControls()
+
+        If pFormController.WorkOrder.isInternal = False Then
+          UctFileControl1.LoadControls()
+          UctFileControl1.RefreshControls()
+          With pFormController.SalesOrderItem
+          End With
+        End If
+
+        If .Product IsNot Nothing Then
+          Dim mProductBase As dmProductBase
+
+          mProductBase = TryCast(.Product, dmProductBase)
+          If mProductBase IsNot Nothing Then
+            bteProductPicker.Text = mProductBase.Description
+
+          End If
 
         End If
 
-      End If
+      End With
+    End If
 
-    End With
 
     pIsActive = mIsActive
   End Sub
@@ -427,30 +434,32 @@ Public Class frmWorkOrderDetailConstruction
       mActiveControl.Focus()
     End If
 
+    If pFormController.WorkOrder IsNot Nothing Then
+      With pFormController.WorkOrder
+        ''.Quantity = txtQuantity.Text
+        .Description = txtDescription.Text.ToUpper
 
-    With pFormController.WorkOrder
-      ''.Quantity = txtQuantity.Text
-      .Description = txtDescription.Text.ToUpper
 
+        ''.WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
+        .FurnitureCategoryID = clsDEControlLoading.GetDEComboValue(cboFurnitureCategory)
 
-      ''.WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
-      .FurnitureCategoryID = clsDEControlLoading.GetDEComboValue(cboFurnitureCategory)
+        .WorkcentreID = getCheckValue()
 
-      .WorkcentreID = getCheckValue()
+        ''.Machining = ceMaquinado.Checked
+        ''.Upholstery = ceCostura.Checked
+        ''.Assembley = ceEnsamble.Checked
+        ''.Sanding = ceLija.Checked
+        ''.MetalWork = ceMetal.Checked
+        ''.SubContract = ceSub.Checked
+        ''.Painting = cePintura.Checked
 
-      ''.Machining = ceMaquinado.Checked
-      ''.Upholstery = ceCostura.Checked
-      ''.Assembley = ceEnsamble.Checked
-      ''.Sanding = ceLija.Checked
-      ''.MetalWork = ceMetal.Checked
-      ''.SubContract = ceSub.Checked
-      ''.Painting = cePintura.Checked
+        '' MsgBox("Se debe de ingresar el dibujante en la OT")
+        ''.EmployeeID = clsRTISGlobal.
 
-      '' MsgBox("Se debe de ingresar el dibujante en la OT")
-      ''.EmployeeID = clsRTISGlobal.
+      End With
+      UpdateProductControls()
+    End If
 
-    End With
-    UpdateProductControls()
   End Sub
 
 

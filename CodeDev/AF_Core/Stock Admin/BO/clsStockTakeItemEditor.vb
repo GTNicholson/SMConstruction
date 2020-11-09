@@ -113,12 +113,12 @@
 
   Public ReadOnly Property StockItemTypeDesc As String
     Get
-      Dim mStockItemType As clsStockItemType
+      Dim mStockItemTypeDescription As String = ""
       Dim mRetVal As String = ""
       If pStockItem IsNot Nothing Then
-        mStockItemType = clsStockItemSharedFuncs.GetStockItemType(pStockItem)
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        mStockItemTypeDescription = clsStockItemSharedFuncs.GetStockItemTypeDescription(pStockItem)
+        If mStockItemTypeDescription <> "" Then
+          mRetVal = mStockItemTypeDescription
         End If
       End If
       Return mRetVal

@@ -408,16 +408,15 @@ Public Class frmStockItem
 
         Case eStockItemCategory.Abrasivos
 
-          Dim mAbrasivosType As clsStockItemTypeAbrasivos
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.NailsAndBolds
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -425,7 +424,7 @@ Public Class frmStockItem
         Case eStockItemCategory.EPP
           Dim mEPP As clsStockItemTypeEPP
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeEPP.GetInstance.ValueItems)
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -435,48 +434,44 @@ Public Class frmStockItem
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerrajes.GetInstance.ValueItems)
 
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.Herramientas
 
-          Dim mHerrajesType As clsStockItemTypeHerramientas
+
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerramientas.GetInstance.ValueItems)
 
           cboItemType.Enabled = False
-          cboSpecies.Enabled = True
-          cboItemType.Enabled = True
+          cboSpecies.Enabled = False
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.MatElect
 
-          Dim mMatElectrico As clsStockItemTypeMaterialElectrico
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialElectrico.GetInstance.ValueItems)
 
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.MatEmpaque
 
-          Dim mMatEmpaque As clsStockItemTypeMaterialEmpaque
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialEmpaque.GetInstance.ValueItems)
 
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.MatVarios
 
-          Dim mMatEmpaque As clsStockItemTypeMatVarios
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarios.GetInstance.ValueItems)
 
 
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -485,7 +480,7 @@ Public Class frmStockItem
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMetales.GetInstance.ValueItems)
 
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -496,7 +491,7 @@ Public Class frmStockItem
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePintura.GetInstance.ValueItems)
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -504,7 +499,7 @@ Public Class frmStockItem
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeLamina.GetInstance.ValueItems)
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -512,7 +507,7 @@ Public Class frmStockItem
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeRepuestosYPartes.GetInstance.ValueItems)
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
@@ -520,23 +515,25 @@ Public Class frmStockItem
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTapiceria.GetInstance.ValueItems)
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
         Case eStockItemCategory.VidrioYEspejo
 
-          Dim mVidrioType As clsStockItemType
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
 
-          cboSpecies.Enabled = True
+          cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
-        Case Else
-          ''cboSpecies.Enabled = False
-          ''cboItemType.Enabled = False
-          ''cboSubitemType.Enabled = False
+        Case eStockItemCategory.DriedWood, eStockItemCategory.DimensionWood, eStockItemCategory.Timber
+
+          clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie))
+
+          cboSpecies.Enabled = True
+          cboItemType.Enabled = False
+          cboSubitemType.Enabled = False
       End Select
 
     End If

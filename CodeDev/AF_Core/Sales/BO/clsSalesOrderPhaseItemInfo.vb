@@ -197,6 +197,25 @@
     End Get
   End Property
 
+  Public ReadOnly Property WorkOrderNo As String
+    Get
+      Dim mRetVal As String = ""
+      If pWorkOrder IsNot Nothing Then
+        mRetVal = pWorkOrder.WorkOrderNo
+
+      End If
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property ItemNumberRef As String
+    Get
+      Dim mRetVal As String = ""
+      mRetVal = ItemNumber
+      Return mRetVal
+    End Get
+  End Property
 End Class
 
 

@@ -158,7 +158,7 @@ Public Class frmSalesOrderPhaseItemPickerMulti
     mRow = TryCast(gvSalesOrderPhaseItem.GetRow(e.RowHandle), clsSalesOrderPhaseItemInfo)
     If mRow IsNot Nothing Then
 
-      If e.Column.Name = gcOrderNo.Name Then
+      If e.Column.Name = gcItemNumber.Name Then
 
         If pPickerProductBase.SelectedObjects.Contains(mRow) Then
           e.RepositoryItem = repbtnUnSelect

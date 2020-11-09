@@ -157,36 +157,36 @@ Public Class fccWorkOrderDetailConstruction
       End If
 
       '// if it is a salesorder, check that the remaining details have been loaded and assigned
-      If pSalesOrder Is Nothing Then
-        mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
+      'If pSalesOrder Is Nothing Then
+      '  mSOID = mdso.GetSalesOrderIDFromWorkOrderID(pPrimaryKeyID)
 
-        pSalesOrder = New dmSalesOrder
-        mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
+      '  pSalesOrder = New dmSalesOrder
+      '  mdso.LoadSalesOrderDown(pSalesOrder, mSOID)
 
-      End If
-      For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-          For Each mWO As dmWorkOrder In mSOI.WorkOrders
-            If mWO.WorkOrderID = pPrimaryKeyID Then
-              pWorkOrder = mWO
-              pWorkOrder.ParentSalesOrderItem = mSOI
-              Exit For
-            End If
-          Next
-          If pWorkOrder.ParentSalesOrderItem IsNot Nothing Then Exit For
-        Next
+      'End If
+      'For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+      '    For Each mWO As dmWorkOrder In mSOI.WorkOrders
+      '      If mWO.WorkOrderID = pPrimaryKeyID Then
+      '        pWorkOrder = mWO
+      '        pWorkOrder.ParentSalesOrderItem = mSOI
+      '        Exit For
+      '      End If
+      '    Next
+      '    If pWorkOrder.ParentSalesOrderItem IsNot Nothing Then Exit For
+      '  Next
 
-        '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
-        pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
+      '  '// WorkOrder and SalesOrder already provided so just need to set the SalesOrderItem
+      '  pSalesOrderItem = pWorkOrder.ParentSalesOrderItem
 
-      mdsoHR = New dsoHR(pDBConn)
-      pTimeSheetEntrys = New colTimeSheetEntrys
-      mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)
+      'mdsoHR = New dsoHR(pDBConn)
+      'pTimeSheetEntrys = New colTimeSheetEntrys
+      'mdsoHR.LoadTimeSheetEntrysWorkOrder(pTimeSheetEntrys, pWorkOrder.WorkOrderID)
 
     End If
   End Sub
 
-  Public Sub CreateFromSalesOrderPhaseItems(ByRef rSalesOrderPhaseItemInfos As List(Of clsSalesOrderPhaseItemInfo))
-    clsWorkOrderHandler.CreateFromSalesOrderPhaseItems(rSalesOrderPhaseItemInfos)
+  Public Sub CreateFromSalesOrderPhaseItems(ByRef rSalesOrderPhaseItemInfos As List(Of clsSalesOrderPhaseItemInfo), ByVal vProductType As eProductType)
+    pWorkOrder = clsWorkOrderHandler.CreateFromSalesOrderPhaseItems(rSalesOrderPhaseItemInfos, vProductType)
   End Sub
 
   Public Function SaveObjects() As Boolean
@@ -202,7 +202,10 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Function IsDirty() As Boolean
     Dim mRetVal As Boolean = False
-    If pWorkOrder.IsAnyDirty Then mRetVal = True
+    If pWorkOrder IsNot Nothing Then
+      If pWorkOrder.IsAnyDirty Then mRetVal = True
+
+    End If
     Return mRetVal
   End Function
 
@@ -555,31 +558,33 @@ Public Class fccWorkOrderDetailConstruction
     Dim mSOPI As clsSalesOrderPhaseItemInfo
     Dim mWhere As String = ""
 
+    If pWorkOrder IsNot Nothing Then
+      If pWorkOrder.WorkOrderAllocations IsNot Nothing And pWorkOrder.WorkOrderAllocations.Count > 0 Then
 
+        pWorkOrderAllocationEditors.Clear()
+        For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+          '// create a new editor based on this salesitem and add to collection
+          mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
+          pWorkOrderAllocationEditors.Add(mWOAE)
+          mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
+          If mWhere <> "" Then mWhere &= ","
+          mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseItemID
+        Next
 
-    If pWorkOrder.WorkOrderAllocations IsNot Nothing And pWorkOrder.WorkOrderAllocations.Count > 0 Then
+        mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
 
-      pWorkOrderAllocationEditors.Clear()
-      For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
-        '// create a new editor based on this salesitem and add to collection
-        mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
-        pWorkOrderAllocationEditors.Add(mWOAE)
-        mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
-        If mWhere <> "" Then mWhere &= ","
-        mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseItemID
-      Next
+        mdsoSales = New dsoSales(pDBConn)
+        mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
 
-      mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
+        For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
+          mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
+          mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
+        Next
 
-      mdsoSales = New dsoSales(pDBConn)
-      mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
-
-      For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
-        mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
-        mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
-      Next
-
+      End If
     End If
+
+
 
   End Sub
 

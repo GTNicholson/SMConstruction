@@ -48,11 +48,15 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
             mSOPIPicker = New clsPickerSalesOrderPhaseItem(mSOIPs, pDBConn)
             mSalesOrderPhaseItems = frmSalesOrderPhaseItemPickerMulti.OpenPickerMulti(mSOPIPicker, True, pDBConn, pRTISGlobal)
 
-            frmWorkOrderDetailConstruction.OpenFormMDINewSalesRequirements(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, mSalesOrderPhaseItems)
+            If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then
+              frmWorkOrderDetailConstruction.OpenFormMDINewSalesRequirements(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, mSalesOrderPhaseItems)
+            End If
+
 
         End Select
-        frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
-
+        If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then
+          frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
+        End If
     End Select
 
 

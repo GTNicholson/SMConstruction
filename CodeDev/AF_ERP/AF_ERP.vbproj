@@ -535,12 +535,6 @@
     <Compile Include="Sales\GUI\frmSalesOrderProgress.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\GUI\frmWorkOrderDetail.Designer.vb">
-      <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\GUI\frmWorkOrderDetail.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Sales\GUI\frmWorkOrderDetailConstruction.Designer.vb">
       <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>
     </Compile>
@@ -817,9 +811,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderProgress.resx">
       <DependentUpon>frmSalesOrderProgress.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
-      <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetailConstruction.resx">
       <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>

@@ -11,6 +11,7 @@ Public Class dmWoodSpecie : Inherits dmBase
   Private pDensity As Double
   Private pPriceBracket As Byte
   Private pWoodValue As colWoodValues
+  Private pAbbreviation As String
 
   Public Sub New()
     MyBase.New()
@@ -53,6 +54,7 @@ Public Class dmWoodSpecie : Inherits dmBase
       .Density = Density
       .PriceBracket = PriceBracket
       .WoodValue = WoodValue
+      .Abbreviation = Abbreviation
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -120,6 +122,17 @@ Public Class dmWoodSpecie : Inherits dmBase
       pPriceBracket = value
     End Set
   End Property
+
+  Public Property Abbreviation() As String
+    Get
+      Return pAbbreviation
+    End Get
+    Set(ByVal value As String)
+      If pAbbreviation <> value Then IsDirty = True
+      pAbbreviation = value
+    End Set
+  End Property
+
 
   Public Property ItemValue As Integer Implements iValueItem.ItemValue
     Get

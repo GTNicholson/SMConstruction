@@ -18,12 +18,19 @@ Public Class clsWorkOrderHandler
     Return mRetVal
   End Function
 
-  Public Shared Function CreateFromSalesOrderPhaseItems(ByRef rSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo)) As dmWorkOrder
+  Public Shared Function CreateFromSalesOrderPhaseItems(ByRef rSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo), ByVal vProductType As eProductType) As dmWorkOrder
     Dim mRetVal As dmWorkOrder
-
+    Dim mWOA As dmWorkOrderAllocation
     mRetVal = New dmWorkOrder
     mRetVal.DateCreated = Now.Date
-    mRetVal.Product = clsProductSharedFuncs.NewProductInstance(mRetVal.ProductTypeID)
+    mRetVal.Product = clsProductSharedFuncs.NewProductInstance(vProductType)
+    mRetVal.ProductTypeID = vProductType
+    For Each mSalesOrderPhaseItem In rSalesOrderPhaseItems
+      mWOA = New dmWorkOrderAllocation
+      mWOA.SalesOrderPhaseItemID = mSalesOrderPhaseItem.SalesOrderPhaseItemID
+      mWOA.QuantityRequired = mSalesOrderPhaseItem.Qty
+      mRetVal.WorkOrderAllocations.Add(mWOA)
+    Next
 
     Return mRetVal
   End Function

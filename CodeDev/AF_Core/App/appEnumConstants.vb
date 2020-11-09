@@ -42,6 +42,7 @@ Public Enum eActivityCode
   StockTake = 503
   TransactionReport = 504
   StockItemInfos = 505
+  WoodInventory = 506
 
   AccountsGroup = 600
   InvoicesReport = 601
@@ -322,6 +323,9 @@ Public Enum eStockItemCategory
   <Description("Repuestos y Partes")> Repuestos = 12
   <Description("Tapiceria")> Tapiceria = 13
   <Description("Vidrios y Espejos")> VidrioYEspejo = 14
+  <Description("Madera en Timber")> Timber = 15
+  <Description("Madera Dimensionada")> DimensionWood = 16
+  <Description("Madera Secada")> DriedWood = 17
 End Enum
 
 Public Enum eMaterialRequirementType
@@ -1022,6 +1026,9 @@ End Class
 
 
 ''termino aca
+
+
+''Termino acá
 Public Class clsStockItemTypeHerramientas : Inherits clsPropertyENUM
   Private pStockSubItemTypeHerramientas As colStockSubItemTypeHerramientas
 

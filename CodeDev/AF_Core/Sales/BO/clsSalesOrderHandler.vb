@@ -221,4 +221,21 @@ Public Class clsSalesOrderHandler
 
   End Sub
 
+  Public Function GetProductosFromProductionConstructionTypeSubTypeAndSalesHouseID(ByVal vPCT As Integer, ByVal vPCTST As Integer, ByVal vSalesOrderHouseID As Integer) As colSalesOrderItems
+    Dim mRetVal As New colSalesOrderItems
+
+    For Each mSI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+
+      If mSI.HouseTypeID = vSalesOrderHouseID Then
+        If mSI.SalesItemType = vPCT And mSI.SalesSubItemType = vPCTST Then
+
+          mRetVal.Add(mSI)
+        End If
+      End If
+
+
+
+    Next
+    Return mRetVal
+  End Function
 End Class

@@ -1,0 +1,3 @@
+alter table WoodSpecie
+add Abbreviation varchar(3)
+go

@@ -1,36 +1,97 @@
 ﻿Public Class clsStockItemSharedFuncs
 
-  Public Shared Function GetStockItemType(ByRef rStockItem As dmStockItem) As clsStockItemType
-    Dim mRetVal As clsStockItemType = Nothing
+  Public Shared Function GetStockItemTypeDescription(ByRef rStockItem As dmStockItem) As String
+    Dim mRetVal As String = ""
+    Dim mRefLists As RTIS.CommonVB.colRefLists
+    mRefLists = AppRTISGlobal.GetInstance.RefLists
+
     Select Case rStockItem.Category
       Case eStockItemCategory.Abrasivos
-        mRetVal = eStockItemTypeAbrasivos.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeAbrasivos.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.NailsAndBolds
-        mRetVal = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.EPP
-        mRetVal = eStockItemTypeEPP.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeEPP.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.Herrajes
-        mRetVal = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.Herramientas
-        mRetVal = eStockItemTypeHerramientas.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeHerramientas.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.MatElect
-        mRetVal = eStockItemTypeMaterialElectrico.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeMaterialElectrico.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.MatEmpaque
-        mRetVal = eStockItemTypeMaterialEmpaque.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeMaterialEmpaque.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.MatVarios
-        mRetVal = eStockItemTypeMatVarios.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeMatVarios.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.Metal
-        mRetVal = eStockItemTypeMetales.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeMetales.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.PinturaYQuimico
-        mRetVal = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.Laminas
-        mRetVal = eStockItemTypeLamina.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeLamina.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.Repuestos
-        mRetVal = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.Tapiceria
-        mRetVal = eStockItemTypeTapiceria.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeTapiceria.GetInstance.ItemFromKey(rStockItem.ItemType).Description
       Case eStockItemCategory.VidrioYEspejo
-        mRetVal = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType)
+        mRetVal = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType).Description
+
+
+      Case eStockItemCategory.Timber, eStockItemCategory.DimensionWood, eStockItemCategory.DriedWood
+        Dim mSpecies As dmWoodSpecie
+        mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
+        If mSpecies IsNot Nothing Then
+          mRetVal = mSpecies.EnglishDescription
+
+        End If
+
+    End Select
+    Return mRetVal
+  End Function
+
+
+  Public Shared Function GetStockItemTypeAbbreviation(ByRef rStockItem As dmStockItem) As String
+    Dim mRetVal As String = ""
+    Dim mRefLists As RTIS.CommonVB.colRefLists
+    mRefLists = AppRTISGlobal.GetInstance.RefLists
+
+    Select Case rStockItem.Category
+      Case eStockItemCategory.Abrasivos
+        mRetVal = eStockItemTypeAbrasivos.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.NailsAndBolds
+        mRetVal = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.EPP
+        mRetVal = eStockItemTypeEPP.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.Herrajes
+        mRetVal = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.Herramientas
+        mRetVal = eStockItemTypeHerramientas.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.MatElect
+        mRetVal = eStockItemTypeMaterialElectrico.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.MatEmpaque
+        mRetVal = eStockItemTypeMaterialEmpaque.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.MatVarios
+        mRetVal = eStockItemTypeMatVarios.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.Metal
+        mRetVal = eStockItemTypeMetales.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.PinturaYQuimico
+        mRetVal = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.Laminas
+        mRetVal = eStockItemTypeLamina.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.Repuestos
+        mRetVal = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.Tapiceria
+        mRetVal = eStockItemTypeTapiceria.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+      Case eStockItemCategory.VidrioYEspejo
+        mRetVal = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType).Abreviation
+
+      Case eStockItemCategory.Timber, eStockItemCategory.DimensionWood, eStockItemCategory.DriedWood
+        Dim mSpecies As dmWoodSpecie
+        mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
+        If mSpecies IsNot Nothing Then
+          mRetVal = mSpecies.Abbreviation
+
+        End If
+
     End Select
     Return mRetVal
   End Function
@@ -38,7 +99,7 @@
   Public Shared Function GetStockCodeStem(ByRef rStockItem As dmStockItem) As String
     Dim mRetVal As String = ""
     Dim mValid As Boolean = True
-    Dim mstocktype As clsStockItemType
+    Dim mstocktypeAbbreviation As String = ""
     Select Case rStockItem.Category
       Case eStockItemCategory.Abrasivos
         mRetVal = "ABR."
@@ -68,12 +129,18 @@
         mRetVal = "TAP."
       Case eStockItemCategory.VidrioYEspejo
         mRetVal = "VYE."
+      Case eStockItemCategory.Timber
+        mRetVal = "TMB."
+      Case eStockItemCategory.DimensionWood
+        mRetVal = "WDI."
+      Case eStockItemCategory.DriedWood
+        mRetVal = "WDY."
       Case Else
         mValid = False
     End Select
-    mstocktype = GetStockItemType(rStockItem)
-    If mstocktype IsNot Nothing Then
-      mRetVal = mRetVal & mstocktype.Abreviation & "."
+    mstocktypeAbbreviation = GetStockItemTypeAbbreviation(rStockItem)
+    If mstocktypeAbbreviation <> "" Then
+      mRetVal = mRetVal & mstocktypeAbbreviation & "."
     Else
       mValid = False
     End If

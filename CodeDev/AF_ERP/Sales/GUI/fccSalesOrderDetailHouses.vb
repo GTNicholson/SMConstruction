@@ -552,32 +552,48 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
-  Public Sub GenerateSequence()
+  Public Sub GenerateSequenceBySalesHouse(ByVal vSalesOrderHouseID As Integer)
     Dim mProductTypes As New colProductConstructionTypes
     Dim mProductSubTypes As New colProductConstructionSubTypes
     Dim mRefList As colRefLists = AppRTISGlobal.GetInstance.RefLists
     Dim mMatchingSIs As colSalesOrderItems
     Dim mCount As Integer
+    Dim mProduct As dmProductBase
+    Dim mProductType As dmProductConstructionType
+    Dim mProductSubType As dmProductConstructionSubType
 
     mProductTypes = CType(mRefList.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes)
     mProductSubTypes = CType(mRefList.RefIList(appRefLists.ProductConstructionSubType), colProductConstructionSubTypes)
 
-    ''For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-    ''  Dim mstring As String = mProductTypes.ItemFromKey(mSalesOrderItem.SalesItemType).SequenceNo & "." & mProductSubTypes.ItemFromKey(mSalesOrderItem.SalesSubItemType).SequenceNo
-    ''  mSalesOrderItem.ItemNumber = mstring
 
-    ''Next
+    For Each msi As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+      If msi.HouseTypeID = vSalesOrderHouseID Then
+        mProduct = pRTISGlobal.ProductRegistry.GetProductFromTypeAndID(msi.ProductTypeID, msi.ProductID)
+        mProductType = mProductTypes.ItemFromKey(msi.SalesItemType)
+        If mProductType IsNot Nothing Then
+          msi.ItemNumber = mProductType.SequenceNo * 10
+        End If
+        mProductSubType = mProductSubTypes.ItemFromKey(mProduct.SubItemType)
+        If mProductSubType IsNot Nothing Then
+          msi.ItemNumber = msi.ItemNumber & "." & mProductSubType.SequenceNo
+        End If
+      End If
+    Next
 
 
     For Each mPCT As dmProductConstructionType In mProductTypes
       For Each mPCTST As dmProductConstructionSubType In mProductSubTypes
-        mMatchingSIs = GetProductosFromProductionConstructionTypeSubType(mPCT.ProductConstructionTypeID, mPCTST.ProductConstructionSubTypeID)
+        mMatchingSIs = pSalesOrderHandler.GetProductosFromProductionConstructionTypeSubTypeAndSalesHouseID(mPCT.ProductConstructionTypeID, mPCTST.ProductConstructionSubTypeID, vSalesOrderHouseID)
         If mMatchingSIs.Count > 1 Then
           mCount = 97
           For Each mSI As dmSalesOrderItem In mMatchingSIs
-            mSI.ItemNumber = mSI.ItemNumber & Chr(mCount)
-            mCount += 1
-            pSalesOrder.SalesOrderItems.ItemFromKey(mSI.SalesOrderItemID).ItemNumber = mSI.ItemNumber
+            If mSI.HouseTypeID = vSalesOrderHouseID Then
+
+              mSI.ItemNumber = mSI.ItemNumber & Chr(mCount)
+              mCount += 1
+              pSalesOrder.SalesOrderItems.ItemFromKey(mSI.SalesOrderItemID).ItemNumber = mSI.ItemNumber
+            End If
+
           Next
         End If
       Next
@@ -587,16 +603,5 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
-  Public Function GetProductosFromProductionConstructionTypeSubType(ByVal vPCT As Integer, ByVal vPCTST As Integer) As colSalesOrderItems
-    Dim mRetVal As New colSalesOrderItems
 
-    For Each mSI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-
-      If mSI.SalesItemType = vPCT And mSI.SalesSubItemType = vPCTST Then
-        mRetVal.Add(mSI)
-      End If
-
-    Next
-    Return mRetVal
-  End Function
 End Class

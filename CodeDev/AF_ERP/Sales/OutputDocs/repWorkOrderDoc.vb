@@ -38,7 +38,6 @@ Public Class repWorkOrderDoc
     Dim mPicHeight As Single
     mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
 
-    XrSubreport1.ReportSource = New srepWorkOrderSignOffs
 
     SetUpDataBindings()
     If pWorkOrder.isInternal = False Then
@@ -51,8 +50,6 @@ Public Class repWorkOrderDoc
     xrlDrawingDate.Text = pWorkOrder.DrawingDate
     xrtFinishDate.Text = pWorkOrder.PlannedDeliverDate
     xrtDate.Text = pWorkOrder.PlannedStartDate
-    xrtEmployeeID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
-    xrtEmployee2.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pWorkOrder.EmployeeID)
 
 
     If IsNothing(mPF) Then
@@ -62,11 +59,11 @@ Public Class repWorkOrderDoc
 
     End If
 
-    xrNotes.Text = mPF.Notes
+    ''xrNotes.Text = mPF.Notes
 
     '// Optimise Image size so that it fits on what remains of the page after the notext
     mPicHeight = GetOptimalPicHeight(mPF.Notes)
-    xrPic.HeightF = mPicHeight
+    ''xrPic.HeightF = mPicHeight
 
   End Sub
 
@@ -76,9 +73,9 @@ Public Class repWorkOrderDoc
     Dim mAvailableHeight As Single
 
     mAvailableHeight = Me.Detail.HeightF
-    mSize = PrintingSystem.Graph.MeasureString(vNotes, xrNotes.WidthF)
-    mSize.Height = Math.Max(mSize.Height, xrNotes.HeightF)
-    mAvailableHeight = mAvailableHeight - (xrNotes.TopF + mSize.Height)
+    '''mSize = PrintingSystem.Graph.MeasureString(vNotes, xrNotes.WidthF)
+    '''mSize.Height = Math.Max(mSize.Height, xrNotes.HeightF)
+    '''mAvailableHeight = mAvailableHeight - (xrNotes.TopF + mSize.Height)
 
     mRetVal = mAvailableHeight
     Return mRetVal
@@ -94,7 +91,7 @@ Public Class repWorkOrderDoc
       mImage = Drawing.Image.FromFile(mFileName)
     End If
 
-    xrPic.Image = mImage
+    ''xrPic.Image = mImage
 
 
   End Sub

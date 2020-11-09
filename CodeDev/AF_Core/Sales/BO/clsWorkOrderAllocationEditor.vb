@@ -143,6 +143,8 @@ Public Class clsWorkOrderAllocationEditor
     End Set
   End Property
 
+
+
 End Class
 
 Public Class colWorkOrderAllocationEditors : Inherits BindingList(Of clsWorkOrderAllocationEditor)
