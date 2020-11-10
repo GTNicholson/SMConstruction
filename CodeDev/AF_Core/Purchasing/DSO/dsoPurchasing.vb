@@ -9,12 +9,38 @@ Public Class dsoPurchasing
 
 
 
-  Public Function LoadPurchaseOrderInfos(ByRef rPurchaseOrderInfos As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadPurchaseOrderInfosDown(ByRef rPurchaseOrderInfos As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
     Dim mdtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
+    Dim mPOItemInfos As colPOItemInfos
+    Dim mdtoPurchaseOrderItem As New dtoPurchaseOrderItem(pDBConn)
     Dim mOK As Boolean
     Try
       pDBConn.Connect()
       mOK = mdtoPurchaseOrderInfo.LoadPurchaseOrderInfoCollection(rPurchaseOrderInfos, vWhere)
+
+      If rPurchaseOrderInfos IsNot Nothing Then
+
+        For Each mPurchaseOrderInfo As clsPurchaseOrderInfo In rPurchaseOrderInfos
+          mPOItemInfos = New colPOItemInfos
+
+          mdtoPurchaseOrderItem.LoadPurchaseOrderItemCollection(mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderItems, mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderID)
+
+          If mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderItems IsNot Nothing Then
+            For Each mPOItem As dmPurchaseOrderItem In mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderItems
+              If String.IsNullOrEmpty(mPOItem.Description) = False Then
+
+                mPOItemInfos.Add(New clsPOItemInfo(mPOItem, Nothing))
+              End If
+            Next
+            mPurchaseOrderInfo.POItemInfos = mPOItemInfos
+          End If
+
+
+
+        Next
+
+      End If
+
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

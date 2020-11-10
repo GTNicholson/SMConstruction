@@ -81,7 +81,7 @@ Public Class dsoBIPurchaseOrderItemInfo
         mSQLWhere = " and status <> " & ePurchaseOrderDueDateStatus.Cancelled
 
       End If
-      dtoPurchaseOrderItemInfo.LoadPODeliveryItemInfoCollectionByWhere(pPurchaseOrderItemInfos, mSQLWhere)
+      dtoPurchaseOrderItemInfo.LoadPurchaseOrderItemInfoCollectionByWhere(pPurchaseOrderItemInfos, mSQLWhere)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

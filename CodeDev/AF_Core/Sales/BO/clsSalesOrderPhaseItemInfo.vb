@@ -187,6 +187,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property SalesItemType As Integer
+    Get
+      Return pSalesOrderItem.SalesItemType
+    End Get
+  End Property
+
   Public ReadOnly Property ProductCode As String
     Get
       Dim mRetVal As String = ""
@@ -216,6 +222,11 @@
       Return mRetVal
     End Get
   End Property
+
+
+
+
+
 End Class
 
 

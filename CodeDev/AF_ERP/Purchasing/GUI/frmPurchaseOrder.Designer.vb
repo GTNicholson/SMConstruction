@@ -608,7 +608,7 @@ Partial Class frmPurchaseOrder
         Me.RepositoryItemSpinEditUnitValue.AutoHeight = False
         Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatString = "n4"
         Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatString = "n3"
+        Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatString = "n4"
         Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n4"
         Me.RepositoryItemSpinEditUnitValue.Name = "RepositoryItemSpinEditUnitValue"
@@ -739,12 +739,13 @@ Partial Class frmPurchaseOrder
         Me.GridColumn16.AppearanceCell.BackColor = System.Drawing.Color.Lavender
         Me.GridColumn16.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn16.Caption = "Valor IVA"
-        Me.GridColumn16.DisplayFormat.FormatString = "C4"
+        Me.GridColumn16.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
+        Me.GridColumn16.DisplayFormat.FormatString = "n4"
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "VatValue"
+        Me.GridColumn16.FieldName = "VATAmount"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.ReadOnly = True
-        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "VatValue", "{0:n3}")})
+        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "VATAmount", "{0:n4}")})
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 10
         Me.GridColumn16.Width = 67
@@ -763,7 +764,7 @@ Partial Class frmPurchaseOrder
         Me.GridColumn15.FieldName = "GrossAmount"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.ReadOnly = True
-        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GrossAmount", "{0:n3}")})
+        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GrossAmount", "{0:n4}")})
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 13
         Me.GridColumn15.Width = 112

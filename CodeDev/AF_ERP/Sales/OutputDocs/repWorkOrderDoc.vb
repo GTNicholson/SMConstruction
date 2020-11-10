@@ -2,15 +2,15 @@
 
 Public Class repWorkOrderDoc
   Private pWorkOrder As dmWorkOrder
-  Private pSalesOrder As dmSalesOrder
+  Private pSalesOrderPhaseItemInfos As colWorkOrderAllocationEditors
   Private pFurniture As dmProductFurniture
 
 
-  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByRef rSalesOrder As dmSalesOrder) As repWorkOrderDoc
+  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByRef rWorkOrderAllocations As colWorkOrderAllocationEditors) As repWorkOrderDoc
     Dim mRep As New repWorkOrderDoc
     mRep.pWorkOrder = rWorkOrder
     mRep.pFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
-    mRep.pSalesOrder = rSalesOrder
+    mRep.pSalesOrderPhaseItemInfos = rWorkOrderAllocations
     mRep.CreateDocument()
 
     ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
@@ -27,44 +27,52 @@ Public Class repWorkOrderDoc
 
     '// Head informatio from pWorkOrder
     xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
-    xrlDescription.DataBindings.Add("Text", pWorkOrder, "Description")
     xrtCantidad.DataBindings.Add("Text", pWorkOrder, "Quantity")
 
 
   End Sub
 
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
-    Dim mPF As dmProductFurniture
+    Dim mProduct As dmProductBase
     Dim mPicHeight As Single
-    mPF = TryCast(pWorkOrder.Product, dmProductFurniture)
+    Dim mRepWorkOrderAllocation As repWorkOrderAllocation
+
+    Select Case pWorkOrder.Product.ItemType
+      Case eProductType.StructureAF
+        mProduct = TryCast(pWorkOrder.Product, dmProductStructure)
+        xrtProductCode.Text = TryCast(pWorkOrder.Product, dmProductStructure).Code
+        xrlDescription.Text = TryCast(pWorkOrder.Product, dmProductStructure).Description
+      Case Else
+        mProduct = TryCast(pWorkOrder.Product, dmProductStructure)
+
+    End Select
 
 
     SetUpDataBindings()
-    If pWorkOrder.isInternal = False Then
-      xrlCustomerName.Text = pSalesOrder.Customer.CompanyName & " / " & pSalesOrder.ProjectName
-      xrSalesOrderID.Text = pSalesOrder.OrderNo
-      xrtSalesOrderItemNumber.Text = pWorkOrder.ParentSalesOrderItem.ItemNumber
-    End If
-
-    xrlOT2.Text = pWorkOrder.WorkOrderNo
-    xrlDrawingDate.Text = pWorkOrder.DrawingDate
-    xrtFinishDate.Text = pWorkOrder.PlannedDeliverDate
-    xrtDate.Text = pWorkOrder.PlannedStartDate
 
 
-    If IsNothing(mPF) Then
-      MessageBox.Show("Error, no existe ningún producto / componente ligado a esta Orden de Trabajo", "Error")
+      xrlOT2.Text = pWorkOrder.WorkOrderNo
+      xrlDrawingDate.Text = pWorkOrder.DrawingDate
+      xrtFinishDate.Text = pWorkOrder.PlannedDeliverDate
+      xrtDate.Text = pWorkOrder.PlannedStartDate
 
-      Return
 
-    End If
+    If IsNothing(mProduct) Then
+        MessageBox.Show("Error, no existe ningún producto / componente ligado a esta Orden de Trabajo", "Error")
+
+        Return
+
+      End If
 
     ''xrNotes.Text = mPF.Notes
 
     '// Optimise Image size so that it fits on what remains of the page after the notext
-    mPicHeight = GetOptimalPicHeight(mPF.Notes)
+
     ''xrPic.HeightF = mPicHeight
 
+    mRepWorkOrderAllocation = New repWorkOrderAllocation
+    mRepWorkOrderAllocation.DataSource = pSalesOrderPhaseItemInfos
+    xrSubWorkOrderAllocation.ReportSource = mRepWorkOrderAllocation
   End Sub
 
   Private Function GetOptimalPicHeight(ByVal vNotes As String) As Single
@@ -73,23 +81,23 @@ Public Class repWorkOrderDoc
     Dim mAvailableHeight As Single
 
     mAvailableHeight = Me.Detail.HeightF
-    '''mSize = PrintingSystem.Graph.MeasureString(vNotes, xrNotes.WidthF)
-    '''mSize.Height = Math.Max(mSize.Height, xrNotes.HeightF)
-    '''mAvailableHeight = mAvailableHeight - (xrNotes.TopF + mSize.Height)
+    ''mSize = PrintingSystem.Graph.MeasureString(vNotes, xrNotes.WidthF)
+    ''mSize.Height = Math.Max(mSize.Height, xrNotes.HeightF)
+    ''mAvailableHeight = mAvailableHeight - (xrNotes.TopF + mSize.Height)
 
     mRetVal = mAvailableHeight
     Return mRetVal
   End Function
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
-    Dim mFileName As String
-    Dim mImage As Image
+    ''Dim mFileName As String
+    ''Dim mImage As Image
 
-    mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrder, pWorkOrder)
+    ''mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrderPhaseItemInfos, pWorkOrder)
 
-    If IO.File.Exists(mFileName) Then
-      mImage = Drawing.Image.FromFile(mFileName)
-    End If
+    ''If IO.File.Exists(mFileName) Then
+    ''  mImage = Drawing.Image.FromFile(mFileName)
+    ''End If
 
     ''xrPic.Image = mImage
 

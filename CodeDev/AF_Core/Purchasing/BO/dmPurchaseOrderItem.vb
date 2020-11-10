@@ -374,7 +374,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
 
   Public Function CalculateVATValue(ByVal vPercent As Decimal) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = Math.Round(UnitPrice * (vPercent / 100), 2, MidpointRounding.AwayFromZero)
+    mRetVal = Math.Round(UnitPrice * (vPercent / 100), 4, MidpointRounding.AwayFromZero)
     Return mRetVal
   End Function
 

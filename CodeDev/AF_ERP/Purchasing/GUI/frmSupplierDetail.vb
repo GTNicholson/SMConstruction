@@ -153,9 +153,14 @@ Public Class frmSupplierDetail
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPurchaseTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
 
+      clsDEControlLoading.FillDEComboVI(cboBankName, clsEnumsConstants.EnumToVIs(GetType(eBankName)))
+
+
+
       clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Category"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Status"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("PaymentStatus"), clsEnumsConstants.EnumToVIs(GetType(ePaymentStatus)))
+
 
       ''  clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Status"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.sta))
 
@@ -222,7 +227,7 @@ Public Class frmSupplierDetail
     With pFormController.Supplier
 
       lblSupplierID.Text = "ID:" & .SupplierID.ToString("00000")
-      cboBankName.EditValue = .BankName
+      cboBankName.Text = .BankName
       txtSupplierReference.Text = .SupplierReferenceID
       txtAccountSecondaryNumber.Text = .AccountSecondaryNumber
       txtCompanyName.Text = .CompanyName
@@ -257,7 +262,7 @@ Public Class frmSupplierDetail
 
       UctAddress1.UpdateObject()
       .MainAddress = UctAddress1.Address
-      .BankName = cboBankName.EditValue
+      .BankName = cboBankName.Text
       .PrintAccountOption = rgPrintAccountOption.EditValue
       .CompanyName = txtCompanyName.Text
       .SupplierReferenceID = txtSupplierReference.Text

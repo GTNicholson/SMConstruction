@@ -82,6 +82,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
         .ProductID = DBReadInt32(rDataReader, "ProductID")
         .Description = DBReadString(rDataReader, "Description")
         .ItemNumber = DBReadString(rDataReader, "ItemNumber")
+        .SalesItemType = DBReadInt32(rDataReader, "SalesItemType")
       End With
 
 

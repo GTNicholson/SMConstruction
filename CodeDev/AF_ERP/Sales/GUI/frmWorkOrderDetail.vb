@@ -603,13 +603,13 @@ Public Class frmWorkOrderDetail
       Case eDocumentType.WorkOrderDoc
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
+          '' mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.saleso)
         End If
 
       Case eDocumentType.InternalWorkOrder
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
+          'mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
         End If
 
     End Select

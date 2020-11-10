@@ -145,6 +145,28 @@ Public Class clsPurchaseOrderInfo
 
   End Property
 
+  Public ReadOnly Property CarriageUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = Carriage
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = Carriage / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
   Public ReadOnly Property DefaultCurrencyDesc() As String
     Get
       Return clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(pPurchaseOrder.DefaultCurrency, eCurrency))
@@ -326,6 +348,28 @@ Public Class clsPurchaseOrderInfo
     End Get
   End Property
 
+  Public ReadOnly Property TotalVATUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalVAT
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalVAT / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+
+
   Public ReadOnly Property TotalNetValue As Decimal
     Get
       Dim mRetVal As Decimal
@@ -348,6 +392,26 @@ Public Class clsPurchaseOrderInfo
     End Get
   End Property
 
+  Public ReadOnly Property TotalGrossValueUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalGrossValue
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalGrossValue / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
   Public ReadOnly Property AnyCoC As Boolean
     Get
       Dim mRetVal As Boolean = False

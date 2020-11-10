@@ -535,6 +535,10 @@
     <Compile Include="Sales\GUI\frmSalesOrderProgress.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderDetail.Designer.vb">
+      <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderDetail.vb" />
     <Compile Include="Sales\GUI\frmWorkOrderDetailConstruction.Designer.vb">
       <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>
     </Compile>
@@ -559,10 +563,10 @@
     <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sales\OutputDocs\repTempMR.Designer.vb">
-      <DependentUpon>repTempMR.vb</DependentUpon>
+    <Compile Include="Sales\OutputDocs\repWorkOrderAllocation.Designer.vb">
+      <DependentUpon>repWorkOrderAllocation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sales\OutputDocs\repTempMR.vb">
+    <Compile Include="Sales\OutputDocs\repWorkOrderAllocation.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\repWorkOrderDoc.Designer.vb">
@@ -812,6 +816,9 @@
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderProgress.resx">
       <DependentUpon>frmSalesOrderProgress.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
+      <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetailConstruction.resx">
       <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>
     </EmbeddedResource>
@@ -827,8 +834,8 @@
     <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
       <DependentUpon>repProductFurniture.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\OutputDocs\repTempMR.resx">
-      <DependentUpon>repTempMR.vb</DependentUpon>
+    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderAllocation.resx">
+      <DependentUpon>repWorkOrderAllocation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderDoc.resx">
       <DependentUpon>repWorkOrderDoc.vb</DependentUpon>

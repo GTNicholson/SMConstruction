@@ -12,7 +12,7 @@ Public Class clsWorkOrderAllocationEditor
   Private pProjectName As String
   Private pRequiredDate As Date
   Private pAssemblyRef As String
-
+  Private pSalesItemType As Int32
 
   Public Sub New(ByRef rWorkOrder As dmWorkOrder, ByRef rWorkOrderAllocation As dmWorkOrderAllocation)
     pWorkOrder = rWorkOrder
@@ -34,7 +34,7 @@ Public Class clsWorkOrderAllocationEditor
       pProjectName = rSalesOrderPhaseItemInfo.ProjectName
       pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
       pAssemblyRef = rSalesOrderPhaseItemInfo.AssemblyRef
-
+      pSalesItemType = rSalesOrderPhaseItemInfo.SalesItemType
     End If
   End Sub
 
@@ -106,6 +106,31 @@ Public Class clsWorkOrderAllocationEditor
       pItemNumber = value
     End Set
   End Property
+
+  Public Property SalesItemType As Int32
+    Get
+      Return pSalesItemType
+    End Get
+    Set(value As Int32)
+      pSalesItemType = value
+    End Set
+  End Property
+
+  Public ReadOnly Property SalesItemTypeDesc As String
+    Get
+      Dim mRetVal As String = ""
+      Dim mProductConstructionType As dmProductConstructionType
+      mProductConstructionType = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.ProductConstructionType), colProductConstructionTypes).ItemFromKey(pSalesItemType)
+
+      If mProductConstructionType IsNot Nothing Then
+        mRetVal = mProductConstructionType.Description
+      End If
+
+      Return mRetVal
+    End Get
+
+  End Property
+
 
   Public Property ClientName As String
     Get

@@ -1,0 +1,8 @@
+alter table PurchaseOrderItem
+alter column VatValue decimal (9,4)
+go
+
+delete from WorkOrder
+go
+delete from WorkOrderAllocation
+go

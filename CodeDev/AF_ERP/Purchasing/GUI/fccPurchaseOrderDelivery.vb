@@ -189,7 +189,7 @@ Public Class fccPurchaseOrderDelivery
     Dim mRetVal As colPurchaseOrderInfos = New colPurchaseOrderInfos
     Dim mdso As dsoPurchasing
     mdso = New dsoPurchasing(pDBConn)
-    mdso.LoadPurchaseOrderInfos(mRetVal, "")
+    mdso.LoadPurchaseOrderInfosDown(mRetVal, "")
     Return mRetVal
   End Function
 

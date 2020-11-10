@@ -443,7 +443,7 @@ Public Class frmStockItem
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerramientas.GetInstance.ValueItems)
 
-          cboItemType.Enabled = False
+          cboItemType.Enabled = True
           cboSpecies.Enabled = False
           cboSubitemType.Enabled = True
 

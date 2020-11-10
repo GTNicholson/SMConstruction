@@ -97,7 +97,7 @@ Public Class frmWorkOrderDetailConstruction
 
   End Sub
 
-  Public Shared Sub OpenFormMDINewSalesRequirements(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByRef rSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo))
+  Public Shared Sub OpenFormMDINewSalesRequirements(ByVal vPrimaryKeyID As Integer, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rParentMDI As frmTabbedMDI, ByRef rSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo), ByVal vProductType As eProductType)
     Dim mfrm As frmWorkOrderDetailConstruction = Nothing
 
     If vPrimaryKeyID <> 0 Then
@@ -107,6 +107,7 @@ Public Class frmWorkOrderDetailConstruction
       mfrm = New frmWorkOrderDetailConstruction
       mfrm.pFormController = New fccWorkOrderDetailConstruction(rDBConn, rRTISGlobal)
       mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
+      mfrm.FormController.ProductType = vProductType
       mfrm.MdiParent = rParentMDI
       mfrm.DBCon = rDBConn
       mfrm.RTISGlobal = rRTISGlobal
@@ -173,7 +174,7 @@ Public Class frmWorkOrderDetailConstruction
         Case eCreateMode.None
           pFormController.LoadObjects()
         Case eCreateMode.SalesRequirements
-          pFormController.CreateFromSalesOrderPhaseItems(pInitialSalesOrderPhaseItems, eProductType.StructureAF)
+          pFormController.CreateFromSalesOrderPhaseItems(pInitialSalesOrderPhaseItems, pFormController.ProductType)
         Case eCreateMode.Inventory
       End Select
 
@@ -561,23 +562,23 @@ Public Class frmWorkOrderDetailConstruction
         mRepMerge.Pages.Add(mRepPage)
       Next
 
-      ''Creating Wood Requirements Report
-      mMatReqInfos = pFormController.GetMaterialRequirementInfos
-      mMatReqInfoChanges = pFormController.GetMaterialRequirementInfosChanges
-      mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mMatReqInfoChanges)
+      '''Creating Wood Requirements Report
+      'mMatReqInfos = pFormController.GetMaterialRequirementInfos
+      'mMatReqInfoChanges = pFormController.GetMaterialRequirementInfosChanges
+      'mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mMatReqInfoChanges)
 
-      For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
-        mRepMerge.Pages.Add(mRepPage)
-      Next
+      'For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
+      '  mRepMerge.Pages.Add(mRepPage)
+      'Next
 
-      ''Creating Other Materials Report
-      mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
-      mOtherMatInfoChanges = pFormController.GetMaterialOtherMaterialChanges
-      mOtherMaterialReport = repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mOtherMatInfoChanges)
+      '''Creating Other Materials Report
+      'mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
+      'mOtherMatInfoChanges = pFormController.GetMaterialOtherMaterialChanges
+      'mOtherMaterialReport = repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mOtherMatInfoChanges)
 
-      For Each mRepPage As DevExpress.XtraPrinting.Page In mOtherMaterialReport.Pages
-        mRepMerge.Pages.Add(mRepPage)
-      Next
+      'For Each mRepPage As DevExpress.XtraPrinting.Page In mOtherMaterialReport.Pages
+      '  mRepMerge.Pages.Add(mRepPage)
+      'Next
 
 
       ''Creating Wood Requirments Changes Report
@@ -630,13 +631,13 @@ Public Class frmWorkOrderDetailConstruction
       Case eDocumentType.WorkOrderDoc
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
+          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.WorkOrderAllocationEditors)
         End If
 
       Case eDocumentType.InternalWorkOrder
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.SalesOrder)
+          mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, pFormController.WorkOrderAllocationEditors)
         End If
 
     End Select
@@ -653,7 +654,9 @@ Public Class frmWorkOrderDetailConstruction
     mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.WorkOrder.WorkOrderID
 
     If pFormController.WorkOrder.isInternal = False Then
-      mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+      ''mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+      mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
+
     Else
       mExportDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, pFormController.WorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
     End If

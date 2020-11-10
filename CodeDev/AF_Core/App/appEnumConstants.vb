@@ -74,6 +74,18 @@ Public Enum eTaxRate
   <Description("IVA")> IVA = 1
 
 End Enum
+
+Public Enum eBankName
+  <Description("BAC")> BAC = 1
+  <Description("BANCENTRO")> BANCENTRO = 2
+  <Description("BANPRO")> BANPRO = 3
+  <Description("BDF")> BDF = 4
+  <Description("FICOSA")> FICOSA = 5
+  <Description("LAFISE")> LAFISE = 6
+  <Description("INTERBANCO GUATEMALA")> INTERBANCOGUATEMALA = 7
+  <Description(" KEYBANK NATIONAL ASSOCIATION")> KEYBANKNATIONALASSOCIATION = 8
+
+End Enum
 Public Enum ePaymentMethod
   <Description("Ninguno")> None = 0
   <Description("Efectivo")> Cash = 1

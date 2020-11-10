@@ -17,13 +17,13 @@ Public Class uctFileControl
   End Property
 
   Public Sub LoadControls()
-    ''pUserController.SynchroniseFiles()
-    ''grdFiles.DataSource = pUserController.FileTrackers
+    pUserController.SynchroniseFiles()
+    grdFiles.DataSource = pUserController.FileTrackers
   End Sub
 
   Public Sub RefreshControls()
-    ''gvFiles.RefreshData()
-    ''bbtnOpenFolder.Caption = pUserController.Directory
+    gvFiles.RefreshData()
+    bbtnOpenFolder.Caption = pUserController.Directory
   End Sub
 
   Public Sub UpdateObject()
@@ -78,7 +78,7 @@ Public Class uctFileControl
 
         If pUserController.FileAlreadyExists(mFilePath) Then
 
-          If MsgBox("Ya existe un archvivo con este nombre, ¿desea sobreescribirlo?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+          If MsgBox("Ya existe un archivo con este nombre, ¿desea sobreescribirlo?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             pUserController.CopyFile(mFilePath)
           End If
 

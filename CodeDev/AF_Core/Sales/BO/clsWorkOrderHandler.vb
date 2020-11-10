@@ -25,6 +25,14 @@ Public Class clsWorkOrderHandler
     mRetVal.DateCreated = Now.Date
     mRetVal.Product = clsProductSharedFuncs.NewProductInstance(vProductType)
     mRetVal.ProductTypeID = vProductType
+    mRetVal.isInternal = True
+    If rSalesOrderPhaseItems IsNot Nothing Then
+
+      If rSalesOrderPhaseItems.Count > 0 Then
+        mRetVal.Product = rSalesOrderPhaseItems(0).Product
+      End If
+    End If
+
     For Each mSalesOrderPhaseItem In rSalesOrderPhaseItems
       mWOA = New dmWorkOrderAllocation
       mWOA.SalesOrderPhaseItemID = mSalesOrderPhaseItem.SalesOrderPhaseItemID

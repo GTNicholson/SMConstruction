@@ -77,7 +77,7 @@ Public Class fccPurchaseOrderConsole
     Dim mdsoPurchaseOrder As New dsoPurchasing(pDBConn)
     Try
       ''mdsoPurchaseOrder.LoadPurchaseOrderInfos(mPOInfos, vWhere, "PurchaseOrderID")
-      mdsoPurchaseOrder.LoadPurchaseOrderInfos(mPOInfos, vWhere) ''Adapted according to HallAndTawse
+      mdsoPurchaseOrder.LoadPurchaseOrderInfosDown(mPOInfos, vWhere) ''Adapted according to HallAndTawse
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     Finally

@@ -138,7 +138,7 @@ Public Class dtoPurchaseOrderItemInfo : Inherits dtoBase
   End Function
 
 
-  Public Function LoadPODeliveryItemInfoByID(ByRef rPurchaseOrderItemInfo As clsPurchaseOrderItemInfo, ByVal vPrimaryKeyID As Integer) As Boolean
+  Public Function LoadPurchaseOrderItemByID(ByRef rPurchaseOrderItemInfo As clsPurchaseOrderItemInfo, ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
     mOK = LoadObject(vPrimaryKeyID)
     If mOK Then
@@ -151,7 +151,7 @@ Public Class dtoPurchaseOrderItemInfo : Inherits dtoBase
   End Function
 
 
-  Public Function LoadPODeliveryItemInfoCollectionByWhere(ByRef rPurchaseOrderItemInfos As colPurchaseOrderItemInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadPurchaseOrderItemInfoCollectionByWhere(ByRef rPurchaseOrderItemInfos As colPurchaseOrderItemInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mOK = MyBase.LoadCollection(rPurchaseOrderItemInfos, mParams, "PurchaseOrderItemID", vWhere)

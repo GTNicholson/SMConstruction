@@ -105,11 +105,11 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
           mWhere = String.Format("Status not in ({0},{1})", CInt(ePurchaseOrderDueDateStatus.Cancelled), CInt(ePurchaseOrderDueDateStatus.Received))
           '' mWhere &= " and"
           '' mWhere &= String.Format(" PaymentStatus <> {0}", CInt(ePaymentStatus.Paid))
-          mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
+          mdoPurchasing.LoadPurchaseOrderInfosDown(mPOInfos, mWhere)
 
         Case eListOption.Cancelled
           mWhere = String.Format("Status = {0}", CInt(ePurchaseOrderDueDateStatus.Cancelled))
-          mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
+          mdoPurchasing.LoadPurchaseOrderInfosDown(mPOInfos, mWhere)
 
         ''Case eListOption.Paid
 
@@ -117,7 +117,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
         ''  mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
 
         Case eListOption.All
-          mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, "")
+          mdoPurchasing.LoadPurchaseOrderInfosDown(mPOInfos, "")
       End Select
 
 

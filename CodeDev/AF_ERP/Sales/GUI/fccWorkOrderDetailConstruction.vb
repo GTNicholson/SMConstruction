@@ -322,7 +322,7 @@ Public Class fccWorkOrderDetailConstruction
     Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
     Dim mFilePath As String
-
+    Dim mProduct As dmProductBase
     mExportOptions = New DevExpress.XtraPrinting.PdfExportOptions
     mExportOptions.ConvertImagesToJpeg = False
 
@@ -335,15 +335,30 @@ Public Class fccWorkOrderDetailConstruction
       mPDFAmalg.ImportPDFDocument(vFilePath)
     End If
 
-    For Each mFileTracker In pWorkOrder.WOFiles
-      If mFileTracker.IncludeInPack Then
-        mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mFileTracker.FileName)
+    Select Case pWorkOrder.Product.ItemType
+      Case eProductType.StructureAF
+        mProduct = clsProductSharedFuncs.NewProductInstance(pWorkOrder.Product.ItemType)
+        mProduct = TryCast(pWorkOrder.Product, dmProductStructure)
 
-        If IO.File.Exists(mFilePath) Then
-          mPDFAmalg.ImportPDFDocument(mFilePath)
+        If mProduct IsNot Nothing Then
+          mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mProduct.DrawingFileName)
+
+          If IO.File.Exists(mFilePath) Then
+            mPDFAmalg.ImportPDFDocument(mFilePath)
+          End If
+
         End If
-      End If
-    Next
+    End Select
+
+    'For Each mFileTracker In pWorkOrder.WOFiles
+    '  If mFileTracker.IncludeInPack Then
+    '    mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mFileTracker.FileName)
+
+    '    If IO.File.Exists(mFilePath) Then
+    '      mPDFAmalg.ImportPDFDocument(mFilePath)
+    '    End If
+    '  End If
+    'Next
 
     mPDFAmalg.SavePDFDocument()
 
