@@ -1277,7 +1277,7 @@ Public Class frmWorkOrderDetailConstruction
     Dim mWOAllocationEditor As clsWorkOrderAllocationEditor
     Dim mSelectedProductBases As colSalesOrderPhaseItemInfos
     Dim mWorkderAllocation As dmWorkOrderAllocation
-
+    Dim mCurrentProductID As Integer
 
     Dim mSOI As New dmSalesOrderItem
 
@@ -1295,7 +1295,8 @@ Public Class frmWorkOrderDetailConstruction
               mSalesOrderPhaseItemInfos.Add(mSOPII)
             Next
 
-            mPicker = New clsPickerSalesOrderPhaseItem(mSalesOrderPhaseItemInfos, pFormController.DBConn)
+            If pFormController.WorkOrder.Product IsNot Nothing Then mCurrentProductID = CType(pFormController.WorkOrder.Product, dmProductBase).ID
+            mPicker = New clsPickerSalesOrderPhaseItem(mSalesOrderPhaseItemInfos, pFormController.DBConn, mCurrentProductID)
 
             For Each mWorkderAllocation In pFormController.WorkOrder.WorkOrderAllocations
               If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
@@ -1307,26 +1308,25 @@ Public Class frmWorkOrderDetailConstruction
               End If
             Next
 
-            If frmSalesOrderPhaseItemPickerMulti.PickSalesOrderPhaseItemInfo(mPicker, pFormController.RTISGlobal, frmSalesOrderPhaseItemPickerMulti.ePickerMode.SinglePick) Then
-              For Each mSelectedItem In mPicker.SelectedObjects
-                If mSelectedItem IsNot Nothing Then
+            frmSalesOrderPhaseItemPickerMulti.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal)
+            For Each mSelectedItem In mPicker.SelectedObjects
+              If mSelectedItem IsNot Nothing Then
 
-                  mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseID(mSelectedItem.SalesOrderPhaseItemID)
-                  If mWorkderAllocation Is Nothing Then
-                    mWorkderAllocation = pFormController.CreateWorkOrderAllocation(pFormController.WorkOrder, mSelectedItem.SalesOrderPhaseItemID)
+                mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseID(mSelectedItem.SalesOrderPhaseItemID)
+                If mWorkderAllocation Is Nothing Then
+                  mWorkderAllocation = pFormController.CreateWorkOrderAllocation(pFormController.WorkOrder, mSelectedItem.SalesOrderPhaseItemID)
 
-                    mWorkderAllocation.QuantityRequired = mSelectedItem.Qty
+                  mWorkderAllocation.QuantityRequired = mSelectedItem.Qty
 
-                    mWOAllocationEditor = New clsWorkOrderAllocationEditor(pFormController.WorkOrder, mWorkderAllocation)
-
-
-                    pFormController.WorkOrderAllocationEditors.Add(mWOAllocationEditor)
+                  mWOAllocationEditor = New clsWorkOrderAllocationEditor(pFormController.WorkOrder, mWorkderAllocation)
 
 
-                  End If
+                  pFormController.WorkOrderAllocationEditors.Add(mWOAllocationEditor)
+
+
                 End If
-              Next
-            End If
+              End If
+            Next
 
 
             mSelectedProductBases = New colSalesOrderPhaseItemInfos(mPicker.SelectedObjects)

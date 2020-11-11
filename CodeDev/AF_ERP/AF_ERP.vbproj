@@ -538,7 +538,9 @@
     <Compile Include="Sales\GUI\frmWorkOrderDetail.Designer.vb">
       <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sales\GUI\frmWorkOrderDetail.vb" />
+    <Compile Include="Sales\GUI\frmWorkOrderDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmWorkOrderDetailConstruction.Designer.vb">
       <DependentUpon>frmWorkOrderDetailConstruction.vb</DependentUpon>
     </Compile>
