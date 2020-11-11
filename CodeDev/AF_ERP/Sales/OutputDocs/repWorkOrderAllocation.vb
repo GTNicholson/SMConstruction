@@ -26,7 +26,7 @@ Public Class repWorkOrderAllocation
     xrtClientName.DataBindings.Add("Text", Me.DataSource, "ClientName")
     xrtProjectName.DataBindings.Add("Text", Me.DataSource, "ProjectName")
     xrtRequiredDate.DataBindings.Add("Text", Me.DataSource, "RequiredDate", "{0:dd/MM/yyyy}")
-
+    xrtAssemblyRef.DataBindings.Add("Text", Me.DataSource, "AssemblyRef")
     ''xrlTotalBoardFeet.DataBindings.Add("Text", Me.DataSource, "TotalBoardFeetReport")
 
 

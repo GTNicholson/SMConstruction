@@ -341,7 +341,7 @@ Public Class fccWorkOrderDetailConstruction
         mProduct = TryCast(pWorkOrder.Product, dmProductStructure)
 
         If mProduct IsNot Nothing Then
-          mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mProduct.DrawingFileName)
+          mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pWorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mProduct.DrawingFileName)
 
           If IO.File.Exists(mFilePath) Then
             mPDFAmalg.ImportPDFDocument(mFilePath)
