@@ -46,7 +46,7 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
             mSOIPs = New colSalesOrderPhaseItemInfos
             mWhere = "ProductTypeID = " & eProductType.StructureAF
             mdso.LoadSalesOrderPhaseItemInfos(mSOIPs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
-            mSOPIPicker = New clsPickerSalesOrderPhaseItem(mSOIPs, pDBConn)
+            mSOPIPicker = New clsPickerSalesOrderPhaseItem(mSOIPs, pDBConn, 0)
             mSalesOrderPhaseItems = frmSalesOrderPhaseItemPickerMulti.OpenPickerMulti(mSOPIPicker, True, pDBConn, pRTISGlobal)
 
             If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then

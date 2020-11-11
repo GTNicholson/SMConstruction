@@ -122,8 +122,11 @@ Public Class frmSalesOrderPhaseItemPickerMulti
           End If
       End Select
 
-      ApplyFilter
-
+      If pPickerProductBase.SelectedObjects.Count = 1 Then
+        pPickerProductBase.CurrentProductID = pPickerProductBase.SelectedObjects(0).Product.ID
+        pPickerProductBase.RefreshDataSource()
+        grdSalesOrderPhaseItemInfo.DataSource = pPickerProductBase.DataSource
+      End If
       gvSalesOrderPhaseItem.CloseEditor()
 
     Catch ex As Exception
@@ -131,9 +134,6 @@ Public Class frmSalesOrderPhaseItemPickerMulti
     End Try
   End Sub
 
-  Private Sub ApplyFilter()
-
-  End Sub
 
   Private Sub repoItemRemove_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repbtnUnSelect.ButtonClick
     Try
@@ -144,6 +144,13 @@ Public Class frmSalesOrderPhaseItemPickerMulti
         pPickerProductBase.SelectedObjects.Remove(mSOPIInfo)
         If pRemainOpen = False Then Me.Close()
       End If
+
+      If pPickerProductBase.SelectedObjects.Count = 0 And pPickerProductBase.OriginalProductID = 0 Then
+        pPickerProductBase.CurrentProductID = 0
+        pPickerProductBase.RefreshDataSource()
+        grdSalesOrderPhaseItemInfo.DataSource = pPickerProductBase.DataSource
+      End If
+
       gvSalesOrderPhaseItem.CloseEditor()
 
     Catch ex As Exception

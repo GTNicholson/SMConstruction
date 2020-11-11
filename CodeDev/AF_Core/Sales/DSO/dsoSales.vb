@@ -827,13 +827,19 @@ Public Class dsoSales : Inherits dsoBase
 
   Public Function LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
     Dim mOk As Boolean
-
+    Dim mProd As dmProductBase
     Try
 
       If pDBConn.Connect Then
         Dim mdto As New dtoSalesOrderPhaseItemInfo(pDBConn)
 
         mOk = mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItems, vWhere)
+
+        '// Attach Products
+        For Each mSOPII As clsSalesOrderPhaseItemInfo In rSalesOrderPhaseItems
+          mProd = AppRTISGlobal.GetInstance.ProductRegistry.GetProductFromTypeAndID(mSOPII.SalesOrderItem.ProductTypeID, mSOPII.SalesOrderItem.ProductID)
+          mSOPII.Product = mProd
+        Next
 
         mdto = Nothing
       End If
