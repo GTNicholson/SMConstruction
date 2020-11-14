@@ -25,7 +25,6 @@ Partial Public Class repWorkOrderAllocation
         Me.xrtSalesOrderNo = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrtProjectName = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrtClientName = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xrtItemNumber = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrtRequiredDate = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -36,13 +35,14 @@ Partial Public Class repWorkOrderAllocation
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.xrtSalesItemType = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrtAssemblyRef = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xrtItemNumber = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +80,7 @@ Partial Public Class repWorkOrderAllocation
         '
         'XrTableRow2
         '
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtSalesOrderNo, Me.xrtProjectName, Me.xrtClientName, Me.xrtItemNumber, Me.xrtAssemblyRef, Me.xrtRequiredDate})
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtSalesOrderNo, Me.xrtAssemblyRef, Me.xrtItemNumber, Me.xrtProjectName, Me.xrtClientName, Me.xrtRequiredDate})
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Weight = 1.0R
         '
@@ -94,25 +94,19 @@ Partial Public Class repWorkOrderAllocation
         '
         Me.xrtProjectName.CanGrow = False
         Me.xrtProjectName.Name = "xrtProjectName"
-        Me.xrtProjectName.Weight = 2.0628335733764049R
+        Me.xrtProjectName.Weight = 1.9931718890372303R
         '
         'xrtClientName
         '
         Me.xrtClientName.CanGrow = False
         Me.xrtClientName.Name = "xrtClientName"
-        Me.xrtClientName.Weight = 1.4200384408341145R
-        '
-        'xrtItemNumber
-        '
-        Me.xrtItemNumber.CanGrow = False
-        Me.xrtItemNumber.Name = "xrtItemNumber"
-        Me.xrtItemNumber.Weight = 0.681357255900399R
+        Me.xrtClientName.Weight = 1.9772404813884905R
         '
         'xrtRequiredDate
         '
         Me.xrtRequiredDate.CanGrow = False
         Me.xrtRequiredDate.Name = "xrtRequiredDate"
-        Me.xrtRequiredDate.Weight = 0.64868318633599586R
+        Me.xrtRequiredDate.Weight = 0.8188560909085475R
         '
         'TopMargin
         '
@@ -180,8 +174,8 @@ Partial Public Class repWorkOrderAllocation
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.StylePriority.UseBackColor = False
         Me.XrTableCell2.StylePriority.UseForeColor = False
-        Me.XrTableCell2.Text = "Proyecto"
-        Me.XrTableCell2.Weight = 2.0628335724917308R
+        Me.XrTableCell2.Text = "Ref. Casa"
+        Me.XrTableCell2.Weight = 0.55061812929154441R
         '
         'XrTableCell3
         '
@@ -191,8 +185,8 @@ Partial Public Class repWorkOrderAllocation
         Me.XrTableCell3.Name = "XrTableCell3"
         Me.XrTableCell3.StylePriority.UseBackColor = False
         Me.XrTableCell3.StylePriority.UseForeColor = False
-        Me.XrTableCell3.Text = "Cliente"
-        Me.XrTableCell3.Weight = 1.4200385179199841R
+        Me.XrTableCell3.Text = "Núm. Item"
+        Me.XrTableCell3.Weight = 0.42900161618963306R
         '
         'XrTableCell4
         '
@@ -202,8 +196,19 @@ Partial Public Class repWorkOrderAllocation
         Me.XrTableCell4.Name = "XrTableCell4"
         Me.XrTableCell4.StylePriority.UseBackColor = False
         Me.XrTableCell4.StylePriority.UseForeColor = False
-        Me.XrTableCell4.Text = "Código Item"
-        Me.XrTableCell4.Weight = 0.68135823734492751R
+        Me.XrTableCell4.Text = "Proyecto"
+        Me.XrTableCell4.Weight = 1.9931716945803397R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.BackColor = System.Drawing.Color.Green
+        Me.XrTableCell6.CanGrow = False
+        Me.XrTableCell6.ForeColor = System.Drawing.Color.White
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseBackColor = False
+        Me.XrTableCell6.StylePriority.UseForeColor = False
+        Me.XrTableCell6.Text = "Cliente"
+        Me.XrTableCell6.Weight = 1.9772408885082724R
         '
         'XrTableCell5
         '
@@ -214,7 +219,7 @@ Partial Public Class repWorkOrderAllocation
         Me.XrTableCell5.StylePriority.UseBackColor = False
         Me.XrTableCell5.StylePriority.UseForeColor = False
         Me.XrTableCell5.Text = "Fecha Req."
-        Me.XrTableCell5.Weight = 0.6486834627769793R
+        Me.XrTableCell5.Weight = 0.81885612593969848R
         '
         'GroupHeader1
         '
@@ -250,22 +255,17 @@ Partial Public Class repWorkOrderAllocation
         Me.xrtSalesItemType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrtSalesItemType.Weight = 1.0R
         '
-        'XrTableCell6
-        '
-        Me.XrTableCell6.BackColor = System.Drawing.Color.Green
-        Me.XrTableCell6.CanGrow = False
-        Me.XrTableCell6.ForeColor = System.Drawing.Color.White
-        Me.XrTableCell6.Name = "XrTableCell6"
-        Me.XrTableCell6.StylePriority.UseBackColor = False
-        Me.XrTableCell6.StylePriority.UseForeColor = False
-        Me.XrTableCell6.Text = "Ref. Casa"
-        Me.XrTableCell6.Weight = 0.955974663975866R
-        '
         'xrtAssemblyRef
         '
         Me.xrtAssemblyRef.CanGrow = False
         Me.xrtAssemblyRef.Name = "xrtAssemblyRef"
-        Me.xrtAssemblyRef.Weight = 0.95597558579945519R
+        Me.xrtAssemblyRef.Weight = 0.55061808069998774R
+        '
+        'xrtItemNumber
+        '
+        Me.xrtItemNumber.CanGrow = False
+        Me.xrtItemNumber.Name = "xrtItemNumber"
+        Me.xrtItemNumber.Weight = 0.42900165196396067R
         '
         'repWorkOrderAllocation
         '
@@ -288,19 +288,19 @@ Partial Public Class repWorkOrderAllocation
   Friend WithEvents xrtSalesOrderNo As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtProjectName As DevExpress.XtraReports.UI.XRTableCell
   Friend WithEvents xrtClientName As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtItemNumber As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtRequiredDate As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents GroupHeader1 As DevExpress.XtraReports.UI.GroupHeaderBand
-  Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents xrtSalesItemType As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents xrtAssemblyRef As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtRequiredDate As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents GroupHeader1 As DevExpress.XtraReports.UI.GroupHeaderBand
+    Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents xrtSalesItemType As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtAssemblyRef As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtItemNumber As DevExpress.XtraReports.UI.XRTableCell
 End Class

@@ -87,7 +87,7 @@ Public Enum eBankName
 
 End Enum
 Public Enum ePaymentMethod
-  <Description("Ninguno")> None = 0
+  <Description("Caja Chica")> None = 0
   <Description("Efectivo")> Cash = 1
   <Description("Cheque")> Check = 2
   <Description("Transferencia Nac.")> BankTransfer = 3

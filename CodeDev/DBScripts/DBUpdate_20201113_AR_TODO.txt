@@ -1,0 +1,67 @@
+alter table ProductStructure
+add IsGeneric bit
+go
+
+alter table ProductInstallation
+add IsGeneric bit
+go
+
+
+ALTER View [dbo].[vwProductStructureInfo] 
+as
+select 
+ProductStructureID,
+Description,
+ItemType,
+DrawingFileName,
+Notes,
+Code,
+SubItemType,
+IsGeneric
+from ProductStructure
+
+GO
+
+alter table ProductInstallation
+add FullyDefined bit,
+SalesOrderID int
+go
+
+alter table ProductStructure
+add FullyDefined bit,
+SalesOrderID int
+go
+
+
+ALTER View [dbo].[vwProductInstallationInfo] 
+as
+select 
+ProductInstallationID,
+Description,
+ItemType,
+Notes,
+Code,
+DrawingFileName,
+SubItemType,
+IsGeneric,
+SalesOrderID,
+FullyDefined 
+from ProductInstallation
+
+GO
+
+
+CREATE TABLE [dbo].ProductBOM (
+	ProductBOMID int IDENTITY(1,1) NOT NULL,
+	ParentID int NULL,
+	ProductID int null,
+	Quantity int null,
+
+ CONSTRAINT [PK_ProductBOM] PRIMARY KEY CLUSTERED 
+(
+	ProductBOMID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+

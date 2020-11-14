@@ -213,6 +213,15 @@ Public Class dmProductFurniture : Inherits dmProductBase
       Throw New NotImplementedException()
     End Set
   End Property
+
+  Public Overrides Property ProductBOMs As colProductBOMs
+    Get
+      Throw New NotImplementedException()
+    End Get
+    Set(value As colProductBOMs)
+      Throw New NotImplementedException()
+    End Set
+  End Property
 End Class
 
 

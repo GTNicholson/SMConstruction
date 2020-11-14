@@ -111,31 +111,7 @@ Public Class dsoStock
   End Function
 
 
-  Public Function SaveProductBase(ByRef rProductBase As clsProductBaseInfo) As Boolean
-    Dim mdtoProductBase As dtoProductBase
-    Dim mdtoStockItemBOM As dtoStockItemBOM
-    Try
-      pDBConn.Connect()
 
-      If rProductBase.Product IsNot Nothing Then
-        mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ProductTypeID, pDBConn)
-
-        mdtoStockItemBOM = New dtoStockItemBOM(pDBConn)
-
-
-        mdtoProductBase.SaveProduct(rProductBase.Product)
-
-        mdtoStockItemBOM.SaveStockItemBOMCollection(rProductBase.Product.StockItemBOMs, rProductBase.Product.ID)
-      End If
-
-
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-  End Function
 
 
   Public Function LoadStockTakeDown(ByRef rStockTake As dmStockTake, ByVal vStockTakeID As Integer) As Boolean

@@ -203,6 +203,7 @@
     <Compile Include="HR\BO\clsPaySlipItem.vb" />
     <Compile Include="HR\BO\dmEmployeeRateOfPay.vb" />
     <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
+    <Compile Include="ProductAdmin\BO\dmProductBOM.vb" />
     <Compile Include="ProductAdmin\BO\dmStockItemBOM.vb" />
     <Compile Include="ProductAdmin\BO\clsProductBaseInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmFloorOptions.vb" />
@@ -219,6 +220,7 @@
     <Compile Include="ProductAdmin\DSO\dtoFoundationOptions.vb" />
     <Compile Include="Costing\DSO\dtoProductCostBook.vb" />
     <Compile Include="Costing\DSO\dtoProductCostBookEntry.vb" />
+    <Compile Include="ProductAdmin\DSO\dtoProductBOM.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />

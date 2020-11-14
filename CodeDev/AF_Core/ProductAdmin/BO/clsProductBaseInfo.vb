@@ -36,7 +36,11 @@ Public Class clsProductBaseInfo
       Return pProduct.ID
     End Get
   End Property
-
+  Public ReadOnly Property IsGeneric As Boolean
+    Get
+      Return pProduct.IsGeneric
+    End Get
+  End Property
   Public ReadOnly Property Code As String
     Get
       Return pProduct.Code
@@ -60,6 +64,8 @@ Public Class clsProductBaseInfo
       Return pProduct.SubItemType
     End Get
   End Property
+
+
   Public ReadOnly Property ItemTypeDesc As String
     Get
       Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType).DisplayValueString(pProduct.ItemType)
@@ -69,6 +75,20 @@ Public Class clsProductBaseInfo
   Public ReadOnly Property SubItemTypeDesc As String
     Get
       Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionSubType).DisplayValueString(pProduct.SubItemType)
+    End Get
+  End Property
+
+
+  Public ReadOnly Property FullyDefined As Boolean
+    Get
+      Return pProduct.FullyDefined
+    End Get
+  End Property
+
+
+  Public ReadOnly Property SalesOrderID As Int32
+    Get
+      Return pProduct.SalesOrderID
     End Get
   End Property
 End Class

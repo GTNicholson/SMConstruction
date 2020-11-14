@@ -169,6 +169,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTSEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDuration = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -242,6 +243,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl8.SuspendLayout()
         CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit4.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -490,7 +493,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
         Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(715, 121)
         Me.grpWorkOrderAllocations.TabIndex = 167
-        Me.grpWorkOrderAllocations.Text = "Allocacion de OTs"
+        Me.grpWorkOrderAllocations.Text = "Lista de Artículos a Fabricar"
         '
         'grdWorkOrderAllocationsInfos
         '
@@ -499,6 +502,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdWorkOrderAllocationsInfos.MainView = Me.gvWorkOrderAllocationsInfos
         Me.grdWorkOrderAllocationsInfos.MenuManager = Me.BarManager1
         Me.grdWorkOrderAllocationsInfos.Name = "grdWorkOrderAllocationsInfos"
+        Me.grdWorkOrderAllocationsInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit4})
         Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(711, 93)
         Me.grdWorkOrderAllocationsInfos.TabIndex = 157
         Me.grdWorkOrderAllocationsInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderAllocationsInfos, Me.GridView3})
@@ -584,7 +588,8 @@ Partial Class frmWorkOrderDetailConstruction
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Fecha Requerida"
-        Me.GridColumn22.FieldName = "DateRequired"
+        Me.GridColumn22.ColumnEdit = Me.RepositoryItemDateEdit4
+        Me.GridColumn22.FieldName = "RequiredDate"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 5
@@ -1690,6 +1695,14 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcDuration.VisibleIndex = 2
         Me.gcDuration.Width = 186
         '
+        'RepositoryItemDateEdit4
+        '
+        Me.RepositoryItemDateEdit4.AutoHeight = False
+        Me.RepositoryItemDateEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit4.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit4.Name = "RepositoryItemDateEdit4"
+        Me.RepositoryItemDateEdit4.NullDate = New Date(CType(0, Long))
+        '
         'frmWorkOrderDetailConstruction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1778,6 +1791,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl8.ResumeLayout(False)
         CType(Me.grdTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvTimeSheetEntries, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit4.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1911,4 +1926,5 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class

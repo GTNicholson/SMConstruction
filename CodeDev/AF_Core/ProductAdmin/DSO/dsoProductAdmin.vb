@@ -188,6 +188,38 @@ Public Class dsoProductAdmin : Inherits dsoBase
 
   End Sub
 
+  Public Function SaveProductBase(ByRef rProductBase As clsProductBaseInfo) As Boolean
+    Dim mdtoProductBase As dtoProductBase
+    Dim mdtoStockItemBOM As dtoStockItemBOM
+    Dim mdtoProductBOM As dtoProductBOM
+    Try
+      pDBConn.Connect()
+
+      If rProductBase.Product IsNot Nothing Then
+        mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ProductTypeID, pDBConn)
+
+        mdtoStockItemBOM = New dtoStockItemBOM(pDBConn)
+
+
+        mdtoProductBase.SaveProduct(rProductBase.Product)
+
+        If rProductBase.Product IsNot Nothing Then
+          mdtoProductBOM = New dtoProductBOM(pDBConn)
+          mdtoProductBOM.SaveProductBOMCollection(rProductBase.Product.ProductBOMs, rProductBase.Product.ID)
+
+        End If
+        mdtoStockItemBOM.SaveStockItemBOMCollection(rProductBase.Product.StockItemBOMs, rProductBase.Product.ID)
+      End If
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Function
+
   Public Sub LoadProductInfosByWhere(ByRef rProductInfos As colProductBaseInfos, ByVal vWhere As String)
     Dim mdto As dtoProductInfo
     Try

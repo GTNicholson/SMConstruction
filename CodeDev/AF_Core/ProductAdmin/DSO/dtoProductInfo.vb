@@ -87,6 +87,9 @@ Public Class dtoProductInfo : Inherits dtoBase
         .Product.SubItemType = DBReadInt32(rDataReader, "SubItemType")
         .Product.UoM = DBReadInt32(rDataReader, "UoM")
         .Product.DrawingFileName = DBReadString(rDataReader, "DrawingFileName")
+        .Product.IsGeneric = DBReadBoolean(rDataReader, "IsGeneric")
+        .Product.SalesOrderID = DBReadBoolean(rDataReader, "SalesOrderID")
+        .Product.FullyDefined = DBReadBoolean(rDataReader, "FullyDefined")
 
         ''pProductInfo.is = False
       End With
@@ -132,14 +135,34 @@ Public Class dtoProductInfo : Inherits dtoBase
   Public Function LoadProductInfosCollection(ByRef rProductInfos As colProductBaseInfos) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
+    Dim mdtoProductBOM As dtoProductBOM
     '' mParams.Add("@ParentID", vParentID)
 
     Select Case pMode
       Case eMode.Installation
         mOK = MyBase.LoadCollection(rProductInfos, mParams, "ProductInstallationID")
 
+        If mOK Then
+          If rProductInfos IsNot Nothing Then
+            For Each rProductInfo As clsProductBaseInfo In rProductInfos
+              mdtoProductBOM = New dtoProductBOM(pDBConn)
+              mdtoProductBOM.LoadProductBOMCollection(rProductInfo.Product.ProductBOMs, rProductInfo.Product.ID)
+            Next
+          End If
+        End If
+
       Case eMode.AFStructure
         mOK = MyBase.LoadCollection(rProductInfos, mParams, "ProductStructureID")
+
+        If mOK Then
+          If rProductInfos IsNot Nothing Then
+            For Each rProductInfo As clsProductBaseInfo In rProductInfos
+              mdtoProductBOM = New dtoProductBOM(pDBConn)
+              mdtoProductBOM.LoadProductBOMCollection(rProductInfo.Product.ProductBOMs, rProductInfo.Product.ID)
+            Next
+          End If
+        End If
+
     End Select
 
 

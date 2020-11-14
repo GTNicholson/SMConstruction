@@ -212,7 +212,7 @@ Public Class frmProductAdmin
         clsDEControlLoading.SetDECombo(cboSubItemType, .SubItemType)
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
         bteDrawing.Text = .DrawingFileName
-
+        chkIsGeneric.EditValue = .IsGeneric
       End With
     End If
 
@@ -233,7 +233,7 @@ Public Class frmProductAdmin
     If pFormController.CurrentProductBase IsNot Nothing Then
       With pFormController.CurrentProductBase
         .Description = txtDescription.Text
-
+        .IsGeneric = chkIsGeneric.EditValue
         .Code = txtStockCode.Text
         .ItemType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
         .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubItemType)
@@ -273,6 +273,7 @@ Public Class frmProductAdmin
         RefreshControls()
         SwitchTab()
         LoadStockItemBOM()
+        LoadProductBOMs()
         RefreshControls()
         pCurrentDetailMode = eCurrentDetailMode.eView
         RefreshDetailButtons()
@@ -394,7 +395,7 @@ Public Class frmProductAdmin
     cboUoM.ReadOnly = vReadOnly
     bteDrawing.Enabled = Not vReadOnly
     btnGenerateCode.Enabled = Not vReadOnly
-
+    chkIsGeneric.ReadOnly = vReadOnly
     gpStockItemBOM.Enabled = Not vReadOnly
 
   End Sub
@@ -499,6 +500,9 @@ Public Class frmProductAdmin
   Public Sub LoadStockItemBOM()
     pFormController.LoadStockItemBOM()
     grdStockItemBOM.DataSource = pFormController.CurrentProductBase.StockItemBOMs
+  End Sub
+  Public Sub LoadProductBOMs()
+    grdProductBOMs.DataSource = pFormController.CurrentProductBase.ProductBOMs
   End Sub
   Private Sub RefreshPCSubItemTypes()
 
@@ -640,7 +644,7 @@ Public Class frmProductAdmin
     End Try
   End Sub
 
-  Private Sub gpStockItemBOM_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles gpStockItemBOM.CustomButtonClick
+  Private Sub gpStockItemBOM_CustomButtonClick(sender As Object, e As BaseButtonEventArgs)
     Try
       Select Case e.Button.Properties.Tag
 

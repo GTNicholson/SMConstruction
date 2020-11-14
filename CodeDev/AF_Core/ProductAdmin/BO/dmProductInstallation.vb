@@ -8,7 +8,7 @@ Public Class dmProductInstallation : Inherits dmProductBase
   Private pProductInstallationTypeID As Int32
   Private pNotes As String
   Private pStockItemBOMs As colStockItemBOMs
-
+  Private pProductBOMs As colProductBOMs
   Public Sub New()
     MyBase.New()
   End Sub
@@ -16,7 +16,7 @@ Public Class dmProductInstallation : Inherits dmProductBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pStockItemBOMs = New colStockItemBOMs
-
+    pProductBOMs = New colProductBOMs
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -57,6 +57,11 @@ Public Class dmProductInstallation : Inherits dmProductBase
       .SubItemType = SubItemType
       .DrawingFileName = DrawingFileName
       .StockItemBOMs = StockItemBOMs
+      .IsGeneric = IsGeneric
+      .SalesOrderID = SalesOrderID
+      .FullyDefined = FullyDefined
+
+      .ProductBOMs = ProductBOMs
 
       'Add entries here for each collection and class property
 
@@ -143,6 +148,14 @@ Public Class dmProductInstallation : Inherits dmProductBase
     End Set
   End Property
 
+  Public Overrides Property ProductBOMs As colProductBOMs
+    Get
+      Return pProductBOMs
+    End Get
+    Set(value As colProductBOMs)
+      pProductBOMs = value
+    End Set
+  End Property
 End Class
 
 

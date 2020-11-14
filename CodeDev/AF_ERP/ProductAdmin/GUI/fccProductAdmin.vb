@@ -180,14 +180,14 @@ Public Class fccProductAdmin
       If pCurrentProductInfo IsNot Nothing Then
 
         If pCurrentProductInfo.Product IsNot Nothing Then
-          Dim mdsoStock As New dsoStock(pDBConn)
+          Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
 
 
-          mdsoStock.SaveProductBase(pCurrentProductInfo)
+          mdsoProductAdmin.SaveProductBase(pCurrentProductInfo)
 
 
 
-          mdsoStock = Nothing
+          mdsoProductAdmin = Nothing
         End If
 
       End If

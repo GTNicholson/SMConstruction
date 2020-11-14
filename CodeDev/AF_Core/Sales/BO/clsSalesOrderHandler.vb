@@ -205,16 +205,19 @@ Public Class clsSalesOrderHandler
 
     For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
 
-      mSOPI = New dmSalesOrderPhaseItem
+      If mSalesOrderItem.HouseTypeID = rTargetSalesOrderHouse.SalesOrderHouseID Then
+        mSOPI = New dmSalesOrderPhaseItem
 
-      mSOPI.Qty = mSalesOrderItem.Quantity
-      mSOPI.SalesItemID = mSalesOrderItem.SalesOrderItemID
-      mSOPI.SalesOrderID = mSalesOrderItem.SalesOrderID
+        mSOPI.Qty = mSalesOrderItem.Quantity
+        mSOPI.SalesItemID = mSalesOrderItem.SalesOrderItemID
+        mSOPI.SalesOrderID = mSalesOrderItem.SalesOrderID
 
-      If pSalesOrder.SalesOrderPhases IsNot Nothing And pSalesOrder.SalesOrderPhases.Count > 0 Then
-        mSOPI.SalesOrderPhaseID = pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
-        pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+        If pSalesOrder.SalesOrderPhases IsNot Nothing And pSalesOrder.SalesOrderPhases.Count > 0 Then
+          mSOPI.SalesOrderPhaseID = pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+          pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
+        End If
       End If
+
     Next
 
     mdso.SaveSalesOrderDown(pSalesOrder)

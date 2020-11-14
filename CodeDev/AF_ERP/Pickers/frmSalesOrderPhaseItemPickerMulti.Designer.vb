@@ -50,6 +50,7 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +85,7 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.gvSalesOrderPhaseItem.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvSalesOrderPhaseItem.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvSalesOrderPhaseItem.Appearance.Row.Options.UseFont = True
-        Me.gvSalesOrderPhaseItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcOrderNo, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.gcItemNumber})
+        Me.gvSalesOrderPhaseItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcOrderNo, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.gcItemNumber, Me.GridColumn10})
         Me.gvSalesOrderPhaseItem.GridControl = Me.grdSalesOrderPhaseItemInfo
         Me.gvSalesOrderPhaseItem.Name = "gvSalesOrderPhaseItem"
         Me.gvSalesOrderPhaseItem.OptionsView.ShowAutoFilterRow = True
@@ -96,8 +97,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.gcOrderNo.FieldName = "OrderNo"
         Me.gcOrderNo.Name = "gcOrderNo"
         Me.gcOrderNo.Visible = True
-        Me.gcOrderNo.VisibleIndex = 1
-        Me.gcOrderNo.Width = 78
+        Me.gcOrderNo.VisibleIndex = 0
+        Me.gcOrderNo.Width = 89
         '
         'GridColumn1
         '
@@ -105,8 +106,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn1.FieldName = "ProjectName"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
-        Me.GridColumn1.Width = 161
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 186
         '
         'GridColumn2
         '
@@ -122,8 +123,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn4.FieldName = "DateRequired"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 63
+        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.Width = 73
         '
         'RepositoryItemDateEdit1
         '
@@ -152,8 +153,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn3.FieldName = "CompanyName"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 199
+        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.Width = 230
         '
         'GridColumn7
         '
@@ -167,8 +168,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn8.FieldName = "Description"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 326
+        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.Width = 379
         '
         'GridColumn9
         '
@@ -176,19 +177,19 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn9.FieldName = "WorkOrderNo"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
-        Me.GridColumn9.Width = 78
+        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.Width = 100
         '
         'gcItemNumber
         '
-        Me.gcItemNumber.Caption = "Ref."
+        Me.gcItemNumber.Caption = "Núm. Item"
         Me.gcItemNumber.ColumnEdit = Me.RepbtnSelect
         Me.gcItemNumber.FieldName = "ItemNumberRef"
         Me.gcItemNumber.Name = "gcItemNumber"
         Me.gcItemNumber.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcItemNumber.Visible = True
-        Me.gcItemNumber.VisibleIndex = 0
-        Me.gcItemNumber.Width = 110
+        Me.gcItemNumber.VisibleIndex = 1
+        Me.gcItemNumber.Width = 80
         '
         'RepbtnSelect
         '
@@ -216,6 +217,15 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.btnConfirmSelection.Size = New System.Drawing.Size(133, 23)
         Me.btnConfirmSelection.TabIndex = 3
         Me.btnConfirmSelection.Text = "Aceptar Selección"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Casa"
+        Me.GridColumn10.FieldName = "AssemblyRef"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 116
         '
         'frmSalesOrderPhaseItemPickerMulti
         '
@@ -256,4 +266,5 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcItemNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

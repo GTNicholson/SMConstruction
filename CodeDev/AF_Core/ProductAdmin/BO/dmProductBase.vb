@@ -17,11 +17,18 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pSubItemType As Integer '// from productconstructionsubtype
   Protected pItemType As Integer '// from productconstructiontype
   Protected pDrawingFileName As String
+  Protected pIsGeneric As Boolean
+  Protected pFullyDefined As Boolean
+  Protected pSalesOrderID As Integer
+
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
   Public MustOverride Property ProductTypeID As Integer Implements intItemSpecCore.ItemType '// from eProductType
 
   Public MustOverride Property StockItemBOMs As colStockItemBOMs
+
+  Public MustOverride Property ProductBOMs As colProductBOMs
+
 
   Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
     Get
@@ -145,7 +152,36 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     End Set
   End Property
 
+  Public Property IsGeneric As Boolean
+    Get
+      Return pIsGeneric
+    End Get
+    Set(value As Boolean)
+      If value <> pIsGeneric Then pIsDirty = True
+      pIsGeneric = value
+    End Set
+  End Property
 
+  Public Property FullyDefined As Boolean
+    Get
+      Return pFullyDefined
+    End Get
+    Set(value As Boolean)
+      If value <> pFullyDefined Then pIsDirty = True
+      pFullyDefined = value
+    End Set
+  End Property
+
+
+  Public Property SalesOrderID As Boolean
+    Get
+      Return pSalesOrderID
+    End Get
+    Set(value As Boolean)
+      If value <> pSalesOrderID Then pIsDirty = True
+      pSalesOrderID = value
+    End Set
+  End Property
 
   Public MustOverride Sub CalculateCostAndPrice() Implements intItemSpecCore.CalculateCostAndPrice
 

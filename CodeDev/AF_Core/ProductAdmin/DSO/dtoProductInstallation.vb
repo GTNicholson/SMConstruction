@@ -61,6 +61,9 @@ Public Class dtoProductInstallation : Inherits dtoProductBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubItemType", .SubItemType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingFileName", StringToDBValue(.DrawingFileName))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsGeneric", .IsGeneric)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FullyDefined", .FullyDefined)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesOrderID", .SalesOrderID)
 
     End With
   End Sub
@@ -79,7 +82,9 @@ Public Class dtoProductInstallation : Inherits dtoProductBase
         .SubItemType = DBReadInt32(rDataReader, "SubItemType")
         .UoM = DBReadInt32(rDataReader, "UoM")
         .DrawingFileName = DBReadString(rDataReader, "DrawingFileName")
-
+        .IsGeneric = DBReadBoolean(rDataReader, "IsGeneric")
+        .FullyDefined = DBReadBoolean(rDataReader, "FullyDefined")
+        .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
         CType(pProduct, dmProductInstallation).IsDirty = False
 
       End With
