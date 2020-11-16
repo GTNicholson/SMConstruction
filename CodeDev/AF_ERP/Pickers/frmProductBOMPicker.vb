@@ -7,21 +7,19 @@ Imports RTIS.ERPStock
 
 
 
-Public Class frmProductPicker
+Public Class frmProductBOMPicker
   Private pRTISGlobal As AppRTISGlobal
 
-  Private pPickerProductBase As clsPickerProductItem
+  Private pPickerProductBOM As clsPickerProductBOM
   Private pRemainOpen As Boolean
   Private pProductBase As dmProductBase
   Private pActive As Boolean
   Private pMode As ePickerMode
-  Private pProductBOMMode As ePickerMode
+
   Public Enum ePickerMode
     SinglePick = 1
     MultiPick = 2
-    ProductBOM = 3
   End Enum
-
 
   Public Property ProductBase As dmProductBase
     Get
@@ -33,13 +31,13 @@ Public Class frmProductPicker
   End Property
 
 
-  Public Shared Function PickProducts(ByRef rPickerProductBase As clsPickerProductItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPickMode As ePickerMode) As Boolean
-    Dim mfrm As frmProductPicker
+  Public Shared Function PickProducts(ByRef rPickerProductBOM As clsPickerProductBOM, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPickMode As ePickerMode) As Boolean
+    Dim mfrm As frmProductBOMPicker
     Dim mCreated As Boolean = False
     'Dim mTableName As String
 
-    mfrm = New frmProductPicker
-    mfrm.pPickerProductBase = rPickerProductBase
+    mfrm = New frmProductBOMPicker
+    mfrm.pPickerProductBOM = rPickerProductBOM
     mfrm.pRTISGlobal = rRTISGlobal
     mfrm.pRemainOpen = True
     mfrm.pMode = vPickMode
@@ -49,33 +47,32 @@ Public Class frmProductPicker
     mfrm.ShowDialog()
     Return True
   End Function
-  Public Shared Function OpenPickerSingle(ByVal vPickerProductBase As clsPickerProductItem) As clsProductBaseInfo
-    Dim mfrm As New frmProductPicker
+  Public Shared Function OpenPickerSingle(ByVal vPickerProductBOM As clsPickerProductBOM) As clsProductBaseInfo
+    Dim mfrm As New frmProductBOMPicker
     Dim mRetVal As clsProductBaseInfo
 
     mfrm.pMode = ePickerMode.SinglePick
-    mfrm.pPickerProductBase = vPickerProductBase
+    mfrm.pPickerProductBOM = vPickerProductBOM
     mfrm.ShowDialog()
 
-    If mfrm.pPickerProductBase.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerProductBase.SelectedObjects.Count > 0 Then
-      mRetVal = mfrm.pPickerProductBase.SelectedObjects(0)
+    If mfrm.pPickerProductBOM.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerProductBOM.SelectedObjects.Count > 0 Then
+      mRetVal = mfrm.pPickerProductBOM.SelectedObjects(0)
     End If
 
     Return mRetVal
   End Function
 
-  Public Shared Function OpenPickerMulti(ByVal vPickerProductBase As clsPickerProductItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vBOMPicker As ePickerMode) As List(Of clsProductBaseInfo)
-    Dim mfrm As New frmProductPicker
+  Public Shared Function OpenPickerMulti(ByVal vPickerProductBOM As clsPickerProductBOM, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of clsProductBaseInfo)
+    Dim mfrm As New frmProductBOMPicker
     Dim mRetVal As New List(Of clsProductBaseInfo)
 
     mfrm.pMode = ePickerMode.MultiPick
-    mfrm.pProductBOMMode = vBOMPicker
-    mfrm.pPickerProductBase = vPickerProductBase
+    mfrm.pPickerProductBOM = vPickerProductBOM
     mfrm.pRemainOpen = vRemainOpen
     mfrm.ShowDialog()
 
-    If mfrm.pPickerProductBase.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerProductBase.SelectedObjects.Count > 0 Then
-      For Each mItem As clsProductBaseInfo In mfrm.pPickerProductBase.SelectedObjects
+    If mfrm.pPickerProductBOM.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerProductBOM.SelectedObjects.Count > 0 Then
+      For Each mItem As clsProductBaseInfo In mfrm.pPickerProductBOM.SelectedObjects
         mRetVal.Add(mItem)
       Next
     End If
@@ -87,7 +84,7 @@ Public Class frmProductPicker
     Try
       pActive = False
       LoadCombo()
-      grdItemList.DataSource = pPickerProductBase.DataSource
+      grdItemList.DataSource = pPickerProductBOM.DataSource
 
       CreateTabs()
       SetCurrentTab(eProductType.StructureAF)
@@ -118,21 +115,21 @@ Public Class frmProductPicker
 
           mProductBase = TryCast(gvItemList.GetFocusedRow, clsProductBaseInfo)
           If mProductBase IsNot Nothing Then
-            pPickerProductBase.SelectedObjects.Add(mProductBase)
+            pPickerProductBOM.SelectedObjects.Add(mProductBase)
             Me.Close()
           End If
 
         Case ePickerMode.MultiPick
           mProductBase = TryCast(gvItemList.GetFocusedRow, clsProductBaseInfo)
           If mProductBase IsNot Nothing Then
-            pPickerProductBase.SelectedObjects.Add(mProductBase)
+            pPickerProductBOM.SelectedObjects.Add(mProductBase)
             If pRemainOpen = False Then Me.Close()
           End If
       End Select
 
 
       gvItemList.CloseEditor()
-      RefeshTabCaption(pPickerProductBase.CurrentCategory)
+      RefeshTabCaption(pPickerProductBOM.CurrentCategory)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -143,7 +140,7 @@ Public Class frmProductPicker
       Dim mItem As clsProductBaseInfo
       Dim mProductBaseInfos As New colProductBaseInfos
       Dim mSelectedItem As clsProductBaseInfo
-      For Each mProductBaseInfo As clsProductBaseInfo In pPickerProductBase.SelectedObjects
+      For Each mProductBaseInfo As clsProductBaseInfo In pPickerProductBOM.SelectedObjects
         mProductBaseInfos.Add(mProductBaseInfo)
       Next
 
@@ -158,14 +155,14 @@ Public Class frmProductPicker
         End If
       End If
 
-      pPickerProductBase.SelectedObjects.Clear()
+      pPickerProductBOM.SelectedObjects.Clear()
 
       For Each mProductBaseInfo As clsProductBaseInfo In mProductBaseInfos
-        pPickerProductBase.SelectedObjects.Add(mProductBaseInfo)
+        pPickerProductBOM.SelectedObjects.Add(mProductBaseInfo)
       Next
 
       gvItemList.CloseEditor()
-      RefeshTabCaption(pPickerProductBase.CurrentCategory)
+      RefeshTabCaption(pPickerProductBOM.CurrentCategory)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -204,7 +201,7 @@ Public Class frmProductPicker
     Dim mRow As clsProductBaseInfo
     Dim mProductBaseInfos As New colProductBaseInfos
 
-    For Each mProductBaseInfo As clsProductBaseInfo In pPickerProductBase.SelectedObjects
+    For Each mProductBaseInfo As clsProductBaseInfo In pPickerProductBOM.SelectedObjects
       mProductBaseInfos.Add(mProductBaseInfo)
     Next
 
@@ -231,60 +228,28 @@ Public Class frmProductPicker
   Private Sub CreateTabs()
     Dim mVIs As colValueItems
     Dim mTabPage As DevExpress.XtraTab.XtraTabPage
+
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
+    Do While xtabCategories.TabPages.Count > 1
+      xtabCategories.TabPages.RemoveAt(xtabCategories.TabPages.Count - 1)
+    Loop
 
-    If pProductBOMMode = ePickerMode.ProductBOM Then
+    For Each mVI As clsValueItem In mVIs
+      mTabPage = New DevExpress.XtraTab.XtraTabPage
+      mTabPage.Text = mVI.DisplayValue
+      mTabPage.Tag = mVI.ItemValue
+      xtabCategories.TabPages.Add(mTabPage)
+    Next
 
+    For Each mTabPage In xtabCategories.TabPages
+      If mTabPage.Tag Is Nothing OrElse mTabPage.Tag = 0 Then
+        mTabPage.PageVisible = False
+      Else
+        RefeshTabCaption(mTabPage.Tag)
+      End If
+    Next
 
-
-      Do While xtabCategories.TabPages.Count > 1
-        xtabCategories.TabPages.RemoveAt(xtabCategories.TabPages.Count - 1)
-      Loop
-
-      For Each mVI As clsValueItem In mVIs
-        If mVI.ItemValue = eProductType.StructureAF Then
-          mTabPage = New DevExpress.XtraTab.XtraTabPage
-          mTabPage.Text = mVI.DisplayValue
-          mTabPage.Tag = mVI.ItemValue
-          xtabCategories.TabPages.Add(mTabPage)
-        End If
-
-      Next
-
-      For Each mTabPage In xtabCategories.TabPages
-        If mTabPage.Tag Is Nothing OrElse mTabPage.Tag = 0 Then
-          mTabPage.PageVisible = False
-        Else
-          RefeshTabCaption(mTabPage.Tag)
-        End If
-      Next
-
-      SetCurrentTab(eProductType.StructureAF)
-
-    Else
-      Do While xtabCategories.TabPages.Count > 1
-        xtabCategories.TabPages.RemoveAt(xtabCategories.TabPages.Count - 1)
-      Loop
-
-      For Each mVI As clsValueItem In mVIs
-        mTabPage = New DevExpress.XtraTab.XtraTabPage
-        mTabPage.Text = mVI.DisplayValue
-        mTabPage.Tag = mVI.ItemValue
-        xtabCategories.TabPages.Add(mTabPage)
-      Next
-
-      For Each mTabPage In xtabCategories.TabPages
-        If mTabPage.Tag Is Nothing OrElse mTabPage.Tag = 0 Then
-          mTabPage.PageVisible = False
-        Else
-          RefeshTabCaption(mTabPage.Tag)
-        End If
-      Next
-
-      SetCurrentTab(eProductType.StructureAF)
-    End If
-
-
+    SetCurrentTab(eProductType.ProductFurniture)
 
   End Sub
 
@@ -293,8 +258,8 @@ Public Class frmProductPicker
       If mTabPage.Tag IsNot Nothing AndAlso mTabPage.Tag = vCategory Then
         xtabCategories.SelectedTabPage = mTabPage
         grdItemList.Parent = mTabPage
-        pPickerProductBase.CurrentCategory = vCategory
-        gvItemList.ActiveFilterString = "ProductTypeID = " & pPickerProductBase.CurrentCategory
+        pPickerProductBOM.CurrentCategory = vCategory
+        gvItemList.ActiveFilterString = "ProductTypeID = " & pPickerProductBOM.CurrentCategory
       End If
     Next
 
@@ -304,7 +269,7 @@ Public Class frmProductPicker
     Dim mSelected As Integer = 0
     For Each mTabPage As DevExpress.XtraTab.XtraTabPage In xtabCategories.TabPages
       If mTabPage.Tag IsNot Nothing AndAlso mTabPage.Tag = vCategory Then
-        mSelected = pPickerProductBase.SelectedCount(vCategory)
+        mSelected = pPickerProductBOM.SelectedCount(vCategory)
         If mSelected = 0 Then
           mTabPage.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), vCategory)
         Else

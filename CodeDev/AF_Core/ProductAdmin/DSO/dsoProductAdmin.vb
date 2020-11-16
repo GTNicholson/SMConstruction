@@ -239,6 +239,21 @@ Public Class dsoProductAdmin : Inherits dsoBase
     End Try
   End Sub
 
+  Public Sub LoadProductInfosStructureOnly(ByRef rProductInfos As colProductBaseInfos)
+    Dim mdto As dtoProductInfo
+    Try
+      pDBConn.Connect()
+
+      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
+      mdto.LoadProductInfosCollection(rProductInfos)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
   Public Sub LoadProductInstallations(ByRef rProducts As colProductBases)
     Dim mdtoInstallation As dtoProductInstallation
     Dim mProductInstallations As New colProductInstallations
@@ -261,18 +276,33 @@ Public Class dsoProductAdmin : Inherits dsoBase
   End Sub
 
   Public Sub LoadProductStructures(ByRef rProducts As colProductBases)
-    Dim mdtoInstallation As dtoProductStructure
+    Dim mdtoProductStructure As dtoProductStructure
     Dim mProductStructures As New colProductStructures
     Try
       pDBConn.Connect()
 
-      mdtoInstallation = New dtoProductStructure(pDBConn)
-      mdtoInstallation.LoadProductStructureCollection(mProductStructures)
+      mdtoProductStructure = New dtoProductStructure(pDBConn)
+      mdtoProductStructure.LoadProductStructureCollection(mProductStructures)
 
       For Each mProduct As dmProductBase In mProductStructures
         rProducts.Add(mProduct)
       Next
 
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub LoadProductBOMS(ByRef rProductBOMInfos As colProductBOMInfos, ByVal vWhere As String)
+    Dim mdto As dtoProductBOMInfo
+    Try
+      pDBConn.Connect()
+
+      mdto = New dtoProductBOMInfo(pDBConn)
+      mdto.LoadProductBOMInfoCollectionByWhere(rProductBOMInfos, vWhere)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

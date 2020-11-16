@@ -5,7 +5,7 @@ Public Class uctHouseTypeOptions
 
   Private pHouseType As dmHouseType
   Private pRTISGlobal As AppRTISGlobal
-
+  Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Public Property HouseType As dmHouseType
     Get
       Return pHouseType
@@ -23,6 +23,8 @@ Public Class uctHouseTypeOptions
       pRTISGlobal = value
     End Set
   End Property
+
+
 
   Public Sub UpdateObjects()
     pHouseType.ModelID = clsDEControlLoading.GetDEComboValue(cboModel)
@@ -58,5 +60,7 @@ Public Class uctHouseTypeOptions
 
 
   End Sub
+
+
 
 End Class

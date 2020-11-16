@@ -131,6 +131,34 @@ Public Class colProductBOMs : Inherits colBase(Of dmProductBOM)
     Return mIndex
   End Function
 
+  Public Function ItemFromProductID(ByVal vProductID As Integer) As dmProductBOM
+    Dim mItem As dmProductBOM
+    Dim mRetVal As dmProductBOM = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.ProductID = vProductID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function IndexFromProductID(ByVal vProductID As Integer) As Integer
+    Dim mItem As dmProductBOM
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.ProductID = vProductID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+
   Public Sub New()
     MyBase.New()
   End Sub

@@ -1,0 +1,14 @@
+CREATE view vwProductBOMInfo
+as
+SELECT
+PBOM.ProductBOMID,
+PBOM.ParentID,
+PBOM.Quantity,
+PS.Description
+
+FROM ProductBOM PBOM
+inner join ProductStructure PS on PS.ProductStructureID= PBOM.ProductID
+
+GO
+
+

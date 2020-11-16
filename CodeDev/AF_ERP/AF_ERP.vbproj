@@ -305,6 +305,7 @@
     </Compile>
     <Compile Include="Pickers\clsPickerBase.vb" />
     <Compile Include="Pickers\clsPickerCustomer.vb" />
+    <Compile Include="Pickers\clsPickerProductBOM.vb" />
     <Compile Include="Pickers\clsPickerProductItem.vb" />
     <Compile Include="Pickers\clsPickerSalesOrder.vb" />
     <Compile Include="Pickers\clsPickerSalesOrderPhase.vb" />
@@ -328,6 +329,12 @@
       <DependentUpon>frmPickSupplier.vb</DependentUpon>
     </Compile>
     <Compile Include="Pickers\frmPickSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmProductBOMPicker.Designer.vb">
+      <DependentUpon>frmProductBOMPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmProductBOMPicker.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pickers\frmProductPicker.Designer.vb">
@@ -363,10 +370,17 @@
     <Compile Include="ProductAdmin\GUI\frmProductAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ProductAdmin\GUI\uccProductBaseDetail.vb" />
     <Compile Include="ProductAdmin\GUI\uctHouseTypeOptions.Designer.vb">
       <DependentUpon>uctHouseTypeOptions.vb</DependentUpon>
     </Compile>
     <Compile Include="ProductAdmin\GUI\uctHouseTypeOptions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\uctProductBaseDetail.Designer.vb">
+      <DependentUpon>uctProductBaseDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\uctProductBaseDetail.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
@@ -731,6 +745,9 @@
     <EmbeddedResource Include="Pickers\frmPickSupplier.resx">
       <DependentUpon>frmPickSupplier.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmProductBOMPicker.resx">
+      <DependentUpon>frmProductBOMPicker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmProductPicker.resx">
       <DependentUpon>frmProductPicker.vb</DependentUpon>
     </EmbeddedResource>
@@ -748,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductAdmin\GUI\uctHouseTypeOptions.resx">
       <DependentUpon>uctHouseTypeOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductAdmin\GUI\uctProductBaseDetail.resx">
+      <DependentUpon>uctProductBaseDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmPaySlipDetails.resx">
       <DependentUpon>frmPaySlipDetails.vb</DependentUpon>

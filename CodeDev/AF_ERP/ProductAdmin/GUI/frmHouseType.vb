@@ -522,7 +522,7 @@ Public Class frmHouseType
 
 
           mProductPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, pFormController.RTISGlobal)
-          mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, pFormController.RTISGlobal)
+          mProductsToAdd = frmProductPicker.OpenPickerMulti(mProductPicker, True, pFormController.DBConn, pFormController.RTISGlobal, frmProductPicker.ePickerMode.MultiPick)
 
           CheckSave(False)
           pFormController.AddProducts(mProductsToAdd)
