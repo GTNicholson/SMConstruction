@@ -88,7 +88,7 @@ Public Class dtoProductInfo : Inherits dtoBase
         .Product.UoM = DBReadInt32(rDataReader, "UoM")
         .Product.DrawingFileName = DBReadString(rDataReader, "DrawingFileName")
         .Product.IsGeneric = DBReadBoolean(rDataReader, "IsGeneric")
-        .Product.SalesOrderID = DBReadBoolean(rDataReader, "SalesOrderID")
+        .Product.SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
         .Product.FullyDefined = DBReadBoolean(rDataReader, "FullyDefined")
 
         ''pProductInfo.is = False

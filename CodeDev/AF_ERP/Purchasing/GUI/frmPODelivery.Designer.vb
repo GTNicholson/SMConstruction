@@ -326,6 +326,7 @@ Partial Class frmPODelivery
         Me.grpPOPicking.AppearanceCaption.Options.UseFont = True
         Me.grpPOPicking.AppearanceCaption.Options.UseForeColor = True
         Me.grpPOPicking.Controls.Add(Me.LabelControl9)
+        Me.grpPOPicking.Controls.Add(Me.txtExchangeRate)
         Me.grpPOPicking.Controls.Add(Me.LabelControl8)
         Me.grpPOPicking.Controls.Add(Me.txtDefaultCurrency)
         Me.grpPOPicking.Controls.Add(Me.grpGRN)
@@ -499,7 +500,7 @@ Partial Class frmPODelivery
         '
         'txtExchangeRate
         '
-        Me.txtExchangeRate.Location = New System.Drawing.Point(1123, 46)
+        Me.txtExchangeRate.Location = New System.Drawing.Point(1118, 37)
         Me.txtExchangeRate.Name = "txtExchangeRate"
         Me.txtExchangeRate.Properties.ReadOnly = True
         Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
@@ -523,7 +524,7 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
         Me.grpMaterialRequirements.Size = New System.Drawing.Size(1285, 373)
         Me.grpMaterialRequirements.TabIndex = 13
-        Me.grpMaterialRequirements.Text = "Purchase Order Items"
+        Me.grpMaterialRequirements.Text = "Artículos de la Compra"
         '
         'grdPurchaseOrderItemInfo
         '
@@ -735,7 +736,6 @@ Partial Class frmPODelivery
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1296, 565)
         Me.Controls.Add(Me.grpMaterialRequirements)
-        Me.Controls.Add(Me.txtExchangeRate)
         Me.Controls.Add(Me.grpPOPicking)
         Me.Name = "frmPODelivery"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

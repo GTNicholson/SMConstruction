@@ -1,0 +1,31 @@
+CREATE VIEW [dbo].[vwProductRequirementInfo]
+AS
+SELECT
+	PRE.ProductRequirementID,
+	PRE.AllocatedQty,
+ 
+	SOPI.SalesOrderPhaseItemID,
+	SOPI.Qty,
+
+	SO.SalesOrderID,
+	SO.OrderNo,
+	SO.ContractManagerID,
+
+	SO.DateEntered,
+
+	SO.OrderStatusENUM,
+   	SO.OrderTypeID,
+	
+  	SO.ProjectName,
+	
+  
+	C.CompanyName
+ 
+FROM
+	ProductRequirement PRE
+	inner JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID = PRE.SalesOrderPhaseItemID
+	inner JOIN ProductStructure PRO ON PRO.ProductStructureID = PRE.ProductID
+	left join SalesOrder SO on SO.SalesOrderID = SOPI.SalesOrderID
+	LEFT JOIN Customer C ON C.CustomerID = SO.CustomerID
+
+GO

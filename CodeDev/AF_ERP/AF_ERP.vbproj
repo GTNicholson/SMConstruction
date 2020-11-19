@@ -343,6 +343,10 @@
     <Compile Include="Pickers\frmProductPicker.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Pickers\frmProductRequirementPicker.Designer.vb">
+      <DependentUpon>frmProductRequirementPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmProductRequirementPicker.vb" />
     <Compile Include="Pickers\frmSalesOrderPhaseItemPickerMulti.Designer.vb">
       <DependentUpon>frmSalesOrderPhaseItemPickerMulti.vb</DependentUpon>
     </Compile>

@@ -11,6 +11,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Private pPurchaseOrderID As Int32
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrderPhase As dmSalesOrderPhase
+  Private pSalesOrder As dmSalesOrder
   Public Sub New()
     MyBase.New()
     pStockItem = New dmStockItem
@@ -19,6 +20,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
     pPurchaseOrder = New dmPurchaseOrder
     pWorkOrder = New dmWorkOrder
     pSalesOrderPhase = New dmSalesOrderPhase
+    pSalesOrder = New dmSalesOrder
   End Sub
 
   Public Sub New(ByRef rPurchaseOrderItemAllocation As dmPurchaseOrderItemAllocation)
@@ -28,6 +30,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
     pPurchaseOrder = New dmPurchaseOrder
     pWorkOrder = New dmWorkOrder
     pSalesOrderPhase = New dmSalesOrderPhase
+    pSalesOrder = New dmSalesOrder
   End Sub
 
   Protected Overrides Sub Finalize()
@@ -93,7 +96,14 @@ Public Class clsPurchaseOrderItemAllocationInfo
       pPurchaseOrderItemAllocation = value
     End Set
   End Property
-
+  Public Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+    Set(value As dmSalesOrder)
+      pSalesOrder = value
+    End Set
+  End Property
 
   Public ReadOnly Property StockItemID() As Integer
     Get
@@ -141,6 +151,22 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
+  Public Property POStatus() As Byte
+    Get
+      Return pPurchaseOrder.Status
+    End Get
+    Set(value As Byte)
+      pPurchaseOrder.Status = value
+    End Set
+
+  End Property
+
+  Public ReadOnly Property POStatusDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseOrderDueDateStatus), CType(pPurchaseOrder.Status, ePurchaseOrderDueDateStatus))
+    End Get
+
+  End Property
   Public Property RequiredDate() As Date
     Get
       Return pRequiredDates
@@ -310,6 +336,11 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Get
   End Property
 
+  Public ReadOnly Property ProjectName As String
+    Get
+      Return pSalesOrder.ProjectName
+    End Get
+  End Property
   Public ReadOnly Property WorkOrderNo() As String
     Get
       Return pWorkOrder.WorkOrderNo

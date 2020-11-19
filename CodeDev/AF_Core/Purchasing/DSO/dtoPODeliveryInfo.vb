@@ -70,6 +70,7 @@ Public Class dtoPODeliveryInfo : Inherits dtoBase
           .PODeliveryValue = DBReadDecimal(rDataReader, "PODeliveryValue")
           .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
           .FileExport = DBReadString(rDataReader, "FileExport")
+          .Status = DBReadByte(rDataReader, "Status")
         End With
 
         With .PurchaseOrder

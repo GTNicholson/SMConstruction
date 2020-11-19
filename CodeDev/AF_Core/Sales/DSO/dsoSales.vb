@@ -528,6 +528,8 @@ Public Class dsoSales : Inherits dsoBase
         For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
 
           mdtoSalesOrderPhaseItem.SaveSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
+
+
           mdtoPhaseItemComponent.SavePhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
         Next
 
@@ -633,6 +635,8 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoComponents As dtoProductFurnitureComponent
     Dim mdtoSalesOrderStage As dtoSalesOrderStage
 
+
+
     pDBConn.Connect()
     mdto = New dtoSalesOrder(pDBConn)
     mdto.LoadSalesOrder(rSalesOrder, vID)
@@ -667,6 +671,9 @@ Public Class dsoSales : Inherits dsoBase
 
       For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
         mdtoSalesOrderPhaseItem.LoadSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
+
+
+
         mdtoPhaseItemComponent.LoadPhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
       Next
 
@@ -803,27 +810,7 @@ Public Class dsoSales : Inherits dsoBase
     Return mOk
   End Function
 
-  Public Function LoadSalesOrderPhasesByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhases, ByVal vWhere As String) As Boolean
-    Dim mOk As Boolean
 
-    Try
-
-      If pDBConn.Connect Then
-        Dim mdto As New dtoSalesOrderPhase(pDBConn)
-
-        mOk = mdto.LoadSalesOrderPhaseCollectionByWhere(rSalesOrderPhaseItems, vWhere)
-
-        mdto = Nothing
-      End If
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-
-    Return mOk
-  End Function
 
   Public Function LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
     Dim mOk As Boolean

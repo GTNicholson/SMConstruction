@@ -14,6 +14,7 @@ Public Class dmSalesOrderPhaseItem : Inherits dmBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -22,6 +23,7 @@ Public Class dmSalesOrderPhaseItem : Inherits dmBase
   End Sub
 
   Protected Overrides Sub Finalize()
+
     MyBase.Finalize()
   End Sub
 
@@ -29,6 +31,7 @@ Public Class dmSalesOrderPhaseItem : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property

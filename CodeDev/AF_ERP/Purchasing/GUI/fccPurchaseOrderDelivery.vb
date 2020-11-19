@@ -188,8 +188,10 @@ Public Class fccPurchaseOrderDelivery
   Public Function GetPurchaseOrderInfos() As colPurchaseOrderInfos
     Dim mRetVal As colPurchaseOrderInfos = New colPurchaseOrderInfos
     Dim mdso As dsoPurchasing
+    Dim mWhere As String
+    mWhere = "Status<> " & ePurchaseOrderDueDateStatus.Cancelled
     mdso = New dsoPurchasing(pDBConn)
-    mdso.LoadPurchaseOrderInfosDown(mRetVal, "")
+    mdso.LoadPurchaseOrderInfosDown(mRetVal, mWhere)
     Return mRetVal
   End Function
 
@@ -233,26 +235,45 @@ Public Class fccPurchaseOrderDelivery
     Return mValidate
   End Function
 
-  Public Sub ProcessDeliveryQtys(ByVal vCreateTimberPack As Boolean)
+  Public Function ProcessDeliveryQtys(ByVal vCreateTimberPack As Boolean) As Boolean
     Try
       Dim mdsoTran As dsoStockTransactions
       Dim mDeliveryItem As dmPODeliveryItem
+      Dim mRetVal As Boolean = True
 
       Dim mdsoStock As dsoStock
       Dim mSIL As dmStockItemLocation
-
+      Dim mDialogResult As DialogResult
       mdsoTran = New dsoStockTransactions(pDBConn)
 
       mdsoStock = New dsoStock(pDBConn)
 
       For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
+
+
         If mPOP.ToProcessQty <> 0 Then
+
+          If mPOP.OutStandingQty < 0 Or mPOP.ToProcessQty > mPOP.Quantity Then
+
+            mDialogResult = MessageBox.Show("La cantidad a procesar es mayor a la cantidad pedida, ¿Desea continuar?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+
+            If mDialogResult = DialogResult.No Then
+              mRetVal = False
+              Return mRetVal
+            End If
+          End If
+
+
           If mPOP.StockItem.StockItemID <> 0 Then
             mSIL = mdsoStock.GetOrCreateStockItemLocation(mPOP.StockItem.StockItemID, 1)
           Else
             mSIL = Nothing
           End If
+
+
           If mPOP.PODeliveryItem Is Nothing Then
+
+
             mDeliveryItem = New dmPODeliveryItem
             mDeliveryItem.PODeliveryID = pPODelivery.PODeliveryID
             mDeliveryItem.POItemAllocationID = mPOP.PurchaseOrderItemAllocationID
@@ -274,7 +295,17 @@ Public Class fccPurchaseOrderDelivery
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
-  End Sub
+  End Function
+
+  Public Function GetPODeliverysByPurchaseOrderID(ByVal vPurchaseOrderID As Integer) As Integer
+    Dim mdso As New dsoPurchasing(pDBConn)
+    Dim mRetVal As Integer
+
+    mRetVal = mdso.getPODeliverysByPurchaseOrderID(vPurchaseOrderID)
+
+    Return mRetVal
+
+  End Function
 
   Friend Function GetReceivedValue() As Decimal
 

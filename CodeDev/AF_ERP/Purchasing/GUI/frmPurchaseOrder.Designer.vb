@@ -1031,8 +1031,8 @@ Partial Class frmPurchaseOrder
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Estado de Pago"
-        Me.GridColumn8.FieldName = "PaymentStatusDesc"
+        Me.GridColumn8.Caption = "Estado de Recepción"
+        Me.GridColumn8.FieldName = "PODeliveryStatusDesc"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True

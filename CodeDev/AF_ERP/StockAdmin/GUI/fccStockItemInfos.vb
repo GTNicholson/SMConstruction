@@ -144,9 +144,11 @@ Public Class fccStockItemInfos
 
   Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rPOIAInfos As colPurchaseOrderItemAllocationInfo, ByVal vStockItemID As Integer)
     Dim mdso As dsoPurchasing
+    Dim mWhere As String = "StockItemID = " & vStockItemID
 
+    mWhere &= " and POStatus <>" & ePurchaseOrderDueDateStatus.Cancelled
     mdso = New dsoPurchasing(pDBConn)
-    mdso.LoadPurchaseOrderItemAllocationInfos(rPOIAInfos, "StockItemID = " & vStockItemID)
+    mdso.LoadPurchaseOrderItemAllocationInfos(rPOIAInfos, mWhere)
 
 
 

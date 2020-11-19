@@ -75,13 +75,24 @@ Public Class clsPODeliveryInfo
     End Get
   End Property
 
+  Public ReadOnly Property Status As Int32
+    Get
+      Return pPODelivery.Status
+    End Get
+  End Property
+
   Public ReadOnly Property PaymentStatusDesc As String
     Get
       Return clsEnumsConstants.GetEnumDescription(GetType(ePaymentStatus), CType(pPODelivery.PaymentStatus, ePaymentStatus))
     End Get
 
   End Property
+  Public ReadOnly Property PODeliveryStatusDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePODelivery), CType(pPODelivery.Status, ePODelivery))
+    End Get
 
+  End Property
   Public ReadOnly Property DateCreated As DateTime
     Get
       Return pPODelivery.DateCreated

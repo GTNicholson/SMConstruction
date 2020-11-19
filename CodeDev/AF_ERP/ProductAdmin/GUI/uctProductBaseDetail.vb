@@ -116,6 +116,7 @@ Public Class uctProductBaseDetail
   Public Sub LoadProductBOMS(ByRef rCurrentProductBase As dmProductBase)
     pFormController.LoadProductBOMInfos(pFormController.ProductBOMInfos, rCurrentProductBase.ID)
     grdProductBOMs.DataSource = pFormController.ProductBOMInfos
+    grdProductBOMs.RefreshDataSource()
   End Sub
 
   Friend Sub LoadStockItemBOM(ByRef rProductBase As dmProductBase)
@@ -272,6 +273,11 @@ Public Class uctProductBaseDetail
 
     Return mRetVal
   End Function
+
+  Public Sub ShowHideProductBOM(ByVal vShowGrid As Boolean)
+    xtpProductBOM.Visible = vShowGrid
+
+  End Sub
 
   Private Sub btnGenerateCode_Click(sender As Object, e As EventArgs) Handles btnGenerateCode.Click
     UpdateObject()

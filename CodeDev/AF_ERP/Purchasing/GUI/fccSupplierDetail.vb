@@ -59,6 +59,7 @@ Public Class fccSupplierDetail
 
     Else
       pSupplier.PrintAccountOption = eSupplirPrintOption.MainAccount
+      pSupplier.SupplierStatusID = eSupplierStatus.Active
     End If
 
   End Sub

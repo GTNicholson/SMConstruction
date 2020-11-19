@@ -286,6 +286,26 @@ Public Class dsoPurchasing
 
   End Sub
 
+  Public Function getPODeliverysByPurchaseOrderID(ByVal vPurchaseOrderID As Integer) As Integer
+    Dim mRetVal As Integer
+    Dim mSql As String
+    mSql ="select COUNT(*) from PODelivery where PurchaseOrderID=" & vPurchaseOrderID
+
+
+    Try
+      pDBConn.Connect()
+      mRetVal = CInt(pDBConn.ExecuteScalar(mSql))
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+    Return mRetVal
+  End Function
+
   Public Function LoadPurchaseOrderInfo(ByRef rvwPurchaseOrder As clsPurchaseOrderInfo, ByVal vPurchaseOrderID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoPurchaseOrderInfo

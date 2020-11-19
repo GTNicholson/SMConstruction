@@ -196,6 +196,14 @@
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Custom</property>
       </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">CarriageUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
@@ -270,6 +278,14 @@
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Custom</property>
       </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalVATUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
     </property>
     <property name="Item16" isnull="true" iskey="true">
       <property name="Name">GridColumn15</property>
@@ -285,6 +301,14 @@
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Custom</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalGrossValueUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
       </property>
     </property>
   </property>

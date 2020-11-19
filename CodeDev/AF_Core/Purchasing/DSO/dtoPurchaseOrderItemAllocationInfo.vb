@@ -85,6 +85,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
       With pPurchaseOrderItemAllocationInfo.PurchaseOrder
         ''.PONum = DBReadString(rDataReader, "PONum")
         ''.RequiredDate = DBReadDate(rDataReader, "RequiredDate")
+        .Status = DBReadByte(rDataReader, "POStatus")
         .SubmissionDate = DBReadDate(rDataReader, "SubmissionDate")
       End With
 
@@ -109,8 +110,8 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .Category = DBReadByte(rDataReader, "Category")
       End With
 
-      With pPurchaseOrderItemAllocationInfo.WorkOrder
-        ''.WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+      With pPurchaseOrderItemAllocationInfo.SalesOrder
+        .ProjectName = DBReadString(rDataReader, "ProjectName")
         ''.Description = DBReadString(rDataReader, "WODESCRIPTION")
       End With
 

@@ -1108,19 +1108,43 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub btnPODelivery_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnPODelivery.ItemClick
+    Dim mDialogResult As DialogResult
 
-    UpdateObject()
-    pFormController.SaveObject()
-    frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
+    If pFormController.PODeliveryInfos IsNot Nothing Then
 
-    pFormController.ReloadPODeliveryInfos()
-    grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
-    grdPODeliveryInfos.RefreshDataSource()
+      If pFormController.PODeliveryInfos.Count >= 1 Then
+        mDialogResult = MessageBox.Show("Esta O.C. ya tiene una recepción, ¿Desea agregar otra recepción?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-    pFormController.ReloadPOItems()
+        If mDialogResult = DialogResult.Yes Then
+          UpdateObject()
+          pFormController.SaveObject()
+          frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
 
-    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
-    grdPurchaseOrderItems.RefreshDataSource()
+          pFormController.ReloadPODeliveryInfos()
+          grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+          grdPODeliveryInfos.RefreshDataSource()
+
+          pFormController.ReloadPOItems()
+
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+          grdPurchaseOrderItems.RefreshDataSource()
+        End If
+      Else
+        UpdateObject()
+        pFormController.SaveObject()
+        frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
+
+        pFormController.ReloadPODeliveryInfos()
+        grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+        grdPODeliveryInfos.RefreshDataSource()
+
+        pFormController.ReloadPOItems()
+
+        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+        grdPurchaseOrderItems.RefreshDataSource()
+      End If
+    End If
+
   End Sub
 
   Private Sub btnReloadPODeliveryInfos_Click(sender As Object, e As EventArgs)

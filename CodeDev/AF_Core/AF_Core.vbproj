@@ -235,6 +235,7 @@
     <Compile Include="Production\BO\clsTimeSheetSharedFuncs.vb" />
     <Compile Include="Production\BO\clsWorkOrderTracking.vb" />
     <Compile Include="Production\BO\dmMaterialRequirement.vb" />
+    <Compile Include="Production\BO\dmProductRequirement.vb" />
     <Compile Include="Production\BO\dmShift.vb" />
     <Compile Include="Production\BO\dmShiftDetails.vb" />
     <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
@@ -242,6 +243,7 @@
     <Compile Include="Production\DSO\dsoProduction.vb" />
     <Compile Include="Production\DSO\dtoMaterialRequirement.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductBase.vb" />
+    <Compile Include="Production\DSO\dtoProductMaterialRequirement.vb" />
     <Compile Include="Production\DSO\dtoShift.vb" />
     <Compile Include="Production\DSO\dtoShiftDetails.vb" />
     <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />

@@ -43,6 +43,8 @@ Partial Class frmStockItemInfo
         Me.repProdStartDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grdStockItemInfos = New DevExpress.XtraGrid.GridControl()
         Me.gvStockItemInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,8 +64,6 @@ Partial Class frmStockItemInfo
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpItemDetail.SuspendLayout()
         CType(Me.popupMaterialRequirement, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -337,13 +337,38 @@ Partial Class frmStockItemInfo
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Descripción OT"
-        Me.GridColumn7.FieldName = "WODESCRIPTION"
+        Me.GridColumn7.Caption = "Proyecto"
+        Me.GridColumn7.FieldName = "ProjectName"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
         Me.GridColumn7.Width = 161
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Cant. Recibida"
+        Me.GridColumn19.DisplayFormat.FormatString = "#,###.#"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "ReceivedQty"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
+        Me.GridColumn19.Width = 95
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Cant. Pend"
+        Me.GridColumn20.DisplayFormat.FormatString = "#,###.#"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "OutStandingQty"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
         '
         'grdStockItemInfos
         '
@@ -552,31 +577,6 @@ Partial Class frmStockItemInfo
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 12
         Me.GridColumn2.Width = 120
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn19.Caption = "Cant. Recibida"
-        Me.GridColumn19.DisplayFormat.FormatString = "#,###.#"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "ReceivedQty"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.OptionsColumn.ReadOnly = True
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 4
-        Me.GridColumn19.Width = 95
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Cant. Pend"
-        Me.GridColumn20.DisplayFormat.FormatString = "#,###.#"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "OutStandingQty"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.ReadOnly = True
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 5
         '
         'frmStockItemInfo
         '

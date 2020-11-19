@@ -261,7 +261,7 @@ Public Class frmPODelivery
     Dim mPickerPurchaseOrder As clsPickerPurchaseOrder
     Dim mPurchaseorderInfos As New colPurchaseOrderInfos
     Dim mPOI As clsPurchaseOrderInfo
-
+    Dim mDialogResult As DialogResult
     mPurchaseorderInfos = pFormController.GetPurchaseOrderInfos
 
     mPickerPurchaseOrder = New clsPickerPurchaseOrder(mPurchaseorderInfos)
@@ -270,11 +270,28 @@ Public Class frmPODelivery
     mPOI = frmPickerPurchaseOrder.OpenPickerSingle(mPickerPurchaseOrder)
 
     If mPOI IsNot Nothing Then
-      pFormController.PurchaseOrderID = mPOI.PurchaseOrderID
-      pFormController.PurchaseOrderInfo = mPOI
-      If pFormController.PODelivery IsNot Nothing Then '// if we already have a podelivery then reset the purchase order id
-        pFormController.PODelivery.PurchaseOrderID = mPOI.PurchaseOrderID
+
+      If pFormController.GetPODeliverysByPurchaseOrderID(mPOI.PurchaseOrderID) > 1 Then
+        mDialogResult = MessageBox.Show("Esta O.C. ya tiene una recepción, ¿Desea agregar otra recepción?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If mDialogResult = DialogResult.Yes Then
+          pFormController.PurchaseOrderID = mPOI.PurchaseOrderID
+          pFormController.PurchaseOrderInfo = mPOI
+          If pFormController.PODelivery IsNot Nothing Then '// if we already have a podelivery then reset the purchase order id
+            pFormController.PODelivery.PurchaseOrderID = mPOI.PurchaseOrderID
+          End If
+
+        ElseIf mDialogResult = DialogResult.No Then
+          Exit Sub
+        End If
+      Else
+        pFormController.PurchaseOrderID = mPOI.PurchaseOrderID
+        pFormController.PurchaseOrderInfo = mPOI
+        If pFormController.PODelivery IsNot Nothing Then '// if we already have a podelivery then reset the purchase order id
+          pFormController.PODelivery.PurchaseOrderID = mPOI.PurchaseOrderID
+        End If
       End If
+
       RefreshGrid()
       RefreshControls()
       UpdateObject()
@@ -311,7 +328,9 @@ Public Class frmPODelivery
   End Sub
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
+    Dim mOK As Boolean
     Try
+      UpdateObject()
       gvMaterialRequirementInfos.CloseEditor()
       gvMaterialRequirementInfos.UpdateCurrentRow()
       pFormController.SavePODelivery()
@@ -321,10 +340,10 @@ Public Class frmPODelivery
 
         Case ePOIProcessorOption.eProcess ''//Click on Process Button
 
-          pFormController.CreatePurchaseOrderPDF(pFormController.PurchaseOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PODelivery)
 
-          pFormController.ProcessDeliveryQtys(False)
+          mOK = pFormController.ProcessDeliveryQtys(False)
 
+          If mOK Then pFormController.CreatePurchaseOrderPDF(pFormController.PurchaseOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PODelivery)
 
           If File.Exists(pFormController.PODelivery.FileExport) Then
             ''  Process.Start(pFormController.PODelivery.FileExport)

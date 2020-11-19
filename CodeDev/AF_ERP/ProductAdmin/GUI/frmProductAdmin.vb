@@ -215,11 +215,11 @@ Public Class frmProductAdmin
 
     pIsActive = mStartActive
 
-      If pCurrentDetailMode = eCurrentDetailMode.eView Then
-        SetDetailsControlsReadonly(True)
-      ElseIf pCurrentDetailMode = eCurrentDetailMode.eEdit Then
-        SetDetailsControlsReadonly(False)
-      End If
+    If pCurrentDetailMode = eCurrentDetailMode.eView Then
+      SetDetailsControlsReadonly(True)
+    ElseIf pCurrentDetailMode = eCurrentDetailMode.eEdit Then
+      SetDetailsControlsReadonly(False)
+    End If
 
   End Sub
 
@@ -268,12 +268,13 @@ Public Class frmProductAdmin
 
 
         RefreshControls()
-        SwitchTab()
+
         LoadStockItemBOM()
         LoadProductBOMs()
         RefreshControls()
         pCurrentDetailMode = eCurrentDetailMode.eView
         RefreshDetailButtons()
+        ShowHideProductBOM()
         gvProductBase.RefreshData()
       End If
 
@@ -301,7 +302,15 @@ Public Class frmProductAdmin
 
   End Sub
 
-  Private Sub SwitchTab()
+  Private Sub ShowHideProductBOM()
+
+    Select Case pFormController.CurrentProductInfo.ProductTypeID
+      Case eProductType.StructureAF
+        UctProductBaseDetail1.ShowHideProductBOM(True)
+
+      Case Else
+        UctProductBaseDetail1.ShowHideProductBOM(False)
+    End Select
 
   End Sub
 
@@ -452,7 +461,7 @@ Public Class frmProductAdmin
 
 
   Private Sub SetDetailFocus()
-    UctProductBaseDetail1.FocusDescription
+    UctProductBaseDetail1.FocusDescription()
     '
   End Sub
   Public Sub LoadStockItemBOM()
@@ -462,7 +471,7 @@ Public Class frmProductAdmin
   End Sub
   Public Sub LoadProductBOMs()
     UctProductBaseDetail1.LoadProductBOMS(pFormController.CurrentProductBase)
-    'grdProductBOMs.DataSource = 
+
   End Sub
   Private Sub RefreshPCSubItemTypes()
 
