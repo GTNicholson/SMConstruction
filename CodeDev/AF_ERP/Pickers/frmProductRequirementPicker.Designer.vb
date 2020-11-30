@@ -47,10 +47,10 @@ Partial Class frmProductRequirementPicker
     Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcItemNumber = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
     Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
     Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,8 +63,8 @@ Partial Class frmProductRequirementPicker
     'grdSalesOrderPhaseItemInfo
     '
     Me.grdSalesOrderPhaseItemInfo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-        Or System.Windows.Forms.AnchorStyles.Left) _
-        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.grdSalesOrderPhaseItemInfo.EmbeddedNavigator.Buttons.Append.Visible = False
     Me.grdSalesOrderPhaseItemInfo.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
     Me.grdSalesOrderPhaseItemInfo.EmbeddedNavigator.Buttons.Edit.Visible = False
@@ -197,6 +197,15 @@ Partial Class frmProductRequirementPicker
     Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Select", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
     Me.RepbtnSelect.Name = "RepbtnSelect"
     '
+    'GridColumn10
+    '
+    Me.GridColumn10.Caption = "Casa"
+    Me.GridColumn10.FieldName = "AssemblyRef"
+    Me.GridColumn10.Name = "GridColumn10"
+    Me.GridColumn10.Visible = True
+    Me.GridColumn10.VisibleIndex = 2
+    Me.GridColumn10.Width = 116
+    '
     'repbtnUnSelect
     '
     Me.repbtnUnSelect.AutoHeight = False
@@ -218,15 +227,6 @@ Partial Class frmProductRequirementPicker
     Me.btnConfirmSelection.TabIndex = 3
     Me.btnConfirmSelection.Text = "Aceptar Selección"
     '
-    'GridColumn10
-    '
-    Me.GridColumn10.Caption = "Casa"
-    Me.GridColumn10.FieldName = "AssemblyRef"
-    Me.GridColumn10.Name = "GridColumn10"
-    Me.GridColumn10.Visible = True
-    Me.GridColumn10.VisibleIndex = 2
-    Me.GridColumn10.Width = 116
-    '
     'frmProductRequirementPicker
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -237,7 +237,7 @@ Partial Class frmProductRequirementPicker
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
     Me.Name = "frmProductRequirementPicker"
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "Lista de Artículos de Ventas"
+    Me.Text = "Lista de Requerimientos de Productos"
     CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()

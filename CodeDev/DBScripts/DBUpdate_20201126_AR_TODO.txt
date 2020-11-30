@@ -1,0 +1,8 @@
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID,ActivityCode,TallyID)
+values
+(11,6,'Abbreviation','Abreviación',4,0,0)
+go
+
+alter table WoodPallet
+add Archive bit
+go

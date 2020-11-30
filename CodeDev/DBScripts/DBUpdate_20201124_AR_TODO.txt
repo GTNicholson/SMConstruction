@@ -1,0 +1,43 @@
+create view vwWoodPalletInfo
+as
+select
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID
+
+from WoodPallet WP
+GO
+
+create view vwWoodPalletItemInfo
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description,
+SI.Category,
+SI.ItemType,
+SI.Thickness,
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+GO
+
+alter table WoodPalletItem
+add Quantity int
+go

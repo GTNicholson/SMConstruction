@@ -1,13 +1,13 @@
-﻿Public Class clsPurchaseOrderItemAllocationProcessor : Inherits clsPurchaseOrderItemAllocationInfo
-  Private pPODeliveryItem As dmPODeliveryItem
-
+﻿Public Class clsPickWoodMaterialItemProcessor : Inherits dmPickWoodMaterialItem
+  Private pPickWoodMaterialItem As dmPickWoodMaterialItem
+  Private pWoodPalletItem As dmWoodPalletItem
   Private pToProcessQty As Decimal
   Private pToProcessReplacementQty As Decimal
   Private pToProcessAllQty As Decimal
   Private pReferenceNo As String
 
-  Public Sub New(ByRef rPurchaseOrder As dmPurchaseOrderItemAllocation)
-    MyBase.New(rPurchaseOrder)
+  Public Sub New(ByRef rWoodPalletItem As dmWoodPalletItem)
+    pWoodPalletItem = rWoodPalletItem
   End Sub
 
   Public Property ToProcessQty As Decimal
@@ -37,20 +37,20 @@
     End Set
   End Property
 
-  Public Property PODeliveryItem As dmPODeliveryItem
+  Public Property PickWoodMaterialItem As dmPickWoodMaterialItem
     Get
-      Return pPODeliveryItem
+      Return pPickWoodMaterialItem
     End Get
-    Set(value As dmPODeliveryItem)
-      pPODeliveryItem = value
+    Set(value As dmPickWoodMaterialItem)
+      pPickWoodMaterialItem = value
     End Set
   End Property
 
-  Public ReadOnly Property DelItemQty As Decimal
+  Public ReadOnly Property PickedItemQty As Decimal
     Get
       Dim mRetVal As Decimal = 0
-      If pPODeliveryItem IsNot Nothing Then
-        mRetVal = pPODeliveryItem.QtyReceived
+      If pPickWoodMaterialItem IsNot Nothing Then
+        mRetVal = pPickWoodMaterialItem.QtyPicked
       End If
       Return mRetVal
     End Get
@@ -58,21 +58,24 @@
 
   Public ReadOnly Property TotalPrice() As Decimal
     Get
-      Return UnitPrice * ToProcessQty
+      '  Return UnitPrice * ToProcessQty
+      Return 0
     End Get
 
   End Property
 
   Public ReadOnly Property TotalPriceByDelItemQty() As Decimal
     Get
-      Return UnitPrice * DelItemQty
+      'Return UnitPrice * PickedItemQty
+      Return 0
+
     End Get
 
   End Property
 
 End Class
 
-Public Class colPurchaseOrderItemAllocationProcessor : Inherits List(Of clsPurchaseOrderItemAllocationProcessor)
+Public Class colPickWoodMaterialItemProcessors : Inherits List(Of clsPickWoodMaterialItemProcessor)
 
 End Class
 

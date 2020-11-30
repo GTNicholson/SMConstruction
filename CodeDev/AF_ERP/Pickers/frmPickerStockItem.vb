@@ -14,7 +14,7 @@ Public Class frmPickerStockItem
   Private pRemainOpen As Boolean
   Private pStockItems As dmStockItem
   Private pActive As Boolean
-
+  Private pShowWoodCat As Boolean
 
   Public Property StockItem As dmStockItem
     Get
@@ -26,7 +26,7 @@ Public Class frmPickerStockItem
   End Property
 
 
-  Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal) As Boolean
+  Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vShowWoodCat As Boolean) As Boolean
     Dim mfrm As frmPickerStockItem
     Dim mCreated As Boolean = False
     'Dim mTableName As String
@@ -35,7 +35,7 @@ Public Class frmPickerStockItem
     mfrm.pPickerStockItem = rPickerStockItem
     mfrm.pRTISGlobal = rRTISGlobal
     mfrm.pRemainOpen = True
-
+    mfrm.pShowWoodCat = vShowWoodCat
 
 
 
@@ -268,10 +268,22 @@ Public Class frmPickerStockItem
     Loop
 
     For Each mVI As clsValueItem In mVIs
-      mTabPage = New DevExpress.XtraTab.XtraTabPage
-      mTabPage.Text = mVI.DisplayValue
-      mTabPage.Tag = mVI.ItemValue
-      xtabCategories.TabPages.Add(mTabPage)
+
+      If Not pShowWoodCat Then
+        mTabPage = New DevExpress.XtraTab.XtraTabPage
+        mTabPage.Text = mVI.DisplayValue
+        mTabPage.Tag = mVI.ItemValue
+        xtabCategories.TabPages.Add(mTabPage)
+
+      Else
+        If mVI.ItemValue = eStockItemCategory.Timber Then
+          mTabPage = New DevExpress.XtraTab.XtraTabPage
+          mTabPage.Text = mVI.DisplayValue
+          mTabPage.Tag = mVI.ItemValue
+          xtabCategories.TabPages.Add(mTabPage)
+        End If
+      End If
+
     Next
 
     For Each mTabPage In xtabCategories.TabPages
@@ -282,7 +294,12 @@ Public Class frmPickerStockItem
       End If
     Next
 
-    SetCurrentTab(eStockItemCategory.Abrasivos)
+    If xtabCategories.TabPages.Count > 1 Then
+      SetCurrentTab(eStockItemCategory.Abrasivos)
+    Else
+      SetCurrentTab(eStockItemCategory.Timber)
+    End If
+
 
   End Sub
 

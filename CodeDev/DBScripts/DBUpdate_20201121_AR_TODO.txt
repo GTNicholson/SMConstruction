@@ -1,0 +1,29 @@
+
+CREATE TABLE [dbo].WoodPallet(
+	WoodPalletID int IDENTITY(1,1) NOT NULL,
+	PalletRef [varchar](100) NULL,
+	CreatedDate date NULL,
+	LocationID int NULL,
+ CONSTRAINT [PK_WoodPallet] PRIMARY KEY CLUSTERED 
+(
+	WoodPalletID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+CREATE TABLE [dbo].WoodPalletItem(
+	WoodPalletItemID int IDENTITY(1,1) NOT NULL,
+	WoodPalletID int NULL,
+	StockItemID int NULL,
+	Width decimal (9,4) NULL,
+	Length decimal (9,4) NULL,
+ CONSTRAINT [PK_WoodPalletItem] PRIMARY KEY CLUSTERED 
+(
+	WoodPalletItemID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

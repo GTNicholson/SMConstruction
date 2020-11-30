@@ -12,7 +12,7 @@ Public Class repPODelivery
   Private pFormatDollar As String = "{0:$#,##0.00;;#}"
   Private pToStringCordobas As String = "C$#,##0.00;;#"
   Private pToStringDollar As String = "$#,##0.00;;#"
-
+  Private pReprintOption As Boolean
 
   Public Sub New()
 
@@ -23,16 +23,17 @@ Public Class repPODelivery
 
 
 
-  Public Shared Function CreatePODeliveryReport(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery) As XtraReport
+  Public Shared Function CreatePODeliveryReport(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery, ByVal vReprintOption As Boolean) As XtraReport
     Dim mRep As New repPODelivery(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
     Dim mPrintTool As ReportPrintTool
+    mRep.pReprintOption = vReprintOption
     mRep.CreateDocument()
 
 
     mPrintTool = New ReportPrintTool(mRep)
-      mPrintTool.ShowPreviewDialog()
-      mPrintTool.Dispose()
-      mPrintTool = Nothing
+    mPrintTool.ShowPreviewDialog()
+    mPrintTool.Dispose()
+    mPrintTool = Nothing
 
 
     Return mRep
@@ -58,23 +59,6 @@ Public Class repPODelivery
     Dim mCurrentFormat As String = "N2"
     Dim mToString As String = "N2"
 
-    xrPurchaseOrderNo.Text = pPOInfo.PONum
-    xrInvoiceRef.Text = pPODelivery.RefSupplierDoc
-    xrOrderDate.Text = pPOInfo.SubmissionDate.ToString("dd/MM/yyyy")
-    xrCreatedDate.Text = pPODelivery.DateCreated.ToString("dd/MM/yyyy")
-    xrSupplier.Text = pPOInfo.PurchaseOrder.Supplier.CompanyName
-    xrGRNNumber.Text = pPODelivery.GRNumber
-
-    xrQuantity.DataBindings.Add("Text", DataSource, "ToProcessQty", "{0:0.###}")
-    xrtcStockCode.DataBindings.Add("Text", DataSource, "StockCode")
-    xrtcRefCodes.DataBindings.Add("Text", DataSource, "PurchaseRefCodes")
-    xrUoM.DataBindings.Add("Text", DataSource, "UoMDescription")
-
-
-
-
-    xrtcDescription.DataBindings.Add("Text", DataSource, "Description")
-
 
     Select Case pPOInfo.DefaultCurrency
       Case eCurrency.Cordobas
@@ -87,7 +71,31 @@ Public Class repPODelivery
     End Select
 
     xrUnitPrice.DataBindings.Add("Text", DataSource, "UnitPrice", mCurrentFormat)
-    xrNetTotal.DataBindings.Add("Text", DataSource, "TotalPrice", mCurrentFormat)
+
+
+    xrPurchaseOrderNo.Text = pPOInfo.PONum
+    xrInvoiceRef.Text = pPODelivery.RefSupplierDoc
+    xrOrderDate.Text = pPOInfo.SubmissionDate.ToString("dd/MM/yyyy")
+    xrCreatedDate.Text = pPODelivery.DateCreated.ToString("dd/MM/yyyy")
+    xrSupplier.Text = pPOInfo.PurchaseOrder.Supplier.CompanyName
+    xrGRNNumber.Text = pPODelivery.GRNumber
+
+
+    xrQuantity.DataBindings.Add("Text", DataSource, "DelItemQty", "{0:0.###}")
+
+    xrNetTotal.DataBindings.Add("Text", DataSource, "TotalPriceByDelItemQty", mCurrentFormat)
+
+
+    xrtcStockCode.DataBindings.Add("Text", DataSource, "StockCode")
+    xrtcRefCodes.DataBindings.Add("Text", DataSource, "PurchaseRefCodes")
+    xrUoM.DataBindings.Add("Text", DataSource, "UoMDescription")
+
+
+
+
+    xrtcDescription.DataBindings.Add("Text", DataSource, "Description")
+
+
 
   End Sub
 

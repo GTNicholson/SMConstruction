@@ -1,0 +1,44 @@
+insert into ValueItemList (DisplayOrder,Description)
+values (11,'Lista de Bancos')
+go
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,1,1,'BAC',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,1,1,'BAC',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,2,2,'BANCENTRO',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,3,3,'BANPRO',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,4,4,'BDF',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,5,5,'FICOSA',0,0)
+GO
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,6,6,'LAFISE',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,7,7,'INTERBANCO GUATEMALA',0,0)
+GO
+
+insert into ValueItem (ValueItemListID,DisplayOrder,Value,Description,Protect,ArchiveOnly)
+values (2009,8,8,'KEYBANK NATIONAL ASSOCIATION',0,0)
+GO
+
+insert into LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,GroupKeyFieldName,GroupKeyValue,SelectionCode,EnableValidation)
+values (36,'Lista de Bancos','ValueItem','ValueItemID','Description',4,1,1,'ValueItemListID',2009,5,0)
+go
+
+

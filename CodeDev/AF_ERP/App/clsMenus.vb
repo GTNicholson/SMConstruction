@@ -46,7 +46,8 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.InventoryGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.StockItem)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Inv. Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodInventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Prod. por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.PickingMatReq)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
@@ -113,13 +114,16 @@ Class clsMenuFunctions
   Public Shared Sub WoodInventory(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mCategories As New List(Of eStockItemCategory)
     mCategories.Add(eStockItemCategory.Timber)
-    mCategories.Add(eStockItemCategory.DimensionWood)
-    mCategories.Add(eStockItemCategory.DriedWood)
+    'mCategories.Add(eStockItemCategory.DimensionWood)
+    'mCategories.Add(eStockItemCategory.DriedWood)
 
 
     frmStockItem.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, mCategories, rRTISGlobal.StockItemRegistry)
   End Sub
 
+  Public Shared Sub WoodPallets(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
+    frmWoodPalletDetail.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+  End Sub
   Public Shared Sub InventoryAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mCategories As New List(Of eStockItemCategory)
     mCategories.Add(eStockItemCategory.Abrasivos)

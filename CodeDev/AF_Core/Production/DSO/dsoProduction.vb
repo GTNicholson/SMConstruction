@@ -50,6 +50,24 @@ Public Class dsoProduction
     Return mRetVal
   End Function
 
+  Public Function SavePickWoodMaterialRequirement(ByRef rPickWoodMaterialRequirement As dmPickWoodMaterialRequirement) As Boolean
+    Dim mdto As dtoPickWoodMaterialRequirement
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoPickWoodMaterialRequirement(pDBConn)
+      mdto.SavePickWoodMaterialRequirement(rPickWoodMaterialRequirement)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
   Public Function LoadShiftsDownConnected(ByRef rShifts As colShifts) As Boolean
     Dim mdto As dtoShift
     Dim mdtoShifDetail As dtoShiftDetails
@@ -70,4 +88,30 @@ Public Class dsoProduction
     End Try
     Return mRetVal
   End Function
+
+  Public Sub LoadPickWoodMaterialItemProcessorss(ByRef rPOItemProcessors As colPickWoodMaterialItemProcessors, ByVal vPickWoodMaterialRequirementID As Integer)
+
+    Dim mdto As dtoPurchaseOrderItemAllocationInfo
+    Dim mdtoPODI As dtoPODeliveryItem
+    Dim mPODIs As colPODeliveryItems
+    Dim mPOIA As clsPurchaseOrderItemAllocationProcessor
+    Dim mWhere As String
+
+    Try
+      mdto = New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Processor)
+
+      pDBConn.Connect()
+
+      mWhere = "PurchaseOrderID = " & vPurchaseOrderID
+      mdto.LoadPurchaseOrderItemAllocationProcessorsByWhere(rPOItemAllocationProcessors, mWhere)
+
+      mdtoPODI = New dtoPODeliveryItem(pDBConn)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 End Class

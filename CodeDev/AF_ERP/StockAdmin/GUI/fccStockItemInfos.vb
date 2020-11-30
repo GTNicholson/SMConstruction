@@ -67,7 +67,7 @@ Public Class fccStockItemInfos
       If pCurrentStockItemInfo IsNot Nothing Then
         Dim mSI As dmStockItem
         mSI = pCurrentStockItemInfo.StockItem
-        mdsoStock.LoadStockItem(mSI, pCurrentStockItemInfo.StockItemID)
+        'mdsoStock.LoadStockItem(mSI, pCurrentStockItemInfo.StockItemID)
         mSI.tmpIsFullyLoadedDown = True
       End If
     Catch ex As Exception

@@ -807,7 +807,7 @@ Public Class frmPurchaseOrder
             End If
           Next
 
-          If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal) Then
+          If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal, False) Then
             For Each mSelectedItem In mPicker.SelectedObjects
               If mSelectedItem IsNot Nothing Then
                 mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)

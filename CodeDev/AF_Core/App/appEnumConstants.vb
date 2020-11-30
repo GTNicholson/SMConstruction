@@ -69,6 +69,12 @@ Public Enum eSupplirPrintOption
   SecondaryAccount = 2
 End Enum
 
+Public Enum eLocations
+  <Description("AgroForestal")> AgroForestal = 1
+  <Description("MillWorks")> MillWorks = 2
+  <Description("SawMills")> IVA = 3
+End Enum
+
 Public Enum eTaxRate
   <Description("Ninguno")> None = 0
   <Description("IVA")> IVA = 1
@@ -83,7 +89,7 @@ Public Enum eBankName
   <Description("FICOSA")> FICOSA = 5
   <Description("LAFISE")> LAFISE = 6
   <Description("INTERBANCO GUATEMALA")> INTERBANCOGUATEMALA = 7
-  <Description(" KEYBANK NATIONAL ASSOCIATION")> KEYBANKNATIONALASSOCIATION = 8
+  <Description("KEYBANK NATIONAL ASSOCIATION")> KEYBANKNATIONALASSOCIATION = 8
 
 End Enum
 Public Enum ePaymentMethod
@@ -336,8 +342,8 @@ Public Enum eStockItemCategory
   <Description("Tapiceria")> Tapiceria = 13
   <Description("Vidrios y Espejos")> VidrioYEspejo = 14
   <Description("Madera en Timber")> Timber = 15
-  <Description("Madera Dimensionada")> DimensionWood = 16
-  <Description("Madera Secada")> DriedWood = 17
+  ' <Description("Madera Dimensionada")> DimensionWood = 16
+  '<Description("Madera Secada")> DriedWood = 17
 End Enum
 
 Public Enum eMaterialRequirementType
@@ -1113,13 +1119,92 @@ Public Class eStockItemTypeHerramientas : Inherits colPropertyENUMOfT(Of clsStoc
   End Function
 
 End Class
+''termino aca
+
+Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
+    Private pStockSubItemTypeTimberWood As colStockSubItemTypeTimberWood
+
+    Public Property StockSubItemTypeTimberWood As colStockSubItemTypeTimberWood
+      Get
+        Return pStockSubItemTypeTimberWood
+      End Get
+      Set(value As colStockSubItemTypeTimberWood)
+        pStockSubItemTypeTimberWood = value
+      End Set
+    End Property
+
+    Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+      MyBase.New(vPropertyENUM, vDescription)
+      pStockSubItemTypeTimberWood = New colStockSubItemTypeTimberWood
+    End Sub
+
+  End Class
+
+  Public Class clsStockSubItemTypeTimberWood : Inherits clsPropertyENUM
+
+    Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+      MyBase.New(vPropertyENUM, vDescription)
+    End Sub
+
+  End Class
+
+  Public Class colStockSubItemTypeTimberWood : Inherits List(Of clsStockSubItemTypeTimberWood)
+
+    Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeTimberWood
+      For Each mItem As clsStockSubItemTypeTimberWood In Me
+        If mItem.PropertyENUM = vKey Then
+          Return mItem
+        End If
+      Next
+
+      Return Nothing
+    End Function
+
+  End Class
+
+  Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockItemType)
+
+    Public Enum eStockItemTimberWood
+      Seca = 1
+      Aserrada = 2
+      Verde = 3
+      Otros = 99
+    End Enum
+
+    Public Const Seca = 1
+    Public Const Aserrada = 2
+    Public Const Verde = 3
+    Public Const Otros = 99
+
+    Private Shared mSharedInstance As eStockItemTypeTimberWood
+
+    Public Sub New()
+      MyBase.New()
+
+    Dim mSeca As New clsStockItemType(Seca, "Seca", "SEC")
+    MyBase.Add(mSeca)
+
+    Dim mAserrada As New clsStockItemType(Aserrada, "Aserrada", "ASE")
+    MyBase.Add(mAserrada)
+
+    Dim mVerde As New clsStockItemType(Verde, "Verde", "VER")
+    MyBase.Add(mVerde)
+
+      Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
+      MyBase.Add(mOther)
+    End Sub
+
+    Public Shared Function GetInstance() As eStockItemTypeTimberWood
+      If mSharedInstance Is Nothing Then
+        mSharedInstance = New eStockItemTypeTimberWood
+      End If
+      Return mSharedInstance
+    End Function
+
+  End Class
 
 
-
-
-
-
-
+''termino aca
 
 ''termino aca
 Public Class clsStockItemTypeEPP : Inherits clsPropertyENUM

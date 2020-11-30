@@ -39,6 +39,7 @@ Public Class appRefLists : Inherits colRefLists
   Public Const WindowOptions As Integer = 31
 
   Public Const ProductCostBook As Integer = 32
+  Public Const BankList As Integer = 33
 
   Public Sub New()
     MyBase.New()
@@ -83,6 +84,7 @@ Public Class appRefLists : Inherits colRefLists
 
 
     Me.AddRefList(ProductCostBook, "ProductCostBook", clsRefListItem.eLoadMode.Unloaded)
+    Me.AddRefList(BankList, "BankList", clsRefListItem.eLoadMode.Unloaded)
 
   End Sub
 

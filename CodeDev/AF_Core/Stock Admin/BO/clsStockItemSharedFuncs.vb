@@ -120,7 +120,7 @@
 
         End If
 
-      Case eStockItemCategory.Timber, eStockItemCategory.DimensionWood, eStockItemCategory.DriedWood
+      Case eStockItemCategory.Timber
         Dim mSpecies As dmWoodSpecie
         mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
         If mSpecies IsNot Nothing Then
@@ -244,11 +244,17 @@
           mRetVal = mStockItemType.Abreviation
         End If
 
-      Case eStockItemCategory.Timber, eStockItemCategory.DimensionWood, eStockItemCategory.DriedWood
+      Case eStockItemCategory.Timber
         Dim mSpecies As dmWoodSpecie
         mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
         If mSpecies IsNot Nothing Then
           mRetVal = mSpecies.Abbreviation
+
+          mStockItemType = eStockItemTypeTimberWood.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+          If mStockItemType IsNot Nothing Then
+            mRetVal &= "." & mStockItemType.Abreviation
+          End If
 
         End If
 
@@ -291,10 +297,10 @@
         mRetVal = "VYE."
       Case eStockItemCategory.Timber
         mRetVal = "TMB."
-      Case eStockItemCategory.DimensionWood
-        mRetVal = "WDI."
-      Case eStockItemCategory.DriedWood
-        mRetVal = "WDY."
+        'Case eStockItemCategory.DimensionWood
+        '  mRetVal = "WDI."
+        'Case eStockItemCategory.DriedWood
+        '  mRetVal = "WDY."
       Case Else
         mValid = False
     End Select

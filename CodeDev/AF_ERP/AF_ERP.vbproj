@@ -346,7 +346,9 @@
     <Compile Include="Pickers\frmProductRequirementPicker.Designer.vb">
       <DependentUpon>frmProductRequirementPicker.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pickers\frmProductRequirementPicker.vb" />
+    <Compile Include="Pickers\frmProductRequirementPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Pickers\frmSalesOrderPhaseItemPickerMulti.Designer.vb">
       <DependentUpon>frmSalesOrderPhaseItemPickerMulti.vb</DependentUpon>
     </Compile>
@@ -390,6 +392,7 @@
     <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
     <Compile Include="Production\GUI\fccPaySlipDetails.vb" />
     <Compile Include="Production\GUI\fccPickMaterials.vb" />
+    <Compile Include="Production\GUI\fccPickWoodMaterial.vb" />
     <Compile Include="Production\GUI\fccSalesOrderPhaseItemPicker.vb" />
     <Compile Include="Production\GUI\fccSalesOrderPhasePicker.vb" />
     <Compile Include="Production\GUI\fccTimeSheetEntry.vb" />
@@ -405,6 +408,12 @@
       <DependentUpon>frmPickMaterials.vb</DependentUpon>
     </Compile>
     <Compile Include="Production\GUI\frmPickMaterials.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmPickWoodMaterial.Designer.vb">
+      <DependentUpon>frmPickWoodMaterial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmPickWoodMaterial.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Production\GUI\frmTimeSheetEntry.Designer.vb">
@@ -647,6 +656,7 @@
     <Compile Include="StockAdmin\GUI\fccStockItem.vb" />
     <Compile Include="StockAdmin\GUI\fccStockItemInfos.vb" />
     <Compile Include="StockAdmin\GUI\fccStockTake.vb" />
+    <Compile Include="StockAdmin\GUI\fccWoodPallet.vb" />
     <Compile Include="StockAdmin\GUI\frmIssueInventory.Designer.vb">
       <DependentUpon>frmIssueInventory.vb</DependentUpon>
     </Compile>
@@ -675,6 +685,12 @@
       <DependentUpon>frmStockTake.vb</DependentUpon>
     </Compile>
     <Compile Include="StockAdmin\GUI\frmStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmWoodPalletDetail.Designer.vb">
+      <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmWoodPalletDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StockAdmin\Reports\clsExcelExportStockTake.vb" />
@@ -755,6 +771,9 @@
     <EmbeddedResource Include="Pickers\frmProductPicker.resx">
       <DependentUpon>frmProductPicker.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmProductRequirementPicker.resx">
+      <DependentUpon>frmProductRequirementPicker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmSalesOrderPhaseItemPickerMulti.resx">
       <DependentUpon>frmSalesOrderPhaseItemPickerMulti.vb</DependentUpon>
     </EmbeddedResource>
@@ -778,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmPickMaterials.resx">
       <DependentUpon>frmPickMaterials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmPickWoodMaterial.resx">
+      <DependentUpon>frmPickWoodMaterial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmTimeSheetEntry.resx">
       <DependentUpon>frmTimeSheetEntry.vb</DependentUpon>
@@ -898,6 +920,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmStockTake.resx">
       <DependentUpon>frmStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmWoodPalletDetail.resx">
+      <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
       <DependentUpon>repSelectedItems.vb</DependentUpon>

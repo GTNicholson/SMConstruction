@@ -527,12 +527,13 @@ Public Class frmStockItem
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
-        Case eStockItemCategory.DriedWood, eStockItemCategory.DimensionWood, eStockItemCategory.Timber
+        Case  eStockItemCategory.Timber
 
           clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie))
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTimberWood.GetInstance.ValueItems)
 
           cboSpecies.Enabled = True
-          cboItemType.Enabled = False
+          cboItemType.Enabled = True
           cboSubitemType.Enabled = False
       End Select
 
@@ -580,11 +581,8 @@ Public Class frmStockItem
     If pFormController.CurrentStockItem IsNot Nothing Then
       If pFormController.CurrentStockItem.tmpIsFullyLoadedDown = True Then
 
-
         ShowHideTabs()
       Else
-
-
       End If
     End If
   End Sub
@@ -675,6 +673,11 @@ Public Class frmStockItem
               Case eStockItemCategory.VidrioYEspejo
 
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
+                e.Value = mText
+
+              Case eStockItemCategory.Timber
+
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTimberWood), CType(mRow.ItemType, eStockItemTypeTimberWood.eStockItemTimberWood))
                 e.Value = mText
 
               Case Else

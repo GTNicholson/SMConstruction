@@ -29,6 +29,7 @@ Partial Class frmPODelivery
         Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.btnSelectPurchaseOrder = New DevExpress.XtraEditors.ButtonEdit()
@@ -51,6 +52,7 @@ Partial Class frmPODelivery
         Me.txtRequiredDate = New DevExpress.XtraEditors.TextEdit()
         Me.grpPOPicking = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDefaultCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.grpGRN = New DevExpress.XtraEditors.GroupControl()
@@ -64,7 +66,6 @@ Partial Class frmPODelivery
         Me.txtGRNNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtExchangeRate = New DevExpress.XtraEditors.TextEdit()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.grpMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
         Me.grdPurchaseOrderItemInfo = New DevExpress.XtraGrid.GridControl()
@@ -87,6 +88,7 @@ Partial Class frmPODelivery
         CType(Me.txtRequiredDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpPOPicking.SuspendLayout()
+        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGRN.SuspendLayout()
@@ -96,7 +98,6 @@ Partial Class frmPODelivery
         CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpMaterialRequirements.SuspendLayout()
@@ -356,6 +357,14 @@ Partial Class frmPODelivery
         Me.LabelControl9.TabIndex = 17
         Me.LabelControl9.Text = "Tasa de Cambio"
         '
+        'txtExchangeRate
+        '
+        Me.txtExchangeRate.Location = New System.Drawing.Point(1118, 37)
+        Me.txtExchangeRate.Name = "txtExchangeRate"
+        Me.txtExchangeRate.Properties.ReadOnly = True
+        Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
+        Me.txtExchangeRate.TabIndex = 16
+        '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -498,14 +507,6 @@ Partial Class frmPODelivery
         Me.LabelControl6.TabIndex = 1
         Me.LabelControl6.Text = "# Recepción"
         '
-        'txtExchangeRate
-        '
-        Me.txtExchangeRate.Location = New System.Drawing.Point(1118, 37)
-        Me.txtExchangeRate.Name = "txtExchangeRate"
-        Me.txtExchangeRate.Properties.ReadOnly = True
-        Me.txtExchangeRate.Size = New System.Drawing.Size(107, 20)
-        Me.txtExchangeRate.TabIndex = 16
-        '
         'grpMaterialRequirements
         '
         Me.grpMaterialRequirements.AllowTouchScroll = True
@@ -517,7 +518,7 @@ Partial Class frmPODelivery
         Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
         Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
         Me.grpMaterialRequirements.Controls.Add(Me.grdPurchaseOrderItemInfo)
-        Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Process To Timber", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Pendiente", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1)})
+        Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Process To Timber", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Pendiente", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imprimir Recepción", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1)})
         Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpMaterialRequirements.FireScrollEventOnMouseWheel = True
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(9, 180)
@@ -747,6 +748,7 @@ Partial Class frmPODelivery
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpPOPicking.ResumeLayout(False)
         Me.grpPOPicking.PerformLayout()
+        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpGRN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGRN.ResumeLayout(False)
@@ -757,7 +759,6 @@ Partial Class frmPODelivery
         CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReceivedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGRNNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtExchangeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpMaterialRequirements.ResumeLayout(False)

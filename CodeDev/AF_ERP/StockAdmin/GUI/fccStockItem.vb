@@ -264,9 +264,9 @@ Public Class fccStocktem
       If pCurrentStockItem IsNot Nothing Then
         Dim mSI As dmStockItem
         mSI = pCurrentStockItem
-        mdsoStock.LoadStockItem(pCurrentStockItem, pCurrentStockItem.StockItemID)
-        mdsoStock.LoadStockItem(pCurrentStockItemOpposite, pCurrentStockItem.OppositeStockItemID)
-        mdsoStock.LoadStockItem(pInterdenStockItem, pCurrentStockItem.InterdenStockItemID)
+        'mdsoStock.LoadStockItem(pCurrentStockItem, pCurrentStockItem.StockItemID)
+        'mdsoStock.LoadStockItem(pCurrentStockItemOpposite, pCurrentStockItem.OppositeStockItemID)
+        'mdsoStock.LoadStockItem(pInterdenStockItem, pCurrentStockItem.InterdenStockItemID)
         pCurrentStockItem.tmpIsFullyLoadedDown = True
       End If
     Catch ex As Exception

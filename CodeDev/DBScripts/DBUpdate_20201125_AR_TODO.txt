@@ -1,0 +1,9 @@
+alter table WoodPalletItem
+add QuantityUsed int
+go
+
+alter table WoodPalletItem
+add Description varchar(150),
+StockCode varchar(30),
+Thickness decimal (9,4)
+go

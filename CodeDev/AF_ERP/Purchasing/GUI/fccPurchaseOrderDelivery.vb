@@ -13,6 +13,7 @@ Public Class fccPurchaseOrderDelivery
   Private pPurchaseOrder As dmPurchaseOrder
   Private pPrimaryKey As Integer
   Private pPurchaseOrderID As Integer
+  Private pReprintOption As Boolean
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
@@ -236,14 +237,17 @@ Public Class fccPurchaseOrderDelivery
   End Function
 
   Public Function ProcessDeliveryQtys(ByVal vCreateTimberPack As Boolean) As Boolean
-    Try
-      Dim mdsoTran As dsoStockTransactions
-      Dim mDeliveryItem As dmPODeliveryItem
-      Dim mRetVal As Boolean = True
+    Dim mRetVal As Boolean = True
+    Dim mdsoTran As dsoStockTransactions
+    Dim mDeliveryItem As dmPODeliveryItem
 
-      Dim mdsoStock As dsoStock
-      Dim mSIL As dmStockItemLocation
-      Dim mDialogResult As DialogResult
+
+    Dim mdsoStock As dsoStock
+    Dim mSIL As dmStockItemLocation
+    Dim mDialogResult As DialogResult
+
+    Try
+
       mdsoTran = New dsoStockTransactions(pDBConn)
 
       mdsoStock = New dsoStock(pDBConn)
@@ -253,7 +257,7 @@ Public Class fccPurchaseOrderDelivery
 
         If mPOP.ToProcessQty <> 0 Then
 
-          If mPOP.OutStandingQty < 0 Or mPOP.ToProcessQty > mPOP.Quantity Then
+          If mPOP.OutStandingQty <= 0 Or mPOP.ToProcessQty > mPOP.Quantity Then
 
             mDialogResult = MessageBox.Show("La cantidad a procesar es mayor a la cantidad pedida, ¿Desea continuar?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 
@@ -285,7 +289,7 @@ Public Class fccPurchaseOrderDelivery
           ''  mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, True)
 
           ''Else
-          mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
+          mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
           ''End If
           mPOP.ToProcessQty = 0
         End If
@@ -295,6 +299,7 @@ Public Class fccPurchaseOrderDelivery
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+    Return mRetVal
   End Function
 
   Public Function GetPODeliverysByPurchaseOrderID(ByVal vPurchaseOrderID As Integer) As Integer
@@ -361,9 +366,9 @@ Public Class fccPurchaseOrderDelivery
     Return mOK
   End Function
 
-  Public Sub CreatePurchaseOrderPDF(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery)
+  Public Sub CreatePurchaseOrderPDF(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery, ByVal vReprintOption As Boolean)
     Dim mReportPath As String
-
+    pReprintOption = vReprintOption
     mReportPath = CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
     pPODelivery.FileExport = mReportPath
   End Sub
@@ -382,7 +387,7 @@ Public Class fccPurchaseOrderDelivery
       mFileName = String.Format("PODelivery_{0}_{1}_{2}.pdf", rPODelivery.PODeliveryID, rPODelivery.GRNumber, Today.ToString("yyyyMMdd_HHmm"))
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
-      mRep = repPODelivery.CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
+      mRep = repPODelivery.CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery, pReprintOption)
 
       mRep.ExportToPdf(mExportFilename)
 

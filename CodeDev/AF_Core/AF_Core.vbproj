@@ -83,6 +83,7 @@
     <Reference Include="DevExpress.XtraSpreadsheet.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="RTIS.BIReport.V17.1">
       <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_17_1\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V17.1.dll</HintPath>
     </Reference>
@@ -118,8 +119,11 @@
       <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V17.1.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -130,6 +134,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -235,18 +241,22 @@
     <Compile Include="Production\BO\clsTimeSheetSharedFuncs.vb" />
     <Compile Include="Production\BO\clsWorkOrderTracking.vb" />
     <Compile Include="Production\BO\dmMaterialRequirement.vb" />
+    <Compile Include="Production\BO\dmPickWoodMaterialItem.vb" />
     <Compile Include="Production\BO\dmProductRequirement.vb" />
     <Compile Include="Production\BO\dmShift.vb" />
     <Compile Include="Production\BO\dmShiftDetails.vb" />
+    <Compile Include="Production\BO\dmPickWoodMaterialRequirement.vb" />
     <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
     <Compile Include="Production\BO\dmWorkOrderMilestoneStatus.vb" />
     <Compile Include="Production\DSO\dsoProduction.vb" />
     <Compile Include="Production\DSO\dtoMaterialRequirement.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductBase.vb" />
+    <Compile Include="Production\DSO\dtoPickMaterialItem.vb" />
     <Compile Include="Production\DSO\dtoProductMaterialRequirement.vb" />
     <Compile Include="Production\DSO\dtoShift.vb" />
     <Compile Include="Production\DSO\dtoShiftDetails.vb" />
     <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />
+    <Compile Include="Production\DSO\dtoPickWoodMaterialRequirement.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderAllocation.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderMilestoneStatus.vb" />
     <Compile Include="Purchasing\BO\clsPODeliveryItemInfo.vb" />
@@ -374,12 +384,16 @@
     <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemTransactionLogInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockTakeItemEditor.vb" />
+    <Compile Include="Stock Admin\BO\clsWoodPalletItemEditor.vb" />
+    <Compile Include="Stock Admin\BO\clsPickWoodMaterialItemProcessor.vb" />
     <Compile Include="Stock Admin\BO\dmStockItem.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemLocation.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemLocationAmendmentLog.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemTransactionLog.vb" />
     <Compile Include="Stock Admin\BO\dmStockTake.vb" />
     <Compile Include="Stock Admin\BO\dmStockTakeItem.vb" />
+    <Compile Include="Stock Admin\BO\dmWoodPallet.vb" />
+    <Compile Include="Stock Admin\BO\dmWoodPalletItem.vb" />
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />
     <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />
@@ -393,8 +407,11 @@
     <Compile Include="Stock Admin\DSO\dtoStockTake.vb" />
     <Compile Include="Stock Admin\DSO\dtoStockTakeItem.vb" />
     <Compile Include="Stock Admin\BI\BIReportViewFactoryStockItemTransactionLogInfo.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodPallet.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodPalletItem.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

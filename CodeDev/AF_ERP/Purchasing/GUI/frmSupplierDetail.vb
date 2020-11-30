@@ -153,9 +153,8 @@ Public Class frmSupplierDetail
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPurchaseTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PurchaseTermType))
 
-      clsDEControlLoading.FillDEComboVI(cboBankName, clsEnumsConstants.EnumToVIs(GetType(eBankName)))
 
-
+      clsDEControlLoading.FillDEComboVI(cboBankName, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.BankList))
 
       clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Category"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.grdPOInfo, gvPOInfo.Columns("Status"), clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
