@@ -94,6 +94,24 @@ Public Class dsoStock
 
   End Function
 
+  Public Function GetStockItemByStockItemID(ByVal vStockItemID As Integer) As dmStockItem
+    Dim mRetVal As New dmStockItem
+    Dim mdtoStockItem As dtoStockItem
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+
+      mdtoStockItem = New dtoStockItem(pDBConn)
+      mOK = mdtoStockItem.LoadStockItem(mRetVal, vStockItemID)
+    Catch ex As Exception
+      mRetVal = Nothing
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
 
   Public Function SaveWoodPalletDown(ByRef rWoodPallet As dmWoodPallet) As Boolean
     Dim mRetVal As Boolean
@@ -146,6 +164,37 @@ Public Class dsoStock
     Return mRetVal
 
 
+  End Function
+
+  Public Function GetPickedMaterialRequirementByWorkOrderAndStockItemID(ByVal vWorkOrderID As Integer, ByVal vStockItemID As Integer) As clsMaterialRequirementInfo
+    Dim mRetVal As clsMaterialRequirementInfo = Nothing
+    Dim mdto As dtoMaterialRequirementInfo
+    Dim mWoodMatReq As New clsMaterialRequirementInfo
+    Dim mCollection As New colMaterialRequirementInfos
+
+    Dim mWhere As String = ""
+
+    Try
+
+      pDBConn.Connect()
+      mWhere = String.Format("ObjectID ={0} and StockItemID = {1}", vWorkOrderID, vStockItemID)
+      mdto = New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.WoodMat)
+      mdto.LoadWoodMatReqByWhere(mCollection, mWhere)
+
+      If mCollection IsNot Nothing And mCollection.Count > 0 Then
+        mWoodMatReq = mCollection(0)
+
+        mRetVal = mWoodMatReq
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
   End Function
 
   Public Function LoadWoodMaterialRequirementInfosByWhere(ByRef rWoodMatReq As colMaterialRequirementInfos, ByVal vWhere As String, ByVal vMode As dtoMaterialRequirementInfo.eMode) As Boolean

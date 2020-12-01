@@ -385,6 +385,7 @@
     Get
       Return pMaterialRequirement.PickedQty
     End Get
+
   End Property
 
   Public ReadOnly Property QtyOS As Decimal

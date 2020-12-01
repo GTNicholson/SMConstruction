@@ -161,6 +161,12 @@ Public Class dmWoodPalletItem : Inherits dmBase
     End Set
   End Property
 
+  Public Sub SetQtyUsed(ByVal vNewValue As Decimal)
+    pQuantityUsed = vNewValue
+  End Sub
+
+
+
 End Class
 
 

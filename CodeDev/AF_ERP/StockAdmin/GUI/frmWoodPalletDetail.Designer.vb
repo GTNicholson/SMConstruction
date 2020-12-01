@@ -274,74 +274,94 @@ Partial Class frmWoodPalletDetail
         '
         'GridColumn3
         '
+        Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn3.Caption = "Código"
         Me.GridColumn3.FieldName = "StockCode"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 121
         '
         'GridColumn4
         '
+        Me.GridColumn4.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn4.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn4.Caption = "Descripción"
         Me.GridColumn4.FieldName = "Description"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 266
         '
         'GridColumn5
         '
+        Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn5.Caption = "Especie"
         Me.GridColumn5.FieldName = "SpanishDescription"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Width = 211
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Grosor"
+        Me.GridColumn6.DisplayFormat.FormatString = "n2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "Thickness"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 51
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Ancho"
+        Me.GridColumn7.DisplayFormat.FormatString = "n2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "Width"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.VisibleIndex = 4
         Me.GridColumn7.Width = 38
         '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Largo"
+        Me.GridColumn8.DisplayFormat.FormatString = "n2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "Length"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 5
         Me.GridColumn8.Width = 42
         '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Cantidad"
+        Me.GridColumn9.DisplayFormat.FormatString = "n0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "Quantity"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.VisibleIndex = 6
         Me.GridColumn9.Width = 61
         '
         'GridColumn10
         '
+        Me.GridColumn10.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn10.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn10.Caption = "Cant. Utilizada"
+        Me.GridColumn10.DisplayFormat.FormatString = "n0"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "QuantityUsed"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 8
+        Me.GridColumn10.VisibleIndex = 7
         Me.GridColumn10.Width = 92
         '
         'GridColumn11
@@ -456,7 +476,7 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletInfo.Location = New System.Drawing.Point(5, 86)
         Me.grdWoodPalletInfo.MainView = Me.gvWoodPalletInfo
         Me.grdWoodPalletInfo.Name = "grdWoodPalletInfo"
-        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(377, 670)
+        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(397, 670)
         Me.grdWoodPalletInfo.TabIndex = 11
         Me.grdWoodPalletInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletInfo})
         '

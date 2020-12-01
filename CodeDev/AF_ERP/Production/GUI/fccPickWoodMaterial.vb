@@ -4,21 +4,14 @@ Imports RTIS.CommonVB
 Public Class fccPickWoodMaterial
 
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
-  Private pPickWoodMaterialtemProcessors As colPickWoodMaterialItemProcessors
-  Private pFormController As fccPickWoodMaterial
-  Private pCurrentPurchaseOrderItemAllocationInfo As clsPurchaseOrderItemAllocationInfo
   Private pWoodPallet As dmWoodPallet
-  Private pPickWoodMaterialRequirement As dmPickWoodMaterialRequirement
-  Private pPrimaryKey As Integer
-  Private pWoodPalletID As Integer
-  Private pReprintOption As Boolean
-  Private pWorkOrderInfo As clsWorkOrderInfo
+  Private pWoodPalletItemEditors As colWoodPalletItemEditors
+  Private pCurrentWorkOrderInfo As clsWorkOrderInfo
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
-    pPickWoodMaterialtemProcessors = New colPickWoodMaterialItemProcessors
-    pCurrentPurchaseOrderItemAllocationInfo = New clsPurchaseOrderItemAllocationInfo
     pWoodPallet = New dmWoodPallet
-    pPickWoodMaterialRequirement = New dmPickWoodMaterialRequirement
+    pWoodPalletItemEditors = New colWoodPalletItemEditors
 
   End Sub
 
@@ -40,151 +33,73 @@ Public Class fccPickWoodMaterial
       pWoodPallet = value
     End Set
   End Property
-  Public Property WorkOrderInfo() As clsWorkOrderInfo
+  Public Property WoodPalletItemEditors() As colWoodPalletItemEditors
     Get
-      Return pWorkOrderInfo
+      Return pWoodPalletItemEditors
+    End Get
+    Set(ByVal value As colWoodPalletItemEditors)
+      pWoodPalletItemEditors = value
+    End Set
+  End Property
+
+  Public Property CurrentWorkOrderInfo() As clsWorkOrderInfo
+    Get
+      CurrentWorkOrderInfo = pCurrentWorkOrderInfo
     End Get
     Set(ByVal value As clsWorkOrderInfo)
-      pWorkOrderInfo = value
-    End Set
-  End Property
-
-  Public Property PickWoodMaterialRequirement() As dmPickWoodMaterialRequirement
-    Get
-      Return pPickWoodMaterialRequirement
-    End Get
-    Set(ByVal value As dmPickWoodMaterialRequirement)
-      pPickWoodMaterialRequirement = value
-    End Set
-  End Property
-
-
-  Public Property PrimaryKey As Integer
-    Get
-      Return pPrimaryKey
-    End Get
-    Set(value As Integer)
-      pPrimaryKey = value
-    End Set
-  End Property
-
-  Public Property WoodPalletID As Integer
-    Get
-      Return pWoodPalletID
-    End Get
-    Set(value As Integer)
-      pWoodPalletID = value
-    End Set
-  End Property
-
-  Public Property CurrentPurchaseOrderItemAllocationInfo() As clsPurchaseOrderItemAllocationInfo
-    Get
-      CurrentPurchaseOrderItemAllocationInfo = pCurrentPurchaseOrderItemAllocationInfo
-    End Get
-    Set(ByVal value As clsPurchaseOrderItemAllocationInfo)
-      pCurrentPurchaseOrderItemAllocationInfo = value
-    End Set
-  End Property
-
-  Public Property PurchaseOrderProcessors() As colPickWoodMaterialItemProcessors
-    Get
-      PurchaseOrderProcessors = pPickWoodMaterialtemProcessors
-    End Get
-    Set(ByVal value As colPickWoodMaterialItemProcessors)
-      pPickWoodMaterialtemProcessors = value
+      pCurrentWorkOrderInfo = value
     End Set
   End Property
 
   Public Sub LoadObjects()
-    Dim mDSO As dsoProduction
 
     Try
-      If pPrimaryKey = 0 Then
-        pPickWoodMaterialRequirement = Nothing
-
-        If pWoodPalletID <> 0 Then
-          mDSO = New dsoProduction(pDBConn)
-          pPickWoodMaterialRequirement = New dmPickWoodMaterialRequirement
-
-          pPickWoodMaterialRequirement.WoodPalletID = pWoodPalletID
-          pPickWoodMaterialRequirement.DateCreated = Now
-
-          mDSO.LoadPickWoodMaterialItemProcessorss(pPickWoodMaterialtemProcessors, pWoodPalletID)
-
-          RefreshPOItemAllocationProcessorPODelItems()
-
-        End If
-
-      Else
-        mDSO = New dsoPurchasing(pDBConn)
-        pPickWoodMaterialRequirement = New dmPODelivery
-        mDSO.LoadPODeliveryDown(pPickWoodMaterialRequirement, pPrimaryKey)
-
-        pWoodPalletID = pPickWoodMaterialRequirement.PurchaseOrderID
-        mDSO.LoadPurchaseOrderInfo(pWorkOrderInfo, pPickWoodMaterialRequirement.PurchaseOrderID)
-        '//LoadPurchaseOrderItemAllocationProcessorss
-        mDSO.LoadPurchaseOrderItemAllocationProcessorss(pPickWoodMaterialtemProcessors, pWoodPalletID)
-
-        RefreshPOItemAllocationProcessorPODelItems()
 
 
-      End If
+      RefreshWoodPalletItemProcessor()
+
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
   End Sub
 
 
-  Public Sub RefreshPOItemAllocationProcessorPODelItems()
+  Public Sub RefreshWoodPalletItemProcessor()
+    Dim mWoodPalletItemEditor As clsWoodPalletItemEditor
+    Dim mTempStockItem As dmStockItem
+    Dim mdso As New dsoStock(pDBConn)
+    pWoodPalletItemEditors.Clear()
 
-    If PickWoodMaterialRequirement IsNot Nothing Then
+    If pWoodPallet IsNot Nothing Then
 
-      For Each mPickWoodMaterialItem As dmPickWoodMaterialItem In pPickWoodMaterialRequirement.PickWoodMaterialItems
-        For Each mPickWoodMaterialItemProcessor As clsPickWoodMaterialItemProcessor In pPickWoodMaterialtemProcessors
-          If mPickWoodMaterialItem.WoodPalletItemID = mPickWoodMaterialItemProcessor.WoodPalletItemID Then
-            mPickWoodMaterialItemProcessor.PickWoodMaterialItem = mPickWoodMaterialItem
-            Exit For
-          End If
+      If pWoodPallet.WoodPalletItems IsNot Nothing Then
+
+        For Each mWoodPalletItem As dmWoodPalletItem In pWoodPallet.WoodPalletItems
+          mWoodPalletItemEditor = New clsWoodPalletItemEditor
+          mTempStockItem = mdso.GetStockItemByStockItemID(mWoodPalletItem.StockItemID)
+
+          mWoodPalletItemEditor.WoodPalletItem = mWoodPalletItem
+          mWoodPalletItemEditor.StockItem = mTempStockItem
+
+          pWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+
         Next
-      Next
+      End If
     End If
 
-  End Sub
 
-  Public Function GetWorkOrderInfos() As colWorkOrderInfos
-    Dim mRetVal As colWorkOrderInfos = New colWorkOrderInfos
-    Dim mdso As dsoSales
-    Dim mWhere As String
-    ' mWhere = "Status<> " & ePurchaseOrderDueDateStatus.Cancelled
-    mdso = New dsoSales(pDBConn)
-    mdso.LoadWorkOrderInfos(mRetVal, "", dtoWorkOrderInfo.eMode.WorkOrderInfoInternal)
-    Return mRetVal
-  End Function
-
-  Public Sub LoadPurchaseOrderItemAllocationProcessorss()
-    Dim mdso As dsoPurchasing
-    Try
-
-      If pWorkOrderInfo IsNot Nothing Then
-        mdso = New dsoPurchasing(pDBConn)
-        pPickWoodMaterialtemProcessors.Clear()
-
-        mdso.LoadPurchaseOrderItemAllocationProcessorss(pPickWoodMaterialtemProcessors, pWorkOrderInfo.PurchaseOrderID)
-        RefreshPOItemAllocationProcessorPODelItems()
-        '// Load any deliveryitems into matechde purchaseorderitemprocessors
-
-      End If
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
 
   End Sub
+
+
+
 
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean = True
-    If Not PODelivery Is Nothing Then
-      mIsDirty = pPickWoodMaterialRequirement.IsAnyDirty
+    If Not pWoodPallet.WoodPalletItems Is Nothing Then
+      mIsDirty = pWoodPallet.WoodPalletItems.IsDirty
     Else
       mIsDirty = False
     End If
@@ -201,15 +116,18 @@ Public Class fccPickWoodMaterial
     Return mValidate
   End Function
 
-  Public Function ProcessDeliveryQtys(ByVal vCreateTimberPack As Boolean) As Boolean
+  Public Function ProcessPickingQtys() As Boolean
     Dim mRetVal As Boolean = True
     Dim mdsoTran As dsoStockTransactions
-    Dim mDeliveryItem As dmPODeliveryItem
+    Dim mWoodPalletItem As dmWoodPalletItem
 
 
     Dim mdsoStock As dsoStock
+
     Dim mSIL As dmStockItemLocation
     Dim mDialogResult As DialogResult
+    Dim mMaterialRequirement As clsMaterialRequirementInfo
+
 
     Try
 
@@ -217,12 +135,12 @@ Public Class fccPickWoodMaterial
 
       mdsoStock = New dsoStock(pDBConn)
 
-      For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPickWoodMaterialtemProcessors
+      For Each mWoodPalletItemEditor As clsWoodPalletItemEditor In pWoodPalletItemEditors
 
 
-        If mPOP.ToProcessQty <> 0 Then
+        If mWoodPalletItemEditor.ToProcessQty <> 0 Then
 
-          If mPOP.OutStandingQty <= 0 Or mPOP.ToProcessQty > mPOP.Quantity Then
+          If mWoodPalletItemEditor.OutStandingQty <= 0 Or mWoodPalletItemEditor.ToProcessQty > mWoodPalletItemEditor.WoodPalletItem.Quantity Then
 
             mDialogResult = MessageBox.Show("La cantidad a procesar es mayor a la cantidad pedida, ¿Desea continuar?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 
@@ -233,33 +151,95 @@ Public Class fccPickWoodMaterial
           End If
 
 
-          If mPOP.StockItem.StockItemID <> 0 Then
-            mSIL = mdsoStock.GetOrCreateStockItemLocation(mPOP.StockItem.StockItemID, 1)
+          If mWoodPalletItemEditor.StockItem.StockItemID <> 0 Then
+            mSIL = mdsoStock.GetOrCreateStockItemLocation(mWoodPalletItemEditor.StockItem.StockItemID, 1)
           Else
             mSIL = Nothing
           End If
 
+          For Each mWoodPalletItem In pWoodPallet.WoodPalletItems
 
-          If mPOP.PODeliveryItem Is Nothing Then
+            If mWoodPalletItemEditor.WoodPalletItem.WoodPalletItemID = mWoodPalletItem.WoodPalletItemID Then
+              mWoodPalletItem.QuantityUsed = mWoodPalletItemEditor.ToProcessQty
+            End If
+
+          Next
 
 
-            mDeliveryItem = New dmPODeliveryItem
-            mDeliveryItem.PODeliveryID = pPickWoodMaterialRequirement.PODeliveryID
-            mDeliveryItem.POItemAllocationID = mPOP.PurchaseOrderItemAllocationID
-            pPickWoodMaterialRequirement.PODeliveryItems.Add(mDeliveryItem)
-            mPOP.PODeliveryItem = mDeliveryItem
+          If pCurrentWorkOrderInfo IsNot Nothing Then
+            mMaterialRequirement = mdsoStock.GetPickedMaterialRequirementByWorkOrderAndStockItemID(pCurrentWorkOrderInfo.WorkOrderID, mWoodPalletItemEditor.StockItem.StockItemID)
 
+            If mMaterialRequirement IsNot Nothing Then
+              If mMaterialRequirement.PickedQty = 0 Then
+                mMaterialRequirement = CreateAdditionalMatReqs(mWoodPalletItemEditor.StockItem, mWoodPalletItemEditor)
+
+              Else
+                UpdateMatReqs(mMaterialRequirement.MaterialRequirementID, mWoodPalletItemEditor.ToProcessQty, mMaterialRequirement.PickedQty)
+              End If
+            Else
+              mMaterialRequirement = CreateAdditionalMatReqs(mWoodPalletItemEditor.StockItem, mWoodPalletItemEditor)
+
+            End If
+
+
+            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.ToProcessQty, 1, mWoodPalletItemEditor.WoodPalletItem, Now, 1, 0, mMaterialRequirement)
+            ''End If
+            mWoodPalletItemEditor.ToProcessQty = 0
           End If
-          ''If vCreateTimberPack Then
-          ''  mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, True)
-
-          ''Else
-          mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pWorkOrderInfo.DefaultCurrency, mPOP.UnitPrice, pWorkOrderInfo.ExchangeRateValue)
-          ''End If
-          mPOP.ToProcessQty = 0
         End If
-
       Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+    Return mRetVal
+  End Function
+
+  Private Sub UpdateMatReqs(ByVal vMaterialRequirementID As Integer, ByVal vToProcessQty As Decimal, ByVal vLastPickedQty As Decimal)
+    Try
+      Dim mNewPickedQty As Decimal
+      mNewPickedQty = vToProcessQty + vLastPickedQty
+      Dim mSql As String = ""
+      mSql = String.Format("Update MaterialRequirement set PickedQty = {0} where MaterialRequirementID = {1}", mNewPickedQty, vMaterialRequirementID)
+
+
+      DBConn.Connect()
+
+      DBConn.ExecuteNonQuery(mSql)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Function CreateAdditionalMatReqs(ByRef rStockItem As RTIS.ERPStock.intStockItemDef, ByRef rWoodPalletItemEditor As clsWoodPalletItemEditor) As clsMaterialRequirementInfo
+    Dim mMatReqs As New colMaterialRequirements
+    Dim mMatReq As dmMaterialRequirement
+    Dim mdso As dsoSales
+    Dim mRetVal As New clsMaterialRequirementInfo
+    Try
+
+      mdso = New dsoSales(pDBConn)
+
+      mMatReq = New dmMaterialRequirement
+      mMatReq.ObjectType = eObjectType.WorkOrder
+      mMatReq.ObjectID = pCurrentWorkOrderInfo.WorkOrderID
+      mMatReq.StockItemID = rStockItem.StockItemID
+      mMatReq.MaterialRequirementType = eMaterialRequirementType.Wood
+      mMatReq.Description = rWoodPalletItemEditor.StockItem.Description
+      mMatReq.NetLenght = rWoodPalletItemEditor.WoodPalletItem.Length
+      mMatReq.NetThickness = rWoodPalletItemEditor.StockItem.Thickness
+      mMatReq.NetWidth = rWoodPalletItemEditor.WoodPalletItem.Width
+
+      ''mMatReq.SetPickedQty(vPickedQty)
+      mMatReq.StockCode = rWoodPalletItemEditor.StockItem.StockCode
+      mMatReq.WoodSpecie = rWoodPalletItemEditor.StockItem.Species
+
+      mMatReqs.Add(mMatReq)
+      mRetVal.MaterialRequirement = mMatReq
+
+      mdso.SaveMaterialRequirementsCollection(mMatReqs, eObjectType.WorkOrder, pCurrentWorkOrderInfo.WorkOrderID, eMaterialRequirementType.Wood)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -306,15 +286,15 @@ Public Class fccPickWoodMaterial
     'mdso.SavePODelivery(pPickWoodMaterialRequirement)
   End Sub
 
-  Public Function SavePickWoodMaterialRequirement() As Boolean
-    Dim mdso As dsoProduction
+  Public Function SavePickeWoodPalletItem() As Boolean
+    Dim mdso As dsoStock
     Dim mOK As Boolean = False
     Try
-      mdso = New dsoProduction(pDBConn)
+      mdso = New dsoStock(pDBConn)
 
 
 
-      mOK = mdso.SavePickWoodMaterialRequirement(pPickWoodMaterialRequirement)
+      mOK = mdso.SaveWoodPalletDown(pWoodPallet)
 
     Catch ex As Exception
       mOK = False
@@ -355,4 +335,31 @@ Public Class fccPickWoodMaterial
     '  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     'End Try
   End Function
+
+  Public Sub LoadWorkOrderInfos(ByRef rcolWorkOrderInfos As colWorkOrderInfos)
+
+    Dim mdto As dtoWorkOrderInfo
+    Dim mwhere As String
+    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+    mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
+    '' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
+    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo))"
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderInfo(DBConn, 3)
+      mdto.LoadWorkOrderInfoCollectionByWhere(rcolWorkOrderInfos, mwhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+
+  End Sub
+
+
 End Class

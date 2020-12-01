@@ -6,7 +6,7 @@ Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 Public Class frmPODelivery
-  Dim pFormController As fccPurchaseOrderDelivery
+  Dim pFormController As fccPODelivery
   ''Dim pMaterialRequirementInfos As colMaterialRequirementInfos
   Public FormMode As eFormMode
   Public ExitMode As Windows.Forms.DialogResult
@@ -40,11 +40,11 @@ Public Class frmPODelivery
 
   End Sub
 
-  Public Property FormController() As fccPurchaseOrderDelivery
+  Public Property FormController() As fccPODelivery
     Get
       FormController = pFormController
     End Get
-    Set(ByVal value As fccPurchaseOrderDelivery)
+    Set(ByVal value As fccPODelivery)
       pFormController = value
     End Set
   End Property
@@ -71,7 +71,7 @@ Public Class frmPODelivery
     mfrm = New frmPODelivery
     mfrm.FormMode = vMode
     '' mfrm.MdiParent = rMDIParent
-    mfrm.pFormController = New fccPurchaseOrderDelivery(rDBConn)
+    mfrm.pFormController = New fccPODelivery(rDBConn)
     mfrm.pFormController.PrimaryKey = vPrimaryKey
     If vPOID <> 0 Then
       mfrm.pFormController.PurchaseOrderID = vPOID

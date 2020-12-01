@@ -390,22 +390,30 @@ Public Class frmWoodPalletDetail
 
   Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddDuplicated.ButtonClick
     Dim mSelectedWoodPalletItem As dmWoodPalletItem
+    Dim mDuplicatedWoodPalletItem As dmWoodPalletItem
 
     mSelectedWoodPalletItem = TryCast(gvWoodPalletItemInfo.GetFocusedRow, dmWoodPalletItem)
 
     If mSelectedWoodPalletItem IsNot Nothing Then
-      mSelectedWoodPalletItem.Width = 0
-      mSelectedWoodPalletItem.Length = 0
-      mSelectedWoodPalletItem.Quantity = 0
-      mSelectedWoodPalletItem.QuantityUsed = 0
-      mSelectedWoodPalletItem.WoodPalletItemID = 0
-      pFormController.CurrentWoodPallet.WoodPalletItems.Add(mSelectedWoodPalletItem)
+      mDuplicatedWoodPalletItem = New dmWoodPalletItem
+      mDuplicatedWoodPalletItem.Width = 0
+      mDuplicatedWoodPalletItem.Length = 0
+      mDuplicatedWoodPalletItem.Quantity = 0
+      mDuplicatedWoodPalletItem.QuantityUsed = 0
+      mDuplicatedWoodPalletItem.WoodPalletItemID = 0
+      mDuplicatedWoodPalletItem.Description = mSelectedWoodPalletItem.Description
+      mDuplicatedWoodPalletItem.StockCode = mSelectedWoodPalletItem.StockCode
+      mDuplicatedWoodPalletItem.Thickness = mSelectedWoodPalletItem.Thickness
+      mDuplicatedWoodPalletItem.WoodPalletID = mSelectedWoodPalletItem.WoodPalletID
+      pFormController.CurrentWoodPallet.WoodPalletItems.Add(mDuplicatedWoodPalletItem)
+      pFormController.SaveObject()
       grdWoodPalletItemInfos.RefreshDataSource()
     End If
   End Sub
 
   Private Sub bbtnPickWoodPallet_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnPickWoodPallet.ItemClick
     UpdateObjects()
+    pFormController.SaveObject()
     frmPickWoodMaterial.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.CurrentWoodPallet, eFormMode.eFMFormModeAdd)
 
   End Sub

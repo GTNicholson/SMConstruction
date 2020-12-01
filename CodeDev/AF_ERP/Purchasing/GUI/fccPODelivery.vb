@@ -1,12 +1,12 @@
 ﻿Imports DevExpress.XtraGauges.Core.Model
 Imports RTIS.CommonVB
 
-Public Class fccPurchaseOrderDelivery
+Public Class fccPODelivery
 
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pPurchaseOrderInfos As colPurchaseOrderInfos
   Private pPOItemProcessors As colPurchaseOrderItemAllocationProcessor
-  Private pFormController As fccPurchaseOrderDelivery
+  Private pFormController As fccPODelivery
   Private pCurrentPurchaseOrderItemAllocationInfo As clsPurchaseOrderItemAllocationInfo
   Private pPurchaseOrderInfo As clsPurchaseOrderInfo
   Private pPODelivery As dmPODelivery

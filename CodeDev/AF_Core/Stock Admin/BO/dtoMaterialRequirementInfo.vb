@@ -141,6 +141,8 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .QualityType = DBReadInt32(rDataReader, "QualityType")
             .WoodSpecie = DBReadInt32(rDataReader, "WoodSpecie")
             .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
+            .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
+
           End With
 
 
@@ -151,9 +153,10 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
 
           With pMaterialRequirment.WorkOrder
             .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
-            .Description = DBReadString(rDataReader, "WODescription")
+            .Description = DBReadString(rDataReader, "Description")
             .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
             .Quantity = DBReadInt32(rDataReader, "Quantity")
+            .WorkOrderID = DBReadInt32(rDataReader, "ObjectID")
           End With
 
           With pMaterialRequirment.SalesOrder
@@ -164,6 +167,9 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .CompanyName = DBReadString(rDataReader, "CompanyName")
           End With
 
+          With pMaterialRequirment.StockItem
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+          End With
       End Select
 
 

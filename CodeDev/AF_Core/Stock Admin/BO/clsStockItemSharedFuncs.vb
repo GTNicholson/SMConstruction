@@ -121,10 +121,15 @@
         End If
 
       Case eStockItemCategory.Timber
-        Dim mSpecies As dmWoodSpecie
-        mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
-        If mSpecies IsNot Nothing Then
-          mRetVal = mSpecies.EnglishDescription
+        'Dim mSpecies As dmWoodSpecie
+        'mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
+        'If mSpecies IsNot Nothing Then
+        '  mRetVal = mSpecies.EnglishDescription
+
+        'End If
+        mStockItemType = eStockItemTypeTimberWood.GetInstance.ItemFromKey(rStockItem.ItemType)
+        If mStockItemType IsNot Nothing Then
+          mRetVal = mStockItemType.Description
 
         End If
 

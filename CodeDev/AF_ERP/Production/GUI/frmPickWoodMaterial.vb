@@ -32,11 +32,6 @@ Public Class frmPickWoodMaterial
   End Enum
 
   Private Sub LoadCombos()
-    Dim mVIs As colValueItems
-    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItemInfo, gcCategory, mVIs)
-
-    clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePODelivery)))
 
   End Sub
 
@@ -73,8 +68,6 @@ Public Class frmPickWoodMaterial
     '' mfrm.MdiParent = rMDIParent
     mfrm.pFormController = New fccPickWoodMaterial(rDBConn)
     mfrm.pFormController.WoodPallet = rWoodPallet
-    mfrm.pFormController.PrimaryKey = vPickWoodMaterialID
-    mfrm.pFormController.WoodPalletID = rWoodPallet.WoodPalletID
 
     mfrm.ShowDialog()
     ''Else
@@ -119,35 +112,40 @@ Public Class frmPickWoodMaterial
 
     Try
 
-      If pFormController.WorkOrderInfo IsNot Nothing Then
-        With pFormController.WorkOrderInfo
-
-          btnSelectPurchaseOrder.Text = .OrderNo
-          'txtCategory.Text = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(.Category, ePurchaseCategories))
-          'txtRequiredDate.Text = .RequiredDate
-          'txtSupplierCompanyName.Text = .CompanyName
+      If pFormController.WoodPallet IsNot Nothing Then
+        With pFormController.WoodPallet
+          txtWoodPalletRef.Text = .PalletRef
+          txtWoodPalletDescription.Text = .LocationDesc
 
 
         End With
 
-        If pFormController.PickWoodMaterialRequirement IsNot Nothing Then
+        If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
+          With pFormController.CurrentWorkOrderInfo
+            btnSelectWorkOrder.Text = .WorkOrderNo
+            txtWorkOrderDescription.Text = .Description
+          End With
 
-          With pFormController.PickWoodMaterialRequirement
-            txtGRNNumber.Text = .PickNumber
+
+
+        End If
+
+        If pFormController.WoodPalletItemEditors IsNot Nothing Then
+
+          With pFormController.WoodPallet
+            ' txtGRNNumber.Text = "Testing" '.PickNumber
             ' txtRefDocSupplier.Text = .RefSupplierDoc
-            dteReceived.Text = .DateCreated
             SetReceivedValueWithCurrencyFormat() ' pFormController.GetReceivedValue()
             gcQtyToProcess.OptionsColumn.ReadOnly = False
 
-            cboStatus.Properties.ReadOnly = False
-            clsDEControlLoading.SetDECombo(cboStatus, .Status)
+            'clsDEControlLoading.SetDECombo(cboStatus, .Status)
 
-            If .PickNumber <> "" Then
-              grpGRN.CustomHeaderButtons.Item(0).Properties.Enabled = False
-              txtRefDocSupplier.ReadOnly = False
-            Else
-              txtRefDocSupplier.ReadOnly = True
-            End If
+            'If .PickNumber <> "" Then
+            '  grpGRN.CustomHeaderButtons.Item(0).Properties.Enabled = False
+            '  txtRefDocSupplier.ReadOnly = False
+            'Else
+            '  txtRefDocSupplier.ReadOnly = True
+            'End If
           End With
 
         End If
@@ -167,25 +165,24 @@ Public Class frmPickWoodMaterial
 
   Public Sub SetReceivedValueWithCurrencyFormat()
 
-    txtReceivedValue.Text = String.Format(New CultureInfo("en-US"), "{0:c}", pFormController.GetReceivedValue)
 
   End Sub
 
   Private Sub SetupReadOnly()
 
-    If txtGRNNumber.Text = "" Then
+    'If txtGRNNumber.Text = "" Then
 
-      grdPurchaseOrderItemInfo.Enabled = False
-      grpMaterialRequirements.CustomHeaderButtons.Item(0).Properties.Visible = False
-      ''grpMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = False
-      grpMaterialRequirements.CustomHeaderButtons.Item(2).Properties.Visible = False
-    Else
+    '  grdPurchaseOrderItemInfo.Enabled = False
+    '  grdWoodPalletItems.CustomHeaderButtons.Item(0).Properties.Visible = False
+    '  ''grpMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = False
+    '  grdWoodPalletItems.CustomHeaderButtons.Item(2).Properties.Visible = False
+    'Else
 
-      grdPurchaseOrderItemInfo.Enabled = True
-      grpMaterialRequirements.CustomHeaderButtons.Item(0).Properties.Visible = True
-      ''grpMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = True
-      grpMaterialRequirements.CustomHeaderButtons.Item(2).Properties.Visible = True
-    End If
+    '  grdPurchaseOrderItemInfo.Enabled = True
+    '  grdWoodPalletItems.CustomHeaderButtons.Item(0).Properties.Visible = True
+    '  ''grpMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = True
+    '  grdWoodPalletItems.CustomHeaderButtons.Item(2).Properties.Visible = True
+    'End If
 
   End Sub
 
@@ -198,6 +195,7 @@ Public Class frmPickWoodMaterial
     Try
       pFormController.LoadObjects()
 
+      grdPurchaseOrderItemInfo.DataSource = pFormController.WoodPalletItemEditors
       LoadCombos()
 
       'SetUpUserPermissions()
@@ -206,15 +204,15 @@ Public Class frmPickWoodMaterial
 
 
       RefreshControls()
-      If txtGRNNumber.Text <> "" And btnSelectPurchaseOrder.Text <> "" Then
-        btnSelectPurchaseOrder.Enabled = False
+      'If txtGRNNumber.Text <> "" And btnSelectWorkOrder.Text <> "" Then
+      '  btnSelectWorkOrder.Enabled = False
 
 
 
-        '' pFormController.PODelivery = Nothing
-      Else
-        gcQtyToProcess.OptionsColumn.ReadOnly = True
-      End If
+      '  '' pFormController.PODelivery = Nothing
+      'Else
+      '  gcQtyToProcess.OptionsColumn.ReadOnly = True
+      'End If
 
     Catch ex As Exception
       mMsg = ex.Message
@@ -236,48 +234,21 @@ Public Class frmPickWoodMaterial
 
   End Sub
 
-  Private Sub btnSelectProductionBatch_Click(sender As Object, e As EventArgs) Handles btnSelectPurchaseOrder.Click
-    Dim mPickerPurchaseOrder As clsPickerWorkOrder
-    Dim mWorkOrderInfos As New colWorkOrderInfos
-    Dim mWorkOrderInfo As clsWorkOrderInfo
-    Dim mDialogResult As DialogResult
-    mWorkOrderInfos = pFormController.GetWorkOrderInfos
+  Private Sub btnSelectWorkOrder_Click(sender As Object, e As EventArgs) Handles btnSelectWorkOrder.Click
+    Dim mWOPicker As clsPickerWorkOrder
+    Dim mWOIs As New colWorkOrderInfos
 
-    mPickerPurchaseOrder = New clsPickerWorkOrder(mWorkOrderInfos, pFormController.DBConn)
+    pFormController.LoadWorkOrderInfos(mWOIs)
 
+    mWOPicker = New clsPickerWorkOrder(mWOIs, pFormController.DBConn)
 
-    mWorkOrderInfo = frmWorkOrderPicker.OpenPickerSingle(mPickerPurchaseOrder)
+    Dim mWO As clsWorkOrderInfo
+    mWO = frmWorkOrderPicker.OpenPickerSingle(mWOPicker)
 
-    If mWorkOrderInfo IsNot Nothing Then
-
-      If pFormController.GetPickWoodMaterialByWorkOrderID(mWorkOrderInfo.WorkOrderID) >= 1 Then
-        mDialogResult = MessageBox.Show("Esta O.T. ya tiene un despacho de madera, ¿Desea agregar otro Despacho?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-        If mDialogResult = DialogResult.Yes Then
-          pFormController.WoodPalletID = pFormController.WoodPalletID
-          pFormController.WorkOrderInfo = mWorkOrderInfo
-          If pFormController.PickWoodMaterialRequirement IsNot Nothing Then '// if we already have a podelivery then reset the purchase order id
-            pFormController.PickWoodMaterialRequirement.WorkOrderID = mWorkOrderInfo.WorkOrderID
-          End If
-
-        ElseIf mDialogResult = DialogResult.No Then
-          Exit Sub
-        End If
-      Else
-        pFormController.WoodPalletID = pFormController.WoodPalletID
-        pFormController.WorkOrderInfo = mWorkOrderInfo
-        If pFormController.PickWoodMaterialRequirement IsNot Nothing Then '// if we already have a podelivery then reset the purchase order id
-          pFormController.PickWoodMaterialRequirement.WorkOrderID = mWorkOrderInfo.WorkOrderID
-        End If
-      End If
-
-      RefreshGrid()
+    If mWO IsNot Nothing Then
+      pFormController.CurrentWorkOrderInfo = mWO
       RefreshControls()
-      UpdateObject()
-    Else
-      If pFormController.PickWoodMaterialRequirement IsNot Nothing Then
-        pFormController.PickWoodMaterialRequirement.WorkOrderID = 0
-      End If
+
     End If
 
 
@@ -286,61 +257,60 @@ Public Class frmPickWoodMaterial
   Private Sub UpdateObject()
 
 
-    If pFormController.PickWoodMaterialRequirement IsNot Nothing Then
-      With pFormController.PickWoodMaterialRequirement
-        .PickNumber = txtGRNNumber.Text
-        '.PODeliveryValue = pFormController.GetReceivedValue
-        '.PurchaseOrder = pFormController.WorkOrderInfo.PurchaseOrder
-        '.PurchaseOrderID = pFormController.WorkOrderInfo.PurchaseOrder.PurchaseOrderID
-        '.Status = clsDEControlLoading.GetDEComboValue(cboStatus)
-        '.RefSupplierDoc = txtRefDocSupplier.Text
-        .DateCreated = dteReceived.EditValue
-      End With
-    End If
+    'If pFormController.PickWoodMaterialRequirement IsNot Nothing Then
+    '  With pFormController.PickWoodMaterialRequirement
+    '    .PickNumber = txtGRNNumber.Text
+    '    '.PODeliveryValue = pFormController.GetReceivedValue
+    '    '.PurchaseOrder = pFormController.WorkOrderInfo.PurchaseOrder
+    '    '.PurchaseOrderID = pFormController.WorkOrderInfo.PurchaseOrder.PurchaseOrderID
+    '    '.Status = clsDEControlLoading.GetDEComboValue(cboStatus)
+    '    '.RefSupplierDoc = txtRefDocSupplier.Text
+    '    .DateCreated = dteReceived.EditValue
+    '  End With
+    'End If
   End Sub
 
   Private Sub RefreshGrid()
-    pFormController.LoadPurchaseOrderItemAllocationProcessorss()
-    grdPurchaseOrderItemInfo.DataSource = pFormController.PurchaseOrderProcessors
-    gvMaterialRequirementInfos.RefreshData()
+    'pFormController.LoadPurchaseOrderItemAllocationProcessorss()
+    'grdPurchaseOrderItemInfo.DataSource = pFormController.PurchaseOrderProcessors
+    gvWoodPalletItems.RefreshData()
 
   End Sub
 
-  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
+  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grdWoodPalletItems.CustomButtonClick
     Dim mOK As Boolean
     Try
       UpdateObject()
-      gvMaterialRequirementInfos.CloseEditor()
-      gvMaterialRequirementInfos.UpdateCurrentRow()
-      pFormController.SavePickWoodMaterialRequirement()
+      gvWoodPalletItems.CloseEditor()
+      gvWoodPalletItems.UpdateCurrentRow()
+      pFormController.SavePickeWoodPalletItem()
 
       Select Case e.Button.Properties.Tag
 
 
         Case ePOIProcessorOption.eProcess ''//Click on Process Button
 
-
-          mOK = pFormController.ProcessDeliveryQtys(False)
-
-          'If mOK Then pFormController.CreatePurchaseOrderPDF(pFormController.WorkOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PickWoodMaterialRequirement, False)
-
-          If File.Exists(pFormController.PickWoodMaterialRequirement.FileExport) Then
-            ''  Process.Start(pFormController.PODelivery.FileExport)
+          If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
+            mOK = pFormController.ProcessPickingQtys()
 
           End If
 
-        Case ePOIProcessorOption.eTimberPack
 
-          pFormController.ProcessDeliveryQtys(True)
+          'If mOK Then pFormController.CreatePurchaseOrderPDF(pFormController.WorkOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PickWoodMaterialRequirement, False)
+
+          'If File.Exists(pFormController.PickWoodMaterialRequirement.FileExport) Then
+          '  ''  Process.Start(pFormController.PODelivery.FileExport)
+
+          'End If
 
         Case ePOIProcessorOption.eProcessAll
 
-          For Each mPOI As clsPurchaseOrderItemAllocationProcessor In pFormController.PurchaseOrderProcessors
+          For Each mWPIE As clsWoodPalletItemEditor In pFormController.WoodPalletItemEditors
             Dim mPendingValue As Decimal = 0
-            mPendingValue = mPOI.Quantity - mPOI.ReceivedQty
+            mPendingValue = mWPIE.Quantity - mWPIE.QuantityUsed
 
             If mPendingValue > 0 Then
-              mPOI.ToProcessQty = mPendingValue
+              mWPIE.ToProcessQty = mPendingValue
               ''pFormController.ProcessDeliveryQtys(False)
             End If
 
@@ -350,8 +320,8 @@ Public Class frmPickWoodMaterial
           '   pFormController.CreatePurchaseOrderPDF(pFormController.WorkOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PODelivery, True)
       End Select
 
-      pFormController.SavePickWoodMaterialRequirement()
-      gvMaterialRequirementInfos.RefreshData()
+      pFormController.SavePickeWoodPalletItem()
+      gvWoodPalletItems.RefreshData()
 
       RefreshControls()
     Catch ex As Exception
@@ -365,7 +335,7 @@ Public Class frmPickWoodMaterial
   End Sub
 
 
-  Private Sub grpGRN_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpGRN.CustomButtonClick
+  Private Sub grpGRN_CustomButtonClick(sender As Object, e As BaseButtonEventArgs)
     Select Case e.Button.Properties.Tag
 
       Case "Raise"
@@ -375,12 +345,12 @@ Public Class frmPickWoodMaterial
 
         RefreshControls()
         UpdateObject()
-        pFormController.SavePickWoodMaterialRequirement()
+        pFormController.SavePickeWoodPalletItem()
       Case "Edit"
 
       Case "Save"
         UpdateObject()
-        pFormController.SavePickWoodMaterialRequirement()
+        pFormController.SavePickeWoodPalletItem()
         ''pFormController.PODelivery = Nothing
     End Select
   End Sub
@@ -434,7 +404,7 @@ Public Class frmPickWoodMaterial
       Dim mValidate As clsValidate
       mValidate = pFormController.ValidateObject
       If mValidate.ValOk Then
-        mRetVal = pFormController.SavePickWoodMaterialRequirement
+        mRetVal = pFormController.SavePickeWoodPalletItem
         'TODO - If mRetVal then AddHandler InstanceData to  BrowseTracker
       Else
         MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Validation Issue")

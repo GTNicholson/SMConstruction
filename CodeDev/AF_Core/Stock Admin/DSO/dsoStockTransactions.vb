@@ -376,6 +376,147 @@ Public Class dsoStockTransactions
     Return mOK
 
   End Function
+
+  Public Function UpdateWoodPalletItemTransactionQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vQuantityUsed As Decimal, ByVal vPackQuantity As Decimal, ByVal vWoodPalletItem As dmWoodPalletItem, ByVal vTransDate As DateTime, ByVal vUnitCost As Decimal, vExchangeRate As Decimal, ByVal vMatReq As clsMaterialRequirementInfo) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
+    Dim mSILTranLog As dmStockItemTransactionLog
+
+    Dim mStockItem As dmStockItem
+    Dim mdtoStockItem As dtoStockItem
+    Dim mdsoStock As dsoStock
+
+
+    Dim mPrevTran As dmStockItemTransactionLog
+    Dim mPrevValue As Decimal = 0
+    Dim mSILTranLogRollForward As New colStockItemTransactionLogs
+    Dim mSubsequentStockCheckTran As dmStockItemTransactionLog
+    Dim mNewStockLevel As Decimal
+
+    Dim mSIL As dmStockItemLocation
+    Dim mSILBatchID As Integer = 0
+    Dim mBoardFeet As Decimal = 0
+    '' Dim mTimberPack As dmTimberPack
+
+    Try
+      pDBConn.Connect()
+
+      pDBConn.ConnectionBeginTrans()
+
+      mStockItem = New dmStockItem
+      mdtoStockItem = New dtoStockItem(pDBConn)
+      mdtoStockItem.LoadStockItem(mStockItem, vStockItemID)
+
+      mdsoStock = New dsoStock(pDBConn)
+      ''If vCreateTimberPack = True Then
+      ''  mTimberPack = mdsoStock.CreateTimberPackConnected(vDeliveryItem.PODeliveryID, mStockItem.Species, vRecievedQty, mStockItem.Thickness, mStockItem.StockItemID, vItemRef)
+      ''  mSILBatchID = mTimberPack.TimberPackID
+      ''Else
+      ''  mSILBatchID = 0
+      ''End If
+
+      '// get or create the stockitemlocation
+      mSIL = mdsoStock.GetOrCreateStockItemLocationConnected(vStockItemID, vLocationID, mSILBatchID)
+
+      If vWoodPalletItem IsNot Nothing AndAlso mSIL IsNot Nothing Then
+
+        If vQuantityUsed <> 0 Then
+
+          Dim mItemQuantity As Decimal = vQuantityUsed
+
+
+
+          mStockItem = New dmStockItem
+          mdtoStockItem = New dtoStockItem(pDBConn)
+          mdtoStockItem.LoadStockItem(mStockItem, vStockItemID)
+
+          If vPackQuantity > 0 Then
+            mItemQuantity = mItemQuantity * vPackQuantity
+          End If
+
+          '// Get the previous Transaction
+          mPrevTran = GetLastTransactionBeforeConnected(vTransDate, mSIL.StockItemLocationID, 0)
+          If mPrevTran IsNot Nothing Then mPrevValue = mPrevTran.NewValue
+
+          '// Get any stock check after the insert date
+          mSubsequentStockCheckTran = GetFirstStockCheckTransactionAfterConnected(vTransDate, vLocationID)
+
+          '// Get transactions after this date that need to have their prev and new changed
+          If mSubsequentStockCheckTran IsNot Nothing Then
+            mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, mSubsequentStockCheckTran.TransactionDate, vLocationID)
+          Else
+            mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vLocationID)
+          End If
+
+          ''//Get the right PiesTablares for the woodpalletitem
+
+
+          mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.WoodPicking, mSIL.StockItemLocationID, mSILBatchID, vTransDate, eTransactionType.Pick, pDBConn.RTISUser.UserID, "", eObjectType.WoodPicking, vWoodPalletItem.WoodPalletItemID, mSILBatchID, eCurrency.Dollar, vUnitCost, vExchangeRate)
+
+          mNewStockLevel = mPrevValue + mItemQuantity
+
+
+
+          For Each mTran As dmStockItemTransactionLog In mSILTranLogRollForward
+            Select Case mTran.TransactionType
+              Case eTransactionType.StockCheck, eTransactionType.Amendment
+                '//This should not happen as we have the subsequent stock check transaction as a seperate transaction
+                mTran.PrevValue += mItemQuantity
+              Case Else
+                mTran.PrevValue += mItemQuantity
+                mTran.NewValue += mItemQuantity
+                mNewStockLevel = mTran.NewValue
+            End Select
+          Next
+
+          If mSubsequentStockCheckTran Is Nothing Then
+            If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & mSIL.StockItemLocationID) > 0 Then
+            Else
+              mOK = False
+            End If
+          Else
+            '//Change the PrevValue of the Stock Check Transaction
+            mSubsequentStockCheckTran.PrevValue += mItemQuantity
+            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSubsequentStockCheckTran)
+          End If
+
+          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSILTranLog)
+
+          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
+
+          '// podeliveryitem qty via sql statement.
+          If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.WoodPalletItem SET QuantityUsed=" & vQuantityUsed & " WHERE WoodPalletItemID =" & vWoodPalletItem.WoodPalletItemID) > 0 Then mOK = True
+          '// Update the POCO allocation
+          ''If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PurchaseOrderItemAllocation SET ReceivedQty=" & vPOItemAllocation.ReceivedQty + vRecievedQty & " WHERE PurchaseOrderItemAllocationID =" & vPOItemAllocation.PurchaseOrderItemAllocationID) > 0 Then mOK = True
+
+          If mOK Then
+            vWoodPalletItem.SetQtyUsed(vQuantityUsed)
+            '' vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vQuantityUsed)
+          End If
+
+          If pDBConn.ExecuteCommand("UPDATE dbo.MaterialRequirement SET PickedQty=" & vMatReq.PickedQty + vQuantityUsed & "WHERE MaterialRequirementID =" & vMatReq.MaterialRequirementID) > 0 Then
+            mOK = True
+          Else
+            mOK = False
+          End If
+
+        End If
+      End If
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mOK Then
+        pDBConn.ConnectionCommitTrans()
+      Else
+        pDBConn.ConnectionRollBackTrans()
+      End If
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+
+  End Function
   Public Function AdjustmentSetStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vAdjustQty As Decimal, ByVal vRefObjectType As eObjectType, ByVal vRefObjectID As Integer, ByVal vTransDate As DateTime, ByVal rAmmendmentLog As dmStockItemLocationAmendmentLog, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)

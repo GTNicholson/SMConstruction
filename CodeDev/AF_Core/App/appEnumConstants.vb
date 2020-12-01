@@ -150,6 +150,7 @@ Public Enum eObjectType
   MaterialRequirement = 6
   PODeliveryItem = 7
   PurchaseOrder = 8
+  WoodPicking = 9
 End Enum
 
 Public Enum eEmployeeRole
@@ -1751,15 +1752,15 @@ Public Class eStockItemTypeLamina : Inherits colPropertyENUMOfT(Of clsStockItemT
 End Class
 
 Public Enum eTransactionType
-  <Description("Goods In")> GoodsIn = 1
-  <Description("Picked")> Pick = 2
-  <Description("Restocked")> Restock = 3
-  <Description("Amendment")> Amendment = 4
-  <Description("Stock Check")> StockCheck = 5
-  <Description("Transfer")> Transfer = 6
-  <Description("Supplier Return")> SupplierReturn = 7
-  <Description("Customer Return")> CustomerReturn = 8
-  <Description("Adjustment")> Adjustment = 9
+  <Description("Ingreso a Bodega")> GoodsIn = 1
+  <Description("Salida de Bodega")> Pick = 2
+  <Description("Reconteo")> Restock = 3
+  <Description("Corrección de Inv.")> Amendment = 4
+  <Description("Conteo de Inv.")> StockCheck = 5
+  <Description("Transferencia")> Transfer = 6
+  <Description("Devol. Proveedor")> SupplierReturn = 7
+  <Description("Devol. Cliente")> CustomerReturn = 8
+  <Description("Ajuste")> Adjustment = 9
   <Description("Palletise SIR")> PalletiseSIR = 10
   <Description("Palletise LI")> PalletiseLI = 11
 

@@ -238,6 +238,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
+
   Public Property Species() As Int32
     Get
       Return pSpecies
