@@ -74,6 +74,9 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.btnStockItemFilter = New DevExpress.XtraEditors.ButtonEdit()
+        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grpWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpWoodPallet.SuspendLayout()
         CType(Me.ckeArchive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +96,7 @@ Partial Class frmWoodPalletDetail
         CType(Me.grdWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnStockItemFilter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpWoodPallet
@@ -116,9 +120,9 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPallet.Controls.Add(Me.LabelControl2)
         Me.grpWoodPallet.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Item", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
         Me.grpWoodPallet.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.grpWoodPallet.Location = New System.Drawing.Point(575, 39)
+        Me.grpWoodPallet.Location = New System.Drawing.Point(575, 54)
         Me.grpWoodPallet.Name = "grpWoodPallet"
-        Me.grpWoodPallet.Size = New System.Drawing.Size(850, 803)
+        Me.grpWoodPallet.Size = New System.Drawing.Size(850, 788)
         Me.grpWoodPallet.TabIndex = 4
         Me.grpWoodPallet.Text = "Información General"
         '
@@ -249,7 +253,7 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletItemInfos.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
         Me.grdWoodPalletItemInfos.EmbeddedNavigator.Buttons.Edit.Visible = False
         Me.grdWoodPalletItemInfos.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-        Me.grdWoodPalletItemInfos.Location = New System.Drawing.Point(11, 123)
+        Me.grdWoodPalletItemInfos.Location = New System.Drawing.Point(11, 108)
         Me.grdWoodPalletItemInfos.MainView = Me.gvWoodPalletItemInfo
         Me.grdWoodPalletItemInfos.Name = "grdWoodPalletItemInfos"
         Me.grdWoodPalletItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated})
@@ -448,9 +452,9 @@ Partial Class frmWoodPalletDetail
         Me.GroupControl1.Controls.Add(Me.grpWoodPalletList)
         Me.GroupControl1.Controls.Add(Me.LabelControl5)
         Me.GroupControl1.Controls.Add(Me.btnStockItemFilter)
-        Me.GroupControl1.Location = New System.Drawing.Point(12, 39)
+        Me.GroupControl1.Location = New System.Drawing.Point(12, 54)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(557, 803)
+        Me.GroupControl1.Size = New System.Drawing.Size(557, 788)
         Me.GroupControl1.TabIndex = 11
         '
         'grpWoodPalletList
@@ -485,7 +489,7 @@ Partial Class frmWoodPalletDetail
         Me.gvWoodPalletInfo.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWoodPalletInfo.Appearance.OddRow.Options.UseBackColor = True
         Me.gvWoodPalletInfo.Appearance.OddRow.Options.UseFont = True
-        Me.gvWoodPalletInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12})
+        Me.gvWoodPalletInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12, Me.GridColumn13})
         Me.gvWoodPalletInfo.GridControl = Me.grdWoodPalletInfo
         Me.gvWoodPalletInfo.Name = "gvWoodPalletInfo"
         Me.gvWoodPalletInfo.OptionsBehavior.ReadOnly = True
@@ -500,6 +504,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 74
         '
         'GridColumn2
         '
@@ -507,7 +512,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn2.FieldName = "CreatedDate"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.Width = 89
         '
         'GridColumn12
         '
@@ -516,6 +522,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.Width = 144
         '
         'LabelControl5
         '
@@ -536,11 +543,42 @@ Partial Class frmWoodPalletDetail
         Me.btnStockItemFilter.Size = New System.Drawing.Size(287, 20)
         Me.btnStockItemFilter.TabIndex = 12
         '
+        'ComboBoxEdit1
+        '
+        Me.ComboBoxEdit1.Location = New System.Drawing.Point(1226, 28)
+        Me.ComboBoxEdit1.MenuManager = Me.BarManager1
+        Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
+        Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ComboBoxEdit1.Size = New System.Drawing.Size(194, 20)
+        Me.ComboBoxEdit1.TabIndex = 18
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl1.Appearance.Options.UseFont = True
+        Me.LabelControl1.Location = New System.Drawing.Point(1155, 31)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(52, 14)
+        Me.LabelControl1.TabIndex = 17
+        Me.LabelControl1.Text = "Ubicación"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Descripción"
+        Me.GridColumn13.FieldName = "Description"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
+        Me.GridColumn13.Width = 220
+        '
         'frmWoodPalletDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1425, 842)
+        Me.Controls.Add(Me.ComboBoxEdit1)
+        Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.grpWoodPallet)
         Me.Controls.Add(Me.barDockControlTop)
@@ -572,6 +610,7 @@ Partial Class frmWoodPalletDetail
         CType(Me.grdWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnStockItemFilter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -619,4 +658,7 @@ Partial Class frmWoodPalletDetail
     Friend WithEvents ckeArchive As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents bbtnPickWoodPallet As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents grpWoodPalletList As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

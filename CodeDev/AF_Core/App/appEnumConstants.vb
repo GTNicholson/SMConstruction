@@ -70,6 +70,7 @@ Public Enum eSupplirPrintOption
 End Enum
 
 Public Enum eLocations
+  <Description("Ninguno")> None = 0
   <Description("AgroForestal")> AgroForestal = 1
   <Description("MillWorks")> MillWorks = 2
   <Description("SawMills")> IVA = 3

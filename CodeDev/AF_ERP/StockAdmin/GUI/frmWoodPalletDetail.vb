@@ -176,6 +176,8 @@ Public Class frmWoodPalletDetail
     txtWoodRef.ReadOnly = vReadOnly
     dteDateCreated.ReadOnly = vReadOnly
     cboLocations.ReadOnly = vReadOnly
+    bbtnAddNew.Enabled = vReadOnly
+    If pFormController.CurrentWoodPallet.WoodPalletItems.Count > 0 Then bbtnPickWoodPallet.Enabled = vReadOnly
     repoAddDuplicated.Buttons(0).Enabled = Not vReadOnly
     gvWoodPalletItemInfo.OptionsBehavior.ReadOnly = vReadOnly
 
