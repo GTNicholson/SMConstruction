@@ -1,0 +1,44 @@
+insert into Tally (Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values (1,'Pallet Madera',1000,99999,1,0)
+go
+
+ALTER VIEW [dbo].[vwWoodMatReqInfo]
+as
+
+select 
+MR.MaterialRequirementID,
+MR.Description,
+MR.UnitPiece,
+MR.PiecesPerComponent,
+MR.NetLenght,
+MR.NetWidth,
+MR.NetThickness,
+MR.QualityType,
+MR.WoodSpecie,
+MR.PickedQty,
+MR.ObjectID,
+MR.StockItemID,
+PF.ProductFurnitureID,
+WO.Description 'WODescription',
+WO.PlannedStartDate,
+WO.WorkOrderNo,
+Wo.Quantity,
+SO.ProjectName,
+SO.SalesOrderID,
+CU.CompanyName
+
+from MaterialRequirement as MR 
+LEFT JOIN PRODUCTFURNITURE PF ON PF.ProductFurnitureID = MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.ProductID=PF.ProductFurnitureID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+WHERE MaterialRequirementType=1
+
+
+
+GO
+
+alter table WoodPallet
+add Description varchar (150)
+go
+

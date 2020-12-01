@@ -8,7 +8,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pLocationID As Int32
   Private ptmpIsFullyLoadedDown As Boolean
   Private pArchive As Boolean
-
+  Private pDescription As String
   Private pWoodPalletItems As colWoodPalletItems
   Public Sub New()
     MyBase.New()
@@ -53,6 +53,7 @@ Public Class dmWoodPallet : Inherits dmBase
       .LocationID = LocationID
       .tmpIsFullyLoadedDown = tmpIsFullyLoadedDown
       .Archive = Archive
+      .Description = Description
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -125,6 +126,17 @@ Public Class dmWoodPallet : Inherits dmBase
       pArchive = value
     End Set
   End Property
+  Public Property Description() As String
+    Get
+      Return pDescription
+    End Get
+    Set(ByVal value As String)
+      If pDescription <> value Then IsDirty = True
+      pDescription = value
+    End Set
+  End Property
+
+
   Public Property WoodPalletItems As colWoodPalletItems
     Get
       Return pWoodPalletItems

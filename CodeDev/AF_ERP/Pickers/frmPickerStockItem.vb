@@ -274,13 +274,14 @@ Public Class frmPickerStockItem
         mTabPage.Text = mVI.DisplayValue
         mTabPage.Tag = mVI.ItemValue
         xtabCategories.TabPages.Add(mTabPage)
-
+        gvItemList.Columns("Thickness").Visible = False
       Else
         If mVI.ItemValue = eStockItemCategory.Timber Then
           mTabPage = New DevExpress.XtraTab.XtraTabPage
           mTabPage.Text = mVI.DisplayValue
           mTabPage.Tag = mVI.ItemValue
           xtabCategories.TabPages.Add(mTabPage)
+          gvItemList.Columns("Thickness").Visible = True
         End If
       End If
 
@@ -296,8 +297,10 @@ Public Class frmPickerStockItem
 
     If xtabCategories.TabPages.Count > 1 Then
       SetCurrentTab(eStockItemCategory.Abrasivos)
+
     Else
       SetCurrentTab(eStockItemCategory.Timber)
+
     End If
 
 

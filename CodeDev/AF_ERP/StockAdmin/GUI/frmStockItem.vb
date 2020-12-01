@@ -199,6 +199,7 @@ Public Class frmStockItem
       Case eDetailButtons.Save
         UpdateObjects()
         CheckStockCode()
+        CheckDescriptionTimber()
         pFormController.SaveObject()
         pCurrentDetailMode = eCurrentDetailMode.eView
         gvStockItems.RefreshData()
@@ -207,6 +208,20 @@ Public Class frmStockItem
     End Select
     RefreshDetailButtons()
   End Sub
+
+  Private Function CheckDescriptionTimber() As Boolean
+    Dim mRetval As Boolean
+    Dim mProposedDescription As String
+    If pFormController.CurrentStockItem.Description = "" And pFormController.CurrentStockItem.Category = eStockItemCategory.Timber Then
+      mProposedDescription = pFormController.GetProposedDescription
+      If mProposedDescription <> "" Then
+        If MsgBox("¿Crear la descripción de artículo : " & mProposedDescription & "?", vbYesNo) = vbYes Then
+          pFormController.CurrentStockItem.Description = mProposedDescription
+        End If
+      End If
+    End If
+    Return mRetval
+  End Function
 
   Private Function CheckStockCode() As Boolean
     Dim mRetval As Boolean
@@ -527,7 +542,7 @@ Public Class frmStockItem
           cboItemType.Enabled = True
           cboSubitemType.Enabled = True
 
-        Case  eStockItemCategory.Timber
+        Case eStockItemCategory.Timber
 
           clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie))
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTimberWood.GetInstance.ValueItems)

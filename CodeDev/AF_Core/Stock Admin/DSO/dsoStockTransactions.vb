@@ -377,7 +377,7 @@ Public Class dsoStockTransactions
 
   End Function
 
-  Public Function UpdateWoodPalletItemTransactionQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vQuantityUsed As Decimal, ByVal vPackQuantity As Decimal, ByVal vWoodPalletItem As dmWoodPalletItem, ByVal vTransDate As DateTime, ByVal vUnitCost As Decimal, vExchangeRate As Decimal, ByVal vMatReq As clsMaterialRequirementInfo) As Boolean
+  Public Function UpdateWoodPalletItemTransactionQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vItemQuantity As Decimal, ByVal vPackQuantity As Decimal, ByVal vWoodPalletItem As dmWoodPalletItem, ByVal vTransDate As DateTime, ByVal vUnitCost As Decimal, vExchangeRate As Decimal, ByVal vMatReq As clsMaterialRequirementInfo, ByVal vToProcessQty As Decimal) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -420,9 +420,9 @@ Public Class dsoStockTransactions
 
       If vWoodPalletItem IsNot Nothing AndAlso mSIL IsNot Nothing Then
 
-        If vQuantityUsed <> 0 Then
+        If vItemQuantity <> 0 Then
 
-          Dim mItemQuantity As Decimal = vQuantityUsed
+          Dim mItemQuantity As Decimal = vItemQuantity
 
 
 
@@ -485,16 +485,16 @@ Public Class dsoStockTransactions
           If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
 
           '// podeliveryitem qty via sql statement.
-          If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.WoodPalletItem SET QuantityUsed=" & vQuantityUsed & " WHERE WoodPalletItemID =" & vWoodPalletItem.WoodPalletItemID) > 0 Then mOK = True
+          If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.WoodPalletItem SET QuantityUsed=" & (vWoodPalletItem.QuantityUsed) & " WHERE WoodPalletItemID =" & vWoodPalletItem.WoodPalletItemID) > 0 Then mOK = True
           '// Update the POCO allocation
           ''If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PurchaseOrderItemAllocation SET ReceivedQty=" & vPOItemAllocation.ReceivedQty + vRecievedQty & " WHERE PurchaseOrderItemAllocationID =" & vPOItemAllocation.PurchaseOrderItemAllocationID) > 0 Then mOK = True
 
           If mOK Then
-            vWoodPalletItem.SetQtyUsed(vQuantityUsed)
+            vWoodPalletItem.SetQtyUsed(vWoodPalletItem.QuantityUsed)
             '' vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vQuantityUsed)
           End If
 
-          If pDBConn.ExecuteCommand("UPDATE dbo.MaterialRequirement SET PickedQty=" & vMatReq.PickedQty + vQuantityUsed & "WHERE MaterialRequirementID =" & vMatReq.MaterialRequirementID) > 0 Then
+          If pDBConn.ExecuteCommand("UPDATE dbo.MaterialRequirement SET PickedQty=" & vMatReq.PickedQty + vItemQuantity & "WHERE MaterialRequirementID =" & vMatReq.MaterialRequirementID) > 0 Then
             mOK = True
           Else
             mOK = False

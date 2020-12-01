@@ -58,6 +58,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CreatedDate", DateToDBValue(.CreatedDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LocationID", .LocationID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Archive", .Archive)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", DateToDBValue(.Description))
 
 
     End With
@@ -75,7 +76,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .CreatedDate = DBReadDateTime(rDataReader, "CreatedDate")
         .LocationID = DBReadInt32(rDataReader, "LocationID")
         .Archive = DBReadBoolean(rDataReader, "Archive")
-
+        .Description = DBReadString(rDataReader, "Description")
         pWoodPallet.IsDirty = False
       End With
       mOK = True

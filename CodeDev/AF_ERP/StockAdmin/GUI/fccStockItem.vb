@@ -425,5 +425,19 @@ Public Class fccStocktem
     Return mRetVal
   End Function
 
+  Public Function GetProposedDescription()
+
+    Dim mDescription As String
+    Dim mRetVal As String = ""
+
+    mDescription = "Madera " & clsStockItemSharedFuncs.GetStockItemTypeDescription(pCurrentStockItem)
+
+    mDescription &= " de " & clsStockItemSharedFuncs.GetSpeciesDescription(pCurrentStockItem).Trim
+
+    mDescription &= " de " & pCurrentStockItem.Thickness.ToString("n0").Trim & "''"
+
+    Return mDescription
+  End Function
+
 End Class
 

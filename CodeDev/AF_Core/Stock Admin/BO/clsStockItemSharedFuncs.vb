@@ -267,6 +267,21 @@
     Return mRetVal
   End Function
 
+  Public Shared Function GetSpeciesDescription(ByRef rStockItem As dmStockItem) As String
+    Dim mSpecies As dmWoodSpecie
+    Dim mRetVal As String = ""
+    Dim mRefLists As RTIS.CommonVB.colRefLists
+
+    mRefLists = AppRTISGlobal.GetInstance.RefLists
+
+    mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
+    If mSpecies IsNot Nothing Then
+      mRetVal = mSpecies.SpanishDescription
+
+    End If
+    Return mRetVal
+  End Function
+
   Public Shared Function GetStockCodeStem(ByRef rStockItem As dmStockItem) As String
     Dim mRetVal As String = ""
     Dim mValid As Boolean = True

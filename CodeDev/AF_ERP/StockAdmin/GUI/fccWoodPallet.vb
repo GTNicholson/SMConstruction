@@ -87,7 +87,8 @@ Public Class fccWoodPallet
     Try
 
       mWoodPallet = New dmWoodPallet
-
+      GetNextWoodPalletRef(mWoodPallet)
+      mWoodPallet.CreatedDate = Now
       pWoodPallets.Add(mWoodPallet)
 
       mRetVal = mWoodPallet
@@ -96,7 +97,10 @@ Public Class fccWoodPallet
     End Try
     Return mRetVal
   End Function
-
+  Public Sub GetNextWoodPalletRef(ByRef rWoodPallet As dmWoodPallet)
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    rWoodPallet.PalletRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("00000")
+  End Sub
   Public Sub LoadWoodPalletDetail()
     Dim mdsoStock As New dsoStock(pDBConn)
     Try

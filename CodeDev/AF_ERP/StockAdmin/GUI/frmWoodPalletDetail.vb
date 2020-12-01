@@ -136,6 +136,7 @@ Public Class frmWoodPalletDetail
 
       With pFormController.CurrentWoodPallet
         txtWoodRef.Text = .PalletRef
+        txtWoodDescription.Text = .Description
         dteDateCreated.EditValue = .CreatedDate
         clsDEControlLoading.SetDECombo(cboLocations, .LocationID)
         lblWoodPalletID.Text = .WoodPalletID
@@ -276,7 +277,7 @@ Public Class frmWoodPalletDetail
         .PalletRef = txtWoodRef.Text
         .CreatedDate = dteDateCreated.EditValue
         .LocationID = clsDEControlLoading.GetDEComboValue(cboLocations)
-
+        .Description = txtWoodDescription.Text
       End With
     End If
 
@@ -416,5 +417,14 @@ Public Class frmWoodPalletDetail
     pFormController.SaveObject()
     frmPickWoodMaterial.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.CurrentWoodPallet, eFormMode.eFMFormModeAdd)
 
+  End Sub
+
+  Private Sub grpWoodPalletList_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodPalletList.CustomButtonClick
+    Dim mString As String = ""
+    Dim mFileName As String = "Lista de Pallet" + ".xlsx"
+
+    If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+      gvWoodPalletInfo.ExportToXlsx(mFileName)
+    End If
   End Sub
 End Class

@@ -160,7 +160,7 @@ Public Class fccPickWoodMaterial
           For Each mWoodPalletItem In pWoodPallet.WoodPalletItems
 
             If mWoodPalletItemEditor.WoodPalletItem.WoodPalletItemID = mWoodPalletItem.WoodPalletItemID Then
-              mWoodPalletItem.QuantityUsed = mWoodPalletItemEditor.ToProcessQty
+              mWoodPalletItem.QuantityUsed += mWoodPalletItemEditor.ToProcessQty
             End If
 
           Next
@@ -174,7 +174,7 @@ Public Class fccPickWoodMaterial
                 mMaterialRequirement = CreateAdditionalMatReqs(mWoodPalletItemEditor.StockItem, mWoodPalletItemEditor)
 
               Else
-                UpdateMatReqs(mMaterialRequirement.MaterialRequirementID, mWoodPalletItemEditor.ToProcessQty, mMaterialRequirement.PickedQty)
+                UpdateMatReqs(mMaterialRequirement.MaterialRequirementID, mWoodPalletItemEditor.TotalBoardFeetFromInches, mMaterialRequirement.PickedQty)
               End If
             Else
               mMaterialRequirement = CreateAdditionalMatReqs(mWoodPalletItemEditor.StockItem, mWoodPalletItemEditor)
@@ -182,7 +182,7 @@ Public Class fccPickWoodMaterial
             End If
 
 
-            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.ToProcessQty, 1, mWoodPalletItemEditor.WoodPalletItem, Now, 1, 0, mMaterialRequirement)
+            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.TotalBoardFeetFromInches, 1, mWoodPalletItemEditor.WoodPalletItem, Now, 1, 0, mMaterialRequirement, mWoodPalletItemEditor.ToProcessQty)
             ''End If
             mWoodPalletItemEditor.ToProcessQty = 0
           End If

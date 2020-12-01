@@ -272,6 +272,7 @@ Public Enum eTallyIDs
   StructureWO = 2
   PurchaseOrderNo = 3
   GRNNumber = 1002
+  WoodPallet = 1003
 End Enum
 
 Public Enum ePaymentStatus
