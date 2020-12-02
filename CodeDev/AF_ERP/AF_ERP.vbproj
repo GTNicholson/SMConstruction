@@ -653,6 +653,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="StockAdmin\GUI\brwStockTake.vb" />
+    <Compile Include="StockAdmin\GUI\fccMovementTransaction.vb" />
     <Compile Include="StockAdmin\GUI\fccStockItem.vb" />
     <Compile Include="StockAdmin\GUI\fccStockItemInfos.vb" />
     <Compile Include="StockAdmin\GUI\fccStockTake.vb" />
@@ -661,6 +662,12 @@
       <DependentUpon>frmIssueInventory.vb</DependentUpon>
     </Compile>
     <Compile Include="StockAdmin\GUI\frmIssueInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmMovementTransaction.Designer.vb">
+      <DependentUpon>frmMovementTransaction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmMovementTransaction.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StockAdmin\GUI\frmStockAdjust.Designer.vb">
@@ -908,6 +915,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmIssueInventory.resx">
       <DependentUpon>frmIssueInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmMovementTransaction.resx">
+      <DependentUpon>frmMovementTransaction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmStockAdjust.resx">
       <DependentUpon>frmStockAdjust.vb</DependentUpon>

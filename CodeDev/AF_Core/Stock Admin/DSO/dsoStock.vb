@@ -234,7 +234,18 @@ Public Class dsoStock
     End Try
   End Sub
 
-
+  Public Sub LoadStockItemByStockItemID(ByRef rStockItem As dmStockItem, ByVal vStockItemID As Integer)
+    Dim mdto As dtoStockItem
+    Try
+      pDBConn.Connect()
+      mdto = New dtoStockItem(pDBConn)
+      mdto.LoadStockItem(rStockItem, vStockItemID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 
   Public Function SaveStockItem(ByRef rStockItem As dmStockItem) As Boolean
     Dim mdto As dtoStockItem

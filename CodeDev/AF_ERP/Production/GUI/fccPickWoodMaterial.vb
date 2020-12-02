@@ -182,7 +182,7 @@ Public Class fccPickWoodMaterial
             End If
 
 
-            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.TotalBoardFeetFromInches, 1, mWoodPalletItemEditor.WoodPalletItem, Now, 1, 0, mMaterialRequirement, mWoodPalletItemEditor.ToProcessQty)
+            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.TotalBoardFeetFromInches, 1, mWoodPalletItemEditor.WoodPalletItem, Now, mWoodPalletItemEditor.StockItem.StdCost, 0, mMaterialRequirement, mWoodPalletItemEditor.ToProcessQty)
             ''End If
             mWoodPalletItemEditor.ToProcessQty = 0
           End If

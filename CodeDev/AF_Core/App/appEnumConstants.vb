@@ -152,6 +152,7 @@ Public Enum eObjectType
   PODeliveryItem = 7
   PurchaseOrder = 8
   WoodPicking = 9
+  WoodMovement = 10
 End Enum
 
 Public Enum eEmployeeRole
@@ -1765,7 +1766,7 @@ Public Enum eTransactionType
   <Description("Ajuste")> Adjustment = 9
   <Description("Palletise SIR")> PalletiseSIR = 10
   <Description("Palletise LI")> PalletiseLI = 11
-
+  <Description("Movimiento de Bodega")> Movement = 12
 End Enum
 
 Public Enum ePayPeriodType

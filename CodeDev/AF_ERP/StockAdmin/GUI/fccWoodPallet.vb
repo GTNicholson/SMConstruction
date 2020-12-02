@@ -117,6 +117,7 @@ Public Class fccWoodPallet
 
   Public Sub SaveObject()
     Dim mAdjustments As Dictionary(Of Integer, Decimal)
+    Dim mStockItem As New dmStockItem
     Try
 
       If pCurrentWoodPallet IsNot Nothing Then
@@ -130,7 +131,12 @@ Public Class fccWoodPallet
         '// Remember not to create a transaction for the list when the value is 0
         For Each mKVP As KeyValuePair(Of Integer, Decimal) In mAdjustments
           If mKVP.Value <> 0 Then
-            ''mStockItemID = mKVP.Key
+            mdsoStock.LoadStockItemByStockItemID(mStockItem, mKVP.Key)
+            If mStockItem IsNot Nothing Then
+              ApplyStockAdjust(mStockItem, 1, eTransactionType.Adjustment, mKVP.Value, Now, "")
+
+            End If
+
           End If
         Next
 
@@ -142,6 +148,40 @@ Public Class fccWoodPallet
     End Try
   End Sub
 
+  Public Sub ApplyStockAdjust(ByVal vStockItem As dmStockItem, ByVal vLocationID As Byte, ByVal vTransactionType As eTransactionType, ByVal vTranQty As Decimal, ByVal vAdjustDate As DateTime, ByVal vNotes As String)
+    Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
+    Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mStockItemLocation As dmStockItemLocation
+
+    Try
+
+      mStockItemLocation = mdsoStock.GetOrCreateStockItemLocation(vStockItem.StockItemID, vLocationID)
+
+      If mStockItemLocation IsNot Nothing Then
+        Dim mLocationAmendment As New dmStockItemLocationAmendmentLog
+
+        With mLocationAmendment
+          .SystemDate = DateTime.Now
+          .AmendmentDate = vAdjustDate
+          .ChangeDetails = vNotes
+          .UserID = pDBConn.RTISUser.UserID
+          .StockItemLocationID = mStockItemLocation.StockItemLocationID
+        End With
+
+        ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
+        Select Case vTransactionType
+          Case eTransactionType.Adjustment
+            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vStockItem.StdCost, 1)
+          Case eTransactionType.Amendment
+            mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vStockItem.StdCost, 1)
+        End Select
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
   Public Sub LoadObject()
     Dim mdsoStock As New dsoStock(pDBConn)
 

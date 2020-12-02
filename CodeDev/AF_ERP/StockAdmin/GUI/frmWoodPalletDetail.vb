@@ -20,12 +20,14 @@ Public Class frmWoodPalletDetail
   Private Enum eCurrentDetailMode
     eView = 1
     eEdit = 2
+    eMovement = 3
   End Enum
 
   Private Enum eDetailButtons
     Edit = 1
     Save = 2
     PickItem = 3
+    Movement = 4
   End Enum
 
   Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
@@ -120,7 +122,7 @@ Public Class frmWoodPalletDetail
     pCurrentDetailMode = eCurrentDetailMode.eEdit
     RefreshDetailButtons()
     SetDetailFocus()
-    SetDetailsControlsReadonly(False)
+    SetDetailsControlsReadonly(True) 'False)
   End Sub
 
   Private Sub RefreshControls()
@@ -139,7 +141,7 @@ Public Class frmWoodPalletDetail
         txtWoodDescription.Text = .Description
         dteDateCreated.EditValue = .CreatedDate
         clsDEControlLoading.SetDECombo(cboLocations, .LocationID)
-        lblWoodPalletID.Text = .WoodPalletID
+        lblWoodPalletID.Text = "ID: " & .WoodPalletID
       End With
 
     End If
@@ -148,6 +150,8 @@ Public Class frmWoodPalletDetail
       SetDetailsControlsReadonly(True)
     ElseIf pCurrentDetailMode = eCurrentDetailMode.eEdit Then
       SetDetailsControlsReadonly(False)
+    ElseIf pCurrentDetailMode = eCurrentDetailMode.eMovement Then
+      SetDetailsControlsReadonly(True)
     End If
 
     pIsActive = mStartActive
@@ -160,23 +164,26 @@ Public Class frmWoodPalletDetail
           If mBtn.Tag = eDetailButtons.Edit Then mBtn.Enabled = False
           If mBtn.Tag = eDetailButtons.Save Then mBtn.Enabled = True
           If mBtn.Tag = eDetailButtons.PickItem Then mBtn.Enabled = True
-
+          If mBtn.Tag = eDetailButtons.Movement Then mBtn.Enabled = False
+          bbtnAddNew.Enabled = False
         Next
       Case eCurrentDetailMode.eView
         For Each mBtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpWoodPallet.CustomHeaderButtons
           If mBtn.Tag = eDetailButtons.Edit Then mBtn.Enabled = True
           If mBtn.Tag = eDetailButtons.Save Then mBtn.Enabled = False
           If mBtn.Tag = eDetailButtons.PickItem Then mBtn.Enabled = False
-
+          If mBtn.Tag = eDetailButtons.Movement Then mBtn.Enabled = True
+          bbtnAddNew.Enabled = True
         Next
     End Select
   End Sub
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
-    txtWoodRef.ReadOnly = vReadOnly
-    dteDateCreated.ReadOnly = vReadOnly
-    cboLocations.ReadOnly = vReadOnly
-    bbtnAddNew.Enabled = vReadOnly
+    'txtWoodRef.ReadOnly = vReadOnly
+    'dteDateCreated.ReadOnly = vReadOnly
+    ' cboLocations.ReadOnly = vReadOnly
+    'bbtnAddNew.Enabled = vReadOnly
+    txtWoodDescription.Enabled = Not vReadOnly
     If pFormController.CurrentWoodPallet.WoodPalletItems.Count > 0 Then bbtnPickWoodPallet.Enabled = vReadOnly
     repoAddDuplicated.Buttons(0).Enabled = Not vReadOnly
     gvWoodPalletItemInfo.OptionsBehavior.ReadOnly = vReadOnly
@@ -266,6 +273,17 @@ Public Class frmWoodPalletDetail
 
 
         grdWoodPalletItemInfos.DataSource = pFormController.CurrentWoodPallet.WoodPalletItems
+
+      Case eDetailButtons.Movement
+        pCurrentDetailMode = eCurrentDetailMode.eMovement
+        Try
+          If pFormController.WoodPallets IsNot Nothing Then
+
+            frmMovementTransaction.OpenFormI(pFormController.DBConn, pFormController.WoodPalletItemEditors)
+          End If
+        Catch ex As Exception
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+        End Try
     End Select
     RefreshDetailButtons()
   End Sub
@@ -399,6 +417,7 @@ Public Class frmWoodPalletDetail
 
     If mSelectedWoodPalletItem IsNot Nothing Then
       mDuplicatedWoodPalletItem = New dmWoodPalletItem
+      mDuplicatedWoodPalletItem.StockItemID = mSelectedWoodPalletItem.StockItemID
       mDuplicatedWoodPalletItem.Width = 0
       mDuplicatedWoodPalletItem.Length = 0
       mDuplicatedWoodPalletItem.Quantity = 0
