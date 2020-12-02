@@ -15,7 +15,7 @@ Public Class frmMovementTransaction
     End Set
   End Property
 
-  Public Shared Sub OpenFormI(ByRef rDBConn As clsDBConnBase, ByRef rWoodPalletItemEditors As colWoodPalletItemEditors)
+  Public Shared Sub OpenFormI(ByRef rDBConn As clsDBConnBase, ByRef rWoodPallet As dmWoodPallet)
     Dim mfrm As frmMovementTransaction = Nothing
 
     mfrm = GetFormIfLoaded()
@@ -24,7 +24,7 @@ Public Class frmMovementTransaction
 
       mfrm.pFormcontroller = New fccMovementTransaction
       mfrm.pFormcontroller.DBConn = rDBConn
-      mfrm.pFormcontroller.WoodPalletItemEditors = rWoodPalletItemEditors
+      mfrm.pFormcontroller.WoodPallet = rWoodPallet
       mfrm.ShowDialog()
     Else
       mfrm.Focus()
@@ -49,15 +49,12 @@ Public Class frmMovementTransaction
     End If
     Return mfrmWanted
   End Function
+
   Private Sub btnProcessMovement_Click(sender As Object, e As EventArgs) Handles btnProcessMovement.Click
     Dim mLocation As Integer
     mLocation = clsDEControlLoading.GetDEComboValue(cboLocations)
 
-    For Each mWoodPalletItemEditor As clsWoodPalletItemEditor In pFormcontroller.WoodPalletItemEditors
-      pFormcontroller.StockItem = mWoodPalletItemEditor.StockItem
-
-      pFormcontroller.ApplyWoodPalletMovement(pFormcontroller.StockItem, mLocation, eTransactionType.Movement, mWoodPalletItemEditor.TotalBoardFeetFromInches, Now)
-    Next
+    pFormcontroller.ApplyWoodPalletMovement(mLocation, Now)
 
 
   End Sub

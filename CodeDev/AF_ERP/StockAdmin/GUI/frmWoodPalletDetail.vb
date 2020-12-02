@@ -279,7 +279,7 @@ Public Class frmWoodPalletDetail
         Try
           If pFormController.WoodPallets IsNot Nothing Then
 
-            frmMovementTransaction.OpenFormI(pFormController.DBConn, pFormController.WoodPalletItemEditors)
+            frmMovementTransaction.OpenFormI(pFormController.DBConn, pFormController.CurrentWoodPallet)
           End If
         Catch ex As Exception
           If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
