@@ -41,6 +41,8 @@ Public Class appRefLists : Inherits colRefLists
   Public Const ProductCostBook As Integer = 32
   Public Const BankList As Integer = 33
 
+  Public Const PurchaseStatus As Integer = 34
+  Public Const TransactionType As Integer = 35
   Public Sub New()
     MyBase.New()
     Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
@@ -86,6 +88,8 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(ProductCostBook, "ProductCostBook", clsRefListItem.eLoadMode.Unloaded)
     Me.AddRefList(BankList, "BankList", clsRefListItem.eLoadMode.Unloaded)
 
+    Me.AddRefList(PurchaseStatus, "Status", clsRefListItem.eLoadMode.Coded)
+    Me.AddRefList(TransactionType, "TransactionType", clsRefListItem.eLoadMode.Coded)
   End Sub
 
 

@@ -218,6 +218,7 @@
     </Compile>
     <Compile Include="BIReports\BIReportViewCompanyDay.vb" />
     <Compile Include="BIReports\BIReportViewInvoice.vb" />
+    <Compile Include="BIReports\BIReportViewMaterialRequirementInfo.vb" />
     <Compile Include="BIReports\BIReportViewPODelivery.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />

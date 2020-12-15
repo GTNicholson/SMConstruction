@@ -118,10 +118,54 @@ Public Class fccWoodPallet
   Public Sub SaveObject()
     Dim mAdjustments As Dictionary(Of Integer, Decimal)
     Dim mStockItem As New dmStockItem
+    Dim mWoodPalletDescription As String = ""
+    Dim mStockItemElement As dmStockItem
+    Dim mWoodItemcols As colWoodPalletItems
+    Dim mList As List(Of KeyValuePair(Of Integer, Integer))
+    Dim mTempWoodPalletItem As dmWoodPalletItem
+    Dim mQty As Integer = 0
     Try
 
       If pCurrentWoodPallet IsNot Nothing Then
         Dim mdsoStock As New dsoStock(pDBConn)
+
+
+        ''  mWoodItemcols = pCurrentWoodPallet.WoodPalletItems.Clone
+
+        ''  mWoodItemcols.OrderBy(Function(mwooditem) mwooditem.StockItemID)
+
+
+        ''  For Each mVI In pRTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
+
+        ''    mTempWoodPalletItem = New dmWoodPalletItem
+        ''    mQty = 0
+        ''    For Each mwoodpalletitem As dmWoodPalletItem In mWoodItemcols
+
+        ''      mStockItemElement = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mwoodpalletitem.StockItemID)
+
+        ''      If mStockItemElement IsNot Nothing Then
+
+        ''        If mStockItemElement.Species = mVI.ItemValue Then
+
+        ''          If mStockItemElement.Thickness = mwoodpalletitem.Thickness Then
+        ''            mQty = mQty + 1
+        ''            mTempWoodPalletItem = mwoodpalletitem
+        ''          End If
+
+
+        ''        End If
+
+        ''      End If
+
+
+        ''    Next
+        ''    If mQty > 0 Then
+        ''      mWoodPalletDescription &= mQty & " de Elementos de " & mVI.DisplayValue.Trim & " con grosor de " & mTempWoodPalletItem.Thickness.ToString("N1") & vbCrLf
+
+        ''    End If
+
+        ''  Next
+
 
         mdsoStock.SaveWoodPalletDown(pCurrentWoodPallet)
 
@@ -140,8 +184,11 @@ Public Class fccWoodPallet
           End If
         Next
 
+
         mdsoStock = Nothing
       End If
+
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

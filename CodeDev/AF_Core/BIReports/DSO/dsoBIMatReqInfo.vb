@@ -3,14 +3,14 @@ Imports RTIS.BIReport
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
-Public Class dsoBIPurchaseOrderItemInfo
+Public Class dsoBIMatReqInfo
   Implements RTIS.BIReport.iDataSourceLoader
 
   Private pDBConn As clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
   Private pBIReportView As clsBIReportView
 
-  Private pPurchaseOrderItemInfos As colPurchaseOrderItemInfos
+  Private pMatReqInfos As colMaterialRequirementInfos
 
   Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView)
     pDBConn = rDBConn
@@ -20,10 +20,10 @@ Public Class dsoBIPurchaseOrderItemInfo
 
   Public Property DataSource As Object Implements iDataSourceLoader.DataSource
     Get
-      Return pPurchaseOrderItemInfos
+      Return pMatReqInfos
     End Get
     Set(value As Object)
-      pPurchaseOrderItemInfos = value
+      pMatReqInfos = value
     End Set
   End Property
 
@@ -56,14 +56,14 @@ Public Class dsoBIPurchaseOrderItemInfo
     Dim mSQLWhere1 As String
     Dim mSQLWhere2 As String
     Dim mSQLWhere As String = ""
-    Dim dtoPurchaseOrderItemInfo As New dtoPurchaseOrderItemInfo(pDBConn)
+    Dim dtoMatReqInfo As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Info)
 
 
 
 
     Try
 
-      pPurchaseOrderItemInfos = New colPurchaseOrderItemInfos()
+      pMatReqInfos = New colMaterialRequirementInfos()
 
       pDBConn.Connect()
 
@@ -76,12 +76,20 @@ Public Class dsoBIPurchaseOrderItemInfo
       mSQLWhere = mSQLWhere & mSQLWhere2
 
       'If mSQLWhere = "" Then
-      '  mSQLWhere = "status = " & ePurchaseOrderDueDateStatus.Received '<> " & ePurchaseOrderDueDateStatus.Cancelled
+      '  mSQLWhere = "status <> " & ePurchaseOrderDueDateStatus.Cancelled
       'Else
-      '  mSQLWhere &= " and status = " & ePurchaseOrderDueDateStatus.Received '<> " & ePurchaseOrderDueDateStatus.Cancelled
+      '  mSQLWhere = " and status <> " & ePurchaseOrderDueDateStatus.Cancelled
 
       'End If
-      dtoPurchaseOrderItemInfo.LoadPurchaseOrderItemInfoCollectionByWhere(pPurchaseOrderItemInfos, mSQLWhere)
+      dtoMatReqInfo.LoadMaterialRequirementCollection(pMatReqInfos, mSQLWhere)
+
+      If pMatReqInfos IsNot Nothing Then
+
+        For Each mMatReqInfo As clsMaterialRequirementInfo In pMatReqInfos
+          mMatReqInfo.ExchangeRate = GetExchangeRate(mMatReqInfo.TransactionDate, eCurrency.Cordobas)
+        Next
+
+      End If
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -90,5 +98,15 @@ Public Class dsoBIPurchaseOrderItemInfo
     End Try
 
   End Function
+
+  Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    Dim mExchangeRate As Decimal = 0
+
+    mExchangeRate = mdsoGeneral.GetExchangeRate(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
+
 End Class
 

@@ -1,4 +1,6 @@
-﻿Public Class clsMaterialRequirementInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsMaterialRequirementInfo
   Private pMaterialRequirement As dmMaterialRequirement
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrderItem As dmSalesOrderItem
@@ -7,6 +9,8 @@
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
   Private pOSQty As Decimal
+  Private pStockItemTransactionLog As dmStockItemTransactionLog
+  Private pExchangeRate As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -16,6 +20,7 @@
     pProductFurniture = New dmProductFurniture
     pSalesOrder = New dmSalesOrder
     pCustomer = New dmCustomer
+    pStockItemTransactionLog = New dmStockItemTransactionLog
   End Sub
 
   Public Sub New()
@@ -26,6 +31,7 @@
     pProductFurniture = New dmProductFurniture
     pSalesOrder = New dmSalesOrder
     pCustomer = New dmCustomer
+    pStockItemTransactionLog = New dmStockItemTransactionLog
   End Sub
 
   Public Property MaterialRequirement As dmMaterialRequirement
@@ -65,6 +71,7 @@
       pWorkOrder.WorkOrderNo = value
     End Set
   End Property
+
 
   Public Property WODescription As String
     Get
@@ -166,7 +173,19 @@
 
   Public Property StdCost As Decimal
     Get
-      Return pStockItem.StdCost
+
+      Dim mRetval As Decimal = 0
+
+      If ExchangeRate > 0 Then
+        mRetval = (pStockItem.StdCost) / ExchangeRate
+
+      Else
+        mRetVal = 0
+      End If
+
+      Return mRetval
+
+
     End Get
     Set(value As Decimal)
       pStockItem.StdCost = value
@@ -443,6 +462,22 @@
 
   End Property
 
+  Public Property ExchangeRate As Decimal
+    Get
+      Return pExchangeRate
+    End Get
+    Set(value As Decimal)
+      pExchangeRate = value
+    End Set
+  End Property
+  Public ReadOnly Property CategoryDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+
+    End Get
+
+  End Property
+
   Public Property OSQty As Decimal
     Get
       Return pOSQty
@@ -470,7 +505,46 @@
     End Get
   End Property
 
+  Public Property StockItemTransactionLog As dmStockItemTransactionLog
+    Get
+      Return pStockItemTransactionLog
+    End Get
+    Set(value As dmStockItemTransactionLog)
+      pStockItemTransactionLog = value
+    End Set
+  End Property
 
+  Public ReadOnly Property TransactionDate As Date
+    Get
+      Return pStockItemTransactionLog.TransactionDate
+    End Get
+  End Property
+
+  Public ReadOnly Property RequiredDateWC As Date
+    Get
+      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pStockItemTransactionLog.TransactionDate)
+    End Get
+  End Property
+
+  Public ReadOnly Property RequiredDateMC As Date
+    Get
+      Return New Date(Year(pStockItemTransactionLog.TransactionDate), Month(pStockItemTransactionLog.TransactionDate), 1)
+    End Get
+  End Property
+
+  Public ReadOnly Property TransactionValuationDollar As Decimal
+    Get
+      Dim mRetval As Decimal = 0
+
+      If ExchangeRate > 0 Then
+        mRetval = (pStockItemTransactionLog.TransactionValuationDollar) / ExchangeRate * (-1)
+      Else
+        mRetVal = 0
+      End If
+
+      Return mRetval
+    End Get
+  End Property
 End Class
 
 

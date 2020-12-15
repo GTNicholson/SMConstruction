@@ -434,7 +434,7 @@ Public Class fccStocktem
 
     mDescription &= " de " & clsStockItemSharedFuncs.GetSpeciesDescription(pCurrentStockItem).Trim
 
-    mDescription &= " de " & pCurrentStockItem.Thickness.ToString("n0").Trim & "''"
+    mDescription &= " de " & pCurrentStockItem.Thickness.ToString("n1").Trim & "''"
 
     Return mDescription
   End Function

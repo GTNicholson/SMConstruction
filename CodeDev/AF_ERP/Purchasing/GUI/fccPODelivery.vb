@@ -369,9 +369,11 @@ Public Class fccPODelivery
   Public Sub CreatePurchaseOrderPDF(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery, ByVal vReprintOption As Boolean)
     Dim mReportPath As String
     pReprintOption = vReprintOption
+
     mReportPath = CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
     pPODelivery.FileExport = mReportPath
   End Sub
+
 
   Public Function CreatePODeliveryReport(ByRef rPurchaseOrderInfo As clsPurchaseOrderInfo, ByRef rPurchaseOrderProcessors As colPurchaseOrderItemAllocationProcessor, ByRef rPODelivery As dmPODelivery) As String
     Dim mFileName As String
@@ -387,6 +389,9 @@ Public Class fccPODelivery
       mFileName = String.Format("PODelivery_{0}_{1}_{2}.pdf", rPODelivery.PODeliveryID, rPODelivery.GRNumber, Today.ToString("yyyyMMdd_HHmm"))
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
+
+      rPurchaseOrderInfo.POItemInfos = GetPOItemInfos(rPurchaseOrderInfo.PurchaseOrder)
+
       mRep = repPODelivery.CreatePODeliveryReport(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery, pReprintOption)
 
       mRep.ExportToPdf(mExportFilename)
@@ -395,5 +400,16 @@ Public Class fccPODelivery
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Function
+
+  Private Function GetPOItemInfos(ByRef rPurchaseOrder As dmPurchaseOrder) As colPOItemInfos
+    Dim mPOItemInfos As colPOItemInfos
+    Dim mdsoPurchasing As New dsoPurchasing(pDBConn)
+    mPOItemInfos = New colPOItemInfos
+
+    mdsoPurchasing.LoadPOItemInfos(mPOItemInfos, rPurchaseOrder)
+
+
+    Return mPOItemInfos
   End Function
 End Class

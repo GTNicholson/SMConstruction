@@ -277,7 +277,7 @@
     mSpecies = CType(mRefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(rStockItem.Species)
     If mSpecies IsNot Nothing Then
       mRetVal = mSpecies.SpanishDescription
-
+      If mRetVal = "" Then mRetVal = mSpecies.EnglishDescription
     End If
     Return mRetVal
   End Function

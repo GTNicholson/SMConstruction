@@ -75,6 +75,9 @@ Public Class dsoBIPurchaseOrder
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
       mSQLWhere = mSQLWhere & mSQLWhere2
 
+      If mSQLWhere <> "" Then mSQLWhere = "(" & mSQLWhere & ") And "
+      mSQLWhere = mSQLWhere & "Status = " & ePurchaseOrderDueDateStatus.Received
+
       dtoPurchaseOrderInfo.LoadPurchaseOrderInfoCollection(pPurchaseOrderInfos, mSQLWhere)
 
     Catch ex As Exception

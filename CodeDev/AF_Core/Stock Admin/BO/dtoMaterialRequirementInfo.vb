@@ -128,6 +128,10 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .ProjectName = DBReadString(rDataReader, "ProjectName")
           End With
 
+          'With pMaterialRequirment.StockItemTransactionLog
+          '  .TransactionDate = DBReadDate(rDataReader, "TransactionDate")
+          '  .TransactionValuationDollar = DBReadDecimal(rDataReader, "TransactionValuationDollar")
+          'End With
 
         Case eMode.WoodMat
           With pMaterialRequirment.MaterialRequirement

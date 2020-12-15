@@ -182,16 +182,19 @@ Public Class clsPurchaseOrderItemInfo
 
   End Property
 
-  Public ReadOnly Property PurchaseCategory As Byte
+  Public ReadOnly Property PurchaseCategory As String
     Get
-      Return pPurchaseOrder.Category
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
     End Get
 
   End Property
 
   Public ReadOnly Property CategoryDesc As String
     Get
+
       Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
+
+
     End Get
 
   End Property
@@ -314,7 +317,12 @@ Public Class clsPurchaseOrderItemInfo
 
   Public ReadOnly Property StockitemCategoryDesc As String
     Get
-      Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+      If pStockItem.Category = eStockItemCategory.None Then
+        Return "Administrativo"
+      Else
+        Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+
+      End If
     End Get
 
   End Property

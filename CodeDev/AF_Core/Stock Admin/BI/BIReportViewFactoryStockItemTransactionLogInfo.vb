@@ -6,18 +6,19 @@ Public Class BIReportViewStockItemTransactionLogInfo
     StockTransList = 1
     StockTransSummary = 2
     TransferList = 3
-    StockByCustomerSummary = 4
+    PickingList = 4
+    PickingSummary = 5
   End Enum
 
   Public Enum eBIReportDefs
     General = 1
-    TransferValue = 2
+    PickingTransactions = 2
   End Enum
 
   Private Enum eParameters
     StartDate = 1
     EndDate = 2
-    IsManaged = 3
+    TransactionType = 3
   End Enum
 
   Public Shared Function CreateBIReportViewStockTransactionLog(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
@@ -36,16 +37,17 @@ Public Class BIReportViewStockItemTransactionLogInfo
 
     mConditionSetterList = New clsBIConditionSetterList()
     mConditionSetterList.FilterGroup = 0
-    mConditionSetterList.Title = "Parámetros de Reporte"
+    mConditionSetterList.Title = "Parámetros del Reporte"
     mConditionSetterList.DBConn = rDBConn
     mConditionSetterList.BIReportParameters = mBIReportView.BIReportSource.ColManRepParameter.GetParameterGroup(mConditionSetterList.FilterGroup)
     mConditionSetterList.ConditionSetterID = 0
+    mConditionSetterList.RefLists = rRTISGlobal.RefLists
     mBIReportView.ConditionSetters.Add(mConditionSetterList)
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'filter coding
-    mConditionSetterfilter.FilterGroup = 1
-    mConditionSetterfilter.Title = "Filtro de Reporte"
+    mConditionSetterfilter.FilterGroup = 0
+    mConditionSetterfilter.Title = "Filtro del Reporte"
     mConditionSetterfilter.DBConn = rDBConn
     mConditionSetterfilter.RefLists = rRTISGlobal.RefLists
     mConditionSetterfilter.BIReportParameters = mBIReportView.BIReportSource.ColManRepParameter.GetParameterGroup(mConditionSetterfilter.FilterGroup)
@@ -60,22 +62,26 @@ Public Class BIReportViewStockItemTransactionLogInfo
 
   Public Shared Function StockItemTransactionLogReportSource() As dmBIReportSource
     Dim mRepSource As dmBIReportSource
-    Dim mRepDefGeneral As dmBIReportDef
+    Dim mRepDef As dmBIReportDef
     Dim mThreeMonthsAgo As DateTime = DateTime.Today.AddMonths(-3)
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.StockItemTransactions
-    mRepSource.Name = "Registro de Transacción de Ítem de Inventario"
+    mRepSource.Name = "Kardex del Inventario"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
-    mRepDefGeneral = New dmBIReportDef
-    mRepDefGeneral.ReportName = "General"
-    mRepDefGeneral.Description = "Registro de Transacción de Ítem de Inventario"
-    mRepDefGeneral.BIReportDefID = eBIReportDefs.General
-    mRepDefGeneral.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransList
-    mRepSource.BIReportDefs.Add(mRepDefGeneral)
 
+    mRepDef = New dmBIReportDef
+    mRepDef.ReportName = "General"
+    mRepDef.Description = "Kardex del Inventario"
+    mRepDef.BIReportDefID = eBIReportDefs.General
+    mRepDef.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransList
+    mRepSource.BIReportDefs.Add(mRepDef)
+
+
+    mRepDef = CreatePickingReport()
+    mRepSource.BIReportDefs.Add(mRepDef)
 
     AddLayouts(mRepSource)
     AddParams(mRepSource)
@@ -92,30 +98,35 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mRepDDLayout.InterfaceType = 1
     mRepDDLayout.ParentLayoutID = 0
     mRepDDLayout.LayoutFileName = "BIStockTransactionItemList.xml"
-    mRepDDLayout.LayoutName = "Lista de Transacción de Ítem de Inventario"
+    mRepDDLayout.LayoutName = "Kardex de Inventario"
     vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
-    mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransSummary
-    mRepLayout.InterfaceType = 0
-    mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIStockTransactionItemSummary.xml"
-    mRepLayout.LayoutName = "Resumen de Artículos de Transacción de Inventario"
-    ''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
-    mRepLayout.DrillDownLayout = mRepDDLayout
-    vReportSource.BIGridLayouts.Add(mRepLayout)
+    'mRepLayout = New dmBIGridLayout
+    'mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransSummary
+    'mRepLayout.InterfaceType = 0
+    'mRepLayout.ParentLayoutID = 0
+    'mRepLayout.LayoutFileName = "BIStockTransactionItemSummary.xml"
+    'mRepLayout.LayoutName = "Stock Transaction Items Summary"
+    '''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
+    'mRepLayout.DrillDownLayout = mRepDDLayout
+    'vReportSource.BIGridLayouts.Add(mRepLayout)
+
+    'mRepDDLayout = New dmBIGridLayout
+    'mRepDDLayout.BIGridLayoutID = eBIStockItemTransactionLogID.PickingList
+    'mRepDDLayout.InterfaceType = 1
+    'mRepDDLayout.ParentLayoutID = 0
+    'mRepDDLayout.LayoutFileName = "BIStockTransactionItemList.xml"
+    'mRepDDLayout.LayoutName = "Lista de Salidas de Productos"
+    'vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockByCustomerSummary
+    mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.PickingSummary
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIStockTransactionItemByCategoryAndCustomerSummary.xml"
-    mRepLayout.LayoutName = "Resumen de Salidas de Inventario por Cliente"
-    ''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
+    mRepLayout.LayoutName = "Resumen de Salidas por OT"
     mRepLayout.DrillDownLayout = mRepDDLayout
     vReportSource.BIGridLayouts.Add(mRepLayout)
-
-
 
   End Sub
 
@@ -126,7 +137,7 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mParam.FieldName = "TransactionDate"
     mParam.ParamOperator = ">="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Desde la Fecha"
+    mParam.ParamLabel = "Trans Date From"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.StartDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
@@ -137,25 +148,51 @@ Public Class BIReportViewStockItemTransactionLogInfo
     mParam.FieldName = "TransactionDate"
     mParam.ParamOperator = "<="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Hasta la Fecha"
+    mParam.ParamLabel = "Trans Date To"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.EndDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
     mParam.DefaultValue = Now.Date
     vReportSource.ColManRepParameter.Add(mParam)
 
+
     mParam = New clsManRepParameter
-    mParam.FieldName = "IsManagedStock"
+    mParam.FieldName = "TransactionType"
+    mParam.AllowMultiple = True
     mParam.ParamOperator = "="
-    mParam.FieldType = MRConstENUM.eMRFieldType.emrftBoolean
-    mParam.ParamLabel = "¿El Inventario es administrado?"
+    mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList
+    mParam.LookUpTableID = appRefLists.TransactionType
+    mParam.ParamLabel = "Tipo de Transacción"
     mParam.FilterGroup = 0
-    mParam.ORGroup = -1 ' HACK to exclude from sql filter string
-    mParam.DefaultValue = True
-    mParam.ManReportParameterID = eParameters.IsManaged
-    'mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
+    mParam.ManReportParameterID = eParameters.TransactionType
+    mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
+    mParam.DefaultValue = -1
     vReportSource.ColManRepParameter.Add(mParam)
+
+
 
   End Sub
 
+  Private Shared Function CreatePickingReport() As dmBIReportDef
+    Dim mRepDef As dmBIReportDef
+    Dim mParam As dmBIReportDefParamValue
+
+
+    mRepDef = New dmBIReportDef
+    mRepDef.ReportName = "Detalle de Salidas de Artículos de Inventario"
+    mRepDef.Description = "Salida de Inventario"
+    mRepDef.BIReportDefID = eBIReportDefs.PickingTransactions
+    mRepDef.BIGridLayoutID = eBIStockItemTransactionLogID.PickingSummary
+    mRepDef.BIReportDefParamValues = New colBIReportDefParamValues
+
+
+    mParam = New dmBIReportDefParamValue
+    mParam.ManReportParameterID = eParameters.TransactionType
+    mParam.ParamEntryType = MRConstENUM.eParamEntryType.UserEntryOptional
+    mParam.DefaultValue = "2"
+    mRepDef.BIReportDefParamValues.Add(mParam)
+
+
+    Return mRepDef
+  End Function
 End Class

@@ -212,6 +212,15 @@ Public Class dsoAppRefLists
           mItem.IList = LoadProductCostBook()
           mOK = True
 
+        Case appRefLists.PurchaseStatus
+          mValueItems = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus))
+          mItem.IList = mValueItems
+          mOK = True
+
+        Case appRefLists.TransactionType
+          mValueItems = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eTransactionType))
+          mItem.IList = mValueItems
+          mOK = True
       End Select
       mItem = Nothing
     Else

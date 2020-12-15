@@ -1,0 +1,64 @@
+create view vwSumStockItemTransactionLogPicking
+as
+
+SELECT 
+ 
+ SITL.RefObjectID,
+
+ Sum(TransactionValuationDollar) as 'TransactionValuationDollar',
+ min(SITL. TransactionDate) as 'TransactionDate'
+
+FROM StockItemTransactionLog SITL
+WHERE RefObjectType=6 AND TransactionType=2
+
+group by SITL.RefObjectID
+go
+
+
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty',
+VWSSITP.TransactionDate,
+VWSSITP.TransactionValuationDollar
+
+from MaterialRequirement MR
+
+inner JOIN StockItem SI ON SI.StockItemID=MR.StockItemID 
+inner join vwSumStockItemTransactionLogPicking VWSSITP on VWSSITP.RefObjectID=MR.MaterialRequirementID
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,4)
+GO
+
+

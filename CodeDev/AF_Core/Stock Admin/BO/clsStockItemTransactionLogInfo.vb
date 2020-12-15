@@ -38,7 +38,7 @@ Public Class clsStockItemTransactionLogInfo
   Private pTransactionValuationDollar As Decimal
 
   Private pTotalValue As Decimal
-
+  Private pExchangeRate As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -146,8 +146,17 @@ Public Class clsStockItemTransactionLogInfo
     End Get
   End Property
 
+  Public Property ExchangeRate As Decimal
+    Get
+      Return pExchangeRate
+    End Get
+    Set(value As Decimal)
+      pExchangeRate = value
+    End Set
+  End Property
   Public Property TransactionValuationDollar As Decimal
     Get
+
       Return pTransactionValuationDollar
     End Get
     Set(value As Decimal)

@@ -1,4 +1,6 @@
 Imports DevExpress.CodeParser
+Imports DevExpress.Pdf
+Imports DevExpress.XtraPrinting.Drawing
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
@@ -385,6 +387,8 @@ Public Class fccPurchaseOrder
 
       mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, vCurrency)
 
+
+
       mRep.ExportToPdf(mExportFilename)
 
       Dim mProjectName As String = ""
@@ -412,6 +416,12 @@ Public Class fccPurchaseOrder
             mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountCode)
 
         End Select
+
+        If pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Cancelled Then
+          SetTextWatermark("Documento Anulado", mExportFilename, mExportFilename)
+          SetTextWatermark("Documento Anulado", mPaymentReportPath, mPaymentReportPath)
+        End If
+
         pPurchaseOrder.FileName = mExportFilename
         ImportPDFs(mExportFilename, mPaymentReportPath)
 
@@ -422,6 +432,40 @@ Public Class fccPurchaseOrder
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
   End Sub
+
+
+  Public Sub SetTextWatermark(ByVal vWatermarkText As String, ByVal vSourceFileName As String, ByVal vDestFileName As String)
+    Using documentProcessor As New PdfDocumentProcessor()
+      Dim fontName As String = "Arial Black"
+      Dim fontSize As Integer = 60
+      Dim stringFormat As PdfStringFormat = PdfStringFormat.GenericTypographic
+      stringFormat.Alignment = PdfStringAlignment.Center
+      stringFormat.LineAlignment = PdfStringAlignment.Center
+      documentProcessor.LoadDocument(vSourceFileName)
+      Using brush As New SolidBrush(Color.FromArgb(63, Color.Black))
+        Using font As New Font(fontName, fontSize)
+          For Each page In documentProcessor.Document.Pages
+            Dim watermarkSize = page.CropBox.Width * 0.99
+            Using graphics As DevExpress.Pdf.PdfGraphics = documentProcessor.CreateGraphics()
+              Dim stringSize As SizeF = graphics.MeasureString(vWatermarkText, font)
+              Dim scale As Single = watermarkSize / stringSize.Width
+              graphics.TranslateTransform(page.CropBox.Width * 0.5, page.CropBox.Height * 0.5)
+              graphics.RotateTransform(-45.0)
+              graphics.TranslateTransform(-stringSize.Width * scale * 0.5, -stringSize.Height * scale * 0.5)
+              Using actualFont As Font = New Font(fontName, fontSize * scale)
+                Dim rect As RectangleF = New RectangleF(0, 0, stringSize.Width * scale, stringSize.Height * scale)
+                graphics.DrawString(vWatermarkText, actualFont, brush, rect, stringFormat)
+              End Using
+              graphics.AddToPageForeground(page, 72, 72)
+            End Using
+          Next
+        End Using
+      End Using
+      documentProcessor.SaveDocument(vDestFileName)
+    End Using
+  End Sub
+
+
 
   Private Sub ImportPDFs(ByVal vFilePath As String, ByVal vFilePathPayment As String)
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
@@ -437,7 +481,7 @@ Public Class fccPurchaseOrder
     mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys, pPurchaseOrder.SubmissionDate.Year, clsGeneralA.GetFileSafeName(pPurchaseOrder.PurchaseOrderID.ToString("00000")), vFilePathPayment)
 
     If IO.File.Exists(mFilePath) Then
-          mPDFAmalg.ImportPDFDocument(mFilePath)
+      mPDFAmalg.ImportPDFDocument(mFilePath)
 
     End If
 

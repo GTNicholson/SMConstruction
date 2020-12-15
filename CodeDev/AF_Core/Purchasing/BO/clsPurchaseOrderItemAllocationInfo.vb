@@ -286,6 +286,13 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
+  Public ReadOnly Property VATAmount() As Decimal
+    Get
+      Return pPurchaseOrderItem.VATAmount
+    End Get
+
+  End Property
+
   Public ReadOnly Property QtyRequired() As Decimal
     Get
       Return pPurchaseOrderItem.QtyRequired

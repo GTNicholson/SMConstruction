@@ -43,6 +43,7 @@ Public Enum eActivityCode
   TransactionReport = 504
   StockItemInfos = 505
   WoodInventory = 506
+  WoodPallet = 507
 
   AccountsGroup = 600
   InvoicesReport = 601
@@ -71,9 +72,11 @@ End Enum
 
 Public Enum eLocations
   <Description("Ninguno")> None = 0
-  <Description("AgroForestal")> AgroForestal = 1
-  <Description("MillWorks")> MillWorks = 2
-  <Description("SawMills")> IVA = 3
+  <Description("WIP")> WIP = 1
+  <Description("AgroForestal")> AgroForestal = 2
+  <Description("MillWorks")> MillWorks = 3
+  <Description("SawMills")> SawMills = 4
+
 End Enum
 
 Public Enum eTaxRate
@@ -111,7 +114,7 @@ End Enum
 Public Enum ePODelivery
   <Description("Recibido")> Received = 1
   <Description("Pendiente")> Pending = 2
-  <Description("Cancelado")> Cancelled = 3
+  <Description("Anulado")> Cancelled = 3
 End Enum
 
 Public Enum ePurchaseOrderDueDateStatus
@@ -121,7 +124,7 @@ Public Enum ePurchaseOrderDueDateStatus
   <Description("Revisado")> Revised = 3
   <Description("Recibido")> Received = 4
   <Description("Entrega Parcial")> PartDelivered = 5
-  <Description("Cancelado")> Cancelled = 6
+  <Description("Anulado")> Cancelled = 6
   <Description("En Proceso")> InProcess = 7
 End Enum
 

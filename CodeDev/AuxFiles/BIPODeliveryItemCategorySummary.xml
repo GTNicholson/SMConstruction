@@ -123,12 +123,11 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField104</property>
+      <property name="Name">PivotGridField236</property>
       <property name="Area">RowArea</property>
       <property name="GroupInterval">DateMonthYear</property>
       <property name="FieldName">DateCreatedWC</property>
       <property name="UnboundFieldName">PivotGridField99</property>
-      <property name="Caption">Fecha Semana</property>
       <property name="Index">0</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -162,9 +161,8 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField105</property>
+      <property name="Name">PivotGridField237</property>
       <property name="FieldName">CompanyName</property>
-      <property name="Caption">Proveedor</property>
       <property name="Index">1</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -199,10 +197,9 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField106</property>
+      <property name="Name">PivotGridField238</property>
       <property name="Area">DataArea</property>
       <property name="FieldName">TotalReceivedAmountUSD</property>
-      <property name="Caption">Valor Neto</property>
       <property name="Index">2</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -217,6 +214,18 @@
       </property>
       <property name="CellFormat" isnull="true" iskey="true">
         <property name="FormatString">$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="TotalCellFormat" isnull="true" iskey="true">
+        <property name="FormatString">{0:$#,##0.00;;#}</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="GrandTotalCellFormat" isnull="true" iskey="true">
+        <property name="FormatString">{0:$#,##0.00;;#}</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="TotalValueFormat" isnull="true" iskey="true">
+        <property name="FormatString">{0:$#,##0.00;;#}</property>
         <property name="FormatType">Numeric</property>
       </property>
       <property name="AreaIndex">0</property>
@@ -239,10 +248,9 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField107</property>
+      <property name="Name">PivotGridField239</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">PONum</property>
-      <property name="Caption">#O.C.</property>
       <property name="Index">3</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -275,10 +283,9 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField103</property>
+      <property name="Name">PivotGridField240</property>
       <property name="Area">ColumnArea</property>
       <property name="FieldName">CategoryDesc</property>
-      <property name="Caption">Categoría Compra</property>
       <property name="Index">4</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -312,10 +319,9 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField108</property>
+      <property name="Name">PivotGridField241</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">StockitemCategoryDesc</property>
-      <property name="Caption">Categoria Item</property>
       <property name="Index">5</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -349,9 +355,8 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField109</property>
+      <property name="Name">PivotGridField242</property>
       <property name="FieldName">StockItemTypeDesc</property>
-      <property name="Caption">Sub Categoría</property>
       <property name="Index">6</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -391,7 +396,9 @@
     <property name="FieldValuesProvideMode">DisplayText</property>
   </property>
   <property name="OptionsView" isnull="true" iskey="true">
-    <property name="ShowColumnGrandTotalHeader">false</property>
+    <property name="ShowTotalsForSingleValues">true</property>
+    <property name="ShowCustomTotalsForSingleValues">true</property>
+    <property name="ShowGrandTotalsForSingleValues">true</property>
   </property>
   <property name="Groups" iskey="true" value="0" />
   <property name="FormatConditions" iskey="true" value="0" />

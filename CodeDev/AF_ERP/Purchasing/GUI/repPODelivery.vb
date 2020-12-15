@@ -71,6 +71,8 @@ Public Class repPODelivery
     End Select
 
     xrUnitPrice.DataBindings.Add("Text", DataSource, "UnitPrice", mCurrentFormat)
+    xrtVATAmount.DataBindings.Add("Text", DataSource, "VATAmount", mCurrentFormat)
+
 
 
     xrPurchaseOrderNo.Text = pPOInfo.PONum
@@ -95,7 +97,9 @@ Public Class repPODelivery
 
     xrtcDescription.DataBindings.Add("Text", DataSource, "Description")
 
-
+    xrGrossTotal.Text = pPOInfo.TotalGrossValue.ToString(mToString)
+    xrTotalNetTotal.Text = pPOInfo.TotalNetValue.ToString(mToString)
+    xrTotalVAT.Text = pPOInfo.TotalVAT.ToString(mToString)
 
   End Sub
 

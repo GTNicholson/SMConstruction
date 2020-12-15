@@ -330,6 +330,7 @@ Public Class frmPODelivery
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     Dim mOK As Boolean
+    Dim mdsoPurchasing As New dsoPurchasing(pFormController.DBConn)
     Try
       UpdateObject()
       gvMaterialRequirementInfos.CloseEditor()
@@ -343,6 +344,7 @@ Public Class frmPODelivery
 
 
           mOK = pFormController.ProcessDeliveryQtys(False)
+
 
           If mOK Then pFormController.CreatePurchaseOrderPDF(pFormController.PurchaseOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PODelivery, False)
 

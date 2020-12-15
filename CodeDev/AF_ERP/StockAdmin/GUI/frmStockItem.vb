@@ -215,9 +215,9 @@ Public Class frmStockItem
     If pFormController.CurrentStockItem.Description = "" And pFormController.CurrentStockItem.Category = eStockItemCategory.Timber Then
       mProposedDescription = pFormController.GetProposedDescription
       If mProposedDescription <> "" Then
-        If MsgBox("¿Crear la descripción de artículo : " & mProposedDescription & "?", vbYesNo) = vbYes Then
-          pFormController.CurrentStockItem.Description = mProposedDescription
-        End If
+
+        pFormController.CurrentStockItem.Description = mProposedDescription
+
       End If
     End If
     Return mRetval

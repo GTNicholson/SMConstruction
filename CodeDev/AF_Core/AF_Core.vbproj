@@ -184,6 +184,7 @@
     <Compile Include="BIReports\DSO\dsoBITimeSheet.vb" />
     <Compile Include="BIReports\DSO\dsoBIWoodMatReqInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBIWorkOrder.vb" />
+    <Compile Include="BIReports\DSO\dsoBIMatReqInfo.vb" />
     <Compile Include="Costing\BO\clsProductCostBookEntryEditor.vb" />
     <Compile Include="Costing\BO\clsProductCostSummaryInfo.vb" />
     <Compile Include="DespatchInvoice\BO\clsInvoiceInfo.vb" />

@@ -84,13 +84,13 @@ Public Class BIReportViewPODelivery
     Dim mRepDDLayout As New dmBIGridLayout
     Dim mRepLayout As New dmBIGridLayout
 
-    mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayout.PODList
-    mRepLayout.InterfaceType = 1
-    mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIPODeliveryList.xml"
-    mRepLayout.LayoutName = "Lista de Recepciones por Orden de Compras"
-    vReportSource.BIGridLayouts.Add(mRepLayout)
+    mRepDDLayout = New dmBIGridLayout
+    mRepDDLayout.BIGridLayoutID = eBIPurchaseOrdersLayout.PODList
+    mRepDDLayout.InterfaceType = 1
+    mRepDDLayout.ParentLayoutID = 0
+    mRepDDLayout.LayoutFileName = "BIPODeliveryList.xml"
+    mRepDDLayout.LayoutName = "Lista de Recepciones por Orden de Compras"
+    vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
     mRepLayout = New dmBIGridLayout
     mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayout.PODSummary
@@ -98,6 +98,8 @@ Public Class BIReportViewPODelivery
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIPODeliverySummary.xml"
     mRepLayout.LayoutName = "Resumen de Recepciones de Compras"
+    mRepLayout.DrillDownLayout = mRepDDLayout
+    mRepLayout.DrillDownLayoutID = mRepDDLayout.DrillDownLayoutID
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
   End Sub

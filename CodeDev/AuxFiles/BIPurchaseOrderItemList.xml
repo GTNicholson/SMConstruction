@@ -86,10 +86,10 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Description</property>
+      <property name="Caption">Descripción</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">298</property>
     </property>
@@ -108,36 +108,36 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">UoM</property>
+      <property name="Caption">UdM</property>
       <property name="FieldName">UoM</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">77</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
-      <property name="Caption">StockCode</property>
+      <property name="Caption">Código</property>
       <property name="FieldName">StockCode</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="Caption">QtyRequired</property>
+      <property name="Caption">Cant. Req.</property>
       <property name="FieldName">QtyRequired</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">111</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
-      <property name="Caption">UnitPrice</property>
+      <property name="Caption">Precio Unit.</property>
       <property name="FieldName">UnitPrice</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
@@ -148,10 +148,10 @@
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
-      <property name="Caption">ReceivedQty</property>
+      <property name="Caption">Cant. Rec.</property>
       <property name="FieldName">ReceivedQty</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">95</property>
     </property>
@@ -163,19 +163,19 @@
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
-      <property name="Caption">PurchaseCategory</property>
+      <property name="Caption">Cat. Compra</property>
       <property name="FieldName">PurchaseCategory</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">120</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
-      <property name="Caption">Carriage</property>
+      <property name="Caption">Transporte</property>
       <property name="FieldName">Carriage</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
       <property name="Width">87</property>
     </property>
@@ -190,7 +190,7 @@
       <property name="Caption">ExchangeRateValue</property>
       <property name="FieldName">ExchangeRateValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
       <property name="Width">95</property>
     </property>
@@ -208,10 +208,10 @@
     </property>
     <property name="Item17" isnull="true" iskey="true">
       <property name="Name">GridColumn17</property>
-      <property name="Caption">RequiredDate</property>
+      <property name="Caption">Fecha Req.</property>
       <property name="FieldName">RequiredDate</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
       <property name="Width">105</property>
     </property>
@@ -229,10 +229,10 @@
     </property>
     <property name="Item20" isnull="true" iskey="true">
       <property name="Name">GridColumn20</property>
-      <property name="Caption">PONum</property>
+      <property name="Caption"># O.C.</property>
       <property name="FieldName">PONum</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">85</property>
     </property>
@@ -251,9 +251,9 @@
     <property name="Item23" isnull="true" iskey="true">
       <property name="Name">GridColumn23</property>
       <property name="Caption">Category</property>
-      <property name="FieldName">Category</property>
+      <property name="FieldName">StockitemCategoryDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">144</property>
     </property>
@@ -277,20 +277,18 @@
     </property>
     <property name="Item27" isnull="true" iskey="true">
       <property name="Name">GridColumn27</property>
-      <property name="Caption">ProjectName</property>
+      <property name="Caption">Proyecto</property>
       <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">92</property>
+      <property name="Width">204</property>
     </property>
     <property name="Item28" isnull="true" iskey="true">
       <property name="Name">GridColumn28</property>
-      <property name="Caption">OrderNo</property>
+      <property name="Caption"># Venta</property>
       <property name="FieldName">OrderNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">13</property>
-      <property name="Visible">true</property>
       <property name="Width">91</property>
     </property>
     <property name="Item29" isnull="true" iskey="true">
@@ -301,19 +299,21 @@
     </property>
     <property name="Item30" isnull="true" iskey="true">
       <property name="Name">GridColumn30</property>
-      <property name="Caption">CompanyName</property>
+      <property name="Caption">Proveedor</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">14</property>
-      <property name="Visible">true</property>
     </property>
     <property name="Item31" isnull="true" iskey="true">
       <property name="Name">GridColumn31</property>
-      <property name="Caption">GridColumn31</property>
+      <property name="Caption">Monto USD</property>
       <property name="FieldName">TotalPurchaseOrderItemAmountUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">15</property>
+      <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">N2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />

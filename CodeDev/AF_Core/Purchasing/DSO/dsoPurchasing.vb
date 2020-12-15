@@ -419,6 +419,31 @@ Public Class dsoPurchasing
     Return mOK
   End Function
 
+  Public Sub LoadPOItemInfos(ByRef rPOItemInfos As colPOItemInfos, ByRef rPurchaseOrder As dmPurchaseOrder)
+    Dim mdtoPurchaseOrderItem As New dtoPurchaseOrderItem(pDBConn)
+    Dim mPurchaseOrderItems As New colPurchaseOrderItems(rPurchaseOrder)
+
+
+    Try
+      pDBConn.Connect()
+      mdtoPurchaseOrderItem.LoadPurchaseOrderItemCollection(mPurchaseOrderItems, rPurchaseOrder.PurchaseOrderID)
+      If rPOItemInfos IsNot Nothing Then
+      For Each mPOItem As dmPurchaseOrderItem In mPurchaseOrderItems
+        If String.IsNullOrEmpty(mPOItem.Description) = False Then
+
+          rPOItemInfos.Add(New clsPOItemInfo(mPOItem, Nothing))
+        End If
+      Next
+    End If
+
+    Catch ex As Exception
+
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+    If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
   Public Function LoadPurchaseOrder(ByRef rPurchaseOrder As dmPurchaseOrder, ByVal vPurchaseOrderID As Integer) As Boolean
     Dim mdtoPurchaseOrder As New dtoPurchaseOrder(pDBConn)
     Dim mdtoPurchaseORderItem As New dtoPurchaseOrderItem(pDBConn)

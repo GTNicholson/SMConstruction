@@ -1,0 +1,44 @@
+
+ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
+as
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+po.Category as PO_CATEGORY,
+PO.Status AS 'POStatus',
+S.CompanyName,
+SOP.JobNo,
+SO.ProjectName
+
+from PurchaseOrderItemAllocation as POIA
+LEFT JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+left join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join SalesOrderPhase SOP on SOP.SalesOrderPhaseID =POIA.CallOffID
+left join SalesOrder SO on SO.SalesOrderID = sop.SalesOrderID
+GO
+
+

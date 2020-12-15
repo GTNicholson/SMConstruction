@@ -2,10 +2,10 @@
 Imports RTIS.BIReport
 Imports RTIS.DataLayer
 
-Public Class BIReportViewPurchaseOrderItemInfo
-  Private Enum eBIPurchaseOrderItemsLayout
-    POIList = 1
-    POISummary = 2
+Public Class BIReportViewMaterialRequirementInfo
+  Private Enum eBIMaterialRequirementReportType
+    MatReqList = 1
+    MatReqSummary = 2
   End Enum
 
   Private Enum eBIReportDefs
@@ -18,14 +18,14 @@ Public Class BIReportViewPurchaseOrderItemInfo
     Status = 3
   End Enum
 
-  Public Shared Function CreateBIReportViewFactoryPurchaseOrderItem(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
+  Public Shared Function CreateBIReportViewFactoryMatReqInfo(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
     Dim mBIReportView As New clsBIReportView
     Dim mLayoutLoader As New clsBILayoutLoaderFromFile
     Dim mConditionSetterList As clsBIConditionSetterList
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
-    mBIReportView.BIReportSource = PurchaseOrderItemReportSource()
-    mBIReportView.DataSourceLoader = New dsoBIPurchaseOrderItemInfo(rDBConn, rRTISGlobal, mBIReportView)
+    mBIReportView.BIReportSource = MatReqReportSource()
+    mBIReportView.DataSourceLoader = New dsoBIMatReqInfo(rDBConn, rRTISGlobal, mBIReportView)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader
@@ -59,13 +59,13 @@ Public Class BIReportViewPurchaseOrderItemInfo
     Return mBIReportView
   End Function
 
-  Public Shared Function PurchaseOrderItemReportSource() As dmBIReportSource
+  Public Shared Function MatReqReportSource() As dmBIReportSource
     Dim mRepSource As dmBIReportSource
 
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.PurchaseOrderItem
-    mRepSource.Name = "Órdenes de Compras por Artículos"
+    mRepSource.Name = "Despachos Realizados por Artículos"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -82,22 +82,20 @@ Public Class BIReportViewPurchaseOrderItemInfo
     Dim mRepDDLayout As New dmBIGridLayout
     Dim mRepLayout As New dmBIGridLayout
 
-    mRepDDLayout = New dmBIGridLayout
-    mRepDDLayout.BIGridLayoutID = eBIPurchaseOrderItemsLayout.POIList
-    mRepDDLayout.InterfaceType = 1
-    mRepDDLayout.ParentLayoutID = 0
-    mRepDDLayout.LayoutFileName = "BIPurchaseOrderItemList.xml"
-    mRepDDLayout.LayoutName = "Orden de Compra por Artículos"
-    vReportSource.BIGridLayouts.Add(mRepDDLayout)
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBIMaterialRequirementReportType.MatReqList
+    mRepLayout.InterfaceType = 1
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BIMaterialRequirementList.xml"
+    mRepLayout.LayoutName = "Despachos Realizados  por Artículos"
+    vReportSource.BIGridLayouts.Add(mRepLayout)
 
     mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIPurchaseOrderItemsLayout.POISummary
+    mRepLayout.BIGridLayoutID = eBIMaterialRequirementReportType.MatReqSummary
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIPurchaseOrderItemSummary.xml"
-    mRepLayout.LayoutName = "Resumen de Orden de Compra por Artículos"
-    mRepLayout.DrillDownLayout = mRepDDLayout
-    mRepLayout.DrillDownLayoutID = mRepDDLayout.DrillDownLayoutID
+    mRepLayout.LayoutFileName = "BIMaterialRequirementSummary.xml"
+    mRepLayout.LayoutName = "Resumen Despachos Realizados por Artículos"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 
@@ -107,10 +105,10 @@ Public Class BIReportViewPurchaseOrderItemInfo
     Dim mParam As clsManRepParameter
 
     mParam = New clsManRepParameter
-    mParam.FieldName = "SubmissionDate"
+    mParam.FieldName = "TransactionDate"
     mParam.ParamOperator = ">="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Fecha de Creación"
+    mParam.ParamLabel = "Fecha de Transacción"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.StartDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
@@ -118,30 +116,27 @@ Public Class BIReportViewPurchaseOrderItemInfo
     vReportSource.ColManRepParameter.Add(mParam)
 
     mParam = New clsManRepParameter
-    mParam.FieldName = "SubmissionDate"
+    mParam.FieldName = "TransactionDate"
     mParam.ParamOperator = "<="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftDate
-    mParam.ParamLabel = "Fecha de Creación"
+    mParam.ParamLabel = "Fecha de Transacción"
     mParam.FilterGroup = 0
     mParam.ManReportParameterID = eParameters.EndDate
     mParam.DefaultType = MRConstENUM.eDefaultType.AsEntered
     mParam.DefaultValue = Now.Date
     vReportSource.ColManRepParameter.Add(mParam)
 
-
-
-    mParam = New clsManRepParameter
-    mParam.FieldName = "Status"
-    mParam.AllowMultiple = True
-    mParam.ParamOperator = "="
-    mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList
-    mParam.LookUpTableID = appRefLists.PurchaseStatus
-    mParam.ParamLabel = "Estado"
-    mParam.FilterGroup = 0
-    mParam.ManReportParameterID = eParameters.Status
-    mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
-    mParam.DefaultValue = ePurchaseOrderDueDateStatus.Received
-    vReportSource.ColManRepParameter.Add(mParam)
+    ''mParam = New clsManRepParameter
+    ''mParam.FieldName = "PIStatusENUM"
+    ''mParam.ParamOperator = "="
+    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList
+    ''mParam.LookUpTableID = appRefLists.PurchaseInvoiceStatus
+    ''mParam.ParamLabel = "Status"
+    ''mParam.FilterGroup = 1
+    ''mParam.ManReportParameterID = eParameters.Status
+    ''mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
+    ''mParam.DefaultValue = ePurchaseInvoiceStatus.Posted
+    ''vReportSource.ColManRepParameter.Add(mParam)
 
 
   End Sub
@@ -151,9 +146,9 @@ Public Class BIReportViewPurchaseOrderItemInfo
 
     mRepDef = New dmBIReportDef
     mRepDef.ReportName = "General"
-    mRepDef.Description = "Órdenes de Compras por Artículos"
+    mRepDef.Description = "Despacho a Producción por Artículos"
     mRepDef.BIReportDefID = eBIReportDefs.General
-    mRepDef.BIGridLayoutID = eBIPurchaseOrderItemsLayout.POIList
+    mRepDef.BIGridLayoutID = eBIMaterialRequirementReportType.MatReqList
     Return mRepDef
   End Function
 

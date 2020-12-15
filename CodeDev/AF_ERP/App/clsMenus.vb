@@ -22,9 +22,9 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Instalación", eMenuIconType.Grid, AddressOf clsMenuFunctions.InstallationWorkOrderBrowse, eActivityCode.InstallationWorkOrder)
 
 
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.ProductionReport)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Hojas de Tiempo", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetEntryInfoBI, eActivityCode.ProductionReport)
+    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.ProductionReport)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Hojas de Tiempo", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetEntryInfoBI, eActivityCode.ProductionReport)
 
 
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.PurchasingGroup, True)
@@ -47,8 +47,9 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Admon. de Inventario", 0, eActivityCode.InventoryGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.InventoryAdmin, eActivityCode.StockItem)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodInventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodPallet)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Prod. por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.OtherMaterialsConsolidation, eActivityCode.PickingMatReq)
+    ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Despachos de Productos Realizados", eMenuIconType.Report, AddressOf clsMenuFunctions.PickingReport, eActivityCode.PODeliveryItemReport)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Stock Infos.", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.StockItemInfos)
@@ -62,14 +63,14 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductCost, eActivityCode.ProductCost)
 
 
-    mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Facturas", eMenuIconType.Grid, AddressOf clsMenuFunctions.InvoiceModule, eActivityCode.FBConsumeReport)
+    'mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
+    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Facturas", eMenuIconType.Grid, AddressOf clsMenuFunctions.InvoiceModule, eActivityCode.FBConsumeReport)
 
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Contabilidad", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.AccountsGroup)
+    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Contabilidad", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.AccountsGroup)
 
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Facturas", eMenuIconType.Report, AddressOf clsMenuFunctions.InvoiceInfoBI, eActivityCode.InvoicesReport)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Informes del Periodo", eMenuIconType.Report, AddressOf clsMenuFunctions.CompanyDayInfoBI, eActivityCode.CompanyDayReport)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Consumo Pies Tablares", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodMatReqInfo, eActivityCode.FBConsumeReport)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Facturas", eMenuIconType.Report, AddressOf clsMenuFunctions.InvoiceInfoBI, eActivityCode.InvoicesReport)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Informes del Periodo", eMenuIconType.Report, AddressOf clsMenuFunctions.CompanyDayInfoBI, eActivityCode.CompanyDayReport)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Consumo Pies Tablares", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodMatReqInfo, eActivityCode.FBConsumeReport)
 
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
@@ -352,6 +353,11 @@ Class clsMenuFunctions
     frmLookupTableList.OpenForm(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
   End Sub
 
+  Public Shared Sub PickingReport(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewMaterialRequirementInfo.CreateBIReportViewFactoryMatReqInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
 End Class
 
 

@@ -126,12 +126,14 @@ Partial Class frmWoodPalletDetail
         '
         'ckeArchive
         '
+        Me.ckeArchive.Enabled = False
         Me.ckeArchive.Location = New System.Drawing.Point(487, 31)
         Me.ckeArchive.MenuManager = Me.BarManager1
         Me.ckeArchive.Name = "ckeArchive"
         Me.ckeArchive.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.ckeArchive.Properties.Appearance.Options.UseFont = True
         Me.ckeArchive.Properties.Caption = "?Archivar"
+        Me.ckeArchive.Properties.ReadOnly = True
         Me.ckeArchive.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ckeArchive.Size = New System.Drawing.Size(92, 19)
         Me.ckeArchive.TabIndex = 15
@@ -213,6 +215,7 @@ Partial Class frmWoodPalletDetail
         '
         Me.txtWoodDescription.Location = New System.Drawing.Point(272, 31)
         Me.txtWoodDescription.Name = "txtWoodDescription"
+        Me.txtWoodDescription.Properties.ReadOnly = True
         Me.txtWoodDescription.Size = New System.Drawing.Size(194, 20)
         Me.txtWoodDescription.TabIndex = 14
         '
@@ -232,6 +235,7 @@ Partial Class frmWoodPalletDetail
         Me.cboLocations.MenuManager = Me.BarManager1
         Me.cboLocations.Name = "cboLocations"
         Me.cboLocations.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboLocations.Properties.ReadOnly = True
         Me.cboLocations.Size = New System.Drawing.Size(194, 20)
         Me.cboLocations.TabIndex = 12
         '
@@ -394,6 +398,7 @@ Partial Class frmWoodPalletDetail
         Me.dteDateCreated.Name = "dteDateCreated"
         Me.dteDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteDateCreated.Properties.ReadOnly = True
         Me.dteDateCreated.Size = New System.Drawing.Size(84, 20)
         Me.dteDateCreated.TabIndex = 5
         '
@@ -411,6 +416,7 @@ Partial Class frmWoodPalletDetail
         '
         Me.txtWoodRef.Location = New System.Drawing.Point(92, 28)
         Me.txtWoodRef.Name = "txtWoodRef"
+        Me.txtWoodRef.Properties.ReadOnly = True
         Me.txtWoodRef.Size = New System.Drawing.Size(84, 20)
         Me.txtWoodRef.TabIndex = 3
         '

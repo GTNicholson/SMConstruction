@@ -118,11 +118,11 @@ Public Class frmWoodPalletDetail
 
       RefreshControls()
     End If
-
+    SetDetailsControlsReadonly(False) 'False)
     pCurrentDetailMode = eCurrentDetailMode.eEdit
     RefreshDetailButtons()
     SetDetailFocus()
-    SetDetailsControlsReadonly(True) 'False)
+
   End Sub
 
   Private Sub RefreshControls()
