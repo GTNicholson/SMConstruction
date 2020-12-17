@@ -1,15 +1,3 @@
-USE [AgroForestal]
-GO
-
-/****** Object:  View [dbo].[vwStockItemTransactionLogInfo]    Script Date: 12/12/2020 14:43:57 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-
 ALTER view [dbo].[vwStockItemTransactionLogInfo]
 as
 
@@ -52,7 +40,6 @@ LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
 LEFT JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
 LEFT JOIN SalesOrder SO on SO.SalesOrderID=WO.SalesOrderID
 LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
-left join PODeliveryItem PODI ON PODI.PODeliveryItemID=sil.
 
 GO
 
