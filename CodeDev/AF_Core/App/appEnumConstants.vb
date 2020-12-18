@@ -42,8 +42,6 @@ Public Enum eActivityCode
   StockTake = 503
   TransactionReport = 504
   StockItemInfos = 505
-  WoodInventory = 506
-  WoodPallet = 507
 
   AccountsGroup = 600
   InvoicesReport = 601
@@ -56,6 +54,12 @@ Public Enum eActivityCode
 
   CostingGroup = 800
   ProductCost = 801
+
+  WoodGroup = 900
+  WoodInventory = 901 '// was 506
+  WoodPallet = 902 '// was 507
+  WorkOrderWoodProcess = 903
+
 
 End Enum
 
@@ -198,6 +202,7 @@ Public Enum eBrowseList
   HouseType = 13
   ProductCost = 14
   StructureWorkOrder = 15
+  WorkOrderWoodProcess = 16
 End Enum
 
 

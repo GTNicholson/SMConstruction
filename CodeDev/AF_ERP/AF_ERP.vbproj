@@ -708,6 +708,13 @@
     <Compile Include="StockAdmin\Reports\repSelectedItems.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WoodProcessing\fccWorkOrderWoodProcess.vb" />
+    <Compile Include="WoodProcessing\frmWorkOrderWoodProcess.Designer.vb">
+      <DependentUpon>frmWorkOrderWoodProcess.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWorkOrderWoodProcess.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App\GUI\frmDisplayError.resx">
@@ -937,6 +944,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
       <DependentUpon>repSelectedItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoodProcessing\frmWorkOrderWoodProcess.resx">
+      <DependentUpon>frmWorkOrderWoodProcess.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
