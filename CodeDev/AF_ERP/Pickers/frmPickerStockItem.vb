@@ -15,6 +15,7 @@ Public Class frmPickerStockItem
   Private pStockItems As dmStockItem
   Private pActive As Boolean
   Private pShowWoodCat As Boolean
+  Private pWoodStockItemItemType As Integer
 
   Public Property StockItem As dmStockItem
     Get
@@ -25,8 +26,16 @@ Public Class frmPickerStockItem
     End Set
   End Property
 
+  Public Property WoodStockItemType As Integer
+    Get
+      Return pWoodStockItemItemType
+    End Get
+    Set(value As Integer)
+      pWoodStockItemItemType = value
+    End Set
+  End Property
 
-  Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vShowWoodCat As Boolean) As Boolean
+  Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vShowWoodCat As Boolean, ByVal vWoodStockItemType As Integer) As Boolean
     Dim mfrm As frmPickerStockItem
     Dim mCreated As Boolean = False
     'Dim mTableName As String
@@ -36,7 +45,7 @@ Public Class frmPickerStockItem
     mfrm.pRTISGlobal = rRTISGlobal
     mfrm.pRemainOpen = True
     mfrm.pShowWoodCat = vShowWoodCat
-
+    mfrm.WoodStockItemType = vWoodStockItemType
 
 
     mfrm.ShowDialog()
@@ -83,9 +92,32 @@ Public Class frmPickerStockItem
 
   Private Sub frmPickerStockItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     Dim mOK As Boolean = True
+    Dim mCurrentID As Integer
     Try
       pActive = False
       LoadCombo()
+
+      Dim mSIs = New List(Of dmStockItem)
+      For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pPickerStockItem.RTISGlobal.StockItemRegistry.StockItemsDict
+        mSIs.Add(mItem.Value)
+
+      Next
+
+      If pShowWoodCat = True And pWoodStockItemItemType > 0 Then
+        Dim mWoodStockItemLists As New List(Of dmStockItem)
+
+        For Each mItem As dmStockItem In mSIs
+
+          If mItem.ItemType = pWoodStockItemItemType Then
+            mWoodStockItemLists.Add(mItem)
+          End If
+        Next
+        pPickerStockItem.DataSource = mWoodStockItemLists
+
+
+      Else
+        pPickerStockItem.DataSource = mSIs
+      End If
       grdItemList.DataSource = pPickerStockItem.DataSource
 
       CreateTabs()
@@ -245,7 +277,9 @@ Public Class frmPickerStockItem
           mCurrentItem = mItem.Value
         End If
       Next
+
       pPickerStockItem.DataSource = mSIs
+
       grdItemList.DataSource = pPickerStockItem.DataSource
       gvItemList.RefreshData()
 

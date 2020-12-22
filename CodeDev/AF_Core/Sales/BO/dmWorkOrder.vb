@@ -48,7 +48,10 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Private pSalesOrderItemWOIndex As Int32
   Private pWorkOrderAllocations As colWorkOrderAllocations
+  Private pWorkOrderWoodType As Integer
 
+  Private pSourcePallets As colSourcePallets
+  Private pOutputPallets As colOutputPallets
   Public Sub New()
     MyBase.New()
   End Sub
@@ -59,6 +62,8 @@ Public Class dmWorkOrder : Inherits dmBase
     pWOFiles = New colFileTrackers
     pWorkOrderAllocations = New colWorkOrderAllocations
     pWOFiles.TrackDeleted = True
+    pSourcePallets = New colSourcePallets
+    pOutputPallets = New colOutputPallets
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -69,6 +74,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Protected Overrides Sub Finalize()
     pOutputDocuments = Nothing
     pWorkOrderAllocations = Nothing
+    pOutputPallets = Nothing
+    pSourcePallets = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -81,6 +88,8 @@ Public Class dmWorkOrder : Inherits dmBase
         If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
         If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
         If mAnyDirty = False Then mAnyDirty = pWorkOrderAllocations.IsDirty
+        If mAnyDirty = False Then mAnyDirty = pSourcePallets.IsDirty
+        If mAnyDirty = False Then mAnyDirty = pOutputPallets.IsDirty
       End If
       IsAnyDirty = mAnyDirty
     End Get
@@ -125,6 +134,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .SalesOrderItemWOIndex = SalesOrderItemWOIndex
       .isInternal = isInternal
       .SOWONumber = SOWONumber
+      .WorkOrderWoodType = WorkOrderWoodType
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -132,7 +142,8 @@ Public Class dmWorkOrder : Inherits dmBase
       .WorkOrderAllocations = WorkOrderAllocations.Clone
       'Entries for object management
       .Product = Product.Clone
-
+      .OutputPallets = OutputPallets.clone
+      .SourcePallets = SourcePallets.clone
       .IsDirty = IsDirty
     End With
 
@@ -528,6 +539,35 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As Boolean)
       If pSubContract <> value Then IsDirty = True
       pSubContract = value
+    End Set
+  End Property
+
+  Public Property WorkOrderWoodType() As Int32
+    Get
+      Return pWorkOrderWoodType
+    End Get
+    Set(ByVal value As Int32)
+      If pWorkOrderWoodType <> value Then IsDirty = True
+      pWorkOrderWoodType = value
+    End Set
+  End Property
+
+
+  Public Property OutputPallets As colOutputPallets
+    Get
+      Return pOutputPallets
+    End Get
+    Set(value As colOutputPallets)
+      pOutputPallets = value
+    End Set
+  End Property
+
+  Public Property SourcePallets As colSourcePallets
+    Get
+      Return pSourcePallets
+    End Get
+    Set(value As colSourcePallets)
+      pSourcePallets = value
     End Set
   End Property
 

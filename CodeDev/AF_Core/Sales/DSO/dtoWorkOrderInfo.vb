@@ -111,6 +111,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
             .ProductTypeID = DBReadInteger(rDataReader, "ProductTypeID")
             .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
+            .WorkOrderWoodType = DBReadInt32(rDataReader, "WorkOrderWoodType")
           End With
         Case Else
           With pWorkOrderInfo.WorkOrder

@@ -383,6 +383,7 @@
     <Compile Include="Stock Admin\BO\clsStockTakeItemEditor.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletItemEditor.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletSharedFuncs.vb" />
+    <Compile Include="Stock Admin\BO\dmOutputPallet.vb" />
     <Compile Include="Stock Admin\BO\dmStockItem.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemLocation.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemLocationAmendmentLog.vb" />
@@ -392,9 +393,12 @@
     <Compile Include="Stock Admin\BO\dmWoodPallet.vb" />
     <Compile Include="Stock Admin\BO\dmWoodPalletItem.vb" />
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
+    <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />
     <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />
+    <Compile Include="Stock Admin\DSO\dtoOutputPallet.vb" />
     <Compile Include="Stock Admin\DSO\dtoSalesOrderProgressInfo.vb" />
+    <Compile Include="Stock Admin\DSO\dtoSourcePallet.vb" />
     <Compile Include="Stock Admin\DSO\dtoStockItem.vb" />
     <Compile Include="Stock Admin\DSO\dtoStockItemInfo.vb" />
     <Compile Include="Stock Admin\DSO\dtoStockItemLocation.vb" />

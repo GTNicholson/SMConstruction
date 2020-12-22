@@ -100,6 +100,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       'DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeName", StringToDBValue(.EmployeeName))
 
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderWoodType", .WorkOrderWoodType)
 
     End With
 
@@ -150,6 +151,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
 
         .TotalPieces = DBReadDecimal(rDataReader, "TotalPieces")
+        .WorkOrderWoodType = DBReadInt32(rDataReader, "WorkOrderWoodType")
 
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False

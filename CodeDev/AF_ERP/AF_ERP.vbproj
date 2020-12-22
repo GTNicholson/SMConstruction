@@ -313,6 +313,7 @@
     <Compile Include="Pickers\clsPickerSalesOrderPhaseItem.vb" />
     <Compile Include="Pickers\clsPickerStockItem.vb" />
     <Compile Include="Pickers\clsPickerSupplier.vb" />
+    <Compile Include="Pickers\clsPickerWoodPallet.vb" />
     <Compile Include="Pickers\clsPickerWorkOrder.vb" />
     <Compile Include="Pickers\frmPickerCustomer.Designer.vb">
       <DependentUpon>frmPickerCustomer.vb</DependentUpon>
@@ -360,6 +361,12 @@
       <DependentUpon>frmSalesOrderPhasePickerMulti.vb</DependentUpon>
     </Compile>
     <Compile Include="Pickers\frmSalesOrderPhasePickerMulti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmWoodPalletPicker.Designer.vb">
+      <DependentUpon>frmWoodPalletPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmWoodPalletPicker.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductAdmin\GUI\brwHouseType.vb" />
@@ -653,6 +660,7 @@
     <Compile Include="Sales\OutputDocs\srepOperations.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="StockAdmin\brwWorkOrderWoodProcess.vb" />
     <Compile Include="StockAdmin\GUI\brwStockTake.vb" />
     <Compile Include="StockAdmin\GUI\fccMovementTransaction.vb" />
     <Compile Include="StockAdmin\GUI\fccStockItem.vb" />
@@ -794,6 +802,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmSalesOrderPhasePickerMulti.resx">
       <DependentUpon>frmSalesOrderPhasePickerMulti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmWoodPalletPicker.resx">
+      <DependentUpon>frmWoodPalletPicker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductAdmin\GUI\frmHouseType.resx">
       <DependentUpon>frmHouseType.vb</DependentUpon>

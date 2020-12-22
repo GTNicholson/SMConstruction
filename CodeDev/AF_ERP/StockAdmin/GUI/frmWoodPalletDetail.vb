@@ -141,6 +141,8 @@ Public Class frmWoodPalletDetail
         txtWoodDescription.Text = .Description
         dteDateCreated.EditValue = .CreatedDate
         clsDEControlLoading.SetDECombo(cboLocations, .LocationID)
+        clsDEControlLoading.SetDECombo(cboWoodPalletType, .PalletType)
+
         lblWoodPalletID.Text = "ID: " & .WoodPalletID
       End With
 
@@ -223,6 +225,8 @@ Public Class frmWoodPalletDetail
         RefreshControls()
 
       Case eDetailButtons.PickItem
+        UpdateObjects()
+        pFormController.SaveObject()
 
         For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
           mStockItems.Add(mItem.Value)
@@ -240,7 +244,7 @@ Public Class frmWoodPalletDetail
           End If
         Next
 
-        If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal, True) Then
+        If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal, True, pFormController.CurrentWoodPallet.PalletType) Then
           For Each mSelectedItem In mPicker.SelectedObjects
             If mSelectedItem IsNot Nothing Then
               mNewWoodPalletItem = pFormController.CurrentWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
@@ -297,6 +301,8 @@ Public Class frmWoodPalletDetail
         .PalletRef = txtWoodRef.Text
         .CreatedDate = dteDateCreated.EditValue
         .LocationID = clsDEControlLoading.GetDEComboValue(cboLocations)
+        .PalletType = clsDEControlLoading.GetDEComboValue(cboWoodPalletType)
+
         .Description = txtWoodDescription.Text
       End With
     End If
@@ -311,6 +317,7 @@ Public Class frmWoodPalletDetail
 
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboLocations, clsEnumsConstants.EnumToVIs(GetType(eLocations)))
+    clsDEControlLoading.FillDEComboVI(cboWoodPalletType, eStockItemTypeTimberWood.GetInstance.ValueItems)
 
   End Sub
 

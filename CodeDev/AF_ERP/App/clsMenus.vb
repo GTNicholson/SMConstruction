@@ -210,7 +210,7 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub WorkOrderWoodProcessBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    Dim mBrw As New brwStructureWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WorkOrderWoodProcess)
+    Dim mBrw As New brwWorkOrderWoodProcess(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WorkOrderWoodProcess)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 

@@ -205,6 +205,7 @@ Public Class fccHouseType
   Public Sub AddAssembly()
     pHouseTypeManager.AddSalesItemAssembly()
     SetCurrentHouseTypeAssembly(pHouseType.SalesItemAssemblys.Last)
+
   End Sub
 
   Public Sub DeleteAssembly(ByRef rHouseTypeAssembly As dmSalesItemAssembly)

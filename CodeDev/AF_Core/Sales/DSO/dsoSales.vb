@@ -745,12 +745,20 @@ Public Class dsoSales : Inherits dsoBase
     Dim mProdFurniture As dmProductFurniture
     Dim mdtoOutputDocs As dtoOutputDocument
     Dim mdtoWorkOrderAllocation As dtoWorkOrderAllocation
+
+    Dim mdtoSourcePallet As dtoSourcePallet
+    Dim mdtoOutputPallet As dtoOutputPallet
+
     Try
 
       pDBConn.Connect()
       mdto = New dtoWorkOrder(pDBConn)
       mdto.LoadWorkOrder(rWorkOrder, vID)
+      mdtoSourcePallet = New dtoSourcePallet(pDBConn)
+      mdtoOutputPallet = New dtoOutputPallet(pDBConn)
 
+      mdtoSourcePallet.LoadSourcePalletCollection(rWorkOrder.SourcePallets, rWorkOrder.WorkOrderID)
+      mdtoOutputPallet.LoadOutputPalletCollection(rWorkOrder.OutputPallets, rWorkOrder.WorkOrderID)
       '// Instantiate and Load up the details for the specific product type
       rWorkOrder.Product = clsProductSharedFuncs.NewProductInstance(rWorkOrder.ProductTypeID)
       If rWorkOrder.Product IsNot Nothing Then
@@ -768,6 +776,8 @@ Public Class dsoSales : Inherits dsoBase
           mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
           mdtoComponents.LoadProductFurnitureComponentCollection(mProdFurniture.ProductFurnitureComponents, mProdFurniture.ProductFurnitureID)
         End If
+
+
         mdtoWOFiles = New dtoFileTracker(pDBConn)
         mdtoWOFiles.LoadFileTrackerCollection(rWorkOrder.WOFiles, eObjectType.WorkOrder, rWorkOrder.WorkOrderID)
         mdtoOutputDocs = New dtoOutputDocument(pDBConn)
@@ -895,6 +905,9 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoComponents As dtoProductFurnitureComponent
     Dim mdtoWorkOrderAllocation As dtoWorkOrderAllocation
 
+    Dim mdtoOutputPallet As dtoOutputPallet
+    Dim mdtoSourcePallet As dtoSourcePallet
+
     Try
       pDBConn.Connect()
       mdto = New dtoWorkOrder(pDBConn)
@@ -934,8 +947,14 @@ Public Class dsoSales : Inherits dsoBase
 
         mdtoWorkOrderAllocation = New dtoWorkOrderAllocation(pDBConn)
         mdtoWorkOrderAllocation.SaveWorkOrderAllocationCollection(rWorkOrder.WorkOrderAllocations, rWorkOrder.WorkOrderID)
-      End If
 
+
+      End If
+      mdtoSourcePallet = New dtoSourcePallet(pDBConn)
+      mdtoOutputPallet = New dtoOutputPallet(pDBConn)
+
+      mdtoSourcePallet.SaveSourcePalletCollection(rWorkOrder.SourcePallets, rWorkOrder.WorkOrderID)
+      mdtoOutputPallet.SaveOutputPalletCollection(rWorkOrder.OutputPallets, rWorkOrder.WorkOrderID)
       pDBConn.Disconnect()
       mRetVal = True
 

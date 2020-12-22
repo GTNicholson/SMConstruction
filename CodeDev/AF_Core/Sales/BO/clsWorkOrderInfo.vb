@@ -189,6 +189,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property WorkOrderWoodType As Integer
+    Get
+      Return pWorkOrder.WorkOrderWoodType
+    End Get
+  End Property
+
 End Class
 
 
