@@ -10,6 +10,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pArchive As Boolean
   Private pDescription As String
   Private pWoodPalletItems As colWoodPalletItems
+  Private pPalletType As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -54,6 +55,7 @@ Public Class dmWoodPallet : Inherits dmBase
       .tmpIsFullyLoadedDown = tmpIsFullyLoadedDown
       .Archive = Archive
       .Description = Description
+      .PalletType = PalletType
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -154,6 +156,25 @@ Public Class dmWoodPallet : Inherits dmBase
       ptmpIsFullyLoadedDown = value
     End Set
   End Property
+
+  Public Property PalletType() As Integer
+    Get
+      Return pPalletType
+    End Get
+    Set(ByVal value As Integer)
+      If pPalletType <> value Then IsDirty = True
+      pPalletType = value
+    End Set
+  End Property
+
+
+  Public ReadOnly Property PalletTypeDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTimberWood), CType(pPalletType, eStockItemTypeTimberWood.eStockItemTimberWood))
+
+    End Get
+  End Property
+
 
 End Class
 

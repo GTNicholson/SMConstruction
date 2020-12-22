@@ -1,0 +1,16 @@
+insert into Tally(Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values (1,'OT Madera MAV',1000,99999,1,0)
+go
+
+insert into Tally(Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values (1,'OT Madera MAS',1000,99999,1,0)
+go
+
+insert into Tally(Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values (1,'OT Madera Aserrado',1000,99999,1,0)
+go
+
+
+insert into Tally(Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values (1,'OT Madera Clasif',1000,99999,1,0)
+go

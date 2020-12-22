@@ -142,6 +142,42 @@ Public Class dsoStock
     Return mRetVal
 
   End Function
+
+  Public Function SaveWoodPalletCollectionDown(ByRef rWoodPallets As colWoodPallets) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdtoWoodPallet As dtoWoodPallet
+    Dim mdtoWoodPalletItem As dtoWoodPalletItem
+
+    Try
+
+      pDBConn.Connect()
+      mdtoWoodPallet = New dtoWoodPallet(pDBConn)
+      mRetVal = mdtoWoodPallet.SaveWoodPalletCollection(rWoodPallets)
+
+      If rWoodPallets IsNot Nothing Then
+        For Each mWP In rWoodPallets
+          mdtoWoodPalletItem = New dtoWoodPalletItem(pDBConn)
+
+          mRetVal = mdtoWoodPalletItem.SaveWoodPalletItemCollection(mWP.WoodPalletItems, mWP.WoodPalletID)
+
+
+        Next
+
+
+
+
+      End If
+      pDBConn.Disconnect()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+
+  End Function
   Public Function LoadStockItemProcessors(ByRef rStockItemProcessors As colStockItemProcessors, ByVal vWhere As String, ByVal vMode As dtoStockItemInfo.eMode) As Boolean
 
     Dim mRetVal As Boolean

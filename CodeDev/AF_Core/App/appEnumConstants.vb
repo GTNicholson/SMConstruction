@@ -283,6 +283,7 @@ Public Enum eTallyIDs
   PurchaseOrderNo = 3
   GRNNumber = 1002
   WoodPallet = 1003
+  RollWoodOT = 1004
 End Enum
 
 Public Enum ePaymentStatus
@@ -290,7 +291,13 @@ Public Enum ePaymentStatus
   <Description("Aprobado")> Approved = 2
   <Description("Pagado")> Paid = 3
 End Enum
-
+Public Enum eWorkOrderWoodProcess
+  <Description("Árbol a Rollo")> ArbolARollo = 1
+  <Description("Rollo a MAV")> RolloAMAV = 2
+  <Description("MAV a MAS")> MAVAMAS = 3
+  <Description("MAS a Clasificado")> MASClasificado = 4
+  <Description("Rollo a Aserrado")> RolloAAserrado = 5
+End Enum
 
 
 Public Enum eCurrency
@@ -322,6 +329,7 @@ Public Enum eProductType
   <Description("Mueble")> ProductFurniture = 1
   <Description("Estructura")> StructureAF = 2
   <Description("Instalación")> ProductInstallation = 3
+  <Description("WooodWorkOrder")> WoodWorkOrder = 4
 End Enum
 
 Public Enum eOrderType
@@ -1177,32 +1185,68 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
   Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
     Public Enum eStockItemTimberWood
-      Seca = 1
-      Aserrada = 2
-      Verde = 3
-      Otros = 99
-    End Enum
+    Arbol = 1
+    Rollo = 2
+    Aserrado = 3
+    MAS = 4
+    Clasificado = 5
+    MAV = 6
+    ClasificadoA = 7
+    ClasificadoB = 8
+    ClasificadoC = 9
+    Otros = 99
 
-    Public Const Seca = 1
-    Public Const Aserrada = 2
-    Public Const Verde = 3
-    Public Const Otros = 99
+
+
+
+  End Enum
+
+  Public Const Arbol = 1
+  Public Const Rollo = 2
+  Public Const Aserrado = 3
+  Public Const MAS = 4
+  Public Const Clasificado = 5
+  Public Const MAV = 6
+  Public Const ClasificadoA = 7
+  Public Const ClasificadoB = 8
+  Public Const ClasificadoC = 9
+  Public Const Otros = 99
 
     Private Shared mSharedInstance As eStockItemTypeTimberWood
 
     Public Sub New()
       MyBase.New()
 
-    Dim mSeca As New clsStockItemType(Seca, "Seca", "SEC")
-    MyBase.Add(mSeca)
+    Dim mTree As New clsStockItemType(Arbol, "Árbol", "ARB")
+    MyBase.Add(mTree)
 
-    Dim mAserrada As New clsStockItemType(Aserrada, "Aserrada", "ASE")
-    MyBase.Add(mAserrada)
+    Dim mRoll As New clsStockItemType(Rollo, "Rollo", "ROL")
+    MyBase.Add(mRoll)
 
-    Dim mVerde As New clsStockItemType(Verde, "Verde", "VER")
-    MyBase.Add(mVerde)
+    Dim mSaw As New clsStockItemType(Aserrado, "ASE", "ASE")
+    MyBase.Add(mSaw)
 
-      Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
+    Dim mMAS As New clsStockItemType(MAS, "MAS", "MAS")
+    MyBase.Add(mMAS)
+
+
+    Dim mClassified As New clsStockItemType(Clasificado, "Clasificado", "CLA")
+    MyBase.Add(mClassified)
+
+
+    Dim mMAV As New clsStockItemType(MAV, "MAV", "MAV")
+    MyBase.Add(mMAV)
+
+    Dim mClasificadoA As New clsStockItemType(ClasificadoA, "Clasificado A", "CLA")
+    MyBase.Add(mClasificadoA)
+
+    Dim mClasificadoB As New clsStockItemType(ClasificadoB, "Clasificado B", "CLB")
+    MyBase.Add(mClasificadoB)
+
+    Dim mClasificadoC As New clsStockItemType(ClasificadoC, "Clasificado C", "CLC")
+    MyBase.Add(mClasificadoC)
+
+    Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
       MyBase.Add(mOther)
     End Sub
 
