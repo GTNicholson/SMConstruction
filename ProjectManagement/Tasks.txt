@@ -1,0 +1,7 @@
+Wood Work order tabs not refreshing first time
+
+Manage the units of wood for the different areas
+
+Only add the 001 to the stock code if it is not unique - shouldn't be required for wood.
+
+Value of current stock report.
