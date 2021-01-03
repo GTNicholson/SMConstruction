@@ -43,6 +43,8 @@ Public Class dmStockItem : Inherits dmBase
   Private pLastUsedDate As DateTime
   Private pUoM As Integer
   Private pSupplierUoM As Integer
+  Private pCostUoM As Byte
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -131,6 +133,7 @@ Public Class dmStockItem : Inherits dmBase
       .AuxCode = AuxCode
       .UoM = UoM
       .SupplierUoM = SupplierUoM
+      .CostUoM = CostUoM
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -697,6 +700,17 @@ Public Class dmStockItem : Inherits dmBase
       Throw New NotImplementedException()
     End Set
   End Property
+
+  Public Property CostUoM As Byte
+    Get
+      Return pCostUoM
+    End Get
+    Set(value As Byte)
+      If pCostUoM <> value Then pIsDirty = True
+      pCostUoM = value
+    End Set
+  End Property
+
 End Class
 
 

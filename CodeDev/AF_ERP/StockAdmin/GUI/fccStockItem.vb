@@ -429,12 +429,29 @@ Public Class fccStocktem
 
     Dim mDescription As String
     Dim mRetVal As String = ""
-
+    Dim mInteger As Integer
+    Dim mDecimal As Decimal
     mDescription = "Madera " & clsStockItemSharedFuncs.GetStockItemTypeDescription(pCurrentStockItem)
 
     mDescription &= " de " & clsStockItemSharedFuncs.GetSpeciesDescription(pCurrentStockItem).Trim
 
-    mDescription &= " de " & pCurrentStockItem.Thickness.ToString("n1").Trim & "''"
+    If pCurrentStockItem.ItemType = eStockItemTypeTimberWood.Arbol Or pCurrentStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
+      ''decide what to do with this description
+    Else
+
+      mInteger = Int(pCurrentStockItem.Thickness)
+      mDecimal = (pCurrentStockItem.Thickness - mInteger) * 10
+      If mDecimal = 0 Then
+        mDescription &= String.Format(" de {0}", mInteger) & "''"
+
+      Else
+        mDescription &= String.Format(" de {0}_{1}", mInteger, mDecimal.ToString("n0")) & "''"
+
+      End If
+
+    End If
+
+
 
     Return mDescription
   End Function

@@ -60,6 +60,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Archive", .Archive)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PalletType", .PalletType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefPalletOutside", StringToDBValue(.RefPalletOutside))
 
 
 
@@ -80,7 +81,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .Archive = DBReadBoolean(rDataReader, "Archive")
         .Description = DBReadString(rDataReader, "Description")
         .PalletType = DBReadInt32(rDataReader, "PalletType")
-
+        .RefPalletOutside = DBReadString(rDataReader, "RefPalletOutside")
 
         pWoodPallet.IsDirty = False
       End With

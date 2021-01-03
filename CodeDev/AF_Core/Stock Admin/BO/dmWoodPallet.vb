@@ -11,6 +11,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pDescription As String
   Private pWoodPalletItems As colWoodPalletItems
   Private pPalletType As Integer
+  Private pRefPalletOutside As String
   Public Sub New()
     MyBase.New()
   End Sub
@@ -56,6 +57,7 @@ Public Class dmWoodPallet : Inherits dmBase
       .Archive = Archive
       .Description = Description
       .PalletType = PalletType
+      .RefPalletOutside = RefPalletOutside
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -164,6 +166,17 @@ Public Class dmWoodPallet : Inherits dmBase
     Set(ByVal value As Integer)
       If pPalletType <> value Then IsDirty = True
       pPalletType = value
+    End Set
+  End Property
+
+
+  Public Property RefPalletOutside As String
+    Get
+      Return pRefPalletOutside
+    End Get
+    Set(ByVal value As String)
+      If pRefPalletOutside <> value Then IsDirty = True
+      pRefPalletOutside = value
     End Set
   End Property
 

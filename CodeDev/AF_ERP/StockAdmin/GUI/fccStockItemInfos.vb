@@ -8,13 +8,22 @@ Public Class fccStockItemInfos
   Private pCategorys As Int32
   Private pRTISGlobal As AppRTISGlobal
   Private pCurrentStockItemInfo As clsStockItemInfo
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Private pIsWood As Boolean
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWood As Boolean)
     pDBConn = rDBConn
     pStockItemInfos = New colStockItemInfos
     pRTISGlobal = rRTISGlobal
-
+    pIsWood = vIsWood
   End Sub
 
+  Public Property IsWood As Boolean
+    Get
+      Return pIsWood
+    End Get
+    Set(value As Boolean)
+      pIsWood = value
+    End Set
+  End Property
   Public Property CurrentStockItemInfo As clsStockItemInfo
     Get
       Return pCurrentStockItemInfo
@@ -49,12 +58,20 @@ Public Class fccStockItemInfos
 
   Public Sub LoadObjects()
     Dim mdso As dsoStock
-
+    Dim mWhere As String = ""
     pStockItemInfos.Clear()
-
-
     mdso = New dsoStock(pDBConn)
-    mdso.LoadStockItemInfos(pStockItemInfos, "", dtoStockItemInfo.eMode.StockItemInfos)
+
+    If pIsWood Then
+      mWhere = "Category = " & eStockItemCategory.Timber
+      mdso.LoadStockItemInfos(pStockItemInfos, mWhere, dtoStockItemInfo.eMode.StockItemInfos)
+
+    Else
+      mWhere = "Category <>" & eStockItemCategory.Timber
+      mdso.LoadStockItemInfos(pStockItemInfos, mWhere, dtoStockItemInfo.eMode.StockItemInfos)
+
+    End If
+
 
 
   End Sub

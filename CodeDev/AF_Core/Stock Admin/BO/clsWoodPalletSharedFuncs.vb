@@ -2,7 +2,21 @@
 
   Public Shared Function GetWoodPalletItemVolume(ByRef rWoodPalletItem As dmWoodPalletItem) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4)
+    Dim mTempStockItem As dmStockItem = Nothing
+    mTempStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(rWoodPalletItem.StockItemID)
+
+    If mTempStockItem IsNot Nothing Then
+
+      Select Case mTempStockItem.ItemType
+        Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
+          mRetVal = rWoodPalletItem.Quantity
+
+        Case Else
+          mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4)
+
+      End Select
+    End If
+
     Return mRetVal
   End Function
 

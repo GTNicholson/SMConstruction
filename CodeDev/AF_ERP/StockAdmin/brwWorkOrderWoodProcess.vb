@@ -11,16 +11,13 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
   End Enum
 
   Public Enum eAddEditDeleteView
-    DefaultForm = 0
-    AlternateForm = 1
-
+    Aserrio = 0
+    Horno = 1
+    Clasificar = 2
+    Devolucion = 3
+    Rechazo = 4
   End Enum
 
-  Public Enum eAddingOption
-    RolloTo = 0
-    ToInventory = 1
-
-  End Enum
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
@@ -28,7 +25,25 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
   End Sub
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
-    frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+
+
+    Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
+      Case eAddEditDeleteView.Aserrio
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+
+      Case eAddEditDeleteView.Horno
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+
+      Case eAddEditDeleteView.Clasificar
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+
+      Case eAddEditDeleteView.Devolucion
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+
+      Case eAddEditDeleteView.Rechazo
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+    End Select
+
 
 
     Return False
@@ -147,6 +162,11 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
         '.AddListOption("Todas", eListOption.All)
         '.AddListOption("Canceladas", eListOption.Cancelled)
 
+        .AddAddOption("A Clasificar", eAddEditDeleteView.Clasificar)
+
+        .AddAddOption("A Devolución", eAddEditDeleteView.Devolucion)
+        .AddAddOption("A Horno", eAddEditDeleteView.Horno)
+        .AddAddOption("A Rechazo", eAddEditDeleteView.Rechazo)
       End With
 
       ''gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)

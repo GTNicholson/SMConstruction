@@ -158,6 +158,8 @@ Public Class fccWorkOrderWoodProcess
       Select Case pWorkOrderWoodType
         Case eWorkOrderWoodProcess.RolloAAserrado
         Case eWorkOrderWoodProcess.RolloAMAV
+          pWorkOrder.WorkOrderNo = "AAR-" & mdsoGeneral.getNextTally(eTallyIDs.RollWoodOT)
+
         Case eWorkOrderWoodProcess.ArbolARollo
           pWorkOrder.WorkOrderNo = "AAR-" & mdsoGeneral.getNextTally(eTallyIDs.RollWoodOT)
 

@@ -138,6 +138,7 @@ Public Class frmWoodPalletDetail
 
       With pFormController.CurrentWoodPallet
         txtWoodRef.Text = .PalletRef
+        txtRefPallet.Text = .RefPalletOutside
         txtWoodDescription.Text = .Description
         dteDateCreated.EditValue = .CreatedDate
         clsDEControlLoading.SetDECombo(cboLocations, .LocationID)
@@ -299,6 +300,7 @@ Public Class frmWoodPalletDetail
     If pFormController.CurrentWoodPallet IsNot Nothing Then
       With pFormController.CurrentWoodPallet
         .PalletRef = txtWoodRef.Text
+        .RefPalletOutside = txtRefPallet.Text
         .CreatedDate = dteDateCreated.EditValue
         .LocationID = clsDEControlLoading.GetDEComboValue(cboLocations)
         .PalletType = clsDEControlLoading.GetDEComboValue(cboWoodPalletType)

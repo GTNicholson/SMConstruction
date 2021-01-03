@@ -63,6 +63,19 @@ Public Class dsoStock
 
   End Function
 
+  Public Sub LoadstockItemsByCategory(ByRef rStockItems As colStockItems, ByVal vWhere As String)
+    Dim dtoStockItem As New dtoStockItem(pDBConn)
+
+    Try
+      If pDBConn.Connect() Then
+        dtoStockItem.LoadStockItemCollectionByWhere(rStockItems, vWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 
   Public Function LoadWoodPalletDown(ByRef rWoodPallet As dmWoodPallet, ByVal vWoodPalletID As Integer) As Boolean
     Dim mRetVal As Boolean

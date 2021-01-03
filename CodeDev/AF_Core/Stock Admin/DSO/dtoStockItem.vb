@@ -1,9 +1,7 @@
-﻿
-Imports RTIS.DataLayer
+﻿Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB
-Imports SM_Core
 
 Public Class dtoStockItem : Inherits dtoBase
   Implements intdtoStockItem
@@ -13,6 +11,12 @@ Public Class dtoStockItem : Inherits dtoBase
   Public Sub New(ByRef rDBSource As clsDBConnBase)
     MyBase.New(rDBSource)
   End Sub
+
+  Protected Overrides Function SetObjectToNew() As Object
+    pStockItem = New dmStockItem ' Or .NewBlankStockTake
+    Return pStockItem
+
+  End Function
 
   Protected Overrides Sub SetTableDetails()
     pTableName = "StockItem"
@@ -102,6 +106,8 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AuxCode", StringToDBValue(.AuxCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierUoM", .SupplierUoM)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostUoM", .CostUoM)
+
 
 
     End With
@@ -148,7 +154,7 @@ Public Class dtoStockItem : Inherits dtoBase
         .AuxCode = DBReadString(rDataReader, "AuxCode")
         .UoM = DBReadInt32(rDataReader, "UoM")
         .SupplierUoM = DBReadInt32(rDataReader, "SupplierUoM")
-
+        .CostUoM = DBReadByte(rDataReader, "CostUoM")
         pStockItem.IsDirty = False
       End With
       mOK = True
@@ -162,14 +168,6 @@ Public Class dtoStockItem : Inherits dtoBase
     End Try
     Return mOK
   End Function
-
-
-  Protected Overrides Function SetObjectToNew() As Object
-    pStockItem = New dmStockItem ' Or .NewBlankStockItem
-    Return pStockItem
-
-  End Function
-
 
   Public Function LoadStockItem(ByRef rStockItem As dmStockItem, ByVal vStockItemID As Integer) As Boolean Implements intdtoStockItem.LoadStockItem
     Dim mOK As Boolean
@@ -202,7 +200,13 @@ Public Class dtoStockItem : Inherits dtoBase
     If mOK Then rStockItems.IsDirty = False
     Return mOK
   End Function
-
+  Public Function LoadStockItemCollectionByWhere(ByRef rStockItems As colStockItems, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rStockItems, mParams, "StockItemID", vWhere)
+    If mOK Then rStockItems.IsDirty = False
+    Return mOK
+  End Function
 
   Public Function SaveStockItemCollection(ByRef rCollection As colStockItems, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable

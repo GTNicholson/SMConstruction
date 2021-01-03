@@ -1,6 +1,4 @@
-﻿''DTO Definition - StockTake (to StockTake)'Generated from Table:StockTake
-
-Imports RTIS.DataLayer
+﻿Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
 Imports RTIS.CommonVB.clsGeneralA
 Imports RTIS.CommonVB

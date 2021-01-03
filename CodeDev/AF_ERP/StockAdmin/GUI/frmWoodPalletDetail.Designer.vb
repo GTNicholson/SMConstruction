@@ -76,9 +76,11 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.btnStockItemFilter = New DevExpress.XtraEditors.ButtonEdit()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.txtRefPallet = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.grpWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpWoodPallet.SuspendLayout()
         CType(Me.cboWoodPalletType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +101,7 @@ Partial Class frmWoodPalletDetail
         CType(Me.grdWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnStockItemFilter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtRefPallet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpWoodPallet
@@ -109,6 +112,8 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPallet.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpWoodPallet.AppearanceCaption.Options.UseFont = True
         Me.grpWoodPallet.AppearanceCaption.Options.UseForeColor = True
+        Me.grpWoodPallet.Controls.Add(Me.LabelControl6)
+        Me.grpWoodPallet.Controls.Add(Me.txtRefPallet)
         Me.grpWoodPallet.Controls.Add(Me.LabelControl1)
         Me.grpWoodPallet.Controls.Add(Me.cboWoodPalletType)
         Me.grpWoodPallet.Controls.Add(Me.ckeArchive)
@@ -378,7 +383,7 @@ Partial Class frmWoodPalletDetail
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Cantidad"
-        Me.GridColumn9.DisplayFormat.FormatString = "n0"
+        Me.GridColumn9.DisplayFormat.FormatString = "n2"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "Quantity"
         Me.GridColumn9.Name = "GridColumn9"
@@ -391,7 +396,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn10.AppearanceCell.BackColor = System.Drawing.Color.Lavender
         Me.GridColumn10.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn10.Caption = "Cant. Utilizada"
-        Me.GridColumn10.DisplayFormat.FormatString = "n0"
+        Me.GridColumn10.DisplayFormat.FormatString = "n2"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "QuantityUsed"
         Me.GridColumn10.Name = "GridColumn10"
@@ -567,6 +572,14 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn13.VisibleIndex = 1
         Me.GridColumn13.Width = 220
         '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Tipo de Pallet"
+        Me.GridColumn14.FieldName = "PalletTypeDesc"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 4
+        '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
@@ -586,13 +599,23 @@ Partial Class frmWoodPalletDetail
         Me.btnStockItemFilter.Size = New System.Drawing.Size(287, 20)
         Me.btnStockItemFilter.TabIndex = 12
         '
-        'GridColumn14
+        'txtRefPallet
         '
-        Me.GridColumn14.Caption = "Tipo de Pallet"
-        Me.GridColumn14.FieldName = "PalletType"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 4
+        Me.txtRefPallet.Location = New System.Drawing.Point(713, 30)
+        Me.txtRefPallet.MenuManager = Me.BarManager1
+        Me.txtRefPallet.Name = "txtRefPallet"
+        Me.txtRefPallet.Size = New System.Drawing.Size(100, 20)
+        Me.txtRefPallet.TabIndex = 18
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl6.Appearance.Options.UseFont = True
+        Me.LabelControl6.Location = New System.Drawing.Point(655, 33)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(52, 14)
+        Me.LabelControl6.TabIndex = 19
+        Me.LabelControl6.Text = "Ref. Bulto"
         '
         'frmWoodPalletDetail
         '
@@ -631,6 +654,7 @@ Partial Class frmWoodPalletDetail
         CType(Me.grdWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnStockItemFilter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtRefPallet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -682,4 +706,6 @@ Partial Class frmWoodPalletDetail
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboWoodPalletType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtRefPallet As DevExpress.XtraEditors.TextEdit
 End Class

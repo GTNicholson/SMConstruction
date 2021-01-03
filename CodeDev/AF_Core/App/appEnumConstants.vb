@@ -203,6 +203,7 @@ Public Enum eBrowseList
   ProductCost = 14
   StructureWorkOrder = 15
   WorkOrderWoodProcess = 16
+  WoodCostBook = 17
 End Enum
 
 
@@ -413,6 +414,7 @@ Public Enum eUoM
   <Description("PT")> PT = 16
   <Description("kg")> KG = 17
 
+  <Description("mt3")> MT3 = 18
 End Enum
 
 ''Public Enum eWorkOrderMilestone
@@ -1194,6 +1196,7 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     ClasificadoA = 7
     ClasificadoB = 8
     ClasificadoC = 9
+    ClasificadoZ = 10
     Otros = 99
 
 
@@ -1210,6 +1213,7 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
   Public Const ClasificadoA = 7
   Public Const ClasificadoB = 8
   Public Const ClasificadoC = 9
+  Public Const ClasificadoZ = 10
   Public Const Otros = 99
 
     Private Shared mSharedInstance As eStockItemTypeTimberWood
@@ -1245,6 +1249,9 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
 
     Dim mClasificadoC As New clsStockItemType(ClasificadoC, "Clasificado C", "CLC")
     MyBase.Add(mClasificadoC)
+
+    Dim mClasificadoZ As New clsStockItemType(ClasificadoZ, "Clasificado Z", "CLZ")
+    MyBase.Add(mClasificadoZ)
 
     Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
       MyBase.Add(mOther)

@@ -152,6 +152,7 @@
     <Compile Include="App\appEnumConstants.vb" />
     <Compile Include="App\appGlobal.vb" />
     <Compile Include="App\appLockEntitys.vb" />
+    <Compile Include="App\appXtraGridPrintExport.vb" />
     <Compile Include="App\BO\appRefLists.vb" />
     <Compile Include="App\BO\dmFileTracker.vb" />
     <Compile Include="App\BO\dmFurnitureCategory.vb" />
@@ -185,8 +186,14 @@
     <Compile Include="BIReports\DSO\dsoBIWoodMatReqInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBIWorkOrder.vb" />
     <Compile Include="BIReports\DSO\dsoBIMatReqInfo.vb" />
+    <Compile Include="Costing\BO\clsCostBookEntryEditor.vb" />
     <Compile Include="Costing\BO\clsProductCostBookEntryEditor.vb" />
     <Compile Include="Costing\BO\clsProductCostSummaryInfo.vb" />
+    <Compile Include="Costing\BO\dmCostBook.vb" />
+    <Compile Include="Costing\BO\dmCostBookEntry.vb" />
+    <Compile Include="Costing\DSO\dsoCostBook.vb" />
+    <Compile Include="Costing\DSO\dtoCostBook.vb" />
+    <Compile Include="Costing\DSO\dtoCostBookEntry.vb" />
     <Compile Include="DespatchInvoice\BO\clsInvoiceInfo.vb" />
     <Compile Include="DespatchInvoice\BO\dmInvoice.vb" />
     <Compile Include="DespatchInvoice\BO\dmInvoiceItem.vb" />

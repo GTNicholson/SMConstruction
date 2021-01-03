@@ -7,8 +7,8 @@ Public Class dmWoodPalletItem : Inherits dmBase
   Private pStockItemID As Int32
   Private pWidth As Decimal
   Private pLength As Decimal
-  Private pQuantityUsed As Integer
-  Private pQuantity As Integer
+  Private pQuantityUsed As Decimal
+  Private pQuantity As Decimal
   Private pDescription As String
   Private pStockCode As String
   Private pThickness As Decimal
@@ -114,21 +114,21 @@ Public Class dmWoodPalletItem : Inherits dmBase
   End Property
 
 
-  Public Property Quantity() As Integer
+  Public Property Quantity() As Decimal
     Get
       Return pQuantity
     End Get
-    Set(ByVal value As Integer)
+    Set(ByVal value As Decimal)
       If pQuantity <> value Then IsDirty = True
       pQuantity = value
     End Set
   End Property
 
-  Public Property QuantityUsed() As Integer
+  Public Property QuantityUsed() As Decimal
     Get
       Return pQuantityUsed
     End Get
-    Set(ByVal value As Integer)
+    Set(ByVal value As Decimal)
       If pQuantityUsed <> value Then IsDirty = True
       pQuantityUsed = value
     End Set

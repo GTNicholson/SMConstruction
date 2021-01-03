@@ -34,14 +34,14 @@ Public Class frmStockItemInfo
 
   End Sub
 
-  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWood As Boolean)
     Dim mfrm As frmStockItemInfo = Nothing
 
     mfrm = GetFormIfLoaded()
     If mfrm Is Nothing Then
       mfrm = New frmStockItemInfo
       mfrm.MdiParent = rMDIParent
-      mfrm.pFormController = New fccStockItemInfos(rDBConn, rRTISGlobal)
+      mfrm.pFormController = New fccStockItemInfos(rDBConn, rRTISGlobal, vIsWood)
 
       mfrm.Show()
     Else
@@ -66,6 +66,17 @@ Public Class frmStockItemInfo
     Dim mStartActive As Boolean = pIsActive
 
     pIsActive = False
+
+    If pFormController.IsWood Then
+      gcLength.Visible = True
+      gcWidth.Visible = True
+      gcThickness.Visible = True
+
+    Else
+      gcLength.Visible = False
+      gcWidth.Visible = False
+      gcThickness.Visible = False
+    End If
 
     pIsActive = mStartActive
   End Sub

@@ -222,6 +222,7 @@ Public Class clsStockItemInfo
 
   End Property
 
+
   Public ReadOnly Property RequiredInventoryNoNegative As Decimal
     Get
       If RequiredInventory > 0 Then
@@ -230,6 +231,21 @@ Public Class clsStockItemInfo
         Return 0
       End If
     End Get
+  End Property
+
+
+  Public ReadOnly Property CostUoM() As Byte
+    Get
+      Return pStockItem.CostUoM
+    End Get
+
+  End Property
+
+  Public ReadOnly Property CostUoMDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pStockItem.CostUoM, eUoM))
+    End Get
+
   End Property
 
 End Class
