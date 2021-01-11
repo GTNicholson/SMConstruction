@@ -8,10 +8,9 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
   Private pStockItem As dmStockItem
   Private pToProcessQty As Decimal
 
-  Public Sub New(ByVal vWoodPallet As dmWoodPallet, ByVal vWoodPalletItem As dmWoodPalletItem)
-    pWoodPallet = vWoodPallet
+  Public Sub New(ByVal vWoodPalletItem As dmWoodPalletItem, ByVal vStockItem As dmStockItem)
     pWoodPalletItem = vWoodPalletItem
-    pStockItem = New dmStockItem
+    pStockItem = vStockItem
   End Sub
 
   Public Sub New()
@@ -96,7 +95,12 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
 
   End Property
 
-  Public ReadOnly Property TotalCentimeterCubic
+  Public ReadOnly Property DescriptionWPI As String
+    Get
+      Return pWoodPalletItem.Description
+    End Get
+  End Property
+
 End Class
 
 Public Class colWoodPalletItemEditors : Inherits BindingList(Of clsWoodPalletItemEditor)
@@ -104,4 +108,4 @@ Public Class colWoodPalletItemEditors : Inherits BindingList(Of clsWoodPalletIte
 
 
 
-End Class
+  End Class

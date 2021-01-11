@@ -166,6 +166,22 @@ Public Class dmWoodPalletItem : Inherits dmBase
   End Sub
 
 
+  Public ReadOnly Property TotalCubicMeter
+    Get
+      If TotalBoardFeet = 0 Then
+        Return Quantity
+      Else
+        Return TotalBoardFeet / 424
+      End If
+
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalBoardFeet
+    Get
+      Return Math.Round((Thickness * Width * Length) / 12, 2, MidpointRounding.AwayFromZero) * Quantity
+    End Get
+  End Property
 
 End Class
 
@@ -223,6 +239,33 @@ Public Class colWoodPalletItems : Inherits colBase(Of dmWoodPalletItem)
       End If
     Next
 
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromWoodPalletItem(ByVal vWoodPalletID As Integer) As dmWoodPalletItem
+    Dim mRetVal As dmWoodPalletItem = Nothing
+
+    For Each mItem As dmWoodPalletItem In MyBase.Items
+      If mItem.WoodPalletID = vWoodPalletID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetIndexByWoodPalletItemID(ByVal vWoodPalletItemID As Integer) As Integer
+    Dim mIndex As Integer = -1
+    Dim mRetVal As Integer = -1
+    For Each mItem As dmWoodPalletItem In MyBase.Items
+      mIndex = mIndex + 1
+      If mItem.WoodPalletItemID = vWoodPalletItemID Then
+        mRetVal = mIndex
+
+        Exit For
+      End If
+    Next
     Return mRetVal
   End Function
 End Class

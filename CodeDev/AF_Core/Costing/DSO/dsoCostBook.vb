@@ -87,6 +87,23 @@ Public Class dsoCostBook : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function GetDefaultCostBookID() As Integer
+    Dim mWhere As String = ""
+    Dim mRetVal As Integer
+    Try
+      If pDBConn.Connect() Then
+        mWhere = "Select Top 1 CostBookID from CostBook where IsDefault = 1"
+
+        mRetVal = pDBConn.ExecuteScalar(mWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
   Public Sub LoadCostBook(ByRef rCostBook As dmCostBook, ByVal vCostBookID As Integer)
     Dim mdtoCostBook As New dtoCostBook(pDBConn)
     Try
@@ -133,5 +150,41 @@ Public Class dsoCostBook : Inherits dsoBase
     End Try
 
     Return mOK
+  End Function
+
+  Public Function GetDefaultCostBookValueByStockItemIDConnected(ByVal vStockItemID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mWhere As String = String.Format("Select isnull(Cost,0) Cost from CostBookEntry where CostBookID = (select CostBookID from CostBook where IsDefault=1) and StockItemID = {0}", vStockItemID)
+
+    Try
+
+      mRetVal = Convert.ToDecimal(pDBConn.ExecuteScalar(mWhere))
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+
+
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function GetDefaultCostBookValueByStockItemIDUnconnected(ByVal vStockItemID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mWhere As String = String.Format("Select isnull(Cost,0) Cost from CostBookEntry where CostBookID = (select CostBookID from CostBook where IsDefault=1) and StockItemID = {0}", vStockItemID)
+
+    Try
+      If pDBConn.Connect() Then
+
+        mRetVal = Convert.ToDecimal(pDBConn.ExecuteScalar(mWhere))
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
   End Function
 End Class

@@ -52,11 +52,20 @@ Public Class frmMovementTransaction
 
   Private Sub btnProcessMovement_Click(sender As Object, e As EventArgs) Handles btnProcessMovement.Click
     Dim mLocation As Integer
+    Dim mOK As Boolean = False
+
     mLocation = clsDEControlLoading.GetDEComboValue(cboLocations)
 
-    pFormcontroller.ApplyWoodPalletMovement(mLocation, Now)
+    mOK = pFormcontroller.ApplyWoodPalletMovement(mLocation, Now)
 
+    If mOK Then
+      MessageBox.Show("Éxito al trasladar el Pack")
+    Else
+      MessageBox.Show("Error al trasladar el Pack")
 
+    End If
+
+    Me.Close()
   End Sub
 
   Private Sub frmMovementTransaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load

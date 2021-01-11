@@ -52,12 +52,15 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Insumos", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.StockItemInfos)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.TransactionReport)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodStockItemTransactionInfoBI, eActivityCode.TransactionReport)
+
+
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Madera", 0, eActivityCode.WoodGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodPallet)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Proceso de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderWoodProcessBrowse, eActivityCode.WorkOrderWoodProcess)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.StockItemInfos)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.WoodInventory)
 
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Despachos de Productos Realizados", eMenuIconType.Report, AddressOf clsMenuFunctions.PickingReport, eActivityCode.PODeliveryItemReport)
 
@@ -324,7 +327,13 @@ Class clsMenuFunctions
 
   Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, False)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub WoodStockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, True)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 

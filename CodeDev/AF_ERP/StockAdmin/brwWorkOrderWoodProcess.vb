@@ -29,19 +29,19 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
     Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
       Case eAddEditDeleteView.Aserrio
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.MAV, eWorkOrderWoodProcess.Aserrio)
 
       Case eAddEditDeleteView.Horno
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAV, eStockItemTypeTimberWood.MAS, eWorkOrderWoodProcess.Horno)
 
       Case eAddEditDeleteView.Clasificar
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAS, eStockItemTypeTimberWood.Clasificado, eWorkOrderWoodProcess.Clasificar)
 
       Case eAddEditDeleteView.Devolucion
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, 0, 0, eWorkOrderWoodProcess.Devolucion)
 
       Case eAddEditDeleteView.Rechazo
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, 0, 0, eWorkOrderWoodProcess.Rechazo)
     End Select
 
 
@@ -56,7 +56,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, pDBConn, pRTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")))
+      frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, pDBConn, pRTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderTargetWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderProcessOption")))
     End If
     Return mReloadData
   End Function
@@ -139,11 +139,6 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
   Public Overrides Function PrepareForm() As Boolean 'Implements intBrowseList.PrepareForm
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
-    Dim mRTISGlobal As AppRTISGlobal
-    Dim mVIs As colValueItems
-
-    mRTISGlobal = AppRTISGlobal.CreateInstance
-
 
     Try
 
@@ -155,17 +150,17 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
 
       With CType(Me.BrowseForm, frmBrowseList)
-        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("A Aserrío", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Activas", eListOption.DefaultListOption)
         '.AddListOption("Recibidas", eListOption.Received)
         '.AddListOption("Todas", eListOption.All)
         '.AddListOption("Canceladas", eListOption.Cancelled)
-
+        .AddAddOption("A Horno", eAddEditDeleteView.Horno)
         .AddAddOption("A Clasificar", eAddEditDeleteView.Clasificar)
 
         .AddAddOption("A Devolución", eAddEditDeleteView.Devolucion)
-        .AddAddOption("A Horno", eAddEditDeleteView.Horno)
+
         .AddAddOption("A Rechazo", eAddEditDeleteView.Rechazo)
       End With
 
@@ -194,7 +189,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWorkOrder.xml")
+      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWoodWorkOrder.xml")
       ListTitle = "Ordenes de Trabajo de Madera"
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
@@ -205,7 +200,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
       ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("ProductTypeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WorkOrderType))
 
-      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("ProductTypeID"), clsEnumsConstants.EnumToVIs(GetType(eProductType)))
+      ''clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("ProductTypeID"), clsEnumsConstants.EnumToVIs(GetType(eProductType)))
 
       ''Set lookup columns
 
@@ -324,7 +319,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
-    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWorkOrder.xml")
+    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWoodWorkOrder.xml")
     ListTitle = "Lista de Órdenes de Trabajo"
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"

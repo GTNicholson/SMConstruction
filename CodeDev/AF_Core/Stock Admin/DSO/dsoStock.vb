@@ -107,24 +107,7 @@ Public Class dsoStock
 
   End Function
 
-  Public Function GetStockItemByStockItemID(ByVal vStockItemID As Integer) As dmStockItem
-    Dim mRetVal As New dmStockItem
-    Dim mdtoStockItem As dtoStockItem
-    Dim mOK As Boolean
-    Try
-      pDBConn.Connect()
 
-      mdtoStockItem = New dtoStockItem(pDBConn)
-      mOK = mdtoStockItem.LoadStockItem(mRetVal, vStockItemID)
-    Catch ex As Exception
-      mRetVal = Nothing
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-
-    Return mRetVal
-  End Function
 
   Public Function SaveWoodPalletDown(ByRef rWoodPallet As dmWoodPallet) As Boolean
     Dim mRetVal As Boolean
@@ -134,10 +117,16 @@ Public Class dsoStock
     Try
 
       pDBConn.Connect()
-      mdtoWoodPallet = New dtoWoodPallet(pDBConn)
-      mRetVal = mdtoWoodPallet.SaveWoodPallet(rWoodPallet)
 
       If rWoodPallet IsNot Nothing Then
+
+        mdtoWoodPallet = New dtoWoodPallet(pDBConn)
+
+        rWoodPallet.Description = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(rWoodPallet.WoodPalletItems)
+        clsWoodPalletSharedFuncs.GetNextWoodPalletRefConnected(rWoodPallet, pDBConn)
+
+        mRetVal = mdtoWoodPallet.SaveWoodPallet(rWoodPallet)
+
         mdtoWoodPalletItem = New dtoWoodPalletItem(pDBConn)
 
         mRetVal = mdtoWoodPalletItem.SaveWoodPalletItemCollection(rWoodPallet.WoodPalletItems, rWoodPallet.WoodPalletID)
@@ -282,6 +271,22 @@ Public Class dsoStock
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
   End Sub
+
+  Public Function GetStockItemByStockItemID(ByVal vStockItemID As Integer) As dmStockItem
+    Dim mdto As dtoStockItem
+    Dim mStockItem As New dmStockItem
+    Try
+      pDBConn.Connect()
+      mdto = New dtoStockItem(pDBConn)
+      mdto.LoadStockItem(mStockItem, vStockItemID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mStockItem
+  End Function
 
   Public Sub LoadStockItemByStockItemID(ByRef rStockItem As dmStockItem, ByVal vStockItemID As Integer)
     Dim mdto As dtoStockItem
@@ -561,5 +566,39 @@ Public Class dsoStock
       mOK = mdtoSILocation.SaveStockItemLocationCollection(mStockItemLocations)
     End If
     Return mStockItemLocation
+  End Function
+
+  Public Function SaveWoodPalletItemCollection(ByRef rSourceWoodPalletItems As colWoodPalletItems, ByVal vWoodPalletID As Integer) As Boolean
+    Dim mdtoWoodPalletItem As New dtoWoodPalletItem(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect() Then
+        mOK = mdtoWoodPalletItem.SaveWoodPalletItemCollection(rSourceWoodPalletItems, vWoodPalletID)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
+  Public Function SaveWoodPalletItem(ByRef rWoodPalletItem As dmWoodPalletItem) As Boolean
+    Dim mdtoWoodPalletItem As New dtoWoodPalletItem(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect() Then
+        mOK = mdtoWoodPalletItem.SaveWoodPalletItem(rWoodPalletItem)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
   End Function
 End Class

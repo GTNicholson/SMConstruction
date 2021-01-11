@@ -9,6 +9,9 @@ Public Class fccStockItemInfos
   Private pRTISGlobal As AppRTISGlobal
   Private pCurrentStockItemInfo As clsStockItemInfo
   Private pIsWood As Boolean
+  Private pCostBookID As Integer
+
+
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWood As Boolean)
     pDBConn = rDBConn
     pStockItemInfos = New colStockItemInfos
@@ -16,6 +19,14 @@ Public Class fccStockItemInfos
     pIsWood = vIsWood
   End Sub
 
+  Public Property CostBookID As Integer
+    Get
+      Return pCostBookID
+    End Get
+    Set(value As Integer)
+      pCostBookID = value
+    End Set
+  End Property
   Public Property IsWood As Boolean
     Get
       Return pIsWood
@@ -59,12 +70,14 @@ Public Class fccStockItemInfos
   Public Sub LoadObjects()
     Dim mdso As dsoStock
     Dim mWhere As String = ""
+    Dim mdsoCosting As dsoCostBook
     pStockItemInfos.Clear()
     mdso = New dsoStock(pDBConn)
 
     If pIsWood Then
+      mdsoCosting = New dsoCostBook(pDBConn)
       mWhere = "Category = " & eStockItemCategory.Timber
-      mdso.LoadStockItemInfos(pStockItemInfos, mWhere, dtoStockItemInfo.eMode.StockItemInfos)
+      mdso.LoadStockItemInfos(pStockItemInfos, mWhere, dtoStockItemInfo.eMode.WoodStockInfo)
 
     Else
       mWhere = "Category <>" & eStockItemCategory.Timber
@@ -94,6 +107,15 @@ Public Class fccStockItemInfos
     End Try
 
   End Sub
+
+  Public Function GetCostByStockItemID(ByVal vStockItemID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mdso As New dsoCostBook(pDBConn)
+
+    mRetVal = mdso.GetDefaultCostBookValueByStockItemIDUnconnected(vStockItemID)
+
+    Return mRetVal
+  End Function
 
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
     Dim mRetVal As New clsValWarn

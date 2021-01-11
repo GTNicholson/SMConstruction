@@ -127,5 +127,20 @@ Public Class colSourcePallets : Inherits colBase(Of dmSourcePallet)
     MyBase.New(vList)
   End Sub
 
+  Public Function ItemFromWoodPalletID(ByVal vWoodPalletID As Integer, vWorkOrderID As Integer) As dmSourcePallet
+    Dim mRetVal As dmSourcePallet = Nothing
+
+    For Each mRetVal In MyBase.Items
+
+      If mRetVal.WoodPalletID = vWoodPalletID Then
+        If mRetVal.WorkOrderID = vWorkOrderID Then
+          Return mRetVal
+        End If
+
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
 End Class
 

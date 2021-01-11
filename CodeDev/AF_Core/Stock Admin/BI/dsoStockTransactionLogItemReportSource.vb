@@ -9,13 +9,14 @@ Public Class dsoStockTransactionLogItemReportSource
   Private pDBConn As clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
   Private pBIReportView As clsBIReportView
-
+  Private pIsWoodReport As Boolean
   Private pStockTransactionLogItems As colStockItemTransactionLogInfos
 
-  Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView)
+  Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView, ByVal vIsWoodReport As Boolean)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pBIReportView = rBIReportView
+    pIsWoodReport = vIsWoodReport
   End Sub
 
   Public Property DataSource As Object Implements iDataSourceLoader.DataSource
@@ -60,7 +61,13 @@ Public Class dsoStockTransactionLogItemReportSource
       pStockTransactionLogItems = New colStockItemTransactionLogInfos
 
       pDBConn.Connect()
-      mdto = New dtoStockItemTransactionLogInfo(pDBConn)
+      If pIsWoodReport Then
+        mdto = New dtoStockItemTransactionLogInfo(pDBConn, dtoStockItemTransactionLogInfo.eMode.WoodStockItemTransactionLogInfo)
+      Else
+
+        mdto = New dtoStockItemTransactionLogInfo(pDBConn, dtoStockItemTransactionLogInfo.eMode.StockItemTransactionLogInfo)
+
+      End If
 
       mWhere = pBIReportView.ConditionSetters(0).FilterSQL
 
@@ -74,6 +81,8 @@ Public Class dsoStockTransactionLogItemReportSource
       ''End If
 
       mdto.LoadStockItemTransactionLogInfoCollection(pStockTransactionLogItems, mWhere)
+
+
 
 
       If pStockTransactionLogItems IsNot Nothing Then

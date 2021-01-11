@@ -40,6 +40,9 @@ Public Class clsStockItemTransactionLogInfo
   Private pTotalValue As Decimal
   Private pExchangeRate As Decimal
 
+  Private pPalletRef As String
+  Private pPalletOutsideRef As String
+
   Public Sub New()
     MyBase.New()
     pCurrentStockItem = New dmStockItem
@@ -93,6 +96,23 @@ Public Class clsStockItemTransactionLogInfo
     Get
       Return pWorkOrder.Description
     End Get
+  End Property
+
+  Public Property PalletRef As String
+    Get
+      Return pPalletRef
+    End Get
+    Set(value As String)
+      pPalletRef = value
+    End Set
+  End Property
+  Public Property PalletOutsideRef As String
+    Get
+      Return pPalletOutsideRef
+    End Get
+    Set(value As String)
+      pPalletOutsideRef = value
+    End Set
   End Property
 
 
@@ -441,6 +461,10 @@ Public Class clsStockItemTransactionLogInfo
           mRetVal = pWorkOrder.WorkOrderNo
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''GRN Number
+        Case eObjectType.WoodMovement
+          mRetVal = PalletRef
+
+
 
       End Select
       Return mRetVal
@@ -456,6 +480,8 @@ Public Class clsStockItemTransactionLogInfo
           mRetVal = pSalesOrder.ProjectName
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''PO Num
+        Case eObjectType.WoodMovement
+          mRetVal = PalletOutsideRef
 
 
       End Select

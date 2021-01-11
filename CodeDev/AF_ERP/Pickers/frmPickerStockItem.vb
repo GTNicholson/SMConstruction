@@ -103,21 +103,7 @@ Public Class frmPickerStockItem
 
       Next
 
-      If pShowWoodCat = True And pWoodStockItemItemType > 0 Then
-        Dim mWoodStockItemLists As New List(Of dmStockItem)
 
-        For Each mItem As dmStockItem In mSIs
-
-          If mItem.ItemType = pWoodStockItemItemType Then
-            mWoodStockItemLists.Add(mItem)
-          End If
-        Next
-        pPickerStockItem.DataSource = mWoodStockItemLists
-
-
-      Else
-        pPickerStockItem.DataSource = mSIs
-      End If
       grdItemList.DataSource = pPickerStockItem.DataSource
 
       CreateTabs()

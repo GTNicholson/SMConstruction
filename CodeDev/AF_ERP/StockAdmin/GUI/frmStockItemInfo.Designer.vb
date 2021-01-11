@@ -67,6 +67,7 @@ Partial Class frmStockItemInfo
         Me.gcThickness = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcWidth = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcLength = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSpecies = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpItemDetail.SuspendLayout()
         CType(Me.popupMaterialRequirement, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -402,9 +403,10 @@ Partial Class frmStockItemInfo
         Me.gvStockItemInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvStockItemInfos.Appearance.Row.Options.UseFont = True
         Me.gvStockItemInfos.ColumnPanelRowHeight = 34
-        Me.gvStockItemInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn8, Me.GridColumn1, Me.GridColumn6, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSupplier, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcStdCost, Me.GridColumn2, Me.gcThickness, Me.gcWidth, Me.gcLength})
+        Me.gvStockItemInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn8, Me.GridColumn1, Me.GridColumn6, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSupplier, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcStdCost, Me.GridColumn2, Me.gcThickness, Me.gcWidth, Me.gcLength, Me.gcSpecies})
         Me.gvStockItemInfos.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
         Me.gvStockItemInfos.GridControl = Me.grdStockItemInfos
+        Me.gvStockItemInfos.GroupCount = 1
         Me.gvStockItemInfos.Name = "gvStockItemInfos"
         Me.gvStockItemInfos.OptionsBehavior.AutoExpandAllGroups = True
         Me.gvStockItemInfos.OptionsView.EnableAppearanceEvenRow = True
@@ -412,7 +414,7 @@ Partial Class frmStockItemInfo
         Me.gvStockItemInfos.OptionsView.ShowAutoFilterRow = True
         Me.gvStockItemInfos.OptionsView.ShowDetailButtons = False
         Me.gvStockItemInfos.OptionsView.ShowFooter = True
-        Me.gvStockItemInfos.OptionsView.ShowGroupPanel = False
+        Me.gvStockItemInfos.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcSpecies, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'gcStockItemID
         '
@@ -432,6 +434,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn1.Caption = "StockCode"
         Me.GridColumn1.FieldName = "StockCode"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 72
@@ -441,6 +444,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn6.Caption = "Descripción"
         Me.GridColumn6.FieldName = "Description"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 254
@@ -450,6 +454,7 @@ Partial Class frmStockItemInfo
         Me.gcCategory.Caption = "Categoría"
         Me.gcCategory.FieldName = "Category"
         Me.gcCategory.Name = "gcCategory"
+        Me.gcCategory.OptionsColumn.ReadOnly = True
         Me.gcCategory.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.gcCategory.Visible = True
         Me.gcCategory.VisibleIndex = 1
@@ -460,6 +465,7 @@ Partial Class frmStockItemInfo
         Me.gcItemType.Caption = "Sub Categoría"
         Me.gcItemType.FieldName = "gc"
         Me.gcItemType.Name = "gcItemType"
+        Me.gcItemType.OptionsColumn.ReadOnly = True
         Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcItemType.Visible = True
         Me.gcItemType.VisibleIndex = 2
@@ -470,6 +476,7 @@ Partial Class frmStockItemInfo
         Me.gcPartNo.Caption = "Núm. Parte"
         Me.gcPartNo.FieldName = "PartNo"
         Me.gcPartNo.Name = "gcPartNo"
+        Me.gcPartNo.OptionsColumn.ReadOnly = True
         Me.gcPartNo.Visible = True
         Me.gcPartNo.VisibleIndex = 3
         Me.gcPartNo.Width = 90
@@ -563,6 +570,7 @@ Partial Class frmStockItemInfo
         Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcStdCost.FieldName = "StdCost"
         Me.gcStdCost.Name = "gcStdCost"
+        Me.gcStdCost.OptionsColumn.ReadOnly = True
         Me.gcStdCost.Visible = True
         Me.gcStdCost.VisibleIndex = 5
         Me.gcStdCost.Width = 82
@@ -586,6 +594,7 @@ Partial Class frmStockItemInfo
         Me.gcThickness.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcThickness.FieldName = "Thickness"
         Me.gcThickness.Name = "gcThickness"
+        Me.gcThickness.OptionsColumn.ReadOnly = True
         Me.gcThickness.Visible = True
         Me.gcThickness.VisibleIndex = 12
         '
@@ -596,8 +605,7 @@ Partial Class frmStockItemInfo
         Me.gcWidth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcWidth.FieldName = "Width"
         Me.gcWidth.Name = "gcWidth"
-        Me.gcWidth.Visible = True
-        Me.gcWidth.VisibleIndex = 13
+        Me.gcWidth.OptionsColumn.ReadOnly = True
         '
         'gcLength
         '
@@ -606,8 +614,16 @@ Partial Class frmStockItemInfo
         Me.gcLength.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcLength.FieldName = "Length"
         Me.gcLength.Name = "gcLength"
-        Me.gcLength.Visible = True
-        Me.gcLength.VisibleIndex = 14
+        Me.gcLength.OptionsColumn.ReadOnly = True
+        '
+        'gcSpecies
+        '
+        Me.gcSpecies.Caption = "Specie"
+        Me.gcSpecies.FieldName = "SpeciesDesc"
+        Me.gcSpecies.Name = "gcSpecies"
+        Me.gcSpecies.OptionsColumn.ReadOnly = True
+        Me.gcSpecies.Visible = True
+        Me.gcSpecies.VisibleIndex = 15
         '
         'frmStockItemInfo
         '
@@ -683,4 +699,5 @@ Partial Class frmStockItemInfo
     Friend WithEvents gcThickness As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcWidth As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcLength As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcSpecies As DevExpress.XtraGrid.Columns.GridColumn
 End Class

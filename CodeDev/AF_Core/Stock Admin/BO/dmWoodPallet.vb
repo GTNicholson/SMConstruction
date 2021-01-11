@@ -12,6 +12,9 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pWoodPalletItems As colWoodPalletItems
   Private pPalletType As Integer
   Private pRefPalletOutside As String
+  Private pKilnStartDate As Date
+  Private pKilnEndDate As Date
+  Private pIsComplete As Boolean
   Public Sub New()
     MyBase.New()
   End Sub
@@ -58,6 +61,9 @@ Public Class dmWoodPallet : Inherits dmBase
       .Description = Description
       .PalletType = PalletType
       .RefPalletOutside = RefPalletOutside
+      .KilnStartDate = KilnStartDate
+      .KilnEndDate = KilnEndDate
+      .IsComplete = IsComplete
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -169,6 +175,15 @@ Public Class dmWoodPallet : Inherits dmBase
     End Set
   End Property
 
+  Public Property IsComplete As String
+    Get
+      Return pIsComplete
+    End Get
+    Set(ByVal value As String)
+      If pIsComplete <> value Then IsDirty = True
+      pIsComplete = value
+    End Set
+  End Property
 
   Public Property RefPalletOutside As String
     Get
@@ -180,6 +195,27 @@ Public Class dmWoodPallet : Inherits dmBase
     End Set
   End Property
 
+  Public Property KilnStartDate As Date
+    Get
+      Return pKilnStartDate
+    End Get
+    Set(value As Date)
+      If pKilnStartDate <> value Then IsDirty = True
+
+      pKilnStartDate = value
+    End Set
+  End Property
+
+  Public Property KilnEndDate As Date
+    Get
+      Return pKilnEndDate
+    End Get
+    Set(value As Date)
+      If pKilnEndDate <> value Then IsDirty = True
+
+      pKilnEndDate = value
+    End Set
+  End Property
 
   Public ReadOnly Property PalletTypeDesc As String
     Get

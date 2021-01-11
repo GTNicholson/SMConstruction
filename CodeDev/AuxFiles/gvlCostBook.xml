@@ -215,42 +215,43 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Description</property>
+      <property name="Caption">Descripción</property>
       <property name="FieldName">CostBookName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">434</property>
+      <property name="Width">541</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn40</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Cost Book Date</property>
+      <property name="Caption">Fecha del Libro de Costo</property>
       <property name="FieldName">CostBookDate</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">280</property>
+      <property name="Width">226</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Default</property>
+      <property name="Caption">Por Defecto?</property>
       <property name="FieldName">IsDefault</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit1</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
+      <property name="Width">175</property>
     </property>
   </property>
   <property name="ViewCaption" />
   <property name="BorderStyle">Default</property>
   <property name="SynchronizeClones">true</property>
   <property name="DetailTabHeaderLocation">Top</property>
-  <property name="Name">gridBrowseList</property>
+  <property name="Name">GridView1</property>
   <property name="DetailHeight">360</property>
   <property name="Tag" isnull="true" />
   <property name="GroupSummary" iskey="true" value="0" />

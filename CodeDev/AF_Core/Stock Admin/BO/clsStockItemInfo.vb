@@ -140,6 +140,17 @@ Public Class clsStockItemInfo
     End Get
 
   End Property
+
+  Public ReadOnly Property SpeciesDesc() As String
+    Get
+      If Species > 0 Then
+        Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(Species)
+      End If
+
+      Return ""
+    End Get
+
+  End Property
   Public ReadOnly Property Colour() As String
     Get
       Return pStockItem.Colour

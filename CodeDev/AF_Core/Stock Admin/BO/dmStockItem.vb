@@ -749,6 +749,23 @@ Public Class colStockItems : Inherits colBase(Of dmStockItem)
     Return mIndex
   End Function
 
+  Public Function ItemFromSpeciesAndThickness(ByVal vSpecies As Integer, ByVal vThickness As Decimal, ByVal vItemType As Integer) As dmStockItem
+    Dim mRetVal As dmStockItem = Nothing
+
+    For Each mRetVal In MyBase.Items
+
+      If mRetVal.Species = vSpecies Then
+        If mRetVal.ItemType = vItemType Then
+          If mRetVal.Thickness = vThickness Then
+            Return mRetVal
+
+          End If
+        End If
+      End If
+    Next
+
+  End Function
+
   Public Sub New()
     MyBase.New()
   End Sub

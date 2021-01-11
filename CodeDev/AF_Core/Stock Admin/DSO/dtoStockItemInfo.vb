@@ -12,6 +12,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
     StockItemAdmin = 1
     StockItemInfos = 2
     StockItemProcessor = 3
+    WoodStockInfo = 4
   End Enum
 
   Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
@@ -30,6 +31,9 @@ Public Class dtoStockItemInfo : Inherits dtoBase
         pTableName = "vwStockItemInfo"
       Case eMode.StockItemProcessor
         pTableName = "StockItem"
+
+      Case eMode.WoodStockInfo
+        pTableName = "vwWoodStockItemInfo"
     End Select
     pKeyFieldName = "StockItemId"
     pUseSoftDelete = False
@@ -76,7 +80,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
       If pStockItemInfo Is Nothing Then SetObjectToNew()
 
       Select Case pMode
-        Case eMode.StockItemInfos
+        Case eMode.StockItemInfos, eMode.WoodStockInfo
 
           With pStockItemInfo
 
@@ -129,7 +133,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
   Protected Overrides Function SetObjectToNew() As Object
 
     Select Case pMode
-      Case eMode.StockItemInfos
+      Case eMode.StockItemInfos, eMode.WoodStockInfo
         pStockItemInfo = New clsStockItemInfo
       Case eMode.StockItemProcessor
         pStockItemInfo = New clsStockItemProcessor(New dmPurchaseOrderItem)

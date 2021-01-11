@@ -21,6 +21,7 @@ Public Class frmWoodPalletDetail
     eView = 1
     eEdit = 2
     eMovement = 3
+
   End Enum
 
   Private Enum eDetailButtons
@@ -28,6 +29,7 @@ Public Class frmWoodPalletDetail
     Save = 2
     PickItem = 3
     Movement = 4
+    ToProcess = 5
   End Enum
 
   Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
@@ -155,6 +157,7 @@ Public Class frmWoodPalletDetail
       SetDetailsControlsReadonly(False)
     ElseIf pCurrentDetailMode = eCurrentDetailMode.eMovement Then
       SetDetailsControlsReadonly(True)
+
     End If
 
     pIsActive = mStartActive
@@ -168,6 +171,7 @@ Public Class frmWoodPalletDetail
           If mBtn.Tag = eDetailButtons.Save Then mBtn.Enabled = True
           If mBtn.Tag = eDetailButtons.PickItem Then mBtn.Enabled = True
           If mBtn.Tag = eDetailButtons.Movement Then mBtn.Enabled = False
+          If mBtn.Tag = eDetailButtons.ToProcess Then mBtn.Enabled = True
           bbtnAddNew.Enabled = False
         Next
       Case eCurrentDetailMode.eView
@@ -182,10 +186,8 @@ Public Class frmWoodPalletDetail
   End Sub
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
-    'txtWoodRef.ReadOnly = vReadOnly
-    'dteDateCreated.ReadOnly = vReadOnly
-    ' cboLocations.ReadOnly = vReadOnly
-    'bbtnAddNew.Enabled = vReadOnly
+    txtRefPallet.ReadOnly = vReadOnly
+    cboWoodPalletType.ReadOnly = vReadOnly
     txtWoodDescription.Enabled = Not vReadOnly
     If pFormController.CurrentWoodPallet.WoodPalletItems.Count > 0 Then bbtnPickWoodPallet.Enabled = vReadOnly
     repoAddDuplicated.Buttons(0).Enabled = Not vReadOnly
@@ -256,8 +258,8 @@ Public Class frmWoodPalletDetail
                 mNewWoodPalletItem.StockCode = mSelectedItem.StockCode
                 mNewWoodPalletItem.Thickness = mSelectedItem.Thickness
 
-                pWoodPalletItemEditor = New clsWoodPalletItemEditor(pFormController.CurrentWoodPallet, mNewWoodPalletItem)
-                ' pFormController.WoodPalletItemEditors.Add(pWoodPalletItemEditor)
+                pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mSelectedItem)
+                pFormController.WoodPalletItemEditors.Add(pWoodPalletItemEditor)
               End If
             End If
           Next
@@ -276,15 +278,37 @@ Public Class frmWoodPalletDetail
         Next
 
 
-
-        grdWoodPalletItemInfos.DataSource = pFormController.CurrentWoodPallet.WoodPalletItems
+        pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+        grdWoodPalletItemInfos.DataSource = pFormController.WoodPalletItemEditors''pFormController.CurrentWoodPallet.WoodPalletItems
 
       Case eDetailButtons.Movement
         pCurrentDetailMode = eCurrentDetailMode.eMovement
         Try
           If pFormController.WoodPallets IsNot Nothing Then
-
+            pFormController.PreviousLocationID = pFormController.CurrentWoodPallet.LocationID
             frmMovementTransaction.OpenFormI(pFormController.DBConn, pFormController.CurrentWoodPallet)
+            RefreshControls()
+            CheckSave(False)
+          End If
+        Catch ex As Exception
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+        End Try
+
+      Case eDetailButtons.ToProcess
+        Try
+
+          If pFormController.WoodPallets IsNot Nothing Then
+
+            CheckSave(False)
+            'pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+            gvWoodPalletItemInfo.CloseEditor()
+            pFormController.ToProcessQty()
+            RefreshControls()
+            CheckSave(False)
+            pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+            gvWoodPalletItemInfo.RefreshData()
+
+
           End If
         Catch ex As Exception
           If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -325,13 +349,15 @@ Public Class frmWoodPalletDetail
 
   Private Sub gvWoodPalletInfo_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvWoodPalletInfo.FocusedRowObjectChanged
     Dim mWoodPallet As dmWoodPallet
+
     Try
       mWoodPallet = TryCast(e.Row, dmWoodPallet)
       If mWoodPallet IsNot Nothing Then
         pFormController.CurrentWoodPallet = e.Row
         pCurrentDetailMode = eCurrentDetailMode.eView
-        pFormController.SetCurrentStockItemCollection()
-        grdWoodPalletItemInfos.DataSource = pFormController.CurrentWoodPallet.WoodPalletItems
+        pFormController.SetCurrentWoodPalletInfo()
+        pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+        grdWoodPalletItemInfos.DataSource = pFormController.WoodPalletItemEditors 'pFormController.CurrentWoodPallet.WoodPalletItems
         RefreshDetailButtons()
         RefreshControls()
       End If
@@ -419,23 +445,23 @@ Public Class frmWoodPalletDetail
   End Function
 
   Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddDuplicated.ButtonClick
-    Dim mSelectedWoodPalletItem As dmWoodPalletItem
+    Dim mSelectedWoodPalletItem As clsWoodPalletItemEditor
     Dim mDuplicatedWoodPalletItem As dmWoodPalletItem
 
-    mSelectedWoodPalletItem = TryCast(gvWoodPalletItemInfo.GetFocusedRow, dmWoodPalletItem)
+    mSelectedWoodPalletItem = TryCast(gvWoodPalletItemInfo.GetFocusedRow, clsWoodPalletItemEditor)
 
     If mSelectedWoodPalletItem IsNot Nothing Then
       mDuplicatedWoodPalletItem = New dmWoodPalletItem
-      mDuplicatedWoodPalletItem.StockItemID = mSelectedWoodPalletItem.StockItemID
+      mDuplicatedWoodPalletItem.StockItemID = mSelectedWoodPalletItem.stockitem.StockItemID
       mDuplicatedWoodPalletItem.Width = 0
       mDuplicatedWoodPalletItem.Length = 0
       mDuplicatedWoodPalletItem.Quantity = 0
       mDuplicatedWoodPalletItem.QuantityUsed = 0
       mDuplicatedWoodPalletItem.WoodPalletItemID = 0
-      mDuplicatedWoodPalletItem.Description = mSelectedWoodPalletItem.Description
-      mDuplicatedWoodPalletItem.StockCode = mSelectedWoodPalletItem.StockCode
-      mDuplicatedWoodPalletItem.Thickness = mSelectedWoodPalletItem.Thickness
-      mDuplicatedWoodPalletItem.WoodPalletID = mSelectedWoodPalletItem.WoodPalletID
+      mDuplicatedWoodPalletItem.Description = mSelectedWoodPalletItem.WoodPalletItem.Description
+      mDuplicatedWoodPalletItem.StockCode = mSelectedWoodPalletItem.StockItem.StockCode
+      mDuplicatedWoodPalletItem.Thickness = mSelectedWoodPalletItem.StockItem.Thickness
+      mDuplicatedWoodPalletItem.WoodPalletID = mSelectedWoodPalletItem.WoodPalletItem.WoodPalletID
       pFormController.CurrentWoodPallet.WoodPalletItems.Add(mDuplicatedWoodPalletItem)
       pFormController.SaveObject()
       grdWoodPalletItemInfos.RefreshDataSource()
@@ -456,5 +482,10 @@ Public Class frmWoodPalletDetail
     If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
       gvWoodPalletInfo.ExportToXlsx(mFileName)
     End If
+  End Sub
+
+  Private Sub bbtnReload_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnReload.ItemClick
+    pFormController.LoadObject()
+    grdWoodPalletInfo.DataSource = pFormController.WoodPallets
   End Sub
 End Class

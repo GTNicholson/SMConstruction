@@ -40,6 +40,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pQtyPerSalesItem As Integer
   Private pTotalPieces As Decimal
 
+  Private pWorkOrderProcessOption As Integer
+
 
   Private pProduct As RTIS.ERPCore.intItemSpecCore
 
@@ -47,6 +49,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pWOFiles As colFileTrackers
 
   Private pSalesOrderItemWOIndex As Int32
+  Private pWorkOrderTargetWoodType As Integer
+
   Private pWorkOrderAllocations As colWorkOrderAllocations
   Private pWorkOrderWoodType As Integer
 
@@ -135,6 +139,8 @@ Public Class dmWorkOrder : Inherits dmBase
       .isInternal = isInternal
       .SOWONumber = SOWONumber
       .WorkOrderWoodType = WorkOrderWoodType
+      .WorkOrderProcessOption = WorkOrderProcessOption
+      .WorkOrderTargetWoodType = WorkOrderTargetWoodType
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -366,6 +372,16 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property WorkOrderProcessOption As Integer
+    Get
+      Return pWorkOrderProcessOption
+    End Get
+    Set(value As Integer)
+      If pWorkOrderProcessOption <> value Then IsDirty = True
+      pWorkOrderProcessOption = value
+    End Set
+  End Property
+
   Public Property WorkOrderAllocations As colWorkOrderAllocations
     Get
       Return pWorkOrderAllocations
@@ -539,6 +555,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As Boolean)
       If pSubContract <> value Then IsDirty = True
       pSubContract = value
+    End Set
+  End Property
+
+  Public Property WorkOrderTargetWoodType As Integer
+    Get
+      Return pWorkOrderTargetWoodType
+    End Get
+    Set(value As Integer)
+      If WorkOrderTargetWoodType <> value Then IsDirty = True
+      pWorkOrderTargetWoodType = value
     End Set
   End Property
 

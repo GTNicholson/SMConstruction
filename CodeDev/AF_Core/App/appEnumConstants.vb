@@ -285,6 +285,11 @@ Public Enum eTallyIDs
   GRNNumber = 1002
   WoodPallet = 1003
   RollWoodOT = 1004
+  MAVWoodOT = 1005
+  MASWoodOT = 1006
+  AserradoWoodOT = 1007
+  ClassifiedWoodOT = 1008
+
 End Enum
 
 Public Enum ePaymentStatus
@@ -293,11 +298,12 @@ Public Enum ePaymentStatus
   <Description("Pagado")> Paid = 3
 End Enum
 Public Enum eWorkOrderWoodProcess
-  <Description("Árbol a Rollo")> ArbolARollo = 1
-  <Description("Rollo a MAV")> RolloAMAV = 2
-  <Description("MAV a MAS")> MAVAMAS = 3
-  <Description("MAS a Clasificado")> MASClasificado = 4
-  <Description("Rollo a Aserrado")> RolloAAserrado = 5
+
+  <Description("A Aserrío")> Aserrio = 1
+  <Description("A Horno")> Horno = 2
+  <Description("A Clasificación")> Clasificar = 3
+  <Description("A Devolución")> Devolucion = 4
+  <Description("A Rechazo")> Rechazo = 5
 End Enum
 
 
@@ -1826,6 +1832,7 @@ Public Enum eTransactionType
   <Description("Palletise SIR")> PalletiseSIR = 10
   <Description("Palletise LI")> PalletiseLI = 11
   <Description("Movimiento de Bodega")> Movement = 12
+  <Description("Corrección de Inv. Madera")> WoodAmendment = 13
 End Enum
 
 Public Enum ePayPeriodType

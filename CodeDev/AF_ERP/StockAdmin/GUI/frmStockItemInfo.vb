@@ -71,14 +71,40 @@ Public Class frmStockItemInfo
       gcLength.Visible = True
       gcWidth.Visible = True
       gcThickness.Visible = True
-
+      gcSpecies.Visible = True
+      gvStockItemInfos.OptionsView.ShowGroupPanel = True
+      UpdateCostByCostBookID()
+      RefreshGridCurrency()
+      gvStockItemInfos.RefreshData()
     Else
       gcLength.Visible = False
       gcWidth.Visible = False
       gcThickness.Visible = False
+      gcSpecies.Visible = False
+      gvStockItemInfos.OptionsView.ShowGroupPanel = False
     End If
 
     pIsActive = mStartActive
+  End Sub
+
+  Private Sub RefreshGridCurrency()
+
+    gvStockItemInfos.Columns("ActualValueInventory").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    gvStockItemInfos.Columns("ActualValueInventory").DisplayFormat.FormatString = "$#,##0.00;;#"
+    gvStockItemInfos.Columns("ActualValueInventory").SummaryItem.DisplayFormat = "{0:$#,##0.00;;#}"
+
+    gvStockItemInfos.Columns("StdCost").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    gvStockItemInfos.Columns("StdCost").DisplayFormat.FormatString = "$#,##0.00;;#"
+    ' gvStockItemInfos.Columns("StdCost").SummaryItem.DisplayFormat = "{0:$#,##0.00;;#}"
+
+  End Sub
+
+  Private Sub UpdateCostByCostBookID()
+
+    For Each mSI As clsStockItemInfo In pFormController.StockItemInfos
+      mSI.StockItem.StdCost = pFormController.GetCostByStockItemID(mSI.StockItem.StockItemID)
+    Next
+
   End Sub
 
   Private Sub LoadCombos()

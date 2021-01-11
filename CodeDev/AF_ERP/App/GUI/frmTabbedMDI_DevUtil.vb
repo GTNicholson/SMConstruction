@@ -288,4 +288,68 @@ Public Class frmTabbedMDI_DevUtil
       If mDBConn.IsConnected Then mDBConn.Disconnect()
     End Try
   End Sub
+
+  Private Sub btnGeneratePalletRefs_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnGeneratePalletRefs.LinkClicked
+    Dim mWoodPallets As colWoodPallets
+    Dim mdtoWoodPallet As dtoWoodPallet
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mWoodPalletRef As String
+    Dim mdsoGeneral As dsoGeneral
+    mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+    Try
+      mDBConn.Connect()
+
+      mdsoGeneral = New dsoGeneral(mDBConn)
+      mdtoWoodPallet = New dtoWoodPallet(mDBConn)
+
+      mWoodPallets = New colWoodPallets
+      mdtoWoodPallet.LoadWoodPalletCollection(mWoodPallets)
+
+
+      For Each mWP As dmWoodPallet In mWoodPallets
+        '//Do it for all Pallets
+        clsWoodPalletSharedFuncs.GetNextWoodPalletRef(mWP, mDBConn)
+
+        mdtoWoodPallet.SaveWoodPalletDisconnected(mWP)
+
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mDBConn.IsConnected Then mDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Private Sub btnGenerateWoodDesc_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnGenerateWoodDesc.LinkClicked
+    Dim mWoodPallets As New colWoodPallets
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mWoodPalletDescription As String
+
+    Dim mdsoStock As dsoStock
+    mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+    Try
+      mDBConn.Connect()
+
+      mdsoStock = New dsoStock(mDBConn)
+      mdsoStock.LoadWoodPalletDownByWhere(mWoodPallets, "")
+
+
+
+      For Each mWP As dmWoodPallet In mWoodPallets
+
+        mWoodPalletDescription = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(mWP.WoodPalletItems)
+          mWP.Description = mWoodPalletDescription
+          mdsoStock.SaveWoodPalletDown(mWP)
+
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mDBConn.IsConnected Then mDBConn.Disconnect()
+    End Try
+  End Sub
 End Class

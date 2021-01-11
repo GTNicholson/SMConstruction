@@ -44,6 +44,7 @@ Partial Class frmPickerStockItem
         Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSystemQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcUoM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoItemRemove = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -55,7 +56,6 @@ Partial Class frmPickerStockItem
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.xtabCategories = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +73,7 @@ Partial Class frmPickerStockItem
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
         Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove})
-        Me.grdItemList.Size = New System.Drawing.Size(991, 429)
+        Me.grdItemList.Size = New System.Drawing.Size(990, 423)
         Me.grdItemList.TabIndex = 98
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '
@@ -186,6 +186,16 @@ Partial Class frmPickerStockItem
         Me.gcUoM.Visible = True
         Me.gcUoM.VisibleIndex = 2
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Grosor"
+        Me.GridColumn1.DisplayFormat.FormatString = "n0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "Thickness"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 6
+        '
         'repoItemRemove
         '
         Me.repoItemRemove.AutoHeight = False
@@ -197,7 +207,7 @@ Partial Class frmPickerStockItem
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 26)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlTop.Manager = Nothing
         Me.barDockControlTop.Size = New System.Drawing.Size(1083, 0)
         '
@@ -237,7 +247,7 @@ Partial Class frmPickerStockItem
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1083, 26)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1083, 30)
         '
         'barDockControlBottom
         '
@@ -251,17 +261,17 @@ Partial Class frmPickerStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 26)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 435)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 431)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1083, 26)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1083, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 435)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 431)
         '
         'xtabCategories
         '
@@ -270,10 +280,10 @@ Partial Class frmPickerStockItem
         Me.xtabCategories.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabCategories.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabCategories.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabCategories.Location = New System.Drawing.Point(0, 26)
+        Me.xtabCategories.Location = New System.Drawing.Point(0, 30)
         Me.xtabCategories.Name = "xtabCategories"
         Me.xtabCategories.SelectedTabPage = Me.XtraTabPage1
-        Me.xtabCategories.Size = New System.Drawing.Size(1083, 435)
+        Me.xtabCategories.Size = New System.Drawing.Size(1083, 431)
         Me.xtabCategories.TabIndex = 104
         Me.xtabCategories.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -281,18 +291,8 @@ Partial Class frmPickerStockItem
         '
         Me.XtraTabPage1.Controls.Add(Me.grdItemList)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(991, 429)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(990, 423)
         Me.XtraTabPage1.Text = "XtraTabPage1"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Grosor"
-        Me.GridColumn1.DisplayFormat.FormatString = "n0"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn1.FieldName = "Thickness"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 6
         '
         'frmPickerStockItem
         '

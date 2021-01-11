@@ -22,16 +22,16 @@ Partial Class frmWoodPalletPicker
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-        Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject17 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject18 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject19 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject20 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject21 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject22 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject23 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject24 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.grdWoodPallet = New DevExpress.XtraGrid.GridControl()
         Me.gvWoodPallets = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcWoodPalletRef = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,6 +44,7 @@ Partial Class frmWoodPalletPicker
         Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grdWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPallets, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +79,7 @@ Partial Class frmWoodPalletPicker
         Me.gvWoodPallets.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvWoodPallets.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWoodPallets.Appearance.Row.Options.UseFont = True
-        Me.gvWoodPallets.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcWoodPalletRef, Me.GridColumn4, Me.GridColumn5, Me.GridColumn3, Me.GridColumn9})
+        Me.gvWoodPallets.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcWoodPalletRef, Me.GridColumn4, Me.GridColumn5, Me.GridColumn3, Me.GridColumn9, Me.GridColumn1})
         Me.gvWoodPallets.GridControl = Me.grdWoodPallet
         Me.gvWoodPallets.Name = "gvWoodPallets"
         Me.gvWoodPallets.OptionsView.ShowAutoFilterRow = True
@@ -90,6 +91,7 @@ Partial Class frmWoodPalletPicker
         Me.gcWoodPalletRef.ColumnEdit = Me.RepbtnSelect
         Me.gcWoodPalletRef.FieldName = "PalletRef"
         Me.gcWoodPalletRef.Name = "gcWoodPalletRef"
+        Me.gcWoodPalletRef.OptionsColumn.ReadOnly = True
         Me.gcWoodPalletRef.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcWoodPalletRef.Visible = True
         Me.gcWoodPalletRef.VisibleIndex = 0
@@ -98,15 +100,18 @@ Partial Class frmWoodPalletPicker
         'RepbtnSelect
         '
         Me.RepbtnSelect.AutoHeight = False
-        Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Select", -1, True, True, False, EditorButtonImageOptions5, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject17, SerializableAppearanceObject18, SerializableAppearanceObject19, SerializableAppearanceObject20, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Select", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.RepbtnSelect.Name = "RepbtnSelect"
         '
         'GridColumn4
         '
+        Me.GridColumn4.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn4.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn4.Caption = "Fecha Creada"
         Me.GridColumn4.ColumnEdit = Me.RepositoryItemDateEdit1
         Me.GridColumn4.FieldName = "CreatedDate"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 73
@@ -121,25 +126,34 @@ Partial Class frmWoodPalletPicker
         '
         'GridColumn5
         '
+        Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn5.Caption = "WoodPalletID"
         Me.GridColumn5.FieldName = "WoodPalletID"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Width = 108
         '
         'GridColumn3
         '
+        Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn3.Caption = "Descripción"
         Me.GridColumn3.FieldName = "Description"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 230
         '
         'GridColumn9
         '
+        Me.GridColumn9.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn9.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn9.Caption = "Contenido"
         Me.GridColumn9.FieldName = "PalletTypeDesc"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 100
@@ -147,7 +161,7 @@ Partial Class frmWoodPalletPicker
         'repbtnUnSelect
         '
         Me.repbtnUnSelect.AutoHeight = False
-        Me.repbtnUnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Unselect", -1, True, True, False, EditorButtonImageOptions6, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject21, SerializableAppearanceObject22, SerializableAppearanceObject23, SerializableAppearanceObject24, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repbtnUnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Unselect", -1, True, True, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repbtnUnSelect.Name = "repbtnUnSelect"
         '
         'repitTextOnly
@@ -164,6 +178,17 @@ Partial Class frmWoodPalletPicker
         Me.btnConfirmSelection.Size = New System.Drawing.Size(133, 23)
         Me.btnConfirmSelection.TabIndex = 3
         Me.btnConfirmSelection.Text = "Aceptar Selección"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn1.Caption = "Ubicación Actual"
+        Me.GridColumn1.FieldName = "LocationDesc"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
         '
         'frmWoodPalletPicker
         '
@@ -198,4 +223,5 @@ Partial Class frmWoodPalletPicker
   Friend WithEvents repbtnUnSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents repitTextOnly As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

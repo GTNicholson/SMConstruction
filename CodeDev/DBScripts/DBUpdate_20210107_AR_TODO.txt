@@ -1,0 +1,67 @@
+alter table WoodPallet
+add IsComplete bit
+go
+
+ALTER view [dbo].[vwWoodPalletInfo]
+as
+select
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.IsComplete
+
+from WoodPallet WP
+GO
+
+insert into ApplicationModule (ApplicationModuleID,Module)
+values (10,'Admon. Madera')
+go
+
+insert into Grouping (GroupingName,ApplicationID)
+values ('Admon. Madera',10)
+go
+
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+values (900,'Wood Group',10,0)
+go
+
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+values (901,'Info Inventario',10,0)
+go
+
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+values (902,'Pallet de Madera',10,0)
+go
+
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+values (903,'Procesamiento Madera',10,0)
+go
+
+insert into GroupingApplicationActivity (GroupingID,ApplicationActivityID,PermissionID)
+values (10,1037,4)
+go
+
+insert into GroupingApplicationActivity (GroupingID,ApplicationActivityID,PermissionID)
+values (10,1038,4)
+go
+
+insert into GroupingApplicationActivity (GroupingID,ApplicationActivityID,PermissionID)
+values (10,1039,4)
+go
+insert into GroupingApplicationActivity (GroupingID,ApplicationActivityID,PermissionID)
+values (10,1040,4)
+go
+
+ALTER view [dbo].[vwWoodTransactionSUM]
+AS
+
+
+select  StockItemID,SUM(qty) as Qty 
+from StockItemLocation sil where LocationID<>0
+group by StockItemID
+
+
+GO
+
+

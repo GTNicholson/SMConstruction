@@ -99,6 +99,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .ProjectName = DBReadString(rDataReader, "ProjectName")
             .DueTime = DBReadDate(rDataReader, "DueTime")
             .FinishDate = DBReadDate(rDataReader, "FinishDate")
+
           End With
 
           With pWorkOrderInfo.Customer
@@ -112,6 +113,8 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .ProductTypeID = DBReadInteger(rDataReader, "ProductTypeID")
             .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
             .WorkOrderWoodType = DBReadInt32(rDataReader, "WorkOrderWoodType")
+            .WorkOrderProcessOption = DBReadInt32(rDataReader, "WorkOrderProcessOption")
+            .WorkOrderTargetWoodType = DBReadInt32(rDataReader, "WorkOrderTargetWoodType")
           End With
         Case Else
           With pWorkOrderInfo.WorkOrder

@@ -1,4 +1,6 @@
-﻿Public Class clsWoodPalletSharedFuncs
+﻿Imports RTIS.DataLayer
+
+Public Class clsWoodPalletSharedFuncs
 
   Public Shared Function GetWoodPalletItemVolume(ByRef rWoodPalletItem As dmWoodPalletItem) As Decimal
     Dim mRetVal As Decimal
@@ -34,5 +36,141 @@
     Next
     Return mRetVal
   End Function
+
+  Public Shared Function GetSpeciesQty(ByRef rWoodPallets As colWoodPallets) As List(Of Integer)
+    Dim mRetVal As New List(Of Integer)
+    Dim mSI As dmStockItem
+
+    For Each mWP As dmWoodPallet In rWoodPallets
+      For Each mPI As dmWoodPalletItem In mWP.WoodPalletItems
+        mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPI.StockItemID)
+
+        If mSI IsNot Nothing Then
+          If Not mRetVal.Contains(mSI.Species) Then
+
+            mRetVal.Add(mSI.Species)
+          End If
+        End If
+
+      Next
+    Next
+    Return mRetVal
+  End Function
+
+
+  Public Shared Function GetWoodPalletContentDescription(ByVal vWoodPalletItems As colWoodPalletItems) As String
+    Dim mRetVal As String = ""
+    Dim mListString As New List(Of String)
+
+    If vWoodPalletItems IsNot Nothing And vWoodPalletItems.Count > 0 Then
+      For Each mWPI As dmWoodPalletItem In vWoodPalletItems
+
+        If Not mListString.Contains(mWPI.Description) Then
+          mListString.Add(mWPI.Description)
+          mRetVal &= mWPI.Description & ","
+        End If
+
+      Next
+      mRetVal = mRetVal.Substring(0, mRetVal.Length - 1)
+    End If
+    Return mRetVal
+  End Function
+
+  Public Shared Function GetWoodPalletsDescription(ByVal vWoodPallets As colWoodPallets) As String
+    Dim mRetVal As String = ""
+
+    For Each mWP In vWoodPallets
+      mRetVal = mRetVal & mWP.PalletRef & "/ "
+    Next
+    If mRetVal.Length > 0 Then
+      mRetVal = mRetVal.Substring(0, mRetVal.Length - 1)
+
+    End If
+    Return mRetVal
+  End Function
+  Public Shared Sub GetNextWoodPalletRefConnected(ByRef rWoodPallet As dmWoodPallet, ByRef rDBConn As clsDBConnBase)
+    Dim mdsoGeneral As New dsoGeneral(rDBConn)
+    Dim mRef As String = ""
+
+    If rWoodPallet.PalletRef = "" Then
+      Select Case rWoodPallet.PalletType
+        Case eStockItemTypeTimberWood.Arbol
+          mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.Aserrado
+          mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.ClasificadoA
+          mRef = "BLT-A-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.ClasificadoB
+          mRef = "BLT-B-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.ClasificadoC
+          mRef = "BLT-C-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.ClasificadoZ
+          mRef = "BLT-Z-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.MAS
+          mRef = "BLT-S-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+        Case eStockItemTypeTimberWood.MAV
+          mRef = "BLT-V-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+
+        Case eStockItemTypeTimberWood.Rollo
+          mRef = "BLT-R-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+
+      End Select
+
+
+      rWoodPallet.PalletRef = mRef
+    End If
+
+  End Sub
+  Public Shared Sub GetNextWoodPalletRef(ByRef rWoodPallet As dmWoodPallet, ByRef rDBConn As clsDBConnBase)
+    Dim mdsoGeneral As New dsoGeneral(rDBConn)
+    Dim mRef As String = ""
+
+    If rWoodPallet.PalletRef = "" Then
+      If rDBConn.Connect Then
+        Select Case rWoodPallet.PalletType
+
+          Case eStockItemTypeTimberWood.Arbol
+            mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.Aserrado
+            mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.ClasificadoA
+            mRef = "BLT-A-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.ClasificadoB
+            mRef = "BLT-B-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.ClasificadoC
+            mRef = "BLT-C-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.ClasificadoZ
+            mRef = "BLT-Z-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.MAS
+            mRef = "BLT-S-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.MAV
+            mRef = "BLT-V-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+
+          Case eStockItemTypeTimberWood.Rollo
+            mRef = "BLT-R-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+        End Select
+      End If
+
+
+      rWoodPallet.PalletRef = mRef
+    End If
+  End Sub
 
 End Class
