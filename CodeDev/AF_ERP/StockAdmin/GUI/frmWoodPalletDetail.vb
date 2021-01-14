@@ -192,6 +192,14 @@ Public Class frmWoodPalletDetail
 
 
       With pFormController.CurrentWoodPallet
+
+        Select Case pFormController.CurrentWoodPallet.PalletType
+          Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
+            grpWoodPallet.Text = "Detalles de la Rastra : " & pFormController.CurrentWoodPallet.PalletRef
+          Case Else
+            grpWoodPallet.Text = "Detalles del Bulto : " & pFormController.CurrentWoodPallet.PalletRef
+        End Select
+
         txtWoodRef.Text = .PalletRef
         txtRefPallet.Text = .RefPalletOutside
         txtWoodDescription.Text = .Description
