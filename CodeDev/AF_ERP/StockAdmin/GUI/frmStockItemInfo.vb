@@ -68,10 +68,16 @@ Public Class frmStockItemInfo
     pIsActive = False
 
     If pFormController.IsWood Then
-      gcLength.Visible = True
-      gcWidth.Visible = True
       gcThickness.Visible = True
       gcSpecies.Visible = True
+      gcPartNo.Visible = False
+      gcSupplier.Visible = False
+      gcTotalCubicMeter.Visible = True
+      gcCategory.Visible = False
+      gcItemType.Caption = "Tipo de Madera"
+      gcCurrentInventory.ColumnEdit = repoPopUpWoodPalletItemInfo
+      gcCurrentInventory.ShowButtonMode = ShowButtonModeEnum.ShowAlways
+      repoPopUpWoodPalletItemInfo.PopupControl = popupWoodPalletInfo
       gvStockItemInfos.OptionsView.ShowGroupPanel = True
       UpdateCostByCostBookID()
       RefreshGridCurrency()
@@ -81,6 +87,11 @@ Public Class frmStockItemInfo
       gcWidth.Visible = False
       gcThickness.Visible = False
       gcSpecies.Visible = False
+      gcSupplier.Visible = False
+      gcPartNo.Visible = True
+      gcTotalCubicMeter.Visible = False
+      gcCategory.Visible = True
+      gcItemType.Caption = "Sub Categoría"
       gvStockItemInfos.OptionsView.ShowGroupPanel = False
     End If
 
@@ -195,6 +206,10 @@ Public Class frmStockItemInfo
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
                 e.Value = mText
 
+              Case eStockItemCategory.Timber
+
+                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTimberWood), CType(mRow.ItemType, eStockItemTypeTimberWood.eStockItemTimberWood))
+                e.Value = mText
               Case Else
                 e.Value = ""
 
@@ -296,6 +311,7 @@ Public Class frmStockItemInfo
 
   End Sub
 
+
   Private Sub repoPopupPOAllocationItems_QueryPopUp(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles repoPopupPOAllocationItems.QueryPopUp
     Dim mAllocations As New colPurchaseOrderItemAllocationInfo
 
@@ -320,5 +336,18 @@ Public Class frmStockItemInfo
 
     pFormController.LoadMaterialRequirementInfos(mMaterialRequirementInfos, mStockItemID)
     grdStockItemAllocations.DataSource = mMaterialRequirementInfos
+  End Sub
+
+  Private Sub repoPopUpWoodPalletItemInfo_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repoPopUpWoodPalletItemInfo.QueryPopUp
+    Dim mWoodPallets As New colWoodPalletItemInfos
+
+    Dim mStockItemID As Integer
+    Dim mSIP As clsStockItemInfo
+
+    mSIP = gvStockItemInfos.GetFocusedRow
+    mStockItemID = mSIP.StockItem.StockItemID
+
+    pFormController.LoadWoodPalletItemInfosByStockItemID(mWoodPallets, mStockItemID)
+    grdWoodPalletInfo.DataSource = mWoodPallets
   End Sub
 End Class

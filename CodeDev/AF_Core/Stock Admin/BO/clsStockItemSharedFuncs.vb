@@ -267,6 +267,37 @@
     Return mRetVal
   End Function
 
+  Public Shared Function GetWoodStockItemProposedDescription(ByRef rStockItem As dmStockItem)
+
+    Dim mDescription As String
+    Dim mRetVal As String = ""
+    Dim mInteger As Integer
+    Dim mDecimal As Decimal
+    mDescription = "Madera " & GetStockItemTypeDescription(rStockItem)
+
+    mDescription &= " de " & GetSpeciesDescription(rStockItem).Trim
+
+    If rStockItem.ItemType = eStockItemTypeTimberWood.Arbol Or rStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
+      ''decide what to do with this description
+    Else
+
+      mInteger = Int(rStockItem.Thickness)
+      mDecimal = (rStockItem.Thickness - mInteger) * 10
+      If mDecimal = 0 Then
+        mDescription &= String.Format(" de {0}", mInteger) & "''"
+
+      Else
+        mDescription &= String.Format(" de {0}_{1}", mInteger, mDecimal.ToString("n0")) & "''"
+
+      End If
+
+    End If
+
+
+
+    Return mDescription
+  End Function
+
   Public Shared Function GetSpeciesDescription(ByRef rStockItem As dmStockItem) As String
     Dim mSpecies As dmWoodSpecie
     Dim mRetVal As String = ""

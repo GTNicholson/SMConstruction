@@ -2,14 +2,13 @@
 
 Public Class clsWoodPalletSharedFuncs
 
-  Public Shared Function GetWoodPalletItemVolume(ByRef rWoodPalletItem As dmWoodPalletItem) As Decimal
+  Public Shared Function GetWoodPalletItemVolumeBoardFeet(ByRef rWoodPalletItem As dmWoodPalletItem, ByRef rStockItem As dmStockItem) As Decimal
     Dim mRetVal As Decimal
-    Dim mTempStockItem As dmStockItem = Nothing
-    mTempStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(rWoodPalletItem.StockItemID)
 
-    If mTempStockItem IsNot Nothing Then
 
-      Select Case mTempStockItem.ItemType
+    If rStockItem IsNot Nothing Then
+
+      Select Case rStockItem.ItemType
         Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
           mRetVal = rWoodPalletItem.Quantity
 
@@ -22,12 +21,29 @@ Public Class clsWoodPalletSharedFuncs
     Return mRetVal
   End Function
 
+
+  Public Shared Function BoardFeetToM3(ByVal vPieTabla As Decimal) As Decimal
+    Dim mRetVal As Decimal
+    mRetVal = vPieTabla / 423.77
+    Return mRetVal
+  End Function
+
+  Public Shared Function M3ToBoardFeet(ByVal vM3 As Decimal) As Decimal
+    Dim mRetVal As Decimal
+    mRetVal = vM3 * 423.77
+    Return mRetVal
+  End Function
+
+
   Public Shared Function GetStockItemQtys(ByRef rWoodPallet As dmWoodPallet) As Dictionary(Of Integer, Decimal)
     Dim mRetVal As New Dictionary(Of Integer, Decimal)
     Dim mVol As Decimal
+    Dim mSI As dmStockItem
 
     For Each mPI As dmWoodPalletItem In rWoodPallet.WoodPalletItems
-      mVol = GetWoodPalletItemVolume(mPI)
+      mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPI.StockItemID)
+      mVol = GetWoodPalletItemVolumeBoardFeet(mPI, mSI)
+
       If mRetVal.ContainsKey(mPI.StockItemID) Then
         mRetVal(mPI.StockItemID) = mRetVal(mPI.StockItemID) + mVol
       Else
@@ -61,17 +77,38 @@ Public Class clsWoodPalletSharedFuncs
   Public Shared Function GetWoodPalletContentDescription(ByVal vWoodPalletItems As colWoodPalletItems) As String
     Dim mRetVal As String = ""
     Dim mListString As New List(Of String)
+    Dim mFeetBoard As Decimal = 0
 
     If vWoodPalletItems IsNot Nothing And vWoodPalletItems.Count > 0 Then
       For Each mWPI As dmWoodPalletItem In vWoodPalletItems
 
         If Not mListString.Contains(mWPI.Description) Then
           mListString.Add(mWPI.Description)
-          mRetVal &= mWPI.Description & ","
+
+          If mWPI.Thickness > 0 Then
+            mFeetBoard = (mWPI.Thickness * mWPI.Width * mWPI.Length) / 12 * (mWPI.Quantity - mWPI.QuantityUsed)
+
+            If mFeetBoard > 0 Then
+              mRetVal &= mWPI.Description & " con " & mFeetBoard.ToString("00") & " PT"
+            Else
+              mRetVal &= mWPI.Description & " : "
+            End If
+
+          Else
+            If mWPI.Quantity > 0 Then
+              mRetVal &= mWPI.Description & " con " & (mWPI.Quantity - mWPI.QuantityUsed).ToString("0") & " m3,"
+
+            Else
+              mRetVal &= mWPI.Description & " ,"
+
+            End If
+          End If
         End If
 
       Next
       mRetVal = mRetVal.Substring(0, mRetVal.Length - 1)
+
+
     End If
     Return mRetVal
   End Function
@@ -120,7 +157,7 @@ Public Class clsWoodPalletSharedFuncs
 
 
         Case eStockItemTypeTimberWood.Rollo
-          mRef = "BLT-R-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+          mRef = "RST-R-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
       End Select
 

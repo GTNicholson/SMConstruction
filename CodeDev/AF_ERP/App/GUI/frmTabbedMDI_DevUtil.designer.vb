@@ -73,10 +73,11 @@ Partial Class frmTabbedMDI_DevUtil
     Me.navbaritBackDateOverTime = New DevExpress.XtraNavBar.NavBarItem()
         Me.navbaritAssignStockCodes = New DevExpress.XtraNavBar.NavBarItem()
         Me.btnGeneratePalletRefs = New DevExpress.XtraNavBar.NavBarItem()
+        Me.btnGenerateWoodDesc = New DevExpress.XtraNavBar.NavBarItem()
         Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
         Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
         Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
-        Me.btnGenerateWoodDesc = New DevExpress.XtraNavBar.NavBarItem()
+        Me.btnSIWoodDesc = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositorybarComboMDITabImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -318,7 +319,7 @@ Partial Class frmTabbedMDI_DevUtil
         Me.navbar.ContentButtonHint = Nothing
         Me.navbar.Dock = System.Windows.Forms.DockStyle.Left
         Me.navbar.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup_Utilities, Me.NavBarGroup2, Me.NavBarGroup3, Me.NavBarGroup1})
-        Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime, Me.navbaritAssignStockCodes, Me.btnGeneratePalletRefs, Me.btnGenerateWoodDesc})
+        Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime, Me.navbaritAssignStockCodes, Me.btnGeneratePalletRefs, Me.btnGenerateWoodDesc, Me.btnSIWoodDesc})
         Me.navbar.Location = New System.Drawing.Point(0, 45)
         Me.navbar.Name = "navbar"
         Me.navbar.OptionsNavPane.ExpandedWidth = 231
@@ -406,7 +407,7 @@ Partial Class frmTabbedMDI_DevUtil
         '
         Me.NavBarGroup1.Caption = "Application Tests & Utilities"
         Me.NavBarGroup1.Expanded = True
-        Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritBackDateOverTime), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritAssignStockCodes), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGeneratePalletRefs), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGenerateWoodDesc)})
+        Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritBackDateOverTime), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritAssignStockCodes), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGeneratePalletRefs), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGenerateWoodDesc), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnSIWoodDesc)})
         Me.NavBarGroup1.Name = "NavBarGroup1"
         '
         'navbarPodioTest
@@ -434,6 +435,11 @@ Partial Class frmTabbedMDI_DevUtil
         Me.btnGeneratePalletRefs.Caption = "Generate Pallet Refs"
         Me.btnGeneratePalletRefs.Name = "btnGeneratePalletRefs"
         '
+        'btnGenerateWoodDesc
+        '
+        Me.btnGenerateWoodDesc.Caption = "Generate WoodPallet Desc"
+        Me.btnGenerateWoodDesc.Name = "btnGenerateWoodDesc"
+        '
         'NavBarItem_Connection
         '
         Me.NavBarItem_Connection.Caption = "Connection Set-up"
@@ -452,10 +458,10 @@ Partial Class frmTabbedMDI_DevUtil
         '
         Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
         '
-        'btnGenerateWoodDesc
+        'btnSIWoodDesc
         '
-        Me.btnGenerateWoodDesc.Caption = "Generate WoodPallet Desc"
-        Me.btnGenerateWoodDesc.Name = "btnGenerateWoodDesc"
+        Me.btnSIWoodDesc.Caption = "Generate Wood SI Desc"
+        Me.btnSIWoodDesc.Name = "btnSIWoodDesc"
         '
         'frmTabbedMDI_DevUtil
         '
@@ -547,4 +553,5 @@ Partial Class frmTabbedMDI_DevUtil
   Friend WithEvents navbaritAssignStockCodes As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents btnGeneratePalletRefs As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents btnGenerateWoodDesc As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents btnSIWoodDesc As DevExpress.XtraNavBar.NavBarItem
 End Class

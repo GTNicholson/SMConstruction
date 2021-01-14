@@ -42,7 +42,7 @@ Public Class clsStockItemTransactionLogInfo
 
   Private pPalletRef As String
   Private pPalletOutsideRef As String
-
+  Private pLocationID As Byte
   Public Sub New()
     MyBase.New()
     pCurrentStockItem = New dmStockItem
@@ -104,6 +104,15 @@ Public Class clsStockItemTransactionLogInfo
     End Get
     Set(value As String)
       pPalletRef = value
+    End Set
+  End Property
+
+  Public Property LocationID As Byte
+    Get
+      Return pLocationID
+    End Get
+    Set(value As Byte)
+      pLocationID = value
     End Set
   End Property
   Public Property PalletOutsideRef As String
@@ -461,7 +470,7 @@ Public Class clsStockItemTransactionLogInfo
           mRetVal = pWorkOrder.WorkOrderNo
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''GRN Number
-        Case eObjectType.WoodMovement
+        Case eObjectType.WoodPallet
           mRetVal = PalletRef
 
 
@@ -480,8 +489,8 @@ Public Class clsStockItemTransactionLogInfo
           mRetVal = pSalesOrder.ProjectName
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''PO Num
-        Case eObjectType.WoodMovement
-          mRetVal = PalletOutsideRef
+        Case eObjectType.WoodPallet
+          mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eLocations), CType(LocationID, eLocations))
 
 
       End Select

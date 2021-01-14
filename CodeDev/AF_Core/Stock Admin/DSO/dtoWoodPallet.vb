@@ -64,7 +64,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnStartDate", DateToDBValue(.KilnStartDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnEndDate", DateToDBValue(.KilnEndDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsComplete", .IsComplete)
-
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IntoWIPDate", DateToDBValue(.IntoWIPDate))
 
 
     End With
@@ -88,6 +88,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .KilnStartDate = DBReadDate(rDataReader, "KilnStartDate")
         .KilnEndDate = DBReadDate(rDataReader, "KilnEndDate")
         .IsComplete = DBReadBoolean(rDataReader, "IsComplete")
+        .IntoWIPDate = DBReadDate(rDataReader, "IntoWIPDate")
         pWoodPallet.IsDirty = False
       End With
       mOK = True

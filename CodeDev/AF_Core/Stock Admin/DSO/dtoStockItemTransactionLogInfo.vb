@@ -161,7 +161,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
           With pStockItemTransactionLogInfo
             .PalletRef = DBReadString(rDataReader, "PalletRef")
             .PalletOutsideRef = DBReadString(rDataReader, "RefPalletOutside")
-
+            .LocationID = DBReadByte(rDataReader, "LocationID")
           End With
 
           With pStockItemTransactionLogInfo.MaterialRequirement

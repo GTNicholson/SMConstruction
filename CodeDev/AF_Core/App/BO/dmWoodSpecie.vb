@@ -145,7 +145,11 @@ Public Class dmWoodSpecie : Inherits dmBase
 
   Public Property DisplayValue As String Implements iValueItem.DisplayValue
     Get
-      Return pEnglishDescription
+      If pEnglishDescription <> "" Then
+        Return pEnglishDescription
+      Else
+        Return pSpanishDescription
+      End If
     End Get
     Set(value As String)
 

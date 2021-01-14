@@ -11,6 +11,7 @@ Public Class clsStockItemInfo
   Private pSupplier As dmSupplier
 
   Private pCostQty As Decimal
+  Private pTotalCubicMeter As Decimal
 
   Public Sub New(ByRef rPurchaseOrderItem As dmPurchaseOrderItem)
     pPOStockItem = rPurchaseOrderItem
@@ -33,6 +34,14 @@ Public Class clsStockItemInfo
 
   Public Property CurrentInventory() As Decimal
     Get
+
+      Dim mRetVal As Decimal = 0
+      If pStockItem.Category = eStockItemCategory.Timber And pStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
+
+        pTotalCubicMeter = clsWoodPalletSharedFuncs.BoardFeetToM3(pCurrentInventory)
+
+      End If
+
       Return pCurrentInventory
     End Get
     Set(ByVal value As Decimal)
@@ -258,6 +267,25 @@ Public Class clsStockItemInfo
     End Get
 
   End Property
+
+  Public Property TotalCubicMeter As Decimal
+    Get
+
+      If pStockItem.Category = eStockItemCategory.Timber And pStockItem.ItemType <> eStockItemTypeTimberWood.Rollo Then
+
+        pTotalCubicMeter = pCurrentInventory / 424
+
+      End If
+      Return pTotalCubicMeter
+    End Get
+
+    Set(value As Decimal)
+      pTotalCubicMeter = value
+    End Set
+  End Property
+
+
+
 
 End Class
 

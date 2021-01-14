@@ -213,7 +213,7 @@ Public Class frmStockItem
     Dim mRetval As Boolean
     Dim mProposedDescription As String
     If pFormController.CurrentStockItem.Description = "" And pFormController.CurrentStockItem.Category = eStockItemCategory.Timber Then
-      mProposedDescription = pFormController.GetProposedDescription
+      mProposedDescription = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(pFormController.CurrentStockItem)
       If mProposedDescription <> "" Then
 
         pFormController.CurrentStockItem.Description = mProposedDescription

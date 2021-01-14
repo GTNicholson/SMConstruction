@@ -412,49 +412,35 @@ Public Class fccStocktem
   Public Function GetProposedCode()
     Dim mDSO As dsoStock
     Dim mStem As String
-    Dim mSuffix As Integer
+    Dim mThicknessDecimal As Decimal
     Dim mRetVal As String = ""
+    Dim mThicknessInteger As Integer
 
     mStem = clsStockItemSharedFuncs.GetStockCodeStem(pCurrentStockItem)
     mDSO = New dsoStock(pDBConn)
     If mStem <> "" Then
-      mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
+      mThicknessDecimal = pCurrentStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
+      pCurrentStockItem.StockCode = mStem
+      If mThicknessDecimal <> 0 Then
+        mThicknessInteger = CInt(mThicknessDecimal)
 
-      mRetVal = mStem & mSuffix.ToString("000")
-    End If
-    Return mRetVal
-  End Function
+        mThicknessDecimal = mThicknessDecimal - mThicknessInteger
 
-  Public Function GetProposedDescription()
+        If mThicknessDecimal > 0 Then
+          mThicknessDecimal = mThicknessDecimal * 10
+          pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
 
-    Dim mDescription As String
-    Dim mRetVal As String = ""
-    Dim mInteger As Integer
-    Dim mDecimal As Decimal
-    mDescription = "Madera " & clsStockItemSharedFuncs.GetStockItemTypeDescription(pCurrentStockItem)
+        Else
+          pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString("n1")
 
-    mDescription &= " de " & clsStockItemSharedFuncs.GetSpeciesDescription(pCurrentStockItem).Trim
-
-    If pCurrentStockItem.ItemType = eStockItemTypeTimberWood.Arbol Or pCurrentStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
-      ''decide what to do with this description
-    Else
-
-      mInteger = Int(pCurrentStockItem.Thickness)
-      mDecimal = (pCurrentStockItem.Thickness - mInteger) * 10
-      If mDecimal = 0 Then
-        mDescription &= String.Format(" de {0}", mInteger) & "''"
-
-      Else
-        mDescription &= String.Format(" de {0}_{1}", mInteger, mDecimal.ToString("n0")) & "''"
+        End If
 
       End If
-
     End If
-
-
-
-    Return mDescription
+      Return mRetVal
   End Function
+
+
 
 End Class
 

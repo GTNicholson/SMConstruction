@@ -117,9 +117,12 @@ Public Class frmWorkOrderWoodProcess
 
       SetupTabOptionControls()
 
-      pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+      pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
-      grdOutputWoodPalletItem.DataSource = pFormController.OutputWoodPalletItem
+
+
+      pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+      grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
 
     Catch ex As Exception
       mMsg = ex.Message
@@ -175,9 +178,10 @@ Public Class frmWorkOrderWoodProcess
         grpGeneralInformation.Text = "Detalles de Registro para el Aserrío"
         grpOutputWood.CustomHeaderButtons(0).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(1).Properties.Visible = True
-        grpOutputWood.CustomHeaderButtons(1).Properties.Visible = True
+        grpOutputWood.CustomHeaderButtons(2).Properties.Visible = True
 
         gvSourceWoodPalletItem.Columns("ToProcessQty").Visible = True
+        gvOutputWoodPaleltItem.Columns("ToProcessQty").Visible = True
 
         grpConsumedWoodPalletItemInfo.CustomHeaderButtons(1).Properties.Visible = True
 
@@ -232,7 +236,7 @@ Public Class frmWorkOrderWoodProcess
       RefreshSourceTabs()
       RefreshOutputTabs()
       RefreshControls()
-      pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+      pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
       gvSourceWoodPalletItem.RefreshData()
     Catch ex As Exception
@@ -247,7 +251,7 @@ Public Class frmWorkOrderWoodProcess
     If grdOutputWoodPalletItem.DataSource IsNot Nothing Then
       For Each mItem In grdOutputWoodPalletItem.DataSource
 
-        mWPI = TryCast(mItem, dmWoodPalletItem)
+        mWPI = TryCast(mItem, clsWoodPalletItemEditor).WoodPalletItem
 
         If mWPI IsNot Nothing Then
           mToUpdateListWPI.Add(mWPI)
@@ -500,7 +504,7 @@ Public Class frmWorkOrderWoodProcess
           pFormController.SaveObjects()
           RefreshSourceTabs()
           RefreshOutputTabs()
-          pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+          pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
           grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
           gvSourceWoodPalletItem.RefreshData()
 
@@ -528,6 +532,7 @@ Public Class frmWorkOrderWoodProcess
   End Sub
 
   Private Sub ProcessOutputAserrio()
+
     pFormController.ProcessOutpuAserrio(pFormController.CurrentOutputWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID)
 
 
@@ -538,6 +543,8 @@ Public Class frmWorkOrderWoodProcess
     RefreshControls()
 
     pFormController.LoadOtputWoodPallet()
+    pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+    grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
     grdOutputWoodPalletItem.RefreshDataSource()
     gvOutputWoodPaleltItem.RefreshData()
   End Sub
@@ -553,7 +560,7 @@ Public Class frmWorkOrderWoodProcess
     RefreshControls()
 
     pFormController.LoadSourceWoodPallet()
-    pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+    pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
     grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
     gvSourceWoodPalletItem.RefreshData()
   End Sub
@@ -667,7 +674,8 @@ Public Class frmWorkOrderWoodProcess
         pFormController.SaveWoodPalletDown(pFormController.CurrentOutputWoodPallet)
         pFormController.SaveObjects()
 
-        grdOutputWoodPalletItem.DataSource = pFormController.CurrentOutputWoodPallet.WoodPalletItems
+        pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+        grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
 
 
       Case ePalletOptions.Process
@@ -675,6 +683,8 @@ Public Class frmWorkOrderWoodProcess
         Select Case pFormController.CurrentWoodWorkOrder.WorkOrderProcessOption
 
           Case eWorkOrderWoodProcess.Aserrio
+            gvOutputWoodPaleltItem.CloseEditor()
+            CheckSave(False)
             ProcessOutputAserrio()
 
           Case eWorkOrderWoodProcess.Clasificar
@@ -702,7 +712,7 @@ Public Class frmWorkOrderWoodProcess
         pFormController.SetCurrentSourceWoodPallet(Nothing)
       End If
 
-      pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+      pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
       grdSourceWoodPalletItem.RefreshDataSource()
     Catch ex As Exception
@@ -726,7 +736,8 @@ Public Class frmWorkOrderWoodProcess
         pFormController.SetCurrentOutputWoodPallet(Nothing)
       End If
 
-      grdOutputWoodPalletItem.DataSource = pFormController.CurrentOutputWoodPallet.WoodPalletItems
+      pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+      grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
       grdOutputWoodPalletItem.RefreshDataSource()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -912,7 +923,9 @@ Public Class frmWorkOrderWoodProcess
     RefreshControls()
 
     gvOutputWoodPaleltItem.RefreshData()
-    grdOutputWoodPalletItem.DataSource = pFormController.CurrentOutputWoodPallet.WoodPalletItems
+
+    pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+    grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
 
     gvSourceWoodPalletItem.RefreshData()
     btnEndKiln.Enabled = False
@@ -934,10 +947,12 @@ Public Class frmWorkOrderWoodProcess
     RefreshControls()
 
     gvOutputWoodPaleltItem.RefreshData()
-    grdOutputWoodPalletItem.DataSource = pFormController.CurrentOutputWoodPallet.WoodPalletItems
+
+    pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+    grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
 
     pFormController.LoadSourceWoodPallet()
-    pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+    pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
     grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
     gvSourceWoodPalletItem.RefreshData()
   End Sub
@@ -958,10 +973,11 @@ Public Class frmWorkOrderWoodProcess
     RefreshControls()
 
     gvOutputWoodPaleltItem.RefreshData()
-    grdOutputWoodPalletItem.DataSource = pFormController.CurrentOutputWoodPallet.WoodPalletItems
+    pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+    grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
 
     pFormController.LoadSourceWoodPallet()
-    pFormController.RefreshWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+    pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
     grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
     gvSourceWoodPalletItem.RefreshData()
   End Sub
@@ -1004,11 +1020,11 @@ Public Class frmWorkOrderWoodProcess
     End If
   End Sub
 
-  Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddDuplicated.ButtonClick
+  Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoOutputAddButton.ButtonClick
     Dim mSelectedWoodPalletItem As dmWoodPalletItem
     Dim mDuplicatedWoodPalletItem As dmWoodPalletItem
 
-    mSelectedWoodPalletItem = TryCast(gvOutputWoodPaleltItem.GetFocusedRow, dmWoodPalletItem)
+    mSelectedWoodPalletItem = TryCast(gvOutputWoodPaleltItem.GetFocusedRow, clsWoodPalletItemEditor).WoodPalletItem
 
     If mSelectedWoodPalletItem IsNot Nothing Then
       mDuplicatedWoodPalletItem = New dmWoodPalletItem
@@ -1026,6 +1042,9 @@ Public Class frmWorkOrderWoodProcess
       pFormController.SaveObjects()
       UpdateOutputWoodPalletItems()
       pFormController.SaveWoodPalletDown(pFormController.CurrentOutputWoodPallet)
+
+      pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
+      grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
       grdOutputWoodPalletItem.RefreshDataSource()
     End If
   End Sub
@@ -1037,7 +1056,7 @@ Public Class frmWorkOrderWoodProcess
     Select Case e.Button.ButtonType
       Case NavigatorButtonType.Remove
         Try
-          mWoodPalletItem = TryCast(gvOutputWoodPaleltItem.GetFocusedRow, dmWoodPalletItem)
+          mWoodPalletItem = TryCast(gvOutputWoodPaleltItem.GetFocusedRow, clsWoodPalletItemEditor).WoodPalletItem
           If mWoodPalletItem IsNot Nothing Then
             mIndex = pFormController.CurrentOutputWoodPallet.WoodPalletItems.GetIndexByWoodPalletItemID(mWoodPalletItem.WoodPalletItemID)
             If mIndex > 0 Then

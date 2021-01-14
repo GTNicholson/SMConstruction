@@ -227,6 +227,10 @@ Public Class dsoAppRefLists
           mItem.IList = LoadCostBook()
           mOK = True
 
+        Case appRefLists.StockItemType
+          mValueItems = eStockItemTypeTimberWood.GetInstance.ValueItems
+          mItem.IList = mValueItems
+          mOK = True
       End Select
       mItem = Nothing
     Else

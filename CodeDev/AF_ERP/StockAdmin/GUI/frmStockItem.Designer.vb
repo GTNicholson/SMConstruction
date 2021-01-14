@@ -76,7 +76,7 @@ Partial Class frmStockItem
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
-        Me.cboSupplierUoM = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.cboCostUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.barRGObsoleteItems = New DevExpress.XtraBars.BarEditItem()
@@ -108,6 +108,8 @@ Partial Class frmStockItem
         Me.BarEditItem7 = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+        Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboSupplierUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -163,12 +165,10 @@ Partial Class frmStockItem
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.cboCostUoM = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGroupF8.SuspendLayout()
-        CType(Me.cboSupplierUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCostUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +179,7 @@ Partial Class frmStockItem
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboSupplierUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAuxCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCostQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,7 +212,6 @@ Partial Class frmStockItem
         Me.grpCurrentStockItem.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.cboCostUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkIsObsolete
@@ -459,19 +459,19 @@ Partial Class frmStockItem
         Me.grpGroupF8.TabIndex = 94
         Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
         '
-        'cboSupplierUoM
+        'cboCostUoM
         '
-        Me.cboSupplierUoM.Location = New System.Drawing.Point(98, 259)
-        Me.cboSupplierUoM.MenuManager = Me.BarManager1
-        Me.cboSupplierUoM.Name = "cboSupplierUoM"
-        Me.cboSupplierUoM.Properties.AllowMouseWheel = False
-        Me.cboSupplierUoM.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboSupplierUoM.Properties.Appearance.Options.UseFont = True
-        Me.cboSupplierUoM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboSupplierUoM.Properties.ReadOnly = True
-        Me.cboSupplierUoM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboSupplierUoM.Size = New System.Drawing.Size(194, 20)
-        Me.cboSupplierUoM.TabIndex = 133
+        Me.cboCostUoM.Location = New System.Drawing.Point(415, 259)
+        Me.cboCostUoM.MenuManager = Me.BarManager1
+        Me.cboCostUoM.Name = "cboCostUoM"
+        Me.cboCostUoM.Properties.AllowMouseWheel = False
+        Me.cboCostUoM.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboCostUoM.Properties.Appearance.Options.UseFont = True
+        Me.cboCostUoM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboCostUoM.Properties.ReadOnly = True
+        Me.cboCostUoM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cboCostUoM.Size = New System.Drawing.Size(218, 20)
+        Me.cboCostUoM.TabIndex = 135
         '
         'BarManager1
         '
@@ -533,7 +533,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1294, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1294, 30)
         '
         'barDockControlBottom
         '
@@ -547,17 +547,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 711)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 714)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1294, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1294, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 711)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 714)
         '
         'BarButtonItem1
         '
@@ -696,6 +696,32 @@ Partial Class frmStockItem
         Me.RepoItemRadioGroupCategory.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(0, Byte), "All"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(1, Byte), "Doorblanks"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(2, Byte), "Facings/Substrate"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(3, Byte), "Ironmongery"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(4, Byte), "Glass"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(5, Byte), "Intumescents"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(6, Byte), "Beading"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(8, Byte), "Lips"), New DevExpress.XtraEditors.Controls.RadioGroupItem(CType(10, Byte), "Timber Components")})
         Me.RepoItemRadioGroupCategory.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
         Me.RepoItemRadioGroupCategory.Name = "RepoItemRadioGroupCategory"
+        '
+        'LabelControl25
+        '
+        Me.LabelControl25.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl25.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl25.Appearance.Options.UseFont = True
+        Me.LabelControl25.Appearance.Options.UseForeColor = True
+        Me.LabelControl25.Location = New System.Drawing.Point(322, 262)
+        Me.LabelControl25.Name = "LabelControl25"
+        Me.LabelControl25.Size = New System.Drawing.Size(52, 14)
+        Me.LabelControl25.TabIndex = 134
+        Me.LabelControl25.Text = "UdM Costo"
+        '
+        'cboSupplierUoM
+        '
+        Me.cboSupplierUoM.Location = New System.Drawing.Point(98, 259)
+        Me.cboSupplierUoM.MenuManager = Me.BarManager1
+        Me.cboSupplierUoM.Name = "cboSupplierUoM"
+        Me.cboSupplierUoM.Properties.AllowMouseWheel = False
+        Me.cboSupplierUoM.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboSupplierUoM.Properties.Appearance.Options.UseFont = True
+        Me.cboSupplierUoM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboSupplierUoM.Properties.ReadOnly = True
+        Me.cboSupplierUoM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cboSupplierUoM.Size = New System.Drawing.Size(194, 20)
+        Me.cboSupplierUoM.TabIndex = 133
         '
         'LabelControl24
         '
@@ -1344,7 +1370,7 @@ Partial Class frmStockItem
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 707)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 710)
         Me.SplitContainerControl1.SplitterPosition = 369
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1369,36 +1395,10 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1294, 711)
+        Me.PanelControl1.Size = New System.Drawing.Size(1294, 714)
         Me.PanelControl1.TabIndex = 4
-        '
-        'cboCostUoM
-        '
-        Me.cboCostUoM.Location = New System.Drawing.Point(415, 259)
-        Me.cboCostUoM.MenuManager = Me.BarManager1
-        Me.cboCostUoM.Name = "cboCostUoM"
-        Me.cboCostUoM.Properties.AllowMouseWheel = False
-        Me.cboCostUoM.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboCostUoM.Properties.Appearance.Options.UseFont = True
-        Me.cboCostUoM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboCostUoM.Properties.ReadOnly = True
-        Me.cboCostUoM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboCostUoM.Size = New System.Drawing.Size(218, 20)
-        Me.cboCostUoM.TabIndex = 135
-        '
-        'LabelControl25
-        '
-        Me.LabelControl25.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl25.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl25.Appearance.Options.UseFont = True
-        Me.LabelControl25.Appearance.Options.UseForeColor = True
-        Me.LabelControl25.Location = New System.Drawing.Point(322, 262)
-        Me.LabelControl25.Name = "LabelControl25"
-        Me.LabelControl25.Size = New System.Drawing.Size(52, 14)
-        Me.LabelControl25.TabIndex = 134
-        Me.LabelControl25.Text = "UdM Costo"
         '
         'frmStockItem
         '
@@ -1416,7 +1416,7 @@ Partial Class frmStockItem
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGroupF8.ResumeLayout(False)
         Me.grpGroupF8.PerformLayout()
-        CType(Me.cboSupplierUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCostUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1427,6 +1427,7 @@ Partial Class frmStockItem
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboSupplierUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAuxCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCostQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1459,7 +1460,6 @@ Partial Class frmStockItem
         Me.grpCurrentStockItem.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.cboCostUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

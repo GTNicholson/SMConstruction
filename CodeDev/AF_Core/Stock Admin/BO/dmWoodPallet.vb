@@ -15,6 +15,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pKilnStartDate As Date
   Private pKilnEndDate As Date
   Private pIsComplete As Boolean
+  Private pIntoWIPDate As Date
   Public Sub New()
     MyBase.New()
   End Sub
@@ -64,6 +65,7 @@ Public Class dmWoodPallet : Inherits dmBase
       .KilnStartDate = KilnStartDate
       .KilnEndDate = KilnEndDate
       .IsComplete = IsComplete
+      .IntoWIPDate = IntoWIPDate
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -224,7 +226,15 @@ Public Class dmWoodPallet : Inherits dmBase
     End Get
   End Property
 
-
+  Public Property IntoWIPDate As Date
+    Get
+      Return pIntoWIPDate
+    End Get
+    Set(value As Date)
+      If pIntoWIPDate <> value Then IsDirty = True
+      pIntoWIPDate = value
+    End Set
+  End Property
 End Class
 
 

@@ -166,22 +166,7 @@ Public Class dmWoodPalletItem : Inherits dmBase
   End Sub
 
 
-  Public ReadOnly Property TotalCubicMeter
-    Get
-      If TotalBoardFeet = 0 Then
-        Return Quantity
-      Else
-        Return TotalBoardFeet / 424
-      End If
 
-    End Get
-  End Property
-
-  Public ReadOnly Property TotalBoardFeet
-    Get
-      Return Math.Round((Thickness * Width * Length) / 12, 2, MidpointRounding.AwayFromZero) * Quantity
-    End Get
-  End Property
 
 End Class
 

@@ -59,7 +59,7 @@ Public Enum eActivityCode
   WoodInventory = 901 '// was 506
   WoodPallet = 902 '// was 507
   WorkOrderWoodProcess = 903
-
+  WoodPalletItemReport = 904
 
 End Enum
 
@@ -158,8 +158,8 @@ Public Enum eObjectType
   MaterialRequirement = 6
   PODeliveryItem = 7
   PurchaseOrder = 8
-  WoodPicking = 9
-  WoodMovement = 10
+  WoodPallet = 9
+
 End Enum
 
 Public Enum eEmployeeRole
@@ -247,6 +247,7 @@ Public Enum eReportSource
   PODelivery = 7
   PODeliveryItem = 8
   PurchaseOrderItem = 9
+  WoodPalletItemInfo = 10
 End Enum
 
 Public Enum eParentType
@@ -1233,8 +1234,8 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     Dim mRoll As New clsStockItemType(Rollo, "Rollo", "ROL")
     MyBase.Add(mRoll)
 
-    Dim mSaw As New clsStockItemType(Aserrado, "ASE", "ASE")
-    MyBase.Add(mSaw)
+    'Dim mSaw As New clsStockItemType(Aserrado, "ASE", "ASE")
+    'MyBase.Add(mSaw)
 
     Dim mMAS As New clsStockItemType(MAS, "MAS", "MAS")
     MyBase.Add(mMAS)
@@ -1833,6 +1834,7 @@ Public Enum eTransactionType
   <Description("Palletise LI")> PalletiseLI = 11
   <Description("Movimiento de Bodega")> Movement = 12
   <Description("Corrección de Inv. Madera")> WoodAmendment = 13
+  <Description("Picking de Madera")> WoodPicking = 14
 End Enum
 
 Public Enum ePayPeriodType

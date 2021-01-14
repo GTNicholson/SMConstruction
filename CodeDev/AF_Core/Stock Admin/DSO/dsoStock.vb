@@ -320,7 +320,29 @@ Public Class dsoStock
   End Function
 
 
+  Public Function LoadWoodPalletItemInfosByStockItemID(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vWhere As String) As Boolean
 
+    Dim mRetVal As Boolean
+    Dim mdto As dtoWoodPalletItemInfo
+
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoWoodPalletItemInfo(pDBConn)
+      mdto.LoadWoodPalletItemInfoCollectionByWhere(rWoodPalletItemInfos, vWhere)
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+
+
+  End Function
 
 
   Public Function LoadStockTakeDown(ByRef rStockTake As dmStockTake, ByVal vStockTakeID As Integer) As Boolean

@@ -383,12 +383,15 @@
     <Compile Include="Sales\DSO\dtoCustomer.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrder.vb" />
     <Compile Include="Sales\DSO\dtoWorkOrder.vb" />
+    <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
+    <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemTransactionLogInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockTakeItemEditor.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletItemEditor.vb" />
+    <Compile Include="Stock Admin\BO\clsWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletSharedFuncs.vb" />
     <Compile Include="Stock Admin\BO\dmOutputPallet.vb" />
     <Compile Include="Stock Admin\BO\dmStockItem.vb" />
@@ -417,6 +420,7 @@
     <Compile Include="Stock Admin\BI\BIReportViewFactoryStockItemTransactionLogInfo.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPallet.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPalletItem.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodPalletItemInfo.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\licenses.licx" />

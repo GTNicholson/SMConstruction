@@ -25,6 +25,7 @@ Partial Class frmMovementTransaction
     Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
     Me.cboLocations = New DevExpress.XtraEditors.ComboBoxEdit()
     Me.btnProcessMovement = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnAccept = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -58,11 +59,22 @@ Partial Class frmMovementTransaction
         Me.btnProcessMovement.TabIndex = 11
         Me.btnProcessMovement.Text = "Procesar"
         '
+        'btnAccept
+        '
+        Me.btnAccept.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btnAccept.Appearance.Options.UseFont = True
+        Me.btnAccept.Location = New System.Drawing.Point(23, 51)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(75, 23)
+        Me.btnAccept.TabIndex = 12
+        Me.btnAccept.Text = "Aceptar"
+        '
         'frmMovementTransaction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(329, 86)
+        Me.Controls.Add(Me.btnAccept)
         Me.Controls.Add(Me.btnProcessMovement)
         Me.Controls.Add(Me.cboLocations)
         Me.Controls.Add(Me.LabelControl1)
@@ -80,4 +92,5 @@ Partial Class frmMovementTransaction
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboLocations As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents btnProcessMovement As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnAccept As DevExpress.XtraEditors.SimpleButton
 End Class

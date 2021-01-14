@@ -92,6 +92,7 @@ Partial Class frmWorkOrderWoodProcess
     Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.repoAddDuplicated = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grpOutputWood = New DevExpress.XtraEditors.GroupControl()
         Me.xtabOutputWood = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
@@ -108,6 +109,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoOutputAddButton = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
@@ -120,7 +122,6 @@ Partial Class frmWorkOrderWoodProcess
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -171,9 +172,9 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.PanelControl1.Controls.Add(Me.TableLayoutPanel1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1288, 683)
+        Me.PanelControl1.Size = New System.Drawing.Size(1288, 686)
         Me.PanelControl1.TabIndex = 4
         '
         'TableLayoutPanel1
@@ -190,7 +191,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 205.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1284, 679)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1284, 682)
         Me.TableLayoutPanel1.TabIndex = 3
         '
         'grpGeneralInformation
@@ -227,7 +228,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.xtpKiln.Controls.Add(Me.PanelControl3)
         Me.xtpKiln.Name = "xtpKiln"
-        Me.xtpKiln.Size = New System.Drawing.Size(623, 79)
+        Me.xtpKiln.Size = New System.Drawing.Size(621, 78)
         Me.xtpKiln.Text = "Horno"
         '
         'PanelControl3
@@ -241,7 +242,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(623, 79)
+        Me.PanelControl3.Size = New System.Drawing.Size(621, 78)
         Me.PanelControl3.TabIndex = 0
         '
         'btnEndKiln
@@ -523,7 +524,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grpConsumedWoodPalletItemInfo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpConsumedWoodPalletItemInfo.Location = New System.Drawing.Point(3, 208)
         Me.grpConsumedWoodPalletItemInfo.Name = "grpConsumedWoodPalletItemInfo"
-        Me.grpConsumedWoodPalletItemInfo.Size = New System.Drawing.Size(637, 468)
+        Me.grpConsumedWoodPalletItemInfo.Size = New System.Drawing.Size(637, 471)
         Me.grpConsumedWoodPalletItemInfo.TabIndex = 2
         Me.grpConsumedWoodPalletItemInfo.Text = "Madera Consumido"
         '
@@ -536,10 +537,10 @@ Partial Class frmWorkOrderWoodProcess
         Me.xtabSourcePallet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabSourcePallet.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabSourcePallet.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabSourcePallet.Location = New System.Drawing.Point(2, 26)
+        Me.xtabSourcePallet.Location = New System.Drawing.Point(2, 24)
         Me.xtabSourcePallet.Name = "xtabSourcePallet"
         Me.xtabSourcePallet.SelectedTabPage = Me.XtraTabPage2
-        Me.xtabSourcePallet.Size = New System.Drawing.Size(633, 440)
+        Me.xtabSourcePallet.Size = New System.Drawing.Size(633, 445)
         Me.xtabSourcePallet.TabIndex = 1
         Me.xtabSourcePallet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2})
         '
@@ -547,7 +548,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.XtraTabPage2.Controls.Add(Me.pnlSourcePallets)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(557, 434)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(556, 437)
         Me.XtraTabPage2.Text = "Bulto: ###"
         '
         'pnlSourcePallets
@@ -556,7 +557,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.pnlSourcePallets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSourcePallets.Location = New System.Drawing.Point(0, 0)
         Me.pnlSourcePallets.Name = "pnlSourcePallets"
-        Me.pnlSourcePallets.Size = New System.Drawing.Size(557, 434)
+        Me.pnlSourcePallets.Size = New System.Drawing.Size(556, 437)
         Me.pnlSourcePallets.TabIndex = 0
         '
         'grdSourceWoodPalletItem
@@ -569,7 +570,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grdSourceWoodPalletItem.MainView = Me.gvSourceWoodPalletItem
         Me.grdSourceWoodPalletItem.Name = "grdSourceWoodPalletItem"
         Me.grdSourceWoodPalletItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated})
-        Me.grdSourceWoodPalletItem.Size = New System.Drawing.Size(553, 430)
+        Me.grdSourceWoodPalletItem.Size = New System.Drawing.Size(552, 433)
         Me.grdSourceWoodPalletItem.TabIndex = 10
         Me.grdSourceWoodPalletItem.UseEmbeddedNavigator = True
         Me.grdSourceWoodPalletItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSourceWoodPalletItem})
@@ -582,10 +583,13 @@ Partial Class frmWorkOrderWoodProcess
         Me.gvSourceWoodPalletItem.Appearance.EvenRow.Options.UseFont = True
         Me.gvSourceWoodPalletItem.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gvSourceWoodPalletItem.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvSourceWoodPalletItem.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvSourceWoodPalletItem.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gvSourceWoodPalletItem.Appearance.OddRow.BackColor = System.Drawing.Color.White
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Options.UseBackColor = True
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Options.UseFont = True
+        Me.gvSourceWoodPalletItem.ColumnPanelRowHeight = 34
         Me.gvSourceWoodPalletItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn24})
         Me.gvSourceWoodPalletItem.GridControl = Me.grdSourceWoodPalletItem
         Me.gvSourceWoodPalletItem.Name = "gvSourceWoodPalletItem"
@@ -716,6 +720,14 @@ Partial Class frmWorkOrderWoodProcess
         Me.repoAddDuplicated.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoAddDuplicated.Name = "repoAddDuplicated"
         '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "A Procesar"
+        Me.GridColumn24.FieldName = "ToProcessQty"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 8
+        '
         'grpOutputWood
         '
         Me.grpOutputWood.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -728,7 +740,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grpOutputWood.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpOutputWood.Location = New System.Drawing.Point(646, 208)
         Me.grpOutputWood.Name = "grpOutputWood"
-        Me.grpOutputWood.Size = New System.Drawing.Size(635, 468)
+        Me.grpOutputWood.Size = New System.Drawing.Size(635, 471)
         Me.grpOutputWood.TabIndex = 3
         Me.grpOutputWood.Text = "Madera Producido"
         '
@@ -741,10 +753,10 @@ Partial Class frmWorkOrderWoodProcess
         Me.xtabOutputWood.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabOutputWood.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabOutputWood.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabOutputWood.Location = New System.Drawing.Point(2, 26)
+        Me.xtabOutputWood.Location = New System.Drawing.Point(2, 24)
         Me.xtabOutputWood.Name = "xtabOutputWood"
         Me.xtabOutputWood.SelectedTabPage = Me.XtraTabPage3
-        Me.xtabOutputWood.Size = New System.Drawing.Size(631, 440)
+        Me.xtabOutputWood.Size = New System.Drawing.Size(631, 445)
         Me.xtabOutputWood.TabIndex = 2
         Me.xtabOutputWood.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3})
         '
@@ -752,7 +764,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.XtraTabPage3.Controls.Add(Me.pnlOutputWoodPallet)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(555, 434)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(554, 437)
         Me.XtraTabPage3.Text = "Bulto: ###"
         '
         'pnlOutputWoodPallet
@@ -761,7 +773,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.pnlOutputWoodPallet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlOutputWoodPallet.Location = New System.Drawing.Point(0, 0)
         Me.pnlOutputWoodPallet.Name = "pnlOutputWoodPallet"
-        Me.pnlOutputWoodPallet.Size = New System.Drawing.Size(555, 434)
+        Me.pnlOutputWoodPallet.Size = New System.Drawing.Size(554, 437)
         Me.pnlOutputWoodPallet.TabIndex = 0
         '
         'grdOutputWoodPalletItem
@@ -774,7 +786,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grdOutputWoodPalletItem.MainView = Me.gvOutputWoodPaleltItem
         Me.grdOutputWoodPalletItem.Name = "grdOutputWoodPalletItem"
         Me.grdOutputWoodPalletItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoOutputAddButton})
-        Me.grdOutputWoodPalletItem.Size = New System.Drawing.Size(551, 430)
+        Me.grdOutputWoodPalletItem.Size = New System.Drawing.Size(550, 433)
         Me.grdOutputWoodPalletItem.TabIndex = 10
         Me.grdOutputWoodPalletItem.UseEmbeddedNavigator = True
         Me.grdOutputWoodPalletItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOutputWoodPaleltItem})
@@ -787,11 +799,14 @@ Partial Class frmWorkOrderWoodProcess
         Me.gvOutputWoodPaleltItem.Appearance.EvenRow.Options.UseFont = True
         Me.gvOutputWoodPaleltItem.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gvOutputWoodPaleltItem.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvOutputWoodPaleltItem.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvOutputWoodPaleltItem.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gvOutputWoodPaleltItem.Appearance.OddRow.BackColor = System.Drawing.Color.White
         Me.gvOutputWoodPaleltItem.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvOutputWoodPaleltItem.Appearance.OddRow.Options.UseBackColor = True
         Me.gvOutputWoodPaleltItem.Appearance.OddRow.Options.UseFont = True
-        Me.gvOutputWoodPaleltItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.gvOutputWoodPaleltItem.ColumnPanelRowHeight = 34
+        Me.gvOutputWoodPaleltItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn26})
         Me.gvOutputWoodPaleltItem.GridControl = Me.grdOutputWoodPalletItem
         Me.gvOutputWoodPaleltItem.Name = "gvOutputWoodPaleltItem"
         Me.gvOutputWoodPaleltItem.OptionsView.EnableAppearanceEvenRow = True
@@ -803,7 +818,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
         Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn1.Caption = "Código"
-        Me.GridColumn1.FieldName = "StockCode"
+        Me.GridColumn1.FieldName = "StockItem.StockCode"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
@@ -815,7 +830,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
         Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn2.Caption = "Descripción"
-        Me.GridColumn2.FieldName = "Description"
+        Me.GridColumn2.FieldName = "StockItem.Description"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
@@ -837,7 +852,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn13.Caption = "Grosor"
         Me.GridColumn13.DisplayFormat.FormatString = "n2"
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn13.FieldName = "Thickness"
+        Me.GridColumn13.FieldName = "StockItem.Thickness"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
@@ -849,7 +864,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn14.Caption = "Ancho"
         Me.GridColumn14.DisplayFormat.FormatString = "n2"
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn14.FieldName = "Width"
+        Me.GridColumn14.FieldName = "WoodPalletItem.Width"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
@@ -860,7 +875,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn15.Caption = "Largo"
         Me.GridColumn15.DisplayFormat.FormatString = "n2"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn15.FieldName = "Length"
+        Me.GridColumn15.FieldName = "WoodPalletItem.Length"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 5
@@ -868,11 +883,14 @@ Partial Class frmWorkOrderWoodProcess
         '
         'GridColumn16
         '
+        Me.GridColumn16.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn16.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn16.Caption = "Cantidad"
         Me.GridColumn16.DisplayFormat.FormatString = "n0"
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "Quantity"
+        Me.GridColumn16.FieldName = "WoodPalletItem.Quantity"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 6
         Me.GridColumn16.Width = 61
@@ -884,7 +902,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn17.Caption = "Cant. Utilizada"
         Me.GridColumn17.DisplayFormat.FormatString = "n0"
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "QuantityUsed"
+        Me.GridColumn17.FieldName = "WoodPalletItem.QuantityUsed"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Visible = True
@@ -906,6 +924,16 @@ Partial Class frmWorkOrderWoodProcess
         Me.repoOutputAddButton.AutoHeight = False
         Me.repoOutputAddButton.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoOutputAddButton.Name = "repoOutputAddButton"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Procesar"
+        Me.GridColumn26.DisplayFormat.FormatString = "n2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "ToProcessQty"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 8
         '
         'XtraTabPage1
         '
@@ -965,7 +993,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1288, 33)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1288, 30)
         '
         'barDockControlBottom
         '
@@ -979,17 +1007,17 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 683)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 686)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1288, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1288, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 683)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 686)
         '
         'gcToProcessQty
         '
@@ -998,14 +1026,6 @@ Partial Class frmWorkOrderWoodProcess
         Me.gcToProcessQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcToProcessQty.FieldName = "ToProcessQty"
         Me.gcToProcessQty.Name = "gcToProcessQty"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "A Procesar"
-        Me.GridColumn24.FieldName = "ToProcessQty"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
         '
         'frmWorkOrderWoodProcess
         '
@@ -1142,4 +1162,5 @@ Partial Class frmWorkOrderWoodProcess
   Friend WithEvents bbtnClose As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents gcToProcessQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -264,7 +264,8 @@ Public Class frmTabbedMDI_DevUtil
     Dim mDBConn As RTIS.DataLayer.clsDBConnBase
     Dim mSICode As String
     Dim mdsoStock As dsoStock
-
+    Dim mThicknessInteger As Integer
+    Dim mThicknessDecimal As Decimal
     Try
 
       mDBConn = My.Application.RTISUserSession.CreateMainDBConn
@@ -276,9 +277,37 @@ Public Class frmTabbedMDI_DevUtil
       mdtoSI.LoadStockItemsByWhere(mStockItems, "StockCode is null")
 
       For Each mSI As dmStockItem In mStockItems
+
         mSICode = clsStockItemSharedFuncs.GetStockCodeStem(mSI)
-        mSICode = mSICode & mdsoStock.GetNextStockCodeSuffixNoConnected(mSICode).ToString("000")
-        mSI.StockCode = mSICode
+
+        If mSI.Category = eStockItemCategory.Timber Then
+
+          If mSICode <> "" Then
+            mThicknessDecimal = mSI.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
+            mSI.StockCode = mSICode
+            If mThicknessDecimal <> 0 Then
+              mThicknessInteger = CInt(mThicknessDecimal)
+
+              mThicknessDecimal = mThicknessDecimal - mThicknessInteger
+
+              If mThicknessDecimal > 0 Then
+                mThicknessDecimal = mThicknessDecimal * 10
+                mSI.StockCode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+
+              Else
+                mSI.StockCode = mSICode & "_" & mThicknessInteger.ToString("n1")
+
+              End If
+
+            End If
+          End If
+
+        Else
+          mSICode = mSICode & mdsoStock.GetNextStockCodeSuffixNoConnected(mSICode).ToString("000")
+          mSI.StockCode = mSICode
+        End If
+
+
         mdtoSI.SaveStockItem(mSI)
       Next
 
@@ -343,6 +372,38 @@ Public Class frmTabbedMDI_DevUtil
           mWP.Description = mWoodPalletDescription
           mdsoStock.SaveWoodPalletDown(mWP)
 
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mDBConn.IsConnected Then mDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Private Sub btnSIWoodDesc_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnSIWoodDesc.LinkClicked
+    Dim mStockItems As New colStockItems
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mStockItemDesc As String
+
+    Dim mdsoStock As dsoStock
+    mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+    Try
+      mDBConn.Connect()
+
+      mdsoStock = New dsoStock(mDBConn)
+      mdsoStock.LoadStockItemsByWhere(mStockItems, "")
+
+
+
+      For Each mSI As dmStockItem In mStockItems
+
+        If mSI.Category = eStockItemCategory.Timber Then
+          mStockItemDesc = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mSI)
+          mSI.Description = mStockItemDesc
+          mdsoStock.SaveStockItem(mSI)
+        End If
 
       Next
 
