@@ -747,6 +747,23 @@ Public Class dsoStockTransactions
     Return mOK
 
   End Function
+
+  Public Function GetLastTransactionBefore(ByVal vDateTime As DateTime, vID As Integer, vExcludeID As Integer) As dmStockItemTransactionLog
+    Dim mRetVal As New dmStockItemTransactionLog
+
+    Try
+      pDBConn.Connect()
+      mRetVal = GetLastTransactionBeforeConnected(vDateTime, vID, vExcludeID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+
+      If pDBConn.IsConnected Then
+        pDBConn.Disconnect()
+      End If
+    End Try
+    Return mRetVal
+  End Function
   Public Function AdjustmentSetStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vAdjustQty As Decimal, ByVal vRefObjectType As eObjectType, ByVal vRefObjectID As Integer, ByVal vTransDate As DateTime, ByVal rAmmendmentLog As dmStockItemLocationAmendmentLog, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)

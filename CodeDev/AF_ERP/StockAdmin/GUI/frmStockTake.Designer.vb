@@ -25,6 +25,10 @@ Partial Class frmStockTake
     Me.components = New System.ComponentModel.Container()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockTake))
     Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+    Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+    Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.puccStockItemValuationHistorys = New DevExpress.XtraEditors.PopupContainerControl()
@@ -45,7 +49,7 @@ Partial Class frmStockTake
     Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnRefreshStockItems = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnRefreshSystemQty = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnFIFOSystemValue = New DevExpress.XtraBars.BarButtonItem()
+    Me.barbtnRunValuation = New DevExpress.XtraBars.BarButtonItem()
     Me.barbtnFIFOCountedValue = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnAplicarCantidadesContado = New DevExpress.XtraBars.BarButtonItem()
     Me.bbtnPrintVisibleItems = New DevExpress.XtraBars.BarButtonItem()
@@ -250,7 +254,7 @@ Partial Class frmStockTake
     Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
-    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.barbtnSaveExit, Me.barbtnClose, Me.barbtnSave, Me.barbtnExcelExport, Me.bbtnStockValuation, Me.barbtnLoadDespatchedQty, Me.bbtnRefreshWIPItems, Me.bbtnGoodsInInvoiced, Me.bbtnRefreshStockItems, Me.barbtnRefreshSystemQty, Me.barbtnCommitStockTake, Me.barbtnPrintCountSheet, Me.barbtnFIFOSystemValue, Me.barbtnFIFOCountedValue, Me.bbtnAplicarCantidadesContado, Me.bbtnPrintVisibleItems})
+    Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.barbtnSaveExit, Me.barbtnClose, Me.barbtnSave, Me.barbtnExcelExport, Me.bbtnStockValuation, Me.barbtnLoadDespatchedQty, Me.bbtnRefreshWIPItems, Me.bbtnGoodsInInvoiced, Me.bbtnRefreshStockItems, Me.barbtnRefreshSystemQty, Me.barbtnCommitStockTake, Me.barbtnPrintCountSheet, Me.barbtnRunValuation, Me.barbtnFIFOCountedValue, Me.bbtnAplicarCantidadesContado, Me.bbtnPrintVisibleItems})
     Me.BarManager1.MaxItemId = 24
     Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox1})
     '
@@ -260,7 +264,7 @@ Partial Class frmStockTake
     Me.Bar1.DockCol = 0
     Me.Bar1.DockRow = 0
     Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSaveExit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSave, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnClose, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnRefreshStockItems, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRefreshSystemQty), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOSystemValue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOCountedValue), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnAplicarCantidadesContado, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnPrintVisibleItems), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnExcelExport)})
+    Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSaveExit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnSave, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barbtnClose, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnRefreshStockItems, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRefreshSystemQty), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnRunValuation, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnFIFOCountedValue), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnAplicarCantidadesContado, True), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnPrintVisibleItems), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnExcelExport)})
     Me.Bar1.OptionsBar.AllowQuickCustomization = False
     Me.Bar1.OptionsBar.DisableClose = True
     Me.Bar1.OptionsBar.DisableCustomization = True
@@ -309,12 +313,12 @@ Partial Class frmStockTake
     Me.barbtnRefreshSystemQty.Id = 17
     Me.barbtnRefreshSystemQty.Name = "barbtnRefreshSystemQty"
     '
-    'barbtnFIFOSystemValue
+    'barbtnRunValuation
     '
-    Me.barbtnFIFOSystemValue.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.barbtnFIFOSystemValue.Caption = "Valor de Sistema PEPS"
-    Me.barbtnFIFOSystemValue.Id = 20
-    Me.barbtnFIFOSystemValue.Name = "barbtnFIFOSystemValue"
+    Me.barbtnRunValuation.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+    Me.barbtnRunValuation.Caption = "Valor de Sistema"
+    Me.barbtnRunValuation.Id = 20
+    Me.barbtnRunValuation.Name = "barbtnRunValuation"
     '
     'barbtnFIFOCountedValue
     '
@@ -350,7 +354,7 @@ Partial Class frmStockTake
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1370, 32)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1370, 35)
     '
     'barDockControlBottom
     '
@@ -364,17 +368,17 @@ Partial Class frmStockTake
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 35)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 679)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 676)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1370, 32)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1370, 35)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 679)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 676)
     '
     'bbtnStockValuation
     '
@@ -478,7 +482,7 @@ Partial Class frmStockTake
     '
     Me.repitbtStockItemRefresh.AutoHeight = False
     EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(EditorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, Nothing)})
+    Me.repitbtStockItemRefresh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
     Me.repitbtStockItemRefresh.Name = "repitbtStockItemRefresh"
     '
     'GridColumn1
@@ -683,11 +687,11 @@ Partial Class frmStockTake
     'grdStockCheckItem
     '
     Me.grdStockCheckItem.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.grdStockCheckItem.Location = New System.Drawing.Point(2, 24)
+    Me.grdStockCheckItem.Location = New System.Drawing.Point(2, 26)
     Me.grdStockCheckItem.MainView = Me.gvStockCheckItem
     Me.grdStockCheckItem.Name = "grdStockCheckItem"
     Me.grdStockCheckItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitPUStockItemValuationHistorys, Me.RepositoryItemSpinEditCounted, Me.repitbtStockItemRefresh})
-    Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 551)
+    Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 546)
     Me.grdStockCheckItem.TabIndex = 6
     Me.grdStockCheckItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockCheckItem})
     '
@@ -872,7 +876,7 @@ Partial Class frmStockTake
     Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
     Me.grpItemDetail.Name = "grpItemDetail"
-    Me.grpItemDetail.Size = New System.Drawing.Size(1359, 577)
+    Me.grpItemDetail.Size = New System.Drawing.Size(1359, 574)
     Me.grpItemDetail.TabIndex = 94
     Me.grpItemDetail.Text = "Stock Items"
     '
@@ -881,9 +885,9 @@ Partial Class frmStockTake
     Me.PanelControl1.Controls.Add(Me.grpDetail)
     Me.PanelControl1.Controls.Add(Me.grpItemDetail)
     Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.PanelControl1.Location = New System.Drawing.Point(0, 32)
+    Me.PanelControl1.Location = New System.Drawing.Point(0, 35)
     Me.PanelControl1.Name = "PanelControl1"
-    Me.PanelControl1.Size = New System.Drawing.Size(1370, 679)
+    Me.PanelControl1.Size = New System.Drawing.Size(1370, 676)
     Me.PanelControl1.TabIndex = 10
     '
     'frmStockTake
@@ -989,7 +993,7 @@ Partial Class frmStockTake
   Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents gcStockTakeSheet As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents barbtnFIFOSystemValue As DevExpress.XtraBars.BarButtonItem
+  Friend WithEvents barbtnRunValuation As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents barbtnFIFOCountedValue As DevExpress.XtraBars.BarButtonItem
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn

@@ -191,6 +191,19 @@ Public Class colCostBookEntrys : Inherits colBase(Of dmCostBookEntry)
     Next
     Return mIndex
   End Function
+
+  Public Function ItemFromStockItemID(ByVal vStockItemID As Integer) As dmCostBookEntry
+    Dim mItem As dmCostBookEntry
+    Dim mretval As dmCostBookEntry = Nothing
+
+    For Each mItem In MyBase.Items
+      If mItem.StockItemID = vStockItemID Then
+        mretval = mItem
+        Exit For
+      End If
+    Next
+    Return mretval
+  End Function
 End Class
 
 

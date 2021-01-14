@@ -842,47 +842,79 @@ Public Class fccStockTake
   ''    mSIV.TempSelected = False
   ''  Next
   ''End Sub
-  ''Public Sub UpdateSnapQty()
-
-  ''  Try
-  ''    Dim mSIL As dmStockItemLocation
-  ''    Dim mStockItemLocations As colStockItemLocations
-  ''    Dim mdsoStock As New dsoStock(pDBConn)
-
-  ''    For Each mSIV As clsStockItemValuation In StockItemValuations
-  ''      'If mSIV.StockItemID > 98000 Then
-  ''      '  MsgBox(mSIV.StockItemID)
-  ''      'End If
-  ''      mSIL = New dmStockItemLocation
-  ''      mStockItemLocations = New colStockItemLocations
-  ''      mdsoStock.LoadStockItemLocationsByWhere(mStockItemLocations, "StockItemID =" & mSIV.StockItemID & " And LocationID =" & mSIV.LocationID)
-
-  ''      mSIV.SnapshotQty = 0
-  ''      mSIV.SnapShotStockQty = 0
+  Public Sub UpdateSnapQty()
 
 
-  ''      'If mSIV.StockItem.NotTracked = False Then
+    Try
+      Dim mSIL As dmStockItemLocation
+      Dim mStockItemLocations As colStockItemLocations
+      Dim mdsoStock As New dsoStock(pDBConn)
+      Dim mdsoStockTransaction As New dsoStockTransactions(pDBConn)
 
-  ''      If mStockItemLocations.Count = 1 Then
-  ''        mSIL = mStockItemLocations(0)
-  ''        Dim mPreviousTransaction As dmStockItemTransactionLog = mdsoStock.GetLastTransactionBefore(pStockTake.StockCheckDate, mSIL.StockItemLocationID)
+      For Each mSIV As clsStockTakeItemEditor In pStockTakeItemEditors
+
+        mSIL = New dmStockItemLocation
+        mStockItemLocations = New colStockItemLocations
+        ''mdsoStock.LoadStockItemLocationsByWhere(mStockItemLocations, "StockItemID =" & mSIV.StockItem.StockItemID & " And LocationID =" & mSIV.StockItemLocation.LocationID)
+        mdsoStock.LoadStockItemLocationsByWhere(mStockItemLocations, "StockItemID =" & mSIV.StockItem.StockItemID & " And LocationID = 1")
+        mSIV.SnapshotQty = 0
 
 
-  ''        If mPreviousTransaction IsNot Nothing Then
-  ''          mSIV.SnapshotQty = mPreviousTransaction.NewValue
-  ''          mSIV.SnapShotStockQty = mPreviousTransaction.NewValue
-  ''        End If
-  ''      End If
-  ''      ' End If
+        'If mSIV.StockItem.NotTracked = False Then
 
-  ''    Next
+        If mStockItemLocations.Count = 1 Then
+          mSIL = mStockItemLocations(0)
+          Dim mPreviousTransaction As dmStockItemTransactionLog = mdsoStockTransaction.GetLastTransactionBefore(pStockTake.StockTakeDate, mSIL.StockItemLocationID, 0)
 
-  ''    pStockTake.DateSystemQty = DateTime.Now
-  ''  Catch ex As Exception
-  ''    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-  ''  End Try
 
-  ''End Sub
+          If mPreviousTransaction IsNot Nothing Then
+            mSIV.SnapshotQty = mPreviousTransaction.NewValue
+
+          End If
+        End If
+        ' End If
+
+      Next
+
+      pStockTake.DateSystemQty = DateTime.Now
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub RunValuation()
+    Dim mdso As dsoCostBook
+    Dim mSICostBookEntrys As New colCostBookEntrys
+    Dim mSICostBookEntry As dmCostBookEntry
+
+    Dim mCostBookID As Integer
+
+    mdso = New dsoCostBook(pDBConn)
+    mCostBookID = mdso.GetDefaultCostBookID
+
+    mdso = New dsoCostBook(DBConn)
+    mdso.LoadCostBookEntry(mSICostBookEntrys, mCostBookID)
+    'Load a local variable of a collection all StockItemCostBookEntries for this cost book (LoadStockItemCostBookEntries) called from dsostockitem
+
+    For Each mSIE As clsStockTakeItemEditor In pStockTakeItemEditors
+      mSICostBookEntry = mSICostBookEntrys.ItemFromStockItemID(mSIE.StockItem.StockItemID)
+      If mSICostBookEntry IsNot Nothing Then
+        mSIE.StockTakeItem.SnapShotUnitCost = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mSICostBookEntry.StockItemID).StdCost
+      End If
+
+    Next
+
+    SaveObject()
+    'For each StockItemEditor look in the costbookentries collection for a match on StockItemID
+    'use ItemFromStockItemID() to look for the correct entry in the costbookentries to match the stockitemeditor.StockItemID
+    ''(If nothing then no cost)
+    'Update a property in dmstocktakeitem called UnitCost with the value
+    ''pStockTakeItemEditors(0).StockTakeItem.SnapShotUnitCost = clsStockItemCostBookEntry.StdCost
+
+    'Savel the StockTakeItem collection (SaveObject)
+
+  End Sub
 
   ''Public Function CountItemsForSheet(ByVal vStockTakeSheetID As Integer) As Integer
   ''  Dim mCount As Integer = 0

@@ -368,7 +368,7 @@ Public Class frmStockTake
           btnClearSystemQty.Enabled = True
 
 
-          barbtnFIFOSystemValue.Enabled = True
+          barbtnRunValuation.Enabled = True
           barbtnFIFOCountedValue.Enabled = True
 
 
@@ -379,7 +379,7 @@ Public Class frmStockTake
           btnClearSystemQty.Enabled = False
 
 
-          barbtnFIFOSystemValue.Enabled = False
+          barbtnRunValuation.Enabled = False
           barbtnFIFOCountedValue.Enabled = False
 
         End If
@@ -718,17 +718,17 @@ Public Class frmStockTake
     End Try
   End Sub
 
-  ''  Private Sub barbtnRefreshSystemQty_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnRefreshSystemQty.ItemClick
-  ''    Try
-  ''      UpdateObject()
-  ''      pFormController.UpdateSnapQty()
-  ''      CheckSave(False)
-  ''      gvStockCheckItem.RefreshData()
-  ''      RefreshControls()
-  ''    Catch ex As Exception
-  ''      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-  ''    End Try
-  ''  End Sub
+  Private Sub barbtnRefreshSystemQty_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnRefreshSystemQty.ItemClick
+    Try
+      UpdateObject()
+      pFormController.UpdateSnapQty()
+      CheckSave(False)
+      gvStockCheckItem.RefreshData()
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
 
   ''  Private Sub barbtnCommitStockTake_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnCommitStockTake.ItemClick
   ''    Try
@@ -1083,6 +1083,14 @@ Public Class frmStockTake
 
     Return mRetVal
   End Function
+
+  Private Sub barbtnRunValuation_ItemClick(sender As Object, e As ItemClickEventArgs) Handles barbtnRunValuation.ItemClick
+    '// call to fcc to evaluate all stock items
+    '// Refresh Grid
+    UpdateObject()
+    pFormController.RunValuation()
+    grdStockCheckItem.Refresh()
+  End Sub
 
 
   ''  Private Sub btnAddToNextSheet_Click(sender As Object, e As EventArgs) Handles btnAddToNextSheet.Click

@@ -69,6 +69,7 @@ Public Class frmStockItemInfo
 
     If pFormController.IsWood Then
       gcThickness.Visible = True
+      gcItemType.Visible = True
       gcSpecies.Visible = True
       gcPartNo.Visible = False
       gcSupplier.Visible = False
@@ -87,12 +88,14 @@ Public Class frmStockItemInfo
       gcWidth.Visible = False
       gcThickness.Visible = False
       gcSpecies.Visible = False
+      gcSpecies.GroupIndex = -1
       gcSupplier.Visible = False
       gcPartNo.Visible = True
       gcTotalCubicMeter.Visible = False
       gcCategory.Visible = True
       gcItemType.Caption = "Sub Categoría"
       gvStockItemInfos.OptionsView.ShowGroupPanel = False
+      gcItemType.GroupIndex = -1
     End If
 
     pIsActive = mStartActive
