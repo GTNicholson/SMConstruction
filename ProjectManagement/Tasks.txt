@@ -5,3 +5,9 @@ Manage the units of wood for the different areas
 Only add the 001 to the stock code if it is not unique - shouldn't be required for wood.
 
 Value of current stock report.
+
+add m3
+
+rollos are one special pallet!
+
+Tipo no translated in left hand list
