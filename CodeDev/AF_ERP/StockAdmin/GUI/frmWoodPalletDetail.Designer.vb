@@ -649,16 +649,20 @@ Partial Class frmWoodPalletDetail
         Me.gvWoodPalletInfo.Appearance.EvenRow.Options.UseFont = True
         Me.gvWoodPalletInfo.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gvWoodPalletInfo.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvWoodPalletInfo.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvWoodPalletInfo.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gvWoodPalletInfo.Appearance.OddRow.BackColor = System.Drawing.Color.White
         Me.gvWoodPalletInfo.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWoodPalletInfo.Appearance.OddRow.Options.UseBackColor = True
         Me.gvWoodPalletInfo.Appearance.OddRow.Options.UseFont = True
+        Me.gvWoodPalletInfo.ColumnPanelRowHeight = 34
         Me.gvWoodPalletInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
         Me.gvWoodPalletInfo.GridControl = Me.grdWoodPalletInfo
         Me.gvWoodPalletInfo.Name = "gvWoodPalletInfo"
         Me.gvWoodPalletInfo.OptionsBehavior.ReadOnly = True
         Me.gvWoodPalletInfo.OptionsView.EnableAppearanceEvenRow = True
         Me.gvWoodPalletInfo.OptionsView.EnableAppearanceOddRow = True
+        Me.gvWoodPalletInfo.OptionsView.ShowAutoFilterRow = True
         Me.gvWoodPalletInfo.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1

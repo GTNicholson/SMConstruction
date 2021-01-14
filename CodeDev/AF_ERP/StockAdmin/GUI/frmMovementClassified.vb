@@ -44,6 +44,7 @@ Public Class frmMovementClassified
     Dim mValueItems As New colValueItems
     Dim mListValueItem As New colValueItems
 
+
     mValueItems = eStockItemTypeTimberWood.GetInstance.ValueItems
 
     If mValueItems IsNot Nothing Then

@@ -63,6 +63,12 @@ Public Class clsWoodPalletItemInfo
 
   End Property
 
+
+  Public ReadOnly Property OutstandingQty As Decimal
+    Get
+      Return pWoodPalletItem.OutstandingQty
+    End Get
+  End Property
   Public ReadOnly Property Quantity As Decimal
     Get
       Return pWoodPalletItem.Quantity
@@ -240,9 +246,15 @@ Public Class clsWoodPalletItemInfo
 
   Public ReadOnly Property Balance As Decimal
     Get
+      Dim mRetVal As Decimal
+      Select Case pStockItem.ItemType
+        Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
+          mRetVal = pWoodPalletItem.OutstandingQty
+        Case Else
+          mRetVal = pWoodPalletItem.OutstandingQty * (pStockItem.Thickness * pWoodPalletItem.Length * pWoodPalletItem.Width / 12)
+      End Select
 
-      Return ((Width * Length * Thickness) / 12) * (Quantity - QuantityUsed)
-
+      Return mRetVal
     End Get
   End Property
 

@@ -68,6 +68,7 @@ Public Class dtoWoodPalletItemInfo : Inherits dtoBase
           .Length = DBReadDecimal(rDataReader, "Length")
           .Quantity = DBReadDecimal(rDataReader, "Quantity")
           .QuantityUsed = DBReadDecimal(rDataReader, "QuantityUsed")
+          .OutstandingQty = DBReadDecimal(rDataReader, "OutstandingQty")
         End With
 
         With .WoodPallet

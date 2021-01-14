@@ -122,6 +122,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -590,11 +591,12 @@ Partial Class frmWorkOrderWoodProcess
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Options.UseBackColor = True
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Options.UseFont = True
         Me.gvSourceWoodPalletItem.ColumnPanelRowHeight = 34
-        Me.gvSourceWoodPalletItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn24})
+        Me.gvSourceWoodPalletItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn24, Me.GridColumn27})
         Me.gvSourceWoodPalletItem.GridControl = Me.grdSourceWoodPalletItem
         Me.gvSourceWoodPalletItem.Name = "gvSourceWoodPalletItem"
         Me.gvSourceWoodPalletItem.OptionsView.EnableAppearanceEvenRow = True
         Me.gvSourceWoodPalletItem.OptionsView.EnableAppearanceOddRow = True
+        Me.gvSourceWoodPalletItem.OptionsView.ShowAutoFilterRow = True
         Me.gvSourceWoodPalletItem.OptionsView.ShowGroupPanel = False
         '
         'GridColumn3
@@ -726,7 +728,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.GridColumn24.FieldName = "ToProcessQty"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
+        Me.GridColumn24.VisibleIndex = 9
         '
         'grpOutputWood
         '
@@ -1027,6 +1029,17 @@ Partial Class frmWorkOrderWoodProcess
         Me.gcToProcessQty.FieldName = "ToProcessQty"
         Me.gcToProcessQty.Name = "gcToProcessQty"
         '
+        'GridColumn27
+        '
+        Me.GridColumn27.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn27.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn27.Caption = "Cant. Pend."
+        Me.GridColumn27.FieldName = "WoodPalletItem.OutstandingQty"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.OptionsColumn.ReadOnly = True
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 8
+        '
         'frmWorkOrderWoodProcess
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1163,4 +1176,5 @@ Partial Class frmWorkOrderWoodProcess
     Friend WithEvents gcToProcessQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

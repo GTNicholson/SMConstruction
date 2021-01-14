@@ -482,16 +482,26 @@ Public Class frmWorkOrderWoodProcess
 
                   For Each mWoodPalletItem As dmWoodPalletItem In mWoodPallet.WoodPalletItems
                     Dim mNewWoodPalletItem As New clsWoodPalletItemEditor
-                    mNewWoodPalletItem.Description = mWoodPalletItem.Description
-                    mNewWoodPalletItem.Quantity = mWoodPalletItem.Quantity
-                    mNewWoodPalletItem.QuantityUsed = mWoodPalletItem.QuantityUsed
-                    mNewWoodPalletItem.StockItemID = mWoodPalletItem.StockItemID
-                    mNewWoodPalletItem.Thickness = mWoodPalletItem.Thickness
-                    mNewWoodPalletItem.Width = mWoodPalletItem.Width
-                    mNewWoodPalletItem.Length = mWoodPalletItem.Length
-                    mNewWoodPalletItem.WoodPalletID = mWoodPalletItem.WoodPalletID
-                    mNewWoodPalletItem.WoodPalletItemID = mWoodPalletItem.WoodPalletItemID
-                    mNewWoodPalletItem.StockCode = mWoodPalletItem.StockCode
+                    'mNewWoodPalletItem.Description = mWoodPalletItem.Description
+                    'mNewWoodPalletItem.Quantity = mWoodPalletItem.Quantity
+                    'mNewWoodPalletItem.QuantityUsed = mWoodPalletItem.QuantityUsed
+                    'mNewWoodPalletItem.StockItemID = mWoodPalletItem.StockItemID
+                    'mNewWoodPalletItem.Thickness = mWoodPalletItem.Thickness
+                    'mNewWoodPalletItem.Width = mWoodPalletItem.Width
+                    'mNewWoodPalletItem.Length = mWoodPalletItem.Length
+                    'mNewWoodPalletItem.WoodPalletID = mWoodPalletItem.WoodPalletID
+                    'mNewWoodPalletItem.WoodPalletItemID = mWoodPalletItem.WoodPalletItemID
+                    'mNewWoodPalletItem.StockCode = mWoodPalletItem.StockCode
+                    'mNewWoodPalletItem.WoodPalletItem = mNewWoodPalletItem.WoodPalletItem
+                    'mNewWoodPalletItem.StockItem = mNewWoodPalletItem.StockItem
+                    Dim mSI As dmStockItem
+                    mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWoodPalletItem.StockItemID)
+
+                    mNewWoodPalletItem.WoodPalletItem = mWoodPalletItem
+
+                    mNewWoodPalletItem.StockItem = mSI
+
+                    pFormController.SourceWoodPalletItemEditors.Add(mNewWoodPalletItem)
                     pFormController.SourceWoodPalletItem.Add(mNewWoodPalletItem)
                   Next
                 End If
@@ -522,10 +532,16 @@ Public Class frmWorkOrderWoodProcess
         Select Case pFormController.CurrentWoodWorkOrder.WorkOrderProcessOption
 
           Case eWorkOrderWoodProcess.Aserrio
+            CheckSave(False)
+            gvSourceWoodPalletItem.CloseEditor()
             ProcessAserrio()
-
+            CheckSave(False)
           Case eWorkOrderWoodProcess.Clasificar
+            CheckSave(False)
+            gvSourceWoodPalletItem.CloseEditor()
+
             ProcessClasificar()
+            CheckSave(False)
         End Select
 
     End Select
@@ -537,10 +553,9 @@ Public Class frmWorkOrderWoodProcess
 
 
     CheckSave(False)
-    RefreshSourceTabs()
-    RefreshOutputTabs()
 
-    RefreshControls()
+
+
 
     pFormController.LoadOtputWoodPallet()
     pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
@@ -597,7 +612,7 @@ Public Class frmWorkOrderWoodProcess
         End Select
 
 
-        pFormController.CreateWoodPallet(pFormController.CurrentWoodWorkOrder.WorkOrderTargetWoodType)
+        pFormController.CreateWoodPallet(pTargetItemType)
         'grdOutputWoodPalletItem.DataSource = pFormController.OutputWoodPalletItem
         gvOutputWoodPaleltItem.RefreshData()
 
@@ -643,6 +658,7 @@ Public Class frmWorkOrderWoodProcess
         If frmPickerStockItem.PickPurchaseOrderItems(mPicker, AppRTISGlobal.GetInstance, True, pFormController.CurrentOutputWoodPallet.PalletType) Then
           mdsoStock = New dsoStock(pFormController.DBConn)
           For Each mSelectedItem In mPicker.SelectedObjects
+            Dim mWoodPalletItemEditor As New clsWoodPalletItemEditor
             If mSelectedItem IsNot Nothing Then
               mNewWoodPalletItem = pFormController.CurrentOutputWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
               If mNewWoodPalletItem Is Nothing Then
@@ -652,8 +668,14 @@ Public Class frmWorkOrderWoodProcess
                 mNewWoodPalletItem.Description = mSelectedItem.Description
                 mNewWoodPalletItem.StockCode = mSelectedItem.StockCode
                 mNewWoodPalletItem.Thickness = mSelectedItem.Thickness
+
+                mWoodPalletItemEditor.StockItem = mSelectedItem
+                mWoodPalletItemEditor.WoodPalletItem = mNewWoodPalletItem
+
                 pFormController.CurrentOutputWoodPallet.WoodPalletItems.Add(mNewWoodPalletItem)
                 pFormController.SaveWoodPalletDown(pFormController.CurrentOutputWoodPallet)
+
+                pFormController.OutPutWoodPalletItemEditors.Add(mWoodPalletItemEditor)
               End If
             End If
           Next
@@ -684,6 +706,7 @@ Public Class frmWorkOrderWoodProcess
 
           Case eWorkOrderWoodProcess.Aserrio
             gvOutputWoodPaleltItem.CloseEditor()
+            pFormController.SaveWoodPalletDown(pFormController.CurrentOutputWoodPallet)
             CheckSave(False)
             ProcessOutputAserrio()
 
@@ -926,6 +949,9 @@ Public Class frmWorkOrderWoodProcess
 
     pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
     grdOutputWoodPalletItem.DataSource = pFormController.OutPutWoodPalletItemEditors
+
+    pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+    grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
 
     gvSourceWoodPalletItem.RefreshData()
     btnEndKiln.Enabled = False

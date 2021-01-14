@@ -75,12 +75,7 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
       Return mRetVal
     End Get
   End Property
-  Public ReadOnly Property OutStandingQty() As Decimal
-    Get
-      Return pWoodPalletItem.Quantity - pWoodPalletItem.QuantityUsed
-    End Get
 
-  End Property
 
   Public ReadOnly Property TotalBoardFeet As Decimal
     Get

@@ -30,6 +30,9 @@ Partial Class frmStockItemInfo
         Me.gvWoodPalletInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.popupMaterialRequirement = New DevExpress.XtraEditors.PopupContainerControl()
         Me.grdStockItemAllocations = New DevExpress.XtraGrid.GridControl()
@@ -76,9 +79,6 @@ Partial Class frmStockItemInfo
         Me.gcSpecies = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTotalCubicMeter = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoPopUpWoodPalletItemInfo = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpItemDetail.SuspendLayout()
         CType(Me.popupWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +200,38 @@ Partial Class frmStockItemInfo
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 1
         Me.GridColumn21.Width = 96
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Ancho"
+        Me.GridColumn9.DisplayFormat.FormatString = "n0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "Width"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.Width = 54
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Largo"
+        Me.GridColumn22.DisplayFormat.FormatString = "n0"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "Length"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 3
+        Me.GridColumn22.Width = 49
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Cant. Disp."
+        Me.GridColumn23.DisplayFormat.FormatString = "n2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "Balance"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 4
         '
         'RepositoryItemDateEdit2
         '
@@ -474,11 +506,11 @@ Partial Class frmStockItemInfo
         'grdStockItemInfos
         '
         Me.grdStockItemInfos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemInfos.MainView = Me.gvStockItemInfos
         Me.grdStockItemInfos.Name = "grdStockItemInfos"
         Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory, Me.repoPopupPOAllocationItems, Me.repoPopuMaterialRequirement, Me.repoPopUpWoodPalletItemInfo})
-        Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 681)
+        Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 683)
         Me.grdStockItemInfos.TabIndex = 6
         Me.grdStockItemInfos.UseEmbeddedNavigator = True
         Me.grdStockItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemInfos})
@@ -503,7 +535,7 @@ Partial Class frmStockItemInfo
         Me.gvStockItemInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn8, Me.GridColumn1, Me.GridColumn6, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSupplier, Me.gcCurrentInventory, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.gcStdCost, Me.GridColumn2, Me.gcThickness, Me.gcWidth, Me.gcLength, Me.gcSpecies, Me.gcTotalCubicMeter})
         Me.gvStockItemInfos.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
         Me.gvStockItemInfos.GridControl = Me.grdStockItemInfos
-        Me.gvStockItemInfos.GroupCount = 1
+        Me.gvStockItemInfos.GroupCount = 2
         Me.gvStockItemInfos.Name = "gvStockItemInfos"
         Me.gvStockItemInfos.OptionsBehavior.AutoExpandAllGroups = True
         Me.gvStockItemInfos.OptionsView.EnableAppearanceEvenRow = True
@@ -511,7 +543,7 @@ Partial Class frmStockItemInfo
         Me.gvStockItemInfos.OptionsView.ShowAutoFilterRow = True
         Me.gvStockItemInfos.OptionsView.ShowDetailButtons = False
         Me.gvStockItemInfos.OptionsView.ShowFooter = True
-        Me.gvStockItemInfos.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcSpecies, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.gvStockItemInfos.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcSpecies, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcItemType, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'gcStockItemID
         '
@@ -543,7 +575,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 304
         '
         'gcCategory
@@ -575,7 +607,7 @@ Partial Class frmStockItemInfo
         Me.gcPartNo.Name = "gcPartNo"
         Me.gcPartNo.OptionsColumn.ReadOnly = True
         Me.gcPartNo.Visible = True
-        Me.gcPartNo.VisibleIndex = 3
+        Me.gcPartNo.VisibleIndex = 2
         Me.gcPartNo.Width = 68
         '
         'gcSupplier
@@ -584,7 +616,7 @@ Partial Class frmStockItemInfo
         Me.gcSupplier.FieldName = "DefaultSupplier"
         Me.gcSupplier.Name = "gcSupplier"
         Me.gcSupplier.Visible = True
-        Me.gcSupplier.VisibleIndex = 7
+        Me.gcSupplier.VisibleIndex = 6
         Me.gcSupplier.Width = 110
         '
         'gcCurrentInventory
@@ -598,7 +630,7 @@ Partial Class frmStockItemInfo
         Me.gcCurrentInventory.FieldName = "CurrentInventory"
         Me.gcCurrentInventory.Name = "gcCurrentInventory"
         Me.gcCurrentInventory.Visible = True
-        Me.gcCurrentInventory.VisibleIndex = 8
+        Me.gcCurrentInventory.VisibleIndex = 7
         Me.gcCurrentInventory.Width = 78
         '
         'repitbtCurrentInventory
@@ -619,7 +651,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 10
+        Me.GridColumn10.VisibleIndex = 9
         Me.GridColumn10.Width = 60
         '
         'repoPopuMaterialRequirement
@@ -642,7 +674,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 11
+        Me.GridColumn11.VisibleIndex = 10
         Me.GridColumn11.Width = 60
         '
         'repoPopupPOAllocationItems
@@ -660,7 +692,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn12.FieldName = "Balance"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 12
+        Me.GridColumn12.VisibleIndex = 11
         Me.GridColumn12.Width = 87
         '
         'gcStdCost
@@ -672,7 +704,7 @@ Partial Class frmStockItemInfo
         Me.gcStdCost.Name = "gcStdCost"
         Me.gcStdCost.OptionsColumn.ReadOnly = True
         Me.gcStdCost.Visible = True
-        Me.gcStdCost.VisibleIndex = 6
+        Me.gcStdCost.VisibleIndex = 5
         Me.gcStdCost.Width = 70
         '
         'GridColumn2
@@ -684,7 +716,7 @@ Partial Class frmStockItemInfo
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ActualValueInventory", "{0:C$#,##0.00;;#}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 13
+        Me.GridColumn2.VisibleIndex = 12
         Me.GridColumn2.Width = 112
         '
         'gcThickness
@@ -696,7 +728,7 @@ Partial Class frmStockItemInfo
         Me.gcThickness.Name = "gcThickness"
         Me.gcThickness.OptionsColumn.ReadOnly = True
         Me.gcThickness.Visible = True
-        Me.gcThickness.VisibleIndex = 5
+        Me.gcThickness.VisibleIndex = 4
         Me.gcThickness.Width = 40
         '
         'gcWidth
@@ -734,7 +766,7 @@ Partial Class frmStockItemInfo
         Me.gcTotalCubicMeter.FieldName = "TotalCubicMeter"
         Me.gcTotalCubicMeter.Name = "gcTotalCubicMeter"
         Me.gcTotalCubicMeter.Visible = True
-        Me.gcTotalCubicMeter.VisibleIndex = 9
+        Me.gcTotalCubicMeter.VisibleIndex = 8
         Me.gcTotalCubicMeter.Width = 60
         '
         'repoPopUpWoodPalletItemInfo
@@ -742,38 +774,6 @@ Partial Class frmStockItemInfo
         Me.repoPopUpWoodPalletItemInfo.AutoHeight = False
         Me.repoPopUpWoodPalletItemInfo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.repoPopUpWoodPalletItemInfo.Name = "repoPopUpWoodPalletItemInfo"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Ancho"
-        Me.GridColumn9.DisplayFormat.FormatString = "n0"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "Width"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        Me.GridColumn9.Width = 54
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Largo"
-        Me.GridColumn22.DisplayFormat.FormatString = "n0"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.FieldName = "Length"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 3
-        Me.GridColumn22.Width = 49
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Cant. Disp."
-        Me.GridColumn23.DisplayFormat.FormatString = "n2"
-        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn23.FieldName = "Balance"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
         '
         'frmStockItemInfo
         '

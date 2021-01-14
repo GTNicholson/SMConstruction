@@ -1352,7 +1352,7 @@ Public Class dsoStockTransactions
                 mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, mStockItemLocation.StockItemLocationID)
               End If
 
-              mSILTranLog = mStockItemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (-1 * mKVP.Value), eObjectType.StockItemLocation, mStockItemLocation.StockItemLocationID, mStockItemLocation.LocationID, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.SalesOrder, rSalesOrder.SalesOrderID, 0, vDefaultCurrency, mUnitCost, vExchangeRate)
+              mSILTranLog = mStockItemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (-1 * mKVP.Value), eObjectType.StockItemLocation, mStockItemLocation.StockItemLocationID, mStockItemLocation.LocationID, vTransDate, mTranType, pDBConn.RTISUser.UserID, rWoodPallet.PalletRef, eObjectType.WoodPallet, rWoodPallet.WoodPalletID, rWoodPallet.LocationID, vDefaultCurrency, mUnitCost, vExchangeRate)
 
               mNewStockLevel = mPrevValue - mKVP.Value
 

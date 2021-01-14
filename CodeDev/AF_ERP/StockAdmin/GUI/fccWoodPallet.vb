@@ -341,6 +341,7 @@ Public Class fccWoodPallet
           mCurrentQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
           mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
           pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
+          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
 
           mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
           mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness

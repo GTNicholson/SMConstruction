@@ -203,7 +203,7 @@ Public Class fccStockItemInfos
 
   Public Sub LoadWoodPalletItemInfosByStockItemID(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vStockItemID As Integer)
     Dim mdso As dsoStock
-    Dim mWhere As String = "StockItemID = " & vStockItemID & " and Quantity<>0"
+    Dim mWhere As String = "StockItemID = " & vStockItemID & " and Quantity<>0 and locationID<>0"
     mdso = New dsoStock(pDBConn)
     mdso.LoadWoodPalletItemInfosByStockItemID(rWoodPalletItemInfos, mWhere)
   End Sub

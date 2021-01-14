@@ -315,7 +315,7 @@ Public Class fccWorkOrderWoodProcess
   Public Sub CreateWoodPallet(ByVal vPalletType As Integer)
     Dim mOutputPallet As New dmOutputPallet
 
-    CreateNewWoodPallet(pWorkOrder.WorkOrderTargetWoodType)
+    CreateNewWoodPallet(vPalletType)
     SetCurrentOutputWoodPallet(pWoodPallets.Last)
 
     If pCurrentOutputWoodPallet IsNot Nothing Then
@@ -465,6 +465,7 @@ Public Class fccWorkOrderWoodProcess
         mNewWoodPalletItem.Description = mSISpecies.Description
         mNewWoodPalletItem.Length = mTempWoodPalletItem.Length
         mNewWoodPalletItem.Quantity = mTempWoodPalletItem.Quantity
+        mNewWoodPalletItem.OutstandingQty = mTempWoodPalletItem.Quantity
         mNewWoodPalletItem.Thickness = mTempWoodPalletItem.Thickness
         mNewWoodPalletItem.Width = mTempWoodPalletItem.Width
         mNewWoodPalletItem.WoodPalletID = mNewWoodPallet.WoodPalletID
@@ -588,7 +589,7 @@ Public Class fccWorkOrderWoodProcess
 
     For Each mWPI In rWoodPallet.WoodPalletItems
       mWPI.QuantityUsed = mWPI.Quantity
-
+      mWPI.OutstandingQty = 0
     Next
 
 
@@ -751,11 +752,12 @@ Public Class fccWorkOrderWoodProcess
             mNewWoodPalletItem.Thickness = mWPIE.WoodPalletItem.Thickness
             mNewWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
             mNewWoodPalletItem.WoodPalletID = pCurrentOutputWoodPallet.WoodPalletID
-
+            mNewWoodPalletItem.OutstandingQty = mNewWoodPalletItem.Quantity
             mOutPutWoodPalletItems.Add(mNewWoodPalletItem)
 
             'mWPIE.WoodPalletItem.Quantity = (mWPIE.WoodPalletItem.Quantity - mWPIE.ToProcessQty)
             mWPIE.WoodPalletItem.QuantityUsed += mWPIE.ToProcessQty
+            mWPIE.WoodPalletItem.OutstandingQty = mWPIE.WoodPalletItem.Quantity - mWPIE.WoodPalletItem.QuantityUsed
 
             mdsoStock.SaveWoodPalletItem(mWPIE.WoodPalletItem)
 
@@ -831,9 +833,9 @@ Public Class fccWorkOrderWoodProcess
         If mWPIE.ToProcessQty <> 0 Then
           mTempWoodPalletItem = mWPIE.WoodPalletItem.Clone
 
-          mWPIE.WoodPalletItem.Quantity = mWPIE.WoodPalletItem.Quantity - mWPIE.ToProcessQty
-          mWPIE.WoodPalletItem.QuantityUsed = mWPIE.WoodPalletItem.QuantityUsed + mWPIE.ToProcessQty
 
+          mWPIE.WoodPalletItem.QuantityUsed = mWPIE.WoodPalletItem.QuantityUsed + mWPIE.ToProcessQty
+          mWPIE.WoodPalletItem.OutstandingQty = mWPIE.WoodPalletItem.Quantity - mWPIE.WoodPalletItem.QuantityUsed
           ''//Collection to be sent in the transaction
           mTempWoodPalletItem.Quantity = mWPIE.ToProcessQty
           mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
@@ -896,12 +898,15 @@ Public Class fccWorkOrderWoodProcess
           mCurrentQty = pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
           mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
           pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
-
+          mTempWoodPalletItem.StockCode = mWPIE.StockItem.StockCode
           mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
           mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness
           mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
           mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
 
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Length = mTempWoodPalletItem.Length
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Width = mTempWoodPalletItem.Width
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = mCurrentQty + mToProcQtyBoardFeet
           mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
         End If
         mWPIE.ToProcessQty = 0
@@ -909,7 +914,7 @@ Public Class fccWorkOrderWoodProcess
       Next
 
       SaveObjects()
-
+      SaveWoodPalletDown(pCurrentOutputWoodPallet)
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then

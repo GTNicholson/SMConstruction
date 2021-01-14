@@ -222,7 +222,7 @@ Public Class frmStockItemInfo
       End If
     End If
 
-    RefreshControls()
+    '  RefreshControls()
   End Sub
 
   Private Sub frmStockItem_Closed(sender As Object, e As EventArgs) Handles Me.Closed

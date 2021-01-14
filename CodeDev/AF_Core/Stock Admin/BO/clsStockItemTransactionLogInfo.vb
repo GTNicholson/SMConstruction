@@ -480,6 +480,14 @@ Public Class clsStockItemTransactionLogInfo
     End Get
   End Property
 
+  Public Property LocationDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eLocations), CType(pLocationID, eLocations))
+    End Get
+    Set(value As String)
+
+    End Set
+  End Property
   Public ReadOnly Property RefInfo2 As String
     Get
       Dim mRetVal As String = ""
