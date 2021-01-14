@@ -412,32 +412,35 @@ Public Class fccStocktem
   Public Function GetProposedCode()
     Dim mDSO As dsoStock
     Dim mStem As String
-    Dim mSuffix As Integer
+    Dim mThicknessDecimal As Decimal
     Dim mRetVal As String = ""
+    Dim mThicknessInteger As Integer
 
     mStem = clsStockItemSharedFuncs.GetStockCodeStem(pCurrentStockItem)
     mDSO = New dsoStock(pDBConn)
     If mStem <> "" Then
-      mSuffix = mDSO.GetNextStockCodeSuffixNo(mStem)
+      mThicknessDecimal = pCurrentStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
+      pCurrentStockItem.StockCode = mStem
+      If mThicknessDecimal <> 0 Then
+        mThicknessInteger = CInt(mThicknessDecimal)
 
-      mRetVal = mStem & mSuffix.ToString("000")
+        mThicknessDecimal = mThicknessDecimal - mThicknessInteger
+
+        If mThicknessDecimal > 0 Then
+          mThicknessDecimal = mThicknessDecimal * 10
+          pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+
+        Else
+          pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString("n1")
+
+        End If
+
+      End If
     End If
-    Return mRetVal
+      Return mRetVal
   End Function
 
-  Public Function GetProposedDescription()
 
-    Dim mDescription As String
-    Dim mRetVal As String = ""
-
-    mDescription = "Madera " & clsStockItemSharedFuncs.GetStockItemTypeDescription(pCurrentStockItem)
-
-    mDescription &= " de " & clsStockItemSharedFuncs.GetSpeciesDescription(pCurrentStockItem).Trim
-
-    mDescription &= " de " & pCurrentStockItem.Thickness.ToString("n1").Trim & "''"
-
-    Return mDescription
-  End Function
 
 End Class
 

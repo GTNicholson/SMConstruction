@@ -8,13 +8,33 @@ Public Class fccStockItemInfos
   Private pCategorys As Int32
   Private pRTISGlobal As AppRTISGlobal
   Private pCurrentStockItemInfo As clsStockItemInfo
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Private pIsWood As Boolean
+  Private pCostBookID As Integer
+
+
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWood As Boolean)
     pDBConn = rDBConn
     pStockItemInfos = New colStockItemInfos
     pRTISGlobal = rRTISGlobal
-
+    pIsWood = vIsWood
   End Sub
 
+  Public Property CostBookID As Integer
+    Get
+      Return pCostBookID
+    End Get
+    Set(value As Integer)
+      pCostBookID = value
+    End Set
+  End Property
+  Public Property IsWood As Boolean
+    Get
+      Return pIsWood
+    End Get
+    Set(value As Boolean)
+      pIsWood = value
+    End Set
+  End Property
   Public Property CurrentStockItemInfo As clsStockItemInfo
     Get
       Return pCurrentStockItemInfo
@@ -49,12 +69,22 @@ Public Class fccStockItemInfos
 
   Public Sub LoadObjects()
     Dim mdso As dsoStock
-
+    Dim mWhere As String = ""
+    Dim mdsoCosting As dsoCostBook
     pStockItemInfos.Clear()
-
-
     mdso = New dsoStock(pDBConn)
-    mdso.LoadStockItemInfos(pStockItemInfos, "", dtoStockItemInfo.eMode.StockItemInfos)
+
+    If pIsWood Then
+      mdsoCosting = New dsoCostBook(pDBConn)
+      mWhere = "Category = " & eStockItemCategory.Timber
+      mdso.LoadStockItemInfos(pStockItemInfos, mWhere, dtoStockItemInfo.eMode.WoodStockInfo)
+
+    Else
+      mWhere = "Category <>" & eStockItemCategory.Timber
+      mdso.LoadStockItemInfos(pStockItemInfos, mWhere, dtoStockItemInfo.eMode.StockItemInfos)
+
+    End If
+
 
 
   End Sub
@@ -77,6 +107,15 @@ Public Class fccStockItemInfos
     End Try
 
   End Sub
+
+  Public Function GetCostByStockItemID(ByVal vStockItemID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mdso As New dsoCostBook(pDBConn)
+
+    mRetVal = mdso.GetDefaultCostBookValueByStockItemIDUnconnected(vStockItemID)
+
+    Return mRetVal
+  End Function
 
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
     Dim mRetVal As New clsValWarn
@@ -162,4 +201,10 @@ Public Class fccStockItemInfos
 
   End Sub
 
+  Public Sub LoadWoodPalletItemInfosByStockItemID(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vStockItemID As Integer)
+    Dim mdso As dsoStock
+    Dim mWhere As String = "StockItemID = " & vStockItemID & " and Quantity<>0 and locationID<>0"
+    mdso = New dsoStock(pDBConn)
+    mdso.LoadWoodPalletItemInfosByStockItemID(rWoodPalletItemInfos, mWhere)
+  End Sub
 End Class

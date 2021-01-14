@@ -11,6 +11,7 @@ Public Class clsStockItemInfo
   Private pSupplier As dmSupplier
 
   Private pCostQty As Decimal
+  Private pTotalCubicMeter As Decimal
 
   Public Sub New(ByRef rPurchaseOrderItem As dmPurchaseOrderItem)
     pPOStockItem = rPurchaseOrderItem
@@ -33,6 +34,14 @@ Public Class clsStockItemInfo
 
   Public Property CurrentInventory() As Decimal
     Get
+
+      Dim mRetVal As Decimal = 0
+      If pStockItem.Category = eStockItemCategory.Timber And pStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
+
+        pTotalCubicMeter = clsWoodPalletSharedFuncs.BoardFeetToM3(pCurrentInventory)
+
+      End If
+
       Return pCurrentInventory
     End Get
     Set(ByVal value As Decimal)
@@ -140,6 +149,17 @@ Public Class clsStockItemInfo
     End Get
 
   End Property
+
+  Public ReadOnly Property SpeciesDesc() As String
+    Get
+      If Species > 0 Then
+        Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(Species)
+      End If
+
+      Return ""
+    End Get
+
+  End Property
   Public ReadOnly Property Colour() As String
     Get
       Return pStockItem.Colour
@@ -222,6 +242,7 @@ Public Class clsStockItemInfo
 
   End Property
 
+
   Public ReadOnly Property RequiredInventoryNoNegative As Decimal
     Get
       If RequiredInventory > 0 Then
@@ -231,6 +252,40 @@ Public Class clsStockItemInfo
       End If
     End Get
   End Property
+
+
+  Public ReadOnly Property CostUoM() As Byte
+    Get
+      Return pStockItem.CostUoM
+    End Get
+
+  End Property
+
+  Public ReadOnly Property CostUoMDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pStockItem.CostUoM, eUoM))
+    End Get
+
+  End Property
+
+  Public Property TotalCubicMeter As Decimal
+    Get
+
+      If pStockItem.Category = eStockItemCategory.Timber And pStockItem.ItemType <> eStockItemTypeTimberWood.Rollo Then
+
+        pTotalCubicMeter = pCurrentInventory / 424
+
+      End If
+      Return pTotalCubicMeter
+    End Get
+
+    Set(value As Decimal)
+      pTotalCubicMeter = value
+    End Set
+  End Property
+
+
+
 
 End Class
 

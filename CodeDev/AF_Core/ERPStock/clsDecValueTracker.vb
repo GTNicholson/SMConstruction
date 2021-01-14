@@ -19,7 +19,7 @@
       .TranValue = vAdjustvalue
       .ObjectType = vObjectType
       .ObjectID = vObjectID
-      .AdditionalRef = vRef
+      .ReferenceNo = vRef
       .SystemDate = Now
       .TransactionDate = vTranDate
       .TransactionType = vTranType

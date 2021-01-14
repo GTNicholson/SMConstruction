@@ -221,6 +221,16 @@ Public Class dsoAppRefLists
           mValueItems = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eTransactionType))
           mItem.IList = mValueItems
           mOK = True
+
+        Case appRefLists.CostBook
+
+          mItem.IList = LoadCostBook()
+          mOK = True
+
+        Case appRefLists.StockItemType
+          mValueItems = eStockItemTypeTimberWood.GetInstance.ValueItems
+          mItem.IList = mValueItems
+          mOK = True
       End Select
       mItem = Nothing
     Else
@@ -412,6 +422,16 @@ Public Class dsoAppRefLists
 
     Return rRefLists.AllListsLoaded
   End Function
+
+  Public Function LoadCostBook() As IList
+    Dim mdto As New dtoCostBook(pDBConn)
+    Dim mCol As New colCostBooks
+
+    mdto.LoadCostBookCollection(mCol)
+
+    Return mCol
+  End Function
+
 End Class
 
 

@@ -45,6 +45,23 @@ Partial Class frmProductCostBook
     Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
     Me.cboIsDefault = New DevExpress.XtraEditors.CheckEdit()
     Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.grdProductStructureCostBookEntry = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemComboBox2 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.pgfDoorDimsID = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.pgfDoorThickness = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.pgfPrice = New DevExpress.XtraPivotGrid.PivotGridField()
@@ -69,23 +86,6 @@ Partial Class frmProductCostBook
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.grdProductStructureCostBookEntry = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemComboBox2 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCostBook, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +96,9 @@ Partial Class frmProductCostBook
         Me.GroupControl1.SuspendLayout()
         CType(Me.cboIsDefault.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
+        CType(Me.grdProductStructureCostBookEntry, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage3.SuspendLayout()
@@ -103,9 +106,6 @@ Partial Class frmProductCostBook
         CType(Me.gvProductCostInstalationEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.grdProductStructureCostBookEntry, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEdit1
@@ -181,7 +181,7 @@ Partial Class frmProductCostBook
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1857, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1857, 30)
         '
         'barDockControlBottom
         '
@@ -195,17 +195,17 @@ Partial Class frmProductCostBook
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 569)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 572)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1857, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1857, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 569)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 572)
         '
         'bcboCostBookID
         '
@@ -291,7 +291,7 @@ Partial Class frmProductCostBook
         Me.GroupControl1.Controls.Add(Me.txtCostBookName)
         Me.GroupControl1.Controls.Add(Me.dteDate)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 33)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 30)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(1857, 96)
         Me.GroupControl1.TabIndex = 137
@@ -316,6 +316,303 @@ Partial Class frmProductCostBook
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.Size = New System.Drawing.Size(1851, 418)
         Me.XtraTabPage2.Text = "Costeo de Productos de Estructuras"
+        '
+        'grdProductStructureCostBookEntry
+        '
+        Me.grdProductStructureCostBookEntry.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdProductStructureCostBookEntry.Location = New System.Drawing.Point(0, 0)
+        Me.grdProductStructureCostBookEntry.MainView = Me.GridView1
+        Me.grdProductStructureCostBookEntry.MenuManager = Me.BarManager1
+        Me.grdProductStructureCostBookEntry.Name = "grdProductStructureCostBookEntry"
+        Me.grdProductStructureCostBookEntry.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox2})
+        Me.grdProductStructureCostBookEntry.Size = New System.Drawing.Size(1851, 418)
+        Me.grdProductStructureCostBookEntry.TabIndex = 133
+        Me.grdProductStructureCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.ColumnFilterButton.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.ColumnFilterButton.Options.UseBackColor = True
+        Me.GridView1.Appearance.ColumnFilterButton.Options.UseFont = True
+        Me.GridView1.Appearance.ColumnFilterButtonActive.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.ColumnFilterButtonActive.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.ColumnFilterButtonActive.Options.UseBackColor = True
+        Me.GridView1.Appearance.ColumnFilterButtonActive.Options.UseFont = True
+        Me.GridView1.Appearance.CustomizationFormHint.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.CustomizationFormHint.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.CustomizationFormHint.Options.UseBackColor = True
+        Me.GridView1.Appearance.CustomizationFormHint.Options.UseFont = True
+        Me.GridView1.Appearance.DetailTip.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.DetailTip.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.DetailTip.Options.UseBackColor = True
+        Me.GridView1.Appearance.DetailTip.Options.UseFont = True
+        Me.GridView1.Appearance.Empty.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.Empty.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.Empty.Options.UseBackColor = True
+        Me.GridView1.Appearance.Empty.Options.UseFont = True
+        Me.GridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.EvenRow.Options.UseFont = True
+        Me.GridView1.Appearance.FilterCloseButton.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.FilterCloseButton.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.FilterCloseButton.Options.UseBackColor = True
+        Me.GridView1.Appearance.FilterCloseButton.Options.UseFont = True
+        Me.GridView1.Appearance.FilterPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.FilterPanel.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.FilterPanel.Options.UseBackColor = True
+        Me.GridView1.Appearance.FilterPanel.Options.UseFont = True
+        Me.GridView1.Appearance.FixedLine.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.FixedLine.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.FixedLine.Options.UseBackColor = True
+        Me.GridView1.Appearance.FixedLine.Options.UseFont = True
+        Me.GridView1.Appearance.FocusedCell.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.FocusedCell.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.FocusedCell.Options.UseBackColor = True
+        Me.GridView1.Appearance.FocusedCell.Options.UseFont = True
+        Me.GridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.FocusedRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.FocusedRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.FocusedRow.Options.UseFont = True
+        Me.GridView1.Appearance.FooterPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.FooterPanel.Options.UseBackColor = True
+        Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
+        Me.GridView1.Appearance.GroupButton.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.GroupButton.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.GroupButton.Options.UseBackColor = True
+        Me.GridView1.Appearance.GroupButton.Options.UseFont = True
+        Me.GridView1.Appearance.GroupFooter.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.GroupFooter.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.GroupFooter.Options.UseBackColor = True
+        Me.GridView1.Appearance.GroupFooter.Options.UseFont = True
+        Me.GridView1.Appearance.GroupPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.GroupPanel.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.GroupPanel.Options.UseBackColor = True
+        Me.GridView1.Appearance.GroupPanel.Options.UseFont = True
+        Me.GridView1.Appearance.GroupRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.GroupRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.GroupRow.Options.UseFont = True
+        Me.GridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GridView1.Appearance.HeaderPanel.Options.UseBackColor = True
+        Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GridView1.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.HideSelectionRow.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.HideSelectionRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.HideSelectionRow.Options.UseFont = True
+        Me.GridView1.Appearance.HorzLine.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.HorzLine.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.HorzLine.Options.UseBackColor = True
+        Me.GridView1.Appearance.HorzLine.Options.UseFont = True
+        Me.GridView1.Appearance.OddRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.OddRow.Options.UseFont = True
+        Me.GridView1.Appearance.Preview.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.Preview.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.Preview.Options.UseBackColor = True
+        Me.GridView1.Appearance.Preview.Options.UseFont = True
+        Me.GridView1.Appearance.Row.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.Row.Options.UseBackColor = True
+        Me.GridView1.Appearance.Row.Options.UseFont = True
+        Me.GridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.RowSeparator.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.RowSeparator.Options.UseBackColor = True
+        Me.GridView1.Appearance.RowSeparator.Options.UseFont = True
+        Me.GridView1.Appearance.SelectedRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.SelectedRow.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.SelectedRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.SelectedRow.Options.UseFont = True
+        Me.GridView1.Appearance.TopNewRow.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.TopNewRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.TopNewRow.Options.UseFont = True
+        Me.GridView1.Appearance.VertLine.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.VertLine.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.VertLine.Options.UseBackColor = True
+        Me.GridView1.Appearance.VertLine.Options.UseFont = True
+        Me.GridView1.Appearance.ViewCaption.BackColor = System.Drawing.Color.Transparent
+        Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.GridView1.Appearance.ViewCaption.Options.UseBackColor = True
+        Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
+        Me.GridView1.ColumnPanelRowHeight = 30
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn12, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn25, Me.GridColumn26})
+        Me.GridView1.DetailHeight = 380
+        Me.GridView1.GridControl = Me.grdProductStructureCostBookEntry
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn1.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
+        Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn1.AppearanceCell.Options.UseFont = True
+        Me.GridColumn1.Caption = "CostBookEntryID"
+        Me.GridColumn1.FieldName = "CostBookEntryID"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn2.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
+        Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn2.AppearanceCell.Options.UseFont = True
+        Me.GridColumn2.Caption = "CostBookID"
+        Me.GridColumn2.FieldName = "CostBookID"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn3.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
+        Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn3.AppearanceCell.Options.UseFont = True
+        Me.GridColumn3.Caption = "ProductID"
+        Me.GridColumn3.FieldName = "ProductID"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.BackColor = System.Drawing.Color.Transparent
+        Me.GridColumn4.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GridColumn4.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn4.AppearanceCell.Options.UseFont = True
+        Me.GridColumn4.Caption = "Costo Total"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "Cost"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 9
+        Me.GridColumn4.Width = 109
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn5.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
+        Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn5.AppearanceCell.Options.UseFont = True
+        Me.GridColumn5.Caption = "Descripción"
+        Me.GridColumn5.FieldName = "ProductDescription"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.Width = 303
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn6.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
+        Me.GridColumn6.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn6.AppearanceCell.Options.UseFont = True
+        Me.GridColumn6.Caption = "Código"
+        Me.GridColumn6.FieldName = "ProductCode"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.Width = 95
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn7.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
+        Me.GridColumn7.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn7.AppearanceCell.Options.UseFont = True
+        Me.GridColumn7.Caption = "Tipo de Producto"
+        Me.GridColumn7.FieldName = "ProductTypeDesc"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 207
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Costo Unit."
+        Me.GridColumn9.FieldName = "CostUnit"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Width = 164
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Costo Min."
+        Me.GridColumn12.DisplayFormat.FormatString = "f2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "MinCost"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.Width = 94
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "UdM"
+        Me.GridColumn18.FieldName = "CostUnitDes"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
+        Me.GridColumn18.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 3
+        Me.GridColumn18.Width = 74
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Costo de Mano de Obra"
+        Me.GridColumn19.DisplayFormat.FormatString = "F2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "DirectLabourCost"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 5
+        Me.GridColumn19.Width = 182
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Costo de Materiales"
+        Me.GridColumn20.DisplayFormat.FormatString = "F2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "DirectMaterialCost"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 6
+        Me.GridColumn20.Width = 208
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Costo de Trans. & Equ."
+        Me.GridColumn25.DisplayFormat.FormatString = "F2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "DirectTransportationAndEquipment"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 7
+        Me.GridColumn25.Width = 178
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Costo de Subcontratación"
+        Me.GridColumn26.DisplayFormat.FormatString = "F2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "OutsourcingCost"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 8
+        Me.GridColumn26.Width = 172
+        '
+        'RepositoryItemComboBox2
+        '
+        Me.RepositoryItemComboBox2.AutoHeight = False
+        Me.RepositoryItemComboBox2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemComboBox2.Name = "RepositoryItemComboBox2"
         '
         'pgfDoorDimsID
         '
@@ -373,7 +670,7 @@ Partial Class frmProductCostBook
         '
         Me.XtraTabPage3.Controls.Add(Me.grdProductCostInstalationEditor)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(1851, 418)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(1849, 417)
         Me.XtraTabPage3.Text = "Costeo de Productos de Instalación"
         '
         'grdProductCostInstalationEditor
@@ -384,7 +681,7 @@ Partial Class frmProductCostBook
         Me.grdProductCostInstalationEditor.MenuManager = Me.BarManager1
         Me.grdProductCostInstalationEditor.Name = "grdProductCostInstalationEditor"
         Me.grdProductCostInstalationEditor.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox1})
-        Me.grdProductCostInstalationEditor.Size = New System.Drawing.Size(1851, 418)
+        Me.grdProductCostInstalationEditor.Size = New System.Drawing.Size(1849, 417)
         Me.grdProductCostInstalationEditor.TabIndex = 132
         Me.grdProductCostInstalationEditor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvProductCostInstalationEditor})
         '
@@ -684,303 +981,6 @@ Partial Class frmProductCostBook
         Me.Panel1.Size = New System.Drawing.Size(1857, 452)
         Me.Panel1.TabIndex = 143
         '
-        'grdProductStructureCostBookEntry
-        '
-        Me.grdProductStructureCostBookEntry.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdProductStructureCostBookEntry.Location = New System.Drawing.Point(0, 0)
-        Me.grdProductStructureCostBookEntry.MainView = Me.GridView1
-        Me.grdProductStructureCostBookEntry.MenuManager = Me.BarManager1
-        Me.grdProductStructureCostBookEntry.Name = "grdProductStructureCostBookEntry"
-        Me.grdProductStructureCostBookEntry.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox2})
-        Me.grdProductStructureCostBookEntry.Size = New System.Drawing.Size(1851, 418)
-        Me.grdProductStructureCostBookEntry.TabIndex = 133
-        Me.grdProductStructureCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.ColumnFilterButton.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.ColumnFilterButton.Options.UseBackColor = True
-        Me.GridView1.Appearance.ColumnFilterButton.Options.UseFont = True
-        Me.GridView1.Appearance.ColumnFilterButtonActive.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.ColumnFilterButtonActive.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.ColumnFilterButtonActive.Options.UseBackColor = True
-        Me.GridView1.Appearance.ColumnFilterButtonActive.Options.UseFont = True
-        Me.GridView1.Appearance.CustomizationFormHint.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.CustomizationFormHint.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.CustomizationFormHint.Options.UseBackColor = True
-        Me.GridView1.Appearance.CustomizationFormHint.Options.UseFont = True
-        Me.GridView1.Appearance.DetailTip.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.DetailTip.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.DetailTip.Options.UseBackColor = True
-        Me.GridView1.Appearance.DetailTip.Options.UseFont = True
-        Me.GridView1.Appearance.Empty.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.Empty.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.Empty.Options.UseBackColor = True
-        Me.GridView1.Appearance.Empty.Options.UseFont = True
-        Me.GridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.EvenRow.Options.UseFont = True
-        Me.GridView1.Appearance.FilterCloseButton.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.FilterCloseButton.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.FilterCloseButton.Options.UseBackColor = True
-        Me.GridView1.Appearance.FilterCloseButton.Options.UseFont = True
-        Me.GridView1.Appearance.FilterPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.FilterPanel.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.FilterPanel.Options.UseBackColor = True
-        Me.GridView1.Appearance.FilterPanel.Options.UseFont = True
-        Me.GridView1.Appearance.FixedLine.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.FixedLine.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.FixedLine.Options.UseBackColor = True
-        Me.GridView1.Appearance.FixedLine.Options.UseFont = True
-        Me.GridView1.Appearance.FocusedCell.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.FocusedCell.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.GridView1.Appearance.FocusedCell.Options.UseBackColor = True
-        Me.GridView1.Appearance.FocusedCell.Options.UseFont = True
-        Me.GridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.FocusedRow.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.GridView1.Appearance.FocusedRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.FocusedRow.Options.UseFont = True
-        Me.GridView1.Appearance.FooterPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.FooterPanel.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.FooterPanel.Options.UseBackColor = True
-        Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
-        Me.GridView1.Appearance.GroupButton.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.GroupButton.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.GroupButton.Options.UseBackColor = True
-        Me.GridView1.Appearance.GroupButton.Options.UseFont = True
-        Me.GridView1.Appearance.GroupFooter.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.GroupFooter.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.GroupFooter.Options.UseBackColor = True
-        Me.GridView1.Appearance.GroupFooter.Options.UseFont = True
-        Me.GridView1.Appearance.GroupPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.GroupPanel.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.GroupPanel.Options.UseBackColor = True
-        Me.GridView1.Appearance.GroupPanel.Options.UseFont = True
-        Me.GridView1.Appearance.GroupRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.GroupRow.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.GroupRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.GroupRow.Options.UseFont = True
-        Me.GridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GridView1.Appearance.HeaderPanel.Options.UseBackColor = True
-        Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridView1.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.HideSelectionRow.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.HideSelectionRow.Options.UseFont = True
-        Me.GridView1.Appearance.HorzLine.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.HorzLine.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.HorzLine.Options.UseBackColor = True
-        Me.GridView1.Appearance.HorzLine.Options.UseFont = True
-        Me.GridView1.Appearance.OddRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.OddRow.Options.UseFont = True
-        Me.GridView1.Appearance.Preview.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.Preview.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.Preview.Options.UseBackColor = True
-        Me.GridView1.Appearance.Preview.Options.UseFont = True
-        Me.GridView1.Appearance.Row.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.Row.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.Row.Options.UseBackColor = True
-        Me.GridView1.Appearance.Row.Options.UseFont = True
-        Me.GridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.RowSeparator.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.RowSeparator.Options.UseBackColor = True
-        Me.GridView1.Appearance.RowSeparator.Options.UseFont = True
-        Me.GridView1.Appearance.SelectedRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.SelectedRow.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.SelectedRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.SelectedRow.Options.UseFont = True
-        Me.GridView1.Appearance.TopNewRow.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.TopNewRow.Options.UseFont = True
-        Me.GridView1.Appearance.VertLine.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.VertLine.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.VertLine.Options.UseBackColor = True
-        Me.GridView1.Appearance.VertLine.Options.UseFont = True
-        Me.GridView1.Appearance.ViewCaption.BackColor = System.Drawing.Color.Transparent
-        Me.GridView1.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.GridView1.Appearance.ViewCaption.Options.UseBackColor = True
-        Me.GridView1.Appearance.ViewCaption.Options.UseFont = True
-        Me.GridView1.ColumnPanelRowHeight = 30
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn12, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn25, Me.GridColumn26})
-        Me.GridView1.DetailHeight = 380
-        Me.GridView1.GridControl = Me.grdProductStructureCostBookEntry
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        Me.GridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn1.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn1.AppearanceCell.Options.UseFont = True
-        Me.GridColumn1.Caption = "CostBookEntryID"
-        Me.GridColumn1.FieldName = "CostBookEntryID"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn2.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn2.AppearanceCell.Options.UseFont = True
-        Me.GridColumn2.Caption = "CostBookID"
-        Me.GridColumn2.FieldName = "CostBookID"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn3.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn3.AppearanceCell.Options.UseFont = True
-        Me.GridColumn3.Caption = "ProductID"
-        Me.GridColumn3.FieldName = "ProductID"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceCell.BackColor = System.Drawing.Color.Transparent
-        Me.GridColumn4.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GridColumn4.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn4.AppearanceCell.Options.UseFont = True
-        Me.GridColumn4.Caption = "Costo Total"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "Cost"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 9
-        Me.GridColumn4.Width = 109
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn5.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn5.AppearanceCell.Options.UseFont = True
-        Me.GridColumn5.Caption = "Descripción"
-        Me.GridColumn5.FieldName = "ProductDescription"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
-        Me.GridColumn5.Width = 303
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn6.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.GridColumn6.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn6.AppearanceCell.Options.UseFont = True
-        Me.GridColumn6.Caption = "Código"
-        Me.GridColumn6.FieldName = "ProductCode"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.ReadOnly = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 95
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn7.AppearanceCell.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.GridColumn7.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn7.AppearanceCell.Options.UseFont = True
-        Me.GridColumn7.Caption = "Tipo de Producto"
-        Me.GridColumn7.FieldName = "ProductTypeDesc"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.ReadOnly = True
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 207
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Costo Unit."
-        Me.GridColumn9.FieldName = "CostUnit"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Width = 164
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Costo Min."
-        Me.GridColumn12.DisplayFormat.FormatString = "f2"
-        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "MinCost"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
-        Me.GridColumn12.Width = 94
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "UdM"
-        Me.GridColumn18.FieldName = "CostUnitDes"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.ReadOnly = True
-        Me.GridColumn18.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 3
-        Me.GridColumn18.Width = 74
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Costo de Mano de Obra"
-        Me.GridColumn19.DisplayFormat.FormatString = "F2"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "DirectLabourCost"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 5
-        Me.GridColumn19.Width = 182
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Costo de Materiales"
-        Me.GridColumn20.DisplayFormat.FormatString = "F2"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "DirectMaterialCost"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 6
-        Me.GridColumn20.Width = 208
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "Costo de Trans. & Equ."
-        Me.GridColumn25.DisplayFormat.FormatString = "F2"
-        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn25.FieldName = "DirectTransportationAndEquipment"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 7
-        Me.GridColumn25.Width = 178
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "Costo de Subcontratación"
-        Me.GridColumn26.DisplayFormat.FormatString = "F2"
-        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn26.FieldName = "OutsourcingCost"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 8
-        Me.GridColumn26.Width = 172
-        '
-        'RepositoryItemComboBox2
-        '
-        Me.RepositoryItemComboBox2.AutoHeight = False
-        Me.RepositoryItemComboBox2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemComboBox2.Name = "RepositoryItemComboBox2"
-        '
         'frmProductCostBook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1005,6 +1005,9 @@ Partial Class frmProductCostBook
         Me.GroupControl1.PerformLayout()
         CType(Me.cboIsDefault.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.grdProductStructureCostBookEntry, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage3.ResumeLayout(False)
@@ -1012,9 +1015,6 @@ Partial Class frmProductCostBook
         CType(Me.gvProductCostInstalationEditor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        CType(Me.grdProductStructureCostBookEntry, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

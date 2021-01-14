@@ -213,7 +213,7 @@ Public Class frmStockItem
     Dim mRetval As Boolean
     Dim mProposedDescription As String
     If pFormController.CurrentStockItem.Description = "" And pFormController.CurrentStockItem.Category = eStockItemCategory.Timber Then
-      mProposedDescription = pFormController.GetProposedDescription
+      mProposedDescription = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(pFormController.CurrentStockItem)
       If mProposedDescription <> "" Then
 
         pFormController.CurrentStockItem.Description = mProposedDescription
@@ -280,6 +280,8 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSpecies, .Species)
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
+        clsDEControlLoading.SetDECombo(cboCostUoM, .CostUoM)
+
         clsDEControlLoading.SetDECombo(cboSupplierUoM, .SupplierUoM)
         clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
         clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
@@ -351,6 +353,7 @@ Public Class frmStockItem
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
     clsDEControlLoading.FillDEComboVI(cboUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
     clsDEControlLoading.FillDEComboVI(cboSupplierUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
+    clsDEControlLoading.FillDEComboVI(cboCostUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
 
     mSuppliers = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.Supplier)
@@ -385,6 +388,7 @@ Public Class frmStockItem
         .StdImportCost = txtImportCost.Text
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
         .AuxCode = txtAuxCode.Text
+        .CostUoM = clsDEControlLoading.GetDEComboValue(cboCostUoM)
         If Val(spnQuantity.EditValue) > 0 Then
           .CostQty = Val(txtStdCost.Text) / Val(spnQuantity.EditValue)
         Else
@@ -583,6 +587,7 @@ Public Class frmStockItem
     bteImage.Enabled = Not vReadOnly
     cboSupplier.Enabled = Not vReadOnly
     txtAuxCode.ReadOnly = vReadOnly
+    cboCostUoM.ReadOnly = vReadOnly
     ''    btnedImageFile.ReadOnly = vReadOnly
 
     ''gvAlternateCodes.OptionsBehavior.ReadOnly = vReadOnly

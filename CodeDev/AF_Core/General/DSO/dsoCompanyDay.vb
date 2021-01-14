@@ -57,7 +57,7 @@ Public Class dsoCompanyDay
         rCompanyDays.Add(mCD)
         mCurDate = mCurDate.AddDays(1)
       Loop
-      mdtoSITL = New dtoStockItemTransactionLogInfo(pDBConn)
+      mdtoSITL = New dtoStockItemTransactionLogInfo(pDBConn, dtoStockItemTransactionLogInfo.eMode.StockItemTransactionLogInfo)
       mdtoTSE = New dtoTimeSheetEntryInfo(pDBConn)
       mdtoMaterialRequirementInfo = New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.WoodMat)
 

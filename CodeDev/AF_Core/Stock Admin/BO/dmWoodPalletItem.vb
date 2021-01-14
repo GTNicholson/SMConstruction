@@ -7,11 +7,12 @@ Public Class dmWoodPalletItem : Inherits dmBase
   Private pStockItemID As Int32
   Private pWidth As Decimal
   Private pLength As Decimal
-  Private pQuantityUsed As Integer
-  Private pQuantity As Integer
+  Private pQuantityUsed As Decimal
+  Private pQuantity As Decimal
   Private pDescription As String
   Private pStockCode As String
   Private pThickness As Decimal
+  Private pOutstandingQty As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -54,6 +55,7 @@ Public Class dmWoodPalletItem : Inherits dmBase
       .Description = Description
       .StockCode = StockCode
       .Thickness = Thickness
+      .OutstandingQty = OutstandingQty
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -114,21 +116,21 @@ Public Class dmWoodPalletItem : Inherits dmBase
   End Property
 
 
-  Public Property Quantity() As Integer
+  Public Property Quantity() As Decimal
     Get
       Return pQuantity
     End Get
-    Set(ByVal value As Integer)
+    Set(ByVal value As Decimal)
       If pQuantity <> value Then IsDirty = True
       pQuantity = value
     End Set
   End Property
 
-  Public Property QuantityUsed() As Integer
+  Public Property QuantityUsed() As Decimal
     Get
       Return pQuantityUsed
     End Get
-    Set(ByVal value As Integer)
+    Set(ByVal value As Decimal)
       If pQuantityUsed <> value Then IsDirty = True
       pQuantityUsed = value
     End Set
@@ -139,6 +141,8 @@ Public Class dmWoodPalletItem : Inherits dmBase
       Return pDescription
     End Get
     Set(value As String)
+      If pDescription <> value Then IsDirty = True
+
       pDescription = value
     End Set
   End Property
@@ -148,6 +152,8 @@ Public Class dmWoodPalletItem : Inherits dmBase
       Return pStockCode
     End Get
     Set(value As String)
+      If pStockCode <> value Then IsDirty = True
+
       pStockCode = value
     End Set
   End Property
@@ -157,6 +163,8 @@ Public Class dmWoodPalletItem : Inherits dmBase
       Return pThickness
     End Get
     Set(value As Decimal)
+      If pThickness <> value Then IsDirty = True
+
       pThickness = value
     End Set
   End Property
@@ -166,6 +174,16 @@ Public Class dmWoodPalletItem : Inherits dmBase
   End Sub
 
 
+  Public Property OutstandingQty As Decimal
+    Get
+      Return pOutstandingQty
+    End Get
+    Set(value As Decimal)
+      If pOutstandingQty <> value Then IsDirty = True
+
+      pOutstandingQty = value
+    End Set
+  End Property
 
 End Class
 
@@ -223,6 +241,33 @@ Public Class colWoodPalletItems : Inherits colBase(Of dmWoodPalletItem)
       End If
     Next
 
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromWoodPalletItem(ByVal vWoodPalletID As Integer) As dmWoodPalletItem
+    Dim mRetVal As dmWoodPalletItem = Nothing
+
+    For Each mItem As dmWoodPalletItem In MyBase.Items
+      If mItem.WoodPalletID = vWoodPalletID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetIndexByWoodPalletItemID(ByVal vWoodPalletItemID As Integer) As Integer
+    Dim mIndex As Integer = -1
+    Dim mRetVal As Integer = -1
+    For Each mItem As dmWoodPalletItem In MyBase.Items
+      mIndex = mIndex + 1
+      If mItem.WoodPalletItemID = vWoodPalletItemID Then
+        mRetVal = mIndex
+
+        Exit For
+      End If
+    Next
     Return mRetVal
   End Function
 End Class

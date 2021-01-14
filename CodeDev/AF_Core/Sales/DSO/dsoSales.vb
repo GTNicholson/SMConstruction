@@ -108,6 +108,20 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetval
   End Function
 
+  Public Function LockCostBook(ByVal vCostBookID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Try
+      If pDBConn.Connect() Then
+        mRetVal = MyBase.LockTableRecord("CostBook", vCostBookID)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
   Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
     Try
@@ -146,6 +160,10 @@ Public Class dsoSales : Inherits dsoBase
 
     Return mRetVal
   End Function
+
+  Public Sub LoadCostBook(pCostBook As dmCostBook, pCostBookID As Integer)
+    Throw New NotImplementedException()
+  End Sub
 
   Public Function LockFromTableRecord(ByVal vTableName As String, ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
@@ -202,6 +220,10 @@ Public Class dsoSales : Inherits dsoBase
     End Try
 
     Return mOK
+  End Function
+
+  Public Function UnlockCostBook(ByVal vCostBookID As Integer) As Boolean
+    Return MyBase.UnlockTableRecord("CostBook", vCostBookID)
   End Function
 
   Public Function SaveProductCostBook(ByRef rProductCostBook As dmProductCostBook) As Boolean
@@ -370,6 +392,23 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Sub SetDefaultCostBook(ByVal vCostBookID As Integer)
+    Dim mWhere As String = "Update CostBook set IsDefault = " & vbFalse & " where CostBookID <> " & vCostBookID
+    ''call a dso to set true to the actual costbookid
+    Try
+      If pDBConn.Connect Then
+        pDBConn.ExecuteNonQuery(mWhere)
+
+        mWhere = "Update CostBook set IsDefault = " & vbTrue & " where CostBookID = " & vCostBookID
+        pDBConn.ExecuteNonQuery(mWhere)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
   Public Function LoadInvoiceInfosGraph(ByRef rInvoiceInfos As colInvoiceInfos) As Boolean
     Dim mdto As dtoInvoiceInfo
     Dim mSQLWhere1 As String

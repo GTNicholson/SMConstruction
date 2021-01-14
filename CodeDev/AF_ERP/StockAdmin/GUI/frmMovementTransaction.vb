@@ -5,7 +5,7 @@ Imports RTIS.Elements
 Public Class frmMovementTransaction
   Private Shared sActiveForms As Collection
   Private pFormcontroller As fccMovementTransaction
-
+  Private pFormMode As eFormMode
   Public Property Formcontroller As fccMovementTransaction
     Get
       Return pFormcontroller
@@ -15,8 +15,14 @@ Public Class frmMovementTransaction
     End Set
   End Property
 
-  Public Shared Sub OpenFormI(ByRef rDBConn As clsDBConnBase, ByRef rWoodPallet As dmWoodPallet)
+  Public Enum eFormMode
+    Movement = 1
+    None = 2
+  End Enum
+
+  Public Shared Function OpenFormI(ByRef rDBConn As clsDBConnBase, ByRef rWoodPallet As dmWoodPallet, ByVal vFormMode As eFormMode) As Boolean
     Dim mfrm As frmMovementTransaction = Nothing
+    Dim mOK As Boolean = True
 
     mfrm = GetFormIfLoaded()
     If mfrm Is Nothing Then
@@ -25,12 +31,13 @@ Public Class frmMovementTransaction
       mfrm.pFormcontroller = New fccMovementTransaction
       mfrm.pFormcontroller.DBConn = rDBConn
       mfrm.pFormcontroller.WoodPallet = rWoodPallet
+      mfrm.pFormMode = vFormMode
       mfrm.ShowDialog()
     Else
       mfrm.Focus()
     End If
-
-  End Sub
+    Return mOK
+  End Function
   Private Shared Function GetFormIfLoaded() As frmMovementTransaction
     Dim mfrmWanted As frmMovementTransaction = Nothing
     Dim mFound As Boolean = False
@@ -52,19 +59,48 @@ Public Class frmMovementTransaction
 
   Private Sub btnProcessMovement_Click(sender As Object, e As EventArgs) Handles btnProcessMovement.Click
     Dim mLocation As Integer
-    mLocation = clsDEControlLoading.GetDEComboValue(cboLocations)
+    Dim mOK As Boolean
 
-    pFormcontroller.ApplyWoodPalletMovement(mLocation, Now)
+    If pFormMode = eFormMode.Movement Then
+      mLocation = clsDEControlLoading.GetDEComboValue(cboLocations)
 
+      mOK = pFormcontroller.ApplyWoodPalletMovement(mLocation, Now)
 
+      If mOK Then
+        MessageBox.Show("Éxito al trasladar el Pack")
+      Else
+        MessageBox.Show("Error al trasladar el Pack")
+
+      End If
+    End If
+    Me.Close()
   End Sub
 
   Private Sub frmMovementTransaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    If pFormMode = eFormMode.Movement Then
+      btnProcessMovement.Visible = True
+      btnAccept.Visible = False
+    ElseIf pFormMode = eFormMode.None Then
+      btnProcessMovement.Visible = False
+      btnAccept.Visible = True
+
+    End If
     LoadCombos()
   End Sub
 
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboLocations, clsEnumsConstants.EnumToVIs(GetType(eLocations)))
 
+  End Sub
+
+  Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
+    Dim mLocation As Integer
+
+    mLocation = clsDEControlLoading.GetDEComboValue(cboLocations)
+    If mLocation > 0 Then
+      pFormcontroller.WoodPallet.LocationID = mLocation
+      Me.Close()
+    End If
   End Sub
 End Class

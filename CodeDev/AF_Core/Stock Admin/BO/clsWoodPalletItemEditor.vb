@@ -8,10 +8,9 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
   Private pStockItem As dmStockItem
   Private pToProcessQty As Decimal
 
-  Public Sub New(ByVal vWoodPallet As dmWoodPallet, ByVal vWoodPalletItem As dmWoodPalletItem)
-    pWoodPallet = vWoodPallet
+  Public Sub New(ByVal vWoodPalletItem As dmWoodPalletItem, ByVal vStockItem As dmStockItem)
     pWoodPalletItem = vWoodPalletItem
-    pStockItem = New dmStockItem
+    pStockItem = vStockItem
   End Sub
 
   Public Sub New()
@@ -76,14 +75,52 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
       Return mRetVal
     End Get
   End Property
-  Public ReadOnly Property OutStandingQty() As Decimal
-    Get
-      Return pWoodPalletItem.Quantity - pWoodPalletItem.QuantityUsed
-    End Get
 
+
+  Public ReadOnly Property TotalBoardFeet As Decimal
+    Get
+      Dim mRetVal As Decimal
+      mRetVal = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(pWoodPalletItem, pStockItem)
+      Return mRetVal
+    End Get
   End Property
 
-  Public ReadOnly Property TotalBoardFeetFromInches() As Decimal
+  Public ReadOnly Property Totalm3 As Decimal
+    Get
+      Dim mRetVal As Decimal
+      mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(TotalBoardFeet)
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property QuantityUI As Decimal
+    Get
+      Dim mRetVal As Decimal
+      Select Case pStockItem.ItemType
+        Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
+          mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(pWoodPalletItem.Quantity)
+        Case Else
+          mRetVal = pWoodPalletItem.Quantity
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property QuantityUsedUI As Decimal
+    Get
+      Dim mRetVal As Decimal
+      Select Case pStockItem.ItemType
+        Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
+          mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(pWoodPalletItem.QuantityUsed)
+        Case Else
+          mRetVal = pWoodPalletItem.QuantityUsed
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property ToProcessBoardFeet() As Decimal
     Get
       Dim mRetVal As Decimal
 
@@ -96,7 +133,18 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
 
   End Property
 
-  Public ReadOnly Property TotalCentimeterCubic
+  Public ReadOnly Property DescriptionWPI As String
+    Get
+      Return pWoodPalletItem.Description
+    End Get
+  End Property
+
+  Public ReadOnly Property Balance As Decimal
+    Get
+      Return pWoodPalletItem.Quantity - pWoodPalletItem.QuantityUsed
+    End Get
+  End Property
+
 End Class
 
 Public Class colWoodPalletItemEditors : Inherits BindingList(Of clsWoodPalletItemEditor)
@@ -104,4 +152,4 @@ Public Class colWoodPalletItemEditors : Inherits BindingList(Of clsWoodPalletIte
 
 
 
-End Class
+  End Class

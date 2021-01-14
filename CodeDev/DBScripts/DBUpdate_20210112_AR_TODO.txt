@@ -1,0 +1,211 @@
+ALTER view [dbo].[vwWoodStockItemInfo]
+as
+
+SELECT        
+SI.StockItemID, 
+SI.StockCode,
+SI.PartNo,
+si.ASISID,
+SI.Category, 
+SI.ItemType, 
+SI.Species, 
+SI.Colour, 
+SI.Length, 
+SI.Width, 
+SI.Thickness, 
+SI.DefaultSupplier,
+SI.Description, 
+SI.UoM,
+SI.CostUoM,
+SI.SupplierUoM,
+StdCost,
+WSIL.Qty,
+SIMR.OSQty,
+SIPOS.POSQty,
+SP.CompanyName
+-- On Order Qty
+FROM dbo.StockItem AS SI 
+inner join vwWoodTransactionSUM as WSIL ON WSIL.StockItemID = si.StockItemID 
+left join vwStockItemMaterialRequirementSum SIMR on SIMR.StockItemID = SI.StockItemID
+left join vwStockItemPurchaseOrderSum SIPOS ON SIPOS.StockItemID=Si.StockItemID
+left join Supplier SP on SP.SupplierID=SI.DefaultSupplier
+ where si.Category=15
+GO
+
+
+ALTER view [dbo].[vwStockItemWoodTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.ReferenceNo,
+SITL.AdditionalRef,
+SITL.Note,
+SITL.StockValuation, 
+SITL.TransactionValuationDollar,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+MR.AreaID,
+MR.UoM,
+UL.UserName, 
+ST.Description AS StockTakeDescription,
+WO.WorkOrderNo,
+WO.Description AS WODESCRIPTION,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+WP.RefPalletOutside,
+WP.PalletRef
+
+FROM dbo.StockItemTransactionLog AS SITL
+INNER JOIN dbo.UserList AS UL ON SITL.UserID = UL.UserID 
+INNER JOIN dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID 
+INNER JOIN dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID AND SI.Category=15
+LEFT JOIN dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+LEFT JOIN dbo.MaterialRequirement AS MR ON MR.MaterialRequirementID = SITL.RefObjectID AND SITL.RefObjectType = 6
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+LEFT JOIN SalesOrder SO on SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+left join WoodPallet WP on WP.WoodPalletID=SITL.RefObjectID AND SITL.RefObjectType = 9
+GO
+
+update StockItem
+set StockCode = null
+where Category=15
+go
+
+
+
+ALTER view [dbo].[vwWoodPalletItemInfo]
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+WPI.Quantity,
+WPI.QuantityUsed,
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.RefPalletOutside,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description,
+SI.Category,
+SI.ItemType,
+SI.Thickness,
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+GO
+
+ALTER view [dbo].[vwStockItemWoodTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.ReferenceNo,
+SITL.AdditionalRef,
+SITL.Note,
+SITL.StockValuation, 
+SITL.TransactionValuationDollar,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+MR.AreaID,
+MR.UoM,
+UL.UserName, 
+ST.Description AS StockTakeDescription,
+WO.WorkOrderNo,
+WO.Description AS WODESCRIPTION,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+WP.RefPalletOutside,
+WP.PalletRef,
+SIL.LocationID
+
+FROM dbo.StockItemTransactionLog AS SITL
+INNER JOIN dbo.UserList AS UL ON SITL.UserID = UL.UserID 
+INNER JOIN dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID 
+INNER JOIN dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID AND SI.Category=15
+LEFT JOIN dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+LEFT JOIN dbo.MaterialRequirement AS MR ON MR.MaterialRequirementID = SITL.RefObjectID AND SITL.RefObjectType = 6
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+LEFT JOIN SalesOrder SO on SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+left join WoodPallet WP on WP.WoodPalletID=SITL.RefObjectID AND SITL.RefObjectType = 9
+GO
+
+alter table WoodPalletItem
+add OutstandingQty decimal (9,4)
+go
+
+
+ALTER view [dbo].[vwWoodPalletItemInfo]
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+WPI.Quantity,
+WPI.QuantityUsed,
+WPI.OutstandingQty,
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.RefPalletOutside,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description,
+SI.Category,
+SI.ItemType,
+SI.Thickness,
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+GO
+

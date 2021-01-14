@@ -25,6 +25,7 @@ Public MustInherit Class clsStockItemRegistryBase
     Return mRetVal
   End Function
 
+
   Public Sub RemoveContextSpecific()
 
   End Sub

@@ -65,6 +65,18 @@ Public Class dsoGeneral
     End Try
     Return mRetVal
   End Function
+
+  Public Function GetNextTallyWoodPalletConnected() As Integer
+    Dim mRetVal As Integer
+    Try
+
+      mRetVal = pDBConn.NextTally(eTallyIDs.WoodPallet)
+    Catch ex As Exception
+    Finally
+
+    End Try
+    Return mRetVal
+  End Function
   Public Function LoadHostCompanys(ByRef rHostCompanys As colHostCompanys) As Boolean
     Dim mdto As dtoHostCompany
     Dim mOK As Boolean

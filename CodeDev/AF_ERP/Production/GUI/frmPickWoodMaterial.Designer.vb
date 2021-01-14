@@ -61,6 +61,7 @@ Partial Class frmPickWoodMaterial
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.txtWoodPalletRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -71,7 +72,6 @@ Partial Class frmPickWoodMaterial
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.btnSelectWorkOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpPOPicking.SuspendLayout()
@@ -516,6 +516,19 @@ Partial Class frmPickWoodMaterial
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn16.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn16.Caption = "Pies Tablas"
+        Me.GridColumn16.DisplayFormat.FormatString = "n2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "TotalBoardFeetFromInches"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 10
+        '
         'GroupControl1
         '
         Me.GroupControl1.AllowTouchScroll = True
@@ -625,19 +638,6 @@ Partial Class frmPickWoodMaterial
         Me.LabelControl9.Size = New System.Drawing.Size(45, 16)
         Me.LabelControl9.TabIndex = 1
         Me.LabelControl9.Text = "Cliente"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn16.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn16.Caption = "Pies Tablas"
-        Me.GridColumn16.DisplayFormat.FormatString = "n2"
-        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "TotalBoardFeetFromInches"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.ReadOnly = True
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 10
         '
         'frmPickWoodMaterial
         '

@@ -195,6 +195,17 @@
     End Get
   End Property
 
+  Public ReadOnly Property WorkOrderProcessOption As Integer
+    Get
+      Return pWorkOrder.WorkOrderProcessOption
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderTargetWoodType As Integer
+    Get
+      Return pWorkOrder.WorkOrderTargetWoodType
+    End Get
+  End Property
 End Class
 
 

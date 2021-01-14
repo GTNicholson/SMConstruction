@@ -6,16 +6,30 @@ Imports RTIS.CommonVB
 Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
 
   Private pStockItemTransactionLogInfo As clsStockItemTransactionLogInfo
-
-
-  Public Sub New(ByRef rDBSource As clsDBConnBase)
+  Private pMode As eMode
+  Public Enum eMode
+    StockItemTransactionLogInfo = 1
+    WoodStockItemTransactionLogInfo = 2
+  End Enum
+  Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal veLoadingMode As eMode)
     MyBase.New(rDBSource)
+    pMode = veLoadingMode
     SetTableDetails()
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "vwStockItemTransactionLogInfo"
-    pKeyFieldName = "StockItemTransactionLogID"
+
+    Select Case pMode
+
+      Case eMode.StockItemTransactionLogInfo
+        pTableName = "vwStockItemTransactionLogInfo"
+        pKeyFieldName = "StockItemTransactionLogID"
+      Case eMode.WoodStockItemTransactionLogInfo
+        pTableName = "vwStockItemWoodTransactionLogInfo"
+        pKeyFieldName = "StockItemTransactionLogID"
+    End Select
+
+
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
     pConcurrencyType = eConcurrencyType.OverwriteChanges
@@ -56,57 +70,118 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
     Dim mOK As Boolean
     Try
       If pStockItemTransactionLogInfo Is Nothing Then SetObjectToNew()
-      With pStockItemTransactionLogInfo
-        .StockItemTransactionLogID = DBReadInt32(rDataReader, "StockItemTransactionLogID")
-        .TransQuantity = DBReadDecimal(rDataReader, "Tranvalue")
-        .PrevValue = DBReadDecimal(rDataReader, "PrevValue")
-        .NewValue = DBReadDecimal(rDataReader, "NewValue")
-        .TransType = DBReadByte(rDataReader, "TransactionType")
-        .RefObjectType = DBReadByte(rDataReader, "RefObjectType")
-        .RefObjectID = DBReadInt32(rDataReader, "RefObjectID")
-        ''.GRNumber = DBReadString(rDataReader, "GRNumber")
-        .TransDate = DBReadDateTime(rDataReader, "TransactionDate")
-        ''.SupplierName = DBReadString(rDataReader, "SupplierName")
-        ''.PONum = DBReadString(rDataReader, "PONum")
-        ''.ChangeDetails = DBReadString(rDataReader, "ChangeDetails")
-        .StockTakeDesc = DBReadString(rDataReader, "StockTakeDescription")
-        .UserName = DBReadString(rDataReader, "UserName")
-        .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
-        .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
-        .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
-        .TransactionValuationDollar = DBReadDecimal(rDataReader, "TransactionValuationDollar")
+
+      Select Case pMode
+        Case eMode.StockItemTransactionLogInfo
+
+          With pStockItemTransactionLogInfo
+            .StockItemTransactionLogID = DBReadInt32(rDataReader, "StockItemTransactionLogID")
+            .TransQuantity = DBReadDecimal(rDataReader, "Tranvalue")
+            .PrevValue = DBReadDecimal(rDataReader, "PrevValue")
+            .NewValue = DBReadDecimal(rDataReader, "NewValue")
+            .TransType = DBReadByte(rDataReader, "TransactionType")
+            .RefObjectType = DBReadByte(rDataReader, "RefObjectType")
+            .RefObjectID = DBReadInt32(rDataReader, "RefObjectID")
+            ''.GRNumber = DBReadString(rDataReader, "GRNumber")
+            .TransDate = DBReadDateTime(rDataReader, "TransactionDate")
+            ''.SupplierName = DBReadString(rDataReader, "SupplierName")
+            ''.PONum = DBReadString(rDataReader, "PONum")
+            ''.ChangeDetails = DBReadString(rDataReader, "ChangeDetails")
+            .StockTakeDesc = DBReadString(rDataReader, "StockTakeDescription")
+            .UserName = DBReadString(rDataReader, "UserName")
+            .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
+            .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
+            .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
+            .TransactionValuationDollar = DBReadDecimal(rDataReader, "TransactionValuationDollar")
 
 
-      End With
-      With pStockItemTransactionLogInfo.CurrentStockItem
-        .StockItemID = DBReadInt32(rDataReader, "StockItemID")
-        .Category = DBReadByte(rDataReader, "Category")
-        .ItemType = DBReadByte(rDataReader, "ItemType")
-        .StockCode = DBReadString(rDataReader, "StockCode")
-        .Description = DBReadString(rDataReader, "Description")
-        .StdCost = DBReadDecimal(rDataReader, "StdCost")
-      End With
+          End With
+          With pStockItemTransactionLogInfo.CurrentStockItem
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+            .Category = DBReadByte(rDataReader, "Category")
+            .ItemType = DBReadByte(rDataReader, "ItemType")
+            .StockCode = DBReadString(rDataReader, "StockCode")
+            .Description = DBReadString(rDataReader, "Description")
+            .StdCost = DBReadDecimal(rDataReader, "StdCost")
+          End With
 
-      With pStockItemTransactionLogInfo.WorkOrder
-        .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
-        .Description = DBReadString(rDataReader, "WODESCRIPTION")
+          With pStockItemTransactionLogInfo.WorkOrder
+            .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            .Description = DBReadString(rDataReader, "WODESCRIPTION")
 
-      End With
+          End With
 
-      With pStockItemTransactionLogInfo.MaterialRequirement
-        .AreaID = DBReadInt32(rDataReader, "AreaID")
+          With pStockItemTransactionLogInfo.MaterialRequirement
+            .AreaID = DBReadInt32(rDataReader, "AreaID")
 
-      End With
+          End With
 
-      With pStockItemTransactionLogInfo.SalesOrder
-        .ProjectName = DBReadString(rDataReader, "ProjectName")
+          With pStockItemTransactionLogInfo.SalesOrder
+            .ProjectName = DBReadString(rDataReader, "ProjectName")
 
-      End With
+          End With
 
-      With pStockItemTransactionLogInfo.Customer
-        .CompanyName = DBReadString(rDataReader, "CompanyName")
+          With pStockItemTransactionLogInfo.Customer
+            .CompanyName = DBReadString(rDataReader, "CompanyName")
 
-      End With
+          End With
+
+        Case eMode.WoodStockItemTransactionLogInfo
+          With pStockItemTransactionLogInfo
+            .StockItemTransactionLogID = DBReadInt32(rDataReader, "StockItemTransactionLogID")
+            .TransQuantity = DBReadDecimal(rDataReader, "Tranvalue")
+            .PrevValue = DBReadDecimal(rDataReader, "PrevValue")
+            .NewValue = DBReadDecimal(rDataReader, "NewValue")
+            .TransType = DBReadByte(rDataReader, "TransactionType")
+            .RefObjectType = DBReadByte(rDataReader, "RefObjectType")
+            .RefObjectID = DBReadInt32(rDataReader, "RefObjectID")
+            ''.GRNumber = DBReadString(rDataReader, "GRNumber")
+            .TransDate = DBReadDateTime(rDataReader, "TransactionDate")
+            ''.SupplierName = DBReadString(rDataReader, "SupplierName")
+            ''.PONum = DBReadString(rDataReader, "PONum")
+            ''.ChangeDetails = DBReadString(rDataReader, "ChangeDetails")
+            .StockTakeDesc = DBReadString(rDataReader, "StockTakeDescription")
+            .UserName = DBReadString(rDataReader, "UserName")
+            .TransactionValuation = DBReadDecimal(rDataReader, "TransactionValuation")
+            .StockValuation = DBReadDecimal(rDataReader, "StockValuation")
+            .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
+            .TransactionValuationDollar = DBReadDecimal(rDataReader, "TransactionValuationDollar")
+
+
+          End With
+          With pStockItemTransactionLogInfo.CurrentStockItem
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+            .Category = DBReadByte(rDataReader, "Category")
+            .ItemType = DBReadByte(rDataReader, "ItemType")
+            .StockCode = DBReadString(rDataReader, "StockCode")
+            .Description = DBReadString(rDataReader, "Description")
+            .StdCost = DBReadDecimal(rDataReader, "StdCost")
+          End With
+
+          With pStockItemTransactionLogInfo
+            .PalletRef = DBReadString(rDataReader, "PalletRef")
+            .PalletOutsideRef = DBReadString(rDataReader, "RefPalletOutside")
+            .LocationID = DBReadByte(rDataReader, "LocationID")
+          End With
+
+          With pStockItemTransactionLogInfo.MaterialRequirement
+            .AreaID = DBReadInt32(rDataReader, "AreaID")
+
+          End With
+
+          With pStockItemTransactionLogInfo.SalesOrder
+            .ProjectName = DBReadString(rDataReader, "ProjectName")
+
+          End With
+
+          With pStockItemTransactionLogInfo.Customer
+            .CompanyName = DBReadString(rDataReader, "CompanyName")
+
+          End With
+      End Select
+
+
+
 
       mOK = True
     Catch Ex As Exception

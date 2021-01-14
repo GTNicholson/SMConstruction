@@ -50,13 +50,20 @@ Public Class MenuFactory
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Despachos de Productos Realizados", eMenuIconType.Report, AddressOf clsMenuFunctions.PickingReport, eActivityCode.PODeliveryItemReport)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Stock Infos.", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.StockItemInfos)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Insumos", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.StockItemInfos)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.TransactionReport)
+
+
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Madera", 0, eActivityCode.WoodGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodPallet)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Proceso de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderWoodProcessBrowse, eActivityCode.WorkOrderWoodProcess)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.WoodInventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Pallets", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodStockItemTransactionInfoBI, eActivityCode.TransactionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Volumen de Madera por Especie", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodPalletItemVolumeReport, eActivityCode.WoodPalletItemReport)
+
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Despachos de Productos Realizados", eMenuIconType.Report, AddressOf clsMenuFunctions.PickingReport, eActivityCode.PODeliveryItemReport)
 
 
@@ -67,6 +74,7 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Lista de Costos", 0, eActivityCode.CostingGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductCost, eActivityCode.ProductCost)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodCosting, eActivityCode.Configuration)
 
 
     'mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
@@ -109,9 +117,11 @@ Class clsMenuFunctions
 
   End Sub
   Public Shared Sub StockInfos(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmStockItemInfo.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+    frmStockItemInfo.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, False)
   End Sub
-
+  Public Shared Sub StockInfosWood(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmStockItemInfo.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, True)
+  End Sub
 
   Public Shared Sub WorksOrderBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBrw As New brwWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WorkOrder)
@@ -319,7 +329,13 @@ Class clsMenuFunctions
 
   Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, False)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub WoodStockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, True)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
@@ -369,9 +385,23 @@ Class clsMenuFunctions
     mBIReport = BIReportViewMaterialRequirementInfo.CreateBIReportViewFactoryMatReqInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
+
+
+  Public Shared Sub WoodCosting(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+
+    Dim mBrw As New brwCostBook(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WoodCostBook)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+
+  End Sub
+
+
+
+  Public Shared Sub WoodPalletItemVolumeReport(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewWoodPalletItemInfo.CreateBIReportVieWoodPalletItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
 End Class
-
-
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 
   Public Sub New()

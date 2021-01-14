@@ -1,0 +1,264 @@
+﻿<XtraSerializer version="1.0" application="View">
+  <property name="#LayoutVersion" />
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="ViewCaption" iskey="true" value="ViewCaption">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="Empty" iskey="true" value="Empty">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="GroupPanel" iskey="true" value="GroupPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="HideSelectionRow" iskey="true" value="HideSelectionRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="HeaderPanel" iskey="true" value="HeaderPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseTextOptions">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="TextOptions" isnull="true" iskey="true">
+        <property name="WordWrap">Wrap</property>
+      </property>
+      <property name="Font">Arial, 12pt, style=Bold</property>
+    </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="FilterCloseButton" iskey="true" value="FilterCloseButton">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="FocusedRow" iskey="true" value="FocusedRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="RowSeparator" iskey="true" value="RowSeparator">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="CustomizationFormHint" iskey="true" value="CustomizationFormHint">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="DetailTip" iskey="true" value="DetailTip">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="GroupFooter" iskey="true" value="GroupFooter">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="Row" iskey="true" value="Row">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="HorzLine" iskey="true" value="HorzLine">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="ColumnFilterButtonActive" iskey="true" value="ColumnFilterButtonActive">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="SelectedRow" iskey="true" value="SelectedRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="VertLine" iskey="true" value="VertLine">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="ColumnFilterButton" iskey="true" value="ColumnFilterButton">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="GroupButton" iskey="true" value="GroupButton">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="FocusedCell" iskey="true" value="FocusedCell">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="GroupRow" iskey="true" value="GroupRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="FilterPanel" iskey="true" value="FilterPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="TopNewRow" iskey="true" value="TopNewRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="Preview" iskey="true" value="Preview">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="FooterPanel" iskey="true" value="FooterPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+    <property name="FixedLine" iskey="true" value="FixedLine">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 11pt</property>
+    </property>
+  </property>
+  <property name="OptionsView" isnull="true" iskey="true">
+    <property name="ColumnAutoWidth">false</property>
+    <property name="ShowAutoFilterRow">true</property>
+    <property name="ShowDetailButtons">false</property>
+    <property name="ShowGroupPanel">false</property>
+  </property>
+  <property name="FixedLineWidth">2</property>
+  <property name="IndicatorWidth">-1</property>
+  <property name="ColumnPanelRowHeight">40</property>
+  <property name="RowSeparatorHeight">0</property>
+  <property name="FooterPanelHeight">-1</property>
+  <property name="HorzScrollVisibility">Auto</property>
+  <property name="VertScrollVisibility">Auto</property>
+  <property name="RowHeight">25</property>
+  <property name="GroupRowHeight">-1</property>
+  <property name="GroupFormat">{0}: [#image]{1} {2}</property>
+  <property name="ChildGridLevelName" />
+  <property name="VertScrollTipFieldName" />
+  <property name="PreviewFieldName" />
+  <property name="GroupPanelText" />
+  <property name="NewItemRowText" />
+  <property name="LevelIndent">-1</property>
+  <property name="PreviewIndent">-1</property>
+  <property name="PreviewLineCount">-1</property>
+  <property name="ScrollStyle">LiveVertScroll, LiveHorzScroll</property>
+  <property name="FocusRectStyle">CellFocus</property>
+  <property name="HorzScrollStep">0</property>
+  <property name="ActiveFilterEnabled">true</property>
+  <property name="OptionsLayout" isnull="true" iskey="true">
+    <property name="StoreAllOptions">true</property>
+    <property name="Columns" isnull="true" iskey="true">
+      <property name="StoreAllOptions">true</property>
+    </property>
+  </property>
+  <property name="ViewCaptionHeight">-1</property>
+  <property name="Columns" iskey="true" value="4">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Name">GridColumn6</property>
+      <property name="Caption">CostBookID</property>
+      <property name="FieldName">CostBookID</property>
+      <property name="ColumnEditName" />
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Name">GridColumn39</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Descripción</property>
+      <property name="FieldName">CostBookName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">0</property>
+      <property name="Visible">true</property>
+      <property name="Width">541</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Name">GridColumn40</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Fecha del Libro de Costo</property>
+      <property name="FieldName">CostBookDate</property>
+      <property name="ColumnEditName">repitDateDefault</property>
+      <property name="VisibleIndex">1</property>
+      <property name="Visible">true</property>
+      <property name="Width">226</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Name">GridColumn1</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Por Defecto?</property>
+      <property name="FieldName">IsDefault</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit1</property>
+      <property name="VisibleIndex">2</property>
+      <property name="Visible">true</property>
+      <property name="Width">175</property>
+    </property>
+  </property>
+  <property name="ViewCaption" />
+  <property name="BorderStyle">Default</property>
+  <property name="SynchronizeClones">true</property>
+  <property name="DetailTabHeaderLocation">Top</property>
+  <property name="Name">GridView1</property>
+  <property name="DetailHeight">360</property>
+  <property name="Tag" isnull="true" />
+  <property name="GroupSummary" iskey="true" value="0" />
+  <property name="ActiveFilterString" />
+  <property name="FormatRules" iskey="true" value="0" />
+  <property name="FormatConditions" iskey="true" value="0" />
+  <property name="GroupSummarySortInfoState" />
+  <property name="FindFilterText" />
+  <property name="FindPanelVisible">false</property>
+</XtraSerializer>

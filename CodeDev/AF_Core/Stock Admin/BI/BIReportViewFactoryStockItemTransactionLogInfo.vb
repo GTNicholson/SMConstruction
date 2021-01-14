@@ -2,6 +2,7 @@
 Imports RTIS.DataLayer
 
 Public Class BIReportViewStockItemTransactionLogInfo
+
   Private Enum eBIStockItemTransactionLogID
     StockTransList = 1
     StockTransSummary = 2
@@ -21,14 +22,14 @@ Public Class BIReportViewStockItemTransactionLogInfo
     TransactionType = 3
   End Enum
 
-  Public Shared Function CreateBIReportViewStockTransactionLog(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As clsBIReportView
+  Public Shared Function CreateBIReportViewStockTransactionLog(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWoodReport As Boolean) As clsBIReportView
     Dim mBIReportView As New clsBIReportView
     Dim mLayoutLoader As New clsBILayoutLoaderFromFile
     Dim mConditionSetterList As clsBIConditionSetterList
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
     mBIReportView.BIReportSource = StockItemTransactionLogReportSource()
-    mBIReportView.DataSourceLoader = New dsoStockTransactionLogItemReportSource(rDBConn, rRTISGlobal, mBIReportView)
+    mBIReportView.DataSourceLoader = New dsoStockTransactionLogItemReportSource(rDBConn, rRTISGlobal, mBIReportView, vIsWoodReport)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader

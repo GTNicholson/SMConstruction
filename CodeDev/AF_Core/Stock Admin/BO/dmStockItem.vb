@@ -43,6 +43,8 @@ Public Class dmStockItem : Inherits dmBase
   Private pLastUsedDate As DateTime
   Private pUoM As Integer
   Private pSupplierUoM As Integer
+  Private pCostUoM As Byte
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -131,6 +133,7 @@ Public Class dmStockItem : Inherits dmBase
       .AuxCode = AuxCode
       .UoM = UoM
       .SupplierUoM = SupplierUoM
+      .CostUoM = CostUoM
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -697,6 +700,17 @@ Public Class dmStockItem : Inherits dmBase
       Throw New NotImplementedException()
     End Set
   End Property
+
+  Public Property CostUoM As Byte
+    Get
+      Return pCostUoM
+    End Get
+    Set(value As Byte)
+      If pCostUoM <> value Then pIsDirty = True
+      pCostUoM = value
+    End Set
+  End Property
+
 End Class
 
 
@@ -733,6 +747,23 @@ Public Class colStockItems : Inherits colBase(Of dmStockItem)
       End If
     Next
     Return mIndex
+  End Function
+
+  Public Function ItemFromSpeciesAndThickness(ByVal vSpecies As Integer, ByVal vThickness As Decimal, ByVal vItemType As Integer) As dmStockItem
+    Dim mRetVal As dmStockItem = Nothing
+
+    For Each mRetVal In MyBase.Items
+
+      If mRetVal.Species = vSpecies Then
+        If mRetVal.ItemType = vItemType Then
+          If mRetVal.Thickness = vThickness Then
+            Return mRetVal
+
+          End If
+        End If
+      End If
+    Next
+
   End Function
 
   Public Sub New()

@@ -59,7 +59,7 @@ Public Enum eActivityCode
   WoodInventory = 901 '// was 506
   WoodPallet = 902 '// was 507
   WorkOrderWoodProcess = 903
-
+  WoodPalletItemReport = 904
 
 End Enum
 
@@ -158,8 +158,8 @@ Public Enum eObjectType
   MaterialRequirement = 6
   PODeliveryItem = 7
   PurchaseOrder = 8
-  WoodPicking = 9
-  WoodMovement = 10
+  WoodPallet = 9
+
 End Enum
 
 Public Enum eEmployeeRole
@@ -203,6 +203,7 @@ Public Enum eBrowseList
   ProductCost = 14
   StructureWorkOrder = 15
   WorkOrderWoodProcess = 16
+  WoodCostBook = 17
 End Enum
 
 
@@ -246,6 +247,7 @@ Public Enum eReportSource
   PODelivery = 7
   PODeliveryItem = 8
   PurchaseOrderItem = 9
+  WoodPalletItemInfo = 10
 End Enum
 
 Public Enum eParentType
@@ -284,6 +286,11 @@ Public Enum eTallyIDs
   GRNNumber = 1002
   WoodPallet = 1003
   RollWoodOT = 1004
+  MAVWoodOT = 1005
+  MASWoodOT = 1006
+  AserradoWoodOT = 1007
+  ClassifiedWoodOT = 1008
+
 End Enum
 
 Public Enum ePaymentStatus
@@ -292,11 +299,12 @@ Public Enum ePaymentStatus
   <Description("Pagado")> Paid = 3
 End Enum
 Public Enum eWorkOrderWoodProcess
-  <Description("Árbol a Rollo")> ArbolARollo = 1
-  <Description("Rollo a MAV")> RolloAMAV = 2
-  <Description("MAV a MAS")> MAVAMAS = 3
-  <Description("MAS a Clasificado")> MASClasificado = 4
-  <Description("Rollo a Aserrado")> RolloAAserrado = 5
+
+  <Description("A Aserrío")> Aserrio = 1
+  <Description("A Horno")> Horno = 2
+  <Description("A Clasificación")> Clasificar = 3
+  <Description("A Devolución")> Devolucion = 4
+  <Description("A Rechazo")> Rechazo = 5
 End Enum
 
 
@@ -413,6 +421,7 @@ Public Enum eUoM
   <Description("PT")> PT = 16
   <Description("kg")> KG = 17
 
+  <Description("mt3")> MT3 = 18
 End Enum
 
 ''Public Enum eWorkOrderMilestone
@@ -1194,6 +1203,7 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     ClasificadoA = 7
     ClasificadoB = 8
     ClasificadoC = 9
+    ClasificadoZ = 10
     Otros = 99
 
 
@@ -1210,6 +1220,7 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
   Public Const ClasificadoA = 7
   Public Const ClasificadoB = 8
   Public Const ClasificadoC = 9
+  Public Const ClasificadoZ = 10
   Public Const Otros = 99
 
     Private Shared mSharedInstance As eStockItemTypeTimberWood
@@ -1223,8 +1234,8 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     Dim mRoll As New clsStockItemType(Rollo, "Rollo", "ROL")
     MyBase.Add(mRoll)
 
-    Dim mSaw As New clsStockItemType(Aserrado, "ASE", "ASE")
-    MyBase.Add(mSaw)
+    'Dim mSaw As New clsStockItemType(Aserrado, "ASE", "ASE")
+    'MyBase.Add(mSaw)
 
     Dim mMAS As New clsStockItemType(MAS, "MAS", "MAS")
     MyBase.Add(mMAS)
@@ -1245,6 +1256,9 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
 
     Dim mClasificadoC As New clsStockItemType(ClasificadoC, "Clasificado C", "CLC")
     MyBase.Add(mClasificadoC)
+
+    Dim mClasificadoZ As New clsStockItemType(ClasificadoZ, "Clasificado Z", "CLZ")
+    MyBase.Add(mClasificadoZ)
 
     Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
       MyBase.Add(mOther)
@@ -1819,6 +1833,8 @@ Public Enum eTransactionType
   <Description("Palletise SIR")> PalletiseSIR = 10
   <Description("Palletise LI")> PalletiseLI = 11
   <Description("Movimiento de Bodega")> Movement = 12
+  <Description("Corrección de Inv. Madera")> WoodAmendment = 13
+  <Description("Picking de Madera")> WoodPicking = 14
 End Enum
 
 Public Enum ePayPeriodType

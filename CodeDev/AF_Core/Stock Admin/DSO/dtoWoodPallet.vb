@@ -60,7 +60,11 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Archive", .Archive)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PalletType", .PalletType)
-
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefPalletOutside", StringToDBValue(.RefPalletOutside))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnStartDate", DateToDBValue(.KilnStartDate))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnEndDate", DateToDBValue(.KilnEndDate))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsComplete", .IsComplete)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IntoWIPDate", DateToDBValue(.IntoWIPDate))
 
 
     End With
@@ -80,8 +84,11 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .Archive = DBReadBoolean(rDataReader, "Archive")
         .Description = DBReadString(rDataReader, "Description")
         .PalletType = DBReadInt32(rDataReader, "PalletType")
-
-
+        .RefPalletOutside = DBReadString(rDataReader, "RefPalletOutside")
+        .KilnStartDate = DBReadDate(rDataReader, "KilnStartDate")
+        .KilnEndDate = DBReadDate(rDataReader, "KilnEndDate")
+        .IsComplete = DBReadBoolean(rDataReader, "IsComplete")
+        .IntoWIPDate = DBReadDate(rDataReader, "IntoWIPDate")
         pWoodPallet.IsDirty = False
       End With
       mOK = True
@@ -129,7 +136,17 @@ Public Class dtoWoodPallet : Inherits dtoBase
     pWoodPallet = Nothing
     Return mOK
   End Function
+  Public Function SaveWoodPalletDisconnected(ByRef rWoodPallet As dmWoodPallet) As Boolean
+    Dim mOK As Boolean
+    pWoodPallet = rWoodPallet
+    If pDBConn.Connect Then
+      mOK = SaveObject()
 
+    End If
+    pDBConn.Disconnect()
+    pWoodPallet = Nothing
+    Return mOK
+  End Function
 
   Public Function LoadWoodPalletCollection(ByRef rWoodPallets As colWoodPallets) As Boolean
     Dim mParams As New Hashtable

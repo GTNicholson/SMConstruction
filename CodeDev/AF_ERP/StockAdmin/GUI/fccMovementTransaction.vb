@@ -38,18 +38,20 @@ Public Class fccMovementTransaction
   End Sub
 
 
-  Public Sub ApplyWoodPalletMovement(ByVal vLocationID As Byte, ByVal vAdjustDate As DateTime)
+  Public Function ApplyWoodPalletMovement(ByVal vLocationID As Byte, ByVal vAdjustDate As DateTime) As Boolean
     Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
     Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mOK As Boolean
     Try
 
       Dim mtmpSO As New dmSalesOrder
-      mdsoStockTran.MoveWoodPallet(pWoodPallet, vLocationID, mtmpSO, vAdjustDate, eCurrency.Dollar, 1)
+      mOK = mdsoStockTran.MoveWoodPallet(pWoodPallet, vLocationID, mtmpSO, vAdjustDate, eCurrency.Dollar, 1)
 
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
-  End Sub
+    Return mOK
+  End Function
 
 End Class

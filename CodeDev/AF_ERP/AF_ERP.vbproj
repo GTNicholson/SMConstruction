@@ -226,12 +226,20 @@
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
     <Compile Include="BIReports\BIPODeliveryItemInfo.vb" />
+    <Compile Include="Costing\brwCostBook.vb" />
     <Compile Include="Costing\brwProductCost.vb" />
     <Compile Include="Costing\fccProductCostBook.vb" />
     <Compile Include="Costing\frmProductCostBook.Designer.vb">
       <DependentUpon>frmProductCostBook.vb</DependentUpon>
     </Compile>
     <Compile Include="Costing\frmProductCostBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costing\GUI\fccCostBook.vb" />
+    <Compile Include="Costing\GUI\frmCostBook.Designer.vb">
+      <DependentUpon>frmCostBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Costing\GUI\frmCostBook.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Despatch\brwInvoices.vb" />
@@ -673,6 +681,12 @@
     <Compile Include="StockAdmin\GUI\frmIssueInventory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StockAdmin\GUI\frmMovementClassified.Designer.vb">
+      <DependentUpon>frmMovementClassified.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmMovementClassified.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="StockAdmin\GUI\frmMovementTransaction.Designer.vb">
       <DependentUpon>frmMovementTransaction.vb</DependentUpon>
     </Compile>
@@ -746,6 +760,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Costing\frmProductCostBook.resx">
       <DependentUpon>frmProductCostBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Costing\GUI\frmCostBook.resx">
+      <DependentUpon>frmCostBook.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Despatch\Documents\repInvoice.resx">
       <DependentUpon>repInvoice.vb</DependentUpon>
@@ -934,6 +951,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmIssueInventory.resx">
       <DependentUpon>frmIssueInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmMovementClassified.resx">
+      <DependentUpon>frmMovementClassified.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmMovementTransaction.resx">
       <DependentUpon>frmMovementTransaction.vb</DependentUpon>

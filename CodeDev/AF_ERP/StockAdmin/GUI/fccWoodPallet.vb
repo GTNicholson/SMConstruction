@@ -13,8 +13,7 @@ Public Class fccWoodPallet
   Private pShowItemsMode As Integer
   Private pCurreStockItemList As colStockItems
   Private pWoodPalletItemEditors As colWoodPalletItemEditors
-
-
+  Private pPreviousLocationID As Integer
 
   Public Enum eShowItems
     ShowAll = 0
@@ -68,6 +67,26 @@ Public Class fccWoodPallet
     End Set
   End Property
 
+  Public Property PreviousLocationID As Integer
+    Get
+      Return pPreviousLocationID
+    End Get
+    Set(value As Integer)
+      pPreviousLocationID = value
+    End Set
+  End Property
+
+  Public Property WoodPalletItemEditors As colWoodPalletItemEditors
+    Get
+      Return pWoodPalletItemEditors
+    End Get
+    Set(value As colWoodPalletItemEditors)
+      pWoodPalletItemEditors = value
+    End Set
+  End Property
+
+
+
   Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
@@ -76,17 +95,19 @@ Public Class fccWoodPallet
     pCurrentWoodPalletOrig = New dmWoodPallet
     pCurreStockItemList = New colStockItems
     pShowItemsMode = eShowItems.ShowLive
+    pWoodPalletItemEditors = New colWoodPalletItemEditors()
   End Sub
 
-  Public Function AddWoodPallet() As dmWoodPallet
+  Public Function CreateNewPallet(ByVal vPalletType As Integer) As dmWoodPallet
     Dim mRetVal As dmWoodPallet = Nothing
     Dim mWoodPallet As dmWoodPallet
 
     Try
 
       mWoodPallet = New dmWoodPallet
-      GetNextWoodPalletRef(mWoodPallet)
+
       mWoodPallet.CreatedDate = Now
+      mWoodPallet.PalletType = vPalletType
       pWoodPallets.Add(mWoodPallet)
 
       mRetVal = mWoodPallet
@@ -95,10 +116,7 @@ Public Class fccWoodPallet
     End Try
     Return mRetVal
   End Function
-  Public Sub GetNextWoodPalletRef(ByRef rWoodPallet As dmWoodPallet)
-    Dim mdsoGeneral As New dsoGeneral(pDBConn)
-    rWoodPallet.PalletRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("00000")
-  End Sub
+
 
   Public Sub LoadWoodPalletDetail()
     Dim mdsoStock As New dsoStock(pDBConn)
@@ -116,13 +134,10 @@ Public Class fccWoodPallet
   End Sub
 
   Public Sub SaveObject()
-    Dim mAdjustments As Dictionary(Of Integer, Decimal)
+
     Dim mStockItem As New dmStockItem
     Dim mWoodPalletDescription As String = ""
-    Dim mStockItemElement As dmStockItem
-    Dim mWoodItemcols As colWoodPalletItems
-    Dim mList As List(Of KeyValuePair(Of Integer, Integer))
-    Dim mTempWoodPalletItem As dmWoodPalletItem
+
     Dim mQty As Integer = 0
     Try
 
@@ -130,59 +145,12 @@ Public Class fccWoodPallet
         Dim mdsoStock As New dsoStock(pDBConn)
 
 
-        ''  mWoodItemcols = pCurrentWoodPallet.WoodPalletItems.Clone
+        If pCurrentWoodPallet.PalletType > 0 Then
+          mdsoStock.SaveWoodPalletDown(pCurrentWoodPallet)
 
-        ''  mWoodItemcols.OrderBy(Function(mwooditem) mwooditem.StockItemID)
-
-
-        ''  For Each mVI In pRTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
-
-        ''    mTempWoodPalletItem = New dmWoodPalletItem
-        ''    mQty = 0
-        ''    For Each mwoodpalletitem As dmWoodPalletItem In mWoodItemcols
-
-        ''      mStockItemElement = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mwoodpalletitem.StockItemID)
-
-        ''      If mStockItemElement IsNot Nothing Then
-
-        ''        If mStockItemElement.Species = mVI.ItemValue Then
-
-        ''          If mStockItemElement.Thickness = mwoodpalletitem.Thickness Then
-        ''            mQty = mQty + 1
-        ''            mTempWoodPalletItem = mwoodpalletitem
-        ''          End If
+        End If
 
 
-        ''        End If
-
-        ''      End If
-
-
-        ''    Next
-        ''    If mQty > 0 Then
-        ''      mWoodPalletDescription &= mQty & " de Elementos de " & mVI.DisplayValue.Trim & " con grosor de " & mTempWoodPalletItem.Thickness.ToString("N1") & vbCrLf
-
-        ''    End If
-
-        ''  Next
-
-
-        mdsoStock.SaveWoodPalletDown(pCurrentWoodPallet)
-
-        '// Create Adjustment transactions
-        mAdjustments = GetStockItemLocationChange()
-
-        '// Remember not to create a transaction for the list when the value is 0
-        For Each mKVP As KeyValuePair(Of Integer, Decimal) In mAdjustments
-          If mKVP.Value <> 0 Then
-            mdsoStock.LoadStockItemByStockItemID(mStockItem, mKVP.Key)
-            If mStockItem IsNot Nothing Then
-              ApplyStockAdjust(mStockItem, 1, eTransactionType.Adjustment, mKVP.Value, Now, "")
-
-            End If
-
-          End If
-        Next
 
 
         mdsoStock = Nothing
@@ -250,10 +218,17 @@ Public Class fccWoodPallet
     End Try
   End Sub
 
-  Public Sub SetCurrentStockItemCollection()
-    Dim mdso As New dsoStock(pDBConn)
+  Public Sub SetCurrentWoodPalletInfo()
+    Dim mStockItem As dmStockItem
 
-    ' For Each mWoodPalletItem As dmWoodPalletItem In pCurrentWoodPallet.sto
+    Try
+
+    Catch ex As Exception
+
+    End Try
+
+
+
 
 
   End Sub
@@ -270,17 +245,11 @@ Public Class fccWoodPallet
     Return mRetVal
   End Function
 
-  Public Property WoodPalletItemEditors As colWoodPalletItemEditors
-    Get
-      Return pWoodPalletItemEditors
-    End Get
-    Set(value As colWoodPalletItemEditors)
-      pWoodPalletItemEditors = value
-    End Set
-  End Property
+
 
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean = True
+
     mIsDirty = pCurrentWoodPallet.IsAnyDirty
     Return mIsDirty
   End Function
@@ -299,7 +268,13 @@ Public Class fccWoodPallet
     '// Iterate through originals - create a negative entry for the original qtys
     For Each mPI As dmWoodPalletItem In pCurrentWoodPalletOrig.WoodPalletItems
       mVolume = Math.Round(((mPI.Thickness * mPI.Width * mPI.Length) / 12) * mPI.Quantity, 4)
-      mRetVal.Add(mPI.StockItemID, (-1 * mVolume))
+      If mRetVal.ContainsKey(mPI.StockItemID) Then
+        mRetVal.Item(mPI.StockItemID) = mRetVal.Item(mPI.StockItemID) + mVolume
+      Else
+        mRetVal.Add(mPI.StockItemID, (-1 * mVolume))
+      End If
+
+
     Next
 
     '// now iterate through the current entries creating positive entries
@@ -316,5 +291,179 @@ Public Class fccWoodPallet
     Return mRetVal
 
   End Function
+
+  Public Sub RefreshWoodPalletItemEditor(ByVal vCurrentWoodPallet As dmWoodPallet)
+    Dim mWPItemEditor As clsWoodPalletItemEditor
+    Dim mSI As dmStockItem
+
+    pWoodPalletItemEditors.Clear()
+
+    If vCurrentWoodPallet IsNot Nothing Then
+      For Each mWPI As dmWoodPalletItem In vCurrentWoodPallet.WoodPalletItems
+        mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+
+        If mWPI IsNot Nothing Then
+          mWPItemEditor = New clsWoodPalletItemEditor(mWPI, mSI)
+          pWoodPalletItemEditors.Add(mWPItemEditor)
+        End If
+
+      Next
+
+    End If
+  End Sub
+
+  Public Sub ToProcessQty()
+    Dim mCurrentQty As Decimal
+    Dim mTempWoodPallet As dmWoodPallet
+    Dim mTempWoodPalletItems As New colWoodPalletItems
+    Dim mTempWoodPalletItem As dmWoodPalletItem
+    Dim mToProcQtyBoardFeet As Decimal
+
+    Try
+      mTempWoodPallet = New dmWoodPallet
+
+
+      mTempWoodPallet.WoodPalletID = pCurrentWoodPallet.WoodPalletID
+      mTempWoodPallet.PalletRef = pCurrentWoodPallet.PalletRef
+
+      For Each mWPIE As clsWoodPalletItemEditor In pWoodPalletItemEditors
+
+        If mWPIE.ToProcessQty <> 0 Then
+          mTempWoodPalletItem = New dmWoodPalletItem
+
+          Select Case mWPIE.StockItem.ItemType
+            Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
+              mToProcQtyBoardFeet = clsWoodPalletSharedFuncs.M3ToBoardFeet(mWPIE.ToProcessQty)
+            Case Else
+              mToProcQtyBoardFeet = mWPIE.ToProcessQty
+          End Select
+
+          mCurrentQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
+          mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
+          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
+          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
+
+          mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
+          mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness
+          mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
+          mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
+
+          mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
+        End If
+        mWPIE.ToProcessQty = 0
+
+      Next
+
+      SaveObject()
+
+
+      If mTempWoodPallet IsNot Nothing Then
+        If mTempWoodPallet.WoodPalletItems.Count > 0 Then
+          CreateAmendmentWoodPalletTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet)
+        End If
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+  Public Sub ToConsumeQty()
+    Dim mCurrentQtyUsed As Decimal
+    Dim mTempWoodPallet As dmWoodPallet
+    Dim mTempWoodPalletItems As New colWoodPalletItems
+    Dim mTempWoodPalletItem As dmWoodPalletItem
+    Try
+      mTempWoodPallet = New dmWoodPallet
+
+
+      mTempWoodPallet.WoodPalletID = pCurrentWoodPallet.WoodPalletID
+      mTempWoodPallet.PalletRef = pCurrentWoodPallet.PalletRef
+
+      For Each mWPIE As clsWoodPalletItemEditor In pWoodPalletItemEditors
+
+        If mWPIE.ToProcessQty <> 0 Then
+          mTempWoodPalletItem = New dmWoodPalletItem
+
+          mCurrentQtyUsed = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
+          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed = mCurrentQtyUsed + mWPIE.ToProcessQty
+
+
+          mTempWoodPalletItem.Quantity = mWPIE.ToProcessQty
+          mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
+          mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness
+          mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
+          mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
+          mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
+
+        End If
+        mWPIE.ToProcessQty = 0
+
+      Next
+
+      SaveObject()
+
+
+
+      If mTempWoodPallet IsNot Nothing Then
+        If mTempWoodPallet.WoodPalletItems.Count > 0 Then
+          CreatePickWoodTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet)
+        End If
+      End If
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub CreatePickWoodTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+    Dim mSIL As New dmStockItemLocation
+    Dim mdsoStock As dsoStock
+    Dim mdsoTran As dsoStockTransactions
+
+    Dim mdsoCostBook As dsoCostBook
+
+
+    mdsoTran = New dsoStockTransactions(pDBConn)
+    mdsoCostBook = New dsoCostBook(pDBConn)
+
+
+    mdsoStock = New dsoStock(pDBConn)
+
+    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodPicking, vWoodPallet, vSourceLocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet)
+
+
+
+
+
+
+  End Sub
+
+  Public Sub CreateAmendmentWoodPalletTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+    Dim mSIL As New dmStockItemLocation
+    Dim mdsoStock As dsoStock
+    Dim mdsoTran As dsoStockTransactions
+
+    Dim mdsoCostBook As dsoCostBook
+
+
+    mdsoTran = New dsoStockTransactions(pDBConn)
+    mdsoCostBook = New dsoCostBook(pDBConn)
+
+
+    mdsoStock = New dsoStock(pDBConn)
+
+    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1)
+
+
+
+
+  End Sub
+
+
 
 End Class
