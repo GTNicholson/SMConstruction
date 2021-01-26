@@ -445,7 +445,7 @@ Public Class frmWorkOrderWoodProcess
         Try
 
 
-          mdso.LoadWoodPalletDownByWhere(mListOfWoodPalletsFilterd, mWhere)
+          mdso.LoadWoodPalletsDownByWhere(mListOfWoodPalletsFilterd, mWhere)
 
           For Each mItem As dmWoodPallet In mListOfWoodPalletsFilterd
             mWoodPallets.Add(mItem)
@@ -727,6 +727,7 @@ Public Class frmWorkOrderWoodProcess
 
           pnlSourcePallets.Parent = e.Page
           pFormController.SetCurrentSourceWoodPallet(e.Page.Tag)
+
 
         Else
           pFormController.SetCurrentSourceWoodPallet(Nothing)
@@ -1095,5 +1096,14 @@ Public Class frmWorkOrderWoodProcess
         End Try
     End Select
 
+  End Sub
+
+
+  Private Sub btnSaveAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSaveAndClose.ItemClick
+    Try
+      InitiateSaveExit()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
   End Sub
 End Class

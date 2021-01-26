@@ -13,6 +13,8 @@ Public Class clsStockItemInfo
   Private pCostQty As Decimal
   Private pTotalCubicMeter As Decimal
 
+  Private pCostWoodCost As Decimal
+
   Public Sub New(ByRef rPurchaseOrderItem As dmPurchaseOrderItem)
     pPOStockItem = rPurchaseOrderItem
 
@@ -220,7 +222,12 @@ Public Class clsStockItemInfo
 
   End Property
 
+  Public ReadOnly Property IsCostingOnly() As Boolean
+    Get
+      Return pStockItem.IsCostingOnly
+    End Get
 
+  End Property
   Public ReadOnly Property SupplierUoM() As Integer
     Get
       Return pStockItem.SupplierUoM
@@ -243,6 +250,20 @@ Public Class clsStockItemInfo
   End Property
 
 
+  Public ReadOnly Property ActualWoodValueInventory() As Decimal
+    Get
+      Return pCurrentInventory * CostWoodCost
+    End Get
+
+  End Property
+  Public Property CostWoodCost As Decimal
+    Get
+      Return pCostWoodCost
+    End Get
+    Set(value As Decimal)
+      pCostWoodCost = value
+    End Set
+  End Property
   Public ReadOnly Property RequiredInventoryNoNegative As Decimal
     Get
       If RequiredInventory > 0 Then
@@ -273,7 +294,7 @@ Public Class clsStockItemInfo
 
       If pStockItem.Category = eStockItemCategory.Timber And pStockItem.ItemType <> eStockItemTypeTimberWood.Rollo Then
 
-        pTotalCubicMeter = pCurrentInventory / 424
+        pTotalCubicMeter = pCurrentInventory / 423.77
 
       End If
       Return pTotalCubicMeter

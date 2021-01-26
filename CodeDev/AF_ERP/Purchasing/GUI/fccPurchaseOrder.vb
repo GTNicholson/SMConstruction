@@ -285,8 +285,9 @@ Public Class fccPurchaseOrder
 
 
     Try
-
-      mOK = mdsoPurchaseOrder.SavePurchaseOrderDownNEW(Me.PurchaseOrder)
+      If pPurchaseOrder.SupplierID > 0 Then
+        mOK = mdsoPurchaseOrder.SavePurchaseOrderDownNEW(Me.PurchaseOrder)
+      End If
 
       If pPrimaryKeyID = 0 Then
         pPrimaryKeyID = PurchaseOrder.PurchaseOrderID

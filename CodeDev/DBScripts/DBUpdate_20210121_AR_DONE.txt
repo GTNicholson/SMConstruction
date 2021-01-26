@@ -1,0 +1,36 @@
+
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+values (904,'WoodPalletItemReport',10,0)
+go
+
+
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID,IsSensitive)
+values (905,'WoodReception',10,0)
+go
+
+alter table WoodPallet
+add ReceptionID int
+go
+
+CREATE TABLE [dbo].Reception(
+	ReceptionID [int] IDENTITY(1,1) NOT NULL,
+	Farm int null,
+	ReceptionDate date null,
+	ItemType int,
+	[OverheadperItem] [decimal](9, 4) NULL,
+ CONSTRAINT [pk_Reception] PRIMARY KEY CLUSTERED 
+(
+	ReceptionID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+alter table Reception
+add ReceptionNo varchar(30) null
+go
+
+insert into Tally (Tally,Description,StartingValue,EndingValue,Increment,LoopBack)
+values (1,'Wood Reception',1000,99999,1,0)
+go
+

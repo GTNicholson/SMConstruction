@@ -1,0 +1,150 @@
+ALTER view [dbo].[vwWoodPalletInfo]
+as
+select
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.IsComplete,
+WP.IntoWIPDate,
+WP.KilnEndDate,
+WP.KilnStartDate
+
+from WoodPallet WP
+
+GO
+
+CREATE VIEW vwSUMWoodPalletContent
+as
+select
+WPI.WoodPalletID,
+WPI.StockItemID,
+
+
+SUM(WPI.Quantity) as 'SUMQuantity',
+SUM(WPI.QuantityUsed) as 'SUMQuantityUsed'
+
+from WoodPalletItem WPI
+group by WPI.WoodPalletID,WPI.StockItemID
+GO
+
+CREATE view vwSUMWoodPalletItemContent
+as
+
+select
+WPI.WoodPalletItemID,
+WPI.WoodPalletID,
+WPI.StockItemID,
+WPI.Description,
+WPI.StockCode,
+WPI.Width,
+WPI.Thickness,
+WPI.Length,
+WP.PalletRef,
+WP.LocationID,
+WP.PalletType,
+VW.SUMQuantity,
+VW.SUMQuantityUsed
+from WoodPalletItem WPI
+INNER JOIN WoodPallet WP ON WP.WoodPalletID=WPI.WoodPalletID
+INNER JOIN vwSUMWoodPalletContent VW ON VW.WoodPalletID=WPI.WoodPalletID AND VW.StockItemID=WPI.StockItemID
+go
+
+
+ALTER view [dbo].[vwWoodPalletItemInfo]
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+WPI.Quantity,
+WPI.QuantityUsed,
+WPI.OutstandingQty,
+WPI.VolumeM3,
+wpi.Thickness,
+WPI.StockItemID,
+WPI.StockCode,
+WPI.Description,
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.RefPalletOutside,
+
+
+SI.Category,
+SI.ItemType,
+
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+GO
+
+
+ALTER view [dbo].[vwWoodPalletInfo]
+as
+select
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.IsComplete,
+WP.IntoWIPDate,
+WP.KilnEndDate,
+WP.KilnStartDate
+
+from WoodPallet WP
+
+GO
+
+
+CREATE VIEW vwSUMWoodPalletContent
+as
+select
+WPI.WoodPalletID,
+WPI.StockItemID,
+
+
+SUM(WPI.Quantity) as 'SUMQuantity',
+SUM(WPI.QuantityUsed) as 'SUMQuantityUsed'
+
+from WoodPalletItem WPI
+group by WPI.WoodPalletID,WPI.StockItemID
+GO
+
+
+ALTER view vwSUMWoodPalletItemContent
+as
+
+select
+WP.WoodPalletID,
+WP.PalletRef,
+WP.PalletType,
+WP.LocationID,
+VW.StockItemID,
+VW.SUMQuantity,
+VW.SUMQuantityUsed
+from WoodPallet WP
+
+INNER JOIN vwSUMWoodPalletContent VW ON VW.WoodPalletID=WP.WoodPalletID
+go
+
+ALTER TABLE WoodPallet
+add Farm  int
+go
+
+ALTER TABLE StockItem
+add IsCostingOnly bit
+go
+
+
+alter table StockItemLocation
+add MonetaryValue decimal (9,4)
+go

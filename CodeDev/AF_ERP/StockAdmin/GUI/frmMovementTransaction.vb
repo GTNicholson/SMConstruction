@@ -20,9 +20,9 @@ Public Class frmMovementTransaction
     None = 2
   End Enum
 
-  Public Shared Function OpenFormI(ByRef rDBConn As clsDBConnBase, ByRef rWoodPallet As dmWoodPallet, ByVal vFormMode As eFormMode) As Boolean
+  Public Shared Function OpenFormI(ByRef rDBConn As clsDBConnBase, ByRef rWoodPallet As dmWoodPallet, ByVal vFormMode As eFormMode) As Integer
     Dim mfrm As frmMovementTransaction = Nothing
-    Dim mOK As Boolean = True
+    Dim mLocationID As Integer
 
     mfrm = GetFormIfLoaded()
     If mfrm Is Nothing Then
@@ -36,7 +36,7 @@ Public Class frmMovementTransaction
     Else
       mfrm.Focus()
     End If
-    Return mOK
+    Return mfrm.pFormcontroller.WoodPallet.LocationID
   End Function
   Private Shared Function GetFormIfLoaded() As frmMovementTransaction
     Dim mfrmWanted As frmMovementTransaction = Nothing

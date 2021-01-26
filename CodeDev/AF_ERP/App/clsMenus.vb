@@ -58,9 +58,10 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Admon. de Madera", 0, eActivityCode.WoodGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodPallet)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodReception, eActivityCode.WoodReception)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Proceso de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderWoodProcessBrowse, eActivityCode.WorkOrderWoodProcess)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.WoodInventory)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Pallets", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Madera", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodStockItemTransactionInfoBI, eActivityCode.TransactionReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Volumen de Madera por Especie", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodPalletItemVolumeReport, eActivityCode.WoodPalletItemReport)
 
@@ -103,7 +104,7 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub CustomerBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    Dim mBrw As New brwClientes(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Customer)
+    Dim mBrw As New brwCustomers(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.Customer)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
@@ -221,6 +222,11 @@ Class clsMenuFunctions
 
   Public Shared Sub WorkOrderWoodProcessBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBrw As New brwWorkOrderWoodProcess(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WorkOrderWoodProcess)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+  End Sub
+
+  Public Shared Sub WoodReception(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwWoodReception(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.WoodReception)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 

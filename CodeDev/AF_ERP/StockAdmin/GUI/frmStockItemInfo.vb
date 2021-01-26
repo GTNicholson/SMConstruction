@@ -5,6 +5,9 @@ Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraEditors.Controls
 Imports System.ComponentModel
+Imports DevExpress.Data
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid
 
 Public Class frmStockItemInfo
 
@@ -75,13 +78,28 @@ Public Class frmStockItemInfo
       gcSupplier.Visible = False
       gcTotalCubicMeter.Visible = True
       gcCategory.Visible = False
+
       gcItemType.Caption = "Tipo de Madera"
+      gcActualWoodValueInventory.Visible = True
+      gcCostWoodCost.Visible = True
+      gcCostWoodCost.VisibleIndex = 4
+
+      gcActualValueInventory.Visible = False
+      gcStdCost.Visible = False
+      CreateGroupSummary()
+
+
       gcCurrentInventory.ColumnEdit = repoPopUpWoodPalletItemInfo
       gcCurrentInventory.ShowButtonMode = ShowButtonModeEnum.ShowAlways
+
       repoPopUpWoodPalletItemInfo.PopupControl = popupWoodPalletInfo
       gvStockItemInfos.OptionsView.ShowGroupPanel = True
       UpdateCostByCostBookID()
+
+
       RefreshGridCurrency()
+
+
       gvStockItemInfos.RefreshData()
     Else
       gcLength.Visible = False
@@ -101,14 +119,44 @@ Public Class frmStockItemInfo
     pIsActive = mStartActive
   End Sub
 
+  Private Sub CreateGroupSummary()
+    Dim item As GridGroupSummaryItem = New GridGroupSummaryItem()
+    gvStockItemInfos.GroupSummary.Clear()
+
+    'gvStockItemInfos.OptionsView.GroupFooterShowMode = GroupFooterShowMode.VisibleAlways
+    gvStockItemInfos.OptionsView.ShowFooter = True
+
+
+
+    item.FieldName = "SpeciesDesc"
+    item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+    item.DisplayFormat = "Total PT Especie{0:n3}"
+    gvStockItemInfos.GroupSummary.Add(item)
+    ' Create and setup the second summary item.
+    'Dim item1 As GridGroupSummaryItem = New GridGroupSummaryItem()
+    'item1.FieldName = "CurrentInventory"
+    'item1.SummaryType = DevExpress.Data.SummaryItemType.Sum
+    'item1.DisplayFormat = "Total {0:c2}"
+    'item1.ShowInGroupColumnFooter = gvStockItemInfos.Columns("CurrentInventory")
+    'gvStockItemInfos.GroupSummary.Add(item1)
+
+
+
+
+    gcCurrentInventory.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+    gcCurrentInventory.SummaryItem.DisplayFormat = "{0:n3}"
+    gcCurrentInventory.SummaryItem.FieldName = "CurrentInventory"
+    gvStockItemInfos.GroupSummary.Add(SummaryItemType.Sum, "CurrentInventory")
+  End Sub
+
   Private Sub RefreshGridCurrency()
 
-    gvStockItemInfos.Columns("ActualValueInventory").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    gvStockItemInfos.Columns("ActualValueInventory").DisplayFormat.FormatString = "$#,##0.00;;#"
-    gvStockItemInfos.Columns("ActualValueInventory").SummaryItem.DisplayFormat = "{0:$#,##0.00;;#}"
+    gvStockItemInfos.Columns("ActualWoodValueInventory").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    gvStockItemInfos.Columns("ActualWoodValueInventory").DisplayFormat.FormatString = "$#,##0.00;;#"
+    gvStockItemInfos.Columns("ActualWoodValueInventory").SummaryItem.DisplayFormat = "{0:$#,##0.00;;#}"
 
-    gvStockItemInfos.Columns("StdCost").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-    gvStockItemInfos.Columns("StdCost").DisplayFormat.FormatString = "$#,##0.00;;#"
+    gvStockItemInfos.Columns("CostWoodCost").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    gvStockItemInfos.Columns("CostWoodCost").DisplayFormat.FormatString = "$#,##0.00;;#"
     ' gvStockItemInfos.Columns("StdCost").SummaryItem.DisplayFormat = "{0:$#,##0.00;;#}"
 
   End Sub
@@ -116,7 +164,12 @@ Public Class frmStockItemInfo
   Private Sub UpdateCostByCostBookID()
 
     For Each mSI As clsStockItemInfo In pFormController.StockItemInfos
-      mSI.StockItem.StdCost = pFormController.GetCostByStockItemID(mSI.StockItem.StockItemID)
+      mSI.CostWoodCost = pFormController.GetCostByStockItemIDM(mSI.StockItem.StockItemID)
+
+      Select Case mSI.StockItem.CostUoM
+        Case eUoM.MT3
+          mSI.CostWoodCost = mSI.CostWoodCost / 423.77
+      End Select
     Next
 
   End Sub
@@ -303,13 +356,19 @@ Public Class frmStockItemInfo
           gvStockItemInfos.ExportToXlsx(mFileName)
         End If
       Case "Reload"
+        RefreshControls()
         pFormController.ClearObjects()
         pFormController.LoadObjects()
 
+        UpdateCostByCostBookID()
+
         grdStockItemInfos.DataSource = pFormController.StockItemInfos
+
+
+
         LoadCombos()
 
-        RefreshControls()
+
     End Select
 
   End Sub
@@ -342,15 +401,33 @@ Public Class frmStockItemInfo
   End Sub
 
   Private Sub repoPopUpWoodPalletItemInfo_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repoPopUpWoodPalletItemInfo.QueryPopUp
-    Dim mWoodPallets As New colWoodPalletItemInfos
-
+    Dim mWoodPalletItemContents As New colWoodPalletItemContents
     Dim mStockItemID As Integer
     Dim mSIP As clsStockItemInfo
+    Dim mWoodPalletItemInfos As colWoodPalletItemInfos
 
+    Dim mWhere As String = ""
     mSIP = gvStockItemInfos.GetFocusedRow
     mStockItemID = mSIP.StockItem.StockItemID
 
-    pFormController.LoadWoodPalletItemInfosByStockItemID(mWoodPallets, mStockItemID)
-    grdWoodPalletInfo.DataSource = mWoodPallets
+    If mStockItemID > 0 Then
+      mWhere = "StockItemID = " & mStockItemID
+      pFormController.LoadWoodPalletItemContentByWhere(mWoodPalletItemContents, mWhere)
+
+      If mWoodPalletItemContents IsNot Nothing Then
+
+        For Each mWPIC In mWoodPalletItemContents
+          mWoodPalletItemInfos = New colWoodPalletItemInfos
+          pFormController.LoadWoodPalletItemInfosByStockItemID(mWoodPalletItemInfos, mWPIC.StockItemID, mWPIC.WoodPalletID)
+          mWPIC.WoodPalletItems = mWoodPalletItemInfos
+        Next
+        grdWoodPalletInfo.DataSource = mWoodPalletItemContents
+      End If
+
+
+    End If
+    'pFormController.LoadWoodPalletItemInfosByStockItemID(mWoodPalletItemInfos, mStockItemID)
+
+
   End Sub
 End Class

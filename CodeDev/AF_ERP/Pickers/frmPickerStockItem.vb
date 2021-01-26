@@ -295,6 +295,8 @@ Public Class frmPickerStockItem
         mTabPage.Tag = mVI.ItemValue
         xtabCategories.TabPages.Add(mTabPage)
         gvItemList.Columns("Thickness").Visible = False
+        bbtnNewStockItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+
       Else
         If mVI.ItemValue = eStockItemCategory.Timber Then
           mTabPage = New DevExpress.XtraTab.XtraTabPage
@@ -302,6 +304,7 @@ Public Class frmPickerStockItem
           mTabPage.Tag = mVI.ItemValue
           xtabCategories.TabPages.Add(mTabPage)
           gvItemList.Columns("Thickness").Visible = True
+          bbtnNewStockItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
       End If
 

@@ -1,4 +1,6 @@
-﻿Public Class clsStockItemSharedFuncs
+﻿Imports RTIS.DataLayer
+
+Public Class clsStockItemSharedFuncs
 
   Public Shared Function GetStockItemTypeDescription(ByRef rStockItem As dmStockItem) As String
     Dim mRetVal As String = ""
@@ -279,6 +281,7 @@
 
     If rStockItem.ItemType = eStockItemTypeTimberWood.Arbol Or rStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
       ''decide what to do with this description
+      ' mDescription &= " de Diametro de " & rStockItem.Thickness.ToString("n2")
     Else
 
       mInteger = Int(rStockItem.Thickness)
@@ -371,5 +374,44 @@
     Return mRetval
   End Function
 
+  Public Shared Function GetStockCodeStem_New(ByRef rStockItem As dmStockItem, ByRef rDBConn As clsDBConnBase) As String
+    Dim mSICode As String = ""
+    Dim mThicknessDecimal As Decimal
+    Dim mThicknessInteger As Integer
+    Dim mdsoStock As dsoStock
+    mSICode = clsStockItemSharedFuncs.GetStockCodeStem(rStockItem)
 
+    If rStockItem.Category = eStockItemCategory.Timber Then
+
+      If mSICode <> "" Then
+        mThicknessDecimal = rStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
+
+        If mThicknessDecimal <> 0 Then
+          mThicknessInteger = CInt(mThicknessDecimal)
+
+          mThicknessDecimal = mThicknessDecimal - mThicknessInteger
+
+          If mThicknessDecimal > 0 Then
+            mThicknessDecimal = mThicknessDecimal * 10
+            mSICode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+
+          Else
+            mSICode = mSICode & "_" & mThicknessInteger.ToString("n1")
+
+          End If
+
+        End If
+      End If
+
+    Else
+      mdsoStock = New dsoStock(rDBConn)
+
+      mSICode = mSICode & mdsoStock.GetNextStockCodeSuffixNo(mSICode).ToString("000")
+      rStockItem.StockCode = mSICode
+
+
+    End If
+
+    Return mSICode
+  End Function
 End Class

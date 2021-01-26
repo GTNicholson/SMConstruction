@@ -1,0 +1,31 @@
+CREATE TABLE [dbo].[CostBook](
+	[CostBookID] [int] IDENTITY(1,1) NOT NULL,
+	[CostBookName] [varchar](50) NULL,
+	[CostBookDate] [datetime] NULL,
+	[IsDefault] [bit] NULL,
+	[DirectLabourCost] [decimal](9, 4) NULL,
+	[DirectLabourMarkUp] [decimal](9, 4) NULL,
+	[OverheadperItem] [decimal](9, 4) NULL,
+ CONSTRAINT [pk_CostBook] PRIMARY KEY CLUSTERED 
+(
+	[CostBookID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+CREATE TABLE [dbo].[CostBookEntry](
+	[CostBookEntryID] [int] IDENTITY(1,1) NOT NULL,
+	[CostBookID] [int] NULL,
+	[StockItemID] [int] NULL,
+	[Cost] [decimal](9, 2) NULL,
+	[CostUnit] [int] NULL,
+	[MinCost] [decimal](9, 2) NULL,
+	[RetailPrice] [decimal](9, 2) NULL,
+ CONSTRAINT [pk_CostBookEntry] PRIMARY KEY CLUSTERED 
+(
+	[CostBookEntryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO

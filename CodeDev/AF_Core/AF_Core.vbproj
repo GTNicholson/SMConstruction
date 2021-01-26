@@ -263,6 +263,7 @@
     <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderAllocation.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Purchasing\BO\dmAccoutingCategory.vb" />
     <Compile Include="Purchasing\BO\clsPODeliveryItemInfo.vb" />
     <Compile Include="Purchasing\BO\clsPODeliveryInfo.vb" />
     <Compile Include="Purchasing\BO\clsPOItemEditor.vb" />
@@ -282,6 +283,7 @@
     <Compile Include="Purchasing\BO\dmPurchaseOrderItemAllocation.vb" />
     <Compile Include="Purchasing\BO\dmSupplier.vb" />
     <Compile Include="Purchasing\BO\dmSupplierContact.vb" />
+    <Compile Include="Purchasing\DSO\dtoAccoutingCategory.vb" />
     <Compile Include="Purchasing\DSO\dtoPODeliveryItemInfo.vb" />
     <Compile Include="Purchasing\DSO\dsoPurchasing.vb" />
     <Compile Include="Purchasing\DSO\dtoCustomerPurchaseOrder.vb" />
@@ -390,10 +392,12 @@
     <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemTransactionLogInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockTakeItemEditor.vb" />
+    <Compile Include="Stock Admin\BO\clsWoodPalletItemContent.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletItemEditor.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletSharedFuncs.vb" />
     <Compile Include="Stock Admin\BO\dmOutputPallet.vb" />
+    <Compile Include="Stock Admin\BO\dmReception.vb" />
     <Compile Include="Stock Admin\BO\dmStockItem.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemLocation.vb" />
     <Compile Include="Stock Admin\BO\dmStockItemLocationAmendmentLog.vb" />
@@ -404,9 +408,11 @@
     <Compile Include="Stock Admin\BO\dmWoodPalletItem.vb" />
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
+    <Compile Include="Stock Admin\DSO\dsoReception.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />
     <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />
     <Compile Include="Stock Admin\DSO\dtoOutputPallet.vb" />
+    <Compile Include="Stock Admin\DSO\dtoReception.vb" />
     <Compile Include="Stock Admin\DSO\dtoSalesOrderProgressInfo.vb" />
     <Compile Include="Stock Admin\DSO\dtoSourcePallet.vb" />
     <Compile Include="Stock Admin\DSO\dtoStockItem.vb" />
@@ -420,6 +426,7 @@
     <Compile Include="Stock Admin\BI\BIReportViewFactoryStockItemTransactionLogInfo.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPallet.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPalletItem.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodPalletItemContent.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPalletItemInfo.vb" />
   </ItemGroup>
   <ItemGroup>

@@ -467,10 +467,37 @@
   <AuxFiles>
     <Filename>gvlSupplier.xml</Filename>
   </AuxFiles>
+<AuxFiles>
+    <Filename>BIPODeliveryItemCategorySummary.xml</Filename>
+  </AuxFiles>
   <AuxFiles>
     <Filename>gvlWorkOrder.xml</Filename>
   </AuxFiles>
   <AuxFiles>
     <Filename>gvPODeliveryList.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIPurchaseOrderItemList.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BIPurchaseOrderItemSummary.xml</Filename>
+  </AuxFiles>
+<AuxFiles>
+    <Filename>BIMaterialRequirementList.xml</Filename>
+  </AuxFiles>
+<AuxFiles>
+    <Filename>BIMaterialRequirementSummary.xml</Filename>
+  </AuxFiles>
+<AuxFiles>
+    <Filename>BIWoodPalletItemList.xml</Filename>
+  </AuxFiles>
+<AuxFiles>
+    <Filename>BIWoodPalletItemSummary.xml</Filename>
+  </AuxFiles>
+<AuxFiles>
+    <Filename>BIPOAccountingCategorySummary.xml</Filename>
+  </AuxFiles>
+<AuxFiles>
+    <Filename>gvlReceptions.xml</Filename>
   </AuxFiles>
 </AppUpdateManifest>

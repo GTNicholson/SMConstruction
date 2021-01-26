@@ -234,8 +234,7 @@ Public Class frmPurchaseOrder
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
     clsDEControlLoading.FillDEComboVI(cboPaymentMethod, clsEnumsConstants.EnumToVIs(GetType(ePaymentMethod)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
-
-
+    clsDEControlLoading.FillDEComboVI(cboAccountingCategory, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.AccoutingCategory))
     dteDateOfOrder.Properties.NullDate = Date.MinValue
     dteDueDate.Properties.NullDate = Date.MinValue
     grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
@@ -341,6 +340,8 @@ Public Class frmPurchaseOrder
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentMethod, .PaymentMethod)
 
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboAccountingCategory, .AccoutingCategoryID)
+
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
         '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
@@ -439,6 +440,7 @@ Public Class frmPurchaseOrder
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
+      .AccoutingCategoryID = clsDEControlLoading.GetDEComboValue(cboAccountingCategory)
       .Carriage = txtCarriage.Text
       '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .SupplierRef = txtSupplierRef.Text

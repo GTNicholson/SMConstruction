@@ -10,10 +10,10 @@ Public Class clsWoodPalletSharedFuncs
 
       Select Case rStockItem.ItemType
         Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
-          mRetVal = rWoodPalletItem.Quantity
-
+          ' mRetVal = rWoodPalletItem.Quantity
+          mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero) * 423.77
         Case Else
-          mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4)
+          mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero)
 
       End Select
     End If
@@ -106,7 +106,7 @@ Public Class clsWoodPalletSharedFuncs
         End If
 
       Next
-      mRetVal = mRetVal.Substring(0, mRetVal.Length - 1)
+      'mRetVal = mRetVal.Substring(0, mRetVal.Length - 1)
 
 
     End If
@@ -210,4 +210,9 @@ Public Class clsWoodPalletSharedFuncs
     End If
   End Sub
 
+  Public Shared Function GetTrunkVolume(ByVal vLength As Decimal, ByVal vThickness As Decimal) As Decimal
+    Dim mRetVal As Decimal
+    mRetVal = Math.Round(Math.PI * Math.Pow(vThickness / 2 / 100, 2) * vLength, 4, MidpointRounding.AwayFromZero)
+    Return mRetVal
+  End Function
 End Class

@@ -64,6 +64,7 @@ Public Class dtoWoodPalletItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockCode", StringToDBValue(.StockCode))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Thickness", .Thickness)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OutstandingQty", .OutstandingQty)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VolumeM3", .VolumeM3)
 
     End With
 
@@ -86,6 +87,7 @@ Public Class dtoWoodPalletItem : Inherits dtoBase
         .StockCode = DBReadString(rDataReader, "StockCode")
         .Thickness = DBReadDecimal(rDataReader, "Thickness")
         .OutstandingQty = DBReadDecimal(rDataReader, "OutstandingQty")
+        .VolumeM3 = DBReadDecimal(rDataReader, "VolumeM3")
         pWoodPalletItem.IsDirty = False
       End With
       mOK = True

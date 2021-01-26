@@ -59,6 +59,9 @@ Public Class dtoStockItemLocation : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LocationID", .LocationID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Qty", .Qty)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BatchID", .BatchID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MonetaryValue", .MonetaryValue)
+
+
     End With
 
   End Sub
@@ -74,6 +77,7 @@ Public Class dtoStockItemLocation : Inherits dtoBase
         .LocationID = DBReadByte(rDataReader, "LocationID")
         .QtyValueTracker.SetDecValue(DBReadDecimal(rDataReader, "Qty"))
         .BatchID = DBReadInt32(rDataReader, "BatchID")
+        .MonetaryValue = DBReadDecimal(rDataReader, "MonetaryValue")
         pStockItemLocation.IsDirty = False
       End With
       mOK = True

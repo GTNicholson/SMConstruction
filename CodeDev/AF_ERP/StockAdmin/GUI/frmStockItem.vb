@@ -293,6 +293,7 @@ Public Class frmStockItem
         chkIsGeneric.Checked = .IsGeneric
         chkIsObsolete.Checked = .Inactive
         txtCostQty.EditValue = .CostQty
+        ckbIsCostingOnly.Checked = .IsCostingOnly
         txtAuxCode.Text = .AuxCode
       End With
 
@@ -384,6 +385,7 @@ Public Class frmStockItem
         .Finish = clsDEControlLoading.GetDEComboValue(cboFinish)
         .IsGeneric = chkIsGeneric.Checked
         .Inactive = chkIsObsolete.Checked
+        .IsCostingOnly = ckbIsCostingOnly.Checked
         .StdCost = txtStdCost.Text
         .StdImportCost = txtImportCost.Text
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
@@ -550,10 +552,15 @@ Public Class frmStockItem
 
           clsDEControlLoading.FillDEComboVI(cboSpecies, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie))
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTimberWood.GetInstance.ValueItems)
-
+          gcSpecies.Visible = True
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboSubitemType.Enabled = False
+
+
+
+
+
       End Select
 
     End If
@@ -583,6 +590,7 @@ Public Class frmStockItem
     txtImportCost.ReadOnly = vReadOnly
     txtStdCost.ReadOnly = vReadOnly
     chkIsGeneric.Enabled = Not vReadOnly
+    ckbIsCostingOnly.Enabled = Not vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
     bteImage.Enabled = Not vReadOnly
     cboSupplier.Enabled = Not vReadOnly
@@ -788,5 +796,7 @@ Public Class frmStockItem
   Private Sub cboSupplierUoM_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboSupplierUoM.SelectedIndexChanged
     ''  pFormController.StockItem.SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSubitemType)
   End Sub
+
+
 End Class
 

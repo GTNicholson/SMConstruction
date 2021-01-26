@@ -65,6 +65,9 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnEndDate", DateToDBValue(.KilnEndDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsComplete", .IsComplete)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IntoWIPDate", DateToDBValue(.IntoWIPDate))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Farm", .Farm)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceptionID", .ReceptionID)
+
 
 
     End With
@@ -89,6 +92,8 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .KilnEndDate = DBReadDate(rDataReader, "KilnEndDate")
         .IsComplete = DBReadBoolean(rDataReader, "IsComplete")
         .IntoWIPDate = DBReadDate(rDataReader, "IntoWIPDate")
+        .Farm = DBReadInt32(rDataReader, "Farm")
+        .ReceptionID = DBReadInt32(rDataReader, "ReceptionID")
         pWoodPallet.IsDirty = False
       End With
       mOK = True
@@ -145,6 +150,16 @@ Public Class dtoWoodPallet : Inherits dtoBase
     End If
     pDBConn.Disconnect()
     pWoodPallet = Nothing
+    Return mOK
+  End Function
+
+  Public Function LoadWoodPalletCollectionByReceptionID(ByRef rWoodPallets As colWoodPallets, ByVal vReceptionID As Integer) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mParams.Add("@ReceptionID", vReceptionID)
+    mOK = MyBase.LoadCollection(rWoodPallets, mParams, "WoodPalletID")
+    rWoodPallets.TrackDeleted = True
+    If mOK Then rWoodPallets.IsDirty = False
     Return mOK
   End Function
 
@@ -205,5 +220,50 @@ Public Class dtoWoodPallet : Inherits dtoBase
 
     Return mAllOK
   End Function
+  Public Function SaveWoodPalletCollectionByReceptionID(ByRef rCollection As colWoodPallets, ByVal vReceptionID As Integer) As Boolean
+    Dim mParams As New Hashtable
+    Dim mAllOK As Boolean
+    Dim mCount As Integer
+    Dim mIDs As String = ""
+    If rCollection.IsDirty Then
+      mParams.Add("@ReceptionID", vReceptionID)
+      ''Approach where delete items not found in the collection
+      ''If rCollection.SomeRemoved Then
+      ''  For Each Me.pWoodPallet In rCollection
+      ''    If pWoodPallet.WoodPalletID <> 0 Then
+      ''      mCount = mCount + 1
+      ''      If mCount > 1 Then mIDs = mIDs & ", "
+      ''       mIDs = mIDs & pWoodPallet.WoodPalletID.ToString
+      ''    End If
+      ''  Next
+      ''  mAllOK = MyBase.CollectionDeleteMissingItems(mParams, mIDs)
+      ''Else
+      ''   mAllOK = True
+      ''End If
 
+      ''Alternative Approach - where maintain collection of deleted items
+      If rCollection.SomeDeleted Then
+        mAllOK = True
+        For Each Me.pWoodPallet In rCollection.DeletedItems
+          If pWoodPallet.WoodPalletID <> 0 Then
+            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pWoodPallet.WoodPalletID)
+          End If
+        Next
+      Else
+        mAllOK = True
+      End If
+
+      For Each Me.pWoodPallet In rCollection
+        If pWoodPallet.IsDirty Or pWoodPallet.ReceptionID <> vReceptionID Or pWoodPallet.WoodPalletID = 0 Then 'Or pWoodPallet.WoodPalletID = 0
+          pWoodPallet.ReceptionID = vReceptionID
+          If mAllOK Then mAllOK = SaveObject()
+        End If
+      Next
+      If mAllOK Then rCollection.IsDirty = False
+    Else
+      mAllOK = True
+    End If
+
+    Return mAllOK
+  End Function
 End Class

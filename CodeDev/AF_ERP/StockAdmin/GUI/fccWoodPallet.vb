@@ -108,6 +108,7 @@ Public Class fccWoodPallet
 
       mWoodPallet.CreatedDate = Now
       mWoodPallet.PalletType = vPalletType
+      mWoodPallet.Archive = 0
       pWoodPallets.Add(mWoodPallet)
 
       mRetVal = mWoodPallet
@@ -209,7 +210,7 @@ Public Class fccWoodPallet
       ElseIf pShowItemsMode = eShowItems.ShowObsolete Then
         'mWhere = mWhere & " And (Inactive = 1) "
       End If
-      mdsoStock.LoadWoodPalletDownByWhere(pWoodPallets, "")
+      mdsoStock.LoadWoodPalletsDownByWhere(pWoodPallets, "Archive <> 1")
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -333,7 +334,7 @@ Public Class fccWoodPallet
 
           Select Case mWPIE.StockItem.ItemType
             Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
-              mToProcQtyBoardFeet = clsWoodPalletSharedFuncs.M3ToBoardFeet(mWPIE.ToProcessQty)
+              mToProcQtyBoardFeet = mWPIE.ToProcessQty 'clsWoodPalletSharedFuncs.GetTrunkVolume(mWPIE.WoodPalletItem.Length, mWPIE.StockItem.Thickness) * mWPIE.ToProcessQty
             Case Else
               mToProcQtyBoardFeet = mWPIE.ToProcessQty
           End Select
@@ -344,7 +345,7 @@ Public Class fccWoodPallet
           pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
 
           mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
-          mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness
+          mTempWoodPalletItem.Thickness = mWPIE.WoodPalletItem.Thickness
           mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
           mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
 
@@ -457,13 +458,24 @@ Public Class fccWoodPallet
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1)
+    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1)
 
 
 
 
   End Sub
 
+  Public Sub toPurge()
 
 
+    For Each mWPIE As clsWoodPalletItemEditor In pWoodPalletItemEditors
+
+      If mWPIE.WoodPalletItem.Quantity = 0 Then
+        pCurrentWoodPallet.WoodPalletItems.Remove(mWPIE.WoodPalletItem)
+      End If
+
+    Next
+
+    SaveObject()
+  End Sub
 End Class

@@ -6,6 +6,7 @@ Public Class BIReportViewPurchaseOrders
   Private Enum eBIPurchaseOrdersLayout
     POList = 1
     POSummary = 2
+    AccoutingSummary = 3
   End Enum
 
   Private Enum eBIReportDefs
@@ -96,6 +97,16 @@ Public Class BIReportViewPurchaseOrders
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIPurchaseOrderSummary.xml"
     mRepLayout.LayoutName = "Resumen de Orden de Compra"
+    mRepLayout.DrillDownLayout = mRepDDLayout
+    mRepLayout.DrillDownLayoutID = mRepDDLayout.DrillDownLayoutID
+    vReportSource.BIGridLayouts.Add(mRepLayout)
+
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBIPurchaseOrdersLayout.AccoutingSummary
+    mRepLayout.InterfaceType = 0
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BIPOAccountingCategorySummary.xml"
+    mRepLayout.LayoutName = "Resumen de Orden de Compra por Categoría Contable"
     mRepLayout.DrillDownLayout = mRepDDLayout
     mRepLayout.DrillDownLayoutID = mRepDDLayout.DrillDownLayoutID
     vReportSource.BIGridLayouts.Add(mRepLayout)

@@ -109,6 +109,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
           .Supplier.CompanyName = DBReadString(rDataReader, "CompanyName")
           .Supplier.BankName = DBReadString(rDataReader, "BankName")
+          .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
           .RefMatType = DBReadString(rDataReader, "RefMatType")
         End With
       End With

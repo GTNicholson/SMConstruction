@@ -60,6 +60,9 @@ Public Class dtoCostBook : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectLabourCost", .DirectLabourCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DirectLabourMarkUp", .DirectLabourMarkUp)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OverheadperItem", .OverheadperItem)
+
+
+
     End With
 
   End Sub
@@ -77,6 +80,7 @@ Public Class dtoCostBook : Inherits dtoBase
         .DirectLabourCost = DBReadDecimal(rDataReader, "DirectLabourCost")
         .DirectLabourMarkUp = DBReadDecimal(rDataReader, "DirectLabourMarkUp")
         .OverheadperItem = DBReadDecimal(rDataReader, "OverheadperItem")
+
         pCostBook.IsDirty = False
       End With
       mOK = True

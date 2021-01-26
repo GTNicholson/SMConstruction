@@ -179,7 +179,7 @@ Public Class clsWoodPalletItemInfo
 
   Public ReadOnly Property Thickness As Decimal
     Get
-      Return pStockItem.Thickness
+      Return pWoodPalletItem.Thickness
     End Get
   End Property
 
@@ -251,12 +251,19 @@ Public Class clsWoodPalletItemInfo
         Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
           mRetVal = pWoodPalletItem.OutstandingQty
         Case Else
-          mRetVal = pWoodPalletItem.OutstandingQty * (pStockItem.Thickness * pWoodPalletItem.Length * pWoodPalletItem.Width / 12)
+          mRetVal = pWoodPalletItem.OutstandingQty * (pWoodPalletItem.Thickness * pWoodPalletItem.Length * pWoodPalletItem.Width / 12)
       End Select
 
       Return mRetVal
     End Get
   End Property
+
+  Public ReadOnly Property Radius As Decimal
+    Get
+      Return pWoodPalletItem.Thickness / 2
+    End Get
+  End Property
+
 
 End Class
 

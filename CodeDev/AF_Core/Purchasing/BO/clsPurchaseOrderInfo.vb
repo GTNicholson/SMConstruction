@@ -87,7 +87,19 @@ Public Class clsPurchaseOrderInfo
     End Get
 
   End Property
+  Public ReadOnly Property AccoutingCategoryID() As Int32
+    Get
+      Return pPurchaseOrder.AccoutingCategoryID
+    End Get
 
+  End Property
+
+  Public ReadOnly Property AccoutingCategoryDesc() As String
+    Get
+      Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
+    End Get
+
+  End Property
 
   Public ReadOnly Property ExchangeRateValue() As Decimal
     Get

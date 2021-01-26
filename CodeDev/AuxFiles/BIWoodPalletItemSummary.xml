@@ -123,7 +123,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField335</property>
+      <property name="Name">PivotGridField343</property>
       <property name="Area">DataArea</property>
       <property name="FieldName">TotalBoardFeet</property>
       <property name="Caption">PT</property>
@@ -177,7 +177,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField336</property>
+      <property name="Name">PivotGridField344</property>
       <property name="Area">RowArea</property>
       <property name="FieldName">SpeciesDesc</property>
       <property name="Caption">Especie</property>
@@ -213,7 +213,7 @@
         <property name="ValueText" />
       </property>
       <property name="FieldEditName" />
-      <property name="Name">PivotGridField337</property>
+      <property name="Name">PivotGridField345</property>
       <property name="Area">ColumnArea</property>
       <property name="FieldName">StockItemTypeDesc</property>
       <property name="Caption">Tipo Madera</property>
@@ -251,7 +251,8 @@
       <property name="FieldEditName" />
       <property name="Name">PivotGridField338</property>
       <property name="FieldName">LocatioinDesc</property>
-      <property name="Caption">Ubicación</property>
+      <property name="UnboundFieldName">PivotGridField99</property>
+      <property name="Caption">Fecha Semana</property>
       <property name="Index">3</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -266,6 +267,7 @@
       </property>
       <property name="AreaIndex">0</property>
       <property name="ActualSortMode">Default</property>
+      <property name="Width">166</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
         <property name="EndValue" isnull="true" />
@@ -286,7 +288,7 @@
       <property name="FieldEditName" />
       <property name="Name">PivotGridField339</property>
       <property name="FieldName">TotalCubicMeter</property>
-      <property name="Caption">M3</property>
+      <property name="Caption">Total M3</property>
       <property name="Index">4</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -313,6 +315,7 @@
       </property>
       <property name="AreaIndex">1</property>
       <property name="ActualSortMode">Default</property>
+      <property name="Width">180</property>
       <property name="SummaryFilter" isnull="true" iskey="true">
         <property name="StartValue" isnull="true" />
         <property name="EndValue" isnull="true" />
@@ -334,7 +337,7 @@
       <property name="Name">PivotGridField340</property>
       <property name="Area">DataArea</property>
       <property name="FieldName">TotalCostBoardFeet</property>
-      <property name="Caption">PT (USD)</property>
+      <property name="Caption">Valor Neto</property>
       <property name="Index">5</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -375,7 +378,7 @@
       <property name="FieldEditName" />
       <property name="Name">PivotGridField341</property>
       <property name="FieldName">TotalCostCubicMeter</property>
-      <property name="Caption">M3 (USD)</property>
+      <property name="Caption">Total Costo M3</property>
       <property name="Index">6</property>
       <property name="SortBySummaryInfo" isnull="true" iskey="true">
         <property name="Conditions" iskey="true" value="0" />
@@ -435,6 +438,5 @@
       </property>
     </property>
   </property>
-  <property name="FormatRules" iskey="true" value="0" />
   <property name="FormatConditions" iskey="true" value="0" />
 </XtraSerializer>

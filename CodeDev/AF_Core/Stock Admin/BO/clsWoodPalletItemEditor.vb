@@ -88,7 +88,12 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
   Public ReadOnly Property Totalm3 As Decimal
     Get
       Dim mRetVal As Decimal
-      mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(TotalBoardFeet)
+      If pStockItem.ItemType = eStockItemTypeTimberWood.Rollo Then
+        mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(TotalBoardFeet) ' pWoodPalletItem.Quantity
+      Else
+        mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(TotalBoardFeet)
+
+      End If
       Return mRetVal
     End Get
   End Property
@@ -98,7 +103,7 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
       Dim mRetVal As Decimal
       Select Case pStockItem.ItemType
         Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
-          mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(pWoodPalletItem.Quantity)
+          mRetVal = pWoodPalletItem.Quantity 'clsWoodPalletSharedFuncs.BoardFeetToM3(pWoodPalletItem.Quantity)
         Case Else
           mRetVal = pWoodPalletItem.Quantity
       End Select
@@ -112,7 +117,7 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
       Dim mRetVal As Decimal
       Select Case pStockItem.ItemType
         Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
-          mRetVal = clsWoodPalletSharedFuncs.BoardFeetToM3(pWoodPalletItem.QuantityUsed)
+          mRetVal = pWoodPalletItem.QuantityUsed 'clsWoodPalletSharedFuncs.BoardFeetToM3(pWoodPalletItem.QuantityUsed)
         Case Else
           mRetVal = pWoodPalletItem.QuantityUsed
       End Select

@@ -11,11 +11,12 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
   End Enum
 
   Public Enum eAddEditDeleteView
-    Aserrio = 0
-    Horno = 1
-    Clasificar = 2
-    Devolucion = 3
-    Rechazo = 4
+
+    Aserrio = 1
+    Horno = 2
+    Clasificar = 3
+    Devolucion = 4
+    Rechazo = 5
   End Enum
 
 
@@ -35,7 +36,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
         frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAV, eStockItemTypeTimberWood.MAS, eWorkOrderWoodProcess.Horno)
 
       Case eAddEditDeleteView.Clasificar
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAS, eStockItemTypeTimberWood.Clasificado, eWorkOrderWoodProcess.Clasificar)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAS, eStockItemTypeTimberWood.ClasificadoA, eWorkOrderWoodProcess.Clasificar)
 
       Case eAddEditDeleteView.Devolucion
         frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, 0, 0, eWorkOrderWoodProcess.Devolucion)
@@ -150,12 +151,13 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
 
       With CType(Me.BrowseForm, frmBrowseList)
-        .ReLabelToolBarButtons("A Aserrío", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons(Nothing, "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Activas", eListOption.DefaultListOption)
         '.AddListOption("Recibidas", eListOption.Received)
         '.AddListOption("Todas", eListOption.All)
         '.AddListOption("Canceladas", eListOption.Cancelled)
+        .AddAddOption("A Aserrío", eAddEditDeleteView.Aserrio, True)
         .AddAddOption("A Horno", eAddEditDeleteView.Horno)
         .AddAddOption("A Clasificar", eAddEditDeleteView.Clasificar)
 

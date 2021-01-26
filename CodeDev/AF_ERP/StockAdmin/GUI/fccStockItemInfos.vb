@@ -108,11 +108,12 @@ Public Class fccStockItemInfos
 
   End Sub
 
-  Public Function GetCostByStockItemID(ByVal vStockItemID As Integer) As Decimal
+  Public Function GetCostByStockItemIDM(ByVal vStockItemID As Integer) As Decimal
     Dim mRetVal As Decimal = 0
     Dim mdso As New dsoCostBook(pDBConn)
 
     mRetVal = mdso.GetDefaultCostBookValueByStockItemIDUnconnected(vStockItemID)
+
 
     Return mRetVal
   End Function
@@ -201,10 +202,20 @@ Public Class fccStockItemInfos
 
   End Sub
 
-  Public Sub LoadWoodPalletItemInfosByStockItemID(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vStockItemID As Integer)
+  Public Sub LoadWoodPalletItemInfosByStockItemID(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vStockItemID As Integer, ByVal vWoodPalletID As Integer)
     Dim mdso As dsoStock
-    Dim mWhere As String = "StockItemID = " & vStockItemID & " and Quantity<>0 and locationID<>0"
+    Dim mWhere As String = "StockItemID = " & vStockItemID & " and Quantity<>0 and locationID<>0 and WoodPalletID = " & vWoodPalletID
     mdso = New dsoStock(pDBConn)
     mdso.LoadWoodPalletItemInfosByStockItemID(rWoodPalletItemInfos, mWhere)
   End Sub
+
+  Public Function LoadWoodPalletItemContentByWhere(ByRef rWoodPalletItemContents As colWoodPalletItemContents, ByVal vWhere As String) As Boolean
+    Dim mdso As dsoStock
+    Dim mOK As Boolean = False
+
+    mdso = New dsoStock(pDBConn)
+    mOK = mdso.LoadWoodPalletItemContentByWhere(rWoodPalletItemContents, vWhere)
+    Return mOK
+  End Function
+
 End Class

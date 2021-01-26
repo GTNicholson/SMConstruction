@@ -107,6 +107,7 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierUoM", .SupplierUoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostUoM", .CostUoM)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsCostingOnly", .IsCostingOnly)
 
 
 
@@ -155,6 +156,7 @@ Public Class dtoStockItem : Inherits dtoBase
         .UoM = DBReadInt32(rDataReader, "UoM")
         .SupplierUoM = DBReadInt32(rDataReader, "SupplierUoM")
         .CostUoM = DBReadByte(rDataReader, "CostUoM")
+        .IsCostingOnly = DBReadBoolean(rDataReader, "IsCostingOnly")
         pStockItem.IsDirty = False
       End With
       mOK = True

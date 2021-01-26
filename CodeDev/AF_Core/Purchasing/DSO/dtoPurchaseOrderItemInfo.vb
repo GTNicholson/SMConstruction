@@ -93,6 +93,7 @@ Public Class dtoPurchaseOrderItemInfo : Inherits dtoBase
           .SubmissionDate = DBReadDate(rDataReader, "SubmissionDate")
           .PONum = DBReadString(rDataReader, "PONum")
           .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
+          .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
         End With
 
         With .StockItem

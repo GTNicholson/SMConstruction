@@ -519,7 +519,7 @@
     <Compile Include="Purchasing\GUI\repPurchaseOrder.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sales\GUI\brwClientes.vb" />
+    <Compile Include="Sales\GUI\brwCustomers.vb" />
     <Compile Include="Sales\GUI\brwInstallationWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwStructureWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwWorkOrder.vb" />
@@ -668,6 +668,7 @@
     <Compile Include="Sales\OutputDocs\srepOperations.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="StockAdmin\brwWoodReception.vb" />
     <Compile Include="StockAdmin\brwWorkOrderWoodProcess.vb" />
     <Compile Include="StockAdmin\GUI\brwStockTake.vb" />
     <Compile Include="StockAdmin\GUI\fccMovementTransaction.vb" />
@@ -730,7 +731,14 @@
     <Compile Include="StockAdmin\Reports\repSelectedItems.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WoodProcessing\fccWoodReception.vb" />
     <Compile Include="WoodProcessing\fccWorkOrderWoodProcess.vb" />
+    <Compile Include="WoodProcessing\frmWoodReception.Designer.vb">
+      <DependentUpon>frmWoodReception.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWoodReception.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WoodProcessing\frmWorkOrderWoodProcess.Designer.vb">
       <DependentUpon>frmWorkOrderWoodProcess.vb</DependentUpon>
     </Compile>
@@ -975,6 +983,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
       <DependentUpon>repSelectedItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoodProcessing\frmWoodReception.resx">
+      <DependentUpon>frmWoodReception.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WoodProcessing\frmWorkOrderWoodProcess.resx">
       <DependentUpon>frmWorkOrderWoodProcess.vb</DependentUpon>

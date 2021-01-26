@@ -33,6 +33,7 @@ Public Class frmWoodPalletDetail
     ToProcess = 5
     Despatch = 6
     Consume = 7
+    Purge = 8
   End Enum
 
   Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
@@ -91,24 +92,28 @@ Public Class frmWoodPalletDetail
 
   Private Sub AddPalletAddingOptions(sender As Object, e As EventArgs)
     Dim mWoodPallet As dmWoodPallet
-    Dim mRH As Integer
+    Dim mWPI As Integer
     Dim mPalletType As Integer = CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
 
 
 
     mWoodPallet = pFormController.CreateNewPallet(mPalletType)
-    frmMovementTransaction.OpenFormI(pFormController.DBConn, mWoodPallet, frmMovementTransaction.eFormMode.None)
+    mWoodPallet.LocationID = frmMovementTransaction.OpenFormI(pFormController.DBConn, mWoodPallet, frmMovementTransaction.eFormMode.None)
 
+    pFormController.CurrentWoodPallet = mWoodPallet
+    pFormController.SaveObject()
+    RefreshControls()
+    CheckSave(False)
     gvWoodPalletInfo.RefreshData()
 
-    mRH = gvWoodPalletInfo.FindRow(mWoodPallet)
+    mWPI = gvWoodPalletInfo.FindRow(mWoodPallet)
 
-    If mRH >= 0 Then
-      gvWoodPalletInfo.FocusedRowHandle = mRH
+    If mWPI >= 0 Then
+      gvWoodPalletInfo.FocusedRowHandle = mWPI
     Else
       pFormController.CurrentWoodPallet = mWoodPallet
+      UpdateObjects()
 
-      RefreshControls()
     End If
     SetDetailsControlsReadonly(False) 'False)
     pCurrentDetailMode = eCurrentDetailMode.eEdit
@@ -204,15 +209,18 @@ Public Class frmWoodPalletDetail
         txtRefPallet.Text = .RefPalletOutside
         txtWoodDescription.Text = .Description
         dteDateCreated.EditValue = .CreatedDate
+        ckeArchive.Checked = .Archive
         clsDEControlLoading.SetDECombo(cboLocations, .LocationID)
         clsDEControlLoading.SetDECombo(cboWoodPalletType, .PalletType)
+        clsDEControlLoading.SetDECombo(cboFarm, .Farm)
+
 
         lblWoodPalletID.Text = "ID: " & .WoodPalletID
 
         If .PalletType = eStockItemTypeTimberWood.Rollo Then
-          gcQuantity.Caption = "Cantidad M3"
+          gcQuantity.Caption = "Cantidad Trozas"
         Else
-          gcQuantity.Caption = "Cantidad PT"
+          gcQuantity.Caption = "Cantidad Pza"
         End If
       End With
 
@@ -273,6 +281,8 @@ Public Class frmWoodPalletDetail
     txtRefPallet.ReadOnly = vReadOnly
     cboWoodPalletType.ReadOnly = vReadOnly
     txtWoodDescription.Enabled = Not vReadOnly
+    cboFarm.Properties.ReadOnly = vReadOnly
+    ckeArchive.Properties.ReadOnly = vReadOnly
     If pFormController.CurrentWoodPallet.WoodPalletItems.Count > 0 Then bbtnPickWoodPallet.Enabled = vReadOnly
     repoAddDuplicated.Buttons(0).Enabled = Not vReadOnly
     gvWoodPalletItemInfo.OptionsBehavior.ReadOnly = vReadOnly
@@ -405,6 +415,23 @@ Public Class frmWoodPalletDetail
           If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
         End Try
 
+      Case eDetailButtons.Purge
+        Try
+
+          If pFormController.CurrentWoodPallet IsNot Nothing Then
+            CheckSave(False)
+            pFormController.toPurge()
+            RefreshControls()
+            CheckSave(False)
+            pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+            gvWoodPalletItemInfo.RefreshData()
+
+
+          End If
+        Catch ex As Exception
+          If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+        End Try
+
       Case eDetailButtons.Despatch
 
         SetDetailsControlsReadonly(True)
@@ -446,9 +473,10 @@ Public Class frmWoodPalletDetail
         .PalletRef = txtWoodRef.Text
         .RefPalletOutside = txtRefPallet.Text
         .CreatedDate = dteDateCreated.EditValue
+        .Archive = ckeArchive.Checked
         .LocationID = clsDEControlLoading.GetDEComboValue(cboLocations)
         .PalletType = clsDEControlLoading.GetDEComboValue(cboWoodPalletType)
-
+        .Farm = clsDEControlLoading.GetDEComboValue(cboFarm)
         .Description = txtWoodDescription.Text
       End With
     End If
@@ -464,6 +492,8 @@ Public Class frmWoodPalletDetail
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboLocations, clsEnumsConstants.EnumToVIs(GetType(eLocations)))
     clsDEControlLoading.FillDEComboVI(cboWoodPalletType, eStockItemTypeTimberWood.GetInstance.ValueItems)
+    clsDEControlLoading.FillDEComboVI(cboFarm, clsEnumsConstants.EnumToVIs(GetType(eFarms)))
+
 
   End Sub
 
@@ -480,6 +510,19 @@ Public Class frmWoodPalletDetail
         grdWoodPalletItemInfos.DataSource = pFormController.WoodPalletItemEditors 'pFormController.CurrentWoodPallet.WoodPalletItems
         RefreshDetailButtons()
         RefreshControls()
+        If pFormController.CurrentWoodPallet.PalletType = eStockItemTypeTimberWood.Rollo Then
+          gcThickness.Caption = "Diametro"
+          gcThickness.OptionsColumn.ReadOnly = False
+          gcWidth.Visible = False
+          lblFarm.Visible = True
+          cboFarm.Visible = True
+        Else
+          gcThickness.Caption = "Grosor"
+          gcThickness.OptionsColumn.ReadOnly = True
+          gcWidth.Visible = True
+          lblFarm.Visible = False
+          cboFarm.Visible = False
+        End If
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -584,7 +627,8 @@ Public Class frmWoodPalletDetail
       mDuplicatedWoodPalletItem.WoodPalletID = mSelectedWoodPalletItem.WoodPalletItem.WoodPalletID
       pFormController.CurrentWoodPallet.WoodPalletItems.Add(mDuplicatedWoodPalletItem)
       pFormController.SaveObject()
-      grdWoodPalletItemInfos.RefreshDataSource()
+      pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+      gvWoodPalletInfo.RefreshData()
     End If
   End Sub
 
@@ -631,6 +675,24 @@ Public Class frmWoodPalletDetail
   End Sub
 
   Private Sub bbtnAddPallet_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnAddPallet.ItemClick
+
+  End Sub
+
+  Private Sub ckeArchive_CheckedChanged(sender As Object, e As EventArgs) Handles ckeArchive.CheckedChanged
+
+    If ckeArchive.Checked Then
+
+      For Each mWoodPalletItemEditor As clsWoodPalletItemEditor In pFormController.WoodPalletItemEditors
+
+        If mWoodPalletItemEditor.WoodPalletItem.Quantity > 0 Then
+          MessageBox.Show("No puedes archivar este Pallet porque hay madera en uso", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+          ckeArchive.Checked = False
+          Exit Sub
+        End If
+
+      Next
+
+    End If
 
   End Sub
 End Class

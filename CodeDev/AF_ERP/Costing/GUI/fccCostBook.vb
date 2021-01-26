@@ -148,9 +148,11 @@ Public Class fccCostBook
 
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean
+    If pCostBook IsNot Nothing Then
+      mIsDirty = pCostBook.IsAnyDirty
+      If mIsDirty = False Then mIsDirty = pCostBookEntrys.IsDirty
+    End If
 
-
-    If mIsDirty = False Then mIsDirty = pCostBookEntrys.IsDirty
 
 
     Return mIsDirty
@@ -338,10 +340,12 @@ Public Class fccCostBook
         mCostBookEntry = New dmCostBookEntry
         mCostBookEntry.StockItemID = mSI.StockItemID
         mCostBookEntry.CostBookID = CostBookID
+        mCostBookEntry.CostUnit = mSI.CostUoM
 
         pCostBookEntrys.Add(mCostBookEntry)
       Else
         mCostBookEntry = pCostBookEntrys(mCBEIndex)
+        mCostBookEntry.CostUnit = mSI.CostUoM
       End If
 
       '// Create a new editor for each of the current stock items

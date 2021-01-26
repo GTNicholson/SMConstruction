@@ -64,11 +64,16 @@ Public Class dtoWoodPalletItemInfo : Inherits dtoBase
         With .WoodPalletItem
 
           .WoodPalletItemID = DBReadInt32(rDataReader, "WoodPalletItemID")
+          .Thickness = DBReadDecimal(rDataReader, "Thickness")
           .Width = DBReadDecimal(rDataReader, "Width")
           .Length = DBReadDecimal(rDataReader, "Length")
           .Quantity = DBReadDecimal(rDataReader, "Quantity")
           .QuantityUsed = DBReadDecimal(rDataReader, "QuantityUsed")
           .OutstandingQty = DBReadDecimal(rDataReader, "OutstandingQty")
+          .VolumeM3 = DBReadDecimal(rDataReader, "VolumeM3")
+          .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+          .StockCode = DBReadString(rDataReader, "StockCode")
+          .Description = DBReadString(rDataReader, "Description")
         End With
 
         With .WoodPallet
@@ -82,13 +87,11 @@ Public Class dtoWoodPalletItemInfo : Inherits dtoBase
         End With
 
         With .StockItem
-          .StockItemID = DBReadInt32(rDataReader, "StockItemID")
-          .StockCode = DBReadString(rDataReader, "StockCode")
-          .Description = DBReadString(rDataReader, "Description")
+
 
           .Category = DBReadByte(rDataReader, "Category")
           .ItemType = DBReadByte(rDataReader, "ItemType")
-          .Thickness = DBReadDecimal(rDataReader, "Thickness")
+
           .Species = DBReadInt32(rDataReader, "Species")
         End With
 

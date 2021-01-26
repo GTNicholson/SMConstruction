@@ -225,7 +225,7 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Descripción</property>
-      <property name="FieldName">Description</property>
+      <property name="FieldName">WoodPalletItem.Description</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
@@ -237,8 +237,8 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Código</property>
-      <property name="FieldName">StockCode</property>
-      <property name="ColumnEditName" />
+      <property name="FieldName">WoodPalletItem.StockCode</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit1</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">155</property>
@@ -249,8 +249,8 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Grosor</property>
-      <property name="FieldName">Thickness</property>
-      <property name="ColumnEditName" />
+      <property name="FieldName">WoodPalletItem.Thickness</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">70</property>
@@ -265,7 +265,7 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Ancho</property>
-      <property name="FieldName">Width</property>
+      <property name="FieldName">WoodPalletItem.Width</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
@@ -281,7 +281,7 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Largo</property>
-      <property name="FieldName">Length</property>
+      <property name="FieldName">WoodPalletItem.Length</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>

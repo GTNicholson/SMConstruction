@@ -6,6 +6,7 @@ Public Class dmStockItemLocation : Inherits dmBase
   Private pStockItemID As Int32
   Private pLocationID As Byte
   Private pBatchID As Integer
+  Private pMonetaryValue As Decimal
   ''Private pQuantity As Decimal
   Private pQtyValueTracker As clsDecValueTracker
 
@@ -45,6 +46,7 @@ Public Class dmStockItemLocation : Inherits dmBase
       .StockItemLocationID = StockItemLocationID
       .StockItemID = StockItemID
       .LocationID = LocationID
+      .MonetaryValue = MonetaryValue
       .QtyValueTracker.SetDecValue(Qty)
       .BatchID = BatchID
       'Add entries here for each collection and class property
@@ -96,7 +98,15 @@ Public Class dmStockItemLocation : Inherits dmBase
       pLocationID = value
     End Set
   End Property
-
+  Public Property MonetaryValue() As Decimal
+    Get
+      Return pMonetaryValue
+    End Get
+    Set(ByVal value As Decimal)
+      If pMonetaryValue <> value Then IsDirty = True
+      pMonetaryValue = value
+    End Set
+  End Property
   Public ReadOnly Property Qty() As Decimal
     Get
       Return pQtyValueTracker.DecValue

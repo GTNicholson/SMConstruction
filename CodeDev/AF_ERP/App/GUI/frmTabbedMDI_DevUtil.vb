@@ -362,15 +362,15 @@ Public Class frmTabbedMDI_DevUtil
       mDBConn.Connect()
 
       mdsoStock = New dsoStock(mDBConn)
-      mdsoStock.LoadWoodPalletDownByWhere(mWoodPallets, "")
+      mdsoStock.LoadWoodPalletsDownByWhere(mWoodPallets, "")
 
 
 
       For Each mWP As dmWoodPallet In mWoodPallets
 
         mWoodPalletDescription = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(mWP.WoodPalletItems)
-          mWP.Description = mWoodPalletDescription
-          mdsoStock.SaveWoodPalletDown(mWP)
+        mWP.Description = mWoodPalletDescription
+        mdsoStock.SaveWoodPalletDown(mWP)
 
 
       Next
@@ -412,5 +412,41 @@ Public Class frmTabbedMDI_DevUtil
     Finally
       If mDBConn.IsConnected Then mDBConn.Disconnect()
     End Try
+  End Sub
+
+  Private Sub btnGenerateStockTransaction_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnGenerateStockTransaction.LinkClicked
+    Dim mWhere As String = ""
+    Dim mWoodPallets As New colWoodPallets
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mdsoStock As dsoStock
+    Dim mdsoTran As dsoStockTransactions
+
+    mWhere = "PalletType<>" & eStockItemTypeTimberWood.Rollo
+    mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+    Try
+      mDBConn.Connect()
+
+      mdsoStock = New dsoStock(mDBConn)
+      mdsoStock.LoadWoodPalletsDownByWhere(mWoodPallets, mWhere)
+      mdsoTran = New dsoStockTransactions(mDBConn)
+
+
+      For Each mWP As dmWoodPallet In mWoodPallets
+
+
+        mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, eLocations.AgroForestal, Now, eCurrency.Dollar, 1)
+
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mDBConn.IsConnected Then mDBConn.Disconnect()
+    End Try
+
+
+
+
   End Sub
 End Class

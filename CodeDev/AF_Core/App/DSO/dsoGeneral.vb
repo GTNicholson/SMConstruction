@@ -53,7 +53,17 @@ Public Class dsoGeneral
     End Try
     Return mRetVal
   End Function
-
+  Public Function GetNextTallyReceptionNo() As Integer
+    Dim mRetVal As Integer
+    Try
+      pDBConn.Connect()
+      mRetVal = pDBConn.NextTally(eTallyIDs.WoodReception)
+    Catch ex As Exception
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
   Public Function GetNextTallyWoodPallet() As Integer
     Dim mRetVal As Integer
     Try

@@ -25,7 +25,7 @@ Public Class dsoStock
     Return mStockItemLocation
   End Function
 
-  Public Function LoadWoodPalletDownByWhere(ByRef rWoodPallets As colWoodPallets, ByVal vWhere As String) As Boolean
+  Public Function LoadWoodPalletsDownByWhere(ByRef rWoodPallets As colWoodPallets, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet
     Dim mdtoWoodPalletItem As dtoWoodPalletItem
@@ -232,6 +232,23 @@ Public Class dsoStock
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
 
+    Return mRetVal
+  End Function
+
+  Public Function LoadWoodPalletItemContentByWhere(ByRef rWoodPalletItemContents As colWoodPalletItemContents, ByVal vWhere As String) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As New dtoWoodPalletItemContent(pDBConn)
+    Try
+
+      pDBConn.Connect()
+      mRetVal = mdto.LoadWoodPalletContentInfoCollectionByWhere(rWoodPalletItemContents, vWhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
     Return mRetVal
   End Function
 

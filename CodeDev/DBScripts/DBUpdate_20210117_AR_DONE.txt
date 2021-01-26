@@ -1,0 +1,39 @@
+alter table WoodPalletItem
+add VolumeM3 decimal (9,4)
+go
+
+ALTER view [dbo].[vwWoodPalletItemInfo]
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+WPI.Quantity,
+WPI.QuantityUsed,
+WPI.OutstandingQty,
+WPI.VolumeM3,
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.RefPalletOutside,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description,
+SI.Category,
+SI.ItemType,
+SI.Thickness,
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+GO
+
+

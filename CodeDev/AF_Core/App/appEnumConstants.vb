@@ -60,6 +60,7 @@ Public Enum eActivityCode
   WoodPallet = 902 '// was 507
   WorkOrderWoodProcess = 903
   WoodPalletItemReport = 904
+  WoodReception = 905
 
 End Enum
 
@@ -74,6 +75,13 @@ Public Enum eSupplirPrintOption
   SecondaryAccount = 2
 End Enum
 
+Public Enum eFarms
+  <Description("Ninguno")> None = 0
+  <Description("Cumplida")> Cumplida = 1
+  <Description("Eden")> Eden = 2
+  <Description("Equiforest")> Equiforest = 3
+
+End Enum
 Public Enum eLocations
   <Description("Ninguno")> None = 0
   <Description("WIP")> WIP = 1
@@ -146,6 +154,7 @@ Public Enum ePurchaseCategories
   <Description("Mejora de Edificio")> MejoraEdificio = 10
   <Description("Papelería de Oficinas")> Papeleria = 11
   <Description("Caja Chica")> CajaChica = 12
+  <Description("Atención a Proyectos")> AtencionProyectos = 13
   <Description("Otras")> Otro = 99
 End Enum
 
@@ -204,6 +213,7 @@ Public Enum eBrowseList
   StructureWorkOrder = 15
   WorkOrderWoodProcess = 16
   WoodCostBook = 17
+  WoodReception = 18
 End Enum
 
 
@@ -290,7 +300,7 @@ Public Enum eTallyIDs
   MASWoodOT = 1006
   AserradoWoodOT = 1007
   ClassifiedWoodOT = 1008
-
+  WoodReception = 1009
 End Enum
 
 Public Enum ePaymentStatus
@@ -1198,7 +1208,6 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     Rollo = 2
     Aserrado = 3
     MAS = 4
-    Clasificado = 5
     MAV = 6
     ClasificadoA = 7
     ClasificadoB = 8
@@ -1215,7 +1224,6 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
   Public Const Rollo = 2
   Public Const Aserrado = 3
   Public Const MAS = 4
-  Public Const Clasificado = 5
   Public Const MAV = 6
   Public Const ClasificadoA = 7
   Public Const ClasificadoB = 8
@@ -1240,9 +1248,6 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     Dim mMAS As New clsStockItemType(MAS, "MAS", "MAS")
     MyBase.Add(mMAS)
 
-
-    Dim mClassified As New clsStockItemType(Clasificado, "Clasificado", "CLA")
-    MyBase.Add(mClassified)
 
 
     Dim mMAV As New clsStockItemType(MAV, "MAV", "MAV")
@@ -1835,6 +1840,7 @@ Public Enum eTransactionType
   <Description("Movimiento de Bodega")> Movement = 12
   <Description("Corrección de Inv. Madera")> WoodAmendment = 13
   <Description("Picking de Madera")> WoodPicking = 14
+  <Description("Recepción de Madera")> WoodReception = 15
 End Enum
 
 Public Enum ePayPeriodType

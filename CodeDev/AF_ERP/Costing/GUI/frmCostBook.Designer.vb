@@ -23,7 +23,7 @@ Partial Class frmCostBook
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-        Dim RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.pgfDoorFacingBandID = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.gcDoorCoreBand = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -70,9 +70,10 @@ Partial Class frmCostBook
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoCostUnit = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCostBook, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,6 @@ Partial Class frmCostBook
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.cboIsDefault.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -90,10 +90,17 @@ Partial Class frmCostBook
         CType(Me.grdCostBookEntry, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvCostBookEntry, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCostUnit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'pgfDoorFacingBandID
         '
@@ -311,11 +318,7 @@ Partial Class frmCostBook
         '
         'pgfPrice
         '
-        RepositoryItemTextEdit1.AutoHeight = False
-        RepositoryItemTextEdit1.EditFormat.FormatString = "n2"
-        RepositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.pgfPrice.FieldEdit = RepositoryItemTextEdit1
+        Me.pgfPrice.FieldEdit = Me.RepositoryItemTextEdit1
         Me.pgfPrice.FieldName = "Price"
         Me.pgfPrice.Name = "pgfPrice"
         Me.pgfPrice.Visible = False
@@ -325,7 +328,7 @@ Partial Class frmCostBook
         '
         Me.gcCost.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
         Me.gcCost.AreaIndex = 0
-        Me.gcCost.FieldEdit = RepositoryItemTextEdit1
+        Me.gcCost.FieldEdit = Me.RepositoryItemTextEdit1
         Me.gcCost.FieldName = "Cost"
         Me.gcCost.Name = "gcCost"
         Me.gcCost.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Max
@@ -626,6 +629,7 @@ Partial Class frmCostBook
         Me.gcCostUnit.Caption = "Unidad de Costeo"
         Me.gcCostUnit.FieldName = "CostUnit"
         Me.gcCostUnit.Name = "gcCostUnit"
+        Me.gcCostUnit.OptionsColumn.ReadOnly = True
         Me.gcCostUnit.Visible = True
         Me.gcCostUnit.VisibleIndex = 4
         Me.gcCostUnit.Width = 112
@@ -694,14 +698,14 @@ Partial Class frmCostBook
         Me.repoCostUnit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.repoCostUnit.Name = "repoCostUnit"
         '
-        'GridView1
-        '
-        Me.GridView1.Name = "GridView1"
-        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.grdCostBookEntry
         Me.GridView2.Name = "GridView2"
+        '
+        'GridView1
+        '
+        Me.GridView1.Name = "GridView1"
         '
         'GridView3
         '
@@ -720,6 +724,7 @@ Partial Class frmCostBook
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmCostBook"
         Me.Text = "Libro de Costo de Insumos"
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoCostBook, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -729,7 +734,6 @@ Partial Class frmCostBook
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
         CType(Me.cboIsDefault.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
@@ -739,8 +743,8 @@ Partial Class frmCostBook
         CType(Me.grdCostBookEntry, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvCostBookEntry, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoCostUnit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -796,4 +800,5 @@ Partial Class frmCostBook
     Friend WithEvents repoCostUnit As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

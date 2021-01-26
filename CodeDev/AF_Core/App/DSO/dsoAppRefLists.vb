@@ -231,11 +231,25 @@ Public Class dsoAppRefLists
           mValueItems = eStockItemTypeTimberWood.GetInstance.ValueItems
           mItem.IList = mValueItems
           mOK = True
+
+        Case appRefLists.AccoutingCategory
+          mItem.IList = LoadAccoutingCategory()
+          mOK = True
+
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadAccoutingCategory() As IList
+    Dim mdto As New dtoAccoutingCategory(pDBConn)
+    Dim mRetVal As New colAccoutingCategorys
+
+    mdto.LoadAccoutingCategoryCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadProductCostBook() As IList

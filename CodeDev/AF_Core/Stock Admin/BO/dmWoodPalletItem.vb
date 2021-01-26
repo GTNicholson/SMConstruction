@@ -13,6 +13,7 @@ Public Class dmWoodPalletItem : Inherits dmBase
   Private pStockCode As String
   Private pThickness As Decimal
   Private pOutstandingQty As Decimal
+  Private pVolumeM3 As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -56,6 +57,7 @@ Public Class dmWoodPalletItem : Inherits dmBase
       .StockCode = StockCode
       .Thickness = Thickness
       .OutstandingQty = OutstandingQty
+      .VolumeM3 = VolumeM3
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -184,6 +186,18 @@ Public Class dmWoodPalletItem : Inherits dmBase
       pOutstandingQty = value
     End Set
   End Property
+
+  Public Property VolumeM3 As Decimal
+    Get
+      Return pVolumeM3
+    End Get
+    Set(value As Decimal)
+      If pVolumeM3 <> value Then IsDirty = True
+
+      pVolumeM3 = value
+    End Set
+  End Property
+
 
 End Class
 

@@ -44,6 +44,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pUoM As Integer
   Private pSupplierUoM As Integer
   Private pCostUoM As Byte
+  Private pIsCostingOnly As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -134,6 +135,7 @@ Public Class dmStockItem : Inherits dmBase
       .UoM = UoM
       .SupplierUoM = SupplierUoM
       .CostUoM = CostUoM
+      .IsCostingOnly = IsCostingOnly
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -251,7 +253,16 @@ Public Class dmStockItem : Inherits dmBase
       pSpecies = value
     End Set
   End Property
+  Public ReadOnly Property SpeciesDesc() As String
+    Get
+      If Species > 0 Then
+        Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(Species)
+      End If
 
+      Return ""
+    End Get
+
+  End Property
   Public Property Colour() As String
     Get
       Return pColour
@@ -323,7 +334,15 @@ Public Class dmStockItem : Inherits dmBase
   End Property
 
 
-
+  Public Property IsCostingOnly() As Boolean
+    Get
+      Return pIsCostingOnly
+    End Get
+    Set(ByVal value As Boolean)
+      If pIsCostingOnly <> value Then IsDirty = True
+      pIsCostingOnly = value
+    End Set
+  End Property
   Public Property Finish() As Byte
     Get
       Return pFinish
