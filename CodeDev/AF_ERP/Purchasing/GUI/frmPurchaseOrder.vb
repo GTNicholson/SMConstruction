@@ -227,6 +227,8 @@ Public Class frmPurchaseOrder
 
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
+    clsDEControlLoading.FillDEComboVI(cboStage, clsEnumsConstants.EnumToVIs(GetType(ePOStage)))
+
 
     clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
@@ -344,6 +346,9 @@ Public Class frmPurchaseOrder
 
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
+        clsDEControlLoading.SetDECombo(cboStage, .POStage)
+
+
         '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
         txtExchangeValue.Text = .ExchangeRateValue
 
@@ -440,6 +445,8 @@ Public Class frmPurchaseOrder
       .RequiredDate = dteDueDate.DateTime
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
+      .POStage = clsDEControlLoading.GetDEComboValue(cboStage)
+
       .AccoutingCategoryID = clsDEControlLoading.GetDEComboValue(cboAccountingCategory)
       .Carriage = txtCarriage.Text
       '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
@@ -493,7 +500,7 @@ Public Class frmPurchaseOrder
     mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.PurchaseOrderFileFolderSys, pFormController.PurchaseOrder.SubmissionDate.Year, clsGeneralA.GetFileSafeName(pFormController.PurchaseOrder.PurchaseOrderID.ToString("00000")))
 
     UctFileControl1.UserController = New uccFileControl(Me)
-      UctFileControl1.UserController.Directory = mFileDirectory
+    UctFileControl1.UserController.Directory = mFileDirectory
     UctFileControl1.UserController.FileTrackers = pFormController.PurchaseOrder.POFiles
     UctFileControl1.UserController.ConfigSystemWatcher()
 
@@ -1232,6 +1239,8 @@ Public Class frmPurchaseOrder
           grpPOMaterialType.CustomHeaderButtons.Item(2).Properties.Checked = False
           grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
           grdSalesOrderPhases.RefreshDataSource()
+          gvPurchaseOrderItems.RefreshData()
+          'pFormController.CreateUpdatePOItemAllocation(mPOItem)
         Case ePOMaterialRequirementType.Multiple
           pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Multiple
           grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
@@ -1321,7 +1330,7 @@ Public Class frmPurchaseOrder
         pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 
         pFormController.SalesOrderPhases.Add(mSalesOrderPhase)
-
+        pFormController.SalesOrderPhaseInfo = mSalesOrderPhaseInfo
 
         If pFormController.PurchaseOrder.PurchaseOrderAllocations.IndexFromCallOffID(mSalesOrderPhaseInfo.SalesOrderPhaseID) = -1 Then
           mPOAllocation = New dmPurchaseOrderAllocation
@@ -1334,7 +1343,9 @@ Public Class frmPurchaseOrder
         '// add to collection
       End If
 
-
+      For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
+        pFormController.CreateUpdatePOItemAllocation(mPOI)
+      Next
       pFormController.SalesOrderPhaseInfo = mSalesOrderPhaseInfo
       LoadPOItemAllocationCombo()
       RefreshControls()

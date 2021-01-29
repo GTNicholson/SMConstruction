@@ -146,6 +146,8 @@ Public Class fccWorkOrderWoodProcess
     pCurrentOutputWoodPallet = New dmWoodPallet
     pOutputWoodPalletItem = New colWoodPalletItems
     pWoodProcessOption = vWoodProcessOption
+    pSourceWoodPalletItemEditors = New colWoodPalletItemEditors
+    pOutPutWoodPalletItemEditors = New colWoodPalletItemEditors
   End Sub
 
 
@@ -233,7 +235,10 @@ Public Class fccWorkOrderWoodProcess
       Select Case pWorkOrder.WorkOrderWoodType
         Case eStockItemTypeTimberWood.Aserrado
         Case eStockItemTypeTimberWood.Rollo
+          mWoodPallets = New colWoodPallets
+          mWoodPallets = GetWoodPalletSource()
           pWorkOrder.WorkOrderNo = "OT-Rol-" & mdsoGeneral.getNextTally(eTallyIDs.RollWoodOT)
+          pWorkOrder.Description = "OT de Aserrío :" & clsWoodPalletSharedFuncs.GetWoodPalletsDescription(mWoodPallets) & "/ " & pCurrentSourceWoodPallet.CardNumber
 
         Case eStockItemTypeTimberWood.MAS
           mWoodPallets = New colWoodPallets
@@ -241,7 +246,7 @@ Public Class fccWorkOrderWoodProcess
           pWorkOrder.WorkOrderNo = "OT-MAS-" & mdsoGeneral.getNextTally(eTallyIDs.MASWoodOT)
           pWorkOrder.Description = "OT de MAS. Bultos :" & clsWoodPalletSharedFuncs.GetWoodPalletsDescription(mWoodPallets)
 
-        Case eStockItemTypeTimberWood.ClasificadoA, eStockItemTypeTimberWood.ClasificadoB, eStockItemTypeTimberWood.ClasificadoC, eStockItemTypeTimberWood.ClasificadoZ
+        Case eStockItemTypeTimberWood.Primera, eStockItemTypeTimberWood.Segunda, eStockItemTypeTimberWood.Tercera, eStockItemTypeTimberWood.ClasificadoZ
           pWorkOrder.WorkOrderNo = "OT-CLA-" & mdsoGeneral.getNextTally(eTallyIDs.ClassifiedWoodOT)
 
 
@@ -254,6 +259,7 @@ Public Class fccWorkOrderWoodProcess
 
       End Select
     End If
+
 
     mdso.SaveWorkOrderDown(pWorkOrder)
 
@@ -272,8 +278,9 @@ Public Class fccWorkOrderWoodProcess
   Public Sub SaveWoodPalletDown(ByRef rWoodPallet As dmWoodPallet)
     Dim mdso As New dsoStock(pDBConn)
 
-    mdso.SaveWoodPalletDown(rWoodPallet)
-
+    If rWoodPallet.PalletType > 0 Then
+      mdso.SaveWoodPalletDown(rWoodPallet)
+    End If
   End Sub
 
   Public Function GetWoodPalletSource() As colWoodPallets
@@ -316,11 +323,26 @@ Public Class fccWorkOrderWoodProcess
     CreateNewWoodPallet(vPalletType)
     SetCurrentOutputWoodPallet(pWoodPallets.Last)
 
-    If pCurrentOutputWoodPallet IsNot Nothing Then
+    If pCurrentOutputWoodPallet IsNot Nothing And pCurrentOutputWoodPallet.WoodPalletID > 0 Then
 
       mOutputPallet.WoodPalletID = pCurrentOutputWoodPallet.WoodPalletID
       mOutputPallet.WorkOrderID = pWorkOrder.WorkOrderID
 
+      pWorkOrder.OutputPallets.Add(mOutputPallet)
+    End If
+    SaveObjects()
+  End Sub
+
+  Public Sub CreateWoodPallet(ByVal vPalletType As Integer, ByVal vNumbercard As Integer)
+    Dim mOutputPallet As New dmOutputPallet
+
+    CreateNewWoodPallet(vPalletType, vNumbercard)
+    SetCurrentOutputWoodPallet(pWoodPallets.Last)
+
+    If pCurrentOutputWoodPallet IsNot Nothing And pCurrentOutputWoodPallet.WoodPalletID > 0 Then
+
+      mOutputPallet.WoodPalletID = pCurrentOutputWoodPallet.WoodPalletID
+      mOutputPallet.WorkOrderID = pWorkOrder.WorkOrderID
       pWorkOrder.OutputPallets.Add(mOutputPallet)
     End If
     SaveObjects()
@@ -348,7 +370,28 @@ Public Class fccWorkOrderWoodProcess
 
   End Sub
 
+  Public Sub CreateNewWoodPallet(ByVal vPalletType As Integer, ByVal vCardNumber As Integer)
+    Dim mWoodPallet As New dmWoodPallet
 
+
+
+    mWoodPallet.PalletType = vPalletType
+
+
+    mWoodPallet.CreatedDate = Now
+    mWoodPallet.LocationID = eLocations.AgroForestal
+    mWoodPallet.CardNumber = vCardNumber
+
+    mWoodPallet.Archive = 0
+
+    pWoodPallets.Add(mWoodPallet)
+
+    clsWoodPalletSharedFuncs.GetNextWoodPalletRef(mWoodPallet, pDBConn)
+
+    SaveWoodPalletDown(mWoodPallet)
+
+
+  End Sub
   Public Sub CreateNewWoodPallet(ByVal vPalletType As Integer)
     Dim mWoodPallet As New dmWoodPallet
 
@@ -360,8 +403,11 @@ Public Class fccWorkOrderWoodProcess
     mWoodPallet.CreatedDate = Now
     mWoodPallet.LocationID = eLocations.AgroForestal
     mWoodPallet.Archive = 0
+
     pWoodPallets.Add(mWoodPallet)
+
     clsWoodPalletSharedFuncs.GetNextWoodPalletRef(mWoodPallet, pDBConn)
+
     SaveWoodPalletDown(mWoodPallet)
 
 
@@ -406,12 +452,26 @@ Public Class fccWorkOrderWoodProcess
   End Sub
 
   Public Sub DeleteWoodPallet(ByRef rWoodPallet As dmWoodPallet)
-    pWoodPallets.Remove(rWoodPallet)
+    'pWoodPallets.Remove(rWoodPallet)
+    Dim mSourcePallet As dmSourcePallet = Nothing
+    For Each mSP In pWorkOrder.SourcePallets
+
+      If mSP.WoodPalletID = rWoodPallet.WoodPalletID Then
+        mSourcePallet = mSP
+        Exit For
+      End If
+    Next
+
+    If mSourcePallet IsNot Nothing Then
+      pWorkOrder.SourcePallets.Remove(mSourcePallet)
+      SaveObjects()
+    End If
+
   End Sub
 
 
 
-  Public Sub ProcessDryTransaction(ByRef rSourcePallets As colSourcePallets, ByVal vPalletType As Integer, ByVal vPrevLocationID As Integer)
+  Public Sub ProcessAllPallets(ByRef rSourcePallets As colSourcePallets, ByVal vPalletType As Integer, ByVal vPrevLocationID As Integer)
     Dim mSICollection As colStockItems
     Dim mWoodPallets As New colWoodPallets
     Dim mWoodPallet As dmWoodPallet
@@ -443,6 +503,7 @@ Public Class fccWorkOrderWoodProcess
       mNewWoodPallet.CreatedDate = Now
       mNewWoodPallet.LocationID = eLocations.AgroForestal
       mNewWoodPallet.PalletType = vPalletType
+      mNewWoodPallet.CardNumber = CurrentSourceWoodPallet.CardNumber
       clsWoodPalletSharedFuncs.GetNextWoodPalletRef(mNewWoodPallet, pDBConn)
       mdsoStock.SaveWoodPalletDown(mNewWoodPallet)
 
@@ -490,7 +551,7 @@ Public Class fccWorkOrderWoodProcess
     Next
 
 
-
+    SaveObjects()
 
   End Sub
 
@@ -683,133 +744,68 @@ Public Class fccWorkOrderWoodProcess
   Public Sub RefreshSourceWoodPalletItemEditors(ByVal vCurrentSourceWoodPallet As dmWoodPallet)
     Dim mWoodPalletItemEditor As clsWoodPalletItemEditor
     Dim mStockItem As dmStockItem
-    pSourceWoodPalletItemEditors = New colWoodPalletItemEditors
+    If pSourceWoodPalletItemEditors IsNot Nothing Then
+      pSourceWoodPalletItemEditors.Clear()
 
-    For Each mWPI As dmWoodPalletItem In vCurrentSourceWoodPallet.WoodPalletItems
-      mWoodPalletItemEditor = New clsWoodPalletItemEditor
-      mWoodPalletItemEditor.WoodPalletItem = mWPI
-      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
-      mWoodPalletItemEditor.StockItem = mStockItem
-      pSourceWoodPalletItemEditors.Add(mWoodPalletItemEditor)
-    Next
+      For Each mWPI As dmWoodPalletItem In vCurrentSourceWoodPallet.WoodPalletItems
+        mWoodPalletItemEditor = New clsWoodPalletItemEditor
+        mWoodPalletItemEditor.WoodPalletItem = mWPI
+        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+        mWoodPalletItemEditor.StockItem = mStockItem
+        pSourceWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+      Next
+    End If
   End Sub
 
   Public Sub RefreshOutPutWoodPalletItemEditors(ByVal vCurrentOutput As dmWoodPallet)
     Dim mWoodPalletItemEditor As clsWoodPalletItemEditor
     Dim mStockItem As dmStockItem
-    pOutPutWoodPalletItemEditors = New colWoodPalletItemEditors
+    If pOutPutWoodPalletItemEditors IsNot Nothing Then
+      pOutPutWoodPalletItemEditors.Clear()
 
-    For Each mWPI As dmWoodPalletItem In vCurrentOutput.WoodPalletItems
-      mWoodPalletItemEditor = New clsWoodPalletItemEditor
-      mWoodPalletItemEditor.WoodPalletItem = mWPI
-      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
-      mWoodPalletItemEditor.StockItem = mStockItem
-      pOutPutWoodPalletItemEditors.Add(mWoodPalletItemEditor)
-    Next
+      For Each mWPI As dmWoodPalletItem In vCurrentOutput.WoodPalletItems
+        mWoodPalletItemEditor = New clsWoodPalletItemEditor
+        mWoodPalletItemEditor.WoodPalletItem = mWPI
+        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+        mWoodPalletItemEditor.StockItem = mStockItem
+        pOutPutWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+      Next
+    End If
   End Sub
 
-  Public Sub ProcessSourceQuantity(ByVal vSourceLocation As Integer, ByVal vWoodPalletID As Integer)
+  Public Sub ProcessSourceQuantity()
     Try
-      Dim mdsoTran As dsoStockTransactions
       Dim mdsoStock As dsoStock
       Dim mSIL As New dmStockItemLocation
       Dim mSICollection As colStockItems
       Dim mUpdatedWoodPallets As New colWoodPallets
-      Dim mSISpecies As dmStockItem
       Dim mOutPutWoodPalletItems As New colWoodPalletItems
       Dim mSourceWoodPalletItems As New colWoodPalletItems
-      Dim mNewWoodPalletItem As dmWoodPalletItem
       Dim mNewWoodPallet As dmWoodPallet
-      Dim mSpecieID As Integer
-      Dim mStockItemQtys As Dictionary(Of Integer, Decimal)
-      Dim mSI As dmStockItem
+      Dim mWoodPallet As dmWoodPallet
+      Dim mWoodPallets As New colWoodPallets
 
       mNewWoodPallet = Nothing
       mSICollection = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemCollection
-
-
-      mdsoTran = New dsoStockTransactions(pDBConn)
-
       mdsoStock = New dsoStock(pDBConn)
 
+      For Each mSourcePallet As dmSourcePallet In pWorkOrder.SourcePallets
 
-      For Each mWPIE As clsWoodPalletItemEditor In pSourceWoodPalletItemEditors
-        If mWPIE.ToProcessQty <> 0 Then
+        If mSourcePallet.WoodPalletID > 0 Then
+          mWoodPallet = New dmWoodPallet
+          mWoodPallet = getWoodPalletFromWoodPalletID(mSourcePallet.WoodPalletID)
 
-          If mWPIE.StockItem.StockItemID <> 0 Then
-            mSpecieID = mdsoStock.GetStockItemByStockItemID(mWPIE.StockItem.StockItemID).Species
-
-
-            mSISpecies = mSICollection.ItemFromSpeciesAndThickness(mSpecieID, mWPIE.WoodPalletItem.Thickness, pCurrentOutputWoodPallet.PalletType)
-
-            If mSISpecies Is Nothing Then ''Create the SI with the specific thickness and Species
-              mSISpecies = New dmStockItem
-              CreateNewStockItem(mSISpecies, pCurrentOutputWoodPallet.PalletType, mWPIE.WoodPalletItem.Thickness, mSpecieID)
-
-            End If
-
-
-            mNewWoodPalletItem = New dmWoodPalletItem
-            mNewWoodPalletItem.StockItemID = mSISpecies.StockItemID
-            mNewWoodPalletItem.StockCode = mSISpecies.StockCode
-            mNewWoodPalletItem.Description = mSISpecies.Description
-            mNewWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
-            mNewWoodPalletItem.Quantity = mWPIE.ToProcessQty
-            mNewWoodPalletItem.Thickness = mWPIE.WoodPalletItem.Thickness
-            mNewWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
-            mNewWoodPalletItem.WoodPalletID = pCurrentOutputWoodPallet.WoodPalletID
-            mNewWoodPalletItem.OutstandingQty = mNewWoodPalletItem.Quantity
-            mOutPutWoodPalletItems.Add(mNewWoodPalletItem)
-
-            'mWPIE.WoodPalletItem.Quantity = (mWPIE.WoodPalletItem.Quantity - mWPIE.ToProcessQty)
-            mWPIE.WoodPalletItem.QuantityUsed += mWPIE.ToProcessQty
-            mWPIE.WoodPalletItem.OutstandingQty = mWPIE.WoodPalletItem.Quantity - mWPIE.WoodPalletItem.QuantityUsed
-
-            mdsoStock.SaveWoodPalletItem(mWPIE.WoodPalletItem)
-
-          Else
-            mSIL = Nothing
+          If mWoodPallet IsNot Nothing Then
+            mWoodPallets.Add(mWoodPallet)
           End If
-          mWPIE.ToProcessQty = 0
         End If
-
-        ''Update Quantities for the current WoodPalletSourceItem
-
-
-
-
       Next
+
+
+      CreateSourceTransaction(CurrentWoodWorkOrder.SourcePallets)
+
 
       SaveObjects()
-
-
-      CurrentOutputWoodPallet.WoodPalletItems = mOutPutWoodPalletItems
-      mdsoStock.SaveWoodPalletDown(CurrentOutputWoodPallet)
-
-      ''//Create transactions for the Source WoodPallets
-      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(pCurrentSourceWoodPallet)
-
-      For Each mKVP As KeyValuePair(Of Integer, Decimal) In mStockItemQtys
-        mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mKVP.Key)
-
-        If mSI IsNot Nothing Then
-
-          CreateSingleWoodSourceTransaction(mKVP.Key, mKVP.Value, pCurrentSourceWoodPallet.LocationID, pCurrentSourceWoodPallet)
-        End If
-      Next
-
-      ''//Create transactions for the Output WoodPallets
-      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(CurrentOutputWoodPallet)
-
-      For Each mKVP As KeyValuePair(Of Integer, Decimal) In mStockItemQtys
-        mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mKVP.Key)
-
-        If mSI IsNot Nothing Then
-
-          CreateSingleWoodOutputTransaction(mKVP.Key, mKVP.Value, CurrentOutputWoodPallet.LocationID, CurrentOutputWoodPallet)
-        End If
-      Next
-
 
 
 
@@ -817,6 +813,66 @@ Public Class fccWorkOrderWoodProcess
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
 
+  End Sub
+
+  Public Sub ProcessOutputClassification(ByVal vLocationID As Integer, ByVal vWoodPalletID As Integer)
+
+    Dim mCurrentQty As Decimal
+    Dim mTempWoodPallet As dmWoodPallet
+    Dim mTempWoodPalletItems As New colWoodPalletItems
+    Dim mTempWoodPalletItem As dmWoodPalletItem
+    Dim mToProcQtyBoardFeet As Decimal
+
+    Try
+      mTempWoodPallet = New dmWoodPallet
+
+
+      mTempWoodPallet.WoodPalletID = pCurrentOutputWoodPallet.WoodPalletID
+      mTempWoodPallet.PalletRef = pCurrentOutputWoodPallet.PalletRef
+
+      For Each mWPIE As clsWoodPalletItemEditor In pOutPutWoodPalletItemEditors
+
+        If mWPIE.ToProcessQty <> 0 Then
+          mTempWoodPalletItem = New dmWoodPalletItem
+
+          Select Case mWPIE.StockItem.ItemType
+            Case eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.Arbol
+              mToProcQtyBoardFeet = clsWoodPalletSharedFuncs.M3ToBoardFeet(mWPIE.ToProcessQty)
+            Case Else
+              mToProcQtyBoardFeet = mWPIE.ToProcessQty
+          End Select
+
+          mCurrentQty = pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
+          mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
+          mTempWoodPalletItem.StockCode = mWPIE.StockItem.StockCode
+          mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
+          mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness
+          mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
+          mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
+
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Length = mTempWoodPalletItem.Length
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Width = mTempWoodPalletItem.Width
+          pCurrentOutputWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = mCurrentQty + mToProcQtyBoardFeet
+          mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
+        End If
+        mWPIE.ToProcessQty = 0
+
+      Next
+
+      SaveObjects()
+      SaveWoodPalletDown(pCurrentOutputWoodPallet)
+
+      If mTempWoodPallet IsNot Nothing Then
+        If mTempWoodPallet.WoodPalletItems.Count > 0 Then
+          CreateAmendmentWoodPalletTransaction(pCurrentOutputWoodPallet.LocationID, mTempWoodPallet)
+        End If
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
   End Sub
 
   Public Sub ProcessSourceAserrado(ByVal vLocationID As Integer, ByVal vWoodPalletID As Integer)
@@ -888,8 +944,7 @@ Public Class fccWorkOrderWoodProcess
 
       mTempWoodPallet.WoodPalletID = pCurrentOutputWoodPallet.WoodPalletID
       mTempWoodPallet.PalletRef = pCurrentOutputWoodPallet.PalletRef
-
-      For Each mWPIE As clsWoodPalletItemEditor In pOutPutWoodPalletItemEditors
+      For Each mWPIE As clsWoodPalletItemEditor In OutPutWoodPalletItemEditors
 
         If mWPIE.ToProcessQty <> 0 Then
           mTempWoodPalletItem = New dmWoodPalletItem

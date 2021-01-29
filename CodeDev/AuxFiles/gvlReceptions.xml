@@ -107,13 +107,16 @@
       </property>
       <property name="Caption">Tipo de Recepción</property>
       <property name="FieldName">ItemTypeDesc</property>
-      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
+      <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">205</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Núm. Recepción</property>
       <property name="FieldName">ReceptionNo</property>
       <property name="ColumnEditName" />

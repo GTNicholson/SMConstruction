@@ -206,6 +206,7 @@ Public Class frmWoodPalletDetail
         End Select
 
         txtWoodRef.Text = .PalletRef
+        txtCardNumber.Text = .CardNumber
         txtRefPallet.Text = .RefPalletOutside
         txtWoodDescription.Text = .Description
         dteDateCreated.EditValue = .CreatedDate
@@ -279,6 +280,7 @@ Public Class frmWoodPalletDetail
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
     txtRefPallet.ReadOnly = vReadOnly
+    txtCardNumber.ReadOnly = vReadOnly
     cboWoodPalletType.ReadOnly = vReadOnly
     txtWoodDescription.Enabled = Not vReadOnly
     cboFarm.Properties.ReadOnly = vReadOnly
@@ -474,6 +476,7 @@ Public Class frmWoodPalletDetail
         .RefPalletOutside = txtRefPallet.Text
         .CreatedDate = dteDateCreated.EditValue
         .Archive = ckeArchive.Checked
+        .CardNumber = txtCardNumber.Text
         .LocationID = clsDEControlLoading.GetDEComboValue(cboLocations)
         .PalletType = clsDEControlLoading.GetDEComboValue(cboWoodPalletType)
         .Farm = clsDEControlLoading.GetDEComboValue(cboFarm)
@@ -694,5 +697,11 @@ Public Class frmWoodPalletDetail
 
     End If
 
+  End Sub
+
+  Private Sub grdWoodPalletItemInfos_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdWoodPalletItemInfos.EditorKeyDown
+    If e.KeyCode = Keys.Enter Then
+      gvWoodPalletItemInfo.MoveNext()
+    End If
   End Sub
 End Class

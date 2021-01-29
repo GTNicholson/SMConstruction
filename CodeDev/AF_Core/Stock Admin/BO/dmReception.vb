@@ -8,6 +8,7 @@ Public Class dmReception : Inherits dmBase
   Private pItemType As Int32
   Private pReceptionNo As String
   Private pWoodPallets As colWoodPallets
+  Private pCardNumber As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -49,6 +50,7 @@ Public Class dmReception : Inherits dmBase
       .ReceptionDate = ReceptionDate
       .ItemType = ItemType
       .ReceptionNo = ReceptionNo
+      .CardNumber = CardNumber
       'Add entries here for each collection and class property
 
       .WoodPallets = WoodPallets
@@ -93,6 +95,16 @@ Public Class dmReception : Inherits dmBase
     Set(ByVal value As String)
       If pReceptionNo <> value Then IsDirty = True
       pReceptionNo = value
+    End Set
+  End Property
+
+  Public Property CardNumber() As Integer
+    Get
+      Return pCardNumber
+    End Get
+    Set(ByVal value As Integer)
+      If pCardNumber <> value Then IsDirty = True
+      pCardNumber = value
     End Set
   End Property
   Public Property ReceptionDate() As DateTime

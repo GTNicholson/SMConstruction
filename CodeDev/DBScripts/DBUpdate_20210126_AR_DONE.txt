@@ -1,0 +1,61 @@
+alter table PurchaseOrder
+add POStage int
+go
+
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+PO.AccoutingCategoryID,
+SupplierContactTel,
+MaterialRequirementTypeID,
+PO.DefaultCurrency,
+PO.POStage,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left JOIN PurchaseOrderAllocation POA ON POA.PurchaseOrderID=po.PurchaseOrderID
+
+
+
+GO
+
+

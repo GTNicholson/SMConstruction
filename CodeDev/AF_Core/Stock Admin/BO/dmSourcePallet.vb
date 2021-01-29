@@ -140,7 +140,7 @@ Public Class colSourcePallets : Inherits colBase(Of dmSourcePallet)
         Exit For
       End If
     Next
-    Return mRetVal
+    Return Nothing
   End Function
 End Class
 

@@ -106,6 +106,7 @@ Public Class fccWoodReception
       Else
         pWoodReception.ReceptionDate = Today
         pWoodReception.ReceptionNo = GetNextOrderNo()
+        pWoodReception.ItemType = eStockItemTypeTimberWood.Rollo
         SaveObjects()
         mOK = True
       End If
@@ -239,7 +240,7 @@ Public Class fccWoodReception
 
 
 
-  Public Function CreateNewPallet(ByVal vPalletType As Integer, ByVal vFarm As Integer) As dmWoodPallet
+  Public Function CreateNewPallet(ByVal vPalletType As Integer, ByVal vFarm As Integer, ByVal vCardNumber As Integer) As dmWoodPallet
     Dim mWoodPallet As New dmWoodPallet
 
 
@@ -250,6 +251,7 @@ Public Class fccWoodReception
     mWoodPallet.LocationID = eLocations.AgroForestal
     mWoodPallet.ReceptionID = CurrentReception.ReceptionID
     mWoodPallet.Archive = 0
+    mWoodPallet.CardNumber = vCardNumber
     clsWoodPalletSharedFuncs.GetNextWoodPalletRef(mWoodPallet, pDBConn)
     SaveWoodPalletDown(mWoodPallet)
     CurrentReception.WoodPallets.Add(mWoodPallet)

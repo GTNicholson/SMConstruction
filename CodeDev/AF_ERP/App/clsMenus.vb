@@ -90,6 +90,7 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tablas de Configuracion", eMenuIconType.Admin, AddressOf clsMenuFunctions.LookUpLists, eActivityCode.Configuration)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Configuración de Etiquetas de Pallets de Madera", eMenuIconType.Admin, AddressOf clsMenuFunctions.ReportDesignerWoodPallet, eActivityCode.Configuration)
 
 
     Return mMenuList
@@ -400,7 +401,12 @@ Class clsMenuFunctions
 
   End Sub
 
+  Public Shared Sub ReportDesignerWoodPallet(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mFileName As String
+    mFileName = IO.Path.Combine(AppRTISGlobal.GetInstance.AuxFilePath, "WoodPalletLabel.repx")
 
+    frmReportDesigner.OpenAsDialog(mFileName, New ComponentModel.BindingList(Of dmWoodPallet) From {New dmWoodPallet})
+  End Sub
 
   Public Shared Sub WoodPalletItemVolumeReport(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView

@@ -4,10 +4,9 @@ Imports RTIS.Elements
 
 Public Class frmMovementClassified
   Private Shared sActiveForms As Collection
-  Private pTimberTypeID As Integer
+  Private pDictionary As Tuple(Of Integer, Integer)
 
-
-  Public Shared Function OpenFormI(ByRef rDBConn As clsDBConnBase) As Integer
+  Public Shared Function OpenFormI(ByRef rDBConn As clsDBConnBase) As Tuple(Of Integer, Integer)
     Dim mfrm As frmMovementClassified = Nothing
 
     mfrm = GetFormIfLoaded()
@@ -19,7 +18,7 @@ Public Class frmMovementClassified
       mfrm.Focus()
     End If
 
-    Return mfrm.pTimberTypeID
+    Return mfrm.pDictionary
   End Function
   Private Shared Function GetFormIfLoaded() As frmMovementClassified
     Dim mfrmWanted As frmMovementClassified = Nothing
@@ -50,7 +49,7 @@ Public Class frmMovementClassified
     If mValueItems IsNot Nothing Then
       For Each mValueItem In mValueItems
         Select Case mValueItem.ItemValue
-          Case eStockItemTypeTimberWood.ClasificadoA, eStockItemTypeTimberWood.ClasificadoB, eStockItemTypeTimberWood.ClasificadoC, eStockItemTypeTimberWood.ClasificadoZ
+          Case eStockItemTypeTimberWood.Primera, eStockItemTypeTimberWood.Segunda, eStockItemTypeTimberWood.Tercera, eStockItemTypeTimberWood.ClasificadoZ
             mListValueItem.Add(mValueItem)
         End Select
       Next
@@ -66,7 +65,18 @@ Public Class frmMovementClassified
   End Sub
 
   Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
-    pTimberTypeID = TryCast(cboLocations.SelectedItem, clsValueItem).ItemValue
+    Dim mTimberTypeID As Integer
+    Dim mCardNumber As Integer
+    mTimberTypeID = TryCast(cboLocations.SelectedItem, clsValueItem).ItemValue
+
+    mCardNumber = Val(txtCardNumber.Text)
+
+    pDictionary = New Tuple(Of Integer, Integer)(mTimberTypeID, mCardNumber)
+
     Me.Close()
+  End Sub
+
+  Private Sub txtCardNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCardNumber.KeyDown
+
   End Sub
 End Class

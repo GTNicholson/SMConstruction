@@ -111,6 +111,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .Supplier.BankName = DBReadString(rDataReader, "BankName")
           .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
           .RefMatType = DBReadString(rDataReader, "RefMatType")
+          .POStage = DBReadInt32(rDataReader, "POStage")
         End With
       End With
       mOK = True

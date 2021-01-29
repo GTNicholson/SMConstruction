@@ -135,30 +135,44 @@ Public Class clsWoodPalletSharedFuncs
           mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
         Case eStockItemTypeTimberWood.Aserrado
-          mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+          mRef = "BLT-ASE" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
-        Case eStockItemTypeTimberWood.ClasificadoA
-          mRef = "BLT-A-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+        Case eStockItemTypeTimberWood.Primera
+          mRef = "BLT-PRI-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
-        Case eStockItemTypeTimberWood.ClasificadoB
-          mRef = "BLT-B-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+        Case eStockItemTypeTimberWood.Segunda
+          mRef = "BLT-SEG-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
-        Case eStockItemTypeTimberWood.ClasificadoC
-          mRef = "BLT-C-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+        Case eStockItemTypeTimberWood.Tercera
+          mRef = "BLT-TER-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
         Case eStockItemTypeTimberWood.ClasificadoZ
           mRef = "BLT-Z-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
         Case eStockItemTypeTimberWood.MAS
-          mRef = "BLT-S-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+          mRef = "BLT-MAS-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
         Case eStockItemTypeTimberWood.MAV
-          mRef = "BLT-V-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+          mRef = "BLT-MAV-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
 
+
+        Case eStockItemTypeTimberWood.CepilladoPrimera
+          mRef = "BLT-CPR-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+        Case eStockItemTypeTimberWood.CepilladoSegunda
+          mRef = "BLT-CSE-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+        Case eStockItemTypeTimberWood.CepilladoTercera
+          mRef = "BLT-CTE-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
         Case eStockItemTypeTimberWood.Rollo
-          mRef = "RST-R-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+          If rWoodPallet.CardNumber > 0 Then
+            mRef = "RST-ROL-" & rWoodPallet.CardNumber.ToString("0000")
 
+          Else
+
+            mRef = "RST-ROL-" & mdsoGeneral.GetNextTallyWoodPalletConnected().ToString("0000")
+          End If
       End Select
 
 
@@ -178,29 +192,38 @@ Public Class clsWoodPalletSharedFuncs
             mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
           Case eStockItemTypeTimberWood.Aserrado
-            mRef = "BLT-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+            mRef = "BLT-ASE" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
-          Case eStockItemTypeTimberWood.ClasificadoA
-            mRef = "BLT-A-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+          Case eStockItemTypeTimberWood.Primera
+            mRef = "BLT-PRI-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
-          Case eStockItemTypeTimberWood.ClasificadoB
-            mRef = "BLT-B-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+          Case eStockItemTypeTimberWood.Segunda
+            mRef = "BLT-SEG-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
-          Case eStockItemTypeTimberWood.ClasificadoC
-            mRef = "BLT-C-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+          Case eStockItemTypeTimberWood.Tercera
+            mRef = "BLT-TER-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
           Case eStockItemTypeTimberWood.ClasificadoZ
             mRef = "BLT-Z-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
           Case eStockItemTypeTimberWood.MAS
-            mRef = "BLT-S-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+            mRef = "BLT-MAS-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
           Case eStockItemTypeTimberWood.MAV
-            mRef = "BLT-V-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+            mRef = "BLT-MAV-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
+
+          Case eStockItemTypeTimberWood.CepilladoPrimera
+            mRef = "BLT-CPR-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.CepilladoSegunda
+            mRef = "BLT-CSE-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+
+          Case eStockItemTypeTimberWood.CepilladoTercera
+            mRef = "BLT-CTE-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
           Case eStockItemTypeTimberWood.Rollo
-            mRef = "BLT-R-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
+            mRef = "RST-ROL-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
         End Select
       End If

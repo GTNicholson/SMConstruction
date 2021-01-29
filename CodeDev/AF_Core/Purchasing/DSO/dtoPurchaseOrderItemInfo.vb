@@ -94,6 +94,7 @@ Public Class dtoPurchaseOrderItemInfo : Inherits dtoBase
           .PONum = DBReadString(rDataReader, "PONum")
           .PaymentStatus = DBReadInt32(rDataReader, "PaymentStatus")
           .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
+          .POStage = DBReadInt32(rDataReader, "POStage")
         End With
 
         With .StockItem

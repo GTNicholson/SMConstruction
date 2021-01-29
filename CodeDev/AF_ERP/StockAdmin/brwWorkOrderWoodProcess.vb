@@ -15,8 +15,10 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
     Aserrio = 1
     Horno = 2
     Clasificar = 3
-    Devolucion = 4
-    Rechazo = 5
+    Cepillado = 4
+    Devolucion = 5
+    Rechazo = 6
+
   End Enum
 
 
@@ -36,7 +38,11 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
         frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAV, eStockItemTypeTimberWood.MAS, eWorkOrderWoodProcess.Horno)
 
       Case eAddEditDeleteView.Clasificar
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAS, eStockItemTypeTimberWood.ClasificadoA, eWorkOrderWoodProcess.Clasificar)
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAS, eStockItemTypeTimberWood.Primera, eWorkOrderWoodProcess.Clasificar)
+
+      Case eAddEditDeleteView.Cepillado
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.Primera, eStockItemTypeTimberWood.CepilladoPrimera, eWorkOrderWoodProcess.Cepillado)
+
 
       Case eAddEditDeleteView.Devolucion
         frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, 0, 0, eWorkOrderWoodProcess.Devolucion)
@@ -151,7 +157,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
 
       With CType(Me.BrowseForm, frmBrowseList)
-        .ReLabelToolBarButtons(Nothing, "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Activas", eListOption.DefaultListOption)
         '.AddListOption("Recibidas", eListOption.Received)
@@ -160,6 +166,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
         .AddAddOption("A Aserrío", eAddEditDeleteView.Aserrio, True)
         .AddAddOption("A Horno", eAddEditDeleteView.Horno)
         .AddAddOption("A Clasificar", eAddEditDeleteView.Clasificar)
+        .AddAddOption("A Cepillar", eAddEditDeleteView.Cepillado)
 
         .AddAddOption("A Devolución", eAddEditDeleteView.Devolucion)
 

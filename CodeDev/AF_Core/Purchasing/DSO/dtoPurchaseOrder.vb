@@ -113,6 +113,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RefMatType", StringToDBValue(.RefMatType))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentMethod", .PaymentMethod)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AccoutingCategoryID", .AccoutingCategoryID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "POStage", .POStage)
 
 
     End With
@@ -186,6 +187,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .RefMatType = DBReadString(rDataReader, "RefMatType")
 
         .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
+        .POStage = DBReadInt32(rDataReader, "POStage")
 
         pPurchaseOrder.IsDirty = False
         pPurchaseOrder.DeliveryAddress.IsDirty = False

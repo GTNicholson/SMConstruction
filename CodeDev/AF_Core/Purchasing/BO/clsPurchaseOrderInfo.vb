@@ -94,6 +94,17 @@ Public Class clsPurchaseOrderInfo
 
   End Property
 
+  Public ReadOnly Property POStage As Integer
+    Get
+      Return pPurchaseOrder.POStage
+    End Get
+  End Property
+
+  Public ReadOnly Property POStageDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(pPurchaseOrder.POStage, ePOStage))
+    End Get
+  End Property
   Public ReadOnly Property AccoutingCategoryDesc() As String
     Get
       Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)

@@ -59,6 +59,7 @@ Public Class dtoReception : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceptionDate", DateToDBValue(.ReceptionDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .ItemType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceptionNo", .ReceptionNo)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CardNumber", .CardNumber)
 
 
     End With
@@ -76,6 +77,7 @@ Public Class dtoReception : Inherits dtoBase
         .ReceptionDate = DBReadDateTime(rDataReader, "ReceptionDate")
         .ItemType = DBReadInt32(rDataReader, "ItemType")
         .ReceptionNo = DBReadString(rDataReader, "ReceptionNo")
+        .CardNumber = DBReadInteger(rDataReader, "CardNumber")
         pReception.IsDirty = False
       End With
       mOK = True

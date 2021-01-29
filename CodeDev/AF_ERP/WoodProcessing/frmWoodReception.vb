@@ -104,7 +104,6 @@ Public Class frmWoodReception
 
     Try
       pFormController.LoadObject()
-
       RefreshSourceTabs()
 
       LoadCombos()
@@ -113,7 +112,7 @@ Public Class frmWoodReception
 
       pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
-
+      RefreshDetailButtons()
 
     Catch ex As Exception
       mMsg = ex.Message
@@ -132,6 +131,7 @@ Public Class frmWoodReception
 
     pIsActive = True
   End Sub
+
 
   Private Sub RefreshSourceTabs()
     Dim mPos As Integer = 0
@@ -180,7 +180,7 @@ Public Class frmWoodReception
       End If
       mPage = xtabSourcePallet.TabPages(mPos)
       mPage.Tag = mWP
-      mPage.Text = String.Format("{0}", mWP.PalletRef)
+      mPage.Text = String.Format("{0}/{1}", mWP.PalletRef, mWP.CardNumber)
 
       If pFormController.CurrentSourceWoodPallet Is Nothing Then
 
@@ -371,8 +371,19 @@ Public Class frmWoodReception
     With pFormController.CurrentReception
       .ItemType = clsDEControlLoading.GetDEComboValue(cboWoodType)
       .Farm = clsDEControlLoading.GetDEComboValue(cboFarm)
+      .CardNumber = txtCardNumber.Text
     End With
 
+    For Each mWP As dmWoodPallet In pFormController.CurrentReception.WoodPallets
+      mWP.PalletType = pFormController.CurrentReception.ItemType
+      If txtCardNumber.Text = "" Then
+        mWP.CardNumber = 0
+      Else
+        mWP.CardNumber = txtCardNumber.Text
+
+      End If
+
+    Next
   End Sub
 
   Private Sub RefreshControls()
@@ -387,7 +398,7 @@ Public Class frmWoodReception
         dteDateCreated.EditValue = .ReceptionDate
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboFarm, .Farm)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboWoodType, .ItemType)
-
+        txtCardNumber.Text = .CardNumber
       End With
 
 
@@ -436,13 +447,14 @@ Public Class frmWoodReception
 
         UpdateObject()
         pFormController.SaveObjects()
-        pFormController.CreateNewPallet(mPalletType, mFarm)
+        pFormController.CreateNewPallet(mPalletType, mFarm, Val(txtCardNumber.Text))
         gvSourceWoodPalletItem.RefreshData()
         pFormController.SaveObjects()
 
         SetDetailsControlsReadonly(False)
         pCurrentDetailMode = eCurrentDetailMode.eEdit
         RefreshDetailButtons()
+        RefreshSourceTabs()
       Case ePalletOptions.AddWoodItem
         Dim mTempSI As dmStockItem
         UpdateObject()
@@ -511,7 +523,19 @@ Public Class frmWoodReception
         pFormController.SaveWoodPalletDown(pFormController.CurrentSourceWoodPallet)
         CheckSave(False)
         ToReceiveWoodPallets()
-        CheckSave(False)
+        UpdateObject()
+        pFormController.SaveObjects()
+        If pFormController.CurrentSourceWoodPallet.PalletType > 0 Then
+          pFormController.SaveWoodPalletDown(pFormController.CurrentSourceWoodPallet)
+
+        End If
+        RefreshSourceTabs()
+        RefreshControls()
+        pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+        grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
+        gvSourceWoodPalletItem.RefreshData()
+
+
         pCurrentDetailMode = eCurrentDetailMode.eView
         SetDetailsControlsReadonly(True)
         RefreshControls()
@@ -526,7 +550,7 @@ Public Class frmWoodReception
         RefreshDetailButtons()
     End Select
 
-    RefreshSourceTabs()
+
   End Sub
   Private Sub ToReceiveWoodPallets()
 
@@ -626,6 +650,7 @@ Public Class frmWoodReception
         If pFormController.CurrentSourceWoodPallet.PalletType = eStockItemTypeTimberWood.Rollo Then
           gcThickness.Caption = "Diametro"
           gcThickness.OptionsColumn.ReadOnly = False
+          gcQuantity.Caption = "Trozas"
           gcWidth.Visible = False
           lblFarm.Visible = True
           cboFarm.Visible = True
@@ -640,5 +665,12 @@ Public Class frmWoodReception
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
+  End Sub
+
+  Private Sub grdSourceWoodPalletItem_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdSourceWoodPalletItem.EditorKeyDown
+    If e.KeyCode = Keys.Enter Then
+      gvSourceWoodPalletItem.MoveNext()
+
+    End If
   End Sub
 End Class

@@ -64,6 +64,21 @@ Public Enum eActivityCode
 
 End Enum
 
+Public Enum ePOStage
+  <Description("Ninguno")> None = 0
+  <Description("Preliminares")> Preliminares = 1
+  <Description("Movimiento de Tierras")> MovTierra = 2
+  <Description("Fundaciones")> Fundaciones = 3
+  <Description("Pisos")> Pisos = 4
+  <Description("Estructura Principal")> EstructuraPrincipal = 5
+  <Description("Paredes")> Paredes = 6
+  <Description("Techo")> Techo = 7
+  <Description("Cielo Raso")> CieloRaso = 8
+  <Description("Puertas y Ventanas")> PuertasVentanas = 9
+  <Description("Instalaciones Electricas")> InstalacionesElectricas = 10
+  <Description("Climatización")> Climatizacion = 11
+  <Description("Limpieza Final y Entrega")> LimpiezaEntrega = 12
+End Enum
 Public Enum eMode
   StockItemAdmin = 1
   StockItemInfos = 2
@@ -313,8 +328,9 @@ Public Enum eWorkOrderWoodProcess
   <Description("A Aserrío")> Aserrio = 1
   <Description("A Horno")> Horno = 2
   <Description("A Clasificación")> Clasificar = 3
-  <Description("A Devolución")> Devolucion = 4
-  <Description("A Rechazo")> Rechazo = 5
+  <Description("A Cepillado")> Cepillado = 4
+  <Description("A Devolución")> Devolucion = 5
+  <Description("A Rechazo")> Rechazo = 6
 End Enum
 
 
@@ -1209,10 +1225,14 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     Aserrado = 3
     MAS = 4
     MAV = 6
-    ClasificadoA = 7
-    ClasificadoB = 8
-    ClasificadoC = 9
+    Primera = 7
+    Segunda = 8
+    Tercera = 9
     ClasificadoZ = 10
+    CepilladoPrimera = 11
+    CepilladoSegunda = 12
+    CepilladoTercera = 13
+
     Otros = 99
 
 
@@ -1225,16 +1245,19 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
   Public Const Aserrado = 3
   Public Const MAS = 4
   Public Const MAV = 6
-  Public Const ClasificadoA = 7
-  Public Const ClasificadoB = 8
-  Public Const ClasificadoC = 9
+  Public Const Primera = 7
+  Public Const Segunda = 8
+  Public Const Tercera = 9
   Public Const ClasificadoZ = 10
+  Public Const CepilladoPrimera = 11
+  Public Const CepilladoSegunda = 12
+  Public Const CepilladoTercera = 13
   Public Const Otros = 99
 
-    Private Shared mSharedInstance As eStockItemTypeTimberWood
+  Private Shared mSharedInstance As eStockItemTypeTimberWood
 
-    Public Sub New()
-      MyBase.New()
+  Public Sub New()
+    MyBase.New()
 
     Dim mTree As New clsStockItemType(Arbol, "Árbol", "ARB")
     MyBase.Add(mTree)
@@ -1253,30 +1276,40 @@ Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
     Dim mMAV As New clsStockItemType(MAV, "MAV", "MAV")
     MyBase.Add(mMAV)
 
-    Dim mClasificadoA As New clsStockItemType(ClasificadoA, "Clasificado A", "CLA")
+    Dim mClasificadoA As New clsStockItemType(Primera, "Primera", "PRI")
     MyBase.Add(mClasificadoA)
 
-    Dim mClasificadoB As New clsStockItemType(ClasificadoB, "Clasificado B", "CLB")
+    Dim mClasificadoB As New clsStockItemType(Segunda, "Segunda", "SEG")
     MyBase.Add(mClasificadoB)
 
-    Dim mClasificadoC As New clsStockItemType(ClasificadoC, "Clasificado C", "CLC")
+    Dim mClasificadoC As New clsStockItemType(Tercera, "Tercera", "TER")
     MyBase.Add(mClasificadoC)
 
     Dim mClasificadoZ As New clsStockItemType(ClasificadoZ, "Clasificado Z", "CLZ")
     MyBase.Add(mClasificadoZ)
 
+    Dim mCepillado As New clsStockItemType(CepilladoPrimera, "Cepillado Primera", "CPR")
+    MyBase.Add(mCepillado)
+
+    Dim mCepilladoSegunda As New clsStockItemType(CepilladoSegunda, "Cepillado Segunda", "CSE")
+    MyBase.Add(mCepilladoSegunda)
+
+
+    Dim mCepilladoTercera As New clsStockItemType(CepilladoTercera, "Cepillado Tercera", "CTE")
+    MyBase.Add(mCepilladoTercera)
+
     Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
-      MyBase.Add(mOther)
-    End Sub
+    MyBase.Add(mOther)
+  End Sub
 
-    Public Shared Function GetInstance() As eStockItemTypeTimberWood
-      If mSharedInstance Is Nothing Then
-        mSharedInstance = New eStockItemTypeTimberWood
-      End If
-      Return mSharedInstance
-    End Function
+  Public Shared Function GetInstance() As eStockItemTypeTimberWood
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeTimberWood
+    End If
+    Return mSharedInstance
+  End Function
 
-  End Class
+End Class
 
 
 ''termino aca

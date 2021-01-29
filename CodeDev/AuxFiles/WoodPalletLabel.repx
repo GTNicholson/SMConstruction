@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="17.1.16.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="repBlankLayout" Margins="0, 15, 0, 17" PaperKind="Custom" PageWidth="600" PageHeight="700" ScriptLanguage="VisualBasic" Version="17.1" DataSource="#Ref-0">
+  <Bands>
+    <Item1 Ref="2" ControlType="DetailBand" Name="Detail" HeightF="0" TextAlignment="TopLeft" Padding="0,0,0,0,100" />
+    <Item2 Ref="3" ControlType="TopMarginBand" Name="TopMargin" HeightF="0" TextAlignment="TopLeft" Padding="0,0,0,0,100" />
+    <Item3 Ref="4" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="17" TextAlignment="TopLeft" Padding="0,0,0,0,100" />
+    <Item4 Ref="5" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="366.541748">
+      <Controls>
+        <Item1 Ref="6" ControlType="XRLabel" Name="label12" Text="Cantidad Piezas" SizeF="117.708336,17.708313" LocationFloat="29.166666, 302.541748" Padding="2,2,0,0,100" />
+        <Item2 Ref="7" ControlType="XRLabel" Name="label11" Text="Pies Tablares" SizeF="117.708336,17.708313" LocationFloat="29.166666, 270.250061" Padding="2,2,0,0,100" />
+        <Item3 Ref="8" ControlType="XRLabel" Name="label10" Text="Descripción" SizeF="72.91666,20.8333435" LocationFloat="259.375, 154.083313" Padding="2,2,0,0,100" />
+        <Item4 Ref="9" ControlType="XRLabel" Name="label9" Text="label9" SizeF="200,23" LocationFloat="347.916656, 154.083313" Padding="2,2,0,0,96">
+          <DataBindings>
+            <Item1 Ref="10" PropertyName="Text" DataMember="Description" />
+          </DataBindings>
+        </Item4>
+        <Item5 Ref="11" ControlType="XRLabel" Name="label8" Text="label8" SizeF="180.208344,22.9999924" LocationFloat="347.916656, 107.208351" Padding="2,2,0,0,96">
+          <DataBindings>
+            <Item1 Ref="12" PropertyName="Text" DataMember="PalletTypeDesc" />
+          </DataBindings>
+        </Item5>
+        <Item6 Ref="13" ControlType="XRLabel" Name="label7" Text="Tipo Bulto" SizeF="72.91666,20.8333282" LocationFloat="259.375, 109.375" Padding="2,2,0,0,96" />
+        <Item7 Ref="14" ControlType="XRLabel" Name="label6" Text="label6" SizeF="100,23" LocationFloat="107.291664, 154.083313" Padding="2,2,0,0,96">
+          <DataBindings>
+            <Item1 Ref="15" PropertyName="Text" DataMember="CreatedDate" />
+          </DataBindings>
+        </Item7>
+        <Item8 Ref="16" ControlType="XRLabel" Name="label5" Text="Fecha" SizeF="67.7083359,17.7083282" LocationFloat="29.166666, 159.375" Padding="2,2,0,0,96" />
+        <Item9 Ref="17" ControlType="XRLabel" Name="label4" Text="label4" SizeF="100,23" LocationFloat="107.291664, 109.375" Padding="2,2,0,0,100">
+          <DataBindings>
+            <Item1 Ref="18" PropertyName="Text" DataMember="PalletRef" />
+          </DataBindings>
+        </Item9>
+        <Item10 Ref="19" ControlType="XRLabel" Name="label3" Text="Ref. Pallet" SizeF="68.75,23" LocationFloat="27.083334, 109.375" Padding="2,2,0,0,100" />
+        <Item11 Ref="20" ControlType="XRLabel" Name="label2" Text="CONTROL DE INVENTARIO" SizeF="236.458313,20.8333282" LocationFloat="95.8333359, 64.74997" Padding="2,2,0,0,100" />
+        <Item12 Ref="21" ControlType="XRLine" Name="line1" SizeF="466.666626,22.9999962" LocationFloat="0, 41.7499847" />
+        <Item13 Ref="22" ControlType="XRLabel" Name="label1" Text="Agroforestal" TextAlignment="TopCenter" SizeF="208.333328,23" LocationFloat="95.8333359, 18.75" Font="Times New Roman, 12pt, style=Bold" Padding="2,2,0,0,100">
+          <StylePriority Ref="23" UseFont="false" UseTextAlignment="false" />
+        </Item13>
+      </Controls>
+    </Item4>
+  </Bands>
+  <ObjectStorage>
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v17.1" Ref="0" Content="~Xtra#NULL" Type="System.ComponentModel.BindingList`1[[AF_Core.dmWoodPallet, AF_Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" />
+  </ObjectStorage>
+</XtraReportsLayoutSerializer>

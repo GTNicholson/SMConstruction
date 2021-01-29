@@ -71,7 +71,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="15">
+  <property name="Columns" iskey="true" value="16">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -262,6 +262,14 @@
           <property name="DisplayFormat">{0:$###,##0.00}</property>
         </property>
       </property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="Name">GridColumn15</property>
+      <property name="Caption">Etapa</property>
+      <property name="FieldName">POStageDesc</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">13</property>
+      <property name="Visible">true</property>
     </property>
   </property>
   <property name="ViewCaption" />

@@ -174,7 +174,19 @@ Public Class clsPurchaseOrderItemInfo
     End Get
 
   End Property
+  Public ReadOnly Property POStage As Integer
+    Get
+      Return pPurchaseOrder.POStage
+    End Get
 
+  End Property
+
+  Public ReadOnly Property POStageDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(pPurchaseOrder.POStage, ePOStage))
+    End Get
+
+  End Property
   Public ReadOnly Property PurchaseOrderID As Integer
     Get
       Return pPurchaseOrder.PurchaseOrderID

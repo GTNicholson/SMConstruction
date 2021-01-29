@@ -191,6 +191,12 @@
     <Compile Include="App\GUI\frmPDFViewer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="App\GUI\frmReportDesigner.Designer.vb">
+      <DependentUpon>frmReportDesigner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmReportDesigner.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="App\GUI\frmTabbedMDI.designer.vb">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>
     </Compile>
@@ -753,6 +759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App\GUI\frmPDFViewer.resx">
       <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmReportDesigner.resx">
+      <DependentUpon>frmReportDesigner.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App\GUI\frmTabbedMDI.resx">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>

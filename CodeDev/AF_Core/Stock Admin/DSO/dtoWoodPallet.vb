@@ -67,6 +67,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IntoWIPDate", DateToDBValue(.IntoWIPDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Farm", .Farm)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceptionID", .ReceptionID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CardNumber", .CardNumber)
 
 
 
@@ -94,6 +95,8 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .IntoWIPDate = DBReadDate(rDataReader, "IntoWIPDate")
         .Farm = DBReadInt32(rDataReader, "Farm")
         .ReceptionID = DBReadInt32(rDataReader, "ReceptionID")
+        .CardNumber = DBReadInt32(rDataReader, "CardNumber")
+
         pWoodPallet.IsDirty = False
       End With
       mOK = True

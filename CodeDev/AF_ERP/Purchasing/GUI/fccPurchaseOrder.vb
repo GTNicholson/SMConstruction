@@ -590,6 +590,7 @@ Public Class fccPurchaseOrder
         rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
       End If
       '// Update the qty ot the neew value
+      SaveObject()
     End If
   End Sub
 

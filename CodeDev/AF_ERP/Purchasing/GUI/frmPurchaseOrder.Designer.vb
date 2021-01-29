@@ -84,6 +84,8 @@ Partial Class frmPurchaseOrder
         Me.RepoItemPopupContainerEditQtyReceived = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboStage = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.cboAccountingCategory = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.ckeAccountOrder = New DevExpress.XtraEditors.CheckEdit()
@@ -179,6 +181,7 @@ Partial Class frmPurchaseOrder
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.cboStage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboAccountingCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ckeAccountOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -847,6 +850,8 @@ Partial Class frmPurchaseOrder
         Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl3.AppearanceCaption.Options.UseFont = True
         Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl3.Controls.Add(Me.LabelControl20)
+        Me.GroupControl3.Controls.Add(Me.cboStage)
         Me.GroupControl3.Controls.Add(Me.LabelControl19)
         Me.GroupControl3.Controls.Add(Me.cboAccountingCategory)
         Me.GroupControl3.Controls.Add(Me.ckeAccountOrder)
@@ -889,6 +894,25 @@ Partial Class frmPurchaseOrder
         Me.GroupControl3.Size = New System.Drawing.Size(1549, 339)
         Me.GroupControl3.TabIndex = 248
         Me.GroupControl3.Text = "Detalles del Proveedor"
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl20.Appearance.Options.UseFont = True
+        Me.LabelControl20.Location = New System.Drawing.Point(359, 188)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(67, 14)
+        Me.LabelControl20.TabIndex = 288
+        Me.LabelControl20.Text = "Etapa Compra"
+        '
+        'cboStage
+        '
+        Me.cboStage.Location = New System.Drawing.Point(445, 185)
+        Me.cboStage.MenuManager = Me.BarManager1
+        Me.cboStage.Name = "cboStage"
+        Me.cboStage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboStage.Size = New System.Drawing.Size(98, 20)
+        Me.cboStage.TabIndex = 289
         '
         'LabelControl19
         '
@@ -1728,6 +1752,7 @@ Partial Class frmPurchaseOrder
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.cboStage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboAccountingCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ckeAccountOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1918,4 +1943,6 @@ Partial Class frmPurchaseOrder
     Friend WithEvents ckeAccountOrder As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboAccountingCategory As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cboStage As DevExpress.XtraEditors.ComboBoxEdit
 End Class

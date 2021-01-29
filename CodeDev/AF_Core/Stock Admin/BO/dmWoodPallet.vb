@@ -18,7 +18,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pIntoWIPDate As Date
   Private pFarm As Integer
   Private pReceptionID As Integer
-
+  Private pCardNumber As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -71,6 +71,7 @@ Public Class dmWoodPallet : Inherits dmBase
       .IntoWIPDate = IntoWIPDate
       .Farm = Farm
       .ReceptionID = ReceptionID
+      .CardNumber = CardNumber
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -132,7 +133,15 @@ Public Class dmWoodPallet : Inherits dmBase
       Return mRetVal
     End Get
   End Property
-
+  Public Property CardNumber As Integer
+    Get
+      Return pCardNumber
+    End Get
+    Set(value As Integer)
+      If pCardNumber <> value Then IsDirty = True
+      pCardNumber = value
+    End Set
+  End Property
 
   Public Property Archive() As Boolean
     Get

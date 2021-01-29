@@ -56,6 +56,8 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pExchangeRateValue As Decimal
 
   Private pAccoutingCategoryID As Integer
+  Private pPOStage As Integer
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -157,6 +159,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .MaterialRequirementTypeID = MaterialRequirementTypeID
       .PaymentMethod = PaymentMethod
       .AccoutingCategoryID = AccoutingCategoryID
+      .POStage = POStage
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -392,6 +395,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property POStage() As Integer
+    Get
+      Return pPOStage
+    End Get
+    Set(ByVal value As Integer)
+      If pPOStage <> value Then IsDirty = True
+      pPOStage = value
+    End Set
+  End Property
   Public Property RequiredDate() As DateTime
     Get
       RequiredDate = pRequiredDate
