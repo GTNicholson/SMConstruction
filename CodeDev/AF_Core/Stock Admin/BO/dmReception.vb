@@ -8,7 +8,7 @@ Public Class dmReception : Inherits dmBase
   Private pItemType As Int32
   Private pReceptionNo As String
   Private pWoodPallets As colWoodPallets
-  Private pCardNumber As Integer
+  Private pCardNumber As String
   Public Sub New()
     MyBase.New()
   End Sub
@@ -98,11 +98,11 @@ Public Class dmReception : Inherits dmBase
     End Set
   End Property
 
-  Public Property CardNumber() As Integer
+  Public Property CardNumber() As String
     Get
       Return pCardNumber
     End Get
-    Set(ByVal value As Integer)
+    Set(ByVal value As String)
       If pCardNumber <> value Then IsDirty = True
       pCardNumber = value
     End Set

@@ -1,0 +1,7 @@
+alter table WoodPallet
+add CardNumber varchar(10)
+go
+
+alter table reception
+add CardNumber varchar(10)
+go

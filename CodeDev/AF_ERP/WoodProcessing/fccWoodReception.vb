@@ -240,7 +240,7 @@ Public Class fccWoodReception
 
 
 
-  Public Function CreateNewPallet(ByVal vPalletType As Integer, ByVal vFarm As Integer, ByVal vCardNumber As Integer) As dmWoodPallet
+  Public Function CreateNewPallet(ByVal vPalletType As Integer, ByVal vFarm As Integer, ByVal vCardNumber As String) As dmWoodPallet
     Dim mWoodPallet As New dmWoodPallet
 
 

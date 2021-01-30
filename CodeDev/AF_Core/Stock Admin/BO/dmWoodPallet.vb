@@ -18,7 +18,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pIntoWIPDate As Date
   Private pFarm As Integer
   Private pReceptionID As Integer
-  Private pCardNumber As Integer
+  Private pCardNumber As String
   Public Sub New()
     MyBase.New()
   End Sub
@@ -133,11 +133,11 @@ Public Class dmWoodPallet : Inherits dmBase
       Return mRetVal
     End Get
   End Property
-  Public Property CardNumber As Integer
+  Public Property CardNumber As String
     Get
       Return pCardNumber
     End Get
-    Set(value As Integer)
+    Set(value As String)
       If pCardNumber <> value Then IsDirty = True
       pCardNumber = value
     End Set

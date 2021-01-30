@@ -377,7 +377,7 @@ Public Class frmWoodReception
     For Each mWP As dmWoodPallet In pFormController.CurrentReception.WoodPallets
       mWP.PalletType = pFormController.CurrentReception.ItemType
       If txtCardNumber.Text = "" Then
-        mWP.CardNumber = 0
+        mWP.CardNumber = ""
       Else
         mWP.CardNumber = txtCardNumber.Text
 
@@ -447,7 +447,7 @@ Public Class frmWoodReception
 
         UpdateObject()
         pFormController.SaveObjects()
-        pFormController.CreateNewPallet(mPalletType, mFarm, Val(txtCardNumber.Text))
+        pFormController.CreateNewPallet(mPalletType, mFarm, txtCardNumber.Text)
         gvSourceWoodPalletItem.RefreshData()
         pFormController.SaveObjects()
 

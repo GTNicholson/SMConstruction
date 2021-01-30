@@ -650,7 +650,7 @@ Public Class frmWorkOrderWoodProcess
             If pFormController.WorkOrderSourceWoodType = pSourceItemType Then
               mDictionary = frmMovementClassified.OpenFormI(pFormController.DBConn)
               pTargetItemType = mDictionary.Item1
-              pFormController.CreateWoodPallet(pTargetItemType, mDictionary.Item2)
+              pFormController.CreateWoodPallet(pTargetItemType, mDictionary.Item2.ToString)
             End If
 
           Case Else
@@ -658,7 +658,7 @@ Public Class frmWorkOrderWoodProcess
             mCardNumber = InputBox("Ingrese el número de la tarjeta de control", "Información")
 
             If IsNumeric(mCardNumber) Then
-              pFormController.CreateWoodPallet(pFormController.CurrentWoodWorkOrder.WorkOrderTargetWoodType, Val(mCardNumber))
+              pFormController.CreateWoodPallet(pFormController.CurrentWoodWorkOrder.WorkOrderTargetWoodType, mCardNumber)
 
             Else
               MessageBox.Show("Formato incorrecto en el número de la tarjeta")

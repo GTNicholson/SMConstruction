@@ -333,7 +333,7 @@ Public Class fccWorkOrderWoodProcess
     SaveObjects()
   End Sub
 
-  Public Sub CreateWoodPallet(ByVal vPalletType As Integer, ByVal vNumbercard As Integer)
+  Public Sub CreateWoodPallet(ByVal vPalletType As Integer, ByVal vNumbercard As String)
     Dim mOutputPallet As New dmOutputPallet
 
     CreateNewWoodPallet(vPalletType, vNumbercard)
@@ -370,7 +370,7 @@ Public Class fccWorkOrderWoodProcess
 
   End Sub
 
-  Public Sub CreateNewWoodPallet(ByVal vPalletType As Integer, ByVal vCardNumber As Integer)
+  Public Sub CreateNewWoodPallet(ByVal vPalletType As Integer, ByVal vCardNumber As String)
     Dim mWoodPallet As New dmWoodPallet
 
 

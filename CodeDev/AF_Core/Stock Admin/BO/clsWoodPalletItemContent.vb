@@ -134,7 +134,7 @@ Public Class clsWoodPalletItemContent
             Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
               mRetVal += Math.Round(Math.PI * Math.Pow(mWoodPalletItemInfo.Thickness / 200, 2) * mWoodPalletItemInfo.WoodPalletItem.Length * mWoodPalletItemInfo.Balance, 4, MidpointRounding.AwayFromZero) * 423.77
             Case Else
-              mRetVal += Math.Round(((mWoodPalletItemInfo.Thickness * mWoodPalletItemInfo.Width * mWoodPalletItemInfo.Length) / 12) * Balance, 4, MidpointRounding.AwayFromZero)
+              mRetVal += Math.Round(((mWoodPalletItemInfo.Thickness * mWoodPalletItemInfo.Width * mWoodPalletItemInfo.Length) / 12) * (mWoodPalletItemInfo.Quantity - mWoodPalletItemInfo.QuantityUsed), 4, MidpointRounding.AwayFromZero)
 
           End Select
 

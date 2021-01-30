@@ -166,8 +166,9 @@ Public Class clsWoodPalletSharedFuncs
           mRef = "BLT-CTE-" & mdsoGeneral.GetNextTallyWoodPallet().ToString("0000")
 
         Case eStockItemTypeTimberWood.Rollo
-          If rWoodPallet.CardNumber > 0 Then
-            mRef = "RST-ROL-" & rWoodPallet.CardNumber.ToString("0000")
+          Dim mCardNumber As Integer = Val(rWoodPallet.CardNumber)
+          If mCardNumber > 0 Then
+            mRef = "RST-ROL-" & mCardNumber.ToString("0000")
 
           Else
 

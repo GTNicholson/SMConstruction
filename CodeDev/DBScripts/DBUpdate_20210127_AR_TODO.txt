@@ -1,7 +1,0 @@
-alter table WoodPallet
-add CardNumber int
-go
-
-alter table reception
-add CardNumber integer
-go
