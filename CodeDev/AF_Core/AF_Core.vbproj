@@ -388,8 +388,10 @@
     <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
     <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\clsStockCostingPricing.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
+    <Compile Include="Stock Admin\BO\clsStockItemFinders.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemTransactionLogInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockTakeItemEditor.vb" />
     <Compile Include="Stock Admin\BO\clsWoodPalletItemContent.vb" />

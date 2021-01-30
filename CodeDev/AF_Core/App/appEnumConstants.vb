@@ -569,6 +569,8 @@ Public Class clsConstants
 
   Public Const TaxRate = 0.15
 
+  Public Const BoardFeetPerM3 = 423.77
+
 End Class
 
 Public Class clsStockItemTypeAbrasivos : Inherits clsPropertyENUM

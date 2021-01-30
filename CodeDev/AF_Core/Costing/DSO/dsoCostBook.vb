@@ -9,9 +9,6 @@ Public Class dsoCostBook : Inherits dsoBase
   End Sub
 
 
-
-
-
   Public Sub LoadCostBookDown(ByRef rCostBook As dmCostBook, ByVal vCostBookID As Integer)
     Dim mdtoCostBook As New dtoCostBook(pDBConn)
     Dim mdtoCostBookEntry As New dtoCostBookEntry(pDBConn)
@@ -31,6 +28,36 @@ Public Class dsoCostBook : Inherits dsoBase
     Finally
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
+  End Sub
+
+  Public Sub LoadDefaultCostBookDown(ByRef rCostBook As dmCostBook)
+    Dim mdtoCostBook As New dtoCostBook(pDBConn)
+    Dim mdtoCostBookEntry As New dtoCostBookEntry(pDBConn)
+    Dim mDefaultID As Integer
+    Dim msql As String
+    Dim mIsNewConnection As Boolean
+
+    Try
+      If pDBConn.Connect(mIsNewConnection) Then
+        msql = "Select Max(CostBookID) From CostBook Where IsDefault = 1"
+        mDefaultID = RTIS.CommonVB.clsGeneralA.DBValueToInteger(pDBConn.ExecuteScalar(msql))
+        If mDefaultID <> 0 Then
+          mdtoCostBook.LoadCostBook(rCostBook, mDefaultID)
+
+          If rCostBook IsNot Nothing Then
+            mdtoCostBookEntry.LoadCostBookEntryCollection(rCostBook.CostBookEntrys, rCostBook.CostBookID)
+          End If
+        End If
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mIsNewConnection Then
+        pDBConn.Disconnect()
+      End If
+    End Try
+
   End Sub
 
   Public Sub LoadCostBookEntrys(ByRef rCostBookEntrys As colCostBookEntrys, ByVal vCostBookID As Integer)

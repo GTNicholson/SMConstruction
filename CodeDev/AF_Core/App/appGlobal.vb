@@ -31,6 +31,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
 
   Private pProductRegistry As clsProductRegistry
 
+  Private pDefaultCostBook As dmCostBook
 
   Public Sub ProcessUnhandledException(ByRef rException As Exception, ByVal rLogError As Boolean, ByVal rDisplayError As Boolean)
     If rDisplayError Then
@@ -106,6 +107,15 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     Get
       Return pProductRegistry
     End Get
+  End Property
+
+  Public Property DefaultCostBook As dmCostBook
+    Get
+      Return pDefaultCostBook
+    End Get
+    Set(value As dmCostBook)
+      pDefaultCostBook = value
+    End Set
   End Property
 
   Public Property EmailSettings As RTIS.EmailLib.clsEmailSettings
