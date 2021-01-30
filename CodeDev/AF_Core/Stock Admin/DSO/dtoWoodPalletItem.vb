@@ -142,6 +142,23 @@ Public Class dtoWoodPalletItem : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadWoodPalletItemCollectionByStockItemIDLocationID(ByRef rWoodPalletItems As colWoodPalletItems, ByVal vStockItemID As Integer, ByVal vLocationID As Integer) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    Dim mSQL As String
+
+    mSQL = "Select * from WoodPalletItem WPI "
+    mSQL = mSQL & " Inner Join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID "
+    mSQL = mSQL & " Where LocationID = {0} And StockItemID = {1} And Archive <> 1"
+    mSQL = String.Format(mSQL, vLocationID, vStockItemID)
+    pDefinedSelectSQL = mSQL
+
+    mOK = MyBase.LoadCollection(rWoodPalletItems, mParams, "WoodPalletItemID")
+    rWoodPalletItems.TrackDeleted = True
+    If mOK Then rWoodPalletItems.IsDirty = False
+
+    Return mOK
+  End Function
 
   Public Function SaveWoodPalletItemCollection(ByRef rCollection As colWoodPalletItems, ByVal vWoodPalletID As Integer) As Boolean
     Dim mParams As New Hashtable

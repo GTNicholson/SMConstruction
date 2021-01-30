@@ -11,7 +11,7 @@ Public Class clsWoodPalletSharedFuncs
       Select Case rStockItem.ItemType
         Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
           ' mRetVal = rWoodPalletItem.Quantity
-          mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero) * 423.77
+          mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero) * clsConstants.BoardFeetPerM3
         Case Else
           mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero)
 
@@ -21,16 +21,34 @@ Public Class clsWoodPalletSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function GetWoodPalletItemVolumeM3(ByRef rWoodPalletItem As dmWoodPalletItem, ByRef rStockItem As dmStockItem) As Decimal
+    Dim mRetVal As Decimal
+
+
+    If rStockItem IsNot Nothing Then
+
+      Select Case rStockItem.ItemType
+        Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
+          ' mRetVal = rWoodPalletItem.Quantity
+          mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero)
+        Case Else
+          mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero) / clsConstants.BoardFeetPerM3
+
+      End Select
+    End If
+
+    Return mRetVal
+  End Function
 
   Public Shared Function BoardFeetToM3(ByVal vPieTabla As Decimal) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = vPieTabla / 423.77
+    mRetVal = vPieTabla / clsConstants.BoardFeetPerM3
     Return mRetVal
   End Function
 
   Public Shared Function M3ToBoardFeet(ByVal vM3 As Decimal) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = vM3 * 423.77
+    mRetVal = vM3 * clsConstants.BoardFeetPerM3
     Return mRetVal
   End Function
 

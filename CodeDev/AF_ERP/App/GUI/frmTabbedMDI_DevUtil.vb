@@ -449,4 +449,34 @@ Public Class frmTabbedMDI_DevUtil
 
 
   End Sub
+
+  Private Sub nbiUpdateStockItemLocationMonetaryValue_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles nbiUpdateStockItemLocationMonetaryValue.LinkClicked
+    Dim mSI As dmStockItem
+    Dim mSIL As dmStockItemLocation
+    Dim mSILs As New colStockItemLocations
+    Dim mPicker As New clsPickerStockItem(AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemCollection, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+    Dim mCostingPricing As clsStockCostingPricing
+    Dim mCB = New dmCostBook
+    Dim mDSO As dsoCostBook
+    Dim mDSOStock As dsoStock
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+
+    mDSO = New dsoCostBook(My.Application.RTISUserSession.CreateMainDBConn)
+    mDSO.LoadCostBookDown(mCB, 1)
+
+    mSI = frmPickerStockItem.OpenPickerSingle(mPicker)
+    If mSI IsNot Nothing Then
+      mDSOStock = New dsoStock(My.Application.RTISUserSession.CreateMainDBConn)
+      mDSOStock.LoadStockItemLocationsByStockItemID(mSILs, mSI.StockItemID)
+      If mSILs.Count <> 0 Then
+        mSIL = mSILs(0)
+        '// need to connect here as the following function uses a pre connected dso       
+        mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+        mDBConn.Connect()
+        mCostingPricing = New clsStockCostingPricing(mDBConn, AppRTISGlobal.GetInstance.StockItemRegistry, mCB)
+        mCostingPricing.UpdateStockItemLocationMoneytaryValue(mSI, mSIL)
+        mDBConn.Disconnect()
+      End If
+    End If
+  End Sub
 End Class

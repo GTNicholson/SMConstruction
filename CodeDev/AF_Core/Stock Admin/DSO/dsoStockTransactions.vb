@@ -1136,6 +1136,9 @@ Public Class dsoStockTransactions
 
             mSILTranLog = mStockItemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mKVP.Value, eObjectType.StockItemLocation, mStockItemLocation.StockItemLocationID, rWoodPallet.LocationID, vTransDate, mTranType, pDBConn.RTISUser.UserID, rWoodPallet.PalletRef, eObjectType.WoodPallet, rWoodPallet.WoodPalletID, rWoodPallet.WoodPalletID, vDefaultCurrency, mUnitCost, vExchangeRate)
 
+            '// Update the current Monetary Value at this location
+            UpdateStockItemLocationMonetaryValue(mSI, mStockItemLocation)
+
             mNewStockLevel = mPrevValue + mKVP.Value
 
             For Each mTran As dmStockItemTransactionLog In mSILTranLogRollForward
@@ -1184,8 +1187,6 @@ Public Class dsoStockTransactions
         pDBConn.ExecuteNonQuery(mSQL)
       End If
 
-
-
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -1200,6 +1201,15 @@ Public Class dsoStockTransactions
 
     Return mOK
   End Function
+
+
+  Private Sub UpdateStockItemLocationMonetaryValue(ByRef rStockItem As dmStockItem, ByRef rStockItemLocation As dmStockItemLocation)
+    Dim mStockCostingPricing As clsStockCostingPricing
+
+    mStockCostingPricing = New clsStockCostingPricing(pDBConn, AppRTISGlobal.GetInstance.StockItemRegistry, AppRTISGlobal.GetInstance.DefaultCostBook)
+    mStockCostingPricing.UpdateStockItemLocationMoneytaryValue(rStockItem, rStockItemLocation)
+
+  End Sub
 
   Public Function CreateNegativeTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rSalesOrder As dmSalesOrder, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vObjectType As eObjectType) As Boolean
     Dim mOK As Boolean = True

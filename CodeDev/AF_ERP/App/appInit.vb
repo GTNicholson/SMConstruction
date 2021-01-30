@@ -505,6 +505,8 @@ Public Class appInit
   Shared Function LoadGlobalDefaults(ByRef rRTISGlobal As AppRTISGlobal, ByRef rMainDB As clsDBConnBase) As Boolean
     Dim mdsoGlobal As New dsoRTISGlobal(rMainDB)
     Dim mdsoAppRefLists As New dsoAppRefLists(rMainDB)
+    Dim mdsoCostBook As New dsoCostBook(rMainDB)
+    Dim mCB As New dmCostBook
     Dim mAllOK As Boolean
 
     mAllOK = mdsoGlobal.LoadGlobalDefaults(rRTISGlobal)
@@ -519,6 +521,9 @@ Public Class appInit
 
     rRTISGlobal.EmailSettings = New RTIS.EmailLib.clsEmailSettings
     mAllOK = mdsoGlobal.LoadEmailSettings(rRTISGlobal.EmailSettings, rRTISGlobal.EmailSettingsID)
+
+    mdsoCostBook.LoadDefaultCostBookDown(mCB)
+    rRTISGlobal.DefaultCostBook = mCB
 
     mdsoGlobal = Nothing
     mdsoAppRefLists = Nothing

@@ -551,6 +551,37 @@ Public Class dsoStock
     Return mOK
   End Function
 
+  Public Function LoadWoodPalletItemsByStockItemIDLocationID(ByRef rWoodPalletItems As colWoodPalletItems, ByVal vStockItemID As Integer, ByVal vLocationID As Integer) As Boolean
+    Dim mdtoWPI As New dtoWoodPalletItem(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect() Then
+        mOK = LoadWoodPalletItemsByStockItemIDLocationIDConnected(rWoodPalletItems, vStockItemID, vLocationID)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+    Return mOK
+  End Function
+
+  Public Function LoadWoodPalletItemsByStockItemIDLocationIDConnected(ByRef rWoodPalletItems As colWoodPalletItems, ByVal vStockItemID As Integer, ByVal vLocationID As Integer) As Boolean
+    Dim mdtoWPI As New dtoWoodPalletItem(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      mOK = mdtoWPI.LoadWoodPalletItemCollectionByStockItemIDLocationID(rWoodPalletItems, vStockItemID, vLocationID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function SaveStockItemLocations(ByVal vSILocations As colStockItemLocations) As Boolean
     Dim mdtoSILocation As New dtoStockItemLocation(pDBConn)
     Dim mOK As Boolean
@@ -640,4 +671,6 @@ Public Class dsoStock
 
     Return mOK
   End Function
+
+
 End Class
