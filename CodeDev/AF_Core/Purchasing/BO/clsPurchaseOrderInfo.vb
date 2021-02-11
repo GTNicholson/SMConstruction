@@ -9,17 +9,12 @@ Public Class clsPurchaseOrderInfo
   Private pBuyerName As String
   Private pSupplierContactName As String
   Private pTotalNetValueInfo As Decimal
+  Private pSalesOrderPhaseInfos As colSalesOrderPhaseInfos
   Public Sub New()
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
     pPOItemInfos = New colPOItemInfos
-  End Sub
-
-  Public Sub New(ByRef rPurchaseOrder As dmPurchaseOrder)
-    rPurchaseOrder = rPurchaseOrder
-
-    pPOItem = New dmPurchaseOrderItem
-
+    pSalesOrderPhaseInfos = New colSalesOrderPhaseInfos
   End Sub
 
   Public Property BuyerName As String
@@ -105,12 +100,7 @@ Public Class clsPurchaseOrderInfo
       Return clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(pPurchaseOrder.POStage, ePOStage))
     End Get
   End Property
-  Public ReadOnly Property AccoutingCategoryDesc() As String
-    Get
-      Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
-    End Get
 
-  End Property
 
   Public ReadOnly Property ExchangeRateValue() As Decimal
     Get
@@ -190,6 +180,14 @@ Public Class clsPurchaseOrderInfo
 
   End Property
 
+  Public Property SalesOrderPhaseInfos As colSalesOrderPhaseInfos
+    Get
+      Return pSalesOrderPhaseInfos
+    End Get
+    Set(value As colSalesOrderPhaseInfos)
+      pSalesOrderPhaseInfos = value
+    End Set
+  End Property
   Public ReadOnly Property DefaultCurrencyDesc() As String
     Get
       Return clsEnumsConstants.GetEnumDescription(GetType(eCurrency), CType(pPurchaseOrder.DefaultCurrency, eCurrency))
@@ -370,6 +368,16 @@ Public Class clsPurchaseOrderInfo
       Return mRetVal
     End Get
   End Property
+  Public ReadOnly Property TotalRetention As Decimal
+    Get
+      Dim mRetVal As Decimal
+      For Each mPOItemInfo As clsPOItemInfo In pPOItemInfos
+        mRetVal += mPOItemInfo.RetentionValue
+      Next
+      Return mRetVal
+    End Get
+  End Property
+
 
   Public ReadOnly Property TotalVATUSD As Decimal
     Get
@@ -456,6 +464,44 @@ Public Class clsPurchaseOrderInfo
       pTotalNetValueInfo = value
     End Set
   End Property
+  Public ReadOnly Property AccoutingCategoryDesc As String
+    Get
+      Dim mRetVal As String = ""
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(AccoutingCategoryID)
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+
+  Public ReadOnly Property ProjectName As String
+    Get
+      Dim mRetVal As String = ""
+      Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
+      For Each mPOA As dmPurchaseOrderAllocation In PurchaseOrder.PurchaseOrderAllocations
+        mSalesOrderPhaseInfo = pSalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mPOA.CallOffID)
+
+        If mSalesOrderPhaseInfo IsNot Nothing Then
+          If mSalesOrderPhaseInfo.ProjectName <> "" Then
+            mRetVal &= mSalesOrderPhaseInfo.ProjectName & " /"
+
+          Else
+            mRetVal = "Consumo Interno"
+          End If
+        End If
+      Next
+      If mRetVal.Length > 0 Then
+        If mRetVal.Substring(mRetVal.Length - 1) = "/" Then
+          mRetVal = mRetVal.Remove(mRetVal.Length - 1)
+        End If
+      Else
+        mRetVal = "Consumo Interno"
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
 
 End Class
 
@@ -552,6 +598,13 @@ Public Class clsPOItemInfo
   Public ReadOnly Property VATAmount As Decimal
     Get
       Return pPOItem.VATAmount
+    End Get
+
+  End Property
+
+  Public ReadOnly Property RetentionValue As Decimal
+    Get
+      Return pPOItem.RetentionValue
     End Get
 
   End Property

@@ -372,6 +372,7 @@ Public Class frmWoodReception
       .ItemType = clsDEControlLoading.GetDEComboValue(cboWoodType)
       .Farm = clsDEControlLoading.GetDEComboValue(cboFarm)
       .CardNumber = txtCardNumber.Text
+      .ReceptionDate = dteDateCreated.EditValue
     End With
 
     For Each mWP As dmWoodPallet In pFormController.CurrentReception.WoodPallets

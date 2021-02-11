@@ -1,0 +1,23 @@
+CREATE VIEW vwPurchasingBalance
+as
+
+select 
+PO.PONum,
+
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.StockCode,
+POI.Description,
+POI.UoM,
+POI.UnitPrice,
+POI.RetentionValue,
+POI.Status,
+POI.VatValue,
+
+POIA.Quantity,
+PODI.QtyReceived
+
+from PurchaseOrderItem POI
+LEFT JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemID = POI.PurchaseOrderItemID
+LEFT JOIN PODeliveryItem PODI on PODI.POItemAllocationID=POIA.PurchaseOrderItemAllocationID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID

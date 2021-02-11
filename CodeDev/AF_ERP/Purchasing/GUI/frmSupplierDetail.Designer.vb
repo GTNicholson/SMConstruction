@@ -93,6 +93,7 @@ Partial Class frmSupplierDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ckeIsRetention = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.grdSupplierContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSupplierContacts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +128,7 @@ Partial Class frmSupplierDetail
         CType(Me.gvPOInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ckeIsRetention.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'barDockControlRight
@@ -501,7 +503,7 @@ Partial Class frmSupplierDetail
         '
         'txtSupplierReference
         '
-        Me.txtSupplierReference.Location = New System.Drawing.Point(141, 29)
+        Me.txtSupplierReference.Location = New System.Drawing.Point(141, 27)
         Me.txtSupplierReference.Name = "txtSupplierReference"
         Me.txtSupplierReference.Properties.MaxLength = 15
         Me.txtSupplierReference.Size = New System.Drawing.Size(155, 20)
@@ -512,7 +514,7 @@ Partial Class frmSupplierDetail
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(5, 32)
+        Me.Label12.Location = New System.Drawing.Point(5, 30)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(75, 14)
         Me.Label12.TabIndex = 18
@@ -534,7 +536,7 @@ Partial Class frmSupplierDetail
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(7, 263)
+        Me.Label11.Location = New System.Drawing.Point(5, 263)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(44, 14)
         Me.Label11.TabIndex = 23
@@ -542,7 +544,7 @@ Partial Class frmSupplierDetail
         '
         'txtWebUrl
         '
-        Me.txtWebUrl.Location = New System.Drawing.Point(141, 230)
+        Me.txtWebUrl.Location = New System.Drawing.Point(141, 183)
         Me.txtWebUrl.Name = "txtWebUrl"
         Me.txtWebUrl.Properties.MaxLength = 64
         Me.txtWebUrl.Size = New System.Drawing.Size(155, 20)
@@ -553,7 +555,7 @@ Partial Class frmSupplierDetail
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(5, 236)
+        Me.Label9.Location = New System.Drawing.Point(5, 186)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(70, 14)
         Me.Label9.TabIndex = 21
@@ -561,7 +563,7 @@ Partial Class frmSupplierDetail
         '
         'txtRucNumber
         '
-        Me.txtRucNumber.Location = New System.Drawing.Point(141, 128)
+        Me.txtRucNumber.Location = New System.Drawing.Point(141, 105)
         Me.txtRucNumber.Name = "txtRucNumber"
         Me.txtRucNumber.Size = New System.Drawing.Size(155, 20)
         Me.txtRucNumber.TabIndex = 3
@@ -592,7 +594,7 @@ Partial Class frmSupplierDetail
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(7, 131)
+        Me.Label6.Location = New System.Drawing.Point(5, 108)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(96, 14)
         Me.Label6.TabIndex = 14
@@ -600,7 +602,7 @@ Partial Class frmSupplierDetail
         '
         'txtRazonSocial
         '
-        Me.txtRazonSocial.Location = New System.Drawing.Point(141, 94)
+        Me.txtRazonSocial.Location = New System.Drawing.Point(141, 79)
         Me.txtRazonSocial.Name = "txtRazonSocial"
         Me.txtRazonSocial.Size = New System.Drawing.Size(155, 20)
         Me.txtRazonSocial.TabIndex = 2
@@ -610,7 +612,7 @@ Partial Class frmSupplierDetail
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(7, 97)
+        Me.Label4.Location = New System.Drawing.Point(5, 82)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(75, 14)
         Me.Label4.TabIndex = 13
@@ -618,7 +620,7 @@ Partial Class frmSupplierDetail
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(141, 200)
+        Me.txtEmail.Location = New System.Drawing.Point(141, 157)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Properties.MaxLength = 64
         Me.txtEmail.Size = New System.Drawing.Size(155, 20)
@@ -626,7 +628,7 @@ Partial Class frmSupplierDetail
         '
         'txtCompanyName
         '
-        Me.txtCompanyName.Location = New System.Drawing.Point(141, 60)
+        Me.txtCompanyName.Location = New System.Drawing.Point(141, 53)
         Me.txtCompanyName.Name = "txtCompanyName"
         Me.txtCompanyName.Properties.MaxLength = 64
         Me.txtCompanyName.Size = New System.Drawing.Size(155, 20)
@@ -637,7 +639,7 @@ Partial Class frmSupplierDetail
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(7, 206)
+        Me.Label2.Location = New System.Drawing.Point(5, 160)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(36, 14)
         Me.Label2.TabIndex = 20
@@ -645,7 +647,7 @@ Partial Class frmSupplierDetail
         '
         'txtTelNo
         '
-        Me.txtTelNo.Location = New System.Drawing.Point(141, 165)
+        Me.txtTelNo.Location = New System.Drawing.Point(141, 131)
         Me.txtTelNo.Name = "txtTelNo"
         Me.txtTelNo.Properties.MaxLength = 32
         Me.txtTelNo.Size = New System.Drawing.Size(155, 20)
@@ -656,7 +658,7 @@ Partial Class frmSupplierDetail
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(7, 168)
+        Me.Label3.Location = New System.Drawing.Point(5, 134)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 14)
         Me.Label3.TabIndex = 19
@@ -667,7 +669,7 @@ Partial Class frmSupplierDetail
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(5, 63)
+        Me.Label1.Location = New System.Drawing.Point(5, 56)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(126, 14)
         Me.Label1.TabIndex = 12
@@ -679,6 +681,7 @@ Partial Class frmSupplierDetail
         Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl1.Controls.Add(Me.ckeIsRetention)
         Me.GroupControl1.Controls.Add(Me.UctAddress1)
         Me.GroupControl1.Controls.Add(Me.rgDefaultCurrency)
         Me.GroupControl1.Controls.Add(Me.GroupControl3)
@@ -861,6 +864,15 @@ Partial Class frmSupplierDetail
         Me.GridColumn13.VisibleIndex = 4
         Me.GridColumn13.Width = 152
         '
+        'ckeIsRetention
+        '
+        Me.ckeIsRetention.Location = New System.Drawing.Point(141, 209)
+        Me.ckeIsRetention.MenuManager = Me.BarManager2
+        Me.ckeIsRetention.Name = "ckeIsRetention"
+        Me.ckeIsRetention.Properties.Caption = "Con Retención"
+        Me.ckeIsRetention.Size = New System.Drawing.Size(110, 19)
+        Me.ckeIsRetention.TabIndex = 28
+        '
         'frmSupplierDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -913,6 +925,7 @@ Partial Class frmSupplierDetail
         CType(Me.gvPOInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ckeIsRetention.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -987,4 +1000,5 @@ Partial Class frmSupplierDetail
     Friend WithEvents txtAccountSecondaryNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label7 As Label
     Friend WithEvents rgPrintAccountOption As DevExpress.XtraEditors.RadioGroup
+    Friend WithEvents ckeIsRetention As DevExpress.XtraEditors.CheckEdit
 End Class

@@ -225,5 +225,14 @@ Public Class colSalesOrderPhaseInfos : Inherits List(Of clsSalesOrderPhaseInfo)
     Return mRetVal
   End Function
 
+  Public Function ItemFromSalesOrderPhaseID(ByVal vSalesOrderPhaseID As String) As clsSalesOrderPhaseInfo
+    Dim mRetVal As clsSalesOrderPhaseInfo = Nothing
+    Dim mIndex As Integer
+    mIndex = IndexFromSOPhaseID(vSalesOrderPhaseID)
+    If mIndex <> -1 Then
+      mRetVal = Me(mIndex)
+    End If
+    Return mRetVal
+  End Function
 
 End Class

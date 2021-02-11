@@ -473,6 +473,8 @@ Public Class clsStockItemTransactionLogInfo
         Case eObjectType.WoodPallet
           mRetVal = PalletRef
 
+        Case eObjectType.WorkOrder
+          mRetVal = pWorkOrder.Description
 
 
       End Select

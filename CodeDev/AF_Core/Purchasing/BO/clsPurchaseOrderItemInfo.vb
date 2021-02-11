@@ -115,7 +115,12 @@ Public Class clsPurchaseOrderItemInfo
     End Get
 
   End Property
+  Public ReadOnly Property UoMDesc() As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pPurchaseOrderItem.UoM, eUoM))
+    End Get
 
+  End Property
   Public ReadOnly Property StockCode As String
     Get
       Return pPurchaseOrderItem.StockCode

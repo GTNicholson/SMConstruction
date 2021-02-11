@@ -289,6 +289,7 @@ Public Class fccPurchaseOrder
         mOK = mdsoPurchaseOrder.SavePurchaseOrderDownNEW(Me.PurchaseOrder)
       End If
 
+
       If pPrimaryKeyID = 0 Then
         pPrimaryKeyID = PurchaseOrder.PurchaseOrderID
       End If
@@ -397,10 +398,10 @@ Public Class fccPurchaseOrder
         If pSalesOrderPhaseInfo.ProjectName <> "" Then
           mProjectName = pSalesOrderPhaseInfo.ProjectName
         Else
-          mProjectName = "Consumo Interno"
+          mProjectName = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
         End If
       Else
-        mProjectName = "Consumo Interno"
+        mProjectName = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
 
       End If
 
@@ -506,7 +507,7 @@ Public Class fccPurchaseOrder
       mFileName = String.Format("PaymentCheckOrder_{0}_{1}.pdf", pPurchaseOrder.PONum, Today.ToString("yyyyMMdd_HHmm"))
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
-      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName, vAccountCode)
+      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName, vAccountCode, pDBConn)
 
       mRep.ExportToPdf(mExportFilename)
 
@@ -584,7 +585,7 @@ Public Class fccPurchaseOrder
       rPOItem.PurchaseOrderItemAllocations(0).Quantity = rPOItem.QtyRequired
       If pSalesOrderPhaseInfo IsNot Nothing Then
         rPOItem.PurchaseOrderItemAllocations(0).CallOffID = pSalesOrderPhaseInfo.SalesOrderPhaseID
-        rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = pSalesOrderPhaseInfo.SOPJobNo
+        rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = pSalesOrderPhaseInfo.ProjectName
       Else
         rPOItem.PurchaseOrderItemAllocations(0).CallOffID = 0
         rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
@@ -611,5 +612,17 @@ Public Class fccPurchaseOrder
     PurchaseOrder.PurchaseOrderItems.Clear()
 
     If mOK Then mOK = mdsoPurchaseOrder.ReloadPurchaseOrderItems(pPurchaseOrder.PurchaseOrderItems, pPurchaseOrder.PurchaseOrderID)
+  End Sub
+
+  Public Sub UpdatePercentageValue(ByVal vRetentionPercentage As Decimal)
+
+    For Each mPOI As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
+
+
+      mPOI.TempPercentageRetention = vRetentionPercentage
+
+    Next
+
+
   End Sub
 End Class

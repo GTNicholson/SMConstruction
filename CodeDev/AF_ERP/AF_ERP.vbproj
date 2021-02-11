@@ -45,6 +45,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -87,7 +90,8 @@
     <Reference Include="DevExpress.XtraSpreadsheet.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
-    <Reference Include="RTIS.BIReport.V17.1">
+    <Reference Include="RTIS.BIReport.V17.1, Version=17.1.16.14, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_17_1\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V17.1.dll</HintPath>
     </Reference>
     <Reference Include="RTIS.CandidateElements.V17.1">
@@ -688,6 +692,12 @@
     <Compile Include="StockAdmin\GUI\frmIssueInventory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StockAdmin\GUI\frmListToStockTake.Designer.vb">
+      <DependentUpon>frmListToStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmListToStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="StockAdmin\GUI\frmMovementClassified.Designer.vb">
       <DependentUpon>frmMovementClassified.vb</DependentUpon>
     </Compile>
@@ -731,10 +741,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StockAdmin\Reports\clsExcelExportStockTake.vb" />
+    <Compile Include="StockAdmin\Reports\repoListToStockTake.Designer.vb">
+      <DependentUpon>repoListToStockTake.vb</DependentUpon>
+    </Compile>
     <Compile Include="StockAdmin\Reports\repSelectedItems.Designer.vb">
       <DependentUpon>repSelectedItems.vb</DependentUpon>
     </Compile>
     <Compile Include="StockAdmin\Reports\repSelectedItems.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StockAdmin\Reports\repoListToStockTake.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WoodProcessing\fccWoodReception.vb" />
@@ -969,6 +985,9 @@
     <EmbeddedResource Include="StockAdmin\GUI\frmIssueInventory.resx">
       <DependentUpon>frmIssueInventory.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmListToStockTake.resx">
+      <DependentUpon>frmListToStockTake.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmMovementClassified.resx">
       <DependentUpon>frmMovementClassified.vb</DependentUpon>
     </EmbeddedResource>
@@ -990,6 +1009,9 @@
     <EmbeddedResource Include="StockAdmin\GUI\frmWoodPalletDetail.resx">
       <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\Reports\repoListToStockTake.resx">
+      <DependentUpon>repoListToStockTake.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
       <DependentUpon>repSelectedItems.vb</DependentUpon>
     </EmbeddedResource>
@@ -1001,6 +1023,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

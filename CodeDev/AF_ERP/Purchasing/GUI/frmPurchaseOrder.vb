@@ -219,7 +219,8 @@ Public Class frmPurchaseOrder
   Private Sub RefreshGrid()
     pFormController.LoadObject()
     grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
-
+    pFormController.UpdatePercentageValue(Val(txtRetentionPercentage.EditValue))
+    gvPurchaseOrderItems.RefreshData()
     pFormController.LoadPODeliveryInfos()
     grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
 
@@ -250,7 +251,18 @@ Public Class frmPurchaseOrder
 
     For Each mSOP As dmSalesOrderPhase In pFormController.SalesOrderPhases
       If mSOP IsNot Nothing Then
-        mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.JobNo)
+        Dim mSOPIs As New colSalesOrderPhaseInfos
+        Dim mWhere As String = "SalesOrderID = " & mSOP.SalesOrderID
+
+        pFormController.LoadSalesOrderPhaseInfo(mSOPIs, mWhere)
+
+        If mSOPIs IsNot Nothing Then
+          If mSOPIs.Count > 0 Then
+            mSOP.PhaseRef = mSOPIs(0).ProjectName
+          End If
+        End If
+
+        mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.PhaseRef)
 
       End If
     Next
@@ -327,8 +339,9 @@ Public Class frmPurchaseOrder
       With pFormController.PurchaseOrder
         UctFileControl1.LoadControls()
         UctFileControl1.RefreshControls()
-
-
+        uctDeliveryAddress.Address = .DeliveryAddress
+        uctDeliveryAddress.RefreshControls()
+        txtRetentionPercentage.EditValue = .RetentionPercentage
         dteDateOfOrder.EditValue = .SubmissionDate
         txtCarriage.Text = .Carriage
         txtComments.Text = .Comments
@@ -336,6 +349,7 @@ Public Class frmPurchaseOrder
         txtSupplierRef.Text = .SupplierRef
         btePONum.EditValue = .PONum
         txtSupplierRef.Text = .SupplierRef
+
         'dteDateEntered.EditValue = .DateEntered
         dteDueDate.EditValue = clsGeneralA.DateToDBValue(.RequiredDate)
 
@@ -352,8 +366,7 @@ Public Class frmPurchaseOrder
         '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
         txtExchangeValue.Text = .ExchangeRateValue
 
-        uctDeliveryAddress.Address = .DeliveryAddress
-        uctDeliveryAddress.RefreshControls()
+
 
         rgDefaultCurrency.EditValue = pFormController.PurchaseOrder.DefaultCurrency
 
@@ -416,6 +429,15 @@ Public Class frmPurchaseOrder
 
         UctAddress1.Address = .MainAddress
         UctAddress1.RefreshControls()
+
+        If pFormController.PurchaseOrder.Supplier.IsRetention Then
+
+          txtRetentionPercentage.Visible = True
+          lblRetention.Visible = True
+        Else
+          txtRetentionPercentage.Visible = False
+          lblRetention.Visible = False
+        End If
         ''  RTIS.Elements.clsDEControlLoading.FillDEComboVI(UctAddress1.cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
 
         ''txtAddress1.Text = .Supplier.MainAddress1
@@ -446,18 +468,18 @@ Public Class frmPurchaseOrder
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
       .POStage = clsDEControlLoading.GetDEComboValue(cboStage)
-
+      .RetentionPercentage = txtRetentionPercentage.EditValue
       .AccoutingCategoryID = clsDEControlLoading.GetDEComboValue(cboAccountingCategory)
-      .Carriage = txtCarriage.Text
+      .Carriage = Val(txtCarriage.EditValue)
       '' .DeliveryAddress.Country = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCountry)
       .SupplierRef = txtSupplierRef.Text
       .Comments = txtComments.Text
-      .TotalNetValue = txtNetValue.Text
+      .TotalNetValue = Val(txtNetValue.EditValue)
       uctDeliveryAddress.UpdateObject()
       gvPurchaseOrderItems.CloseEditor()
       gvPurchaseOrderItems.UpdateCurrentRow()
 
-      .ExchangeRateValue = txtExchangeValue.Text
+      .ExchangeRateValue = Val(txtExchangeValue.Text)
 
       .BuyerID = clsDEControlLoading.GetDEComboValue(cboBuyer)
       pFormController.PurchaseOrder.DefaultCurrency = rgDefaultCurrency.EditValue
@@ -477,8 +499,22 @@ Public Class frmPurchaseOrder
           pFormController.PurchaseOrder.RefMatType = "Múltiple"
       End Select
 
-      If .DeliveryAddress.IsDirty Or .SupplierAddress.IsDirty Or .InvoiceAddress.IsDirty Then
-        .IsDirty = True
+      If .DeliveryAddress IsNot Nothing Then
+        If .DeliveryAddress.IsDirty Then
+          .IsDirty = True
+        End If
+      End If
+
+      If .SupplierAddress IsNot Nothing Then
+        If .SupplierAddress.IsDirty Then
+          .IsDirty = True
+        End If
+      End If
+
+      If .InvoiceAddress IsNot Nothing Then
+        If .InvoiceAddress.IsDirty Then
+          .IsDirty = True
+        End If
       End If
 
       gvPurchaseOrderItems.CloseEditor()
@@ -1077,6 +1113,8 @@ Public Class frmPurchaseOrder
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.0000;;#"
       ''gvPODeliveryInfos.Columns("NetAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
 
+      gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatString = "C$#,##0.0000;;#"
 
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.0000;;#"
@@ -1106,6 +1144,9 @@ Public Class frmPurchaseOrder
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.0000;;#"
 
+      gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+      gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatString = "$#,##0.0000;;#"
+
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
       gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.0000;;#"
 
@@ -1120,6 +1161,15 @@ Public Class frmPurchaseOrder
     Dim mDialogResult As DialogResult
 
     If pFormController.PODeliveryInfos IsNot Nothing Then
+
+      If pFormController.PurchaseOrder IsNot Nothing Then
+
+        For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
+
+          pFormController.CreateUpdatePOItemAllocation(mPOItem)
+        Next
+
+      End If
 
       If pFormController.PODeliveryInfos.Count >= 1 Then
         mDialogResult = MessageBox.Show("Esta O.C. ya tiene una recepción, ¿Desea agregar otra recepción?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -1191,7 +1241,10 @@ Public Class frmPurchaseOrder
     mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
     mPOItem = gvPurchaseOrderItems.GetRow(e.RowHandle)
     If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
+      mPOItem.TempPercentageRetention = pFormController.PurchaseOrder.RetentionPercentage
+
       mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+
     End If
 
   End Sub
@@ -1437,6 +1490,17 @@ Public Class frmPurchaseOrder
       mPODI = TryCast(gvPODeliveryInfos.GetFocusedRow, clsPODeliveryInfo)
 
       If mPODI IsNot Nothing Then
+
+        If pFormController.PurchaseOrder IsNot Nothing Then
+
+          For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
+
+            pFormController.CreateUpdatePOItemAllocation(mPOItem)
+          Next
+
+        End If
+
+
         frmPODelivery.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, mPODI.PODeliveryID, pFormController.PurchaseOrder.PurchaseOrderID, eFormMode.eFMFormModeAdd)
 
         pFormController.ReloadPODeliveryInfos()
@@ -1455,5 +1519,28 @@ Public Class frmPurchaseOrder
     End Try
 
 
+  End Sub
+
+  Private Sub txtRetentionPercentage_EditValueChanged(sender As Object, e As EventArgs) Handles txtRetentionPercentage.TextChanged
+
+    If pFormController IsNot Nothing Then
+      If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
+        RefreshControls()
+        CheckSave(False)
+        Dim mPOItem As dmPurchaseOrderItem
+        Dim mVatRates As colVATRates
+        mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
+        For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems
+
+          If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
+            mPOItem.TempPercentageRetention = pFormController.PurchaseOrder.RetentionPercentage
+
+            mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+
+          End If
+        Next
+        gvPurchaseOrderItems.RefreshData()
+      End If
+    End If
   End Sub
 End Class

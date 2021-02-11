@@ -12,7 +12,7 @@ Public Class frmWoodPalletPicker
 
   Private pPickerWoodPalletBase As clsPickerWoodPallet
   Private pRemainOpen As Boolean
-  Private pWoodPallet As dmWoodPallet
+  Private pWoodPalletType As Integer
   Private pActive As Boolean
   Private pMode As ePickerMode
 
@@ -21,15 +21,14 @@ Public Class frmWoodPalletPicker
     MultiPick = 2
   End Enum
 
-  Public Property WoodPallet As dmWoodPallet
+  Public Property WoodPalletType As Integer
     Get
-      Return pWoodPallet
+      Return pWoodPalletType
     End Get
-    Set(value As dmWoodPallet)
-      pWoodPallet = value
+    Set(value As Integer)
+      pWoodPalletType = value
     End Set
   End Property
-
 
   Public Shared Function PickWoodPallet(ByRef rPickerWoodPallet As clsPickerWoodPallet, ByRef rRTISGlobal As clsRTISGlobal, ByVal vPickMode As ePickerMode) As Boolean
     Dim mfrm As frmWoodPalletPicker
@@ -60,11 +59,12 @@ Public Class frmWoodPalletPicker
     Return mRetVal
   End Function
 
-  Public Shared Function OpenPickerMulti(ByVal vWoodPallet As clsPickerWoodPallet, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of dmWoodPallet)
+  Public Shared Function OpenPickerMulti(ByVal vWoodPallet As clsPickerWoodPallet, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vWoodPalletType As Integer) As List(Of dmWoodPallet)
     Dim mfrm As New frmWoodPalletPicker
     Dim mRetVal As New List(Of dmWoodPallet)
 
     mfrm.pMode = ePickerMode.MultiPick
+    mfrm.pWoodPalletType = vWoodPalletType
     mfrm.pPickerWoodPalletBase = vWoodPallet
     mfrm.pRemainOpen = vRemainOpen
     mfrm.ShowDialog()
@@ -82,6 +82,11 @@ Public Class frmWoodPalletPicker
     Try
       pActive = False
       LoadCombo()
+      If pWoodPalletType = eStockItemTypeTimberWood.Rollo Then
+        gcFarm.Visible = True
+      Else
+        gcFarm.Visible = False
+      End If
       grdWoodPallet.DataSource = pPickerWoodPalletBase.DataSource
       pActive = True
     Catch ex As Exception
@@ -180,6 +185,10 @@ Public Class frmWoodPalletPicker
 
   Private Sub btnConfirmSelection_Click(sender As Object, e As EventArgs) Handles btnConfirmSelection.Click
 
+    Me.Close()
+  End Sub
+
+  Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
     Me.Close()
   End Sub
 End Class

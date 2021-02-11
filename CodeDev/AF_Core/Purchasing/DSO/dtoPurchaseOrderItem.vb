@@ -79,6 +79,8 @@ Public Class dtoPurchaseOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Density", .Density)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PickedQty", .PickedQty)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RetentionValue", .RetentionValue)
+
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockCode", StringToDBValue(.StockCode))
     End With
@@ -118,6 +120,7 @@ Public Class dtoPurchaseOrderItem : Inherits dtoBase
         .PickedQty = DBReadDecimal(rDataReader, "PickedQty")
         .StockCode = DBReadString(rDataReader, "StockCode")
         .UoM = DBReadInt32(rDataReader, "UoM")
+        .RetentionValue = DBReadDecimal(rDataReader, "RetentionValue")
 
         pPurchaseOrderItem.IsDirty = False
       End With

@@ -1,0 +1,167 @@
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+PO.AccoutingCategoryID,
+SupplierContactTel,
+MaterialRequirementTypeID,
+PO.DefaultCurrency,
+PO.POStage,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left JOIN vwPurchaseOrderAllocation POA ON POA.PurchaseOrderID=po.PurchaseOrderID
+
+GO
+
+alter table Supplier
+add IsRetention bit
+go
+
+alter table PurchaseOrder
+add RetentionPercentage decimal (4,4)
+go
+
+alter table purchaseorderitem
+add RetentionValue decimal (9,4)
+go
+
+
+ALTER VIEW [dbo].[vwPurchaseOrderItemInfo]
+AS
+
+select  
+POI.PurchaseOrderItemID,
+POI.Description,
+POI.PartNo,
+POI.UoM,
+POI.StockCode,
+POI.RetentionValue,
+--poi.QtyRequired,
+POI.UnitPrice,
+
+POIA.PurchaseOrderItemAllocationID,
+POIA.ReceivedQty,
+POIA.Quantity AS 'QtyRequired',
+PO.PurchaseOrderID,
+PO.POStage,
+PO.Category 'PurchaseCategory',
+ISNULL(PO.Carriage,0) 'Carriage',
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+PO.MaterialRequirementTypeID,
+PO.RefMatType,
+PO.RequiredDate,
+PO.Status,
+PO.SubmissionDate,
+PO.PONum,
+PO.PaymentStatus,
+PO.AccoutingCategoryID,
+
+SI.StockItemID,
+SI.Category,
+SI.ItemType,
+
+
+SOP.SalesOrderPhaseID,
+
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+
+cu.CustomerID,
+CU.CompanyName
+
+from PurchaseOrderItem POI
+left JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemID=POI.PurchaseOrderItemID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN StockItem SI on SI.StockItemID = POI.StockItemID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+LEFT JOIN Customer CU on CU.CustomerID=so.CustomerID
+where po.Status<>6
+GO
+
+
+ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
+as
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+POI.RetentionValue,
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+po.Category as PO_CATEGORY,
+PO.Status AS 'POStatus',
+S.CompanyName,
+SOP.JobNo,
+SO.ProjectName
+
+from PurchaseOrderItemAllocation as POIA
+LEFT JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+left join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join SalesOrderPhase SOP on SOP.SalesOrderPhaseID =POIA.CallOffID
+left join SalesOrder SO on SO.SalesOrderID = sop.SalesOrderID
+GO
+
+
+

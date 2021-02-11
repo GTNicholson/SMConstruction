@@ -29,12 +29,13 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.PurchasingGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Suppliers)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
     '' mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. O.C.", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Compras", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.PurchasingGroup)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras por Fecha", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderInfo, eActivityCode.POReportList)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Órdenes de Compras por Artículo", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderItemInfo, eActivityCode.POReportList)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Compras vrs Recepciones", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchasingBalance, eActivityCode.PODeliveryItemReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras por Fecha", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderInfo, eActivityCode.POReportList)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras por Artículo", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderItemInfo, eActivityCode.POReportList)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryInfoBI, eActivityCode.PODeliveryReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones de Artículos Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryItemInfoBI, eActivityCode.PODeliveryItemReport)
 
@@ -75,7 +76,7 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Lista de Costos", 0, eActivityCode.CostingGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductCost, eActivityCode.ProductCost)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodCosting, eActivityCode.Configuration)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodCosting, eActivityCode.WoodCosting)
 
 
     'mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
@@ -337,7 +338,7 @@ Class clsMenuFunctions
   Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, False)
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, My.Application.RTISUserSession.IsSecurityAllowAll)
   End Sub
 
   Public Shared Sub WoodStockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
@@ -412,6 +413,10 @@ Class clsMenuFunctions
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewWoodPalletItemInfo.CreateBIReportVieWoodPalletItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Friend Shared Sub PurchasingBalance(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Throw New NotImplementedException()
   End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)

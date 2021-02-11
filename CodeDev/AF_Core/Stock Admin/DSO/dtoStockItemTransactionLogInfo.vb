@@ -178,6 +178,10 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
             .CompanyName = DBReadString(rDataReader, "CompanyName")
 
           End With
+
+          With pStockItemTransactionLogInfo
+            .WorkOrder.Description = DBReadString(rDataReader, "WODESCRIPTION")
+          End With
       End Select
 
 

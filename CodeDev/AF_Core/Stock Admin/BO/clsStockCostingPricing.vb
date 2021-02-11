@@ -9,17 +9,19 @@
     pCostBook = rCostBook
   End Sub
 
-  Public Sub UpdateStockItemLocationMoneytaryValue(ByRef rStockItem As dmStockItem, ByRef rStockItemLocation As dmStockItemLocation)
+  Public Function GetStockItemLocationMoneytaryValue(ByRef rStockItem As dmStockItem, ByRef rStockItemLocation As dmStockItemLocation) As Decimal
+    Dim mRetVal As Decimal = 0
     Select Case rStockItem.Category
       Case eStockItemCategory.Timber
         Select Case rStockItem.ItemType
           Case eStockItemTypeTimberWood.Rollo
-            UpdateStockItemLocationMoneytaryValueRollo(rStockItem, rStockItemLocation)
+            mRetVal = GetStockItemLocationMoneytaryValueRollo(rStockItem, rStockItemLocation)
         End Select
     End Select
-  End Sub
+    Return mRetVal
+  End Function
 
-  Public Sub UpdateStockItemLocationMoneytaryValueRollo(ByRef rStockItem As dmStockItem, ByRef rStockItemLocation As dmStockItemLocation)
+  Public Function GetStockItemLocationMoneytaryValueRollo(ByRef rStockItem As dmStockItem, ByRef rStockItemLocation As dmStockItemLocation) As Decimal
     Dim mDSO As dsoStock
     Dim mCBE As dmCostBookEntry
     Dim mWPIs As New colWoodPalletItems
@@ -28,7 +30,7 @@
     Dim mSIWithThickness As dmStockItem
     Dim mSICosting As dmStockItem
     Dim mSIs As colStockItems
-
+    Dim mRetVal As Decimal = 0
     '// Load up all the remaining WoodPalletItem entries for this stock item for this location
     mDSO = New dsoStock(pDBConn)
     mDSO.LoadWoodPalletItemsByStockItemIDLocationIDConnected(mWPIs, rStockItem.StockItemID, rStockItemLocation.LocationID)
@@ -41,15 +43,20 @@
       mSIWithThickness.Thickness = mWPI.Thickness
       mSICosting = clsStockItemFinders.FindTimberRolloCostingItem(mSIWithThickness, mSIs)
 
-      mCBE = pCostBook.CostBookEntrys.ItemFromStockItemID(mSICosting.StockItemID)
-      If mCBE IsNot Nothing Then
-        mM3 = clsWoodPalletSharedFuncs.BoardFeetToM3(clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPI, rStockItem))
-        mTotalValue = mTotalValue + (mCBE.Cost * mM3)
+      If mSICosting IsNot Nothing Then
+        mCBE = pCostBook.CostBookEntrys.ItemFromStockItemID(mSICosting.StockItemID)
+        If mCBE IsNot Nothing Then
+          mM3 = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeM3(mWPI, rStockItem)
+          mTotalValue = mTotalValue + (mCBE.Cost * mM3)
+        End If
+
       End If
     Next
 
-    rStockItemLocation.MonetaryValue = mTotalValue
+    mRetVal = mTotalValue
 
-  End Sub
+    Return mRetVal
+
+  End Function
 
 End Class

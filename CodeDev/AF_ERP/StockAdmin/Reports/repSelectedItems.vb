@@ -3,6 +3,7 @@
 Public Class repSelectedItems
   Private pStockTakeItemEditors As colStockTakeItemEditors
 
+
   Public Sub New()
 
     ' Esta llamada es exigida por el diseñador.

@@ -42,10 +42,12 @@ Partial Class frmWoodPalletPicker
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcFarm = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.grdWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPallets, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +82,7 @@ Partial Class frmWoodPalletPicker
         Me.gvWoodPallets.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvWoodPallets.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWoodPallets.Appearance.Row.Options.UseFont = True
-        Me.gvWoodPallets.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcWoodPalletRef, Me.GridColumn4, Me.GridColumn5, Me.GridColumn3, Me.GridColumn9, Me.GridColumn1, Me.GridColumn2})
+        Me.gvWoodPallets.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcWoodPalletRef, Me.GridColumn4, Me.GridColumn5, Me.GridColumn3, Me.GridColumn9, Me.GridColumn1, Me.GridColumn2, Me.gcFarm})
         Me.gvWoodPallets.GridControl = Me.grdWoodPallet
         Me.gvWoodPallets.Name = "gvWoodPallets"
         Me.gvWoodPallets.OptionsView.ShowAutoFilterRow = True
@@ -170,6 +172,17 @@ Partial Class frmWoodPalletPicker
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 5
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn2.Caption = "Núm. Tarjeta"
+        Me.GridColumn2.FieldName = "CardNumber"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
         'repbtnUnSelect
         '
         Me.repbtnUnSelect.AutoHeight = False
@@ -185,28 +198,38 @@ Partial Class frmWoodPalletPicker
         'btnConfirmSelection
         '
         Me.btnConfirmSelection.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnConfirmSelection.Location = New System.Drawing.Point(1126, 541)
+        Me.btnConfirmSelection.Location = New System.Drawing.Point(987, 541)
         Me.btnConfirmSelection.Name = "btnConfirmSelection"
         Me.btnConfirmSelection.Size = New System.Drawing.Size(133, 23)
         Me.btnConfirmSelection.TabIndex = 3
         Me.btnConfirmSelection.Text = "Aceptar Selección"
         '
-        'GridColumn2
+        'gcFarm
         '
-        Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn2.Caption = "Núm. Tarjeta"
-        Me.GridColumn2.FieldName = "CardNumber"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.gcFarm.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.gcFarm.AppearanceCell.Options.UseBackColor = True
+        Me.gcFarm.Caption = "Finca"
+        Me.gcFarm.FieldName = "FarmDesc"
+        Me.gcFarm.Name = "gcFarm"
+        Me.gcFarm.OptionsColumn.ReadOnly = True
+        Me.gcFarm.Visible = True
+        Me.gcFarm.VisibleIndex = 6
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.Location = New System.Drawing.Point(1126, 541)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(133, 23)
+        Me.SimpleButton1.TabIndex = 4
+        Me.SimpleButton1.Text = "Salir"
         '
         'frmWoodPalletPicker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1271, 576)
+        Me.Controls.Add(Me.SimpleButton1)
         Me.Controls.Add(Me.btnConfirmSelection)
         Me.Controls.Add(Me.grdWoodPallet)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -237,4 +260,6 @@ Partial Class frmWoodPalletPicker
   Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcFarm As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

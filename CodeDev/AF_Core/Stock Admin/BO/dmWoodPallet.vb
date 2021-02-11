@@ -19,6 +19,9 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pFarm As Integer
   Private pReceptionID As Integer
   Private pCardNumber As String
+  Private pWorkOrderID As Integer
+  Private pisProduction As Boolean
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -72,6 +75,8 @@ Public Class dmWoodPallet : Inherits dmBase
       .Farm = Farm
       .ReceptionID = ReceptionID
       .CardNumber = CardNumber
+      .WorkOrderID = WorkOrderID
+      .isProduction = isProduction
       .WoodPalletItems = WoodPalletItems.clone
       'Add entries here for each collection and class property
 
@@ -260,6 +265,16 @@ Public Class dmWoodPallet : Inherits dmBase
     End Set
   End Property
 
+  Public ReadOnly Property FarmDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eFarms), CType(Farm, eFarms))
+
+      Return mRetVal
+    End Get
+  End Property
+
   Public Property ReceptionID As Integer
     Get
       Return pReceptionID
@@ -267,6 +282,26 @@ Public Class dmWoodPallet : Inherits dmBase
     Set(value As Integer)
       If pReceptionID <> value Then IsDirty = True
       pReceptionID = value
+    End Set
+  End Property
+
+  Public Property WorkOrderID As Integer
+    Get
+      Return pWorkOrderID
+    End Get
+    Set(value As Integer)
+      If pWorkOrderID <> value Then IsDirty = True
+      pWorkOrderID = value
+    End Set
+  End Property
+
+  Public Property isProduction As Boolean
+    Get
+      Return pisProduction
+    End Get
+    Set(value As Boolean)
+      If pisProduction <> value Then IsDirty = True
+      pisProduction = value
     End Set
   End Property
 End Class

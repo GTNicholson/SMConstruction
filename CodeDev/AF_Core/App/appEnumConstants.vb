@@ -35,6 +35,7 @@ Public Enum eActivityCode
   POReportList = 405
   PODeliveryReport = 405
   PODeliveryItemReport = 405
+  PurchasingBalance = 406
 
   InventoryGroup = 500
   StockItem = 501
@@ -54,6 +55,7 @@ Public Enum eActivityCode
 
   CostingGroup = 800
   ProductCost = 801
+  WoodCosting = 802
 
   WoodGroup = 900
   WoodInventory = 901 '// was 506
@@ -94,7 +96,7 @@ Public Enum eFarms
   <Description("Ninguno")> None = 0
   <Description("Cumplida")> Cumplida = 1
   <Description("Eden")> Eden = 2
-  <Description("Equiforest")> Equiforest = 3
+  <Description("Ecoforestal")> Equiforest = 3
 
 End Enum
 Public Enum eLocations
@@ -1876,6 +1878,14 @@ Public Enum eTransactionType
   <Description("Corrección de Inv. Madera")> WoodAmendment = 13
   <Description("Picking de Madera")> WoodPicking = 14
   <Description("Recepción de Madera")> WoodReception = 15
+  <Description("Movimiento por Aserrado de Madera")> AserradoMovement = 16
+  <Description("Movimiento por Clasificación de Madera")> ClasificationMovement = 17
+  <Description("Movimiento por Entrada a Horno")> KilnMovementStart = 18
+  <Description("Movimiento por Salida de Horno")> KilnMovementEnd = 19
+  <Description("Movimiento de MAV")> MAVMovement = 20
+
+
+
 End Enum
 
 Public Enum ePayPeriodType

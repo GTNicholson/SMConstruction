@@ -114,6 +114,9 @@ Public Class dtoSupplier : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PrintAccountOption", .PrintAccountOption)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsRetention", .IsRetention)
+
+
     End With
 
   End Sub
@@ -168,7 +171,7 @@ Public Class dtoSupplier : Inherits dtoBase
         .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
         .BankName = DBReadString(rDataReader, "BankName")
         .AccountSecondaryNumber = DBReadString(rDataReader, "AccountSecondaryNumber")
-
+        .IsRetention = DBReadBoolean(rDataReader, "IsRetention")
         pSupplier.IsDirty = False
       End With
       mOK = True

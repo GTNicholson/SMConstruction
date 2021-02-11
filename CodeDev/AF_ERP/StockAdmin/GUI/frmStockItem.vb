@@ -412,18 +412,6 @@ Public Class frmStockItem
 
     If pFormController.CurrentStockItem IsNot Nothing Then
 
-      ''  ''  mcolSubItemTypes = CType(pFormController.RTISGlobal.RefLists(appRefLists.SubItemType).IList, colSubItemTypes)
-      ''  ''  If mcolSubItemTypes IsNot Nothing Then
-      ''  ''    mcolSubItemTypes2 = mcolSubItemTypes.GetByItemType(pFormController.CurrentStockItem.ItemType)
-      ''  ''    If mcolSubItemTypes2.Count > 0 Then
-      ''  ''      mItem = New clsRefListItem(999, "Temp", clsRefListItem.eLoadMode.Loaded)
-      ''  ''      mItem.IList = mcolSubItemTypes2
-      ''  ''      mVIs = mItem.ListAsValueItems
-      ''  ''    End If
-
-      ''End If
-
-      ''  clsDEControlLoading.FillDEComboVI(cboSubitemType, mVIs)
 
       Select Case pFormController.CurrentStockItem.Category
 

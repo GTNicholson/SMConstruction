@@ -14,6 +14,7 @@ Public Class fccWoodPallet
   Private pCurreStockItemList As colStockItems
   Private pWoodPalletItemEditors As colWoodPalletItemEditors
   Private pPreviousLocationID As Integer
+  Private pWorkOrderInfo As clsWorkOrderInfo
 
   Public Enum eShowItems
     ShowAll = 0
@@ -58,6 +59,7 @@ Public Class fccWoodPallet
   End Property
 
 
+
   Public Property ShowItemsMode As eShowItems
     Get
       Return pShowItemsMode
@@ -85,7 +87,14 @@ Public Class fccWoodPallet
     End Set
   End Property
 
-
+  Public Property CurrentWorkOrderInfo As clsWorkOrderInfo
+    Get
+      Return pWorkOrderInfo
+    End Get
+    Set(value As clsWorkOrderInfo)
+      pWorkOrderInfo = value
+    End Set
+  End Property
 
   Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
@@ -164,40 +173,7 @@ Public Class fccWoodPallet
     End Try
   End Sub
 
-  Public Sub ApplyStockAdjust(ByVal vStockItem As dmStockItem, ByVal vLocationID As Byte, ByVal vTransactionType As eTransactionType, ByVal vTranQty As Decimal, ByVal vAdjustDate As DateTime, ByVal vNotes As String)
-    Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
-    Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mStockItemLocation As dmStockItemLocation
 
-    Try
-
-      mStockItemLocation = mdsoStock.GetOrCreateStockItemLocation(vStockItem.StockItemID, vLocationID)
-
-      If mStockItemLocation IsNot Nothing Then
-        Dim mLocationAmendment As New dmStockItemLocationAmendmentLog
-
-        With mLocationAmendment
-          .SystemDate = DateTime.Now
-          .AmendmentDate = vAdjustDate
-          .ChangeDetails = vNotes
-          .UserID = pDBConn.RTISUser.UserID
-          .StockItemLocationID = mStockItemLocation.StockItemLocationID
-        End With
-
-        ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
-        Select Case vTransactionType
-          Case eTransactionType.Adjustment
-            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vStockItem.StdCost, 1)
-          Case eTransactionType.Amendment
-            mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vStockItem.StdCost, 1)
-        End Select
-
-      End If
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-  End Sub
   Public Sub LoadObject()
     Dim mdsoStock As New dsoStock(pDBConn)
 
@@ -477,5 +453,75 @@ Public Class fccWoodPallet
     Next
 
     SaveObject()
+  End Sub
+
+  Public Sub LoadWorkOrderInfos(ByRef rcolWorkOrderInfos As colWorkOrderInfos)
+    Dim mdto As dtoWorkOrderInfo
+    Dim mwhere As String
+    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+    mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
+    '' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
+    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo))"
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderInfo(DBConn, 3)
+      mdto.LoadWorkOrderInfoCollectionByWhere(rcolWorkOrderInfos, mwhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub SetCurrentWorkOrder(ByVal vWorkOrderID As Integer)
+    Dim mdso As New dsoSales(pDBConn)
+    Dim mWorkOrderInfos As New colWorkOrderInfos
+    Dim mWhere As String = ""
+    pWorkOrderInfo = Nothing
+
+    If vWorkOrderID > 0 Then
+      pWorkOrderInfo = New clsWorkOrderInfo
+      mWhere = "WorkOrderID =" & vWorkOrderID
+      mdso.LoadInternalWorkOrderInfos(mWorkOrderInfos, mWhere)
+      If mWorkOrderInfos.Count > 0 Then
+        pWorkOrderInfo = mWorkOrderInfos(0)
+      End If
+    End If
+  End Sub
+
+  Public Sub DespatchWoodPallet()
+    Try
+      Dim mdsoTran As dsoStockTransactions
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+
+      mdsoTran.CreatePrevSourceWoodPalletTransaction(pCurrentWoodPallet, pCurrentWoodPallet.LocationID, pWorkOrderInfo, Now, eCurrency.Dollar, 1, eTransactionType.WoodPicking)
+      UpdateWoodPalletItemQuantityUsed(pCurrentWoodPallet)
+
+      pCurrentWoodPallet.IsComplete = True
+      SaveObject()
+
+      'SaveObjects()
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Private Sub UpdateWoodPalletItemQuantityUsed(ByRef rWoodPallet As dmWoodPallet)
+    Dim mWPItems As New colWoodPalletItems
+
+
+    For Each mWPI In rWoodPallet.WoodPalletItems
+      mWPI.QuantityUsed = mWPI.Quantity
+      mWPI.OutstandingQty = 0
+    Next
+
+
   End Sub
 End Class

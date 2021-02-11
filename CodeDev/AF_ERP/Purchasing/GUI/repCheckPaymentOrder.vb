@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Printing
 Imports DevExpress.XtraGauges.Core.Model
 Imports DevExpress.XtraReports.UI
+Imports RTIS.DataLayer
 Imports RTIS.ERPCore
 
 Public Class repCheckPaymentOrder
@@ -16,6 +17,7 @@ Public Class repCheckPaymentOrder
   Private pCurrency As eCurrency
   Private pProjectName As String
   Private pAccountCode As String
+  Private pDBConn As clsDBConnBase
   Public Sub New()
 
     InitializeComponent()
@@ -25,8 +27,8 @@ Public Class repCheckPaymentOrder
 
 
 
-  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String) As XtraReport
-    Dim mRep As New repCheckPaymentOrder(rPOInfo, rBuyer, vCurrency, vProjectName, vAccountCode)
+  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByRef rDBConn As clsDBConnBase) As XtraReport
+    Dim mRep As New repCheckPaymentOrder(rPOInfo, rBuyer, vCurrency, vProjectName, vAccountCode, rDBConn)
     Dim mPrintTool As ReportPrintTool
     mRep.CreateDocument()
     ''If vPreview Then
@@ -39,7 +41,7 @@ Public Class repCheckPaymentOrder
     Return mRep
   End Function
 
-  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String)
+  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByRef rDBConn As clsDBConnBase)
 
     ' This call is required by the designer.
     InitializeComponent()
@@ -51,6 +53,7 @@ Public Class repCheckPaymentOrder
     DataSource = rPOInfo.POItemInfos
     pProjectName = vProjectName
     pAccountCode = vAccountCode
+    pDBConn = rDBConn
   End Sub
 
 
@@ -62,6 +65,9 @@ Public Class repCheckPaymentOrder
     Dim mCurrentFormat As String = "N2"
     Dim mToString As String = "N2"
     Dim mNumalet As New Numalet
+    Dim mPOAII As New colPurchaseOrderItemAllocationInfo
+    Dim mdso As New dsoPurchasing(pDBConn)
+    Dim mWhere As String
 
     xrtSupplierName.Text = pPOInfo.CompanyName
 
@@ -95,15 +101,58 @@ Public Class repCheckPaymentOrder
 
     Dim mText As String = "Compra de"
 
-    For Each mPOI As clsPOItemInfo In pPOInfo.POItemInfos
-      mText &= " " & vbCrLf
-      mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.UoMDesc & " de " & mPOI.Description
-    Next
 
 
-    mText &= vbCrLf & "Con cargo al proyecto " & pProjectName
-    xrtDescriptionPOItem.Text = mText
+
+    mWhere = "PONum = " & pPOInfo.PONum
+    mdso.LoadPurchaseOrderItemAllocationInfos(mPOAII, mWhere)
+
+
+    If mPOAII IsNot Nothing Then
+      Dim mString As String = ""
+
+      If mPOAII.Count = 1 Then
+        For Each mPOI As clsPOItemInfo In pPOInfo.POItemInfos
+          mText &= " " & vbCrLf
+          mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.UoMDesc & " de " & mPOI.Description
+
+        Next
+
+        mText &= vbCrLf & "Con cargo a " & pProjectName
+        xrtDescriptionPOItem.Text = mText
+
+
+      Else
+        If mPOAII.Count > 0 Then
+          For Each mPOAI In mPOAII
+            'mString &= "Cantidad : " & mPOAI.Quantity.ToString("n2") & mPOAI.UoMDescription & " Destinado al proyecto : " & mPOAI.ProjectName & vbCrLf
+            mText &= " " & vbCrLf
+            mText &= " " & mPOAI.Quantity.ToString("N2") & " " & mPOAI.UoMDesc & " de " & mPOAI.Description
+
+            If mPOAI.ProjectName = "" Then
+              mText &= vbCrLf & "Con cargo a " & pPOInfo.AccoutingCategoryDesc
+            Else
+
+              mText &= vbCrLf & "Con cargo al proyecto " & mPOAI.ProjectName
+            End If
+
+            xrtDescriptionPOItem.Text = mText
+
+          Next
+
+        Else
+          mText &= " Con cargo a " & pPOInfo.AccoutingCategoryDesc
+          xrtDescriptionPOItem.Text = mText
+
+        End If
+
+      End If
+
+      End If
+
   End Sub
+
+
 
 
 End Class

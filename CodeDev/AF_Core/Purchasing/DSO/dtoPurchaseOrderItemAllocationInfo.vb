@@ -99,6 +99,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
         .UoM = DBReadInt32(rDataReader, "UoM")
         .VatValue = DBReadDecimal(rDataReader, "VatValue")
+        .RetentionValue = DBReadDecimal(rDataReader, "RetentionValue")
       End With
       With pPurchaseOrderItemAllocationInfo.StockItem
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")

@@ -1,0 +1,56 @@
+
+ALTER VIEW [dbo].[vwPurchaseOrderItemInfo]
+AS
+
+select  
+POI.PurchaseOrderItemID,
+POI.Description,
+POI.PartNo,
+POI.UoM,
+POI.StockCode,
+--poi.QtyRequired,
+POI.UnitPrice,
+
+POIA.PurchaseOrderItemAllocationID,
+POIA.ReceivedQty,
+POIA.Quantity AS 'QtyRequired',
+PO.PurchaseOrderID,
+PO.POStage,
+PO.Category 'PurchaseCategory',
+ISNULL(PO.Carriage,0) 'Carriage',
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+PO.MaterialRequirementTypeID,
+PO.RefMatType,
+PO.RequiredDate,
+PO.Status,
+PO.SubmissionDate,
+PO.PONum,
+PO.PaymentStatus,
+PO.AccoutingCategoryID,
+
+SI.StockItemID,
+SI.Category,
+SI.ItemType,
+
+
+SOP.SalesOrderPhaseID,
+
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+
+cu.CustomerID,
+CU.CompanyName
+
+from PurchaseOrderItem POI
+left JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemID=POI.PurchaseOrderItemID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN StockItem SI on SI.StockItemID = POI.StockItemID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+LEFT JOIN Customer CU on CU.CustomerID=so.CustomerID
+where po.Status<>6
+GO
+
+

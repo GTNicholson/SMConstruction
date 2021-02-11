@@ -474,7 +474,7 @@ Public Class frmTabbedMDI_DevUtil
         mDBConn = My.Application.RTISUserSession.CreateMainDBConn
         mDBConn.Connect()
         mCostingPricing = New clsStockCostingPricing(mDBConn, AppRTISGlobal.GetInstance.StockItemRegistry, mCB)
-        mCostingPricing.UpdateStockItemLocationMoneytaryValue(mSI, mSIL)
+        mCostingPricing.GetStockItemLocationMoneytaryValue(mSI, mSIL)
         mDBConn.Disconnect()
       End If
     End If

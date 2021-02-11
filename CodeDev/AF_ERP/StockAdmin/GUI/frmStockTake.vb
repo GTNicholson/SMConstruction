@@ -1092,6 +1092,11 @@ Public Class frmStockTake
     grdStockCheckItem.Refresh()
   End Sub
 
+  Private Sub btnPrintListToStockTake_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnPrintListToStockTake.ItemClick
+    Dim mfrm As New frmListToStockTake()
+    frmListToStockTake.OpenAsMDI(Me, pFormController.DBConn, pFormController.RTISGlobal, pFormController.StockTakeItemEditors)
+  End Sub
+
 
   ''  Private Sub btnAddToNextSheet_Click(sender As Object, e As EventArgs) Handles btnAddToNextSheet.Click
   ''    Try

@@ -230,6 +230,7 @@ Public Class frmSupplierDetail
       txtSupplierReference.Text = .SupplierReferenceID
       txtAccountSecondaryNumber.Text = .AccountSecondaryNumber
       txtCompanyName.Text = .CompanyName
+
       txtRazonSocial.Text = .RazonSocial
       rgPrintAccountOption.EditValue = .PrintAccountOption
       txtRucNumber.Text = .Rucnumber
@@ -248,7 +249,7 @@ Public Class frmSupplierDetail
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPurchaseTermsType, .PurchasingTermsType)
       rgEstatus.EditValue = .SupplierStatusID
       rgDefaultCurrency.EditValue = .DefaultCurrency
-
+      ckeIsRetention.EditValue = .IsRetention
       UctAddress1.Address = .MainAddress
       UctAddress1.RefreshControls()
 
@@ -266,7 +267,6 @@ Public Class frmSupplierDetail
       .CompanyName = txtCompanyName.Text
       .SupplierReferenceID = txtSupplierReference.Text
       .AccountSecondaryNumber = txtAccountSecondaryNumber.Text
-      .CompanyName = txtCompanyName.Text
       .RazonSocial = txtRazonSocial.Text
       .Rucnumber = txtRucNumber.Text
       '' .MainAddress1 = txtMainAddress1.Text
@@ -283,6 +283,7 @@ Public Class frmSupplierDetail
       .PaymentTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPaymentTermsType)
       .PurchasingTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPurchaseTermsType)
       .SupplierStatusID = rgEstatus.EditValue
+      .IsRetention = ckeIsRetention.EditValue
 
       .DefaultCurrency = rgDefaultCurrency.EditValue
       gvSupplierContacts.CloseEditor()

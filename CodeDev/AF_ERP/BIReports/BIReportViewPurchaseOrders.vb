@@ -139,17 +139,19 @@ Public Class BIReportViewPurchaseOrders
     mParam.DefaultValue = Now.Date
     vReportSource.ColManRepParameter.Add(mParam)
 
-    ''mParam = New clsManRepParameter
-    ''mParam.FieldName = "PIStatusENUM"
-    ''mParam.ParamOperator = "="
-    ''mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList
-    ''mParam.LookUpTableID = appRefLists.PurchaseInvoiceStatus
-    ''mParam.ParamLabel = "Status"
-    ''mParam.FilterGroup = 1
-    ''mParam.ManReportParameterID = eParameters.Status
-    ''mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
-    ''mParam.DefaultValue = ePurchaseInvoiceStatus.Posted
-    ''vReportSource.ColManRepParameter.Add(mParam)
+
+    mParam = New clsManRepParameter
+    mParam.FieldName = "Status"
+    mParam.AllowMultiple = True
+    mParam.ParamOperator = "="
+    mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList
+    mParam.LookUpTableID = appRefLists.PurchaseStatus
+    mParam.ParamLabel = "Estado"
+    mParam.FilterGroup = 0
+    mParam.ManReportParameterID = eParameters.Status
+    mParam.DefaultType = MRConstENUM.eDefaultType.EnteredID
+    mParam.DefaultValue = ePurchaseOrderDueDateStatus.Received
+    vReportSource.ColManRepParameter.Add(mParam)
 
 
   End Sub

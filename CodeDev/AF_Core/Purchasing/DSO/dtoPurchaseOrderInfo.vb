@@ -150,7 +150,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
   Public Function LoadPurchaseOrderInfoCollection(ByRef rvwPurchaseOrders As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mOK = MyBase.LoadCollection(rvwPurchaseOrders, mParams, "SubmissionDate desc", vWhere)
+    mOK = MyBase.LoadCollection(rvwPurchaseOrders, mParams, "PONum desc", vWhere)
     Return mOK
   End Function
 

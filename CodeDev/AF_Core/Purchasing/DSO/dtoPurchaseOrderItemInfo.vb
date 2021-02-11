@@ -70,7 +70,7 @@ Public Class dtoPurchaseOrderItemInfo : Inherits dtoBase
           .StockCode = DBReadString(rDataReader, "StockCode")
           .QtyRequired = DBReadDecimal(rDataReader, "QtyRequired")
           .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
-
+          .RetentionValue = DBReadDecimal(rDataReader, "RetentionValue")
         End With
 
         With .PurchaseOrderItemAllocation

@@ -44,6 +44,7 @@ Public Class dmSupplier : Inherits dmBase
   Private pBankName As String
   Private pAccountSecondaryNumber As String
   Private pPrintAccountOption As Int32
+  Private pIsRetention As Boolean
   Private pSupplierContacts As colSupplierContacts
   Public Sub New()
     MyBase.New()
@@ -112,6 +113,7 @@ Public Class dmSupplier : Inherits dmBase
       .PurchasingTermsType = PurchasingTermsType
       .AccountSecondaryNumber = AccountSecondaryNumber
       .PrintAccountOption = PrintAccountOption
+      .IsRetention = IsRetention
       ''.MainAddress1 = MainAddress1
       ''.MainAddress2 = MainAddress2
       ''.MainTown = MainTown
@@ -479,6 +481,16 @@ Public Class dmSupplier : Inherits dmBase
     Set(ByVal value As Int32)
       If pPurchasingTermsType <> value Then IsDirty = True
       pPurchasingTermsType = value
+    End Set
+  End Property
+
+  Public Property IsRetention As Boolean
+    Get
+      Return pIsRetention
+    End Get
+    Set(value As Boolean)
+      If pIsRetention <> value Then IsDirty = True
+      pIsRetention = value
     End Set
   End Property
 

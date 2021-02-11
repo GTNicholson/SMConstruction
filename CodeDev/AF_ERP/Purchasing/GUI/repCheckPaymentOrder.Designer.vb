@@ -1,30 +1,32 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class repCheckPaymentOrder
-  Inherits DevExpress.XtraReports.UI.XtraReport
+    Inherits DevExpress.XtraReports.UI.XtraReport
 
-  'XtraReport overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()>
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    If disposing AndAlso components IsNot Nothing Then
-      components.Dispose()
-    End If
-    MyBase.Dispose(disposing)
-  End Sub
+    'XtraReport overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
 
-  'Required by the Designer
-  Private components As System.ComponentModel.IContainer
+    'Required by the Designer
+    Private components As System.ComponentModel.IContainer
 
-  'NOTE: The following procedure is required by the Designer
-  'It can be modified using the Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()>
-  Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repCheckPaymentOrder))
-    Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-    Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-    Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-    Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+    'NOTE: The following procedure is required by the Designer
+    'It can be modified using the Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(repCheckPaymentOrder))
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.txtComment = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow8 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -103,8 +105,7 @@ Partial Public Class repCheckPaymentOrder
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.txtComment = New DevExpress.XtraReports.UI.XRRichText()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        CType(Me.txtComment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +119,6 @@ Partial Public Class repCheckPaymentOrder
         CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtComment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -147,6 +147,32 @@ Partial Public Class repCheckPaymentOrder
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.txtComment, Me.XrLabel2, Me.XrPanel1, Me.XrTable8, Me.XrTable3, Me.XrTable9, Me.XrTable7, Me.XrTable1, Me.XrTable2, Me.XrTable6, Me.XrTable12, Me.XrPictureBox1})
         Me.ReportHeader.HeightF = 814.9618!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'txtComment
+        '
+        Me.txtComment.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.txtComment.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.txtComment.LocationFloat = New DevExpress.Utils.PointFloat(0!, 591.3351!)
+        Me.txtComment.Name = "txtComment"
+        Me.txtComment.SerializableRtfString = resources.GetString("txtComment.SerializableRtfString")
+        Me.txtComment.SizeF = New System.Drawing.SizeF(778.0001!, 46.95837!)
+        Me.txtComment.StylePriority.UseBorders = False
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel2.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 568.3351!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(186.6252!, 23.0!)
+        Me.XrLabel2.StylePriority.UseBorders = False
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.Text = "Comentarios"
         '
         'XrPanel1
         '
@@ -264,7 +290,7 @@ Partial Public Class repCheckPaymentOrder
         Me.XrTable8.Name = "XrTable8"
         Me.XrTable8.Padding = New DevExpress.XtraPrinting.PaddingInfo(3, 3, 3, 3, 100.0!)
         Me.XrTable8.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow13, Me.XrTableRow14, Me.XrTableRow15})
-        Me.XrTable8.SizeF = New System.Drawing.SizeF(777.9999!, 115.8416!)
+        Me.XrTable8.SizeF = New System.Drawing.SizeF(777.9998!, 115.8416!)
         Me.XrTable8.StylePriority.UseBorders = False
         Me.XrTable8.StylePriority.UseFont = False
         Me.XrTable8.StylePriority.UsePadding = False
@@ -292,14 +318,14 @@ Partial Public Class repCheckPaymentOrder
         '
         'xrtDescriptionPOItem
         '
-        Me.xrtDescriptionPOItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.xrtDescriptionPOItem.Font = New System.Drawing.Font("Arial", 7.75!)
         Me.xrtDescriptionPOItem.ForeColor = System.Drawing.Color.Black
         Me.xrtDescriptionPOItem.Multiline = True
         Me.xrtDescriptionPOItem.Name = "xrtDescriptionPOItem"
         Me.xrtDescriptionPOItem.RowSpan = 3
         Me.xrtDescriptionPOItem.StylePriority.UseFont = False
         Me.xrtDescriptionPOItem.StylePriority.UseForeColor = False
-        Me.xrtDescriptionPOItem.Weight = 3.2826487829824269R
+        Me.xrtDescriptionPOItem.Weight = 3.2826481053851584R
         '
         'XrTableRow14
         '
@@ -325,7 +351,7 @@ Partial Public Class repCheckPaymentOrder
         Me.XrTableCell27.StylePriority.UseFont = False
         Me.XrTableCell27.StylePriority.UseForeColor = False
         Me.XrTableCell27.Text = "XrTableCell27"
-        Me.XrTableCell27.Weight = 3.2826487829824269R
+        Me.XrTableCell27.Weight = 3.2826481053851584R
         '
         'XrTableRow15
         '
@@ -351,7 +377,7 @@ Partial Public Class repCheckPaymentOrder
         Me.XrTableCell29.StylePriority.UseFont = False
         Me.XrTableCell29.StylePriority.UseForeColor = False
         Me.XrTableCell29.Text = "XrTableCell29"
-        Me.XrTableCell29.Weight = 3.2826487829824269R
+        Me.XrTableCell29.Weight = 3.2826481053851584R
         '
         'XrTable3
         '
@@ -997,38 +1023,13 @@ Partial Public Class repCheckPaymentOrder
         Me.XrPageInfo2.StylePriority.UseTextAlignment = False
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'txtComment
-        '
-        Me.txtComment.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.txtComment.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.txtComment.LocationFloat = New DevExpress.Utils.PointFloat(0!, 591.3351!)
-        Me.txtComment.Name = "txtComment"
-        Me.txtComment.SerializableRtfString = resources.GetString("txtComment.SerializableRtfString")
-        Me.txtComment.SizeF = New System.Drawing.SizeF(778.0001!, 46.95837!)
-        Me.txtComment.StylePriority.UseBorders = False
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel2.Font = New System.Drawing.Font("Arial", 8.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 568.3351!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(186.6252!, 23.0!)
-        Me.XrLabel2.StylePriority.UseBorders = False
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.Text = "Comentarios"
-        '
         'repCheckPaymentOrder
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter})
         Me.Margins = New System.Drawing.Printing.Margins(25, 47, 10, 25)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "17.1"
+        CType(Me.txtComment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1042,92 +1043,91 @@ Partial Public Class repCheckPaymentOrder
         CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtComment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
-  Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
-  Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
-  Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
-  Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
-  Friend WithEvents FilteringUIContext1 As DevExpress.Utils.Filtering.FilteringUIContext
-  Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
-  Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtValueInLetter As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable6 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrOrderDate As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable12 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow25 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow18 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell26 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableRow6 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents xrSignaturejpeg As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
-  Friend WithEvents XrPageInfo2 As DevExpress.XtraReports.UI.XRPageInfo
-  Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
-  Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow8 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell30 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell25 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell31 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
-  Friend WithEvents XrTable8 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow13 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell22 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtDescriptionPOItem As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableRow14 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell24 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableRow15 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell28 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell29 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtPaymentMethod As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtAccountNumber As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableRow7 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtBankName As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtPONo As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable9 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtSupplierName As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable7 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtDateCreated As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents xrtTotalAmount As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTable11 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow12 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell34 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableRow16 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell35 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrLine3 As DevExpress.XtraReports.UI.XRLine
-  Friend WithEvents XrTable10 As DevExpress.XtraReports.UI.XRTable
-  Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell32 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrTableRow11 As DevExpress.XtraReports.UI.XRTableRow
-  Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
-  Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
-  Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
+    Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
+    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents FilteringUIContext1 As DevExpress.Utils.Filtering.FilteringUIContext
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtValueInLetter As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable6 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrOrderDate As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable12 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow25 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow18 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell26 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow6 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents xrSignaturejpeg As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
+    Friend WithEvents XrPageInfo2 As DevExpress.XtraReports.UI.XRPageInfo
+    Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
+    Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow8 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell30 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell25 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell31 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrTable8 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow13 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell22 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtDescriptionPOItem As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow14 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell24 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow15 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell28 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell29 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtPaymentMethod As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtAccountNumber As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow7 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtBankName As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtPONo As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable9 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtSupplierName As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable7 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtDateCreated As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xrtTotalAmount As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable11 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow12 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell34 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow16 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell35 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLine3 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrTable10 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell32 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow11 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents txtComment As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
 End Class

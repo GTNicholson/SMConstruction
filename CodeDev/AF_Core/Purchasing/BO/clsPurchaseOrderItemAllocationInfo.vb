@@ -220,7 +220,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
-  Public ReadOnly Property UoMDescription() As String
+  Public ReadOnly Property UoMDesc() As String
     Get
       Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pPurchaseOrderItem.UoM, eUoM))
     End Get
@@ -324,7 +324,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   Public ReadOnly Property OutStandingQty() As Decimal
     Get
-      Return pPurchaseOrderItem.QtyRequired - pPurchaseOrderItemAllocation.ReceivedQty
+      Return pPurchaseOrderItemAllocation.Quantity - pPurchaseOrderItemAllocation.ReceivedQty ' pPurchaseOrderItem.QtyRequired - pPurchaseOrderItemAllocation.ReceivedQty
     End Get
 
   End Property

@@ -58,8 +58,10 @@ Public Class dsoBIPurchaseOrder
     Dim mSQLWhere As String = ""
     Dim dtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
 
-
-
+    Dim mdtoSalesOrderPhaseInfo As New dtoSalesOrderPhaseInfo(pDBConn)
+    Dim mdtoPOA As dtoPurchaseOrderAllocation
+    Dim mdtoPOI As dtoPurchaseOrderItem
+    Dim mPOItemInfos As New colPOItemInfos
 
     Try
 
@@ -75,10 +77,36 @@ Public Class dsoBIPurchaseOrder
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
       mSQLWhere = mSQLWhere & mSQLWhere2
 
-      If mSQLWhere <> "" Then mSQLWhere = "(" & mSQLWhere & ") And "
-      mSQLWhere = mSQLWhere & "Status = " & ePurchaseOrderDueDateStatus.Received
-
       dtoPurchaseOrderInfo.LoadPurchaseOrderInfoCollection(pPurchaseOrderInfos, mSQLWhere)
+
+      If pPurchaseOrderInfos IsNot Nothing Then
+        mdtoPOA = New dtoPurchaseOrderAllocation(pDBConn)
+        mdtoPOI = New dtoPurchaseOrderItem(pDBConn)
+
+        For Each mPOI As clsPurchaseOrderInfo In pPurchaseOrderInfos
+          mPOItemInfos = New colPOItemInfos
+          mdtoPOA.LoadPurchaseOrderAllocationCollection(mPOI.PurchaseOrder.PurchaseOrderAllocations, mPOI.PurchaseOrder.PurchaseOrderID)
+
+
+          mdtoSalesOrderPhaseInfo.LoadSOPCollectionByWhere(mPOI.SalesOrderPhaseInfos, "")
+
+          mdtoPOI.LoadPurchaseOrderItemCollection(mPOI.PurchaseOrder.PurchaseOrderItems, mPOI.PurchaseOrder.PurchaseOrderID)
+
+          For Each mPOItem As dmPurchaseOrderItem In mPOI.PurchaseOrder.PurchaseOrderItems
+            If String.IsNullOrEmpty(mPOItem.Description) = False Then
+              mPOItemInfos.Add(New clsPOItemInfo(mPOItem, Nothing))
+            End If
+          Next
+          mPOI.POItemInfos = mPOItemInfos
+
+        Next
+
+
+
+      End If
+
+
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

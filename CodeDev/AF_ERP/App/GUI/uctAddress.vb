@@ -70,17 +70,22 @@ Public Class uctAddress
   End Property
 
   Public Sub RefreshControls()
-    With pAddress
-      Me.txtAdd1.Text = .Address1
-      Me.txtAdd2.Text = .Address2
-      ''  Me.txtAdd3.Text = .Address3
-      Me.txtTown.Text = .Town
-      cboCountry.Text = .Country
-      '' Me.txtPostCode.Text = .PostCode
-      ' ''Me.btedCountry.Text = .Country
+    If pAddress IsNot Nothing Then
+      With pAddress
+        Me.txtAdd1.Text = .Address1
+        Me.txtAdd2.Text = .Address2
+        ''  Me.txtAdd3.Text = .Address3
+        Me.txtTown.Text = .Town
+        cboCountry.Text = .Country
+        '' Me.txtPostCode.Text = .PostCode
+        ' ''Me.btedCountry.Text = .Country
+      End With
+
+    End If
 
 
-    End With
+
+
   End Sub
 
   Public Sub UpdateObject()

@@ -114,6 +114,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentMethod", .PaymentMethod)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AccoutingCategoryID", .AccoutingCategoryID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "POStage", .POStage)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RetentionPercentage", .RetentionPercentage)
 
 
     End With
@@ -188,7 +189,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
 
         .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
         .POStage = DBReadInt32(rDataReader, "POStage")
-
+        .RetentionPercentage = DBReadDecimal(rDataReader, "RetentionPercentage")
         pPurchaseOrder.IsDirty = False
         pPurchaseOrder.DeliveryAddress.IsDirty = False
         pPurchaseOrder.SupplierAddress.IsDirty = False

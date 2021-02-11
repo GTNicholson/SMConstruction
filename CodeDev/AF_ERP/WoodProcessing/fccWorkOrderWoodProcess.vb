@@ -51,6 +51,7 @@ Public Class fccWorkOrderWoodProcess
       pCurrentOutputWoodPallet = value
     End Set
   End Property
+
   Public Property CurrentWoodWorkOrder As dmWorkOrder
     Get
       Return pWorkOrder
@@ -191,7 +192,10 @@ Public Class fccWorkOrderWoodProcess
           SourceWoodPalletItem.Add(mWoodPalletItem)
 
         Next
+        SetCurrentSourceWoodPallet(mWoodPallet)
+
       End If
+
     Next
 
   End Sub
@@ -202,9 +206,14 @@ Public Class fccWorkOrderWoodProcess
 
     For Each mOutputPallet As dmOutputPallet In pWorkOrder.OutputPallets
       mdsoWodoPalletItem.LoadWoodPalletDown(mWoodPallet, mOutputPallet.WoodPalletID)
+      If mWoodPallet IsNot Nothing Then
+        For Each mWoodPalletItem As dmWoodPalletItem In mWoodPallet.WoodPalletItems
+          OutputWoodPalletItem.Add(mWoodPalletItem)
 
-      SetCurrentOutputWoodPallet(mWoodPallet)
+        Next
 
+        SetCurrentOutputWoodPallet(mWoodPallet)
+      End If
     Next
   End Sub
 
@@ -349,9 +358,9 @@ Public Class fccWorkOrderWoodProcess
   End Sub
   Public Sub SetCurrentOutputWoodPallet(ByRef rWoodPallet As dmWoodPallet)
     If rWoodPallet Is Nothing Then
-      pCurrentOutputWoodPallet = New dmWoodPallet
+      pCurrentOutputWoodPallet = Nothing
+      pOutPutWoodPalletItemEditors.Clear()
     Else
-
       pCurrentOutputWoodPallet = rWoodPallet
       RefreshOutPutWoodPalletItemEditors(rWoodPallet)
     End If
@@ -360,7 +369,8 @@ Public Class fccWorkOrderWoodProcess
 
   Public Sub SetCurrentSourceWoodPallet(ByRef rWoodPallet As dmWoodPallet)
     If rWoodPallet Is Nothing Then
-      pCurrentSourceWoodPallet = New dmWoodPallet
+      pCurrentSourceWoodPallet = Nothing
+      pSourceWoodPalletItemEditors.Clear()
     Else
 
       pCurrentSourceWoodPallet = rWoodPallet
@@ -584,11 +594,10 @@ Public Class fccWorkOrderWoodProcess
 
   End Sub
 
-  Public Sub CreateSingleWoodSourceTransaction(ByVal vSourceStockItemID As Integer, ByVal vVolume As Decimal, ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+  Public Sub CreateSingleWoodSourceTransaction(ByVal vSourceStockItemID As Integer, ByVal vVolume As Decimal, ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet, ByVal vTransactionType As eTransactionType)
     Dim mSIL As New dmStockItemLocation
     Dim mdsoStock As dsoStock
     Dim mdsoTran As dsoStockTransactions
-    Dim mCost As Decimal
     Dim mdsoCostBook As dsoCostBook
     Dim mVolume As Decimal = 0
 
@@ -601,13 +610,12 @@ Public Class fccWorkOrderWoodProcess
     If mVolume <> 0 Then
 
       If vSourceStockItemID <> 0 Then
-        '//Set the same Cost. Check what to do
-        mCost = mdsoCostBook.GetDefaultCostBookValueByStockItemIDUnconnected(vSourceStockItemID)
+
         mSIL = mdsoStock.GetOrCreateStockItemLocation(vSourceStockItemID, vSourceLocationID)
       Else
         mSIL = Nothing
       End If
-      mdsoTran.CreateGeneralSourceWoodPalletTransaction(eTransactionType.Movement, mSIL, mVolume, Now, eCurrency.Dollar, mCost, 1, vWoodPallet, eObjectType.WoodPallet)
+      mdsoTran.CreateGeneralSourceWoodPalletTransaction(vTransactionType, mSIL, mVolume, Now, eCurrency.Dollar, 1, vWoodPallet, eObjectType.WoodPallet)
 
 
     End If
@@ -615,7 +623,7 @@ Public Class fccWorkOrderWoodProcess
 
   End Sub
 
-  Public Sub CreateSourceTransaction(ByVal vSourcePallets As colSourcePallets)
+  Public Sub CreateSourceTransaction(ByVal vSourcePallets As colSourcePallets, ByVal vTransactionType As eTransactionType)
     Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mSIL As New dmStockItemLocation
@@ -632,7 +640,7 @@ Public Class fccWorkOrderWoodProcess
         mdsoStock.LoadWoodPalletDown(mWoodPallet, mSourcePallet.WoodPalletID)
         If mWoodPallet IsNot Nothing Then
 
-          mdsoTran.CreatePrevSourceWoodPalletTransaction(mWoodPallet, mWoodPallet.LocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1)
+          mdsoTran.CreatePrevSourceWoodPalletTransaction(mWoodPallet, mWoodPallet.LocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1, vTransactionType)
           UpdateWoodPalletItemQuantityUsed(mWoodPallet)
           mWoodPallet.IsComplete = True
           mdsoStock.SaveWoodPalletDown(mWoodPallet)
@@ -656,7 +664,7 @@ Public Class fccWorkOrderWoodProcess
 
   End Sub
 
-  Public Sub CreateOutputTransaction(ByVal vOutputPallets As colOutputPallets)
+  Public Sub CreateOutputTransaction(ByVal vOutputPallets As colOutputPallets, ByVal vTransactionType As eTransactionType)
     Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mSIL As New dmStockItemLocation
@@ -672,7 +680,7 @@ Public Class fccWorkOrderWoodProcess
         mdsoStock.LoadWoodPalletDown(mWoodPallet, mOutputPallet.WoodPalletID)
         If mWoodPallet IsNot Nothing Then
 
-          mdsoTran.CreatePositiveTransaction(eTransactionType.Movement, mWoodPallet, mWoodPallet.LocationID, Now, eCurrency.Dollar, 1)
+          mdsoTran.CreatePositiveTransaction(vTransactionType, mWoodPallet, mWoodPallet.LocationID, Now, eCurrency.Dollar, 1)
 
 
         End If
@@ -744,36 +752,42 @@ Public Class fccWorkOrderWoodProcess
   Public Sub RefreshSourceWoodPalletItemEditors(ByVal vCurrentSourceWoodPallet As dmWoodPallet)
     Dim mWoodPalletItemEditor As clsWoodPalletItemEditor
     Dim mStockItem As dmStockItem
-    If pSourceWoodPalletItemEditors IsNot Nothing Then
-      pSourceWoodPalletItemEditors.Clear()
 
-      For Each mWPI As dmWoodPalletItem In vCurrentSourceWoodPallet.WoodPalletItems
-        mWoodPalletItemEditor = New clsWoodPalletItemEditor
-        mWoodPalletItemEditor.WoodPalletItem = mWPI
-        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
-        mWoodPalletItemEditor.StockItem = mStockItem
-        pSourceWoodPalletItemEditors.Add(mWoodPalletItemEditor)
-      Next
+    If vCurrentSourceWoodPallet IsNot Nothing Then
+      If pSourceWoodPalletItemEditors IsNot Nothing Then
+        pSourceWoodPalletItemEditors.Clear()
+
+        For Each mWPI As dmWoodPalletItem In vCurrentSourceWoodPallet.WoodPalletItems
+          mWoodPalletItemEditor = New clsWoodPalletItemEditor
+          mWoodPalletItemEditor.WoodPalletItem = mWPI
+          mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+          mWoodPalletItemEditor.StockItem = mStockItem
+          pSourceWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+        Next
+      End If
     End If
   End Sub
 
   Public Sub RefreshOutPutWoodPalletItemEditors(ByVal vCurrentOutput As dmWoodPallet)
     Dim mWoodPalletItemEditor As clsWoodPalletItemEditor
     Dim mStockItem As dmStockItem
-    If pOutPutWoodPalletItemEditors IsNot Nothing Then
-      pOutPutWoodPalletItemEditors.Clear()
+    If vCurrentOutput IsNot Nothing Then
 
-      For Each mWPI As dmWoodPalletItem In vCurrentOutput.WoodPalletItems
-        mWoodPalletItemEditor = New clsWoodPalletItemEditor
-        mWoodPalletItemEditor.WoodPalletItem = mWPI
-        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
-        mWoodPalletItemEditor.StockItem = mStockItem
-        pOutPutWoodPalletItemEditors.Add(mWoodPalletItemEditor)
-      Next
+      If pOutPutWoodPalletItemEditors IsNot Nothing Then
+        pOutPutWoodPalletItemEditors.Clear()
+
+        For Each mWPI As dmWoodPalletItem In vCurrentOutput.WoodPalletItems
+          mWoodPalletItemEditor = New clsWoodPalletItemEditor
+          mWoodPalletItemEditor.WoodPalletItem = mWPI
+          mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+          mWoodPalletItemEditor.StockItem = mStockItem
+          pOutPutWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+        Next
+      End If
     End If
   End Sub
 
-  Public Sub ProcessSourceQuantity()
+  Public Sub ProcessSourceClasification()
     Try
       Dim mdsoStock As dsoStock
       Dim mSIL As New dmStockItemLocation
@@ -802,7 +816,7 @@ Public Class fccWorkOrderWoodProcess
       Next
 
 
-      CreateSourceTransaction(CurrentWoodWorkOrder.SourcePallets)
+      CreateSourceTransaction(CurrentWoodWorkOrder.SourcePallets, eTransactionType.ClasificationMovement)
 
 
       SaveObjects()
@@ -865,7 +879,7 @@ Public Class fccWorkOrderWoodProcess
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then
-          CreateAmendmentWoodPalletTransaction(pCurrentOutputWoodPallet.LocationID, mTempWoodPallet)
+          CreateAmendmentWoodPalletTransaction(pCurrentOutputWoodPallet.LocationID, mTempWoodPallet, eTransactionType.ClasificationMovement)
         End If
       End If
 
@@ -921,7 +935,7 @@ Public Class fccWorkOrderWoodProcess
 
         If mSI IsNot Nothing Then
 
-          CreateSingleWoodSourceTransaction(mKVP.Key, mKVP.Value, pCurrentSourceWoodPallet.LocationID, pCurrentSourceWoodPallet)
+          CreateSingleWoodSourceTransaction(mKVP.Key, mKVP.Value, pCurrentSourceWoodPallet.LocationID, pCurrentSourceWoodPallet, eTransactionType.AserradoMovement)
         End If
       Next
     End If
@@ -979,7 +993,7 @@ Public Class fccWorkOrderWoodProcess
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then
-          CreateAmendmentWoodPalletTransaction(pCurrentOutputWoodPallet.LocationID, mTempWoodPallet)
+          CreateAmendmentWoodPalletTransaction(pCurrentOutputWoodPallet.LocationID, mTempWoodPallet, eTransactionType.MAVMovement)
         End If
       End If
 
@@ -989,7 +1003,7 @@ Public Class fccWorkOrderWoodProcess
     End Try
   End Sub
 
-  Public Sub CreateAmendmentWoodPalletTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+  Public Sub CreateAmendmentWoodPalletTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet, ByVal vTransactionType As eTransactionType)
     Dim mSIL As New dmStockItemLocation
     Dim mdsoStock As dsoStock
     Dim mdsoTran As dsoStockTransactions
@@ -1003,7 +1017,7 @@ Public Class fccWorkOrderWoodProcess
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1)
+    mdsoTran.CreatePositiveTransaction(vTransactionType, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1)
 
 
 

@@ -34,6 +34,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Private pParent As dmPurchaseOrder
   Private pIVATemp As Boolean
   Private pUoM As Integer
+  Private pRetentionValue As Decimal
+  Private pTempPercentageRetention As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -105,6 +107,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       .AverageInvoicePrice = AverageInvoicePrice
       .Density = Density
       .ReplacementQty = ReplacementQty
+      .RetentionValue = RetentionValue
       'Add entries here for each collection and class property
       .PurchaseOrderItemAllocations = PurchaseOrderItemAllocations.Clone
       .PickedQty = PickedQty
@@ -260,6 +263,26 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     End Set
   End Property
 
+
+  Public Property RetentionValue() As Decimal
+    Get
+      Return NetAmount * TempPercentageRetention
+    End Get
+    Set(ByVal value As Decimal)
+      If pRetentionValue <> value Then IsDirty = True
+      pRetentionValue = value
+    End Set
+  End Property
+
+  Public Property TempPercentageRetention As Decimal
+    Get
+      Return pTempPercentageRetention
+    End Get
+    Set(value As Decimal)
+      pTempPercentageRetention = value
+    End Set
+  End Property
+
   Public Property Width() As Decimal
     Get
       Return pWidth
@@ -367,10 +390,11 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Public ReadOnly Property UnitPricePlusVAT As Decimal
     Get
       Dim mRetVal As Decimal
-      mRetVal = pUnitPrice + pVatValue
+      mRetVal = (pUnitPrice - (pUnitPrice * TempPercentageRetention) + pVatValue)
       Return mRetVal
     End Get
   End Property
+
 
   Public Function CalculateVATValue(ByVal vPercent As Decimal) As Decimal
     Dim mRetVal As Decimal
@@ -432,7 +456,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
 
   Public ReadOnly Property NetAmount As Decimal
     Get
-      Return pUnitPrice * pQtyRequired
+      Return (pUnitPrice * pQtyRequired)
     End Get
   End Property
 

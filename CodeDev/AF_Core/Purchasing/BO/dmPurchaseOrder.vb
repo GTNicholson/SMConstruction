@@ -57,6 +57,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
 
   Private pAccoutingCategoryID As Integer
   Private pPOStage As Integer
+  Private pRetentionPercentage As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -160,6 +161,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .PaymentMethod = PaymentMethod
       .AccoutingCategoryID = AccoutingCategoryID
       .POStage = POStage
+      .RetentionPercentage = RetentionPercentage
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -599,7 +601,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property RetentionPercentage As Decimal
+    Get
+      Return pRetentionPercentage
+    End Get
+    Set(value As Decimal)
+      If pRetentionPercentage <> value Then IsDirty = True
+      pRetentionPercentage = value
+    End Set
+  End Property
 
   Public Function CarriageVAT() As Decimal
     Dim mRetVal As Decimal

@@ -96,6 +96,7 @@ Public Class repPurchaseOrder
 
     xrTotalVAT.Text = pPOInfo.TotalVAT.ToString(mToString)
 
+    xrTotalRetention.Text = (pPOInfo.TotalRetention * -1).ToString(mToString)
 
 
 
