@@ -672,5 +672,38 @@ Public Class dsoStock
     Return mOK
   End Function
 
+  Public Sub UpdateStockItemAverageCost(ByVal vStockItemID As Integer, ByVal vReceivedQty As Decimal, ByVal vReceivedValue As Decimal)
+    Dim mExistingQty As Decimal
+    Dim mCurrentAverageCost As Decimal
+    Dim mNewAverageCost As Decimal
+    Dim mNewTotalQty As Decimal
+
+    Dim mSQL As String
+
+    Try
+      If pDBConn.Connect() Then
+        '// The Qty has already been updated so the current total qty in stock item locations includes the recently arrived.
+        mSQL = String.Format("Select Sum(Qty) as TotalQty From StockItemLocation Where StockItemID = {0}", vStockItemID)
+        mNewTotalQty = pDBConn.ExecuteScalar(mSQL)
+        mExistingQty = mNewTotalQty - vReceivedQty
+
+        '// Retreive the current average cost
+        mSQL = String.Format("Select AverageCost From StockItem Where StockItemID = {0}", vStockItemID)
+        mCurrentAverageCost = pDBConn.ExecuteScalar(mSQL)
+
+        mNewAverageCost = ((mExistingQty * mCurrentAverageCost) + vReceivedValue) / mNewTotalQty
+
+        '// Set the new value
+        mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mNewAverageCost, vStockItemID)
+        pDBConn.ExecuteNonQuery(mSQL)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
 
 End Class

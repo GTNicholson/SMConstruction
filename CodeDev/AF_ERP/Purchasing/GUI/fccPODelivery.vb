@@ -236,11 +236,11 @@ Public Class fccPODelivery
     Return mValidate
   End Function
 
-  Public Function ProcessDeliveryQtys(ByVal vCreateTimberPack As Boolean) As Boolean
+  Public Function ProcessDeliveryQtys() As Boolean
     Dim mRetVal As Boolean = True
     Dim mdsoTran As dsoStockTransactions
     Dim mDeliveryItem As dmPODeliveryItem
-
+    Dim mReceivedValue As Decimal
 
     Dim mdsoStock As dsoStock
     Dim mSIL As dmStockItemLocation
@@ -285,12 +285,12 @@ Public Class fccPODelivery
             mPOP.PODeliveryItem = mDeliveryItem
 
           End If
-          ''If vCreateTimberPack Then
-          ''  mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, True)
 
-          ''Else
-          mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
-          ''End If
+
+          '// Work out the value of the received qty of the item for Average Stock Value purposes
+          mReceivedValue = mPOP.PurchaseOrderItem.UnitPrice * mReceivedValue '// Todo include logic for pricing unit
+
+          mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, mReceivedValue, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
           mPOP.ToProcessQty = 0
         End If
 

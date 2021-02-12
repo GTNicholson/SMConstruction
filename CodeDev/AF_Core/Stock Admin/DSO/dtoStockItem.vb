@@ -108,7 +108,8 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierUoM", .SupplierUoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostUoM", .CostUoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsCostingOnly", .IsCostingOnly)
-
+      '// Not in write as it is updated elsewuere
+      '// DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AverageCost", .AverageCost)
 
 
     End With
@@ -157,6 +158,7 @@ Public Class dtoStockItem : Inherits dtoBase
         .SupplierUoM = DBReadInt32(rDataReader, "SupplierUoM")
         .CostUoM = DBReadByte(rDataReader, "CostUoM")
         .IsCostingOnly = DBReadBoolean(rDataReader, "IsCostingOnly")
+        .AverageCost = DBReadBoolean(rDataReader, "AverageCost")
         pStockItem.IsDirty = False
       End With
       mOK = True

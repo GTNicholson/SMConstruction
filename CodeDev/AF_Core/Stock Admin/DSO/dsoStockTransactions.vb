@@ -240,7 +240,7 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
-  Public Function UpdateDeliveryStockItemLocationQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vRecievedQty As Decimal, ByVal vPackQuantity As Decimal, ByVal vDeliveryItem As dmPODeliveryItem, ByVal vTransDate As DateTime, ByVal vPOItemAllocation As dmPurchaseOrderItemAllocation, ByVal vItemRef As String, ByVal vCreateTimberPack As Boolean, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, vExchangeRate As Decimal) As Boolean
+  Public Function UpdateDeliveryStockItemLocationQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vRecievedQty As Decimal, ByVal vPOItemRecievedValue As Decimal, ByVal vPackQuantity As Decimal, ByVal vDeliveryItem As dmPODeliveryItem, ByVal vTransDate As DateTime, ByVal vPOItemAllocation As dmPurchaseOrderItemAllocation, ByVal vItemRef As String, ByVal vCreateTimberPack As Boolean, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -356,6 +356,12 @@ Public Class dsoStockTransactions
           If mOK Then
             vDeliveryItem.SetQtyReceived(vDeliveryItem.QtyReceived + vRecievedQty)
             vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vRecievedQty)
+            '// If it is not Timber category then update the Average Cost of the Stock Item
+            Select Case mStockItem.Category
+              Case eStockItemCategory.Timber
+              Case Else
+                mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue)
+            End Select
           End If
 
 

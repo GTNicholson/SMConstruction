@@ -1,0 +1,3 @@
+alter table StockItem add AverageCost Decimal(9,4)
+
+GO

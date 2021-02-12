@@ -34,9 +34,11 @@ Public Class dmStockItem : Inherits dmBase
   Private pStdImportCost As Decimal
   Private pImageFile As String
   Private pASISID As Integer
-  Private pSupplier As dmSupplier
   Private pCostQty As Decimal
   Private pAuxCode As String
+  Private pAverageCost As Decimal
+
+  Private pSupplier As dmSupplier
 
   Private ptmpIsFullyLoadedDown As Boolean
   Private pOutputDocuments As colOutputDocuments
@@ -136,6 +138,9 @@ Public Class dmStockItem : Inherits dmBase
       .SupplierUoM = SupplierUoM
       .CostUoM = CostUoM
       .IsCostingOnly = IsCostingOnly
+      .AverageCost = AverageCost
+
+
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -499,6 +504,16 @@ Public Class dmStockItem : Inherits dmBase
     Set(ByVal value As String)
       If pAuxCode <> value Then IsDirty = True
       pAuxCode = value
+    End Set
+  End Property
+
+  Public Property AverageCost() As Decimal
+    Get
+      Return pAverageCost
+    End Get
+    Set(ByVal value As Decimal)
+      If pAverageCost <> value Then IsDirty = True
+      pAverageCost = value
     End Set
   End Property
 
