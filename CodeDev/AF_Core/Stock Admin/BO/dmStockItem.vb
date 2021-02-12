@@ -244,7 +244,7 @@ Public Class dmStockItem : Inherits dmBase
   End Property
 
 
-  Public Property Species() As Int32
+  Public Property Species() As Int32 Implements intStockItemDef.MaterialID
     Get
       Return pSpecies
     End Get
@@ -557,14 +557,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property MaterialID As Integer Implements intStockItemDef.MaterialID
-    Get
-      ''Throw New NotImplementedException()
-    End Get
-    Set(value As Integer)
-      Throw New NotImplementedException()
-    End Set
-  End Property
+
 
   Public Property StockUnitTypeENUM As Integer Implements intStockItemDef.StockUnitTypeENUM
     Get

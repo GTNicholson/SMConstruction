@@ -1525,6 +1525,7 @@ Public Class frmPurchaseOrder
 
     If pFormController IsNot Nothing Then
       If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
+        pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
         RefreshControls()
         CheckSave(False)
         Dim mPOItem As dmPurchaseOrderItem

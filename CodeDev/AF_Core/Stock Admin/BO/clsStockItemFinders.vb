@@ -14,6 +14,16 @@ Public Class clsStockItemFinders
     Return mRetVal
   End Function
 
+  Public Shared Function FindWoodCostingItem(ByRef rStockItem As dmStockItem, ByRef rStockItems As colStockItems) As dmStockItem
+    Dim mRetVal As dmStockItem = Nothing
+    Dim mMatcher As clsStockItemMatchHandler
+
+    mMatcher = New clsStockItemMatchHandler(rStockItems)
+    mRetVal = mMatcher.FindBestMatch(rStockItem, New clsStockItemMatcherBiggerThicknessWidth, New clsStockItemBestMatchSmallestArea)
+
+    Return mRetVal
+  End Function
+
 End Class
 
 Public Class clsStockItemMatcherBiggerThicknessIgnoreLengthWidth : Inherits clsStockItemMatcherBase
@@ -22,6 +32,23 @@ Public Class clsStockItemMatcherBiggerThicknessIgnoreLengthWidth : Inherits clsS
     Dim mRetVal As Boolean = True
     If mRetVal Then mRetVal = MatchCore(rCurrentItem, rCandidateItem)
     If mRetVal Then mRetVal = (rCurrentItem.Thickness < rCandidateItem.Thickness)
+    If mRetVal Then mRetVal = (rCurrentItem.AuxCode = rCandidateItem.AuxCode)
+    If mRetVal Then mRetVal = (rCurrentItem.AttributeID = rCandidateItem.AttributeID)
+    If mRetVal Then mRetVal = (rCurrentItem.AttributeValue = rCandidateItem.AttributeValue)
+
+    Return mRetVal
+  End Function
+
+End Class
+
+Public Class clsStockItemMatcherBiggerThicknessWidth : Inherits clsStockItemMatcherBase
+
+  Public Overrides Function IsMatch(ByRef rCurrentItem As intStockItemDef, ByRef rCandidateItem As intStockItemDef) As Boolean
+    Dim mRetVal As Boolean = True
+    If mRetVal Then mRetVal = MatchCore(rCurrentItem, rCandidateItem)
+    If mRetVal Then mRetVal = (rCurrentItem.Thickness < rCandidateItem.Thickness)
+    'If mRetVal Then mRetVal = (rCurrentItem.Width < rCandidateItem.Width)
+
     If mRetVal Then mRetVal = (rCurrentItem.AuxCode = rCandidateItem.AuxCode)
     If mRetVal Then mRetVal = (rCurrentItem.AttributeID = rCandidateItem.AttributeID)
     If mRetVal Then mRetVal = (rCurrentItem.AttributeValue = rCandidateItem.AttributeValue)
