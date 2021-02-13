@@ -113,7 +113,7 @@ Public Class dsoStockTransactions
     Return mRetVal
   End Function
 
-  Private Function GetLastTransactionBeforeConnected(ByVal vDateTime As DateTime, vID As Integer, vExcludeID As Integer) As dmStockItemTransactionLog
+  Public Function GetLastTransactionBeforeConnected(ByVal vDateTime As DateTime, vID As Integer, vExcludeID As Integer) As dmStockItemTransactionLog
     Dim mdto As dtoStockItemTransactionLog
     Dim mWhere As String
     Dim mSITLs As New colStockItemTransactionLogs
@@ -783,6 +783,7 @@ Public Class dsoStockTransactions
     End Try
     Return mRetVal
   End Function
+
   Public Function AdjustmentSetStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vAdjustQty As Decimal, ByVal vRefObjectType As eObjectType, ByVal vRefObjectID As Integer, ByVal vTransDate As DateTime, ByVal rAmmendmentLog As dmStockItemLocationAmendmentLog, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
@@ -1534,5 +1535,52 @@ Public Class dsoStockTransactions
   End Function
 
 
+  Public Sub ResetStockTransactionValuations(ByVal vStockItemID As Integer, ByVal vStartingQty As Decimal, ByVal vStartingUnitCost As Decimal)
+    Dim mSQL As String
+    Dim mTranLogs As colStockItemTransactionLogs
+    Dim mdto As dtoStockItemTransactionLog
+    Dim mCurrentUnitCost As Decimal
+    Dim mCurrentTotalQty As Decimal
+    Dim mCurrentTotalValue As Decimal
+    Dim mPODeliveryUnitCost As Decimal
+
+    Try
+      If pDBConn.Connect() Then
+        mTranLogs = New colStockItemTransactionLogs
+        mdto = New dtoStockItemTransactionLog(pDBConn)
+        mdto.LoadStockItemTransactionLogCollectionByWhere(mTranLogs, "StockItemID = " & vStockItemID)
+
+        '// Current qty and unit cost set to starting value
+        vStartingQty = vStartingQty
+        vStartingUnitCost = mCurrentUnitCost
+
+        For Each mTran As dmStockItemTransactionLog In mTranLogs
+          Select Case mTran.TransactionType
+            Case eTransactionType.GoodsIn, eTransactionType.SupplierReturn
+              '// get the purchase order item value
+              mSQL = "Select UnitPrice From vwPODeliveryItemInfo Where PODeliveryItemID = " & mTran.RefObjectID
+              mPODeliveryUnitCost = pDBConn.ExecuteScalar(mSQL)
+              mTran.TransactionValuation = mTran.TranValue * mPODeliveryUnitCost
+
+              '// Now modify the Current Unit Cost
+              mCurrentTotalQty = mCurrentTotalQty + mTran.TranValue
+              mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuation
+              mCurrentUnitCost = mCurrentTotalValue / mCurrentTotalQty
+            Case Else
+              mTran.TransactionValuation = mTran.TranValue * mCurrentUnitCost
+              mCurrentTotalQty = mCurrentTotalQty + mTran.TranValue
+              mCurrentTotalValue = mCurrentTotalQty * mCurrentUnitCost
+          End Select
+        Next
+
+        mdto.SaveStockItemTransactionLogCollection(mTranLogs)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
 
 End Class
