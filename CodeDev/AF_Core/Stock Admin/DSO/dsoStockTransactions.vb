@@ -1551,8 +1551,8 @@ Public Class dsoStockTransactions
         mdto.LoadStockItemTransactionLogCollectionByWhere(mTranLogs, "StockItemID = " & vStockItemID)
 
         '// Current qty and unit cost set to starting value
-        vStartingQty = vStartingQty
-        vStartingUnitCost = mCurrentUnitCost
+        mCurrentTotalQty = vStartingQty
+        mCurrentUnitCost = vStartingUnitCost
 
         For Each mTran As dmStockItemTransactionLog In mTranLogs
           Select Case mTran.TransactionType
