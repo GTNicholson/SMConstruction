@@ -1595,7 +1595,7 @@ Public Class dsoStockTransactions
 
                   '// Now modify the Current Unit Cost
                   mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
-                  mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuationDollar
+                  mCurrentTotalValue = mCurrentTotalValue + (mTran.TransQuantity * mPODeliveryUnitCost) 'mTran.TransactionValuationDollar
                   If mCurrentTotalQty > 0 Then
                     mCurrentUnitCost = mCurrentTotalValue / mCurrentTotalQty
                   End If
@@ -1642,13 +1642,13 @@ Public Class dsoStockTransactions
 
               mTran.TransactionValuationDollar = mTran.TransQuantity * mCurrentUnitCost
               mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
-              mCurrentTotalValue = mCurrentTotalQty * mCurrentUnitCost
+              mCurrentTotalValue = mCurrentTotalQty * (mCurrentUnitCost * mExchangeRate)
 
 
           End Select
 
           ''//Update the current StockItemTransactionLog, I dont like this way but in the Table we dont have a stockitemid, it's only in the info class
-          mSQL = String.Format("Update StockItemTransactionLog Set TransactionValuationDollar = {0} Where StockItemTransactionLogID = {1}", mCurrentTotalValue, mTran.StockItemTransactionLogID)
+          mSQL = String.Format("Update StockItemTransactionLog Set TransactionValuationDollar = {0} Where StockItemTransactionLogID = {1}", mTran.TransactionValuationDollar, mTran.StockItemTransactionLogID)
           pDBConn.ExecuteNonQuery(mSQL)
 
 

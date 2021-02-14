@@ -182,7 +182,7 @@
       Dim mDiscrepancy As Decimal
 
       mStockCountedQty = pStockTakeItem.CountedQty + pStockTakeItem.WriteOffQuantity
-      mDiscrepancy = pStockTakeItem.SnapshotQty - mStockCountedQty
+      mDiscrepancy = mStockCountedQty - pStockTakeItem.SnapshotQty
 
       If pStockItem IsNot Nothing Then
         mRetVal = clsStockItemSharedFuncs.getStockItemValue(pStockItem, mDiscrepancy)
