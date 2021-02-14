@@ -158,7 +158,7 @@ Public Class dtoStockItem : Inherits dtoBase
         .SupplierUoM = DBReadInt32(rDataReader, "SupplierUoM")
         .CostUoM = DBReadByte(rDataReader, "CostUoM")
         .IsCostingOnly = DBReadBoolean(rDataReader, "IsCostingOnly")
-        .AverageCost = DBReadBoolean(rDataReader, "AverageCost")
+        .AverageCost = DBReadDecimal(rDataReader, "AverageCost")
         pStockItem.IsDirty = False
       End With
       mOK = True

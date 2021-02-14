@@ -354,7 +354,9 @@ Public Class fccPurchaseOrder
 
   Public Sub GetNextPONo()
     Dim mdsoGeneral As New dsoGeneral(pDBConn)
-    pPurchaseOrder.PONum = mdsoGeneral.GetNextTallyPONo().ToString("00000")
+    If pPurchaseOrder.PONum = "" Then
+      pPurchaseOrder.PONum = mdsoGeneral.GetNextTallyPONo().ToString("00000")
+    End If
   End Sub
 
   Public Sub CreatePurchaseOrderPDF(ByVal vCurrency As eCurrency, ByVal vAccountOption As Int32, ByVal vIsPaymentOrder As Boolean)

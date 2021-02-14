@@ -217,7 +217,7 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub RefreshGrid()
-    pFormController.LoadObject()
+    'pFormController.LoadObject()
     grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
     pFormController.UpdatePercentageValue(Val(txtRetentionPercentage.EditValue))
     gvPurchaseOrderItems.RefreshData()
@@ -657,7 +657,7 @@ Public Class frmPurchaseOrder
         Case ButtonPredefines.Combo
           Dim mSupplierPicker As clsPickerSupplier
           ''  Dim mSupplier As dmSupplier
-          UpdateObject()
+
           mSupplierPicker = New clsPickerSupplier(pFormController.GetSupplierList, pFormController.DBConn)
           pSupplier = frmPickSupplier.OpenPickerSingle(mSupplierPicker)
           If pSupplier IsNot Nothing Then
@@ -668,7 +668,7 @@ Public Class frmPurchaseOrder
             FillSupplierDetail()
 
           End If
-          RefreshControls()
+
         Case ButtonPredefines.Ellipsis
           frmSupplierDetail.OpenFormModal(pFormController.PurchaseOrder.SupplierID, pFormController.DBConn)
           If pFormController.PurchaseOrder.SupplierID <> 0 Then
@@ -862,7 +862,7 @@ Public Class frmPurchaseOrder
                   mPOItem.Description = mSelectedItem.Description
                   mPOItem.PartNo = mSelectedItem.PartNo
                   mPOItem.StockCode = mSelectedItem.StockCode
-                  mPOItem.UnitPrice = mSelectedItem.StdCost
+                  mPOItem.UnitPrice = mSelectedItem.AverageCost
                   mPOItem.UoM = mSelectedItem.SupplierUoM
                   mPOItem.SupplierCode = mSelectedItem.AuxCode
                   pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
@@ -1526,8 +1526,9 @@ Public Class frmPurchaseOrder
     If pFormController IsNot Nothing Then
       If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
         pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
-        RefreshControls()
         CheckSave(False)
+
+        RefreshControls()
         Dim mPOItem As dmPurchaseOrderItem
         Dim mVatRates As colVATRates
         mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)

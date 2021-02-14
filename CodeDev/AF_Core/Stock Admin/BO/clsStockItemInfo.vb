@@ -210,7 +210,7 @@ Public Class clsStockItemInfo
 
   Public ReadOnly Property StdCost() As Decimal
     Get
-      Return pStockItem.StdCost
+      Return pStockItem.AverageCost
     End Get
 
   End Property
@@ -274,8 +274,13 @@ Public Class clsStockItemInfo
     End Get
   End Property
 
+  Public ReadOnly Property AverageCost As Decimal
+    Get
+      Return pStockItem.AverageCost
+    End Get
+  End Property
 
-  Public ReadOnly Property CostUoM() As Byte
+  Public ReadOnly Property CostUoM As Byte
     Get
       Return pStockItem.CostUoM
     End Get

@@ -688,7 +688,7 @@ Public Class dsoStock
         mExistingQty = mNewTotalQty - vReceivedQty
 
         '// Retreive the current average cost
-        mSQL = String.Format("Select AverageCost From StockItem Where StockItemID = {0}", vStockItemID)
+        mSQL = String.Format("Select IsNull(AverageCost,0) From StockItem Where StockItemID = {0}", vStockItemID)
         mCurrentAverageCost = pDBConn.ExecuteScalar(mSQL)
 
         mNewAverageCost = ((mExistingQty * mCurrentAverageCost) + vReceivedValue) / mNewTotalQty
@@ -701,7 +701,7 @@ Public Class dsoStock
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
     End Try
   End Sub
 

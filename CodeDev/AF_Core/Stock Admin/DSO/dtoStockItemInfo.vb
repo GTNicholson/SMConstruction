@@ -115,6 +115,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
         .UoM = DBReadInt32(rDataReader, "UoM")
         .SupplierUoM = DBReadInt32(rDataReader, "SupplierUoM")
         .CostUoM = DBReadByte(rDataReader, "CostUoM")
+        .AverageCost = DBReadDecimal(rDataReader, "AverageCost")
       End With
 
       mOK = True

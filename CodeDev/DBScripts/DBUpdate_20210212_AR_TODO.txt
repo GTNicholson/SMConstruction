@@ -1,0 +1,36 @@
+
+ALTER view [dbo].[vwStockItemInfo]
+as
+
+SELECT        
+SI.StockItemID, 
+SI.StockCode,
+SI.PartNo,
+si.ASISID,
+SI.Category, 
+SI.ItemType, 
+SI.Species, 
+SI.Colour, 
+SI.Length, 
+SI.Width, 
+SI.Thickness, 
+SI.DefaultSupplier,
+SI.Description, 
+SI.UoM,
+SI.CostUoM,
+SI.SupplierUoM,
+SI.AverageCost,
+StdCost,
+sil.qty,
+SIMR.OSQty,
+SIPOS.POSQty,
+SP.CompanyName
+-- On Order Qty
+FROM dbo.StockItem AS SI
+left join vwSIStockItemLocationSUM as SIL ON SIL.StockItemID = si.StockItemID 
+left join vwStockItemMaterialRequirementSum SIMR on SIMR.StockItemID = SI.StockItemID
+left join vwStockItemPurchaseOrderSum SIPOS ON SIPOS.StockItemID=Si.StockItemID
+left join Supplier SP on SP.SupplierID=SI.DefaultSupplier
+GO
+
+

@@ -343,7 +343,7 @@ Public Class frmPODelivery
         Case ePOIProcessorOption.eProcess ''//Click on Process Button
 
 
-          mOK = pFormController.ProcessDeliveryQtys(False)
+          mOK = pFormController.ProcessDeliveryQtys()
 
 
           If mOK Then pFormController.CreatePurchaseOrderPDF(pFormController.PurchaseOrderInfo, pFormController.PurchaseOrderProcessors, pFormController.PODelivery, False)
@@ -355,7 +355,7 @@ Public Class frmPODelivery
 
         Case ePOIProcessorOption.eTimberPack
 
-          pFormController.ProcessDeliveryQtys(True)
+          pFormController.ProcessDeliveryQtys()
 
         Case ePOIProcessorOption.eProcessAll
 
