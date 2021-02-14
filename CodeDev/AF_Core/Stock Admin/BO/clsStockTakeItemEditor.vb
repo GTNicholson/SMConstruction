@@ -99,7 +99,16 @@
     End Get
   End Property
 
+  Public ReadOnly Property AverageCost As Decimal
+    Get
+      If pStockItem.AverageCost = 0 Then
+        Return pStockItem.StdCost
+      Else
+        Return pStockItem.AverageCost
+      End If
 
+    End Get
+  End Property
 
   Public ReadOnly Property StockItemCategoryDesc As String
     Get
@@ -154,7 +163,17 @@
       Return mRetVal
     End Get
   End Property
+  Public ReadOnly Property SystemTotalValue
+    Get
+      Return pStockTakeItem.SnapShotUnitCost * pStockTakeItem.SnapshotQty
+    End Get
+  End Property
 
+  Public ReadOnly Property SnapShotUnitCost
+    Get
+      Return pStockTakeItem.SnapShotUnitCost
+    End Get
+  End Property
 
   Public ReadOnly Property DiscrepancyValue As Decimal
     Get

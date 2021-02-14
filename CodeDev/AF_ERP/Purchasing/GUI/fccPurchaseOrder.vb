@@ -20,6 +20,8 @@ Public Class fccPurchaseOrder
   Private pPOIEditor As clsPOItemEditor
   Private pcolPOIEditor As colPOItemEditors
   Private pSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
+  Private pCurrentDefaultCurrency As eCurrency
+
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
       DBConn = pDBConn
@@ -243,11 +245,14 @@ Public Class fccPurchaseOrder
         pPurchaseOrder.SubmissionDate = Today
         pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
         pPurchaseOrder.ExchangeRateValue = GetExchangeRate(Today, eCurrency.Cordobas)
+        pPurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
         pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Confirmed
         GetNextPONo()
         SaveObject()
         mOK = True
       End If
+      pCurrentDefaultCurrency = pPurchaseOrder.DefaultCurrency
+
       ''mdsoPurchaseOrder = Nothing
     Catch ex As Exception
       mOK = False
@@ -533,6 +538,15 @@ Public Class fccPurchaseOrder
 
       Return mRetVal
     End Get
+  End Property
+
+  Public Property CurrentDefaultCurrency As eCurrency
+    Get
+      Return pCurrentDefaultCurrency
+    End Get
+    Set(value As eCurrency)
+      pCurrentDefaultCurrency = value
+    End Set
   End Property
 
   Public Function GetTotalNetValue() As Decimal

@@ -90,8 +90,8 @@ Public Class dsoStockTransactionLogItemReportSource
         For Each mSTLI As clsStockItemTransactionLogInfo In pStockTransactionLogItems
 
           If mSTLI.TransType = eTransactionType.Pick Then
-            mSTLI.ExchangeRate = GetExchangeRate(mSTLI.TransDate, eCurrency.Cordobas)
-            mSTLI.TransactionValuationDollar = mSTLI.TotalValue / mSTLI.ExchangeRate
+            ' mSTLI.ExchangeRate = GetExchangeRate(mSTLI.TransDate, eCurrency.Cordobas)
+            'mSTLI.TransactionValuationDollar = mSTLI.TotalValue / mSTLI.ExchangeRate
 
           End If
 

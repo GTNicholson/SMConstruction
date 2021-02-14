@@ -370,7 +370,13 @@ Public Class clsStockItemSharedFuncs
 
   Public Shared Function getStockItemValue(ByRef rStockItem As dmStockItem, ByVal vQty As Decimal) As Decimal
     Dim mRetval As Decimal
-    mRetval = (rStockItem.StdCost + rStockItem.StdImportCost) * vQty
+    If rStockItem.AverageCost = 0 Then
+      mRetval = (rStockItem.StdCost + rStockItem.StdImportCost) * vQty
+
+    Else
+      mRetval = (rStockItem.AverageCost + rStockItem.StdImportCost) * vQty
+
+    End If
     Return mRetval
   End Function
 

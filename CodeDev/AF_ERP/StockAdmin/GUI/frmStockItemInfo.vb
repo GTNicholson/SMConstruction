@@ -146,6 +146,7 @@ Public Class frmStockItemInfo
     gcCurrentInventory.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
     gcCurrentInventory.SummaryItem.DisplayFormat = "{0:n3}"
     gcCurrentInventory.SummaryItem.FieldName = "CurrentInventory"
+
     gvStockItemInfos.GroupSummary.Add(SummaryItemType.Sum, "CurrentInventory")
   End Sub
 

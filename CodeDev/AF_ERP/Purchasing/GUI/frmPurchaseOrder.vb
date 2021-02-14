@@ -368,7 +368,7 @@ Public Class frmPurchaseOrder
 
 
 
-        rgDefaultCurrency.EditValue = pFormController.PurchaseOrder.DefaultCurrency
+        rgDefaultCurrency.EditValue = CInt(pFormController.CurrentDefaultCurrency)
 
         btnEditPurchaseOrderPDF.Text = .FileName
 
@@ -482,7 +482,7 @@ Public Class frmPurchaseOrder
       .ExchangeRateValue = Val(txtExchangeValue.Text)
 
       .BuyerID = clsDEControlLoading.GetDEComboValue(cboBuyer)
-      pFormController.PurchaseOrder.DefaultCurrency = rgDefaultCurrency.EditValue
+      pFormController.PurchaseOrder.DefaultCurrency = pFormController.CurrentDefaultCurrency
       .DeliveryAddress = uctDeliveryAddress.Address
 
       Select Case .MaterialRequirementTypeID
@@ -663,7 +663,9 @@ Public Class frmPurchaseOrder
           If pSupplier IsNot Nothing Then
             pFormController.PurchaseOrder.SupplierID = pSupplier.SupplierID
             pFormController.PurchaseOrder.Supplier = pSupplier
-            rgDefaultCurrency.EditValue = pSupplier.DefaultCurrency
+            pFormController.CurrentDefaultCurrency = pSupplier.DefaultCurrency
+            rgDefaultCurrency.EditValue = CInt(pFormController.CurrentDefaultCurrency)
+
             pFormController.ReloadSupplier()
             FillSupplierDetail()
 
@@ -680,7 +682,7 @@ Public Class frmPurchaseOrder
       End Select
 
       RefreshControls()
-      rgDefaultCurrency.EditValue = pSupplier.DefaultCurrency
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -706,9 +708,9 @@ Public Class frmPurchaseOrder
 
 
           If ckeAccountOrder.Checked Then
-            pFormController.CreatePurchaseOrderPDF(rgDefaultCurrency.EditValue, pFormController.PurchaseOrder.Supplier.PrintAccountOption, True)
+            pFormController.CreatePurchaseOrderPDF(pFormController.CurrentDefaultCurrency, pFormController.PurchaseOrder.Supplier.PrintAccountOption, True)
           Else
-            pFormController.CreatePurchaseOrderPDF(rgDefaultCurrency.EditValue, pFormController.PurchaseOrder.Supplier.PrintAccountOption, False)
+            pFormController.CreatePurchaseOrderPDF(pFormController.CurrentDefaultCurrency, pFormController.PurchaseOrder.Supplier.PrintAccountOption, False)
 
           End If
 
@@ -835,6 +837,7 @@ Public Class frmPurchaseOrder
 
       Select Case e.Button.Properties.Tag
         Case "AddStockItem"
+
 
           For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
             mStockItems.Add(mItem.Value)
@@ -1077,15 +1080,16 @@ Public Class frmPurchaseOrder
     End If
   End Sub
 
-  Private Sub rgDefaultCurrency_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgDefaultCurrency.SelectedIndexChanged
+  Private Sub rgDefaultCurrency_EditValueChanged(sender As Object, e As EventArgs) Handles rgDefaultCurrency.EditValueChanged
 
-    If rgDefaultCurrency.EditValue = eCurrency.Cordobas Then
+    pFormController.CurrentDefaultCurrency = CInt(rgDefaultCurrency.EditValue)
+    If pFormController.CurrentDefaultCurrency = eCurrency.Cordobas Then
       lblExchangeRate.Visible = True
       txtExchangeValue.Visible = True
 
       If pFormController.PurchaseOrder.ExchangeRateValue = 0 Then
         pFormController.PurchaseOrder.ExchangeRateValue = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
-        RefreshControls()
+        'RefreshControls()
       End If
 
       gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = True
@@ -1154,7 +1158,7 @@ Public Class frmPurchaseOrder
       gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.0000;;#"
 
     End If
-
+    RefreshControls()
   End Sub
 
   Private Sub btnPODelivery_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnPODelivery.ItemClick

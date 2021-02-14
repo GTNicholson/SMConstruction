@@ -210,7 +210,12 @@ Public Class clsStockItemInfo
 
   Public ReadOnly Property StdCost() As Decimal
     Get
-      Return pStockItem.AverageCost
+      If pStockItem.AverageCost = 0 Then
+        Return pStockItem.StdCost
+      Else
+        Return pStockItem.AverageCost
+
+      End If
     End Get
 
   End Property
@@ -244,7 +249,13 @@ Public Class clsStockItemInfo
 
   Public ReadOnly Property ActualValueInventory() As Decimal
     Get
-      Return pCurrentInventory * pStockItem.StdCost
+      If AverageCost = 0 Then
+        Return pCurrentInventory * StdCost
+
+      Else
+        Return pCurrentInventory * AverageCost
+
+      End If
     End Get
 
   End Property
@@ -276,7 +287,12 @@ Public Class clsStockItemInfo
 
   Public ReadOnly Property AverageCost As Decimal
     Get
-      Return pStockItem.AverageCost
+      If pStockItem.AverageCost = 0 Then
+        Return pStockItem.StdCost
+      Else
+        Return pStockItem.AverageCost
+      End If
+
     End Get
   End Property
 

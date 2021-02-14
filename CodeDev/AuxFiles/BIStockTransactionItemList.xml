@@ -122,7 +122,7 @@
       <property name="Caption">Cant. Transf.</property>
       <property name="FieldName">TransQuantity</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">84</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
@@ -346,9 +346,9 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Costo</property>
-      <property name="FieldName">StdCost</property>
+      <property name="FieldName">AverageCost</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">93</property>
       <property name="DisplayFormat" isnull="true" iskey="true">

@@ -360,7 +360,15 @@ Public Class dsoStockTransactions
             Select Case mStockItem.Category
               Case eStockItemCategory.Timber
               Case Else
+
+                ''//Update AverageCost in Cordobas currency
+                If vDefaultCurrency = eCurrency.Dollar Then
+
+                  vPOItemRecievedValue = vPOItemRecievedValue * vExchangeRate
+
+                End If
                 mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue)
+
             End Select
           End If
 
@@ -1537,43 +1545,118 @@ Public Class dsoStockTransactions
 
   Public Sub ResetStockTransactionValuations(ByVal vStockItemID As Integer, ByVal vStartingQty As Decimal, ByVal vStartingUnitCost As Decimal)
     Dim mSQL As String
-    Dim mTranLogs As colStockItemTransactionLogs
-    Dim mdto As dtoStockItemTransactionLog
+    Dim mTranLogs As colStockItemTransactionLogInfos
+    Dim mdto As dtoStockItemTransactionLogInfo
     Dim mCurrentUnitCost As Decimal
     Dim mCurrentTotalQty As Decimal
     Dim mCurrentTotalValue As Decimal
     Dim mPODeliveryUnitCost As Decimal
+    Dim mExchangeRate As Decimal
+    Dim mDefaultCurrencty As Integer
+    Dim mAverageCost As Decimal
 
     Try
       If pDBConn.Connect() Then
-        mTranLogs = New colStockItemTransactionLogs
-        mdto = New dtoStockItemTransactionLog(pDBConn)
-        mdto.LoadStockItemTransactionLogCollectionByWhere(mTranLogs, "StockItemID = " & vStockItemID)
+        mTranLogs = New colStockItemTransactionLogInfos
+        mdto = New dtoStockItemTransactionLogInfo(pDBConn, dtoStockItemTransactionLogInfo.eMode.StockItemTransactionLogInfo)
+        mdto.LoadStockItemTransactionLogInfoCollection(mTranLogs, "StockItemID = " & vStockItemID)
 
         '// Current qty and unit cost set to starting value
         mCurrentTotalQty = vStartingQty
         mCurrentUnitCost = vStartingUnitCost
 
-        For Each mTran As dmStockItemTransactionLog In mTranLogs
-          Select Case mTran.TransactionType
+        For Each mTran As clsStockItemTransactionLogInfo In mTranLogs
+
+
+
+
+          Select Case mTran.TransType
             Case eTransactionType.GoodsIn, eTransactionType.SupplierReturn
               '// get the purchase order item value
               mSQL = "Select UnitPrice From vwPODeliveryItemInfo Where PODeliveryItemID = " & mTran.RefObjectID
               mPODeliveryUnitCost = pDBConn.ExecuteScalar(mSQL)
-              mTran.TransactionValuation = mTran.TranValue * mPODeliveryUnitCost
 
-              '// Now modify the Current Unit Cost
-              mCurrentTotalQty = mCurrentTotalQty + mTran.TranValue
-              mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuation
-              mCurrentUnitCost = mCurrentTotalValue / mCurrentTotalQty
+              ''//Get the defaultcurrency from the PODelivery in order to update the right transaction valuation in USD
+              mSQL = "Select DefaultCurrency From vwPODeliveryItemInfo Where PODeliveryItemID = " & mTran.RefObjectID
+              mDefaultCurrencty = pDBConn.ExecuteScalar(mSQL)
+
+              ''//Exhange from Cordobas to USD
+              mExchangeRate = GetExchangeRateConnected(mTran.TransDate, eCurrency.Cordobas)
+
+              If mExchangeRate > 0 Then ''//avoid division by 0
+
+                If mDefaultCurrencty = eCurrency.Cordobas Then
+
+
+
+                  mTran.TransactionValuationDollar = mTran.TransQuantity * (mPODeliveryUnitCost / mExchangeRate)
+
+
+
+                  '// Now modify the Current Unit Cost
+                  mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
+                  mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuationDollar
+                  If mCurrentTotalQty > 0 Then
+                    mCurrentUnitCost = mCurrentTotalValue / mCurrentTotalQty
+                  End If
+
+
+                Else ''If is USD
+                  mTran.TransactionValuationDollar = mTran.TransQuantity * mPODeliveryUnitCost
+
+                  '// Now modify the Current Unit Cost
+                  mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
+                  mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuationDollar
+
+                  If mCurrentTotalQty > 0 Then
+                    mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty) * mExchangeRate
+                  End If
+
+                End If
+                mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mCurrentUnitCost, vStockItemID)
+                pDBConn.ExecuteNonQuery(mSQL)
+              End If
+
+
+
+
             Case Else
-              mTran.TransactionValuation = mTran.TranValue * mCurrentUnitCost
-              mCurrentTotalQty = mCurrentTotalQty + mTran.TranValue
+
+              ''//the rest of transaction types are in Cordobas because it's getting the value from StdCost in StockItem table
+
+              mSQL = String.Format("Select IsNull(AverageCost,0) from StockItem Where StockItemID = {0}", vStockItemID)
+
+              mAverageCost = pDBConn.ExecuteScalar(mSQL)
+
+              ''//This will update the transactions for the Picking with the AverageCost instead of StdCost
+              If mAverageCost > 0 Then
+                mCurrentUnitCost = mAverageCost
+              End If
+
+              mExchangeRate = GetExchangeRateConnected(mTran.TransDate, eCurrency.Cordobas)
+
+                If mExchangeRate > 0 Then ''//avoid division by 0
+                  mCurrentUnitCost = mCurrentUnitCost / mExchangeRate
+                End If
+
+
+              mTran.TransactionValuationDollar = mTran.TransQuantity * mCurrentUnitCost
+              mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
               mCurrentTotalValue = mCurrentTotalQty * mCurrentUnitCost
+
+
           End Select
+
+          ''//Update the current StockItemTransactionLog, I dont like this way but in the Table we dont have a stockitemid, it's only in the info class
+          mSQL = String.Format("Update StockItemTransactionLog Set TransactionValuationDollar = {0} Where StockItemTransactionLogID = {1}", mCurrentTotalValue, mTran.StockItemTransactionLogID)
+          pDBConn.ExecuteNonQuery(mSQL)
+
+
+
+
         Next
 
-        mdto.SaveStockItemTransactionLogCollection(mTranLogs)
+        'mdto.SaveStockItemTransactionLogCollection(mTranLogs)
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -1582,5 +1665,14 @@ Public Class dsoStockTransactions
     End Try
 
   End Sub
+
+  Public Function GetExchangeRateConnected(ByVal vDate As Date, vCurrency As Integer) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    Dim mExchangeRate As Decimal = 0
+
+    mExchangeRate = mdsoGeneral.GetExchangeRateCoonected(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
 
 End Class

@@ -294,7 +294,8 @@ Public Class fccPODelivery
 
 
 
-
+          ''//Reload StockItemRegistry
+          AppRTISGlobal.GetInstance.StockItemRegistry.RefreshStockItem(mPOP.StockItem.StockItemID)
 
           mPOP.ToProcessQty = 0
 

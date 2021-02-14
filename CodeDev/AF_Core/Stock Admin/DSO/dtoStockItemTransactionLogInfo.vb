@@ -103,6 +103,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
             .StockCode = DBReadString(rDataReader, "StockCode")
             .Description = DBReadString(rDataReader, "Description")
             .StdCost = DBReadDecimal(rDataReader, "StdCost")
+            .AverageCost = DBReadDecimal(rDataReader, "AverageCost")
           End With
 
           With pStockItemTransactionLogInfo.WorkOrder

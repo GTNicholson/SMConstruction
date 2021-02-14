@@ -219,6 +219,8 @@ Public Class frmStockTake
     pLoadError = False
 
     Try
+
+
       If mOK Then mOK = pFormController.LoadObject()
 
       If mOK Then mOK = pFormController.LoadRefData()

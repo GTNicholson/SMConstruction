@@ -898,10 +898,22 @@ Public Class fccStockTake
     'Load a local variable of a collection all StockItemCostBookEntries for this cost book (LoadStockItemCostBookEntries) called from dsostockitem
 
     For Each mSIE As clsStockTakeItemEditor In pStockTakeItemEditors
-      mSICostBookEntry = mSICostBookEntrys.ItemFromStockItemID(mSIE.StockItem.StockItemID)
-      If mSICostBookEntry IsNot Nothing Then
-        mSIE.StockTakeItem.SnapShotUnitCost = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mSICostBookEntry.StockItemID).StdCost
-      End If
+
+      Dim mTempStockItem As dmStockItem
+      ''//Make sure that the average cost is updated from the stockitemregistry
+      AppRTISGlobal.GetInstance.StockItemRegistry.RefreshStockItem(mSIE.StockItem.StockItemID)
+
+      mTempStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mSIE.StockItem.StockItemID)
+      If mTempStockItem IsNot Nothing Then
+
+          If mTempStockItem.AverageCost = 0 Then
+            mSIE.StockTakeItem.SnapShotUnitCost = mTempStockItem.StdCost + mTempStockItem.StdImportCost
+          Else
+            mSIE.StockTakeItem.SnapShotUnitCost = mTempStockItem.AverageCost + mTempStockItem.StdImportCost
+
+          End If
+        End If
+
 
     Next
 

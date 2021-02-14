@@ -102,6 +102,7 @@ Partial Class frmStockTake
         Me.txtStockCheckDesc = New DevExpress.XtraEditors.TextEdit()
         Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.puccStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.puccStockItemValuationHistorys.SuspendLayout()
         CType(Me.grdStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -362,7 +363,7 @@ Partial Class frmStockTake
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1370, 35)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1370, 32)
         '
         'barDockControlBottom
         '
@@ -376,17 +377,17 @@ Partial Class frmStockTake
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 35)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 676)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 679)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1370, 35)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1370, 32)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 676)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 679)
         '
         'bbtnStockValuation
         '
@@ -448,7 +449,7 @@ Partial Class frmStockTake
         Me.GridColumn6.OptionsColumn.TabStop = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
-        Me.GridColumn6.Width = 67
+        Me.GridColumn6.Width = 144
         '
         'GridColumn5
         '
@@ -459,7 +460,7 @@ Partial Class frmStockTake
         Me.GridColumn5.OptionsColumn.TabStop = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 37
+        Me.GridColumn5.Width = 79
         '
         'GridColumn4
         '
@@ -470,7 +471,7 @@ Partial Class frmStockTake
         Me.GridColumn4.OptionsColumn.TabStop = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 46
+        Me.GridColumn4.Width = 99
         '
         'gcStockCode
         '
@@ -484,7 +485,7 @@ Partial Class frmStockTake
         Me.gcStockCode.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "StockCode", "{0}")})
         Me.gcStockCode.Visible = True
         Me.gcStockCode.VisibleIndex = 1
-        Me.gcStockCode.Width = 50
+        Me.gcStockCode.Width = 107
         '
         'repitbtStockItemRefresh
         '
@@ -502,7 +503,7 @@ Partial Class frmStockTake
         Me.GridColumn1.OptionsColumn.TabStop = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
-        Me.GridColumn1.Width = 46
+        Me.GridColumn1.Width = 99
         '
         'gvStockCheckItem
         '
@@ -515,7 +516,7 @@ Partial Class frmStockTake
         Me.gvStockCheckItem.Appearance.Row.Options.UseBackColor = True
         Me.gvStockCheckItem.Appearance.Row.Options.UseFont = True
         Me.gvStockCheckItem.ColumnPanelRowHeight = 34
-        Me.gvStockCheckItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.gcStockCode, Me.GridColumn23, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.gcCountedQty, Me.gcWriteOffQuantity, Me.GridColumn20, Me.gcIsCounted, Me.gcDiscrepency, Me.GridColumn2, Me.gcStockTakeSheet, Me.GridColumn9, Me.GridColumn3, Me.GridColumn21, Me.GridColumn24, Me.GridColumn22})
+        Me.gvStockCheckItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.gcStockCode, Me.GridColumn23, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.gcCountedQty, Me.gcWriteOffQuantity, Me.GridColumn20, Me.GridColumn8, Me.gcIsCounted, Me.gcDiscrepency, Me.GridColumn2, Me.gcStockTakeSheet, Me.GridColumn9, Me.GridColumn3, Me.GridColumn21, Me.GridColumn24, Me.GridColumn22})
         Me.gvStockCheckItem.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
         Me.gvStockCheckItem.GridControl = Me.grdStockCheckItem
         Me.gvStockCheckItem.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, Nothing, Me.gcStockCode, "")})
@@ -547,8 +548,8 @@ Partial Class frmStockTake
         Me.gcCountedQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcCountedQty", "{0:#,##0.00;;#}")})
         Me.gcCountedQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcCountedQty.Visible = True
-        Me.gcCountedQty.VisibleIndex = 9
-        Me.gcCountedQty.Width = 37
+        Me.gcCountedQty.VisibleIndex = 10
+        Me.gcCountedQty.Width = 92
         '
         'RepositoryItemSpinEditCounted
         '
@@ -583,7 +584,7 @@ Partial Class frmStockTake
         Me.GridColumn20.OptionsColumn.TabStop = False
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 5
-        Me.GridColumn20.Width = 42
+        Me.GridColumn20.Width = 90
         '
         'gcIsCounted
         '
@@ -593,8 +594,8 @@ Partial Class frmStockTake
         Me.gcIsCounted.FieldName = "IsCounted"
         Me.gcIsCounted.Name = "gcIsCounted"
         Me.gcIsCounted.Visible = True
-        Me.gcIsCounted.VisibleIndex = 8
-        Me.gcIsCounted.Width = 36
+        Me.gcIsCounted.VisibleIndex = 9
+        Me.gcIsCounted.Width = 90
         '
         'gcDiscrepency
         '
@@ -606,8 +607,8 @@ Partial Class frmStockTake
         Me.gcDiscrepency.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcDiscrepency", "{0:#,##0.00;;#}")})
         Me.gcDiscrepency.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcDiscrepency.Visible = True
-        Me.gcDiscrepency.VisibleIndex = 10
-        Me.gcDiscrepency.Width = 39
+        Me.gcDiscrepency.VisibleIndex = 11
+        Me.gcDiscrepency.Width = 98
         '
         'GridColumn2
         '
@@ -618,8 +619,8 @@ Partial Class frmStockTake
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SnapshotQty", "{0:#,##0.00;;#}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 7
-        Me.GridColumn2.Width = 37
+        Me.GridColumn2.VisibleIndex = 8
+        Me.GridColumn2.Width = 92
         '
         'gcStockTakeSheet
         '
@@ -627,8 +628,6 @@ Partial Class frmStockTake
         Me.gcStockTakeSheet.FieldName = "gcStockTakeSheet"
         Me.gcStockTakeSheet.Name = "gcStockTakeSheet"
         Me.gcStockTakeSheet.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.gcStockTakeSheet.Visible = True
-        Me.gcStockTakeSheet.VisibleIndex = 15
         Me.gcStockTakeSheet.Width = 20
         '
         'GridColumn9
@@ -638,7 +637,7 @@ Partial Class frmStockTake
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
-        Me.GridColumn9.Width = 20
+        Me.GridColumn9.Width = 43
         '
         'GridColumn3
         '
@@ -649,8 +648,8 @@ Partial Class frmStockTake
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SystemTotalValue", "{0:C$#,##0.00;;#}")})
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 11
-        Me.GridColumn3.Width = 32
+        Me.GridColumn3.VisibleIndex = 12
+        Me.GridColumn3.Width = 80
         '
         'GridColumn21
         '
@@ -662,8 +661,8 @@ Partial Class frmStockTake
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CountedValue", "{0:C$#,##0.00;;#}")})
         Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 12
-        Me.GridColumn21.Width = 29
+        Me.GridColumn21.VisibleIndex = 13
+        Me.GridColumn21.Width = 72
         '
         'GridColumn24
         '
@@ -674,8 +673,6 @@ Partial Class frmStockTake
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WriteOffValue", "{0:C$#,##0.00;;#}")})
         Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 13
         Me.GridColumn24.Width = 33
         '
         'GridColumn22
@@ -688,16 +685,16 @@ Partial Class frmStockTake
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DiscrepancyValue", "{0:C$#,##0.00;;#}")})
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 14
-        Me.GridColumn22.Width = 27
+        Me.GridColumn22.Width = 95
         '
         'grdStockCheckItem
         '
         Me.grdStockCheckItem.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockCheckItem.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockCheckItem.Location = New System.Drawing.Point(2, 24)
         Me.grdStockCheckItem.MainView = Me.gvStockCheckItem
         Me.grdStockCheckItem.Name = "grdStockCheckItem"
         Me.grdStockCheckItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitPUStockItemValuationHistorys, Me.RepositoryItemSpinEditCounted, Me.repitbtStockItemRefresh})
-        Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 546)
+        Me.grdStockCheckItem.Size = New System.Drawing.Size(1355, 551)
         Me.grdStockCheckItem.TabIndex = 6
         Me.grdStockCheckItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockCheckItem})
         '
@@ -882,7 +879,7 @@ Partial Class frmStockTake
         Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
         Me.grpItemDetail.Name = "grpItemDetail"
-        Me.grpItemDetail.Size = New System.Drawing.Size(1359, 574)
+        Me.grpItemDetail.Size = New System.Drawing.Size(1359, 577)
         Me.grpItemDetail.TabIndex = 94
         Me.grpItemDetail.Text = "Stock Items"
         '
@@ -891,10 +888,24 @@ Partial Class frmStockTake
         Me.PanelControl1.Controls.Add(Me.grpDetail)
         Me.PanelControl1.Controls.Add(Me.grpItemDetail)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 35)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 32)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1370, 676)
+        Me.PanelControl1.Size = New System.Drawing.Size(1370, 679)
         Me.PanelControl1.TabIndex = 10
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceHeader.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn8.AppearanceHeader.Options.UseBackColor = True
+        Me.GridColumn8.Caption = "Costo Unit."
+        Me.GridColumn8.DisplayFormat.FormatString = "C$#,##0.00;;#"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "SnapShotUnitCost"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 58
         '
         'frmStockTake
         '
@@ -1011,4 +1022,5 @@ Partial Class frmStockTake
   Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents bbtnPrintVisibleItems As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btnPrintListToStockTake As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -479,4 +479,42 @@ Public Class frmTabbedMDI_DevUtil
       End If
     End If
   End Sub
+
+  Private Sub btnResetTransactionValuation_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnResetTransactionValuation.LinkClicked
+    Dim mSI As dmStockItem
+    Dim mStockItemsCollection As New colStockItems
+    Dim mDSOStockTransactions As dsoStockTransactions
+    Dim mdsoStockItem As dsoStock
+    Dim mWhere As String = ""
+    Dim mDBConn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+
+    mDBConn.Connect()
+
+
+    ''//Load stockItems except Timber
+    mdsoStockItem = New dsoStock(mDBConn)
+    mWhere = String.Format("Category not in ({0})", CInt(eStockItemCategory.Timber))
+    mdsoStockItem.LoadStockItemsByWhere(mStockItemsCollection, mWhere)
+
+    If mStockItemsCollection IsNot Nothing And mStockItemsCollection.Count > 0 Then
+
+      mDSOStockTransactions = New dsoStockTransactions(mDBConn)
+
+      For Each mSI In mStockItemsCollection
+
+
+        mDSOStockTransactions.ResetStockTransactionValuations(mSI.StockItemID, 0, mSI.StdCost)
+
+      Next
+
+
+
+    End If
+
+
+    If mDBConn.IsConnected Then mDBConn.Disconnect()
+  End Sub
+
+
+
 End Class

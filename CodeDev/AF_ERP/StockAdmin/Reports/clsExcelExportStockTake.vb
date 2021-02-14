@@ -211,7 +211,7 @@ Public Class clsExcelExportStockTake
 
         pCurrentSheet.Cells(mRow, cColCategory).SetValue(mItem.StockItemCategoryDesc)
 
-        pCurrentSheet.Cells(mRow, cColStdCost).SetValue(mItem.StdCost)
+        pCurrentSheet.Cells(mRow, cColStdCost).SetValue(mItem.AverageCost)
 
         pCurrentSheet.Cells(mRow, cColCurrentInventory).SetValue(mItem.CountedQty + mItem.WriteOffQuantity)
         mTotalCounted += mItem.CountedQty

@@ -124,7 +124,18 @@ Public Class clsStockItemTransactionLogInfo
     End Set
   End Property
 
+  Public ReadOnly Property AverageCost As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
 
+      If TransQuantity > 0 Then
+
+        mRetVal = pTransactionValuationDollar / TransQuantity
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
 
   Public ReadOnly Property TotalValue As Decimal
     Get
