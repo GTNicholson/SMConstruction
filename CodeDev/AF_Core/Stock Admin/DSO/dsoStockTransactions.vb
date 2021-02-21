@@ -357,23 +357,25 @@ Public Class dsoStockTransactions
             vDeliveryItem.SetQtyReceived(vDeliveryItem.QtyReceived + vRecievedQty)
             vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vRecievedQty)
             '// If it is not Timber category then update the Average Cost of the Stock Item
-            Select Case mStockItem.Category
-              Case eStockItemCategory.Timber
-              Case Else
+            If mStockItem IsNot Nothing Then
+              Select Case mStockItem.Category
+                Case eStockItemCategory.Timber
+                Case Else
 
-                ''//Update AverageCost in Cordobas currency
-                If vDefaultCurrency = eCurrency.Dollar Then
+                  ''//Update AverageCost in Cordobas currency
+                  If vDefaultCurrency = eCurrency.Dollar Then
 
-                  vPOItemRecievedValue = vPOItemRecievedValue * vExchangeRate
+                    vPOItemRecievedValue = vPOItemRecievedValue * vExchangeRate
 
-                End If
-                mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue)
+                  End If
+                  mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue, mSILTranLog.StockItemTransactionLogID)
 
-            End Select
+              End Select
+            End If
           End If
 
 
-        End If
+          End If
       End If
     Catch ex As Exception
       mOK = False
@@ -392,40 +394,40 @@ Public Class dsoStockTransactions
   End Function
 
 
-  Public Sub CreateGeneralAmendmentWoodPalletTransaction(ByVal vStockItemID As Integer, ByVal vLocationID As Byte, ByVal vTransactionType As eTransactionType, ByVal vTranQty As Decimal, ByVal vAdjustDate As DateTime, ByVal vNotes As String, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal)
-    Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
-    Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mStockItemLocation As dmStockItemLocation
+  'Public Sub CreateGeneralAmendmentWoodPalletTransaction(ByVal vStockItemID As Integer, ByVal vLocationID As Byte, ByVal vTransactionType As eTransactionType, ByVal vTranQty As Decimal, ByVal vAdjustDate As DateTime, ByVal vNotes As String, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal)
+  '  Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
+  '  Dim mdsoStock As New dsoStock(pDBConn)
+  '  Dim mStockItemLocation As dmStockItemLocation
 
-    Try
+  '  Try
 
-      mStockItemLocation = mdsoStock.GetOrCreateStockItemLocation(vStockItemID, vLocationID)
+  '    mStockItemLocation = mdsoStock.GetOrCreateStockItemLocation(vStockItemID, vLocationID)
 
-      If mStockItemLocation IsNot Nothing Then
-        Dim mLocationAmendment As New dmStockItemLocationAmendmentLog
+  '    If mStockItemLocation IsNot Nothing Then
+  '      Dim mLocationAmendment As New dmStockItemLocationAmendmentLog
 
-        With mLocationAmendment
-          .SystemDate = DateTime.Now
-          .AmendmentDate = vAdjustDate
-          .ChangeDetails = vNotes
-          .UserID = pDBConn.RTISUser.UserID
-          .StockItemLocationID = mStockItemLocation.StockItemLocationID
-        End With
+  '      With mLocationAmendment
+  '        .SystemDate = DateTime.Now
+  '        .AmendmentDate = vAdjustDate
+  '        .ChangeDetails = vNotes
+  '        .UserID = pDBConn.RTISUser.UserID
+  '        .StockItemLocationID = mStockItemLocation.StockItemLocationID
+  '      End With
 
-        ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
-        Select Case vTransactionType
-          Case eTransactionType.Adjustment
-            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vUnitCost, vExchangeRate)
-          Case eTransactionType.Amendment, eTransactionType.WoodAmendment
-            mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vUnitCost, vExchangeRate)
-        End Select
+  '      ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
+  '      Select Case vTransactionType
+  '        Case eTransactionType.Adjustment
+  '          mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vUnitCost, vExchangeRate)
+  '        Case eTransactionType.Amendment, eTransactionType.WoodAmendment
+  '          mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vUnitCost, vExchangeRate)
+  '      End Select
 
-      End If
+  '    End If
 
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    End Try
-  End Sub
+  '  Catch ex As Exception
+  '    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+  '  End Try
+  'End Sub
 
 
   Public Function CreateGeneralOutPutWoodPalletTransaction(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal, ByVal vWoodPallet As dmWoodPallet) As Boolean
@@ -1581,46 +1583,64 @@ Public Class dsoStockTransactions
               mDefaultCurrencty = pDBConn.ExecuteScalar(mSQL)
 
               ''//Exhange from Cordobas to USD
-              mExchangeRate = GetExchangeRateConnected(mTran.TransDate, eCurrency.Cordobas)
+              ''//We decided in this reseting of the Costing to use the Exchange Rate from the Purchase Order
 
-              If mExchangeRate > 0 Then ''//avoid division by 0
+              mSQL = "Select ExchangeRateValue From vwPODeliveryItemInfo Where PODeliveryItemID = " & mTran.RefObjectID
+              mExchangeRate = pDBConn.ExecuteScalar(mSQL)
 
-                If mDefaultCurrencty = eCurrency.Cordobas Then
+              'GetExchangeRateConnected(mTran.TransDate, eCurrency.Cordobas)
 
+              ''//avoid division by 0
+              ''//Exchange Rate = 0 means that the item was bought in USD
 
-
-                  mTran.TransactionValuationDollar = mTran.TransQuantity * (mPODeliveryUnitCost / mExchangeRate)
-
-
-
-                  '// Now modify the Current Unit Cost
-                  mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
-                  mCurrentTotalValue = mCurrentTotalValue + (mTran.TransQuantity * mPODeliveryUnitCost) 'mTran.TransactionValuationDollar
-                  If mCurrentTotalQty > 0 Then
-                    mCurrentUnitCost = mCurrentTotalValue / mCurrentTotalQty
-                  End If
-
-
-                Else ''If is USD
-                  mTran.TransactionValuationDollar = mTran.TransQuantity * mPODeliveryUnitCost
-
-                  '// Now modify the Current Unit Cost
-                  mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
-                  mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuationDollar
-
-                  If mCurrentTotalQty > 0 Then
-                    mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty) * mExchangeRate
-                  End If
-
-                End If
-                mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mCurrentUnitCost, vStockItemID)
-                pDBConn.ExecuteNonQuery(mSQL)
+              If mExchangeRate = 0 Then
+                mExchangeRate = 1
               End If
+
+              If mDefaultCurrencty = eCurrency.Cordobas Then
+
+
+
+                mTran.TransactionValuationDollar = mTran.TransQuantity * (mPODeliveryUnitCost / mExchangeRate)
+                mTran.TransactionValuation = mTran.TransQuantity * mPODeliveryUnitCost
+
+
+
+                '// Now modify the Current Unit Cost
+                mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
+                mCurrentTotalValue = mCurrentTotalValue + (mTran.TransQuantity * mPODeliveryUnitCost) 'mTran.TransactionValuationDollar
+                If mCurrentTotalQty > 0 Then
+                  mCurrentUnitCost = mCurrentTotalValue / mCurrentTotalQty
+                End If
+
+
+              Else ''If is USD
+                mTran.TransactionValuationDollar = mTran.TransQuantity * mPODeliveryUnitCost
+                mTran.TransactionValuation = (mTran.TransQuantity * mPODeliveryUnitCost) / mExchangeRate
+
+                '// Now modify the Current Unit Cost
+                mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
+                mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuationDollar
+
+                If mCurrentTotalQty > 0 Then
+                  mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty) * mExchangeRate
+                End If
+
+              End If
+              mCurrentUnitCost = Math.Round(mCurrentUnitCost, 4, MidpointRounding.AwayFromZero)
+
+              mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mCurrentUnitCost, vStockItemID)
+                pDBConn.ExecuteNonQuery(mSQL)
+
 
 
 
 
             Case Else
+
+
+
+              mCurrentUnitCost = vStartingUnitCost
 
               ''//the rest of transaction types are in Cordobas because it's getting the value from StdCost in StockItem table
 
@@ -1633,22 +1653,41 @@ Public Class dsoStockTransactions
                 mCurrentUnitCost = mAverageCost
               End If
 
-              mExchangeRate = GetExchangeRateConnected(mTran.TransDate, eCurrency.Cordobas)
+              mSQL = "Select ExchangeRateValue From vwPODeliveryItemInfo Where PODeliveryItemID = " & mTran.RefObjectID
+              mExchangeRate = pDBConn.ExecuteScalar(mSQL)
 
-                If mExchangeRate > 0 Then ''//avoid division by 0
-                  mCurrentUnitCost = mCurrentUnitCost / mExchangeRate
+              If mExchangeRate > 0 Then ''//avoid division by 0
+                mCurrentUnitCost = mCurrentUnitCost / mExchangeRate
+
+              Else
+                ''//this is when the user picked an old item, in this case I assume the exchange rate from the transaction date
+                mExchangeRate = GetExchangeRateConnected(mTran.TransDate, eCurrency.Cordobas)
+
+                If mExchangeRate = 0 Then
+                  mExchangeRate = 1
+
                 End If
+                mCurrentUnitCost = mCurrentUnitCost / mExchangeRate
+
+              End If
 
 
               mTran.TransactionValuationDollar = mTran.TransQuantity * mCurrentUnitCost
+              mTran.TransactionValuation = (mTran.TransQuantity * mCurrentUnitCost) * mExchangeRate
+
+
               mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
               mCurrentTotalValue = mCurrentTotalQty * (mCurrentUnitCost * mExchangeRate)
 
 
           End Select
 
+          mTran.TransactionValuationDollar = Math.Round(mTran.TransactionValuationDollar, 4, MidpointRounding.AwayFromZero)
+          mTran.TransactionValuation = Math.Round(mTran.TransactionValuation, 4, MidpointRounding.AwayFromZero)
+          mCurrentTotalValue = Math.Round(mCurrentTotalValue, 4, MidpointRounding.AwayFromZero)
+
           ''//Update the current StockItemTransactionLog, I dont like this way but in the Table we dont have a stockitemid, it's only in the info class
-          mSQL = String.Format("Update StockItemTransactionLog Set TransactionValuationDollar = {0} Where StockItemTransactionLogID = {1}", mTran.TransactionValuationDollar, mTran.StockItemTransactionLogID)
+          mSQL = String.Format("Update StockItemTransactionLog Set TransactionValuationDollar = {0}, TransactionValuation = {1}, StockValuation = {2} Where StockItemTransactionLogID = {3}", mTran.TransactionValuationDollar, mTran.TransactionValuation, mCurrentTotalValue, mTran.StockItemTransactionLogID)
           pDBConn.ExecuteNonQuery(mSQL)
 
 

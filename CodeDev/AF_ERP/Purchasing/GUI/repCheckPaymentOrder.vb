@@ -102,7 +102,11 @@ Public Class repCheckPaymentOrder
     Dim mText As String = "Compra de"
 
 
-
+    If pPOInfo.isBigTaxPayer Then
+      xrtcIsBigTaxPayer.Visible = True
+    Else
+      xrtcIsBigTaxPayer.Visible = False
+    End If
 
     mWhere = "PONum = " & pPOInfo.PONum
     mdso.LoadPurchaseOrderItemAllocationInfos(mPOAII, mWhere)
@@ -130,7 +134,8 @@ Public Class repCheckPaymentOrder
             mText &= " " & mPOAI.Quantity.ToString("N2") & " " & mPOAI.UoMDesc & " de " & mPOAI.Description
 
             If mPOAI.ProjectName = "" Then
-              mText &= vbCrLf & "Con cargo a " & pPOInfo.AccoutingCategoryDesc
+              mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
+
             Else
 
               mText &= vbCrLf & "Con cargo al proyecto " & mPOAI.ProjectName
@@ -141,7 +146,7 @@ Public Class repCheckPaymentOrder
           Next
 
         Else
-          mText &= " Con cargo a " & pPOInfo.AccoutingCategoryDesc
+          mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
           xrtDescriptionPOItem.Text = mText
 
         End If

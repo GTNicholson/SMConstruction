@@ -370,7 +370,7 @@ Public Class frmStockTake
           btnClearSystemQty.Enabled = True
 
 
-          barbtnRunValuation.Enabled = True
+          'barbtnRunValuation.Enabled = True
           barbtnFIFOCountedValue.Enabled = True
 
 
@@ -381,10 +381,14 @@ Public Class frmStockTake
           btnClearSystemQty.Enabled = False
 
 
-          barbtnRunValuation.Enabled = False
+          'barbtnRunValuation.Enabled = False
           barbtnFIFOCountedValue.Enabled = False
 
         End If
+
+        barbtnRunValuation.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+        bbtnRefreshStockItems.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
+        barbtnRefreshSystemQty.Enabled = clsGeneralA.IsBlankDate(.DateCommitted)
 
         gvStockCheckItem.RefreshData()
 

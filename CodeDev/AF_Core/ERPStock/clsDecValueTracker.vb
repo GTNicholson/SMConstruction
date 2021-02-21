@@ -35,10 +35,19 @@
       Select Case vDefaultCurrency
         Case eCurrency.Cordobas
           .TransactionValuationDollar = (vUnitCost * vAdjustvalue) / vExchangeRate
+          .TransactionValuation = vUnitCost * vAdjustvalue
+
 
         Case eCurrency.Dollar
           .TransactionValuationDollar = (vUnitCost * vAdjustvalue)
+          .TransactionValuation = (vUnitCost * vAdjustvalue) / vExchangeRate
+
       End Select
+      ''//Rouding in 4 decimal places as per Leonels'Request
+      .TransactionValuationDollar = Math.Round(.TransactionValuationDollar, 4, MidpointRounding.AwayFromZero)
+
+      .TransactionValuation = Math.Round(.TransactionValuation, 4, MidpointRounding.AwayFromZero)
+
     End With
     pDecValue = pDecValue + vAdjustvalue
     Return mTransaction
@@ -63,9 +72,12 @@
     Select Case vDefaultCurrency
       Case eCurrency.Cordobas
         mTransaction.TransactionValuationDollar = (vUnitCost * vSetValue) / vExchangeRate
+        mTransaction.TransactionValuation = vUnitCost * vSetValue
 
       Case eCurrency.Dollar
         mTransaction.TransactionValuationDollar = (vUnitCost * vSetValue)
+        mTransaction.TransactionValuation = (vUnitCost * vSetValue) / vExchangeRate
+
     End Select
 
 

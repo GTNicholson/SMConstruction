@@ -112,6 +112,8 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
           .RefMatType = DBReadString(rDataReader, "RefMatType")
           .POStage = DBReadInt32(rDataReader, "POStage")
+          .ValuationMode = DBReadInt32(rDataReader, "ValuationMode")
+          .Supplier.isBigTaxPayer = DBReadBoolean(rDataReader, "isBigTaxPayer")
         End With
       End With
       mOK = True

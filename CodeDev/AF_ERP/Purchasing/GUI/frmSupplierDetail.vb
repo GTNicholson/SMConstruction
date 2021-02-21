@@ -250,6 +250,7 @@ Public Class frmSupplierDetail
       rgEstatus.EditValue = .SupplierStatusID
       rgDefaultCurrency.EditValue = .DefaultCurrency
       ckeIsRetention.EditValue = .IsRetention
+      ckeIsBigTaxPayer.EditValue = .isBigTaxPayer
       UctAddress1.Address = .MainAddress
       UctAddress1.RefreshControls()
 
@@ -284,7 +285,7 @@ Public Class frmSupplierDetail
       .PurchasingTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboPurchaseTermsType)
       .SupplierStatusID = rgEstatus.EditValue
       .IsRetention = ckeIsRetention.EditValue
-
+      .isBigTaxPayer = ckeIsBigTaxPayer.EditValue
       .DefaultCurrency = rgDefaultCurrency.EditValue
       gvSupplierContacts.CloseEditor()
       gvSupplierContacts.UpdateCurrentRow()

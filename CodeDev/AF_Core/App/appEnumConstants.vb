@@ -80,6 +80,8 @@ Public Enum ePOStage
   <Description("Instalaciones Electricas")> InstalacionesElectricas = 10
   <Description("Climatización")> Climatizacion = 11
   <Description("Limpieza Final y Entrega")> LimpiezaEntrega = 12
+  <Description("Baños")> Bathroom = 13
+
 End Enum
 Public Enum eMode
   StockItemAdmin = 1
@@ -91,6 +93,14 @@ Public Enum eSupplirPrintOption
   MainAccount = 1
   SecondaryAccount = 2
 End Enum
+
+Public Enum eValuationMode
+  <Description("Por Adelantado")> ForAdvanced = 0
+  <Description("En Recepción")> BookIn = 1
+  <Description("Al Pagar Factura")> InPayment = 2
+End Enum
+
+
 
 Public Enum eFarms
   <Description("Ninguno")> None = 0
@@ -172,6 +182,10 @@ Public Enum ePurchaseCategories
   <Description("Papelería de Oficinas")> Papeleria = 11
   <Description("Caja Chica")> CajaChica = 12
   <Description("Atención a Proyectos")> AtencionProyectos = 13
+  <Description("EcoForestal")> EcoForestal = 14
+  <Description("Finca El Edén")> FincaEden = 15
+
+
   <Description("Otras")> Otro = 99
 End Enum
 

@@ -1,0 +1,109 @@
+alter table PurchaseOrder
+add ValuationMode int
+go
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+PO.AccoutingCategoryID,
+po.ValuationMode,
+SupplierContactTel,
+MaterialRequirementTypeID,
+PO.DefaultCurrency,
+PO.POStage,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left JOIN vwPurchaseOrderAllocation POA ON POA.PurchaseOrderID=po.PurchaseOrderID
+
+GO
+
+
+alter table StockItemTransactionLog
+alter column TransactionValuationDollar decimal (12,4)
+go
+
+alter table StockItemTransactionLog
+alter column TransactionValuation decimal (12,4)
+go
+
+alter table StockItemTransactionLog
+alter column StockValuation decimal (12,4)
+go
+
+
+
+ALTER view [dbo].[vwWoodStockItemInfo]
+as
+
+SELECT        
+SI.StockItemID, 
+SI.StockCode,
+SI.PartNo,
+si.ASISID,
+SI.Category, 
+SI.ItemType, 
+SI.Species, 
+SI.Colour, 
+SI.Length, 
+SI.Width, 
+SI.Thickness, 
+SI.DefaultSupplier,
+SI.Description, 
+SI.UoM,
+SI.CostUoM,
+SI.SupplierUoM,
+StdCost,
+si.AverageCost,
+WSIL.Qty,
+SIMR.OSQty,
+SIPOS.POSQty,
+SP.CompanyName
+-- On Order Qty
+FROM dbo.StockItem AS SI 
+inner join vwWoodTransactionSUM as WSIL ON WSIL.StockItemID = si.StockItemID 
+left join vwStockItemMaterialRequirementSum SIMR on SIMR.StockItemID = SI.StockItemID
+left join vwStockItemPurchaseOrderSum SIPOS ON SIPOS.StockItemID=Si.StockItemID
+left join Supplier SP on SP.SupplierID=SI.DefaultSupplier
+ where si.Category=15
+GO
+
+

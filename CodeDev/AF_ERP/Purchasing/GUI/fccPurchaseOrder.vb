@@ -247,6 +247,7 @@ Public Class fccPurchaseOrder
         pPurchaseOrder.ExchangeRateValue = GetExchangeRate(Today, eCurrency.Cordobas)
         pPurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
         pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Confirmed
+        pPurchaseOrder.ValuationMode = eValuationMode.ForAdvanced
         GetNextPONo()
         SaveObject()
         mOK = True
@@ -615,7 +616,7 @@ Public Class fccPurchaseOrder
     Dim mdsoGeneral As New dsoGeneral(DBConn)
     Dim mExchangeRate As Decimal = 0
 
-    mExchangeRate = mdsoGeneral.GetExchangeRate(vDate, vCurrency)
+    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
 
     Return mExchangeRate
   End Function

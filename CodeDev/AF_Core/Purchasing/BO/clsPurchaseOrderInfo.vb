@@ -235,7 +235,11 @@ Public Class clsPurchaseOrderInfo
     End Get
 
   End Property
-
+  Public ReadOnly Property SubmissionDateMC As Date
+    Get
+      Return New Date(Year(pPurchaseOrder.SubmissionDate), Month(pPurchaseOrder.SubmissionDate), 1)
+    End Get
+  End Property
 
   Public ReadOnly Property Status() As Byte
     Get
@@ -349,7 +353,12 @@ Public Class clsPurchaseOrderInfo
     End Get
 
   End Property
+  Public ReadOnly Property isBigTaxPayer() As Boolean
+    Get
+      Return pPurchaseOrder.Supplier.isBigTaxPayer
+    End Get
 
+  End Property
 
   Public ReadOnly Property CompanyName() As String
     Get
@@ -443,6 +452,28 @@ Public Class clsPurchaseOrderInfo
       Return mRetVal
     End Get
   End Property
+
+  Public ReadOnly Property TotalGrossValueCordobas As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalGrossValue * ExchangeRateValue
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalGrossValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+
   Public ReadOnly Property AnyCoC As Boolean
     Get
       Dim mRetVal As Boolean = False
@@ -487,7 +518,7 @@ Public Class clsPurchaseOrderInfo
             mRetVal &= mSalesOrderPhaseInfo.ProjectName & " /"
 
           Else
-            mRetVal = "Consumo Interno"
+            mRetVal = AccoutingCategoryDesc
           End If
         End If
       Next
@@ -496,9 +527,15 @@ Public Class clsPurchaseOrderInfo
           mRetVal = mRetVal.Remove(mRetVal.Length - 1)
         End If
       Else
-        mRetVal = "Consumo Interno"
+        mRetVal = AccoutingCategoryDesc
       End If
       Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property ValuationMode As Int32
+    Get
+      Return pPurchaseOrder.ValuationMode
     End Get
   End Property
 
@@ -629,6 +666,11 @@ Public Class clsPOItemInfo
       Return Description & vbCrLf & mRetVal
     End Get
   End Property
+
+
+
+
+
 
 End Class
 

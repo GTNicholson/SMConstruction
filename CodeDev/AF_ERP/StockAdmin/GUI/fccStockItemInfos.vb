@@ -136,7 +136,9 @@ Public Class fccStockItemInfos
     Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mStockItemLocation As dmStockItemLocation
-
+    Dim mExchangeRate As Decimal = 0
+    Dim mdsoGeneral As New dsoGeneral(pDBConn)
+    Dim mUnitCost As Decimal = 0
     Try
 
       mStockItemLocation = mdsoStock.GetOrCreateStockItemLocation(vStockItem.StockItemID, vLocationID)
@@ -153,11 +155,25 @@ Public Class fccStockItemInfos
         End With
 
         ''If mdsoStock.SaveStockItemLocationAmendmentLog(mLocationAmendment) Then
+
+        mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(Now, eCurrency.Cordobas)
+
+        ''//Avoid any error
+        If mExchangeRate = 0 Then
+          mExchangeRate = 1
+        End If
+
+        If vStockItem.AverageCost = 0 Then
+          mUnitCost = vStockItem.StdCost
+        Else
+          mUnitCost = vStockItem.AverageCost
+        End If
+
         Select Case vTransactionType
           Case eTransactionType.Adjustment
-            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vStockItem.StdCost, 1)
+            mdsoStockTran.AdjustmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Cordobas, mUnitCost, mExchangeRate)
           Case eTransactionType.Amendment
-            mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Dollar, vStockItem.StdCost, 1)
+            mdsoStockTran.AmendmentSetStockItemLocationQty(mStockItemLocation, vTranQty, eObjectType.StockItemAmmendmentLog, mLocationAmendment.StockItemLocationAmendmentLogID, vAdjustDate, mLocationAmendment, eCurrency.Cordobas, mUnitCost, mExchangeRate)
         End Select
 
       End If

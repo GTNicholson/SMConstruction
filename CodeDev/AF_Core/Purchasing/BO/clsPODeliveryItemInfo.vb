@@ -341,6 +341,9 @@ Public Class clsPODeliveryItemInfo
 
   End Property
 
+
+
+
   Public ReadOnly Property DefaultCurrency As Integer
     Get
       Return pPurchaseOrder.DefaultCurrency
@@ -398,13 +401,45 @@ Public Class clsPODeliveryItemInfo
     End Get
 
   End Property
+  Public ReadOnly Property POStage As Integer
+    Get
+      Return pPurchaseOrder.POStage
+    End Get
+
+  End Property
+
+  Public ReadOnly Property POStageDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(pPurchaseOrder.POStage, ePOStage))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property AccoutingCategoryID As Integer
+    Get
+      Return pPurchaseOrder.AccoutingCategoryID
+    End Get
+
+  End Property
+
+  Public ReadOnly Property AccoutingCategoryDesc As String
+    Get
+      Dim mRetVal As String = ""
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(AccoutingCategoryID)
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+
 
   Public ReadOnly Property ProjectName As String
     Get
       Dim mRetVal As String = pSalesOrder.ProjectName
 
       If pSalesOrder.ProjectName = "" Then
-        mRetVal = "S/P-Inventario"
+        mRetVal = AccoutingCategoryDesc
       End If
 
       Return mRetVal

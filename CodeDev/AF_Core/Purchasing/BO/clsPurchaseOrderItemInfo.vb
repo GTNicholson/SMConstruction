@@ -452,7 +452,7 @@ Public Class clsPurchaseOrderItemInfo
       Dim mRetVal As String = pSalesOrder.ProjectName
 
       If pSalesOrder.ProjectName = "" Then
-        mRetVal = "S/P-Inventario"
+        mRetVal = AccoutingCategoryDesc
       End If
 
       Return mRetVal
@@ -558,6 +558,11 @@ Public Class clsPurchaseOrderItemInfo
 
   End Property
 
+  Public ReadOnly Property Substage As Integer
+    Get
+      Return pPurchaseOrderItem.Substage
+    End Get
+  End Property
 
 End Class
 

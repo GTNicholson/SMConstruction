@@ -104,7 +104,7 @@ Public Class dsoGeneral
     Return mOK
   End Function
 
-  Public Function GetExchangeRate(ByVal vDate As Date, ByVal vCurrency As Integer) As Decimal
+  Public Function GetExchangeRateUnconnected(ByVal vDate As Date, ByVal vCurrency As Integer) As Decimal
     Dim mRetval As Decimal = 0
     Dim mExchangeRate As New dmExchangeRate
     Dim mReader As IDataReader

@@ -58,6 +58,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pAccoutingCategoryID As Integer
   Private pPOStage As Integer
   Private pRetentionPercentage As Decimal
+  Private pValuationMode As Integer
 
   Public Sub New()
     MyBase.New()
@@ -162,6 +163,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .AccoutingCategoryID = AccoutingCategoryID
       .POStage = POStage
       .RetentionPercentage = RetentionPercentage
+      .ValuationMode = ValuationMode
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -690,6 +692,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property ValuationMode As Integer
+    Get
+      Return pValuationMode
+    End Get
+    Set(value As Integer)
+      If pValuationMode <> value Then IsDirty = True
+      pValuationMode = value
+    End Set
+  End Property
 End Class
 
 

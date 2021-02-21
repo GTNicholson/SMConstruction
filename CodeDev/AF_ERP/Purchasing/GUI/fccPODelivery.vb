@@ -245,11 +245,12 @@ Public Class fccPODelivery
     Dim mdsoStock As dsoStock
     Dim mSIL As dmStockItemLocation
     Dim mDialogResult As DialogResult
-
+    Dim mExchangeRate As Decimal = 0
+    Dim mdsoGeneral As dsoGeneral
     Try
 
       mdsoTran = New dsoStockTransactions(pDBConn)
-
+      mdsoGeneral = New dsoGeneral(pDBConn)
       mdsoStock = New dsoStock(pDBConn)
 
       For Each mPOP As clsPurchaseOrderItemAllocationProcessor In pPOItemProcessors
@@ -290,16 +291,35 @@ Public Class fccPODelivery
           '// Work out the value of the received qty of the item for Average Stock Value purposes
           mReceivedValue = mPOP.PurchaseOrderItem.UnitPrice * mPOP.ToProcessQty '// Todo include logic for pricing unit
 
-          mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, mReceivedValue, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
+          ''//Check the valuation mode
+          If pPurchaseOrderInfo.ValuationMode = eValuationMode.ForAdvanced Then
+            If pPurchaseOrderInfo.ExchangeRateValue = 0 Then
+              mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(Now, eCurrency.Cordobas)
+            Else
+              mExchangeRate = pPurchaseOrderInfo.ExchangeRateValue
+            End If
+            mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, mReceivedValue, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, mExchangeRate)
+
+          ElseIf pPurchaseOrderInfo.ValuationMode = eValuationMode.BookIn Then
+            mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(Now, eCurrency.Cordobas)
+            If mExchangeRate > 0 Then
+              mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, mReceivedValue, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, mExchangeRate)
+
+            End If
+
+          Else ''//Decide how to do if the business can get credit from their suppliers
+            mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOP.StockItemID, 1, mPOP.ToProcessQty, mReceivedValue, 1, mPOP.PODeliveryItem, Now, mPOP.PurchaseOrderItemAllocation, mPOP.ItemRef, False, pPurchaseOrderInfo.DefaultCurrency, mPOP.UnitPrice, pPurchaseOrderInfo.ExchangeRateValue)
 
 
+          End If
 
-          ''//Reload StockItemRegistry
-          AppRTISGlobal.GetInstance.StockItemRegistry.RefreshStockItem(mPOP.StockItem.StockItemID)
-
+          ''//Refresh StockItemRegistry avoiding close and open the system
+          If mPOP.StockItem.StockItemID > 0 Then
+            AppRTISGlobal.GetInstance.StockItemRegistry.RefreshStockItem(mPOP.StockItem.StockItemID)
+          End If
           mPOP.ToProcessQty = 0
 
-        End If
+          End If
 
       Next
 

@@ -103,7 +103,7 @@ Public Class dsoBIMatReqInfo
     Dim mdsoGeneral As New dsoGeneral(pDBConn)
     Dim mExchangeRate As Decimal = 0
 
-    mExchangeRate = mdsoGeneral.GetExchangeRate(vDate, vCurrency)
+    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
 
     Return mExchangeRate
   End Function

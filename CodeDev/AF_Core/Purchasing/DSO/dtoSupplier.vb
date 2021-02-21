@@ -115,6 +115,7 @@ Public Class dtoSupplier : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultCurrency", .DefaultCurrency)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsRetention", .IsRetention)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "isBigTaxPayer", .isBigTaxPayer)
 
 
     End With
@@ -172,6 +173,7 @@ Public Class dtoSupplier : Inherits dtoBase
         .BankName = DBReadString(rDataReader, "BankName")
         .AccountSecondaryNumber = DBReadString(rDataReader, "AccountSecondaryNumber")
         .IsRetention = DBReadBoolean(rDataReader, "IsRetention")
+        .isBigTaxPayer = DBReadBoolean(rDataReader, "isBigTaxPayer")
         pSupplier.IsDirty = False
       End With
       mOK = True

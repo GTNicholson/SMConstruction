@@ -33,10 +33,10 @@ Public Class MenuFactory
     '' mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. O.C.", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Compras", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.PurchasingGroup)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Compras vrs Recepciones", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchasingBalance, eActivityCode.PODeliveryItemReport)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Compras vrs Recepciones", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchasingBalance, eActivityCode.PODeliveryItemReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras por Fecha", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderInfo, eActivityCode.POReportList)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras por Artículo", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderItemInfo, eActivityCode.POReportList)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryInfoBI, eActivityCode.PODeliveryReport)
+    'mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryInfoBI, eActivityCode.PODeliveryReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Recepciones de Artículos Realizadas", eMenuIconType.Report, AddressOf clsMenuFunctions.PODeliveryItemInfoBI, eActivityCode.PODeliveryItemReport)
 
 
@@ -415,8 +415,8 @@ Class clsMenuFunctions
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
-  Friend Shared Sub PurchasingBalance(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-    Throw New NotImplementedException()
+  Public Shared Sub PurchasingBalance(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+
   End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)

@@ -229,12 +229,15 @@ Public Class frmPurchaseOrder
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(ePurchaseOrderDueDateStatus)))
     clsDEControlLoading.FillDEComboVI(cboStage, clsEnumsConstants.EnumToVIs(GetType(ePOStage)))
+    clsDEControlLoading.FillDEComboVI(cboValuationMode, clsEnumsConstants.EnumToVIs(GetType(eValuationMode)))
 
 
     clsDEControlLoading.FillDEComboVI(cboCategory, clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcSubStage, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ProductConstructionSubType))
+
     clsDEControlLoading.FillDEComboVI(cboPaymentMethod, clsEnumsConstants.EnumToVIs(GetType(ePaymentMethod)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
     clsDEControlLoading.FillDEComboVI(cboAccountingCategory, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.AccoutingCategory))
@@ -361,6 +364,7 @@ Public Class frmPurchaseOrder
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboBuyer, .BuyerID)
         clsDEControlLoading.SetDECombo(cboStatus, .Status)
         clsDEControlLoading.SetDECombo(cboStage, .POStage)
+        clsDEControlLoading.SetDECombo(cboValuationMode, .ValuationMode)
 
 
         '' RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .DeliveryAddress.Country)
@@ -468,6 +472,7 @@ Public Class frmPurchaseOrder
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
       .POStage = clsDEControlLoading.GetDEComboValue(cboStage)
+      .ValuationMode = clsDEControlLoading.GetDEComboValue(cboValuationMode)
       .RetentionPercentage = txtRetentionPercentage.EditValue
       .AccoutingCategoryID = clsDEControlLoading.GetDEComboValue(cboAccountingCategory)
       .Carriage = Val(txtCarriage.EditValue)
@@ -703,6 +708,11 @@ Public Class frmPurchaseOrder
 
 
       UpdateObject()
+      For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
+        pFormController.CreateUpdatePOItemAllocation(mPOI)
+
+      Next
+
       Select Case e.Button.Kind
         Case ButtonPredefines.Plus
 
@@ -833,6 +843,7 @@ Public Class frmPurchaseOrder
     Dim mStockItems As New colStockItems
     Dim mStockItem As dmStockItem
     Dim mSelectedStockItems As colStockItems
+    Dim mExchangeRate As Decimal = 0
     Try
 
       Select Case e.Button.Properties.Tag
@@ -865,7 +876,16 @@ Public Class frmPurchaseOrder
                   mPOItem.Description = mSelectedItem.Description
                   mPOItem.PartNo = mSelectedItem.PartNo
                   mPOItem.StockCode = mSelectedItem.StockCode
-                  mPOItem.UnitPrice = mSelectedItem.AverageCost
+
+                  ''Set the UnitPrice as per DefaultCuurency
+                  If pFormController.CurrentDefaultCurrency = eCurrency.Cordobas Then
+                    mPOItem.UnitPrice = mSelectedItem.AverageCost
+
+                  Else
+                    mExchangeRate = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
+                    mPOItem.UnitPrice = mSelectedItem.AverageCost / mExchangeRate
+
+                  End If
                   mPOItem.UoM = mSelectedItem.SupplierUoM
                   mPOItem.SupplierCode = mSelectedItem.AuxCode
                   pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
@@ -1269,6 +1289,10 @@ Public Class frmPurchaseOrder
           If e.Button.Properties.IsChecked Then
             pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
             pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
+
+            For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
+              mPOI.PurchaseOrderItemAllocations.Clear()
+            Next
             ''pFormController.SalesOrderPhases.Clear()
             grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
             grdSalesOrderPhases.RefreshDataSource()
@@ -1530,7 +1554,7 @@ Public Class frmPurchaseOrder
     If pFormController IsNot Nothing Then
       If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
         pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
-        CheckSave(False)
+        'CheckSave(False)
 
         RefreshControls()
         Dim mPOItem As dmPurchaseOrderItem

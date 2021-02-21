@@ -43,6 +43,8 @@ Public Class clsStockItemTransactionLogInfo
   Private pPalletRef As String
   Private pPalletOutsideRef As String
   Private pLocationID As Byte
+  Private pPOIDescription As String
+
   Public Sub New()
     MyBase.New()
     pCurrentStockItem = New dmStockItem
@@ -66,7 +68,14 @@ Public Class clsStockItemTransactionLogInfo
     End Set
   End Property
 
-
+  Public Property POIDescription As String
+    Get
+      Return pPOIDescription
+    End Get
+    Set(value As String)
+      pPOIDescription = value
+    End Set
+  End Property
 
   Public Property WorkOrder As dmWorkOrder
     Get
@@ -128,9 +137,9 @@ Public Class clsStockItemTransactionLogInfo
     Get
       Dim mRetVal As Decimal = 0
 
-      If TransQuantity > 0 Then
+      If TransQuantity <> 0 Then
 
-        mRetVal = pTransactionValuationDollar / TransQuantity
+        mRetVal = pTransactionValuation / TransQuantity
       End If
 
       Return mRetVal
@@ -182,7 +191,13 @@ Public Class clsStockItemTransactionLogInfo
 
   Public ReadOnly Property StockDesc As String
     Get
-      Return pCurrentStockItem.Description
+      Dim mRetVal As String
+      mRetVal = pCurrentStockItem.Description
+
+      If mRetVal = "" Then
+        mRetVal = POIDescription
+      End If
+      Return mRetVal
     End Get
   End Property
 
@@ -206,13 +221,13 @@ Public Class clsStockItemTransactionLogInfo
 
   Public ReadOnly Property StdCost As Decimal
     Get
-      Return pCurrentStockItem.StdCost
+      Return pCurrentStockItem.AverageCost
     End Get
   End Property
 
   Public ReadOnly Property TotalStdTransaction As Decimal
     Get
-      Return pCurrentStockItem.StdCost * pTransQty
+      Return pCurrentStockItem.AverageCost * pTransQty
     End Get
   End Property
 

@@ -283,11 +283,9 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboCostUoM, .CostUoM)
 
         clsDEControlLoading.SetDECombo(cboSupplierUoM, .SupplierUoM)
-        clsDEControlLoading.SetDECombo(cboStockFinanceCategory, .StockFinanceCategoryID)
-        clsDEControlLoading.SetDECombo(cboSubitemType, .SubItemType)
-        clsDEControlLoading.SetDECombo(cboFinish, .Finish)
+
         clsDEControlLoading.SetDECombo(cboSupplier, .DefaultSupplier)
-        txtStdCost.EditValue = .StdCost
+        txtAverageCost.EditValue = .AverageCost
         txtImportCost.EditValue = .StdImportCost
         bteImage.Text = .ImageFile
         chkIsGeneric.Checked = .IsGeneric
@@ -377,22 +375,19 @@ Public Class frmStockItem
         .Colour = txtColour.Text
         .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
         .ItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
-        .SubItemType = clsDEControlLoading.GetDEComboValue(cboSubitemType)
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
         .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
         .SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSupplierUoM)
-        .StockFinanceCategoryID = clsDEControlLoading.GetDEComboValue(cboStockFinanceCategory)
-        .Finish = clsDEControlLoading.GetDEComboValue(cboFinish)
         .IsGeneric = chkIsGeneric.Checked
         .Inactive = chkIsObsolete.Checked
         .IsCostingOnly = ckbIsCostingOnly.Checked
-        .StdCost = txtStdCost.Text
+        .AverageCost = txtAverageCost.Text
         .StdImportCost = txtImportCost.Text
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
         .AuxCode = txtAuxCode.Text
         .CostUoM = clsDEControlLoading.GetDEComboValue(cboCostUoM)
         If Val(spnQuantity.EditValue) > 0 Then
-          .CostQty = Val(txtStdCost.Text) / Val(spnQuantity.EditValue)
+          .CostQty = Val(txtAverageCost.Text) / Val(spnQuantity.EditValue)
         Else
           .CostQty = 0
         End If
@@ -420,14 +415,14 @@ Public Class frmStockItem
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.NailsAndBolds
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
 
         Case eStockItemCategory.EPP
@@ -435,7 +430,7 @@ Public Class frmStockItem
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeEPP.GetInstance.ValueItems)
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Herrajes
 
@@ -445,7 +440,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Herramientas
 
@@ -454,7 +449,7 @@ Public Class frmStockItem
 
           cboItemType.Enabled = True
           cboSpecies.Enabled = False
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.MatElect
 
@@ -463,7 +458,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.MatEmpaque
 
@@ -472,7 +467,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.MatVarios
 
@@ -482,7 +477,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Metal
 
@@ -491,9 +486,6 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
-
-
 
 
         Case eStockItemCategory.PinturaYQuimico
@@ -502,7 +494,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Laminas
 
@@ -510,7 +502,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Repuestos
 
@@ -518,7 +510,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Tapiceria
 
@@ -526,7 +518,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.VidrioYEspejo
 
@@ -534,7 +526,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = True
+
 
         Case eStockItemCategory.Timber
 
@@ -543,9 +535,6 @@ Public Class frmStockItem
           gcSpecies.Visible = True
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
-          cboSubitemType.Enabled = False
-
-
 
 
 
@@ -564,7 +553,6 @@ Public Class frmStockItem
     spnThickness.ReadOnly = vReadOnly
     cboCategory.ReadOnly = vReadOnly
     cboItemType.ReadOnly = vReadOnly
-    cboSubitemType.ReadOnly = vReadOnly
     txtColour.ReadOnly = vReadOnly
     spnQuantity.ReadOnly = vReadOnly
     txtDescriptionShort.ReadOnly = vReadOnly
@@ -572,11 +560,8 @@ Public Class frmStockItem
     cboSpecies.ReadOnly = vReadOnly
     cboUoM.ReadOnly = vReadOnly
     cboSupplierUoM.ReadOnly = vReadOnly
-    cboStockFinanceCategory.ReadOnly = vReadOnly
-    cboSubitemType.ReadOnly = vReadOnly
-    cboFinish.ReadOnly = vReadOnly
     txtImportCost.ReadOnly = vReadOnly
-    txtStdCost.ReadOnly = vReadOnly
+    txtAverageCost.ReadOnly = vReadOnly
     chkIsGeneric.Enabled = Not vReadOnly
     ckbIsCostingOnly.Enabled = Not vReadOnly
     chkIsObsolete.Enabled = Not vReadOnly
@@ -785,6 +770,8 @@ Public Class frmStockItem
     ''  pFormController.StockItem.SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSubitemType)
   End Sub
 
+  Private Sub grpGroupF8_Paint(sender As Object, e As PaintEventArgs) Handles grpGroupF8.Paint
 
+  End Sub
 End Class
 

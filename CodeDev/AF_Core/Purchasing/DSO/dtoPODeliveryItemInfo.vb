@@ -91,6 +91,12 @@ Public Class dtoPODeliveryItemInfo : Inherits dtoBase
           .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
           .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
           .RefMatType = DBReadString(rDataReader, "RefMatType")
+
+          .POStage = DBReadInt32(rDataReader, "POStage")
+          .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
+          .PurchaseCategory = DBReadByte(rDataReader, "PurchaseCategory")
+
+
         End With
 
         With .StockItem

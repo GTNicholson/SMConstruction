@@ -78,6 +78,7 @@ Partial Class frmSupplierDetail
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.ckeIsRetention = New DevExpress.XtraEditors.CheckEdit()
         Me.UctAddress1 = New AgroForestal.uctAddress()
         Me.rgDefaultCurrency = New DevExpress.XtraEditors.RadioGroup()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -93,7 +94,7 @@ Partial Class frmSupplierDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ckeIsRetention = New DevExpress.XtraEditors.CheckEdit()
+        Me.ckeIsBigTaxPayer = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.grdSupplierContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSupplierContacts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +122,7 @@ Partial Class frmSupplierDetail
         CType(Me.txtTelNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.ckeIsRetention.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
@@ -128,7 +130,7 @@ Partial Class frmSupplierDetail
         CType(Me.gvPOInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ckeIsRetention.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ckeIsBigTaxPayer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'barDockControlRight
@@ -522,7 +524,7 @@ Partial Class frmSupplierDetail
         '
         'rgEstatus
         '
-        Me.rgEstatus.Location = New System.Drawing.Point(141, 256)
+        Me.rgEstatus.Location = New System.Drawing.Point(141, 210)
         Me.rgEstatus.MenuManager = Me.BarManager2
         Me.rgEstatus.Name = "rgEstatus"
         Me.rgEstatus.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
@@ -536,7 +538,7 @@ Partial Class frmSupplierDetail
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(5, 263)
+        Me.Label11.Location = New System.Drawing.Point(5, 217)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(44, 14)
         Me.Label11.TabIndex = 23
@@ -681,6 +683,7 @@ Partial Class frmSupplierDetail
         Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl1.Controls.Add(Me.ckeIsBigTaxPayer)
         Me.GroupControl1.Controls.Add(Me.ckeIsRetention)
         Me.GroupControl1.Controls.Add(Me.UctAddress1)
         Me.GroupControl1.Controls.Add(Me.rgDefaultCurrency)
@@ -707,6 +710,15 @@ Partial Class frmSupplierDetail
         Me.GroupControl1.Size = New System.Drawing.Size(657, 300)
         Me.GroupControl1.TabIndex = 8
         Me.GroupControl1.Text = "Detalles del Proveedor"
+        '
+        'ckeIsRetention
+        '
+        Me.ckeIsRetention.Location = New System.Drawing.Point(8, 252)
+        Me.ckeIsRetention.MenuManager = Me.BarManager2
+        Me.ckeIsRetention.Name = "ckeIsRetention"
+        Me.ckeIsRetention.Properties.Caption = "Con Retención"
+        Me.ckeIsRetention.Size = New System.Drawing.Size(110, 19)
+        Me.ckeIsRetention.TabIndex = 28
         '
         'UctAddress1
         '
@@ -864,14 +876,14 @@ Partial Class frmSupplierDetail
         Me.GridColumn13.VisibleIndex = 4
         Me.GridColumn13.Width = 152
         '
-        'ckeIsRetention
+        'ckeIsBigTaxPayer
         '
-        Me.ckeIsRetention.Location = New System.Drawing.Point(141, 209)
-        Me.ckeIsRetention.MenuManager = Me.BarManager2
-        Me.ckeIsRetention.Name = "ckeIsRetention"
-        Me.ckeIsRetention.Properties.Caption = "Con Retención"
-        Me.ckeIsRetention.Size = New System.Drawing.Size(110, 19)
-        Me.ckeIsRetention.TabIndex = 28
+        Me.ckeIsBigTaxPayer.Location = New System.Drawing.Point(141, 252)
+        Me.ckeIsBigTaxPayer.MenuManager = Me.BarManager2
+        Me.ckeIsBigTaxPayer.Name = "ckeIsBigTaxPayer"
+        Me.ckeIsBigTaxPayer.Properties.Caption = "Grande Contribuyente?"
+        Me.ckeIsBigTaxPayer.Size = New System.Drawing.Size(110, 19)
+        Me.ckeIsBigTaxPayer.TabIndex = 29
         '
         'frmSupplierDetail
         '
@@ -918,6 +930,7 @@ Partial Class frmSupplierDetail
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.ckeIsRetention.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rgDefaultCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
@@ -925,7 +938,7 @@ Partial Class frmSupplierDetail
         CType(Me.gvPOInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ckeIsRetention.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ckeIsBigTaxPayer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1001,4 +1014,5 @@ Partial Class frmSupplierDetail
     Friend WithEvents Label7 As Label
     Friend WithEvents rgPrintAccountOption As DevExpress.XtraEditors.RadioGroup
     Friend WithEvents ckeIsRetention As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents ckeIsBigTaxPayer As DevExpress.XtraEditors.CheckEdit
 End Class

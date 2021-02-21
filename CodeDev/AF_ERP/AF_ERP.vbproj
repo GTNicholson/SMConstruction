@@ -273,6 +273,13 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="General\GUI\fccHomePurchasing.vb" />
+    <Compile Include="General\GUI\frmHomePurchasingManagement.Designer.vb">
+      <DependentUpon>frmHomePurchasingManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="General\GUI\frmHomePurchasingManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HR\GUI\fccAdminEmployeeOverride.vb" />
     <Compile Include="General\GUI\fccHomeManagement.vb" />
     <Compile Include="General\GUI\fccLookupTableList.vb" />
@@ -805,6 +812,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\GUI\frmHomePurchasingManagement.resx">
+      <DependentUpon>frmHomePurchasingManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\GUI\frmAdminEmployeeOverride.resx">
       <DependentUpon>frmAdminEmployeeOverride.vb</DependentUpon>

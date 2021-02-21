@@ -306,7 +306,7 @@ Public Class fccCostBook
   Public Sub LoadStockItems(ByRef rStockItems As colStockItems, ByVal vItemType As Integer)
     Dim dsoStock As New dsoStock(DBConn)
 
-    Dim mstr As String = "category = " & eStockItemCategory.Timber & "and ItemType = " & vItemType.ToString
+    Dim mstr As String = "category = " & eStockItemCategory.Timber & "and ItemType = " & vItemType.ToString & "and IsCostingOnly=1"
 
 
     dsoStock.LoadstockItemsByCategory(rStockItems, mstr)

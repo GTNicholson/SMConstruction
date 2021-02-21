@@ -46,6 +46,7 @@ Public Class dmSupplier : Inherits dmBase
   Private pPrintAccountOption As Int32
   Private pIsRetention As Boolean
   Private pSupplierContacts As colSupplierContacts
+  Private pisBigTaxPayer As Boolean
   Public Sub New()
     MyBase.New()
   End Sub
@@ -121,7 +122,7 @@ Public Class dmSupplier : Inherits dmBase
       ''.MainCountry = MainCountry
       .DefaultCurrency = DefaultCurrency
       .BankName = BankName
-
+      .isBigTaxPayer = isBigTaxPayer
       'Add entries here for each collection and class property
       .SupplierContacts = SupplierContacts.Clone
       'Entries for object management
@@ -494,6 +495,15 @@ Public Class dmSupplier : Inherits dmBase
     End Set
   End Property
 
+  Public Property isBigTaxPayer As Boolean
+    Get
+      Return pisBigTaxPayer
+    End Get
+    Set(value As Boolean)
+      If pisBigTaxPayer <> value Then IsDirty = True
+      pisBigTaxPayer = value
+    End Set
+  End Property
   Public ReadOnly Property MainAddress1() As String
     Get
       If pMainAddress IsNot Nothing Then

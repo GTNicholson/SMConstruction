@@ -672,14 +672,14 @@ Public Class dsoStock
     Return mOK
   End Function
 
-  Public Sub UpdateStockItemAverageCost(ByVal vStockItemID As Integer, ByVal vReceivedQty As Decimal, ByVal vReceivedValue As Decimal)
+  Public Sub UpdateStockItemAverageCost(ByVal vStockItemID As Integer, ByVal vReceivedQty As Decimal, ByVal vReceivedValue As Decimal, ByVal vStockItemTransactionLogID As Integer)
     Dim mExistingQty As Decimal
     Dim mCurrentAverageCost As Decimal
     Dim mNewAverageCost As Decimal
     Dim mNewTotalQty As Decimal
 
     Dim mSQL As String
-
+    Dim mStockValuation As Decimal
     Try
       If pDBConn.Connect() Then
         '// The Qty has already been updated so the current total qty in stock item locations includes the recently arrived.
@@ -697,6 +697,11 @@ Public Class dsoStock
         mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mNewAverageCost, vStockItemID)
         pDBConn.ExecuteNonQuery(mSQL)
 
+        '//Update the Cost Valuation in the Transaction Log
+        mStockValuation = mNewAverageCost * mNewTotalQty
+        mStockValuation = Math.Round(mStockValuation, 4, MidpointRounding.AwayFromZero)
+        mSQL = String.Format("Update StockItemTransactionLog Set StockValuation = {0} Where StockItemTransactionLogID = {1}", mStockValuation, vStockItemTransactionLogID)
+        pDBConn.ExecuteNonQuery(mSQL)
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

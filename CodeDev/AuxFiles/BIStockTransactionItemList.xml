@@ -92,7 +92,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">135</property>
+      <property name="Width">123</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">colStockDesc</property>
@@ -104,7 +104,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">228</property>
+      <property name="Width">208</property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">colStockItemTransactionLogID</property>
@@ -124,7 +124,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">84</property>
+      <property name="Width">76</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">0.##</property>
         <property name="FormatType">Numeric</property>
@@ -166,9 +166,9 @@
       <property name="Caption">Ref. 1</property>
       <property name="FieldName">RefInfo1</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">118</property>
+      <property name="Width">101</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">colRefInfo2</property>
@@ -178,9 +178,9 @@
       <property name="Caption">Ref. 2</property>
       <property name="FieldName">RefInfo2</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
-      <property name="Width">113</property>
+      <property name="Width">97</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">colGRNumber</property>
@@ -200,7 +200,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">118</property>
+      <property name="Width">108</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">colTransDate</property>
@@ -212,7 +212,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">148</property>
+      <property name="Width">135</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">colIsManagedStock</property>
@@ -232,7 +232,7 @@
       <property name="ColumnEditName">RepositoryItemDateEdit1</property>
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">55</property>
+      <property name="Width">50</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">t</property>
         <property name="FormatType">DateTime</property>
@@ -246,9 +246,9 @@
       <property name="Caption">Ref. 3</property>
       <property name="FieldName">RefInfo3</property>
       <property name="ColumnEditName">RepositoryItemDateEdit5</property>
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
-      <property name="Width">157</property>
+      <property name="Width">135</property>
     </property>
     <property name="Item16" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
@@ -293,13 +293,23 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Valor Transf.</property>
+      <property name="Caption">Valor Transf. (C$)</property>
       <property name="FieldName">TransactionValuation</property>
       <property name="ColumnEditName" />
-      <property name="Width">55</property>
+      <property name="VisibleIndex">8</property>
+      <property name="Visible">true</property>
+      <property name="Width">121</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">N2</property>
         <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TransactionValuation</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:N2}</property>
+        </property>
       </property>
     </property>
     <property name="Item20" isnull="true" iskey="true">
@@ -345,12 +355,12 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Costo</property>
+      <property name="Caption">Costo C$</property>
       <property name="FieldName">AverageCost</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">93</property>
+      <property name="Width">85</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">N2</property>
         <property name="FormatType">Numeric</property>
@@ -364,9 +374,9 @@
       <property name="Caption">Valor Total (USD)</property>
       <property name="FieldName">TransactionValuationDollar</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
-      <property name="Width">191</property>
+      <property name="Width">126</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">N2</property>
         <property name="FormatType">Numeric</property>
@@ -398,9 +408,9 @@
       <property name="Caption">Descrip. OT</property>
       <property name="FieldName">WODESCRIPTION</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
-      <property name="Width">181</property>
+      <property name="Width">172</property>
     </property>
     <property name="Item27" isnull="true" iskey="true">
       <property name="Name">GridColumn16</property>
@@ -409,6 +419,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
+      <property name="Width">68</property>
     </property>
   </property>
   <property name="ViewCaption" />

@@ -5,6 +5,8 @@
   Public Property SelectedDate As DateTime
   Public Property Notes As String
   Public Property SelectedQty As Decimal
+  Public Property CurrentExchangeRate As Decimal
+
 
   Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
     Me.SelectedDate = datSelectedDate.DateTime + datSelectedTime.Time.TimeOfDay

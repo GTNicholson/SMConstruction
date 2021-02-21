@@ -36,6 +36,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
   Private pUoM As Integer
   Private pRetentionValue As Decimal
   Private pTempPercentageRetention As Decimal
+  Private pSubstage As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -108,6 +109,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       .Density = Density
       .ReplacementQty = ReplacementQty
       .RetentionValue = RetentionValue
+      .Substage = Substage
       'Add entries here for each collection and class property
       .PurchaseOrderItemAllocations = PurchaseOrderItemAllocations.Clone
       .PickedQty = PickedQty
@@ -516,6 +518,15 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
     End Get
   End Property
 
+  Public Property Substage As Integer
+    Get
+      Return pSubstage
+    End Get
+    Set(value As Integer)
+      If pSubstage <> value Then IsDirty = True
+      pSubstage = value
+    End Set
+  End Property
 End Class
 
 
