@@ -1,9 +1,9 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class uctEmployeeDetailsReplacement
   Inherits System.Windows.Forms.UserControl
 
   'UserControl overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
+  <System.Diagnostics.DebuggerNonUserCode()>
   Protected Overrides Sub Dispose(ByVal disposing As Boolean)
     If disposing AndAlso components IsNot Nothing Then
       components.Dispose()
@@ -17,7 +17,7 @@ Partial Class uctEmployeeDetailsReplacement
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  
   'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
+  <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -131,7 +131,7 @@ Partial Class uctEmployeeDetailsReplacement
     Me.grpDetails.Controls.Add(Me.txtMobile)
     Me.grpDetails.Controls.Add(Me.txtLastName)
     Me.grpDetails.Controls.Add(Me.txtFirstName)
-    Me.grpDetails.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Enrolment", True, ButtonImageOptions1)})
+    Me.grpDetails.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Enrolment", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
     Me.grpDetails.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
     Me.grpDetails.Dock = System.Windows.Forms.DockStyle.Fill
     Me.grpDetails.Enabled = False

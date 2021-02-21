@@ -43,6 +43,7 @@ Public Class uctEmployeeDetailsReplacement
 
   Public Sub LoadCombos() Implements IuctEmployeeDetails.LoadCombos
     Dim mOK As Boolean = False
+
     If puctController.DisplayRoles AndAlso puctController.RoleList IsNot Nothing Then
       Try
         clsDEControlLoading.FillDEComboVIi(cboMainRole, puctController.RoleList)
@@ -53,8 +54,6 @@ Public Class uctEmployeeDetailsReplacement
         If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
       End Try
     End If
-
-    '' clsDEControlLoading.FillDEComboVIi(cboSalesArea, CType(puctController.RTISGlobal, AppRTISGlobal).RefLists.RefIList(appRefLists.SalesArea))
 
     lblMainRole.Visible = mOK
     cboMainRole.Visible = mOK
@@ -96,8 +95,6 @@ Public Class uctEmployeeDetailsReplacement
           clsDEControlLoading.SetDECombo(cboMainRole, .MainRoleID)
           gvEmployeeRoles.RefreshData()
         End If
-
-        ''clsDEControlLoading.SetDECombo(cboSalesArea, .SalesAreaID)
 
         ''radEmployeeGrouop.EditValue = CInt(.EmployeeGroup)
         ''radPaymentType.EditValue = CInt(.PaymentType)
@@ -186,8 +183,6 @@ Public Class uctEmployeeDetailsReplacement
         If puctController.DisplayRoles Then
           .MainRoleID = clsDEControlLoading.GetDEComboValue(cboMainRole)
         End If
-
-        ''.SalesAreaID = clsDEControlLoading.GetDEComboValue(cboSalesArea)
 
         ''.PaymentType = radPaymentType.EditValue
         ''.EmployeeGroup = radEmployeeGrouop.EditValue

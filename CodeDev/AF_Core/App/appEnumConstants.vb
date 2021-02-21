@@ -66,6 +66,14 @@ Public Enum eActivityCode
 
 End Enum
 
+Public Enum eHomeScreen
+  Management = 1
+  Sales = 2
+  Purchasing = 3
+  Production = 4
+  WoodManagement = 5
+End Enum
+
 Public Enum ePOStage
   <Description("Ninguno")> None = 0
   <Description("Preliminares")> Preliminares = 1

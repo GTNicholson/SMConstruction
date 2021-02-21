@@ -142,15 +142,12 @@ Public Class frmTabbedMDI
 
   End Sub
 
-  Private Sub InitHomeScreen(ByRef rDBConn As clsDBConnBase)
-    Dim mHomeFormID As Integer
 
-    mHomeFormID = My.Application.RTISUserSession.UserListItem.HomeFormID
+  Private Sub LoadHomescreen()
+    Dim mHSF As clsHomeScreenFactory
+    mHSF = New clsHomeScreenFactory(AppRTISGlobal.GetInstance, My.Application.RTISUserSession.CreateMainDBConn)
 
-    'Select Case mHomeFormID
-    'Case eHomeScreen.Sales
-    frmHomeManagement.OpenFormAsMDIChild(Me, My.Application.RTISUserSession, AppRTISGlobal.GetInstance)
-    'End Select
+    mHSF.LoadHomeScreen(Me)
 
   End Sub
 
@@ -214,7 +211,7 @@ Public Class frmTabbedMDI
   Private Sub frmTabbedMDI_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
     ' Add any initialization after the InitializeComponent() call.
     InitStartUpForm()
-    InitHomeScreen(My.Application.RTISUserSession.CreateMainDBConn)
+    LoadHomescreen()
     InitWindows()
     InitComboBoxes()
   End Sub

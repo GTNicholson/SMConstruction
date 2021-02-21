@@ -3,7 +3,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
-Public Class frmHomePurchasingManagement
+Public Class frmHomePurchasing
 
   Private pFormController As fccHomePurchasing
   Private Shared sActiveForms As Collection
@@ -13,7 +13,7 @@ Public Class frmHomePurchasingManagement
   End Sub
 
   Public Shared Sub OpenFormAsMDIChild(ByRef rParentForm As Windows.Forms.Form, ByRef rUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
-    Dim mfrm As frmHomePurchasingManagement = Nothing
+    Dim mfrm As frmHomePurchasing = Nothing
     Dim mCreated As Boolean = False
     'Dim mTableName As String
 
@@ -21,7 +21,7 @@ Public Class frmHomePurchasingManagement
     mfrm = GetFormIfLoaded()
 
     If mfrm Is Nothing Then
-      mfrm = New frmHomePurchasingManagement
+      mfrm = New frmHomePurchasing
       mfrm.pFormController = New fccHomePurchasing
       mfrm.pFormController.DBConn = rUserSession.CreateMainDBConn
       mfrm.pFormController.RTISGlobal = rRTISGlobal
@@ -34,14 +34,14 @@ Public Class frmHomePurchasingManagement
 
   End Sub
 
-  Private Shared Function GetFormIfLoaded() As frmHomePurchasingManagement
-    Dim mfrmWanted As frmHomePurchasingManagement = Nothing
+  Private Shared Function GetFormIfLoaded() As frmHomePurchasing
+    Dim mfrmWanted As frmHomePurchasing = Nothing
     Dim mFound As Boolean = False
-    Dim mfrm As frmHomePurchasingManagement
+    Dim mfrm As frmHomePurchasing
     'Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
-      If TypeOf mfrm Is frmHomePurchasingManagement Then
+      If TypeOf mfrm Is frmHomePurchasing Then
         mfrmWanted = mfrm
         mFound = True
         Exit For

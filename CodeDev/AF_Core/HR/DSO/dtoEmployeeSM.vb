@@ -12,7 +12,6 @@ Public Class dtoEmployeeSM : Inherits RTIS.ERPCore.dtoEmployee
 
     mEmpSD = CType(pEmployee, dmEmployeeSM)
     With mEmpSD
-      ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "EmployeeGroup", .EmployeeGroup)
       ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentType", .PaymentType)
       ''DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesAreaID", .SalesAreaID)
 
@@ -27,7 +26,6 @@ Public Class dtoEmployeeSM : Inherits RTIS.ERPCore.dtoEmployee
 
     mEmpSD = CType(pEmployee, dmEmployeeSM)
     With mEmpSD
-      ''.EmployeeGroup = DBReadByte(rDataReader, "EmployeeGroup")
       ''.PaymentType = DBReadByte(rDataReader, "PaymentType")
       ''.SalesAreaID = DBReadInteger(rDataReader, "SalesAreaID")
       pEmployee.IsDirty = False

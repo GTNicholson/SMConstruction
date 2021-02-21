@@ -74,10 +74,9 @@ Public Class clsMDISystemAdmin : Inherits clsMDIShellContextBase
         RTIS.ERPCore.frmAdminEmployeeStandard.OpenAsMDI(rMDIParent, pDBConn, pRTISGlobal, mPermissionCode, mRoleList)
 
         Dim mEeeList As IList = CType(RTISGlobal, AppRTISGlobal).RefLists.RefIList(appRefLists.Employees)
-        Dim mHomeFormList As New colValueItems
-        mHomeFormList.AddNewItem(1, "General KPI")
-        mHomeFormList.AddNewItem(2, "Quoting/Sales")
-        mHomeFormList.AddNewItem(3, "Production")
+        Dim mHomeFormList As colValueItems
+
+        mHomeFormList = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eHomeScreen))
         RTIS.Elements.frmAdminUser.OpenAsMDI(rMDIParent, pDBConn, pRTISGlobal, mPermissionCode, mEeeList, mHomeFormList) 'Eee List is optional
 
         ''Dim mAppList As New colValueItems

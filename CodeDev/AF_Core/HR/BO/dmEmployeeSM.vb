@@ -1,6 +1,9 @@
 ﻿Public Class dmEmployeeSM : Inherits RTIS.ERPCore.dmEmployee
+  Private pHomeScreenID As Integer
+
   Private pEmployeeRateOfPays As colEmployeeRateOfPays
   Private pEmployeeRateOfPay As dmEmployeeRateOfPay
+
 
   Public Sub New()
     MyBase.New
@@ -11,6 +14,17 @@
     pEmployeeRateOfPays = New colEmployeeRateOfPays
     pEmployeeRateOfPay = New dmEmployeeRateOfPay
   End Sub
+
+  Public Property HomeScreenID As Integer
+    Get
+      Return pHomeScreenID
+    End Get
+    Set(value As Integer)
+      If value <> pHomeScreenID Then
+        pIsDirty = True
+      End If
+    End Set
+  End Property
 
   Public Property EmployeeRateOfPays As colEmployeeRateOfPays
     Get
@@ -30,5 +44,7 @@
       pEmployeeRateOfPay = value
     End Set
   End Property
+
+
 
 End Class

@@ -183,6 +183,7 @@
     <Compile Include="App\GUI\brwCurrentUserLocks.vb" />
     <Compile Include="App\GUI\brwCurrentUsersLoggedOn.vb" />
     <Compile Include="App\GUI\brwTemplateList.vb" />
+    <Compile Include="App\GUI\clsHomeScreenFactory.vb" />
     <Compile Include="App\GUI\frmDisplayError.designer.vb">
       <DependentUpon>frmDisplayError.vb</DependentUpon>
     </Compile>
@@ -274,10 +275,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="General\GUI\fccHomePurchasing.vb" />
-    <Compile Include="General\GUI\frmHomePurchasingManagement.Designer.vb">
-      <DependentUpon>frmHomePurchasingManagement.vb</DependentUpon>
+    <Compile Include="General\GUI\frmHomePurchasing.Designer.vb">
+      <DependentUpon>frmHomePurchasing.vb</DependentUpon>
     </Compile>
-    <Compile Include="General\GUI\frmHomePurchasingManagement.vb">
+    <Compile Include="General\GUI\frmHomePurchasing.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HR\GUI\fccAdminEmployeeOverride.vb" />
@@ -813,8 +814,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="General\GUI\frmHomePurchasingManagement.resx">
-      <DependentUpon>frmHomePurchasingManagement.vb</DependentUpon>
+    <EmbeddedResource Include="General\GUI\frmHomePurchasing.resx">
+      <DependentUpon>frmHomePurchasing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\GUI\frmAdminEmployeeOverride.resx">
       <DependentUpon>frmAdminEmployeeOverride.vb</DependentUpon>
