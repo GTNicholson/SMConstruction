@@ -804,7 +804,7 @@ Public Class frmWorkOrderDetailConstruction
   End Sub
 
 
-  Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirements.CustomUnboundColumnData
+  Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) 
     Dim mMatReq As dmMaterialRequirement
 
     mMatReq = TryCast(e.Row, dmMaterialRequirement)
@@ -851,7 +851,7 @@ Public Class frmWorkOrderDetailConstruction
 
 
 
-  Private Sub gvMaterialRequirements_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles gvMaterialRequirements.InitNewRow
+  Private Sub gvMaterialRequirements_InitNewRow(sender As Object, e As InitNewRowEventArgs) 
     Dim mMatReq As dmMaterialRequirement
     mMatReq = gvMaterialRequirements.GetRow(e.RowHandle)
     mMatReq.PiecesPerComponent = 1
@@ -874,7 +874,7 @@ Public Class frmWorkOrderDetailConstruction
   End Sub
 
 
-  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
+  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Select Case e.Button.Properties.Tag
       Case eMaterialRequirementsButtons.Copy
         Dim mMatReqs As colMaterialRequirements
@@ -935,7 +935,7 @@ Public Class frmWorkOrderDetailConstruction
 
   End Sub
 
-  Private Sub gvRequirmentMaterialsChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvRequirmentMaterialsChanges.CustomUnboundColumnData
+  Private Sub gvRequirmentMaterialsChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) 
     Dim mMatReq As dmMaterialRequirement
 
 
@@ -976,7 +976,7 @@ Public Class frmWorkOrderDetailConstruction
     End If
   End Sub
 
-  Private Sub grpMaterialRequirementOthers_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementOthers.CustomButtonClick
+  Private Sub grpMaterialRequirementOthers_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Select Case e.Button.Properties.Tag
       Case eMaterialRequirementsButtons.Copy
         Dim mMatReqs As colMaterialRequirements
@@ -1032,7 +1032,7 @@ Public Class frmWorkOrderDetailConstruction
     End Select
   End Sub
 
-  Private Sub gvMaterialRequirementOthers_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirementOthers.CustomUnboundColumnData
+  Private Sub gvMaterialRequirementOthers_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) 
     Dim mMatReq As dmMaterialRequirement
     Dim mSI As dmStockItem
 
@@ -1093,7 +1093,7 @@ Public Class frmWorkOrderDetailConstruction
     End If
   End Sub
 
-  Private Sub grpMaterialRequirementsOtherChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementsOtherChanges.CustomButtonClick
+  Private Sub grpMaterialRequirementsOtherChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Select Case e.Button.Properties.Tag
 
         ''Case eMaterialRequirementsButtons.CopyChange
@@ -1153,7 +1153,7 @@ Public Class frmWorkOrderDetailConstruction
     End Select
   End Sub
 
-  Private Sub gvMaterialRequirmentOtherChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirmentOtherChanges.CustomUnboundColumnData
+  Private Sub gvMaterialRequirmentOtherChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) 
     Dim mMatReq As dmMaterialRequirement
     Dim mSI As dmStockItem
 
@@ -1209,7 +1209,7 @@ Public Class frmWorkOrderDetailConstruction
     End If
   End Sub
 
-  Private Sub grpMaterialRequirementChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementChanges.CustomButtonClick
+  Private Sub grpMaterialRequirementChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Select Case e.Button.Properties.Tag
 
       Case eMaterialRequirementsButtons.ExportList
@@ -1220,7 +1220,7 @@ Public Class frmWorkOrderDetailConstruction
     End Select
   End Sub
 
-  Private Sub repbtnSubstituteMatReq_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repbtnSubstituteMatReq.ButtonClick
+  Private Sub repbtnSubstituteMatReq_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
     Dim mSI As dmStockItem
     Dim mMR As dmMaterialRequirement
     Dim mSIs As New colStockItems
