@@ -38,27 +38,27 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
     Dim mWhere As String = ""
 
 
-    Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
-      Case eAddingOption.SalesRequirement
-        Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
-          Case eAddingOption.SalesRequirement
-            mdso = New dsoSales(pDBConn)
-            mSOIPs = New colSalesOrderPhaseItemInfos
-            mWhere = "ProductTypeID = " & eProductType.StructureAF
-            mdso.LoadSalesOrderPhaseItemInfos(mSOIPs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
-            mSOPIPicker = New clsPickerSalesOrderPhaseItem(mSOIPs, pDBConn, 0)
-            mSalesOrderPhaseItems = frmSalesOrderPhaseItemPickerMulti.OpenPickerMulti(mSOPIPicker, True, pDBConn, pRTISGlobal)
+    'Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
+    '  Case eAddingOption.SalesRequirement
+    '    Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
+    '      Case eAddingOption.SalesRequirement
+    '        mdso = New dsoSales(pDBConn)
+    '        mSOIPs = New colSalesOrderPhaseItemInfos
+    '        mWhere = "ProductTypeID = " & eProductType.StructureAF
+    '        mdso.LoadSalesOrderPhaseItemInfos(mSOIPs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
+    '        mSOPIPicker = New clsPickerSalesOrderPhaseItem(mSOIPs, pDBConn, 0)
+    '        mSalesOrderPhaseItems = frmSalesOrderPhaseItemPickerMulti.OpenPickerMulti(mSOPIPicker, True, pDBConn, pRTISGlobal)
 
-            If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then
-              frmWorkOrderDetailConstruction.OpenFormMDINewSalesRequirements(mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, mSalesOrderPhaseItems, eProductType.StructureAF)
-            End If
+    '        If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then
+    frmWorkOrderDetailConstruction.OpenFormMDINewSalesRequirements(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, eProductType.StructureAF)
+    '    End If
 
 
-        End Select
-        'If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then
-        '  frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
-        'End If
-    End Select
+    'End Select
+    'If mSalesOrderPhaseItems IsNot Nothing And mSalesOrderPhaseItems.Count > 0 Then
+    '  frmWorkOrderDetailConstruction.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, True, eProductType.StructureAF)
+    'End If
+    'End Select
 
 
     Return mReloadData
@@ -204,11 +204,11 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
         .ReLabelToolBarButtons("Agregar OT de Venta", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar OT", eListOption.DefaultListOption)
-        .AddListOption("Nueva OT", eListOption.DefaultListOption)
-        .AddListOption("OT Caducada", eListOption.DefaultListOption)
+        '.AddListOption("Activar OT", eListOption.DefaultListOption)
+        '.AddListOption("Nueva OT", eListOption.DefaultListOption)
+        '.AddListOption("OT Caducada", eListOption.DefaultListOption)
 
-        .AddAddOption("Agregar para Inventario", eAddingOption.ToInventory)
+        '.AddAddOption("Agregar para Inventario", eAddingOption.ToInventory)
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
         '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChartXmlSerializer version="17.1.16.0">
+  <Chart AppearanceNameSerializable="Default" SelectionMode="None" SeriesSelectionMode="Series">
+    <DataContainer SeriesDataMember="StockItemTypeDesc" BoundSeriesSorting="None">
+      <SeriesSerializable>
+        <Item1 Name="Series 1">
+          <View TypeNameSerializable="StackedBarSeriesView" />
+          <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item1>
+        <Item2 Name="Series 2">
+          <View TypeNameSerializable="StackedBarSeriesView" />
+          <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item2>
+      </SeriesSerializable>
+      <SeriesTemplate ArgumentDataMember="SpeciesDesc" SummaryFunction="SUM([Quantity])" ArgumentScaleType="Qualitative">
+        <View TypeNameSerializable="StackedBarSeriesView" />
+        <Label TypeNameSerializable="StackedBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+      </SeriesTemplate>
+    </DataContainer>
+    <Diagram TypeNameSerializable="XYDiagram">
+      <AxisX VisibleInPanesSerializable="-1" />
+      <AxisY VisibleInPanesSerializable="-1" />
+    </Diagram>
+    <AutoSeriesCheckedInLegendStates>
+      <Item1 CheckState="true" AutoSeriesName="MAV" />
+      <Item2 CheckState="true" AutoSeriesName="Rollo" />
+      <Item3 CheckState="true" AutoSeriesName="MAS" />
+    </AutoSeriesCheckedInLegendStates>
+  </Chart>
+</ChartXmlSerializer>

@@ -111,12 +111,36 @@ Public Class frmStockItemInfo
       gcPartNo.Visible = True
       gcTotalCubicMeter.Visible = False
       gcCategory.Visible = True
+      gcCategory.GroupIndex = 1
       gcItemType.Caption = "Sub Categoría"
-      gvStockItemInfos.OptionsView.ShowGroupPanel = False
+      gvStockItemInfos.OptionsView.ShowGroupPanel = True
+      CreateCategoryGroupSummary()
       gcItemType.GroupIndex = -1
     End If
 
     pIsActive = mStartActive
+  End Sub
+
+  Private Sub CreateCategoryGroupSummary()
+    Dim item As GridGroupSummaryItem = New GridGroupSummaryItem()
+    gvStockItemInfos.GroupSummary.Clear()
+
+    'gvStockItemInfos.OptionsView.GroupFooterShowMode = GroupFooterShowMode.VisibleAlways
+    gvStockItemInfos.OptionsView.ShowFooter = True
+
+
+
+    item.FieldName = "Category"
+    item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+    item.DisplayFormat = "Valor Total = {C$#,##0.00;;#}"
+    gvStockItemInfos.GroupSummary.Add(item)
+
+    gcCategory.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+    gcCategory.SummaryItem.DisplayFormat = "{0:n3}"
+    gcCategory.SummaryItem.FieldName = "ActualValueInventory"
+
+    gvStockItemInfos.GroupSummary.Add(SummaryItemType.Sum, "ActualValueInventory")
+
   End Sub
 
   Private Sub CreateGroupSummary()
@@ -132,16 +156,6 @@ Public Class frmStockItemInfo
     item.SummaryType = DevExpress.Data.SummaryItemType.Sum
     item.DisplayFormat = "Total PT Especie{0:n3}"
     gvStockItemInfos.GroupSummary.Add(item)
-    ' Create and setup the second summary item.
-    'Dim item1 As GridGroupSummaryItem = New GridGroupSummaryItem()
-    'item1.FieldName = "CurrentInventory"
-    'item1.SummaryType = DevExpress.Data.SummaryItemType.Sum
-    'item1.DisplayFormat = "Total {0:c2}"
-    'item1.ShowInGroupColumnFooter = gvStockItemInfos.Columns("CurrentInventory")
-    'gvStockItemInfos.GroupSummary.Add(item1)
-
-
-
 
     gcCurrentInventory.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
     gcCurrentInventory.SummaryItem.DisplayFormat = "{0:n3}"
@@ -406,6 +420,8 @@ Public Class frmStockItemInfo
     Dim mStockItemID As Integer
     Dim mSIP As clsStockItemInfo
     Dim mWoodPalletItemInfos As colWoodPalletItemInfos
+    Dim mBalanceQty As Decimal = 0
+    Dim mDatasource As New colWoodPalletItemContents
 
     Dim mWhere As String = ""
     mSIP = gvStockItemInfos.GetFocusedRow
@@ -418,11 +434,18 @@ Public Class frmStockItemInfo
       If mWoodPalletItemContents IsNot Nothing Then
 
         For Each mWPIC In mWoodPalletItemContents
-          mWoodPalletItemInfos = New colWoodPalletItemInfos
-          pFormController.LoadWoodPalletItemInfosByStockItemID(mWoodPalletItemInfos, mWPIC.StockItemID, mWPIC.WoodPalletID)
-          mWPIC.WoodPalletItems = mWoodPalletItemInfos
+
+          mBalanceQty = mWPIC.SUMQuantity - mWPIC.SUMQuantityUsed
+
+          If mBalanceQty > 0 Then
+
+            mWoodPalletItemInfos = New colWoodPalletItemInfos
+            pFormController.LoadWoodPalletItemInfosByStockItemID(mWoodPalletItemInfos, mWPIC.StockItemID, mWPIC.WoodPalletID)
+            mWPIC.WoodPalletItems = mWoodPalletItemInfos
+            mDatasource.Add(mWPIC)
+          End If
         Next
-        grdWoodPalletInfo.DataSource = mWoodPalletItemContents
+        grdWoodPalletInfo.DataSource = mDatasource
       End If
 
 

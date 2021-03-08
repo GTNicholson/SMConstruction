@@ -15,6 +15,7 @@ Public Class fccWorkOrderDetailConstruction
   Private pSalesOrderPhaseItems As colSalesOrderPhaseItems
   Private pWorkOrderAllocationEditors As colWorkOrderAllocationEditors
   Private pProductType As eProductType
+  Private pSalesOrderPhaseInfos As colSalesOrderPhaseInfos
 
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
     pDBConn = rDBConn
@@ -24,6 +25,7 @@ Public Class fccWorkOrderDetailConstruction
     pUsedItems = New List(Of Integer)
     pSalesOrderPhaseItems = New colSalesOrderPhaseItems
     pWorkOrderAllocationEditors = New colWorkOrderAllocationEditors
+    pSalesOrderPhaseInfos = New colSalesOrderPhaseInfos()
   End Sub
 
   Public ReadOnly Property RTISGlobal As AppRTISGlobal
@@ -125,6 +127,14 @@ Public Class fccWorkOrderDetailConstruction
     End Set
   End Property
 
+  Public Property SalesOrderPhaseInfos As colSalesOrderPhaseInfos
+    Get
+      Return pSalesOrderPhaseInfos
+    End Get
+    Set(value As colSalesOrderPhaseInfos)
+      pSalesOrderPhaseInfos = value
+    End Set
+  End Property
   Public ReadOnly Property TimeSheetEntrys As colTimeSheetEntrys
     Get
       Return pTimeSheetEntrys
@@ -212,25 +222,34 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Sub syncronizedMaterialRequirment(ByRef rStockItems As List(Of dmStockItem))
     Dim mMat As dmMaterialRequirement
-    Dim mFurniture As dmProductFurniture
+    Dim mProductStructure As dmProductStructure
     Dim mFound As Boolean
 
-    mFurniture = pWorkOrder.Product
+    mProductStructure = pWorkOrder.Product
 
     For Each mSI As dmStockItem In rStockItems
-      If mFurniture.MaterialRequirmentOthers.IndexFromStockItemID(mSI.StockItemID) = -1 Then
+      If mProductStructure.MaterialRequirements.IndexFromStockItemID(mSI.StockItemID) = -1 Then
         mMat = New dmMaterialRequirement
 
         mMat.ObjectID = pWorkOrder.WorkOrderID
         mMat.ObjectType = eObjectType.WorkOrder
         mMat.StockItemID = mSI.StockItemID
-        mFurniture.MaterialRequirmentOthers.Add(mMat)
+        mMat.Description = mSI.Description
+        mMat.UoM = mSI.UoMDesc
+        mMat.WoodSpecie = mSI.Species
+        mMat.StockCode = mSI.StockCode
+        mMat.NetLenght = mSI.Length
+        mMat.NetWidth = mSI.Width
+        mMat.NetThickness = mSI.Thickness
+        mMat.DateChange = Now
+        mMat.SupplierStockCode = mSI.PartNo
+        mProductStructure.MaterialRequirements.Add(mMat)
       End If
     Next
 
-    For mLoop As Integer = mFurniture.MaterialRequirmentOthers.Count - 1 To 0 Step -1
+    For mLoop As Integer = mProductStructure.MaterialRequirements.Count - 1 To 0 Step -1
       mFound = False
-      mMat = mFurniture.MaterialRequirmentOthers(mLoop)
+      mMat = mProductStructure.MaterialRequirements(mLoop)
       If mMat.StockItemID <> 0 Then '// this leaves the manual ones alone
         For Each mSI As dmStockItem In rStockItems
           If mMat.StockItemID = mSI.StockItemID Then
@@ -239,7 +258,7 @@ Public Class fccWorkOrderDetailConstruction
           End If
         Next
         If mFound = False Then
-          mFurniture.MaterialRequirmentOthers.RemoveAt(mLoop)
+          mProductStructure.MaterialRequirements.RemoveAt(mLoop)
         End If
       End If
     Next
@@ -247,27 +266,36 @@ Public Class fccWorkOrderDetailConstruction
 
   End Sub
 
-  Public Sub syncronizedMaterialRequirmentChanges(ByRef rStockItems As List(Of dmStockItem))
+  Public Sub syncronizedWoodMaterialRequirment(ByRef rStockItems As List(Of dmStockItem))
     Dim mMat As dmMaterialRequirement
-    Dim mFurniture As dmProductFurniture
+    Dim mProductStructure As dmProductStructure
     Dim mFound As Boolean
 
-    mFurniture = pWorkOrder.Product
+    mProductStructure = pWorkOrder.Product
 
     For Each mSI As dmStockItem In rStockItems
-      If mFurniture.MaterialRequirmentOthersChanges.IndexFromStockItemID(mSI.StockItemID) = -1 Then
+      If mProductStructure.WoodMaterialRequirements.IndexFromStockItemID(mSI.StockItemID) = -1 Then
         mMat = New dmMaterialRequirement
 
         mMat.ObjectID = pWorkOrder.WorkOrderID
         mMat.ObjectType = eObjectType.WorkOrder
         mMat.StockItemID = mSI.StockItemID
-        mFurniture.MaterialRequirmentOthersChanges.Add(mMat)
+        mMat.MaterialTypeID = 1
+        mMat.UoM = mSI.UoMDesc
+        mMat.WoodSpecie = mSI.Species
+        mMat.StockCode = mSI.StockCode
+        mMat.NetLenght = mSI.Length
+        mMat.NetWidth = mSI.Width
+        mMat.NetThickness = mSI.Thickness
+        mMat.DateChange = Now
+        mMat.SupplierStockCode = mSI.PartNo
+        mProductStructure.WoodMaterialRequirements.Add(mMat)
       End If
     Next
 
-    For mLoop As Integer = mFurniture.MaterialRequirmentOthersChanges.Count - 1 To 0 Step -1
+    For mLoop As Integer = mProductStructure.WoodMaterialRequirements.Count - 1 To 0 Step -1
       mFound = False
-      mMat = mFurniture.MaterialRequirmentOthersChanges(mLoop)
+      mMat = mProductStructure.WoodMaterialRequirements(mLoop)
       If mMat.StockItemID <> 0 Then '// this leaves the manual ones alone
         For Each mSI As dmStockItem In rStockItems
           If mMat.StockItemID = mSI.StockItemID Then
@@ -276,12 +304,16 @@ Public Class fccWorkOrderDetailConstruction
           End If
         Next
         If mFound = False Then
-          mFurniture.MaterialRequirmentOthersChanges.RemoveAt(mLoop)
+          mProductStructure.WoodMaterialRequirements.RemoveAt(mLoop)
         End If
       End If
     Next
 
+
   End Sub
+
+
+
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
     Dim mRetVal As New clsValWarn
     mRetVal.ValOk = True
@@ -544,6 +576,14 @@ Public Class fccWorkOrderDetailConstruction
     ''Return mOK
   End Function
 
+  Public Sub LoadSalesOrderPhaseByWhere(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseInfos, ByVal vWhere As String)
+
+    Dim mdso As New dsoSales(DBConn)
+
+    mdso.LoadSalesOrderPhaseInfos(rSalesOrderPhaseItemInfos, vWhere)
+
+  End Sub
+
   Public Sub LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItemInfo As colSalesOrderPhaseItemInfos, ByVal vWhere As String)
 
     Dim mdso As New dsoSales(DBConn)
@@ -557,7 +597,7 @@ Public Class fccWorkOrderDetailConstruction
 
     With mRetVal
       .WorkOrderID = rWorkOrder.WorkOrderID
-      .SalesOrderPhaseItemID = vPhaseItemComponentID
+      .SalesOrderPhaseID = vPhaseItemComponentID
     End With
 
     rWorkOrder.WorkOrderAllocations.Add(mRetVal)
@@ -569,35 +609,38 @@ Public Class fccWorkOrderDetailConstruction
   Public Sub RefreshCurrentWorkOrderAllocationEditors()
     Dim mWOAE As clsWorkOrderAllocationEditor
     Dim mdsoSales As dsoSales
-    Dim mSOPIs As New colSalesOrderPhaseItemInfos
-    Dim mSOPI As clsSalesOrderPhaseItemInfo
+    Dim mSOPs As New colSalesOrderPhaseInfos
+    Dim mSOPI As clsSalesOrderPhaseInfo
     Dim mWhere As String = ""
 
     If pWorkOrder IsNot Nothing Then
-      If pWorkOrder.WorkOrderAllocations IsNot Nothing And pWorkOrder.WorkOrderAllocations.Count > 0 Then
+      If pWorkOrder.WorkOrderAllocations IsNot Nothing Then 'And pWorkOrder.WorkOrderAllocations.Count
 
         pWorkOrderAllocationEditors.Clear()
-        For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
-          '// create a new editor based on this salesitem and add to collection
-          mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
-          pWorkOrderAllocationEditors.Add(mWOAE)
-          mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
-          If mWhere <> "" Then mWhere &= ","
-          mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseItemID
-        Next
 
-        mWhere = "SalesOrderPhaseItemID In (" & mWhere & ")"
+        If pWorkOrder.WorkOrderAllocations.Count > 0 Then
+          For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+            '// create a new editor based on this salesitem and add to collection
+            mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
+            pWorkOrderAllocationEditors.Add(mWOAE)
+            mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
+            If mWhere <> "" Then mWhere &= ","
+            mWhere = mWhere & mWorkOrderAllocation.SalesOrderPhaseID
+          Next
 
-        mdsoSales = New dsoSales(pDBConn)
-        mdsoSales.LoadSalesOrderPhaseItemInfos(mSOPIs, mWhere, AppRTISGlobal.GetInstance.ProductRegistry)
+          mWhere = "SalesOrderPhaseID In (" & mWhere & ")"
 
-        For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
-          mSOPI = mSOPIs.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
-          mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
-        Next
+          mdsoSales = New dsoSales(pDBConn)
+          mdsoSales.LoadSalesOrderPhaseInfos(mSOPs, mWhere)
 
+
+          For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
+            mSOPI = mSOPs.ItemFromSalesOrderPhaseID(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
+            mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
+          Next
+        End If
       End If
-    End If
+      End If
 
 
 
@@ -606,5 +649,17 @@ Public Class fccWorkOrderDetailConstruction
   Public Sub GetNextWONumber()
     Dim mdsoGeneral As New dsoGeneral(pDBConn)
     pWorkOrder.WorkOrderNo = "S-" & mdsoGeneral.GetNextTallyWONo().ToString("00000")
+  End Sub
+
+  Public Sub SaveProduct(ByRef rProductStructure As dmProductStructure)
+
+    Dim mdto As dtoProductBase
+
+    pDBConn.Connect()
+    mdto = dtoProductBase.GetNewInstance(eProductType.StructureAF, pDBConn)
+
+    mdto.SaveProduct(rProductStructure)
+    pDBConn.Disconnect()
+
   End Sub
 End Class

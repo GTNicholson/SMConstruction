@@ -278,6 +278,13 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(UoM, eUoM))
+    End Get
+  End Property
+
+
   Public Property PartNo() As String
     Get
       Return pPartNo

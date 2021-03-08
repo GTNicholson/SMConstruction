@@ -15,7 +15,9 @@ Public Class clsStockItemInfo
 
   Private pCostWoodCost As Decimal
 
+
   Public Sub New(ByRef rPurchaseOrderItem As dmPurchaseOrderItem)
+
     pPOStockItem = rPurchaseOrderItem
 
     pStockItem = New dmStockItem
@@ -259,6 +261,8 @@ Public Class clsStockItemInfo
     End Get
 
   End Property
+
+
 
 
   Public ReadOnly Property ActualWoodValueInventory() As Decimal

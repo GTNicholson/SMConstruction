@@ -120,10 +120,18 @@ Public Class repCheckPaymentOrder
           mText &= " " & vbCrLf
           mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.UoMDesc & " de " & mPOI.Description
 
+          If mPOAII(0).ProjectName = "" Then
+            mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
+
+          Else
+
+            mText &= vbCrLf & "Con cargo al proyecto " & mPOAII(0).ProjectName
+          End If
+          xrtDescriptionPOItem.Text = mText
         Next
 
-        mText &= vbCrLf & "Con cargo a " & pProjectName
-        xrtDescriptionPOItem.Text = mText
+
+
 
 
       Else

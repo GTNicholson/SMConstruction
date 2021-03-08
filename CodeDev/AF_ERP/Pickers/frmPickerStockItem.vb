@@ -35,26 +35,26 @@ Public Class frmPickerStockItem
     End Set
   End Property
 
-  Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vShowWoodCat As Boolean, ByVal vWoodStockItemType As Integer) As Boolean
-    Dim mfrm As frmPickerStockItem
-    Dim mCreated As Boolean = False
-    'Dim mTableName As String
+  'Public Shared Function PickPurchaseOrderItems(ByRef rPickerStockItem As clsPickerStockItem, ByRef rRTISGlobal As clsRTISGlobal, ByVal vShowWoodCat As Boolean, ByVal vWoodStockItemType As Integer) As Boolean
+  '  Dim mfrm As frmPickerStockItem
+  '  Dim mCreated As Boolean = False
+  '  'Dim mTableName As String
 
-    mfrm = New frmPickerStockItem
-    mfrm.pPickerStockItem = rPickerStockItem
-    mfrm.pRTISGlobal = rRTISGlobal
-    mfrm.pRemainOpen = True
-    mfrm.pShowWoodCat = vShowWoodCat
-    mfrm.WoodStockItemType = vWoodStockItemType
+  '  mfrm = New frmPickerStockItem
+  '  mfrm.pPickerStockItem = rPickerStockItem
+  '  mfrm.pRTISGlobal = rRTISGlobal
+  '  mfrm.pRemainOpen = True
+  '  mfrm.pShowWoodCat = vShowWoodCat
+  '  mfrm.WoodStockItemType = vWoodStockItemType
 
 
-    mfrm.ShowDialog()
-    Return True
-  End Function
-  Public Shared Function OpenPickerSingle(ByVal vPickerStockItem As clsPickerStockItem) As intStockItemDef
+  '  mfrm.ShowDialog()
+  '  Return True
+  'End Function
+  Public Shared Function OpenPickerSingle(ByVal vPickerStockItem As clsPickerStockItem, ByVal vShowWoodCat As Boolean) As intStockItemDef
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As intStockItemDef = Nothing
-
+    mfrm.pShowWoodCat = vShowWoodCat
     mfrm.pPickerStockItem = vPickerStockItem
     mfrm.ShowDialog()
 
@@ -67,26 +67,44 @@ Public Class frmPickerStockItem
 
 
 
-  Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal) As List(Of intStockItemDef)
+  Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWood As Boolean, ByVal vWoodStockItemType As Integer) As List(Of intStockItemDef)
+    'Dim mfrm As New frmPickerStockItem
+    'Dim mRetVal As New List(Of intStockItemDef)
+
+
+    'mfrm.pPickerStockItem = vPickerStockItem
+    'mfrm.pRemainOpen = vRemainOpen
+    'mfrm.pShowWoodCat = vIsWood
+    'mfrm.ShowDialog()
+
+    'If mfrm.pPickerStockItem.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerStockItem.SelectedObjects.Count > 0 Then
+    '  For Each mItem As intStockItemDef In mfrm.pPickerStockItem.SelectedObjects
+    '    mRetVal.Add(mItem)
+    '  Next
+    'End If
+
+    'With mfrm.StockItem
+
+
+    'End With
+
+    'Return mRetVal
+
+
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As New List(Of intStockItemDef)
 
-
     mfrm.pPickerStockItem = vPickerStockItem
+    mfrm.pShowWoodCat = vIsWood
     mfrm.pRemainOpen = vRemainOpen
+    mfrm.WoodStockItemType = vWoodStockItemType
     mfrm.ShowDialog()
 
     If mfrm.pPickerStockItem.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerStockItem.SelectedObjects.Count > 0 Then
-      For Each mItem As intStockItemDef In mfrm.pPickerStockItem.SelectedObjects
+      For Each mItem As dmStockItem In mfrm.pPickerStockItem.SelectedObjects
         mRetVal.Add(mItem)
       Next
     End If
-
-    With mfrm.StockItem
-
-
-    End With
-
     Return mRetVal
   End Function
 
@@ -96,6 +114,7 @@ Public Class frmPickerStockItem
     Try
       pActive = False
       LoadCombo()
+
 
       Dim mSIs = New List(Of dmStockItem)
       For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pPickerStockItem.RTISGlobal.StockItemRegistry.StockItemsDict
@@ -108,7 +127,7 @@ Public Class frmPickerStockItem
 
       CreateTabs()
       SetCurrentTab(eStockItemCategory.Abrasivos)
-
+      RefreshControls()
       pActive = True
     Catch ex As Exception
       mOK = False
@@ -129,13 +148,21 @@ Public Class frmPickerStockItem
 
   End Sub
 
-
+  Private Sub RefreshControls()
+    grdItemList.DataSource = pPickerStockItem.DataSource
+    gvItemList.FocusedRowHandle = grdItemList.AutoFilterRowHandle
+    gvItemList.FocusedColumn = gcStockCode
+    gvItemList.ShowEditor()
+  End Sub
   Private Sub repoItemSelect_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles repoItemSelect.ButtonClick
     Try
       Dim mItem As intStockItemDef
       mItem = TryCast(gvItemList.GetFocusedRow, intStockItemDef)
       If mItem IsNot Nothing Then
         pPickerStockItem.SelectedObjects.Add(mItem)
+        gvItemList.CloseEditor()
+        gvItemList.RefreshRow(gvItemList.FocusedRowHandle)
+
         If pRemainOpen = False Then Me.Close()
       End If
       gvItemList.CloseEditor()
@@ -225,22 +252,42 @@ Public Class frmPickerStockItem
     End If
 
   End Sub
-
-  Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvItemList.CustomRowCellEdit
+  Private Sub gvItemList_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvItemList.CustomDrawCell
     Dim mRow As dmStockItem
+    Dim mStockItem As dmStockItem
+
     mRow = TryCast(gvItemList.GetRow(e.RowHandle), dmStockItem)
+
     If mRow IsNot Nothing Then
+      mStockItem = Nothing
+      If pPickerStockItem.SelectedObjects.Contains(mRow) Then
+        mStockItem = mRow
+      End If
+      If mStockItem IsNot Nothing Then
+        e.Appearance.BackColor = Color.LightBlue
+      Else
+        e.Appearance.BackColor = Nothing
+      End If
+    End If
+  End Sub
+  Private Sub gvItemList_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles gvItemList.CustomRowCellEdit
+    Dim mRow As intStockItemDef
+    Dim mStockItem As dmStockItem
 
-      If e.Column.Name = gcStockCode.Name Then
+    If e.Column.Name = gcStockCode.Name Then
+      mRow = TryCast(gvItemList.GetRow(e.RowHandle), intStockItemDef)
 
+      If mRow IsNot Nothing Then
+        mStockItem = Nothing
         If pPickerStockItem.SelectedObjects.Contains(mRow) Then
+          mStockItem = mRow
+        End If
+        If mStockItem IsNot Nothing Then
           e.RepositoryItem = repoItemRemove
         Else
           e.RepositoryItem = repoItemSelect
         End If
-
       End If
-
     End If
   End Sub
 

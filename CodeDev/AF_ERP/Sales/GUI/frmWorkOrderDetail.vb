@@ -1003,7 +1003,7 @@ Public Class frmWorkOrderDetail
           End If
         Next
 
-        frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
+        frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal, False, -1)
 
         pFormController.syncronizedMaterialRequirment(mPicker.SelectedObjects)
 
@@ -1122,7 +1122,7 @@ Public Class frmWorkOrderDetail
           End If
         Next
 
-        frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal)
+        frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal, False, -1)
 
         pFormController.syncronizedMaterialRequirmentChanges(mPicker.SelectedObjects)
 
@@ -1204,28 +1204,6 @@ Public Class frmWorkOrderDetail
     End Select
   End Sub
 
-  Private Sub repbtnSubstituteMatReq_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repbtnSubstituteMatReq.ButtonClick
-    Dim mSI As dmStockItem
-    Dim mMR As dmMaterialRequirement
-    Dim mSIs As New colStockItems
-    Dim mPicker As clsPickerStockItem
 
-    For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-      mSIs.Add(mItem.Value)
-    Next
-
-    mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
-
-    mSI = frmPickerStockItem.OpenPickerSingle(mPicker)
-
-    If mSI IsNot Nothing Then
-      mMR = gvMaterialRequirementOthers.GetFocusedRow
-      mMR.Description = ""
-      mMR.StockItemID = mSI.StockItemID
-    End If
-    gvMaterialRequirementOthers.CloseEditor()
-    gvMaterialRequirementOthers.UpdateCurrentRow()
-
-  End Sub
 
 End Class

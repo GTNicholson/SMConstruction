@@ -60,6 +60,8 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pRetentionPercentage As Decimal
   Private pValuationMode As Integer
 
+  Private pPaymentDate As Date
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -164,6 +166,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .POStage = POStage
       .RetentionPercentage = RetentionPercentage
       .ValuationMode = ValuationMode
+      .PaymentDate = PaymentDate
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -628,7 +631,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
 
   End Function
 
-
+  Public Property PaymentDate As Date
+    Get
+      Return pPaymentDate
+    End Get
+    Set(value As Date)
+      If pPaymentDate <> value Then IsDirty = True
+      pPaymentDate = value
+    End Set
+  End Property
   Public Property FileName() As String
     Get
       Return pFilename

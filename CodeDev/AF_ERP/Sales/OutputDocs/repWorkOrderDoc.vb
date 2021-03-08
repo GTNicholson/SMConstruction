@@ -2,15 +2,19 @@
 
 Public Class repWorkOrderDoc
   Private pWorkOrder As dmWorkOrder
-  Private pSalesOrderPhaseItemInfos As colWorkOrderAllocationEditors
+  Private pWorkOrderWoodMatReq As colMaterialRequirements
+  Private pWorkOrderStockItemMatReq As colMaterialRequirements
   Private pFurniture As dmProductFurniture
+  Private pProjectName As String
 
 
-  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByRef rWorkOrderAllocations As colWorkOrderAllocationEditors) As repWorkOrderDoc
+  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String, ByRef rWorkOrderStockItemMatReq As colMaterialRequirements, ByRef rWorkOrderWoodMatReq As colMaterialRequirements) As repWorkOrderDoc
     Dim mRep As New repWorkOrderDoc
     mRep.pWorkOrder = rWorkOrder
-    mRep.pFurniture = TryCast(rWorkOrder.Product, dmProductFurniture)
-    mRep.pSalesOrderPhaseItemInfos = rWorkOrderAllocations
+    mRep.pProjectName = vProjectName
+    mRep.pWorkOrderWoodMatReq = rWorkOrderWoodMatReq
+    mRep.pWorkOrderStockItemMatReq = rWorkOrderStockItemMatReq
+
     mRep.CreateDocument()
 
     ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
@@ -26,53 +30,43 @@ Public Class repWorkOrderDoc
     ''m.StockCode
 
     '// Head informatio from pWorkOrder
-    xrlWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
-    xrtCantidad.DataBindings.Add("Text", pWorkOrder, "Quantity")
+    xtcOTNumber.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
+    xtcProjectName.Text = pProjectName
+    xtcDescription.DataBindings.Add("Text", pWorkOrder, "Description")
+    xtcEmployee.DataBindings.Add("Text", pWorkOrder, "EmployeeDesc")
+    xtcCreatedDate.DataBindings.Add("Text", pWorkOrder, "DateCreated", "{0:dd/MM/yyyy}")
+    xtcPlannedStartDate.DataBindings.Add("Text", pWorkOrder, "PlannedStartDate", "{0:dd/MM/yyyy}")
+    xtcDueDate.DataBindings.Add("Text", pWorkOrder, "PlannedDeliverDate", "{0:dd/MM/yyyy}")
+
 
 
   End Sub
 
   Private Sub repWorkOrderDoc_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
-    Dim mProduct As dmProductBase
-    Dim mPicHeight As Single
-    Dim mRepWorkOrderAllocation As repWorkOrderAllocation
+    'Dim mProduct As dmProductBase
+    'Dim mPicHeight As Single
+    Dim mrepWorkOrderWoodMaterialRequirementInfo As repWorkOrderWoodMaterialRequirement
+    Dim mrepStockItemMaterialRequirement As repWorkOrderStockItemMaterialRequirement
+    Dim mRepSignatures As srepWorkOrderSignOffs
 
-    Select Case pWorkOrder.Product.ItemType
-      Case eProductType.StructureAF
-        mProduct = TryCast(pWorkOrder.Product, dmProductStructure)
-        xrtProductCode.Text = TryCast(pWorkOrder.Product, dmProductStructure).Code
-        xrlDescription.Text = TryCast(pWorkOrder.Product, dmProductStructure).Description
-      Case Else
-        mProduct = TryCast(pWorkOrder.Product, dmProductStructure)
-
-    End Select
 
 
     SetUpDataBindings()
 
 
-      xrlOT2.Text = pWorkOrder.WorkOrderNo
-      xrlDrawingDate.Text = pWorkOrder.DrawingDate
-      xrtFinishDate.Text = pWorkOrder.PlannedDeliverDate
-      xrtDate.Text = pWorkOrder.PlannedStartDate
 
+    mrepWorkOrderWoodMaterialRequirementInfo = New repWorkOrderWoodMaterialRequirement
+    mrepWorkOrderWoodMaterialRequirementInfo.DataSource = pWorkOrderWoodMatReq
+    xrSubWorkOrderWoodMatReq.ReportSource = mrepWorkOrderWoodMaterialRequirementInfo
 
-    If IsNothing(mProduct) Then
-        MessageBox.Show("Error, no existe ningún producto / componente ligado a esta Orden de Trabajo", "Error")
+    mrepStockItemMaterialRequirement = New repWorkOrderStockItemMaterialRequirement()
 
-        Return
+    mrepStockItemMaterialRequirement.DataSource = pWorkOrderStockItemMatReq
+    xrSubWorkOrderStockItemMatReq.ReportSource = mrepStockItemMaterialRequirement
 
-      End If
+    mRepSignatures = New srepWorkOrderSignOffs
+    xrsubSigns.ReportSource = mRepSignatures
 
-    ''xrNotes.Text = mPF.Notes
-
-    '// Optimise Image size so that it fits on what remains of the page after the notext
-
-    ''xrPic.HeightF = mPicHeight
-
-    mRepWorkOrderAllocation = New repWorkOrderAllocation
-    mRepWorkOrderAllocation.DataSource = pSalesOrderPhaseItemInfos
-    xrSubWorkOrderAllocation.ReportSource = mRepWorkOrderAllocation
   End Sub
 
   Private Function GetOptimalPicHeight(ByVal vNotes As String) As Single

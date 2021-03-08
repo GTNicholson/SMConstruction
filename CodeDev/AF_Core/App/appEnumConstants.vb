@@ -89,6 +89,8 @@ Public Enum ePOStage
   <Description("Climatización")> Climatizacion = 11
   <Description("Limpieza Final y Entrega")> LimpiezaEntrega = 12
   <Description("Baños")> Bathroom = 13
+  <Description("Hidrosanitaria")> Hidrosanitaria = 14
+
 
 End Enum
 Public Enum eMode
@@ -426,7 +428,7 @@ End Enum
 
 Public Enum eMaterialRequirementType
   Wood = 1
-  Other = 2
+  StockItems = 2
   WoodChanges = 3
   OtherChanges = 4
 End Enum

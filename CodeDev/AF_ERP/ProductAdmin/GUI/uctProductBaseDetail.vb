@@ -167,7 +167,7 @@ Public Class uctProductBaseDetail
             End If
           Next
 
-          frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance, False, -1)
 
           pFormController.RefreshStockItemBOMs(mPicker.SelectedObjects)
 

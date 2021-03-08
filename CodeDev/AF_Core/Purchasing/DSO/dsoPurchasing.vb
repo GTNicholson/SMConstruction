@@ -13,6 +13,9 @@ Public Class dsoPurchasing
     Dim mdtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
     Dim mPOItemInfos As colPOItemInfos
     Dim mdtoPurchaseOrderItem As New dtoPurchaseOrderItem(pDBConn)
+    Dim mdtoPurchaseOrderAllocation As New dtoPurchaseOrderAllocation(pDBConn)
+    Dim mdtoSalesOrderPhaseInfo As New dtoSalesOrderPhaseInfo(pDBConn)
+
     Dim mOK As Boolean
     Try
       pDBConn.Connect()
@@ -20,10 +23,25 @@ Public Class dsoPurchasing
 
       If rPurchaseOrderInfos IsNot Nothing Then
 
+
+
+
         For Each mPurchaseOrderInfo As clsPurchaseOrderInfo In rPurchaseOrderInfos
+
+
+          mdtoPurchaseOrderAllocation.LoadPurchaseOrderAllocationCollection(mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderAllocations, mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderID)
+
+
+          ''//Loading PO Allocations
           mPOItemInfos = New colPOItemInfos
 
           mdtoPurchaseOrderItem.LoadPurchaseOrderItemCollection(mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderItems, mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderID)
+
+
+          ''//Loading SalesOrderPhases
+          mdtoSalesOrderPhaseInfo.LoadSOPCollectionByWhere(mPurchaseOrderInfo.SalesOrderPhaseInfos, "")
+
+          ''//Loading POItems
 
           If mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderItems IsNot Nothing Then
             For Each mPOItem As dmPurchaseOrderItem In mPurchaseOrderInfo.PurchaseOrder.PurchaseOrderItems
@@ -76,6 +94,27 @@ Public Class dsoPurchasing
 
     Return mRetVal
   End Function
+
+  Public Sub LoadPODeliveryItemInfoByWhere(ByRef rPODeliveryItemInfos As colPODeliveryItemInfos, ByVal vWhere As String)
+    Dim mdto As dtoPODeliveryItemInfo
+
+    Try
+
+
+      pDBConn.Connect()
+      mdto = New dtoPODeliveryItemInfo(pDBConn)
+
+
+      mdto.LoadPODeliveryItemInfoCollectionByWhere(rPODeliveryItemInfos, vWhere)
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 
   Public Function LoadSuppliersByWhere(ByRef rSuppliers As colSuppliers, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
@@ -259,6 +298,31 @@ Public Class dsoPurchasing
     Return mRetVal
   End Function
 
+
+  Public Sub LoadPurchaseOrderItemAllocationInfoByWhere(ByRef rPOItemAllocationProcessors As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String)
+
+    Dim mdto As dtoPurchaseOrderItemAllocationInfo
+    Dim mdtoPODI As dtoPODeliveryItem
+
+
+    Try
+      mdto = New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Processor)
+
+      pDBConn.Connect()
+
+      mdto.LoadPurchaseOrderItemAllocationInfos(rPOItemAllocationProcessors, vWhere)
+
+      mdtoPODI = New dtoPODeliveryItem(pDBConn)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
+
   Public Sub LoadPurchaseOrderItemAllocationProcessorss(ByRef rPOItemAllocationProcessors As colPurchaseOrderItemAllocationProcessor, ByVal vPurchaseOrderID As Integer)
 
     Dim mdto As dtoPurchaseOrderItemAllocationInfo
@@ -289,7 +353,7 @@ Public Class dsoPurchasing
   Public Function getPODeliverysByPurchaseOrderID(ByVal vPurchaseOrderID As Integer) As Integer
     Dim mRetVal As Integer
     Dim mSql As String
-    mSql ="select COUNT(*) from PODelivery where PurchaseOrderID=" & vPurchaseOrderID
+    mSql = "select COUNT(*) from PODelivery where PurchaseOrderID=" & vPurchaseOrderID
 
 
     Try
@@ -345,7 +409,7 @@ Public Class dsoPurchasing
     Dim mOK As Boolean
     Try
       pDBConn.Connect()
-      mOK = mdto.LoadPurchaseOrderItemAllocationProgressProcessorCollection(rPOIA, vWhere)
+      mOK = mdto.LoadPurchaseOrderItemAllocationInfos(rPOIA, vWhere)
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

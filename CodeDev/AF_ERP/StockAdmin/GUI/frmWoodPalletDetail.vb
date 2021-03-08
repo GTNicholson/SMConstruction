@@ -355,8 +355,8 @@ Public Class frmWoodPalletDetail
           End If
         Next
 
-        If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal, True, pFormController.CurrentWoodPallet.PalletType) Then
-          For Each mSelectedItem In mPicker.SelectedObjects
+        frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal, True, pFormController.CurrentWoodPallet.PalletType)
+        For Each mSelectedItem In mPicker.SelectedObjects
             If mSelectedItem IsNot Nothing Then
               mNewWoodPalletItem = pFormController.CurrentWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
               If mNewWoodPalletItem Is Nothing Then
@@ -371,7 +371,7 @@ Public Class frmWoodPalletDetail
               End If
             End If
           Next
-        End If
+
         mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
         For mindex As Integer = pFormController.CurrentWoodPallet.WoodPalletItems.Count - 1 To 0 Step -1

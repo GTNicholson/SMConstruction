@@ -1,0 +1,3 @@
+alter table WorkOrder
+add DateCreated date
+go

@@ -343,11 +343,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Get
   End Property
 
-  Public ReadOnly Property ProjectName As String
-    Get
-      Return pSalesOrder.ProjectName
-    End Get
-  End Property
+
   Public ReadOnly Property WorkOrderNo() As String
     Get
       Return pWorkOrder.WorkOrderNo
@@ -362,7 +358,97 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
+  Public ReadOnly Property TotalReceivedAmountUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
 
+          mRetVal = ReceivedValue
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.ReceivedQty) / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalPurchaseOrderItemAmountUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = pPurchaseOrderItem.UnitPrice * pPurchaseOrderItem.QtyRequired
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItem.QtyRequired) / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property ExchangeRateValue As Decimal
+    Get
+      Return pPurchaseOrder.ExchangeRateValue
+    End Get
+
+  End Property
+
+  Public ReadOnly Property DefaultCurrency As Integer
+    Get
+      Return pPurchaseOrder.DefaultCurrency
+    End Get
+
+  End Property
+
+  Public ReadOnly Property ProjectName As String
+    Get
+      Dim mRetVal As String = pSalesOrder.ProjectName
+
+      If pSalesOrder.ProjectName = "" Then
+        mRetVal = CategoryDesc & " / Categoría Contable: " & AccoutingCategoryDesc
+        If mRetVal = "" Then
+          mRetVal = CategoryDesc
+        End If
+      End If
+
+      Return mRetVal
+    End Get
+
+  End Property
+  Public ReadOnly Property AccoutingCategoryDesc() As String
+    Get
+      Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
+    End Get
+
+  End Property
+
+  Public ReadOnly Property CategoryDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
+    End Get
+
+  End Property
+
+  Public ReadOnly Property SubmissionDateMC As Date
+    Get
+      Return New Date(Year(pPurchaseOrder.SubmissionDate), Month(pPurchaseOrder.SubmissionDate), 1)
+    End Get
+  End Property
 
 End Class
 

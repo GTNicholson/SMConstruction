@@ -61,6 +61,8 @@ Public Class dtoStockTake : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RangeStockCodeStart", StringToDBValue(.RangeStockCodeStart))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RangeStockCodeEnd", StringToDBValue(.RangeStockCodeEnd))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateSystemQty", DateToDBValue(.DateSystemQty))
+
+
     End With
 
   End Sub

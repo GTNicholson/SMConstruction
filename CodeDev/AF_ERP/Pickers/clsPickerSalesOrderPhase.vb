@@ -9,6 +9,8 @@
     pDBConn = rDBConn
   End Sub
 
+
+
   Public ReadOnly Property DBConn As RTIS.DataLayer.clsDBConnBase
     Get
       Return pDBConn

@@ -177,11 +177,11 @@ Public Class fccPickMaterials
         mMatReq.ObjectType = eObjectType.WorkOrder
         mMatReq.ObjectID = pCurrentWorkOrderInfo.WorkOrderID
         mMatReq.StockItemID = mSI.StockItemID
-        mMatReq.MaterialRequirementType = eMaterialRequirementType.Other
+        mMatReq.MaterialRequirementType = eMaterialRequirementType.StockItems
         mMatReqs.Add(mMatReq)
       Next
 
-      mdso.SaveMaterialRequirementsCollection(mMatReqs, eObjectType.WorkOrder, pCurrentWorkOrderInfo.WorkOrderID, eMaterialRequirementType.Other)
+      mdso.SaveMaterialRequirementsCollection(mMatReqs, eObjectType.WorkOrder, pCurrentWorkOrderInfo.WorkOrderID, eMaterialRequirementType.StockItems)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw

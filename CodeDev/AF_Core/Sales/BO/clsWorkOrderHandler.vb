@@ -14,7 +14,7 @@ Public Class clsWorkOrderHandler
     mRetVal.ProductTypeID = vProductType
     mRetVal.DateCreated = Now.Date
     mRetVal.Product = clsProductSharedFuncs.NewProductInstance(mRetVal.ProductTypeID)
-
+    mRetVal.PlannedStartDate = Now.Date
     Return mRetVal
   End Function
 
@@ -35,7 +35,7 @@ Public Class clsWorkOrderHandler
 
     For Each mSalesOrderPhaseItem In rSalesOrderPhaseItems
       mWOA = New dmWorkOrderAllocation
-      mWOA.SalesOrderPhaseItemID = mSalesOrderPhaseItem.SalesOrderPhaseItemID
+      mWOA.SalesOrderPhaseID = mSalesOrderPhaseItem.SalesOrderPhaseItemID
       mWOA.QuantityRequired = mSalesOrderPhaseItem.Qty
       mRetVal.WorkOrderAllocations.Add(mWOA)
     Next

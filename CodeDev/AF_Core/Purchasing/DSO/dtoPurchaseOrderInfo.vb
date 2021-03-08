@@ -114,6 +114,8 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .POStage = DBReadInt32(rDataReader, "POStage")
           .ValuationMode = DBReadInt32(rDataReader, "ValuationMode")
           .Supplier.isBigTaxPayer = DBReadBoolean(rDataReader, "isBigTaxPayer")
+          .PaymentDate = DBReadDate(rDataReader, "PaymentDate")
+          .RetentionPercentage = DBReadDecimal(rDataReader, "RetentionPercentage")
         End With
       End With
       mOK = True

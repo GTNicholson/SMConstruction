@@ -181,6 +181,7 @@ Public Class dmStockTake : Inherits dmBase
     End Set
   End Property
 
+
 End Class
 
 

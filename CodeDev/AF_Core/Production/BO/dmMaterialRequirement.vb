@@ -22,13 +22,13 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pDateOtherMaterial As DateTime
   Private pStockItemID As Int32
   Private pDateChange As DateTime
-
+  Private pComponentDescription As String
   Private pUoM As String
   Private pAreaID As Int32
   Private pSupplierStockCode As String
   Private pComments As String
   Private pPickedQty As Decimal
-
+  Private pTempInStock As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -80,6 +80,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .DateChange = DateChange
       .DateOtherMaterial = DateOtherMaterial
       .StockItemID = StockItemID
+      .ComponentDescription = ComponentDescription
       .SetPickedQty(PickedQty)
       .UoM = UoM
       .AreaID = AreaID
@@ -115,6 +116,12 @@ Public Class dmMaterialRequirement : Inherits dmBase
       pUoM = value
     End Set
   End Property
+
+  'Public ReadOnly Property UoMDesc As String
+  '  Get
+  '    Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pUoM, eUoM))
+  '  End Get
+  'End Property
 
   Public Property AreaID() As Int32
     Get
@@ -205,6 +212,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
       If pWoodSpecie <> value Then IsDirty = True
       pWoodSpecie = value
     End Set
+  End Property
+
+  Public ReadOnly Property WoodSpecieDesc As String
+    Get
+      If WoodSpecie > 0 Then
+        Return AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(WoodSpecie).Trim
+      End If
+
+      Return ""
+    End Get
   End Property
 
   Public Property WoodFinish() As Int32
@@ -348,6 +365,48 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End Set
   End Property
 
+  Public Property ComponentDescription As String
+    Get
+      Return pComponentDescription
+    End Get
+    Set(value As String)
+      If pComponentDescription <> value Then IsDirty = True
+      pComponentDescription = value
+    End Set
+  End Property
+
+  Public Property TempInStock As Decimal
+    Get
+      Return pTempInStock
+    End Get
+    Set(value As Decimal)
+      pTempInStock = value
+    End Set
+
+  End Property
+
+  Public ReadOnly Property WidthInch As String
+    Get
+      Dim mRetVal As String
+      mRetVal = clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInchesSMM(NetWidth))
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property LengthInch As Decimal
+    Get
+      Dim mRetVal As String
+      mRetVal = clsSMSharedFuncs.CMToHalfInchesLength(NetLenght)
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property ThicknessCM As Decimal
+    Get
+      Dim mRetVal As String
+      mRetVal = Math.Round(NetThickness * 2.54, 0, MidpointRounding.AwayFromZero)
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

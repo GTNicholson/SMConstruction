@@ -27,5 +27,10 @@ AgroForestal
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:AgroForestal.My.Resources.Resources.Logo2AF">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

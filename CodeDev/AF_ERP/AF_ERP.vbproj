@@ -151,6 +151,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -230,13 +231,12 @@
     <Compile Include="BIReports\BIReportViewCompanyDay.vb" />
     <Compile Include="BIReports\BIReportViewInvoice.vb" />
     <Compile Include="BIReports\BIReportViewMaterialRequirementInfo.vb" />
-    <Compile Include="BIReports\BIReportViewPODelivery.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />
     <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
-    <Compile Include="BIReports\BIPODeliveryItemInfo.vb" />
+    <Compile Include="BIReports\BIReportViewPODeliveryItem.vb" />
     <Compile Include="Costing\brwCostBook.vb" />
     <Compile Include="Costing\brwProductCost.vb" />
     <Compile Include="Costing\fccProductCostBook.vb" />
@@ -626,10 +626,16 @@
     <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sales\OutputDocs\repWorkOrderAllocation.Designer.vb">
-      <DependentUpon>repWorkOrderAllocation.vb</DependentUpon>
+    <Compile Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.Designer.vb">
+      <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sales\OutputDocs\repWorkOrderAllocation.vb">
+    <Compile Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderWoodMaterialRequirement.Designer.vb">
+      <DependentUpon>repWorkOrderWoodMaterialRequirement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repWorkOrderWoodMaterialRequirement.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\repWorkOrderDoc.Designer.vb">
@@ -969,8 +975,11 @@
     <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
       <DependentUpon>repProductFurniture.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderAllocation.resx">
-      <DependentUpon>repWorkOrderAllocation.vb</DependentUpon>
+    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.resx">
+      <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderWoodMaterialRequirement.resx">
+      <DependentUpon>repWorkOrderWoodMaterialRequirement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderDoc.resx">
       <DependentUpon>repWorkOrderDoc.vb</DependentUpon>
@@ -1047,12 +1056,14 @@
     <None Include="App.config" />
     <None Include="Sales\GUI\frmSalesOrderDetail.vb.orig" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AF_Core\AF_Core.vbproj">
       <Project>{016238eb-7277-4dc7-a99a-c9c9e4a390d0}</Project>
       <Name>AF_Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo2AF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

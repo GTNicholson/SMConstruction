@@ -1,0 +1,3 @@
+alter table MaterialRequirement
+add ComponentDescription varchar (100)
+go

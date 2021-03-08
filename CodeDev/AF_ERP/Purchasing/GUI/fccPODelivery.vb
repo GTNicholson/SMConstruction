@@ -115,7 +115,7 @@ Public Class fccPODelivery
 
       pDBConn.Connect()
       mdto = New dtoPurchaseOrderItemAllocationInfo(DBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Info)
-      mdto.LoadPurchaseOrderItemAllocationProgressProcessorCollection(rcolPurchaseOrderItemAllocationInfo, mwhere)
+      mdto.LoadPurchaseOrderItemAllocationInfos(rcolPurchaseOrderItemAllocationInfo, mwhere)
 
 
     Catch ex As Exception
@@ -377,6 +377,8 @@ Public Class fccPODelivery
   Public Function SavePODelivery() As Boolean
     Dim mdso As dsoPurchasing
     Dim mOK As Boolean = False
+    Dim mSQL As String = ""
+
     Try
       mdso = New dsoPurchasing(pDBConn)
 
@@ -384,11 +386,36 @@ Public Class fccPODelivery
 
       mOK = mdso.SavePODelivery(pPODelivery)
 
+      ''//Update the status for the PO
+      If mOK Then
+
+        Select Case PODelivery.Status
+          Case ePODelivery.Received
+            mSQL = String.Format("Update PurchaseOrder set Status = {0}  where PurchaseOrderID in (select PurchaseOrderID from PODelivery where PurchaseOrderID={1})", CInt(ePurchaseOrderDueDateStatus.Received), pPODelivery.PurchaseOrderID)
+
+            If DBConn.Connect Then
+              pDBConn.ExecuteNonQuery(mSQL)
+
+            End If
+
+          Case ePODelivery.Pending
+            mSQL = String.Format("Update PurchaseOrder set Status = {0}  where PurchaseOrderID in (select PurchaseOrderID from PODelivery where PurchaseOrderID={1})", CInt(ePurchaseOrderDueDateStatus.PartDelivered), pPODelivery.PurchaseOrderID)
+
+            If DBConn.Connect Then
+              pDBConn.ExecuteNonQuery(mSQL)
+
+            End If
+        End Select
+
+      End If
+
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     Finally
       mdso = Nothing
+      If DBConn.IsConnected Then DBConn.Disconnect()
+
     End Try
     Return mOK
   End Function

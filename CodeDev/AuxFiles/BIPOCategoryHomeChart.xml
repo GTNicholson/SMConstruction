@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChartXmlSerializer version="17.1.16.0">
+  <Chart AutoLayout="false" AppearanceNameSerializable="Light" PaletteName="Aspect" PaletteBaseColorNumber="3" SelectionMode="None" SeriesSelectionMode="Series" AnimationStartMode="OnLoad">
+    <DataContainer SeriesDataMember="Series" BoundSeriesSorting="None">
+      <SeriesTemplate ArgumentDataMember="Arguments" ValueDataMembersSerializable="Values" ArgumentScaleType="Qualitative" SeriesPointsSorting="Descending" SeriesPointsSortingKey="Value_1" LegendTextPattern="{A}">
+        <Label TypeNameSerializable="SideBySideBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+      </SeriesTemplate>
+    </DataContainer>
+    <Legend Visibility="True" MaxHorizontalPercentage="30" Name="Default Legend" />
+    <Titles>
+      <Item1 Text="Compras por Categoría USD" />
+    </Titles>
+    <FillStyle FillMode="Hatch" />
+    <Diagram TypeNameSerializable="XYDiagram">
+      <AxisX VisibleInPanesSerializable="-1">
+        <Title Text="Categoría Compra" />
+      </AxisX>
+      <AxisY VisibleInPanesSerializable="-1">
+        <Title Text="Valor Bruto USD" />
+        <Label TextPattern="{V:$0}" />
+      </AxisY>
+    </Diagram>
+    <AutoSeriesCheckedInLegendStates>
+      <Item1 CheckState="true" AutoSeriesName="Valor Bruto USD Total" />
+    </AutoSeriesCheckedInLegendStates>
+  </Chart>
+</ChartXmlSerializer>

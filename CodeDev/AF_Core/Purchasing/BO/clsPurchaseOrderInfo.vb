@@ -416,7 +416,23 @@ Public Class clsPurchaseOrderInfo
       For Each mPOItemInfo As clsPOItemInfo In pPOItemInfos
         mRetVal += mPOItemInfo.Price
       Next
-      mRetVal += pPurchaseOrder.Carriage
+      'mRetVal += pPurchaseOrder.Carriage
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property RetentionPercentage As Decimal
+    Get
+      Return pPurchaseOrder.RetentionPercentage
+    End Get
+  End Property
+  Public ReadOnly Property TotalGrossValueGUI As Decimal
+    Get
+      Dim mRetVal As Decimal
+      For Each mPOItemInfo As clsPOItemInfo In pPOItemInfos
+        mRetVal += mPOItemInfo.GrossPrice * (1 - RetentionPercentage)
+      Next
+      mRetVal += (pPurchaseOrder.Carriage + pPurchaseOrder.CarriageVAT)
       Return mRetVal
     End Get
   End Property
@@ -438,11 +454,11 @@ Public Class clsPurchaseOrderInfo
       Select Case DefaultCurrency
         Case eCurrency.Dollar
 
-          mRetVal = TotalGrossValue
+          mRetVal = TotalGrossValueGUI
 
         Case eCurrency.Cordobas
           If ExchangeRateValue > 0 Then
-            mRetVal = TotalGrossValue / ExchangeRateValue
+            mRetVal = TotalGrossValueGUI / ExchangeRateValue
           Else
             mRetVal = 0
           End If
@@ -459,11 +475,11 @@ Public Class clsPurchaseOrderInfo
       Select Case DefaultCurrency
         Case eCurrency.Dollar
 
-          mRetVal = TotalGrossValue * ExchangeRateValue
+          mRetVal = TotalGrossValueGUI * ExchangeRateValue
 
         Case eCurrency.Cordobas
           If ExchangeRateValue > 0 Then
-            mRetVal = TotalGrossValue
+            mRetVal = TotalGrossValueGUI
           Else
             mRetVal = 0
           End If
@@ -505,7 +521,11 @@ Public Class clsPurchaseOrderInfo
 
   End Property
 
-
+  Public ReadOnly Property PaymentDate As Date
+    Get
+      Return pPurchaseOrder.PaymentDate
+    End Get
+  End Property
   Public ReadOnly Property ProjectName As String
     Get
       Dim mRetVal As String = ""

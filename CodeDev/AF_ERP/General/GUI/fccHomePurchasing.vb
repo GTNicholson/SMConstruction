@@ -3,11 +3,9 @@
 Public Class fccHomePurchasing
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
-  Private pSalesOrderProgressInfos As colSalesOrderProgressInfos
-  Private pTimeSheetInfoChartSource As colTimeSheetEntryInfos
-  Private pCompanyDays As colCompanyDays
-  Private pInvoiceInfos As colInvoiceInfos
-  Private pPurchaseOrderInfos As colPurchaseOrderInfos
+  Private pPurchaseOrderInfoUnpaids As colPurchaseOrderInfos
+  Private pPurchaseOrderCategoryMonthlys As colPurchaseOrderInfos
+  Private pPODeliveryInfos As colPODeliveryInfos
 
   Public Property DBConn As RTIS.DataLayer.clsDBConnBase
     Get
@@ -27,47 +25,41 @@ Public Class fccHomePurchasing
     End Set
   End Property
 
-  Public ReadOnly Property CostLabourChartSource As colTimeSheetEntryInfos
+  Public ReadOnly Property PurchaseOrderCategoryMonthlys As colPurchaseOrderInfos
     Get
-      Return pTimeSheetInfoChartSource
+      Return pPurchaseOrderCategoryMonthlys
     End Get
   End Property
 
-  Public ReadOnly Property InvoiceInfos As colInvoiceInfos
+  Public ReadOnly Property PurchaseOrderInfoUnpaids As colPurchaseOrderInfos
     Get
-      Return pInvoiceInfos
+      Return pPurchaseOrderInfoUnpaids
     End Get
   End Property
 
-  Public ReadOnly Property SalesOrderProgressInfos As colSalesOrderProgressInfos
+  Public ReadOnly Property PODeliveryInfos As colPODeliveryInfos
     Get
-      Return pSalesOrderProgressInfos
+      Return pPODeliveryInfos
     End Get
   End Property
 
-  Public ReadOnly Property PurchaseOrderInfos As colPurchaseOrderInfos
-    Get
-      Return pPurchaseOrderInfos
-    End Get
-  End Property
-  Public ReadOnly Property CompanyDays As colCompanyDays
-    Get
-      Return pCompanyDays
-    End Get
-  End Property
 
-  Public Sub LoadPurchaseOrderInfosThisYear()
-    Dim mdso As dsoPurchasing
+  Public Sub LoadPurchaseOrderInfosCurrentMonth()
+    Dim mdsoPurchasing As dsoPurchasing
     Dim mwhere As String = ""
-    Dim StartDate As Date = New Date(Now.Year, 1, 1)
-    Dim EndDate As Date = New Date(Now.Year, 12, 31)
+    Dim mStartDate As Date
+    Dim mEndDate As Date
+
     Try
 
-      mwhere += String.Format("SubmissionDate between {0} and {1} and status not in ({2},{3})", StartDate, EndDate, ePurchaseOrderDueDateStatus.Cancelled, ePurchaseOrderDueDateStatus.Received)
+      mStartDate = New Date(Now.Year, Now.Month, 1)
+      mEndDate = Now
 
-      mdso = New dsoPurchasing(pDBConn)
-      pPurchaseOrderInfos = New colPurchaseOrderInfos
-      mdso.LoadPurchaseOrderInfosDown(pPurchaseOrderInfos, mwhere)
+      mwhere = String.Format("SubmissionDate between '{0}' and '{1}' and status <> {2}", mStartDate.ToShortDateString, mEndDate.ToShortDateString, CInt(ePurchaseOrderDueDateStatus.Cancelled))
+
+      mdsoPurchasing = New dsoPurchasing(pDBConn)
+      pPurchaseOrderCategoryMonthlys = New colPurchaseOrderInfos
+      mdsoPurchasing.LoadPurchaseOrderInfosDown(pPurchaseOrderCategoryMonthlys, mwhere)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -75,43 +67,41 @@ Public Class fccHomePurchasing
   End Sub
 
 
-  Public Sub LoadSalesOrderProgressInfo()
-    Dim mdsoSalesOrder As New dsoSales(pDBConn)
-    Dim mdsoCompanyDays As New dsoCompanyDay(pDBConn)
-    Dim mMonth As Integer = 0
-    Dim mYear As Int32 = 0
+  Public Sub LoadPurchaseOrderInfosUnpaid()
+    Dim mdsoPurchasing As dsoPurchasing
+    Dim mwhere As String = ""
+    Try
+
+      mwhere += "PaymentDate is null and Status<> " & CInt(ePurchaseOrderDueDateStatus.Cancelled)
+
+      mdsoPurchasing = New dsoPurchasing(pDBConn)
+      pPurchaseOrderInfoUnpaids = New colPurchaseOrderInfos
+      mdsoPurchasing.LoadPurchaseOrderInfosDown(pPurchaseOrderInfoUnpaids, mwhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub LoadPODeliveryInfosThisWeek()
+    Dim mdsoPurchasing As dsoPurchasing
+    Dim mwhere As String = ""
     Dim mStartDate As Date
     Dim mEndDate As Date
 
-    mMonth = Now.Month
+    Try
 
-    If mMonth < 6 Then
-      mYear = Now.Year - 1
-      mMonth = mMonth + 7 ''the last 6 months
+      mStartDate = RTIS.CommonVB.libDateTime.MondayOfWeek(Now)
+      mEndDate = mStartDate.AddDays(7)
 
-      mStartDate = New Date(mYear, mMonth, 1)
+      mwhere = String.Format("DateCreated between '{0}' and '{1}' and GRNumber <> '' and Status = {2}", mStartDate.ToShortDateString, mEndDate.ToShortDateString, CInt(ePODelivery.Received))
 
+      mdsoPurchasing = New dsoPurchasing(pDBConn)
+      pPODeliveryInfos = New colPODeliveryInfos
+      mdsoPurchasing.LoadPODeliveryInfoByWhere(pPODeliveryInfos, mwhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
 
-    Else
-      mYear = Now.Year
-      mMonth = Now.Month - 5
-
-      mStartDate = New Date(mYear, mMonth, 1)
-
-    End If
-
-    mEndDate = New Date(Now.Year, Now.Month, Now.Day)
-
-    pSalesOrderProgressInfos = New colSalesOrderProgressInfos
-    pCompanyDays = New colCompanyDays
-    pInvoiceInfos = New colInvoiceInfos
-
-    mdsoSalesOrder.LoadSalesOrderProgressInfos(pSalesOrderProgressInfos, "OrderNo<>''")
-    mdsoCompanyDays.LoadCompanyDays(pCompanyDays, mStartDate, mEndDate)
-    mdsoSalesOrder.LoadInvoiceInfosGraph(pInvoiceInfos)
   End Sub
-
-
-
-
 End Class

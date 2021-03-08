@@ -142,6 +142,12 @@ Public Class clsPODeliveryInfo
     End Get
   End Property
 
+  Public ReadOnly Property Comments As String
+    Get
+      Return pPurchaseOrder.Comments
+    End Get
+  End Property
+
   Public ReadOnly Property SupplierID As Integer
     Get
       Return pSupplier.SupplierID
@@ -178,6 +184,74 @@ Public Class clsPODeliveryInfo
     End Get
   End Property
 
+
+  Public ReadOnly Property DefaultCurrency As Integer
+    Get
+      Return pPurchaseOrder.DefaultCurrency
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalNetValue As Decimal
+    Get
+      Return pPurchaseOrder.TotalNetValue
+    End Get
+  End Property
+
+  Public ReadOnly Property AccoutingCategoryID As Integer
+    Get
+      Return pPurchaseOrder.AccoutingCategoryID
+    End Get
+  End Property
+
+  Public ReadOnly Property POStage As Integer
+    Get
+      Return pPurchaseOrder.POStage
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalReceivedAmountCordoba As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+
+      Select Case DefaultCurrency
+        Case eCurrency.Cordobas
+
+          mRetVal = pPurchaseOrder.TotalNetValue
+
+        Case eCurrency.Dollar
+          If pPurchaseOrder.ExchangeRateValue > 0 Then
+            mRetVal = (pPurchaseOrder.TotalNetValue) * ExchangeRateValue
+
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalReceivedAmountUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = pPurchaseOrder.TotalNetValue
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = (pPurchaseOrder.TotalNetValue) / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
 End Class
 
 Public Class colPODeliveryInfos : Inherits List(Of clsPODeliveryInfo)

@@ -10,6 +10,9 @@ Public Class dmProductStructure : Inherits dmProductBase
   Private pStockItemBOMs As colStockItemBOMs
   Private pProductBOMs As colProductBOMs
 
+  Private pMaterialRequirements As colMaterialRequirements
+  Private pWoodMaterialRequirements As colMaterialRequirements
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -18,6 +21,8 @@ Public Class dmProductStructure : Inherits dmProductBase
     ''Add object/collection instantiations here
     pStockItemBOMs = New colStockItemBOMs
     pProductBOMs = New colProductBOMs
+    pMaterialRequirements = New colMaterialRequirements
+    pWoodMaterialRequirements = New colMaterialRequirements
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -27,6 +32,8 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Protected Overrides Sub Finalize()
     pStockItemBOMs = Nothing
+    pMaterialRequirements = Nothing
+    pWoodMaterialRequirements = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -36,6 +43,10 @@ Public Class dmProductStructure : Inherits dmProductBase
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pStockItemBOMs.IsDirty
 
+      If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pWoodMaterialRequirements.IsDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -44,6 +55,8 @@ Public Class dmProductStructure : Inherits dmProductBase
     'Set Key Values = 0
     ProductStructureID = 0
     pStockItemBOMs = Nothing
+    pMaterialRequirements = Nothing
+    pWoodMaterialRequirements = Nothing
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -62,7 +75,8 @@ Public Class dmProductStructure : Inherits dmProductBase
 
 
       .ProductBOMs = ProductBOMs
-
+      .WoodMaterialRequirements = WoodMaterialRequirements.Clone
+      .MaterialRequirements = MaterialRequirements.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -79,7 +93,7 @@ Public Class dmProductStructure : Inherits dmProductBase
   End Function
 
   Public Overrides Sub CalculateCostAndPrice()
-    Throw New NotImplementedException()
+
   End Sub
 
   Public Property ProductStructureID() As Int32
@@ -156,6 +170,24 @@ Public Class dmProductStructure : Inherits dmProductBase
       pProductBOMs = value
     End Set
   End Property
+
+  Public Property MaterialRequirements As colMaterialRequirements
+    Get
+      Return pMaterialRequirements
+    End Get
+    Set(value As colMaterialRequirements)
+      pMaterialRequirements = value
+    End Set
+  End Property
+  Public Property WoodMaterialRequirements As colMaterialRequirements
+    Get
+      Return pWoodMaterialRequirements
+    End Get
+    Set(value As colMaterialRequirements)
+      pWoodMaterialRequirements = value
+    End Set
+  End Property
+
 End Class
 
 

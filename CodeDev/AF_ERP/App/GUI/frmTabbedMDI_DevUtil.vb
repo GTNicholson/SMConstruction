@@ -464,7 +464,7 @@ Public Class frmTabbedMDI_DevUtil
     mDSO = New dsoCostBook(My.Application.RTISUserSession.CreateMainDBConn)
     mDSO.LoadCostBookDown(mCB, 1)
 
-    mSI = frmPickerStockItem.OpenPickerSingle(mPicker)
+    mSI = frmPickerStockItem.OpenPickerSingle(mPicker, False)
     If mSI IsNot Nothing Then
       mDSOStock = New dsoStock(My.Application.RTISUserSession.CreateMainDBConn)
       mDSOStock.LoadStockItemLocationsByStockItemID(mSILs, mSI.StockItemID)

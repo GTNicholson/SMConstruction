@@ -218,7 +218,7 @@ Public Class frmPurchaseOrder
 
   Private Sub RefreshGrid()
     'pFormController.LoadObject()
-    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems ''.POItemsMinusAllocatedItem
     pFormController.UpdatePercentageValue(Val(txtRetentionPercentage.EditValue))
     gvPurchaseOrderItems.RefreshData()
     pFormController.LoadPODeliveryInfos()
@@ -243,8 +243,9 @@ Public Class frmPurchaseOrder
     clsDEControlLoading.FillDEComboVI(cboAccountingCategory, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.AccoutingCategory))
     dteDateOfOrder.Properties.NullDate = Date.MinValue
     dteDueDate.Properties.NullDate = Date.MinValue
+    dtePaymentDate.Properties.NullDate = Date.MinValue
     grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
-    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+    grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems ''.POItemsMinusAllocatedItem
     LoadPOItemAllocationCombo()
   End Sub
 
@@ -355,7 +356,7 @@ Public Class frmPurchaseOrder
 
         'dteDateEntered.EditValue = .DateEntered
         dteDueDate.EditValue = clsGeneralA.DateToDBValue(.RequiredDate)
-
+        dtePaymentDate.EditValue = .PaymentDate
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentMethod, .PaymentMethod)
 
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCategory, .Category)
@@ -469,6 +470,7 @@ Public Class frmPurchaseOrder
       .PaymentMethod = clsDEControlLoading.GetDEComboValue(cboPaymentMethod)
       .SubmissionDate = dteDateOfOrder.EditValue
       .RequiredDate = dteDueDate.DateTime
+      .PaymentDate = dtePaymentDate.EditValue
       .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
       .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
       .POStage = clsDEControlLoading.GetDEComboValue(cboStage)
@@ -856,7 +858,7 @@ Public Class frmPurchaseOrder
 
           mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, pFormController.RTISGlobal)
 
-          For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+          For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems ''.POItemsMinusAllocatedItem
             If mPOItem.StockItemID > 0 Then
               mStockItem = mStockItems.ItemFromKey(mPOItem.StockItemID)
 
@@ -866,8 +868,8 @@ Public Class frmPurchaseOrder
             End If
           Next
 
-          If frmPickerStockItem.PickPurchaseOrderItems(mPicker, pFormController.RTISGlobal, False, -1) Then
-            For Each mSelectedItem In mPicker.SelectedObjects
+          frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal, False, -1)
+          For Each mSelectedItem In mPicker.SelectedObjects
               If mSelectedItem IsNot Nothing Then
                 mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
                 If mPOItem Is Nothing Then
@@ -893,11 +895,11 @@ Public Class frmPurchaseOrder
                 End If
               End If
             Next
-          End If
+
           mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
-          For mindex As Integer = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem.Count - 1 To 0 Step -1
-            mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem(mindex)
+          For mindex As Integer = pFormController.PurchaseOrder.PurchaseOrderItems.Count - 1 To 0 Step -1
+            mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems(mindex)
             If mPOItem.StockItemID > 0 Then
               mStockItem = mSelectedStockItems.ItemFromKey(mPOItem.StockItemID)
 
@@ -909,7 +911,7 @@ Public Class frmPurchaseOrder
 
 
 
-          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
 
         Case "DeleteItem"
 
@@ -917,7 +919,7 @@ Public Class frmPurchaseOrder
           If mPOItem IsNot Nothing Then
             If MsgBox("¿Está seguro que desea eliminar este ítem de la compra?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
               pFormController.PurchaseOrder.PurchaseOrderItems.Remove(mPOItem)
-              grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+              grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
 
             End If
           End If
@@ -926,10 +928,27 @@ Public Class frmPurchaseOrder
 
           mPOItem = New dmPurchaseOrderItem
           pFormController.PurchaseOrder.PurchaseOrderItems.Add(mPOItem)
-          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
+
+
+        Case "ProcessManualItem"
+
+          pFormController.SaveObject()
+
+          pFormController.ProcessManualItem
+          pFormController.ReloadPODeliveryInfos()
+          grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
+          grdPODeliveryInfos.RefreshDataSource()
+
+          pFormController.ReloadPOItems()
+
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
+          grdPurchaseOrderItems.RefreshDataSource()
 
 
       End Select
+
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -1209,7 +1228,7 @@ Public Class frmPurchaseOrder
 
           pFormController.ReloadPOItems()
 
-          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+          grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
           grdPurchaseOrderItems.RefreshDataSource()
         End If
       Else
@@ -1223,7 +1242,7 @@ Public Class frmPurchaseOrder
 
         pFormController.ReloadPOItems()
 
-        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
         grdPurchaseOrderItems.RefreshDataSource()
       End If
     End If
@@ -1290,9 +1309,7 @@ Public Class frmPurchaseOrder
             pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
             pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 
-            For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
-              mPOI.PurchaseOrderItemAllocations.Clear()
-            Next
+
             ''pFormController.SalesOrderPhases.Clear()
             grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
             grdSalesOrderPhases.RefreshDataSource()
@@ -1431,7 +1448,7 @@ Public Class frmPurchaseOrder
       LoadPOItemAllocationCombo()
       RefreshControls()
 
-
+      pFormController.SaveObject()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -1537,7 +1554,7 @@ Public Class frmPurchaseOrder
 
         pFormController.ReloadPOItems()
 
-        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+        grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
         grdPurchaseOrderItems.RefreshDataSource()
 
       End If

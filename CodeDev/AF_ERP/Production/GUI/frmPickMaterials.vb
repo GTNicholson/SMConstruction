@@ -190,7 +190,7 @@ Public Class frmPickMaterials
           Dim mPicker As clsPickerStockItem
           Dim mSIList As List(Of RTIS.ERPStock.intStockItemDef)
           mPicker = New clsPickerStockItem(AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemCollection, pFormController.DBConn, AppRTISGlobal.GetInstance)
-          mSIList = frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance)
+          mSIList = frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance, False, -1)
           If mSIList.Count > 0 Then
             pFormController.CreateAdditionalMatReqs(mSIList)
           End If

@@ -22,22 +22,34 @@ Partial Class frmSalesOrderPhasePicker
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.grdSalesOrderPhases = New DevExpress.XtraGrid.GridControl()
         Me.gvSalesOrderPhase = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcRef = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.repoRemove = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.grdSalesOrderPhases, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSalesOrderPhase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoRemove, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grdSalesOrderPhases
@@ -51,7 +63,7 @@ Partial Class frmSalesOrderPhasePicker
         Me.grdSalesOrderPhases.Location = New System.Drawing.Point(0, 0)
         Me.grdSalesOrderPhases.MainView = Me.gvSalesOrderPhase
         Me.grdSalesOrderPhases.Name = "grdSalesOrderPhases"
-        Me.grdSalesOrderPhases.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepbtnSelect, Me.RepositoryItemDateEdit1})
+        Me.grdSalesOrderPhases.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepbtnSelect, Me.RepositoryItemDateEdit1, Me.repoRemove})
         Me.grdSalesOrderPhases.Size = New System.Drawing.Size(876, 358)
         Me.grdSalesOrderPhases.TabIndex = 5
         Me.grdSalesOrderPhases.UseEmbeddedNavigator = True
@@ -71,7 +83,7 @@ Partial Class frmSalesOrderPhasePicker
         Me.gvSalesOrderPhase.Appearance.OddRow.Options.UseFont = True
         Me.gvSalesOrderPhase.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvSalesOrderPhase.Appearance.Row.Options.UseFont = True
-        Me.gvSalesOrderPhase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn7, Me.GridColumn3})
+        Me.gvSalesOrderPhase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcRef, Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn7, Me.GridColumn3})
         Me.gvSalesOrderPhase.GridControl = Me.grdSalesOrderPhases
         Me.gvSalesOrderPhase.Name = "gvSalesOrderPhase"
         Me.gvSalesOrderPhase.OptionsView.EnableAppearanceEvenRow = True
@@ -79,16 +91,22 @@ Partial Class frmSalesOrderPhasePicker
         Me.gvSalesOrderPhase.OptionsView.ShowAutoFilterRow = True
         Me.gvSalesOrderPhase.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn6
+        'gcRef
         '
-        Me.GridColumn6.Caption = "Ref. Etapa"
-        Me.GridColumn6.ColumnEdit = Me.RepbtnSelect
-        Me.GridColumn6.FieldName = "SOPJobNo"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 102
+        Me.gcRef.Caption = "Ref. Etapa"
+        Me.gcRef.ColumnEdit = Me.RepbtnSelect
+        Me.gcRef.FieldName = "SOPJobNo"
+        Me.gcRef.Name = "gcRef"
+        Me.gcRef.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.gcRef.Visible = True
+        Me.gcRef.VisibleIndex = 1
+        Me.gcRef.Width = 102
+        '
+        'RepbtnSelect
+        '
+        Me.RepbtnSelect.AutoHeight = False
+        Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Seleccionar", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.RepbtnSelect.Name = "RepbtnSelect"
         '
         'GridColumn4
         '
@@ -96,7 +114,7 @@ Partial Class frmSalesOrderPhasePicker
         Me.GridColumn4.FieldName = "PhaseNumber"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.VisibleIndex = 2
         '
         'GridColumn1
         '
@@ -104,7 +122,7 @@ Partial Class frmSalesOrderPhasePicker
         Me.GridColumn1.FieldName = "TotalPrice"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 3
         Me.GridColumn1.Width = 85
         '
         'GridColumn2
@@ -113,7 +131,7 @@ Partial Class frmSalesOrderPhasePicker
         Me.GridColumn2.FieldName = "DateRequired"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 272
         '
         'GridColumn5
@@ -129,7 +147,7 @@ Partial Class frmSalesOrderPhasePicker
         Me.GridColumn7.FieldName = "ProjectName"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.VisibleIndex = 0
         Me.GridColumn7.Width = 107
         '
         'GridColumn3
@@ -137,14 +155,6 @@ Partial Class frmSalesOrderPhasePicker
         Me.GridColumn3.Caption = "Cliente"
         Me.GridColumn3.FieldName = "CompanyName"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
-        '
-        'RepbtnSelect
-        '
-        Me.RepbtnSelect.AutoHeight = False
-        Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepbtnSelect.Name = "RepbtnSelect"
         '
         'RepositoryItemDateEdit1
         '
@@ -152,6 +162,12 @@ Partial Class frmSalesOrderPhasePicker
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        '
+        'repoRemove
+        '
+        Me.repoRemove.AutoHeight = False
+        Me.repoRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Elimianr", -1, True, True, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoRemove.Name = "repoRemove"
         '
         'frmSalesOrderPhasePicker
         '
@@ -167,13 +183,14 @@ Partial Class frmSalesOrderPhasePicker
         CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoRemove, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents grdSalesOrderPhases As DevExpress.XtraGrid.GridControl
     Friend WithEvents gvSalesOrderPhase As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcRef As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -182,4 +199,5 @@ Partial Class frmSalesOrderPhasePicker
     Friend WithEvents RepbtnSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoRemove As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

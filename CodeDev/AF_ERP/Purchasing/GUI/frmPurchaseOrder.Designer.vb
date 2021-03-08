@@ -23,6 +23,7 @@ Partial Class frmPurchaseOrder
         Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
@@ -81,11 +82,14 @@ Partial Class frmPurchaseOrder
         Me.repitQtyReqSimp = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gcUoM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcRetentionValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSubStage = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoItemPopupContainerEditPOItemAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepoItemButtonEditStockItem = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepoItemPopupContainerEditQtyReceived = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.dtePaymentDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.cboValuationMode = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtRetentionPercentage = New DevExpress.XtraEditors.TextEdit()
@@ -165,7 +169,6 @@ Partial Class frmPurchaseOrder
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.gcSubStage = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gpnlPOItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,6 +191,8 @@ Partial Class frmPurchaseOrder
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.dtePaymentDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtePaymentDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboValuationMode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRetentionPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboStage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -375,7 +380,7 @@ Partial Class frmPurchaseOrder
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1562, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1562, 30)
         '
         'barDockControlBottom
         '
@@ -389,17 +394,17 @@ Partial Class frmPurchaseOrder
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 771)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 774)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1562, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1562, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 771)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 774)
         '
         'GridView1
         '
@@ -423,7 +428,7 @@ Partial Class frmPurchaseOrder
         ButtonImageOptions4.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
         ButtonImageOptions5.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
         ButtonImageOptions6.Location = DevExpress.XtraEditors.ButtonPanel.ImageLocation.BeforeText
-        Me.gpnlPOItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddStockItem", 0), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Item Manual", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ManualItem", 3), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Artículo", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "DeleteItem", 2)})
+        Me.gpnlPOItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddStockItem", 0), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Item Manual", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ManualItem", 3), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Artículo", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "DeleteItem", 2), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Recibir Item Manual", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "ProcessManualItem", -1)})
         Me.gpnlPOItems.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.gpnlPOItems.Location = New System.Drawing.Point(6, 417)
         Me.gpnlPOItems.Name = "gpnlPOItems"
@@ -837,6 +842,16 @@ Partial Class frmPurchaseOrder
         Me.gcRetentionValue.VisibleIndex = 11
         Me.gcRetentionValue.Width = 73
         '
+        'gcSubStage
+        '
+        Me.gcSubStage.Caption = "Sub Etapa"
+        Me.gcSubStage.FieldName = "BUSubStage"
+        Me.gcSubStage.Name = "gcSubStage"
+        Me.gcSubStage.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.gcSubStage.Visible = True
+        Me.gcSubStage.VisibleIndex = 4
+        Me.gcSubStage.Width = 77
+        '
         'RepoItemPopupContainerEditPOItemAllocation
         '
         Me.RepoItemPopupContainerEditPOItemAllocation.AutoHeight = False
@@ -876,6 +891,8 @@ Partial Class frmPurchaseOrder
         Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl3.AppearanceCaption.Options.UseFont = True
         Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl3.Controls.Add(Me.dtePaymentDate)
+        Me.GroupControl3.Controls.Add(Me.LabelControl22)
         Me.GroupControl3.Controls.Add(Me.LabelControl21)
         Me.GroupControl3.Controls.Add(Me.cboValuationMode)
         Me.GroupControl3.Controls.Add(Me.txtRetentionPercentage)
@@ -921,15 +938,37 @@ Partial Class frmPurchaseOrder
         Me.GroupControl3.Controls.Add(Me.LabelControl5)
         Me.GroupControl3.Location = New System.Drawing.Point(6, 39)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1549, 339)
+        Me.GroupControl3.Size = New System.Drawing.Size(1549, 352)
         Me.GroupControl3.TabIndex = 248
         Me.GroupControl3.Text = "Detalles del Proveedor"
+        '
+        'dtePaymentDate
+        '
+        Me.dtePaymentDate.EditValue = Nothing
+        Me.dtePaymentDate.Location = New System.Drawing.Point(445, 256)
+        Me.dtePaymentDate.MenuManager = Me.BarManager1
+        Me.dtePaymentDate.Name = "dtePaymentDate"
+        Me.dtePaymentDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtePaymentDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtePaymentDate.Properties.NullDate = New Date(CType(0, Long))
+        Me.dtePaymentDate.Size = New System.Drawing.Size(98, 20)
+        Me.dtePaymentDate.TabIndex = 294
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.LabelControl22.Appearance.Options.UseFont = True
+        Me.LabelControl22.Location = New System.Drawing.Point(359, 259)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(57, 14)
+        Me.LabelControl22.TabIndex = 295
+        Me.LabelControl22.Text = "Fecha Pago"
         '
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.LabelControl21.Appearance.Options.UseFont = True
-        Me.LabelControl21.Location = New System.Drawing.Point(359, 238)
+        Me.LabelControl21.Location = New System.Drawing.Point(359, 235)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(68, 14)
         Me.LabelControl21.TabIndex = 292
@@ -937,7 +976,7 @@ Partial Class frmPurchaseOrder
         '
         'cboValuationMode
         '
-        Me.cboValuationMode.Location = New System.Drawing.Point(445, 235)
+        Me.cboValuationMode.Location = New System.Drawing.Point(445, 232)
         Me.cboValuationMode.MenuManager = Me.BarManager1
         Me.cboValuationMode.Name = "cboValuationMode"
         Me.cboValuationMode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1032,7 +1071,7 @@ Partial Class frmPurchaseOrder
         Me.xtratabPODelivery.Appearance.Header.Options.UseForeColor = True
         Me.xtratabPODelivery.Controls.Add(Me.GroupControl7)
         Me.xtratabPODelivery.Name = "xtratabPODelivery"
-        Me.xtratabPODelivery.Size = New System.Drawing.Size(442, 276)
+        Me.xtratabPODelivery.Size = New System.Drawing.Size(440, 275)
         Me.xtratabPODelivery.Text = "Detalles de Recepción"
         '
         'GroupControl7
@@ -1048,7 +1087,7 @@ Partial Class frmPurchaseOrder
         Me.GroupControl7.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl7.Name = "GroupControl7"
         Me.GroupControl7.ShowCaption = False
-        Me.GroupControl7.Size = New System.Drawing.Size(442, 276)
+        Me.GroupControl7.Size = New System.Drawing.Size(440, 275)
         Me.GroupControl7.TabIndex = 278
         '
         'grdPODeliveryInfos
@@ -1059,7 +1098,7 @@ Partial Class frmPurchaseOrder
         Me.grdPODeliveryInfos.MenuManager = Me.BarManager1
         Me.grdPODeliveryInfos.Name = "grdPODeliveryInfos"
         Me.grdPODeliveryInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.repoPODelivery})
-        Me.grdPODeliveryInfos.Size = New System.Drawing.Size(438, 272)
+        Me.grdPODeliveryInfos.Size = New System.Drawing.Size(436, 271)
         Me.grdPODeliveryInfos.TabIndex = 268
         Me.grdPODeliveryInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPODeliveryInfos})
         '
@@ -1181,7 +1220,7 @@ Partial Class frmPurchaseOrder
         '
         Me.LabelControl18.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.LabelControl18.Appearance.Options.UseFont = True
-        Me.LabelControl18.Location = New System.Drawing.Point(18, 262)
+        Me.LabelControl18.Location = New System.Drawing.Point(18, 279)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(60, 14)
         Me.LabelControl18.TabIndex = 282
@@ -1189,10 +1228,10 @@ Partial Class frmPurchaseOrder
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(107, 261)
+        Me.txtComments.Location = New System.Drawing.Point(107, 281)
         Me.txtComments.MenuManager = Me.BarManager1
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(435, 71)
+        Me.txtComments.Size = New System.Drawing.Size(435, 66)
         Me.txtComments.TabIndex = 281
         '
         'LabelControl14
@@ -1246,7 +1285,7 @@ Partial Class frmPurchaseOrder
         '
         Me.xtpInventory.Controls.Add(Me.PanelControl1)
         Me.xtpInventory.Name = "xtpInventory"
-        Me.xtpInventory.Size = New System.Drawing.Size(239, 272)
+        Me.xtpInventory.Size = New System.Drawing.Size(238, 270)
         Me.xtpInventory.Text = "Inv."
         '
         'PanelControl1
@@ -1255,7 +1294,7 @@ Partial Class frmPurchaseOrder
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(239, 272)
+        Me.PanelControl1.Size = New System.Drawing.Size(238, 270)
         Me.PanelControl1.TabIndex = 0
         '
         'LabelControl6
@@ -1783,16 +1822,6 @@ Partial Class frmPurchaseOrder
         Me.LabelControl5.TabIndex = 254
         Me.LabelControl5.Text = "Fecha de Órden"
         '
-        'gcSubStage
-        '
-        Me.gcSubStage.Caption = "Sub Etapa"
-        Me.gcSubStage.FieldName = "BUSubStage"
-        Me.gcSubStage.Name = "gcSubStage"
-        Me.gcSubStage.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.gcSubStage.Visible = True
-        Me.gcSubStage.VisibleIndex = 4
-        Me.gcSubStage.Width = 77
-        '
         'frmPurchaseOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1832,6 +1861,8 @@ Partial Class frmPurchaseOrder
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.dtePaymentDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtePaymentDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboValuationMode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtRetentionPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboStage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2034,4 +2065,6 @@ Partial Class frmPurchaseOrder
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboValuationMode As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents gcSubStage As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents dtePaymentDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
 End Class

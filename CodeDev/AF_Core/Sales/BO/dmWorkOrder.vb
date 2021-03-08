@@ -459,6 +459,14 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public ReadOnly Property EmployeeDesc As String
+    Get
+      Dim mRetVal As String = ""
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).DisplayValueString(EmployeeID)
+      Return mRetVal
+    End Get
+  End Property
+
   Public Property ImageFile As String
     Get
       Return pImageFile

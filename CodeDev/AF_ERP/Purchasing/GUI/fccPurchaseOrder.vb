@@ -642,4 +642,120 @@ Public Class fccPurchaseOrder
 
 
   End Sub
+
+  Public Function ProcessManualItem() As Boolean
+    Dim mRetVal As Boolean
+
+    Dim mdsoTran As dsoStockTransactions
+    Dim mDeliveryItem As dmPODeliveryItem
+    Dim mReceivedValue As Decimal
+
+    Dim mdsoStock As dsoStock
+    Dim mDialogResult As DialogResult
+    Dim mExchangeRate As Decimal = 0
+    Dim mdsoGeneral As dsoGeneral
+    Dim mNewPODeliveryManualItem As dmPODelivery = Nothing
+    Dim mSupplierDocRef As String = ""
+
+    Try
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+      mdsoGeneral = New dsoGeneral(pDBConn)
+      mdsoStock = New dsoStock(pDBConn)
+
+      mSupplierDocRef = InputBox("Ingrese el número de factura")
+
+      If mSupplierDocRef <> "" Then
+
+
+        For Each mPOI As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
+          CreateUpdatePOItemAllocation(mPOI)
+
+          For Each mPOIA As dmPurchaseOrderItemAllocation In mPOI.PurchaseOrderItemAllocations
+
+            If mPOI.QtyRequired <> 0 Then
+
+              If (mPOIA.Quantity - mPOIA.ReceivedQty) <= 0 Or mPOIA.ReceivedQty > mPOIA.Quantity Then
+
+                mDialogResult = MessageBox.Show("La cantidad a procesar es mayor a la cantidad pedida, ¿Desea continuar?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+
+                If mDialogResult = DialogResult.No Then
+                  mRetVal = False
+                  Return mRetVal
+                End If
+              End If
+
+              If mPOI.StockItemID = 0 Then
+
+                ''//Create PODeliveryItem in the first item
+                If mNewPODeliveryManualItem Is Nothing Then
+
+                  CreatePODelivery(mNewPODeliveryManualItem, mPOIA.PurchaseOrderItemAllocationID, mSupplierDocRef)
+
+                  mDeliveryItem = New dmPODeliveryItem
+                  mDeliveryItem.PODeliveryID = mNewPODeliveryManualItem.PODeliveryID
+                  mDeliveryItem.POItemAllocationID = mPOIA.PurchaseOrderItemAllocationID
+                Else
+                  mDeliveryItem = New dmPODeliveryItem
+                  mDeliveryItem.PODeliveryID = mNewPODeliveryManualItem.PODeliveryID
+                  mDeliveryItem.POItemAllocationID = mPOIA.PurchaseOrderItemAllocationID
+
+                End If
+
+                mNewPODeliveryManualItem.PODeliveryItems.Add(mDeliveryItem)
+
+                '// Work out the value of the received qty of the item for Average Stock Value purposes
+                mReceivedValue = mPOI.UnitPrice * mPOI.QtyRequired '// Todo include logic for pricing unit
+
+                ''//Check the valuation mode
+                If pPurchaseOrder.ValuationMode = eValuationMode.ForAdvanced Then
+                  If pPurchaseOrder.ExchangeRateValue = 0 Then
+                    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(Now, eCurrency.Cordobas)
+                  Else
+                    mExchangeRate = pPurchaseOrder.ExchangeRateValue
+                  End If
+                  mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOI.StockItemID, 1, mPOI.QtyRequired, mReceivedValue, 1, mDeliveryItem, Now, mPOIA, mPOIA.ItemRef, False, pPurchaseOrder.DefaultCurrency, mPOI.UnitPrice, mExchangeRate)
+
+                ElseIf pPurchaseOrder.ValuationMode = eValuationMode.BookIn Then
+                  mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(Now, eCurrency.Cordobas)
+                  If mExchangeRate > 0 Then
+                    mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOI.StockItemID, 1, mPOI.QtyRequired, mReceivedValue, 1, mDeliveryItem, Now, mPOIA, mPOIA.ItemRef, False, pPurchaseOrder.DefaultCurrency, mPOI.UnitPrice, mExchangeRate)
+
+                  End If
+
+                Else ''//Decide how to do if the business can get credit from their suppliers
+                  mRetVal = mdsoTran.UpdateDeliveryStockItemLocationQty(mPOI.StockItemID, 1, mPOI.QtyRequired, mReceivedValue, 1, mDeliveryItem, Now, mPOIA, mPOIA.ItemRef, False, pPurchaseOrder.DefaultCurrency, mPOI.UnitPrice, pPurchaseOrder.ExchangeRateValue)
+
+
+                End If
+
+              End If
+            End If
+          Next
+        Next
+
+      Else
+        MessageBox.Show("Por favor ingrese un número de factura válido")
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Function
+
+  Public Sub CreatePODelivery(ByRef rNewPODeliveryManualItem As dmPODelivery, ByVal vPurchaseOrderItemAllocationID As Integer, ByVal vSupplierDocRef As String)
+    Dim mdso As New dsoGeneral(pDBConn)
+    Dim mdsoPurchasing As New dsoPurchasing(pDBConn)
+    rNewPODeliveryManualItem = New dmPODelivery
+
+    rNewPODeliveryManualItem.PurchaseOrderID = pPurchaseOrder.PurchaseOrderID
+    rNewPODeliveryManualItem.ReceivedDate = Now
+    rNewPODeliveryManualItem.RefSupplierDoc = vSupplierDocRef
+    rNewPODeliveryManualItem.GRNumber = mdso.getNextTally(eTallyIDs.GRNNumber)
+    rNewPODeliveryManualItem.Status = ePODelivery.Received
+
+    mdsoPurchasing.SavePODelivery(rNewPODeliveryManualItem)
+
+  End Sub
 End Class

@@ -87,6 +87,10 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         ''.RequiredDate = DBReadDate(rDataReader, "RequiredDate")
         .Status = DBReadByte(rDataReader, "POStatus")
         .SubmissionDate = DBReadDate(rDataReader, "SubmissionDate")
+        .DefaultCurrency = DBReadInt32(rDataReader, "DefaultCurrency")
+        .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
+        .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
+        .Category = DBReadByte(rDataReader, "PO_CATEGORY")
       End With
 
       With pPurchaseOrderItemAllocationInfo.PurchaseOrderItem
@@ -156,7 +160,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
     Return mOK
   End Function
 
-  Public Function LoadPurchaseOrderItemAllocationProgressProcessorCollection(ByRef rvwPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String) As Boolean
+  Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rvwPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mOK = MyBase.LoadCollection(rvwPurchaseOrderItemAllocationInfo, mParams, "PurchaseOrderItemAllocationID", vWhere)

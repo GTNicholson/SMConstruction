@@ -290,13 +290,6 @@ Class clsMenuFunctions
   End Sub
 
 
-  Public Shared Sub TimeSheetEntryInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-    Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewTimeSheet.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
-  End Sub
-
-
 
   Public Shared Sub PurchaseOrderInfo(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
@@ -311,22 +304,12 @@ Class clsMenuFunctions
   End Sub
   Public Shared Sub PODeliveryItemInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    Dim mViews As New List(Of RTIS.BIReport.clsBIReportView)
-    mViews.Add(BIPODeliveryItemInfo.CreateBIReportViewFactoryPODeliveryItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
+    mBIReport = BIReportViewPODeliveryItem.CreateBIReportViewFactoryPODeliveryItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
 
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mViews, rParentForm, rRTISGlobal, rRTISUserSession.IsSecurityAllowAll)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, rRTISUserSession.IsSecurityAllowAll)
   End Sub
 
-  Public Shared Sub PODeliveryInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-    Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    Dim mViews As New List(Of RTIS.BIReport.clsBIReportView)
 
-    ''mBIReport = BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
-
-    mViews.Add(BIReportViewPODelivery.CreateBIReportViewFactoryPODelivery(rRTISUserSession.CreateMainDBConn, rRTISGlobal))
-
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mViews, rParentForm, rRTISGlobal, rRTISUserSession.IsSecurityAllowAll)
-  End Sub
 
 
   Public Shared Sub PaySlips(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
@@ -334,8 +317,7 @@ Class clsMenuFunctions
     frmPaySlipDetails.OpenFormMDI(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, rRTISGlobal)
 
   End Sub
-
-  Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, False)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, My.Application.RTISUserSession.IsSecurityAllowAll)
@@ -367,17 +349,7 @@ Class clsMenuFunctions
     End If
   End Sub
 
-  Public Shared Sub CompanyDayInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-    Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewCompanyDay.CreateBIReportViewCompanyDay(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
-  End Sub
 
-  Public Shared Sub WoodMatReqInfo(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-    Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportWoodReqMatInfo.CreateBIReportViewWoodReqMatInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
-  End Sub
 
   Public Shared Sub Employees(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mRoleList As IList = CType(rRTISGlobal, AppRTISGlobal).RefLists.RefIList(appRefLists.Roles)
@@ -386,12 +358,6 @@ Class clsMenuFunctions
 
   Public Shared Sub LookUpLists(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     frmLookupTableList.OpenForm(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
-  End Sub
-
-  Public Shared Sub PickingReport(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-    Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewMaterialRequirementInfo.CreateBIReportViewFactoryMatReqInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
-    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
 
@@ -415,9 +381,6 @@ Class clsMenuFunctions
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
-  Public Shared Sub PurchasingBalance(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
-
-  End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 

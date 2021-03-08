@@ -711,8 +711,8 @@ Public Class frmWorkOrderWoodProcess
           End If
         Next
 
-        If frmPickerStockItem.PickPurchaseOrderItems(mPicker, AppRTISGlobal.GetInstance, True, pFormController.CurrentOutputWoodPallet.PalletType) Then
-          mdsoStock = New dsoStock(pFormController.DBConn)
+        frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance, True, pFormController.CurrentOutputWoodPallet.PalletType)
+        mdsoStock = New dsoStock(pFormController.DBConn)
           For Each mSelectedItem In mPicker.SelectedObjects
             Dim mWoodPalletItemEditor As New clsWoodPalletItemEditor
             If mSelectedItem IsNot Nothing Then
@@ -735,7 +735,7 @@ Public Class frmWorkOrderWoodProcess
               End If
             End If
           Next
-        End If
+
         mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
         For mindex As Integer = pFormController.CurrentOutputWoodPallet.WoodPalletItems.Count - 1 To 0 Step -1

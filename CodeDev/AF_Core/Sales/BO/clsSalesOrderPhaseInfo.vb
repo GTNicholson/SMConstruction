@@ -2,7 +2,7 @@
   Private pSalesOrderPhase As dmSalesOrderPhase
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
-
+  Private pProduct As dmProductBase
   Public Sub New()
     pSalesOrderPhase = New dmSalesOrderPhase
     pSalesOrder = New dmSalesOrder
@@ -196,7 +196,24 @@
     End Get
   End Property
 
+  Public Property Product As dmProductBase
+    Get
+      Return pProduct
+    End Get
+    Set(value As dmProductBase)
+      pProduct = value
+    End Set
+  End Property
 
+  Public ReadOnly Property ProductCode As String
+    Get
+      Dim mRetVal As String = ""
+      If pProduct IsNot Nothing Then
+        mRetVal = pProduct.Code
+      End If
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

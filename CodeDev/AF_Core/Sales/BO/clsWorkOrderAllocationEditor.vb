@@ -24,17 +24,17 @@ Public Class clsWorkOrderAllocationEditor
     pWorkOrderAllocation = New dmWorkOrderAllocation
   End Sub
 
-  Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo)
+  Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseInfo As clsSalesOrderPhaseInfo)
 
-    If rSalesOrderPhaseItemInfo IsNot Nothing Then
-      pSalesOrderNo = rSalesOrderPhaseItemInfo.OrderNo
-      If rSalesOrderPhaseItemInfo.PhaseRef <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseItemInfo.PhaseRef
-      pItemNumber = rSalesOrderPhaseItemInfo.ItemNumber
-      pClientName = rSalesOrderPhaseItemInfo.CompanyName
-      pProjectName = rSalesOrderPhaseItemInfo.ProjectName
-      pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
-      pAssemblyRef = rSalesOrderPhaseItemInfo.AssemblyRef
-      pSalesItemType = rSalesOrderPhaseItemInfo.SalesItemType
+    If rSalesOrderPhaseInfo IsNot Nothing Then
+      pSalesOrderNo = rSalesOrderPhaseInfo.OrderNo
+      If rSalesOrderPhaseInfo.PhaseRef.ToString <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseInfo.PhaseRef.ToString
+      pItemNumber = rSalesOrderPhaseInfo.OrderNo
+      pClientName = rSalesOrderPhaseInfo.CompanyName
+      pProjectName = rSalesOrderPhaseInfo.ProjectName
+      pRequiredDate = rSalesOrderPhaseInfo.DateRequired
+
+
     End If
   End Sub
 
@@ -82,10 +82,10 @@ Public Class clsWorkOrderAllocationEditor
 
   Public Property SalesOrderPhaseItemID As Int32
     Get
-      Return pWorkOrderAllocation.SalesOrderPhaseItemID
+      Return pWorkOrderAllocation.SalesOrderPhaseID
     End Get
     Set(value As Int32)
-      pWorkOrderAllocation.SalesOrderPhaseItemID = value
+      pWorkOrderAllocation.SalesOrderPhaseID = value
     End Set
   End Property
 

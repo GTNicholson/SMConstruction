@@ -1,3 +1,0 @@
-alter table Employee add HomeScreenID Int
-
-GO

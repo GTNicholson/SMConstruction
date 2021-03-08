@@ -578,6 +578,7 @@ Partial Class frmStockItemInfo
         Me.gvStockItemInfos.CustomizationFormBounds = New System.Drawing.Rectangle(1156, 318, 210, 270)
         Me.gvStockItemInfos.GridControl = Me.grdStockItemInfos
         Me.gvStockItemInfos.GroupCount = 2
+        Me.gvStockItemInfos.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ActualValueInventory", Me.gcCategory, "")})
         Me.gvStockItemInfos.Name = "gvStockItemInfos"
         Me.gvStockItemInfos.OptionsBehavior.AutoExpandAllGroups = True
         Me.gvStockItemInfos.OptionsView.EnableAppearanceEvenRow = True
@@ -626,6 +627,7 @@ Partial Class frmStockItemInfo
         Me.gcCategory.FieldName = "Category"
         Me.gcCategory.Name = "gcCategory"
         Me.gcCategory.OptionsColumn.ReadOnly = True
+        Me.gcCategory.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ActualValueInventory", "{C$#,##0.00;;#}")})
         Me.gcCategory.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.gcCategory.Visible = True
         Me.gcCategory.VisibleIndex = 1

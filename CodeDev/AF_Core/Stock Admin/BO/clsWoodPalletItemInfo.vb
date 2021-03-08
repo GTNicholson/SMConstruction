@@ -203,8 +203,14 @@ Public Class clsWoodPalletItemInfo
 
   Public ReadOnly Property TotalBoardFeet
     Get
+      Dim mRetVal As Decimal = 0
+      Dim mBalance As Decimal
+      mBalance = (pWoodPalletItem.Quantity - pWoodPalletItem.QuantityUsed)
+      If mBalance > 0 Then
+        mRetVal = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(pWoodPalletItem, pStockItem)
+      End If
 
-      Return ((Width * Length * Thickness) / 12) * Quantity
+      Return mRetVal
 
     End Get
 
@@ -213,9 +219,9 @@ Public Class clsWoodPalletItemInfo
   Public ReadOnly Property TotalCubicMeter
     Get
       If TotalBoardFeet = 0 Then
-        Return Quantity
+        Return 0
       Else
-        Return TotalBoardFeet / 424
+        Return TotalBoardFeet / clsConstants.BoardFeetPerM3
       End If
 
     End Get

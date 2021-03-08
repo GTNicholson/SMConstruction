@@ -104,6 +104,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderProcessOption", .WorkOrderProcessOption)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderTargetWoodType", .WorkOrderTargetWoodType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateCreated", DateToDBValue(.DateCreated))
 
     End With
 
@@ -130,7 +131,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
         .ImageFile = DBReadString(rDataReader, "ImageFile")
         .WorkcentreID = DBReadInt32(rDataReader, "WorkcentreID")
-
+        .DateCreated = DBReadDate(rDataReader, "DateCreated")
         .SalesOrderItemWOIndex = DBReadInt32(rDataReader, "SalesOrderItemWOIndex")
 
         .FurnitureCategoryID = DBReadInt32(rDataReader, "FurnitureCategoryID")

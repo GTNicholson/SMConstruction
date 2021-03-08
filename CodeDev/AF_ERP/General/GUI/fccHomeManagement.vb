@@ -3,12 +3,9 @@
 Public Class fccHomeManagement
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pRTISGlobal As AppRTISGlobal
-  Private pSalesOrderProgressInfos As colSalesOrderProgressInfos
-  Private pTimeSheetInfoChartSource As colTimeSheetEntryInfos
-  Private pCompanyDays As colCompanyDays
-  Private pInvoiceInfos As colInvoiceInfos
-  Private pWorkOrderInfos As colWorkOrderInfos
-
+  Private pPurchaseOrderItemAllocationInfos As colPODeliveryItemInfos
+  Private pWoodPalletItemInfos As colWoodPalletItemInfos
+  Private pStockItemInfos As colStockItemInfos
   Public Property DBConn As RTIS.DataLayer.clsDBConnBase
     Get
       Return pDBConn
@@ -27,90 +24,71 @@ Public Class fccHomeManagement
     End Set
   End Property
 
-  Public ReadOnly Property CostLabourChartSource As colTimeSheetEntryInfos
+  Public ReadOnly Property WoodPalletItemInfos As colWoodPalletItemInfos
     Get
-      Return pTimeSheetInfoChartSource
-    End Get
-  End Property
-
-  Public ReadOnly Property InvoiceInfos As colInvoiceInfos
-    Get
-      Return pInvoiceInfos
-    End Get
-  End Property
-
-  Public ReadOnly Property SalesOrderProgressInfos As colSalesOrderProgressInfos
-    Get
-      Return pSalesOrderProgressInfos
-    End Get
-  End Property
-
-  Public ReadOnly Property WorkOrderInfos As colWorkOrderInfos
-    Get
-      Return pWorkOrderInfos
-    End Get
-  End Property
-  Public ReadOnly Property CompanyDays As colCompanyDays
-    Get
-      Return pCompanyDays
+      Return pWoodPalletItemInfos
     End Get
   End Property
 
 
-  Public Sub LoadWorkOrderProgressInfos()
-    Dim mdso As dsoProduction
+  Public ReadOnly Property PODeliveryItemInfos As colPODeliveryItemInfos
+    Get
+      Return pPurchaseOrderItemAllocationInfos
+    End Get
+  End Property
+
+  Public ReadOnly Property StockItemInfos As colStockItemInfos
+    Get
+      Return pStockItemInfos
+    End Get
+  End Property
+
+
+  Public Sub LoadWoodPalletItemInfos()
+    Dim mdsoStock As New dsoStock(pDBConn)
     Dim mwhere As String = ""
     Try
 
-      ''mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-      mwhere += "WorkOrderID in (select WorkOrderID from vwWorkOrderInfo) or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo)"
 
-      mdso = New dsoProduction(pDBConn)
-      pWorkOrderInfos = New colWorkOrderInfos
-      mdso.LoadWorkOrderTrackings(pWorkOrderInfos, mwhere)
+      pWoodPalletItemInfos = New colWoodPalletItemInfos
+      mdsoStock.LoadWoodPalletItemInfosByStockItemID(pWoodPalletItemInfos, "")
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
 
   End Sub
 
-  Public Sub LoadSalesOrderProgressInfo()
-    Dim mdsoSalesOrder As New dsoSales(pDBConn)
-    Dim mdsoCompanyDays As New dsoCompanyDay(pDBConn)
-    Dim mMonth As Integer = 0
-    Dim mYear As Int32 = 0
+  Public Sub LoadPODeliveryItemInfos()
+    Dim mdsoPurchasing As New dsoPurchasing(pDBConn)
     Dim mStartDate As Date
     Dim mEndDate As Date
 
-    mMonth = Now.Month
 
-    If mMonth < 6 Then
-      mYear = Now.Year - 1
-      mMonth = mMonth + 7 ''the last 6 months
+    mStartDate = New Date(Now.Year, Now.Month, 1)
+    mEndDate = Now
 
-      mStartDate = New Date(mYear, mMonth, 1)
+    Dim mwhere As String = String.Format("DateCreated between '{0}' and '{1}' and GRNumber <> ''", mStartDate.ToShortDateString, mEndDate.ToShortDateString)
+
+    Try
 
 
-    Else
-      mYear = Now.Year
-      mMonth = Now.Month - 5
-
-      mStartDate = New Date(mYear, mMonth, 1)
-
-    End If
-
-    mEndDate = New Date(Now.Year, Now.Month, Now.Day)
-
-    pSalesOrderProgressInfos = New colSalesOrderProgressInfos
-    pCompanyDays = New colCompanyDays
-    pInvoiceInfos = New colInvoiceInfos
-
-    mdsoSalesOrder.LoadSalesOrderProgressInfos(pSalesOrderProgressInfos, "OrderNo<>''")
-    mdsoCompanyDays.LoadCompanyDays(pCompanyDays, mStartDate, mEndDate)
-    mdsoSalesOrder.LoadInvoiceInfosGraph(pInvoiceInfos)
+      pPurchaseOrderItemAllocationInfos = New colPODeliveryItemInfos
+      mdsoPurchasing.LoadPODeliveryItemInfoByWhere(pPurchaseOrderItemAllocationInfos, mwhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
   End Sub
 
+  Public Sub LoadStockItemInfos()
+    Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mwhere As String = String.Format("Category <> {0} and IsCostingOnly=0 or IsCostingOnly is null", CInt(eStockItemCategory.Timber))
+    Try
 
 
-
+      pStockItemInfos = New colStockItemInfos
+      mdsoStock.LoadStockItemInfos(pStockItemInfos, mwhere, dtoStockItemInfo.eMode.StockItemInfos)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 End Class

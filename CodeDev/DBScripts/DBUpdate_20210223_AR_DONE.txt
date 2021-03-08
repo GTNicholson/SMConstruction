@@ -1,0 +1,136 @@
+
+ALTER view [dbo].[vwWoodStockItemInfo]
+as
+
+SELECT        
+SI.StockItemID, 
+SI.StockCode,
+SI.PartNo,
+si.ASISID,
+SI.Category, 
+SI.ItemType, 
+SI.Species, 
+SI.Colour, 
+SI.Length, 
+SI.Width, 
+SI.Thickness, 
+SI.DefaultSupplier,
+SI.Description, 
+SI.UoM,
+SI.CostUoM,
+SI.SupplierUoM,
+StdCost,
+si.AverageCost,
+SI.IsCostingOnly,
+WSIL.Qty,
+SIMR.OSQty,
+SIPOS.POSQty,
+SP.CompanyName
+-- On Order Qty
+FROM dbo.StockItem AS SI 
+inner join vwWoodTransactionSUM as WSIL ON WSIL.StockItemID = si.StockItemID 
+left join vwStockItemMaterialRequirementSum SIMR on SIMR.StockItemID = SI.StockItemID
+left join vwStockItemPurchaseOrderSum SIPOS ON SIPOS.StockItemID=Si.StockItemID
+left join Supplier SP on SP.SupplierID=SI.DefaultSupplier
+ where si.Category=15
+GO
+
+
+
+
+ALTER VIEW [dbo].[vwPODeliveryInfo]
+as
+
+select 
+POD.PODeliveryID,
+POD.GRNumber,
+POD.ReceivedDate,
+POD.Comment,
+POD.DateCreated,
+POD.PODeliveryValue,
+POD.Status,
+POD.PaymentStatus,
+POD.FileExport,
+PO.PurchaseOrderID,
+PO.Category as 'PurchaseCategory',
+PO.PONum,
+PO.ExchangeRateValue,
+PO.DefaultCurrency,
+PO.MaterialRequirementTypeID,
+PO.RequiredDate,
+PO.DeliveryAddress1,
+PO.TotalNetValue,
+PO.AccoutingCategoryID,
+PO.POStage,
+PO.Comments,
+SP.SupplierID,
+SP.CompanyName,
+SP.AccountCode,
+SP.TelNo,
+SP.MainAddress1
+
+from 
+PODelivery POD
+LEFT JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POD.PurchaseOrderID
+LEFT JOIN Supplier SP ON SP.SupplierID=PO.SupplierID
+
+GO
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+PO.AccoutingCategoryID,
+po.ValuationMode,
+PO.PaymentDate,
+SupplierContactTel,
+MaterialRequirementTypeID,
+PO.DefaultCurrency,
+PO.POStage,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+RetentionPercentage,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+S.isBigTaxPayer,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left JOIN vwPurchaseOrderAllocation POA ON POA.PurchaseOrderID=po.PurchaseOrderID
+
+GO
+
+

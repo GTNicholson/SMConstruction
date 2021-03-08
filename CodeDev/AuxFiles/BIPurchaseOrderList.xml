@@ -71,7 +71,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="20">
+  <property name="Columns" iskey="true" value="22">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -104,6 +104,10 @@
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">157</property>
+      <property name="GroupFormat" isnull="true" iskey="true">
+        <property name="FormatString">0</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
@@ -168,7 +172,7 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Monto Total</property>
+      <property name="Caption">Monto Neto</property>
       <property name="FieldName">TotalNetValueInfo</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
@@ -313,6 +317,46 @@
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
           <property name="FieldName">TotalVATUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="Name">GridColumn20</property>
+      <property name="Caption">Valor Total USD</property>
+      <property name="FieldName">TotalGrossValueUSD</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">16</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalGrossValueUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item22" isnull="true" iskey="true">
+      <property name="Name">GridColumn21</property>
+      <property name="Caption">TotalGrossValueCordobas</property>
+      <property name="FieldName">TotalGrossValueCordobas</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">17</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalGrossValueCordobas</property>
           <property name="SummaryType">Sum</property>
           <property name="DisplayFormat">{0:$###,##0.00}</property>
         </property>

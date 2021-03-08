@@ -80,7 +80,10 @@ Public Class dtoPODeliveryInfo : Inherits dtoBase
           .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
           .RequiredDate = DBReadDate(rDataReader, "RequiredDate")
           .DeliveryAddress.Address1 = DBReadString(rDataReader, "DeliveryAddress1")
-
+          .TotalNetValue = DBReadDecimal(rDataReader, "TotalNetValue")
+          .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
+          .POStage = DBReadInt32(rDataReader, "POStage")
+          .Comments = DBReadString(rDataReader, "Comments")
         End With
 
 
