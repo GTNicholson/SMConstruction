@@ -136,7 +136,7 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub LoadGrids()
     grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
-    grdWorkOrders.DataSource = pFormController.SOWorkOrders
+    grdProductsRequired.DataSource = pFormController.SOWorkOrders
     grdInvoices.DataSource = pFormController.Invoices
     grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
 
@@ -249,7 +249,7 @@ Public Class frmSalesOrderDetailHouses
         End If
 
         If pFormController.SalesOrder.WorkOrdersIssued Then
-          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpWorkOrders.CustomHeaderButtons
+          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpProductsRequired.CustomHeaderButtons
             Select Case Val(mbtn.Tag)
               Case 1
                 mbtn.Visible = False
@@ -258,7 +258,7 @@ Public Class frmSalesOrderDetailHouses
             End Select
           Next
         Else
-          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpWorkOrders.CustomHeaderButtons
+          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpProductsRequired.CustomHeaderButtons
             Select Case Val(mbtn.Tag)
               Case 1
                 mbtn.Visible = True
@@ -351,8 +351,8 @@ Public Class frmSalesOrderDetailHouses
         gvOrderItem.CloseEditor()
         gvOrderItem.UpdateCurrentRow()
 
-        gvWorkOrders.CloseEditor()
-        gvWorkOrders.UpdateCurrentRow()
+        gvProductsRequired.CloseEditor()
+        gvProductsRequired.UpdateCurrentRow()
 
         gvInvoices.CloseEditor()
         gvInvoices.UpdateCurrentRow()
@@ -469,7 +469,7 @@ Public Class frmSalesOrderDetailHouses
     Try
       Select Case e.Button.Kind
         Case ButtonPredefines.Ellipsis
-          mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+          mWOI = TryCast(gvProductsRequired.GetFocusedRow, clsWorkOrderInfo)
           If mWOI IsNot Nothing Then
             UpdateObjects()
             pFormController.SaveObjects()
@@ -478,25 +478,25 @@ Public Class frmSalesOrderDetailHouses
             pFormController.RefreshWorkOrderNos(mWOI.WorkOrder.ParentSalesOrderItem)
             RefreshControls()
           End If
-          gvWorkOrders.RefreshData()
+          gvProductsRequired.RefreshData()
         Case ButtonPredefines.Plus
           Dim mWOSOI As dmSalesOrderItem = Nothing
           If MsgBox("Agregar un OT addicional por este articulo?", vbYesNo) = vbYes Then
-            mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+            mWOI = TryCast(gvProductsRequired.GetFocusedRow, clsWorkOrderInfo)
             mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
             If mWOSOI IsNot Nothing Then
               pFormController.AddWorkOrder(mWOSOI, eProductType.ProductFurniture)
               pFormController.RefreshSOWorkOrders()
-              gvWorkOrders.RefreshData()
+              gvProductsRequired.RefreshData()
             End If
             '// in one work order form it is possible to affect the wo numbers of it's sister wo's
             pFormController.RefreshWorkOrderNos(mWOSOI)
-            gvWorkOrders.RefreshData()
+            gvProductsRequired.RefreshData()
             RefreshControls()
           End If
         Case ButtonPredefines.Delete
           Dim mWOSOI As dmSalesOrderItem = Nothing
-          mWOI = TryCast(gvWorkOrders.GetFocusedRow, clsWorkOrderInfo)
+          mWOI = TryCast(gvProductsRequired.GetFocusedRow, clsWorkOrderInfo)
           mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
           If mWOSOI.WorkOrders.Count <= 1 Then
             MsgBox("No se puede eliminar el ultimo O.T por un articulo")
@@ -504,7 +504,7 @@ Public Class frmSalesOrderDetailHouses
             If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
               mWOSOI.WorkOrders.Remove(mWOI.WorkOrder)
               pFormController.RefreshSOWorkOrders()
-              gvWorkOrders.RefreshData()
+              gvProductsRequired.RefreshData()
               RefreshControls()
             End If
           End If
@@ -771,7 +771,7 @@ Public Class frmSalesOrderDetailHouses
           UpdateObjects()
           pFormController.AddSalesOrderItem(eProductType.ProductFurniture)
           pFormController.RefreshSOWorkOrders()
-          gvWorkOrders.RefreshData()
+          gvProductsRequired.RefreshData()
           RefreshControls()
         Case eOrderItemGroupButtonTags.Delete
           mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
@@ -780,19 +780,19 @@ Public Class frmSalesOrderDetailHouses
               UpdateObjects()
               pFormController.DeleteSalesOrderItem(mSOI)
               pFormController.RefreshSOWorkOrders()
-              gvWorkOrders.RefreshData()
+              gvProductsRequired.RefreshData()
               RefreshControls()
             End If
           End If
       End Select
-      gvWorkOrders.RefreshData()
+      gvProductsRequired.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
 
   End Sub
 
-  Private Sub gvWorkOrders_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWorkOrders.CustomUnboundColumnData
+  Private Sub gvWorkOrders_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvProductsRequired.CustomUnboundColumnData
     Dim mWOI As clsWorkOrderInfo
     Dim mFound As Boolean = False
     Select Case e.Column.Name
@@ -853,7 +853,7 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWorkOrders.CustomButtonClick
+  Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpProductsRequired.CustomButtonClick
     Dim mSOI As dmSalesOrderItem
     Try
       Dim mResult = New MsgBoxResult
@@ -872,7 +872,7 @@ Public Class frmSalesOrderDetailHouses
           End If
 
       End Select
-      gvWorkOrders.RefreshData()
+      gvProductsRequired.RefreshData()
       RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -889,7 +889,7 @@ Public Class frmSalesOrderDetailHouses
         mWO.Quantity = mSOItem.Quantity * mWO.QtyPerSalesItem
       Next
     End If
-    gvWorkOrders.RefreshData()
+    gvProductsRequired.RefreshData()
   End Sub
 
   Private Sub btnExportToPodio_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnePodio.ButtonClick
@@ -1284,7 +1284,7 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub gcSalesItemsEditor_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpSalesItemsEditor.CustomButtonClick
+  Private Sub gcSalesItemsEditor_CustomButtonClick(sender As Object, e As BaseButtonEventArgs)
 
     Dim mSOI As New dmSalesOrderItem
     Dim mSelectedItem As clsProductBaseInfo
@@ -1476,7 +1476,7 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub gvSSalesItemsEditor_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles gvSSalesItemsEditor.FocusedRowChanged
+  Private Sub gvSSalesItemsEditor_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs)
     Dim view As DevExpress.XtraGrid.Views.Grid.GridView = sender
     If view Is Nothing Then
       Return
@@ -1485,5 +1485,9 @@ Public Class frmSalesOrderDetailHouses
       Dim expanded As Boolean = view.GetRowExpanded(e.FocusedRowHandle)
       view.SetRowExpanded(e.FocusedRowHandle, Not expanded)
     End If
+  End Sub
+
+  Private Sub grpProductsRequired_Paint(sender As Object, e As PaintEventArgs) Handles grpProductsRequired.Paint
+
   End Sub
 End Class
