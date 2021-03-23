@@ -15,6 +15,12 @@
       <property name="BackColor">WhiteSmoke</property>
       <property name="Font">Arial, 8.25pt</property>
     </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+      </property>
+      <property name="BackColor">White</property>
+    </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
@@ -23,10 +29,8 @@
     </property>
     <property name="Preview" iskey="true" value="Preview">
       <property name="Options" isnull="true" iskey="true">
-        <property name="UseBackColor">true</property>
         <property name="UseFont">true</property>
       </property>
-      <property name="BackColor">White</property>
       <property name="Font">Arial, 8.25pt</property>
     </property>
   </property>
@@ -83,7 +87,7 @@
       </property>
       <property name="Caption">Núm. Ref.</property>
       <property name="FieldName">CustomerReference</property>
-      <property name="ColumnEditName">repitDateDefault</property>
+      <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
     </property>
@@ -94,7 +98,7 @@
       </property>
       <property name="Caption">Nombre del Cliente</property>
       <property name="FieldName">CompanyName</property>
-      <property name="ColumnEditName">repitDateDefault</property>
+      <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">207</property>
@@ -118,8 +122,8 @@
       </property>
       <property name="Caption"># Cuenta</property>
       <property name="FieldName">AccountRef</property>
-      <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">4</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">116</property>
     </property>
@@ -130,8 +134,8 @@
       </property>
       <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">127</property>
     </property>
@@ -143,7 +147,7 @@
       <property name="Caption">Ciudad</property>
       <property name="FieldName">MainTown</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">102</property>
     </property>
@@ -155,7 +159,7 @@
       <property name="Caption">Dirección</property>
       <property name="FieldName">MainAddress1</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">164</property>
     </property>
@@ -166,24 +170,12 @@
       </property>
       <property name="Caption">Térm. de Pago</property>
       <property name="FieldName">PaymentTermsType</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">93</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
-      <property name="Name">GridColumn5</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Estado</property>
-      <property name="FieldName">CustomerStatusID</property>
-      <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">9</property>
-      <property name="Visible">true</property>
-      <property name="Width">54</property>
-    </property>
-    <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
@@ -191,10 +183,10 @@
       <property name="Caption">Email</property>
       <property name="FieldName">Email</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item12" isnull="true" iskey="true">
+    <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
@@ -202,11 +194,11 @@
       <property name="Caption">Web</property>
       <property name="FieldName">WebURL</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">61</property>
     </property>
-    <property name="Item13" isnull="true" iskey="true">
+    <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
@@ -216,7 +208,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="Width">110</property>
     </property>
-    <property name="Item14" isnull="true" iskey="true">
+    <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
@@ -228,14 +220,23 @@
       <property name="Visible">true</property>
       <property name="Width">87</property>
     </property>
-    <property name="Item15" isnull="true" iskey="true">
+    <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
       <property name="Caption">Térm. Venta</property>
       <property name="FieldName">SalesTermsType</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">83</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Name">GridColumn15</property>
+      <property name="Caption">Estado</property>
+      <property name="FieldName">CustomerStatusID</property>
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
+      <property name="VisibleIndex">1</property>
+      <property name="Visible">true</property>
+      <property name="Width">79</property>
     </property>
   </property>
   <property name="ViewCaption" />

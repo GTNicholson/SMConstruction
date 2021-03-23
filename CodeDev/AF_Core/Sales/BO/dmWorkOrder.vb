@@ -53,9 +53,13 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Private pWorkOrderAllocations As colWorkOrderAllocations
   Private pWorkOrderWoodType As Integer
-
+  Private pComments As String
   Private pSourcePallets As colSourcePallets
   Private pOutputPallets As colOutputPallets
+
+  Private pWoodMaterialRequirements As colMaterialRequirements
+  Private pStockItemMaterialRequirements As colMaterialRequirements
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -68,6 +72,8 @@ Public Class dmWorkOrder : Inherits dmBase
     pWOFiles.TrackDeleted = True
     pSourcePallets = New colSourcePallets
     pOutputPallets = New colOutputPallets
+    pStockItemMaterialRequirements = New colMaterialRequirements
+    pWoodMaterialRequirements = New colMaterialRequirements
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -80,6 +86,8 @@ Public Class dmWorkOrder : Inherits dmBase
     pWorkOrderAllocations = Nothing
     pOutputPallets = Nothing
     pSourcePallets = Nothing
+    pStockItemMaterialRequirements = Nothing
+    pWoodMaterialRequirements = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -87,14 +95,15 @@ Public Class dmWorkOrder : Inherits dmBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
-      If pProduct IsNot Nothing Then
-        If mAnyDirty = False Then mAnyDirty = pProduct.IsAnyDirty
-        If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
-        If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
         If mAnyDirty = False Then mAnyDirty = pWorkOrderAllocations.IsDirty
         If mAnyDirty = False Then mAnyDirty = pSourcePallets.IsDirty
         If mAnyDirty = False Then mAnyDirty = pOutputPallets.IsDirty
-      End If
+        If mAnyDirty = False Then mAnyDirty = pStockItemMaterialRequirements.IsDirty
+        If mAnyDirty = False Then mAnyDirty = pWoodMaterialRequirements.IsDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -141,6 +150,9 @@ Public Class dmWorkOrder : Inherits dmBase
       .WorkOrderWoodType = WorkOrderWoodType
       .WorkOrderProcessOption = WorkOrderProcessOption
       .WorkOrderTargetWoodType = WorkOrderTargetWoodType
+      .Comments = Comments
+      .StockItemMaterialRequirements = StockItemMaterialRequirements.Clone
+      .WoodMaterialRequirements = WoodMaterialRequirements.Clone
       'Add entries here for each collection and class property
 
       .OutputDocuments = OutputDocuments.Clone
@@ -486,6 +498,15 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property Comments As String
+    Get
+      Return pComments
+    End Get
+    Set(value As String)
+      If pComments <> value Then IsDirty = True
+      pComments = value
+    End Set
+  End Property
   Public Property WOFiles As colFileTrackers
     Get
       Return pWOFiles
@@ -605,6 +626,23 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property StockItemMaterialRequirements As colMaterialRequirements
+    Get
+      Return pStockItemMaterialRequirements
+    End Get
+    Set(value As colMaterialRequirements)
+      pStockItemMaterialRequirements = value
+    End Set
+  End Property
+
+  Public Property WoodMaterialRequirements As colMaterialRequirements
+    Get
+      Return pWoodMaterialRequirements
+    End Get
+    Set(value As colMaterialRequirements)
+      pWoodMaterialRequirements = value
+    End Set
+  End Property
 End Class
 
 

@@ -24,6 +24,8 @@ Public Class frmWorkOrderDetailConstruction
   Public pAppRTISGlobal As AppRTISGlobal
 
   Private pCreateMode As eCreateMode
+  Private pCurrentDetailMode As eEditMode
+
 
   Private Enum eCreateMode
     None = 0
@@ -31,17 +33,19 @@ Public Class frmWorkOrderDetailConstruction
     Inventory = 2
   End Enum
 
-  Private Enum eMaterialRequirementsButtons
-    Copy = 1
-    Paste = 2
-    ExportList = 3
-    AddInv = 4
-    CopyChange = 5
-    PasteChange = 6
-  End Enum
+
   Private Enum eAllocationsButtons
     Add = 1
 
+  End Enum
+
+  Public Enum eEditMode
+
+    ProductEdtit = 1
+    eView = 2
+    SelectProduct = 3
+    CreateProduct = 4
+    Save = 5
   End Enum
   Public Sub New()
 
@@ -163,7 +167,7 @@ Public Class frmWorkOrderDetailConstruction
     Dim mOK As Boolean = True
     Dim mMsg As String = ""
     Dim mErrorDisplayed As Boolean = False
-
+    Dim mProductInfo As New clsProductBaseInfo
     ''Resize if required
     pLoadError = False
     pIsActive = False
@@ -180,21 +184,28 @@ Public Class frmWorkOrderDetailConstruction
       End Select
 
       pFormController.LoadRefData()
+      ConfigureFileControl()
 
-      ''ConfigureFileControl()
+      mProductInfo.Product = pFormController.CurrentProduct
+      uctProductDetail.SetCurrentProductBaseInfo(mProductInfo)
+      uctProductDetail.FormController.ReloadProduct(pFormController.WorkOrder.ProductID)
+
+      uctProductDetail.ConfigureBrowseFilesControl(pFormController.DBConn, pFormController.RTISGlobal)
       LoadCombos()
-      grdWorkOrderAllocationsInfos.DataSource = pFormController.WorkOrderAllocationEditors
+      pCurrentDetailMode = eEditMode.eView
 
       RefreshProductTabPages()
       RefreshControls()
       pFormController.RefreshCurrentWorkOrderAllocationEditors()
+      grdWorkOrderAllocationsInfos.DataSource = pFormController.WorkOrderAllocationEditors
 
+      grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
+      grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
       pIsActive = True
 
       If mOK Then RefreshControls()
-
+      RefreshDetailButtons()
       ''If mOK Then SetupUserPermissions()
-
     Catch ex As Exception
       mMsg = ex.Message
       mOK = False
@@ -213,24 +224,10 @@ Public Class frmWorkOrderDetailConstruction
     pIsActive = True
   End Sub
 
+
   Private Sub ConfigureFileControl()
-    Dim mFileDirectory As String
 
-    If pFormController.WorkOrder IsNot Nothing Then
-
-      If pFormController.WorkOrder.isInternal Then
-        UctFileControl1.Enabled = False
-      Else
-        ''mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.WorkOrder.WorkOrderID.ToString("00000")))
-
-        UctFileControl1.UserController = New uccFileControl(Me)
-        UctFileControl1.UserController.Directory = mFileDirectory
-        UctFileControl1.UserController.FileTrackers = pFormController.WorkOrder.WOFiles
-        UctFileControl1.UserController.ConfigSystemWatcher()
-      End If
-
-    End If
-
+    uctProductDetail.ConfigureControl(pFormController.DBConn, pFormController.RTISGlobal)
 
   End Sub
 
@@ -289,18 +286,13 @@ Public Class frmWorkOrderDetailConstruction
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees)
     clsDEControlLoading.FillDEComboVI(cboElaboratedBy, mVIs)
 
+
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcSIUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
+
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcMaterialTypeID, mVIs)
 
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMatReq, gcMaterialType, mVIs)
 
-    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Quality)
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcQuality, mVIs)
-
-
-
-
-    ''mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
-    ''clsDEControlLoading.FillDEComboVI(cboWoodFinish, mVIs)
 
   End Sub
 
@@ -327,14 +319,14 @@ Public Class frmWorkOrderDetailConstruction
         End If
 
 
-        txtQuantity.Text = .Quantity
+        txtQuantity.Text = .WorkOrderAllocations.GetTotalQuantity
 
         btnWorkOrderNumber.EditValue = .WorkOrderNo
         txtDescription.Text = .Description
         dteCreatedDate.EditValue = .DateCreated
         dteDueDate.EditValue = .PlannedDeliverDate
         dtePlannedStartDate.EditValue = .PlannedStartDate
-
+        memPFNotes.EditValue = .Comments
 
         ''clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
         clsDEControlLoading.SetDECombo(cboElaboratedBy, .EmployeeID)
@@ -353,25 +345,22 @@ Public Class frmWorkOrderDetailConstruction
 
         RefreshProductControls()
 
-        If pFormController.WorkOrder.isInternal = False Then
-          UctFileControl1.LoadControls()
-          UctFileControl1.RefreshControls()
-          With pFormController.SalesOrderItem
-          End With
-        End If
 
-        If .Product IsNot Nothing Then
-          Dim mProductBase As dmProductBase
-
-          mProductBase = TryCast(.Product, dmProductBase)
-          If mProductBase IsNot Nothing Then
-            bteProductPicker.Text = mProductBase.Description
-
-          End If
-
-        End If
 
       End With
+
+    End If
+
+    If pCurrentDetailMode = eEditMode.eView Or pCurrentDetailMode = eEditMode.Save Then
+      uctProductDetail.SetDetailsControlsReadonly(True)
+      SetDetailsWorkOrderControlsReadonly(False)
+    ElseIf pCurrentDetailMode = eEditMode.ProductEdtit Then
+      uctProductDetail.SetDetailsControlsReadonly(False)
+      SetDetailsWorkOrderControlsReadonly(True)
+    Else
+      uctProductDetail.SetDetailsControlsReadonly(False)
+      SetDetailsWorkOrderControlsReadonly(True)
+
     End If
 
 
@@ -381,24 +370,13 @@ Public Class frmWorkOrderDetailConstruction
   Private Sub RefreshProductControls()
     Select Case pFormController.WorkOrder.ProductTypeID
       Case eProductType.StructureAF
-        RefreshProductControlsFurniture()
+        uctProductDetail.LoadCombos()
+        uctProductDetail.RefreshControls()
+
     End Select
   End Sub
 
-  Private Sub RefreshProductControlsFurniture()
-    Dim mPF As dmProductStructure
-    mPF = TryCast(pFormController.WorkOrder.Product, dmProductStructure)
-    If mPF IsNot Nothing Then
-      With mPF
-        memPFNotes.EditValue = .Notes
 
-        grdStockItemsMaterialRequirement.DataSource = mPF.MaterialRequirements
-        grdWoodMaterialRequirements.DataSource = mPF.WoodMaterialRequirements
-
-
-      End With
-    End If
-  End Sub
 
   Private Sub UpdateObject()
 
@@ -410,9 +388,11 @@ Public Class frmWorkOrderDetailConstruction
 
     If pFormController.WorkOrder IsNot Nothing Then
       With pFormController.WorkOrder
-        ''.Quantity = txtQuantity.Text
+        .Quantity = txtQuantity.Text
         .Description = txtDescription.Text.ToUpper
         .DateCreated = dteCreatedDate.EditValue
+        .Comments = memPFNotes.EditValue
+
         .PlannedStartDate = dtePlannedStartDate.EditValue
         .PlannedDeliverDate = dteDueDate.EditValue
         ''.WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
@@ -446,20 +426,21 @@ Public Class frmWorkOrderDetailConstruction
     Return mVal
   End Function
   Private Sub UpdateProductControls()
-    Select Case pFormController.WorkOrder.ProductTypeID
-      Case eProductType.ProductFurniture
-        UpdateProductControlsFurniture()
-    End Select
+    If pFormController.CurrentProduct IsNot Nothing Then
+      With pFormController.CurrentProduct
+        .Notes = memPFNotes.Text.ToUpper
+
+      End With
+    End If
   End Sub
 
   Private Sub UpdateProductControlsFurniture()
-    Dim mPF As dmProductFurniture
-    mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
-    If mPF IsNot Nothing Then
-      With mPF
-        .Notes = memPFNotes.Text.ToUpper
-      End With
-    End If
+    'Dim mPF As dmProductFurniture
+    'If mPF IsNot Nothing Then
+    '  With mPF
+    '    .Notes = memPFNotes.Text.ToUpper
+    '  End With
+    'End If
   End Sub
 
   Private Sub frmWorkOrderDetail_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -536,34 +517,6 @@ Public Class frmWorkOrderDetailConstruction
         mRepMerge.Pages.Add(mRepPage)
       Next
 
-      '''Creating Wood Requirements Report
-      'mMatReqInfos = pFormController.GetMaterialRequirementInfos
-      'mMatReqInfoChanges = pFormController.GetMaterialRequirementInfosChanges
-      'mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mMatReqInfoChanges)
-
-      'For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
-      '  mRepMerge.Pages.Add(mRepPage)
-      'Next
-
-      '''Creating Other Materials Report
-      'mMatReqInfos = pFormController.GetMaterialRequirementOtherInfos
-      'mOtherMatInfoChanges = pFormController.GetMaterialOtherMaterialChanges
-      'mOtherMaterialReport = repOtherMaterials.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos, mOtherMatInfoChanges)
-
-      'For Each mRepPage As DevExpress.XtraPrinting.Page In mOtherMaterialReport.Pages
-      '  mRepMerge.Pages.Add(mRepPage)
-      'Next
-
-
-      ''Creating Wood Requirments Changes Report
-      ''mMatReqInfos = pFormController.GetMaterialRequirementInfosChanges
-      ''mReportMRP = repWorkOrderMatReqsWood.GenerateReport(pFormController.SalesOrder, pFormController.WorkOrder, mMatReqInfos)
-
-      ''For Each mRepPage As DevExpress.XtraPrinting.Page In mReportMRP.Pages
-      ''  mRepMerge.Pages.Add(mRepPage)
-      ''Next
-
-
       CreateReportPDF(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, True, mRepMerge)
 
       CheckSave(False)
@@ -608,7 +561,7 @@ Public Class frmWorkOrderDetailConstruction
 
 
         If pFormController.WorkOrder IsNot Nothing Then
-          mProductStructure = TryCast(pFormController.WorkOrder.Product, dmProductStructure)
+          mProductStructure = pFormController.GetCurrentProduct
           If mProductStructure IsNot Nothing Then
             Dim mProjectName As String = ""
 
@@ -616,8 +569,9 @@ Public Class frmWorkOrderDetailConstruction
               mProjectName = pFormController.WorkOrderAllocationEditors(0).ProjectName
             End If
             UpdateTempInStockQty()
+            UpdateTempThickness()
 
-            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName, mProductStructure.MaterialRequirements, mProductStructure.WoodMaterialRequirements)
+            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName)
 
           End If
         End If
@@ -633,30 +587,47 @@ Public Class frmWorkOrderDetailConstruction
     Return mRetVal
   End Function
 
-  Private Sub UpdateTempInStockQty()
+  Private Sub UpdateTempThickness()
+    Dim mWoodMatReq As dmMaterialRequirement
 
-    Dim mMR As dmMaterialRequirement = Nothing
-    Dim mProductStructure As dmProductStructure
+    Dim mdso As New dsoStock(pFormController.DBConn)
+    Dim mstockitem As dmStockItem
+
+
+    For Each mWoodMatReq In pFormController.WorkOrder.WoodMaterialRequirements
+
+      If mWoodMatReq.StockItemID > 0 Then
+
+        mstockitem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWoodMatReq.StockItemID)
+
+        If mstockitem IsNot Nothing Then
+          mWoodMatReq.ThicknessInch = mstockitem.Thickness
+        End If
+
+      End If
+
+    Next
+
+
+
+  End Sub
+
+  Private Sub UpdateTempInStockQty()
+    Dim mStockItemMatReq As dmMaterialRequirement
+
     Dim mStockItemLocations As New colStockItemLocations
 
-    Dim mdso As New dsoStock(pDBCon)
+    Dim mdso As New dsoStock(pFormController.DBConn)
 
     mdso.LoadStockItemLocationsByWhere(mStockItemLocations, "")
 
     For Each mSIL As dmStockItemLocation In mStockItemLocations
 
-      mProductStructure = TryCast(pFormController.WorkOrder.Product, dmProductStructure)
+      mStockItemMatReq = pFormController.WorkOrder.StockItemMaterialRequirements.ItemFromStockItemID(mSIL.StockItemID)
 
-      If mProductStructure IsNot Nothing Then
-        mMR = mProductStructure.MaterialRequirements.ItemFromStockItemID(mSIL.StockItemID)
+      If mStockItemMatReq IsNot Nothing Then
+        mStockItemMatReq.TempAllocatedQty = mSIL.Qty
 
-        If mMR IsNot Nothing Then
-
-          If mSIL.StockItemID = mMR.StockItemID Then
-            mMR.TempInStock = mSIL.Qty
-
-          End If
-        End If
       End If
 
 
@@ -716,6 +687,9 @@ Public Class frmWorkOrderDetailConstruction
   Private Sub bbtnSave_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnSave.ItemClick
     Try
       UpdateObject()
+      uctProductDetail.UpdateObject()
+      pFormController.CurrentProduct = uctProductDetail.FormController.CurrentProductInfo.Product
+      pFormController.SaveProduct()
       CheckSave(False)
       RefreshControls()
     Catch ex As Exception
@@ -804,86 +778,14 @@ Public Class frmWorkOrderDetailConstruction
   End Sub
 
 
-  Private Sub gvWorkOrderBatches_ValidateRow(sender As Object, e As ValidateRowEventArgs)
+  Private Sub gvWorkOrderAllocationsInfos_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles gvWorkOrderAllocationsInfos.ValidateRow
     Try
-      Dim mWOH As clsWorkOrderHandler
-      mWOH = New clsWorkOrderHandler(pFormController.WorkOrder)
-      txtQuantity.Text = pFormController.WorkOrder.Quantity
-
+      If pFormController.WorkOrder IsNot Nothing Then
+        txtQuantity.Text = pFormController.WorkOrder.WorkOrderAllocations.GetTotalQuantity
+      End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
-  End Sub
-
-  Private Sub frmWorkOrderDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-
-  End Sub
-
-  Private Sub frmWorkOrderDetail_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
-  End Sub
-
-
-  Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs)
-    Dim mMatReq As dmMaterialRequirement
-
-    mMatReq = TryCast(e.Row, dmMaterialRequirement)
-    If mMatReq IsNot Nothing Then
-      Select Case e.Column.Name
-        Case gcTotalQuantity.Name
-          If e.IsGetData Then
-            If mMatReq.PiecesPerComponent <> 0 Then
-              If pFormController.IsInternal = False Then
-                e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-              Else
-
-              End If
-
-
-            End If
-          End If
-          If e.IsSetData Then
-            mMatReq.PiecesPerComponent = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / e.Value
-          End If
-        Case gcQtyBoardFeet.Name
-          Dim mValue As Decimal
-          Dim mQty As Integer
-          If e.IsGetData Then
-            Try
-
-              If IsNumeric(mMatReq.PiecesPerComponent) And mMatReq.PiecesPerComponent > 0 Then
-                mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
-
-                ''mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mMatReq.TotalPieces, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
-                mValue = mValue
-                e.Value = mValue
-              End If
-
-            Catch ex As Exception
-              If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-            End Try
-
-          End If
-      End Select
-    End If
-  End Sub
-
-  Private Sub grdStockItemsMaterialRequirement_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdStockItemsMaterialRequirement.EditorKeyDown
-    If e.KeyCode = Keys.Enter Then
-      gvStockItemMaterialRequirements.MoveNext()
-    End If
-  End Sub
-  Private Sub grdWoodMaterialRequirements_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdWoodMaterialRequirements.EditorKeyDown
-    If e.KeyCode = Keys.Enter Then
-      gvWoodMaterialRequirements.MoveNext()
-    End If
-  End Sub
-
-  Private Sub gvMaterialRequirements_InitNewRow(sender As Object, e As InitNewRowEventArgs)
-    Dim mMatReq As dmMaterialRequirement
-    mMatReq = gvWoodMaterialRequirements.GetRow(e.RowHandle)
-    mMatReq.PiecesPerComponent = 1
   End Sub
 
   Private Sub grpLabels_CustomButtonClick(sender As Object, e As BaseButtonEventArgs)
@@ -935,167 +837,33 @@ Public Class frmWorkOrderDetailConstruction
 
   End Sub
 
-  Private Sub gvRequirmentMaterialsChanges_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs)
-    Dim mMatReq As dmMaterialRequirement
-
-
-
-    mMatReq = TryCast(e.Row, dmMaterialRequirement)
-    If mMatReq IsNot Nothing Then
-      Select Case e.Column.Name
-        'Case gcTotalQuantityChanges.Name
-        '  If e.IsGetData Then
-        '    If mMatReq.PiecesPerComponent <> 0 Then
-        '      e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-        '    End If
-        '  End If
-
-        '  If e.IsSetData Then
-        '    mMatReq.PiecesPerComponent = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / e.Value
-        '  End If
-
-        '  Case gcBoardTableChanges.Name
-        '    Dim mValue As Decimal
-        '    Dim mQty As Integer
-        '    If e.IsGetData Then
-        '      Try
-
-        '        If IsNumeric(mMatReq.PiecesPerComponent) And mMatReq.PiecesPerComponent > 0 Then
-        '          mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / mMatReq.PiecesPerComponent
-        '          mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
-        '          mValue = mValue
-        '          e.Value = mValue
-        '        End If
-
-        '      Catch ex As Exception
-        '        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-        '      End Try
-
-        '    End If
-      End Select
-    End If
-  End Sub
-
-
-
-  Private Sub gvMaterialRequirementOthers_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs)
-    Dim mMatReq As dmMaterialRequirement
-    Dim mSI As dmStockItem
-
-    mMatReq = CType(e.Row, dmMaterialRequirement)
-
-    If mMatReq.StockItemID = 0 Then
-
-
-      Select Case e.Column.Name
-        Case gcMatReqOtherDescription.Name
-          If e.IsGetData Then
-            e.Value = mMatReq.Description
-          ElseIf e.IsSetData Then
-            mMatReq.Description = e.Value
-          End If
-        Case gcStockCode.Name
-          If e.IsGetData Then
-            e.Value = mMatReq.StockCode
-          ElseIf e.IsSetData Then
-            mMatReq.StockCode = e.Value
-          End If
-
-        Case gcPartNo.Name
-          If e.IsGetData Then
-            e.Value = mMatReq.SupplierStockCode
-          ElseIf e.IsSetData Then
-            mMatReq.SupplierStockCode = e.Value
-          End If
-      End Select
-    Else
-      mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
-      If mSI IsNot Nothing Then
-
-        Select Case e.Column.Name
-          Case gcMatReqOtherDescription.Name
-            If e.IsGetData Then
-              If String.IsNullOrEmpty(mSI.ShortDescription) Then
-                e.Value = mSI.Description
-              Else
-                e.Value = mSI.ShortDescription
-              End If
-
-
-            End If
-          Case gcStockCode.Name
-            If e.IsGetData Then
-              e.Value = mSI.StockCode
-
-            End If
-
-          Case gcPartNo.Name
-            If e.IsGetData Then
-              e.Value = mSI.PartNo
-
-            End If
-        End Select
-      End If
-    End If
-  End Sub
 
 
 
 
-  Private Sub grpMaterialRequirementChanges_CustomButtonClick(sender As Object, e As BaseButtonEventArgs)
-    Select Case e.Button.Properties.Tag
-
-      Case eMaterialRequirementsButtons.ExportList
-        Dim mFileName As String = "Exportar MRP de Cambios " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
-        If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
-          'gvRequirmentMaterialsChanges.ExportToXlsx(mFileName)
-        End If
-    End Select
-  End Sub
 
 
-  Private Sub bteProductPicker_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles bteProductPicker.ButtonClick
-    Dim mProductPicker As clsPickerProductItem
-    Dim mProducts As New colProductBaseInfos
-    Dim mProductBaseInfo As clsProductBaseInfo
+
+  Private Sub bteProductPicker_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+
+    Dim mDialogResult As DialogResult
 
     Try
       Select Case e.Button.Kind
         Case ButtonPredefines.Ellipsis
-          mProducts = pFormController.GetProductInfos()
+          mDialogResult = MessageBox.Show("¿Desea editar la información de este producto?", "Edición de Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 
-          mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
+          If mDialogResult = DialogResult.Yes Then
+            frmProductDetail_New.OpenFormModal(pFormController.CurrentProduct.ID, pFormController.DBConn)
+            If pFormController.CurrentProduct.ID <> 0 Then
+              uctProductDetail.FormController.ReloadProduct(pFormController.CurrentProduct.ID)
 
-
-          mProductBaseInfo = frmProductPicker.OpenPickerSingle(mProductPicker)
-
-          If mProductBaseInfo IsNot Nothing Then
-            pFormController.WorkOrder.Product = mProductBaseInfo.Product
-            pFormController.WorkOrder.ProductTypeID = mProductBaseInfo.ProductTypeID
-            pFormController.WorkOrder.ProductID = mProductBaseInfo.ID
-            bteProductPicker.Text = mProductBaseInfo.Description
-            UpdateObject()
-            pFormController.SaveObjects()
-
-            RefreshControls()
+              'FillCustomerDetail()
+              RefreshControls()
+            End If
+          Else
 
           End If
-
-        Case ButtonPredefines.Plus
-          Dim mProductStructure As dmProductBase
-          mProductStructure = clsProductSharedFuncs.NewProductInstance(eProductType.StructureAF)
-          mProductStructure.ItemType = eProductType.StructureAF
-
-          mProductStructure.Description = InputBox("Ingrese el producto")
-
-
-          pFormController.SaveProduct(mProductStructure)
-
-          pFormController.WorkOrder.Product = mProductStructure
-          pFormController.WorkOrder.ProductTypeID = eProductType.StructureAF
-          pFormController.WorkOrder.ProductID = mProductStructure.ID
-
-          RefreshControls()
       End Select
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -1126,14 +894,14 @@ Public Class frmWorkOrderDetailConstruction
           pFormController.LoadSalesOrderPhaseByWhere(pFormController.SalesOrderPhaseInfos, "")
 
 
-          If pFormController.WorkOrder.Product IsNot Nothing Then
-            mCurrentProductID = CType(pFormController.WorkOrder.Product, dmProductBase).ID
+          If pFormController.CurrentProduct IsNot Nothing Then
+            mCurrentProductID = pFormController.CurrentProduct.ID
           End If
           mPicker = New clsPickerSalesOrderPhase(pFormController.SalesOrderPhaseInfos, pFormController.DBConn)
 
           For Each mWorkderAllocation In pFormController.WorkOrder.WorkOrderAllocations
-            If mWorkderAllocation.SalesOrderPhaseID > 0 Then
-              mSalesOrderPhaseInfo = pFormController.SalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseID)
+            If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
+              mSalesOrderPhaseInfo = pFormController.SalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
 
               If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseInfo) Then
                 mPicker.SelectedObjects.Add(mSalesOrderPhaseInfo)
@@ -1151,7 +919,7 @@ Public Class frmWorkOrderDetailConstruction
                 If mWorkderAllocation Is Nothing Then
                   mWorkderAllocation = New dmWorkOrderAllocation
                   mWorkderAllocation.WorkOrderID = pFormController.WorkOrder.WorkOrderID
-                  mWorkderAllocation.SalesOrderPhaseID = mSelectedSOPI.SalesOrderPhaseID
+                  mWorkderAllocation.SalesOrderPhaseItemID = mSelectedSOPI.SalesOrderPhaseID
                   pFormController.WorkOrder.WorkOrderAllocations.Add(mWorkderAllocation)
                 End If
               End If
@@ -1161,8 +929,8 @@ Public Class frmWorkOrderDetailConstruction
 
           For mindex As Integer = pFormController.WorkOrder.WorkOrderAllocations.Count - 1 To 0 Step -1
             mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations(mindex)
-            If mWorkderAllocation.SalesOrderPhaseID > 0 Then
-              mSalesOrderPhaseInfo = mSelectedSalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseID)
+            If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
+              mSalesOrderPhaseInfo = mSelectedSalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
 
               If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseInfo) Then
                 pFormController.WorkOrder.WorkOrderAllocations.Remove(mWorkderAllocation)
@@ -1185,140 +953,252 @@ Public Class frmWorkOrderDetailConstruction
     End Try
   End Sub
 
-  Private Sub grpStockItemMaterialRequirement_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemMaterialRequirement.CustomButtonClick
-
-    Try
 
 
-      Select Case e.Button.Properties.Tag
-        Case eMaterialRequirementsButtons.Copy
-          Dim mMatReqs As colMaterialRequirements
-          mMatReqs = grdStockItemsMaterialRequirement.DataSource
 
-          pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
-        Case eMaterialRequirementsButtons.Paste
-          Dim mPF As dmProductFurniture
-          mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
-          If mPF IsNot Nothing Then
 
-            If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
-              For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
-                mMatReq.ClearKeys()
-                mMatReq.ObjectID = mPF.ProductFurnitureID
-                mPF.MaterialRequirmentOthers.Add(mMatReq)
-              Next
-            End If
-          End If
-        Case eMaterialRequirementsButtons.AddInv
-          Dim mSIs As New colStockItems
-          Dim mPicker As clsPickerStockItem
-          Dim mSelectedSI As dmStockItem
+  'Private Sub btnSelectProduct_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnSelectProduct.ItemClick
+  '  Dim mProducts As colProductBaseInfos
+  '  Dim mProductPicker As clsPickerProductItem
+  '  Dim mProductBaseInfo As clsProductBaseInfo
 
-          For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-            mSIs.Add(mItem.Value)
-          Next
+  '  mProducts = pFormController.GetProductInfos()
 
-          mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
+  '  mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
 
-          Dim mPF As dmProductStructure
-          mPF = TryCast(pFormController.WorkOrder.Product, dmProductStructure)
 
-          For Each mMR As dmMaterialRequirement In mPF.MaterialRequirements
-            mSelectedSI = mSIs.ItemFromKey(mMR.StockItemID)
-            If mSelectedSI IsNot Nothing Then
-              If mPicker.SelectedObjects.Contains(mSelectedSI) = False Then
-                mPicker.SelectedObjects.Add(mSelectedSI)
-              End If
-            End If
-          Next
+  '  mProductBaseInfo = frmProductPicker.OpenPickerSingle(mProductPicker)
 
-          frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal, False, -1)
+  '  If mProductBaseInfo IsNot Nothing Then
+  '    pFormController.WorkOrder.Product = mProductBaseInfo.Product
+  '    pFormController.WorkOrder.ProductTypeID = mProductBaseInfo.ProductTypeID
+  '    pFormController.WorkOrder.ProductID = mProductBaseInfo.ID
+  '    pFormController.CurrentProduct = mProductBaseInfo.Product
+  '    pCurrentDetailMode = eEditMode.SelectProduct
 
-          pFormController.syncronizedMaterialRequirment(mPicker.SelectedObjects)
+  '    'txtProductDescription.Text = mProductBaseInfo.Description
+  '    bteProductPicker.Text = mProductBaseInfo.Description
+  '    UpdateObject()
+  '    pFormController.SaveObjects()
 
-          RefreshProductControls()
 
-        Case eMaterialRequirementsButtons.ExportList
-          Dim mFileName As String = "Exportar LMR " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
-          If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
-            gvStockItemMaterialRequirements.ExportToXlsx(mFileName)
-          End If
-      End Select
+  '    pFormController.ReloadProduct()
+  '    grdWoodMaterialRequirements.DataSource = pFormController.CurrentProduct.WoodMaterialRequirements
+  '    grdWoodMaterialRequirements.RefreshDataSource()
+  '    gvWoodMaterialRequirements.RefreshData()
 
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+  '    grdStockItemsMaterialRequirement.DataSource = pFormController.CurrentProduct.MaterialRequirements
+  '    grdStockItemsMaterialRequirement.RefreshDataSource()
+  '    gvStockItemMaterialRequirements.RefreshData()
+  '    RefreshControls()
+  '  End If
+  'End Sub
 
-    End Try
+  Private Sub RefreshDetailButtons()
+    Select Case pCurrentDetailMode
+      Case eEditMode.ProductEdtit
+        For Each mBtn As BarButtonItemLink In BarManager1.Bars(1).ItemLinks
+          If mBtn.Item.Tag = eEditMode.ProductEdtit Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.SelectProduct Then mBtn.Item.Enabled = True
+          If mBtn.Item.Tag = eEditMode.CreateProduct Then mBtn.Item.Enabled = True
+          If mBtn.Item.Tag = eEditMode.Save Then mBtn.Item.Enabled = True
+
+        Next
+      Case eEditMode.eView
+        For Each mBtn As BarButtonItemLink In BarManager1.Bars(1).ItemLinks
+          If mBtn.Item.Tag = eEditMode.ProductEdtit Then mBtn.Item.Enabled = True
+          If mBtn.Item.Tag = eEditMode.SelectProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.CreateProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.Save Then mBtn.Item.Enabled = False
+        Next
+
+      Case eEditMode.SelectProduct
+        For Each mBtn As BarButtonItemLink In BarManager1.Bars(1).ItemLinks
+          If mBtn.Item.Tag = eEditMode.ProductEdtit Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.SelectProduct Then mBtn.Item.Enabled = True
+          If mBtn.Item.Tag = eEditMode.CreateProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.Save Then mBtn.Item.Enabled = True
+
+
+        Next
+      Case eEditMode.CreateProduct
+        For Each mBtn As BarButtonItemLink In BarManager1.Bars(1).ItemLinks
+          If mBtn.Item.Tag = eEditMode.ProductEdtit Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.SelectProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.CreateProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.Save Then mBtn.Item.Enabled = True
+
+
+        Next
+
+      Case eEditMode.Save
+        For Each mBtn As BarButtonItemLink In BarManager1.Bars(1).ItemLinks
+          If mBtn.Item.Tag = eEditMode.ProductEdtit Then mBtn.Item.Enabled = True
+          If mBtn.Item.Tag = eEditMode.SelectProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.CreateProduct Then mBtn.Item.Enabled = False
+          If mBtn.Item.Tag = eEditMode.Save Then mBtn.Item.Enabled = False
+
+
+        Next
+    End Select
+  End Sub
+
+  Private Sub bbtnEditProduct_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnEditProduct.ItemClick
+    Dim mDialogResult As DialogResult
+    If pFormController.CurrentProduct IsNot Nothing Then
+
+
+
+
+      pCurrentDetailMode = eEditMode.ProductEdtit
+      'SetDetailsControlsReadonly(False)
+      RefreshControls()
+      RefreshDetailButtons()
+      SetDetailsWorkOrderControlsReadonly(True)
+      uctProductDetail.SetDetailsControlsReadonly(False)
+    End If
+  End Sub
+
+
+  Private Sub SetDetailsWorkOrderControlsReadonly(ByVal vReadOnly As Boolean)
+    txtDescription.ReadOnly = vReadOnly
+    btnWorkOrderNumber.ReadOnly = vReadOnly
+    dteCreatedDate.ReadOnly = vReadOnly
+    dteDueDate.ReadOnly = vReadOnly
+    dtePlannedStartDate.ReadOnly = vReadOnly
+    cboElaboratedBy.ReadOnly = vReadOnly
+    txtQuantity.ReadOnly = vReadOnly
+    grpWorkOrderAllocations.Enabled = Not vReadOnly
+    memPFNotes.ReadOnly = vReadOnly
+    btnGenerateMatReq.Enabled = Not vReadOnly
+  End Sub
+
+
+
+  Private Sub bbtnSaveProduct_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnSaveProduct.ItemClick
+    uctProductDetail.UpdateObject()
+    pFormController.CurrentProduct = uctProductDetail.FormController.CurrentProductInfo.Product
+    pFormController.SaveProduct()
+
+    pCurrentDetailMode = eEditMode.Save
+
+    uctProductDetail.FormController.ReloadProduct(pFormController.CurrentProduct.ID)
+    pFormController.WorkOrder.ProductID = pFormController.CurrentProduct.ID
+    RefreshDetailButtons()
+    RefreshControls()
+  End Sub
+
+  Private Sub bbtnCreateNewProduct_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbtnCreateNewProduct.ItemClick
+    pCurrentDetailMode = eEditMode.CreateProduct
+    Dim mNewProductInfo As New clsProductBaseInfo
+
+
+    mNewProductInfo.Product = clsProductSharedFuncs.NewProductInstance(eProductType.StructureAF)
+    uctProductDetail.SetCurrentProductBaseInfo(mNewProductInfo)
+
+    uctProductDetail.RefreshControls()
+    RefreshDetailButtons()
+    RefreshControls()
+  End Sub
+
+  Private Sub btnSelectProduct_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btnSelectProduct.ItemClick
+    Dim mProducts As colProductBaseInfos
+    Dim mProductPicker As clsPickerProductItem
+    Dim mProductBaseInfo As clsProductBaseInfo
+
+    mProducts = pFormController.GetProductInfos()
+
+    mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
+
+
+    mProductBaseInfo = frmProductPicker.OpenPickerSingle(mProductPicker)
+
+    If mProductBaseInfo IsNot Nothing Then
+      pFormController.WorkOrder.Product = mProductBaseInfo.Product
+      pFormController.WorkOrder.ProductTypeID = mProductBaseInfo.ProductTypeID
+      pFormController.WorkOrder.ProductID = mProductBaseInfo.ID
+      pFormController.CurrentProduct = mProductBaseInfo.Product
+      pCurrentDetailMode = eEditMode.SelectProduct
+
+      UpdateObject()
+      pFormController.SaveObjects()
+      uctProductDetail.SetCurrentProductBaseInfo(mProductBaseInfo)
+      uctProductDetail.FormController.ReloadProduct(pFormController.WorkOrder.ProductID)
+
+
+      uctProductDetail.RefreshControls()
+
+      RefreshControls()
+    End If
+  End Sub
+
+  Private Sub btnGenerateMatReq_Click(sender As Object, e As EventArgs) Handles btnGenerateMatReq.Click
+    Dim mProductStructure As dmProductStructure
+
+    mProductStructure = TryCast(uctProductDetail.FormController.CurrentProductInfo.Product, dmProductStructure)
+
+    CheckSave(False)
+    pFormController.GenerateMatReq(mProductStructure)
+
+    pFormController.SaveObjects()
+
+    grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
+    gvStockItemMatReq.RefreshData()
+
+    grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
+    gvWoodMatReq.RefreshData()
+
 
   End Sub
 
-  Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
+  Private Sub gvStockItemMatReq_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodMatReq.CustomUnboundColumnData
+    Dim mMatReq As dmMaterialRequirement
 
-    Try
+    mMatReq = TryCast(e.Row, dmMaterialRequirement)
+    If mMatReq IsNot Nothing Then
+      Select Case e.Column.Name
+        Case gcTotalQuantity.Name
+          If e.IsGetData Then
+            e.Value = (mMatReq.UnitPiece * pFormController.WorkOrder.WorkOrderAllocations.GetTotalQuantity)
 
-      Select Case e.Button.Properties.Tag
-        Case eMaterialRequirementsButtons.Copy
-          Dim mMatReqs As colMaterialRequirements
-          mMatReqs = gvWoodMaterialRequirements.DataSource
-
-
-          pFormController.RTISGlobal.ClipBoard.AddObjectsToClipBoard(mMatReqs)
-        Case eMaterialRequirementsButtons.Paste
-          Dim mPF As dmProductFurniture
-          mPF = TryCast(pFormController.WorkOrder.Product, dmProductFurniture)
-          If mPF IsNot Nothing Then
-
-            If pFormController.RTISGlobal.ClipBoard.ClipObjectType Is GetType(dmMaterialRequirement) Then
-              For Each mMatReq As dmMaterialRequirement In pFormController.RTISGlobal.ClipBoard.ClipObjects
-                mMatReq.ClearKeys()
-                mMatReq.ObjectID = mPF.ProductFurnitureID
-                mPF.MaterialRequirments.Add(mMatReq)
-              Next
-            End If
           End If
-
-        Case eMaterialRequirementsButtons.ExportList
-          Dim mFileName As String = "Exportar MRP " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
-          If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
-            gvWoodMaterialRequirements.ExportToXlsx(mFileName)
+          If e.IsSetData Then
+            'mMatReq.PiecesPerComponent = (mMatReq.UnitPiece * pFormController.WorkOrder.Quantity) / e.Value
           End If
+        Case gcQtyBoardFeet.Name
+          Dim mValue As Decimal
+          Dim mQty As Integer
+          If e.IsGetData Then
+            Try
 
-        Case eMaterialRequirementsButtons.AddInv
-          Dim mSIs As New colStockItems
-          Dim mPicker As clsPickerStockItem
-          Dim mSelectedSI As dmStockItem
+              mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.WorkOrderAllocations.GetTotalQuantity)
 
-          For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-            mSIs.Add(mItem.Value)
-          Next
+              mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty_NewAF(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
 
-          mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)
+              ''mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mMatReq.TotalPieces, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+              mValue = mValue
+              e.Value = mValue
 
-          Dim mPF As dmProductStructure
-          mPF = TryCast(pFormController.WorkOrder.Product, dmProductStructure)
 
-          For Each mMR As dmMaterialRequirement In mPF.WoodMaterialRequirements
-            mSelectedSI = mSIs.ItemFromKey(mMR.StockItemID)
-            If mSelectedSI IsNot Nothing Then
-              If mPicker.SelectedObjects.Contains(mSelectedSI) = False Then
-                mPicker.SelectedObjects.Add(mSelectedSI)
-              End If
-            End If
-          Next
+            Catch ex As Exception
+              If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+            End Try
 
-          frmPickerStockItem.OpenPickerMulti(mPicker, True, DBCon, RTISGlobal, True, -1)
-
-          pFormController.syncronizedWoodMaterialRequirment(mPicker.SelectedObjects)
-
-          RefreshProductControls()
-
+          End If
       End Select
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-
-    End Try
+    End If
+  End Sub
 
 
+  Private Sub grdStockItemMatReq_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdStockItemMatReq.EditorKeyDown
+    If e.KeyCode = Keys.Enter Then
+      gvStockItemMatReq.MoveNext()
+    End If
+  End Sub
+
+  Private Sub grdWoodMatReq_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdWoodMatReq.EditorKeyDown
+    If e.KeyCode = Keys.Enter Then
+      gvWoodMatReq.MoveNext()
+    End If
   End Sub
 End Class

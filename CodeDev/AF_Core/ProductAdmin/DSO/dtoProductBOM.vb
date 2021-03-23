@@ -1,5 +1,4 @@
-﻿
-''DTO Definition - ProductBOM (to ProductBOM)'Generated from Table:ProductBOM
+﻿''DTO Definition - ProductBOM (to ProductBOM)'Generated from Table:ProductBOM
 
 Imports RTIS.DataLayer
 Imports RTIS.DataLayer.clsDBConnBase
@@ -58,6 +57,30 @@ Public Class dtoProductBOM : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ParentID", .ParentID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID", .ProductID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockCode", StringToDBValue(.StockCode))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Description", StringToDBValue(.Description))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialRequirementType", .MaterialRequirementType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UnitPiece", .UnitPiece)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetThickness", .NetThickness)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetWidth", .NetWidth)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "NetLenght", .NetLenght)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QualityType", .QualityType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialTypeID", .MaterialTypeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecie", .WoodSpecie)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodFinish", .WoodFinish)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "AreaID", .AreaID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SupplierStockCode", StringToDBValue(.SupplierStockCode))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Comments", StringToDBValue(.Comments))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PiecesPerComponent", .PiecesPerComponent)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPieces", .TotalPieces)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateChange", DateToDBValue(.DateChange))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateOtherMaterial", DateToDBValue(.DateOtherMaterial))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemID", .StockItemID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ComponentDescription", StringToDBValue(.ComponentDescription))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ObjectType", .ObjectType)
+
+
     End With
 
   End Sub
@@ -71,7 +94,29 @@ Public Class dtoProductBOM : Inherits dtoBase
         .ProductBOMID = DBReadInt32(rDataReader, "ProductBOMID")
         .ParentID = DBReadInt32(rDataReader, "ParentID")
         .ProductID = DBReadInt32(rDataReader, "ProductID")
-        .Quantity = DBReadInt32(rDataReader, "Quantity")
+        .Quantity = DBReadDecimal(rDataReader, "Quantity")
+        .StockCode = DBReadString(rDataReader, "StockCode")
+        .Description = DBReadString(rDataReader, "Description")
+        .MaterialRequirementType = DBReadByte(rDataReader, "MaterialRequirementType")
+        .UnitPiece = DBReadInt32(rDataReader, "UnitPiece")
+        .NetThickness = DBReadDecimal(rDataReader, "NetThickness")
+        .NetWidth = DBReadDecimal(rDataReader, "NetWidth")
+        .NetLenght = DBReadDecimal(rDataReader, "NetLenght")
+        .QualityType = DBReadInt32(rDataReader, "QualityType")
+        .MaterialTypeID = DBReadInt32(rDataReader, "MaterialTypeID")
+        .WoodSpecie = DBReadInt32(rDataReader, "WoodSpecie")
+        .WoodFinish = DBReadInt32(rDataReader, "WoodFinish")
+        .UoM = DBReadInt32(rDataReader, "UoM")
+        .AreaID = DBReadInt32(rDataReader, "AreaID")
+        .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
+        .Comments = DBReadString(rDataReader, "Comments")
+        .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
+        .TotalPieces = DBReadDecimal(rDataReader, "TotalPieces")
+        .DateChange = DBReadDateTime(rDataReader, "DateChange")
+        .DateOtherMaterial = DBReadDateTime(rDataReader, "DateOtherMaterial")
+        .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+        .ComponentDescription = DBReadString(rDataReader, "ComponentDescription")
+        .ObjectType = DBReadByte(rDataReader, "ObjectType")
         pProductBOM.IsDirty = False
       End With
       mOK = True
@@ -116,10 +161,12 @@ Public Class dtoProductBOM : Inherits dtoBase
   End Function
 
 
-  Public Function LoadProductBOMCollection(ByRef rProductBOMs As colProductBOMs, ByVal vParentID As Integer) As Boolean
+  Public Function LoadProductBOMCollection(ByRef rProductBOMs As colProductBOMs, ByVal vProductID As Integer, ByVal vObjectType As Byte) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@ParentID", vParentID)
+    mParams.Add("@ProductID", vProductID)
+    mParams.Add("@ObjectType", vObjectType)
+
     mOK = MyBase.LoadCollection(rProductBOMs, mParams, "ProductBOMID")
     rProductBOMs.TrackDeleted = True
     If mOK Then rProductBOMs.IsDirty = False
@@ -127,13 +174,15 @@ Public Class dtoProductBOM : Inherits dtoBase
   End Function
 
 
-  Public Function SaveProductBOMCollection(ByRef rCollection As colProductBOMs, ByVal vParentID As Integer) As Boolean
+  Public Function SaveProductBOMCollection(ByRef rCollection As colProductBOMs, ByVal vProductID As Integer, ByVal vObjectType As Byte) As Boolean
     Dim mParams As New Hashtable
     Dim mAllOK As Boolean
     Dim mCount As Integer
     Dim mIDs As String = ""
     If rCollection.IsDirty Then
-      mParams.Add("@ParentID", vParentID)
+      mParams.Add("@ProductID", vProductID)
+      mParams.Add("@ObjectType", vObjectType)
+
       ''Approach where delete items not found in the collection
       ''If rCollection.SomeRemoved Then
       ''  For Each Me.pProductBOM In rCollection
@@ -161,8 +210,8 @@ Public Class dtoProductBOM : Inherits dtoBase
       End If
 
       For Each Me.pProductBOM In rCollection
-        If pProductBOM.IsDirty Or pProductBOM.ParentID <> vParentID Or pProductBOM.ProductBOMID = 0 Then 'Or pProductBOM.ProductBOMID = 0
-          pProductBOM.ParentID = vParentID
+        If pProductBOM.IsDirty Or pProductBOM.ProductID <> vProductID Or pProductBOM.ProductBOMID = 0 Then 'Or pProductBOM.ProductBOMID = 0
+          pProductBOM.ProductID = vProductID
           If mAllOK Then mAllOK = SaveObject()
         End If
       Next
@@ -175,4 +224,3 @@ Public Class dtoProductBOM : Inherits dtoBase
   End Function
 
 End Class
-

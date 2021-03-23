@@ -1,0 +1,11 @@
+alter table SalesOrder
+add PaymentTermDesc varchar(256)
+go
+
+alter table SalesOrderItem
+add Comments text
+go
+
+alter table SalesOrderItem
+add UoM int
+go

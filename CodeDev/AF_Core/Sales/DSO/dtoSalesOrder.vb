@@ -86,6 +86,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version", StringToDBValue(.Version))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OrderPhaseType", .OrderPhaseType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentTermDesc", StringToDBValue(.PaymentTermDesc))
 
     End With
 
@@ -126,6 +127,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .WorkOrdersIssued = DBReadBoolean(rDataReader, "WorkOrdersIssued")
         .PodioPath = DBReadString(rDataReader, "PodioPath")
         .OrderPhaseType = DBReadByte(rDataReader, "OrderPhaseType")
+        .PaymentTermDesc = DBReadString(rDataReader, "PaymentTermDesc")
+
         pSalesOrder.IsDirty = False
       End With
       mOK = True

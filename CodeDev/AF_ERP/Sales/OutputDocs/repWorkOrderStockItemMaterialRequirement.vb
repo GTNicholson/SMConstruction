@@ -20,11 +20,11 @@ Public Class repWorkOrderStockItemMaterialRequirement
 
 
     xtcDescription.DataBindings.Add("Text", Me.DataSource, "Description")
-    xtcQuantity.DataBindings.Add("Text", Me.DataSource, "Quantity")
-    xtcUoM.DataBindings.Add("Text", Me.DataSource, "UoM")
+    xtcQuantity.DataBindings.Add("Text", Me.DataSource, "Quantity", "{0:#.#}")
+    xtcUoM.DataBindings.Add("Text", Me.DataSource, "UoMDesc")
 
     xtcComments.DataBindings.Add("Text", DataSource, "Comment")
-    xtcCurrentInventory.DataBindings.Add("Text", DataSource, "TempInStock")
+    xtcCurrentInventory.DataBindings.Add("Text", DataSource, "TempAllocatedQty", "{0:#.#}")
 
   End Sub
 

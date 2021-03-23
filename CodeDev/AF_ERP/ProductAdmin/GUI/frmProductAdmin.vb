@@ -70,8 +70,10 @@ Public Class frmProductAdmin
       mOK = True
 
       pFormController.LoadObject()
-      UctProductBaseDetail1.ConfigureControl(pFormController.DBConn, pFormController.RTISGlobal)
-      UctProductBaseDetail1.LoadCombos()
+      uctProductDetail.ConfigureControl(pFormController.DBConn, pFormController.RTISGlobal)
+      uctProductDetail.ConfigureBrowseFilesControl(pFormController.DBConn, pFormController.RTISGlobal)
+
+      uctProductDetail.LoadCombos()
       ''RefreshAddBtn()
 
 
@@ -125,7 +127,7 @@ Public Class frmProductAdmin
     Dim mResponse As MsgBoxResult
     Dim mRetVal As Boolean
 
-    UctProductBaseDetail1.UpdateObject()
+    uctProductDetail.UpdateObject()
     'pFormController.SaveObjects()
     If pFormController.IsAnyDirty() Then
       If rOption Then
@@ -144,7 +146,6 @@ Public Class frmProductAdmin
 
             ExitMode = Windows.Forms.DialogResult.No 'rNoToSave = True
             pFormController.LoadMainCollection()
-            pFormController.LoadStockItemBOM()
             grdProductBase.RefreshDataSource()
             RefreshControls()
             gvProductBase.RefreshData()
@@ -205,11 +206,17 @@ Public Class frmProductAdmin
     pIsActive = False
     If pFormController.CurrentProductInfo IsNot Nothing Then
       mControlEnabled = True
-      UctProductBaseDetail1.SetCurrentProductBaseInfo(pFormController.CurrentProductInfo)
-      UctProductBaseDetail1.RefreshControls()
+      ConfigureFileControl()
 
-      UctProductBaseDetail1.txtDescription.Enabled = mControlEnabled
-      UctProductBaseDetail1.txtStockCode.Enabled = mControlEnabled
+      uctProductDetail.SetCurrentProductBaseInfo(pFormController.CurrentProductInfo)
+      uctProductDetail.RefreshControls()
+      'uctProductDetail.FormController.ReloadProduct(pFormController.CurrentProductInfo.Product.ID)
+
+      uctProductDetail.ConfigureBrowseFilesControl(pFormController.DBConn, pFormController.RTISGlobal)
+
+
+      uctProductDetail.txtDescription.Enabled = mControlEnabled
+      uctProductDetail.txtStockCode.Enabled = mControlEnabled
 
     End If
 
@@ -217,9 +224,19 @@ Public Class frmProductAdmin
 
     If pCurrentDetailMode = eCurrentDetailMode.eView Then
       SetDetailsControlsReadonly(True)
+      uctProductDetail.SetDetailsControlsReadonly(True)
+
     ElseIf pCurrentDetailMode = eCurrentDetailMode.eEdit Then
       SetDetailsControlsReadonly(False)
+      uctProductDetail.SetDetailsControlsReadonly(False)
+
     End If
+
+  End Sub
+
+  Private Sub ConfigureFileControl()
+
+    uctProductDetail.ConfigureControl(pFormController.DBConn, pFormController.RTISGlobal)
 
   End Sub
 
@@ -253,7 +270,6 @@ Public Class frmProductAdmin
           If pFormController.CurrentProductBase IsNot Nothing And pFormController.CurrentProductBase.ID > 0 Then
 
             If pFormController.IsLocked Then
-              pFormController.UnLockStockItem(pFormController.CurrentProductBase.ID)
               pFormController.IsLocked = False
             End If
 
@@ -262,14 +278,13 @@ Public Class frmProductAdmin
           End If
         End If
         pFormController.SetCurrentStockItemInfo(mSII)
-        UctProductBaseDetail1.SetCurrentProductBaseInfo(mSII)
-
+        uctProductDetail.SetCurrentProductBaseInfo(mSII)
+        uctProductDetail.FormController.ReloadProduct(mSII.Product.ID)
         RefreshPCSubItemTypes()
 
 
         RefreshControls()
 
-        LoadStockItemBOM()
         LoadProductBOMs()
         RefreshControls()
         pCurrentDetailMode = eCurrentDetailMode.eView
@@ -289,7 +304,7 @@ Public Class frmProductAdmin
 
 
     pFormController.AddProductItem_SetToCurrent(pFormController.CurrentEmodeProductType)
-    UctProductBaseDetail1.SetCurrentProductBaseInfo(pFormController.CurrentProductInfo)
+    uctProductDetail.SetCurrentProductBaseInfo(pFormController.CurrentProductInfo)
     grdProductBase.RefreshDataSource()
     pFormController.GotoGridRowByRowObject(gvProductBase, pFormController.CurrentProductInfo)
 
@@ -304,13 +319,13 @@ Public Class frmProductAdmin
 
   Private Sub ShowHideProductBOM()
 
-    Select Case pFormController.CurrentProductInfo.ProductTypeID
-      Case eProductType.StructureAF
-        UctProductBaseDetail1.ShowHideProductBOM(True)
+    'Select Case pFormController.CurrentProductInfo.ProductTypeID
+    '  Case eProductType.StructureAF
+    '    UctProductBaseDetail1.ShowHideProductBOM(True)
 
-      Case Else
-        UctProductBaseDetail1.ShowHideProductBOM(False)
-    End Select
+    '  Case Else
+    '    UctProductBaseDetail1.ShowHideProductBOM(False)
+    'End Select
 
   End Sub
 
@@ -318,7 +333,7 @@ Public Class frmProductAdmin
   Private Sub frmProductAdmin_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
     Try
 
-      UctProductBaseDetail1.UpdateObject()
+      uctProductDetail.UpdateObject()
       pFormController.SaveObject()
 
     Catch ex As Exception
@@ -330,7 +345,7 @@ Public Class frmProductAdmin
 
 
   Private Sub frmProductAdmin_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-    pFormController.ClearObjects()
+
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
   End Sub
 
@@ -394,7 +409,7 @@ Public Class frmProductAdmin
   End Sub
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
-    UctProductBaseDetail1.SetDetailsControlsReadonly(vReadOnly)
+    'UctProductBaseDetail1.SetDetailsControlsReadonly(vReadOnly)
 
   End Sub
   Private Sub grpStockItemDetail_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemDetail.CustomButtonClick
@@ -405,17 +420,16 @@ Public Class frmProductAdmin
       Select Case e.Button.Properties.Tag
 
         Case eDetailButtons.Edit
-          pFormController.LoadStockItemExtraDetails()
 
           '' RefreshAddBtn()
 
           If pFormController.CurrentProductBase IsNot Nothing Then
-            pFormController.LockStockItem(pFormController.CurrentProductBase.ID)
             pFormController.IsLocked = True
           End If
 
           pCurrentDetailMode = eCurrentDetailMode.eEdit
           SetDetailsControlsReadonly(False)
+          uctProductDetail.SetDetailsControlsReadonly(False)
           SetDetailFocus()
           RefreshPCSubItemTypes()
           RefreshControls()
@@ -427,23 +441,22 @@ Public Class frmProductAdmin
         Case eDetailButtons.Save
 
           If pFormController.CurrentProductBase IsNot Nothing Then
-            UctProductBaseDetail1.UpdateObject()
+            uctProductDetail.UpdateObject()
+            pFormController.CurrentProductInfo.Product = uctProductDetail.FormController.CurrentProductInfo.Product
 
-            If UctProductBaseDetail1.cboSubItemType.SelectedIndex = -1 Then
-              MessageBox.Show("No se ha seleccionado el sub tipo del producto. Por favor, ingrese un valor válido en la lista desplegable")
-              gvProductBase.RefreshData()
-              SetDetailsControlsReadonly(False)
-              pCurrentDetailMode = eCurrentDetailMode.eView
-            Else
-              pFormController.SaveObject()
-              gvProductBase.RefreshData()
-              SetDetailsControlsReadonly(True)
-              pCurrentDetailMode = eCurrentDetailMode.eView
-            End If
+
+            pFormController.SaveObject()
+            gvProductBase.RefreshData()
+            SetDetailsControlsReadonly(True)
+            uctProductDetail.SetDetailsControlsReadonly(True)
+            uctProductDetail.RefreshControls()
+            pCurrentDetailMode = eCurrentDetailMode.eView
+
+
+
 
           End If
           If pFormController.IsLocked Then
-            pFormController.UnLockStockItem(pFormController.CurrentProductBase.ID)
             pFormController.IsLocked = False
           End If
 
@@ -461,16 +474,12 @@ Public Class frmProductAdmin
 
 
   Private Sub SetDetailFocus()
-    UctProductBaseDetail1.FocusDescription()
+    uctProductDetail.FocusDescription()
     '
   End Sub
-  Public Sub LoadStockItemBOM()
-    pFormController.LoadStockItemBOM()
-    UctProductBaseDetail1.LoadStockItemBOM(pFormController.CurrentProductBase)
-    'grdStockItemBOM.DataSource = pFormController.CurrentProductBase.StockItemBOMs
-  End Sub
+
   Public Sub LoadProductBOMs()
-    UctProductBaseDetail1.LoadProductBOMS(pFormController.CurrentProductBase)
+    'UctProductBaseDetail1.LoadProductBOMS(pFormController.CurrentProductBase)
 
   End Sub
   Private Sub RefreshPCSubItemTypes()
@@ -488,7 +497,7 @@ Public Class frmProductAdmin
 
 
       pFormController.LoadProductConstructionSubTypes(mProductConstructionSubTypes, pFormController.CurrentProductBase.ItemType)
-      UctProductBaseDetail1.RefreshSubTypesOptions(mProductConstructionSubTypes)
+      'UctProductBaseDetail1.RefreshSubTypesOptions(mProductConstructionSubTypes)
       'clsDEControlLoading.FillDEComboVIi(cboSubItemType, mProductConstructionSubTypes)
 
 
@@ -500,9 +509,9 @@ Public Class frmProductAdmin
 
   Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs)
     If pIsActive Then
-      pFormController.CurrentEmodeProductType = UctProductBaseDetail1.GetCurrentEmodeProductType
+      pFormController.CurrentEmodeProductType = uctProductDetail.GetCurrentEmodeProductType
       pFormController.CurrentProductBase.ItemType = pFormController.CurrentEmodeProductType
-      UctProductBaseDetail1.UpdateObject()
+      uctProductDetail.UpdateObject()
       RefreshPCSubItemTypes()
       RefreshControls()
     End If
@@ -510,7 +519,8 @@ Public Class frmProductAdmin
 
   Private Sub gvStockItems_BeforeLeaveRow(sender As Object, e As RowAllowEventArgs) Handles gvProductBase.BeforeLeaveRow
     RefreshControls()
-    UctProductBaseDetail1.UpdateObject()
+    uctProductDetail.UpdateObject()
+
 
     If pFormController.IsAnyDirty And pCurrentDetailMode = eCurrentDetailMode.eEdit Then
       If CheckSave(True) = False Then
@@ -523,7 +533,7 @@ Public Class frmProductAdmin
     Try
       Dim mItem As BarItem = e.Item
 
-      UctProductBaseDetail1.UpdateObject()
+      uctProductDetail.UpdateObject()
       pFormController.SaveObject()
 
       pFormController.CurrentEmodeProductType = mItem.Tag

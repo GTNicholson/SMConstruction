@@ -209,6 +209,7 @@ Public Enum eObjectType
   PODeliveryItem = 7
   PurchaseOrder = 8
   WoodPallet = 9
+  ProductStructure = 10
 
 End Enum
 
@@ -432,6 +433,16 @@ Public Enum eMaterialRequirementType
   WoodChanges = 3
   OtherChanges = 4
 End Enum
+
+
+Public Enum eProductBOMObjectType
+  Wood = 1
+  StockItems = 2
+  WoodChanges = 3
+  OtherChanges = 4
+End Enum
+
+
 Public Enum ePOMaterialRequirementType
   <Description("Inventario")> Inventario = 1
   <Description("Sencillo")> Sencillo = 2
@@ -474,6 +485,7 @@ Public Enum eUoM
   <Description("kg")> KG = 17
 
   <Description("mt3")> MT3 = 18
+  <Description("GLB")> GLB = 19
 End Enum
 
 ''Public Enum eWorkOrderMilestone
@@ -587,15 +599,18 @@ Public Class clsConstants
   Public Const PurchaseOrderFileFolderSys As String = "POArchivosSys"
   Public Const PODeliveryFileFolderSys As String = "PODeliveryArchivosSys"
   Public Const SalesOrderFileFolderUsr As String = "SOArchivosUsr"
+  Public Const cProductFiles As String = "ProductFiles"
 
   Public Const WorkOrderNoPrefix = "OT"
   Public Const SalesOrderPrefix = "SO"
   Public Const SampleOrderPrexi = "IN"
 
 
-  Public Const TaxRate = 0.15
+  Public Const VATRATE = 0.15
 
   Public Const BoardFeetPerM3 = 423.77
+
+  Public Const CMToInches = 2.54
 
 End Class
 

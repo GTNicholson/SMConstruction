@@ -7,7 +7,6 @@ Public Class dmProductInstallation : Inherits dmProductBase
   Private pProductInstallationID As Int32
   Private pProductInstallationTypeID As Int32
   Private pNotes As String
-  Private pStockItemBOMs As colStockItemBOMs
   Private pProductBOMs As colProductBOMs
   Public Sub New()
     MyBase.New()
@@ -15,7 +14,6 @@ Public Class dmProductInstallation : Inherits dmProductBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
-    pStockItemBOMs = New colStockItemBOMs
     pProductBOMs = New colProductBOMs
   End Sub
 
@@ -25,7 +23,6 @@ Public Class dmProductInstallation : Inherits dmProductBase
   End Sub
 
   Protected Overrides Sub Finalize()
-    pStockItemBOMs = Nothing
 
     MyBase.Finalize()
   End Sub
@@ -34,7 +31,6 @@ Public Class dmProductInstallation : Inherits dmProductBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
-      If mAnyDirty = False Then mAnyDirty = pStockItemBOMs.IsDirty
 
       IsAnyDirty = mAnyDirty
     End Get
@@ -43,7 +39,6 @@ Public Class dmProductInstallation : Inherits dmProductBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     ProductInstallationID = 0
-    pStockItemBOMs = Nothing
 
   End Sub
 
@@ -56,12 +51,11 @@ Public Class dmProductInstallation : Inherits dmProductBase
       .Notes = Notes
       .SubItemType = SubItemType
       .DrawingFileName = DrawingFileName
-      .StockItemBOMs = StockItemBOMs
       .IsGeneric = IsGeneric
       .SalesOrderID = SalesOrderID
       .FullyDefined = FullyDefined
 
-      .ProductBOMs = ProductBOMs
+
 
       'Add entries here for each collection and class property
 
@@ -135,27 +129,13 @@ Public Class dmProductInstallation : Inherits dmProductBase
 
   Private ReadOnly Property intItemSpecCore_IsAnyDirty As Boolean
     Get
-      Throw New NotImplementedException()
+
     End Get
   End Property
 
-  Public Overrides Property StockItemBOMs As colStockItemBOMs
-    Get
-      Return pStockItemBOMs
-    End Get
-    Set(value As colStockItemBOMs)
-      pStockItemBOMs = value
-    End Set
-  End Property
 
-  Public Overrides Property ProductBOMs As colProductBOMs
-    Get
-      Return pProductBOMs
-    End Get
-    Set(value As colProductBOMs)
-      pProductBOMs = value
-    End Set
-  End Property
+
+
 End Class
 
 

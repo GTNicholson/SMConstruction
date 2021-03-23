@@ -27,6 +27,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pSalesItemType As Integer
 
   Private pProductConstructionType As Int32
+  Private pComments As String
+  Private pUoM As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -86,6 +88,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .SalesSubItemType = SalesSubItemType
       .SalesOrderStageID = SalesOrderStageID
       .ProductConstructionType = ProductConstructionType
+      .Comments = Comments
+      .UoM = UoM
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -274,7 +278,31 @@ Public Class dmSalesOrderItem : Inherits dmBase
   End Property
 
 
+  Public Property Comments As String
+    Get
+      Return pComments
+    End Get
+    Set(value As String)
+      If pComments <> value Then IsDirty = True
+      pComments = value
+    End Set
+  End Property
 
+  Public Property UoM As Integer
+    Get
+      Return pUoM
+    End Get
+    Set(value As Integer)
+      If pUoM <> value Then IsDirty = True
+      pUoM = value
+    End Set
+  End Property
+
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(UoM, eUoM))
+    End Get
+  End Property
   Public Property DisplayValue As String Implements iValueItem.DisplayValue
     Get
       Return pItemNumber & " - " & pDescription
@@ -300,13 +328,23 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Function TotalAmount() As Decimal
+  Public ReadOnly Property TotalAmount() As Decimal
+    Get
+      Return UnitPrice * Quantity
+    End Get
+  End Property
 
-    Return UnitPrice * Quantity
+  Public ReadOnly Property DescriptionPrintout As String
+    Get
+      Dim mRetVal As String = ""
 
-  End Function
+      mRetVal = Description
+      mRetVal &= vbCrLf
+      mRetVal &= Comments
 
-
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

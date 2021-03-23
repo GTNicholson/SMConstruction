@@ -20,14 +20,11 @@ Public MustInherit Class dmProductBase : Inherits dmBase
   Protected pIsGeneric As Boolean
   Protected pFullyDefined As Boolean
   Protected pSalesOrderID As Integer
-
+  Protected pPOFiles As colFileTrackers
   Public MustOverride Overrides ReadOnly Property IsAnyDirty As Boolean Implements intItemSpecCore.IsAnyDirty
 
   Public MustOverride Property ProductTypeID As Integer Implements intItemSpecCore.ItemType '// from eProductType
 
-  Public MustOverride Property StockItemBOMs As colStockItemBOMs
-
-  Public MustOverride Property ProductBOMs As colProductBOMs
 
 
   Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
@@ -189,6 +186,14 @@ Public MustInherit Class dmProductBase : Inherits dmBase
 
   Public MustOverride Overrides Function Clone() As Object Implements intItemSpecCore.Clone
 
+  Public Property POFiles As colFileTrackers
+    Get
+      Return pPOFiles
+    End Get
+    Set(value As colFileTrackers)
+      pPOFiles = value
+    End Set
+  End Property
 End Class
 
 Public Class colProductBases : Inherits List(Of dmProductBase)

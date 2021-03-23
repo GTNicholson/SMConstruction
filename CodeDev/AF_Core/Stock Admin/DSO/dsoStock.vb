@@ -538,9 +538,9 @@ Public Class dsoStock
     Dim mOK As Boolean
 
     Try
-      If pDBConn.Connect() Then
-        mOK = mdtoSILocation.LoadStockItemLocationCollectionByWhere(vStockItemLocations, vWhere)
-      End If
+      pDBConn.Connect()
+      mOK = mdtoSILocation.LoadStockItemLocationCollectionByWhere(vStockItemLocations, vWhere)
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally

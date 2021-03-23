@@ -1,4 +1,5 @@
 ﻿Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class fccCustomerDetail
   Private pPrimaryKeyID As Integer
@@ -11,6 +12,14 @@ Public Class fccCustomerDetail
     pDBConn = rDBConn
   End Sub
 
+  Public Property DBConn As clsDBConnBase
+    Get
+      Return pDBConn
+    End Get
+    Set(value As clsDBConnBase)
+      pDBConn = value
+    End Set
+  End Property
   Public Property PrimaryKeyID As Integer
     Get
       Return pPrimaryKeyID

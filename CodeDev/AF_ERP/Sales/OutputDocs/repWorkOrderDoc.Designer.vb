@@ -64,7 +64,7 @@ Partial Public Class repWorkOrderDoc
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.xrsubSigns = New DevExpress.XtraReports.UI.XRSubreport()
-        Me.XrLine4 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,22 +76,22 @@ Partial Public Class repWorkOrderDoc
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrSubWorkOrderStockItemMatReq, Me.xrSubWorkOrderWoodMatReq})
-        Me.Detail.HeightF = 347.8959!
+        Me.Detail.HeightF = 289.1838!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'xrSubWorkOrderStockItemMatReq
         '
-        Me.xrSubWorkOrderStockItemMatReq.LocationFloat = New DevExpress.Utils.PointFloat(0!, 180.1042!)
+        Me.xrSubWorkOrderStockItemMatReq.LocationFloat = New DevExpress.Utils.PointFloat(0!, 154.536!)
         Me.xrSubWorkOrderStockItemMatReq.Name = "xrSubWorkOrderStockItemMatReq"
-        Me.xrSubWorkOrderStockItemMatReq.SizeF = New System.Drawing.SizeF(1069.0!, 167.7917!)
+        Me.xrSubWorkOrderStockItemMatReq.SizeF = New System.Drawing.SizeF(819.0001!, 134.6478!)
         '
         'xrSubWorkOrderWoodMatReq
         '
         Me.xrSubWorkOrderWoodMatReq.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.xrSubWorkOrderWoodMatReq.Name = "xrSubWorkOrderWoodMatReq"
-        Me.xrSubWorkOrderWoodMatReq.SizeF = New System.Drawing.SizeF(1069.0!, 167.7917!)
+        Me.xrSubWorkOrderWoodMatReq.SizeF = New System.Drawing.SizeF(819.0001!, 136.5417!)
         '
         'TopMargin
         '
@@ -110,7 +110,7 @@ Partial Public Class repWorkOrderDoc
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable5, Me.XrTable4, Me.XrTable3, Me.XrTable1, Me.XrTable6, Me.XrTable2, Me.XrPictureBox1, Me.XrLabel3})
-        Me.ReportHeader.HeightF = 175.9098!
+        Me.ReportHeader.HeightF = 139.925!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrTable5
@@ -118,10 +118,10 @@ Partial Public Class repWorkOrderDoc
         Me.XrTable5.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(863.1667!, 114.9791!)
+        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(613.1667!, 84.39199!)
         Me.XrTable5.Name = "XrTable5"
         Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5, Me.XrTableRow10})
-        Me.XrTable5.SizeF = New System.Drawing.SizeF(195.8333!, 47.91667!)
+        Me.XrTable5.SizeF = New System.Drawing.SizeF(195.8333!, 34.6591!)
         Me.XrTable5.StylePriority.UseBorders = False
         '
         'XrTableRow5
@@ -133,26 +133,26 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell14
         '
         Me.XrTableCell14.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell14.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell14.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.StylePriority.UseBackColor = False
         Me.XrTableCell14.StylePriority.UseFont = False
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
         Me.XrTableCell14.Text = "PT 30%"
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell14.Weight = 0.48620253304473593R
+        Me.XrTableCell14.Weight = 0.71508472291972314R
         '
         'XrTableCell15
         '
         Me.XrTableCell15.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell15.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell15.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell15.Name = "XrTableCell15"
         Me.XrTableCell15.StylePriority.UseBackColor = False
         Me.XrTableCell15.StylePriority.UseFont = False
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.Text = "Fecha Compromiso"
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 1.0271175028846318R
+        Me.XrTableCell15.Weight = 0.79823531300964456R
         '
         'XrTableRow10
         '
@@ -162,21 +162,21 @@ Partial Public Class repWorkOrderDoc
         '
         'XrTableCell17
         '
-        Me.XrTableCell17.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrTableCell17.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.XrTableCell17.Name = "XrTableCell17"
         Me.XrTableCell17.StylePriority.UseFont = False
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
         Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell17.Weight = 0.48620206138992184R
+        Me.XrTableCell17.Weight = 0.71508534196675189R
         '
         'xtcRequiredDate
         '
-        Me.xtcRequiredDate.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcRequiredDate.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcRequiredDate.Name = "xtcRequiredDate"
         Me.xtcRequiredDate.StylePriority.UseFont = False
         Me.xtcRequiredDate.StylePriority.UseTextAlignment = False
         Me.xtcRequiredDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.xtcRequiredDate.Weight = 1.0271179745394461R
+        Me.xtcRequiredDate.Weight = 0.798234693962616R
         '
         'XrTable4
         '
@@ -184,10 +184,10 @@ Partial Public Class repWorkOrderDoc
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable4.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(321.4792!, 138.9375!)
+        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(311.0625!, 108.3503!)
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow9})
-        Me.XrTable4.SizeF = New System.Drawing.SizeF(450.3071!, 23.95833!)
+        Me.XrTable4.SizeF = New System.Drawing.SizeF(285.6291!, 21.57466!)
         Me.XrTable4.StylePriority.UseBorders = False
         Me.XrTable4.StylePriority.UseFont = False
         Me.XrTable4.StylePriority.UseTextAlignment = False
@@ -201,7 +201,8 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcDescription
         '
-        Me.xtcDescription.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcDescription.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcDescription.Multiline = True
         Me.xtcDescription.Name = "xtcDescription"
         Me.xtcDescription.StylePriority.UseFont = False
         Me.xtcDescription.StylePriority.UseTextAlignment = False
@@ -213,10 +214,10 @@ Partial Public Class repWorkOrderDoc
         Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(321.4792!, 114.9791!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(311.0625!, 84.39199!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(109.3749!, 23.95833!)
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(70.54916!, 23.95833!)
         Me.XrTable3.StylePriority.UseBorders = False
         '
         'XrTableRow4
@@ -228,7 +229,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell13
         '
         Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell13.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell13.Name = "XrTableCell13"
         Me.XrTableCell13.StylePriority.UseBackColor = False
         Me.XrTableCell13.StylePriority.UseFont = False
@@ -242,11 +243,13 @@ Partial Public Class repWorkOrderDoc
         Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 114.9791!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 84.39199!)
         Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XrTableRow3})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(299.9733!, 47.91667!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(299.9733!, 34.6591!)
         Me.XrTable1.StylePriority.UseBorders = False
+        Me.XrTable1.StylePriority.UsePadding = False
         '
         'XrTableRow1
         '
@@ -257,7 +260,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell9
         '
         Me.XrTableCell9.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell9.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell9.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell9.Name = "XrTableCell9"
         Me.XrTableCell9.StylePriority.UseBackColor = False
         Me.XrTableCell9.StylePriority.UseFont = False
@@ -269,7 +272,7 @@ Partial Public Class repWorkOrderDoc
         'xtcPlannedStartDate
         '
         Me.xtcPlannedStartDate.BackColor = System.Drawing.Color.Transparent
-        Me.xtcPlannedStartDate.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcPlannedStartDate.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcPlannedStartDate.Name = "xtcPlannedStartDate"
         Me.xtcPlannedStartDate.StylePriority.UseBackColor = False
         Me.xtcPlannedStartDate.StylePriority.UseFont = False
@@ -286,7 +289,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell11
         '
         Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell11.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell11.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.StylePriority.UseBackColor = False
         Me.XrTableCell11.StylePriority.UseFont = False
@@ -297,7 +300,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcDueDate
         '
-        Me.xtcDueDate.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcDueDate.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcDueDate.Name = "xtcDueDate"
         Me.xtcDueDate.StylePriority.UseFont = False
         Me.xtcDueDate.StylePriority.UseTextAlignment = False
@@ -309,10 +312,10 @@ Partial Public Class repWorkOrderDoc
         Me.XrTable6.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(774.6251!, 39.4584!)
+        Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(613.1666!, 39.4584!)
         Me.XrTable6.Name = "XrTable6"
         Me.XrTable6.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow7, Me.XrTableRow8})
-        Me.XrTable6.SizeF = New System.Drawing.SizeF(284.375!, 47.91667!)
+        Me.XrTable6.SizeF = New System.Drawing.SizeF(195.8334!, 34.375!)
         Me.XrTable6.StylePriority.UseBorders = False
         '
         'XrTableRow7
@@ -324,7 +327,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell5
         '
         Me.XrTableCell5.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell5.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell5.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell5.Name = "XrTableCell5"
         Me.XrTableCell5.StylePriority.UseBackColor = False
         Me.XrTableCell5.StylePriority.UseFont = False
@@ -336,7 +339,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell6
         '
         Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell6.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell6.Name = "XrTableCell6"
         Me.XrTableCell6.StylePriority.UseBackColor = False
         Me.XrTableCell6.StylePriority.UseFont = False
@@ -353,7 +356,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcEmployee
         '
-        Me.xtcEmployee.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcEmployee.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcEmployee.Name = "xtcEmployee"
         Me.xtcEmployee.StylePriority.UseFont = False
         Me.xtcEmployee.StylePriority.UseTextAlignment = False
@@ -362,7 +365,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcCreatedDate
         '
-        Me.xtcCreatedDate.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcCreatedDate.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcCreatedDate.Name = "xtcCreatedDate"
         Me.xtcCreatedDate.StylePriority.UseFont = False
         Me.xtcCreatedDate.StylePriority.UseTextAlignment = False
@@ -374,11 +377,13 @@ Partial Public Class repWorkOrderDoc
         Me.XrTable2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(2.05663!, 39.4584!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.4584!)
         Me.XrTable2.Name = "XrTable2"
+        Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.XrTableRow6})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(297.9167!, 47.91667!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(297.9167!, 34.375!)
         Me.XrTable2.StylePriority.UseBorders = False
+        Me.XrTable2.StylePriority.UsePadding = False
         '
         'XrTableRow2
         '
@@ -389,7 +394,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell1
         '
         Me.XrTableCell1.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell1.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell1.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell1.Name = "XrTableCell1"
         Me.XrTableCell1.StylePriority.UseBackColor = False
         Me.XrTableCell1.StylePriority.UseFont = False
@@ -401,7 +406,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell2
         '
         Me.XrTableCell2.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell2.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell2.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.StylePriority.UseBackColor = False
         Me.XrTableCell2.StylePriority.UseFont = False
@@ -418,7 +423,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcProjectName
         '
-        Me.xtcProjectName.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.xtcProjectName.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcProjectName.Name = "xtcProjectName"
         Me.xtcProjectName.StylePriority.UseFont = False
         Me.xtcProjectName.StylePriority.UseTextAlignment = False
@@ -427,7 +432,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcOTNumber
         '
-        Me.xtcOTNumber.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.xtcOTNumber.Font = New System.Drawing.Font("Cambria", 8.0!)
         Me.xtcOTNumber.Name = "xtcOTNumber"
         Me.xtcOTNumber.StylePriority.UseFont = False
         Me.xtcOTNumber.StylePriority.UseTextAlignment = False
@@ -446,10 +451,10 @@ Partial Public Class repWorkOrderDoc
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(295.8066!, 0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(194.6702!, 0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(475.9797!, 26.9584!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(577.1162!, 26.9584!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
         Me.XrLabel3.Text = "Departamento de Ingeniería"
@@ -457,42 +462,39 @@ Partial Public Class repWorkOrderDoc
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine4, Me.xrsubSigns})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.xrsubSigns})
         Me.ReportFooter.HeightF = 167.7917!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'xrsubSigns
         '
-        Me.xrsubSigns.LocationFloat = New DevExpress.Utils.PointFloat(2.05663!, 22.49998!)
+        Me.xrsubSigns.LocationFloat = New DevExpress.Utils.PointFloat(311.0625!, 28.54606!)
         Me.xrsubSigns.Name = "xrsubSigns"
-        Me.xrsubSigns.SizeF = New System.Drawing.SizeF(1066.943!, 145.2917!)
+        Me.xrsubSigns.SizeF = New System.Drawing.SizeF(507.9377!, 139.2456!)
         '
-        'XrLine4
+        'XrLine1
         '
-        Me.XrLine4.BackColor = System.Drawing.Color.LightGray
-        Me.XrLine4.BorderColor = System.Drawing.Color.LightGray
-        Me.XrLine4.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.XrLine1.BackColor = System.Drawing.Color.LightGray
+        Me.XrLine1.BorderColor = System.Drawing.Color.LightGray
+        Me.XrLine1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLine4.BorderWidth = 3.0!
-        Me.XrLine4.ForeColor = System.Drawing.Color.LightGray
-        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(2.05663!, 0!)
-        Me.XrLine4.Name = "XrLine4"
-        Me.XrLine4.SizeF = New System.Drawing.SizeF(1066.943!, 9.111114!)
-        Me.XrLine4.StylePriority.UseBackColor = False
-        Me.XrLine4.StylePriority.UseBorderColor = False
-        Me.XrLine4.StylePriority.UseBorders = False
-        Me.XrLine4.StylePriority.UseBorderWidth = False
-        Me.XrLine4.StylePriority.UseForeColor = False
+        Me.XrLine1.BorderWidth = 3.0!
+        Me.XrLine1.ForeColor = System.Drawing.Color.LightGray
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(819.0!, 9.111117!)
+        Me.XrLine1.StylePriority.UseBackColor = False
+        Me.XrLine1.StylePriority.UseBorderColor = False
+        Me.XrLine1.StylePriority.UseBorders = False
+        Me.XrLine1.StylePriority.UseBorderWidth = False
+        Me.XrLine1.StylePriority.UseForeColor = False
         '
         'repWorkOrderDoc
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
         Me.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Landscape = True
         Me.Margins = New System.Drawing.Printing.Margins(19, 12, 22, 20)
-        Me.PageHeight = 850
-        Me.PageWidth = 1100
         Me.Version = "17.1"
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -547,5 +549,5 @@ Partial Public Class repWorkOrderDoc
     Friend WithEvents xtcProjectName As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xtcOTNumber As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xrsubSigns As DevExpress.XtraReports.UI.XRSubreport
-    Friend WithEvents XrLine4 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
 End Class

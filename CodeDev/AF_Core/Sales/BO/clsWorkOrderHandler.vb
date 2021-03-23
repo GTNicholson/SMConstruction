@@ -35,7 +35,7 @@ Public Class clsWorkOrderHandler
 
     For Each mSalesOrderPhaseItem In rSalesOrderPhaseItems
       mWOA = New dmWorkOrderAllocation
-      mWOA.SalesOrderPhaseID = mSalesOrderPhaseItem.SalesOrderPhaseItemID
+      mWOA.SalesOrderPhaseItemID = mSalesOrderPhaseItem.SalesOrderPhaseItemID
       mWOA.QuantityRequired = mSalesOrderPhaseItem.Qty
       mRetVal.WorkOrderAllocations.Add(mWOA)
     Next

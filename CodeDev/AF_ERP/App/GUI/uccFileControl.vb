@@ -174,7 +174,6 @@ Public Class uccFileControl
         If IO.File.Exists(mFilePath) Then
           IO.File.Delete(mFilePath)
         End If
-
         pFileTrackers.Remove(mFileTracker)
       End If
 

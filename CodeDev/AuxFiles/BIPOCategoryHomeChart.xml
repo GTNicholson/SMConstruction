@@ -1,27 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ChartXmlSerializer version="17.1.16.0">
-  <Chart AutoLayout="false" AppearanceNameSerializable="Light" PaletteName="Aspect" PaletteBaseColorNumber="3" SelectionMode="None" SeriesSelectionMode="Series" AnimationStartMode="OnLoad">
-    <DataContainer SeriesDataMember="Series" BoundSeriesSorting="None">
-      <SeriesTemplate ArgumentDataMember="Arguments" ValueDataMembersSerializable="Values" ArgumentScaleType="Qualitative" SeriesPointsSorting="Descending" SeriesPointsSortingKey="Value_1" LegendTextPattern="{A}">
+  <Chart AppearanceNameSerializable="Default" SelectionMode="None" SeriesSelectionMode="Series">
+    <DataContainer SeriesDataMember="PurchaseCategory" BoundSeriesSorting="None">
+      <SeriesSerializable>
+        <Item1 Name="Series 1">
+          <Label TypeNameSerializable="SideBySideBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item1>
+        <Item2 Name="Series 2">
+          <Label TypeNameSerializable="SideBySideBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
+        </Item2>
+      </SeriesSerializable>
+      <SeriesTemplate ArgumentDataMember="SubmissionDateMC" ValueDataMembersSerializable="TotalGrossValueUSD">
         <Label TypeNameSerializable="SideBySideBarSeriesLabel" LineVisibility="True" TextOrientation="Horizontal" />
       </SeriesTemplate>
     </DataContainer>
-    <Legend Visibility="True" MaxHorizontalPercentage="30" Name="Default Legend" />
-    <Titles>
-      <Item1 Text="Compras por Categoría USD" />
-    </Titles>
-    <FillStyle FillMode="Hatch" />
     <Diagram TypeNameSerializable="XYDiagram">
       <AxisX VisibleInPanesSerializable="-1">
-        <Title Text="Categoría Compra" />
+        <Title Text="Mes" />
+        <Label TextPattern="{A:MMMM yyyy}" />
       </AxisX>
-      <AxisY VisibleInPanesSerializable="-1">
-        <Title Text="Valor Bruto USD" />
-        <Label TextPattern="{V:$0}" />
-      </AxisY>
+      <AxisY VisibleInPanesSerializable="-1" />
     </Diagram>
     <AutoSeriesCheckedInLegendStates>
-      <Item1 CheckState="true" AutoSeriesName="Valor Bruto USD Total" />
+      <Item1 CheckState="true" AutoSeriesName="Series 3" />
+      <Item2 CheckState="true" AutoSeriesName="Series 2" />
+      <Item3 CheckState="true" AutoSeriesName="Series 1" />
+      <Item4 CheckState="true" AutoSeriesName="0" />
     </AutoSeriesCheckedInLegendStates>
   </Chart>
 </ChartXmlSerializer>

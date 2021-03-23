@@ -4,7 +4,7 @@ Imports RTIS.CommonVB
 Public Class dmWorkOrderAllocation : Inherits dmBase
   Private pWorkOrderAllocationID As Int32
   Private pWorkOrderID As Int32
-  Private pSalesOrderPhaseID As Int32
+  Private pSalesOrderPhaseItemID As Int32
   Private PQuantityDone As Int32
   Private pQuantityRequired As Int32
   Public Sub New()
@@ -41,7 +41,7 @@ Public Class dmWorkOrderAllocation : Inherits dmBase
     With CType(rNewItem, dmWorkOrderAllocation)
       .WorkOrderAllocationID = WorkOrderAllocationID
       .WorkOrderID = WorkOrderID
-      .SalesOrderPhaseID = SalesOrderPhaseID
+      .SalesOrderPhaseItemID = SalesOrderPhaseItemID
       .QuantityDone = QuantityDone
       .QuantityRequired = QuantityRequired
       'Add entries here for each collection and class property
@@ -73,13 +73,13 @@ Public Class dmWorkOrderAllocation : Inherits dmBase
     End Set
   End Property
 
-  Public Property SalesOrderPhaseID() As Int32
+  Public Property SalesOrderPhaseItemID() As Int32
     Get
-      Return pSalesOrderPhaseID
+      Return pSalesOrderPhaseItemID
     End Get
     Set(ByVal value As Int32)
-      If pSalesOrderPhaseID <> value Then IsDirty = True
-      pSalesOrderPhaseID = value
+      If pSalesOrderPhaseItemID <> value Then IsDirty = True
+      pSalesOrderPhaseItemID = value
     End Set
   End Property
 
@@ -155,7 +155,7 @@ Public Class colWorkOrderAllocations : Inherits colBase(Of dmWorkOrderAllocation
     Dim mCount As Integer = -1
     For Each mItem In MyBase.Items
       mCount += 1
-      If mItem.SalesOrderPhaseID = vSalesPhaseItem Then
+      If mItem.SalesOrderPhaseItemID = vSalesPhaseItem Then
         mIndex = mCount
         Exit For
       End If
@@ -170,11 +170,21 @@ Public Class colWorkOrderAllocations : Inherits colBase(Of dmWorkOrderAllocation
 
     For Each mItem In MyBase.Items
 
-      If mItem.SalesOrderPhaseID = vSalesOrderPhaseItemID Then
+      If mItem.SalesOrderPhaseItemID = vSalesOrderPhaseItemID Then
         mRetVal = mItem
         Exit For
       End If
     Next
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalQuantity() As Integer
+    Dim mRetVal As Integer = 0
+
+    For Each mitem In MyBase.Items
+      mRetVal &= mitem.QuantityRequired
+    Next
+
     Return mRetVal
   End Function
 End Class

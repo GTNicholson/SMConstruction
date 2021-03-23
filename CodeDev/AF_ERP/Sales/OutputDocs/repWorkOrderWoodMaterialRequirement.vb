@@ -22,12 +22,12 @@ Public Class repWorkOrderWoodMaterialRequirement
 
     xtcDescription.DataBindings.Add("Text", Me.DataSource, "Description")
     xtcOriginalQty.DataBindings.Add("Text", Me.DataSource, "UnitPiece")
-    xtcNetLength.DataBindings.Add("Text", Me.DataSource, "NetLenght")
-    xtcNetThickness.DataBindings.Add("Text", Me.DataSource, "NetThickness")
-    xtcNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth")
-    xtcWidthInch.DataBindings.Add("Text", Me.DataSource, "WidthInch")
-    xtcThicknessCM.DataBindings.Add("Text", Me.DataSource, "ThicknessCM")
-    xtcLengthInch.DataBindings.Add("Text", Me.DataSource, "LengthInch")
+    xtcNetLength.DataBindings.Add("Text", Me.DataSource, "NetLenght", "{0:#.#}")
+    xtcThicknessInch.DataBindings.Add("Text", Me.DataSource, "ThicknessInch", "{0:#.#}")
+    xtcNetWidth.DataBindings.Add("Text", Me.DataSource, "NetWidth", "{0:#.#}")
+    xtcWidthInch.DataBindings.Add("Text", Me.DataSource, "WidthInch", "{0:#.#}")
+    xtcThicknessCM.DataBindings.Add("Text", Me.DataSource, "NetThickness", "{0:#.#}")
+    xtcLengthInch.DataBindings.Add("Text", Me.DataSource, "LengthInch", "{0:#.#}")
 
   End Sub
 

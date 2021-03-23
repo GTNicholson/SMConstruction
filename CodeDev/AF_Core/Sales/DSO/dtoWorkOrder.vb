@@ -106,6 +106,9 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderTargetWoodType", .WorkOrderTargetWoodType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateCreated", DateToDBValue(.DateCreated))
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Comments", StringToDBValue(.Comments))
+
+
     End With
 
   End Sub
@@ -149,7 +152,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .SubContract = DBReadBoolean(rDataReader, "SubContract")
 
         .isInternal = DBReadBoolean(rDataReader, "isInternal")
-
+        .Comments = DBReadString(rDataReader, "Comments")
         .QtyPerSalesItem = DBReadInt32(rDataReader, "QtyPerSalesItem")
         .DrawingDate = DBReadDate(rDataReader, "DrawingDate")
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")

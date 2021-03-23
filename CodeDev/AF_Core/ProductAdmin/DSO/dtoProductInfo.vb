@@ -136,7 +136,7 @@ Public Class dtoProductInfo : Inherits dtoBase
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     Dim mdtoProductBOM As dtoProductBOM
-    '' mParams.Add("@ParentID", vParentID)
+    ' mParams.Add("@ParentID", vParentID)
 
     Select Case pMode
       Case eMode.Installation
@@ -144,10 +144,10 @@ Public Class dtoProductInfo : Inherits dtoBase
 
         If mOK Then
           If rProductInfos IsNot Nothing Then
-            For Each rProductInfo As clsProductBaseInfo In rProductInfos
-              mdtoProductBOM = New dtoProductBOM(pDBConn)
-              mdtoProductBOM.LoadProductBOMCollection(rProductInfo.Product.ProductBOMs, rProductInfo.Product.ID)
-            Next
+            'For Each rProductInfo As clsProductBaseInfo In rProductInfos
+            '  mdtoProductBOM = New dtoProductBOM(pDBConn)
+            '  mdtoProductBOM.LoadProductBOMCollection(rProductInfo.Product, rProductInfo.Product.ID)
+            'Next
           End If
         End If
 
@@ -158,7 +158,14 @@ Public Class dtoProductInfo : Inherits dtoBase
           If rProductInfos IsNot Nothing Then
             For Each rProductInfo As clsProductBaseInfo In rProductInfos
               mdtoProductBOM = New dtoProductBOM(pDBConn)
-              mdtoProductBOM.LoadProductBOMCollection(rProductInfo.Product.ProductBOMs, rProductInfo.Product.ID)
+              Dim mPS As dmProductStructure
+              mPS = TryCast(rProductInfo.Product, dmProductStructure)
+
+              If mPS IsNot Nothing Then
+                mdtoProductBOM.LoadProductBOMCollection(mPS.ProductStockItemBOMs, rProductInfo.Product.ID, eProductBOMObjectType.StockItems)
+                mdtoProductBOM.LoadProductBOMCollection(mPS.ProductWoodBOMs, rProductInfo.Product.ID, eProductBOMObjectType.Wood)
+                rProductInfo.Product = mPS
+              End If
             Next
           End If
         End If

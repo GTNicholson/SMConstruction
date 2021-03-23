@@ -161,6 +161,28 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function BoardFeetFromCMAndQty_NewAF(ByVal vQty As Integer, ByVal vLength As Decimal, ByVal vWidth As Decimal, ByVal vThickness As Decimal) As Decimal
+    Dim mLengthInInches As Decimal
+    Dim mWidthInInches As Decimal
+    Dim mThicknessInInches As Decimal
+    Dim mRetVal As Decimal
+
+    'mLengthInInches = vLength / 12
+    mLengthInInches = Math.Ceiling(vLength / clsConstants.CMToInches)
+    mWidthInInches = Math.Ceiling(vWidth / clsConstants.CMToInches)
+    'mWidthInInches = vWidth
+    mThicknessInInches = Math.Ceiling(vThickness / clsConstants.CMToInches)
+
+    mRetVal = vQty * (mLengthInInches * mWidthInInches * mThicknessInInches)
+
+    mRetVal = mRetVal / 144
+
+    mRetVal = Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
+
+    Return mRetVal
+  End Function
+
+
   Public Shared Function GetDefaultBreakMins(ByVal vStartTime As DateTime, ByVal vEndTime As DateTime) As Integer
     Dim mRetVal As Integer = 0
     If vStartTime.TimeOfDay <= New TimeSpan(9, 0, 0) And vEndTime.TimeOfDay >= New TimeSpan(10, 0, 0) Then
@@ -171,6 +193,18 @@ Public Class clsSMSharedFuncs
     End If
     Return mRetVal
   End Function
+
+  Public Shared Function CMToInches_AFNew(ByVal vNetLenght As Decimal) As Decimal
+
+    Dim mRetVal As Decimal = 0
+
+    mRetVal = Math.Round(vNetLenght / clsConstants.CMToInches, 0, MidpointRounding.AwayFromZero)
+
+    Return mRetVal
+
+  End Function
+
+
 
   Public Shared Function GetPrinterName(ByVal vPrinterName As String) As String
     Dim mRetVal As String = ""

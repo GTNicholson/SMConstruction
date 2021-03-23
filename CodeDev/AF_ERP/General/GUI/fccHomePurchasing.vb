@@ -52,7 +52,7 @@ Public Class fccHomePurchasing
 
     Try
 
-      mStartDate = New Date(Now.Year, Now.Month, 1)
+      mStartDate = New Date(Now.Year, 1, 1)
       mEndDate = Now
 
       mwhere = String.Format("SubmissionDate between '{0}' and '{1}' and status <> {2}", mStartDate.ToShortDateString, mEndDate.ToShortDateString, CInt(ePurchaseOrderDueDateStatus.Cancelled))

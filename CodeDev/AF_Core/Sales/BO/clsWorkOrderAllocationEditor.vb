@@ -82,10 +82,10 @@ Public Class clsWorkOrderAllocationEditor
 
   Public Property SalesOrderPhaseItemID As Int32
     Get
-      Return pWorkOrderAllocation.SalesOrderPhaseID
+      Return pWorkOrderAllocation.SalesOrderPhaseItemID
     End Get
     Set(value As Int32)
-      pWorkOrderAllocation.SalesOrderPhaseID = value
+      pWorkOrderAllocation.SalesOrderPhaseItemID = value
     End Set
   End Property
 

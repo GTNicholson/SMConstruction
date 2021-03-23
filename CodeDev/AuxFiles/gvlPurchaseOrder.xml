@@ -71,7 +71,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="17">
+  <property name="Columns" iskey="true" value="18">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -113,9 +113,9 @@
       <property name="Caption">Categoría</property>
       <property name="FieldName">CategoryDesc</property>
       <property name="ColumnEditName">RepositoryItemDateEdit5</property>
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">144</property>
+      <property name="Width">91</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">gcRequiredDate</property>
@@ -136,7 +136,7 @@
       </property>
       <property name="Caption">Fecha del Pedido</property>
       <property name="FieldName">SubmissionDate</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">124</property>
@@ -160,7 +160,7 @@
       </property>
       <property name="Caption">Monto Total</property>
       <property name="FieldName">TotalNetValueInfo</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">89</property>
@@ -176,7 +176,7 @@
       </property>
       <property name="Caption">Enc. Compras</property>
       <property name="FieldName">BuyerName</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">14</property>
       <property name="Visible">true</property>
       <property name="Width">120</property>
@@ -223,8 +223,6 @@
       <property name="Caption">Ref. Material</property>
       <property name="FieldName">RefMatType</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
-      <property name="Visible">true</property>
       <property name="Width">112</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
@@ -234,7 +232,7 @@
       </property>
       <property name="Caption">Moneda</property>
       <property name="FieldName">DefaultCurrencyDesc</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">90</property>
@@ -294,7 +292,7 @@
       </property>
       <property name="Caption">Valor Total (USD)</property>
       <property name="FieldName">TotalGrossValueUSD</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
       <property name="Width">117</property>
@@ -318,6 +316,15 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="Name">GridColumn17</property>
+      <property name="Caption">Proyecto</property>
+      <property name="FieldName">ProjectName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">2</property>
+      <property name="Visible">true</property>
+      <property name="Width">134</property>
     </property>
   </property>
   <property name="ViewCaption" />

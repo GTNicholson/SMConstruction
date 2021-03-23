@@ -2,18 +2,18 @@
 
 Public Class repWorkOrderDoc
   Private pWorkOrder As dmWorkOrder
-  Private pWorkOrderWoodMatReq As colMaterialRequirements
-  Private pWorkOrderStockItemMatReq As colMaterialRequirements
+  Private pWoodMatReqs As colMaterialRequirements
+  Private pStockItemMatReqs As colMaterialRequirements
   Private pFurniture As dmProductFurniture
   Private pProjectName As String
 
 
-  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String, ByRef rWorkOrderStockItemMatReq As colMaterialRequirements, ByRef rWorkOrderWoodMatReq As colMaterialRequirements) As repWorkOrderDoc
+  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String) As repWorkOrderDoc
     Dim mRep As New repWorkOrderDoc
     mRep.pWorkOrder = rWorkOrder
     mRep.pProjectName = vProjectName
-    mRep.pWorkOrderWoodMatReq = rWorkOrderWoodMatReq
-    mRep.pWorkOrderStockItemMatReq = rWorkOrderStockItemMatReq
+    mRep.pWoodMatReqs = rWorkOrder.WoodMaterialRequirements
+    mRep.pStockItemMatReqs = rWorkOrder.StockItemMaterialRequirements
 
     mRep.CreateDocument()
 
@@ -56,12 +56,12 @@ Public Class repWorkOrderDoc
 
 
     mrepWorkOrderWoodMaterialRequirementInfo = New repWorkOrderWoodMaterialRequirement
-    mrepWorkOrderWoodMaterialRequirementInfo.DataSource = pWorkOrderWoodMatReq
+    mrepWorkOrderWoodMaterialRequirementInfo.DataSource = pWoodMatReqs
     xrSubWorkOrderWoodMatReq.ReportSource = mrepWorkOrderWoodMaterialRequirementInfo
 
     mrepStockItemMaterialRequirement = New repWorkOrderStockItemMaterialRequirement()
 
-    mrepStockItemMaterialRequirement.DataSource = pWorkOrderStockItemMatReq
+    mrepStockItemMaterialRequirement.DataSource = pStockItemMatReqs
     xrSubWorkOrderStockItemMatReq.ReportSource = mrepStockItemMaterialRequirement
 
     mRepSignatures = New srepWorkOrderSignOffs

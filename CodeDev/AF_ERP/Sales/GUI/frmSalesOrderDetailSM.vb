@@ -659,7 +659,7 @@ Public Class frmSalesOrderDetailSM
       Case eDocumentType.SalesOrder
 
         If pFormController.SalesOrder IsNot Nothing Then
-          mRetVal = repSalesOrder.GenerateReport(pFormController.SalesOrder)
+          mRetVal = repSalesOrder.GenerateReport(pFormController.SalesOrder, True)
         End If
 
     End Select

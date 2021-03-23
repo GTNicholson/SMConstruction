@@ -23,12 +23,14 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pStockItemID As Int32
   Private pDateChange As DateTime
   Private pComponentDescription As String
-  Private pUoM As String
+  Private pUoM As Integer
   Private pAreaID As Int32
   Private pSupplierStockCode As String
   Private pComments As String
   Private pPickedQty As Decimal
-  Private pTempInStock As Decimal
+  Private pTempAllocatedQty As Decimal
+  Private pThicknessInch As Decimal
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -107,21 +109,21 @@ Public Class dmMaterialRequirement : Inherits dmBase
     pPickedQty = vNewValue
   End Sub
 
-  Public Property UoM() As String
+  Public Property UoM() As Integer
     Get
       Return pUoM
     End Get
-    Set(ByVal value As String)
+    Set(ByVal value As Integer)
       If pUoM <> value Then IsDirty = True
       pUoM = value
     End Set
   End Property
 
-  'Public ReadOnly Property UoMDesc As String
-  '  Get
-  '    Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pUoM, eUoM))
-  '  End Get
-  'End Property
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pUoM, eUoM))
+    End Get
+  End Property
 
   Public Property AreaID() As Int32
     Get
@@ -375,28 +377,24 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End Set
   End Property
 
-  Public Property TempInStock As Decimal
-    Get
-      Return pTempInStock
-    End Get
-    Set(value As Decimal)
-      pTempInStock = value
-    End Set
 
-  End Property
 
   Public ReadOnly Property WidthInch As String
     Get
-      Dim mRetVal As String
-      mRetVal = clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInchesSMM(NetWidth))
+      Dim mRetVal As Decimal
+
+      mRetVal = clsSMSharedFuncs.CMToInches_AFNew(NetWidth)
+
       Return mRetVal
     End Get
   End Property
 
   Public ReadOnly Property LengthInch As Decimal
     Get
-      Dim mRetVal As String
-      mRetVal = clsSMSharedFuncs.CMToHalfInchesLength(NetLenght)
+      Dim mRetVal As Decimal
+
+      mRetVal = clsSMSharedFuncs.CMToInches_AFNew(NetLenght)
+
       Return mRetVal
     End Get
   End Property
@@ -408,6 +406,23 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End Get
   End Property
 
+  Public Property TempAllocatedQty As Decimal
+    Get
+      Return pTempAllocatedQty
+    End Get
+    Set(value As Decimal)
+      pTempAllocatedQty = value
+    End Set
+  End Property
+
+  Public Property ThicknessInch As Decimal
+    Get
+      Return pThicknessInch
+    End Get
+    Set(value As Decimal)
+      pThicknessInch = value
+    End Set
+  End Property
 End Class
 
 

@@ -48,6 +48,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pSalesItemAssemblys As colSalesItemAssemblys
 
   Private pProductCostBookID As Int32
+  Private pPaymentTermDesc As String
 
   Public Sub New()
     MyBase.New()
@@ -164,6 +165,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .OrderPhaseType = OrderPhaseType
       .ProductCostBookID = ProductCostBookID
       .SalesOrderStages = SalesOrderStages
+      .PaymentTermDesc = PaymentTermDesc
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -509,6 +511,15 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property PaymentTermDesc As String
+    Get
+      Return pPaymentTermDesc
+    End Get
+    Set(value As String)
+      If pPaymentTermDesc <> value Then IsDirty = True
+      pPaymentTermDesc = value
+    End Set
+  End Property
 
   Public Property Invoices As colInvoices
     Get

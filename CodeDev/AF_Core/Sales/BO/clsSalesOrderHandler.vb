@@ -12,6 +12,7 @@ Public Class clsSalesOrderHandler
 
     mSO = New dmSalesOrder
     mSO.OrderPhaseType = eOrderPhaseType.SinglePhase
+    mSO.DateEntered = Now
     mSOP = New dmSalesOrderPhase
     mSO.SalesOrderPhases.Add(mSOP)
     Return mSO
@@ -49,9 +50,10 @@ Public Class clsSalesOrderHandler
     Try
       mNewSOI = New dmSalesOrderItem
       mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
+      mNewSOI.UoM = eUoM.GLB
       ''mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
 
-      AddWorkOrder(mNewSOI, vProductType)
+      'AddWorkOrder(mNewSOI, vProductType)
 
       pSalesOrder.SalesOrderItems.Add(mNewSOI)
 
@@ -223,6 +225,8 @@ Public Class clsSalesOrderHandler
     mdso.SaveSalesOrderDown(pSalesOrder)
 
   End Sub
+
+
 
   Public Function GetProductosFromProductionConstructionTypeSubTypeAndSalesHouseID(ByVal vPCT As Integer, ByVal vPCTST As Integer, ByVal vSalesOrderHouseID As Integer) As colSalesOrderItems
     Dim mRetVal As New colSalesOrderItems

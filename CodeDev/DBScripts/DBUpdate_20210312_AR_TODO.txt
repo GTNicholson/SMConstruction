@@ -1,0 +1,32 @@
+alter table WorkOrder
+add Comments text
+go
+
+alter table ProductBOM
+add
+	[StockCode] [varchar](25) NULL,
+	[Description] [text] NULL,
+	[MaterialRequirementType] [tinyint] NULL,
+	[UnitPiece] [int] NULL,
+	[NetThickness] [decimal](9, 2) NULL,
+	[NetWidth] [decimal](9, 2) NULL,
+	[NetLenght] [decimal](9, 2) NULL,
+	[QualityType] [int] NULL,
+	[MaterialTypeID] [int] NULL,
+	[WoodSpecie] [int] NULL,
+	[WoodFinish] [int] NULL,
+	[UoM] [text] NULL,
+	[AreaID] [int] NULL,
+	[SupplierStockCode] [varchar](15) NULL,
+	[Comments] [varchar](255) NULL,
+	[PiecesPerComponent] [decimal](9, 3) NULL,
+	[TotalPieces] [decimal](18, 0) NULL,
+	[DateChange] [datetime] NULL,
+	[DateOtherMaterial] [datetime] NULL,
+	[StockItemID] [int] NULL,
+	[ComponentDescription] [varchar](100) NULL
+go
+
+alter table ProductBOM
+add ObjectType  tinyint
+go

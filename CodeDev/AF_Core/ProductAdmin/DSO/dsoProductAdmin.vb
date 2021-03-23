@@ -27,6 +27,74 @@ Public Class dsoProductAdmin : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Sub LoadProductStructureDown(ByRef rProductStructure As dmProductStructure, ByVal vProductID As Integer)
+    Dim mdtoProduct As dtoProductBase
+    Dim mdtoProductBOM As dtoProductBOM
+    Dim mdtoPOFiles As dtoFileTracker
+
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdtoProduct = dtoProductBase.GetNewInstance(eProductType.StructureAF, pDBConn)
+      mdtoProduct.LoadProduct(rProductStructure, vProductID)
+
+
+      If rProductStructure IsNot Nothing Then
+
+        mdtoProductBOM = New dtoProductBOM(pDBConn)
+        mdtoProductBOM.LoadProductBOMCollection(rProductStructure.ProductStockItemBOMs, rProductStructure.ID, eProductBOMObjectType.StockItems)
+        mdtoProductBOM.LoadProductBOMCollection(rProductStructure.ProductWoodBOMs, rProductStructure.ID, eProductBOMObjectType.Wood)
+
+
+        mdtoPOFiles = New dtoFileTracker(pDBConn)
+        mdtoPOFiles.LoadFileTrackerCollection(rProductStructure.POFiles, eObjectType.ProductStructure, rProductStructure.ID)
+
+      End If
+
+
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+
+  End Sub
+
+  Public Sub SaveProductStructureDown(ByRef rProductStructure As dmProductStructure)
+    Dim mdtoProduct As dtoProductBase
+    Dim mdtoProductBOM As New dtoProductBOM(pDBConn)
+    Dim mdtoPOFiles As dtoFileTracker
+
+    Dim mRetVal As Boolean = False
+    Try
+      pDBConn.Connect()
+      mdtoProduct = dtoProductBase.GetNewInstance(eProductType.StructureAF, pDBConn)
+      mdtoProduct.SaveProduct(rProductStructure)
+
+
+      If rProductStructure IsNot Nothing Then
+        mdtoProductBOM = New dtoProductBOM(pDBConn)
+        mdtoProductBOM.SaveProductBOMCollection(rProductStructure.ProductStockItemBOMs, rProductStructure.ID, eProductBOMObjectType.StockItems)
+        mdtoProductBOM.SaveProductBOMCollection(rProductStructure.ProductWoodBOMs, rProductStructure.ID, eProductBOMObjectType.Wood)
+
+        mdtoPOFiles = New dtoFileTracker(pDBConn)
+        mdtoPOFiles.SaveFileTrackerCollection(rProductStructure.POFiles, eObjectType.ProductStructure, rProductStructure.ID)
+
+        'mdtoComponents = New dtoProductFurnitureComponent(pDBConn)
+        'mdtoComponents.SaveProductFurnitureComponentCollection(mProductStructure.ProductFurnitureComponents, mProductStructure.ProductFurnitureID)
+      End If
+
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Connect()
+    End Try
+  End Sub
+
   Public Function LoadProductConstructionSubTypesAll(ByRef rProductConstructionSubTypes As colProductConstructionSubTypes) As Boolean
     Dim mdto As dtoProductConstructionSubType
 
@@ -190,7 +258,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
 
   Public Function SaveProductBase(ByRef rProductBase As clsProductBaseInfo) As Boolean
     Dim mdtoProductBase As dtoProductBase
-    Dim mdtoStockItemBOM As dtoStockItemBOM
+
     Dim mdtoProductBOM As dtoProductBOM
     Try
       pDBConn.Connect()
@@ -198,17 +266,15 @@ Public Class dsoProductAdmin : Inherits dsoBase
       If rProductBase.Product IsNot Nothing Then
         mdtoProductBase = dtoProductBase.GetNewInstance(rProductBase.Product.ProductTypeID, pDBConn)
 
-        mdtoStockItemBOM = New dtoStockItemBOM(pDBConn)
+
 
 
         mdtoProductBase.SaveProduct(rProductBase.Product)
 
         If rProductBase.Product IsNot Nothing Then
           mdtoProductBOM = New dtoProductBOM(pDBConn)
-          mdtoProductBOM.SaveProductBOMCollection(rProductBase.Product.ProductBOMs, rProductBase.Product.ID)
 
         End If
-        mdtoStockItemBOM.SaveStockItemBOMCollection(rProductBase.Product.StockItemBOMs, rProductBase.Product.ID)
       End If
 
 
@@ -225,8 +291,8 @@ Public Class dsoProductAdmin : Inherits dsoBase
     Try
       pDBConn.Connect()
 
-      mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.Installation)
-      mdto.LoadProductInfosCollection(rProductInfos)
+      'mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.Installation)
+      'mdto.LoadProductInfosCollection(rProductInfos)
 
       mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
       mdto.LoadProductInfosCollection(rProductInfos)
@@ -397,19 +463,5 @@ Public Class dsoProductAdmin : Inherits dsoBase
     Return mOK
   End Function
 
-  Public Function LoadStockItemBOM(ByRef rStockItemBOMs As colStockItemBOMs, ByVal vProductID As Integer) As Boolean
-    Dim mdto As New dtoStockItemBOM(DBConn)
-    Dim mOK As Boolean
-    Try
-      pDBConn.Connect()
 
-      mOK = mdto.LoadStockItemBOMCollection(rStockItemBOMs, vProductID)
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-    Return mOK
-  End Function
 End Class

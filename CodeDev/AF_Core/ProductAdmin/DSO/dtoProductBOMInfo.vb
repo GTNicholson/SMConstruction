@@ -57,7 +57,7 @@ Public Class dtoProductBOMInfo : Inherits dtoBase
       With pProductBOMInfo.ProductBOM
         .ProductBOMID = DBReadInteger(rDataReader, "ProductBOMID")
         .ParentID = DBReadInt32(rDataReader, "ParentID")
-        .Quantity = DBReadInt32(rDataReader, "Quantity")
+        .Quantity = DBReadDecimal(rDataReader, "Quantity")
       End With
       With pProductBOMInfo.ProductStructure
         .Description = DBReadString(rDataReader, "Description")

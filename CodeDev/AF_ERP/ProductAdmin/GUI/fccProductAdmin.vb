@@ -144,20 +144,6 @@ Public Class fccProductAdmin
 
   End Sub
 
-  Public Sub LoadStockItemBOM()
-    Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
-    Try
-      pCurrentProductBase.StockItemBOMs.Clear()
-
-      mdsoProductAdmin.LoadStockItemBOM(pCurrentProductBase.StockItemBOMs, pCurrentProductBase.ID)
-
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    Finally
-      mdsoProductAdmin = Nothing
-    End Try
-
-  End Sub
 
   Public Sub LoadMainCollectionByStockOptionFilter(ByVal vWhere As String)
     Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
@@ -183,7 +169,7 @@ Public Class fccProductAdmin
           Dim mdsoProductAdmin As New dsoProductAdmin(pDBConn)
 
 
-          mdsoProductAdmin.SaveProductBase(pCurrentProductInfo)
+          mdsoProductAdmin.SaveProductStructureDown(pCurrentProductInfo.Product)
 
 
 
@@ -198,22 +184,6 @@ Public Class fccProductAdmin
     End Try
   End Sub
 
-
-  Public Function CheckStockCodeExists(ByVal vStockCode As String) As Boolean
-    ''Dim mRetval As Boolean
-    ''Dim mdsoStock As New dsoStock(pDBConn)
-
-    ''Try
-
-    ''  mRetval = mdsoStock.CheckStockcodeExists(pCurrentProductBase.StockItemID, vStockCode)
-
-    ''Catch ex As Exception
-    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    ''End Try
-
-    ''Return mRetval
-
-  End Function
 
   Public Sub AddProductItem_SetToCurrent(ByVal vProductType As eProductType)
     Try
@@ -265,110 +235,17 @@ Public Class fccProductAdmin
     Return result
   End Function
 
-  ''Public Function CreateStockItemDuplicates(rStockItem As dmStockItem, rThicknessList As List(Of Integer), rWidthList As List(Of Integer), rLengthList As List(Of Integer)) As Int32
-  ''  Dim mNewSI As dmStockItem
-  ''  Dim mdso As New dsoStock(pDBConn)
-  ''  Dim mStockItems As New colStockItems
-  ''  Dim mReturn As Integer = 0
-  ''  Dim mDescription As clsStockItemDescription
-
-  ''  For Each mThick As Integer In rThicknessList
-  ''    For Each mWidth As Integer In rWidthList
-  ''      For Each mLength As Integer In rLengthList
-
-  ''        mNewSI = rStockItem.Clone
-  ''        mNewSI.ClearKeys()
-  ''        mDescription = New clsStockItemDescription(mNewSI)
-  ''        mNewSI.Thickness = mThick
-  ''        mNewSI.Width = mWidth
-  ''        mNewSI.Length = mLength
-  ''        mNewSI.Description = clsStockItemSharedFuncs.DeriveDescription(False, mNewSI)
-  ''        mNewSI.StockCode = clsStockItemSharedFuncs.GetStockCode(mNewSI) ''mDescription.DeriveStockCode
-  ''        'Check in data (in dso function) if this stockitem definition already exists
-
-
-  ''        mStockItems = mdso.GetStockItemsBySpecs(mThick, mWidth, mLength, rStockItem.Category, rStockItem.ItemType, rStockItem.SubItemType, rStockItem.Colour, rStockItem.Species)
-
-
-  ''        If mStockItems.Count = 0 Then
-  ''          mdso.SaveStockItem(mNewSI)
-  ''          mReturn = mReturn + 1
-  ''        End If
-
-
-  ''        'Save the mNewSI
-  ''      Next
-  ''    Next
-  ''  Next
-  ''  Return mReturn
-  ''End Function
 
   Public Sub SetCurrentStockItemInfo(ByRef rProductBaseInfo As clsProductBaseInfo)
     pCurrentProductInfo = rProductBaseInfo
     pCurrentProductBase = rProductBaseInfo.Product
 
   End Sub
-  Public Sub LoadStockItemExtraDetails()
-    ''Dim mdsoStock As New dsoStock(pDBConn)
-    ''Dim mWhere As String = ""
-    ''Try
-    ''  If pCurrentProductBase IsNot Nothing Then
-    ''    mdsoStock.LoadStockItem(pCurrentProductBase, pCurrentProductBase.StockItemID)
-
-
-    ''    pCurrentProductBase.tmpIsFullyLoadedDown = True
 
 
 
-    ''    pCurrentProductInfo.StockItem = pCurrentProductBase ''//It's neccesary due to the behavior of the instance of the dto
 
-    ''  End If
-    ''Catch ex As Exception
-    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    ''Finally
-    ''  mdsoStock = Nothing
-    ''End Try
 
-  End Sub
-  Public Sub ClearObjects()
-    ''If pIsLocked And pCurrentProductBase.ID > 0 Then
-    ''  Dim mdso As New dsoStock(pDBConn)
-    ''  mdso.UnlockStockItem(pCurrentProductBase.StockItemID)
-    ''End If
-    ''pCurrentProductBase = Nothing
-  End Sub
-
-  Public Function LockStockItem(ByVal vStockItemID As Integer) As Boolean
-    ''Dim mRetVal As Boolean
-    ''Dim mdso As New dsoStock(pDBConn)
-    ''Try
-    ''  If pDBConn.Connect() Then
-    ''    mRetVal = mdso.LockStockItem(vStockItemID)
-    ''    pIsLocked = mRetVal
-    ''  End If
-    ''Catch ex As Exception
-    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    ''Finally
-    ''  If pDBConn.IsConnected Then pDBConn.Disconnect()
-    ''End Try
-    ''Return mRetVal
-  End Function
-
-  Public Function UnLockStockItem(ByVal vStockItemID As Integer) As Boolean
-    ''Dim mRetVal As Boolean
-    ''Dim mdso As New dsoStock(pDBConn)
-    ''Try
-    ''  If pDBConn.Connect() Then
-    ''    mRetVal = mdso.UnlockStockItem(vStockItemID)
-    ''    pIsLocked = mRetVal
-    ''  End If
-    ''Catch ex As Exception
-    ''  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-    ''Finally
-    ''  If pDBConn.IsConnected Then pDBConn.Disconnect()
-    ''End Try
-    ''Return mRetVal
-  End Function
 
   Public Property SelectedItems As colProductBaseInfos
     Get
@@ -395,41 +272,5 @@ Public Class fccProductAdmin
 
 
 
-  Public Sub RefreshStockItemBOMs(ByRef rStockItems As List(Of dmStockItem))
-    Dim mStockItemBOM As dmStockItemBOM
-    Dim mProduct As dmProductBase
-    Dim mFound As Boolean
 
-    mProduct = pCurrentProductBase
-
-    For Each mSI As dmStockItem In rStockItems
-      If mProduct.StockItemBOMs.IndexFromStockItemID(mSI.StockItemID) = -1 Then
-        mStockItemBOM = New dmStockItemBOM
-
-        mStockItemBOM.ProductID = pCurrentProductBase.ID
-        mStockItemBOM.StockItemID = mSI.StockItemID
-        mStockItemBOM.Description = mSI.Description
-        mStockItemBOM.StockCode = mSI.StockCode
-        mProduct.StockItemBOMs.Add(mStockItemBOM)
-      End If
-    Next
-
-    For mLoop As Integer = mProduct.StockItemBOMs.Count - 1 To 0 Step -1
-      mFound = False
-      mStockItemBOM = mProduct.StockItemBOMs(mLoop)
-      If mStockItemBOM.StockItemID <> 0 Then '// this leaves the manual ones alone
-        For Each mSI As dmStockItem In rStockItems
-          If mStockItemBOM.StockItemID = mSI.StockItemID Then
-            mFound = True
-            Exit For
-          End If
-        Next
-        If mFound = False Then
-          mProduct.StockItemBOMs.RemoveAt(mLoop)
-        End If
-      End If
-    Next
-
-
-  End Sub
 End Class

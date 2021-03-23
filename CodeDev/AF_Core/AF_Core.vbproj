@@ -220,7 +220,6 @@
     <Compile Include="HR\DSO\dtoEmployeeRateOfPay.vb" />
     <Compile Include="ProductAdmin\BO\clsProductBOMInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmProductBOM.vb" />
-    <Compile Include="ProductAdmin\BO\dmStockItemBOM.vb" />
     <Compile Include="ProductAdmin\BO\clsProductBaseInfo.vb" />
     <Compile Include="ProductAdmin\BO\dmFloorOptions.vb" />
     <Compile Include="ProductAdmin\BO\dmFoundationOptions.vb" />
@@ -241,16 +240,16 @@
     <Compile Include="ProductAdmin\DSO\dtoProductInfo.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductInstallation.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
-    <Compile Include="ProductAdmin\DSO\dtoStockItemBOM.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementProcessor.vb" />
     <Compile Include="ProductAdmin\BO\clsProductSharedFuncs.vb" />
+    <Compile Include="Production\BO\clsSalesOrderItemProductRequirementInfo.vb" />
     <Compile Include="Production\BO\clsTimeSheetSharedFuncs.vb" />
     <Compile Include="Production\BO\clsWorkOrderTracking.vb" />
     <Compile Include="Production\BO\dmMaterialRequirement.vb" />
-    <Compile Include="Production\BO\dmProductRequirement.vb" />
+    <Compile Include="Production\BO\dmSalesOrderItemProductRequirement.vb" />
     <Compile Include="Production\BO\dmShift.vb" />
     <Compile Include="Production\BO\dmShiftDetails.vb" />
     <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
@@ -258,7 +257,8 @@
     <Compile Include="Production\DSO\dsoProduction.vb" />
     <Compile Include="Production\DSO\dtoMaterialRequirement.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductBase.vb" />
-    <Compile Include="Production\DSO\dtoProductMaterialRequirement.vb" />
+    <Compile Include="Production\DSO\dtoSalesOrderItemProductRequirement.vb" />
+    <Compile Include="Production\DSO\dtoSalesOrderItemProductMaterialRequirementInfo.vb" />
     <Compile Include="Production\DSO\dtoShift.vb" />
     <Compile Include="Production\DSO\dtoShiftDetails.vb" />
     <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />
@@ -306,6 +306,7 @@
     <Compile Include="Sales\BO\clsHouseTypeManager.vb" />
     <Compile Include="Sales\BO\clsHouseTypePropertyDef.vb" />
     <Compile Include="Sales\BO\clsHouseTypeSalesItemInfo.vb" />
+    <Compile Include="Sales\BO\clsProductRequirementProcessor.vb" />
     <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationEditor.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />

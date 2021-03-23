@@ -279,9 +279,15 @@ Public Class clsMaterialRequirementInfo
     End Get
   End Property
 
-  Public ReadOnly Property UoM As String
+  Public ReadOnly Property UoM As Integer
     Get
       Return pMaterialRequirement.UoM
+    End Get
+  End Property
+
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Return pMaterialRequirement.UoMDesc
     End Get
   End Property
 

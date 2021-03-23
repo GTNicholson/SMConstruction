@@ -86,7 +86,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .WorkOrderType = DBReadInt32(rDataReader, "WorkOrderType")
         .EmployeeID = DBReadInteger(rDataReader, "EmployeeID")
         .ProductTypeID = DBReadInteger(rDataReader, "ProductTypeID")
-
+        .ProductID = DBReadInt32(rDataReader, "ProductID")
 
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
       End With
@@ -115,6 +115,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .WorkOrderWoodType = DBReadInt32(rDataReader, "WorkOrderWoodType")
             .WorkOrderProcessOption = DBReadInt32(rDataReader, "WorkOrderProcessOption")
             .WorkOrderTargetWoodType = DBReadInt32(rDataReader, "WorkOrderTargetWoodType")
+            .ProductID = DBReadInt32(rDataReader, "ProductID")
           End With
         Case Else
           With pWorkOrderInfo.WorkOrder

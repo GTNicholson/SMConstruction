@@ -1,0 +1,52 @@
+CREATE TABLE [dbo].SalesOrderItemProductRequirement(
+	SalesOrderItemProductRequirementID [int] IDENTITY(1,1) NOT NULL,
+	SalesOrderItemID int null,
+	ProductID int null,
+	AllocatedQty decimal (9,4) null,
+ CONSTRAINT [pk_SalesOrderItemProductRequirement] PRIMARY KEY CLUSTERED 
+(
+	SalesOrderItemProductRequirementID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+ALTER VIEW [dbo].[vwProductRequirementInfo]
+AS
+SELECT
+	SOIPR.SalesOrderItemProductRequirementID,
+	SOIPR.AllocatedQty,
+	SOIPR.ProductID,
+	SOIPR.SalesOrderItemID,
+
+	SOI.ItemNumber,
+	PRO.Description,
+
+	SO.SalesOrderID,
+	SO.OrderNo,
+	SO.ContractManagerID,
+	
+
+	SO.DateEntered,
+
+	SO.OrderStatusENUM,
+   	SO.OrderTypeID,
+	
+  	SO.ProjectName,
+	
+  
+	C.CompanyName
+ 
+FROM
+	SalesOrderItemProductRequirement SOIPR
+	inner JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID= SOIPR.SalesOrderItemID
+	inner JOIN ProductStructure PRO ON PRO.ProductStructureID = SOIPR.ProductID
+	left join SalesOrder SO on SO.SalesOrderID = SOI.SalesOrderID
+	LEFT JOIN Customer C ON C.CustomerID = SO.CustomerID
+
+GO
+
+

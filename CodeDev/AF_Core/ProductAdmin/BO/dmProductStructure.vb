@@ -7,11 +7,10 @@ Public Class dmProductStructure : Inherits dmProductBase
   Private pProductStructureID As Int32
   Private pProductStructureTypeID As Int32
   Private pNotes As String
-  Private pStockItemBOMs As colStockItemBOMs
   Private pProductBOMs As colProductBOMs
 
-  Private pMaterialRequirements As colMaterialRequirements
-  Private pWoodMaterialRequirements As colMaterialRequirements
+  Private pProductStockItemBOMs As colProductBOMs
+  Private pProductWoodBOMs As colProductBOMs
 
   Public Sub New()
     MyBase.New()
@@ -19,10 +18,12 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
-    pStockItemBOMs = New colStockItemBOMs
+
     pProductBOMs = New colProductBOMs
-    pMaterialRequirements = New colMaterialRequirements
-    pWoodMaterialRequirements = New colMaterialRequirements
+    pProductStockItemBOMs = New colProductBOMs
+    pProductWoodBOMs = New colProductBOMs
+    pPOFiles = New colFileTrackers
+
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -31,9 +32,10 @@ Public Class dmProductStructure : Inherits dmProductBase
   End Sub
 
   Protected Overrides Sub Finalize()
-    pStockItemBOMs = Nothing
-    pMaterialRequirements = Nothing
-    pWoodMaterialRequirements = Nothing
+
+    pProductStockItemBOMs = Nothing
+    pProductWoodBOMs = Nothing
+    pPOFiles = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -41,12 +43,13 @@ Public Class dmProductStructure : Inherits dmProductBase
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
-      If mAnyDirty = False Then mAnyDirty = pStockItemBOMs.IsDirty
 
-      If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
 
-      If mAnyDirty = False Then mAnyDirty = pWoodMaterialRequirements.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pProductStockItemBOMs.IsDirty
 
+      If mAnyDirty = False Then mAnyDirty = pProductWoodBOMs.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pPOFiles.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -54,9 +57,9 @@ Public Class dmProductStructure : Inherits dmProductBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     ProductStructureID = 0
-    pStockItemBOMs = Nothing
-    pMaterialRequirements = Nothing
-    pWoodMaterialRequirements = Nothing
+
+    pProductStockItemBOMs = Nothing
+    pProductWoodBOMs = Nothing
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -68,15 +71,12 @@ Public Class dmProductStructure : Inherits dmProductBase
       .Notes = Notes
       .SubItemType = SubItemType
       .DrawingFileName = DrawingFileName
-      .StockItemBOMs = StockItemBOMs
       .IsGeneric = IsGeneric
       .SalesOrderID = SalesOrderID
       .FullyDefined = FullyDefined
-
-
-      .ProductBOMs = ProductBOMs
-      .WoodMaterialRequirements = WoodMaterialRequirements.Clone
-      .MaterialRequirements = MaterialRequirements.Clone
+      .ProductWoodBOMs = ProductWoodBOMs.Clone
+      .ProductStockItemBOMs = ProductStockItemBOMs.Clone
+      .POFiles = POFiles.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -153,40 +153,26 @@ Public Class dmProductStructure : Inherits dmProductBase
     End Set
   End Property
 
-  Public Overrides Property StockItemBOMs As colStockItemBOMs
-    Get
-      Return pStockItemBOMs
-    End Get
-    Set(value As colStockItemBOMs)
-      pStockItemBOMs = value
-    End Set
-  End Property
 
-  Public Overrides Property ProductBOMs As colProductBOMs
+
+  Public Property ProductStockItemBOMs As colProductBOMs
     Get
-      Return pProductBOMs
+      Return pProductStockItemBOMs
     End Get
     Set(value As colProductBOMs)
-      pProductBOMs = value
+      pProductStockItemBOMs = value
+    End Set
+  End Property
+  Public Property ProductWoodBOMs As colProductBOMs
+    Get
+      Return pProductWoodBOMs
+    End Get
+    Set(value As colProductBOMs)
+      pProductWoodBOMs = value
     End Set
   End Property
 
-  Public Property MaterialRequirements As colMaterialRequirements
-    Get
-      Return pMaterialRequirements
-    End Get
-    Set(value As colMaterialRequirements)
-      pMaterialRequirements = value
-    End Set
-  End Property
-  Public Property WoodMaterialRequirements As colMaterialRequirements
-    Get
-      Return pWoodMaterialRequirements
-    End Get
-    Set(value As colMaterialRequirements)
-      pWoodMaterialRequirements = value
-    End Set
-  End Property
+
 
 End Class
 

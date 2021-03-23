@@ -136,13 +136,12 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub LoadGrids()
     grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
-    grdProductsRequired.DataSource = pFormController.SOWorkOrders
     grdInvoices.DataSource = pFormController.Invoices
     grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
 
     grdSalesOrderPhases.DataSource = pFormController.SalesOrder.SalesOrderPhases
+    grdProductsRequired.DataSource = pFormController.ProductRequirementProcessors
 
-    grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first
@@ -172,9 +171,8 @@ Public Class frmSalesOrderDetailHouses
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodFinish)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodFinish, mVIs)
 
-    ''RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboHouseType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Model))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
-    clsDEControlLoading.FillDEComboVI(cboProductCostBook, CType(pFormController.RTISGlobal, iRefListHolder).RefLists.RefListVI(appRefLists.ProductCostBook))
 
     LoadCustomerContactCombo()
 
@@ -234,13 +232,12 @@ Public Class frmSalesOrderDetailHouses
         Else
           txtCustomerContact.Text = ""
         End If
-        clsDEControlLoading.SetDECombo(cboProductCostBook, .ProductCostBookID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboOrderTypeID, .OrderTypeID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesDelAreaID, .SalesDelAreaID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCustomerDelContacID, .CustomerDelContactID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboContractManagerID, .ContractManagerID)
-
+        txtPaymentTerm.Text = .PaymentTermDesc
         If .Customer Is Nothing Then
           btnedCustomer.Text = ""
         Else
@@ -248,25 +245,6 @@ Public Class frmSalesOrderDetailHouses
 
         End If
 
-        If pFormController.SalesOrder.WorkOrdersIssued Then
-          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpProductsRequired.CustomHeaderButtons
-            Select Case Val(mbtn.Tag)
-              Case 1
-                mbtn.Visible = False
-              Case 0
-                mbtn.Visible = True
-            End Select
-          Next
-        Else
-          For Each mbtn As DevExpress.XtraEditors.ButtonPanel.BaseButton In grpProductsRequired.CustomHeaderButtons
-            Select Case Val(mbtn.Tag)
-              Case 1
-                mbtn.Visible = True
-              Case 0
-                mbtn.Visible = False
-            End Select
-          Next
-        End If
 
         Select Case .OrderPhaseType
           Case eOrderPhaseType.SinglePhase
@@ -279,14 +257,6 @@ Public Class frmSalesOrderDetailHouses
 
 
       End With
-
-      If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
-        btnModel.Text = pFormController.GetHouseModelNameByHouseTypeID(pFormController.CurrentSalesOrderHouse.HouseTypeID)
-
-      Else
-        btnModel.Text = ""
-      End If
-
 
       ''LoadOrderPhases()
     Catch ex As Exception
@@ -344,7 +314,7 @@ Public Class frmSalesOrderDetailHouses
         .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
         .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
         .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
-        .ProductCostBookID = clsDEControlLoading.GetDEComboValue(cboProductCostBook)
+        .PaymentTermDesc = txtPaymentTerm.Text
         .ShippingCost = txtShippingCost.Text
         .Version = txtVersion.Text
         .PodioPath = btnePodio.EditValue
@@ -361,11 +331,18 @@ Public Class frmSalesOrderDetailHouses
         gvCustomerPurchaseOrder.CloseEditor()
         gvCustomerPurchaseOrder.UpdateCurrentRow()
 
-
+        UpdateSalesOrderItemProductRequirement()
 
       End With
 
     End If
+  End Sub
+
+  Private Sub UpdateSalesOrderItemProductRequirement()
+    For Each mPRP As clsProductRequirementProcessor In pFormController.ProductRequirementProcessors
+      mPRP.ProductRequirement.AllocatedQty = mPRP.ToProcessQty
+      pFormController.SaveProductRequirement(mPRP.ProductRequirement)
+    Next
   End Sub
 
   Public Sub UpdateSalesOrderPhaseItem(ByRef rSalesOrderPhase As dmSalesOrderPhase)
@@ -382,7 +359,7 @@ Public Class frmSalesOrderDetailHouses
 
       Next
     End If
-
+    pFormController.SaveObjects()
 
   End Sub
 
@@ -465,49 +442,115 @@ Public Class frmSalesOrderDetailHouses
   ''End Sub
 
   Private Sub repitbtWorkOrder_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repitbtWorkOrder.ButtonClick
-    Dim mWOI As clsWorkOrderInfo
+    Dim mProductReqProc As clsProductRequirementProcessor
+    Dim mWorkOrder As dmWorkOrder = Nothing
+    Dim mWorkOrderInfos As colWorkOrderInfos
+    Dim mWOPicker As clsPickerWorkOrder
+    Dim mWOInfo As clsWorkOrderInfo
+    Dim mPRP As clsProductRequirementProcessor
+
     Try
+
+
       Select Case e.Button.Kind
         Case ButtonPredefines.Ellipsis
-          mWOI = TryCast(gvProductsRequired.GetFocusedRow, clsWorkOrderInfo)
-          If mWOI IsNot Nothing Then
-            UpdateObjects()
-            pFormController.SaveObjects()
-            ''frmWorkOrderDetail.OpenFormModalWithObjects(mWOI.WorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance, False)
-            '// in one work order form it is possible
-            pFormController.RefreshWorkOrderNos(mWOI.WorkOrder.ParentSalesOrderItem)
-            RefreshControls()
+          mProductReqProc = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+          gvProductsRequired.CloseEditor()
+          If mProductReqProc IsNot Nothing Then
+
+            mWorkOrder = pFormController.GetWorkOrderByWorkOrderOrderAllocationID(mProductReqProc.WorkOrderAllocationID)
+
+
+
+            If mWorkOrder IsNot Nothing Then
+
+              frmWorkOrderDetailConstruction.OpenFormModalWithObjects(mWorkOrder, pFormController.SalesOrder, pFormController.DBConn, AppRTISGlobal.GetInstance, True)
+
+              gvProductsRequired.RefreshData()
+
+            End If
+
           End If
-          gvProductsRequired.RefreshData()
+
         Case ButtonPredefines.Plus
-          Dim mWOSOI As dmSalesOrderItem = Nothing
-          If MsgBox("Agregar un OT addicional por este articulo?", vbYesNo) = vbYes Then
-            mWOI = TryCast(gvProductsRequired.GetFocusedRow, clsWorkOrderInfo)
-            mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
-            If mWOSOI IsNot Nothing Then
-              pFormController.AddWorkOrder(mWOSOI, eProductType.ProductFurniture)
-              pFormController.RefreshSOWorkOrders()
+          Dim mTotalQuantityToProcess As Integer
+
+          gvProductsRequired.CloseEditor()
+
+          If MsgBox("¿Desea crear una OT para este producto?", vbYesNo) = vbYes Then
+            mProductReqProc = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+
+
+            If mProductReqProc IsNot Nothing Then
+
+              If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
+                mTotalQuantityToProcess = mProductReqProc.ToProcessQty * pFormController.CurrentSalesOrderHouse.Quantity
+
+              Else
+                mTotalQuantityToProcess = mProductReqProc.ToProcessQty
+
+              End If
+              If pFormController.SalesOrder.SalesOrderPhases(0) IsNot Nothing Then
+                If pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems IsNot Nothing Then
+                  If pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Count < 1 Then
+                    pFormController.CreateSalesOrderPhaseItem(pFormController.SalesOrder.SalesOrderPhases(0), pFormController.SalesOrder.SalesOrderID)
+                  End If
+                End If
+                End If
+              pFormController.AddProductWorkOrder(mProductReqProc.ProductRequirement.SalesOrderItemID, eProductType.StructureAF, mProductReqProc.ProductRequirement.ProductID, mTotalQuantityToProcess)
+
+              If mProductReqProc.ToProcessQty > 0 Then
+                mProductReqProc.ProductRequirement.AllocatedQty = mProductReqProc.ToProcessQty
+                pFormController.SaveProductRequirement(mProductReqProc.ProductRequirement)
+              End If
               gvProductsRequired.RefreshData()
             End If
             '// in one work order form it is possible to affect the wo numbers of it's sister wo's
-            pFormController.RefreshWorkOrderNos(mWOSOI)
+            pFormController.LoadProductRequirement()
             gvProductsRequired.RefreshData()
             RefreshControls()
           End If
         Case ButtonPredefines.Delete
-          Dim mWOSOI As dmSalesOrderItem = Nothing
-          mWOI = TryCast(gvProductsRequired.GetFocusedRow, clsWorkOrderInfo)
-          mWOSOI = mWOI.WorkOrder.ParentSalesOrderItem
-          If mWOSOI.WorkOrders.Count <= 1 Then
-            MsgBox("No se puede eliminar el ultimo O.T por un articulo")
-          Else
-            If MsgBox("Eliminar este Orden de Trabajo?", vbYesNo) = vbYes Then
-              mWOSOI.WorkOrders.Remove(mWOI.WorkOrder)
-              pFormController.RefreshSOWorkOrders()
-              gvProductsRequired.RefreshData()
-              RefreshControls()
+
+
+        Case ButtonPredefines.Search
+
+          mPRP = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+          gvProductsRequired.CloseEditor()
+
+          If mPRP IsNot Nothing Then
+
+            If mPRP.ProductRequirement.ProductID > 0 Then
+              mWorkOrderInfos = pFormController.GetWorkOrderInfosFilteredByProductID(mPRP.ProductRequirement.ProductID)
+
+              mWOPicker = New clsPickerWorkOrder(mWorkOrderInfos, pFormController.DBConn)
+
+
+              mWOInfo = frmWorkOrderPicker.OpenPickerSingle(mWOPicker)
+
+              If mWOInfo IsNot Nothing Then
+
+
+                pFormController.LoadWorkOrderByWorkOrderID(mWorkOrder, mWOInfo.WorkOrderID)
+
+                If mWorkOrder IsNot Nothing Then
+                  pFormController.CreateWorkOrderAllocation(mPRP.ProductRequirement.SalesOrderItemID, mWorkOrder, mPRP.ProductRequirement.ProductID, mPRP.ToProcessQty)
+
+
+                  pFormController.LoadProductRequirement()
+
+                  grdProductsRequired.DataSource = pFormController.ProductRequirementProcessors
+
+                End If
+              End If
+            Else
+              MessageBox.Show("No se ha seleccionado un producto válido")
             End If
           End If
+
+          gvProductsRequired.RefreshData()
+          RefreshControls()
+
 
       End Select
     Catch ex As Exception
@@ -710,7 +753,8 @@ Public Class frmSalesOrderDetailHouses
       Case eDocumentType.SalesOrder
 
         If pFormController.SalesOrder IsNot Nothing Then
-          mRetVal = repSalesOrder.GenerateReport(pFormController.SalesOrder)
+          pFormController.IsVAT = cheIsVAT.EditValue
+          mRetVal = repSalesOrder.GenerateReport(pFormController.SalesOrder, pFormController.IsVAT)
         End If
 
     End Select
@@ -769,8 +813,9 @@ Public Class frmSalesOrderDetailHouses
       Select Case e.Button.Properties.Tag
         Case eOrderItemGroupButtonTags.Add
           UpdateObjects()
+
           pFormController.AddSalesOrderItem(eProductType.ProductFurniture)
-          pFormController.RefreshSOWorkOrders()
+
           gvProductsRequired.RefreshData()
           RefreshControls()
         Case eOrderItemGroupButtonTags.Delete
@@ -779,7 +824,6 @@ Public Class frmSalesOrderDetailHouses
             If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
               UpdateObjects()
               pFormController.DeleteSalesOrderItem(mSOI)
-              pFormController.RefreshSOWorkOrders()
               gvProductsRequired.RefreshData()
               RefreshControls()
             End If
@@ -792,15 +836,15 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub gvWorkOrders_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvProductsRequired.CustomUnboundColumnData
-    Dim mWOI As clsWorkOrderInfo
+  Private Sub gvProductsRequired_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvProductsRequired.CustomUnboundColumnData
+    Dim mPRP As clsProductRequirementProcessor
     Dim mFound As Boolean = False
     Select Case e.Column.Name
       Case "gcWOSOItemNumber"
         If e.IsGetData Then
-          mWOI = TryCast(e.Row, clsWorkOrderInfo)
-          If mWOI IsNot Nothing Then
-            e.Value = mWOI.WorkOrder.ParentSalesOrderItem.ItemNumber
+          mPRP = TryCast(e.Row, clsProductRequirementProcessor)
+          If mPRP IsNot Nothing Then
+            e.Value = mPRP.ItemNumber
           End If
         End If
     End Select
@@ -853,32 +897,11 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub grpWorkOrders_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpProductsRequired.CustomButtonClick
-    Dim mSOI As dmSalesOrderItem
-    Try
-      Dim mResult = New MsgBoxResult
 
-      Select Case Val(e.Button.Properties.Tag)
-        Case 1
-          mResult = MsgBox("¿Está seguro que desea generar los números de OT?")
-          If mResult = MsgBoxResult.Ok Then
-            pFormController.GenerateWorkOrders()
-          End If
 
-        Case 0
-          mResult = MsgBox("¿Está seguro que desea limpiar los números de OT?")
-          If mResult = MsgBoxResult.Ok Then
-            pFormController.RecallWorkOrders()
-          End If
 
-      End Select
-      gvProductsRequired.RefreshData()
-      RefreshControls()
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
 
-  End Sub
+
 
   Private Sub gvOrderItem_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles gvOrderItem.RowUpdated
     '// Update the work order qtys
@@ -1186,10 +1209,8 @@ Public Class frmSalesOrderDetailHouses
 
           ''txtTotalPrice.EditValue = .TotalPrice
           txtSalesItemAssemblyDescription.Text = .Description
-          txtQuantity.Text = .Quantity
-          txtPricePerUnit.Text = .PricePerUnit
+          spnHouseQuantity.EditValue = .Quantity
           txtTotalPrice.Text = .TotalPrice
-          btnModel.Text = pFormController.GetHouseModelNameByHouseTypeID(.HouseTypeID)
           grdOrderItem.RefreshDataSource()
 
         End With
@@ -1248,8 +1269,8 @@ Public Class frmSalesOrderDetailHouses
 
         .Ref = txtSOARef.Text
         .TotalPrice = Val(txtTotalPrice.Text)
-        .PricePerUnit = Val(txtPricePerUnit.Text)
-        .Quantity = Val(txtQuantity.Text)
+
+        .Quantity = spnHouseQuantity.EditValue
         .Description = txtSalesItemAssemblyDescription.Text
 
 
@@ -1273,8 +1294,8 @@ Public Class frmSalesOrderDetailHouses
 
         End If
         .TotalPrice = Val(txtTotalPrice.Text)
-        .PricePerUnit = Val(txtPricePerUnit.Text)
-        .Quantity = Val(txtQuantity.Text)
+
+        .Quantity = spnHouseQuantity.EditValue
         .Description = txtSalesItemAssemblyDescription.Text
 
 
@@ -1284,197 +1305,9 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Private Sub gcSalesItemsEditor_CustomButtonClick(sender As Object, e As BaseButtonEventArgs)
 
-    Dim mSOI As New dmSalesOrderItem
-    Dim mSelectedItem As clsProductBaseInfo
-    Dim mSalesItem As dmSalesOrderItem
-    Dim mSIEditor As clsSalesItemEditor
 
 
-    Dim mPicker As clsPickerProductItem
-    Dim mProductBaseInfos As New colProductBaseInfos
-    Dim mProductBaseInfo As clsProductBaseInfo
-    Dim mSelectedProductBaseInfos As colProductBaseInfos
-
-    Select Case e.Button.Properties.Tag
-      Case eOrderItemGroupButtonTags.Add
-
-        CheckSave(False)
-
-        If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
-          mSOI.SalesItemAssemblyID = pFormController.CurrentSalesItemAssembly.SalesItemAssemblyID
-          mSOI.SalesOrderID = pFormController.SalesOrder.SalesOrderID
-
-
-
-          pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
-
-          CheckSave(False)
-          pFormController.RefreshCurrentSalesItemEditors()
-
-          gvSSalesItemsEditor.RefreshData()
-        End If
-
-      Case eOrderItemGroupButtonTags.AddFromPicker
-
-        mProductBaseInfos = pFormController.GetProductInfos
-        ''For Each mItem As clsProductBaseInfo In mProductBaseInfos
-
-        ''  mProductBaseInfos.Add(mItem)
-        ''Next
-
-        mPicker = New clsPickerProductItem(pFormController.GetProductInfos, pFormController.DBConn, pFormController.RTISGlobal)
-
-        For Each mSalesItem In pFormController.SalesOrder.SalesOrderItems
-          If mSalesItem.SalesOrderItemID > 0 Then
-            mProductBaseInfo = mProductBaseInfos.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
-            If Not mPicker.SelectedObjects.Contains(mProductBaseInfo) Then
-              mPicker.SelectedObjects.Add(mProductBaseInfo)
-            End If
-          End If
-        Next
-
-        If frmProductPicker.PickProducts(mPicker, pFormController.RTISGlobal, frmProductPicker.ePickerMode.MultiPick) Then
-          For Each mSelectedItem In mPicker.SelectedObjects
-            If mSelectedItem IsNot Nothing Then
-              mSalesItem = pFormController.SalesOrder.SalesOrderItems.ItemFromProductID_ItemType_SubItemType(mSelectedItem.ID, mSelectedItem.ItemType, mSelectedItem.SubItemType)
-              If mSalesItem Is Nothing Then
-                mSalesItem = pFormController.CreateSalesItem(pFormController.SalesOrder)
-                mSalesItem.ProductID = mSelectedItem.ID
-                mSalesItem.Description = mSelectedItem.Description
-                ''mSalesItem.HouseTypeID = mSelectedItem.HouseTypeID
-                mSalesItem.SalesSubItemType = mSelectedItem.SubItemType
-                mSalesItem.SalesItemType = mSelectedItem.ItemType
-                mSalesItem.ProductTypeID = mSelectedItem.ProductTypeID
-                mSIEditor = New clsSalesItemEditor(pFormController.SalesOrder, pFormController.CurrentSalesItemAssembly, mSalesItem, mSelectedItem.Product)
-                pFormController.SalesItemEditors.Add(mSIEditor)
-
-              End If
-            End If
-          Next
-        End If
-
-
-     ''   grdSSalesItemsEditor.DataSource = pFormController.SalesOrder.SalesOrderItems
-
-
-      Case eOrderItemGroupButtonTags.Delete
-
-
-
-
-        mSIEditor = TryCast(gvSSalesItemsEditor.GetFocusedRow, clsSalesItemEditor)
-
-
-
-        If mSIEditor IsNot Nothing Then
-
-          mSOI = mSIEditor.SalesOrderItem
-
-          If mSOI IsNot Nothing Then
-            If MsgBox("¿Está seguro que desea eliminar este ítem de venta?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
-              pFormController.SalesOrder.SalesOrderItems.Remove(mSOI)
-
-              pFormController.DeleteSalesOrderPhaseItemBySalesOrderIDAndSalesItemID(mSOI.SalesOrderID, mSOI.SalesOrderItemID)
-              CheckSave(False)
-
-              pFormController.RefreshCurrentSalesItemEditors()
-              grdSSalesItemsEditor.DataSource = pFormController.SalesItemEditors
-
-            End If
-          End If
-
-        End If
-        pFormController.RefreshCurrentSalesItemEditors()
-        ''gvSSalesItemsEditor.RefreshData()
-
-
-      Case eOrderItemGroupButtonTags.GenerateSequence
-
-        For Each mSalesOrderHouse In pFormController.SalesOrder.SalesOrderHouses
-
-          pFormController.GenerateSequenceBySalesHouse(mSalesOrderHouse.SalesOrderHouseID)
-
-
-        Next
-        pFormController.RefreshCurrentSalesItemEditors()
-
-    End Select
-
-
-
-
-
-  End Sub
-
-  Private Sub cboHouseType_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-    ''If txtSalesItemAssemblyDescription.Text = "" Then
-    ''  txtSalesItemAssemblyDescription.Text = cboHouseType.Text
-    ''  xtraTabHouseType.SelectedTabPage.Text = txtSalesItemAssemblyDescription.Text
-
-
-    ''End If
-
-  End Sub
-
-  Private Sub btnModel_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnModel.ButtonClick
-    Dim mSOPI As dmSalesOrderPhaseItem
-    Dim mHouseType As dmHouseType
-
-    Dim mSOItems As colSalesOrderItems
-
-
-    UpdateObjects()
-
-    If cboProductCostBook.SelectedIndex = -1 Then
-      pFormController.SalesOrder.ProductCostBookID = pFormController.GetDefaultProductCostBook
-
-    End If
-
-
-    mHouseType = frmHousePopUp.GetConfiguredHouseType(pFormController.DBConn)
-
-    If mHouseType IsNot Nothing Then
-
-
-      pFormController.CreateSalesItemsFromHouseTypeConfig(mHouseType, pFormController.SalesOrder.ProductCostBookID)
-
-
-      ''mSOItems = mHouseTypeInfo.SalesOrderItems
-      '' pFormController.CurrentSalesItemAssembly.HouseTypeID = mHouseType.HouseTypeID
-      btnModel.Text = mHouseType.ModelName
-
-      ''If mSOItems IsNot Nothing Then
-
-      ''  ''//Filling SOPHaseItems and new SOItem
-      ''  For Each mSOI As dmSalesOrderItem In mSOItems
-
-      ''    pFormController.SalesOrder.SalesOrderItems.Add(mSOI)
-
-      ''    mSOPI = New dmSalesOrderPhaseItem
-
-      ''    mSOPI.Qty = mSOI.Quantity
-      ''    mSOPI.SalesItemID = mSOI.SalesOrderItemID
-      ''    mSOPI.SalesOrderID = mSOI.SalesOrderID
-
-      ''    If pFormController.SalesOrder.SalesOrderPhases IsNot Nothing And pFormController.SalesOrder.SalesOrderPhases.Count > 0 Then
-      ''      mSOPI.SalesOrderPhaseID = pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
-      ''      pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Add(mSOPI)
-      ''    End If
-
-
-      ''  Next
-
-      pFormController.RefreshCurrentSalesItemEditors()
-      gvSSalesItemsEditor.RefreshData()
-      RefreshControls()
-    End If
-
-
-
-  End Sub
 
   Private Sub gvSSalesItemsEditor_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs)
     Dim view As DevExpress.XtraGrid.Views.Grid.GridView = sender
@@ -1487,7 +1320,153 @@ Public Class frmSalesOrderDetailHouses
     End If
   End Sub
 
-  Private Sub grpProductsRequired_Paint(sender As Object, e As PaintEventArgs) Handles grpProductsRequired.Paint
+  Private Sub repoAddProduct_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddProduct.ButtonClick
+    Dim mProductStructure As dmProductStructure = Nothing
+    Dim mSOI As dmSalesOrderItem
 
+
+    If MsgBox("Agregar un Producto para este articulo?", vbYesNo) = vbYes Then
+
+      CheckSave(False)
+
+      mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+
+      mProductStructure = clsProductSharedFuncs.NewProductInstance(eProductType.StructureAF)
+      If mProductStructure IsNot Nothing Then
+        pFormController.AddProductRequirement(mProductStructure, mSOI)
+
+        gvProductsRequired.RefreshData()
+      End If
+      '// in one work order form it is possible to affect the wo numbers of it's sister wo's
+      gvProductsRequired.RefreshData()
+      RefreshControls()
+    End If
+  End Sub
+
+  Private Sub repoProductOption_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoProductOption.ButtonClick
+
+    Dim mProductPicker As clsPickerProductItem
+    Dim mProducts As New colProductBaseInfos
+    Dim mProductBaseInfo As clsProductBaseInfo
+    Dim mPRP As clsProductRequirementProcessor
+    Dim mNewProductID As Integer
+
+    Try
+
+      Select Case e.Button.Kind
+
+        Case ButtonPredefines.Search
+          mProducts = pFormController.GetProductInfos()
+
+          mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
+
+
+          mProductBaseInfo = frmProductPicker.OpenPickerSingle(mProductPicker)
+
+          If mProductBaseInfo IsNot Nothing Then
+            mPRP = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+
+            If mPRP IsNot Nothing Then
+
+              mPRP.Product = mProductBaseInfo.Product
+              mPRP.ProductRequirement.ProductID = mProductBaseInfo.Product.ID
+              mPRP.Description = mProductBaseInfo.Product.Description
+              mPRP.ProductRequirement.SalesOrderItemID = mPRP.SalesOrderItemID
+              mPRP.ProductCode = mProductBaseInfo.Product.Code
+              pFormController.SaveProductRequirement(mPRP.ProductRequirement)
+
+              RefreshControls()
+
+            End If
+
+          End If
+
+          gvProductsRequired.RefreshData()
+          RefreshControls()
+
+        Case ButtonPredefines.Ellipsis
+          Dim mDialogResult As DialogResult
+
+
+          mDialogResult = MessageBox.Show("¿Desea editar la información de este producto?", "Edición de Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+          If mDialogResult = DialogResult.Yes Then
+
+            mPRP = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+
+            If mPRP IsNot Nothing Then
+
+
+              mNewProductID = frmProductDetail_New.OpenFormModal(mPRP.ProductRequirement.ProductID, pFormController.DBConn)
+              If mPRP.ProductRequirement.ProductID <> 0 Then
+                pFormController.LoadProductRequirement()
+                RefreshControls()
+              End If
+
+
+            End If
+          End If
+
+        Case ButtonPredefines.Plus
+          Dim mDialogResult As DialogResult
+
+          mDialogResult = MessageBox.Show("¿Desea crear un nuevo producto?", "Creación de Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+          If mDialogResult = DialogResult.Yes Then
+
+            mPRP = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+
+            If mPRP IsNot Nothing Then
+
+
+              mNewProductID = frmProductDetail_New.OpenFormModal(0, pFormController.DBConn)
+              If mNewProductID <> 0 Then
+                mPRP.ProductRequirement.ProductID = mNewProductID
+                pFormController.SaveProductRequirement(mPRP.ProductRequirement)
+
+                pFormController.LoadProductRequirement()
+                RefreshControls()
+              End If
+
+
+            End If
+          End If
+      End Select
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
+  Private Sub grpProductsRequired_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpProductsRequired.CustomButtonClick
+    Dim mProductReqProc As clsProductRequirementProcessor
+    Try
+
+      mProductReqProc = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+
+      If mProductReqProc IsNot Nothing Then
+        pFormController.RemoveProductRequirement(mProductReqProc.ProductRequirement)
+        pFormController.ProductRequirementProcessors.Remove(mProductReqProc)
+        pFormController.LoadProductRequirement()
+        grdProductsRequired.DataSource = pFormController.ProductRequirementProcessors
+        gvProductsRequired.RefreshData()
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub cheIsVAT_CheckedChanged(sender As Object, e As EventArgs) Handles cheIsVAT.CheckedChanged
+    pFormController.IsVAT = cheIsVAT.EditValue
+  End Sub
+
+  Private Sub grdOrderItem_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdOrderItem.EditorKeyDown
+    If e.KeyCode = Keys.Enter Then
+      gvOrderItem.MoveNext()
+    End If
   End Sub
 End Class

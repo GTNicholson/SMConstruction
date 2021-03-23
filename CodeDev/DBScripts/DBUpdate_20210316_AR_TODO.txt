@@ -1,0 +1,23 @@
+alter table MaterialRequirement
+drop column UoM
+go
+
+alter table MaterialRequirement
+add UoM int
+go
+
+alter table ProductBOM
+drop column UoM
+go
+
+alter table ProductBOM
+add UoM int
+go
+
+alter table ProductBOM
+drop column Quantity 
+go
+
+alter table ProductBOM
+add  Quantity decimal(10,4)
+go

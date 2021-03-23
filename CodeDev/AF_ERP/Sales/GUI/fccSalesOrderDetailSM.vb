@@ -185,7 +185,9 @@ Public Class fccSalesOrderDetailSM
       mSOI = pSalesOrderHandler.AddSalesOrderItem(vProductType)
       mdso = New dsoSales(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
-      SaveObjects()
+
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
