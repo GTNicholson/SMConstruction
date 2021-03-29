@@ -21,7 +21,10 @@ Public Class clsProductBaseInfo
 
   Public ReadOnly Property CategoryDesc As String
     Get
-      Return RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ProductTypeID, eProductType))
+      If pProduct IsNot Nothing Then
+        Return RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ProductTypeID, eProductType))
+
+      End If
     End Get
   End Property
 

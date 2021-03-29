@@ -50,6 +50,7 @@ Public Enum eActivityCode
   FBConsumeReport = 603
   InvoiceModule = 604
 
+
   ProductsGroup = 700
   ProductAdmin = 701
 
@@ -473,7 +474,7 @@ Public Enum eUoM
   <Description("ml")> ml = 8
   <Description("mm3")> mm3 = 9
   <Description("cm3")> cm3 = 10
-  <Description("gal")> gal = 11
+  <Description("gln")> gal = 11
 
   <Description("und")> und = 12
   <Description("cja")> cja = 13

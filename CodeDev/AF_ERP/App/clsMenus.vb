@@ -70,7 +70,7 @@ Public Class MenuFactory
 
 
 
-    mLastGroup = mMenuList.AddNewGroup("Admon. de Productos", 0, eActivityCode.ProductionGroup, True)
+    mLastGroup = mMenuList.AddNewGroup("Admon. de Productos", 0, eActivityCode.ProductsGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Directorio de Productos", eMenuIconType.Grid, AddressOf clsMenuFunctions.ProductAdmin, eActivityCode.ProductAdmin)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Configuracion de Casa", eMenuIconType.Grid, AddressOf clsMenuFunctions.HouseConfig, eActivityCode.ProductAdmin)
 

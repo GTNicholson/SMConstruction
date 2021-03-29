@@ -28,6 +28,9 @@ Public Class repWorkOrderWoodMaterialRequirement
     xtcWidthInch.DataBindings.Add("Text", Me.DataSource, "WidthInch", "{0:#.#}")
     xtcThicknessCM.DataBindings.Add("Text", Me.DataSource, "NetThickness", "{0:#.#}")
     xtcLengthInch.DataBindings.Add("Text", Me.DataSource, "LengthInch", "{0:#.#}")
+    xtcBoardFeet.DataBindings.Add("Text", Me.DataSource, "BoardFeetPerLine", "{0:#.#0}")
+    xtcSpecieDesc.DataBindings.Add("Text", Me.DataSource, "WoodSpecieDesc")
+
 
   End Sub
 

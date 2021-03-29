@@ -22,7 +22,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
     Me.XrTable10 = New DevExpress.XtraReports.UI.XRTable()
     Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
-    Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xtcBoardFeet = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xtcSpecieDesc = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable9 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -115,7 +115,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         'XrTableRow10
         '
-        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell18, Me.xtcSpecieDesc})
+        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcBoardFeet, Me.xtcSpecieDesc})
         Me.XrTableRow10.Font = New System.Drawing.Font("Cambria", 7.0!)
         Me.XrTableRow10.Name = "XrTableRow10"
         Me.XrTableRow10.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
@@ -123,13 +123,13 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         Me.XrTableRow10.StylePriority.UsePadding = False
         Me.XrTableRow10.Weight = 1.0R
         '
-        'XrTableCell18
+        'xtcBoardFeet
         '
-        Me.XrTableCell18.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell18.CanGrow = False
-        Me.XrTableCell18.Name = "XrTableCell18"
-        Me.XrTableCell18.StylePriority.UseBackColor = False
-        Me.XrTableCell18.Weight = 1.1185942098532884R
+        Me.xtcBoardFeet.BackColor = System.Drawing.Color.LightGray
+        Me.xtcBoardFeet.CanGrow = False
+        Me.xtcBoardFeet.Name = "xtcBoardFeet"
+        Me.xtcBoardFeet.StylePriority.UseBackColor = False
+        Me.xtcBoardFeet.Weight = 1.1185942098532884R
         '
         'xtcSpecieDesc
         '
@@ -761,7 +761,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
     Friend WithEvents xtcOriginalQty As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable10 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xtcBoardFeet As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xtcSpecieDesc As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable9 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow

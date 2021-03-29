@@ -304,8 +304,12 @@ Public Class uctProductBaseDetail
     pFormController.CurrentProductInfo = rCurrentProductBaseInfo
 
     If UctFileControl1.UserController IsNot Nothing Then
-      UctFileControl1.UserController.FileTrackers = rCurrentProductBaseInfo.Product.POFiles
-      UctFileControl1.RefreshControls()
+      If rCurrentProductBaseInfo.Product IsNot Nothing Then
+        UctFileControl1.UserController.FileTrackers = rCurrentProductBaseInfo.Product.POFiles
+        UctFileControl1.RefreshControls()
+
+      End If
+
     End If
   End Sub
 

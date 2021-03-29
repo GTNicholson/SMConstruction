@@ -279,7 +279,10 @@ Public Class frmProductAdmin
         End If
         pFormController.SetCurrentStockItemInfo(mSII)
         uctProductDetail.SetCurrentProductBaseInfo(mSII)
-        uctProductDetail.FormController.ReloadProduct(mSII.Product.ID)
+        If mSII.Product.ID > 0 Then
+          uctProductDetail.FormController.ReloadProduct(mSII.Product.ID)
+
+        End If
         RefreshPCSubItemTypes()
 
 

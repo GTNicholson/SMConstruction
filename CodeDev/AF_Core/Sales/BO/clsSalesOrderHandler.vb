@@ -14,6 +14,8 @@ Public Class clsSalesOrderHandler
     mSO.OrderPhaseType = eOrderPhaseType.SinglePhase
     mSO.DateEntered = Now
     mSOP = New dmSalesOrderPhase
+    mSOP.DateCreated = Now
+
     mSO.SalesOrderPhases.Add(mSOP)
     Return mSO
   End Function

@@ -423,6 +423,20 @@ Public Class dmMaterialRequirement : Inherits dmBase
       pThicknessInch = value
     End Set
   End Property
+
+  Public ReadOnly Property BoardFeetPerLine As Decimal
+    Get
+      Dim mQty As Decimal
+      Dim mValue As Decimal
+      mQty = UnitPiece
+      mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty_NewAF(mQty, NetLenght, NetWidth, NetThickness)
+
+
+      Return mValue
+    End Get
+  End Property
+
+
 End Class
 
 

@@ -35,14 +35,15 @@ Partial Class frmHomePurchasing
         Dim StackedBarSeriesView4 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
         Dim StackedBarSeriesLabel3 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
         Dim StackedBarSeriesView5 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
-        Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-        Dim StackedBarSeriesLabel4 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-        Dim StackedBarSeriesView6 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim StackedBarSeriesLabel4 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView6 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim BarWidenAnimation1 As DevExpress.XtraCharts.BarWidenAnimation = New DevExpress.XtraCharts.BarWidenAnimation()
         Me.repoDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
@@ -57,7 +58,6 @@ Partial Class frmHomePurchasing
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.chrPurchaseOrderCategory = New DevExpress.XtraCharts.ChartControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.grdPurchaseOrderUnpaid = New DevExpress.XtraGrid.GridControl()
         Me.gvPurchaseOrderInfoUnpaid = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -75,6 +75,7 @@ Partial Class frmHomePurchasing
         Me.lblUserName = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.chrPurchaseOrderCategory = New DevExpress.XtraCharts.ChartControl()
         CType(Me.repoDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -100,10 +101,6 @@ Partial Class frmHomePurchasing
         CType(Me.gvSalesTracking, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.chrPurchaseOrderCategory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.grdPurchaseOrderUnpaid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,6 +110,10 @@ Partial Class frmHomePurchasing
         CType(Me.repositoryDateFinished.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.chrPurchaseOrderCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'repoDate
@@ -312,34 +313,6 @@ Partial Class frmHomePurchasing
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(418, 295)
         Me.PanelControl3.TabIndex = 2
-        '
-        'chrPurchaseOrderCategory
-        '
-        Me.chrPurchaseOrderCategory.DataBindings = Nothing
-        XyDiagram2.AxisX.AutoScaleBreaks.Enabled = True
-        XyDiagram2.AxisX.Label.TextPattern = "{A:MMMM yyyy}"
-        XyDiagram2.AxisX.ScaleBreakOptions.SizeInPixels = 10
-        XyDiagram2.AxisX.StickToEnd = True
-        XyDiagram2.AxisX.Title.Text = "Mes"
-        XyDiagram2.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram2.AxisY.VisibleInPanesSerializable = "-1"
-        XyDiagram2.DefaultPane.Weight = 2.0R
-        Me.chrPurchaseOrderCategory.Diagram = XyDiagram2
-        Me.chrPurchaseOrderCategory.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.chrPurchaseOrderCategory.Legend.Name = "Default Legend"
-        Me.chrPurchaseOrderCategory.Location = New System.Drawing.Point(2, 2)
-        Me.chrPurchaseOrderCategory.Name = "chrPurchaseOrderCategory"
-        Me.chrPurchaseOrderCategory.SeriesDataMember = "CategoryDesc"
-        Me.chrPurchaseOrderCategory.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
-        Me.chrPurchaseOrderCategory.SeriesTemplate.ArgumentDataMember = "SubmissionDateMC"
-        Me.chrPurchaseOrderCategory.SeriesTemplate.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
-        StackedBarSeriesLabel4.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        Me.chrPurchaseOrderCategory.SeriesTemplate.Label = StackedBarSeriesLabel4
-        Me.chrPurchaseOrderCategory.SeriesTemplate.ValueDataMembersSerializable = "TotalGrossValueUSD"
-        StackedBarSeriesView6.BarWidth = 2.2R
-        Me.chrPurchaseOrderCategory.SeriesTemplate.View = StackedBarSeriesView6
-        Me.chrPurchaseOrderCategory.Size = New System.Drawing.Size(414, 291)
-        Me.chrPurchaseOrderCategory.TabIndex = 0
         '
         'PanelControl2
         '
@@ -587,6 +560,57 @@ Partial Class frmHomePurchasing
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "AgroForestal"
         '
+        'chrPurchaseOrderCategory
+        '
+        Me.chrPurchaseOrderCategory.AppearanceNameSerializable = "In A Fog"
+        Me.chrPurchaseOrderCategory.BorderOptions.Thickness = 2
+        Me.chrPurchaseOrderCategory.DataBindings = Nothing
+        XyDiagram2.AxisX.Color = System.Drawing.Color.Black
+        XyDiagram2.AxisX.DateTimeScaleOptions.AggregateFunction = DevExpress.XtraCharts.AggregateFunction.Sum
+        XyDiagram2.AxisX.DateTimeScaleOptions.AutoGrid = False
+        XyDiagram2.AxisX.DateTimeScaleOptions.GridAlignment = DevExpress.XtraCharts.DateTimeGridAlignment.Month
+        XyDiagram2.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month
+        XyDiagram2.AxisX.Label.TextPattern = "{A:MMMM 'de' yyyy}"
+        XyDiagram2.AxisX.Title.Text = "Meses del año"
+        XyDiagram2.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram2.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram2.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram2.AxisY.Label.TextPattern = "{V:$0}"
+        XyDiagram2.AxisY.Title.Text = "Valor USD"
+        XyDiagram2.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram2.AxisY.Visibility = DevExpress.Utils.DefaultBoolean.[True]
+        XyDiagram2.AxisY.VisibleInPanesSerializable = "-1"
+        Me.chrPurchaseOrderCategory.Diagram = XyDiagram2
+        Me.chrPurchaseOrderCategory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.chrPurchaseOrderCategory.Legend.Name = "Default Legend"
+        Me.chrPurchaseOrderCategory.Location = New System.Drawing.Point(2, 2)
+        Me.chrPurchaseOrderCategory.Name = "chrPurchaseOrderCategory"
+        Me.chrPurchaseOrderCategory.PaletteName = "Marquee"
+        Me.chrPurchaseOrderCategory.SeriesDataMember = "AccoutingCategoryDesc"
+        Me.chrPurchaseOrderCategory.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
+        Me.chrPurchaseOrderCategory.SeriesTemplate.ArgumentDataMember = "SubmissionDateMC"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.DateTime
+        Me.chrPurchaseOrderCategory.SeriesTemplate.CrosshairEnabled = DevExpress.Utils.DefaultBoolean.[True]
+        Me.chrPurchaseOrderCategory.SeriesTemplate.CrosshairHighlightPoints = DevExpress.Utils.DefaultBoolean.[True]
+        Me.chrPurchaseOrderCategory.SeriesTemplate.CrosshairLabelPattern = "{V:$0.00}"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.CrosshairLabelVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        StackedBarSeriesLabel4.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        StackedBarSeriesLabel4.TextPattern = "{A:MMMM 'de' yyyy}"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.Label = StackedBarSeriesLabel4
+        Me.chrPurchaseOrderCategory.SeriesTemplate.LegendName = "Default Legend"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.LegendTextPattern = "{S}"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.SummaryFunction = "SUM([TotalVATUSD])"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.ToolTipHintDataMember = "TotalVATUSD"
+        Me.chrPurchaseOrderCategory.SeriesTemplate.ToolTipPointPattern = "{V:$0.00}"
+        StackedBarSeriesView6.Animation = BarWidenAnimation1
+        StackedBarSeriesView6.BarWidth = 0.5R
+        StackedBarSeriesView6.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
+        StackedBarSeriesView6.Shadow.Color = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(127, Byte), Integer))
+        StackedBarSeriesView6.Shadow.Visible = True
+        Me.chrPurchaseOrderCategory.SeriesTemplate.View = StackedBarSeriesView6
+        Me.chrPurchaseOrderCategory.Size = New System.Drawing.Size(414, 291)
+        Me.chrPurchaseOrderCategory.TabIndex = 2
+        '
         'frmHomePurchasing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -621,10 +645,6 @@ Partial Class frmHomePurchasing
         CType(Me.gvSalesTracking, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chrPurchaseOrderCategory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.grdPurchaseOrderUnpaid, System.ComponentModel.ISupportInitialize).EndInit()
@@ -635,6 +655,10 @@ Partial Class frmHomePurchasing
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chrPurchaseOrderCategory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -666,9 +690,9 @@ Partial Class frmHomePurchasing
     Friend WithEvents gcTotalGrossValueUSD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repositoryDateFinished As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RepositoryItemButtonOpenPO As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents chrPurchaseOrderCategory As DevExpress.XtraCharts.ChartControl
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents chrPurchaseOrderCategory As DevExpress.XtraCharts.ChartControl
 End Class
