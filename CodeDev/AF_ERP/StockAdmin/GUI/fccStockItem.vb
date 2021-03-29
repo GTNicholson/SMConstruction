@@ -418,29 +418,29 @@ Public Class fccStocktem
 
     mStem = clsStockItemSharedFuncs.GetStockCodeStem_New(pCurrentStockItem, pDBConn)
     mDSO = New dsoStock(pDBConn)
-    If mStem <> "" Then
+    'If mStem <> "" Then
 
-      If pCurrentStockItem.Category = eStockItemCategory.Timber Then
-        mThicknessDecimal = pCurrentStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
-        pCurrentStockItem.StockCode = mStem
-        If mThicknessDecimal <> 0 Then
-          mThicknessInteger = CInt(mThicknessDecimal)
+    '  If pCurrentStockItem.Category = eStockItemCategory.Timber Then
+    '    mThicknessDecimal = pCurrentStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
+    '    pCurrentStockItem.StockCode = mStem
+    '    If mThicknessDecimal <> 0 Then
+    '      mThicknessInteger = CInt(mThicknessDecimal)
 
-          mThicknessDecimal = mThicknessDecimal - mThicknessInteger
+    '      mThicknessDecimal = mThicknessDecimal - mThicknessInteger
 
-          If mThicknessDecimal > 0 Then
-            mThicknessDecimal = mThicknessDecimal * 10
-            pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+    '      If mThicknessDecimal > 0 Then
+    '        mThicknessDecimal = mThicknessDecimal * 10
+    '        pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
 
-          Else
-            pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString("n1")
+    '      Else
+    '        pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString("n1")
 
-          End If
+    '      End If
 
-        End If
-      End If
-    End If
-    Return mRetVal
+    '    End If
+    '  End If
+    'End If
+    Return mStem
   End Function
 
 

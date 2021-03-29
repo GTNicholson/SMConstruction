@@ -487,6 +487,8 @@ Public Enum eUoM
 
   <Description("mt3")> MT3 = 18
   <Description("GLB")> GLB = 19
+
+  <Description("Lb")> Lb = 20
 End Enum
 
 ''Public Enum eWorkOrderMilestone
