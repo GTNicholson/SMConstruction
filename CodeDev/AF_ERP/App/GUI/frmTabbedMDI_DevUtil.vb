@@ -515,6 +515,7 @@ Public Class frmTabbedMDI_DevUtil
     If mDBConn.IsConnected Then mDBConn.Disconnect()
   End Sub
 
-
-
+  Private Sub nbiSalesOrderReview_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles nbiSalesOrderReview.LinkClicked
+    frmSalesOrderReview.OpenModal()
+  End Sub
 End Class

@@ -553,6 +553,7 @@
     <Compile Include="Sales\GUI\fccSalesOrderDetailSM.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderDetailHouses.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderProgress.vb" />
+    <Compile Include="Sales\GUI\fccSalesOrderReview.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetailConstruction.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetail.vb" />
     <Compile Include="Sales\GUI\frmCustomerDetail.Designer.vb">
