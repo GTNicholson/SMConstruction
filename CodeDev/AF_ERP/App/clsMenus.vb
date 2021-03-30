@@ -79,12 +79,12 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Costeo de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodCosting, eActivityCode.WoodCosting)
 
 
-    'mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
-    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Facturas", eMenuIconType.Grid, AddressOf clsMenuFunctions.InvoiceModule, eActivityCode.FBConsumeReport)
+    mLastGroup = mMenuList.AddNewGroup("Contabilidad", 0, eActivityCode.AccountsGroup, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Facturas", eMenuIconType.Grid, AddressOf clsMenuFunctions.InvoiceModule, eActivityCode.FBConsumeReport)
 
-    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Contabilidad", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.AccountsGroup)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Contabilidad", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.AccountsGroup)
 
-    'mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Facturas", eMenuIconType.Report, AddressOf clsMenuFunctions.InvoiceInfoBI, eActivityCode.InvoicesReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Facturas", eMenuIconType.Report, AddressOf clsMenuFunctions.InvoiceInfoBI, eActivityCode.InvoicesReport)
     'mLastItem.ChildGroupMenuEntries.AddNewItem("Informes del Periodo", eMenuIconType.Report, AddressOf clsMenuFunctions.CompanyDayInfoBI, eActivityCode.CompanyDayReport)
     'mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Consumo Pies Tablares", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodMatReqInfo, eActivityCode.FBConsumeReport)
 

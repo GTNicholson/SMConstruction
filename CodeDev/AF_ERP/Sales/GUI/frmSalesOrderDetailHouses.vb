@@ -173,6 +173,7 @@ Public Class frmSalesOrderDetailHouses
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdInvoices, gcInvoiceStatus, clsEnumsConstants.EnumToVIs(GetType(eInvoiceStatus)))
 
     LoadCustomerContactCombo()
 

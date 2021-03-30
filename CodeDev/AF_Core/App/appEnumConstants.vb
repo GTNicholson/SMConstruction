@@ -161,6 +161,11 @@ Public Enum eCOCType
   <Description("Sin Certificado")> Uncertified = 3
 End Enum
 
+Public Enum eInvoiceStatus
+  <Description("En Proceso")> InProcess = 1
+  <Description("Generada")> Raised = 2
+  <Description("Cancelada")> Cancelled = 3
+End Enum
 Public Enum ePODelivery
   <Description("Recibido")> Received = 1
   <Description("Pendiente")> Pending = 2
