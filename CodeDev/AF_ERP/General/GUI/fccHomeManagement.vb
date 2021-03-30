@@ -67,7 +67,7 @@ Public Class fccHomeManagement
     mStartDate = New Date(Now.Year, Now.Month, 1)
     mEndDate = Now
 
-    Dim mwhere As String = String.Format("DateCreated between '{0}' and '{1}' and GRNumber <> ''", mStartDate.ToShortDateString, mEndDate.ToShortDateString)
+    Dim mwhere As String = String.Format("DateCreated between '{0}' and '{1}' and GRNumber <> ''", mStartDate.ToString("yyyyMMdd"), mEndDate.ToString("yyyyMMdd"))
 
     Try
 

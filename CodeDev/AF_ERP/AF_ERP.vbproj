@@ -603,6 +603,12 @@
     <Compile Include="Sales\GUI\frmSalesOrderProgress.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReview.Designer.vb">
+      <DependentUpon>frmSalesOrderReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmWorkOrderDetail.Designer.vb">
       <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
     </Compile>
@@ -966,6 +972,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderProgress.resx">
       <DependentUpon>frmSalesOrderProgress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderReview.resx">
+      <DependentUpon>frmSalesOrderReview.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
       <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
