@@ -23,26 +23,26 @@ Partial Class frmSalesOrderDetailHouses
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject17 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject18 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject19 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject20 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject21 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject22 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject23 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject24 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -141,7 +141,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcInvoiceStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repInvoiceDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.gcDetails = New DevExpress.XtraEditors.GroupControl()
@@ -547,7 +547,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpProductsRequired.AppearanceCaption.Options.UseFont = True
         Me.grpProductsRequired.AppearanceCaption.Options.UseForeColor = True
         Me.grpProductsRequired.Controls.Add(Me.grdProductsRequired)
-        Me.grpProductsRequired.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Producto", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        Me.grpProductsRequired.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Producto", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
         Me.grpProductsRequired.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpProductsRequired.Location = New System.Drawing.Point(932, 45)
         Me.grpProductsRequired.Name = "grpProductsRequired"
@@ -629,7 +629,7 @@ Partial Class frmSalesOrderDetailHouses
         'repoProductOption
         '
         Me.repoProductOption.AutoHeight = False
-        Me.repoProductOption.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "Seleccionar Producto", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "Crear Producto", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "Editar Producto", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoProductOption.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search, "", -1, True, True, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "Seleccionar Producto", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, False, EditorButtonImageOptions5, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject17, SerializableAppearanceObject18, SerializableAppearanceObject19, SerializableAppearanceObject20, "Crear Producto", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, True, False, EditorButtonImageOptions6, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject21, SerializableAppearanceObject22, SerializableAppearanceObject23, SerializableAppearanceObject24, "Editar Producto", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoProductOption.Name = "repoProductOption"
         '
         'GridColumn1
@@ -713,7 +713,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpOrderItem.AppearanceCaption.Options.UseFont = True
         Me.grpOrderItem.AppearanceCaption.Options.UseForeColor = True
         Me.grpOrderItem.Controls.Add(Me.grdOrderItem)
-        Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+        Me.grpOrderItem.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
         Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpOrderItem.Location = New System.Drawing.Point(-2, 45)
         Me.grpOrderItem.Name = "grpOrderItem"
@@ -1045,7 +1045,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl6.Controls.Add(Me.grdCustomerPurchaseOrder)
         Me.GroupControl6.Location = New System.Drawing.Point(735, 225)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(664, 160)
+        Me.GroupControl6.Size = New System.Drawing.Size(912, 215)
         Me.GroupControl6.TabIndex = 11
         Me.GroupControl6.Text = "Órdenes de Compras de Cliente"
         '
@@ -1067,7 +1067,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdCustomerPurchaseOrder.MenuManager = Me.BarManager1
         Me.grdCustomerPurchaseOrder.Name = "grdCustomerPurchaseOrder"
         Me.grdCustomerPurchaseOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.repOrderDate})
-        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(660, 135)
+        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(908, 190)
         Me.grdCustomerPurchaseOrder.TabIndex = 8
         Me.grdCustomerPurchaseOrder.UseEmbeddedNavigator = True
         Me.grdCustomerPurchaseOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPurchaseOrder})
@@ -1175,7 +1175,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl1.Controls.Add(Me.GridControl2)
         Me.GroupControl1.Location = New System.Drawing.Point(3, 225)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(726, 162)
+        Me.GroupControl1.Size = New System.Drawing.Size(726, 213)
         Me.GroupControl1.TabIndex = 9
         Me.GroupControl1.Text = "Despachos"
         '
@@ -1186,7 +1186,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.MenuManager = Me.BarManager1
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(722, 137)
+        Me.GridControl2.Size = New System.Drawing.Size(722, 188)
         Me.GridControl2.TabIndex = 2
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -1259,7 +1259,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl5.Controls.Add(Me.grdInvoices)
         Me.GroupControl5.Location = New System.Drawing.Point(7, 3)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(1390, 216)
+        Me.GroupControl5.Size = New System.Drawing.Size(1639, 216)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Facturas"
         '
@@ -1281,7 +1281,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdInvoices.MenuManager = Me.BarManager1
         Me.grdInvoices.Name = "grdInvoices"
         Me.grdInvoices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repInvoiceDate, Me.repCreatedDate})
-        Me.grdInvoices.Size = New System.Drawing.Size(1386, 191)
+        Me.grdInvoices.Size = New System.Drawing.Size(1635, 191)
         Me.grdInvoices.TabIndex = 7
         Me.grdInvoices.UseEmbeddedNavigator = True
         Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices})
@@ -1308,7 +1308,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.gvInvoices.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
         Me.gvInvoices.Appearance.ViewCaption.Options.UseFont = True
         Me.gvInvoices.Appearance.ViewCaption.Options.UseForeColor = True
-        Me.gvInvoices.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn38})
+        Me.gvInvoices.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.gcInvoiceStatus, Me.GridColumn38})
         Me.gvInvoices.DetailHeight = 200
         Me.gvInvoices.GridControl = Me.grdInvoices
         Me.gvInvoices.Name = "gvInvoices"
@@ -1377,13 +1377,13 @@ Partial Class frmSalesOrderDetailHouses
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 4
         '
-        'GridColumn31
+        'gcInvoiceStatus
         '
-        Me.GridColumn31.Caption = "Estado"
-        Me.GridColumn31.FieldName = "InvoiceStatus"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 3
+        Me.gcInvoiceStatus.Caption = "Estado"
+        Me.gcInvoiceStatus.FieldName = "InvoiceStatus"
+        Me.gcInvoiceStatus.Name = "gcInvoiceStatus"
+        Me.gcInvoiceStatus.Visible = True
+        Me.gcInvoiceStatus.VisibleIndex = 3
         '
         'GridColumn38
         '
@@ -1569,7 +1569,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.gcPhases.AppearanceCaption.Options.UseFont = True
         Me.gcPhases.AppearanceCaption.Options.UseForeColor = True
         Me.gcPhases.Controls.Add(Me.xtcOrderType)
-        Me.gcPhases.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Sencillo", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, True, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Multiple", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, False, False, 2, -1)})
+        Me.gcPhases.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Sencillo", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, True, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Multiple", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, False, False, 2, -1)})
         Me.gcPhases.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.gcPhases.Location = New System.Drawing.Point(7, 88)
         Me.gcPhases.Name = "gcPhases"
@@ -2687,7 +2687,7 @@ Partial Class frmSalesOrderDetailHouses
   Friend WithEvents repCreatedDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
   Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcInvoiceStatus As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents grdCustomerPurchaseOrder As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvCustomerPurchaseOrder As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
