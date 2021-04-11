@@ -29,6 +29,7 @@ Partial Class frmWorkOrderPicker
     Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.repbtnSelectOt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +75,7 @@ Partial Class frmWorkOrderPicker
         Me.gvWorkOrder.Appearance.OddRow.Options.UseFont = True
         Me.gvWorkOrder.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWorkOrder.Appearance.Row.Options.UseFont = True
-        Me.gvWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn1})
+        Me.gvWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn1, Me.GridColumn2})
         Me.gvWorkOrder.GridControl = Me.grdWorkOrder
         Me.gvWorkOrder.Name = "gvWorkOrder"
         Me.gvWorkOrder.OptionsView.EnableAppearanceEvenRow = True
@@ -91,7 +92,7 @@ Partial Class frmWorkOrderPicker
         Me.GridColumn6.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 236
+        Me.GridColumn6.Width = 164
         '
         'GridColumn1
         '
@@ -99,8 +100,8 @@ Partial Class frmWorkOrderPicker
         Me.GridColumn1.FieldName = "Description"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 422
+        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.Width = 228
         '
         'RepbtnSelect
         '
@@ -114,6 +115,15 @@ Partial Class frmWorkOrderPicker
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Proyecto"
+        Me.GridColumn2.FieldName = "ProjectName"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 466
         '
         'frmWorkOrderPicker
         '
@@ -141,4 +151,5 @@ Partial Class frmWorkOrderPicker
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents repbtnSelectOt As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents RepbtnSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

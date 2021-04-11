@@ -84,11 +84,11 @@ Public Class fccWorkOrderDetail
 
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mdsoHR As dsoHR
     Dim mSOID As Integer
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
 
     If pPrimaryKeyID = 0 Then
       '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
@@ -132,9 +132,9 @@ Public Class fccWorkOrderDetail
 
   Public Function SaveObjects() As Boolean
     Dim mRetVal As Boolean
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
     mdso.SaveWorkOrderDown(pWorkOrder)
 
     mRetVal = True

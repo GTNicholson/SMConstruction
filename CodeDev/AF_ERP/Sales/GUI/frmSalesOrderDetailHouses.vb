@@ -1,6 +1,7 @@
 ﻿Imports System.Environment
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
 Imports RTIS.Elements
@@ -109,7 +110,10 @@ Public Class frmSalesOrderDetailHouses
       RefreshControls()
 
       If mOK Then RefreshControls()
+      If pFormController.SalesOrder.OrderNo <> "" Then
+        Me.Text = "Detalle de Venta - " & pFormController.SalesOrder.OrderNo
 
+      End If
       ''If mOK Then SetupUserPermissions()
 
     Catch ex As Exception
@@ -137,6 +141,8 @@ Public Class frmSalesOrderDetailHouses
   Private Sub LoadGrids()
     grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
     grdInvoices.DataSource = pFormController.Invoices
+    grdPaymentAccounts.DataSource = pFormController.PaymentAccounts
+
     grdCustomerPurchaseOrder.DataSource = pFormController.CustomerPurchaseOrders
 
     grdSalesOrderPhases.DataSource = pFormController.SalesOrder.SalesOrderPhases
@@ -162,6 +168,9 @@ Public Class frmSalesOrderDetailHouses
 
     clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
 
+
+
+
     clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
     clsDEControlLoading.FillDEComboVI(cboContractManagerID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
 
@@ -178,6 +187,7 @@ Public Class frmSalesOrderDetailHouses
     LoadCustomerContactCombo()
 
 
+    clsDEControlLoading.FillDEComboVI(cboCostBook, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.CostBook))
 
   End Sub
 
@@ -222,6 +232,7 @@ Public Class frmSalesOrderDetailHouses
         txtVersion.Text = .Version
         btnePodio.EditValue = .PodioPath
         dteDateRequiredSO.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboCostBook, .ProductCostBookID)
 
         If pFormController.SalesOrder.Customer IsNot Nothing Then
 
@@ -319,6 +330,7 @@ Public Class frmSalesOrderDetailHouses
         .ShippingCost = txtShippingCost.Text
         .Version = txtVersion.Text
         .PodioPath = btnePodio.EditValue
+        .ProductCostBookID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCostBook)
         gvOrderItem.CloseEditor()
         gvOrderItem.UpdateCurrentRow()
 
@@ -350,15 +362,25 @@ Public Class frmSalesOrderDetailHouses
     Dim mSOI As dmSalesOrderItem
 
     If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
-      For Each mSOPI As dmSalesOrderPhaseItem In rSalesOrderPhase.SalesOrderPhaseItems
 
-        mSOI = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOPI.SalesItemID)
+      If pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Count = 0 Then
+        For Each mSOITemp As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
 
-        If mSOI IsNot Nothing Then
-          mSOPI.Qty = mSOI.Quantity
-        End If
+          pFormController.CreateSalesOrderPhaseItem(pFormController.SalesOrder.SalesOrderPhases(0), pFormController.SalesOrder.SalesOrderID)
 
-      Next
+        Next
+      Else
+        For Each mSOPI As dmSalesOrderPhaseItem In rSalesOrderPhase.SalesOrderPhaseItems
+
+          mSOI = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOPI.SalesItemID)
+
+          If mSOI IsNot Nothing Then
+            mSOPI.Qty = mSOI.Quantity
+          End If
+
+        Next
+      End If
+
     End If
     pFormController.SaveObjects()
 
@@ -497,7 +519,7 @@ Public Class frmSalesOrderDetailHouses
                     pFormController.CreateSalesOrderPhaseItem(pFormController.SalesOrder.SalesOrderPhases(0), pFormController.SalesOrder.SalesOrderID)
                   End If
                 End If
-                End If
+              End If
               pFormController.AddProductWorkOrder(mProductReqProc.ProductRequirement.SalesOrderItemID, eProductType.StructureAF, mProductReqProc.ProductRequirement.ProductID, mTotalQuantityToProcess)
 
               If mProductReqProc.ToProcessQty > 0 Then
@@ -1103,6 +1125,7 @@ Public Class frmSalesOrderDetailHouses
           ''End If
           Dim mSOH As New dmSalesOrderHouse
           mSOH.SalesOrderID = pFormController.SalesOrder.SalesOrderID
+          mSOH.Quantity = 1
           pFormController.SalesOrder.SalesOrderHouses.Add(mSOH)
           pFormController.SaveObjects()
 
@@ -1208,10 +1231,9 @@ Public Class frmSalesOrderDetailHouses
           txtSOARef.Text = .Ref
 
 
-          ''txtTotalPrice.EditValue = .TotalPrice
           txtSalesItemAssemblyDescription.Text = .Description
           spnHouseQuantity.EditValue = .Quantity
-          txtTotalPrice.Text = .TotalPrice
+          txtTotalPrice.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalValue * .Quantity)
           grdOrderItem.RefreshDataSource()
 
         End With
@@ -1351,6 +1373,7 @@ Public Class frmSalesOrderDetailHouses
     Dim mProductBaseInfo As clsProductBaseInfo
     Dim mPRP As clsProductRequirementProcessor
     Dim mNewProductID As Integer
+    Dim mOldProductID As Integer
 
     Try
 
@@ -1399,10 +1422,22 @@ Public Class frmSalesOrderDetailHouses
 
 
               mNewProductID = frmProductDetail_New.OpenFormModal(mPRP.ProductRequirement.ProductID, pFormController.DBConn)
-              If mPRP.ProductRequirement.ProductID <> 0 Then
+
+              If mNewProductID = mPRP.ProductRequirement.ProductID Then
+                If mPRP.ProductRequirement.ProductID <> 0 Then
+                  pFormController.LoadProductRequirement()
+                  RefreshControls()
+                End If
+
+              Else
+                mOldProductID = mPRP.ProductRequirement.ProductID
+                mPRP.ProductRequirement.ProductID = mNewProductID
+                pFormController.DeleteOldWorkOrderAllocation(mPRP.WorkOrderAllocationID, mPRP.SalesOrderItemID)
+                pFormController.SaveProductRequirement(mPRP.ProductRequirement)
                 pFormController.LoadProductRequirement()
                 RefreshControls()
               End If
+
 
 
             End If
@@ -1469,5 +1504,10 @@ Public Class frmSalesOrderDetailHouses
     If e.KeyCode = Keys.Enter Then
       gvOrderItem.MoveNext()
     End If
+  End Sub
+
+  Private Sub bbtnViewSummary_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnViewSummary.ItemClick
+    frmSalesOrderReview.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
+
   End Sub
 End Class

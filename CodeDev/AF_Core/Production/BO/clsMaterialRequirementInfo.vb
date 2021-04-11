@@ -117,14 +117,7 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
-  Public Property ProductFurniture As dmProductFurniture
-    Get
-      Return pProductFurniture
-    End Get
-    Set(ByVal value As dmProductFurniture)
-      pProductFurniture = value
-    End Set
-  End Property
+
 
   Public Property CompanyName As String
     Get
@@ -177,7 +170,7 @@ Public Class clsMaterialRequirementInfo
       Dim mRetval As Decimal = 0
 
       If ExchangeRate > 0 Then
-        mRetval = (pStockItem.StdCost) / ExchangeRate
+        mRetval = (pStockItem.AverageCost) / ExchangeRate
 
       Else
         mRetVal = 0
@@ -188,15 +181,29 @@ Public Class clsMaterialRequirementInfo
 
     End Get
     Set(value As Decimal)
-      pStockItem.StdCost = value
+      pStockItem.AverageCost = value
     End Set
   End Property
-  Public Property ProductFurnitureID As Int32
+
+  Public Property AverageCost As Decimal
     Get
-      Return pProductFurniture.ProductFurnitureID
+      If pStockItem.AverageCost = 0 Then
+        Return pStockItem.StdCost
+
+      Else
+        Return pStockItem.AverageCost
+      End If
+    End Get
+    Set(value As Decimal)
+
+    End Set
+  End Property
+  Public Property ProductStructureID As Int32
+    Get
+      Return pWorkOrder.ProductID
     End Get
     Set(value As Int32)
-      pProductFurniture.ProductFurnitureID = value
+      pWorkOrder.ProductID = value
     End Set
   End Property
 
@@ -226,6 +233,19 @@ Public Class clsMaterialRequirementInfo
 
   End Property
 
+  Public ReadOnly Property WoodSpecieDesc As String
+    Get
+      Dim mRetVal As String
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(WoodSpecieID)
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property ObjectID As Int32
+    Get
+      Return pMaterialRequirement.ObjectID
+    End Get
+
+  End Property
 
   Public ReadOnly Property PartNo As String
     Get
@@ -496,7 +516,7 @@ Public Class clsMaterialRequirementInfo
 
   Public ReadOnly Property TotalBoardFeetFromCM As Decimal
     Get
-      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(UnitPiece, clsSMSharedFuncs.WoodLengthFeet(pMaterialRequirement.NetLenght),
                                               clsSMSharedFuncs.CMToQuaterInches(pMaterialRequirement.NetWidth),
                                               clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)), 3) * TotalPieces * UnitPiece
 
@@ -506,7 +526,7 @@ Public Class clsMaterialRequirementInfo
 
   Public ReadOnly Property TotalBoardFeetReport As Decimal
     Get
-      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(TotalPieces, pMaterialRequirement.NetLenght, pMaterialRequirement.NetWidth, pMaterialRequirement.NetThickness), 3)
+      Return Math.Round(clsSMSharedFuncs.BoardFeetFromCMAndQty(UnitPiece, pMaterialRequirement.NetLenght, pMaterialRequirement.NetWidth, pMaterialRequirement.NetThickness), 3)
 
     End Get
   End Property

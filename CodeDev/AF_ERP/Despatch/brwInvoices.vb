@@ -84,7 +84,7 @@ Public Class brwInvoices : Inherits brwBrowserListBase
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     ''Dim mDataTable As DataTable
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mInvoiceInfos As New colInvoiceInfos
 
     Dim mOK As Boolean
@@ -94,7 +94,7 @@ Public Class brwInvoices : Inherits brwBrowserListBase
 
       '' DBConn.Connect()
       ''mDataTable = Me.DBConn.CreateDataTable("Select * From vwInvoiceInfo")
-      mdso = New dsoSales(Me.DBConn)
+      mdso = New dsoSalesOrder(Me.DBConn)
 
       mdso.LoadInvoiceInfos(mInvoiceInfos)
       gridBrowseList.DataSource = mInvoiceInfos

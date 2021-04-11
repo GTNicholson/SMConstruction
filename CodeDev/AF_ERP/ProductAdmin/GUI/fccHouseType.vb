@@ -149,13 +149,13 @@ Public Class fccHouseType
   End Sub
 
   Private Function ClearLocks() As Boolean
-    Dim mdso As dsoSales = Nothing
+    Dim mdso As dsoSalesOrder = Nothing
 
     Dim mOK As Boolean = True
 
     Try
       If pHaveLock Then
-        mdso = New dsoSales(pDBConn)
+        mdso = New dsoSalesOrder(pDBConn)
         mOK = mdso.UnlockCustomerDisconnected(Me.PrimaryKeyID)
       Else
         mOK = True
@@ -235,7 +235,7 @@ Public Class fccHouseType
   End Sub
 
   Public Sub LoadProducts()
-    Dim mdso As New dsoSales(DBConn)
+    Dim mdso As New dsoSalesOrder(DBConn)
     pProducts = New colProductBases
     mdso.LoadStandardProducts(pProducts)
 
@@ -264,6 +264,9 @@ Public Class fccHouseType
   Public Function GetProductInfos() As colProductBaseInfos
     Dim mRetVal As New colProductBaseInfos
     Dim mdso As New dsoProductAdmin(DBConn)
+    Dim mWhere As String
+
+    mWhere = "Status <> " & CInt(eProductStatus.Obsolete)
     mdso.LoadProductInfosByWhere(mRetVal, "")
     Return mRetVal
   End Function

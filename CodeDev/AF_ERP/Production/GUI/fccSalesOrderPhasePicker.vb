@@ -38,7 +38,7 @@ Public Class fccSalesOrderPhasePicker
 
 
   Public Function LoadSalesOrderPhaseDT() As DataTable
-    Dim mdso As New dsoSales(DBConn)
+    Dim mdso As New dsoSalesOrder(DBConn)
     Dim mDT As DataTable = Nothing
     mdso.LoadSalesOrderDT(mDT, pWhereSQL)
     Return mDT

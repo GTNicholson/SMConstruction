@@ -77,6 +77,11 @@ Public Class fccSalesOrderDetailHouses
     End Get
   End Property
 
+  Public ReadOnly Property PaymentAccounts As colPaymentOnAccounts
+    Get
+      Return pSalesOrder.PaymentAccounts
+    End Get
+  End Property
   Public ReadOnly Property CustomerPurchaseOrders As colCustomerPurchaseOrders
     Get
       Return pSalesOrder.CustomerPurchaseOrder
@@ -85,7 +90,7 @@ Public Class fccSalesOrderDetailHouses
 
   Public Sub LoadObjects()
     Dim mSalesOrderItemAssembly As dmSalesItemAssembly
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     If pPrimaryKeyID = 0 Then
       pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
@@ -95,30 +100,34 @@ Public Class fccSalesOrderDetailHouses
       mSalesOrderItemAssembly.ParentID = pSalesOrder.SalesOrderID
       SalesOrder.SalesItemAssemblys.Add(mSalesOrderItemAssembly)
 
-      pSalesOrder.ProductCostBookID = GetDefaultProductCostBook()
+      'pSalesOrder.ProductCostBookID = GetDefaultProductCostBook()
 
       SaveObjects()
 
     Else
       pSalesOrder = New dmSalesOrder
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadSalesOrderDown(pSalesOrder, pPrimaryKeyID)
       LoadProductRequirement()
+    End If
+    If pSalesOrder.ProductCostBookID = 0 Then
+      pSalesOrder.ProductCostBookID = GetDefaultCostBook()
+
     End If
     pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
   End Sub
 
-  Public Function GetDefaultProductCostBook() As Integer
-    Dim mdso As dsoSales
+  Public Function GetDefaultCostBook() As Integer
+    Dim mdso As dsoSalesOrder
 
-    mdso = New dsoSales(pDBConn)
-    Return mdso.GetDefaultProductCostBook()
+    mdso = New dsoSalesOrder(pDBConn)
+    Return mdso.GetDefaultCostBook()
   End Function
 
   Public Sub SaveObjects()
     Try
-      Dim mdso As dsoSales
-      mdso = New dsoSales(pDBConn)
+      Dim mdso As dsoSalesOrder
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
       SaveProductRequirement()
     Catch ex As Exception
@@ -175,9 +184,9 @@ Public Class fccSalesOrderDetailHouses
 
   Public Function GetCustomerList() As colCustomers
     Dim mRetVal As New colCustomers
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadCustomers(mRetVal)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -187,9 +196,9 @@ Public Class fccSalesOrderDetailHouses
 
   Public Function GetInvoicesList() As colInvoices
     Dim mRetVal As New colInvoices
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadInvoices(mRetVal, pSalesOrder.SalesOrderID)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -222,12 +231,12 @@ Public Class fccSalesOrderDetailHouses
   End Sub
 
   Public Sub AddSalesOrderItem(ByVal vProductType As eProductType)
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mSOI As dmSalesOrderItem
     Try
       SaveObjects()
       mSOI = pSalesOrderHandler.AddSalesOrderItem(vProductType)
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
       CreateSalesOrderPhaseItem(pSalesOrder.SalesOrderPhases(0), SalesOrder.SalesOrderID) ''//Because for the moment AF is using just one phase always
       SaveObjects()
@@ -246,12 +255,12 @@ Public Class fccSalesOrderDetailHouses
   End Sub
 
   Public Sub AddWorkOrder(ByRef rSOI As dmSalesOrderItem, ByVal vProductType As eProductType)
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mWO As dmWorkOrder
     Try
       SaveObjects()
       mWO = pSalesOrderHandler.AddWorkOrder(rSOI, vProductType)
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveWorkOrderDown(mWO)
       SaveObjects()
     Catch ex As Exception
@@ -289,9 +298,9 @@ Public Class fccSalesOrderDetailHouses
 
 
   Public Sub ReloadCustomer()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadCustomerDown(pSalesOrder.Customer, pSalesOrder.CustomerID)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -359,9 +368,9 @@ Public Class fccSalesOrderDetailHouses
   End Function
 
   Public Sub RefreshWorkOrderNos(ByRef rSalesOrderItem As dmSalesOrderItem)
-    Dim mDSO As dsoSales
+    Dim mDSO As dsoSalesOrder
     Dim mWONo As String
-    mDSO = New dsoSales(pDBConn)
+    mDSO = New dsoSalesOrder(pDBConn)
     For Each mWO As dmWorkOrder In rSalesOrderItem.WorkOrders
       mWONo = mDSO.WorkOrderNoFromID(mWO.WorkOrderID)
       mWO.WorkOrderNo = mWONo
@@ -524,12 +533,14 @@ Public Class fccSalesOrderDetailHouses
   Public Function GetProductInfos() As colProductBaseInfos
     Dim mRetVal As New colProductBaseInfos
     Dim mdso As New dsoProductAdmin(DBConn)
-    mdso.LoadProductInfosByWhere(mRetVal, "")
+    Dim mWhere As String
+    mWhere = "Status <> " & CInt(eProductStatus.Obsolete) & " or status is null"
+    mdso.LoadProductInfosByWhere(mRetVal, mWhere)
     Return mRetVal
   End Function
 
   Public Function GetWorkOrderByWorkOrderOrderAllocationID(ByVal vWorkOrderAllocationID As Integer) As dmWorkOrder
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
     Dim mWorkOrder As dmWorkOrder = Nothing
     Dim mWorkOrderID As Integer = -1
     Dim mSQL As String = ""
@@ -576,7 +587,7 @@ Public Class fccSalesOrderDetailHouses
 
   Public Function GetWorkOrderInfosFilteredByProductID(ByVal vProductID As Integer) As colWorkOrderInfos
     Dim mRetVal As New colWorkOrderInfos
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
     Dim mWhere As String = "ProductID = " & vProductID
 
     Try
@@ -606,7 +617,7 @@ Public Class fccSalesOrderDetailHouses
   End Sub
 
   Public Sub LoadWorkOrderByWorkOrderID(ByRef rWorkOrder As dmWorkOrder, ByVal vWorkOrderID As Integer)
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
     Try
 
       mdso.LoadWorkOrderDown(rWorkOrder, vWorkOrderID)
@@ -687,7 +698,7 @@ Public Class fccSalesOrderDetailHouses
 
         If mSOPI IsNot Nothing Then
 
-          mExistedWOA = rWorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseID(mSOPI.SalesOrderPhaseItemID)
+          mExistedWOA = rWorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseItemID(mSOPI.SalesOrderPhaseItemID)
 
           If mExistedWOA IsNot Nothing Then ''Exist, then delete it
 
@@ -760,7 +771,7 @@ Public Class fccSalesOrderDetailHouses
   End Sub
 
   Public Sub SaveWorkOrder(ByRef rNewWO As dmWorkOrder)
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
 
     mdso.SaveWorkOrderDown(rNewWO)
 
@@ -775,7 +786,7 @@ Public Class fccSalesOrderDetailHouses
       mPRP.Description = rProductStructure.Description
       mPRP.SalesOrderItemID = rSOI.SalesOrderItemID
       mPRP.ItemNumber = rSOI.ItemNumber
-
+      mPRP.ProductRequirement.AllocatedQty = 1
       mPR.SalesOrderItemID = rSOI.SalesOrderItemID
       mPR.ProductID = rProductStructure.ID
       mPR.AllocatedQty = 1
@@ -790,7 +801,7 @@ Public Class fccSalesOrderDetailHouses
   End Sub
 
   Public Sub SaveProductRequirement(ByRef rPR As dmSalesOrderItemProductRequirement)
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
 
     mdso.SaveProductRequirement(rPR)
 
@@ -798,7 +809,7 @@ Public Class fccSalesOrderDetailHouses
 
   Public Sub SaveProductRequirement()
     Dim mProductRequirementCol As New colSalesOrderItemProductRequirements
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
 
 
     mProductRequirementCol = New colSalesOrderItemProductRequirements
@@ -820,7 +831,7 @@ Public Class fccSalesOrderDetailHouses
     Dim mWhere As String = "SalesOrderItemID in ("
     Dim mSOPI As dmSalesOrderPhaseItem
     Dim mCount As Integer = 0
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
     For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
 
 
@@ -851,6 +862,30 @@ Public Class fccSalesOrderDetailHouses
 
       pDBConn.Disconnect()
 
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+
+  End Sub
+
+  Public Sub DeleteOldWorkOrderAllocation(ByVal vWorkOrderAllocationID As Integer, ByVal vSalesOrderItemID As Integer)
+
+    Try
+      pDBConn.Connect()
+
+      Dim mWhere As String = ""
+      Dim mSalesOrderPhaseItem As dmSalesOrderPhaseItem
+
+      mSalesOrderPhaseItem = SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.ItemFromSalesItemKey(vSalesOrderItemID)
+
+      If mSalesOrderPhaseItem IsNot Nothing Then
+        mWhere = String.Format("DELETE FROM WorkOrderAllocation WHERE WORKORDERALLOCATIONID = {0} and SalesOrderPhaseItemID = {1} ", vWorkOrderAllocationID, mSalesOrderPhaseItem.SalesOrderPhaseItemID)
+        pDBConn.ExecuteNonQuery(mWhere)
+      End If
+
+      pDBConn.Disconnect()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
 

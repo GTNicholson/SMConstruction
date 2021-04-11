@@ -34,7 +34,7 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
     Dim mSalesOrderPhaseItems As List(Of clsSalesOrderPhaseItemInfo)
     Dim mSOPIPicker As clsPickerSalesOrderPhaseItem
     Dim mSOIPs As colSalesOrderPhaseItemInfos
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mWhere As String = ""
 
 
@@ -115,15 +115,17 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     Dim mWOIs As New colWorkOrderInfos
-    Dim mDSO As New dsoSales(pDBConn)
+    Dim mDSO As New dsoSalesOrder(pDBConn)
 
 
     Dim mOK As Boolean
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
+      Dim mWhere As String
+      mWhere = String.Format("(Status <> {0} or Status is null) and  ProductTypeID = {1}", CInt(eWorkOrderStatus.Cancelled), CInt(eProductType.StructureAF))
 
-      mDSO.LoadInternalWorkOrderInfos(mWOIs, "ProductTypeID =" & eProductType.StructureAF)
+      mDSO.LoadInternalWorkOrderInfos(mWOIs, mWhere)
 
       gridBrowseList.DataSource = mWOIs
 

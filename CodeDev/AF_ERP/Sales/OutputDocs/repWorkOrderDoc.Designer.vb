@@ -31,7 +31,7 @@ Partial Public Class repWorkOrderDoc
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcTotalBoardFeet = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xtcRequiredDate = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -63,8 +63,8 @@ Partial Public Class repWorkOrderDoc
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.xrsubSigns = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.xrsubSigns = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,7 +138,7 @@ Partial Public Class repWorkOrderDoc
         Me.XrTableCell14.StylePriority.UseBackColor = False
         Me.XrTableCell14.StylePriority.UseFont = False
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
-        Me.XrTableCell14.Text = "PT 30%"
+        Me.XrTableCell14.Text = "Total PT"
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell14.Weight = 0.71508472291972314R
         '
@@ -156,18 +156,18 @@ Partial Public Class repWorkOrderDoc
         '
         'XrTableRow10
         '
-        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell17, Me.xtcRequiredDate})
+        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcTotalBoardFeet, Me.xtcRequiredDate})
         Me.XrTableRow10.Name = "XrTableRow10"
         Me.XrTableRow10.Weight = 1.0R
         '
-        'XrTableCell17
+        'xtcTotalBoardFeet
         '
-        Me.XrTableCell17.Font = New System.Drawing.Font("Cambria", 8.0!)
-        Me.XrTableCell17.Name = "XrTableCell17"
-        Me.XrTableCell17.StylePriority.UseFont = False
-        Me.XrTableCell17.StylePriority.UseTextAlignment = False
-        Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell17.Weight = 0.71508534196675189R
+        Me.xtcTotalBoardFeet.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.xtcTotalBoardFeet.Name = "xtcTotalBoardFeet"
+        Me.xtcTotalBoardFeet.StylePriority.UseFont = False
+        Me.xtcTotalBoardFeet.StylePriority.UseTextAlignment = False
+        Me.xtcTotalBoardFeet.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.xtcTotalBoardFeet.Weight = 0.71508534196675189R
         '
         'xtcRequiredDate
         '
@@ -466,12 +466,6 @@ Partial Public Class repWorkOrderDoc
         Me.ReportFooter.HeightF = 167.7917!
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'xrsubSigns
-        '
-        Me.xrsubSigns.LocationFloat = New DevExpress.Utils.PointFloat(311.0625!, 28.54606!)
-        Me.xrsubSigns.Name = "xrsubSigns"
-        Me.xrsubSigns.SizeF = New System.Drawing.SizeF(507.9377!, 139.2456!)
-        '
         'XrLine1
         '
         Me.XrLine1.BackColor = System.Drawing.Color.LightGray
@@ -489,6 +483,12 @@ Partial Public Class repWorkOrderDoc
         Me.XrLine1.StylePriority.UseBorders = False
         Me.XrLine1.StylePriority.UseBorderWidth = False
         Me.XrLine1.StylePriority.UseForeColor = False
+        '
+        'xrsubSigns
+        '
+        Me.xrsubSigns.LocationFloat = New DevExpress.Utils.PointFloat(311.0625!, 28.54606!)
+        Me.xrsubSigns.Name = "xrsubSigns"
+        Me.xrsubSigns.SizeF = New System.Drawing.SizeF(507.9377!, 139.2456!)
         '
         'repWorkOrderDoc
         '
@@ -519,7 +519,7 @@ Partial Public Class repWorkOrderDoc
     Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xtcTotalBoardFeet As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xtcRequiredDate As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow

@@ -29,12 +29,12 @@ Public Class fccSalesOrderProgress
   End Property
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     pSalesOrderProgressInfos.Clear()
 
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
     mdso.LoadSalesOrderProgressInfos(pSalesOrderProgressInfos, "")
 
 

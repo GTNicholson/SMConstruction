@@ -12,6 +12,8 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrderPhase As dmSalesOrderPhase
   Private pSalesOrder As dmSalesOrder
+  Private pStdCost As Decimal
+
   Public Sub New()
     MyBase.New()
     pStockItem = New dmStockItem
@@ -450,6 +452,24 @@ Public Class clsPurchaseOrderItemAllocationInfo
     End Get
   End Property
 
+  Public Property StdCost As Decimal
+    Get
+      Return pStdCost
+    End Get
+    Set(value As Decimal)
+      pStdCost = value
+    End Set
+  End Property
+
+  Public ReadOnly Property Balance As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = TotalPurchaseOrderItemAmountUSD - StdCost
+
+      Return mRetVal
+    End Get
+  End Property
 End Class
 
 

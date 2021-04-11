@@ -61,6 +61,7 @@ Public Class dtoProductStructure : Inherits dtoProductBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingFileName", StringToDBValue(.DrawingFileName))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsGeneric", .IsGeneric)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Status", .Status)
 
     End With
 
@@ -81,6 +82,7 @@ Public Class dtoProductStructure : Inherits dtoProductBase
         .UoM = DBReadInt32(rDataReader, "UoM")
         .DrawingFileName = DBReadString(rDataReader, "DrawingFileName")
         .IsGeneric = DBReadBoolean(rDataReader, "IsGeneric")
+        .Status = DBReadBoolean(rDataReader, "Status")
         CType(pProduct, dmProductStructure).IsDirty = False
       End With
       mOK = True

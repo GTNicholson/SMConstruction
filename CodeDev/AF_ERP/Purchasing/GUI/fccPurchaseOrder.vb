@@ -170,7 +170,7 @@ Public Class fccPurchaseOrder
   Public Function LoadRefData() As Boolean
 
     Dim mOK As Boolean
-    Dim mdsoSales As New dsoSales(pDBConn)
+    Dim mdsoSales As New dsoSalesOrder(pDBConn)
     Dim mSalesOrderPhase As dmSalesOrderPhase
     Try
 

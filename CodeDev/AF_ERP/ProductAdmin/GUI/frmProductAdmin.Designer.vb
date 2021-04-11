@@ -84,11 +84,11 @@ Partial Class frmProductAdmin
         Me.bbtnGlobalChanges = New DevExpress.XtraBars.BarButtonItem()
         Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
         Me.grpStockItemDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.uctProductDetail = New AgroForestal.uctProductBaseDetail()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.uctProductDetail = New AgroForestal.uctProductBaseDetail()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,6 +170,7 @@ Partial Class frmProductAdmin
         Me.gvProductBase.GridControl = Me.grdProductBase
         Me.gvProductBase.GroupCount = 1
         Me.gvProductBase.Name = "gvProductBase"
+        Me.gvProductBase.OptionsBehavior.AutoExpandAllGroups = True
         Me.gvProductBase.OptionsView.EnableAppearanceEvenRow = True
         Me.gvProductBase.OptionsView.EnableAppearanceOddRow = True
         Me.gvProductBase.OptionsView.ShowAutoFilterRow = True
@@ -577,6 +578,15 @@ Partial Class frmProductAdmin
         Me.grpStockItemDetail.TabIndex = 95
         Me.grpStockItemDetail.Text = "Detalles del Producto"
         '
+        'uctProductDetail
+        '
+        Me.uctProductDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.uctProductDetail.FormController = Nothing
+        Me.uctProductDetail.Location = New System.Drawing.Point(2, 26)
+        Me.uctProductDetail.Name = "uctProductDetail"
+        Me.uctProductDetail.Size = New System.Drawing.Size(1477, 617)
+        Me.uctProductDetail.TabIndex = 0
+        '
         'GridView1
         '
         Me.GridView1.Name = "GridView1"
@@ -592,15 +602,6 @@ Partial Class frmProductAdmin
         'GridView5
         '
         Me.GridView5.Name = "GridView5"
-        '
-        'uctProductDetail
-        '
-        Me.uctProductDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.uctProductDetail.FormController = Nothing
-        Me.uctProductDetail.Location = New System.Drawing.Point(2, 26)
-        Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1477, 617)
-        Me.uctProductDetail.TabIndex = 0
         '
         'frmProductAdmin
         '

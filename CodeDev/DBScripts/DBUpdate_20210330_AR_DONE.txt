@@ -1,0 +1,87 @@
+
+ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
+as
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+POI.RetentionValue,
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+po.AccoutingCategoryID,
+po.Category as PO_CATEGORY,
+PO.Status AS 'POStatus',
+S.CompanyName,
+SOP.JobNo,
+SO.ProjectName,
+SO.SalesOrderID
+
+from PurchaseOrderItemAllocation as POIA
+LEFT JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+left join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join SalesOrderPhase SOP on SOP.SalesOrderPhaseID =POIA.CallOffID
+left join SalesOrder SO on SO.SalesOrderID = sop.SalesOrderID
+GO
+
+
+
+ALTER VIEW [dbo].[vwWoodMatReqInfo]
+as
+
+select 
+MR.MaterialRequirementID,
+MR.Description,
+MR.UnitPiece,
+MR.PiecesPerComponent,
+MR.NetLenght,
+MR.NetWidth,
+MR.NetThickness,
+MR.QualityType,
+MR.WoodSpecie,
+MR.PickedQty,
+MR.ObjectID,
+MR.StockItemID,
+PS.ProductStructureID,
+WO.Description 'WODescription',
+WO.PlannedStartDate,
+WO.WorkOrderNo,
+Wo.Quantity,
+SO.ProjectName,
+SO.SalesOrderID,
+CU.CompanyName
+
+from MaterialRequirement as MR 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+INNER JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+INNER JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN ProductStructure PS ON PS.ProductStructureID=WO.ProductID
+INNER JOIN CUSTOMER CU ON CU.CustomerID=SO.CustomerID
+WHERE MaterialRequirementType=1
+
+
+
+GO

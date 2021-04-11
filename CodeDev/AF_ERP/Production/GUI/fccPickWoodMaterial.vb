@@ -182,7 +182,7 @@ Public Class fccPickWoodMaterial
             End If
 
 
-            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.ToProcessBoardFeet, 1, mWoodPalletItemEditor.WoodPalletItem, Now, mWoodPalletItemEditor.StockItem.StdCost, 0, mMaterialRequirement, mWoodPalletItemEditor.ToProcessQty)
+            mRetVal = mdsoTran.UpdateWoodPalletItemTransactionQty(mWoodPalletItemEditor.StockItem.StockItemID, 1, mWoodPalletItemEditor.ToProcessBoardFeet, 1, mWoodPalletItemEditor.WoodPalletItem, Now, mWoodPalletItemEditor.StockItem.AverageCost, 0, mMaterialRequirement, mWoodPalletItemEditor.ToProcessQty)
             ''End If
             mWoodPalletItemEditor.ToProcessQty = 0
           End If
@@ -216,11 +216,11 @@ Public Class fccPickWoodMaterial
   Public Function CreateAdditionalMatReqs(ByRef rStockItem As RTIS.ERPStock.intStockItemDef, ByRef rWoodPalletItemEditor As clsWoodPalletItemEditor) As clsMaterialRequirementInfo
     Dim mMatReqs As New colMaterialRequirements
     Dim mMatReq As dmMaterialRequirement
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mRetVal As New clsMaterialRequirementInfo
     Try
 
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
 
       mMatReq = New dmMaterialRequirement
       mMatReq.ObjectType = eObjectType.WorkOrder

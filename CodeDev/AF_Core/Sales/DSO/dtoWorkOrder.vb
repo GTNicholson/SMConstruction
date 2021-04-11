@@ -107,6 +107,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateCreated", DateToDBValue(.DateCreated))
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Comments", StringToDBValue(.Comments))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Status", .Status)
 
 
     End With
@@ -161,6 +162,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .WorkOrderWoodType = DBReadInt32(rDataReader, "WorkOrderWoodType")
         .WorkOrderProcessOption = DBReadInt32(rDataReader, "WorkOrderProcessOption")
         .WorkOrderTargetWoodType = DBReadInt32(rDataReader, "WorkOrderTargetWoodType")
+        .Status = DBReadByte(rDataReader, "Status")
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False
       End With
@@ -205,11 +207,19 @@ Public Class dtoWorkOrder : Inherits dtoBase
     Return mOK
   End Function
 
-
-  Public Function LoadWorkOrderCollection(ByRef rWorkOrders As colWorkOrders, ByVal vParentID As Integer) As Boolean
+  Public Function LoadWorkOrderCollectionByWhere(ByRef rWorkOrders As colWorkOrders, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
-    mParams.Add("@SalesOrderItemID", vParentID)
+    ' mParams.Add("@SalesOrderItemID", vParentID)
+    mOK = MyBase.LoadCollection(rWorkOrders, mParams, "WorkOrderID", vWhere)
+    rWorkOrders.TrackDeleted = True
+    If mOK Then rWorkOrders.IsDirty = False
+    Return mOK
+  End Function
+  Public Function LoadWorkOrderCollection(ByRef rWorkOrders As colWorkOrders, ByVal vSalesOrderItemID As Integer) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mParams.Add("@SalesOrderItemID", vSalesOrderItemID)
     mOK = MyBase.LoadCollection(rWorkOrders, mParams, "WorkOrderID")
     rWorkOrders.TrackDeleted = True
     If mOK Then rWorkOrders.IsDirty = False

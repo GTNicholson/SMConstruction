@@ -195,9 +195,11 @@
     <Compile Include="Costing\DSO\dsoCostBook.vb" />
     <Compile Include="Costing\DSO\dtoCostBook.vb" />
     <Compile Include="Costing\DSO\dtoCostBookEntry.vb" />
+    <Compile Include="DespatchInvoice\BO\dmPaymentOnAccount.vb" />
     <Compile Include="DespatchInvoice\BO\clsInvoiceInfo.vb" />
     <Compile Include="DespatchInvoice\BO\dmInvoice.vb" />
     <Compile Include="DespatchInvoice\BO\dmInvoiceItem.vb" />
+    <Compile Include="DespatchInvoice\DSO\dtoPaymentOnAccount.vb" />
     <Compile Include="DespatchInvoice\DSO\dtoInvoice.vb" />
     <Compile Include="DespatchInvoice\DSO\dtoInvoiceInfo.vb" />
     <Compile Include="DespatchInvoice\DSO\dtoInvoiceItem.vb" />
@@ -383,7 +385,7 @@
     <Compile Include="Sales\BO\dmCustomer.vb" />
     <Compile Include="Sales\BO\dmSalesOrder.vb" />
     <Compile Include="Sales\BO\dmWorkOrder.vb" />
-    <Compile Include="Sales\DSO\dsoSales.vb" />
+    <Compile Include="Sales\DSO\dsoSalesOrder.vb" />
     <Compile Include="Sales\DSO\dtoCustomer.vb" />
     <Compile Include="Sales\DSO\dtoSalesOrder.vb" />
     <Compile Include="Sales\DSO\dtoWorkOrder.vb" />

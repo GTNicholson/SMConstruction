@@ -20,7 +20,7 @@ Public Class clsActionSalesOrderGenerateWOs : Inherits clsDomainAction
 
   Public Overrides Function ActionPerform() As clsValWarn
     Dim mRetVal As New clsValWarn
-    Dim mDSO As New dsoSales(pSalesOrderActionHandler.DBConn)
+    Dim mDSO As New dsoSalesOrder(pSalesOrderActionHandler.DBConn)
 
     '// Generate WO numbers
 

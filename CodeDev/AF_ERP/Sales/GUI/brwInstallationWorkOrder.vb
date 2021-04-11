@@ -77,7 +77,7 @@ Public Class brwInstallationWorkOrder : Inherits brwBrowserListBase
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     Dim mWOIs As New colWorkOrderInfos
-    Dim mDSO As New dsoSales(pDBConn)
+    Dim mDSO As New dsoSalesOrder(pDBConn)
 
 
     Dim mOK As Boolean

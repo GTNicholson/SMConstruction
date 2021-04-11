@@ -56,10 +56,10 @@ Public Class frmHousePopUp
     Dim mHouseTypeID As Integer = -1
     Dim mConfiguredHouseType As New dmHouseType
     Dim mProducts As New colProductBases
-    Dim mdsoSales As dsoSales
+    Dim mdsoSales As dsoSalesOrder
     Dim mHTSIIs As New colHouseTypeSalesItemInfos
 
-    mdsoSales = New dsoSales(pDBConn)
+    mdsoSales = New dsoSalesOrder(pDBConn)
     mdsoSales.LoadStandardProducts(mProducts)
 
     If UctHouseTypeOptions1.cboModel.SelectedIndex <> -1 Then

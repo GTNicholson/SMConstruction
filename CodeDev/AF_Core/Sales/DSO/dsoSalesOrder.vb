@@ -1,7 +1,7 @@
 ﻿Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
-Public Class dsoSales : Inherits dsoBase
+Public Class dsoSalesOrder : Inherits dsoBase
   ''  Private pDBConn As clsDBConnBase
 
   Public Sub New(ByRef rDBConn As clsDBConnBase)
@@ -77,6 +77,24 @@ Public Class dsoSales : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function LoadWorkOrderAllocationsByWhere(ByRef rWOAs As colWorkOrderAllocations, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean
+    Dim mdto As dtoWorkOrderAllocation
+    Try
+      If pDBConn.Connect Then
+        mdto = New dtoWorkOrderAllocation(pDBConn)
+        mdto.LoadWorkOrderAllocationCollectionByWhere(rWOAs, vWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+
+  End Function
+
   Public Function LockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
     Try
@@ -91,9 +109,9 @@ Public Class dsoSales : Inherits dsoBase
     Return mOK
   End Function
 
-  Public Function GetDefaultProductCostBook() As Integer
+  Public Function GetDefaultCostBook() As Integer
     Dim mRetval As Integer
-    Dim mWhere As String = "Select ProductCostBookID from ProductCostBook where IsDefault = 1"
+    Dim mWhere As String = "Select CostBookID from CostBook where IsDefault = 1"
     Try
       If pDBConn.Connect Then
         mRetval = Convert.ToInt32(pDBConn.ExecuteScalar(mWhere))
@@ -242,6 +260,26 @@ Public Class dsoSales : Inherits dsoBase
     End Try
 
     Return mOK
+  End Function
+
+  Public Function LoadPaymentAccount(ByRef rPaymentAccount As dmPaymentOnAccount, ByVal vID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoPaymentOnAccount
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoPaymentOnAccount(pDBConn)
+      mdto.LoadPaymentOnAccount(rPaymentAccount, vID)
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
   End Function
 
   Public Function LoadInvoiceDown(ByRef rInvoice As dmInvoice, ByVal vID As Integer) As Boolean
@@ -499,6 +537,28 @@ Public Class dsoSales : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Function SavePaymentAccount(ByRef rPaymentAccount As dmPaymentOnAccount) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoPaymentOnAccount
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoPaymentOnAccount(pDBConn)
+      mdto.SavePaymentOnAccount(rPaymentAccount)
+
+      pDBConn.Disconnect()
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+
   Public Function SaveInvoiceDown(ByRef rInvoice As dmInvoice) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoInvoice
@@ -539,7 +599,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mdtoSalesOrderHouse As dtoSalesOrderHouse
     Dim mdtodtoSalesItemAssembly As dtoSalesItemAssembly
     Dim mdtoSalesOrderStage As dtoSalesOrderStage
-
+    Dim mdtoPaymentAccount As dtoPaymentOnAccount
     Try
 
       pDBConn.Connect()
@@ -551,6 +611,9 @@ Public Class dsoSales : Inherits dsoBase
 
       mdtoInvoices = New dtoInvoice(pDBConn)
       mdtoInvoices.SaveInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
+
+      mdtoPaymentAccount = New dtoPaymentOnAccount(pDBConn)
+      mdtoPaymentAccount.SavePaymentOnAccountCollection(rSalesOrder.PaymentAccounts, rSalesOrder.SalesOrderID)
 
       mdtoSalesOrderStage = New dtoSalesOrderStage(pDBConn)
       mdtoSalesOrderStage.SaveSalesOrderStageCollection(rSalesOrder.SalesOrderStages, rSalesOrder.SalesOrderID)
@@ -758,7 +821,7 @@ Public Class dsoSales : Inherits dsoBase
     Dim mProductStructure As dmProductStructure
     Dim mdtoComponents As dtoProductFurnitureComponent
     Dim mdtoSalesOrderStage As dtoSalesOrderStage
-
+    Dim mdtoPaymentAccount As dtoPaymentOnAccount
 
 
     pDBConn.Connect()
@@ -767,6 +830,9 @@ Public Class dsoSales : Inherits dsoBase
 
     mdtoInvoice = New dtoInvoice(pDBConn)
     mdtoInvoice.LoadInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
+
+    mdtoPaymentAccount = New dtoPaymentOnAccount(pDBConn)
+    mdtoPaymentAccount.LoadPaymentOnAccountCollection(rSalesOrder.PaymentAccounts, rSalesOrder.SalesOrderID)
 
     mdtoCust = New dtoCustomer(pDBConn)
     mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
@@ -902,21 +968,21 @@ Public Class dsoSales : Inherits dsoBase
   End Function
 
 
-  Public Function LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadSalesOrderPhaseItemsMatReqByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
     Dim mOk As Boolean
     Dim mProd As dmProductBase
     Try
 
       If pDBConn.Connect Then
-        Dim mdto As New dtoSalesOrderPhaseItemInfo(pDBConn)
+        Dim mdto As New dtoSalesOrderPhaseItemInfo(pDBConn, dtoSalesOrderPhaseItemInfo.eMode.SalesOrderPhaseItemTracking)
 
         mOk = mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItems, vWhere)
 
-        '// Attach Products
-        For Each mSOPII As clsSalesOrderPhaseItemInfo In rSalesOrderPhaseItems
-          mProd = AppRTISGlobal.GetInstance.ProductRegistry.GetProductFromTypeAndID(mSOPII.SalesOrderItem.ProductTypeID, mSOPII.SalesOrderItem.ProductID)
-          mSOPII.Product = mProd
-        Next
+        ''// Attach Products
+        'For Each mSOPII As clsSalesOrderPhaseItemInfo In rSalesOrderPhaseItems
+        '  mProd = AppRTISGlobal.GetInstance.ProductRegistry.GetProductFromTypeAndID(mSOPII.SalesOrderItem.ProductTypeID, mSOPII.SalesOrderItem.ProductID)
+        '  mSOPII.Product = mProd
+        'Next
 
         mdto = Nothing
       End If
@@ -930,6 +996,115 @@ Public Class dsoSales : Inherits dsoBase
     Return mOk
   End Function
 
+  Public Sub LoadSalesOrderPhaseItemInfoWoodCosts(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByRef rCostBookEntries As colCostBookEntrys)
+    Dim mWOAs As colWorkOrderAllocations
+    Dim mWOs As New colWorkOrders
+    Dim mWO As dmWorkOrder
+    Dim mMRs As colMaterialRequirements
+    Dim mSOPIIIDList As String = ""
+    Dim mWOIDList As String = ""
+    Dim mTotalWoodCost As Decimal
+    Dim mCBEntry As dmCostBookEntry
+    Dim mQty As Decimal
+    Dim mWhere As String
+
+
+    For Each mSOPII As clsSalesOrderPhaseItemInfo In rSalesOrderPhaseItemInfos
+      If mSOPIIIDList <> "" Then mSOPIIIDList = mSOPIIIDList & ", "
+      mSOPIIIDList = mSOPIIIDList & mSOPII.SalesOrderPhaseItemID
+    Next
+
+    '// load mWOAs by where using salesorderphaseitemid in (mSOPIIIDList)
+    mWOAs = New colWorkOrderAllocations
+    mWhere = "SalesOrderPhaseItemID in (" & mSOPIIIDList & ")"
+    LoadWorkOrderAllocationsByWhere(mWOAs, mWhere)
+
+    '// Now get the list of Work Orders that we are going to need
+    For Each mWOA As dmWorkOrderAllocation In mWOAs
+      If mWOIDList <> "" Then mWOIDList = mWOIDList & ", "
+      mWOIDList = mWOIDList & mWOA.WorkOrderID
+    Next
+
+    '// Load mWOS by where using WorkOrderID in (mwoidlist)
+    mWhere = "WorkOrderID in (" & mWOIDList & ")"
+    LoadWorkOrderByWhere(mWOs, mWhere)
+
+
+    '// Load the mMRs by where using ObjectID in (mwoidlist) and objecttype = 2 and MaterialType = Wood
+    mMRs = New colMaterialRequirements
+    mWhere = String.Format("ObjectID in ({0}) and ObjectType = {1} and MaterialRequirementType = {2}", mWOIDList, CInt(eObjectType.WorkOrder), CInt(eMaterialRequirementType.Wood))
+    LoadMaterialRequirementByWhere(mMRs, mWhere)
+
+    '// Now calculated the total cost for each SalesOrderPhaseItemInfo
+    For Each mSOPII In rSalesOrderPhaseItemInfos
+      mTotalWoodCost = 0
+      For Each mWOA As dmWorkOrderAllocation In mWOAs
+        If mWOA.SalesOrderPhaseItemID = mSOPII.SalesOrderPhaseItemID Then
+          For Each mMR As dmMaterialRequirement In mMRs
+            mQty = 0
+            If mMR.ObjectID = mWOA.WorkOrderID Then
+              '// Need to allocated the quantity based on proportion of Work Order in this allocation
+              mWO = mWOs.ItemFromKey(mWOA.WorkOrderID)
+              If mWO.Quantity > 0 Then
+                mQty = mMR.Quantity * (mWOA.QuantityRequired / mWO.Quantity)
+                mCBEntry = rCostBookEntries.ItemFromStockItemID(mMR.StockItemID)
+                mTotalWoodCost = mTotalWoodCost + (mCBEntry.Cost * mMR.BoardFeetPerLine)
+              End If
+
+            End If
+          Next
+        End If
+      Next
+      mSOPII.SpecifiedWoodCost = mTotalWoodCost
+    Next
+
+
+  End Sub
+
+  Public Function LoadMaterialRequirementByWhere(ByRef rMRs As colMaterialRequirements, ByVal vWhere As String) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoMaterialRequirement(pDBConn)
+
+        mOk = mdto.LoadMaterialRequirementCollectionByWhere(rMRs, vWhere)
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+
+  End Function
+
+  Public Function LoadWorkOrderByWhere(ByRef rWorkOrders As colWorkOrders, ByVal vWhere As String) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoWorkOrder(pDBConn)
+
+        mOk = mdto.LoadWorkOrderCollectionByWhere(rWorkOrders, vWhere)
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
 
   Public Function LoadSalesOrderPhase(ByRef rSalesOrderPhase As dmSalesOrderPhase, ByVal vSalesOrderPhaseID As Integer) As Boolean
     Dim mOk As Boolean
@@ -1138,34 +1313,26 @@ Public Class dsoSales : Inherits dsoBase
 
   End Sub
 
-  Friend Sub SynchroniseWOMatReqPickedConnected(ByVal vStockItemID As Integer, ByVal vProductID As Integer)
+  Friend Sub SynchroniseWOMatReqPickedConnected(ByVal vStockItemID As Integer, ByVal vWorkOrderID As Integer)
     Dim mSQL As String
     Dim mSQLUpdate As String
     Dim mPickedQty As Decimal
 
     mSQL = "Select SUM(PickedQty) as PickedQty"
     mSQL = mSQL & " from MaterialRequirement MR"
-    mSQL = mSQL & " Inner Join WorkOrder WO on WO.ProductID = MR.ObjectID"
-    mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And ProductID = " & vProductID
-    mSQL = mSQL & " Group By StockItemID, WorkOrderID"
+    mSQL = mSQL & " Inner Join WorkOrder WO on WO.WorkOrderID = MR.ObjectID"
+    mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And Wo.WorkOrderID = " & vWorkOrderID
+
 
     mPickedQty = pDBConn.ExecuteScalar(mSQL)
 
     mSQLUpdate = "Update MaterialRequirement Set PickedQty = " & mPickedQty
-    mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vProductID
+    mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vWorkOrderID
 
     pDBConn.ExecuteNonQuery(mSQLUpdate)
   End Sub
 
-  Public Function GetProductIDIByObjectIDConnected(ByVal vObjectID As Integer) As Integer
-    Dim mSQL As String
-    Dim mRetVal As Integer
 
-    mSQL = String.Format("Select ProductID from WorkOrder Where ProductID = {0}", vObjectID)
-    mRetVal = pDBConn.ExecuteScalar(mSQL)
-
-    Return mRetVal
-  End Function
 
   Public Function WorkOrderNoFromID(ByVal vID As Integer) As String
     Dim mRetVal As String = ""

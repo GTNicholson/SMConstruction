@@ -25,6 +25,7 @@ Public MustInherit Class dmProductBase : Inherits dmBase
 
   Public MustOverride Property ProductTypeID As Integer Implements intItemSpecCore.ItemType '// from eProductType
 
+  Private pStatus As Boolean
 
 
   Public Property Leadtime As Decimal Implements intItemSpecCore.Leadtime
@@ -86,6 +87,16 @@ Public MustInherit Class dmProductBase : Inherits dmBase
     Set(value As Int32)
       If value <> pUoM Then pIsDirty = True
       pUoM = value
+    End Set
+  End Property
+
+  Public Property Status As Boolean
+    Get
+      Return pStatus
+    End Get
+    Set(value As Boolean)
+      If pStatus <> value Then IsDirty = True
+      pStatus = value
     End Set
   End Property
 

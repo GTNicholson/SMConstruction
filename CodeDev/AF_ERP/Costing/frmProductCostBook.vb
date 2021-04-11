@@ -255,14 +255,14 @@ Public Class frmProductCostBook
 
 
   Private Sub cboIsDefault_EditValueChanged(sender As Object, e As EventArgs) Handles cboIsDefault.EditValueChanged
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     If pIsActive Then
       UpdateObject()
       CheckSave(False)
 
       If cboIsDefault.Checked Then
-        mdso = New dsoSales(pFormController.DBConn)
+        mdso = New dsoSalesOrder(pFormController.DBConn)
         mdso.SetDefaultProductCostBook(pFormController.ProductCostBookID)
 
         pFormController.ProductCostBook = New dmProductCostBook

@@ -53,7 +53,7 @@ Public Class repWorkOrderDoc
 
     SetUpDataBindings()
 
-
+    xtcTotalBoardFeet.Text = pWorkOrder.WoodMaterialRequirements.GetTotalBoardFeets().ToString("n3")
 
     mrepWorkOrderWoodMaterialRequirementInfo = New repWorkOrderWoodMaterialRequirement
     mrepWorkOrderWoodMaterialRequirementInfo.DataSource = pWoodMatReqs

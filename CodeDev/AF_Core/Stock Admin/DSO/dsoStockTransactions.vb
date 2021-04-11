@@ -375,7 +375,7 @@ Public Class dsoStockTransactions
           End If
 
 
-          End If
+        End If
       End If
     Catch ex As Exception
       mOK = False
@@ -441,7 +441,7 @@ Public Class dsoStockTransactions
     Dim mSILTranLogRollForward As New colStockItemTransactionLogs
     Dim mSubsequentStockCheckTran As dmStockItemTransactionLog
     Dim mNewStockLevel As Decimal
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mProductID As Integer
 
     Try
@@ -897,8 +897,8 @@ Public Class dsoStockTransactions
     Dim mSILTranLogRollForward As New colStockItemTransactionLogs
     Dim mSubsequentStockCheckTran As dmStockItemTransactionLog
     Dim mNewStockLevel As Decimal
-    Dim mdso As dsoSales
-    Dim mProductID As Integer
+    Dim mdso As dsoSalesOrder
+    Dim mWorkOrderID As Integer
 
     Try
       pDBConn.Connect()
@@ -975,9 +975,8 @@ Public Class dsoStockTransactions
 
           If mOK = True Then
             '//Update the denormalised vale in the CallOff
-            mdso = New dsoSales(pDBConn)
-            mProductID = mdso.GetProductIDIByObjectIDConnected(vMatReq.ObjectID)
-            mdso.SynchroniseWOMatReqPickedConnected(vStockitemLocation.StockItemID, mProductID)
+            mdso = New dsoSalesOrder(pDBConn)
+            mdso.SynchroniseWOMatReqPickedConnected(vStockitemLocation.StockItemID, vMatReq.ObjectID)
 
           End If
 

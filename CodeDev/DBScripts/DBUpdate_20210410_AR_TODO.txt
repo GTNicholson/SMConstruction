@@ -1,0 +1,88 @@
+create view vwSalesOrderPhaseItemMatReqSum
+as
+
+select 
+WOA.SalesOrderPhaseItemID,
+sum(si.StdCost * isnull(MR.PickedQty,0) * (WOA.QuantityRequired/WO.Quantity)) as SOPItemMatReqCost
+
+from WorkorderAllocation WOA
+Inner Join WorkOrder WO on Wo.WorkOrderID = woa.WorkOrderID and WO.Quantity <> 0
+Inner Join MaterialRequirement MR on WO.WorkOrderID = MR.ObjectID and MR.MaterialRequirementType = 2 And MR.ObjectType = 2
+Inner Join StockItem SI on MR.StockItemID = SI.StockItemID
+
+Group by woa.SalesOrderPhaseItemID
+GO
+
+create VIEW vwSalesOrderPhaseItemTrackingInfo
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+CU.CompanyName
+from 
+SalesOrderPhaseItem SOPI
+inner join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+go
+
+
+
+
+alter VIEW vwSalesOrderPhaseItemTrackingInfo
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.DateEntered,
+SOP.DateCommitted,
+CU.CompanyName
+from 
+SalesOrderPhaseItem SOPI
+LEFT join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+INNER JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+go
+
+ALTER View [dbo].[vwSalesOrderEngineeringCompleteSum] as
+select SalesOrderID, Count(WorkOrderMilestoneStatusID) as EngineeringCompleteQty
+from WorkOrderMilestoneStatus WOMS 
+Inner Join WorkOrder WO on WO.WorkOrderID =  WOMS.WorkOrderID
+Where MilestoneEnum = 1 And WOMS.Status = 3 and ActualDate is not null
+Group By SalesOrderID
+
+
+GO
+
+ALTER View [dbo].[vwSalesOrderDespatchCompleteSum] as
+select SalesOrderID, Count(WorkOrderMilestoneStatusID) as DespatchCompleteQty
+from WorkOrderMilestoneStatus WOMS 
+Inner Join WorkOrder WO on WO.WorkOrderID =  WOMS.WorkOrderID
+Where MilestoneEnum = 10 And WOMS.Status = 3 and ActualDate is not null
+Group By SalesOrderID
+
+
+GO
+
+

@@ -90,15 +90,16 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     Dim mWOIs As New colWorkOrderInfos
-    Dim mDSO As New dsoSales(pDBConn)
+    Dim mDSO As New dsoSalesOrder(pDBConn)
 
 
     Dim mOK As Boolean
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
-
-      mDSO.LoadWorkOrderInfos(mWOIs, "", dtoWorkOrderInfo.eMode.WorkOrderInfo)
+      Dim mWhere As String
+      mWhere = String.Format("Status <> {0} or Status is null", CInt(eWorkOrderStatus.Cancelled))
+      mDSO.LoadWorkOrderInfos(mWOIs, mWhere, dtoWorkOrderInfo.eMode.WorkOrderInfo)
 
       gridBrowseList.DataSource = mWOIs
 

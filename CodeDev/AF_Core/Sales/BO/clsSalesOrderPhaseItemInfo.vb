@@ -7,6 +7,18 @@
   Private pSalesItemAssembly As dmSalesItemAssembly
   Private pProduct As dmProductBase
   Private pWorkOrder As dmWorkOrder
+  Private pStockItemCost As Decimal
+  Private pSOPItemMatReqCost As Decimal
+  Private pUnitPrice As Decimal
+  Private pDateEntered As Date
+  Private pExchangeRate As Decimal
+  Private pDateCommitted As Date
+  Private pTempDateExchange As Date
+  Private pSOPIDollarValue As Decimal
+  Private pSOPItemPickMatReqCost As Decimal
+  Private pSOPIPickDollarValue As Decimal
+  Private pSpecifiedWoodCost As Decimal
+  Private pWoodCost As Decimal
 
   Public Sub New()
     pSalesOrderPhaseItem = New dmSalesOrderPhaseItem
@@ -223,10 +235,111 @@
     End Get
   End Property
 
+  Public Property WoodCost As Decimal
+    Get
+      Return pWoodCost
+    End Get
+    Set(value As Decimal)
+      pWoodCost = value
+    End Set
+  End Property
+  Public Property StockItemCost As Decimal
+    Get
+      Return pStockItemCost
+    End Get
+    Set(value As Decimal)
+      pStockItemCost = value
+    End Set
+  End Property
 
+  Public Property SOPItemMatReqCost As Decimal
+    Get
+      Return pSOPItemMatReqCost
+    End Get
+    Set(value As Decimal)
+      pSOPItemMatReqCost = value
+    End Set
+  End Property
 
+  Public Property SOPItemPickMatReqCost As Decimal
+    Get
+      Return pSOPItemPickMatReqCost
+    End Get
+    Set(value As Decimal)
+      pSOPItemPickMatReqCost = value
+    End Set
+  End Property
 
+  Public Property UnitPrice As Decimal
+    Get
+      Return pUnitPrice
+    End Get
+    Set(value As Decimal)
+      pUnitPrice = value
+    End Set
+  End Property
 
+  Public Property DateEntered As Date
+    Get
+      Return pDateEntered
+    End Get
+    Set(value As Date)
+      pDateEntered = value
+    End Set
+  End Property
+
+  Public Property SOPIPickDollarValue As Decimal
+    Get
+      Return pSOPIPickDollarValue
+    End Get
+    Set(value As Decimal)
+      pSOPIPickDollarValue = value
+    End Set
+  End Property
+
+  Public Property SOPIDollarValue As Decimal
+    Get
+      Return pSOPIDollarValue
+    End Get
+    Set(value As Decimal)
+      pSOPIDollarValue = value
+    End Set
+  End Property
+  Public Property DateCommitted As Date
+    Get
+      Return pDateCommitted
+    End Get
+    Set(value As Date)
+      pDateCommitted = value
+    End Set
+  End Property
+
+  Public Property ExchangeRate As Decimal
+    Get
+      Return pExchangeRate
+    End Get
+    Set(value As Decimal)
+      pExchangeRate = value
+    End Set
+  End Property
+
+  Public Property TempDateExchange As Date
+    Get
+      Return pTempDateExchange
+    End Get
+    Set(value As Date)
+      pTempDateExchange = value
+    End Set
+  End Property
+
+  Public Property SpecifiedWoodCost As Decimal
+    Get
+      Return pSpecifiedWoodCost
+    End Get
+    Set(value As Decimal)
+      pSpecifiedWoodCost = value
+    End Set
+  End Property
 End Class
 
 
@@ -265,6 +378,21 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
           mRetVal = mItem
           Exit For
         End If
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalStockItemMatReqReal() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIDollarValue
+
       End If
     Next
 

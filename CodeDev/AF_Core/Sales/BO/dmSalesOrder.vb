@@ -28,13 +28,16 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pShippingCost As Decimal
   Private pWorkOrdersIssued As Boolean
   Private pPodioPath As String
+
+
+
   Private pVersion As String
   Private pOrderPhaseType As eOrderPhaseType
 
   Private pCustomer As dmCustomer
   Private pInvoices As colInvoices
   Private pCustomerPurchaseOrder As colCustomerPurchaseOrders
-
+  Private pPaymentAccounts As colPaymentOnAccounts
   Private pSalesOrderItems As colSalesOrderItems
 
 
@@ -61,6 +64,7 @@ Public Class dmSalesOrder : Inherits dmBase
     pOutputDocuments = New colOutputDocuments
     pCustomer = New dmCustomer
     pInvoices = New colInvoices
+    pPaymentAccounts = New colPaymentOnAccounts
     pCustomerPurchaseOrder = New colCustomerPurchaseOrders
     pSalesOrderPhasess = New colSalesOrderPhases
     pSalesOrderStages = New colSalesOrderStages
@@ -76,6 +80,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Protected Overrides Sub Finalize()
     pSalesOrderPhasess = Nothing
     pSalesOrderStages = Nothing
+    pPaymentAccounts = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -121,6 +126,8 @@ Public Class dmSalesOrder : Inherits dmBase
       If mAnyDirty = False Then mAnyDirty = pSalesOrderHouses.IsDirty
 
       If mAnyDirty = False Then mAnyDirty = pSalesItemAssemblys.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pPaymentAccounts.IsDirty
 
       IsAnyDirty = mAnyDirty
     End Get
@@ -177,6 +184,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .SalesOrderPhases = SalesOrderPhases.Clone
       .SalesOrderHouses = SalesOrderHouses.Clone
       .SalesItemAssemblys = SalesItemAssemblys.Clone
+      .PaymentAccounts = PaymentAccounts.Clone
 
       .IsDirty = IsDirty
     End With
@@ -538,6 +546,15 @@ Public Class dmSalesOrder : Inherits dmBase
     End Set
   End Property
 
+  Public Property PaymentAccounts As colPaymentOnAccounts
+    Get
+      Return pPaymentAccounts
+    End Get
+    Set(value As colPaymentOnAccounts)
+      pPaymentAccounts = value
+    End Set
+  End Property
+
 
   ''Public Property WorkOrders As colWorkOrders
   ''  Get
@@ -578,7 +595,24 @@ Public Class dmSalesOrder : Inherits dmBase
   End Property
 
 
+  Public Function GetTotalValueWithCarriage() As Decimal
 
+    Dim mRetVal As Decimal
+    mRetVal = pSalesOrderItems.GetTotalValue
+    mRetVal = mRetVal + ShippingCost
+
+    Return mRetVal
+
+
+  End Function
+
+  Public Function GetTotalInvoiceValue() As Decimal
+    Dim mRetVal As Decimal
+    mRetVal = pInvoices.GetTotalValue
+
+
+    Return mRetVal
+  End Function
 
 End Class
 

@@ -164,7 +164,7 @@ Public Class colWorkOrderAllocations : Inherits colBase(Of dmWorkOrderAllocation
 
   End Function
 
-  Public Function ItemFromSalesOrderPhaseID(ByVal vSalesOrderPhaseItemID As Integer) As dmWorkOrderAllocation
+  Public Function ItemFromSalesOrderPhaseItemID(ByVal vSalesOrderPhaseItemID As Integer) As dmWorkOrderAllocation
     Dim mItem As dmWorkOrderAllocation
     Dim mRetVal As dmWorkOrderAllocation = Nothing
 

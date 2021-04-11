@@ -153,11 +153,11 @@ Public Class fccWorkOrderDetailConstruction
   End Property
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mdsoHR As dsoHR
     Dim mSOID As Integer
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
 
     If pPrimaryKeyID = 0 Then
       '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
@@ -205,9 +205,9 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Function SaveObjects() As Boolean
     Dim mRetVal As Boolean
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
     mdso.SaveWorkOrderDown(pWorkOrder)
 
     mRetVal = True
@@ -432,7 +432,9 @@ Public Class fccWorkOrderDetailConstruction
   Public Function GetProductInfos() As colProductBaseInfos
     Dim mRetVal As New colProductBaseInfos
     Dim mdso As New dsoProductAdmin(DBConn)
-    mdso.LoadProductInfosByWhere(mRetVal, "")
+    Dim mWhere As String
+    mWhere = "Status <> " & CInt(eProductStatus.Obsolete) & " or status is null"
+    mdso.LoadProductInfosByWhere(mRetVal, mWhere)
     Return mRetVal
   End Function
 
@@ -476,19 +478,13 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Sub LoadSalesOrderPhaseByWhere(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseInfos, ByVal vWhere As String)
 
-    Dim mdso As New dsoSales(DBConn)
+    Dim mdso As New dsoSalesOrder(DBConn)
 
     mdso.LoadSalesOrderPhaseInfos(rSalesOrderPhaseItemInfos, vWhere)
 
   End Sub
 
-  Public Sub LoadSalesOrderPhaseItemsByWhere(ByRef rSalesOrderPhaseItemInfo As colSalesOrderPhaseItemInfos, ByVal vWhere As String)
 
-    Dim mdso As New dsoSales(DBConn)
-
-    mdso.LoadSalesOrderPhaseItemsByWhere(rSalesOrderPhaseItemInfo, vWhere)
-
-  End Sub
 
   Friend Function CreateWorkOrderAllocation(ByRef rWorkOrder As dmWorkOrder, ByVal vPhaseItemComponentID As Integer) As dmWorkOrderAllocation
     Dim mRetVal As New dmWorkOrderAllocation
@@ -506,7 +502,7 @@ Public Class fccWorkOrderDetailConstruction
 
   Public Sub RefreshCurrentWorkOrderAllocationEditors()
     Dim mWOAE As clsWorkOrderAllocationEditor
-    Dim mdsoSales As dsoSales
+    Dim mdsoSales As dsoSalesOrder
     Dim mSOPs As New colSalesOrderPhaseInfos
     Dim mSOPI As clsSalesOrderPhaseInfo
     Dim mWhere As String = ""
@@ -514,7 +510,7 @@ Public Class fccWorkOrderDetailConstruction
 
     If pWorkOrder IsNot Nothing Then
       If pWorkOrder.WorkOrderAllocations IsNot Nothing Then 'And pWorkOrder.WorkOrderAllocations.Count
-        mdsoSales = New dsoSales(pDBConn)
+        mdsoSales = New dsoSalesOrder(pDBConn)
 
 
 
@@ -671,4 +667,37 @@ Public Class fccWorkOrderDetailConstruction
 
 
   End Sub
+
+  Public Sub LoadWoodStockItemsForPicker(ByRef rStockItemsForPickers As colStockItems)
+    Dim mdso As New dsoStock(pDBConn)
+    Dim mWhere As String
+
+
+
+    Try
+      mWhere = "Category = " & eStockItemCategory.Timber
+      mWhere &= " and ItemType in ("
+
+      For Each mItemTypeID As clsValueItem In eStockItemTypeTimberWood.GetInstance.ValueItems
+
+        Select Case mItemTypeID.ItemValue
+          Case eStockItemTypeTimberWood.MAS, eStockItemTypeTimberWood.Primera, eStockItemTypeTimberWood.Segunda, eStockItemTypeTimberWood.Tercera, eStockItemTypeTimberWood.CepilladoPrimera,
+               eStockItemTypeTimberWood.CepilladoSegunda, eStockItemTypeTimberWood.CepilladoTercera
+            mWhere &= mItemTypeID.ItemValue & ","
+        End Select
+
+      Next
+
+      mWhere = mWhere.Substring(0, mWhere.Length - 1)
+
+      mWhere &= ")"
+      mdso.LoadStockItemsByWhere(rStockItemsForPickers, mWhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+  End Sub
+
+
 End Class

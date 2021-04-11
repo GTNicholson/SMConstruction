@@ -122,6 +122,15 @@ Public Class dtoWorkOrderAllocation : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadWorkOrderAllocationCollectionByWhere(ByRef rWorkOrderAllocations As colWorkOrderAllocations, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    'mParams.Add("@WorkOrderID", vWorkOrderID)
+    mOK = MyBase.LoadCollection(rWorkOrderAllocations, mParams, "WorkOrderAllocationID", vWhere)
+    rWorkOrderAllocations.TrackDeleted = True
+    If mOK Then rWorkOrderAllocations.IsDirty = False
+    Return mOK
+  End Function
 
   Public Function LoadWorkOrderAllocationCollection(ByRef rWorkOrderAllocations As colWorkOrderAllocations, ByVal vWorkOrderID As Integer) As Boolean
     Dim mParams As New Hashtable

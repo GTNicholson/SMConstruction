@@ -42,12 +42,12 @@ Public Class fccCustomerDetail
   End Property
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     pCustomer = New dmCustomer
 
     If pPrimaryKeyID <> 0 Then
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
 
       pHaveLock = mdso.LockCustomerDisconnected(pPrimaryKeyID)
 
@@ -57,8 +57,8 @@ Public Class fccCustomerDetail
   End Sub
 
   Public Sub SaveObjects()
-    Dim mdso As dsoSales
-    mdso = New dsoSales(pDBConn)
+    Dim mdso As dsoSalesOrder
+    mdso = New dsoSalesOrder(pDBConn)
 
     mdso.SaveCustomerDown(pCustomer)
 
@@ -89,13 +89,13 @@ Public Class fccCustomerDetail
   End Sub
 
   Private Function ClearLocks() As Boolean
-    Dim mdso As dsoSales = Nothing
+    Dim mdso As dsoSalesOrder = Nothing
 
     Dim mOK As Boolean = True
 
     Try
       If pHaveLock Then
-        mdso = New dsoSales(pDBConn)
+        mdso = New dsoSalesOrder(pDBConn)
         mOK = mdso.UnlockCustomerDisconnected(Me.PrimaryKeyID)
       Else
         mOK = True

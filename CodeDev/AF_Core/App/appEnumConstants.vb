@@ -440,7 +440,17 @@ Public Enum eMaterialRequirementType
   OtherChanges = 4
 End Enum
 
+Public Enum eProductStatus
+  Active = 0
+  Obsolete = 1
+End Enum
 
+Public Enum eWorkOrderStatus
+  <Description("En Proceso")> InProcess = 1
+  <Description("Entregada")> Complete = 2
+  <Description("Cancelada")> Cancelled = 3
+
+End Enum
 Public Enum eProductBOMObjectType
   Wood = 1
   StockItems = 2

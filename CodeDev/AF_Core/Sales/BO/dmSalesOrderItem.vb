@@ -29,6 +29,13 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pProductConstructionType As Int32
   Private pComments As String
   Private pUoM As Integer
+
+  Private pWoodCost As Decimal
+  Private pStockItemCost As Decimal
+  Private pTransportationCost As Decimal
+  Private pManpowerCost As Decimal
+  Private pSubContractCost As Decimal
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -90,6 +97,11 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .ProductConstructionType = ProductConstructionType
       .Comments = Comments
       .UoM = UoM
+      .WoodCost = WoodCost
+      .StockItemCost = StockItemCost
+      .TransportationCost = TransportationCost
+      .ManpowerCost = ManpowerCost
+      .SubContractCost = SubContractCost
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -346,6 +358,59 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Get
   End Property
 
+
+  Public Property WoodCost As Decimal
+    Get
+      Return pWoodCost
+    End Get
+    Set(value As Decimal)
+      If pWoodCost <> value Then IsDirty = True
+      pWoodCost = value
+    End Set
+  End Property
+
+  Public Property StockItemCost As Decimal
+    Get
+      Return pStockItemCost
+    End Get
+    Set(value As Decimal)
+      If pStockItemCost <> value Then IsDirty = True
+      pStockItemCost = value
+    End Set
+  End Property
+
+  Public Property TransportationCost As Decimal
+    Get
+      Return pTransportationCost
+    End Get
+    Set(value As Decimal)
+      If pTransportationCost <> value Then IsDirty = True
+      pTransportationCost = value
+    End Set
+  End Property
+
+  Public Property ManpowerCost As Decimal
+    Get
+      Return pManpowerCost
+    End Get
+    Set(value As Decimal)
+      If pManpowerCost <> value Then IsDirty = True
+      pManpowerCost = value
+    End Set
+  End Property
+
+  Public Property SubContractCost As Decimal
+    Get
+      Return pSubContractCost
+    End Get
+    Set(value As Decimal)
+      If pSubContractCost <> value Then IsDirty = True
+      pSubContractCost = value
+    End Set
+  End Property
+
+
+
 End Class
 
 
@@ -415,6 +480,31 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
     Return mRetVal
   End Function
 
+  Public Function GetTotalValue() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.Quantity * mItem.UnitPrice
+
+    Next
+
+    Return mRetVal
+
+
+  End Function
+
+  Public Function GetTotalStockItemMatReqBudget() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.StockItemCost * mItem.Quantity
+
+    Next
+
+    Return mRetVal
+  End Function
 End Class
 
 

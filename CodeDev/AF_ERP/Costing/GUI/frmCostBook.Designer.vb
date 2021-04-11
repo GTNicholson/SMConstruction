@@ -579,7 +579,7 @@ Partial Class frmCostBook
         Me.GridColumn4.FieldName = "Cost"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 8
+        Me.GridColumn4.VisibleIndex = 6
         Me.GridColumn4.Width = 85
         '
         'GridColumn5
@@ -631,7 +631,7 @@ Partial Class frmCostBook
         Me.gcCostUnit.Name = "gcCostUnit"
         Me.gcCostUnit.OptionsColumn.ReadOnly = True
         Me.gcCostUnit.Visible = True
-        Me.gcCostUnit.VisibleIndex = 4
+        Me.gcCostUnit.VisibleIndex = 5
         Me.gcCostUnit.Width = 112
         '
         'GridColumn9
@@ -642,7 +642,7 @@ Partial Class frmCostBook
         Me.GridColumn9.FieldName = "MinCost"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.VisibleIndex = 7
         Me.GridColumn9.Width = 106
         '
         'gcSpecies
@@ -664,8 +664,6 @@ Partial Class frmCostBook
         Me.GridColumn24.FieldName = "Length"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.ReadOnly = True
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 5
         Me.GridColumn24.Width = 62
         '
         'GridColumn25
@@ -676,8 +674,6 @@ Partial Class frmCostBook
         Me.GridColumn25.FieldName = "Width"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.ReadOnly = True
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 6
         Me.GridColumn25.Width = 64
         '
         'GridColumn26
@@ -689,7 +685,7 @@ Partial Class frmCostBook
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.ReadOnly = True
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 7
+        Me.GridColumn26.VisibleIndex = 4
         Me.GridColumn26.Width = 48
         '
         'repoCostUnit

@@ -71,7 +71,7 @@ Public Class fccPickMaterials
     Try
 
       pDBConn.Connect()
-      mdto = New dtoWorkOrderInfo(DBConn, 3)
+      mdto = New dtoWorkOrderInfo(DBConn, dtoWorkOrderInfo.eMode.WorkOrderTracking)
       mdto.LoadWorkOrderInfoCollectionByWhere(rcolWorkOrderInfos, mwhere)
 
 
@@ -107,7 +107,7 @@ Public Class fccPickMaterials
   End Sub
 
   Public Function LoadWorkOrderInfoDT() As DataTable
-    Dim mdso As New dsoSales(DBConn)
+    Dim mdso As New dsoSalesOrder(DBConn)
     Dim mDT As DataTable = Nothing
     mdso.LoadWorkOrderDT(mDT, "")
     Return mDT
@@ -138,6 +138,7 @@ Public Class fccPickMaterials
     Try
       Dim mdsoTran As dsoStockTransactions
       Dim mMatReq As dtoMaterialRequirement
+      Dim mExchangeValue As Decimal
 
       Dim mdsoStock As dsoStock
       Dim mSIL As New dmStockItemLocation
@@ -153,7 +154,8 @@ Public Class fccPickMaterials
           Else
             mSIL = Nothing
           End If
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Dollar, mMRP.StockItem.StdCost, 1)
+          mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue)
           mMRP.ToProcessQty = 0
         End If
 
@@ -163,14 +165,21 @@ Public Class fccPickMaterials
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
   End Sub
+  Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(DBConn)
+    Dim mExchangeRate As Decimal = 0
 
+    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
   Public Sub CreateAdditionalMatReqs(ByRef rStockItemList As List(Of RTIS.ERPStock.intStockItemDef))
     Dim mMatReqs As New colMaterialRequirements
     Dim mMatReq As dmMaterialRequirement
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
 
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
 
       For Each mSI As dmStockItem In rStockItemList
         mMatReq = New dmMaterialRequirement

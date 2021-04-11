@@ -67,14 +67,14 @@ Public Class fccSalesOrderDetailSM
 
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
 
     If pPrimaryKeyID = 0 Then
       pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
     Else
       pSalesOrder = New dmSalesOrder
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadSalesOrderDown(pSalesOrder, pPrimaryKeyID)
     End If
     pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
@@ -83,8 +83,8 @@ Public Class fccSalesOrderDetailSM
 
   Public Sub SaveObjects()
     Try
-      Dim mdso As dsoSales
-      mdso = New dsoSales(pDBConn)
+      Dim mdso As dsoSalesOrder
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -131,9 +131,9 @@ Public Class fccSalesOrderDetailSM
 
   Public Function GetCustomerList() As colCustomers
     Dim mRetVal As New colCustomers
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadCustomers(mRetVal)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -143,9 +143,9 @@ Public Class fccSalesOrderDetailSM
 
   Public Function GetInvoicesList() As colInvoices
     Dim mRetVal As New colInvoices
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadInvoices(mRetVal, pSalesOrder.SalesOrderID)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -178,12 +178,12 @@ Public Class fccSalesOrderDetailSM
   End Sub
 
   Public Sub AddSalesOrderItem(ByVal vProductType As eProductType)
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mSOI As dmSalesOrderItem
     Try
       SaveObjects()
       mSOI = pSalesOrderHandler.AddSalesOrderItem(vProductType)
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
 
 
@@ -203,12 +203,12 @@ Public Class fccSalesOrderDetailSM
   End Sub
 
   Public Sub AddWorkOrder(ByRef rSOI As dmSalesOrderItem, ByVal vProductType As eProductType)
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mWO As dmWorkOrder
     Try
       SaveObjects()
       mWO = pSalesOrderHandler.AddWorkOrder(rSOI, vProductType)
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveWorkOrderDown(mWO)
       SaveObjects()
     Catch ex As Exception
@@ -245,9 +245,9 @@ Public Class fccSalesOrderDetailSM
 
 
   Public Sub ReloadCustomer()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Try
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadCustomerDown(pSalesOrder.Customer, pSalesOrder.CustomerID)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
@@ -315,9 +315,9 @@ Public Class fccSalesOrderDetailSM
 
 
   Public Sub RefreshWorkOrderNos(ByRef rSalesOrderItem As dmSalesOrderItem)
-    Dim mDSO As dsoSales
+    Dim mDSO As dsoSalesOrder
     Dim mWONo As String
-    mDSO = New dsoSales(pDBConn)
+    mDSO = New dsoSalesOrder(pDBConn)
     For Each mWO As dmWorkOrder In rSalesOrderItem.WorkOrders
       mWONo = mDSO.WorkOrderNoFromID(mWO.WorkOrderID)
       mWO.WorkOrderNo = mWONo

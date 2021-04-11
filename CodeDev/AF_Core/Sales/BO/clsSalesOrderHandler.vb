@@ -53,6 +53,7 @@ Public Class clsSalesOrderHandler
       mNewSOI = New dmSalesOrderItem
       mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
       mNewSOI.UoM = eUoM.GLB
+      mNewSOI.Quantity = 1
       ''mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
 
       'AddWorkOrder(mNewSOI, vProductType)
@@ -149,7 +150,7 @@ Public Class clsSalesOrderHandler
   Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rTargetSalesOrderHouse As dmSalesOrderHouse, ByRef rConfiguredHouseType As dmHouseType, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vProductCostBookID As Integer)
     Dim mDict As New Dictionary(Of Integer, dmSalesItemAssembly)
     Dim mSOSIA As dmSalesItemAssembly
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mProducts As colProductBases
     Dim mHTSIIs As colHouseTypeSalesItemInfos
     Dim mSalesItem As dmSalesOrderItem
@@ -161,7 +162,7 @@ Public Class clsSalesOrderHandler
     pSalesOrder.ProductCostBookID = vProductCostBookID
     mdsoCB.LoadProductCostDown(mProductCost, pSalesOrder.ProductCostBookID)
 
-    mdso = New dsoSales(rDBConn)
+    mdso = New dsoSalesOrder(rDBConn)
 
     '// Create the SalesItemAssembleys first
     '// and Make a dictionary of oldID to new SalesItem

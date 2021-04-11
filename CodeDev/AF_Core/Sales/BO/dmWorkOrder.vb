@@ -59,7 +59,7 @@ Public Class dmWorkOrder : Inherits dmBase
 
   Private pWoodMaterialRequirements As colMaterialRequirements
   Private pStockItemMaterialRequirements As colMaterialRequirements
-
+  Private pStatus As Byte
   Public Sub New()
     MyBase.New()
   End Sub
@@ -151,6 +151,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .WorkOrderProcessOption = WorkOrderProcessOption
       .WorkOrderTargetWoodType = WorkOrderTargetWoodType
       .Comments = Comments
+      .Status = Status
       .StockItemMaterialRequirements = StockItemMaterialRequirements.Clone
       .WoodMaterialRequirements = WoodMaterialRequirements.Clone
       'Add entries here for each collection and class property
@@ -641,6 +642,16 @@ Public Class dmWorkOrder : Inherits dmBase
     End Get
     Set(value As colMaterialRequirements)
       pWoodMaterialRequirements = value
+    End Set
+  End Property
+
+  Public Property Status As Byte
+    Get
+      Return pStatus
+    End Get
+    Set(value As Byte)
+      If pStatus <> value Then IsDirty = True
+      pStatus = value
     End Set
   End Property
 End Class

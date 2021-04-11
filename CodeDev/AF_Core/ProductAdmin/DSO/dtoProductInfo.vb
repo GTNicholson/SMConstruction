@@ -132,7 +132,7 @@ Public Class dtoProductInfo : Inherits dtoBase
   End Function
 
 
-  Public Function LoadProductInfosCollection(ByRef rProductInfos As colProductBaseInfos) As Boolean
+  Public Function LoadProductInfosCollection(ByRef rProductInfos As colProductBaseInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     Dim mdtoProductBOM As dtoProductBOM
@@ -152,7 +152,7 @@ Public Class dtoProductInfo : Inherits dtoBase
         End If
 
       Case eMode.AFStructure
-        mOK = MyBase.LoadCollection(rProductInfos, mParams, "ProductStructureID")
+        mOK = MyBase.LoadCollection(rProductInfos, mParams, "ProductStructureID", vWhere)
 
         If mOK Then
           If rProductInfos IsNot Nothing Then

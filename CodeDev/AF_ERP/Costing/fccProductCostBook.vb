@@ -106,7 +106,7 @@ Public Class fccProductCostBook
     Try
 
 
-      Dim mdsoSalesOrder As New dsoSales(pDBConn)
+      Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
 
       pIsLocked = mdsoSalesOrder.LockFromTableRecord("ProductCostBook", pCostBookID)
 
@@ -147,7 +147,7 @@ Public Class fccProductCostBook
   Public Function LoadObject() As Boolean
 
     Dim mOK As Boolean = True
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     If pDBConn.Connect Then
 
@@ -156,7 +156,7 @@ Public Class fccProductCostBook
         SaveProductCostBook()
         pCostBookID = pProductCostBook.ProductCostBookID
       Else
-        mdso = New dsoSales(pDBConn)
+        mdso = New dsoSalesOrder(pDBConn)
         pIsLocked = mdso.LockTableRecord("ProductCostBook", pCostBookID)
       End If
       LoadCostBookAndCostBookEntry()
@@ -169,17 +169,17 @@ Public Class fccProductCostBook
 
 
   Public Sub LoadCostBookAndCostBookEntry()
-    Dim mDSO As New dsoSales(pDBConn)
+    Dim mDSO As New dsoSalesOrder(pDBConn)
     mDSO.LoadProductCostBook(pProductCostBook, pCostBookID)
     mDSO.LoadProductCostBookEntry(pInstallationProductCostBookEntrys, pCostBookID)
     mDSO.LoadProductCostBookEntry(pStructureProductCostBookEntrys, pCostBookID)
   End Sub
 
   Public Function SaveObject() As Boolean
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
     Dim mOK As Boolean = False
 
-    Dim mdsoSalesOrder As New dsoSales(DBConn)
+    Dim mdsoSalesOrder As New dsoSalesOrder(DBConn)
 
 
     Try
@@ -223,7 +223,7 @@ Public Class fccProductCostBook
   Public Function SaveProductCostBookEntry() As Boolean
 
     Dim mOK As Boolean = False
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
 
     If pInstallationProductCostBookEntrys IsNot Nothing Then
       mOK = mdso.SaveProductCostBookEntryCollection(pInstallationProductCostBookEntrys, pCostBookID)
@@ -240,7 +240,7 @@ Public Class fccProductCostBook
 
   Public Function SaveProductCostBook() As Boolean
     Dim mOK As Boolean = False
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
 
     If pProductCostBook IsNot Nothing Then
       mOK = mdso.SaveProductCostBook(pProductCostBook)
@@ -282,7 +282,7 @@ Public Class fccProductCostBook
 
   Public Sub ClearObjects()
     If pIsLocked And pCostBookID > 0 Then
-      Dim mdsoSalesOrder As New dsoSales(pDBConn)
+      Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
       mdsoSalesOrder.UnlockProductCostBook("ProductCostBook", pCostBookID)
     End If
     pProductCostBook = Nothing

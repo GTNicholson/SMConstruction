@@ -516,6 +516,6 @@ Public Class frmTabbedMDI_DevUtil
   End Sub
 
   Private Sub nbiSalesOrderReview_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles nbiSalesOrderReview.LinkClicked
-    frmSalesOrderReview.OpenModal()
+    'frmSalesOrderReview.OpenModal()
   End Sub
 End Class

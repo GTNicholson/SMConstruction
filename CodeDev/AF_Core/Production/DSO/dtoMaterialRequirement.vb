@@ -171,6 +171,16 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
   End Function
 
 
+  Public Function LoadMaterialRequirementCollectionByWhere(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+
+    mOK = MyBase.LoadCollection(rMaterialRequirements, mParams, "MaterialRequirementID", vWhere)
+    rMaterialRequirements.TrackDeleted = True
+    If mOK Then rMaterialRequirements.IsDirty = False
+    Return mOK
+  End Function
+
   Public Function LoadMaterialRequirementCollection(ByRef rMaterialRequirements As colMaterialRequirements, ByVal vObjectType As Integer, ByVal vObjectID As Integer, ByVal vMatReqType As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean

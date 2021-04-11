@@ -295,7 +295,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
       'mdto.LoadProductInfosCollection(rProductInfos)
 
       mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
-      mdto.LoadProductInfosCollection(rProductInfos)
+      mdto.LoadProductInfosCollection(rProductInfos, vWhere)
 
 
     Catch ex As Exception
@@ -311,7 +311,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
       pDBConn.Connect()
 
       mdto = New dtoProductInfo(pDBConn, dtoProductInfo.eMode.AFStructure)
-      mdto.LoadProductInfosCollection(rProductInfos)
+      mdto.LoadProductInfosCollection(rProductInfos, "")
 
 
     Catch ex As Exception
@@ -398,7 +398,7 @@ Public Class dsoProductAdmin : Inherits dsoBase
         mReader = pDBConn.LoadReader(mSQL)
         If mReader.Read Then
           mExistingCode = RTIS.DataLayer.clsDBConnBase.DBReadString(mReader, "Code")
-          mLastDotPos = mExistingCode.LastIndexOf(".")
+          mLastDotPos = mExistingCode.LastIndexOf("-")
           If mLastDotPos <> -1 And mExistingCode.Length >= mLastDotPos + 1 Then
             mRetVal = Val(mExistingCode.Substring(mLastDotPos + 1)) + 1
           Else

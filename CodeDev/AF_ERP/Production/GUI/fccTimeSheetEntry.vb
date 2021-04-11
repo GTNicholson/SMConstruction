@@ -36,11 +36,11 @@ Public Class fccTimeSheetEntry
   End Property
 
   Public Sub LoadRefs()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     pEmployees = pRTISGlobal.RefLists.RefIList(appRefLists.Employees)
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
     pWorkOrderInfos = New colWorkOrderInfos
     mdso.LoadWorkOrderInfos(pWorkOrderInfos, "", dtoWorkOrderInfo.eMode.WorkOrderTracking)
   End Sub

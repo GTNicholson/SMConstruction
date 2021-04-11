@@ -75,6 +75,11 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Comments", StringToDBValue(.Comments))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UoM", .UoM)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodCost", .WoodCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemCost", .StockItemCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TransportationCost", .TransportationCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ManpowerCost", .ManpowerCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubContractCost", .SubContractCost)
 
 
 
@@ -107,6 +112,14 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .ProductConstructionType = DBReadInt32(rDataReader, "ProductConstructionType")
         .Comments = DBReadString(rDataReader, "Comments")
         .UoM = DBReadInt32(rDataReader, "UoM")
+
+        .WoodCost = DBReadDecimal(rDataReader, "WoodCost")
+        .StockItemCost = DBReadDecimal(rDataReader, "StockItemCost")
+        .TransportationCost = DBReadDecimal(rDataReader, "TransportationCost")
+        .ManpowerCost = DBReadDecimal(rDataReader, "ManpowerCost")
+        .SubContractCost = DBReadDecimal(rDataReader, "SubContractCost")
+
+
         pSalesOrderItem.IsDirty = False
       End With
       mOK = True

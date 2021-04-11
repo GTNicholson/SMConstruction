@@ -124,6 +124,12 @@ Public Class frmProductDetail_New
 
   Private Sub bbtnSaveAndClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSaveAndClose.ItemClick
     Try
+
+      uctProductDetail.UpdateObject()
+      uctProductDetail.SetCurrentProductBaseInfo(pFormController.ProductBaseInfo)
+      pFormController.ProductStructure = uctProductDetail.FormController.CurrentProductInfo.Product
+      pFormController.SaveObjects()
+
       InitiateSaveExit()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -198,4 +204,21 @@ Public Class frmProductDetail_New
     End If
   End Sub
 
+  Private Sub bbtnCreateCopy_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnCreateCopy.ItemClick
+    pFormController.CreateCopyProduct()
+
+    uctProductDetail.FormController.CurrentProductInfo.Product = pFormController.ProductStructure
+    uctProductDetail.RefreshControls()
+    uctProductDetail.UpdateObject()
+    uctProductDetail.SetCurrentProductBaseInfo(pFormController.ProductBaseInfo)
+
+
+    pFormController.PrimaryKeyID = 0
+    pFormController.SaveObjects()
+
+    pFormController.ProductStructure = uctProductDetail.FormController.CurrentProductInfo.Product
+    uctProductDetail.FormController.ReloadProduct(pFormController.PrimaryKeyID)
+    uctProductDetail.RefreshControls()
+
+  End Sub
 End Class

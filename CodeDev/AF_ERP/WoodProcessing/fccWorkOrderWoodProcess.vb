@@ -153,11 +153,11 @@ Public Class fccWorkOrderWoodProcess
 
 
   Public Sub LoadObject()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
 
 
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
 
     If pWorkOrderID = 0 Then
       '// if it is new work order it will be internal - Sales Order Work Orders will be created from the salesorder form
@@ -232,11 +232,11 @@ Public Class fccWorkOrderWoodProcess
 
   Public Function SaveObjects() As Boolean
     Dim mRetVal As Boolean
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mdsoGeneral As New dsoGeneral(pDBConn)
     Dim mWoodPallets As colWoodPallets
-    mdso = New dsoSales(pDBConn)
+    mdso = New dsoSalesOrder(pDBConn)
 
     If pWorkOrder.WorkOrderNo = "" Or pWorkOrder.Description = "" Then
 

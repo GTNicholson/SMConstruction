@@ -50,10 +50,12 @@ Partial Class uctProductBaseDetail
         Me.gcMatReqOtherDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStockItemUoM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cheStatus = New DevExpress.XtraEditors.CheckEdit()
         Me.grpWoodMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
         Me.grdWoodMaterialRequirements = New DevExpress.XtraGrid.GridControl()
         Me.gvWoodMaterialRequirements = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -76,7 +78,6 @@ Partial Class uctProductBaseDetail
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoCreateDuplicate = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,7 +89,9 @@ Partial Class uctProductBaseDetail
         CType(Me.grdStockItemsMaterialRequirement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvStockItemMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.cheStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpWoodMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpWoodMaterialRequirements.SuspendLayout()
         CType(Me.grdWoodMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +99,6 @@ Partial Class uctProductBaseDetail
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCreateDuplicate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnGenerateCode
@@ -346,6 +348,14 @@ Partial Class uctProductBaseDetail
         Me.GridColumn18.VisibleIndex = 4
         Me.GridColumn18.Width = 123
         '
+        'RepositoryItemSpinEdit3
+        '
+        Me.RepositoryItemSpinEdit3.AutoHeight = False
+        Me.RepositoryItemSpinEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit3.Mask.EditMask = "n3"
+        Me.RepositoryItemSpinEdit3.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
+        '
         'gcAreaID
         '
         Me.gcAreaID.Caption = "Área"
@@ -373,6 +383,7 @@ Partial Class uctProductBaseDetail
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.cheStatus)
         Me.Panel1.Controls.Add(Me.LabelControl8)
         Me.Panel1.Controls.Add(Me.txtStockCode)
         Me.Panel1.Controls.Add(Me.GroupControl4)
@@ -387,6 +398,16 @@ Partial Class uctProductBaseDetail
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1174, 185)
         Me.Panel1.TabIndex = 2
+        '
+        'cheStatus
+        '
+        Me.cheStatus.Location = New System.Drawing.Point(93, 134)
+        Me.cheStatus.Name = "cheStatus"
+        Me.cheStatus.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cheStatus.Properties.Appearance.Options.UseForeColor = True
+        Me.cheStatus.Properties.Caption = "Obsoleto?"
+        Me.cheStatus.Size = New System.Drawing.Size(97, 19)
+        Me.cheStatus.TabIndex = 148
         '
         'grpWoodMaterialRequirements
         '
@@ -485,7 +506,7 @@ Partial Class uctProductBaseDetail
         '
         Me.RepositoryItemSpinEdit2.AutoHeight = False
         Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit2.Mask.EditMask = "n0"
+        Me.RepositoryItemSpinEdit2.Mask.EditMask = "f"
         Me.RepositoryItemSpinEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
         '
@@ -667,14 +688,6 @@ Partial Class uctProductBaseDetail
         Me.repoCreateDuplicate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoCreateDuplicate.Name = "repoCreateDuplicate"
         '
-        'RepositoryItemSpinEdit3
-        '
-        Me.RepositoryItemSpinEdit3.AutoHeight = False
-        Me.RepositoryItemSpinEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit3.Mask.EditMask = "n3"
-        Me.RepositoryItemSpinEdit3.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
-        '
         'uctProductBaseDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -693,8 +706,10 @@ Partial Class uctProductBaseDetail
         CType(Me.grdStockItemsMaterialRequirement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvStockItemMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.cheStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpWoodMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpWoodMaterialRequirements.ResumeLayout(False)
         CType(Me.grdWoodMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
@@ -702,7 +717,6 @@ Partial Class uctProductBaseDetail
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoCreateDuplicate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -752,4 +766,5 @@ Partial Class uctProductBaseDetail
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoCreateDuplicate As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemSpinEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents cheStatus As DevExpress.XtraEditors.CheckEdit
 End Class

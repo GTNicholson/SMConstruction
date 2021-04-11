@@ -39,12 +39,12 @@ Public Class fccInvoice
     End Set
   End Property
   Public Sub AddInvoiceSalesOrderItem()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
     Dim mSOI As dmInvoiceItem
     Try
       SaveObjects()
       mSOI = pSalesOrderHandler.AddInvoiceSalesOrderItem
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveInvoiceDown(pInvoice)
       SaveObjects()
     Catch ex As Exception
@@ -82,12 +82,12 @@ Public Class fccInvoice
   End Sub
 
   Public Sub LoadObjects()
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     pInvoice = New dmInvoice
 
     If pPrimaryKeyID <> 0 Then
-      mdso = New dsoSales(pDBConn)
+      mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadInvoiceDown(pInvoice, pPrimaryKeyID)
       mdso.LoadSalesOrderDown(pInvoice.SalesOrder, pInvoice.SalesOrderID)
 
@@ -107,8 +107,8 @@ Public Class fccInvoice
 
 
   Public Sub SaveObjects()
-    Dim mdso As dsoSales
-    mdso = New dsoSales(pDBConn)
+    Dim mdso As dsoSalesOrder
+    mdso = New dsoSalesOrder(pDBConn)
     mdso.SaveInvoiceDown(pInvoice)
   End Sub
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn

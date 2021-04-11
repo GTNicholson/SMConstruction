@@ -477,7 +477,7 @@ Public Class fccWoodPallet
   End Sub
 
   Public Sub SetCurrentWorkOrder(ByVal vWorkOrderID As Integer)
-    Dim mdso As New dsoSales(pDBConn)
+    Dim mdso As New dsoSalesOrder(pDBConn)
     Dim mWorkOrderInfos As New colWorkOrderInfos
     Dim mWhere As String = ""
     pWorkOrderInfo = Nothing

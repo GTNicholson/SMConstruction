@@ -514,7 +514,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property AverageCost() As Decimal
+  Public Property AverageCost() As Decimal Implements intStockItemDef.StdCost
     Get
       Return pAverageCost
     End Get
@@ -671,7 +671,7 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property StdCost As Decimal Implements intStockItemDef.StdCost
+  Public Property StdCost As Decimal
     Get
       Return pStdCost
     End Get

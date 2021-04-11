@@ -123,7 +123,7 @@ Public Class fccCostBook
   Public Function LockOrder() As Boolean
 
     Try
-      Dim mdsoSalesOrder As New dsoSales(pDBConn)
+      Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
 
       pIsLocked = mdsoSalesOrder.LockCostBook(pCostBookID)
 
@@ -162,7 +162,7 @@ Public Class fccCostBook
   Public Function LoadObject() As Boolean
 
     Dim mOK As Boolean = True
-    Dim mdso As dsoSales
+    Dim mdso As dsoSalesOrder
 
     If pDBConn.Connect Then
 
@@ -171,7 +171,7 @@ Public Class fccCostBook
         SaveCostBook()
         pCostBookID = pCostBook.CostBookID
       Else
-        mdso = New dsoSales(pDBConn)
+        mdso = New dsoSalesOrder(pDBConn)
         pIsLocked = mdso.LockCostBook(pCostBookID)
       End If
       LoadCostBookAndCostBookEntry()
@@ -193,7 +193,7 @@ Public Class fccCostBook
     Dim mdso As New dsoCostBook(pDBConn)
     Dim mOK As Boolean = False
 
-    Dim mdsoSalesOrder As New dsoSales(DBConn)
+    Dim mdsoSalesOrder As New dsoSalesOrder(DBConn)
 
 
     Try
@@ -296,7 +296,7 @@ Public Class fccCostBook
 
   Public Sub ClearObjects()
     If pIsLocked And pCostBookID > 0 Then
-      Dim mdsoSalesOrder As New dsoSales(pDBConn)
+      Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
       mdsoSalesOrder.UnlockCostBook(pCostBookID)
     End If
     pCostBook = Nothing
@@ -306,7 +306,7 @@ Public Class fccCostBook
   Public Sub LoadStockItems(ByRef rStockItems As colStockItems, ByVal vItemType As Integer)
     Dim dsoStock As New dsoStock(DBConn)
 
-    Dim mstr As String = "category = " & eStockItemCategory.Timber & "and ItemType = " & vItemType.ToString & "and IsCostingOnly=1"
+    Dim mstr As String = "category = " & CInt(eStockItemCategory.Timber) & "and ItemType = " & vItemType.ToString
 
 
     dsoStock.LoadstockItemsByCategory(rStockItems, mstr)

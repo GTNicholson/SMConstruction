@@ -60,18 +60,22 @@ Public Class dsoCostBook : Inherits dsoBase
 
   End Sub
 
-  Public Sub LoadCostBookEntrys(ByRef rCostBookEntrys As colCostBookEntrys, ByVal vCostBookID As Integer)
+  Public Sub LoadCostBookEntry(pCostBookEntrys As colCostBookEntrys, pCostBookID As Integer)
     Dim mdtoCostBookEntry As dtoCostBookEntry = New dtoCostBookEntry(pDBConn)
     Try
       If pDBConn.Connect() Then
-        mdtoCostBookEntry.LoadCostBookEntryCollection(rCostBookEntrys, vCostBookID)
+        mdtoCostBookEntry.LoadCostBookEntryCollection(pCostBookEntrys, pCostBookID)
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
+
   End Sub
+
+
+
 
   Public Function SaveCostBookEntryCollection(ByRef rCostBookEntrys As colCostBookEntrys, ByVal vCostBookID As Integer) As Boolean
     Dim mdto As New dtoCostBookEntry(pDBConn)
@@ -145,19 +149,6 @@ Public Class dsoCostBook : Inherits dsoBase
 
   End Sub
 
-  Public Sub LoadCostBookEntry(pCostBookEntrys As colCostBookEntrys, pCostBookID As Integer)
-    Dim mdtoCostBookEntry As dtoCostBookEntry = New dtoCostBookEntry(pDBConn)
-    Try
-      If pDBConn.Connect() Then
-        mdtoCostBookEntry.LoadCostBookEntryCollection(pCostBookEntrys, pCostBookID)
-      End If
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
-    Finally
-      If pDBConn.IsConnected Then pDBConn.Disconnect()
-    End Try
-
-  End Sub
 
 
 

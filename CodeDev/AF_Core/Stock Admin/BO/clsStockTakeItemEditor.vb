@@ -95,7 +95,7 @@
   Public ReadOnly Property StdCost As Decimal
     Get
 
-      Return pStockItem.StdCost
+      Return pStockItem.AverageCost
     End Get
   End Property
 

@@ -38,7 +38,7 @@
 
     If mPCItemType IsNot Nothing Then
 
-      mRetVal &= mPCItemType.Abbreviation
+      mRetVal &= mPCItemType.Abbreviation & "-"
 
       mPCSubItemType = CType(mRefLists.RefIList(appRefLists.ProductConstructionSubType), colProductConstructionSubTypes).ItemFromKey(rProductBase.SubItemType)
 

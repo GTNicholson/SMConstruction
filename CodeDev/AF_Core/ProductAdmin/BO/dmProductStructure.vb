@@ -11,7 +11,6 @@ Public Class dmProductStructure : Inherits dmProductBase
 
   Private pProductStockItemBOMs As colProductBOMs
   Private pProductWoodBOMs As colProductBOMs
-
   Public Sub New()
     MyBase.New()
   End Sub
@@ -74,6 +73,7 @@ Public Class dmProductStructure : Inherits dmProductBase
       .IsGeneric = IsGeneric
       .SalesOrderID = SalesOrderID
       .FullyDefined = FullyDefined
+      .Status = Status
       .ProductWoodBOMs = ProductWoodBOMs.Clone
       .ProductStockItemBOMs = ProductStockItemBOMs.Clone
       .POFiles = POFiles.Clone
@@ -137,9 +137,10 @@ Public Class dmProductStructure : Inherits dmProductBase
   End Property
 
 
+
   Private ReadOnly Property intItemSpecCore_IsAnyDirty As Boolean
     Get
-      Throw New NotImplementedException()
+
     End Get
   End Property
 
@@ -149,7 +150,7 @@ Public Class dmProductStructure : Inherits dmProductBase
       Return eProductType.StructureAF
     End Get
     Set(value As Integer)
-      Throw New NotImplementedException()
+
     End Set
   End Property
 

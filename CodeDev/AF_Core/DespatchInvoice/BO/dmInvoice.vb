@@ -257,6 +257,16 @@ Public Class colInvoices : Inherits colBase(Of dmInvoice)
     MyBase.New(vList)
   End Sub
 
+  Friend Function GetTotalValue() As Decimal
+
+    Dim mRetVal As Decimal
+    For Each mItem In MyBase.Items
+
+      mRetVal += mItem.NetValue
+
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 

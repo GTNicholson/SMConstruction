@@ -1,0 +1,121 @@
+
+insert into Grouping (GroupingName)
+values ('Costeo')
+go
+
+delete from UserList
+where UserID in (7,8,9,1006,1007,1008,1009,1010,1011,1012,1016,1017,1018,1019,1021)
+go
+
+alter table WorkOrder
+add Status tinyint
+go
+
+
+
+ALTER view [dbo].[vwWorkOrderTracking]
+as
+SELECT
+WO.WorkOrderID, 
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate,
+Wo.PlannedDeliverDate, 
+WO.UnitPrice,
+WO.WorkOrderType, 
+WO.EmployeeID,
+WO.ProductID,
+WO.Status,
+SO.ProjectName, 
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+SO.DueTime, 
+SO.FinishDate,
+
+C.CompanyName, 
+C.SalesAreaID, 
+ 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName  
+
+FROM            
+dbo.WorkOrder AS WO 
+Left JOIN dbo.SalesOrderItem AS SOI ON SOI.SalesOrderItemID = WO.SalesOrderItemID 
+Left JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = WO.SalesOrderID 
+LEFT JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+
+
+GO
+
+ALTER view [dbo].[vwWorkOrderInternalInfo]
+as
+
+SELECT        
+WO.WorkOrderID, 
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+wo.WorkOrderWoodType, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate, 
+WO.PlannedDeliverDate, 
+WO.ProductID,
+CONCAT(Emp.FirstName, ' ', Emp.LastName)  AS EmployeeName, 
+WO.WorkOrderType,
+wo.UnitPrice,
+WO.WorkOrderProcessOption,
+WO.WorkOrderTargetWoodType,
+WO.STATUS,
+Emp.EmployeeID
+FROM dbo.WorkOrder AS WO 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+Where IsInternal = 1
+
+GO
+
+ALTER view [dbo].[vwWorkOrderInfo]
+as
+
+SELECT        
+WO.WorkOrderID, 
+WO.SalesOrderItemWOIndex,
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate,
+Wo.PlannedDeliverDate,
+WO.WorkOrderWoodType, 
+wo.status,
+SO.ProjectName, 
+WO.ProductID,
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+C.CompanyName, 
+C.SalesAreaID, 
+WO.UnitPrice, 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName, 
+SO.DueTime, 
+SO.FinishDate, 
+WO.WorkOrderType, 
+WO.EmployeeID,
+WO.WorkOrderProcessOption
+FROM            
+dbo.WorkOrder AS WO 
+INNER JOIN dbo.SalesOrderItem AS SOI ON SOI.SalesOrderItemID = WO.SalesOrderItemID 
+INNER JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = WO.SalesOrderID 
+LEFT OUTER JOIN  dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT OUTER JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE (ISNULL(WO.isInternal, 0) = 0)
+
+GO

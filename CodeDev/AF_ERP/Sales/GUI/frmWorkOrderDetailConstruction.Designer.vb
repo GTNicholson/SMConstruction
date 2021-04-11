@@ -25,6 +25,12 @@ Partial Class frmWorkOrderDetailConstruction
     Me.components = New System.ComponentModel.Container()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderDetailConstruction))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
@@ -42,6 +48,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.StandaloneBarDockControl2 = New DevExpress.XtraBars.StandaloneBarDockControl()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnCreateCopy = New DevExpress.XtraBars.BarButtonItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.grpProduct = New DevExpress.XtraEditors.GroupControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -115,9 +122,11 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcMaterialType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSpecie = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoChangeSpecie = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.lblWorkOrderID = New System.Windows.Forms.Label()
+        Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,7 +174,9 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.grdWoodMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoChangeSpecie, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -178,8 +189,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.BarManager1.DockControls.Add(Me.StandaloneBarDockControl1)
         Me.BarManager1.DockControls.Add(Me.StandaloneBarDockControl2)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave, Me.btnSaveAndClose, Me.btnClose, Me.bbtnCreateNewProduct, Me.bbtnEditProduct, Me.btnSelectProduct, Me.bbtnSaveProduct, Me.BarButtonItem1})
-        Me.BarManager1.MaxItemId = 8
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSave, Me.btnSaveAndClose, Me.btnClose, Me.bbtnCreateNewProduct, Me.bbtnEditProduct, Me.btnSelectProduct, Me.bbtnSaveProduct, Me.BarButtonItem1, Me.bbtnCreateCopy})
+        Me.BarManager1.MaxItemId = 9
         '
         'Bar1
         '
@@ -311,6 +322,13 @@ Partial Class frmWorkOrderDetailConstruction
         Me.BarButtonItem1.Id = 7
         Me.BarButtonItem1.Name = "BarButtonItem1"
         '
+        'bbtnCreateCopy
+        '
+        Me.bbtnCreateCopy.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnCreateCopy.Caption = "Crear Copia"
+        Me.bbtnCreateCopy.Id = 8
+        Me.bbtnCreateCopy.Name = "bbtnCreateCopy"
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 1
@@ -405,6 +423,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl6.AppearanceCaption.Options.UseFont = True
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl6.Controls.Add(Me.cboStatus)
         Me.GroupControl6.Controls.Add(Me.Label3)
         Me.GroupControl6.Controls.Add(Me.btnGenerateMatReq)
         Me.GroupControl6.Controls.Add(Me.dteDueDate)
@@ -441,13 +460,13 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(576, 83)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 14)
+        Me.Label3.Size = New System.Drawing.Size(44, 14)
         Me.Label3.TabIndex = 178
-        Me.Label3.Text = "Fin. Prod."
+        Me.Label3.Text = "Estado"
         '
         'btnGenerateMatReq
         '
-        Me.btnGenerateMatReq.Location = New System.Drawing.Point(649, 79)
+        Me.btnGenerateMatReq.Location = New System.Drawing.Point(579, 127)
         Me.btnGenerateMatReq.Name = "btnGenerateMatReq"
         Me.btnGenerateMatReq.Size = New System.Drawing.Size(125, 23)
         Me.btnGenerateMatReq.TabIndex = 177
@@ -1001,13 +1020,19 @@ Partial Class frmWorkOrderDetailConstruction
         'grdWoodMatReq
         '
         Me.grdWoodMatReq.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdWoodMatReq.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+        Me.grdWoodMatReq.EmbeddedNavigator.Buttons.Edit.Visible = False
+        Me.grdWoodMatReq.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+        Me.grdWoodMatReq.EmbeddedNavigator.Buttons.NextPage.Visible = False
+        Me.grdWoodMatReq.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 23)
         Me.grdWoodMatReq.MainView = Me.gvWoodMatReq
         Me.grdWoodMatReq.MenuManager = Me.BarManager1
         Me.grdWoodMatReq.Name = "grdWoodMatReq"
-        Me.grdWoodMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2})
+        Me.grdWoodMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoChangeSpecie})
         Me.grdWoodMatReq.Size = New System.Drawing.Size(1021, 248)
         Me.grdWoodMatReq.TabIndex = 14
+        Me.grdWoodMatReq.UseEmbeddedNavigator = True
         Me.grdWoodMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMatReq})
         '
         'gvWoodMatReq
@@ -1138,11 +1163,20 @@ Partial Class frmWorkOrderDetailConstruction
         'gcSpecie
         '
         Me.gcSpecie.Caption = "Especie"
+        Me.gcSpecie.ColumnEdit = Me.repoChangeSpecie
         Me.gcSpecie.FieldName = "WoodSpecieDesc"
         Me.gcSpecie.Name = "gcSpecie"
+        Me.gcSpecie.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcSpecie.Visible = True
         Me.gcSpecie.VisibleIndex = 7
         Me.gcSpecie.Width = 77
+        '
+        'repoChangeSpecie
+        '
+        Me.repoChangeSpecie.AutoHeight = False
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.repoChangeSpecie.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, True, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "Cambiar Especie", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoChangeSpecie.Name = "repoChangeSpecie"
         '
         'gcQtyBoardFeet
         '
@@ -1187,6 +1221,17 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblWorkOrderID.Text = "ID:00000"
         Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'cboStatus
+        '
+        Me.cboStatus.Location = New System.Drawing.Point(649, 80)
+        Me.cboStatus.MenuManager = Me.BarManager1
+        Me.cboStatus.Name = "cboStatus"
+        Me.cboStatus.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboStatus.Properties.Appearance.Options.UseFont = True
+        Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboStatus.Size = New System.Drawing.Size(125, 20)
+        Me.cboStatus.TabIndex = 179
+        '
         'frmWorkOrderDetailConstruction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1199,7 +1244,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmWorkOrderDetailConstruction"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmWorkOrderDetailConstruction"
+        Me.Text = "Orden de Trabajo"
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1249,7 +1294,9 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.grdWoodMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWoodMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoChangeSpecie, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1348,4 +1395,7 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents uctProductDetail As uctProductBaseDetail
     Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents repoChangeSpecie As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents bbtnCreateCopy As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents cboStatus As DevExpress.XtraEditors.ComboBoxEdit
 End Class

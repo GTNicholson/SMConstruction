@@ -293,6 +293,7 @@ Public Class frmWorkOrderDetailConstruction
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMatReq, gcMaterialType, mVIs)
 
+    clsDEControlLoading.FillDEComboVI(cboStatus, clsEnumsConstants.EnumToVIs(GetType(eWorkOrderStatus)))
 
   End Sub
 
@@ -330,6 +331,7 @@ Public Class frmWorkOrderDetailConstruction
 
         ''clsDEControlLoading.SetDECombo(cboWoodFinish, .WoodFinish)
         clsDEControlLoading.SetDECombo(cboElaboratedBy, .EmployeeID)
+        clsDEControlLoading.SetDECombo(cboStatus, .Status)
 
 
         ''ceMaquinado.Checked = .Machining
@@ -397,7 +399,7 @@ Public Class frmWorkOrderDetailConstruction
         .PlannedDeliverDate = dteDueDate.EditValue
         ''.WoodFinish = clsDEControlLoading.GetDEComboValue(cboWoodFinish)
         .EmployeeID = clsDEControlLoading.GetDEComboValue(cboElaboratedBy)
-
+        .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
         .WorkcentreID = getCheckValue()
 
         ''.Machining = ceMaquinado.Checked
@@ -732,6 +734,10 @@ Public Class frmWorkOrderDetailConstruction
   Private Sub InitiateSaveExit() 'User initiated request to save - Call from buttons/menu/toolbar etc.
 
     If CheckSave(False) Then
+      uctProductDetail.UpdateObject()
+      pFormController.CurrentProduct = uctProductDetail.FormController.CurrentProductInfo.Product
+      pFormController.SaveProduct()
+
       CloseForm()
     End If
 
@@ -915,7 +921,7 @@ Public Class frmWorkOrderDetailConstruction
           If mSelectedSalesOrderPhaseInfos.Count > 0 Then
             For Each mSelectedSOPI In mPicker.SelectedObjects
               If mSelectedSOPI IsNot Nothing Then
-                mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseID(mSelectedSOPI.SalesOrderPhaseID)
+                mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseItemID(mSelectedSOPI.SalesOrderPhaseID)
                 If mWorkderAllocation Is Nothing Then
                   mWorkderAllocation = New dmWorkOrderAllocation
                   mWorkderAllocation.WorkOrderID = pFormController.WorkOrder.WorkOrderID
@@ -1173,7 +1179,7 @@ Public Class frmWorkOrderDetailConstruction
 
               mQty = (mMatReq.UnitPiece * pFormController.WorkOrder.WorkOrderAllocations.GetTotalQuantity)
 
-              mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty_NewAF(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
+              mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
 
               ''mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mMatReq.TotalPieces, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
               mValue = mValue
@@ -1201,4 +1207,33 @@ Public Class frmWorkOrderDetailConstruction
       gvWoodMatReq.MoveNext()
     End If
   End Sub
+
+  Private Sub repoChangeSpecie_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles repoChangeSpecie.ButtonPressed
+    Dim mWoodMatReq As dmMaterialRequirement
+    Dim mSI As dmStockItem
+    Dim mPicker As clsPickerStockItem
+    Dim mStockItemsForPickers As New colStockItems
+
+    Try
+      mWoodMatReq = TryCast(gvWoodMatReq.GetFocusedRow, dmMaterialRequirement)
+
+      If mWoodMatReq IsNot Nothing Then
+        pFormController.LoadWoodStockItemsForPicker(mStockItemsForPickers)
+        mPicker = New clsPickerStockItem(mStockItemsForPickers, pFormController.DBConn, pFormController.RTISGlobal)
+        mSI = frmPickerStockItem.OpenPickerSingle(mPicker, True)
+
+        If mSI IsNot Nothing Then
+          mWoodMatReq.StockItemID = mSI.StockItemID
+          mWoodMatReq.WoodSpecie = mSI.Species
+
+        End If
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+
 End Class

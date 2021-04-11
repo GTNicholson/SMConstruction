@@ -86,13 +86,13 @@ Public Class uctProductBaseDetail
           txtDescription.Text = .Description
           txtStockCode.Text = .Code
           lblStockItemID.Text = "ID: " & .ID
+          cheStatus.EditValue = .Status
           clsDEControlLoading.SetDECombo(cboProductItemType, .ItemType)
 
           mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
           If mProductStructure IsNot Nothing Then
             grdStockItemsMaterialRequirement.DataSource = mProductStructure.ProductStockItemBOMs
             grdWoodMaterialRequirements.DataSource = mProductStructure.ProductWoodBOMs
-
           End If
         End With
         UctFileControl1.UserController.FileTrackers = mProductStructure.POFiles
@@ -112,6 +112,8 @@ Public Class uctProductBaseDetail
           .Description = txtDescription.Text
           .Code = txtStockCode.Text
           .ItemType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
+          .Status = cheStatus.EditValue
+
           gvWoodMaterialRequirements.CloseEditor()
           gvStockItemMaterialRequirements.CloseEditor()
           UctFileControl1.UpdateObject()
@@ -224,7 +226,7 @@ Public Class uctProductBaseDetail
     cboProductItemType.ReadOnly = vReadOnly
     txtStockCode.ReadOnly = vReadOnly
     btnGenerateCode.Enabled = Not vReadOnly
-
+    cheStatus.ReadOnly = vReadOnly
     gvWoodMaterialRequirements.OptionsBehavior.ReadOnly = vReadOnly
     gvStockItemMaterialRequirements.OptionsBehavior.ReadOnly = vReadOnly
 
@@ -461,7 +463,7 @@ Public Class uctProductBaseDetail
 
 
                 mQty = mProductBOM.UnitPiece
-                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty_NewAF(mQty, mProductBOM.NetLenght, mProductBOM.NetWidth, mProductBOM.NetThickness)
+                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mProductBOM.NetLenght, mProductBOM.NetWidth, mProductBOM.NetThickness)
                 mValue = mValue
                 e.Value = mValue
 

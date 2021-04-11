@@ -429,10 +429,47 @@ Public Class dmMaterialRequirement : Inherits dmBase
       Dim mQty As Decimal
       Dim mValue As Decimal
       mQty = UnitPiece
-      mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty_NewAF(mQty, NetLenght, NetWidth, NetThickness)
+      mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, NetLenght, NetWidth, NetThickness)
 
 
       Return mValue
+    End Get
+  End Property
+  Public ReadOnly Property InitialWidth As Decimal
+    Get
+      Return clsSMSharedFuncs.CMToQuaterInches(NetWidth)
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialWidthFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInches(NetWidth))
+    End Get
+  End Property
+  Public ReadOnly Property InitialLenght As Decimal
+    Get
+      Return clsSMSharedFuncs.CMToQuaterInches(NetLenght)
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialLenghtFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToHalfInchesLength(NetLenght))
+    End Get
+  End Property
+
+  Public ReadOnly Property InitialLenghtFractionFeet As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.WoodLengthFeet(NetLenght))
+    End Get
+  End Property
+
+
+  Public ReadOnly Property InitialThicknessFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.GrosWoodThickness(NetThickness))
     End Get
   End Property
 
@@ -507,6 +544,14 @@ Public Class colMaterialRequirements : Inherits colBase(Of dmMaterialRequirement
     Return mIndex
   End Function
 
+  Public Function GetTotalBoardFeets() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In MyBase.Items
+      mRetVal += clsSMSharedFuncs.BoardFeetFromCMAndQty(mItem.UnitPiece, mItem.NetLenght, mItem.NetWidth, mItem.NetThickness)
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 
