@@ -94,6 +94,7 @@ Public Class fccSalesOrderReview
       Else
         mSOPII.TempDateExchange = mSOPII.DateCommitted
       End If
+      If mSOPII.TempDateExchange = Date.MinValue Then mSOPII.TempDateExchange = Now
       mSOPII.ExchangeRate = GetExchangeRate(mSOPII.TempDateExchange, eCurrency.Cordobas)
       If mSOPII.ExchangeRate > 0 Then
         mSOPII.SOPIDollarValue = mSOPII.SOPItemMatReqCost / mSOPII.ExchangeRate
@@ -114,7 +115,13 @@ Public Class fccSalesOrderReview
     Dim mdsoGeneral As New dsoGeneral(DBConn)
     Dim mExchangeRate As Decimal = 0
 
-    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
+    If vDate <> Date.MinValue Then
+      mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
+
+    Else
+      mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(Now, vCurrency)
+
+    End If
 
     Return mExchangeRate
   End Function

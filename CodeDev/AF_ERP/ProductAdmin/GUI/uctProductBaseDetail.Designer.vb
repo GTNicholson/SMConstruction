@@ -26,7 +26,13 @@ Partial Class uctProductBaseDetail
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(uctProductBaseDetail))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -78,6 +84,7 @@ Partial Class uctProductBaseDetail
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoCreateDuplicate = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.repobtnChangeSpecie = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +106,7 @@ Partial Class uctProductBaseDetail
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCreateDuplicate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repobtnChangeSpecie, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnGenerateCode
@@ -438,7 +446,7 @@ Partial Class uctProductBaseDetail
         Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodMaterialRequirements.MainView = Me.gvWoodMaterialRequirements
         Me.grdWoodMaterialRequirements.Name = "grdWoodMaterialRequirements"
-        Me.grdWoodMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoCreateDuplicate})
+        Me.grdWoodMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoCreateDuplicate, Me.repobtnChangeSpecie})
         Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1170, 221)
         Me.grdWoodMaterialRequirements.TabIndex = 0
         Me.grdWoodMaterialRequirements.UseEmbeddedNavigator = True
@@ -576,9 +584,11 @@ Partial Class uctProductBaseDetail
         Me.gcWoodSpecie.AppearanceHeader.BackColor = System.Drawing.Color.LightGray
         Me.gcWoodSpecie.AppearanceHeader.Options.UseBackColor = True
         Me.gcWoodSpecie.Caption = "Especie"
+        Me.gcWoodSpecie.ColumnEdit = Me.repobtnChangeSpecie
         Me.gcWoodSpecie.FieldName = "WoodSpecieDesc"
         Me.gcWoodSpecie.Name = "gcWoodSpecie"
         Me.gcWoodSpecie.OptionsColumn.ReadOnly = True
+        Me.gcWoodSpecie.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcWoodSpecie.Visible = True
         Me.gcWoodSpecie.VisibleIndex = 10
         Me.gcWoodSpecie.Width = 61
@@ -685,8 +695,15 @@ Partial Class uctProductBaseDetail
         'repoCreateDuplicate
         '
         Me.repoCreateDuplicate.AutoHeight = False
-        Me.repoCreateDuplicate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoCreateDuplicate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoCreateDuplicate.Name = "repoCreateDuplicate"
+        '
+        'repobtnChangeSpecie
+        '
+        Me.repobtnChangeSpecie.AutoHeight = False
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.repobtnChangeSpecie.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repobtnChangeSpecie.Name = "repobtnChangeSpecie"
         '
         'uctProductBaseDetail
         '
@@ -717,6 +734,7 @@ Partial Class uctProductBaseDetail
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoCreateDuplicate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repobtnChangeSpecie, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -767,4 +785,5 @@ Partial Class uctProductBaseDetail
     Friend WithEvents repoCreateDuplicate As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemSpinEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents cheStatus As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents repobtnChangeSpecie As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

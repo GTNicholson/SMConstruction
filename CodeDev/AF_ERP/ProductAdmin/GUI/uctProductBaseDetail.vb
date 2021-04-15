@@ -380,7 +380,43 @@ Public Class uctProductBaseDetail
 
   End Sub
 
+  Private Sub repobtnChangeSpecie_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles repobtnChangeSpecie.ButtonPressed
+    Dim mWoodProductBOM As dmProductBOM
+    Dim mSI As dmStockItem
+    Dim mPicker As clsPickerStockItem
+    Dim mStockItemsForPickers As New colStockItems
 
+    Try
+      mWoodProductBOM = TryCast(gvWoodMaterialRequirements.GetFocusedRow, dmProductBOM)
+
+      If mWoodProductBOM IsNot Nothing Then
+
+        For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
+
+          If mItem.Value.StockItemType = eStockItemTypeTimberWood.Aserrado Or mItem.Value.StockItemType = eStockItemTypeTimberWood.MAS Or
+              mItem.Value.StockItemType = eStockItemTypeTimberWood.Primera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.Segunda Or
+              mItem.Value.StockItemType = eStockItemTypeTimberWood.Tercera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.ClasificadoZ Then
+            mStockItemsForPickers.Add(mItem.Value)
+
+          End If
+        Next
+
+
+        mPicker = New clsPickerStockItem(mStockItemsForPickers, pFormController.DBConn, pFormController.RTISGlobal)
+        mSI = frmPickerStockItem.OpenPickerSingle(mPicker, True)
+
+        If mSI IsNot Nothing Then
+          mWoodProductBOM.StockItemID = mSI.StockItemID
+          mWoodProductBOM.WoodSpecie = mSI.Species
+
+        End If
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
   Private Sub grpStockItemMaterialRequirement_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpStockItemMaterialRequirement.CustomButtonClick
 
     Try

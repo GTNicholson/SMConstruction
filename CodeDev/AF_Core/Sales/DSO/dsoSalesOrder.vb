@@ -1027,14 +1027,19 @@ Public Class dsoSalesOrder : Inherits dsoBase
 
     '// Load mWOS by where using WorkOrderID in (mwoidlist)
     mWhere = "WorkOrderID in (" & mWOIDList & ")"
+
+    If mWOIDList = "" Then
+      mWhere = ""
+    End If
     LoadWorkOrderByWhere(mWOs, mWhere)
 
 
     '// Load the mMRs by where using ObjectID in (mwoidlist) and objecttype = 2 and MaterialType = Wood
     mMRs = New colMaterialRequirements
-    mWhere = String.Format("ObjectID in ({0}) and ObjectType = {1} and MaterialRequirementType = {2}", mWOIDList, CInt(eObjectType.WorkOrder), CInt(eMaterialRequirementType.Wood))
-    LoadMaterialRequirementByWhere(mMRs, mWhere)
-
+    If mWOIDList <> "" Then
+      mWhere = String.Format("ObjectID in ({0}) and ObjectType = {1} and MaterialRequirementType = {2}", mWOIDList, CInt(eObjectType.WorkOrder), CInt(eMaterialRequirementType.Wood))
+      LoadMaterialRequirementByWhere(mMRs, mWhere)
+    End If
     '// Now calculated the total cost for each SalesOrderPhaseItemInfo
     For Each mSOPII In rSalesOrderPhaseItemInfos
       mTotalWoodCost = 0
@@ -1048,10 +1053,12 @@ Public Class dsoSalesOrder : Inherits dsoBase
               If mWO.Quantity > 0 Then
                 mQty = mMR.Quantity * (mWOA.QuantityRequired / mWO.Quantity)
                 mCBEntry = rCostBookEntries.ItemFromStockItemID(mMR.StockItemID)
-                mTotalWoodCost = mTotalWoodCost + (mCBEntry.Cost * mMR.BoardFeetPerLine)
+                If mCBEntry IsNot Nothing Then
+                  mTotalWoodCost = mTotalWoodCost + (mCBEntry.Cost * mMR.BoardFeetPerLine)
+                End If
               End If
 
-            End If
+              End If
           Next
         End If
       Next
