@@ -1017,7 +1017,12 @@ Public Class dsoSalesOrder : Inherits dsoBase
     '// load mWOAs by where using salesorderphaseitemid in (mSOPIIIDList)
     mWOAs = New colWorkOrderAllocations
     mWhere = "SalesOrderPhaseItemID in (" & mSOPIIIDList & ")"
-    LoadWorkOrderAllocationsByWhere(mWOAs, mWhere)
+    If mWhere <> "SalesOrderPhaseItemID in ()" Then
+      LoadWorkOrderAllocationsByWhere(mWOAs, mWhere)
+    Else
+      'LoadWorkOrderAllocationsByWhere(mWOAs, "")
+
+    End If
 
     '// Now get the list of Work Orders that we are going to need
     For Each mWOA As dmWorkOrderAllocation In mWOAs

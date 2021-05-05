@@ -2,6 +2,25 @@
 
 Public Class clsWoodPalletSharedFuncs
 
+  Public Shared Function GetWoodPalletItemVolumeBoardFeet(ByRef rWoodPalletItem As dmWoodPalletItem, ByRef rStockItem As dmStockItem, ByVal vQuantity As Decimal) As Decimal
+    Dim mRetVal As Decimal
+
+
+    If rStockItem IsNot Nothing Then
+
+      Select Case rStockItem.ItemType
+        Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
+          ' mRetVal = rWoodPalletItem.Quantity
+          mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * vQuantity, 4, MidpointRounding.AwayFromZero) * clsConstants.BoardFeetPerM3
+        Case Else
+          mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * vQuantity, 4, MidpointRounding.AwayFromZero)
+
+      End Select
+    End If
+
+    Return mRetVal
+  End Function
+
   Public Shared Function GetWoodPalletItemVolumeBoardFeet(ByRef rWoodPalletItem As dmWoodPalletItem, ByRef rStockItem As dmStockItem) As Decimal
     Dim mRetVal As Decimal
 
@@ -32,6 +51,7 @@ Public Class clsWoodPalletSharedFuncs
           ' mRetVal = rWoodPalletItem.Quantity
           mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero)
         Case Else
+
           mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero) / clsConstants.BoardFeetPerM3
 
       End Select

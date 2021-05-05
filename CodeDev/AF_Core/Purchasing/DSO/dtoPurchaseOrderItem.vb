@@ -165,7 +165,15 @@ Public Class dtoPurchaseOrderItem : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadPurchaseOrderItemAllCollectionByWhere(ByRef rPurchaseOrderItems As colPurchaseOrderItems, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
 
+    mOK = MyBase.LoadCollection(rPurchaseOrderItems, mParams, "PurchaseOrderItemID", vWhere)
+    rPurchaseOrderItems.TrackDeleted = True
+    If mOK Then rPurchaseOrderItems.IsDirty = False
+    Return mOK
+  End Function
   Public Function LoadPurchaseOrderItemCollection(ByRef rPurchaseOrderItems As colPurchaseOrderItems, ByVal vPurchaseOrderID As Integer) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean

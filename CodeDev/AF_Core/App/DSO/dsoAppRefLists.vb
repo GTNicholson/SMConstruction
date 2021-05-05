@@ -236,11 +236,24 @@ Public Class dsoAppRefLists
           mItem.IList = LoadAccoutingCategory()
           mOK = True
 
+        Case appRefLists.ThicknessValue
+          mItem.IList = LoadThicknessValue()
+          mOK = True
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadThicknessValue() As IList
+    Dim mdto As New dtoThicknessValue(pDBConn)
+    Dim mRetVal As New colThicknessValues
+
+    mdto.LoadThicknessValueCollection(mRetVal)
+
+    Return mRetVal
+
   End Function
 
   Private Function LoadAccoutingCategory() As IList

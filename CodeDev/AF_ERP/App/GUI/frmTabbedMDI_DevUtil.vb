@@ -393,7 +393,7 @@ Public Class frmTabbedMDI_DevUtil
       mDBConn.Connect()
 
       mdsoStock = New dsoStock(mDBConn)
-      mdsoStock.LoadStockItemsByWhere(mStockItems, "")
+      mdsoStock.LoadStockItemsByWhere(mStockItems, "isnull(IsTracked,0)<>1")
 
 
 
@@ -493,7 +493,7 @@ Public Class frmTabbedMDI_DevUtil
 
     ''//Load stockItems except Timber
     mdsoStockItem = New dsoStock(mDBConn)
-    mWhere = String.Format("Category not in ({0})", CInt(eStockItemCategory.Timber))
+    mWhere = String.Format("Category not in ({0}) ", CInt(eStockItemCategory.Timber))
     mdsoStockItem.LoadStockItemsByWhere(mStockItemsCollection, mWhere)
 
     If mStockItemsCollection IsNot Nothing And mStockItemsCollection.Count > 0 Then
@@ -517,5 +517,86 @@ Public Class frmTabbedMDI_DevUtil
 
   Private Sub nbiSalesOrderReview_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles nbiSalesOrderReview.LinkClicked
     'frmSalesOrderReview.OpenModal()
+  End Sub
+
+  Private Sub bbtnDeleteSI_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnDeleteSI.LinkClicked
+    Dim mDBConn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mdtoSIL As New dtoStockItemLocation(mDBConn)
+    Dim mdtoMR As New dtoMaterialRequirement(mDBConn)
+    Dim mdtoPB As New dtoProductBOM(mDBConn)
+    Dim mdtoPOI As New dtoPurchaseOrderItem(mDBConn)
+    Dim mdtoStockTakeIte As New dtoStockTakeItem(mDBConn)
+
+    Dim mSILs As New colStockItemLocations
+    Dim mMRs As New colMaterialRequirements
+    Dim mPBs As New colProductBOMs
+    Dim mPOIs As New colPurchaseOrderItems(New dmPurchaseOrder)
+    Dim mSTIs As New colStockTakeItems
+    Dim mListIDs As New List(Of Int32)
+
+    mDBConn.Connect()
+
+
+    mdtoSIL.LoadStockItemLocationCollectionByWhere(mSILs, "")
+    mdtoMR.LoadMaterialRequirementCollectionByWhere(mMRs, "")
+    mdtoPB.LoadProductBOMAllCollectionByWhere(mPBs, "")
+    mdtoStockTakeIte.LoadStockTakeItemAllCollectionByWhere(mSTIs, "")
+    mdtoPOI.LoadPurchaseOrderItemAllCollectionByWhere(mPOIs, "")
+
+
+    For Each mSIL In mSILs
+
+      If mSIL.StockItemID > 0 Then
+
+        If mListIDs.Contains(mSIL.StockItemID) = False Then
+          mListIDs.Add(mSIL.StockItemID)
+        End If
+      End If
+    Next
+
+    For Each mMR In mMRs
+
+      If mMR.StockItemID > 0 Then
+
+        If mListIDs.Contains(mMR.StockItemID) = False Then
+          mListIDs.Add(mMR.StockItemID)
+        End If
+      End If
+    Next
+
+    For Each mPB In mPBs
+
+      If mPB.StockItemID > 0 Then
+
+        If mListIDs.Contains(mPB.StockItemID) = False Then
+          mListIDs.Add(mPB.StockItemID)
+        End If
+      End If
+    Next
+
+
+    For Each mPOI In mPOIs
+
+      If mPOI.StockItemID > 0 Then
+
+        If mListIDs.Contains(mPOI.StockItemID) = False Then
+          mListIDs.Add(mPOI.StockItemID)
+        End If
+      End If
+    Next
+
+    Dim mWhere As String = ""
+
+    For Each myID In mListIDs
+
+      If mWhere <> "" Then mWhere &= ","
+      mWhere &= myID
+    Next
+
+
+    mWhere = String.Format("Delete from StockItem where StockItemID not in ({0}) and category<>{1}", mWhere, CInt(eStockItemCategory.Timber))
+    mDBConn.ExecuteNonQuery(mWhere)
+    mDBConn.Disconnect()
+
   End Sub
 End Class

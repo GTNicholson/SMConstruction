@@ -29,7 +29,9 @@ Public Class dmProductBOM : Inherits dmBase
   Private pComponentDescription As String
   Private pTempInStock As Decimal
   Private pObjectType As Byte
+  Private pTmpSelectedItem As Boolean
 
+  Private pStockItemThickness As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -375,6 +377,8 @@ Public Class dmProductBOM : Inherits dmBase
     End Set
   End Property
 
+
+
   Public Property TempInStock As Decimal
     Get
       Return pTempInStock
@@ -395,7 +399,24 @@ Public Class dmProductBOM : Inherits dmBase
 
   End Property
 
+  Public Property TmpSelectedItem As Boolean
+    Get
+      Return pTmpSelectedItem
+    End Get
+    Set(value As Boolean)
+      pTmpSelectedItem = value
+    End Set
+  End Property
 
+  Public Property StockItemThickness As Integer
+    Get
+      Return pStockItemThickness
+    End Get
+    Set(value As Integer)
+      If pStockItemThickness <> value Then IsDirty = True
+      pStockItemThickness = value
+    End Set
+  End Property
 End Class
 
 

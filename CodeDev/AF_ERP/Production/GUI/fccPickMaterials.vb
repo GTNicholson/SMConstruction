@@ -116,7 +116,7 @@ Public Class fccPickMaterials
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID
+    Dim mWhere As String = " ObjectID =" & pCurrentWorkOrderInfo.WorkOrderID
     pMaterialRequirementProcessors.Clear()
     Try
 

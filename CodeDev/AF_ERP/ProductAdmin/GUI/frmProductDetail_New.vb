@@ -71,7 +71,8 @@ Public Class frmProductDetail_New
       uctProductDetail.LoadCombos()
       uctProductDetail.RefreshControls()
 
-
+      AddHandler uctProductDetail.repoChkSelectedSI.CheckedChanged, AddressOf repoChkSelectedSI_CheckedChanged
+      AddHandler uctProductDetail.repoChkSelectedItem.CheckedChanged, AddressOf repoChkSelectedWood_CheckedChanged
 
 
     Catch ex As Exception
@@ -93,6 +94,62 @@ Public Class frmProductDetail_New
 
 
   End Sub
+  Public Sub repoChkSelectedWood_CheckedChanged(sender As Object, e As EventArgs)
+
+    If pFormController IsNot Nothing Then
+
+      If uctProductDetail IsNot Nothing Then
+
+
+
+        If uctProductDetail.ItemsSelected > 0 Then
+
+          bbtnCreateCopySelected.Enabled = True
+
+
+        Else
+          bbtnCreateCopySelected.Enabled = False
+
+        End If
+
+
+        If uctProductDetail.WoodItemsSelected > 0 Then
+
+          bbtnChangeSpecies.Enabled = True
+
+
+        Else
+          bbtnChangeSpecies.Enabled = False
+
+        End If
+
+      End If
+
+      End If
+
+  End Sub
+  Public Sub repoChkSelectedSI_CheckedChanged(sender As Object, e As EventArgs)
+    If pFormController IsNot Nothing Then
+
+      If uctProductDetail IsNot Nothing Then
+
+
+
+        If uctProductDetail.ItemsSelected > 0 Then
+
+          bbtnCreateCopySelected.Enabled = True
+        Else
+          bbtnCreateCopySelected.Enabled = False
+
+        End If
+
+
+
+      End If
+
+    End If
+  End Sub
+
   Private Sub CloseForm() 'Needs exit mode set first
     pForceExit = True
     uctProductDetail.UpdateObject()
@@ -220,5 +277,88 @@ Public Class frmProductDetail_New
     uctProductDetail.FormController.ReloadProduct(pFormController.PrimaryKeyID)
     uctProductDetail.RefreshControls()
 
+  End Sub
+
+
+
+
+
+
+
+
+  Private Sub frmProductDetail_New_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+    If uctProductDetail IsNot Nothing Then
+
+      If uctProductDetail.ItemsSelected > 0 Then
+        bbtnCreateCopySelected.Enabled = True
+
+      Else
+        bbtnCreateCopySelected.Enabled = False
+      End If
+
+
+      If uctProductDetail.WoodItemsSelected > 0 Then
+        bbtnChangeSpecies.Enabled = True
+
+      Else
+        bbtnChangeSpecies.Enabled = False
+      End If
+    End If
+  End Sub
+
+  Private Sub bbtnCreateCopySelected_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnCreateCopySelected.ItemClick
+    Dim mSIBOMs As colProductBOMs
+    Dim mWoodBOMs As colProductBOMs
+
+    uctProductDetail.gvStockItemMaterialRequirements.CloseEditor()
+    uctProductDetail.gvWoodMaterialRequirements.CloseEditor()
+
+    mSIBOMs = uctProductDetail.gvStockItemMaterialRequirements.DataSource
+    mWoodBOMs = uctProductDetail.gvWoodMaterialRequirements.DataSource
+
+    pFormController.CreateCopyProductSelected(mSIBOMs, mWoodBOMs)
+
+    uctProductDetail.FormController.CurrentProductInfo.Product = pFormController.ProductStructure
+    uctProductDetail.RefreshControls()
+    uctProductDetail.UpdateObject()
+    uctProductDetail.SetCurrentProductBaseInfo(pFormController.ProductBaseInfo)
+
+
+    pFormController.PrimaryKeyID = 0
+    pFormController.SaveObjects()
+
+    pFormController.ProductStructure = uctProductDetail.FormController.CurrentProductInfo.Product
+    uctProductDetail.FormController.ReloadProduct(pFormController.PrimaryKeyID)
+    uctProductDetail.RefreshControls()
+    bbtnCreateCopySelected.Enabled = False
+    uctProductDetail.ItemsSelected = 0
+  End Sub
+
+  Private Sub bbtnChangeSpecies_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnChangeSpecies.ItemClick
+    Dim mSelectedWoodItems As New colProductBOMs
+    Dim mSelectedItem As dmProductBOM
+
+    If uctProductDetail IsNot Nothing Then
+
+      If uctProductDetail.gvWoodMaterialRequirements IsNot Nothing Then
+        uctProductDetail.gvWoodMaterialRequirements.CloseEditor()
+
+
+
+        For Each mWoodBOM As dmProductBOM In uctProductDetail.gvWoodMaterialRequirements.DataSource
+
+          If mWoodBOM.TmpSelectedItem Then
+            mSelectedItem = mWoodBOM
+
+            If mSelectedItem IsNot Nothing Then
+              mSelectedWoodItems.Add(mSelectedItem)
+            End If
+          End If
+        Next
+      End If
+    End If
+
+
+    frmProductGlobalChange.OpenForm(pFormController.DBConn, mSelectedWoodItems)
   End Sub
 End Class

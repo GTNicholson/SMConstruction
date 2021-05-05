@@ -162,7 +162,7 @@ Public Class fccStockTake
 
 
     For Each mSI As dmStockItem In mProposedStockItems
-      If pStockTake.StockTakeItems.ItemFromStockItemIDLocationID(mSI.StockItemID, 1) Is Nothing Then
+      If pStockTake.StockTakeItems.ItemFromStockItemIDLocationID(mSI.StockItemID, 1) Is Nothing And mSI.Category <> eStockItemCategory.Timber And mSI.IsTracked = False Then
         mStockTakeItem = New dmStockTakeItem
         mStockTakeItem.StockItemID = mSI.StockItemID
         mStockTakeItem.StockItemLocationID = 1

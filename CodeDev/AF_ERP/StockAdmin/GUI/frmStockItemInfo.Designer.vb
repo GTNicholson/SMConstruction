@@ -363,7 +363,7 @@ Partial Class frmStockItemInfo
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
-        Me.RepositoryItemDateEdit1.NullDate = New Date(2020, 3, 11, 18, 39, 42, 987)
+        Me.RepositoryItemDateEdit1.NullDate = New Date(CType(0, Long))
         Me.RepositoryItemDateEdit1.NullText = "''"
         '
         'GridColumn15
@@ -667,7 +667,7 @@ Partial Class frmStockItemInfo
         '
         Me.gcCurrentInventory.AppearanceCell.Options.UseTextOptions = True
         Me.gcCurrentInventory.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.gcCurrentInventory.Caption = "Inv. Actual"
+        Me.gcCurrentInventory.Caption = "Inv. Hoy en Bodega"
         Me.gcCurrentInventory.ColumnEdit = Me.repitbtCurrentInventory
         Me.gcCurrentInventory.DisplayFormat.FormatString = "N2"
         Me.gcCurrentInventory.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -687,13 +687,15 @@ Partial Class frmStockItemInfo
         '
         Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.Caption = "Inv. Req"
+        Me.GridColumn10.Caption = "Inv. Req de Prod."
         Me.GridColumn10.ColumnEdit = Me.repoPopuMaterialRequirement
         Me.GridColumn10.DisplayFormat.FormatString = "N2"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "RequiredInventory"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
         Me.GridColumn10.Width = 60
         '
         'repoPopuMaterialRequirement
@@ -728,11 +730,13 @@ Partial Class frmStockItemInfo
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Inv. Final"
+        Me.GridColumn12.Caption = "Saldo Final Estimado"
         Me.GridColumn12.DisplayFormat.FormatString = "N2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "Balance"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 10
         Me.GridColumn12.Width = 87
         '
         'gcStdCost
@@ -756,7 +760,7 @@ Partial Class frmStockItemInfo
         Me.gcActualValueInventory.Name = "gcActualValueInventory"
         Me.gcActualValueInventory.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ActualValueInventory", "{0:C$#,##0.00;;#}")})
         Me.gcActualValueInventory.Visible = True
-        Me.gcActualValueInventory.VisibleIndex = 10
+        Me.gcActualValueInventory.VisibleIndex = 12
         Me.gcActualValueInventory.Width = 139
         '
         'gcThickness
@@ -806,7 +810,7 @@ Partial Class frmStockItemInfo
         Me.gcTotalCubicMeter.FieldName = "TotalCubicMeter"
         Me.gcTotalCubicMeter.Name = "gcTotalCubicMeter"
         Me.gcTotalCubicMeter.Visible = True
-        Me.gcTotalCubicMeter.VisibleIndex = 9
+        Me.gcTotalCubicMeter.VisibleIndex = 11
         Me.gcTotalCubicMeter.Width = 70
         '
         'gcActualWoodValueInventory

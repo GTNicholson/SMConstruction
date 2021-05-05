@@ -28,7 +28,7 @@ Public Class fccWoodReception
     pWoodReception = New dmReception
     pRTISGlobal = rRTISGlobal
     pPrimaryKeyID = vReceptionID
-    pCurrentSourceWoodPallet = New dmWoodPallet
+    ' pCurrentSourceWoodPallet = New dmWoodPallet
   End Sub
 
   Public Property CurrentSourceWoodPallet As dmWoodPallet
@@ -286,7 +286,7 @@ Public Class fccWoodReception
     Dim mTempWoodPalletItems As New colWoodPalletItems
     Dim mTempWoodPalletItem As dmWoodPalletItem
     Dim mToProcQtyBoardFeet As Decimal
-
+    Dim mWP As dmWoodPallet
     Try
       mTempWoodPallet = New dmWoodPallet
 
@@ -305,20 +305,24 @@ Public Class fccWoodReception
             Case Else
               mToProcQtyBoardFeet = mWPIE.ToProcessQty
           End Select
+          mWP = pWoodReception.WoodPallets.ItemFromKey(pCurrentSourceWoodPallet.WoodPalletID)
+          mWP.WoodPalletItems = pCurrentSourceWoodPallet.WoodPalletItems.Clone
+          If mWP IsNot Nothing Then
 
-          mCurrentQty = pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
-          mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
-          pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
-          pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
+            mCurrentQty = pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
+            mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
+            mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
+            mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
+            mWPIE.QuantityUI = mCurrentQty + mToProcQtyBoardFeet
+            mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
+            mTempWoodPalletItem.Thickness = mWPIE.WoodPalletItem.Thickness
+            mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
+            mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
 
-          mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
-          mTempWoodPalletItem.Thickness = mWPIE.WoodPalletItem.Thickness
-          mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
-          mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
-
-          mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
+            mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
+          End If
         End If
-        mWPIE.ToProcessQty = 0
+          mWPIE.ToProcessQty = 0
 
       Next
 

@@ -47,6 +47,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pSupplierUoM As Integer
   Private pCostUoM As Byte
   Private pIsCostingOnly As Boolean
+  Private pIsTracked As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -139,7 +140,7 @@ Public Class dmStockItem : Inherits dmBase
       .CostUoM = CostUoM
       .IsCostingOnly = IsCostingOnly
       .AverageCost = AverageCost
-
+      .IsTracked = IsTracked
 
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
@@ -152,9 +153,26 @@ Public Class dmStockItem : Inherits dmBase
   End Sub
 
   Public Function SIDefSpecEquals(vStockItemDef As intStockItemDef) As Boolean Implements intStockItemDef.SIDefSpecEquals
-    Throw New NotImplementedException()
+    Return SpecEquals(vStockItemDef)
   End Function
 
+  Public Function SpecEquals(ByRef rStockitem As dmStockItem)
+    Dim mRetVal As Boolean = True
+    If mRetVal Then mRetVal = (rStockitem.Category = Me.Category)
+    If mRetVal Then mRetVal = (rStockitem.ItemType = Me.ItemType)
+    If mRetVal Then mRetVal = (rStockitem.Species = Me.Species)
+    If mRetVal Then mRetVal = (rStockitem.Colour = Me.Colour)
+    If mRetVal Then mRetVal = (rStockitem.PartNo = Me.PartNo)
+    If mRetVal Then mRetVal = (rStockitem.Length = Me.Length)
+    If mRetVal Then mRetVal = (rStockitem.Width = Me.Width)
+    If mRetVal Then mRetVal = (rStockitem.Thickness = Me.Thickness)
+    If mRetVal Then mRetVal = (rStockitem.Finish = Me.Finish)
+    If mRetVal Then mRetVal = (rStockitem.SubItemType = Me.SubItemType)
+    If mRetVal Then mRetVal = (rStockitem.AuxCode = Me.AuxCode)
+
+
+    Return mRetVal
+  End Function
 
   Public Property LastUsedDate() As DateTime
     Get
@@ -742,6 +760,16 @@ Public Class dmStockItem : Inherits dmBase
     Set(value As Byte)
       If pCostUoM <> value Then pIsDirty = True
       pCostUoM = value
+    End Set
+  End Property
+
+  Public Property IsTracked As Boolean
+    Get
+      Return pIsTracked
+    End Get
+    Set(value As Boolean)
+      If pIsTracked <> value Then IsDirty = True
+      pIsTracked = value
     End Set
   End Property
 

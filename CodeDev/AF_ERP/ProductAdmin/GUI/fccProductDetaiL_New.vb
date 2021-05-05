@@ -95,7 +95,100 @@ Public Class fccProductDetaiL_New
     mIsDirty = pProductStructure.IsAnyDirty
     Return mIsDirty
   End Function
+  Public Sub CreateCopyProductSelected(ByVal vSIBOMs As colProductBOMs, ByVal vWoodBOMs As colProductBOMs)
+    Dim mNewProduct As dmProductStructure
 
+    mNewProduct = clsProductSharedFuncs.NewProductInstance(eProductType.StructureAF)
+
+    mNewProduct.Description = "Copia de- " & pProductStructure.Description
+    mNewProduct.Code = ""
+    mNewProduct.ItemType = pProductStructure.ItemType
+    mNewProduct.SubItemType = pProductStructure.SubItemType
+
+    If vWoodBOMs IsNot Nothing Then
+      For Each mPSIBOM In vSIBOMs
+
+        If mPSIBOM.TmpSelectedItem Then
+          Dim mSIBOM As New dmProductBOM
+
+          mSIBOM.AreaID = mPSIBOM.AreaID
+          mSIBOM.Comments = mPSIBOM.Comments
+          mSIBOM.ComponentDescription = mPSIBOM.ComponentDescription
+          mSIBOM.DateChange = mPSIBOM.DateChange
+          mSIBOM.DateOtherMaterial = mPSIBOM.DateOtherMaterial
+          mSIBOM.Description = mPSIBOM.Description
+          mSIBOM.MaterialRequirementType = mPSIBOM.MaterialRequirementType
+          mSIBOM.MaterialTypeID = mPSIBOM.MaterialTypeID
+          mSIBOM.NetLenght = mPSIBOM.NetLenght
+          mSIBOM.NetThickness = mPSIBOM.NetThickness
+          mSIBOM.NetWidth = mPSIBOM.NetWidth
+          mSIBOM.ObjectType = mPSIBOM.ObjectType
+          mSIBOM.ParentID = mPSIBOM.ParentID
+          mSIBOM.PiecesPerComponent = mPSIBOM.PiecesPerComponent
+          mSIBOM.QualityType = mPSIBOM.QualityType
+          mSIBOM.Quantity = mPSIBOM.Quantity
+          mSIBOM.StockCode = mPSIBOM.StockCode
+          mSIBOM.StockItemID = mPSIBOM.StockItemID
+          mSIBOM.SupplierStockCode = mPSIBOM.SupplierStockCode
+          mSIBOM.TotalPieces = mPSIBOM.TotalPieces
+          mSIBOM.UnitPiece = mPSIBOM.UnitPiece
+          mSIBOM.UoM = mPSIBOM.UoM
+          mSIBOM.WoodFinish = mPSIBOM.WoodFinish
+          mSIBOM.WoodSpecie = mPSIBOM.WoodSpecie
+          mNewProduct.ProductStockItemBOMs.Add(mSIBOM)
+        End If
+      Next
+    End If
+
+
+    If vWoodBOMs IsNot Nothing Then
+      For Each mPSIBOM In vWoodBOMs
+        If mPSIBOM.TmpSelectedItem Then
+          Dim mSIBOM As New dmProductBOM
+
+          mSIBOM.AreaID = mPSIBOM.AreaID
+          mSIBOM.Comments = mPSIBOM.Comments
+          mSIBOM.ComponentDescription = mPSIBOM.ComponentDescription
+          mSIBOM.DateChange = mPSIBOM.DateChange
+          mSIBOM.DateOtherMaterial = mPSIBOM.DateOtherMaterial
+          mSIBOM.Description = mPSIBOM.Description
+          mSIBOM.MaterialRequirementType = mPSIBOM.MaterialRequirementType
+          mSIBOM.MaterialTypeID = mPSIBOM.MaterialTypeID
+          mSIBOM.NetLenght = mPSIBOM.NetLenght
+          mSIBOM.NetThickness = mPSIBOM.NetThickness
+          mSIBOM.NetWidth = mPSIBOM.NetWidth
+          mSIBOM.ObjectType = mPSIBOM.ObjectType
+          mSIBOM.ParentID = mPSIBOM.ParentID
+          mSIBOM.PiecesPerComponent = mPSIBOM.PiecesPerComponent
+          mSIBOM.QualityType = mPSIBOM.QualityType
+          mSIBOM.Quantity = mPSIBOM.Quantity
+          mSIBOM.StockCode = mPSIBOM.StockCode
+          mSIBOM.StockItemID = mPSIBOM.StockItemID
+          mSIBOM.SupplierStockCode = mPSIBOM.SupplierStockCode
+          mSIBOM.TotalPieces = mPSIBOM.TotalPieces
+          mSIBOM.UnitPiece = mPSIBOM.UnitPiece
+          mSIBOM.UoM = mPSIBOM.UoM
+          mSIBOM.WoodFinish = mPSIBOM.WoodFinish
+          mSIBOM.WoodSpecie = mPSIBOM.WoodSpecie
+
+          mNewProduct.ProductWoodBOMs.Add(mSIBOM)
+        End If
+      Next
+    End If
+
+    mNewProduct.ProductStructureTypeID = pProductStructure.ProductStructureTypeID
+
+
+
+
+    pProductBaseInfo.Product = mNewProduct
+    pProductStructure = mNewProduct
+
+
+    SaveObjects()
+
+
+  End Sub
   Public Sub CreateCopyProduct()
     Dim mNewProduct As dmProductStructure
 

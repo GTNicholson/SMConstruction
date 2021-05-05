@@ -12,14 +12,50 @@ Public Class uctProductBaseDetail
 
   Private pRTISGlobal As AppRTISGlobal
   Private pFormController As uccProductBaseDetail
+  Private pItemsSelected As Integer
+  Private pTempInWoodStock As Integer
+  Private pWoodItemsSelected As Integer
 
+
+  Public Event OnCheckChanged As EventHandler
+
+  Private Sub checkbox_CheckedChanged(sender As Object, e As EventArgs) Handles repoChkSelectedSI.CheckedChanged
+    RaiseEvent OnCheckChanged(Me, e)
+  End Sub
+
+
+  Public Property WoodItemsSelected As Integer
+    Get
+      Return pWoodItemsSelected
+    End Get
+    Set(value As Integer)
+      pWoodItemsSelected = value
+    End Set
+  End Property
+
+  Public Property ItemsSelected As Integer
+    Get
+      Return pItemsSelected
+    End Get
+    Set(value As Integer)
+      pItemsSelected = value
+    End Set
+  End Property
+
+  Public Property TempInWoodStock As Integer
+    Get
+      Return pTempInWoodStock
+    End Get
+    Set(value As Integer)
+      pTempInWoodStock = value
+    End Set
+  End Property
   Private Enum eMaterialRequirementsButtons
     Copy = 1
     Paste = 2
     ExportList = 3
     AddInv = 4
-    CopyChange = 5
-    PasteChange = 6
+    ChangeSpecies = 5
   End Enum
 
   Public Sub ConfigureBrowseFilesControl(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
@@ -73,6 +109,11 @@ Public Class uctProductBaseDetail
     clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcQuality, mVIs)
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcStockItemUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
+
+
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ThicknessValue)
+    RTIS.Elements.clsDEControlLoading.LoadRepItemLookUpEditiVI(repoThicknessValueLK, mVIs)
 
 
   End Sub
@@ -369,7 +410,32 @@ Public Class uctProductBaseDetail
 
 
 
+        Case eMaterialRequirementsButtons.ChangeSpecies
+          Dim mSelectedWoodItems As New colProductBOMs
+          Dim mSelectedItem As dmProductBOM
+          gvWoodMaterialRequirements.CloseEditor()
+          mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
 
+          If mProductStructure IsNot Nothing Then
+
+            For Each mProductStockBOM In mProductStructure.ProductWoodBOMs ''.POItemsMinusAllocatedItem
+
+              If mProductStockBOM.TmpSelectedItem Then
+                mSelectedItem = mProductStockBOM
+
+                If mSelectedItem IsNot Nothing Then
+                  mSelectedWoodItems.Add(mSelectedItem)
+                End If
+              End If
+
+
+            Next
+          End If
+
+
+          frmProductGlobalChange.OpenForm(pFormController.DBConn, mSelectedWoodItems)
+          gvWoodMaterialRequirements.CloseEditor()
+          gvWoodMaterialRequirements.RefreshData()
       End Select
 
     Catch ex As Exception
@@ -468,53 +534,53 @@ Public Class uctProductBaseDetail
   End Sub
 
   Private Sub gvWoodMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodMaterialRequirements.CustomUnboundColumnData
-    Dim mProductBOM As dmProductBOM
-    Dim mStockItem As dmStockItem
+    'Dim mProductBOM As dmProductBOM
+    'Dim mStockItem As dmStockItem
 
-    Try
+    'Try
 
-      mProductBOM = TryCast(e.Row, dmProductBOM)
-
-
-      If mProductBOM IsNot Nothing Then
-        Select Case e.Column.Name
-          Case gcThicknessInch.Name
-            If e.IsGetData Then
-              mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mProductBOM.StockItemID)
-
-              If mStockItem IsNot Nothing Then
-                e.Value = mStockItem.Thickness
-
-              End If
-
-            End If
-
-          Case gcQtyBoardFeet.Name
-            Dim mValue As Decimal
-            Dim mQty As Integer
+    '  mProductBOM = TryCast(e.Row, dmProductBOM)
 
 
-            If e.IsGetData Then
-              Try
+    '  If mProductBOM IsNot Nothing Then
+    '    Select Case e.Column.Name
+    '      Case gcThicknessInch.Name
+    '        If e.IsGetData Then
+    '          mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mProductBOM.StockItemID)
+
+    '          If mStockItem IsNot Nothing Then
+    '            e.Value = mStockItem.Thickness
+
+    '          End If
+
+    '        End If
+
+    '      Case gcQtyBoardFeet.Name
+    '        Dim mValue As Decimal
+    '        Dim mQty As Integer
 
 
-                mQty = mProductBOM.UnitPiece
-                mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mProductBOM.NetLenght, mProductBOM.NetWidth, mProductBOM.NetThickness)
-                mValue = mValue
-                e.Value = mValue
+    '        If e.IsGetData Then
+    '          Try
 
 
-              Catch ex As Exception
-                If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-              End Try
+    '            mQty = mProductBOM.UnitPiece
+    '            mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mProductBOM.NetLenght, mProductBOM.NetWidth, mProductBOM.NetThickness)
+    '            mValue = mValue
+    '            e.Value = mValue
 
-            End If
 
-        End Select
-      End If
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-    End Try
+    '          Catch ex As Exception
+    '            If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    '          End Try
+
+    '        End If
+
+    '    End Select
+    '  End If
+    'Catch ex As Exception
+    '  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    'End Try
   End Sub
 
   Private Sub repoCreateDuplicate_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoCreateDuplicate.ButtonClick
@@ -587,6 +653,111 @@ Public Class uctProductBaseDetail
     RemoveHandler activeEditor.Spin, AddressOf activeEditor_Spin
     AddHandler activeEditor.Spin, AddressOf activeEditor_Spin
   End Sub
+
+  Private Sub repoChkSelectedSI_CheckedChanged(sender As Object, e As EventArgs) Handles repoChkSelectedSI.CheckedChanged
+    Dim mProductStructure As dmProductStructure
+
+    gvStockItemMaterialRequirements.CloseEditor()
+    ItemsSelected = 0
+    If pFormController IsNot Nothing Then
+
+      If pFormController.CurrentProductInfo IsNot Nothing Then
+
+        If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+
+          mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
+
+          If mProductStructure IsNot Nothing Then
+            For Each mPWBOM As dmProductBOM In gvStockItemMaterialRequirements.DataSource
+
+              If mPWBOM.TmpSelectedItem Then
+                ItemsSelected += 1
+              End If
+
+            Next
+
+          End If
+
+        End If
+
+      End If
+
+    End If
+  End Sub
+
+
+
+  Private Sub repoChkSelectedItem_CheckedChanged(sender As Object, e As EventArgs) Handles repoChkSelectedItem.CheckedChanged
+    Dim mProductStructure As dmProductStructure
+
+    gvWoodMaterialRequirements.CloseEditor()
+    ItemsSelected = 0
+    WoodItemsSelected = 0
+    If pFormController IsNot Nothing Then
+
+      If pFormController.CurrentProductInfo IsNot Nothing Then
+
+        If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+
+          mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
+
+          If mProductStructure IsNot Nothing Then
+            For Each mPWBOM As dmProductBOM In gvWoodMaterialRequirements.DataSource
+
+              If mPWBOM.TmpSelectedItem Then
+                ItemsSelected += 1
+                WoodItemsSelected += 1
+              End If
+
+            Next
+
+          End If
+
+        End If
+
+      End If
+
+    End If
+  End Sub
+
+
+
+  Private Sub repoThicknessValueLK_EditValueChanged(sender As Object, e As EventArgs) Handles repoThicknessValueLK.EditValueChanged
+    Dim mThicknessValueIndex As Integer
+    Dim mProductBOM As dmProductBOM
+    Dim mSIThickness As Decimal
+
+    If pFormController IsNot Nothing Then
+
+      gvWoodMaterialRequirements.CloseEditor()
+
+      If pFormController.CurrentProductInfo IsNot Nothing Then
+
+        mProductBOM = TryCast(gvWoodMaterialRequirements.GetFocusedRow, dmProductBOM)
+
+        If mProductBOM IsNot Nothing Then
+          mThicknessValueIndex = mProductBOM.StockItemThickness
+          mSIThickness = Decimal.Parse(AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ThicknessValue).DisplayValueString(mThicknessValueIndex))
+
+          If mSIThickness > 0 Then
+
+            Dim mSpeciesID As Integer
+
+            mSpeciesID = mProductBOM.WoodSpecie
+
+            pFormController.ChangeSpeciesForSelectedWoodItems(mSpeciesID, mSIThickness, mProductBOM)
+
+
+          End If
+        End If
+
+      End If
+
+
+    End If
+  End Sub
+
+
 
 
 End Class

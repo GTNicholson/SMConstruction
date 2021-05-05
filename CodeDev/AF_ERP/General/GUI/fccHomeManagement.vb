@@ -81,7 +81,7 @@ Public Class fccHomeManagement
 
   Public Sub LoadStockItemInfos()
     Dim mdsoStock As New dsoStock(pDBConn)
-    Dim mwhere As String = String.Format("Category <> {0} and IsCostingOnly=0 or IsCostingOnly is null", CInt(eStockItemCategory.Timber))
+    Dim mwhere As String = String.Format("Category <> {0} and (IsCostingOnly=0 or IsCostingOnly is null)", CInt(eStockItemCategory.Timber))
     Try
 
 

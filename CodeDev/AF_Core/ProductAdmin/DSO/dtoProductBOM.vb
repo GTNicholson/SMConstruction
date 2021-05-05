@@ -79,6 +79,7 @@ Public Class dtoProductBOM : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemID", .StockItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ComponentDescription", StringToDBValue(.ComponentDescription))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ObjectType", .ObjectType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemThickness", .StockItemThickness)
 
 
     End With
@@ -117,6 +118,7 @@ Public Class dtoProductBOM : Inherits dtoBase
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")
         .ComponentDescription = DBReadString(rDataReader, "ComponentDescription")
         .ObjectType = DBReadByte(rDataReader, "ObjectType")
+        .StockItemThickness = DBReadInt32(rDataReader, "StockItemThickness")
         pProductBOM.IsDirty = False
       End With
       mOK = True
@@ -172,7 +174,15 @@ Public Class dtoProductBOM : Inherits dtoBase
     If mOK Then rProductBOMs.IsDirty = False
     Return mOK
   End Function
+  Public Function LoadProductBOMAllCollectionByWhere(ByRef rProductBOMs As colProductBOMs, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
 
+    mOK = MyBase.LoadCollection(rProductBOMs, mParams, "ProductBOMID", vWhere)
+    rProductBOMs.TrackDeleted = True
+    If mOK Then rProductBOMs.IsDirty = False
+    Return mOK
+  End Function
 
   Public Function SaveProductBOMCollection(ByRef rCollection As colProductBOMs, ByVal vProductID As Integer, ByVal vObjectType As Byte) As Boolean
     Dim mParams As New Hashtable

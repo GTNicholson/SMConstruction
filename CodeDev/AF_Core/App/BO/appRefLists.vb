@@ -48,6 +48,7 @@ Public Class appRefLists : Inherits colRefLists
 
   Public Const StockItemType As Integer = 37
   Public Const AccoutingCategory As Integer = 38
+  Public Const ThicknessValue As Integer = 39
 
   Public Sub New()
     MyBase.New()
@@ -102,6 +103,10 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(StockItemType, "StockItemType", clsRefListItem.eLoadMode.Coded)
 
     Me.AddRefList(AccoutingCategory, "AccoutingCategory", clsRefListItem.eLoadMode.Unloaded)
+
+    Me.AddRefList(ThicknessValue, "ThicknessValue", clsRefListItem.eLoadMode.Unloaded)
+
+
   End Sub
 
 

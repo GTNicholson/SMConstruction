@@ -31,29 +31,30 @@ Partial Class frmStockTake
     Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Me.puccStockItemValuationHistorys = New DevExpress.XtraEditors.PopupContainerControl()
-    Me.grdStockItemValuationHistorys = New DevExpress.XtraGrid.GridControl()
-    Me.gvStockItemValuationHistorys = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.barbtnSaveExit = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnSave = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnRefreshStockItems = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnRefreshSystemQty = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnRunValuation = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnFIFOCountedValue = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnAplicarCantidadesContado = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnPrintVisibleItems = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnExcelExport = New DevExpress.XtraBars.BarButtonItem()
+        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Me.puccStockItemValuationHistorys = New DevExpress.XtraEditors.PopupContainerControl()
+        Me.grdStockItemValuationHistorys = New DevExpress.XtraGrid.GridControl()
+        Me.gvStockItemValuationHistorys = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.barbtnSaveExit = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnSave = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnRefreshStockItems = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnRefreshSystemQty = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnRunValuation = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnFIFOCountedValue = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnAplicarCantidadesContado = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnPrintVisibleItems = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnExcelExport = New DevExpress.XtraBars.BarButtonItem()
         Me.btnPrintListToStockTake = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -78,6 +79,7 @@ Partial Class frmStockTake
         Me.RepositoryItemSpinEditCounted = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcWriteOffQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcIsCounted = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDiscrepency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,7 +104,6 @@ Partial Class frmStockTake
         Me.txtStockCheckDesc = New DevExpress.XtraEditors.TextEdit()
         Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.puccStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.puccStockItemValuationHistorys.SuspendLayout()
         CType(Me.grdStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -445,7 +446,6 @@ Partial Class frmStockTake
         Me.GridColumn6.Caption = "Descripción"
         Me.GridColumn6.FieldName = "SIDescription"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.OptionsColumn.TabStop = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
@@ -456,7 +456,6 @@ Partial Class frmStockTake
         Me.GridColumn5.Caption = "Sub Categoría"
         Me.GridColumn5.FieldName = "StockItemTypeDesc"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.OptionsColumn.TabStop = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
@@ -467,7 +466,6 @@ Partial Class frmStockTake
         Me.GridColumn4.Caption = "Categoría"
         Me.GridColumn4.FieldName = "StockItemCategoryDesc"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.OptionsColumn.TabStop = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
@@ -479,7 +477,6 @@ Partial Class frmStockTake
         Me.gcStockCode.ColumnEdit = Me.repitbtStockItemRefresh
         Me.gcStockCode.FieldName = "SIStockCode"
         Me.gcStockCode.Name = "gcStockCode"
-        Me.gcStockCode.OptionsColumn.ReadOnly = True
         Me.gcStockCode.OptionsColumn.TabStop = False
         Me.gcStockCode.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcStockCode.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "StockCode", "{0}")})
@@ -499,7 +496,6 @@ Partial Class frmStockTake
         Me.GridColumn1.Caption = "Código de Barra"
         Me.GridColumn1.FieldName = "Barcode"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.OptionsColumn.TabStop = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
@@ -580,11 +576,23 @@ Partial Class frmStockTake
         Me.GridColumn20.Caption = "Número Parte"
         Me.GridColumn20.FieldName = "PartNo"
         Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.OptionsColumn.TabStop = False
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 5
         Me.GridColumn20.Width = 90
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceHeader.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn8.AppearanceHeader.Options.UseBackColor = True
+        Me.GridColumn8.Caption = "Costo Unit."
+        Me.GridColumn8.DisplayFormat.FormatString = "C$#,##0.00;;#"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "SnapShotUnitCost"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 58
         '
         'gcIsCounted
         '
@@ -875,7 +883,7 @@ Partial Class frmStockTake
         Me.grpItemDetail.AppearanceCaption.Options.UseForeColor = True
         Me.grpItemDetail.Controls.Add(Me.puccStockItemValuationHistorys)
         Me.grpItemDetail.Controls.Add(Me.grdStockCheckItem)
-        Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Visibles", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1)})
+        Me.grpItemDetail.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Visibles", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Limpiar Selección", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imprimir Grid", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
         Me.grpItemDetail.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpItemDetail.Location = New System.Drawing.Point(6, 97)
         Me.grpItemDetail.Name = "grpItemDetail"
@@ -892,20 +900,6 @@ Partial Class frmStockTake
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1370, 679)
         Me.PanelControl1.TabIndex = 10
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.AppearanceHeader.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn8.AppearanceHeader.Options.UseBackColor = True
-        Me.GridColumn8.Caption = "Costo Unit."
-        Me.GridColumn8.DisplayFormat.FormatString = "C$#,##0.00;;#"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "SnapShotUnitCost"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.ReadOnly = True
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 58
         '
         'frmStockTake
         '

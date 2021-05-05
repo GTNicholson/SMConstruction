@@ -279,9 +279,11 @@ Public Class dsoStockTransactions
       ''End If
 
       '// get or create the stockitemlocation
-      mSIL = mdsoStock.GetOrCreateStockItemLocationConnected(vStockItemID, vLocationID, mSILBatchID)
+      If mStockItem.IsTracked = False Then
+        mSIL = mdsoStock.GetOrCreateStockItemLocationConnected(vStockItemID, vLocationID, mSILBatchID)
+      End If
 
-      If vDeliveryItem IsNot Nothing AndAlso mSIL IsNot Nothing Then
+      If vDeliveryItem IsNot Nothing Then
 
         If vRecievedQty <> 0 Then
 
@@ -302,9 +304,11 @@ Public Class dsoStockTransactions
           End If
 
           '// Get the previous Transaction
-          mPrevTran = GetLastTransactionBeforeConnected(vTransDate, mSIL.StockItemLocationID, 0)
-          If mPrevTran IsNot Nothing Then mPrevValue = mPrevTran.NewValue
+          If mSIL IsNot Nothing Then
+            mPrevTran = GetLastTransactionBeforeConnected(vTransDate, mSIL.StockItemLocationID, 0)
 
+            If mPrevTran IsNot Nothing Then mPrevValue = mPrevTran.NewValue
+          End If
           '// Get any stock check after the insert date
           mSubsequentStockCheckTran = GetFirstStockCheckTransactionAfterConnected(vTransDate, vLocationID)
 
@@ -315,8 +319,9 @@ Public Class dsoStockTransactions
             mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vLocationID)
           End If
 
-          mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.StockItemLocation, mSIL.StockItemLocationID, mSILBatchID, vTransDate, eTransactionType.GoodsIn, pDBConn.RTISUser.UserID, "", eObjectType.PODeliveryItem, vDeliveryItem.PODeliveryItemID, mSILBatchID, vDefaultCurrency, vUnitCost, vExchangeRate)
-
+          If mSIL IsNot Nothing Then
+            mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.StockItemLocation, mSIL.StockItemLocationID, mSILBatchID, vTransDate, eTransactionType.GoodsIn, pDBConn.RTISUser.UserID, "", eObjectType.PODeliveryItem, vDeliveryItem.PODeliveryItemID, mSILBatchID, vDefaultCurrency, vUnitCost, vExchangeRate)
+          End If
           mNewStockLevel = mPrevValue + mItemQuantity
 
 
@@ -333,34 +338,36 @@ Public Class dsoStockTransactions
             End Select
           Next
 
-          If mSubsequentStockCheckTran Is Nothing Then
-            If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & mSIL.StockItemLocationID) > 0 Then
+          If mSIL IsNot Nothing Then
+            If mSubsequentStockCheckTran Is Nothing Then
+              If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & mSIL.StockItemLocationID) > 0 Then
+              Else
+                mOK = False
+              End If
             Else
-              mOK = False
+              '//Change the PrevValue of the Stock Check Transaction
+              mSubsequentStockCheckTran.PrevValue += mItemQuantity
+              If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSubsequentStockCheckTran)
             End If
-          Else
-            '//Change the PrevValue of the Stock Check Transaction
-            mSubsequentStockCheckTran.PrevValue += mItemQuantity
-            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSubsequentStockCheckTran)
           End If
+          If mSIL IsNot Nothing Then
+            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSILTranLog)
 
-          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSILTranLog)
-
-          If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
-
+            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
+          End If
           '// podeliveryitem qty via sql statement.
           If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PODeliveryItem SET QtyReceived=" & vDeliveryItem.QtyReceived + vRecievedQty & " WHERE PODeliveryItemID =" & vDeliveryItem.PODeliveryItemID) > 0 Then mOK = True
-          '// Update the POCO allocation
-          If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PurchaseOrderItemAllocation SET ReceivedQty=" & vPOItemAllocation.ReceivedQty + vRecievedQty & " WHERE PurchaseOrderItemAllocationID =" & vPOItemAllocation.PurchaseOrderItemAllocationID) > 0 Then mOK = True
+            '// Update the POCO allocation
+            If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PurchaseOrderItemAllocation SET ReceivedQty=" & vPOItemAllocation.ReceivedQty + vRecievedQty & " WHERE PurchaseOrderItemAllocationID =" & vPOItemAllocation.PurchaseOrderItemAllocationID) > 0 Then mOK = True
 
-          If mOK Then
-            vDeliveryItem.SetQtyReceived(vDeliveryItem.QtyReceived + vRecievedQty)
-            vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vRecievedQty)
-            '// If it is not Timber category then update the Average Cost of the Stock Item
-            If mStockItem IsNot Nothing Then
-              Select Case mStockItem.Category
-                Case eStockItemCategory.Timber
-                Case Else
+            If mOK Then
+              vDeliveryItem.SetQtyReceived(vDeliveryItem.QtyReceived + vRecievedQty)
+              vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vRecievedQty)
+              '// If it is not Timber category then update the Average Cost of the Stock Item
+              If mStockItem IsNot Nothing Then
+                Select Case mStockItem.Category
+                  Case eStockItemCategory.Timber
+                  Case Else
 
                   ''//Update AverageCost in Cordobas currency
                   If vDefaultCurrency = eCurrency.Dollar Then
@@ -368,15 +375,16 @@ Public Class dsoStockTransactions
                     vPOItemRecievedValue = vPOItemRecievedValue * vExchangeRate
 
                   End If
-                  mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue, mSILTranLog.StockItemTransactionLogID)
-
+                  If mSILTranLog IsNot Nothing Then
+                    mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue, mSILTranLog.StockItemTransactionLogID)
+                  End If
               End Select
+              End If
             End If
+
+
           End If
-
-
         End If
-      End If
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

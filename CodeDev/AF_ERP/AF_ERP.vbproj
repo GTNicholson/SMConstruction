@@ -48,6 +48,9 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>RTISFormIcon2010.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -399,6 +402,7 @@
     <Compile Include="ProductAdmin\GUI\fccHouseType.vb" />
     <Compile Include="ProductAdmin\GUI\fccProductAdmin.vb" />
     <Compile Include="ProductAdmin\GUI\fccProductDetaiL_New.vb" />
+    <Compile Include="ProductAdmin\GUI\fccProductGlobalChange.vb" />
     <Compile Include="ProductAdmin\GUI\frmHouseType.Designer.vb">
       <DependentUpon>frmHouseType.vb</DependentUpon>
     </Compile>
@@ -415,6 +419,12 @@
       <DependentUpon>frmProductDetail_New.vb</DependentUpon>
     </Compile>
     <Compile Include="ProductAdmin\GUI\frmProductDetail_New.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\frmProductGlobalChange.Designer.vb">
+      <DependentUpon>frmProductGlobalChange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\frmProductGlobalChange.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductAdmin\GUI\uccProductBaseDetail.vb" />
@@ -896,6 +906,9 @@
     <EmbeddedResource Include="ProductAdmin\GUI\frmProductDetail_New.resx">
       <DependentUpon>frmProductDetail_New.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProductAdmin\GUI\frmProductGlobalChange.resx">
+      <DependentUpon>frmProductGlobalChange.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductAdmin\GUI\uctHouseTypeOptions.resx">
       <DependentUpon>uctHouseTypeOptions.vb</DependentUpon>
     </EmbeddedResource>
@@ -1084,6 +1097,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo2AF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RTISFormIcon2010.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -675,7 +675,7 @@ Public Class fccWorkOrderDetailConstruction
 
 
     Try
-      mWhere = "Category = " & eStockItemCategory.Timber
+      mWhere = " Category = " & eStockItemCategory.Timber
       mWhere &= " and ItemType in ("
 
       For Each mItemTypeID As clsValueItem In eStockItemTypeTimberWood.GetInstance.ValueItems

@@ -289,6 +289,7 @@ Public Class frmStockItem
         txtImportCost.EditValue = .StdImportCost
         bteImage.Text = .ImageFile
         chkIsGeneric.Checked = .IsGeneric
+        chkIsTracked.Checked = .IsTracked
         chkIsObsolete.Checked = .Inactive
         txtCostQty.EditValue = .CostQty
         ckbIsCostingOnly.Checked = .IsCostingOnly
@@ -379,6 +380,7 @@ Public Class frmStockItem
         .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
         .SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSupplierUoM)
         .IsGeneric = chkIsGeneric.Checked
+        .IsTracked = chkIsTracked.Checked
         .Inactive = chkIsObsolete.Checked
         .IsCostingOnly = ckbIsCostingOnly.Checked
         .AverageCost = txtAverageCost.Text

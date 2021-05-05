@@ -85,7 +85,7 @@ Public Class dsoReception
   Public Function SaveReceptionDown(ByRef rReception As dmReception) As Boolean
     Dim mdtoReception As New dtoReception(pDBConn)
     Dim mdtoWoodPallet As New dtoWoodPallet(pDBConn)
-
+    Dim mdtoWoodPalletItem As New dtoWoodPalletItem(pDBConn)
     Dim mOK As Boolean
 
     Try
@@ -97,7 +97,13 @@ Public Class dsoReception
 
           If mOK Then mOK = mdtoWoodPallet.SaveWoodPalletCollectionByReceptionID(rReception.WoodPallets, rReception.ReceptionID)
 
+          If mOK Then
 
+            For Each mWP As dmWoodPallet In rReception.WoodPallets
+
+              mdtoWoodPalletItem.SaveWoodPalletItemCollection(mWP.WoodPalletItems, mWP.WoodPalletID)
+            Next
+          End If
 
         Catch ex As Exception
           mOK = False

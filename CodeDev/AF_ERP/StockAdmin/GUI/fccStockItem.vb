@@ -191,7 +191,7 @@ Public Class fccStocktem
         ''  mWhere = mWhere & " And Category=" & pCurrentCategory
         ''End If
       End If
-      mWhere = mWhere & " And Category in (" & mCatString & ")"
+      mWhere = mWhere & " AND Category in (" & mCatString & ")"
       If pShowItemsMode = eShowItems.ShowLive Then
         mWhere = mWhere & " And (Inactive = 0 Or Inactive Is Null) "
       ElseIf pShowItemsMode = eShowItems.ShowObsolete Then

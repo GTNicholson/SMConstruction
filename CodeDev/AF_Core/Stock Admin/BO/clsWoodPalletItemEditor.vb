@@ -100,7 +100,7 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
     End Get
   End Property
 
-  Public ReadOnly Property QuantityUI As Decimal
+  Public Property QuantityUI As Decimal
     Get
       Dim mRetVal As Decimal
       Select Case pStockItem.ItemType
@@ -112,6 +112,9 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
 
       Return mRetVal
     End Get
+    Set(value As Decimal)
+      pWoodPalletItem.Quantity = value
+    End Set
   End Property
 
   Public ReadOnly Property QuantityUsedUI As Decimal

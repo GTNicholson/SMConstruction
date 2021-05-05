@@ -1,27 +1,27 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmProductDetail_New
-  Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.Form
 
-  'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    Try
-      If disposing AndAlso components IsNot Nothing Then
-        components.Dispose()
-      End If
-    Finally
-      MyBase.Dispose(disposing)
-    End Try
-  End Sub
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
 
-  'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
 
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
-  Private Sub InitializeComponent()
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.uctProductDetail = New AgroForestal.uctProductBaseDetail()
@@ -31,20 +31,19 @@ Partial Class frmProductDetail_New
         Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnClose = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnCreateCopy = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnCreateCopySelected = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnChangeSpecies = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.Panel1.SuspendLayout()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.CheckEdit1)
         Me.Panel1.Controls.Add(Me.uctProductDetail)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 33)
@@ -56,10 +55,13 @@ Partial Class frmProductDetail_New
         '
         Me.uctProductDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.uctProductDetail.FormController = Nothing
+        Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(0, 0)
         Me.uctProductDetail.Name = "uctProductDetail"
         Me.uctProductDetail.Size = New System.Drawing.Size(1376, 598)
         Me.uctProductDetail.TabIndex = 0
+        Me.uctProductDetail.TempInWoodStock = 0
+        Me.uctProductDetail.WoodItemsSelected = 0
         '
         'BarManager1
         '
@@ -69,8 +71,8 @@ Partial Class frmProductDetail_New
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSaveAndClose, Me.bbtnSave, Me.bbtnClose, Me.bbtnCreateCopy})
-        Me.BarManager1.MaxItemId = 4
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnSaveAndClose, Me.bbtnSave, Me.bbtnClose, Me.bbtnCreateCopy, Me.bbtnCreateCopySelected, Me.bbtnChangeSpecies})
+        Me.BarManager1.MaxItemId = 6
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar1
@@ -79,7 +81,7 @@ Partial Class frmProductDetail_New
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnCreateCopy)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnCreateCopy), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnCreateCopySelected)})
         Me.Bar1.Text = "Tools"
         '
         'bbtnSaveAndClose
@@ -92,14 +94,14 @@ Partial Class frmProductDetail_New
         'bbtnSave
         '
         Me.bbtnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.bbtnSave.Caption = "Save"
+        Me.bbtnSave.Caption = "Guardar"
         Me.bbtnSave.Id = 1
         Me.bbtnSave.Name = "bbtnSave"
         '
         'bbtnClose
         '
         Me.bbtnClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.bbtnClose.Caption = "Close"
+        Me.bbtnClose.Caption = "Cerrar"
         Me.bbtnClose.Id = 2
         Me.bbtnClose.Name = "bbtnClose"
         '
@@ -109,6 +111,20 @@ Partial Class frmProductDetail_New
         Me.bbtnCreateCopy.Caption = "Crear Copia"
         Me.bbtnCreateCopy.Id = 3
         Me.bbtnCreateCopy.Name = "bbtnCreateCopy"
+        '
+        'bbtnCreateCopySelected
+        '
+        Me.bbtnCreateCopySelected.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnCreateCopySelected.Caption = "Crear Copia de Selección"
+        Me.bbtnCreateCopySelected.Id = 4
+        Me.bbtnCreateCopySelected.Name = "bbtnCreateCopySelected"
+        '
+        'bbtnChangeSpecies
+        '
+        Me.bbtnChangeSpecies.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnChangeSpecies.Caption = "Cambiar Especie de Selección"
+        Me.bbtnChangeSpecies.Id = 5
+        Me.bbtnChangeSpecies.Name = "bbtnChangeSpecies"
         '
         'Bar3
         '
@@ -154,15 +170,6 @@ Partial Class frmProductDetail_New
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 598)
         '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(99, 142)
-        Me.CheckEdit1.MenuManager = Me.BarManager1
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "CheckEdit1"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEdit1.TabIndex = 1
-        '
         'frmProductDetail_New
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -178,7 +185,6 @@ Partial Class frmProductDetail_New
         Me.Text = "Administración de Productos"
         Me.Panel1.ResumeLayout(False)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -196,5 +202,6 @@ Partial Class frmProductDetail_New
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents bbtnCreateCopy As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents bbtnCreateCopySelected As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnChangeSpecies As DevExpress.XtraBars.BarButtonItem
 End Class

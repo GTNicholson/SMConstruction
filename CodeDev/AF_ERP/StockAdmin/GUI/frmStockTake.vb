@@ -23,7 +23,7 @@ Public Class frmStockTake
   Private Enum eStockTakeOptions
     SelectVisible = 1
     DeselectVisible = 2
-
+    PrintGrid = 3
   End Enum
 
   Private Sub btnSelectVisible_Click(sender As Object, e As EventArgs)
@@ -1031,7 +1031,8 @@ Public Class frmStockTake
 
         End Try
 
-
+      Case eStockTakeOptions.PrintGrid
+        grdStockCheckItem.ShowPrintPreview()
     End Select
 
 

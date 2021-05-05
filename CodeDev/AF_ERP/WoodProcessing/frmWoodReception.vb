@@ -134,6 +134,7 @@ Public Class frmWoodReception
 
 
   Private Sub RefreshSourceTabs()
+
     Dim mPos As Integer = 0
     Dim mPage As DevExpress.XtraTab.XtraTabPage
     Dim mIsActive As Boolean
@@ -154,7 +155,7 @@ Public Class frmWoodReception
     'If there are no items then make page 0 invisible
     If pFormController.CurrentReception.WoodPallets.Count = 0 Then
       xtabSourcePallet.TabPages(0).PageVisible = False
-      If pFormController.CurrentSourceWoodPallet Is Nothing Then pFormController.CurrentSourceWoodPallet = New dmWoodPallet
+      If pFormController.CurrentReception Is Nothing Then pFormController.CurrentSourceWoodPallet = New dmWoodPallet
     Else
       xtabSourcePallet.TabPages(0).PageVisible = True
     End If
@@ -164,10 +165,10 @@ Public Class frmWoodReception
     mCurrentPage = Nothing
 
     For Each mSourcePallet As dmWoodPallet In pFormController.CurrentReception.WoodPallets
-      '  mWoodPallet = pFormController.LoadWoodPalletByWoodPalletID(mSourcePallet.WoodPalletID)
+      mWoodPallet = pFormController.LoadWoodPalletByWoodPalletID(mSourcePallet.WoodPalletID)
 
-      If mSourcePallet IsNot Nothing Then
-        mWoodPallets.Add(mSourcePallet)
+      If mWoodPallet IsNot Nothing Then
+        mWoodPallets.Add(mWoodPallet)
       End If
     Next
 
@@ -180,6 +181,7 @@ Public Class frmWoodReception
       End If
       mPage = xtabSourcePallet.TabPages(mPos)
       mPage.Tag = mWP
+
       mPage.Text = String.Format("{0}/{1}", mWP.PalletRef, mWP.CardNumber)
 
       If pFormController.CurrentSourceWoodPallet Is Nothing Then
@@ -188,7 +190,7 @@ Public Class frmWoodReception
 
       End If
 
-      If mWP Is pFormController.CurrentSourceWoodPallet Then
+      If mWP.WoodPalletID = pFormController.CurrentSourceWoodPallet.WoodPalletID Then
         mCurrentPage = mPage
       End If
       mPos += 1
@@ -198,12 +200,90 @@ Public Class frmWoodReception
       xtabSourcePallet.SelectedTabPageIndex = 0
       pnlOutputWoodPallet.Parent = xtabSourcePallet.TabPages(0)
     Else
+
       xtabSourcePallet.SelectedTabPage = mCurrentPage
       pnlOutputWoodPallet.Parent = mCurrentPage
+
     End If
-    'RefreshHouseTypePanel()
+
 
     pIsActive = mIsActive
+
+
+
+    'Dim mPos As Integer = 0
+    'Dim mPage As DevExpress.XtraTab.XtraTabPage
+    'Dim mIsActive As Boolean
+    'Dim mCurrentPage As DevExpress.XtraTab.XtraTabPage = Nothing
+    'Dim mWoodPallets As New colWoodPallets
+    'Dim mWoodPallet As dmWoodPallet
+
+    'mIsActive = pIsActive
+    'pIsActive = False
+
+    ''First remove excess tabs
+    'For mloop As Integer = xtabSourcePallet.TabPages.Count - 1 To 1 Step -1 'Note that it only counts down to 1 so it doesn't remove the last tab
+    '  If mloop >= pFormController.CurrentReception.WoodPallets.Count - 1 Then
+    '    xtabSourcePallet.TabPages.RemoveAt(mloop)
+    '  End If
+    'Next
+
+    ''If there are no items then make page 0 invisible
+    'If pFormController.CurrentReception.WoodPallets.Count = 0 Then
+    '  xtabSourcePallet.TabPages(0).PageVisible = False
+    '  If pFormController.CurrentSourceWoodPallet Is Nothing Then pFormController.CurrentSourceWoodPallet = New dmWoodPallet
+    'Else
+    '  xtabSourcePallet.TabPages(0).PageVisible = True
+    'End If
+
+    ''Name and Add in tabs
+    'mPos = 0
+    'mCurrentPage = Nothing
+
+    'For Each mSourcePallet As dmWoodPallet In pFormController.CurrentReception.WoodPallets
+    '  '  mWoodPallet = pFormController.LoadWoodPalletByWoodPalletID(mSourcePallet.WoodPalletID)
+
+    '  If mSourcePallet IsNot Nothing Then
+    '    mWoodPallets.Add(mSourcePallet)
+    '  End If
+    'Next
+
+    'If mWoodPallets.Count = 1 Then
+    '  pFormController.CurrentSourceWoodPallet = mWoodPallets(0)
+    'End If
+    'For Each mWP As dmWoodPallet In mWoodPallets
+    '  If mPos > xtabSourcePallet.TabPages.Count - 1 Then
+    '    xtabSourcePallet.TabPages.Add()
+    '  End If
+    '  mPage = xtabSourcePallet.TabPages(mPos)
+    '  mPage.Tag = mWP
+
+    '  pFormController.SetCurrentSourceWoodPallet(mPage.Tag)
+
+    '  mPage.Text = String.Format("{0}/{1}", mWP.PalletRef, mWP.CardNumber)
+
+    '  If pFormController.CurrentSourceWoodPallet Is Nothing Then
+
+    '    pFormController.CurrentSourceWoodPallet = mWP
+
+    '  End If
+
+    '  If mWP Is pFormController.CurrentSourceWoodPallet Then
+    '    mCurrentPage = mPage
+    '  End If
+    '  mPos += 1
+    'Next
+
+    'If mCurrentPage Is Nothing Then
+    '  xtabSourcePallet.SelectedTabPageIndex = 0
+    '  pnlOutputWoodPallet.Parent = xtabSourcePallet.TabPages(0)
+    'Else
+    '  xtabSourcePallet.SelectedTabPage = mCurrentPage
+    '  pnlOutputWoodPallet.Parent = mCurrentPage
+    'End If
+    ''RefreshHouseTypePanel()
+
+    'pIsActive = mIsActive
 
   End Sub
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
@@ -554,11 +634,11 @@ Public Class frmWoodReception
 
   End Sub
   Private Sub ToReceiveWoodPallets()
-
+    pFormController.SaveObjects()
     pFormController.ReceiveWoodPallets()
 
 
-    CheckSave(False)
+
     UpdateObject()
     CheckSave(False)
 
@@ -673,5 +753,33 @@ Public Class frmWoodReception
       gvSourceWoodPalletItem.MoveNext()
 
     End If
+  End Sub
+
+  Private Sub gvSourceWoodPalletItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvSourceWoodPalletItem.CustomUnboundColumnData
+
+    Dim mWPIE As clsWoodPalletItemEditor
+    Dim mFound As Boolean = False
+    Select Case e.Column.Name
+      Case gcM3.Name
+        Dim mBF As Decimal
+        mWPIE = TryCast(e.Row, clsWoodPalletItemEditor)
+
+        If mWPIE IsNot Nothing Then
+
+          If mWPIE.QuantityUI > 0 Then
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, (mWPIE.QuantityUI + mWPIE.ToProcessQty))
+            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
+            mWPIE.VolumeM3 = e.Value
+          Else
+
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, (mWPIE.QuantityUI + mWPIE.ToProcessQty))
+            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
+          End If
+
+        End If
+
+    End Select
+
+
   End Sub
 End Class

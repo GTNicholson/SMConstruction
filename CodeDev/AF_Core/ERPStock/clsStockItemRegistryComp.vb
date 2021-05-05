@@ -1,4 +1,5 @@
-﻿Imports SM_Core
+﻿Imports RTIS.CommonVB
+Imports SM_Core
 
 Public Class clsStockItemRegistryComp : Inherits clsStockItemRegistryBase
 
@@ -51,7 +52,7 @@ Public Class clsStockItemRegistryComp : Inherits clsStockItemRegistryBase
             End If
           End If
         End If
-        End If
+      End If
     Next
 
     Return mRetVal
@@ -62,4 +63,32 @@ Public Class clsStockItemRegistryComp : Inherits clsStockItemRegistryBase
     mRetVal = New dtoStockItem(pDBConn)
     Return mRetVal
   End Function
+
+  Public Sub CreateNewStockItem(ByRef rStockItem As dmStockItem)
+    Dim mdto As dtoStockItem
+    mdto = New dtoStockItem(pDBConn)
+
+    Try
+      pDBConn.Connect()
+      mdto.SaveStockItem(rStockItem)
+      pStockItemsDict.Add(rStockItem.StockItemID, rStockItem)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
+
+  Public Function GetStockItemFromSameSpec(ByRef rStockItem As dmStockItem) As dmStockItem
+    Dim mRetVal As dmStockItem = Nothing
+    For Each mkvp As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pStockItemsDict
+      If mkvp.Value.SIDefSpecEquals(rStockItem) Then
+        mRetVal = mkvp.Value
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
 End Class

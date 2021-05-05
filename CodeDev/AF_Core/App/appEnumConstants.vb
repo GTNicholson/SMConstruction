@@ -91,6 +91,15 @@ Public Enum ePOStage
   <Description("Limpieza Final y Entrega")> LimpiezaEntrega = 12
   <Description("Baños")> Bathroom = 13
   <Description("Hidrosanitaria")> Hidrosanitaria = 14
+  <Description("Diseño Conceptual")> DisenoConceptual = 15
+  <Description("Visualización")> Visualizacion = 16
+  <Description("Proyecto Arquitectónico")> ProyectoArquitectonico = 17
+  <Description("Diseño Especializado")> DisenoEspecializado = 18
+  <Description("Tramitología")> Tramitilogia = 19
+  <Description("Landscaping")> Landscaping = 20
+  <Description("Administración - Gerencia Proyecto")> AdmonProyecto = 21
+  <Description("Logística y Transporte")> LogisticaTransporte = 22
+  <Description("Honorarios")> Honorarios = 23
 
 
 End Enum

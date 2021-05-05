@@ -142,7 +142,15 @@ Public Class dtoStockTakeItem : Inherits dtoBase
     pStockTakeItem = Nothing
     Return mOK
   End Function
+  Public Function LoadStockTakeItemAllCollectionByWhere(ByRef rStockTakeItems As colStockTakeItems, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
 
+    mOK = MyBase.LoadCollection(rStockTakeItems, mParams, "StockTakeItemID", vWhere)
+    rStockTakeItems.TrackDeleted = True
+    If mOK Then rStockTakeItems.IsDirty = False
+    Return mOK
+  End Function
 
   Public Function LoadStockTakeItemCollection(ByRef rStockTakeItems As colStockTakeItems, ByVal vParentID As Integer) As Boolean
     Dim mParams As New Hashtable

@@ -155,12 +155,14 @@
     <Compile Include="App\appLockEntitys.vb" />
     <Compile Include="App\appXtraGridPrintExport.vb" />
     <Compile Include="App\BO\appRefLists.vb" />
+    <Compile Include="App\BO\dmThicknessValue.vb" />
     <Compile Include="App\BO\dmFileTracker.vb" />
     <Compile Include="App\BO\dmFurnitureCategory.vb" />
     <Compile Include="App\BO\dmHostCompany.vb" />
     <Compile Include="App\BO\dmOutputDocument.vb" />
     <Compile Include="App\BO\dmVATRate.vb" />
     <Compile Include="App\BO\dmWoodSpecie.vb" />
+    <Compile Include="App\DSO\dtoThicknessValue.vb" />
     <Compile Include="App\Numalet.vb" />
     <Compile Include="App\clsClipBoard.vb" />
     <Compile Include="App\clsLabelDefinition.vb" />
