@@ -924,7 +924,9 @@ Partial Class frmSalesOrderReview
         'gcThickness
         '
         Me.gcThickness.Caption = "Grosor"
-        Me.gcThickness.FieldName = "NetThickness"
+        Me.gcThickness.DisplayFormat.FormatString = "n2"
+        Me.gcThickness.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcThickness.FieldName = "StockItemThickness"
         Me.gcThickness.Name = "gcThickness"
         Me.gcThickness.Visible = True
         Me.gcThickness.VisibleIndex = 1

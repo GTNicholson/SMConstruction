@@ -33,7 +33,7 @@
       <property name="TextOptions" isnull="true" iskey="true">
         <property name="WordWrap">Wrap</property>
       </property>
-      <property name="Font">Arial, 11pt, style=Bold</property>
+      <property name="Font">Arial, 9pt, style=Bold</property>
     </property>
     <property name="EvenRow" iskey="true" value="EvenRow">
       <property name="Options" isnull="true" iskey="true">
@@ -41,7 +41,7 @@
         <property name="UseFont">true</property>
       </property>
       <property name="BackColor">WhiteSmoke</property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="FilterCloseButton" iskey="true" value="FilterCloseButton">
       <property name="Options" isnull="true" iskey="true">
@@ -67,7 +67,7 @@
         <property name="UseFont">true</property>
       </property>
       <property name="BackColor">White</property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="CustomizationFormHint" iskey="true" value="CustomizationFormHint">
       <property name="Options" isnull="true" iskey="true">
@@ -163,7 +163,7 @@
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 9pt, style=Bold</property>
     </property>
     <property name="FixedLine" iskey="true" value="FixedLine">
       <property name="Options" isnull="true" iskey="true">
@@ -176,6 +176,7 @@
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowDetailButtons">false</property>
+    <property name="ShowFooter">true</property>
     <property name="ShowGroupPanel">false</property>
     <property name="EnableAppearanceOddRow">true</property>
     <property name="EnableAppearanceEvenRow">true</property>
@@ -209,7 +210,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="13">
+  <property name="Columns" iskey="true" value="14">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -227,9 +228,9 @@
       <property name="Caption">Descripción</property>
       <property name="FieldName">WoodPalletItem.Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">590</property>
+      <property name="Width">560</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
@@ -239,7 +240,7 @@
       <property name="Caption">Código</property>
       <property name="FieldName">WoodPalletItem.StockCode</property>
       <property name="ColumnEditName">RepositoryItemDateEdit1</property>
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">155</property>
     </property>
@@ -266,7 +267,7 @@
       </property>
       <property name="Caption">Ancho</property>
       <property name="FieldName">WoodPalletItem.Width</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">59</property>
@@ -299,7 +300,7 @@
       <property name="Caption">Ref. Interna</property>
       <property name="FieldName">PalletRef</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">124</property>
     </property>
@@ -310,13 +311,21 @@
       </property>
       <property name="Caption">PT</property>
       <property name="FieldName">TotalBoardFeet</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">58</property>
+      <property name="Width">87</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalBoardFeet</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:n2}</property>
+        </property>
       </property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
@@ -329,9 +338,18 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
+      <property name="Width">113</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalCubicMeter</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:n2}</property>
+        </property>
       </property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
@@ -348,6 +366,9 @@
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Tipo de Producto</property>
       <property name="FieldName">StockItemTypeDesc</property>
       <property name="ColumnEditName" />
@@ -357,6 +378,9 @@
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Cantidad</property>
       <property name="FieldName">Quantity</property>
       <property name="ColumnEditName" />
@@ -370,12 +394,24 @@
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Ubicación</property>
       <property name="FieldName">LocationDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
       <property name="Width">134</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Name">GridColumn13</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Horno</property>
+      <property name="FieldName">KilnNumberDesc</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">3</property>
+      <property name="Visible">true</property>
     </property>
   </property>
   <property name="ViewCaption" />

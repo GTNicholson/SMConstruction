@@ -495,11 +495,18 @@
     <Compile Include="Purchasing\GUI\brwPurchaseOrder.vb" />
     <Compile Include="Purchasing\GUI\brwSupplier.vb" />
     <Compile Include="Purchasing\GUI\clsPickerPurchaseOrder.vb" />
+    <Compile Include="Purchasing\GUI\fccMaterialRequirements.vb" />
     <Compile Include="Purchasing\GUI\fccPurchaseOrder.vb" />
     <Compile Include="Purchasing\GUI\fccPurchaseOrderConsole.vb" />
     <Compile Include="Purchasing\GUI\fccPODelivery.vb" />
     <Compile Include="Purchasing\GUI\fccStockItemPurchasing.vb" />
     <Compile Include="Purchasing\GUI\fccSupplierDetail.vb" />
+    <Compile Include="Purchasing\GUI\frmMaterialRequirement.Designer.vb">
+      <DependentUpon>frmMaterialRequirement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmMaterialRequirement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Purchasing\GUI\frmPickerPurchaseOrder.designer.vb">
       <DependentUpon>frmPickerPurchaseOrder.vb</DependentUpon>
     </Compile>

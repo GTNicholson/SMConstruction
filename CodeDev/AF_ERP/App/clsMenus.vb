@@ -58,7 +58,7 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Admon. de Madera", 0, eActivityCode.WoodGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Elementos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodInventory, eActivityCode.WoodInventory)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Pallets de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodPallet)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Bultos de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodPallets, eActivityCode.WoodPallet)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodReception, eActivityCode.WoodReception)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Proceso de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderWoodProcessBrowse, eActivityCode.WorkOrderWoodProcess)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.WoodInventory)
@@ -190,7 +190,7 @@ Class clsMenuFunctions
     End If
   End Sub
   Public Shared Sub PurchaseOrderconsole(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    ''frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
   End Sub
   Public Shared Sub PickingPurchaseOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mfrm As RTIS.Elements.frmBrowseList

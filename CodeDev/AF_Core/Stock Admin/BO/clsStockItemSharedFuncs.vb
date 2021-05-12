@@ -393,10 +393,10 @@ Public Class clsStockItemSharedFuncs
         mThicknessDecimal = rStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
 
         If mThicknessDecimal <> 0 Then
-          mThicknessInteger = CInt(mThicknessDecimal)
+          mThicknessInteger = Math.Round(mThicknessDecimal, 0, MidpointRounding.ToEven)
 
-          mThicknessDecimal = mThicknessDecimal - mThicknessInteger
-
+          mThicknessDecimal = Math.Abs(mThicknessDecimal - mThicknessInteger)
+          mThicknessInteger = rStockItem.Thickness - mThicknessDecimal
           If mThicknessDecimal > 0 Then
             mThicknessDecimal = mThicknessDecimal * 10
             mSICode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")

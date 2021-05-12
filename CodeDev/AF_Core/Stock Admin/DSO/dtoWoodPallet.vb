@@ -70,6 +70,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CardNumber", StringToDBValue(.CardNumber))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "isProduction", .isProduction)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnNumber", .KilnNumber)
 
 
 
@@ -100,7 +101,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .CardNumber = DBReadString(rDataReader, "CardNumber")
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .isProduction = DBReadBoolean(rDataReader, "isProduction")
-
+        .KilnNumber = DBReadInt32(rDataReader, "KilnNumber")
         pWoodPallet.IsDirty = False
       End With
       mOK = True

@@ -21,6 +21,27 @@ Public Class clsWoodPalletSharedFuncs
     Return mRetVal
   End Function
 
+
+
+  Public Shared Function GetWoodPalletItemVolumeBoardFeetWithDifferenceValue(ByRef rWoodPalletItem As dmWoodPalletItem, ByRef rStockItem As dmStockItem) As Decimal
+    Dim mRetVal As Decimal
+
+
+    If rStockItem IsNot Nothing Then
+
+      Select Case rStockItem.ItemType
+        Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
+          ' mRetVal = rWoodPalletItem.Quantity''rWoodPalletItem.Quantity
+          mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.DifferenceTranQty, 4, MidpointRounding.AwayFromZero) * clsConstants.BoardFeetPerM3
+        Case Else
+          mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.DifferenceTranQty, 4, MidpointRounding.AwayFromZero)
+
+      End Select
+    End If
+
+    Return mRetVal
+  End Function
+
   Public Shared Function GetWoodPalletItemVolumeBoardFeet(ByRef rWoodPalletItem As dmWoodPalletItem, ByRef rStockItem As dmStockItem) As Decimal
     Dim mRetVal As Decimal
 
@@ -29,7 +50,7 @@ Public Class clsWoodPalletSharedFuncs
 
       Select Case rStockItem.ItemType
         Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
-          ' mRetVal = rWoodPalletItem.Quantity
+          ' mRetVal = rWoodPalletItem.Quantity''rWoodPalletItem.Quantity
           mRetVal = Math.Round(Math.PI * Math.Pow(rWoodPalletItem.Thickness / 200, 2) * rWoodPalletItem.Length * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero) * clsConstants.BoardFeetPerM3
         Case Else
           mRetVal = Math.Round(((rWoodPalletItem.Thickness * rWoodPalletItem.Width * rWoodPalletItem.Length) / 12) * rWoodPalletItem.Quantity, 4, MidpointRounding.AwayFromZero)
@@ -73,15 +94,19 @@ Public Class clsWoodPalletSharedFuncs
   End Function
 
 
-  Public Shared Function GetStockItemQtys(ByRef rWoodPallet As dmWoodPallet) As Dictionary(Of Integer, Decimal)
+  Public Shared Function GetStockItemQtys(ByRef rWoodPallet As dmWoodPallet, ByVal vWithDifferenceQty As Boolean) As Dictionary(Of Integer, Decimal)
     Dim mRetVal As New Dictionary(Of Integer, Decimal)
     Dim mVol As Decimal
     Dim mSI As dmStockItem
 
     For Each mPI As dmWoodPalletItem In rWoodPallet.WoodPalletItems
       mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPI.StockItemID)
-      mVol = GetWoodPalletItemVolumeBoardFeet(mPI, mSI)
 
+      If vWithDifferenceQty Then
+        mVol = GetWoodPalletItemVolumeBoardFeetWithDifferenceValue(mPI, mSI)
+      Else
+        mVol = GetWoodPalletItemVolumeBoardFeet(mPI, mSI)
+      End If
       If mRetVal.ContainsKey(mPI.StockItemID) Then
         mRetVal(mPI.StockItemID) = mRetVal(mPI.StockItemID) + mVol
       Else

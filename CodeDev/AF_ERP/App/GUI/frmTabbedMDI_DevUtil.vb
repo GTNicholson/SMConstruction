@@ -274,33 +274,33 @@ Public Class frmTabbedMDI_DevUtil
       mdtoSI = New dtoStockItem(mDBConn)
 
       mStockItems = New colStockItems
-      mdtoSI.LoadStockItemsByWhere(mStockItems, "StockCode is null")
+      mdtoSI.LoadStockItemsByWhere(mStockItems, "StockCode is null or stockcode =''")
 
       For Each mSI As dmStockItem In mStockItems
 
-        mSICode = clsStockItemSharedFuncs.GetStockCodeStem(mSI)
+        mSICode = clsStockItemSharedFuncs.GetStockCodeStem_New(mSI, mDBConn)
 
         If mSI.Category = eStockItemCategory.Timber Then
+          mSI.StockCode = mSICode
+          'If mSICode <> "" Then
+          '  mThicknessDecimal = mSI.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
+          '  mSI.StockCode = mSICode
+          '  If mThicknessDecimal <> 0 Then
+          '    mThicknessInteger = CInt(mThicknessDecimal)
 
-          If mSICode <> "" Then
-            mThicknessDecimal = mSI.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
-            mSI.StockCode = mSICode
-            If mThicknessDecimal <> 0 Then
-              mThicknessInteger = CInt(mThicknessDecimal)
+          '    mThicknessDecimal = Math.Abs(mThicknessDecimal - mThicknessInteger)
+          '    mThicknessInteger = mSI.Thickness - mThicknessDecimal
+          '    If mThicknessDecimal > 0 Then
+          '      mThicknessDecimal = mThicknessDecimal * 10
+          '      mSI.StockCode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
 
-              mThicknessDecimal = mThicknessDecimal - mThicknessInteger
+          '    Else
+          '      mSI.StockCode = mSICode & "_" & mThicknessInteger.ToString("n1")
 
-              If mThicknessDecimal > 0 Then
-                mThicknessDecimal = mThicknessDecimal * 10
-                mSI.StockCode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+          '    End If
 
-              Else
-                mSI.StockCode = mSICode & "_" & mThicknessInteger.ToString("n1")
-
-              End If
-
-            End If
-          End If
+          '  End If
+          'End If
 
         Else
           mSICode = mSICode & mdsoStock.GetNextStockCodeSuffixNoConnected(mSICode).ToString("000")
@@ -434,7 +434,7 @@ Public Class frmTabbedMDI_DevUtil
       For Each mWP As dmWoodPallet In mWoodPallets
 
 
-        mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, eLocations.AgroForestal, Now, eCurrency.Dollar, 1)
+        mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, eLocations.AgroForestal, Now, eCurrency.Dollar, 1, False)
 
 
       Next

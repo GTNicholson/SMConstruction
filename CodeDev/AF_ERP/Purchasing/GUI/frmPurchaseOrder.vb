@@ -286,7 +286,7 @@ Public Class frmPurchaseOrder
     Me.Close()
   End Sub
 
-  Private Function CheckSave(ByVal rOption As Boolean) As Boolean
+  Public Function CheckSave(ByVal rOption As Boolean) As Boolean
     Dim mSaveRequired As Boolean
     Dim mResponse As MsgBoxResult
     Dim mRetVal As Boolean

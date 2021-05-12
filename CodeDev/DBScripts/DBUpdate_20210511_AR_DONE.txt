@@ -1,0 +1,115 @@
+alter table ProductBOM
+add WoodItemType int
+go
+
+
+
+
+CREATE TABLE WoodTypeValue(
+	WoodTypeValueID [int] IDENTITY(1,1) NOT NULL,
+	Description varchar(256) NULL,
+ CONSTRAINT [pk_WoodTypeValue] PRIMARY KEY CLUSTERED 
+(
+	WoodTypeValueID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+insert into WoodTypeValue (Description)
+values ('MAS')
+GO
+
+insert into WoodTypeValue (Description)
+values ('Arbol')
+GO
+
+insert into WoodTypeValue (Description)
+values ('Rollo')
+GO
+
+insert into WoodTypeValue (Description)
+values ('Aserrado')
+GO
+
+insert into WoodTypeValue (Description)
+values ('MAS')
+GO
+
+insert into WoodTypeValue (Description)
+values ('MAV')
+GO
+
+insert into WoodTypeValue (Description)
+values ('Primera')
+GO
+
+insert into WoodTypeValue (Description)
+values ('Segunda')
+GO
+
+insert into WoodTypeValue (Description)
+values ('Tercera')
+GO
+insert into WoodTypeValue (Description)
+values ('ClasificadoZ')
+GO
+
+insert into WoodTypeValue (Description)
+values ('CepilladoPrimera')
+GO
+
+insert into WoodTypeValue (Description)
+values ('CepilladoSegunda')
+GO
+insert into WoodTypeValue (Description)
+values ('CepilladoTercera')
+GO
+
+
+insert into LookUpTable (LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode,EnableValidation)
+values ('Clasificación de Madera','WoodTypeValue','WoodTypeValueID','Description',4,1,2,7,0)
+go
+
+
+
+ALTER view [dbo].[vwWoodPalletItemInfo]
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+WPI.Quantity,
+WPI.QuantityUsed,
+WPI.OutstandingQty,
+WPI.VolumeM3,
+wpi.Thickness,
+WPI.StockItemID,
+WPI.StockCode,
+WPI.Description,
+
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.RefPalletOutside,
+WP.KilnStartDate,
+WP.KilnEndDate,
+
+SI.Category,
+SI.ItemType,
+
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+GO
+
+
+

@@ -266,11 +266,44 @@ Public Class uccProductBaseDetail
       mSINew.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mSINew, DBConn)
       mSINew.ClearKeys()
       AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mSINew)
+
     End If
 
     rProductBOM.StockItemID = mSINew.StockItemID
     rProductBOM.StockCode = mSINew.StockCode
     rProductBOM.WoodSpecie = mSINew.Species
+    rProductBOM.NetThickness = Math.Round(vThickness / clsConstants.CMToInches, 0, MidpointRounding.AwayFromZero)
+    rProductBOM.UoM = mSINew.UoM
+
+
+  End Sub
+
+  Public Sub ChangeWoodTypeForSelectedWoodItems(ByVal vNewItemType As Integer, ByVal vThickness As Decimal, ByRef rProductBOM As dmProductBOM)
+    Dim mSIOrig As dmStockItem
+    Dim mSITemp As dmStockItem
+    Dim mSINew As dmStockItem
+
+    mSIOrig = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(rProductBOM.StockItemID)
+    mSITemp = mSIOrig.Clone
+    mSITemp.ItemType = vNewItemType
+    mSITemp.Thickness = vThickness
+
+    mSINew = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromSameSpec(mSITemp)
+
+
+    If mSINew Is Nothing Then
+      mSINew = mSITemp
+      mSINew.Description = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mSINew)
+      mSINew.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mSINew, DBConn)
+      mSINew.ClearKeys()
+      AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mSINew)
+
+    End If
+
+    rProductBOM.StockItemID = mSINew.StockItemID
+    rProductBOM.StockCode = mSINew.StockCode
+    rProductBOM.WoodSpecie = mSINew.Species
+    rProductBOM.WoodItemType = vNewItemType
     rProductBOM.NetThickness = Math.Round(vThickness / clsConstants.CMToInches, 0, MidpointRounding.AwayFromZero)
     rProductBOM.UoM = mSINew.UoM
 

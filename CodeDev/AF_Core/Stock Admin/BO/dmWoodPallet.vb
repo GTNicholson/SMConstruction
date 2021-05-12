@@ -21,6 +21,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pCardNumber As String
   Private pWorkOrderID As Integer
   Private pisProduction As Boolean
+  Private pKilnNumber As Integer
 
   Public Sub New()
     MyBase.New()
@@ -302,6 +303,15 @@ Public Class dmWoodPallet : Inherits dmBase
     Set(value As Boolean)
       If pisProduction <> value Then IsDirty = True
       pisProduction = value
+    End Set
+  End Property
+
+  Public Property KilnNumber As Integer
+    Get
+      Return pKilnNumber
+    End Get
+    Set(value As Integer)
+      pKilnNumber = value
     End Set
   End Property
 End Class

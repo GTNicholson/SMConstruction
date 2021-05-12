@@ -14,6 +14,8 @@ Public Class dmWoodPalletItem : Inherits dmBase
   Private pThickness As Decimal
   Private pOutstandingQty As Decimal
   Private pVolumeM3 As Decimal
+  Private pDifferenceTranQty As Decimal
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -198,7 +200,14 @@ Public Class dmWoodPalletItem : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property DifferenceTranQty As Decimal
+    Get
+      Return pDifferenceTranQty
+    End Get
+    Set(value As Decimal)
+      pDifferenceTranQty = value
+    End Set
+  End Property
 End Class
 
 

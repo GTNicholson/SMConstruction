@@ -240,6 +240,10 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
+  Public Sub LoadStockItemTransactionsByWhere(stockItemTransactions As Object, mWhere As String)
+    Throw New NotImplementedException()
+  End Sub
+
   Public Function UpdateDeliveryStockItemLocationQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vRecievedQty As Decimal, ByVal vPOItemRecievedValue As Decimal, ByVal vPackQuantity As Decimal, ByVal vDeliveryItem As dmPODeliveryItem, ByVal vTransDate As DateTime, ByVal vPOItemAllocation As dmPurchaseOrderItemAllocation, ByVal vItemRef As String, ByVal vCreateTimberPack As Boolean, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
@@ -279,10 +283,11 @@ Public Class dsoStockTransactions
       ''End If
 
       '// get or create the stockitemlocation
-      If mStockItem.IsTracked = False Then
-        mSIL = mdsoStock.GetOrCreateStockItemLocationConnected(vStockItemID, vLocationID, mSILBatchID)
+      If mStockItem IsNot Nothing Then
+        If mStockItem.IsTracked = False Then
+          mSIL = mdsoStock.GetOrCreateStockItemLocationConnected(vStockItemID, vLocationID, mSILBatchID)
+        End If
       End If
-
       If vDeliveryItem IsNot Nothing Then
 
         If vRecievedQty <> 0 Then
@@ -1006,7 +1011,7 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
-  Public Function CreatePrevSourceWoodPalletTransaction(ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rObject As Object, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vTransactionType As eTransactionType) As Boolean
+  Public Function CreatePrevSourceWoodPalletTransaction(ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rObject As Object, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vTransactionType As eTransactionType, ByVal vWithDifferenceQty As Boolean) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -1031,7 +1036,7 @@ Public Class dsoStockTransactions
       pDBConn.ConnectionBeginTrans()
 
 
-      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet)
+      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet, vWithDifferenceQty)
       mdso = New dsoStock(pDBConn)
       For Each mKVP As KeyValuePair(Of Integer, Decimal) In mStockItemQtys
         '// Get current cost - this should probably be outside here - think through with John
@@ -1132,7 +1137,7 @@ Public Class dsoStockTransactions
   End Function
 
 
-  Public Function CreatePositiveTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal) As Boolean
+  Public Function CreatePositiveTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vWithDifferenceValue As Boolean) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -1157,7 +1162,7 @@ Public Class dsoStockTransactions
 
 
 
-      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet)
+      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet, vWithDifferenceValue)
       mdso = New dsoStock(pDBConn)
       For Each mKVP As KeyValuePair(Of Integer, Decimal) In mStockItemQtys
         mPrevValue = 0
@@ -1262,7 +1267,7 @@ Public Class dsoStockTransactions
     Return mRetVal
   End Function
 
-  Public Function CreateNegativeTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rSalesOrder As dmSalesOrder, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vObjectType As eObjectType) As Boolean
+  Public Function CreateNegativeTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rSalesOrder As dmSalesOrder, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vObjectType As eObjectType, ByVal vWithDifferenceValue As Boolean) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -1287,7 +1292,7 @@ Public Class dsoStockTransactions
 
 
 
-      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet)
+      mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet, vWithDifferenceValue)
       mdso = New dsoStock(pDBConn)
       For Each mKVP As KeyValuePair(Of Integer, Decimal) In mStockItemQtys
         mPrevValue = 0
@@ -1380,7 +1385,7 @@ Public Class dsoStockTransactions
 
     Return mOK
   End Function
-  Public Function MoveWoodPallet(ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rSalesOrder As dmSalesOrder, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal) As Boolean
+  Public Function MoveWoodPallet(ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rSalesOrder As dmSalesOrder, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vWithDifferenceValue As Boolean) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -1405,7 +1410,7 @@ Public Class dsoStockTransactions
 
 
       If rWoodPallet.LocationID <> vTargetLocation Then
-        mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet)
+        mStockItemQtys = clsWoodPalletSharedFuncs.GetStockItemQtys(rWoodPallet, vWithDifferenceValue)
         mdso = New dsoStock(pDBConn)
         For Each mKVP As KeyValuePair(Of Integer, Decimal) In mStockItemQtys
           '// Get current cost - this should probably be outside here - think through with John

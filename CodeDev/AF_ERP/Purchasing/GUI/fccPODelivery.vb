@@ -105,7 +105,7 @@ Public Class fccPODelivery
     End Set
   End Property
 
-  Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rcolPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfo)
+  Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rcolPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfos)
 
 
     Dim mdto As dtoPurchaseOrderItemAllocationInfo

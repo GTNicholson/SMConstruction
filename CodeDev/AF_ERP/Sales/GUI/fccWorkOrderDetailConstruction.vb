@@ -595,6 +595,7 @@ Public Class fccWorkOrderDetailConstruction
     Dim mNewMatReq As dmMaterialRequirement
     Dim mWoodProductBOMs As colProductBOMs
     Dim mStockItemProductBOMs As colProductBOMs
+    Dim mQty As Decimal
 
     If rProductStructure IsNot Nothing Then
 
@@ -628,6 +629,7 @@ Public Class fccWorkOrderDetailConstruction
         mNewMatReq.WoodSpecie = mPBOM.WoodSpecie
         mNewMatReq.Comments = mPBOM.Comments
 
+        mNewMatReq.Quantity = clsSMSharedFuncs.BoardFeetFromCMAndQty(mNewMatReq.UnitPiece, mNewMatReq.NetLenght, mNewMatReq.NetWidth, mNewMatReq.NetThickness)
         pWorkOrder.WoodMaterialRequirements.Add(mNewMatReq)
       Next
 

@@ -80,6 +80,7 @@ Public Class dtoProductBOM : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ComponentDescription", StringToDBValue(.ComponentDescription))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ObjectType", .ObjectType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemThickness", .StockItemThickness)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodItemType", .WoodItemType)
 
 
     End With
@@ -119,6 +120,7 @@ Public Class dtoProductBOM : Inherits dtoBase
         .ComponentDescription = DBReadString(rDataReader, "ComponentDescription")
         .ObjectType = DBReadByte(rDataReader, "ObjectType")
         .StockItemThickness = DBReadInt32(rDataReader, "StockItemThickness")
+        .WoodItemType = DBReadInt32(rDataReader, "WoodItemType")
         pProductBOM.IsDirty = False
       End With
       mOK = True

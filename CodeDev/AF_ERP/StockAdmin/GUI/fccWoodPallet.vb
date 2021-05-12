@@ -156,14 +156,15 @@ Public Class fccWoodPallet
 
 
         If pCurrentWoodPallet.PalletType > 0 Then
+
           mdsoStock.SaveWoodPalletDown(pCurrentWoodPallet)
 
-        End If
+          End If
 
 
 
 
-        mdsoStock = Nothing
+          mdsoStock = Nothing
       End If
 
 
@@ -289,7 +290,7 @@ Public Class fccWoodPallet
     End If
   End Sub
 
-  Public Sub ToProcessQty()
+  Public Sub ToProcessQty(ByVal vWithDifferenceValue As Boolean)
     Dim mCurrentQty As Decimal
     Dim mTempWoodPallet As dmWoodPallet
     Dim mTempWoodPalletItems As New colWoodPalletItems
@@ -317,7 +318,9 @@ Public Class fccWoodPallet
 
           mCurrentQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
           mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
-          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
+          mTempWoodPalletItem.DifferenceTranQty = mWPIE.ToProcessQty - mCurrentQty
+
+          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mToProcQtyBoardFeet 'mCurrentQty + mToProcQtyBoardFeet
           pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
 
           mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
@@ -336,7 +339,7 @@ Public Class fccWoodPallet
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then
-          CreateAmendmentWoodPalletTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet)
+          CreateAmendmentWoodPalletTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet, vWithDifferenceValue)
         End If
       End If
 
@@ -385,7 +388,7 @@ Public Class fccWoodPallet
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then
-          CreatePickWoodTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet)
+          CreatePickWoodTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet, True)
         End If
       End If
 
@@ -397,7 +400,7 @@ Public Class fccWoodPallet
 
   End Sub
 
-  Public Sub CreatePickWoodTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+  Public Sub CreatePickWoodTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet, ByVal vWithDifferenceValue As Boolean)
     Dim mSIL As New dmStockItemLocation
     Dim mdsoStock As dsoStock
     Dim mdsoTran As dsoStockTransactions
@@ -411,7 +414,7 @@ Public Class fccWoodPallet
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodPicking, vWoodPallet, vSourceLocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet)
+    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodPicking, vWoodPallet, vSourceLocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, vWithDifferenceValue)
 
 
 
@@ -420,7 +423,7 @@ Public Class fccWoodPallet
 
   End Sub
 
-  Public Sub CreateAmendmentWoodPalletTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+  Public Sub CreateAmendmentWoodPalletTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet, ByVal vWithDifferenceValue As Boolean)
     Dim mSIL As New dmStockItemLocation
     Dim mdsoStock As dsoStock
     Dim mdsoTran As dsoStockTransactions
@@ -434,7 +437,7 @@ Public Class fccWoodPallet
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1)
+    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1, vWithDifferenceValue)
 
 
 
@@ -446,7 +449,7 @@ Public Class fccWoodPallet
 
     For Each mWPIE As clsWoodPalletItemEditor In pWoodPalletItemEditors
 
-      If mWPIE.WoodPalletItem.Quantity = 0 Then
+      If (mWPIE.QuantityUI - mWPIE.QuantityUsedUI) = 0 Then
         pCurrentWoodPallet.WoodPalletItems.Remove(mWPIE.WoodPalletItem)
       End If
 
@@ -498,7 +501,7 @@ Public Class fccWoodPallet
 
       mdsoTran = New dsoStockTransactions(pDBConn)
 
-      mdsoTran.CreatePrevSourceWoodPalletTransaction(pCurrentWoodPallet, pCurrentWoodPallet.LocationID, pWorkOrderInfo, Now, eCurrency.Dollar, 1, eTransactionType.WoodPicking)
+      mdsoTran.CreatePrevSourceWoodPalletTransaction(pCurrentWoodPallet, pCurrentWoodPallet.LocationID, pWorkOrderInfo, Now, eCurrency.Dollar, 1, eTransactionType.WoodPicking, True)
       UpdateWoodPalletItemQuantityUsed(pCurrentWoodPallet)
 
       pCurrentWoodPallet.IsComplete = True

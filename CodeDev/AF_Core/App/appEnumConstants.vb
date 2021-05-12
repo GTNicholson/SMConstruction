@@ -9,6 +9,9 @@ Public Enum eActivityCode
   OverideUserPassword = 3  'RTIS Project Start Standard
   ForceLockRemoval = 4     'RTIS Project Start Standard
 
+
+
+
   SalesGroup = 100
   Customer = 101
   SalesOrder = 102
@@ -36,6 +39,7 @@ Public Enum eActivityCode
   PODeliveryReport = 405
   PODeliveryItemReport = 405
   PurchasingBalance = 406
+  SetFromStockQty = 407
 
   InventoryGroup = 500
   StockItem = 501
@@ -64,6 +68,7 @@ Public Enum eActivityCode
   WorkOrderWoodProcess = 903
   WoodPalletItemReport = 904
   WoodReception = 905
+
 
 End Enum
 
@@ -100,6 +105,7 @@ Public Enum ePOStage
   <Description("Administración - Gerencia Proyecto")> AdmonProyecto = 21
   <Description("Logística y Transporte")> LogisticaTransporte = 22
   <Description("Honorarios")> Honorarios = 23
+  <Description("DB MAN")> DBMan = 24
 
 
 End Enum
@@ -635,7 +641,7 @@ Public Class clsConstants
 
   Public Const VATRATE = 0.15
 
-  Public Const BoardFeetPerM3 = 423.77
+  Public Const BoardFeetPerM3 = 423.776
 
   Public Const CMToInches = 2.54
 
@@ -1962,4 +1968,10 @@ End Enum
 Public Enum eOrderPhaseType
   <Description("Sencillo")> SinglePhase = 1
   <Description("Multiple ")> MultiPhase = 2
+End Enum
+
+Public Enum eKilns
+  <Description("Horno 1")> KilnOne = 1
+  <Description("Horno 2")> KilnTwo = 2
+  <Description("Horno 3")> KilnThree = 3
 End Enum

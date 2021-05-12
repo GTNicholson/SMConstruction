@@ -77,6 +77,45 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function GetSalesOrderIDFromSalesOrderPhaseID(ByVal vSalesOrderPhaseID) As Integer
+    Dim mRetVal As Integer = -1
+    Dim mSQL As String
+    Try
+      pDBConn.Connect()
+      mSQL = "Select SalesOrderID from SalesOrderPhase where SalesOrderPhaseID = " & vSalesOrderPhaseID
+      mRetVal = pDBConn.ExecuteScalar(mSQL)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function LoadPhaseMatReqProcessors(ByVal vMatReqInfos As colMaterialRequirementProcessors, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean
+
+
+    Try
+      If pDBConn.Connect() Then
+        Dim mdto As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+        Dim mWhere As String = String.Empty
+
+        mOK = mdto.LoadMaterialRequirementProcessorsByWhere(vMatReqInfos, vWhere)
+
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function LoadWorkOrderAllocationsByWhere(ByRef rWOAs As colWorkOrderAllocations, ByVal vWhere As String) As Boolean
     Dim mOK As Boolean
     Dim mdto As dtoWorkOrderAllocation
@@ -138,6 +177,10 @@ Public Class dsoSalesOrder : Inherits dsoBase
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
     Return mRetVal
+  End Function
+
+  Public Function UpdateMaterialRequirementFromStockQty(vMatReq As dmMaterialRequirement) As Boolean
+    Throw New NotImplementedException()
   End Function
 
   Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean

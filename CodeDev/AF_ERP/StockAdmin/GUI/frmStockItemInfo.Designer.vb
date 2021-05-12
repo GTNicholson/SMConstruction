@@ -766,7 +766,7 @@ Partial Class frmStockItemInfo
         'gcThickness
         '
         Me.gcThickness.Caption = "Grosor"
-        Me.gcThickness.DisplayFormat.FormatString = "n0"
+        Me.gcThickness.DisplayFormat.FormatString = "n1"
         Me.gcThickness.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcThickness.FieldName = "Thickness"
         Me.gcThickness.Name = "gcThickness"

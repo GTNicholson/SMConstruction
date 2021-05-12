@@ -23,16 +23,16 @@ Partial Class frmWoodReception
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-        Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions8 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions9 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions10 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.grpSourcePallet = New DevExpress.XtraEditors.GroupControl()
@@ -45,25 +45,26 @@ Partial Class frmWoodReception
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcThickness = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcWidth = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcLength = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoAddDuplicated = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.gcM3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.grpGeneralInformation = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.txtCardNumber = New DevExpress.XtraEditors.TextEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
-        Me.btnSave = New DevExpress.XtraBars.BarButtonItem()
         Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnSave = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnClose = New DevExpress.XtraBars.BarButtonItem()
         Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -77,7 +78,7 @@ Partial Class frmWoodReception
         Me.dteDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcToProcessQtys = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -91,8 +92,9 @@ Partial Class frmWoodReception
         Me.pnlOutputWoodPallet.SuspendLayout()
         CType(Me.grdSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGeneralInformation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGeneralInformation.SuspendLayout()
@@ -136,7 +138,7 @@ Partial Class frmWoodReception
         Me.grpSourcePallet.AppearanceCaption.Options.UseFont = True
         Me.grpSourcePallet.AppearanceCaption.Options.UseForeColor = True
         Me.grpSourcePallet.Controls.Add(Me.xtabSourcePallet)
-        Me.grpSourcePallet.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 5, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Bulto", True, ButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Madera", True, ButtonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions10, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
+        Me.grpSourcePallet.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 5, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Bulto", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Madera", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1)})
         Me.grpSourcePallet.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpSourcePallet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpSourcePallet.Location = New System.Drawing.Point(3, 101)
@@ -193,7 +195,7 @@ Partial Class frmWoodReception
         Me.grdSourceWoodPalletItem.Location = New System.Drawing.Point(2, 2)
         Me.grdSourceWoodPalletItem.MainView = Me.gvSourceWoodPalletItem
         Me.grdSourceWoodPalletItem.Name = "grdSourceWoodPalletItem"
-        Me.grdSourceWoodPalletItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
+        Me.grdSourceWoodPalletItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemSpinEdit1})
         Me.grdSourceWoodPalletItem.Size = New System.Drawing.Size(1194, 537)
         Me.grdSourceWoodPalletItem.TabIndex = 10
         Me.grdSourceWoodPalletItem.UseEmbeddedNavigator = True
@@ -214,7 +216,7 @@ Partial Class frmWoodReception
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Options.UseBackColor = True
         Me.gvSourceWoodPalletItem.Appearance.OddRow.Options.UseFont = True
         Me.gvSourceWoodPalletItem.ColumnPanelRowHeight = 34
-        Me.gvSourceWoodPalletItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.gcThickness, Me.gcWidth, Me.GridColumn8, Me.gcQuantity, Me.GridColumn10, Me.GridColumn11, Me.gcM3, Me.gcPT, Me.GridColumn17, Me.GridColumn9})
+        Me.gvSourceWoodPalletItem.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.gcThickness, Me.gcWidth, Me.gcLength, Me.gcQuantity, Me.GridColumn10, Me.GridColumn11, Me.gcM3, Me.gcPT, Me.gcToProcessQty, Me.GridColumn9})
         Me.gvSourceWoodPalletItem.GridControl = Me.grdSourceWoodPalletItem
         Me.gvSourceWoodPalletItem.Name = "gvSourceWoodPalletItem"
         Me.gvSourceWoodPalletItem.OptionsView.EnableAppearanceEvenRow = True
@@ -260,49 +262,48 @@ Partial Class frmWoodReception
         'gcThickness
         '
         Me.gcThickness.Caption = "Grosor"
-        Me.gcThickness.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.gcThickness.DisplayFormat.FormatString = "n1"
+        Me.gcThickness.DisplayFormat.FormatString = "0.##;;#"
         Me.gcThickness.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcThickness.FieldName = "WoodPalletItem.Thickness"
+        Me.gcThickness.FieldName = "gcThickness"
         Me.gcThickness.Name = "gcThickness"
         Me.gcThickness.OptionsColumn.ReadOnly = True
+        Me.gcThickness.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcThickness.Visible = True
         Me.gcThickness.VisibleIndex = 3
         Me.gcThickness.Width = 50
         '
-        'RepositoryItemTextEdit1
+        'RepositoryItemSpinEdit1
         '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.EditFormat.FormatString = "n1"
-        Me.RepositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "n1"
-        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit1.Mask.ShowPlaceHolders = False
-        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.RepositoryItemTextEdit1.NullText = " "
+        Me.RepositoryItemSpinEdit1.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "#.##"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        Me.RepositoryItemSpinEdit1.NullValuePromptShowForEmptyValue = True
         '
         'gcWidth
         '
         Me.gcWidth.Caption = "Ancho"
-        Me.gcWidth.DisplayFormat.FormatString = "n2"
+        Me.gcWidth.DisplayFormat.FormatString = "0.##;;#"
         Me.gcWidth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcWidth.FieldName = "WoodPalletItem.Width"
+        Me.gcWidth.FieldName = "gcWidth"
         Me.gcWidth.Name = "gcWidth"
+        Me.gcWidth.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcWidth.Visible = True
         Me.gcWidth.VisibleIndex = 4
         Me.gcWidth.Width = 45
         '
-        'GridColumn8
+        'gcLength
         '
-        Me.GridColumn8.Caption = "Largo"
-        Me.GridColumn8.DisplayFormat.FormatString = "n2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "WoodPalletItem.Length"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
-        Me.GridColumn8.Width = 39
+        Me.gcLength.Caption = "Largo"
+        Me.gcLength.DisplayFormat.FormatString = "0.##;;#"
+        Me.gcLength.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcLength.FieldName = "gcLength"
+        Me.gcLength.Name = "gcLength"
+        Me.gcLength.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcLength.Visible = True
+        Me.gcLength.VisibleIndex = 5
+        Me.gcLength.Width = 39
         '
         'gcQuantity
         '
@@ -345,7 +346,7 @@ Partial Class frmWoodReception
         'repoAddDuplicated
         '
         Me.repoAddDuplicated.AutoHeight = False
-        Me.repoAddDuplicated.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoAddDuplicated.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, True, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoAddDuplicated.Name = "repoAddDuplicated"
         '
         'gcM3
@@ -373,40 +374,28 @@ Partial Class frmWoodReception
         Me.gcPT.Caption = "PT"
         Me.gcPT.DisplayFormat.FormatString = "n2"
         Me.gcPT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcPT.FieldName = "TotalBoardFeet"
+        Me.gcPT.FieldName = "gcPT"
         Me.gcPT.GroupFormat.FormatString = "n2"
         Me.gcPT.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPT.Name = "gcPT"
         Me.gcPT.OptionsColumn.ReadOnly = True
-        Me.gcPT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalBoardFeet", "{0:n2}")})
+        Me.gcPT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPT", "{0:n2}")})
+        Me.gcPT.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcPT.Visible = True
         Me.gcPT.VisibleIndex = 10
         Me.gcPT.Width = 80
         '
-        'GridColumn17
+        'gcToProcessQty
         '
-        Me.GridColumn17.Caption = "A Procesar"
-        Me.GridColumn17.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn17.DisplayFormat.FormatString = "n0"
-        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "ToProcessQty"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 11
-        Me.GridColumn17.Width = 98
-        '
-        'RepositoryItemTextEdit2
-        '
-        Me.RepositoryItemTextEdit2.AutoHeight = False
-        Me.RepositoryItemTextEdit2.DisplayFormat.FormatString = "n0"
-        Me.RepositoryItemTextEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit2.EditFormat.FormatString = "n0"
-        Me.RepositoryItemTextEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemTextEdit2.Mask.EditMask = "n0"
-        Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit2.Mask.ShowPlaceHolders = False
-        Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        Me.gcToProcessQty.Caption = "A Procesar"
+        Me.gcToProcessQty.DisplayFormat.FormatString = "0.##;;#"
+        Me.gcToProcessQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcToProcessQty.FieldName = "gcToProcessQty"
+        Me.gcToProcessQty.Name = "gcToProcessQty"
+        Me.gcToProcessQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcToProcessQty.Visible = True
+        Me.gcToProcessQty.VisibleIndex = 11
+        Me.gcToProcessQty.Width = 98
         '
         'GridColumn9
         '
@@ -421,6 +410,30 @@ Partial Class frmWoodReception
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
         Me.GridColumn9.Width = 89
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.EditFormat.FormatString = "n1"
+        Me.RepositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "n1"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.ShowPlaceHolders = False
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = " "
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.DisplayFormat.FormatString = "0.###;;0"
+        Me.RepositoryItemTextEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit2.EditFormat.FormatString = "0.###;;0"
+        Me.RepositoryItemTextEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit2.Mask.EditMask = "0.###;;0"
+        Me.RepositoryItemTextEdit2.Mask.ShowPlaceHolders = False
+        Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
         'grpGeneralInformation
         '
@@ -486,19 +499,19 @@ Partial Class frmWoodReception
         Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnClose)})
         Me.Bar1.Text = "Herramientas"
         '
-        'btnSave
-        '
-        Me.btnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.btnSave.Caption = "Guardar"
-        Me.btnSave.Id = 1
-        Me.btnSave.Name = "btnSave"
-        '
         'btnSaveAndClose
         '
         Me.btnSaveAndClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
         Me.btnSaveAndClose.Id = 4
         Me.btnSaveAndClose.Name = "btnSaveAndClose"
+        '
+        'btnSave
+        '
+        Me.btnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnSave.Caption = "Guardar"
+        Me.btnSave.Id = 1
+        Me.btnSave.Name = "btnSave"
         '
         'bbtnClose
         '
@@ -617,13 +630,13 @@ Partial Class frmWoodReception
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.Size = New System.Drawing.Size(523, 388)
         '
-        'gcToProcessQty
+        'gcToProcessQtys
         '
-        Me.gcToProcessQty.Caption = "A Procesar"
-        Me.gcToProcessQty.DisplayFormat.FormatString = "n2"
-        Me.gcToProcessQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcToProcessQty.FieldName = "ToProcessQty"
-        Me.gcToProcessQty.Name = "gcToProcessQty"
+        Me.gcToProcessQtys.Caption = "A Procesar"
+        Me.gcToProcessQtys.DisplayFormat.FormatString = "n2"
+        Me.gcToProcessQtys.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcToProcessQtys.FieldName = "ToProcessQty"
+        Me.gcToProcessQtys.Name = "gcToProcessQtys"
         '
         'GridView1
         '
@@ -653,8 +666,9 @@ Partial Class frmWoodReception
         Me.pnlOutputWoodPallet.ResumeLayout(False)
         CType(Me.grdSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpGeneralInformation, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGeneralInformation.ResumeLayout(False)
@@ -682,7 +696,7 @@ Partial Class frmWoodReception
   Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
   Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
   Friend WithEvents bbtnClose As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents gcToProcessQty As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcToProcessQtys As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
   Friend WithEvents grpSourcePallet As DevExpress.XtraEditors.GroupControl
   Friend WithEvents xtabSourcePallet As DevExpress.XtraTab.XtraTabControl
@@ -703,17 +717,18 @@ Partial Class frmWoodReception
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcThickness As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcWidth As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcLength As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcQuantity As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoAddDuplicated As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents gcM3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcPT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcToProcessQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtCardNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

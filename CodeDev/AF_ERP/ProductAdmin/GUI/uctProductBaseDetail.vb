@@ -116,6 +116,8 @@ Public Class uctProductBaseDetail
     RTIS.Elements.clsDEControlLoading.LoadRepItemLookUpEditiVI(repoThicknessValueLK, mVIs)
 
 
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodTypeValue)
+    RTIS.Elements.clsDEControlLoading.LoadRepItemLookUpEditiVI(repoWoodItemTypeLK, mVIs)
   End Sub
 
   Public Sub RefreshControls()
@@ -758,6 +760,44 @@ Public Class uctProductBaseDetail
   End Sub
 
 
+  Private Sub repoWoodItemTypeLK_EditValueChanged(sender As Object, e As EventArgs) Handles repoWoodItemTypeLK.EditValueChanged
+    Dim mThicknessValueIndex As Integer
+    Dim mProductBOM As dmProductBOM
+    Dim mSIThickness As Decimal
+    Dim mWoodItemTypeID As Integer
 
+    If pFormController IsNot Nothing Then
+
+      gvWoodMaterialRequirements.CloseEditor()
+
+      If pFormController.CurrentProductInfo IsNot Nothing Then
+
+        mProductBOM = TryCast(gvWoodMaterialRequirements.GetFocusedRow, dmProductBOM)
+
+        If mProductBOM IsNot Nothing Then
+          mThicknessValueIndex = mProductBOM.StockItemThickness
+          mSIThickness = Decimal.Parse(AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ThicknessValue).DisplayValueString(mThicknessValueIndex))
+
+          mWoodItemTypeID = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ThicknessValue).ItemValueIndex(mThicknessValueIndex)
+
+          If mWoodItemTypeID > 0 Then
+            If mSIThickness > 0 Then
+
+              Dim mWoodTypeID As Integer
+
+              mWoodTypeID = mProductBOM.WoodItemType
+
+              pFormController.ChangeWoodTypeForSelectedWoodItems(mWoodTypeID, mSIThickness, mProductBOM)
+            End If
+          Else
+              MessageBox.Show("Por favor, seleccione una clasificación de madera válida")
+            End If
+          End If
+
+        End If
+
+
+    End If
+  End Sub
 
 End Class

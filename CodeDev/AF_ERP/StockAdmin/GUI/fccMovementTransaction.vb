@@ -38,14 +38,14 @@ Public Class fccMovementTransaction
   End Sub
 
 
-  Public Function ApplyWoodPalletMovement(ByVal vLocationID As Byte, ByVal vAdjustDate As DateTime) As Boolean
+  Public Function ApplyWoodPalletMovement(ByVal vLocationID As Byte, ByVal vAdjustDate As DateTime, ByVal vWithDifferenceValue As Boolean) As Boolean
     Dim mdsoStockTran As New dsoStockTransactions(pDBConn)
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mOK As Boolean
     Try
 
       Dim mtmpSO As New dmSalesOrder
-      mOK = mdsoStockTran.MoveWoodPallet(pWoodPallet, vLocationID, mtmpSO, vAdjustDate, eCurrency.Dollar, 1)
+      mOK = mdsoStockTran.MoveWoodPallet(pWoodPallet, vLocationID, mtmpSO, vAdjustDate, eCurrency.Dollar, 1, vWithDifferenceValue)
 
 
     Catch ex As Exception

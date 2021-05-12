@@ -1,0 +1,158 @@
+ALTER view [dbo].[vwWoodTransactionSUM]
+AS
+
+
+select  SIL.StockItemID,SUM(qty) as Qty 
+from StockItemLocation sil
+INNER JOIN StockItem SI ON SI.StockItemID=SIL.StockItemID AND SI.Category=15
+where LocationID<>0
+group by SIL.StockItemID
+
+
+GO
+
+
+ALTER view [dbo].[vwWoodStockItemInfo]
+as
+
+SELECT        
+SI.StockItemID, 
+SI.StockCode,
+SI.PartNo,
+si.ASISID,
+SI.Category, 
+SI.ItemType, 
+SI.Species, 
+SI.Colour, 
+SI.Length, 
+SI.Width, 
+SI.Thickness, 
+SI.DefaultSupplier,
+SI.Description, 
+SI.UoM,
+SI.IsTracked,
+SI.CostUoM,
+SI.SupplierUoM,
+StdCost,
+si.AverageCost,
+SI.IsCostingOnly,
+WSIL.Qty,
+SIMR.OSQty,
+SIPOS.POSQty,
+SP.CompanyName
+-- On Order Qty
+FROM dbo.StockItem AS SI 
+LEFT join vwWoodTransactionSUM as WSIL ON WSIL.StockItemID = si.StockItemID 
+left join vwStockItemMaterialRequirementSum SIMR on SIMR.StockItemID = SI.StockItemID
+left join vwStockItemPurchaseOrderSum SIPOS ON SIPOS.StockItemID=Si.StockItemID
+left join Supplier SP on SP.SupplierID=SI.DefaultSupplier
+ where si.Category=15
+GO
+
+ ALTER View [dbo].[vwStockItemMaterialRequirementSum] as
+select 
+StockItemID,
+Sum(Quantity - Isnull(PickedQty,0)) as OSQty
+from MaterialRequirement
+where MaterialRequirement.ObjectID in (Select workorderid from WorkOrder where Status<> 3)
+Group By StockItemID
+
+GO
+
+USE [AgroForestal]
+GO
+
+/****** Object:  View [dbo].[vwMaterialRequirementPicking]    Script Date: 7/5/2021 14:00:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty'
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID AND WO.Status<>3
+LEFT join WorkOrderAllocation WOA on WOA.WorkOrderID=WO.WorkOrderID
+inner JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,1)
+
+GO
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty'
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID AND WO.Status<>3
+LEFT join WorkOrderAllocation WOA on WOA.WorkOrderID=WO.WorkOrderID
+inner JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,1)
+
+GO

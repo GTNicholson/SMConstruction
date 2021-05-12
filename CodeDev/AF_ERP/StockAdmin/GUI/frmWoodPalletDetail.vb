@@ -99,7 +99,7 @@ Public Class frmWoodPalletDetail
 
 
     mWoodPallet = pFormController.CreateNewPallet(mPalletType)
-    mWoodPallet.LocationID = frmMovementTransaction.OpenFormI(pFormController.DBConn, mWoodPallet, frmMovementTransaction.eFormMode.None)
+    mWoodPallet.LocationID = eLocations.AgroForestal 'frmMovementTransaction.OpenFormI(pFormController.DBConn, mWoodPallet, frmMovementTransaction.eFormMode.None)
 
     pFormController.CurrentWoodPallet = mWoodPallet
     pFormController.SaveObject()
@@ -195,11 +195,7 @@ Public Class frmWoodPalletDetail
 
     If pFormController.CurrentWoodPallet IsNot Nothing Then
 
-      If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
-        btnSelectOT.Text = pFormController.CurrentWorkOrderInfo.Description
-      Else
-        btnSelectOT.Text = ""
-      End If
+
 
       With pFormController.CurrentWoodPallet
 
@@ -284,7 +280,7 @@ Public Class frmWoodPalletDetail
   End Sub
 
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
-    btnSelectOT.ReadOnly = vReadOnly
+
     txtCardNumber.ReadOnly = vReadOnly
     cboWoodPalletType.ReadOnly = vReadOnly
     txtWoodDescription.Enabled = Not vReadOnly
@@ -322,12 +318,16 @@ Public Class frmWoodPalletDetail
         RefreshControls()
       Case eDetailButtons.Save
         UpdateObjects()
-        pFormController.SaveObject()
-        pCurrentDetailMode = eCurrentDetailMode.eView
-        gvWoodPalletInfo.RefreshData()
-        SetDetailsControlsReadonly(True)
-        RefreshControls()
+        If pFormController.CurrentWoodPallet.CardNumber <> "" Then
 
+          pFormController.SaveObject()
+          pCurrentDetailMode = eCurrentDetailMode.eView
+          gvWoodPalletInfo.RefreshData()
+          SetDetailsControlsReadonly(True)
+          RefreshControls()
+        Else
+          MessageBox.Show("Favor de ingresar un número de Tarjeta válido")
+        End If
       Case eDetailButtons.PickItem
         Dim mTempSI As dmStockItem
         UpdateObjects()
@@ -410,7 +410,7 @@ Public Class frmWoodPalletDetail
             CheckSave(False)
             'pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
 
-            pFormController.ToProcessQty()
+            pFormController.ToProcessQty(True)
             RefreshControls()
             CheckSave(False)
             pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
@@ -519,7 +519,7 @@ Public Class frmWoodPalletDetail
 
 
   End Sub
-  Private Sub btnSelectOT_Click(sender As Object, e As EventArgs) Handles btnSelectOT.Click
+  Private Sub btnSelectOT_Click(sender As Object, e As EventArgs)
     Dim mWOPicker As clsPickerWorkOrder
     Dim mWOIs As New colWorkOrderInfos
 
@@ -676,30 +676,37 @@ Public Class frmWoodPalletDetail
     mListWidths.Add(12)
 
     If vPredItems Then
-      For Each mWidth In mListWidths
-        mSelectedWoodPalletItem = TryCast(gvWoodPalletItemInfo.GetFocusedRow, clsWoodPalletItemEditor).WoodPalletItem
-
-        If mSelectedWoodPalletItem IsNot Nothing Then
-          mDuplicatedWoodPalletItem = New dmWoodPalletItem
-          mDuplicatedWoodPalletItem.StockItemID = mSelectedWoodPalletItem.StockItemID
-          mDuplicatedWoodPalletItem.Width = mWidth
-          mDuplicatedWoodPalletItem.Length = 0
-          mDuplicatedWoodPalletItem.Quantity = 0
-          mDuplicatedWoodPalletItem.QuantityUsed = 0
-          mDuplicatedWoodPalletItem.WoodPalletItemID = 0
-          mDuplicatedWoodPalletItem.Description = mSelectedWoodPalletItem.Description
-          mDuplicatedWoodPalletItem.StockCode = mSelectedWoodPalletItem.StockCode
-          mDuplicatedWoodPalletItem.Thickness = mSelectedWoodPalletItem.Thickness
-          mDuplicatedWoodPalletItem.WoodPalletID = mSelectedWoodPalletItem.WoodPalletID
-          pFormController.CurrentWoodPallet.WoodPalletItems.Add(mDuplicatedWoodPalletItem)
-          pFormController.SaveObject()
-          pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
-          gvWoodPalletInfo.RefreshData()
-        End If
-
-      Next
+      Dim mindex As Integer = gvWoodPalletItemInfo.GetFocusedDataSourceRowIndex
+      If mindex >= 0 Then
 
 
+
+        For Each mWidth In mListWidths
+
+
+          mSelectedWoodPalletItem = TryCast(gvWoodPalletItemInfo.GetFocusedRow, clsWoodPalletItemEditor).WoodPalletItem
+
+          If mSelectedWoodPalletItem IsNot Nothing Then
+            mDuplicatedWoodPalletItem = New dmWoodPalletItem
+            mDuplicatedWoodPalletItem.StockItemID = mSelectedWoodPalletItem.StockItemID
+            mDuplicatedWoodPalletItem.Width = mWidth
+            mDuplicatedWoodPalletItem.Length = 0
+            mDuplicatedWoodPalletItem.Quantity = 0
+            mDuplicatedWoodPalletItem.QuantityUsed = 0
+            mDuplicatedWoodPalletItem.WoodPalletItemID = 0
+            mDuplicatedWoodPalletItem.Description = mSelectedWoodPalletItem.Description
+            mDuplicatedWoodPalletItem.StockCode = mSelectedWoodPalletItem.StockCode
+            mDuplicatedWoodPalletItem.Thickness = mSelectedWoodPalletItem.Thickness
+            mDuplicatedWoodPalletItem.WoodPalletID = mSelectedWoodPalletItem.WoodPalletID
+            pFormController.CurrentWoodPallet.WoodPalletItems.Add(mDuplicatedWoodPalletItem)
+            pFormController.SaveObject()
+            pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+            gvWoodPalletInfo.RefreshData()
+          End If
+
+        Next
+
+      End If
     Else
 
 
@@ -774,7 +781,7 @@ Public Class frmWoodPalletDetail
 
   End Sub
 
-  Private Sub ckeArchive_CheckedChanged(sender As Object, e As EventArgs) Handles ckeArchive.CheckedChanged
+  Private Sub ckeArchive_CheckedChanged(sender As Object, e As EventArgs)
 
     If ckeArchive.Checked Then
 
@@ -797,4 +804,98 @@ Public Class frmWoodPalletDetail
       gvWoodPalletItemInfo.MoveNext()
     End If
   End Sub
+
+  Private Sub gvWoodPalletItemInfo_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodPalletItemInfo.CustomUnboundColumnData
+
+    Dim mWPIE As clsWoodPalletItemEditor
+    Dim mFound As Boolean = False
+
+    mWPIE = TryCast(e.Row, clsWoodPalletItemEditor)
+
+    If mWPIE IsNot Nothing Then
+
+      Select Case e.Column.Name
+        Case gcM3.Name
+          Dim mBF As Decimal
+
+
+
+
+          'If mWPIE.QuantityUI > 0 Then
+          If mWPIE.ToProcessQty <> 0 Then
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
+            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
+            mWPIE.VolumeM3 = e.Value
+          Else
+
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
+            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
+          End If
+
+        Case gcPT.Name
+          Dim mBF As Decimal
+
+
+          'If mWPIE.QuantityUI > 0 Then
+          If mWPIE.ToProcessQty <> 0 Then
+              mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
+              e.Value = mBF
+
+            Else
+
+              mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
+              e.Value = mBF
+            End If
+
+
+
+        Case gcToProcessQty.Name
+        If e.IsGetData Then
+
+            e.Value = mWPIE.ToProcessQty
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+
+          End If
+
+          If e.IsSetData Then
+            mWPIE.ToProcessQty = e.Value
+          End If
+
+        Case gcWidth.Name
+          If e.IsGetData Then
+            e.Value = mWPIE.WoodPalletItem.Width
+
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+          End If
+
+          If e.IsSetData Then
+            mWPIE.WoodPalletItem.Width = e.Value
+          End If
+
+
+        Case gcLength.Name
+          If e.IsGetData Then
+            e.Value = mWPIE.WoodPalletItem.Length
+
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+          End If
+
+          If e.IsSetData Then
+            mWPIE.WoodPalletItem.Length = e.Value
+          End If
+      End Select
+
+    End If
+
+
+
+  End Sub
+
+
 End Class

@@ -500,4 +500,24 @@
 <AuxFiles>
     <Filename>gvlReceptions.xml</Filename>
   </AuxFiles>
+  <AuxFiles>
+    <Filename>gvlCostBook.xml</Filename>
+  </AuxFiles>
+    <AuxFiles>
+    <Filename>BIWoodInventorySpecieChart.xml</Filename>
+  </AuxFiles>
+  
+  <AuxFiles>
+    <Filename>gvlWoodWorkOrder.xml</Filename>
+  </AuxFiles>
+  
+  <AuxFiles>
+    <Filename>gvlProductCostBook.xml</Filename>
+  </AuxFiles>
+  
+    <AuxFiles>
+    <Filename>gvlHouseType.xml</Filename>
+  </AuxFiles>
+  
+  
 </AppUpdateManifest>

@@ -82,8 +82,9 @@ Public Class dtoWoodPalletItemInfo : Inherits dtoBase
           .RefPalletOutside = DBReadString(rDataReader, "RefPalletOutside")
           .CreatedDate = DBReadDate(rDataReader, "CreatedDate")
           .LocationID = DBReadInt32(rDataReader, "LocationID")
-
-
+          .KilnEndDate = DBReadDate(rDataReader, "KilnEndDate")
+          .KilnStartDate = DBReadDate(rDataReader, "KilnStartDate")
+          .KilnNumber = DBReadInt32(rDataReader, "KilnNumber")
         End With
 
         With .StockItem

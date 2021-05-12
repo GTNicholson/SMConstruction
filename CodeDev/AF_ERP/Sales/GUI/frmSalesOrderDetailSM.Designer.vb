@@ -378,7 +378,7 @@ Partial Class frmSalesOrderDetailSM
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1424, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1424, 30)
         '
         'barDockControlBottom
         '
@@ -392,17 +392,17 @@ Partial Class frmSalesOrderDetailSM
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 718)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 721)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1424, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1424, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 718)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 721)
         '
         'BarButtonItem1
         '
@@ -416,7 +416,7 @@ Partial Class frmSalesOrderDetailSM
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(3, 296)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1418, 419)
+        Me.PanelControl1.Size = New System.Drawing.Size(1418, 422)
         Me.PanelControl1.TabIndex = 14
         '
         'XtraTabControl1
@@ -425,7 +425,7 @@ Partial Class frmSalesOrderDetailSM
         Me.XtraTabControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.xtbSalesAndOT
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1414, 415)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1414, 418)
         Me.XtraTabControl1.TabIndex = 41
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtbSalesAndOT, Me.XtraTabPage1, Me.xtbDespatchesAndInvoices})
         '
@@ -438,7 +438,7 @@ Partial Class frmSalesOrderDetailSM
         Me.xtbSalesAndOT.Controls.Add(Me.grpOrderItem)
         Me.xtbSalesAndOT.Controls.Add(Me.grpWorkOrders)
         Me.xtbSalesAndOT.Name = "xtbSalesAndOT"
-        Me.xtbSalesAndOT.Size = New System.Drawing.Size(1408, 387)
+        Me.xtbSalesAndOT.Size = New System.Drawing.Size(1406, 389)
         Me.xtbSalesAndOT.Text = "Artículos de Ventas y OTs"
         '
         'grpOrderItem
@@ -454,19 +454,19 @@ Partial Class frmSalesOrderDetailSM
         Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpOrderItem.Location = New System.Drawing.Point(7, 6)
         Me.grpOrderItem.Name = "grpOrderItem"
-        Me.grpOrderItem.Size = New System.Drawing.Size(785, 372)
+        Me.grpOrderItem.Size = New System.Drawing.Size(785, 374)
         Me.grpOrderItem.TabIndex = 0
         Me.grpOrderItem.Text = "Articulos"
         '
         'grdOrderItem
         '
         Me.grdOrderItem.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdOrderItem.Location = New System.Drawing.Point(2, 26)
+        Me.grdOrderItem.Location = New System.Drawing.Point(2, 24)
         Me.grdOrderItem.MainView = Me.gvOrderItem
         Me.grdOrderItem.MenuManager = Me.BarManager1
         Me.grdOrderItem.Name = "grdOrderItem"
         Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-        Me.grdOrderItem.Size = New System.Drawing.Size(781, 344)
+        Me.grdOrderItem.Size = New System.Drawing.Size(781, 348)
         Me.grdOrderItem.TabIndex = 0
         Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem, Me.GridView7})
         '
@@ -648,19 +648,19 @@ Partial Class frmSalesOrderDetailSM
         Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpWorkOrders.Location = New System.Drawing.Point(798, 6)
         Me.grpWorkOrders.Name = "grpWorkOrders"
-        Me.grpWorkOrders.Size = New System.Drawing.Size(602, 374)
+        Me.grpWorkOrders.Size = New System.Drawing.Size(600, 376)
         Me.grpWorkOrders.TabIndex = 1
         Me.grpWorkOrders.Text = "Órdenes de Trabajo"
         '
         'grdWorkOrders
         '
         Me.grdWorkOrders.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdWorkOrders.Location = New System.Drawing.Point(2, 26)
+        Me.grdWorkOrders.Location = New System.Drawing.Point(2, 24)
         Me.grdWorkOrders.MainView = Me.gvWorkOrders
         Me.grdWorkOrders.MenuManager = Me.BarManager1
         Me.grdWorkOrders.Name = "grdWorkOrders"
         Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-        Me.grdWorkOrders.Size = New System.Drawing.Size(598, 346)
+        Me.grdWorkOrders.Size = New System.Drawing.Size(596, 350)
         Me.grdWorkOrders.TabIndex = 0
         Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders, Me.GridView6})
         '
@@ -805,7 +805,7 @@ Partial Class frmSalesOrderDetailSM
         '
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirements)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1280, 381)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1279, 379)
         Me.XtraTabPage2.Text = "Estimación de Madera"
         '
         'grpMaterialRequirements
@@ -820,7 +820,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1280, 381)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1279, 379)
         Me.grpMaterialRequirements.TabIndex = 149
         Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
         '
@@ -832,11 +832,11 @@ Partial Class frmSalesOrderDetailSM
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 24)
         Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
         Me.grdMaterialRequirements.MenuManager = Me.BarManager1
         Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1276, 353)
+        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1275, 353)
         Me.grdMaterialRequirements.TabIndex = 29
         Me.grdMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements, Me.GridView5})
@@ -1735,7 +1735,7 @@ Partial Class frmSalesOrderDetailSM
         '
         Me.xtpSingle.Controls.Add(Me.PanelControl3)
         Me.xtpSingle.Name = "xtpSingle"
-        Me.xtpSingle.Size = New System.Drawing.Size(486, 130)
+        Me.xtpSingle.Size = New System.Drawing.Size(485, 128)
         Me.xtpSingle.Text = "Single"
         '
         'PanelControl3
@@ -1756,7 +1756,7 @@ Partial Class frmSalesOrderDetailSM
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(486, 130)
+        Me.PanelControl3.Size = New System.Drawing.Size(485, 128)
         Me.PanelControl3.TabIndex = 1
         '
         'TextEdit3
@@ -2382,12 +2382,12 @@ Partial Class frmSalesOrderDetailSM
         Me.TableLayoutPanel1.Controls.Add(Me.gcDetails, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.PanelControl1, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 293.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1424, 718)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1424, 721)
         Me.TableLayoutPanel1.TabIndex = 4
         '
         'frmSalesOrderDetailSM

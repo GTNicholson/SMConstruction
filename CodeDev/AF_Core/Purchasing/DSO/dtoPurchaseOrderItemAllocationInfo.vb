@@ -72,6 +72,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .PONum = DBReadString(rDataReader, "PONum")
         .RequiredDate = DBReadDate(rDataReader, "RequiredDate")
         .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
+
       End With
 
       With pPurchaseOrderItemAllocationInfo.PurchaseOrderItemAllocation
@@ -79,6 +80,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .PurchaseOrderItemAllocationID = DBReadInt32(rDataReader, "PurchaseOrderItemAllocationID")
         .Quantity = DBReadDecimal(rDataReader, "Quantity")
         .ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
+        .CallOffID = DBReadInt32(rDataReader, "CallOffID")
       End With
 
 
@@ -160,7 +162,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
     Return mOK
   End Function
 
-  Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rvwPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String) As Boolean
+  Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rvwPurchaseOrderItemAllocationInfo As colPurchaseOrderItemAllocationInfos, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     mOK = MyBase.LoadCollection(rvwPurchaseOrderItemAllocationInfo, mParams, "PurchaseOrderItemAllocationID", vWhere)

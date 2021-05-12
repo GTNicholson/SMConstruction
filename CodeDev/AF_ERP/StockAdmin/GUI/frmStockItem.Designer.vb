@@ -73,6 +73,7 @@ Partial Class frmStockItem
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
+        Me.chkIsTracked = New System.Windows.Forms.CheckBox()
         Me.ckbIsCostingOnly = New System.Windows.Forms.CheckBox()
         Me.cboCostUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -161,7 +162,6 @@ Partial Class frmStockItem
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.chkIsTracked = New System.Windows.Forms.CheckBox()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGroupF8.SuspendLayout()
@@ -413,6 +413,18 @@ Partial Class frmStockItem
         Me.grpGroupF8.TabIndex = 94
         Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
         '
+        'chkIsTracked
+        '
+        Me.chkIsTracked.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkIsTracked.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkIsTracked.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.chkIsTracked.Location = New System.Drawing.Point(531, 262)
+        Me.chkIsTracked.Name = "chkIsTracked"
+        Me.chkIsTracked.Size = New System.Drawing.Size(102, 18)
+        Me.chkIsTracked.TabIndex = 137
+        Me.chkIsTracked.Text = "Item Manual?"
+        Me.chkIsTracked.UseVisualStyleBackColor = True
+        '
         'ckbIsCostingOnly
         '
         Me.ckbIsCostingOnly.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -499,7 +511,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1294, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1294, 30)
         '
         'barDockControlBottom
         '
@@ -513,17 +525,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 711)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 714)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1294, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1294, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 711)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 714)
         '
         'BarButtonItem1
         '
@@ -1303,7 +1315,7 @@ Partial Class frmStockItem
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 707)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1290, 710)
         Me.SplitContainerControl1.SplitterPosition = 369
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1328,22 +1340,10 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1294, 711)
+        Me.PanelControl1.Size = New System.Drawing.Size(1294, 714)
         Me.PanelControl1.TabIndex = 4
-        '
-        'chkIsTracked
-        '
-        Me.chkIsTracked.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkIsTracked.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkIsTracked.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.chkIsTracked.Location = New System.Drawing.Point(531, 262)
-        Me.chkIsTracked.Name = "chkIsTracked"
-        Me.chkIsTracked.Size = New System.Drawing.Size(102, 18)
-        Me.chkIsTracked.TabIndex = 137
-        Me.chkIsTracked.Text = "Item Manual?"
-        Me.chkIsTracked.UseVisualStyleBackColor = True
         '
         'frmStockItem
         '

@@ -168,6 +168,9 @@ Public Class colStockItemLocations : Inherits colBase(Of dmStockItemLocation)
     MyBase.New(vList)
   End Sub
 
+  Public Function ItemsFromStockItemID(stockItemID As Integer) As Object
+    Throw New NotImplementedException()
+  End Function
 End Class
 
 

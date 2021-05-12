@@ -49,7 +49,7 @@ Partial Class frmPurchaseOrderConsole
     Me.BarManager1.DockControls.Add(Me.barDockControlRight)
     Me.BarManager1.Form = Me
     Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbtnOpenExistingPO, Me.bbtnCreateNewPurchaseOrder, Me.barEditMaterialGroup, Me.bbtnExit})
-    Me.BarManager1.MaxItemId = 8
+    Me.BarManager1.MaxItemId = 9
     Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repcboMaterialGroup})
     '
     'Bar1
@@ -66,7 +66,7 @@ Partial Class frmPurchaseOrderConsole
     'bbtnExit
     '
     Me.bbtnExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnExit.Caption = "Salir"
+    Me.bbtnExit.Caption = "Exit"
     Me.bbtnExit.Id = 6
     Me.bbtnExit.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.bbtnExit.ItemAppearance.Normal.Options.UseFont = True
@@ -75,7 +75,7 @@ Partial Class frmPurchaseOrderConsole
     'bbtnCreateNewPurchaseOrder
     '
     Me.bbtnCreateNewPurchaseOrder.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnCreateNewPurchaseOrder.Caption = "Crear Nueva O.C."
+    Me.bbtnCreateNewPurchaseOrder.Caption = "Create New P.O."
     Me.bbtnCreateNewPurchaseOrder.Id = 1
     Me.bbtnCreateNewPurchaseOrder.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
     Me.bbtnCreateNewPurchaseOrder.ItemAppearance.Normal.Options.UseFont = True
@@ -84,7 +84,7 @@ Partial Class frmPurchaseOrderConsole
     'bbtnOpenExistingPO
     '
     Me.bbtnOpenExistingPO.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-    Me.bbtnOpenExistingPO.Caption = "Abrir C.O."
+    Me.bbtnOpenExistingPO.Caption = "Open Existing P.O."
     Me.bbtnOpenExistingPO.Id = 0
     Me.bbtnOpenExistingPO.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
     Me.bbtnOpenExistingPO.ItemAppearance.Normal.Options.UseFont = True
@@ -96,31 +96,31 @@ Partial Class frmPurchaseOrderConsole
     Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
     Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
     Me.barDockControlTop.Manager = Me.BarManager1
-    Me.barDockControlTop.Size = New System.Drawing.Size(1362, 32)
+    Me.barDockControlTop.Size = New System.Drawing.Size(1577, 30)
     '
     'barDockControlBottom
     '
     Me.barDockControlBottom.CausesValidation = False
     Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 741)
+    Me.barDockControlBottom.Location = New System.Drawing.Point(0, 834)
     Me.barDockControlBottom.Manager = Me.BarManager1
-    Me.barDockControlBottom.Size = New System.Drawing.Size(1362, 0)
+    Me.barDockControlBottom.Size = New System.Drawing.Size(1577, 0)
     '
     'barDockControlLeft
     '
     Me.barDockControlLeft.CausesValidation = False
     Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
+    Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
     Me.barDockControlLeft.Manager = Me.BarManager1
-    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 709)
+    Me.barDockControlLeft.Size = New System.Drawing.Size(0, 804)
     '
     'barDockControlRight
     '
     Me.barDockControlRight.CausesValidation = False
     Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-    Me.barDockControlRight.Location = New System.Drawing.Point(1362, 32)
+    Me.barDockControlRight.Location = New System.Drawing.Point(1577, 30)
     Me.barDockControlRight.Manager = Me.BarManager1
-    Me.barDockControlRight.Size = New System.Drawing.Size(0, 709)
+    Me.barDockControlRight.Size = New System.Drawing.Size(0, 804)
     '
     'barEditMaterialGroup
     '
@@ -151,15 +151,15 @@ Partial Class frmPurchaseOrderConsole
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(1362, 741)
+    Me.ClientSize = New System.Drawing.Size(1577, 834)
     Me.Controls.Add(Me.barDockControlLeft)
     Me.Controls.Add(Me.barDockControlRight)
     Me.Controls.Add(Me.barDockControlBottom)
     Me.Controls.Add(Me.barDockControlTop)
     Me.IsMdiContainer = True
     Me.Name = "frmPurchaseOrderConsole"
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-    Me.Text = "Administrador de Órden de Compra"
+    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+    Me.Text = "Purchase Order Manager"
     CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.repcboMaterialGroup, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()

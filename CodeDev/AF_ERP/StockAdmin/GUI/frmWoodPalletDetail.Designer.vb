@@ -39,7 +39,6 @@ Partial Class frmWoodPalletDetail
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.grpWoodPallet = New DevExpress.XtraEditors.GroupControl()
-        Me.btnSelectOT = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.txtCardNumber = New DevExpress.XtraEditors.TextEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -56,10 +55,8 @@ Partial Class frmWoodPalletDetail
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.cboFarm = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.lblFarm = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.cboWoodPalletType = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.ckeArchive = New DevExpress.XtraEditors.CheckEdit()
         Me.txtWoodDescription = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.cboLocations = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -71,16 +68,17 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcThickness = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcWidth = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcLength = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoAddDuplicated = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.gcM3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.dteDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.lblDate = New DevExpress.XtraEditors.LabelControl()
         Me.txtWoodRef = New DevExpress.XtraEditors.TextEdit()
@@ -97,25 +95,25 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcFarm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.btnStockItemFilter = New DevExpress.XtraEditors.ButtonEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.gcFarm = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ckeArchive = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.grpWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpWoodPallet.SuspendLayout()
-        CType(Me.btnSelectOT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCardNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFarm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboWoodPalletType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ckeArchive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdWoodPalletItemInfos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPalletItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +125,7 @@ Partial Class frmWoodPalletDetail
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnStockItemFilter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.ckeArchive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpWoodPallet
@@ -137,15 +136,13 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPallet.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpWoodPallet.AppearanceCaption.Options.UseFont = True
         Me.grpWoodPallet.AppearanceCaption.Options.UseForeColor = True
-        Me.grpWoodPallet.Controls.Add(Me.btnSelectOT)
+        Me.grpWoodPallet.Controls.Add(Me.ckeArchive)
         Me.grpWoodPallet.Controls.Add(Me.LabelControl7)
         Me.grpWoodPallet.Controls.Add(Me.txtCardNumber)
         Me.grpWoodPallet.Controls.Add(Me.cboFarm)
         Me.grpWoodPallet.Controls.Add(Me.lblFarm)
-        Me.grpWoodPallet.Controls.Add(Me.LabelControl6)
         Me.grpWoodPallet.Controls.Add(Me.LabelControl1)
         Me.grpWoodPallet.Controls.Add(Me.cboWoodPalletType)
-        Me.grpWoodPallet.Controls.Add(Me.ckeArchive)
         Me.grpWoodPallet.Controls.Add(Me.txtWoodDescription)
         Me.grpWoodPallet.Controls.Add(Me.LabelControl4)
         Me.grpWoodPallet.Controls.Add(Me.cboLocations)
@@ -158,27 +155,17 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPallet.Controls.Add(Me.LabelControl2)
         Me.grpWoodPallet.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Editar", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Guardar", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(2, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Item", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(3, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(5, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Anchos Pred", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(9, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Trasladar", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Despachar", True, ButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(6, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Consumir", True, ButtonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(7, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar Vacíos", True, ButtonImageOptions10, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(8, Short), -1)})
         Me.grpWoodPallet.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.grpWoodPallet.Location = New System.Drawing.Point(3, 403)
+        Me.grpWoodPallet.Location = New System.Drawing.Point(3, 449)
         Me.grpWoodPallet.Name = "grpWoodPallet"
-        Me.grpWoodPallet.Size = New System.Drawing.Size(1557, 370)
+        Me.grpWoodPallet.Size = New System.Drawing.Size(1362, 357)
         Me.grpWoodPallet.TabIndex = 4
         Me.grpWoodPallet.Text = "Detalles del Bulto: ###"
         '
-        'btnSelectOT
-        '
-        Me.btnSelectOT.Location = New System.Drawing.Point(487, 36)
-        Me.btnSelectOT.Name = "btnSelectOT"
-        Me.btnSelectOT.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.btnSelectOT.Properties.Appearance.Options.UseFont = True
-        Me.btnSelectOT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.btnSelectOT.Size = New System.Drawing.Size(103, 20)
-        Me.btnSelectOT.TabIndex = 24
-        '
         'LabelControl7
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl7.Appearance.Options.UseFont = True
-        Me.LabelControl7.Location = New System.Drawing.Point(596, 39)
+        Me.LabelControl7.Location = New System.Drawing.Point(351, 39)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(69, 14)
         Me.LabelControl7.TabIndex = 23
@@ -186,11 +173,13 @@ Partial Class frmWoodPalletDetail
         '
         'txtCardNumber
         '
-        Me.txtCardNumber.Location = New System.Drawing.Point(671, 36)
+        Me.txtCardNumber.Location = New System.Drawing.Point(426, 36)
         Me.txtCardNumber.MenuManager = Me.BarManager1
         Me.txtCardNumber.Name = "txtCardNumber"
+        Me.txtCardNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCardNumber.Properties.Appearance.Options.UseFont = True
         Me.txtCardNumber.Properties.ReadOnly = True
-        Me.txtCardNumber.Size = New System.Drawing.Size(100, 20)
+        Me.txtCardNumber.Size = New System.Drawing.Size(63, 20)
         Me.txtCardNumber.TabIndex = 22
         '
         'BarManager1
@@ -249,7 +238,7 @@ Partial Class frmWoodPalletDetail
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1563, 33)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1368, 33)
         '
         'barDockControlBottom
         '
@@ -257,7 +246,7 @@ Partial Class frmWoodPalletDetail
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 842)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1563, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1368, 0)
         '
         'barDockControlLeft
         '
@@ -271,7 +260,7 @@ Partial Class frmWoodPalletDetail
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1563, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1368, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 809)
         '
@@ -292,39 +281,31 @@ Partial Class frmWoodPalletDetail
         '
         'cboFarm
         '
-        Me.cboFarm.Location = New System.Drawing.Point(1261, 36)
+        Me.cboFarm.Location = New System.Drawing.Point(927, 36)
         Me.cboFarm.MenuManager = Me.BarManager1
         Me.cboFarm.Name = "cboFarm"
+        Me.cboFarm.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboFarm.Properties.Appearance.Options.UseFont = True
         Me.cboFarm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboFarm.Properties.ReadOnly = True
-        Me.cboFarm.Size = New System.Drawing.Size(136, 20)
+        Me.cboFarm.Size = New System.Drawing.Size(99, 20)
         Me.cboFarm.TabIndex = 21
         '
         'lblFarm
         '
-        Me.lblFarm.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblFarm.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFarm.Appearance.Options.UseFont = True
-        Me.lblFarm.Location = New System.Drawing.Point(1227, 39)
+        Me.lblFarm.Location = New System.Drawing.Point(893, 39)
         Me.lblFarm.Name = "lblFarm"
         Me.lblFarm.Size = New System.Drawing.Size(28, 14)
         Me.lblFarm.TabIndex = 20
         Me.lblFarm.Text = "Finca"
         '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl6.Appearance.Options.UseFont = True
-        Me.LabelControl6.Location = New System.Drawing.Point(432, 39)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(49, 14)
-        Me.LabelControl6.TabIndex = 19
-        Me.LabelControl6.Text = "Proyecto"
-        '
         'LabelControl1
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Appearance.Options.UseFont = True
-        Me.LabelControl1.Location = New System.Drawing.Point(777, 39)
+        Me.LabelControl1.Location = New System.Drawing.Point(499, 39)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(24, 14)
         Me.LabelControl1.TabIndex = 17
@@ -332,40 +313,31 @@ Partial Class frmWoodPalletDetail
         '
         'cboWoodPalletType
         '
-        Me.cboWoodPalletType.Location = New System.Drawing.Point(807, 36)
+        Me.cboWoodPalletType.Location = New System.Drawing.Point(529, 36)
         Me.cboWoodPalletType.MenuManager = Me.BarManager1
         Me.cboWoodPalletType.Name = "cboWoodPalletType"
+        Me.cboWoodPalletType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboWoodPalletType.Properties.Appearance.Options.UseFont = True
         Me.cboWoodPalletType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboWoodPalletType.Properties.ReadOnly = True
-        Me.cboWoodPalletType.Size = New System.Drawing.Size(100, 20)
+        Me.cboWoodPalletType.Size = New System.Drawing.Size(77, 20)
         Me.cboWoodPalletType.TabIndex = 16
-        '
-        'ckeArchive
-        '
-        Me.ckeArchive.Location = New System.Drawing.Point(1456, 37)
-        Me.ckeArchive.MenuManager = Me.BarManager1
-        Me.ckeArchive.Name = "ckeArchive"
-        Me.ckeArchive.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.ckeArchive.Properties.Appearance.Options.UseFont = True
-        Me.ckeArchive.Properties.Caption = "?Archivar"
-        Me.ckeArchive.Properties.ReadOnly = True
-        Me.ckeArchive.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ckeArchive.Size = New System.Drawing.Size(92, 19)
-        Me.ckeArchive.TabIndex = 15
         '
         'txtWoodDescription
         '
-        Me.txtWoodDescription.Location = New System.Drawing.Point(242, 36)
+        Me.txtWoodDescription.Location = New System.Drawing.Point(219, 36)
         Me.txtWoodDescription.Name = "txtWoodDescription"
+        Me.txtWoodDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtWoodDescription.Properties.Appearance.Options.UseFont = True
         Me.txtWoodDescription.Properties.ReadOnly = True
-        Me.txtWoodDescription.Size = New System.Drawing.Size(184, 20)
+        Me.txtWoodDescription.Size = New System.Drawing.Size(129, 20)
         Me.txtWoodDescription.TabIndex = 14
         '
         'LabelControl4
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Appearance.Options.UseFont = True
-        Me.LabelControl4.Location = New System.Drawing.Point(172, 39)
+        Me.LabelControl4.Location = New System.Drawing.Point(149, 39)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(65, 14)
         Me.LabelControl4.TabIndex = 13
@@ -373,19 +345,21 @@ Partial Class frmWoodPalletDetail
         '
         'cboLocations
         '
-        Me.cboLocations.Location = New System.Drawing.Point(971, 36)
+        Me.cboLocations.Location = New System.Drawing.Point(675, 36)
         Me.cboLocations.MenuManager = Me.BarManager1
         Me.cboLocations.Name = "cboLocations"
+        Me.cboLocations.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboLocations.Properties.Appearance.Options.UseFont = True
         Me.cboLocations.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboLocations.Properties.ReadOnly = True
-        Me.cboLocations.Size = New System.Drawing.Size(122, 20)
+        Me.cboLocations.Size = New System.Drawing.Size(85, 20)
         Me.cboLocations.TabIndex = 12
         '
         'LabelControl3
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Appearance.Options.UseFont = True
-        Me.LabelControl3.Location = New System.Drawing.Point(913, 39)
+        Me.LabelControl3.Location = New System.Drawing.Point(617, 39)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(52, 14)
         Me.LabelControl3.TabIndex = 10
@@ -405,11 +379,11 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletItemInfos.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodPalletItemInfos.EmbeddedNavigator.Buttons.Remove.Enabled = False
         Me.grdWoodPalletItemInfos.EmbeddedNavigator.Buttons.Remove.Visible = False
-        Me.grdWoodPalletItemInfos.Location = New System.Drawing.Point(2, 83)
+        Me.grdWoodPalletItemInfos.Location = New System.Drawing.Point(2, 62)
         Me.grdWoodPalletItemInfos.MainView = Me.gvWoodPalletItemInfo
         Me.grdWoodPalletItemInfos.Name = "grdWoodPalletItemInfos"
-        Me.grdWoodPalletItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1})
-        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1548, 287)
+        Me.grdWoodPalletItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1})
+        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1353, 290)
         Me.grdWoodPalletItemInfos.TabIndex = 9
         Me.grdWoodPalletItemInfos.UseEmbeddedNavigator = True
         Me.grdWoodPalletItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletItemInfo})
@@ -429,7 +403,7 @@ Partial Class frmWoodPalletDetail
         Me.gvWoodPalletItemInfo.Appearance.OddRow.Options.UseBackColor = True
         Me.gvWoodPalletItemInfo.Appearance.OddRow.Options.UseFont = True
         Me.gvWoodPalletItemInfo.ColumnPanelRowHeight = 34
-        Me.gvWoodPalletItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.gcThickness, Me.gcWidth, Me.GridColumn8, Me.gcQuantity, Me.GridColumn10, Me.GridColumn11, Me.gcM3, Me.gcPT, Me.GridColumn17, Me.GridColumn9})
+        Me.gvWoodPalletItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.gcThickness, Me.gcWidth, Me.gcLength, Me.gcQuantity, Me.GridColumn10, Me.GridColumn11, Me.gcM3, Me.gcPT, Me.gcToProcessQty, Me.GridColumn9})
         Me.gvWoodPalletItemInfo.GridControl = Me.grdWoodPalletItemInfos
         Me.gvWoodPalletItemInfo.Name = "gvWoodPalletItemInfo"
         Me.gvWoodPalletItemInfo.OptionsView.EnableAppearanceEvenRow = True
@@ -487,24 +461,26 @@ Partial Class frmWoodPalletDetail
         'gcWidth
         '
         Me.gcWidth.Caption = "Ancho"
-        Me.gcWidth.DisplayFormat.FormatString = "n2"
+        Me.gcWidth.DisplayFormat.FormatString = "0.###;;0"
         Me.gcWidth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcWidth.FieldName = "WoodPalletItem.Width"
+        Me.gcWidth.FieldName = "gcWidth"
         Me.gcWidth.Name = "gcWidth"
+        Me.gcWidth.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcWidth.Visible = True
         Me.gcWidth.VisibleIndex = 4
         Me.gcWidth.Width = 45
         '
-        'GridColumn8
+        'gcLength
         '
-        Me.GridColumn8.Caption = "Largo"
-        Me.GridColumn8.DisplayFormat.FormatString = "n2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "WoodPalletItem.Length"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
-        Me.GridColumn8.Width = 39
+        Me.gcLength.Caption = "Largo"
+        Me.gcLength.DisplayFormat.FormatString = "0.###;;0"
+        Me.gcLength.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcLength.FieldName = "gcLength"
+        Me.gcLength.Name = "gcLength"
+        Me.gcLength.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcLength.Visible = True
+        Me.gcLength.VisibleIndex = 5
+        Me.gcLength.Width = 39
         '
         'gcQuantity
         '
@@ -559,12 +535,13 @@ Partial Class frmWoodPalletDetail
         Me.gcM3.Caption = "m3"
         Me.gcM3.DisplayFormat.FormatString = "n2"
         Me.gcM3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcM3.FieldName = "Totalm3"
+        Me.gcM3.FieldName = "gcM3"
         Me.gcM3.GroupFormat.FormatString = "n2"
         Me.gcM3.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcM3.Name = "gcM3"
         Me.gcM3.OptionsColumn.ReadOnly = True
-        Me.gcM3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Totalm3", "{0:n2}")})
+        Me.gcM3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcM3", "{0:n2}")})
+        Me.gcM3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcM3.Visible = True
         Me.gcM3.VisibleIndex = 9
         Me.gcM3.Width = 80
@@ -576,35 +553,28 @@ Partial Class frmWoodPalletDetail
         Me.gcPT.Caption = "PT"
         Me.gcPT.DisplayFormat.FormatString = "n2"
         Me.gcPT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcPT.FieldName = "TotalBoardFeet"
+        Me.gcPT.FieldName = "gcPT"
         Me.gcPT.GroupFormat.FormatString = "n2"
         Me.gcPT.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPT.Name = "gcPT"
         Me.gcPT.OptionsColumn.ReadOnly = True
-        Me.gcPT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalBoardFeet", "{0:n2}")})
+        Me.gcPT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPT", "{0:n2}")})
+        Me.gcPT.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcPT.Visible = True
         Me.gcPT.VisibleIndex = 10
         Me.gcPT.Width = 80
         '
-        'GridColumn17
+        'gcToProcessQty
         '
-        Me.GridColumn17.Caption = "A Procesar"
-        Me.GridColumn17.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumn17.DisplayFormat.FormatString = "n0"
-        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "ToProcessQty"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 11
-        Me.GridColumn17.Width = 98
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Mask.EditMask = "D"
-        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.gcToProcessQty.Caption = "A Procesar"
+        Me.gcToProcessQty.DisplayFormat.FormatString = "0.###;;0"
+        Me.gcToProcessQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcToProcessQty.FieldName = "gcToProcessQty"
+        Me.gcToProcessQty.Name = "gcToProcessQty"
+        Me.gcToProcessQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcToProcessQty.Visible = True
+        Me.gcToProcessQty.VisibleIndex = 11
+        Me.gcToProcessQty.Width = 98
         '
         'GridColumn9
         '
@@ -620,11 +590,31 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn9.VisibleIndex = 8
         Me.GridColumn9.Width = 89
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "D"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "#.##"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "#.##"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
         'dteDateCreated
         '
         Me.dteDateCreated.EditValue = Nothing
-        Me.dteDateCreated.Location = New System.Drawing.Point(1137, 36)
+        Me.dteDateCreated.Location = New System.Drawing.Point(803, 36)
         Me.dteDateCreated.Name = "dteDateCreated"
+        Me.dteDateCreated.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dteDateCreated.Properties.Appearance.Options.UseFont = True
         Me.dteDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateCreated.Size = New System.Drawing.Size(84, 20)
@@ -632,9 +622,9 @@ Partial Class frmWoodPalletDetail
         '
         'lblDate
         '
-        Me.lblDate.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblDate.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDate.Appearance.Options.UseFont = True
-        Me.lblDate.Location = New System.Drawing.Point(1099, 39)
+        Me.lblDate.Location = New System.Drawing.Point(765, 39)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(32, 14)
         Me.lblDate.TabIndex = 4
@@ -644,8 +634,10 @@ Partial Class frmWoodPalletDetail
         '
         Me.txtWoodRef.Location = New System.Drawing.Point(75, 36)
         Me.txtWoodRef.Name = "txtWoodRef"
+        Me.txtWoodRef.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtWoodRef.Properties.Appearance.Options.UseFont = True
         Me.txtWoodRef.Properties.ReadOnly = True
-        Me.txtWoodRef.Size = New System.Drawing.Size(84, 20)
+        Me.txtWoodRef.Size = New System.Drawing.Size(70, 20)
         Me.txtWoodRef.TabIndex = 3
         '
         'lblWoodPalletID
@@ -653,7 +645,7 @@ Partial Class frmWoodPalletDetail
         Me.lblWoodPalletID.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblWoodPalletID.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.lblWoodPalletID.Appearance.Options.UseFont = True
-        Me.lblWoodPalletID.Location = New System.Drawing.Point(788, 3)
+        Me.lblWoodPalletID.Location = New System.Drawing.Point(593, 3)
         Me.lblWoodPalletID.Name = "lblWoodPalletID"
         Me.lblWoodPalletID.Size = New System.Drawing.Size(13, 14)
         Me.lblWoodPalletID.TabIndex = 1
@@ -661,7 +653,7 @@ Partial Class frmWoodPalletDetail
         '
         'LabelControl2
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Location = New System.Drawing.Point(11, 39)
         Me.LabelControl2.Name = "LabelControl2"
@@ -675,7 +667,7 @@ Partial Class frmWoodPalletDetail
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlTop.Manager = Nothing
-        Me.barDockControlTop.Size = New System.Drawing.Size(1563, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1368, 0)
         '
         'GroupControl1
         '
@@ -691,7 +683,7 @@ Partial Class frmWoodPalletDetail
         Me.GroupControl1.Controls.Add(Me.btnStockItemFilter)
         Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1557, 394)
+        Me.GroupControl1.Size = New System.Drawing.Size(1362, 440)
         Me.GroupControl1.TabIndex = 11
         Me.GroupControl1.Text = "Lista de Rastras y Bultos"
         '
@@ -703,7 +695,7 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPalletList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpWoodPalletList.Location = New System.Drawing.Point(2, 23)
         Me.grpWoodPalletList.Name = "grpWoodPalletList"
-        Me.grpWoodPalletList.Size = New System.Drawing.Size(1553, 369)
+        Me.grpWoodPalletList.Size = New System.Drawing.Size(1358, 415)
         Me.grpWoodPalletList.TabIndex = 14
         '
         'grdWoodPalletInfo
@@ -718,7 +710,7 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodPalletInfo.MainView = Me.gvWoodPalletInfo
         Me.grdWoodPalletInfo.Name = "grdWoodPalletInfo"
-        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1549, 341)
+        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1354, 387)
         Me.grdWoodPalletInfo.TabIndex = 11
         Me.grdWoodPalletInfo.UseEmbeddedNavigator = True
         Me.grdWoodPalletInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletInfo})
@@ -806,6 +798,15 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
         '
+        'gcFarm
+        '
+        Me.gcFarm.Caption = "Finca"
+        Me.gcFarm.FieldName = "FarmDesc"
+        Me.gcFarm.Name = "gcFarm"
+        Me.gcFarm.OptionsColumn.ReadOnly = True
+        Me.gcFarm.Visible = True
+        Me.gcFarm.VisibleIndex = 6
+        '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
@@ -836,24 +837,26 @@ Partial Class frmWoodPalletDetail
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 409.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1563, 809)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1368, 809)
         Me.TableLayoutPanel1.TabIndex = 17
         '
-        'gcFarm
+        'ckeArchive
         '
-        Me.gcFarm.Caption = "Finca"
-        Me.gcFarm.FieldName = "FarmDesc"
-        Me.gcFarm.Name = "gcFarm"
-        Me.gcFarm.OptionsColumn.ReadOnly = True
-        Me.gcFarm.Visible = True
-        Me.gcFarm.VisibleIndex = 6
+        Me.ckeArchive.Location = New System.Drawing.Point(1047, 37)
+        Me.ckeArchive.MenuManager = Me.BarManager1
+        Me.ckeArchive.Name = "ckeArchive"
+        Me.ckeArchive.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.ckeArchive.Properties.Appearance.Options.UseFont = True
+        Me.ckeArchive.Properties.Caption = "Archivar?"
+        Me.ckeArchive.Size = New System.Drawing.Size(75, 19)
+        Me.ckeArchive.TabIndex = 24
         '
         'frmWoodPalletDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1563, 842)
+        Me.ClientSize = New System.Drawing.Size(1368, 842)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Controls.Add(Me.barDockControlLeft)
@@ -866,19 +869,18 @@ Partial Class frmWoodPalletDetail
         CType(Me.grpWoodPallet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpWoodPallet.ResumeLayout(False)
         Me.grpWoodPallet.PerformLayout()
-        CType(Me.btnSelectOT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCardNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFarm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboWoodPalletType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ckeArchive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdWoodPalletItemInfos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWoodPalletItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -891,6 +893,7 @@ Partial Class frmWoodPalletDetail
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnStockItemFilter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.ckeArchive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -917,7 +920,7 @@ Partial Class frmWoodPalletDetail
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcThickness As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcWidth As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcLength As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcQuantity As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
@@ -935,18 +938,16 @@ Partial Class frmWoodPalletDetail
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ckeArchive As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents bbtnPickWoodPallet As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents grpWoodPalletList As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboWoodPalletType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents gcM3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcPT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents bbtnReload As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcToProcessQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents bbtnAddPallet As DevExpress.XtraBars.BarSubItem
@@ -957,6 +958,7 @@ Partial Class frmWoodPalletDetail
     Friend WithEvents txtCardNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents btnSelectOT As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents gcFarm As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents ckeArchive As DevExpress.XtraEditors.CheckEdit
 End Class

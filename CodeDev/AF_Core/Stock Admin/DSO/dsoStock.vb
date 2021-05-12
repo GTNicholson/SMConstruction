@@ -145,6 +145,30 @@ Public Class dsoStock
 
   End Function
 
+  Public Function GetPhaseMatReqPickedQtyConnected(ByVal vSalesOrderPhaseID As Integer, ByVal vStockItemID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mHT As New Hashtable
+    Try
+      pDBConn.Connect()
+      'mSQL = String.Format("Select Sum(PickedQty) as TotalPicked from ProductionBatchMatReq PBMR Inner Join ProductionBatch PB on PBMR.ProductionBatchID = PB.ProductionBatchID Where SalesOrderPhaseID = {0} And StockItemID = {1}", vSalesOrderPhaseID, vStockItemID)
+      'mRetVal = DBValueToDecimal(pDBConn.ExecuteScalar(mSQL))
+      mHT.Add("@SalesOrderPhaseID", vSalesOrderPhaseID)
+      mHT.Add("@StockItemID", vStockItemID)
+
+      Dim mReader As IDataReader = pDBConn.LoadReaderSP("spPhaseMatReqPickedSum", mHT)
+      If mReader.Read Then
+        mRetVal = clsDBConnBase.DBReadDecimal(mReader, "TotalPicked")
+      End If
+
+      mReader.Close()
+      mReader = Nothing
+      pDBConn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+    Return mRetVal
+  End Function
+
   Public Function SaveWoodPalletCollectionDown(ByRef rWoodPallets As colWoodPallets) As Boolean
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet

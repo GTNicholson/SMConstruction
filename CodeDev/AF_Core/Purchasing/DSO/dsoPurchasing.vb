@@ -299,7 +299,7 @@ Public Class dsoPurchasing
   End Function
 
 
-  Public Sub LoadPurchaseOrderItemAllocationInfoByWhere(ByRef rPOItemAllocationProcessors As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String)
+  Public Sub LoadPurchaseOrderItemAllocationInfoByWhere(ByRef rPOItemAllocationProcessors As colPurchaseOrderItemAllocationInfos, ByVal vWhere As String)
 
     Dim mdto As dtoPurchaseOrderItemAllocationInfo
     Dim mdtoPODI As dtoPODeliveryItem
@@ -404,7 +404,7 @@ Public Class dsoPurchasing
     Return mRetVal
   End Function
 
-  Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rPOIA As colPurchaseOrderItemAllocationInfo, ByVal vWhere As String) As Boolean
+  Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rPOIA As colPurchaseOrderItemAllocationInfos, ByVal vWhere As String) As Boolean
     Dim mdto As New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Info)
     Dim mOK As Boolean
     Try

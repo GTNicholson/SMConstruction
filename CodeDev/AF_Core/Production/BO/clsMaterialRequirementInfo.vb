@@ -335,6 +335,21 @@ Public Class clsMaterialRequirementInfo
     End Get
   End Property
 
+  Public ReadOnly Property StockItemThickness As Decimal
+    Get
+      Dim mSI As dmStockItem
+      Dim mRetVal As Decimal = 0
+
+      mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItem.StockItemID)
+
+      If mSI IsNot Nothing Then
+        mRetVal = mSI.Thickness
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
+
   Public ReadOnly Property InitialThickness As Decimal
     Get
       Return clsSMSharedFuncs.GrosWoodThickness(pMaterialRequirement.NetThickness)
@@ -426,11 +441,13 @@ Public Class clsMaterialRequirementInfo
 
 
 
-  Public ReadOnly Property PickedQty As Decimal
+  Public Property PickedQty As Decimal
     Get
       Return pMaterialRequirement.PickedQty
     End Get
-
+    Set(value As Decimal)
+      pMaterialRequirement.SetPickedQty(value)
+    End Set
   End Property
 
   Public ReadOnly Property QtyOS As Decimal

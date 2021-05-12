@@ -3,7 +3,7 @@
 Public Class fccSalesOrderReview
   Private pInvoiceInfos As colInvoiceInfos
   Private pCustomerPOInfos As colCustomerPurchaseOrders
-  Private pPOItemAllocationInfos As colPurchaseOrderItemAllocationInfo
+  Private pPOItemAllocationInfos As colPurchaseOrderItemAllocationInfos
   Private pWoodRequirementInfos As colMaterialRequirementInfos
   Private pSOPItemInfos As colSalesOrderPhaseItemInfos
   Private pWorkOrderInfos As colWorkOrderInfos
@@ -30,7 +30,7 @@ Public Class fccSalesOrderReview
     Dim mStockItem As dmStockItem
     Dim mExchangeRate As Decimal
 
-    pPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfo
+    pPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pWoodRequirementInfos = New colMaterialRequirementInfos
     pWorkOrderInfos = New colWorkOrderInfos
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
@@ -150,7 +150,7 @@ Public Class fccSalesOrderReview
     End Get
   End Property
 
-  Public ReadOnly Property POItemAllocationInfos As colPurchaseOrderItemAllocationInfo
+  Public ReadOnly Property POItemAllocationInfos As colPurchaseOrderItemAllocationInfos
     Get
       Return pPOItemAllocationInfos
     End Get

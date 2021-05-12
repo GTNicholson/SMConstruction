@@ -93,6 +93,9 @@ Partial Class uctProductBaseDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repobtnChangeSpecie = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repoThickness = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoWoodClasification = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.repoWoodItemTypeLK = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         CType(Me.cboProductItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +122,8 @@ Partial Class uctProductBaseDetail
         CType(Me.repoCreateDuplicate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repobtnChangeSpecie, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoThickness, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoWoodClasification, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoWoodItemTypeLK, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnGenerateCode
@@ -287,11 +292,11 @@ Partial Class uctProductBaseDetail
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdStockItemsMaterialRequirement.Location = New System.Drawing.Point(2, 24)
+        Me.grdStockItemsMaterialRequirement.Location = New System.Drawing.Point(2, 26)
         Me.grdStockItemsMaterialRequirement.MainView = Me.gvStockItemMaterialRequirements
         Me.grdStockItemsMaterialRequirement.Name = "grdStockItemsMaterialRequirement"
         Me.grdStockItemsMaterialRequirement.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repbtnSubstituteMatReq, Me.RepositoryItemSpinEdit3, Me.repoChkSelectedSI})
-        Me.grdStockItemsMaterialRequirement.Size = New System.Drawing.Size(1170, 160)
+        Me.grdStockItemsMaterialRequirement.Size = New System.Drawing.Size(1170, 158)
         Me.grdStockItemsMaterialRequirement.TabIndex = 0
         Me.grdStockItemsMaterialRequirement.UseEmbeddedNavigator = True
         Me.grdStockItemsMaterialRequirement.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMaterialRequirements})
@@ -470,11 +475,11 @@ Partial Class uctProductBaseDetail
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 24)
+        Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodMaterialRequirements.MainView = Me.gvWoodMaterialRequirements
         Me.grdWoodMaterialRequirements.Name = "grdWoodMaterialRequirements"
-        Me.grdWoodMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoCreateDuplicate, Me.repobtnChangeSpecie, Me.repoChkSelectedItem, Me.repoThickness, Me.repoThicknessValueLK})
-        Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1170, 223)
+        Me.grdWoodMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoCreateDuplicate, Me.repobtnChangeSpecie, Me.repoChkSelectedItem, Me.repoThickness, Me.repoThicknessValueLK, Me.repoWoodClasification, Me.repoWoodItemTypeLK})
+        Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1170, 221)
         Me.grdWoodMaterialRequirements.TabIndex = 0
         Me.grdWoodMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdWoodMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMaterialRequirements})
@@ -500,7 +505,7 @@ Partial Class uctProductBaseDetail
         Me.gvWoodMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
         Me.gvWoodMaterialRequirements.Appearance.ViewCaption.Options.UseForeColor = True
         Me.gvWoodMaterialRequirements.ColumnPanelRowHeight = 34
-        Me.gvWoodMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcThicknessInch, Me.GridColumn7, Me.GridColumn13, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality, Me.gcTotalQuantity, Me.gcQtyBoardFeet, Me.GridColumn14, Me.GridColumn1, Me.GridColumn6, Me.GridColumn8, Me.GridColumn5, Me.GridColumn11})
+        Me.gvWoodMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcThicknessInch, Me.GridColumn7, Me.GridColumn13, Me.gcMaterialTypeID, Me.gcWoodSpecie, Me.gcQuality, Me.gcTotalQuantity, Me.gcQtyBoardFeet, Me.GridColumn14, Me.GridColumn1, Me.GridColumn6, Me.GridColumn8, Me.GridColumn5, Me.GridColumn11, Me.GridColumn12})
         Me.gvWoodMaterialRequirements.GridControl = Me.grdWoodMaterialRequirements
         Me.gvWoodMaterialRequirements.Name = "gvWoodMaterialRequirements"
         Me.gvWoodMaterialRequirements.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.[True]
@@ -600,7 +605,6 @@ Partial Class uctProductBaseDetail
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "n2"
         Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
@@ -672,7 +676,7 @@ Partial Class uctProductBaseDetail
         Me.gcQtyBoardFeet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ub_BoardFeet", "{0:0.##}")})
         Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcQtyBoardFeet.Visible = True
-        Me.gcQtyBoardFeet.VisibleIndex = 13
+        Me.gcQtyBoardFeet.VisibleIndex = 14
         Me.gcQtyBoardFeet.Width = 124
         '
         'GridColumn14
@@ -770,6 +774,28 @@ Partial Class uctProductBaseDetail
         Me.repoThickness.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.repoThickness.Name = "repoThickness"
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Clasificación"
+        Me.GridColumn12.ColumnEdit = Me.repoWoodItemTypeLK
+        Me.GridColumn12.FieldName = "WoodItemType"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 13
+        '
+        'repoWoodClasification
+        '
+        Me.repoWoodClasification.AutoHeight = False
+        Me.repoWoodClasification.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.repoWoodClasification.Name = "repoWoodClasification"
+        '
+        'repoWoodItemTypeLK
+        '
+        Me.repoWoodItemTypeLK.AutoHeight = False
+        Me.repoWoodItemTypeLK.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.repoWoodItemTypeLK.Name = "repoWoodItemTypeLK"
+        '
         'uctProductBaseDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -804,6 +830,8 @@ Partial Class uctProductBaseDetail
         CType(Me.repoCreateDuplicate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repobtnChangeSpecie, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoThickness, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoWoodClasification, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoWoodItemTypeLK, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -862,4 +890,7 @@ Partial Class uctProductBaseDetail
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoThickness As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents repoThicknessValueLK As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoWoodItemTypeLK As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents repoWoodClasification As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

@@ -239,11 +239,24 @@ Public Class dsoAppRefLists
         Case appRefLists.ThicknessValue
           mItem.IList = LoadThicknessValue()
           mOK = True
+
+        Case appRefLists.WoodTypeValue
+          mItem.IList = LoadWoodTypeValue()
+          mOK = True
       End Select
       mItem = Nothing
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadWoodTypeValue() As IList
+    Dim mdto As New dtoWoodTypeValue(pDBConn)
+    Dim mRetVal As New colWoodTypeValues
+
+    mdto.LoadWoodTypeValueCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadThicknessValue() As IList

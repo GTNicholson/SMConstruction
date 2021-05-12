@@ -198,7 +198,7 @@ Public Class fccStockItemInfos
 
   End Sub
 
-  Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rPOIAInfos As colPurchaseOrderItemAllocationInfo, ByVal vStockItemID As Integer)
+  Public Sub LoadPurchaseOrderItemAllocationInfos(ByRef rPOIAInfos As colPurchaseOrderItemAllocationInfos, ByVal vStockItemID As Integer)
     Dim mdso As dsoPurchasing
     Dim mWhere As String = "StockItemID = " & vStockItemID
 
@@ -214,6 +214,7 @@ Public Class fccStockItemInfos
     Dim mdso As dsoStock
     Dim mWhere As String = "StockItemID = " & vStockItemID & " and OSQty<>0"
     mdso = New dsoStock(pDBConn)
+
     mdso.LoadWoodMaterialRequirementInfosByWhere(rMatReqInfos, mWhere, dtoMaterialRequirementInfo.eMode.Info)
 
   End Sub

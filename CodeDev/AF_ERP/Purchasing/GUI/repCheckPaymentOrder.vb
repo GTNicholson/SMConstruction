@@ -65,7 +65,7 @@ Public Class repCheckPaymentOrder
     Dim mCurrentFormat As String = "N2"
     Dim mToString As String = "N2"
     Dim mNumalet As New Numalet
-    Dim mPOAII As New colPurchaseOrderItemAllocationInfo
+    Dim mPOAII As New colPurchaseOrderItemAllocationInfos
     Dim mdso As New dsoPurchasing(pDBConn)
     Dim mWhere As String
 

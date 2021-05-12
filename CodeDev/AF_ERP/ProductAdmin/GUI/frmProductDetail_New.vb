@@ -360,5 +360,6 @@ Public Class frmProductDetail_New
 
 
     frmProductGlobalChange.OpenForm(pFormController.DBConn, mSelectedWoodItems)
+
   End Sub
 End Class

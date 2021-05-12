@@ -280,7 +280,7 @@ Public Class fccWoodReception
     Return mWoodPallets
   End Function
 
-  Public Sub ReceiveWoodPallets()
+  Public Sub ReceiveWoodPallets(ByVal vWithDifferenceValue As Boolean)
     Dim mCurrentQty As Decimal
     Dim mTempWoodPallet As dmWoodPallet
     Dim mTempWoodPalletItems As New colWoodPalletItems
@@ -310,10 +310,11 @@ Public Class fccWoodReception
           If mWP IsNot Nothing Then
 
             mCurrentQty = pCurrentSourceWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity
+            mTempWoodPalletItem.DifferenceTranQty = mWPIE.ToProcessQty - mCurrentQty
             mTempWoodPalletItem.Quantity = mToProcQtyBoardFeet
-            mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mCurrentQty + mToProcQtyBoardFeet
+            mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity = mToProcQtyBoardFeet ' mCurrentQty + mToProcQtyBoardFeet
             mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - mWP.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
-            mWPIE.QuantityUI = mCurrentQty + mToProcQtyBoardFeet
+            mWPIE.QuantityUI = mToProcQtyBoardFeet 'mCurrentQty + mToProcQtyBoardFeet
             mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
             mTempWoodPalletItem.Thickness = mWPIE.WoodPalletItem.Thickness
             mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
@@ -322,7 +323,7 @@ Public Class fccWoodReception
             mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
           End If
         End If
-          mWPIE.ToProcessQty = 0
+        mWPIE.ToProcessQty = 0
 
       Next
 
@@ -331,7 +332,7 @@ Public Class fccWoodReception
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then
-          CreateReceptionTransaction(pCurrentSourceWoodPallet.LocationID, mTempWoodPallet)
+          CreateReceptionTransaction(pCurrentSourceWoodPallet.LocationID, mTempWoodPallet, vWithDifferenceValue)
         End If
       End If
 
@@ -341,7 +342,7 @@ Public Class fccWoodReception
     End Try
 
   End Sub
-  Public Sub CreateReceptionTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet)
+  Public Sub CreateReceptionTransaction(ByVal vSourceLocationID As Integer, ByVal vWoodPallet As dmWoodPallet, ByVal vWithDifferenceValue As Boolean)
     Dim mSIL As New dmStockItemLocation
     Dim mdsoStock As dsoStock
     Dim mdsoTran As dsoStockTransactions
@@ -355,7 +356,7 @@ Public Class fccWoodReception
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodReception, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1)
+    mdsoTran.CreatePositiveTransaction(eTransactionType.WoodReception, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1, vWithDifferenceValue)
 
 
 

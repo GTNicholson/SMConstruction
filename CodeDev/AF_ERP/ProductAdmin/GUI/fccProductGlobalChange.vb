@@ -3,7 +3,7 @@
 Public Class fccProductGlobalChange
   Private pDBConn As clsDBConnBase
   Private pSelectedItems As colProductBOMs
-
+  Private pOKVal As Boolean
   Public Property DBConn As clsDBConnBase
     Get
       Return pDBConn
@@ -22,9 +22,19 @@ Public Class fccProductGlobalChange
     End Set
   End Property
 
+  Public Property OKVal As Boolean
+    Get
+      Return pOKVal
+    End Get
+    Set(value As Boolean)
+      pOKVal = value
+    End Set
+  End Property
+
   Public Sub New(ByRef rDBConnBase As clsDBConnBase, ByRef rSelectedItems As colProductBOMs)
     pDBConn = rDBConnBase
     pSelectedItems = rSelectedItems
+    pOKVal = True
   End Sub
 
   Public Sub ChangeSpeciesForSelectedWoodItems(ByVal vNewSpecies As Integer)
@@ -53,7 +63,7 @@ Public Class fccProductGlobalChange
       mMatReq.WoodSpecie = mSINew.Species
 
       mMatReq.UoM = mSINew.UoM
-
+      mMatReq.TmpSelectedItem = False
 
     Next
   End Sub

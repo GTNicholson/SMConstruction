@@ -153,7 +153,7 @@ Public Class frmWorkOrderWoodProcess
         grpOutputWood.CustomHeaderButtons(0).Properties.Visible = False
         grpOutputWood.CustomHeaderButtons(1).Properties.Visible = False
         grpOutputWood.CustomHeaderButtons(2).Properties.Visible = False
-        gvSourceWoodPalletItem.Columns.Item("ToProcessQty").Visible = False
+        gvSourceWoodPalletItem.Columns.Item("gcToProcessQty").Visible = False
 
         grpConsumedWoodPalletItemInfo.CustomHeaderButtons(1).Properties.Visible = False
 
@@ -167,7 +167,7 @@ Public Class frmWorkOrderWoodProcess
         grpOutputWood.CustomHeaderButtons(0).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(1).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(2).Properties.Visible = True
-        gvSourceWoodPalletItem.Columns("ToProcessQty").Visible = False
+        gvSourceWoodPalletItem.Columns("gcToProcessQty").Visible = False
 
         grpConsumedWoodPalletItemInfo.CustomHeaderButtons(1).Properties.Visible = True
 
@@ -179,7 +179,7 @@ Public Class frmWorkOrderWoodProcess
         grpOutputWood.CustomHeaderButtons(0).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(1).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(2).Properties.Visible = True
-        gvSourceWoodPalletItem.Columns("ToProcessQty").Visible = False
+        gvSourceWoodPalletItem.Columns("gcToProcessQty").Visible = False
 
         grpConsumedWoodPalletItemInfo.CustomHeaderButtons(1).Properties.Visible = True
 
@@ -191,8 +191,8 @@ Public Class frmWorkOrderWoodProcess
         grpOutputWood.CustomHeaderButtons(1).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(2).Properties.Visible = True
 
-        gvSourceWoodPalletItem.Columns("ToProcessQty").Visible = True
-        gvOutputWoodPaleltItem.Columns("ToProcessQty").Visible = True
+        gvSourceWoodPalletItem.Columns("gcToProcessQty").Visible = True
+        gvOutputWoodPaleltItem.Columns("gcToProcessQty").Visible = True
 
         grpConsumedWoodPalletItemInfo.CustomHeaderButtons(1).Properties.Visible = True
 
@@ -226,6 +226,10 @@ Public Class frmWorkOrderWoodProcess
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
     'clsDEControlLoading.FillDEComboVI(cboProductType, mVIs)
 
+
+
+    mVIs = clsEnumsConstants.EnumToVIs(GetType(eKilns))
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboKilnNumber, mVIs)
   End Sub
   Private Sub btnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSave.ItemClick
     Try
@@ -299,6 +303,7 @@ Public Class frmWorkOrderWoodProcess
     For Each mWoodPallet As dmWoodPallet In mWoodPallets
       mWoodPallet.KilnEndDate = dteKilnEndDate.EditValue
       mWoodPallet.KilnStartDate = dteKilnStartDate.EditValue
+      mWoodPallet.KilnNumber = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboKilnNumber)
 
       pFormController.SaveWoodPalletDown(mWoodPallet)
     Next
@@ -406,6 +411,7 @@ Public Class frmWorkOrderWoodProcess
           If mWoodPallet IsNot Nothing Then
             dteKilnEndDate.EditValue = mWoodPallet.KilnEndDate
             dteKilnStartDate.EditValue = mWoodPallet.KilnStartDate
+            clsDEControlLoading.SetDECombo(cboKilnNumber, mWoodPallet.KilnNumber)
 
 
             If mWoodPallet.KilnStartDate = Date.MinValue Then
@@ -418,6 +424,7 @@ Public Class frmWorkOrderWoodProcess
               Else
                 btnStartKiln.Enabled = False
                 btnEndKiln.Enabled = False
+                cboKilnNumber.Enabled = False
                 grpConsumedWoodPalletItemInfo.CustomHeaderButtons.Item(0).Properties.Visible = False
                 grpOutputWood.CustomHeaderButtons.Item(3).Properties.Visible = False
               End If
@@ -556,13 +563,13 @@ Public Class frmWorkOrderWoodProcess
           Case eWorkOrderWoodProcess.Aserrio
             'CheckSave(False)
             gvSourceWoodPalletItem.CloseEditor()
-            ProcessAserrio()
+            ProcessAserrio(True)
             CheckSave(False)
           Case eWorkOrderWoodProcess.Clasificar
             CheckSave(False)
             gvSourceWoodPalletItem.CloseEditor()
 
-            ProcessClasificar()
+            ProcessClasificar(False)
             CheckSave(False)
         End Select
 
@@ -575,9 +582,9 @@ Public Class frmWorkOrderWoodProcess
     End Select
   End Sub
 
-  Private Sub ProcessOutputAserrio()
+  Private Sub ProcessOutputAserrio(ByVal vWithDifferenceValue As Boolean)
 
-    pFormController.ProcessOutpuAserrio(pFormController.CurrentOutputWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID)
+    pFormController.ProcessOutpuAserrio(pFormController.CurrentOutputWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID, vWithDifferenceValue)
 
 
     'CheckSave(False)
@@ -595,8 +602,8 @@ Public Class frmWorkOrderWoodProcess
 
   End Sub
 
-  Private Sub ProcesssAserrio()
-    pFormController.ProcessSourceAserrado(pFormController.CurrentSourceWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID)
+  Private Sub ProcesssAserrio(ByVal vWithDifferenceValue As Boolean)
+    pFormController.ProcessSourceAserrado(pFormController.CurrentSourceWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID, vWithDifferenceValue)
 
 
     CheckSave(False)
@@ -763,7 +770,7 @@ Public Class frmWorkOrderWoodProcess
 
             gvOutputWoodPaleltItem.CloseEditor()
 
-            ProcessOutputAserrio()
+            ProcessOutputAserrio(True)
             pFormController.SaveWoodPalletDown(pFormController.CurrentOutputWoodPallet)
 
 
@@ -771,7 +778,7 @@ Public Class frmWorkOrderWoodProcess
             gvOutputWoodPaleltItem.CloseEditor()
             pFormController.SaveWoodPalletDown(pFormController.CurrentOutputWoodPallet)
             CheckSave(False)
-            ProcessOutputClasification()
+            ProcessOutputClasification(True)
         End Select
     End Select
     pFormController.RefreshOutPutWoodPalletItemEditors(pFormController.CurrentOutputWoodPallet)
@@ -831,9 +838,9 @@ Public Class frmWorkOrderWoodProcess
     Return mStockItems
   End Function
 
-  Private Sub ProcessOutputClasification()
+  Private Sub ProcessOutputClasification(ByVal vWithDifferenceValue As Boolean)
 
-    pFormController.ProcessOutputClassification(pFormController.CurrentOutputWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID)
+    pFormController.ProcessOutputClassification(pFormController.CurrentOutputWoodPallet.LocationID, pFormController.CurrentOutputWoodPallet.WoodPalletID, vWithDifferenceValue)
 
 
     CheckSave(False)
@@ -1068,8 +1075,8 @@ Public Class frmWorkOrderWoodProcess
     dteKilnEndDate.EditValue = Now
     pFormController.ProcessAllPallets(pFormController.CurrentWoodWorkOrder.SourcePallets, eStockItemTypeTimberWood.MAS, pFormController.CurrentSourceWoodPallet.LocationID)
 
-    pFormController.CreateSourceTransaction(pFormController.CurrentWoodWorkOrder.SourcePallets, eTransactionType.KilnMovementStart)
-    pFormController.CreateOutputTransaction(pFormController.CurrentWoodWorkOrder.OutputPallets, eTransactionType.KilnMovementEnd)
+    pFormController.CreateSourceTransaction(pFormController.CurrentWoodWorkOrder.SourcePallets, eTransactionType.KilnMovementStart, False)
+    pFormController.CreateOutputTransaction(pFormController.CurrentWoodWorkOrder.OutputPallets, eTransactionType.KilnMovementEnd, False)
     btnEndKiln.Enabled = False
 
     CheckSave(False)
@@ -1094,9 +1101,9 @@ Public Class frmWorkOrderWoodProcess
     btnEndKiln.Enabled = False
   End Sub
 
-  Private Sub ProcessAserrio()
+  Private Sub ProcessAserrio(ByVal vWithDifferenceValue As Boolean)
 
-    pFormController.ProcessSourceAserrado(pFormController.CurrentSourceWoodPallet.LocationID, pFormController.CurrentSourceWoodPallet.WoodPalletID)
+    pFormController.ProcessSourceAserrado(pFormController.CurrentSourceWoodPallet.LocationID, pFormController.CurrentSourceWoodPallet.WoodPalletID, vWithDifferenceValue)
 
 
     'CheckSave(False)
@@ -1120,9 +1127,9 @@ Public Class frmWorkOrderWoodProcess
     gvSourceWoodPalletItem.RefreshData()
   End Sub
 
-  Private Sub ProcessClasificar()
+  Private Sub ProcessClasificar(ByVal vWithDifferenceValue As Boolean)
 
-    pFormController.ProcessSourceClasification()
+    pFormController.ProcessSourceClasification(vWithDifferenceValue)
 
 
     CheckSave(False)
@@ -1301,4 +1308,122 @@ Public Class frmWorkOrderWoodProcess
   End Sub
 
 
+  Private Sub gvOutputWoodPaleltItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvOutputWoodPaleltItem.CustomUnboundColumnData
+
+    Dim mWPIE As clsWoodPalletItemEditor
+    Dim mFound As Boolean = False
+
+    mWPIE = TryCast(e.Row, clsWoodPalletItemEditor)
+    If mWPIE IsNot Nothing Then
+      Select Case e.Column.Name
+        Case gcM3.Name
+          Dim mBF As Decimal
+
+
+
+
+          'If mWPIE.QuantityUI > 0 Then
+          If mWPIE.ToProcessQty <> 0 Then
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
+            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
+            mWPIE.VolumeM3 = e.Value
+          Else
+
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
+            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
+          End If
+
+
+        Case gcPT.Name
+          Dim mBF As Decimal
+
+
+          If mWPIE IsNot Nothing Then
+
+            'If mWPIE.QuantityUI > 0 Then
+            If mWPIE.ToProcessQty <> 0 Then
+              mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
+              e.Value = mBF
+
+            Else
+
+              mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
+              e.Value = mBF
+            End If
+
+          End If
+
+        Case gcToProcessOutput.Name
+          If e.IsGetData Then
+            e.Value = mWPIE.ToProcessQty
+
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+          End If
+
+          If e.IsSetData Then
+            mWPIE.ToProcessQty = e.Value
+          End If
+
+        Case gcOutputWidth.Name
+          If e.IsGetData Then
+            e.Value = mWPIE.WoodPalletItem.Width
+
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+          End If
+
+          If e.IsSetData Then
+            mWPIE.WoodPalletItem.Width = e.Value
+          End If
+
+
+        Case gcOutputLenth.Name
+          If e.IsGetData Then
+            e.Value = mWPIE.WoodPalletItem.Length
+
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+          End If
+
+          If e.IsSetData Then
+            mWPIE.WoodPalletItem.Length = e.Value
+          End If
+
+
+      End Select
+    End If
+
+  End Sub
+
+  Private Sub gvSourceWoodPalletItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvSourceWoodPalletItem.CustomUnboundColumnData
+
+
+    Dim mWPIE As clsWoodPalletItemEditor
+    mWPIE = TryCast(e.Row, clsWoodPalletItemEditor)
+
+    If mWPIE IsNot Nothing Then
+
+      Select Case e.Column.Name
+        Case gcToProcess.Name
+          If e.IsGetData Then
+            e.Value = mWPIE.ToProcessQty
+
+            If e.Value = 0 Then
+              e.Value = ""
+            End If
+          End If
+
+          If e.IsSetData Then
+            mWPIE.ToProcessQty = e.Value
+          End If
+
+      End Select
+
+
+    End If
+  End Sub
 End Class

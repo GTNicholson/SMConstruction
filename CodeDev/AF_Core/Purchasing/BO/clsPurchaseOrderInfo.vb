@@ -97,7 +97,12 @@ Public Class clsPurchaseOrderInfo
 
   Public ReadOnly Property POStageDesc As String
     Get
-      Return clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(pPurchaseOrder.POStage, ePOStage))
+      If POStage > 0 Then
+        Return clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(pPurchaseOrder.POStage, ePOStage))
+      Else
+        Return AccoutingCategoryDesc
+      End If
+
     End Get
   End Property
 

@@ -4,13 +4,14 @@ Imports RTIS.Elements
 
 Public Class frmProductGlobalChange
   Private pFormController As fccProductGlobalChange
-  Public Shared Function OpenForm(ByRef rDBConn As clsDBConnBase, ByRef rSelectedItems As colProductBOMs) As colStockItems
+  Public Shared Function OpenForm(ByRef rDBConn As clsDBConnBase, ByRef rSelectedItems As colProductBOMs) As Boolean
     Dim mfrm As New frmProductGlobalChange
 
     mfrm.pFormController = New fccProductGlobalChange(rDBConn, rSelectedItems)
 
     mfrm.ShowDialog()
 
+    Return mfrm.pFormController.OKVal
   End Function
 
   Private Sub frmProductGlobalChange_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -36,5 +37,8 @@ Public Class frmProductGlobalChange
     mSpeciesID = clsDEControlLoading.GetDEComboValue(cboSpecies)
 
     pFormController.ChangeSpeciesForSelectedWoodItems(mSpeciesID)
+
+    MessageBox.Show("Se ha cambiado la especie a los artículos seleccionados")
+    Me.Close()
   End Sub
 End Class

@@ -64,7 +64,7 @@ Public Class frmMovementTransaction
     If pFormMode = eFormMode.Movement Then
       mLocation = clsDEControlLoading.GetDEComboValue(cboLocations)
 
-      mOK = pFormcontroller.ApplyWoodPalletMovement(mLocation, Now)
+      mOK = pFormcontroller.ApplyWoodPalletMovement(mLocation, Now, True)
 
       If mOK Then
         MessageBox.Show("Éxito al trasladar el Pack")

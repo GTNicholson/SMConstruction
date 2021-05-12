@@ -67,7 +67,8 @@ Public Class fccPickMaterials
     mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
     mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
     '' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
-    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo))"
+    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo)) and ProductTypeID<>" & eProductType.WoodWorkOrder
+    mwhere &= " and Description<>''"
     Try
 
       pDBConn.Connect()
@@ -116,7 +117,7 @@ Public Class fccPickMaterials
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " ObjectID =" & pCurrentWorkOrderInfo.WorkOrderID
+    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID
     pMaterialRequirementProcessors.Clear()
     Try
 

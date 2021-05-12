@@ -390,7 +390,7 @@ Public Class frmStockItemInfo
 
 
   Private Sub repoPopupPOAllocationItems_QueryPopUp(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles repoPopupPOAllocationItems.QueryPopUp
-    Dim mAllocations As New colPurchaseOrderItemAllocationInfo
+    Dim mAllocations As New colPurchaseOrderItemAllocationInfos
 
     Dim mStockItemID As Integer
     Dim mSIP As clsStockItemInfo

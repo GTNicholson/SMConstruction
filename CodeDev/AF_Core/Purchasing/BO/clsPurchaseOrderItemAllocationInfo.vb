@@ -474,6 +474,6 @@ End Class
 
 
 
-Public Class colPurchaseOrderItemAllocationInfo : Inherits List(Of clsPurchaseOrderItemAllocationInfo)
+Public Class colPurchaseOrderItemAllocationInfos : Inherits List(Of clsPurchaseOrderItemAllocationInfo)
 
 End Class

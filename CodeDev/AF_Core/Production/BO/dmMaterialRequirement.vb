@@ -226,6 +226,15 @@ Public Class dmMaterialRequirement : Inherits dmBase
     End Get
   End Property
 
+  Public Property FromStockQty() As Decimal
+    Get
+      Return FromStockQty
+    End Get
+    Set(value As Decimal)
+
+    End Set
+  End Property
+
   Public Property WoodFinish() As Int32
     Get
       Return pWoodFinish

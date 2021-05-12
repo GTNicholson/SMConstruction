@@ -170,12 +170,39 @@ Public Class clsWoodPalletItemInfo
     Get
       Dim mRetVal = ""
 
-      mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTimberWood), CType(pStockItem.ItemType, eStockItemTypeTimberWood.eStockItemTimberWood))
-      mRetVal = mRetVal.Trim
+      If KilnStartDate <> Date.MinValue And KilnEndDate = Date.MinValue Then
+        mRetVal = "En Horno"
+
+      Else
+        mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeTimberWood), CType(pStockItem.ItemType, eStockItemTypeTimberWood.eStockItemTimberWood))
+        mRetVal = mRetVal.Trim
+        Return mRetVal
+      End If
+
       Return mRetVal
     End Get
   End Property
 
+  Public ReadOnly Property KilnNumber As Integer
+    Get
+
+      Return pWoodPallet.KilnNumber
+    End Get
+  End Property
+
+  Public ReadOnly Property KilnNumberDesc As String
+    Get
+      Dim mRetVal As String
+
+      If KilnStartDate <> Date.MinValue And KilnEndDate = Date.MinValue Then
+        mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eKilns), CType(pWoodPallet.KilnNumber, eKilns))
+
+      Else
+        mRetVal = ""
+      End If
+      Return mRetVal
+    End Get
+  End Property
 
   Public ReadOnly Property Thickness As Decimal
     Get
@@ -270,6 +297,18 @@ Public Class clsWoodPalletItemInfo
     End Get
   End Property
 
+
+  Public ReadOnly Property KilnStartDate As Date
+    Get
+      Return pWoodPallet.KilnStartDate
+    End Get
+  End Property
+
+  Public ReadOnly Property KilnEndDate As Date
+    Get
+      Return pWoodPallet.KilnEndDate
+    End Get
+  End Property
 
 End Class
 

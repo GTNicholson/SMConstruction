@@ -24,8 +24,8 @@ Partial Class frmProductGlobalChange
   Private Sub InitializeComponent()
         Me.bbtnApplyChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.cboSpecies = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
@@ -36,9 +36,9 @@ Partial Class frmProductGlobalChange
         'bbtnApplyChanges
         '
         Me.bbtnApplyChanges.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bbtnApplyChanges.Location = New System.Drawing.Point(78, 77)
+        Me.bbtnApplyChanges.Location = New System.Drawing.Point(258, 80)
         Me.bbtnApplyChanges.Name = "bbtnApplyChanges"
-        Me.bbtnApplyChanges.Size = New System.Drawing.Size(147, 23)
+        Me.bbtnApplyChanges.Size = New System.Drawing.Size(88, 23)
         Me.bbtnApplyChanges.TabIndex = 1
         Me.bbtnApplyChanges.Text = "Aplicar Cambios"
         '
@@ -57,9 +57,19 @@ Partial Class frmProductGlobalChange
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(215, 65)
+        Me.GroupControl2.Size = New System.Drawing.Size(336, 65)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Cambios Globales a Madera"
+        '
+        'cboSpecies
+        '
+        Me.cboSpecies.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboSpecies.Location = New System.Drawing.Point(77, 25)
+        Me.cboSpecies.Name = "cboSpecies"
+        Me.cboSpecies.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboSpecies.Size = New System.Drawing.Size(242, 20)
+        Me.cboSpecies.TabIndex = 1
         '
         'LabelControl1
         '
@@ -72,16 +82,6 @@ Partial Class frmProductGlobalChange
         Me.LabelControl1.Size = New System.Drawing.Size(50, 14)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Especies"
-        '
-        'cboSpecies
-        '
-        Me.cboSpecies.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboSpecies.Location = New System.Drawing.Point(77, 25)
-        Me.cboSpecies.Name = "cboSpecies"
-        Me.cboSpecies.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboSpecies.Size = New System.Drawing.Size(121, 20)
-        Me.cboSpecies.TabIndex = 1
         '
         'TableLayoutPanel1
         '
@@ -96,14 +96,14 @@ Partial Class frmProductGlobalChange
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(221, 71)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(342, 71)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'frmProductGlobalChange
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(237, 117)
+        Me.ClientSize = New System.Drawing.Size(358, 112)
         Me.Controls.Add(Me.bbtnApplyChanges)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "frmProductGlobalChange"

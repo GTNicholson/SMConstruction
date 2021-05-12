@@ -32,6 +32,8 @@ Public Class dmProductBOM : Inherits dmBase
   Private pTmpSelectedItem As Boolean
 
   Private pStockItemThickness As Integer
+  Private pWoodItemType As Integer
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -415,6 +417,17 @@ Public Class dmProductBOM : Inherits dmBase
     Set(value As Integer)
       If pStockItemThickness <> value Then IsDirty = True
       pStockItemThickness = value
+    End Set
+  End Property
+
+
+  Public Property WoodItemType As Integer
+    Get
+      Return pWoodItemType
+    End Get
+    Set(value As Integer)
+      If pWoodItemType <> value Then IsDirty = True
+      pWoodItemType = value
     End Set
   End Property
 End Class
