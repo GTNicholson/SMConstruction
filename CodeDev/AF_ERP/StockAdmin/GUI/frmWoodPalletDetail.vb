@@ -296,7 +296,7 @@ Public Class frmWoodPalletDetail
     txtWoodRef.Focus()
   End Sub
 
-  Private Sub grpWoodPallet_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodPallet.CustomButtonClick
+  Private Sub grpWoodPallet_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Dim mStockItems As New colStockItems
     Dim mPicker As clsPickerStockItem
     Dim mStockItem As dmStockItem
@@ -539,7 +539,7 @@ Public Class frmWoodPalletDetail
 
 
   End Sub
-  Private Sub gvWoodPalletInfo_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvWoodPalletInfo.FocusedRowObjectChanged
+  Private Sub gvWoodPalletInfo_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) 
     Dim mWoodPallet As dmWoodPallet
 
     Try
@@ -652,7 +652,7 @@ Public Class frmWoodPalletDetail
     CheckSave = mRetVal
   End Function
 
-  Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddDuplicated.ButtonClick
+  Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
 
     CreateDuplicatedItems(False)
 
@@ -742,7 +742,7 @@ Public Class frmWoodPalletDetail
 
   End Sub
 
-  Private Sub grpWoodPalletList_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodPalletList.CustomButtonClick
+  Private Sub grpWoodPalletList_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
     Dim mString As String = ""
     Dim mFileName As String = "Lista de Pallet" + ".xlsx"
 
@@ -799,13 +799,13 @@ Public Class frmWoodPalletDetail
 
   End Sub
 
-  Private Sub grdWoodPalletItemInfos_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdWoodPalletItemInfos.EditorKeyDown
+  Private Sub grdWoodPalletItemInfos_EditorKeyDown(sender As Object, e As KeyEventArgs) 
     If e.KeyCode = Keys.Enter Then
       gvWoodPalletItemInfo.MoveNext()
     End If
   End Sub
 
-  Private Sub gvWoodPalletItemInfo_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodPalletItemInfo.CustomUnboundColumnData
+  Private Sub gvWoodPalletItemInfo_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) 
 
     Dim mWPIE As clsWoodPalletItemEditor
     Dim mFound As Boolean = False
