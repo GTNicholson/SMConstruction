@@ -113,7 +113,7 @@ Public Class dsoStock
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet
     Dim mdtoWoodPalletItem As dtoWoodPalletItem
-
+    Dim mStockItem As dmStockItem
     Try
 
       pDBConn.Connect()
@@ -124,6 +124,8 @@ Public Class dsoStock
 
         rWoodPallet.Description = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(rWoodPallet.WoodPalletItems)
         clsWoodPalletSharedFuncs.GetNextWoodPalletRefConnected(rWoodPallet, pDBConn)
+
+        rWoodPallet.TotalVolume = clsWoodPalletSharedFuncs.GetTotalBoardFeet(rWoodPallet)
 
         mRetVal = mdtoWoodPallet.SaveWoodPallet(rWoodPallet)
 

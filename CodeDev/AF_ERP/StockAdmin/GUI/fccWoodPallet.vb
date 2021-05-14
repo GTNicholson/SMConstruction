@@ -14,6 +14,7 @@ Public Class fccWoodPallet
   Private pCurreStockItemList As colStockItems
   Private pWoodPalletItemEditors As colWoodPalletItemEditors
   Private pPreviousLocationID As Integer
+  Private pFormMode As eWoodFormMode
   Private pWorkOrderInfo As clsWorkOrderInfo
 
   Public Enum eShowItems
@@ -93,6 +94,15 @@ Public Class fccWoodPallet
     End Get
     Set(value As clsWorkOrderInfo)
       pWorkOrderInfo = value
+    End Set
+  End Property
+
+  Public Property FormMode As eWoodFormMode
+    Get
+      Return pFormMode
+    End Get
+    Set(value As eWoodFormMode)
+      pFormMode = value
     End Set
   End Property
 
@@ -187,7 +197,16 @@ Public Class fccWoodPallet
       ElseIf pShowItemsMode = eShowItems.ShowObsolete Then
         'mWhere = mWhere & " And (Inactive = 1) "
       End If
-      mdsoStock.LoadWoodPalletsDownByWhere(pWoodPallets, "Archive <> 1")
+      Dim mWhereLoad As String = ""
+
+      If pFormMode = eWoodFormMode.WoodInventory Then
+        mWhereLoad = "Archive <> 1 and IntoWIPDate is null"
+
+      Else
+
+        mWhereLoad = "Archive <> 1 and IntoWIPDate is not null"
+      End If
+      mdsoStock.LoadWoodPalletsDownByWhere(pWoodPallets, mWhereLoad)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -414,7 +433,7 @@ Public Class fccWoodPallet
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodPicking, vWoodPallet, vSourceLocationID, New dmSalesOrder, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, vWithDifferenceValue)
+    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodPicking, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, vWithDifferenceValue)
 
 
 

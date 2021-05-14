@@ -22,6 +22,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pWorkOrderID As Integer
   Private pisProduction As Boolean
   Private pKilnNumber As Integer
+  Private pTotalVolume As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -78,7 +79,8 @@ Public Class dmWoodPallet : Inherits dmBase
       .CardNumber = CardNumber
       .WorkOrderID = WorkOrderID
       .isProduction = isProduction
-      .WoodPalletItems = WoodPalletItems.clone
+      .WoodPalletItems = WoodPalletItems.Clone
+      .TotalVolume = TotalVolume
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -311,7 +313,18 @@ Public Class dmWoodPallet : Inherits dmBase
       Return pKilnNumber
     End Get
     Set(value As Integer)
+      If pKilnNumber <> value Then IsDirty = True
       pKilnNumber = value
+    End Set
+  End Property
+
+  Public Property TotalVolume As Decimal
+    Get
+      Return pTotalVolume
+    End Get
+    Set(value As Decimal)
+      If pTotalVolume <> value Then IsDirty = True
+      pTotalVolume = value
     End Set
   End Property
 End Class

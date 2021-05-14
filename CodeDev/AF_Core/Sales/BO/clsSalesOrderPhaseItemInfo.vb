@@ -14,7 +14,7 @@
   Private pExchangeRate As Decimal
   Private pDateCommitted As Date
   Private pTempDateExchange As Date
-  Private pSOPIDollarValue As Decimal
+  Private pSOPIStockItemMatReqDollarValue As Decimal
   Private pSOPItemPickMatReqCost As Decimal
   Private pSOPIPickDollarValue As Decimal
   Private pSpecifiedWoodCost As Decimal
@@ -297,12 +297,12 @@
     End Set
   End Property
 
-  Public Property SOPIDollarValue As Decimal
+  Public Property SOPIStockItemMatReqDollarValue As Decimal
     Get
-      Return pSOPIDollarValue
+      Return pSOPIStockItemMatReqDollarValue
     End Get
     Set(value As Decimal)
-      pSOPIDollarValue = value
+      pSOPIStockItemMatReqDollarValue = value
     End Set
   End Property
   Public Property DateCommitted As Date
@@ -391,7 +391,22 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
 
       If mItem IsNot Nothing Then
 
-        mRetVal += mItem.SOPIDollarValue
+        mRetVal += mItem.SOPIStockItemMatReqDollarValue
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalWoodMatReqReal() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIStockItemMatReqDollarValue
 
       End If
     Next

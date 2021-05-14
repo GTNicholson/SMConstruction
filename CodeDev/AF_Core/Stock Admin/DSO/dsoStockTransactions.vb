@@ -1267,7 +1267,7 @@ Public Class dsoStockTransactions
     Return mRetVal
   End Function
 
-  Public Function CreateNegativeTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByRef rSalesOrder As dmSalesOrder, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vObjectType As eObjectType, ByVal vWithDifferenceValue As Boolean) As Boolean
+  Public Function CreateNegativeTransaction(ByVal vTransactionType As eTransactionType, ByRef rWoodPallet As dmWoodPallet, ByVal vTargetLocation As Integer, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vExchangeRate As Decimal, ByVal vObjectType As eObjectType, ByVal vWithDifferenceValue As Boolean) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog

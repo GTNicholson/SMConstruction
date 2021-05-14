@@ -173,6 +173,9 @@ Public Class frmSalesOrderDetailHouses
 
     clsDEControlLoading.FillDEComboVI(cboSalesDelAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
     clsDEControlLoading.FillDEComboVI(cboContractManagerID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
+    clsDEControlLoading.FillDEComboVI(cboProjectOwner, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
+
+
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodSpecie)
     clsDEControlLoading.LoadGridLookUpEditiVI(grdOrderItem, gcWoodSpecie, mVIs)
@@ -248,7 +251,8 @@ Public Class frmSalesOrderDetailHouses
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboEstatusENUM, .OrderStatusENUM)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesDelAreaID, .SalesDelAreaID)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboCustomerDelContacID, .CustomerDelContactID)
-        RTIS.Elements.clsDEControlLoading.SetDECombo(cboContractManagerID, .ContractManagerID)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboContractManagerID, .EstimatorEmployeeID)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboProjectOwner, .ContractManagerID)
         txtPaymentTerm.Text = .PaymentTermDesc
         If .Customer Is Nothing Then
           btnedCustomer.Text = ""
@@ -325,7 +329,9 @@ Public Class frmSalesOrderDetailHouses
         .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
         .SalesDelAreaID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesDelAreaID)
         .CustomerDelContactID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerDelContacID)
-        .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
+        .EstimatorEmployeeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboContractManagerID)
+        .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboProjectOwner)
+
         .PaymentTermDesc = txtPaymentTerm.Text
         .ShippingCost = txtShippingCost.Text
         .Version = txtVersion.Text
@@ -1509,5 +1515,13 @@ Public Class frmSalesOrderDetailHouses
   Private Sub bbtnViewSummary_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnViewSummary.ItemClick
     frmSalesOrderReview.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
 
+  End Sub
+
+  Private Sub dteDateRequiredSO_EditValueChanged(sender As Object, e As EventArgs) Handles dteDateRequiredSO.EditValueChanged
+
+
+    If pFormController IsNot Nothing Then
+      dteFinishDate.EditValue = dteDateRequiredSO.EditValue
+    End If
   End Sub
 End Class

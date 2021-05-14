@@ -124,6 +124,8 @@ Public Class frmPickWoodMaterial
           With pFormController.CurrentWorkOrderInfo
             btnSelectWorkOrder.Text = .WorkOrderNo
             txtWorkOrderDescription.Text = .Description
+            txtCustomerName.Text = .CustomerName
+            txtProjectName.Text = .ProjectName
           End With
 
 
@@ -228,6 +230,16 @@ Public Class frmPickWoodMaterial
 
 
   Private Sub frmPickMaterials_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+
+    If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
+      If pFormController.CurrentWorkOrderInfo.WorkOrderID > 0 Then
+        gvWoodPalletItems.CloseEditor()
+        pFormController.WoodPallet.IntoWIPDate = Now
+        pFormController.WoodPallet.WorkOrderID = pFormController.CurrentWorkOrderInfo.WorkOrderID
+        pFormController.CreateNegativeTransaction()
+        pFormController.SaveWoodPallet()
+      End If
+    End If
 
     Me.Dispose()
 

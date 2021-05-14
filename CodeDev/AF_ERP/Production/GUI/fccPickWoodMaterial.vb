@@ -140,7 +140,7 @@ Public Class fccPickWoodMaterial
 
         If mWoodPalletItemEditor.ToProcessQty <> 0 Then
 
-          If mWoodPalletItemEditor.OutStandingQty <= 0 Or mWoodPalletItemEditor.ToProcessQty > mWoodPalletItemEditor.WoodPalletItem.Quantity Then
+          If (mWoodPalletItemEditor.QuantityUI - mWoodPalletItemEditor.QuantityUsed) <= 0 Or mWoodPalletItemEditor.ToProcessQty > mWoodPalletItemEditor.WoodPalletItem.Quantity Then
 
             mDialogResult = MessageBox.Show("La cantidad a procesar es mayor a la cantidad pedida, ¿Desea continuar?", "Información de Recepción", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 
@@ -246,6 +246,28 @@ Public Class fccPickWoodMaterial
     End Try
     Return mRetVal
   End Function
+
+  Public Sub CreateNegativeTransaction()
+    Dim mdso As New dsoStockTransactions(pDBConn)
+
+    Try
+      mdso.CreateNegativeTransaction(eTransactionType.IntoWIP, pWoodPallet, pWoodPallet.LocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, False)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
+
+  Public Sub SaveWoodPallet()
+    Dim mdso As New dsoStock(pDBConn)
+
+    Try
+      mdso.SaveWoodPalletDown(pWoodPallet)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
 
   Public Function GetPickWoodMaterialByWorkOrderID(ByVal vPurchaseOrderID As Integer) As Integer
     'Dim mdso As New dsoPurchasing(pDBConn)

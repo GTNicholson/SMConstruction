@@ -174,7 +174,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.cboCostBook = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cheIsVAT = New DevExpress.XtraEditors.CheckEdit()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.cboProjectOwner = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtPaymentTerm = New DevExpress.XtraEditors.TextEdit()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
@@ -254,6 +254,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -335,7 +336,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.cheIsVAT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboProjectOwner.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateRequiredSO.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -391,6 +392,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -1168,26 +1170,22 @@ Partial Class frmSalesOrderDetailHouses
         '
         'xtbDespatchesAndInvoices
         '
-        Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl7)
-        Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl6)
-        Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl1)
-        Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl5)
+        Me.xtbDespatchesAndInvoices.Controls.Add(Me.TableLayoutPanel2)
         Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
         Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1649, 443)
         Me.xtbDespatchesAndInvoices.Text = "Adelantos, Facturas y Despachos"
         '
         'GroupControl7
         '
-        Me.GroupControl7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupControl7.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl7.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl7.AppearanceCaption.Options.UseFont = True
         Me.GroupControl7.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl7.Controls.Add(Me.grdPaymentAccounts)
-        Me.GroupControl7.Location = New System.Drawing.Point(1196, 225)
+        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl7.Location = New System.Drawing.Point(3, 224)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(448, 215)
+        Me.GroupControl7.Size = New System.Drawing.Size(818, 216)
         Me.GroupControl7.TabIndex = 12
         Me.GroupControl7.Text = "Adelantos del Cliente"
         '
@@ -1209,7 +1207,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdPaymentAccounts.MenuManager = Me.BarManager1
         Me.grdPaymentAccounts.Name = "grdPaymentAccounts"
         Me.grdPaymentAccounts.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit5, Me.RepositoryItemDateEdit6, Me.RepositoryItemDateEdit4})
-        Me.grdPaymentAccounts.Size = New System.Drawing.Size(444, 190)
+        Me.grdPaymentAccounts.Size = New System.Drawing.Size(814, 191)
         Me.grdPaymentAccounts.TabIndex = 8
         Me.grdPaymentAccounts.UseEmbeddedNavigator = True
         Me.grdPaymentAccounts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPaymentAccounts})
@@ -1320,16 +1318,15 @@ Partial Class frmSalesOrderDetailHouses
         '
         'GroupControl6
         '
-        Me.GroupControl6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupControl6.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl6.AppearanceCaption.Options.UseFont = True
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl6.Controls.Add(Me.grdCustomerPurchaseOrder)
-        Me.GroupControl6.Location = New System.Drawing.Point(735, 225)
+        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl6.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(448, 215)
+        Me.GroupControl6.Size = New System.Drawing.Size(818, 215)
         Me.GroupControl6.TabIndex = 11
         Me.GroupControl6.Text = "Orden de Compra del Cliente"
         '
@@ -1351,7 +1348,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdCustomerPurchaseOrder.MenuManager = Me.BarManager1
         Me.grdCustomerPurchaseOrder.Name = "grdCustomerPurchaseOrder"
         Me.grdCustomerPurchaseOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.repOrderDate})
-        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(444, 190)
+        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(814, 190)
         Me.grdCustomerPurchaseOrder.TabIndex = 8
         Me.grdCustomerPurchaseOrder.UseEmbeddedNavigator = True
         Me.grdCustomerPurchaseOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPurchaseOrder})
@@ -1450,16 +1447,15 @@ Partial Class frmSalesOrderDetailHouses
         '
         'GroupControl1
         '
-        Me.GroupControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl1.Controls.Add(Me.GridControl2)
-        Me.GroupControl1.Location = New System.Drawing.Point(3, 225)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl1.Location = New System.Drawing.Point(827, 3)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(726, 213)
+        Me.GroupControl1.Size = New System.Drawing.Size(819, 215)
         Me.GroupControl1.TabIndex = 9
         Me.GroupControl1.Text = "Despachos"
         '
@@ -1470,7 +1466,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.MenuManager = Me.BarManager1
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(722, 188)
+        Me.GridControl2.Size = New System.Drawing.Size(815, 190)
         Me.GridControl2.TabIndex = 2
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -1534,16 +1530,15 @@ Partial Class frmSalesOrderDetailHouses
         '
         'GroupControl5
         '
-        Me.GroupControl5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupControl5.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl5.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl5.AppearanceCaption.Options.UseFont = True
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdInvoices)
-        Me.GroupControl5.Location = New System.Drawing.Point(5, 3)
+        Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl5.Location = New System.Drawing.Point(827, 224)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(1641, 216)
+        Me.GroupControl5.Size = New System.Drawing.Size(819, 216)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Facturas"
         '
@@ -1565,7 +1560,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdInvoices.MenuManager = Me.BarManager1
         Me.grdInvoices.Name = "grdInvoices"
         Me.grdInvoices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repInvoiceDate, Me.repCreatedDate})
-        Me.grdInvoices.Size = New System.Drawing.Size(1637, 191)
+        Me.grdInvoices.Size = New System.Drawing.Size(815, 191)
         Me.grdInvoices.TabIndex = 7
         Me.grdInvoices.UseEmbeddedNavigator = True
         Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices})
@@ -1759,7 +1754,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl4.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl4.AppearanceCaption.Options.UseFont = True
         Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl4.Controls.Add(Me.ComboBoxEdit1)
+        Me.GroupControl4.Controls.Add(Me.cboProjectOwner)
         Me.GroupControl4.Controls.Add(Me.txtPaymentTerm)
         Me.GroupControl4.Controls.Add(Me.Label30)
         Me.GroupControl4.Controls.Add(Me.txtProjectName)
@@ -1774,16 +1769,16 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl4.TabIndex = 48
         Me.GroupControl4.Text = "Detalles del Proyecto"
         '
-        'ComboBoxEdit1
+        'cboProjectOwner
         '
-        Me.ComboBoxEdit1.Location = New System.Drawing.Point(368, 28)
-        Me.ComboBoxEdit1.MenuManager = Me.BarManager1
-        Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
-        Me.ComboBoxEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBoxEdit1.Properties.Appearance.Options.UseFont = True
-        Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit1.Size = New System.Drawing.Size(104, 22)
-        Me.ComboBoxEdit1.TabIndex = 2
+        Me.cboProjectOwner.Location = New System.Drawing.Point(368, 28)
+        Me.cboProjectOwner.MenuManager = Me.BarManager1
+        Me.cboProjectOwner.Name = "cboProjectOwner"
+        Me.cboProjectOwner.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboProjectOwner.Properties.Appearance.Options.UseFont = True
+        Me.cboProjectOwner.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboProjectOwner.Size = New System.Drawing.Size(104, 22)
+        Me.cboProjectOwner.TabIndex = 2
         '
         'txtPaymentTerm
         '
@@ -2025,6 +2020,7 @@ Partial Class frmSalesOrderDetailHouses
         'dteFinishDate
         '
         Me.dteFinishDate.EditValue = Nothing
+        Me.dteFinishDate.Enabled = False
         Me.dteFinishDate.Location = New System.Drawing.Point(108, 13)
         Me.dteFinishDate.MenuManager = Me.BarManager1
         Me.dteFinishDate.Name = "dteFinishDate"
@@ -2740,6 +2736,24 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.GridView1.Name = "GridView1"
         '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupControl6, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupControl5, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupControl1, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupControl7, 0, 1)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 2
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1649, 443)
+        Me.TableLayoutPanel2.TabIndex = 13
+        '
         'frmSalesOrderDetailHouses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2836,7 +2850,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboProjectOwner.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateRequiredSO.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2895,6 +2909,7 @@ Partial Class frmSalesOrderDetailHouses
         CType(Me.btnedCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3073,7 +3088,7 @@ Partial Class frmSalesOrderDetailHouses
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents txtPaymentTerm As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label30 As Label
-    Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents cboProjectOwner As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoExEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
@@ -3110,4 +3125,5 @@ Partial Class frmSalesOrderDetailHouses
     Friend WithEvents WorkspaceManager1 As DevExpress.Utils.WorkspaceManager
     Friend WithEvents Label28 As Label
     Friend WithEvents cboCostBook As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
 End Class

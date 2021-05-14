@@ -1,0 +1,3 @@
+alter table WoodPallet
+add TotalVolume decimal (10,4)
+go

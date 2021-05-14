@@ -11,7 +11,9 @@ Public Class MenuFactory
 
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.SalesGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Customer)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ventas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.SalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Casas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.SalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.WoodSalesOrder)
+
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Ventas por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderProgress, eActivityCode.TrackingSalesOrder)
 
     mLastGroup = mMenuList.AddNewGroup("Producción", 0, eActivityCode.ProductionGroup, True)
@@ -19,7 +21,8 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Estructuras", eMenuIconType.Grid, AddressOf clsMenuFunctions.StructureWorksOrderBrowse, eActivityCode.StructureWorkOrder)
     '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de los O.T.s", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderTracking, eActivityCode.TrackingWorkOrders)
     ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Horas Laborales", eMenuIconType.Console, AddressOf clsMenuFunctions.TimeSheetEntry, eActivityCode.TimeSheetEntry)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Instalación", eMenuIconType.Grid, AddressOf clsMenuFunctions.InstallationWorkOrderBrowse, eActivityCode.InstallationWorkOrder)
+    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Instalación", eMenuIconType.Grid, AddressOf clsMenuFunctions.InstallationWorkOrderBrowse, eActivityCode.InstallationWorkOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickWood, eActivityCode.WoodPicking)
 
 
     'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
@@ -142,7 +145,7 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub WoodPallets(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
-    frmWoodPalletDetail.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+    frmWoodPalletDetail.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eWoodFormMode.WoodInventory)
   End Sub
   Public Shared Sub InventoryAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mCategories As New List(Of eStockItemCategory)
@@ -381,6 +384,9 @@ Class clsMenuFunctions
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
+  Public Shared Sub PickWood(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    frmWoodPalletDetail.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eWoodFormMode.ProductionDespatch)
+  End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 

@@ -33,6 +33,11 @@ Public Class frmSalesOrderReview
     txtSOPIStockItemMatReq.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalStockItemMatReqBudget.ToString("$#,##0.00;;#")
     txtTotalSOPICurrentCost.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalStockItemMatReqReal.ToString("$#,##0.00;;#")
 
+    txtSOPIWoodMatReq.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalWoodMatReqBudget.ToString("$#,##0.00;;#")
+    'txtTotalSOPICurrentWoodCost.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalWoodMatReqReal.ToString("$#,##0.00;;#")
+    txtSOPIMO.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget.ToString("$#,##0.00;;#")
+
+    txtSOPIOutsourcing.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget.ToString("$#,##0.00;;#")
 
 
     If pFormController.SalesOrder.GetTotalValueWithCarriage > 0 Then

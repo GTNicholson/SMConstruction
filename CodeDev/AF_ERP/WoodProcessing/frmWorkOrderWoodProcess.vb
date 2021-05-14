@@ -191,7 +191,7 @@ Public Class frmWorkOrderWoodProcess
         grpOutputWood.CustomHeaderButtons(1).Properties.Visible = True
         grpOutputWood.CustomHeaderButtons(2).Properties.Visible = True
 
-        gvSourceWoodPalletItem.Columns("gcToProcessOutput").Visible = True
+        gvSourceWoodPalletItem.Columns("gcToProcessQty").Visible = True
         gvOutputWoodPaleltItem.Columns("gcToProcessOutput").Visible = True
 
         grpConsumedWoodPalletItemInfo.CustomHeaderButtons(1).Properties.Visible = True

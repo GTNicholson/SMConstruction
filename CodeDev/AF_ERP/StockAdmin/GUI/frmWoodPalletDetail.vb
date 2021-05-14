@@ -37,7 +37,7 @@ Public Class frmWoodPalletDetail
     AddPredWidth = 9
   End Enum
 
-  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vFormMode As eWoodFormMode)
     Dim mfrm As frmWoodPalletDetail = Nothing
 
     mfrm = GetFormIfLoaded()
@@ -46,6 +46,7 @@ Public Class frmWoodPalletDetail
       mfrm.MdiParent = rMDIParent
       mfrm.FormMode = eFormMode.eFMFormModeAdd
       mfrm.pFormController = New fccWoodPallet(rDBConn, rRTISGlobal)
+      mfrm.pFormController.FormMode = vFormMode
       mfrm.Show()
     Else
       mfrm.Focus()
@@ -195,6 +196,7 @@ Public Class frmWoodPalletDetail
 
     If pFormController.CurrentWoodPallet IsNot Nothing Then
 
+      HideShowGroupButtons()
 
 
       With pFormController.CurrentWoodPallet
@@ -239,6 +241,25 @@ Public Class frmWoodPalletDetail
     End If
 
     pIsActive = mStartActive
+  End Sub
+
+  Private Sub HideShowGroupButtons()
+
+
+    Select Case pFormController.FormMode
+      Case eWoodFormMode.ProductionDespatch
+        ''Hide Traslada, Consume and Movement for Roberto's Screen
+        grpWoodPallet.CustomHeaderButtons.Item(2).Properties.Visible = False
+        grpWoodPallet.CustomHeaderButtons.Item(3).Properties.Visible = False
+        grpWoodPallet.CustomHeaderButtons.Item(4).Properties.Visible = False
+        grpWoodPallet.CustomHeaderButtons.Item(8).Properties.Visible = False
+        bbtnPickWoodPallet.Enabled = False
+      Case eWoodFormMode.WoodInventory
+        ''Hide Traslada, Consume and Movement for Roberto's Screen
+        grpWoodPallet.CustomHeaderButtons.Item(5).Properties.Visible = False
+        grpWoodPallet.CustomHeaderButtons.Item(6).Properties.Visible = False
+        grpWoodPallet.CustomHeaderButtons.Item(7).Properties.Visible = False
+    End Select
   End Sub
 
   Private Sub RefreshDetailButtons()
@@ -296,7 +317,7 @@ Public Class frmWoodPalletDetail
     txtWoodRef.Focus()
   End Sub
 
-  Private Sub grpWoodPallet_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
+  Private Sub grpWoodPallet_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodPallet.CustomButtonClick
     Dim mStockItems As New colStockItems
     Dim mPicker As clsPickerStockItem
     Dim mStockItem As dmStockItem
@@ -357,20 +378,20 @@ Public Class frmWoodPalletDetail
 
         frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal, True, pFormController.CurrentWoodPallet.PalletType)
         For Each mSelectedItem In mPicker.SelectedObjects
-            If mSelectedItem IsNot Nothing Then
-              mNewWoodPalletItem = pFormController.CurrentWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
-              If mNewWoodPalletItem Is Nothing Then
-                mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentWoodPallet)
-                mNewWoodPalletItem.StockItemID = mSelectedItem.StockItemID
-                mNewWoodPalletItem.Description = mSelectedItem.Description
-                mNewWoodPalletItem.StockCode = mSelectedItem.StockCode
-                mNewWoodPalletItem.Thickness = mSelectedItem.Thickness
+          If mSelectedItem IsNot Nothing Then
+            mNewWoodPalletItem = pFormController.CurrentWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
+            If mNewWoodPalletItem Is Nothing Then
+              mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentWoodPallet)
+              mNewWoodPalletItem.StockItemID = mSelectedItem.StockItemID
+              mNewWoodPalletItem.Description = mSelectedItem.Description
+              mNewWoodPalletItem.StockCode = mSelectedItem.StockCode
+              mNewWoodPalletItem.Thickness = mSelectedItem.Thickness
 
-                pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mSelectedItem)
-                pFormController.WoodPalletItemEditors.Add(pWoodPalletItemEditor)
-              End If
+              pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mSelectedItem)
+              pFormController.WoodPalletItemEditors.Add(pWoodPalletItemEditor)
             End If
-          Next
+          End If
+        Next
 
         mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
@@ -519,27 +540,8 @@ Public Class frmWoodPalletDetail
 
 
   End Sub
-  Private Sub btnSelectOT_Click(sender As Object, e As EventArgs)
-    Dim mWOPicker As clsPickerWorkOrder
-    Dim mWOIs As New colWorkOrderInfos
 
-    pFormController.LoadWorkOrderInfos(mWOIs)
-
-    mWOPicker = New clsPickerWorkOrder(mWOIs, pFormController.DBConn)
-
-    Dim mWO As clsWorkOrderInfo
-    mWO = frmWorkOrderPicker.OpenPickerSingle(mWOPicker)
-
-    If mWO IsNot Nothing Then
-      pFormController.CurrentWorkOrderInfo = mWO
-      RefreshControls()
-
-    End If
-
-
-
-  End Sub
-  Private Sub gvWoodPalletInfo_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) 
+  Private Sub gvWoodPalletInfo_FocusedRowObjectChanged(sender As Object, e As FocusedRowObjectChangedEventArgs) Handles gvWoodPalletInfo.FocusedRowObjectChanged
     Dim mWoodPallet As dmWoodPallet
 
     Try
@@ -652,7 +654,7 @@ Public Class frmWoodPalletDetail
     CheckSave = mRetVal
   End Function
 
-  Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
+  Private Sub repoAddDuplicated_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddDuplicated.ButtonClick
 
     CreateDuplicatedItems(False)
 
@@ -739,15 +741,17 @@ Public Class frmWoodPalletDetail
     UpdateObjects()
     pFormController.SaveObject()
     frmPickWoodMaterial.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.CurrentWoodPallet, eFormMode.eFMFormModeAdd)
-
+    pFormController.LoadObject()
+    grdWoodPalletInfo.DataSource = pFormController.WoodPallets
+    grdWoodPalletInfo.RefreshDataSource()
   End Sub
 
-  Private Sub grpWoodPalletList_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) 
+  Private Sub grpWoodPalletGeneral_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodPalletGeneral.CustomButtonClick
     Dim mString As String = ""
     Dim mFileName As String = "Lista de Pallet" + ".xlsx"
 
     If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
-      gvWoodPalletInfo.ExportToXlsx(mFileName)
+      gvWoodPalletItemInfo.ExportToXlsx(mFileName)
     End If
   End Sub
 
@@ -781,7 +785,7 @@ Public Class frmWoodPalletDetail
 
   End Sub
 
-  Private Sub ckeArchive_CheckedChanged(sender As Object, e As EventArgs)
+  Private Sub ckeArchive_CheckedChanged(sender As Object, e As EventArgs) Handles ckeArchive.CheckedChanged
 
     If ckeArchive.Checked Then
 
@@ -799,13 +803,13 @@ Public Class frmWoodPalletDetail
 
   End Sub
 
-  Private Sub grdWoodPalletItemInfos_EditorKeyDown(sender As Object, e As KeyEventArgs) 
+  Private Sub grdWoodPalletItemInfos_EditorKeyDown(sender As Object, e As KeyEventArgs) Handles grdWoodPalletItemInfos.EditorKeyDown
     If e.KeyCode = Keys.Enter Then
       gvWoodPalletItemInfo.MoveNext()
     End If
   End Sub
 
-  Private Sub gvWoodPalletItemInfo_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) 
+  Private Sub gvWoodPalletItemInfo_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodPalletItemInfo.CustomUnboundColumnData
 
     Dim mWPIE As clsWoodPalletItemEditor
     Dim mFound As Boolean = False
@@ -838,19 +842,19 @@ Public Class frmWoodPalletDetail
 
           'If mWPIE.QuantityUI > 0 Then
           If mWPIE.ToProcessQty <> 0 Then
-              mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
-              e.Value = mBF
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
+            e.Value = mBF
 
-            Else
+          Else
 
-              mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
-              e.Value = mBF
-            End If
+            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
+            e.Value = mBF
+          End If
 
 
 
         Case gcToProcessQty.Name
-        If e.IsGetData Then
+          If e.IsGetData Then
 
             e.Value = mWPIE.ToProcessQty
             If e.Value = 0 Then

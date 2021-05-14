@@ -70,7 +70,7 @@ Partial Class frmPickWoodMaterial
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.btnSelectWorkOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,7 +88,7 @@ Partial Class frmPickWoodMaterial
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -299,7 +299,7 @@ Partial Class frmPickWoodMaterial
         Me.grdWoodPalletItems.AppearanceCaption.Options.UseFont = True
         Me.grdWoodPalletItems.AppearanceCaption.Options.UseForeColor = True
         Me.grdWoodPalletItems.Controls.Add(Me.grdPurchaseOrderItemInfo)
-        Me.grdWoodPalletItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Process To Timber", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Pendiente", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imprimir Recepción", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(4, Short), -1)})
+        Me.grdWoodPalletItems.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Procesar", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Process To Timber", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Pendiente", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Imprimir Recepción", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, CType(4, Short), -1)})
         Me.grdWoodPalletItems.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grdWoodPalletItems.FireScrollEventOnMouseWheel = True
         Me.grdWoodPalletItems.Location = New System.Drawing.Point(9, 108)
@@ -343,7 +343,7 @@ Partial Class frmPickWoodMaterial
         Me.GridColumn6.Caption = "Cantidad"
         Me.GridColumn6.DisplayFormat.FormatString = "N2"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "WoodPalletItem.Quantity"
+        Me.GridColumn6.FieldName = "QuantityUI"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
@@ -425,7 +425,7 @@ Partial Class frmPickWoodMaterial
         Me.GridColumn12.Caption = "Cant. Pend."
         Me.GridColumn12.DisplayFormat.FormatString = "N2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "OutStandingQty"
+        Me.GridColumn12.FieldName = "Balance"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
@@ -441,8 +441,6 @@ Partial Class frmPickWoodMaterial
         Me.gcQtyToProcess.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcQtyToProcess.FieldName = "ToProcessQty"
         Me.gcQtyToProcess.Name = "gcQtyToProcess"
-        Me.gcQtyToProcess.Visible = True
-        Me.gcQtyToProcess.VisibleIndex = 9
         Me.gcQtyToProcess.Width = 64
         '
         'GridColumn13
@@ -527,7 +525,7 @@ Partial Class frmPickWoodMaterial
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 10
+        Me.GridColumn16.VisibleIndex = 9
         '
         'GroupControl1
         '
@@ -593,7 +591,7 @@ Partial Class frmPickWoodMaterial
         Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl2.Controls.Add(Me.txtCustomerName)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
-        Me.GroupControl2.Controls.Add(Me.TextEdit5)
+        Me.GroupControl2.Controls.Add(Me.txtProjectName)
         Me.GroupControl2.Controls.Add(Me.LabelControl9)
         Me.GroupControl2.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.GroupControl2.FireScrollEventOnMouseWheel = True
@@ -621,13 +619,13 @@ Partial Class frmPickWoodMaterial
         Me.LabelControl8.TabIndex = 15
         Me.LabelControl8.Text = "Proyecto"
         '
-        'TextEdit5
+        'txtProjectName
         '
-        Me.TextEdit5.Location = New System.Drawing.Point(288, 38)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.ReadOnly = True
-        Me.TextEdit5.Size = New System.Drawing.Size(156, 20)
-        Me.TextEdit5.TabIndex = 14
+        Me.txtProjectName.Location = New System.Drawing.Point(288, 38)
+        Me.txtProjectName.Name = "txtProjectName"
+        Me.txtProjectName.Properties.ReadOnly = True
+        Me.txtProjectName.Size = New System.Drawing.Size(156, 20)
+        Me.txtProjectName.TabIndex = 14
         '
         'LabelControl9
         '
@@ -671,7 +669,7 @@ Partial Class frmPickWoodMaterial
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
         CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -716,7 +714,7 @@ Partial Class frmPickWoodMaterial
   Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
   Friend WithEvents txtCustomerName As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+  Friend WithEvents txtProjectName As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn

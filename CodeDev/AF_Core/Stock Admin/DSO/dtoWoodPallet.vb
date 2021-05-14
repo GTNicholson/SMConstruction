@@ -71,6 +71,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "isProduction", .isProduction)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "KilnNumber", .KilnNumber)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalVolume", .TotalVolume)
 
 
 
@@ -102,6 +103,7 @@ Public Class dtoWoodPallet : Inherits dtoBase
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .isProduction = DBReadBoolean(rDataReader, "isProduction")
         .KilnNumber = DBReadInt32(rDataReader, "KilnNumber")
+        .TotalVolume = DBReadDecimal(rDataReader, "TotalVolume")
         pWoodPallet.IsDirty = False
       End With
       mOK = True

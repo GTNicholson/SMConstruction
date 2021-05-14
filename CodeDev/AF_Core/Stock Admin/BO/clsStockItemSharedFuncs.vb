@@ -18,10 +18,11 @@ Public Class clsStockItemSharedFuncs
 
         End If
       Case eStockItemCategory.NailsAndBolds
-        mStockItemType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeNailsAndBolts
+        mSIType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
 
         End If
       Case eStockItemCategory.EPP
@@ -154,10 +155,11 @@ Public Class clsStockItemSharedFuncs
           mRetVal = mStockItemType.Abreviation
         End If
       Case eStockItemCategory.NailsAndBolds
-        mStockItemType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeNailsAndBolts
+        mSIType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Abreviation
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
         End If
 
       Case eStockItemCategory.EPP

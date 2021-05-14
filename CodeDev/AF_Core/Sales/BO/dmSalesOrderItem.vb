@@ -505,6 +505,42 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
 
     Return mRetVal
   End Function
+
+  Public Function GetTotalWoodMatReqBudget() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.WoodCost * mItem.Quantity
+
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalMOBudget() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.ManpowerCost * mItem.Quantity
+
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalOutsourcingBudget() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.SubContractCost * mItem.Quantity
+
+    Next
+
+    Return mRetVal
+  End Function
 End Class
 
 

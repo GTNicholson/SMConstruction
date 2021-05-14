@@ -116,6 +116,24 @@ Public Class clsWoodPalletSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function GetTotalBoardFeet(rWoodPallet As dmWoodPallet) As Decimal
+    Dim mRetVal As Decimal
+    Dim mStockItem As dmStockItem
+
+    For Each mWPI As dmWoodPalletItem In rWoodPallet.WoodPalletItems
+
+
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+
+      If mStockItem IsNot Nothing Then
+        mRetVal += GetWoodPalletItemVolumeBoardFeet(mWPI, mStockItem)
+      End If
+
+    Next
+
+    Return mRetVal
+  End Function
+
   Public Shared Function GetSpeciesQty(ByRef rWoodPallets As colWoodPallets) As List(Of Integer)
     Dim mRetVal As New List(Of Integer)
     Dim mSI As dmStockItem
@@ -141,6 +159,7 @@ Public Class clsWoodPalletSharedFuncs
     Dim mRetVal As String = ""
     Dim mListString As New List(Of String)
     Dim mFeetBoard As Decimal = 0
+    Dim mStockItem As dmStockItem
 
     If vWoodPalletItems IsNot Nothing And vWoodPalletItems.Count > 0 Then
       For Each mWPI As dmWoodPalletItem In vWoodPalletItems
@@ -149,16 +168,18 @@ Public Class clsWoodPalletSharedFuncs
           mListString.Add(mWPI.Description)
 
           If mWPI.Thickness > 0 Then
-            mFeetBoard = (mWPI.Thickness * mWPI.Width * mWPI.Length) / 12 * (mWPI.Quantity - mWPI.QuantityUsed)
-
-            If mFeetBoard > 0 Then
-              mRetVal &= mWPI.Description & " con " & mFeetBoard.ToString("00") & " PT"
-            Else
-              mRetVal &= mWPI.Description & " : "
+            mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+            If mStockItem IsNot Nothing Then
+              mFeetBoard = vWoodPalletItems.GetTotalBoardFeet(mStockItem.StockItemID)
             End If
+            If mFeetBoard > 0 Then
+              mRetVal &= mWPI.Description & " con " & mFeetBoard.ToString("00") & " PT "
+            Else
+                mRetVal &= mWPI.Description & " : "
+              End If
 
-          Else
-            If mWPI.Quantity > 0 Then
+            Else
+              If mWPI.Quantity > 0 Then
               mRetVal &= mWPI.Description & " con " & (mWPI.Quantity - mWPI.QuantityUsed).ToString("0") & " m3,"
 
             Else

@@ -55,6 +55,10 @@ Public Class dsoWoodPalletItemReportSource
     Dim mdto As dtoWoodPalletItemInfo
     Dim mWhere As String = ""
     Dim mdsoCosting As New dsoCostBook(pDBConn)
+    Dim mCostBookID As Integer
+    Dim mCostBookEntrys As colCostBookEntrys
+    Dim mCostBookEntry As dmCostBookEntry
+
     Try
 
       pWoodPalletItemInfos = New colWoodPalletItemInfos
@@ -78,13 +82,23 @@ Public Class dsoWoodPalletItemReportSource
       mdto.LoadWoodPalletItemInfoCollectionByWhere(pWoodPalletItemInfos, mWhere)
 
 
+      mCostBookID = mdsoCosting.GetDefaultCostBookID
+      mCostBookEntrys = New colCostBookEntrys
+      mdsoCosting.LoadCostBookEntry(mCostBookEntrys, mCostBookID)
+
 
 
       If pWoodPalletItemInfos IsNot Nothing Then
 
         For Each mWPII As clsWoodPalletItemInfo In pWoodPalletItemInfos
 
-          mWPII.UnitCost = mdsoCosting.GetDefaultCostBookValueByStockItemIDConnected(mWPII.StockItem.StockItemID)
+          mCostBookEntry = mCostBookEntrys.ItemFromStockItemID(mWPII.StockItem.StockItemID)
+
+          If mCostBookEntry IsNot Nothing Then
+            mWPII.UnitCost = mCostBookEntry.Cost  'mdsoCosting.GetDefaultCostBookValueByStockItemIDConnected(mWPII.StockItem.StockItemID)
+
+          End If
+
 
 
 

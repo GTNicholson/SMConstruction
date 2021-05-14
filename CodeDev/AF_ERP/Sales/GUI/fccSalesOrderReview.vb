@@ -97,7 +97,7 @@ Public Class fccSalesOrderReview
       If mSOPII.TempDateExchange = Date.MinValue Then mSOPII.TempDateExchange = Now
       mSOPII.ExchangeRate = GetExchangeRate(mSOPII.TempDateExchange, eCurrency.Cordobas)
       If mSOPII.ExchangeRate > 0 Then
-        mSOPII.SOPIDollarValue = mSOPII.SOPItemMatReqCost / mSOPII.ExchangeRate
+        mSOPII.SOPIStockItemMatReqDollarValue = mSOPII.SOPItemMatReqCost / mSOPII.ExchangeRate
         mSOPII.SOPIPickDollarValue = mSOPII.SOPItemPickMatReqCost / mSOPII.ExchangeRate
 
       End If

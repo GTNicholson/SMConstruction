@@ -250,6 +250,28 @@ Public Class colWoodPalletItems : Inherits colBase(Of dmWoodPalletItem)
     MyBase.New()
   End Sub
 
+  Public Function GetTotalBoardFeet(ByVal vStockItemID As Integer) As Decimal
+    Dim mRetVal As Decimal
+    Dim mStockItem As dmStockItem
+
+    For Each mItem In Me
+
+      If mItem.StockItemID = vStockItemID Then
+        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mItem.StockItemID)
+
+        If mStockItem IsNot Nothing Then
+
+
+
+
+          mRetVal += clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mItem, mStockItem)
+        End If
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
   Public Sub New(ByVal vList As List(Of dmWoodPalletItem))
     MyBase.New(vList)
   End Sub

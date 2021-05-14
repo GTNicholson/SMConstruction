@@ -16,6 +16,7 @@ Public Enum eActivityCode
   Customer = 101
   SalesOrder = 102
   TrackingSalesOrder = 103
+  WoodSalesOrder = 104
 
   ProductionGroup = 200
   WorkOrders = 201
@@ -24,6 +25,7 @@ Public Enum eActivityCode
   TimeSheetEntry = 204
   ProductionReport = 205
   InstallationWorkOrder = 206
+  WoodPicking = 207
 
   HumanResourcesGroup = 300
   EmployeeSalaries = 301
@@ -680,6 +682,7 @@ Public Class clsStockItemType : Inherits clsPropertyENUM
     End Get
   End Property
 
+
 End Class
 
 Public Class colStockSubItemTypeAbrasivos : Inherits List(Of clsStockItemType)
@@ -753,7 +756,7 @@ End Class
 
 Public Class clsStockItemTypeNailsAndBolts : Inherits clsPropertyENUM
   Private pStockSubItemTypeNailsAndBolts As colStockSubItemTypeNailsAndBolts
-
+  Private pStockCodeStr As String
   Public Property StockSubItemTypeNailsAndBolts As colStockSubItemTypeNailsAndBolts
     Get
       Return pStockSubItemTypeNailsAndBolts
@@ -762,18 +765,36 @@ Public Class clsStockItemTypeNailsAndBolts : Inherits clsPropertyENUM
       pStockSubItemTypeNailsAndBolts = value
     End Set
   End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
 
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
     MyBase.New(vPropertyENUM, vDescription)
     pStockSubItemTypeNailsAndBolts = New colStockSubItemTypeNailsAndBolts
+    pStockCodeStr = vStockCodeStr
   End Sub
 
 End Class
 
 Public Class clsStockSubItemTypeNailsAndBolts : Inherits clsPropertyENUM
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
     MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
   End Sub
 
 End Class
@@ -792,7 +813,7 @@ Public Class colStockSubItemTypeNailsAndBolts : Inherits List(Of clsStockSubItem
 
 End Class
 
-Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemType)
+Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemTypeNailsAndBolts)
 
   Public Enum eStockItemNailAndBolts
     Clavos = 1
@@ -812,21 +833,30 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
 
   Public Sub New()
     MyBase.New()
+    Dim mNailAndBoltType As clsStockItemTypeNailsAndBolts
 
-    Dim mClavos As New clsStockItemType(Clavos, "Clavos", "CL")
-    MyBase.Add(mClavos)
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Clavos, "Clavos", "CL")
+    MyBase.Add(mNailAndBoltType)
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.PuntaFina, "Punta Fina", "CPF"))
 
-    Dim mTornillos As New clsStockItemType(Tornillos, "Tornillos", "TN")
-    MyBase.Add(mTornillos)
 
-    Dim mPernos As New clsStockItemType(Pernos, "Pernos", "PE")
-    MyBase.Add(mPernos)
 
-    Dim mGolosos As New clsStockItemType(Golosos, "Golosos", "GO")
-    MyBase.Add(mGolosos)
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tornillos, "Tornillos", "TN")
+    MyBase.Add(mNailAndBoltType)
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Wood, "Tornillo de Madera", "TDM"))
 
-    Dim mOthers As New clsStockItemType(Otros, "Los demás", "OTR")
-    MyBase.Add(mOthers)
+
+
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Pernos, "Pernos", "PE")
+    MyBase.Add(mNailAndBoltType)
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eCapScrewType.Hexagonal, "Perno Hexagonal", "PHX"))
+
+
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Golosos, "Golosos", "GO")
+    MyBase.Add(mNailAndBoltType)
+
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Otros, "Los demás", "OTR")
+    MyBase.Add(mNailAndBoltType)
 
   End Sub
 
@@ -838,6 +868,20 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
   End Function
 
 End Class
+
+Public Enum eCapScrewType
+  Hexagonal = 1
+  Other = 99
+End Enum
+
+Public Enum eScrewTypes
+  Wood = 1
+  Other = 99
+End Enum
+Public Enum eNailsType
+  PuntaFina = 1
+  Other = 99
+End Enum
 
 Public Class clsStockItemTypeHerrajes : Inherits clsPropertyENUM
   Private pStockSubItemTypeHerrajes As colStockSubItemTypeHerrajes
@@ -1253,49 +1297,49 @@ End Class
 ''termino aca
 
 Public Class clsStockItemTypeTimberWood : Inherits clsPropertyENUM
-    Private pStockSubItemTypeTimberWood As colStockSubItemTypeTimberWood
+  Private pStockSubItemTypeTimberWood As colStockSubItemTypeTimberWood
 
-    Public Property StockSubItemTypeTimberWood As colStockSubItemTypeTimberWood
-      Get
-        Return pStockSubItemTypeTimberWood
-      End Get
-      Set(value As colStockSubItemTypeTimberWood)
-        pStockSubItemTypeTimberWood = value
-      End Set
-    End Property
+  Public Property StockSubItemTypeTimberWood As colStockSubItemTypeTimberWood
+    Get
+      Return pStockSubItemTypeTimberWood
+    End Get
+    Set(value As colStockSubItemTypeTimberWood)
+      pStockSubItemTypeTimberWood = value
+    End Set
+  End Property
 
-    Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-      MyBase.New(vPropertyENUM, vDescription)
-      pStockSubItemTypeTimberWood = New colStockSubItemTypeTimberWood
-    End Sub
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeTimberWood = New colStockSubItemTypeTimberWood
+  End Sub
 
-  End Class
+End Class
 
-  Public Class clsStockSubItemTypeTimberWood : Inherits clsPropertyENUM
+Public Class clsStockSubItemTypeTimberWood : Inherits clsPropertyENUM
 
-    Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-      MyBase.New(vPropertyENUM, vDescription)
-    End Sub
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+    MyBase.New(vPropertyENUM, vDescription)
+  End Sub
 
-  End Class
+End Class
 
-  Public Class colStockSubItemTypeTimberWood : Inherits List(Of clsStockSubItemTypeTimberWood)
+Public Class colStockSubItemTypeTimberWood : Inherits List(Of clsStockSubItemTypeTimberWood)
 
-    Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeTimberWood
-      For Each mItem As clsStockSubItemTypeTimberWood In Me
-        If mItem.PropertyENUM = vKey Then
-          Return mItem
-        End If
-      Next
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeTimberWood
+    For Each mItem As clsStockSubItemTypeTimberWood In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
 
-      Return Nothing
-    End Function
+    Return Nothing
+  End Function
 
-  End Class
+End Class
 
-  Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockItemType)
+Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockItemType)
 
-    Public Enum eStockItemTimberWood
+  Public Enum eStockItemTimberWood
     Arbol = 1
     Rollo = 2
     Aserrado = 3
@@ -1955,6 +1999,7 @@ Public Enum eTransactionType
   <Description("Movimiento por Entrada a Horno")> KilnMovementStart = 18
   <Description("Movimiento por Salida de Horno")> KilnMovementEnd = 19
   <Description("Movimiento de MAV")> MAVMovement = 20
+  <Description("Despacho Madera a Producción")> IntoWIP = 21
 
 
 
@@ -1974,4 +2019,9 @@ Public Enum eKilns
   <Description("Horno 1")> KilnOne = 1
   <Description("Horno 2")> KilnTwo = 2
   <Description("Horno 3")> KilnThree = 3
+End Enum
+
+Public Enum eWoodFormMode
+  WoodInventory = 1
+  ProductionDespatch = 2
 End Enum
