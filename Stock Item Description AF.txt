@@ -1,0 +1,66 @@
+Clavos, Tornillos, etc
+en esta categoría, agregar arandelas y tuercas como itemtype
+
+Habilitar species para clavos, tornillos, etc
+Species: Galvanizado, Acero, Inoxidable, Amarillo, Aluminio
+agregar reference list para esto
+
+Species es para toda la especie de clavos y tornillos
+Create a new Table for these species "FixingSpecies"
+ID-Description
+En el largo sería
+
+Habilitar un campo nuevo de AuxCode string
+
+SubItemType:
+Pistolas
+Presion
+Estandar
+Sin Cabeza
+Techo
+
+
+Para Golosos...
+Usar Largo y Ancho
+Habilitar las dimensiones en 3 decimales
+Las especies igual que la anterior
+SubItemType:
+PuntaFina
+Hexagonal
+Hexagonal PuntaFina
+Estandar
+
+Habilitar el panel que se muestra para la categoría
+Para los golosos habilitar un checkbox que diga con arandelas
+Crear un campo que diga WithWasher boolean
+
+
+Pernos
+Habilitar HeadType para los pernos
+Tengo que habilitar el color para la descripción
+
+Habilitar el campo de Manufacturer
+Create a new table FixingManufacturerTable
+
+Para tornillos
+SubItemType
+
+Add a new field in the table for HeadType
+Cabeza Plana, Phillips, Hexagonal, Allen, Cuadrado, Cap, Seguridad
+
+Para Otros---
+SubItemType
+Grapas
+Varilla Roscada
+Alcayata
+
+
+Mover arandelas y tuercas para clavos y tornillos
+Arandelas
+SubItemType
+Presion, Plana
+
+L: largo
+Cab
+Eje
+cuando está en clavos, tornillos, perno o goloso
