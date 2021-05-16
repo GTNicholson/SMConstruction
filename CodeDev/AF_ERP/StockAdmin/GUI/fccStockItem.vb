@@ -443,7 +443,17 @@ Public Class fccStocktem
     Return mStem
   End Function
 
+  Public Sub GenerateDescription()
+    Dim mSIDM As StockItemDefManagerBase = Nothing
 
+    Select Case pCurrentStockItem.Category
+      Case eStockItemCategory.NailsAndBolds
+        mSIDM = New clsStockItemDefManagerFixings(pCurrentStockItem)
+    End Select
+    If mSIDM IsNot Nothing Then
+      pCurrentStockItem.Description = mSIDM.GenerateDescription()
+    End If
+  End Sub
 
 End Class
 

@@ -211,6 +211,7 @@
     <Compile Include="Email\DTO\dtoEmailTemplate.vb" />
     <Compile Include="ERPStock\clsDecValueTracker.vb" />
     <Compile Include="ERPStock\clsProductRegistry.vb" />
+    <Compile Include="ERPStock\StockItemDefManagerBase.vb" />
     <Compile Include="ERPStock\clsStockItemRegistryComp.vb" />
     <Compile Include="ERPStock\clsStockItemRegistryBase.vb" />
     <Compile Include="ERPStock\intdtoStockItem.vb" />
@@ -418,6 +419,7 @@
     <Compile Include="Stock Admin\BO\dmWoodPalletItem.vb" />
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
+    <Compile Include="Stock Admin\BO\StockItemDefManagers.vb" />
     <Compile Include="Stock Admin\DSO\dsoReception.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />
     <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />

@@ -397,6 +397,7 @@ Public Class frmStockItem
     End If
 
   End Sub
+
   Private Sub RefreshCategorySpecificControls()
 
 
@@ -421,11 +422,10 @@ Public Class frmStockItem
 
         Case eStockItemCategory.NailsAndBolds
 
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
-          cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
-
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
+          cboSpecies.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
 
         Case eStockItemCategory.EPP
           Dim mEPP As clsStockItemTypeEPP
@@ -547,6 +547,23 @@ Public Class frmStockItem
     pIsActive = mStartActive
   End Sub
 
+  Public Sub RefreshTypeSpecificControls()
+    Dim mVIs As New colValueItems
+    Dim mVI As clsValueItem
+    Select Case pFormController.CurrentStockItem.Category
+      Case eStockItemCategory.NailsAndBolds
+        Dim mSITNandB As clsStockItemTypeNailsAndBolts
+        mSITNandB = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(clsDEControlLoading.GetDEComboValue(cboItemType))
+        For Each mItem As clsStockSubItemTypeNailsAndBolts In mSITNandB.StockSubItemTypeNailsAndBolts
+          mVI = New clsValueItem
+          mVI.ItemValue = mItem.ItemValue
+          mVI.DisplayValue = mItem.DisplayValue
+          mVIs.Add(mVI)
+        Next
+        clsDEControlLoading.FillDEComboVIi(cboItemSubType, mSITNandB.StockSubItemTypeNailsAndBolts)
+    End Select
+  End Sub
+
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
     txtDescription.ReadOnly = vReadOnly
     txtStockCode.ReadOnly = vReadOnly
@@ -621,7 +638,7 @@ Public Class frmStockItem
 
 
               Case eStockItemCategory.NailsAndBolds
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+                mText = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
 
@@ -774,6 +791,15 @@ Public Class frmStockItem
 
   Private Sub grpGroupF8_Paint(sender As Object, e As PaintEventArgs) Handles grpGroupF8.Paint
 
+  End Sub
+
+  Private Sub txtDescription_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtDescription.ButtonClick
+    pFormController.GenerateDescription()
+    txtDescription.Text = pFormController.CurrentStockItem.Description
+  End Sub
+
+  Private Sub cboItemType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboItemType.SelectedIndexChanged
+    RefreshTypeSpecificControls()
   End Sub
 End Class
 

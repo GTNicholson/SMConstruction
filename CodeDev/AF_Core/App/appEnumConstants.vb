@@ -67,7 +67,7 @@ Public Enum eActivityCode
   WoodGroup = 900
   WoodInventory = 901 '// was 506
   WoodPallet = 902 '// was 507
-  WorkOrderWoodProcess = 903
+  WorkOrderWoodProcess = 903.0F
   WoodPalletItemReport = 904
   WoodReception = 905
 
@@ -814,18 +814,12 @@ End Class
 
 Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemTypeNailsAndBolts)
 
-  Public Enum eStockItemNailAndBolts
-    Clavos = 1
-    Tornillos = 2
-    Pernos = 3
-    Golosos = 4
-    Otros = 99
-  End Enum
-
   Public Const Clavos = 1
   Public Const Tornillos = 2
   Public Const Pernos = 3
   Public Const Golosos = 4
+  Public Const Tuercas = 5
+  Public Const Arandelas = 6
   Public Const Otros = 99
 
   Private Shared mSharedInstance As eStockItemTypeNailsAndBolts
@@ -838,13 +832,9 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
     MyBase.Add(mNailAndBoltType)
     mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.PuntaFina, "Punta Fina", "CPF"))
 
-
-
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tornillos, "Tornillos", "TN")
     MyBase.Add(mNailAndBoltType)
     mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Wood, "Tornillo de Madera", "TDM"))
-
-
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Pernos, "Pernos", "PE")
     MyBase.Add(mNailAndBoltType)
@@ -852,6 +842,13 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
 
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Golosos, "Golosos", "GO")
+    MyBase.Add(mNailAndBoltType)
+
+
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tuercas, "Tuercas", "TU")
+    MyBase.Add(mNailAndBoltType)
+
+    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Arandelas, "Arandelas", "AR")
     MyBase.Add(mNailAndBoltType)
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Otros, "Los demás", "OTR")
@@ -927,8 +924,6 @@ Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockIte
 
   Public Enum eStockItemHerrajes
     Riel = 1
-    Tuercas = 2
-    Arandelas = 3
     Bisagras = 4
     ResbalonesYNiveladores = 5
     Rodos = 6
