@@ -53,6 +53,9 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pProductCostBookID As Int32
   Private pPaymentTermDesc As String
 
+  Private pWoodPalletID As Integer
+  Private pWoodPalletType As Integer
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -173,6 +176,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .ProductCostBookID = ProductCostBookID
       .SalesOrderStages = SalesOrderStages
       .PaymentTermDesc = PaymentTermDesc
+      .WoodPalletID = WoodPalletID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -614,6 +618,26 @@ Public Class dmSalesOrder : Inherits dmBase
     Return mRetVal
   End Function
 
+
+  Public Property WoodPalletID As Integer
+    Get
+      Return pWoodPalletID
+    End Get
+    Set(value As Integer)
+      If pWoodPalletID <> value Then IsDirty = True
+      pWoodPalletID = value
+    End Set
+  End Property
+
+  Public Property WoodPalletType As Integer
+    Get
+      Return pWoodPalletType
+    End Get
+    Set(value As Integer)
+      If pWoodPalletType <> value Then IsDirty = True
+      pWoodPalletType = value
+    End Set
+  End Property
 End Class
 
 

@@ -4,7 +4,7 @@ Imports RTIS.DataLayer
 Imports RTIS.Elements
 
 Public Class brwSalesOrder : Inherits brwBrowserListBase
-
+  Private pIsWoodSalesOrder As Boolean
   Public Enum eListOption
     DefaultListOption = 1
 
@@ -16,16 +16,20 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
   End Enum
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, ByVal vIsWoodSalesOrder As Boolean, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
-
+    pIsWoodSalesOrder = vIsWoodSalesOrder
   End Sub
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
 
-    frmSalesOrderDetailHouses.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+    If pIsWoodSalesOrder = False Then
+      frmSalesOrderDetailHouses.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+    Else
+      frmWoodSalesOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
 
+    End If
     Return mReloadData
   End Function
 
@@ -36,7 +40,14 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmSalesOrderDetailHouses.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+      If pIsWoodSalesOrder = False Then
+        frmSalesOrderDetailHouses.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+      Else
+        frmWoodSalesOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+      End If
+
       'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("CustomerID")), BrowseRefreshTracker,eFormMode.eFMFormModeEdit)
 
       'Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
@@ -92,7 +103,13 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Try
 
       DBConn.Connect()
-      mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' Order By SalesOrderID desc")
+
+      If pIsWoodSalesOrder = False Then
+        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID <> " & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
+      Else
+        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID=" & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
+
+      End If
 
       gridBrowseList.DataSource = mDataTable
 

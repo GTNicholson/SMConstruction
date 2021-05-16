@@ -12,7 +12,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.SalesGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Customer)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Casas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.SalesOrder)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.WoodSalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSalesOrder, eActivityCode.WoodSalesOrder)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Ventas por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderProgress, eActivityCode.TrackingSalesOrder)
 
@@ -114,7 +114,7 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub SalesOrderBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    Dim mBrw As New brwSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.SalesOrders)
+    Dim mBrw As New brwSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.SalesOrders, False)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
@@ -320,7 +320,7 @@ Class clsMenuFunctions
     frmPaySlipDetails.OpenFormMDI(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, rRTISGlobal)
 
   End Sub
-    Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+  Public Shared Sub StockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, False)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, My.Application.RTISUserSession.IsSecurityAllowAll)
@@ -387,6 +387,12 @@ Class clsMenuFunctions
   Public Shared Sub PickWood(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     frmWoodPalletDetail.OpenAsMDI(rParentForm, rRTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eWoodFormMode.ProductionDespatch)
   End Sub
+
+  Public Shared Sub WoodSalesOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.SalesOrders, True)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+  End Sub
+
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 

@@ -23,6 +23,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pisProduction As Boolean
   Private pKilnNumber As Integer
   Private pTotalVolume As Decimal
+  Private pSoldDate As Date
 
   Public Sub New()
     MyBase.New()
@@ -141,6 +142,17 @@ Public Class dmWoodPallet : Inherits dmBase
       Return mRetVal
     End Get
   End Property
+
+  Public Function GetTotalTrozas() As Integer
+    Dim mRetVal As Integer
+
+    For Each mWPI In Me.WoodPalletItems
+      mRetVal += mWPI.Quantity
+    Next
+
+    Return mRetVal
+  End Function
+
   Public Property CardNumber As String
     Get
       Return pCardNumber
@@ -325,6 +337,17 @@ Public Class dmWoodPallet : Inherits dmBase
     Set(value As Decimal)
       If pTotalVolume <> value Then IsDirty = True
       pTotalVolume = value
+    End Set
+  End Property
+
+  Public Property SoldDate As Date
+    Get
+      Return pSoldDate
+    End Get
+
+
+    Set(value As Date)
+      pSoldDate = value
     End Set
   End Property
 End Class

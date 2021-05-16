@@ -5,12 +5,14 @@
   Private pOriginalProductID As Integer
   Private pPalletType As Integer
   Private pUnfilteredList As colWoodPallets
+  Private pIsWoodSalesOrder As Boolean
 
-  Public Sub New(ByVal vDataSource As colWoodPallets, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vPalletType As Integer)
+  Public Sub New(ByVal vDataSource As colWoodPallets, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vPalletType As Integer, Optional vIsWoodSalesOrder As Boolean = False)
     MyBase.New
     pUnfilteredList = vDataSource
     pOriginalProductID = vPalletType
     pPalletType = vPalletType
+    pIsWoodSalesOrder = vIsWoodSalesOrder
     RefreshDataSource()
     pDBConn = rDBConn
   End Sub
@@ -20,6 +22,9 @@
 
     For Each mWoodPallet In pUnfilteredList
       If mWoodPallet.PalletType = pPalletType Then
+        mFilteredList.Add(mWoodPallet)
+      ElseIf pIsWoodSalesOrder = True Then
+
         mFilteredList.Add(mWoodPallet)
       End If
     Next

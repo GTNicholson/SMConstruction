@@ -15,7 +15,7 @@ Public Class clsSalesOrderHandler
     mSO.DateEntered = Now
     mSOP = New dmSalesOrderPhase
     mSOP.DateCreated = Now
-
+    mSOP.DateRequired = Now
     mSO.SalesOrderPhases.Add(mSOP)
     Return mSO
   End Function
@@ -103,6 +103,32 @@ Public Class clsSalesOrderHandler
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+  End Sub
+
+  Public Sub AddSalesOrderItemFromWoodPalletItems(ByRef rWoodPallets As List(Of dmWoodPallet))
+    Dim mNewSOI As dmSalesOrderItem = Nothing
+    Dim mRetVal As New colSalesOrderItems
+
+    Try
+      For Each mWP As dmWoodPallet In rWoodPallets
+        mNewSOI = New dmSalesOrderItem
+        mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
+        mNewSOI.UoM = eUoM.PT
+        mNewSOI.Quantity = mWP.GetTotalTrozas
+        mNewSOI.ProductID = mWP.WoodPalletID
+        mNewSOI.ProductTypeID = eProductType.WoodSalesOrder
+        mNewSOI.Description = mWP.Description
+
+
+        pSalesOrder.SalesOrderItems.Add(mNewSOI)
+
+      Next
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
   End Sub
 
   Public Sub RemoveInvoiceSalesOrderItem(ByRef rInvoiceSalesOrderItem As dmInvoiceItem)

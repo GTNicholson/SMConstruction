@@ -1,3 +1,42 @@
 alter table WoodPallet
 add TotalVolume decimal (10,4)
 go
+
+alter table SalesOrder
+add WoodPalletID int
+go
+
+
+ALTER view [dbo].[vwSalesOrderInfo]
+as
+SELECT        
+SO.SalesOrderID, 
+SO.OrderNo, 
+SO.ContractManagerID, 
+SO.ProjectName, 
+SO.OrderStatusENUM, 
+SO.OrderTypeID, 
+SO.DateEntered, 
+SO.WoodPalletID,
+SO.FinishDate, 
+SO.DueTime, 
+Cust.CompanyName, 
+Cust.SalesAreaID, 
+Cust.AccountRef, 
+SO.ShippingCost,  
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS FirstName
+
+FROM            
+dbo.SalesOrder AS SO 
+LEFT OUTER JOIN	dbo.Customer AS Cust ON Cust.CustomerID = SO.CustomerID 
+LEFT OUTER JOIN  dbo.Employee AS Emp ON SO.ContractManagerID = Emp.EmployeeID
+
+GO
+
+Alter table SalesOrder
+add WoodPalletType int
+go
+
+alter table WoodPallet
+add SoldDate  datetime
+go

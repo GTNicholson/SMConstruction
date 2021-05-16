@@ -414,15 +414,14 @@ Public Enum eProductType
   <Description("Estructura")> StructureAF = 2
   <Description("Instalación")> ProductInstallation = 3
   <Description("WooodWorkOrder")> WoodWorkOrder = 4
+  <Description("WoodSalesOrder")> WoodSalesOrder = 5
+
 End Enum
 
 Public Enum eOrderType
   <Description("Venta")> Sales = 2
   <Description("Consumo Interno")> Interno = 1
-  <Description("Pre Venta")> PreSale = 3
-  <Description("Muestra de Acabado")> Sample = 4
-  <Description("Proyecto")> Project = 5
-  <Description("Mueble")> Furniture = 6
+  <Description("Madera")> WoodSales = 3
 
 
 End Enum

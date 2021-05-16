@@ -87,6 +87,9 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Version", StringToDBValue(.Version))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OrderPhaseType", .OrderPhaseType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentTermDesc", StringToDBValue(.PaymentTermDesc))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletID", .WoodPalletID)
+
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletType", .WoodPalletType)
 
     End With
 
@@ -128,6 +131,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .PodioPath = DBReadString(rDataReader, "PodioPath")
         .OrderPhaseType = DBReadByte(rDataReader, "OrderPhaseType")
         .PaymentTermDesc = DBReadString(rDataReader, "PaymentTermDesc")
+        .WoodPalletID = DBReadInt32(rDataReader, "WoodPalletID")
+        .WoodPalletType = DBReadInt32(rDataReader, "WoodPalletType")
 
         pSalesOrder.IsDirty = False
       End With

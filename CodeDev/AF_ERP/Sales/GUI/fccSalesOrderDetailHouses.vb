@@ -94,7 +94,7 @@ Public Class fccSalesOrderDetailHouses
 
     If pPrimaryKeyID = 0 Then
       pSalesOrder = clsSalesOrderHandler.CreateNewSalesOrder
-
+      pSalesOrder.OrderTypeID = eOrderType.Sales
       mSalesOrderItemAssembly = New dmSalesItemAssembly
 
       mSalesOrderItemAssembly.ParentID = pSalesOrder.SalesOrderID

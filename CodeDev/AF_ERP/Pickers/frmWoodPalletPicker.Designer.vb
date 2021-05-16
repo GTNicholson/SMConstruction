@@ -43,10 +43,10 @@ Partial Class frmWoodPalletPicker
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcFarm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
-        Me.gcFarm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.grdWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPallets, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,10 +183,21 @@ Partial Class frmWoodPalletPicker
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         '
+        'gcFarm
+        '
+        Me.gcFarm.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.gcFarm.AppearanceCell.Options.UseBackColor = True
+        Me.gcFarm.Caption = "Finca"
+        Me.gcFarm.FieldName = "FarmDesc"
+        Me.gcFarm.Name = "gcFarm"
+        Me.gcFarm.OptionsColumn.ReadOnly = True
+        Me.gcFarm.Visible = True
+        Me.gcFarm.VisibleIndex = 6
+        '
         'repbtnUnSelect
         '
         Me.repbtnUnSelect.AutoHeight = False
-        Me.repbtnUnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Unselect", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repbtnUnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remover", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repbtnUnSelect.Name = "repbtnUnSelect"
         '
         'repitTextOnly
@@ -203,17 +214,6 @@ Partial Class frmWoodPalletPicker
         Me.btnConfirmSelection.Size = New System.Drawing.Size(133, 23)
         Me.btnConfirmSelection.TabIndex = 3
         Me.btnConfirmSelection.Text = "Aceptar Selección"
-        '
-        'gcFarm
-        '
-        Me.gcFarm.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.gcFarm.AppearanceCell.Options.UseBackColor = True
-        Me.gcFarm.Caption = "Finca"
-        Me.gcFarm.FieldName = "FarmDesc"
-        Me.gcFarm.Name = "gcFarm"
-        Me.gcFarm.OptionsColumn.ReadOnly = True
-        Me.gcFarm.Visible = True
-        Me.gcFarm.VisibleIndex = 6
         '
         'SimpleButton1
         '

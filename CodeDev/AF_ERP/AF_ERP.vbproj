@@ -571,6 +571,7 @@
     <Compile Include="Sales\GUI\fccSalesOrderDetailHouses.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderProgress.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderReview.vb" />
+    <Compile Include="Sales\GUI\fccWoodSalesOrder.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetailConstruction.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetail.vb" />
     <Compile Include="Sales\GUI\frmCustomerDetail.Designer.vb">
@@ -625,6 +626,12 @@
       <DependentUpon>frmSalesOrderReview.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWoodSalesOrder.Designer.vb">
+      <DependentUpon>frmWoodSalesOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWoodSalesOrder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmWorkOrderDetail.Designer.vb">
@@ -996,6 +1003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderReview.resx">
       <DependentUpon>frmSalesOrderReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmWoodSalesOrder.resx">
+      <DependentUpon>frmWoodSalesOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderDetail.resx">
       <DependentUpon>frmWorkOrderDetail.vb</DependentUpon>
