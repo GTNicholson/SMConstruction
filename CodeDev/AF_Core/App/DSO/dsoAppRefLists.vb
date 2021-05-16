@@ -243,6 +243,12 @@ Public Class dsoAppRefLists
         Case appRefLists.WoodTypeValue
           mItem.IList = LoadWoodTypeValue()
           mOK = True
+
+        Case appRefLists.FixingSpecies
+          mValueItems = New colValueItems
+          mOK = pDBConn.LoadValueItems(mValueItems, "Select SpanishDescription, FixingSpeciesID from FixingSpecies Order By DisplayOrder", "FixingSpeciesID", "SpanishDescription")
+          mItem.IList = mValueItems
+
       End Select
       mItem = Nothing
     Else
@@ -414,8 +420,6 @@ Public Class dsoAppRefLists
   End Function
 
   Public Function LoadSupplier() As IList
-    Dim mdto As New dtoFurnitureCategory(pDBConn)
-
     Dim mdtoSupplier As New dtoSupplier(pDBConn)
     Dim mRetValSupplier As New colSuppliers
     mdtoSupplier.LoadSupplierCollectionByWhere(mRetValSupplier, "CompanyName<>''")

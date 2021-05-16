@@ -221,7 +221,7 @@ Public Class frmStockItemInfo
 
 
               Case eStockItemCategory.NailsAndBolds
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(mRow.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+                mText = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
 

@@ -1,0 +1,39 @@
+Update StockItem set Category = 2, ItemType = 5
+Where Category = 4 and ItemType  = 2
+
+Go
+
+Update StockItem set Category = 2, ItemType = 6
+Where Category = 4 and ItemType  = 3
+
+Go
+
+CREATE TABLE dbo.FixingSpecies
+(
+FixingSpeciesID                 INT IDENTITY(1,1) NOT NULL,
+EnglishDescription                  VARCHAR(50),
+SpanishDescription                  VARCHAR(50),
+DisplayOrder			Int,
+CONSTRAINT PK_FixingSpecies PRIMARY KEY CLUSTERED ( FixingSpeciesID )
+)
+ON [PRIMARY]
+
+GO
+
+IF (IDENT_SEED('LookUpTable') IS NOT NULL )	SET IDENTITY_INSERT LookUpTable ON
+INSERT INTO LookUpTable (LookUpTableID,DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,ProtectedFieldName,PermissionID,ActivityCode,OrderModeENUM,GroupKeyFieldName,GroupKeyValue,SelectionCode,EnableValidation,ArchiveFieldName,ValidationCode,LayoutFileName) VALUES('5036','40','Especie de Clavos,Tornillos etc','FixingSpecies','FixingSpeciesID','EnglishDescription',NULL,'4','1','1',NULL,NULL,'7',0,NULL,NULL,NULL)
+IF (IDENT_SEED('LookUpTable') IS NOT NULL )	SET IDENTITY_INSERT LookUpTable OFF
+
+
+GO
+
+IF (IDENT_SEED('FixingSpecies') IS NOT NULL )	SET IDENTITY_INSERT FixingSpecies ON
+INSERT INTO FixingSpecies (FixingSpeciesID,EnglishDescription,SpanishDescription,DisplayOrder) VALUES('1',N'N/A',N'N/A','0')
+INSERT INTO FixingSpecies (FixingSpeciesID,EnglishDescription,SpanishDescription,DisplayOrder) VALUES('2',N'Galvanised',N'Galvanisado','1')
+INSERT INTO FixingSpecies (FixingSpeciesID,EnglishDescription,SpanishDescription,DisplayOrder) VALUES('3',N'Steel',N'Acero','2')
+INSERT INTO FixingSpecies (FixingSpeciesID,EnglishDescription,SpanishDescription,DisplayOrder) VALUES('4',N'Stainless',N'Inoxidable','3')
+INSERT INTO FixingSpecies (FixingSpeciesID,EnglishDescription,SpanishDescription,DisplayOrder) VALUES('5',N'Yellow',N'Amaraillo','4')
+INSERT INTO FixingSpecies (FixingSpeciesID,EnglishDescription,SpanishDescription,DisplayOrder) VALUES('6',N'Aluminium',N'Aluminio','5')
+IF (IDENT_SEED('FixingSpecies') IS NOT NULL )	SET IDENTITY_INSERT FixingSpecies OFF
+
+GO

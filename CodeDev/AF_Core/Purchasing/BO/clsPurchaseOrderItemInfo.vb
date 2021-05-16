@@ -373,7 +373,7 @@ Public Class clsPurchaseOrderItemInfo
 
 
         Case eStockItemCategory.NailsAndBolds
-          mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeNailsAndBolts), CType(pStockItem.ItemType, eStockItemTypeNailsAndBolts.eStockItemNailAndBolts))
+          mRetVal = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(pStockItem.ItemType)
 
         Case eStockItemCategory.EPP
           mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeEPP), CType(pStockItem.ItemType, eStockItemTypeEPP.eStockItemMaterialEPP))

@@ -50,6 +50,9 @@ Public Class appRefLists : Inherits colRefLists
   Public Const AccoutingCategory As Integer = 38
   Public Const ThicknessValue As Integer = 39
   Public Const WoodTypeValue As Integer = 40
+
+  Public Const FixingSpecies As Integer = 41
+
   Public Sub New()
     MyBase.New()
     Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
@@ -107,6 +110,8 @@ Public Class appRefLists : Inherits colRefLists
     Me.AddRefList(ThicknessValue, "ThicknessValue", clsRefListItem.eLoadMode.Unloaded)
 
     Me.AddRefList(WoodTypeValue, "WoodItemValue", clsRefListItem.eLoadMode.Unloaded)
+
+    Me.AddRefList(FixingSpecies, "FixingSpecies", clsRefListItem.eLoadMode.Unloaded)
 
   End Sub
 
