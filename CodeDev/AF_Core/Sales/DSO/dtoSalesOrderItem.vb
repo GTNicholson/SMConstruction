@@ -81,6 +81,9 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ManpowerCost", .ManpowerCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubContractCost", .SubContractCost)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VatRateCode", .VatRateCode)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VatValue", .VatValue)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LineValue", .LineValue)
 
 
     End With
@@ -118,7 +121,9 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .TransportationCost = DBReadDecimal(rDataReader, "TransportationCost")
         .ManpowerCost = DBReadDecimal(rDataReader, "ManpowerCost")
         .SubContractCost = DBReadDecimal(rDataReader, "SubContractCost")
-
+        .VatValue = DBReadDecimal(rDataReader, "VatValue")
+        .VatRateCode = DBReadInt32(rDataReader, "VatRateCode")
+        .LineValue = DBReadDecimal(rDataReader, "LineValue")
 
         pSalesOrderItem.IsDirty = False
       End With

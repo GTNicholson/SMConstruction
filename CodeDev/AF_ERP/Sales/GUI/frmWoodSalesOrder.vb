@@ -215,37 +215,62 @@ Public Class frmWoodSalesOrder
     ''RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.OrderType))
 
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eOrderType))
-    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboProjectOwner, mVIs)
+    RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboProjectOwner, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
 
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eSalesOrderstatus))
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboEstatusENUM, mVIs)
 
     mVIs = clsEnumsConstants.EnumToVIs(GetType(eOrderType))
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboOrderTypeID, mVIs)
+
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdSalesOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
+
   End Sub
 
 
   Private Sub bbtnAddStockItem_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnAddStockItem.ItemClick
     Dim mPicker As clsPickerWoodPallet
-    Dim mListWPIToCreateSI As New colWoodPalletItems
-    pFormController.LoadDataRef()
+    Dim mListWPToCreateSI As New colWoodPallets
+    Dim mSelectedWoodPallet As dmWoodPallet
+    Dim mNewWP As dmWoodPallet
+    mListWPToCreateSI = pFormController.LoadDataRef()
     pFormController.SaveObjects()
 
 
-    mPicker = New clsPickerWoodPallet(pFormController.WoodPallets, pFormController.DBConn, 0, True)
-    frmWoodPalletPicker.OpenPickerSingle(mPicker)
+    mPicker = New clsPickerWoodPallet(mListWPToCreateSI, pFormController.DBConn, 0, True)
 
-    If mPicker.SelectedObjects IsNot Nothing Then
-      If mPicker.SelectedObjects(0) IsNot Nothing Then
-        pFormController.CurrentWooodPallet = mPicker.SelectedObjects(0)
-
-
-        pFormController.CreateSalesItems(mPicker.SelectedObjects)
-
-
-
-
+    For Each mWoodPallet As dmWoodPallet In pFormController.WoodPallets
+      mSelectedWoodPallet = mListWPToCreateSI.ItemFromKey(mWoodPallet.WoodPalletID)
+      If mSelectedWoodPallet IsNot Nothing Then
+        If mPicker.SelectedObjects.Contains(mSelectedWoodPallet) = False Then
+          mPicker.SelectedObjects.Add(mSelectedWoodPallet)
+        End If
       End If
+    Next
+
+    frmWoodPalletPicker.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance, 0)
+
+
+    If mPicker.SelectedObjects IsNot Nothing AndAlso mPicker.SelectedObjects.Count > 0 Then
+
+      For Each mWoodPalletTemp In mPicker.SelectedObjects
+        If mPicker.SelectedObjects(0) IsNot Nothing Then
+          mNewWP = pFormController.WoodPallets.ItemFromKey(mWoodPalletTemp.WoodPalletID)
+
+          If mNewWP Is Nothing Then
+            pFormController.CurrentWooodPallet = mNewWP
+            pFormController.WoodPallets.Add(mWoodPalletTemp)
+
+            pFormController.CreateSalesItems(mWoodPalletTemp)
+
+          End If
+
+
+        End If
+      Next
+
+
+
 
 
 
@@ -299,9 +324,8 @@ Public Class frmWoodSalesOrder
         .VisibleNotes = txtVisibleNotes.Text
         .OrderTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboOrderTypeID)
         .OrderStatusENUM = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboEstatusENUM)
-        .EstimatorEmployeeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboProjectOwner)
         .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboProjectOwner)
-        .WoodPalletID = pFormController.CurrentWooodPallet.WoodPalletID
+
 
         gvSalesOrderItems.CloseEditor()
         gvSalesOrderItems.UpdateCurrentRow()
@@ -357,6 +381,19 @@ Public Class frmWoodSalesOrder
       CloseForm()
     End If
   End Sub
+  Private Sub frmWoodSalesOrder_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
+    'FormController = Nothing
+    sActiveForms.Remove(Me.pMySharedIndex.ToString)
+    Me.Dispose()
+  End Sub
+  Private Sub frmWoodSalesOrder_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    If Not pForceExit Then
+      If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
+        e.Cancel = Not CheckSave(True)
+      End If
+    End If
+  End Sub
 
   Private Function CheckSave(ByVal rOption As Boolean) As Boolean
     Dim mSaveRequired As Boolean
@@ -410,4 +447,73 @@ Public Class frmWoodSalesOrder
 
   End Function
 
+  Private Sub gvSalesOrderItems_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvSalesOrderItems.CustomUnboundColumnData
+    Dim mSOItem As dmSalesOrderItem
+    Dim mVatRates As colVATRates
+    mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
+    mSOItem = e.Row
+    If mSOItem IsNot Nothing Then
+
+      Select Case e.Column.Name
+        Case gcVATRateCode.Name
+          If e.IsGetData Then
+            e.Value = mSOItem.VatRateCode
+          ElseIf e.IsSetData Then
+            mSOItem.VatRateCode = e.Value
+            mSOItem.VatValue = mSOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mSOItem.VatRateCode, pFormController.SalesOrder.FinishDate))
+          End If
+
+        Case gcVatValue.Name
+          e.Value = mSOItem.VatValue
+
+        Case gcTotalBoarFeet.Name
+          e.Value = pFormController.WoodPallets.GetTotalBoardFeet()
+
+        Case gcLineValue.Name
+          e.Value = mSOItem.GetLineValue(pFormController.WoodPallets.GetTotalBoardFeet())
+          mSOItem.LineValue = e.Value
+
+      End Select
+
+
+
+
+    End If
+  End Sub
+
+  Private Sub bbtnDeleteStockItem_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnDeleteStockItem.ItemClick
+    Dim mSOI As dmSalesOrderItem
+    Dim mSOIToDelete As dmSalesOrderItem
+    Dim mWoodPallet As dmWoodPallet
+    Try
+
+      mSOI = TryCast(gvSalesOrderItems.GetFocusedRow, dmSalesOrderItem)
+
+      If mSOI IsNot Nothing Then
+        mSOIToDelete = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOI.SalesOrderItemID)
+
+        pFormController.SalesOrder.SalesOrderItems.Remove(mSOIToDelete)
+        mWoodPallet = pFormController.WoodPallets.ItemFromKey(mSOI.ProductID)
+        If mWoodPallet IsNot Nothing Then
+          pFormController.WoodPallets.Remove(mWoodPallet)
+        End If
+
+        gvSalesOrderItems.RefreshData()
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub bbtnDespatchPalletItems_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnDespatchPalletItems.ItemClick
+
+    Try
+      pFormController.DespatchWoodSalesOrder()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+  End Sub
 End Class

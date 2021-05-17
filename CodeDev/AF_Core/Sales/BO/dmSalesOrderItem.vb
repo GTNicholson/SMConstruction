@@ -35,6 +35,9 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pTransportationCost As Decimal
   Private pManpowerCost As Decimal
   Private pSubContractCost As Decimal
+  Private pVatRateCode As Integer
+  Private pVatValue As Decimal
+  Private pLineValue As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -102,6 +105,9 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .TransportationCost = TransportationCost
       .ManpowerCost = ManpowerCost
       .SubContractCost = SubContractCost
+      .VatRateCode = VatRateCode
+      .VatValue = VatValue
+      .LineValue = LineValue
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -409,8 +415,50 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
+  Public Property VatRateCode() As Integer
+    Get
+      Return pVatRateCode
+    End Get
+    Set(value As Integer)
+      If pVatRateCode <> value Then IsDirty = True
+      pVatRateCode = value
+    End Set
+  End Property
 
+  Public Function CalculateVATValue(ByVal vPercent As Decimal) As Decimal
+    Dim mRetVal As Decimal
+    mRetVal = Math.Round(UnitPrice * (vPercent / 100), 4, MidpointRounding.AwayFromZero)
+    Return mRetVal
+  End Function
 
+  Public Property VatValue As Decimal
+    Get
+      Return pVatValue
+    End Get
+    Set(value As Decimal)
+      If pVatValue <> value Then IsDirty = True
+      pVatValue = value
+    End Set
+  End Property
+
+  Public Property LineValue As Decimal
+    Get
+      Return pLineValue
+    End Get
+    Set(value As Decimal)
+      If pLineValue <> value Then IsDirty = True
+      pLineValue = value
+    End Set
+  End Property
+
+  Public Function GetLineValue(ByVal vTotalBoardFeet As Decimal) As Decimal
+
+    Dim mRetVal As Decimal
+
+    mRetVal = (vTotalBoardFeet * pUnitPrice) + (vTotalBoardFeet * VatValue)
+
+    Return mRetVal
+  End Function
 End Class
 
 

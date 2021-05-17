@@ -56,6 +56,18 @@ Partial Class frmWorkOrderWoodProcess
         Me.xtcProcessOptions = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpKiln = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.cboKilnNumber = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.btnSave = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.bbtnAddNew = New DevExpress.XtraBars.BarButtonItem()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.btnEndKiln = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.dteKilnEndDate = New DevExpress.XtraEditors.DateEdit()
@@ -117,19 +129,9 @@ Partial Class frmWorkOrderWoodProcess
         Me.gcPT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcM3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.Bar1 = New DevExpress.XtraBars.Bar()
-        Me.btnSave = New DevExpress.XtraBars.BarButtonItem()
-        Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
-        Me.bbtnClose = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.bbtnAddNew = New DevExpress.XtraBars.BarButtonItem()
         Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.cboKilnNumber = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -140,6 +142,8 @@ Partial Class frmWorkOrderWoodProcess
         Me.xtpKiln.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.cboKilnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteKilnEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteKilnEndDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteKilnStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,8 +178,7 @@ Partial Class frmWorkOrderWoodProcess
         CType(Me.gvOutputWoodPaleltItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoOutputAddButton, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboKilnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -211,6 +214,8 @@ Partial Class frmWorkOrderWoodProcess
         Me.grpGeneralInformation.AppearanceCaption.Options.UseFont = True
         Me.grpGeneralInformation.AppearanceCaption.Options.UseForeColor = True
         Me.TableLayoutPanel1.SetColumnSpan(Me.grpGeneralInformation, 2)
+        Me.grpGeneralInformation.Controls.Add(Me.cboStatus)
+        Me.grpGeneralInformation.Controls.Add(Me.LabelControl6)
         Me.grpGeneralInformation.Controls.Add(Me.xtcProcessOptions)
         Me.grpGeneralInformation.Controls.Add(Me.LabelControl2)
         Me.grpGeneralInformation.Controls.Add(Me.dteDateCreated)
@@ -256,6 +261,109 @@ Partial Class frmWorkOrderWoodProcess
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(623, 79)
         Me.PanelControl3.TabIndex = 0
+        '
+        'cboKilnNumber
+        '
+        Me.cboKilnNumber.Location = New System.Drawing.Point(517, 6)
+        Me.cboKilnNumber.MenuManager = Me.BarManager1
+        Me.cboKilnNumber.Name = "cboKilnNumber"
+        Me.cboKilnNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboKilnNumber.Properties.Appearance.Options.UseFont = True
+        Me.cboKilnNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboKilnNumber.Size = New System.Drawing.Size(100, 20)
+        Me.cboKilnNumber.TabIndex = 25
+        '
+        'BarManager1
+        '
+        Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
+        Me.BarManager1.DockControls.Add(Me.BarDockControl1)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnSave, Me.bbtnAddNew, Me.btnSaveAndClose, Me.bbtnClose})
+        Me.BarManager1.MaxItemId = 6
+        '
+        'Bar1
+        '
+        Me.Bar1.BarName = "Herramientas"
+        Me.Bar1.DockCol = 0
+        Me.Bar1.DockRow = 0
+        Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnClose)})
+        Me.Bar1.Text = "Herramientas"
+        '
+        'btnSave
+        '
+        Me.btnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnSave.Caption = "Guardar"
+        Me.btnSave.Id = 1
+        Me.btnSave.Name = "btnSave"
+        '
+        'btnSaveAndClose
+        '
+        Me.btnSaveAndClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
+        Me.btnSaveAndClose.Id = 4
+        Me.btnSaveAndClose.Name = "btnSaveAndClose"
+        '
+        'bbtnClose
+        '
+        Me.bbtnClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnClose.Caption = "Cerrar"
+        Me.bbtnClose.Id = 5
+        Me.bbtnClose.Name = "bbtnClose"
+        '
+        'BarDockControl1
+        '
+        Me.BarDockControl1.CausesValidation = False
+        Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
+        Me.BarDockControl1.Manager = Me.BarManager1
+        Me.BarDockControl1.Size = New System.Drawing.Size(1924, 33)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 716)
+        Me.barDockControlBottom.Manager = Me.BarManager1
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1924, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Manager = Me.BarManager1
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 683)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 33)
+        Me.barDockControlRight.Manager = Me.BarManager1
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 683)
+        '
+        'bbtnAddNew
+        '
+        Me.bbtnAddNew.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnAddNew.Caption = "Agregar Nuevo"
+        Me.bbtnAddNew.Id = 3
+        Me.bbtnAddNew.Name = "bbtnAddNew"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl5.Appearance.Options.UseFont = True
+        Me.LabelControl5.Appearance.Options.UseForeColor = True
+        Me.LabelControl5.Location = New System.Drawing.Point(412, 7)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(99, 15)
+        Me.LabelControl5.TabIndex = 24
+        Me.LabelControl5.Text = "Numero de Horno"
         '
         'btnEndKiln
         '
@@ -331,7 +439,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Appearance.Options.UseForeColor = True
-        Me.LabelControl2.Location = New System.Drawing.Point(249, 38)
+        Me.LabelControl2.Location = New System.Drawing.Point(230, 38)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(92, 15)
         Me.LabelControl2.TabIndex = 17
@@ -340,7 +448,7 @@ Partial Class frmWorkOrderWoodProcess
         'dteDateCreated
         '
         Me.dteDateCreated.EditValue = Nothing
-        Me.dteDateCreated.Location = New System.Drawing.Point(363, 35)
+        Me.dteDateCreated.Location = New System.Drawing.Point(328, 35)
         Me.dteDateCreated.Name = "dteDateCreated"
         Me.dteDateCreated.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dteDateCreated.Properties.Appearance.Options.UseFont = True
@@ -351,7 +459,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         'txtWorkOrder
         '
-        Me.txtWorkOrder.Location = New System.Drawing.Point(126, 36)
+        Me.txtWorkOrder.Location = New System.Drawing.Point(126, 35)
         Me.txtWorkOrder.Name = "txtWorkOrder"
         Me.txtWorkOrder.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtWorkOrder.Properties.Appearance.Options.UseFont = True
@@ -1029,86 +1137,6 @@ Partial Class frmWorkOrderWoodProcess
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.Size = New System.Drawing.Size(523, 388)
         '
-        'BarManager1
-        '
-        Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
-        Me.BarManager1.DockControls.Add(Me.BarDockControl1)
-        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
-        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
-        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
-        Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnSave, Me.bbtnAddNew, Me.btnSaveAndClose, Me.bbtnClose})
-        Me.BarManager1.MaxItemId = 6
-        '
-        'Bar1
-        '
-        Me.Bar1.BarName = "Herramientas"
-        Me.Bar1.DockCol = 0
-        Me.Bar1.DockRow = 0
-        Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnSave), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSaveAndClose), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnClose)})
-        Me.Bar1.Text = "Herramientas"
-        '
-        'btnSave
-        '
-        Me.btnSave.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.btnSave.Caption = "Guardar"
-        Me.btnSave.Id = 1
-        Me.btnSave.Name = "btnSave"
-        '
-        'btnSaveAndClose
-        '
-        Me.btnSaveAndClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.btnSaveAndClose.Caption = "Guardar y Cerrar"
-        Me.btnSaveAndClose.Id = 4
-        Me.btnSaveAndClose.Name = "btnSaveAndClose"
-        '
-        'bbtnClose
-        '
-        Me.bbtnClose.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.bbtnClose.Caption = "Cerrar"
-        Me.bbtnClose.Id = 5
-        Me.bbtnClose.Name = "bbtnClose"
-        '
-        'BarDockControl1
-        '
-        Me.BarDockControl1.CausesValidation = False
-        Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1924, 33)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 716)
-        Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1924, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
-        Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 683)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 33)
-        Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 683)
-        '
-        'bbtnAddNew
-        '
-        Me.bbtnAddNew.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.bbtnAddNew.Caption = "Agregar Nuevo"
-        Me.bbtnAddNew.Id = 3
-        Me.bbtnAddNew.Name = "bbtnAddNew"
-        '
         'gcToProcessQty
         '
         Me.gcToProcessQty.Caption = "A Procesar"
@@ -1117,28 +1145,26 @@ Partial Class frmWorkOrderWoodProcess
         Me.gcToProcessQty.FieldName = "ToProcessQty"
         Me.gcToProcessQty.Name = "gcToProcessQty"
         '
-        'LabelControl5
+        'LabelControl6
         '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Appearance.Options.UseForeColor = True
-        Me.LabelControl5.Location = New System.Drawing.Point(412, 7)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(99, 15)
-        Me.LabelControl5.TabIndex = 24
-        Me.LabelControl5.Text = "Numero de Horno"
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl6.Appearance.Options.UseFont = True
+        Me.LabelControl6.Appearance.Options.UseForeColor = True
+        Me.LabelControl6.Location = New System.Drawing.Point(447, 38)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(39, 15)
+        Me.LabelControl6.TabIndex = 19
+        Me.LabelControl6.Text = "Estado"
         '
-        'cboKilnNumber
+        'cboStatus
         '
-        Me.cboKilnNumber.Location = New System.Drawing.Point(517, 6)
-        Me.cboKilnNumber.MenuManager = Me.BarManager1
-        Me.cboKilnNumber.Name = "cboKilnNumber"
-        Me.cboKilnNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboKilnNumber.Properties.Appearance.Options.UseFont = True
-        Me.cboKilnNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboKilnNumber.Size = New System.Drawing.Size(100, 20)
-        Me.cboKilnNumber.TabIndex = 25
+        Me.cboStatus.Location = New System.Drawing.Point(492, 36)
+        Me.cboStatus.MenuManager = Me.BarManager1
+        Me.cboStatus.Name = "cboStatus"
+        Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboStatus.Size = New System.Drawing.Size(100, 20)
+        Me.cboStatus.TabIndex = 20
         '
         'frmWorkOrderWoodProcess
         '
@@ -1164,6 +1190,8 @@ Partial Class frmWorkOrderWoodProcess
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.cboKilnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteKilnEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteKilnEndDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteKilnStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1198,8 +1226,7 @@ Partial Class frmWorkOrderWoodProcess
         CType(Me.gvOutputWoodPaleltItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoOutputAddButton, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboKilnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1284,4 +1311,6 @@ Partial Class frmWorkOrderWoodProcess
     Friend WithEvents gcM3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cboKilnNumber As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cboStatus As DevExpress.XtraEditors.ComboBoxEdit
 End Class

@@ -347,6 +347,7 @@ Public Class dmWoodPallet : Inherits dmBase
 
 
     Set(value As Date)
+      If pSoldDate <> value Then IsDirty = True
       pSoldDate = value
     End Set
   End Property
@@ -396,6 +397,20 @@ Public Class colWoodPallets : Inherits colBase(Of dmWoodPallet)
     MyBase.New(vList)
   End Sub
 
+  Public Function GetTotalBoardFeet() As Decimal
+    Dim mRetVal As Decimal
+    For Each mWP As dmWoodPallet In Me
+      If mWP IsNot Nothing Then
+        mRetVal = clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP)
+
+        If mWP.TotalVolume = 0 Then
+          mWP.TotalVolume = Math.Round(clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP), 4, MidpointRounding.AwayFromZero)
+        End If
+      End If
+    Next
+
+    Return mRetVal
+  End Function
 End Class
 
 

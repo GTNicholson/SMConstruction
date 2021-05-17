@@ -1,35 +1,36 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmWoodSalesOrder
-  Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.Form
 
-  'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()>
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    Try
-      If disposing AndAlso components IsNot Nothing Then
-        components.Dispose()
-      End If
-    Finally
-      MyBase.Dispose(disposing)
-    End Try
-  End Sub
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
 
-  'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
 
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()>
-  Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
-    Me.grpnlOrderDetails = New DevExpress.XtraEditors.GroupControl()
-    Me.dteFinishedDate = New DevExpress.XtraEditors.DateEdit()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.barbtnSaveExit = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnSave = New DevExpress.XtraBars.BarButtonItem()
-    Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Me.grpnlOrderDetails = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboOrderTypeID = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.barbtnSaveExit = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnSave = New DevExpress.XtraBars.BarButtonItem()
+        Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnDespatchPalletItems = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.bbtnAddStockItem = New DevExpress.XtraBars.BarButtonItem()
@@ -43,6 +44,8 @@ Partial Class frmWoodSalesOrder
         Me.barbtnAddVariation = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnDeleteCustomerPO = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnGenerateMatReq = New DevExpress.XtraBars.BarButtonItem()
+        Me.lblSalesOrderID = New DevExpress.XtraEditors.LabelControl()
+        Me.dteFinishedDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.cboEstatusENUM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtSalesOrderID = New DevExpress.XtraEditors.TextEdit()
@@ -65,7 +68,8 @@ Partial Class frmWoodSalesOrder
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcVATRateCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcVatValue = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcLineValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTotalBoarFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.Bar5 = New DevExpress.XtraBars.Bar()
         Me.btnedCustomer = New DevExpress.XtraEditors.ButtonEdit()
@@ -84,14 +88,12 @@ Partial Class frmWoodSalesOrder
         Me.txtCustomerContact = New DevExpress.XtraEditors.TextEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.lblSalesOrderID = New DevExpress.XtraEditors.LabelControl()
-        Me.cboOrderTypeID = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.grpnlOrderDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpnlOrderDetails.SuspendLayout()
+        CType(Me.cboOrderTypeID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteFinishedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteFinishedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEstatusENUM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btneSalesOrderDocument.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +113,6 @@ Partial Class frmWoodSalesOrder
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboOrderTypeID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpnlOrderDetails
@@ -149,16 +150,28 @@ Partial Class frmWoodSalesOrder
         Me.grpnlOrderDetails.TabIndex = 140
         Me.grpnlOrderDetails.Text = "Detalle de la Orden de Venta"
         '
-        'dteFinishedDate
+        'LabelControl3
         '
-        Me.dteFinishedDate.EditValue = Nothing
-        Me.dteFinishedDate.Location = New System.Drawing.Point(96, 108)
-        Me.dteFinishedDate.MenuManager = Me.BarManager1
-        Me.dteFinishedDate.Name = "dteFinishedDate"
-        Me.dteFinishedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dteFinishedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dteFinishedDate.Size = New System.Drawing.Size(149, 20)
-        Me.dteFinishedDate.TabIndex = 172
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl3.Appearance.Options.UseFont = True
+        Me.LabelControl3.Appearance.Options.UseForeColor = True
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 142)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(67, 14)
+        Me.LabelControl3.TabIndex = 175
+        Me.LabelControl3.Text = "Tipo de Venta"
+        '
+        'cboOrderTypeID
+        '
+        Me.cboOrderTypeID.Location = New System.Drawing.Point(96, 134)
+        Me.cboOrderTypeID.MenuManager = Me.BarManager1
+        Me.cboOrderTypeID.Name = "cboOrderTypeID"
+        Me.cboOrderTypeID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboOrderTypeID.Properties.Appearance.Options.UseFont = True
+        Me.cboOrderTypeID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboOrderTypeID.Size = New System.Drawing.Size(149, 22)
+        Me.cboOrderTypeID.TabIndex = 174
         '
         'BarManager1
         '
@@ -305,6 +318,29 @@ Partial Class frmWoodSalesOrder
         Me.bbtnGenerateMatReq.Caption = "Generate Mat Req."
         Me.bbtnGenerateMatReq.Id = 8
         Me.bbtnGenerateMatReq.Name = "bbtnGenerateMatReq"
+        '
+        'lblSalesOrderID
+        '
+        Me.lblSalesOrderID.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSalesOrderID.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblSalesOrderID.Appearance.Options.UseFont = True
+        Me.lblSalesOrderID.Appearance.Options.UseForeColor = True
+        Me.lblSalesOrderID.Location = New System.Drawing.Point(710, 4)
+        Me.lblSalesOrderID.Name = "lblSalesOrderID"
+        Me.lblSalesOrderID.Size = New System.Drawing.Size(12, 14)
+        Me.lblSalesOrderID.TabIndex = 173
+        Me.lblSalesOrderID.Text = "ID:"
+        '
+        'dteFinishedDate
+        '
+        Me.dteFinishedDate.EditValue = Nothing
+        Me.dteFinishedDate.Location = New System.Drawing.Point(96, 108)
+        Me.dteFinishedDate.MenuManager = Me.BarManager1
+        Me.dteFinishedDate.Name = "dteFinishedDate"
+        Me.dteFinishedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteFinishedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dteFinishedDate.Size = New System.Drawing.Size(149, 20)
+        Me.dteFinishedDate.TabIndex = 172
         '
         'LabelControl4
         '
@@ -478,22 +514,28 @@ Partial Class frmWoodSalesOrder
         Me.grdSalesOrderItems.EmbeddedNavigator.Buttons.Last.Visible = False
         Me.grdSalesOrderItems.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdSalesOrderItems.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdSalesOrderItems.Location = New System.Drawing.Point(10, 69)
+        Me.grdSalesOrderItems.Location = New System.Drawing.Point(10, 58)
         Me.grdSalesOrderItems.MainView = Me.gvSalesOrderItems
         Me.grdSalesOrderItems.Margin = New System.Windows.Forms.Padding(0)
         Me.grdSalesOrderItems.MenuManager = Me.BarManager1
         Me.grdSalesOrderItems.Name = "grdSalesOrderItems"
-        Me.grdSalesOrderItems.Size = New System.Drawing.Size(856, 272)
+        Me.grdSalesOrderItems.Size = New System.Drawing.Size(856, 304)
         Me.grdSalesOrderItems.TabIndex = 154
         Me.grdSalesOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderItems})
         '
         'gvSalesOrderItems
         '
+        Me.gvSalesOrderItems.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvSalesOrderItems.Appearance.EvenRow.Options.UseBackColor = True
         Me.gvSalesOrderItems.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gvSalesOrderItems.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gvSalesOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn23, Me.GridColumn21, Me.GridColumn22, Me.GridColumn54, Me.gcVATRateCode, Me.gcVatValue, Me.GridColumn4})
+        Me.gvSalesOrderItems.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvSalesOrderItems.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvSalesOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn23, Me.GridColumn21, Me.GridColumn22, Me.GridColumn54, Me.gcVATRateCode, Me.gcVatValue, Me.gcLineValue, Me.gcTotalBoarFeet})
         Me.gvSalesOrderItems.GridControl = Me.grdSalesOrderItems
         Me.gvSalesOrderItems.Name = "gvSalesOrderItems"
+        Me.gvSalesOrderItems.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvSalesOrderItems.OptionsView.EnableAppearanceOddRow = True
         Me.gvSalesOrderItems.OptionsView.ShowFooter = True
         Me.gvSalesOrderItems.OptionsView.ShowGroupPanel = False
         Me.gvSalesOrderItems.ViewCaption = "Customer Purchase Orders"
@@ -506,7 +548,7 @@ Partial Class frmWoodSalesOrder
         Me.GridColumn53.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn53.Visible = True
         Me.GridColumn53.VisibleIndex = 0
-        Me.GridColumn53.Width = 308
+        Me.GridColumn53.Width = 368
         '
         'GridColumn23
         '
@@ -518,24 +560,25 @@ Partial Class frmWoodSalesOrder
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Trozas"
-        Me.GridColumn21.DisplayFormat.FormatString = "n2"
+        Me.GridColumn21.DisplayFormat.FormatString = "n1"
         Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "Quantity"
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Quantity", "{0:n1}")})
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 1
-        Me.GridColumn21.Width = 67
+        Me.GridColumn21.Width = 56
         '
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Precio"
         Me.GridColumn22.DisplayFormat.FormatString = "c"
         Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.FieldName = "ItemPrice"
+        Me.GridColumn22.FieldName = "UnitPrice"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 2
-        Me.GridColumn22.Width = 67
+        Me.GridColumn22.VisibleIndex = 3
+        Me.GridColumn22.Width = 86
         '
         'GridColumn54
         '
@@ -555,28 +598,45 @@ Partial Class frmWoodSalesOrder
         Me.gcVATRateCode.Name = "gcVATRateCode"
         Me.gcVATRateCode.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcVATRateCode.Visible = True
-        Me.gcVATRateCode.VisibleIndex = 3
+        Me.gcVATRateCode.VisibleIndex = 4
+        Me.gcVATRateCode.Width = 97
         '
         'gcVatValue
         '
-        Me.gcVatValue.Caption = "VAT Value"
+        Me.gcVatValue.Caption = "Valor de IVA"
         Me.gcVatValue.DisplayFormat.FormatString = "c"
         Me.gcVatValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcVatValue.FieldName = "gcVatValue"
         Me.gcVatValue.Name = "gcVatValue"
         Me.gcVatValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcVatValue", "{0:c}")})
         Me.gcVatValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcVatValue.Width = 82
         '
-        'GridColumn4
+        'gcLineValue
         '
-        Me.GridColumn4.Caption = "Valor Total"
-        Me.GridColumn4.DisplayFormat.FormatString = "c"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "LineValue"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LineValue", "{0:c}")})
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.gcLineValue.Caption = "Valor Total"
+        Me.gcLineValue.DisplayFormat.FormatString = "c"
+        Me.gcLineValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcLineValue.FieldName = "gcLineValue"
+        Me.gcLineValue.Name = "gcLineValue"
+        Me.gcLineValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LineValue", "{0:c}")})
+        Me.gcLineValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcLineValue.Visible = True
+        Me.gcLineValue.VisibleIndex = 5
+        Me.gcLineValue.Width = 86
+        '
+        'gcTotalBoarFeet
+        '
+        Me.gcTotalBoarFeet.Caption = "PT"
+        Me.gcTotalBoarFeet.DisplayFormat.FormatString = "n3"
+        Me.gcTotalBoarFeet.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcTotalBoarFeet.FieldName = "gcTotalBoarFeet"
+        Me.gcTotalBoarFeet.Name = "gcTotalBoarFeet"
+        Me.gcTotalBoarFeet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcTotalBoarFeet", "{0:n3}")})
+        Me.gcTotalBoarFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcTotalBoarFeet.Visible = True
+        Me.gcTotalBoarFeet.VisibleIndex = 2
+        Me.gcTotalBoarFeet.Width = 63
         '
         'LabelControl21
         '
@@ -652,7 +712,7 @@ Partial Class frmWoodSalesOrder
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(270, 35)
+        Me.Label11.Location = New System.Drawing.Point(282, 34)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(50, 14)
         Me.Label11.TabIndex = 8
@@ -700,7 +760,7 @@ Partial Class frmWoodSalesOrder
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(275, 64)
+        Me.Label13.Location = New System.Drawing.Point(282, 63)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(76, 14)
         Me.Label13.TabIndex = 6
@@ -802,41 +862,6 @@ Partial Class frmWoodSalesOrder
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
-        'lblSalesOrderID
-        '
-        Me.lblSalesOrderID.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSalesOrderID.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblSalesOrderID.Appearance.Options.UseFont = True
-        Me.lblSalesOrderID.Appearance.Options.UseForeColor = True
-        Me.lblSalesOrderID.Location = New System.Drawing.Point(710, 4)
-        Me.lblSalesOrderID.Name = "lblSalesOrderID"
-        Me.lblSalesOrderID.Size = New System.Drawing.Size(65, 14)
-        Me.lblSalesOrderID.TabIndex = 173
-        Me.lblSalesOrderID.Text = "Generar Doc."
-        '
-        'cboOrderTypeID
-        '
-        Me.cboOrderTypeID.Location = New System.Drawing.Point(96, 134)
-        Me.cboOrderTypeID.MenuManager = Me.BarManager1
-        Me.cboOrderTypeID.Name = "cboOrderTypeID"
-        Me.cboOrderTypeID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboOrderTypeID.Properties.Appearance.Options.UseFont = True
-        Me.cboOrderTypeID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboOrderTypeID.Size = New System.Drawing.Size(149, 22)
-        Me.cboOrderTypeID.TabIndex = 174
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl3.Appearance.Options.UseFont = True
-        Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 142)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(67, 14)
-        Me.LabelControl3.TabIndex = 175
-        Me.LabelControl3.Text = "Tipo de Venta"
-        '
         'frmWoodSalesOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -854,9 +879,10 @@ Partial Class frmWoodSalesOrder
         CType(Me.grpnlOrderDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpnlOrderDetails.ResumeLayout(False)
         Me.grpnlOrderDetails.PerformLayout()
+        CType(Me.cboOrderTypeID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteFinishedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteFinishedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEstatusENUM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSalesOrderID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btneSalesOrderDocument.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -878,74 +904,74 @@ Partial Class frmWoodSalesOrder
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboOrderTypeID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents grpnlOrderDetails As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtVisibleNotes As DevExpress.XtraEditors.MemoEdit
-  Friend WithEvents cboProjectOwner As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
-  Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
-  Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents gpSalesItems As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents grdSalesOrderItems As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvSalesOrderItems As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtVisibleNotes As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents cboProjectOwner As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents gpSalesItems As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents grdSalesOrderItems As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvSalesOrderItems As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents barbtnSaveExit As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents barbtnSave As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents barbtnClose As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents Bar5 As DevExpress.XtraBars.Bar
-  Friend WithEvents barbtnAddCustomerPurchaseOrder As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents barbtnAddVariation As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents bbtnDeleteCustomerPO As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents StandaloneBarDockControl1 As DevExpress.XtraBars.StandaloneBarDockControl
-  Friend WithEvents Bar3 As DevExpress.XtraBars.Bar
-  Friend WithEvents bbtnAddStockItem As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents bbtnDeleteStockItem As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents bbtnGenerateMatReq As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents btneSalesOrderDocument As DevExpress.XtraEditors.ButtonEdit
-  Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents gcVATRateCode As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcVatValue As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents dteFinishedDate As DevExpress.XtraEditors.DateEdit
-  Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents cboEstatusENUM As DevExpress.XtraEditors.ComboBoxEdit
-  Friend WithEvents txtSalesOrderID As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-  Friend WithEvents txtCustomerContact As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label20 As Label
-  Friend WithEvents txtMainTown As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label14 As Label
-  Friend WithEvents txtPaymentTermsType As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label13 As Label
-  Friend WithEvents CustomerStatusID As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label12 As Label
-  Friend WithEvents txtAccountRef As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label11 As Label
-  Friend WithEvents txtSalesAreaID As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents Label10 As Label
-  Friend WithEvents Label1 As Label
-  Friend WithEvents btnedCustomer As DevExpress.XtraEditors.ButtonEdit
-  Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
-  Friend WithEvents bbtnDespatchPalletItems As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents barbtnSaveExit As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnSave As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnClose As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Bar5 As DevExpress.XtraBars.Bar
+    Friend WithEvents barbtnAddCustomerPurchaseOrder As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents barbtnAddVariation As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnDeleteCustomerPO As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents StandaloneBarDockControl1 As DevExpress.XtraBars.StandaloneBarDockControl
+    Friend WithEvents Bar3 As DevExpress.XtraBars.Bar
+    Friend WithEvents bbtnAddStockItem As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnDeleteStockItem As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnGenerateMatReq As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btneSalesOrderDocument As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents gcVATRateCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcVatValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcLineValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents dteFinishedDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cboEstatusENUM As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents txtSalesOrderID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents txtCustomerContact As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label20 As Label
+    Friend WithEvents txtMainTown As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtPaymentTermsType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label13 As Label
+    Friend WithEvents CustomerStatusID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label12 As Label
+    Friend WithEvents txtAccountRef As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label11 As Label
+    Friend WithEvents txtSalesAreaID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnedCustomer As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents bbtnDespatchPalletItems As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents lblSalesOrderID As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboOrderTypeID As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents gcTotalBoarFeet As DevExpress.XtraGrid.Columns.GridColumn
 End Class

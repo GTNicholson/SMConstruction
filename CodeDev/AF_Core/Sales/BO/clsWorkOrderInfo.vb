@@ -1,4 +1,6 @@
-﻿Public Class clsWorkOrderInfo
+﻿Imports RTIS.CommonVB
+
+Public Class clsWorkOrderInfo
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
@@ -192,6 +194,12 @@
   Public ReadOnly Property WorkOrderWoodType As Integer
     Get
       Return pWorkOrder.WorkOrderWoodType
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderWoodTypeDesc As String
+    Get
+      Return eStockItemTypeTimberWood.GetInstance.DisplayValueFromKey(WorkOrderWoodType)
     End Get
   End Property
 

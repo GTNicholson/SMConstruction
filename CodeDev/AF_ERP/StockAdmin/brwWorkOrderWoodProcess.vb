@@ -11,7 +11,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
   End Enum
 
   Public Enum eAddEditDeleteView
-
+    ByDefault = 0
     Aserrio = 1
     Horno = 2
     Clasificar = 3
@@ -109,7 +109,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
     Dim mWOIs As New colWorkOrderInfos
     Dim mDSO As New dsoSalesOrder(pDBConn)
     Dim mWhere As String
-    mWhere = "WorkOrderWoodType > 0"
+    mWhere = "WorkOrderWoodType > 0 and (Status<>" & CInt(eWorkOrderStatus.Complete) & " and Status<>" & CInt(eWorkOrderStatus.Cancelled) & ")"
 
     Dim mOK As Boolean
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
@@ -157,9 +157,10 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
 
       With CType(Me.BrowseForm, frmBrowseList)
-        .ReLabelToolBarButtons("", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Activas", eListOption.DefaultListOption)
+
         '.AddListOption("Recibidas", eListOption.Received)
         '.AddListOption("Todas", eListOption.All)
         '.AddListOption("Canceladas", eListOption.Cancelled)
@@ -171,6 +172,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
         .AddAddOption("A Devolución", eAddEditDeleteView.Devolucion)
 
         .AddAddOption("A Rechazo", eAddEditDeleteView.Rechazo)
+        .RemoveAddOption(eAddEditDeleteView.ByDefault)
       End With
 
       ''gridBrowseList.MainView.RestoreLayoutFromXml(Me.LayoutFile, DevExpress.Utils.OptionsLayoutGrid.FullLayout)

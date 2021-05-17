@@ -223,8 +223,8 @@ Public Class frmWorkOrderWoodProcess
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
 
-    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eProductType))
-    'clsDEControlLoading.FillDEComboVI(cboProductType, mVIs)
+    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkOrderStatus))
+    clsDEControlLoading.FillDEComboVI(cboStatus, mVIs)
 
 
 
@@ -368,6 +368,7 @@ Public Class frmWorkOrderWoodProcess
 
     With pFormController.CurrentWoodWorkOrder
       .DateCreated = dteDateCreated.EditValue
+      .Status = clsDEControlLoading.GetDEComboValue(cboStatus)
 
       ''.Quantity = txtQuantity.Text
       ''.Description = tx.Text.ToUpper
@@ -402,6 +403,8 @@ Public Class frmWorkOrderWoodProcess
       With pFormController.CurrentWoodWorkOrder
 
         dteDateCreated.EditValue = .PlannedStartDate
+        txtWorkOrder.Text = .WorkOrderNo
+        clsDEControlLoading.SetDECombo(cboStatus, .Status)
 
         If .SourcePallets IsNot Nothing And .SourcePallets.Count > 0 Then
           mWoodPallet = New dmWoodPallet
@@ -451,7 +454,7 @@ Public Class frmWorkOrderWoodProcess
     Dim mSelectedWoodPallet As dmWoodPallet
     Dim mListOfWoodPalletsFilterd As New colWoodPallets
     Dim mdso As New dsoStock(pFormController.DBConn)
-    Dim mWhere As String = "PalletType = " & pFormController.CurrentWoodWorkOrder.WorkOrderWoodType & " and LocationID<>0 AND IsComplete<>1"
+    Dim mWhere As String = "PalletType = " & pFormController.CurrentWoodWorkOrder.WorkOrderWoodType & " and LocationID<>0 AND IsComplete<>1 and IntoWIPDate is null and SoldDate is null"
     Dim mWoodPallet As dmWoodPallet
     Dim mDataSource As New colWoodPalletItems
     Dim mSourceWoodPallet As dmSourcePallet

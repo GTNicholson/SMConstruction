@@ -201,12 +201,10 @@ Public Class clsWoodPalletSharedFuncs
     Dim mRetVal As String = ""
 
     For Each mWP In vWoodPallets
-      mRetVal = mRetVal & mWP.PalletRef & "/ "
+      If mRetVal <> "" Then mRetVal &= "/ "
+      mRetVal = mWP.PalletRef
     Next
-    If mRetVal.Length > 0 Then
-      mRetVal = mRetVal.Substring(0, mRetVal.Length - 1)
 
-    End If
     Return mRetVal
   End Function
   Public Shared Sub GetNextWoodPalletRefConnected(ByRef rWoodPallet As dmWoodPallet, ByRef rDBConn As clsDBConnBase)

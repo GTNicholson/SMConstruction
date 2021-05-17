@@ -71,16 +71,17 @@ Public Class fccWoodSalesOrder
     End Set
   End Property
 
-  Public Sub LoadDataRef()
+  Public Function LoadDataRef() As colWoodPallets
     Dim mdso As New dsoStock(pDBConn)
     Dim mWhereWoodPallet As String = ""
+    Dim mWoodPalelts As New colWoodPallets
 
     mWhereWoodPallet = "SoldDate is  null and IntoWIPDate is null "
-    mdso.LoadWoodPalletsDownByWhere(pWoodPallets, mWhereWoodPallet)
+    mdso.LoadWoodPalletsDownByWhere(mWoodPalelts, mWhereWoodPallet)
 
 
-
-  End Sub
+    Return mWoodPalelts
+  End Function
 
   Public Sub LoadObjects()
     Dim mdso As dsoSalesOrder
@@ -95,7 +96,7 @@ Public Class fccWoodSalesOrder
       pSalesOrder = New dmSalesOrder
       mdso = New dsoSalesOrder(pDBConn)
       mdso.LoadSalesOrderDown(pSalesOrder, pPrimaryKeyID)
-
+      LoadWoodPallets()
     End If
     If pSalesOrder.ProductCostBookID = 0 Then
       pSalesOrder.ProductCostBookID = GetDefaultCostBook()
@@ -103,6 +104,31 @@ Public Class fccWoodSalesOrder
     End If
 
     pSalesOrderHandler = New clsSalesOrderHandler(pSalesOrder)
+  End Sub
+
+  Public Sub LoadWoodPallets()
+    Dim mString As String = ""
+    Dim mdso As dsoStock
+
+    For Each mSOI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
+
+      If mSOI.ProductTypeID = eProductType.WoodSalesOrder And mSOI.ProductID > 0 Then
+
+        If mString <> "" Then mString &= ","
+
+        mString = mSOI.ProductID
+
+      End If
+    Next
+
+    If mString <> "" Then
+
+      mdso = New dsoStock(pDBConn)
+      mString = String.Format("WoodPalletID in ({0})", mString)
+      mdso.LoadWoodPalletsDownByWhere(pWoodPallets, mString)
+
+    End If
+
   End Sub
 
   Public Sub SaveObjects()
@@ -123,12 +149,12 @@ Public Class fccWoodSalesOrder
     Return mdso.GetDefaultCostBook()
   End Function
 
-  Public Sub CreateSalesItems(ByRef rWoodPallets As List(Of dmWoodPallet))
+  Public Sub CreateSalesItems(ByRef rWoodPallet As dmWoodPallet)
     Dim mdso As dsoSalesOrder
 
     Try
       SaveObjects()
-      pSalesOrderHandler.AddSalesOrderItemFromWoodPalletItems(rWoodPallets)
+      pSalesOrderHandler.AddSalesOrderItemFromWoodPalletItems(rWoodPallet)
 
       mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
@@ -226,4 +252,22 @@ Public Class fccWoodSalesOrder
     mRetVal.HasWarning = False
     Return mRetVal
   End Function
+
+  Public Sub DespatchWoodSalesOrder()
+    Dim mdso As New dsoStockTransactions(pDBConn)
+    Dim mdsoStock As New dsoStock(pDBConn)
+    If pWoodPallets IsNot Nothing Then
+
+      For Each mWP As dmWoodPallet In pWoodPallets
+        mdso.CreateNegativeTransaction(eTransactionType.WoodSalesOrder, mWP, eLocations.AgroForestal, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, False)
+        For Each mWPI As dmWoodPalletItem In mWP.WoodPalletItems
+          mWPI.QuantityUsed = mWPI.QuantityUsed + mWPI.Quantity
+          mWPI.OutstandingQty = mWPI.Quantity - mWPI.QuantityUsed
+        Next
+        mWP.SoldDate = Now
+      Next
+
+      mdsoStock.SaveWoodPalletCollectionDown(pWoodPallets)
+    End If
+  End Sub
 End Class

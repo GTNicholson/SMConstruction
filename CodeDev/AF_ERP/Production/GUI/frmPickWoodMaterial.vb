@@ -237,6 +237,12 @@ Public Class frmPickWoodMaterial
         pFormController.WoodPallet.IntoWIPDate = Now
         pFormController.WoodPallet.WorkOrderID = pFormController.CurrentWorkOrderInfo.WorkOrderID
         pFormController.CreateNegativeTransaction()
+
+        For Each mWPI As dmWoodPalletItem In pFormController.WoodPallet.WoodPalletItems
+          mWPI.QuantityUsed = mWPI.QuantityUsed + mWPI.Quantity
+          mWPI.OutstandingQty = mWPI.Quantity - mWPI.QuantityUsed
+        Next
+
         pFormController.SaveWoodPallet()
       End If
     End If

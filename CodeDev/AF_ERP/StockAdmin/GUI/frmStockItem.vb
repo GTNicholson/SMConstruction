@@ -281,6 +281,7 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboSpecies, .Species)
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
         clsDEControlLoading.SetDECombo(cboCostUoM, .CostUoM)
+        clsDEControlLoading.SetDECombo(cboItemSubType, .SubItemType)
 
         clsDEControlLoading.SetDECombo(cboSupplierUoM, .SupplierUoM)
 
@@ -374,6 +375,7 @@ Public Class frmStockItem
         .ShortDescription = txtDescriptionShort.Text
         .PartNo = txtPartNo.Text
         .Colour = txtColour.Text
+        .SubItemType = clsDEControlLoading.GetDEComboValue(cboItemSubType)
         .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
         .ItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
@@ -588,6 +590,7 @@ Public Class frmStockItem
     cboSupplier.Enabled = Not vReadOnly
     txtAuxCode.ReadOnly = vReadOnly
     cboCostUoM.ReadOnly = vReadOnly
+    cboItemSubType.ReadOnly = vReadOnly
     ''    btnedImageFile.ReadOnly = vReadOnly
 
     ''gvAlternateCodes.OptionsBehavior.ReadOnly = vReadOnly

@@ -1400,7 +1400,7 @@ Public Class frmPurchaseOrder
       Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
       Dim mSalesOrderPhase As dmSalesOrderPhase
       Dim mPOAllocation As dmPurchaseOrderAllocation
-      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateRequired is not null")
+      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateRequired is not null and OrderTypeID<>" & CInt(eOrderType.WoodSales))
 
 
       mPicker = New clsPickerSalesOrderPhase(mSalesOrderPhaseInfos, pFormController.DBConn)

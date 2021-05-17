@@ -45,7 +45,6 @@ Partial Class frmWoodReception
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcThickness = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcWidth = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcLength = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,6 +57,7 @@ Partial Class frmWoodReception
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.grpGeneralInformation = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.txtCardNumber = New DevExpress.XtraEditors.TextEdit()
@@ -92,10 +92,10 @@ Partial Class frmWoodReception
         Me.pnlOutputWoodPallet.SuspendLayout()
         CType(Me.grdSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGeneralInformation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGeneralInformation.SuspendLayout()
         CType(Me.txtCardNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,6 +261,8 @@ Partial Class frmWoodReception
         '
         'gcThickness
         '
+        Me.gcThickness.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.gcThickness.AppearanceCell.Options.UseBackColor = True
         Me.gcThickness.Caption = "Grosor"
         Me.gcThickness.DisplayFormat.FormatString = "0.##;;#"
         Me.gcThickness.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -271,15 +273,6 @@ Partial Class frmWoodReception
         Me.gcThickness.Visible = True
         Me.gcThickness.VisibleIndex = 3
         Me.gcThickness.Width = 50
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "#.##"
-        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        Me.RepositoryItemSpinEdit1.NullValuePromptShowForEmptyValue = True
         '
         'gcWidth
         '
@@ -434,6 +427,15 @@ Partial Class frmWoodReception
         Me.RepositoryItemTextEdit2.Mask.ShowPlaceHolders = False
         Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "#.##"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        Me.RepositoryItemSpinEdit1.NullValuePromptShowForEmptyValue = True
         '
         'grpGeneralInformation
         '
@@ -666,10 +668,10 @@ Partial Class frmWoodReception
         Me.pnlOutputWoodPallet.ResumeLayout(False)
         CType(Me.grdSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvSourceWoodPalletItem, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpGeneralInformation, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGeneralInformation.ResumeLayout(False)
         Me.grpGeneralInformation.PerformLayout()

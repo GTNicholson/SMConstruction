@@ -667,7 +667,6 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub frmSalesOrderDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-    FormController.ClearObjects()
     'FormController = Nothing
     sActiveForms.Remove(Me.pMySharedIndex.ToString)
     Me.Dispose()

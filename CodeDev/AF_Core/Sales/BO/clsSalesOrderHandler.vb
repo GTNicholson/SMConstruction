@@ -105,24 +105,24 @@ Public Class clsSalesOrderHandler
     End Try
   End Sub
 
-  Public Sub AddSalesOrderItemFromWoodPalletItems(ByRef rWoodPallets As List(Of dmWoodPallet))
+  Public Sub AddSalesOrderItemFromWoodPalletItems(ByRef rWoodPallet As dmWoodPallet)
     Dim mNewSOI As dmSalesOrderItem = Nothing
     Dim mRetVal As New colSalesOrderItems
 
     Try
-      For Each mWP As dmWoodPallet In rWoodPallets
-        mNewSOI = New dmSalesOrderItem
+
+      mNewSOI = New dmSalesOrderItem
         mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
         mNewSOI.UoM = eUoM.PT
-        mNewSOI.Quantity = mWP.GetTotalTrozas
-        mNewSOI.ProductID = mWP.WoodPalletID
-        mNewSOI.ProductTypeID = eProductType.WoodSalesOrder
-        mNewSOI.Description = mWP.Description
+      mNewSOI.Quantity = rWoodPallet.GetTotalTrozas
+      mNewSOI.ProductID = rWoodPallet.WoodPalletID
+      mNewSOI.ProductTypeID = eProductType.WoodSalesOrder
+      mNewSOI.Description = rWoodPallet.Description
 
 
-        pSalesOrder.SalesOrderItems.Add(mNewSOI)
+      pSalesOrder.SalesOrderItems.Add(mNewSOI)
 
-      Next
+
 
 
     Catch ex As Exception

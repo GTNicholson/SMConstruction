@@ -1,0 +1,98 @@
+alter table WoodPallet
+add TotalVolume decimal (10,4)
+go
+
+alter table SalesOrder
+add WoodPalletID int
+go
+
+
+ALTER view [dbo].[vwSalesOrderInfo]
+as
+SELECT        
+SO.SalesOrderID, 
+SO.OrderNo, 
+SO.ContractManagerID, 
+SO.ProjectName, 
+SO.OrderStatusENUM, 
+SO.OrderTypeID, 
+SO.DateEntered, 
+SO.WoodPalletID,
+SO.FinishDate, 
+SO.DueTime, 
+Cust.CompanyName, 
+Cust.SalesAreaID, 
+Cust.AccountRef, 
+SO.ShippingCost,  
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS FirstName
+
+FROM            
+dbo.SalesOrder AS SO 
+LEFT OUTER JOIN	dbo.Customer AS Cust ON Cust.CustomerID = SO.CustomerID 
+LEFT OUTER JOIN  dbo.Employee AS Emp ON SO.ContractManagerID = Emp.EmployeeID
+
+GO
+
+Alter table SalesOrder
+add WoodPalletType int
+go
+
+alter table WoodPallet
+add SoldDate  datetime
+go
+
+alter table SalesOrderItem
+add VatRateCode int,
+VatValue decimal(9,4),
+LineValue decimal(9,4)
+go
+
+ALTER view [dbo].[vwStockItemTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.ReferenceNo,
+SITL.StockValuation, 
+SITL.TransactionValuationDollar,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+SI.AverageCost,
+MR.AreaID,
+MR.UoM,
+UL.UserName, 
+ST.Description AS StockTakeDescription,
+WO.WorkOrderNo,
+WO.Description AS WODESCRIPTION,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+POI.Description AS 'POIDescription'
+
+FROM dbo.StockItemTransactionLog AS SITL 
+INNER JOIN dbo.UserList AS UL ON SITL.UserID = UL.UserID 
+INNER JOIN dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID 
+LEFT JOIN dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID and SI.Category<>15
+LEFT JOIN dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+LEFT JOIN dbo.MaterialRequirement AS MR ON MR.MaterialRequirementID = SITL.RefObjectID AND SITL.RefObjectType = 6
+LEFT JOIN ProductFurniture PF ON PF.ProductFurnitureID=MR.ObjectID
+LEFT JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+LEFT JOIN SalesOrder SO on SO.SalesOrderID=WO.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+LEFT JOIN PODeliveryItem PODI ON PODI.PODeliveryItemID=SITL.RefObjectID
+left join PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+LEFT join PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+where RefObjectType<>9 --Load just the stockitem, avoiding the wood
+GO

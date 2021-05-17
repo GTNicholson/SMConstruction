@@ -830,7 +830,15 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Clavos, "Clavos", "CL")
     MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.PuntaFina, "Punta Fina", "CPF"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.PuntaFina, "Punta Fina", "P/F"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Estandar, "Estándar", "STD"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Pistolas, "Para Pistolas", "PTL"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Presion, "Para Presión", "PRS"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.SinCabeza, "Sin Cabeza", "PRS"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Techo, "Para Techo", "TCH"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Other, "Otros", "OTR"))
+
+
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tornillos, "Tornillos", "TN")
     MyBase.Add(mNailAndBoltType)
@@ -843,16 +851,30 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Golosos, "Golosos", "GO")
     MyBase.Add(mNailAndBoltType)
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.Estandar, "Estándar", "STD"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.Hexagonal, "Hexagonal", "HXG"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.HexagonalPuntaFina, "Hexagonal Punta Fina", "HPF"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.PuntaFina, "Punta Fina", "P/F"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.Other, "Otros", "OTR"))
+
 
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tuercas, "Tuercas", "TU")
     MyBase.Add(mNailAndBoltType)
 
+
+
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Arandelas, "Arandelas", "AR")
     MyBase.Add(mNailAndBoltType)
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eWhasherType.Presion, "Presión", "PRS"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eWhasherType.Plana, "Plana", "PLN"))
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Otros, "Los demás", "OTR")
     MyBase.Add(mNailAndBoltType)
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.Grapas, "Grapas", "GRP"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.Alcayata, "Alcayata", "ACT"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.VarillaRoscada, "Varilla Roscada", "VRR"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.Other, "Otros", "OTR"))
 
   End Sub
 
@@ -876,8 +898,31 @@ Public Enum eScrewTypes
 End Enum
 Public Enum eNailsType
   PuntaFina = 1
+  Pistolas = 2
+  Presion = 3
+  Estandar = 4
+  SinCabeza = 5
+  Techo = 6
   Other = 99
 End Enum
+Public Enum eNailsAndBoltsOther
+  Grapas = 1
+  VarillaRoscada = 2
+  Alcayata = 3
+  Other = 99
+End Enum
+Public Enum eWhasherType
+  Presion = 1
+  Plana = 2
+End Enum
+Public Enum eGolososType
+  PuntaFina = 1
+  Hexagonal = 2
+  HexagonalPuntaFina = 3
+  Estandar = 4
+  Other = 99
+End Enum
+
 
 Public Class clsStockItemTypeHerrajes : Inherits clsPropertyENUM
   Private pStockSubItemTypeHerrajes As colStockSubItemTypeHerrajes
@@ -1994,6 +2039,7 @@ Public Enum eTransactionType
   <Description("Movimiento por Salida de Horno")> KilnMovementEnd = 19
   <Description("Movimiento de MAV")> MAVMovement = 20
   <Description("Despacho Madera a Producción")> IntoWIP = 21
+  <Description("Venta de Madera")> WoodSalesOrder = 22
 
 
 

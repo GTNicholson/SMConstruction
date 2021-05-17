@@ -238,7 +238,7 @@ Public Class fccWorkOrderWoodProcess
     Dim mWoodPallets As colWoodPallets
     mdso = New dsoSalesOrder(pDBConn)
 
-    If pWorkOrder.WorkOrderNo = "" Or pWorkOrder.Description = "" Then
+    If pWorkOrder.WorkOrderNo = "" Then
 
 
       Select Case pWorkOrder.WorkOrderWoodType
@@ -268,6 +268,28 @@ Public Class fccWorkOrderWoodProcess
 
       End Select
     End If
+
+    Select Case pWorkOrder.WorkOrderWoodType
+        Case eStockItemTypeTimberWood.Aserrado
+        Case eStockItemTypeTimberWood.Rollo
+          mWoodPallets = New colWoodPallets
+          mWoodPallets = GetWoodPalletSource()
+        pWorkOrder.Description = "OT de Aserrío : " & clsWoodPalletSharedFuncs.GetWoodPalletsDescription(mWoodPallets) & "/ " & pCurrentSourceWoodPallet.CardNumber
+
+      Case eStockItemTypeTimberWood.MAS
+          mWoodPallets = New colWoodPallets
+          mWoodPallets = GetWoodPalletSource()
+          pWorkOrder.Description = "OT de MAS. Bultos :" & clsWoodPalletSharedFuncs.GetWoodPalletsDescription(mWoodPallets)
+
+        Case eStockItemTypeTimberWood.Primera, eStockItemTypeTimberWood.Segunda, eStockItemTypeTimberWood.Tercera, eStockItemTypeTimberWood.ClasificadoZ
+          pWorkOrder.Description = "OT de Clas. Bultos :" & clsWoodPalletSharedFuncs.GetWoodPalletsDescription(mWoodPallets)
+
+        Case eStockItemTypeTimberWood.MAV
+          mWoodPallets = New colWoodPallets
+          mWoodPallets = GetWoodPalletSource()
+          pWorkOrder.Description = "OT de MAV. Bultos :" & clsWoodPalletSharedFuncs.GetWoodPalletsDescription(mWoodPallets)
+
+      End Select
 
 
     mdso.SaveWorkOrderDown(pWorkOrder)

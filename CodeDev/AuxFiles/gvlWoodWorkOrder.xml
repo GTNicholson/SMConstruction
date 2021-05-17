@@ -110,8 +110,8 @@
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
       <property name="Caption">Tipo de OT Madera</property>
-      <property name="FieldName">WorkOrderWoodType</property>
-      <property name="ColumnEditName" />
+      <property name="FieldName">WorkOrderWoodTypeDesc</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">263</property>
