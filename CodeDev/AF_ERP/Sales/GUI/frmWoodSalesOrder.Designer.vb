@@ -265,7 +265,7 @@ Partial Class frmWoodSalesOrder
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(879, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(879, 30)
         '
         'barDockControlBottom
         '
@@ -279,17 +279,17 @@ Partial Class frmWoodSalesOrder
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 708)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 711)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(879, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(879, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 708)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 711)
         '
         'barbtnAddCustomerPurchaseOrder
         '
@@ -572,7 +572,7 @@ Partial Class frmWoodSalesOrder
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Precio"
-        Me.GridColumn22.DisplayFormat.FormatString = "c"
+        Me.GridColumn22.DisplayFormat.FormatString = "$#,##0.00;;#"
         Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "UnitPrice"
         Me.GridColumn22.Name = "GridColumn22"
@@ -615,11 +615,11 @@ Partial Class frmWoodSalesOrder
         'gcLineValue
         '
         Me.gcLineValue.Caption = "Valor Total"
-        Me.gcLineValue.DisplayFormat.FormatString = "c"
+        Me.gcLineValue.DisplayFormat.FormatString = "$#,##0.00;;#"
         Me.gcLineValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcLineValue.FieldName = "gcLineValue"
         Me.gcLineValue.Name = "gcLineValue"
-        Me.gcLineValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LineValue", "{0:c}")})
+        Me.gcLineValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LineValue", "{0:$#,##0.00;;#}")})
         Me.gcLineValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcLineValue.Visible = True
         Me.gcLineValue.VisibleIndex = 5

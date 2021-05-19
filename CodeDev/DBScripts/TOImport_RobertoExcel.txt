@@ -1,0 +1,15 @@
+CREATE TABLE [dbo].TempPallet(
+	TempPalletID [int] IDENTITY(1,1) NOT NULL,
+	SpeciesID int NULL,
+	Bulto varchar(20) NULL,
+	Grosor decimal(9,4) NULL,
+	Ancho [decimal](9, 4) NULL,
+	Largo [decimal](9, 4) NULL,
+	ItemTypeID int NULL,
+	Cantidad int NULL,
+ CONSTRAINT [pk_TempPallet] PRIMARY KEY CLUSTERED 
+(
+	TempPalletID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO

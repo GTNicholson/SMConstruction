@@ -7,6 +7,7 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
   Private pWoodPalletItem As dmWoodPalletItem
   Private pStockItem As dmStockItem
   Private pToProcessQty As Decimal
+  Private pIsSelected As Boolean
 
   Public Sub New(ByVal vWoodPalletItem As dmWoodPalletItem, ByVal vStockItem As dmStockItem)
     pWoodPalletItem = vWoodPalletItem
@@ -81,7 +82,7 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
     Get
       Dim mRetVal As Decimal
       mRetVal = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(pWoodPalletItem, pStockItem)
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
   End Property
 
@@ -153,6 +154,15 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
     Get
       Return pWoodPalletItem.Quantity - pWoodPalletItem.QuantityUsed
     End Get
+  End Property
+
+  Public Property IsSelected As Boolean
+    Get
+      Return pIsSelected
+    End Get
+    Set(value As Boolean)
+      pIsSelected = value
+    End Set
   End Property
 
 End Class

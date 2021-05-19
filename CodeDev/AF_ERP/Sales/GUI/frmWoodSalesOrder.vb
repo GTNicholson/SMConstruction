@@ -89,6 +89,7 @@ Public Class frmWoodSalesOrder
 
 
       pFormController.LoadObjects()
+
       LoadCombos()
       LoadGrids()
 
@@ -118,6 +119,40 @@ Public Class frmWoodSalesOrder
 
 
 
+
+  End Sub
+
+  Private Sub SetPermission()
+
+    If pFormController.SalesOrder IsNot Nothing Then
+
+      If pFormController.SalesOrder.IsDepatch = True Then
+        SetControlReadOnly(True)
+      End If
+    End If
+
+  End Sub
+
+  Private Sub SetControlReadOnly(ByVal vReadOnly As Boolean)
+
+    txtAccountRef.ReadOnly = vReadOnly
+    txtCustomerContact.ReadOnly = vReadOnly
+    txtMainTown.ReadOnly = vReadOnly
+    txtPaymentTermsType.ReadOnly = vReadOnly
+    txtSalesAreaID.ReadOnly = vReadOnly
+    txtSalesOrderID.ReadOnly = vReadOnly
+    txtVisibleNotes.ReadOnly = vReadOnly
+    cboEstatusENUM.Enabled = Not vReadOnly
+    cboOrderTypeID.Enabled = Not vReadOnly
+    cboProjectOwner.Enabled = Not vReadOnly
+    dteFinishedDate.ReadOnly = vReadOnly
+    btnedCustomer.Enabled = Not vReadOnly
+    bbtnDespatchPalletItems.Enabled = Not vReadOnly
+    bbtnAddStockItem.Enabled = Not vReadOnly
+    bbtnDeleteCustomerPO.Enabled = Not vReadOnly
+    bbtnDeleteStockItem.Enabled = Not vReadOnly
+    bbtnGenerateMatReq.Enabled = Not vReadOnly
+    gvSalesOrderItems.OptionsBehavior.ReadOnly = vReadOnly
 
   End Sub
 
@@ -167,7 +202,7 @@ Public Class frmWoodSalesOrder
 
 
 
-
+        SetPermission()
 
       End With
 
@@ -467,11 +502,34 @@ Public Class frmWoodSalesOrder
           e.Value = mSOItem.VatValue
 
         Case gcTotalBoarFeet.Name
-          e.Value = pFormController.WoodPallets.GetTotalBoardFeet()
+          gvSalesOrderItems.CloseEditor()
+          Dim mWP As dmWoodPallet
+
+          If mSOItem IsNot Nothing Then
+
+
+            mWP = pFormController.WoodPallets.ItemFromKey(mSOItem.ProductID)
+            If mWP IsNot Nothing Then
+              e.Value = clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP)
+
+            End If
+          End If
+
 
         Case gcLineValue.Name
-          e.Value = mSOItem.GetLineValue(pFormController.WoodPallets.GetTotalBoardFeet())
-          mSOItem.LineValue = e.Value
+          gvSalesOrderItems.CloseEditor()
+          Dim mWP As dmWoodPallet
+
+          If mSOItem IsNot Nothing Then
+            mWP = pFormController.WoodPallets.ItemFromKey(mSOItem.ProductID)
+            If mWP IsNot Nothing Then
+              e.Value = mSOItem.GetLineValue(clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP))
+              mSOItem.LineValue = e.Value
+
+            End If
+          End If
+
+
 
       End Select
 
@@ -510,6 +568,9 @@ Public Class frmWoodSalesOrder
 
     Try
       pFormController.DespatchWoodSalesOrder()
+      pFormController.SalesOrder.IsDepatch = True
+      CheckSave(False)
+      RefreshControls()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 

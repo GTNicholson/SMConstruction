@@ -123,6 +123,12 @@ Public Class clsStockItemInfo
 
   End Property
 
+  Public ReadOnly Property HeadTypeID As Integer
+    Get
+      Return pStockItem.HeadTypeID
+    End Get
+
+  End Property
   Public Property DefaultSupplier() As Int32
     Get
       Return pStockItem.DefaultSupplier

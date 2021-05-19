@@ -236,6 +236,8 @@ Public Class frmPickWoodMaterial
         gvWoodPalletItems.CloseEditor()
         pFormController.WoodPallet.IntoWIPDate = Now
         pFormController.WoodPallet.WorkOrderID = pFormController.CurrentWorkOrderInfo.WorkOrderID
+        pFormController.WoodPallet.Archive = True
+
         pFormController.CreateNegativeTransaction()
 
         For Each mWPI As dmWoodPalletItem In pFormController.WoodPallet.WoodPalletItems

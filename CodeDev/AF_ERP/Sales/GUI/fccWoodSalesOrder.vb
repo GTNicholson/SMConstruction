@@ -76,7 +76,7 @@ Public Class fccWoodSalesOrder
     Dim mWhereWoodPallet As String = ""
     Dim mWoodPalelts As New colWoodPallets
 
-    mWhereWoodPallet = "SoldDate is  null and IntoWIPDate is null "
+    mWhereWoodPallet = "(SoldDate is  null and IntoWIPDate is null) and Archive=0 "
     mdso.LoadWoodPalletsDownByWhere(mWoodPalelts, mWhereWoodPallet)
 
 
@@ -116,7 +116,7 @@ Public Class fccWoodSalesOrder
 
         If mString <> "" Then mString &= ","
 
-        mString = mSOI.ProductID
+        mString &= mSOI.ProductID
 
       End If
     Next
@@ -265,6 +265,7 @@ Public Class fccWoodSalesOrder
           mWPI.OutstandingQty = mWPI.Quantity - mWPI.QuantityUsed
         Next
         mWP.SoldDate = Now
+        mWP.Archive = True
       Next
 
       mdsoStock.SaveWoodPalletCollectionDown(pWoodPallets)

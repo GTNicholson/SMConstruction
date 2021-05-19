@@ -52,6 +52,8 @@ Public Class fccCustomerDetail
       pHaveLock = mdso.LockCustomerDisconnected(pPrimaryKeyID)
 
       mdso.LoadCustomerDown(pCustomer, pPrimaryKeyID)
+    Else
+      pCustomer.CustomerStatusID = eCustomerStatus.Active
     End If
 
   End Sub

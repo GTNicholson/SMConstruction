@@ -46,12 +46,21 @@ Public Class fccHomeManagement
 
   Public Sub LoadWoodPalletItemInfos()
     Dim mdsoStock As New dsoStock(pDBConn)
+    Dim mListWoodPalletFileters As New colWoodPalletItemInfos
+
     Dim mwhere As String = ""
     Try
 
 
       pWoodPalletItemInfos = New colWoodPalletItemInfos
-      mdsoStock.LoadWoodPalletItemInfosByStockItemID(pWoodPalletItemInfos, "")
+      mdsoStock.LoadWoodPalletItemInfosByStockItemID(mListWoodPalletFileters, "")
+
+      For Each mWPII In mListWoodPalletFileters
+
+        If (mWPII.Quantity - mWPII.QuantityUsed) > 0 Then
+          pWoodPalletItemInfos.Add(mWPII)
+        End If
+      Next
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try

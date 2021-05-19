@@ -5,12 +5,18 @@ Public Class clsWoodPalletItemInfo
   Private pWoodPallet As dmWoodPallet
   Private pStockItem As dmStockItem
   Private pCostValue As Decimal
-
+  Private pWorkOrder As dmWorkOrder
+  Private pSalesOrder As dmSalesOrder
+  Private pCustomer As dmCustomer
 
   Public Sub New()
     pWoodPalletItem = New dmWoodPalletItem
     pWoodPallet = New dmWoodPallet
     pStockItem = New dmStockItem
+    pWorkOrder = New dmWorkOrder
+    pSalesOrder = New dmSalesOrder
+    pCustomer = New dmCustomer
+
   End Sub
 
 
@@ -228,16 +234,14 @@ Public Class clsWoodPalletItemInfo
     End Get
   End Property
 
-  Public ReadOnly Property TotalBoardFeet
+  Public ReadOnly Property TotalBoardFeet As Decimal
     Get
       Dim mRetVal As Decimal = 0
       Dim mBalance As Decimal
-      mBalance = (pWoodPalletItem.Quantity - pWoodPalletItem.QuantityUsed)
-      If mBalance > 0 Then
-        mRetVal = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(pWoodPalletItem, pStockItem)
-      End If
 
-      Return mRetVal
+      mRetVal = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(pWoodPalletItem, pStockItem)
+
+      Return Math.Round(mRetVal, 3, MidpointRounding.AwayFromZero)
 
     End Get
 
@@ -307,6 +311,54 @@ Public Class clsWoodPalletItemInfo
   Public ReadOnly Property KilnEndDate As Date
     Get
       Return pWoodPallet.KilnEndDate
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrder As dmWorkOrder
+    Get
+      Return pWorkOrder
+    End Get
+  End Property
+
+  Public ReadOnly Property SalesOrder As dmSalesOrder
+    Get
+      Return pSalesOrder
+    End Get
+  End Property
+
+  Public ReadOnly Property Customer As dmCustomer
+    Get
+      Return pCustomer
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderID As Integer
+    Get
+      Return pWorkOrder.WorkOrderID
+    End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderNo As String
+    Get
+      Return pWorkOrder.WorkOrderNo
+    End Get
+  End Property
+
+  Public ReadOnly Property WODescription As String
+    Get
+      Return pWorkOrder.Description
+    End Get
+  End Property
+
+  Public ReadOnly Property ProjectName As String
+    Get
+      Return pSalesOrder.ProjectName
+    End Get
+  End Property
+
+  Public ReadOnly Property CompanyName As String
+    Get
+      Return pCustomer.CompanyName
     End Get
   End Property
 

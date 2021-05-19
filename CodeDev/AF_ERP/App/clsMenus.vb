@@ -13,8 +13,12 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Customer)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Casas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.SalesOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSalesOrder, eActivityCode.WoodSalesOrder)
-
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Ventas por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderProgress, eActivityCode.TrackingSalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Ventas de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodSalesOrderInfoBI, eActivityCode.WoodSalesOrderBI)
+
+
+
 
     mLastGroup = mMenuList.AddNewGroup("Producción", 0, eActivityCode.ProductionGroup, True)
     '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.WorkOrders)
@@ -329,6 +333,12 @@ Class clsMenuFunctions
   Public Shared Sub WoodStockItemTransactionInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewStockItemTransactionLogInfo.CreateBIReportViewStockTransactionLog(rRTISUserSession.CreateMainDBConn, rRTISGlobal, True)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub WoodSalesOrderInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewWoodSalesOrderInfo.CreateBIReportViewWoodSalesOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 

@@ -173,7 +173,7 @@ Public Class clsWoodPalletSharedFuncs
               mFeetBoard = vWoodPalletItems.GetTotalBoardFeet(mStockItem.StockItemID)
             End If
             If mFeetBoard > 0 Then
-              mRetVal &= mWPI.Description & " con " & mFeetBoard.ToString("00") & " PT "
+              mRetVal &= mWPI.Description & " con " & mFeetBoard.ToString("N3") & " PT "
             Else
                 mRetVal &= mWPI.Description & " : "
               End If

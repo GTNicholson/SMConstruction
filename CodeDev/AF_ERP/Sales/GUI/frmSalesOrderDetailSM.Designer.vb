@@ -454,7 +454,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpOrderItem.Location = New System.Drawing.Point(7, 6)
         Me.grpOrderItem.Name = "grpOrderItem"
-        Me.grpOrderItem.Size = New System.Drawing.Size(785, 374)
+        Me.grpOrderItem.Size = New System.Drawing.Size(785, 373)
         Me.grpOrderItem.TabIndex = 0
         Me.grpOrderItem.Text = "Articulos"
         '
@@ -466,7 +466,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grdOrderItem.MenuManager = Me.BarManager1
         Me.grdOrderItem.Name = "grdOrderItem"
         Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-        Me.grdOrderItem.Size = New System.Drawing.Size(781, 348)
+        Me.grdOrderItem.Size = New System.Drawing.Size(781, 347)
         Me.grdOrderItem.TabIndex = 0
         Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem, Me.GridView7})
         '
@@ -648,7 +648,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpWorkOrders.Location = New System.Drawing.Point(798, 6)
         Me.grpWorkOrders.Name = "grpWorkOrders"
-        Me.grpWorkOrders.Size = New System.Drawing.Size(600, 376)
+        Me.grpWorkOrders.Size = New System.Drawing.Size(598, 375)
         Me.grpWorkOrders.TabIndex = 1
         Me.grpWorkOrders.Text = "Órdenes de Trabajo"
         '
@@ -660,7 +660,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grdWorkOrders.MenuManager = Me.BarManager1
         Me.grdWorkOrders.Name = "grdWorkOrders"
         Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-        Me.grdWorkOrders.Size = New System.Drawing.Size(596, 350)
+        Me.grdWorkOrders.Size = New System.Drawing.Size(594, 349)
         Me.grdWorkOrders.TabIndex = 0
         Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders, Me.GridView6})
         '
@@ -786,7 +786,7 @@ Partial Class frmSalesOrderDetailSM
         Me.XtraTabPage1.Appearance.HeaderDisabled.Options.UseFont = True
         Me.XtraTabPage1.Controls.Add(Me.XtraTabControl2)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1408, 387)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1408, 390)
         Me.XtraTabPage1.Text = "Estimación de Madera e Insumos"
         '
         'XtraTabControl2
@@ -797,7 +797,7 @@ Partial Class frmSalesOrderDetailSM
         Me.XtraTabControl2.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl2.Name = "XtraTabControl2"
         Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage2
-        Me.XtraTabControl2.Size = New System.Drawing.Size(1408, 387)
+        Me.XtraTabControl2.Size = New System.Drawing.Size(1408, 390)
         Me.XtraTabControl2.TabIndex = 150
         Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2, Me.XtraTabPage3})
         '
@@ -805,7 +805,7 @@ Partial Class frmSalesOrderDetailSM
         '
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirements)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1279, 379)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1279, 382)
         Me.XtraTabPage2.Text = "Estimación de Madera"
         '
         'grpMaterialRequirements
@@ -820,7 +820,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1279, 379)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1279, 382)
         Me.grpMaterialRequirements.TabIndex = 149
         Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
         '
@@ -836,7 +836,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
         Me.grdMaterialRequirements.MenuManager = Me.BarManager1
         Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1275, 353)
+        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1275, 356)
         Me.grdMaterialRequirements.TabIndex = 29
         Me.grdMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements, Me.GridView5})
@@ -1109,7 +1109,7 @@ Partial Class frmSalesOrderDetailSM
         Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl1)
         Me.xtbDespatchesAndInvoices.Controls.Add(Me.GroupControl5)
         Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
-        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1408, 387)
+        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1408, 390)
         Me.xtbDespatchesAndInvoices.Text = "Pedidos de Cliente, Facturas y Despachos"
         '
         'GroupControl6

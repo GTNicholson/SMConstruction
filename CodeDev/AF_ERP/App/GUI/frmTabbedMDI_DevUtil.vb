@@ -421,7 +421,7 @@ Public Class frmTabbedMDI_DevUtil
     Dim mdsoStock As dsoStock
     Dim mdsoTran As dsoStockTransactions
 
-    mWhere = "PalletType<>" & eStockItemTypeTimberWood.Rollo
+    mWhere = "" '"PalletType<>" & eStockItemTypeTimberWood.Rollo
     mDBConn = My.Application.RTISUserSession.CreateMainDBConn
     Try
       mDBConn.Connect()
@@ -598,5 +598,128 @@ Public Class frmTabbedMDI_DevUtil
     mDBConn.ExecuteNonQuery(mWhere)
     mDBConn.Disconnect()
 
+  End Sub
+
+  Private Sub bbtnDecToFrac_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnDecToFrac.LinkClicked
+
+    Dim mString As String = InputBox("Valor decimal")
+    Dim mDec As Decimal
+
+    mDec = Decimal.Parse(mString)
+
+
+    Dim mFract As String
+
+    mFract = clsSMSharedFuncs.FractStrFromDec(mDec)
+
+    MessageBox.Show(mFract)
+  End Sub
+
+  Private Sub bbtnStringToDec_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnStringToDec.LinkClicked
+    Dim mString As String = InputBox("Valor Fracción string")
+    Dim mFract As Decimal
+
+    mFract = clsSMSharedFuncs.DecFromFractString(mString)
+
+    MessageBox.Show(mFract)
+  End Sub
+
+  Private Sub bbtnImportWoodPalletFromTemplate_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnImportWoodPalletFromTemplate.LinkClicked
+    Dim mWhere As String = ""
+    Dim mWoodPallets As New colWoodPallets
+    Dim mDBConn As RTIS.DataLayer.clsDBConnBase
+    Dim mdsoStock As dsoStock
+    Dim mdsoTran As dsoStockTransactions
+    Dim mTempPallets As New colTempPallets
+    Dim mListBultos As New List(Of String)
+    Dim mNewListWoodPallet As New colWoodPallets
+
+    mWhere = "PalletType=" & CInt(eStockItemTypeTimberWood.Primera)
+    mDBConn = My.Application.RTISUserSession.CreateMainDBConn
+    Try
+      mDBConn.Connect()
+
+      mdsoStock = New dsoStock(mDBConn)
+
+      mdsoStock.LoadTempPallets(mTempPallets, "")
+
+      For Each mTP In mTempPallets
+
+        If mListBultos.Contains(mTP.Bulto) = False Then
+          Dim mNewWoodPallet As New dmWoodPallet
+          mNewWoodPallet.CardNumber = mTP.Bulto
+          mNewWoodPallet.CreatedDate = Now
+          mNewWoodPallet.LocationID = eLocations.AgroForestal
+          mNewWoodPallet.PalletType = eStockItemTypeTimberWood.Primera
+          mListBultos.Add(mTP.Bulto)
+          mNewListWoodPallet.Add(mNewWoodPallet)
+
+        End If
+
+      Next
+
+
+
+      For Each mWP In mNewListWoodPallet
+
+        For Each mTemPallet In mTempPallets
+
+          If mWP.CardNumber = mTemPallet.Bulto Then
+            Dim mNewWPI As New dmWoodPalletItem
+            Dim mStockItem As New dmStockItem
+            Dim mFoundSI As dmStockItem
+
+            mStockItem.Species = mTemPallet.SpeciesID
+            mStockItem.Category = eStockItemCategory.Timber
+            mStockItem.Thickness = mTemPallet.Grosor
+            mStockItem.ItemType = eStockItemTypeTimberWood.Primera
+            mStockItem.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mStockItem, mDBConn)
+            mStockItem.Description = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mStockItem)
+
+            mFoundSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromSameSpec(mStockItem)
+
+            If mFoundSI IsNot Nothing Then
+            Else
+              mFoundSI = mStockItem.Clone
+              mFoundSI.ClearKeys()
+
+              AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mFoundSI)
+            End If
+            mNewWPI.Description = mFoundSI.Description
+              mNewWPI.Length = mTemPallet.Largo
+              mNewWPI.Thickness = mTemPallet.Grosor
+              mNewWPI.Width = mTemPallet.Ancho
+              mNewWPI.StockItemID = mFoundSI.StockItemID
+              mNewWPI.StockCode = mFoundSI.StockCode
+              mNewWPI.Quantity = mTemPallet.Cantidad
+              mNewWPI.QuantityUsed = 0
+              mNewWPI.OutstandingQty = mNewWPI.Quantity - mNewWPI.QuantityUsed
+              mWP.WoodPalletItems.Add(mNewWPI)
+
+          End If
+
+        Next
+
+      Next
+
+      mdsoStock.SaveWoodPalletCollectionDown(mNewListWoodPallet)
+
+
+      mdsoTran = New dsoStockTransactions(mDBConn)
+
+
+      For Each mWP As dmWoodPallet In mNewListWoodPallet
+
+
+        mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, eLocations.AgroForestal, Now, eCurrency.Dollar, 1, False)
+
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mDBConn.IsConnected Then mDBConn.Disconnect()
+    End Try
   End Sub
 End Class

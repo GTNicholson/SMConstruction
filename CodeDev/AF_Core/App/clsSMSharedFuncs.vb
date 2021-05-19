@@ -233,4 +233,166 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
+  Public Shared Function FractStrFromDec(ByVal vNum As Decimal) As String
+    Dim mRetVal As String = ""
+    Dim mWholeNumber As Integer
+    Dim mRemainder As Decimal
+    Dim mQty64ths As Decimal
+    Dim mDenom As Integer
+    Dim mNumerator As Integer
+    Dim mOK As Boolean
+
+    Try
+
+
+
+
+      mWholeNumber = Math.Truncate(vNum)
+      mRemainder = vNum - mWholeNumber
+
+      If mWholeNumber <> 0 Then
+        mRetVal = mRetVal & mWholeNumber.ToString("#")
+      End If
+
+      mQty64ths = mRemainder * 64
+      mQty64ths = CInt(mQty64ths)
+
+      mNumerator = mQty64ths
+      If mNumerator Mod 2 = 0 Then
+        mNumerator = mNumerator / 2
+        mDenom = 32
+        mOK = True
+
+      Else
+        mOK = False
+      End If
+
+      If mOK Then
+        If mNumerator Mod 2 = 0 Then
+          mNumerator = mNumerator / 2
+          mOK = True
+          mDenom = 16
+
+        Else
+          mOK = False
+        End If
+      End If
+
+      If mOK Then
+        If mNumerator Mod 2 = 0 Then
+          mNumerator = mNumerator / 2
+          mOK = True
+          mDenom = 8
+
+        Else
+          mOK = False
+        End If
+      End If
+
+      If mOK Then
+        If mNumerator Mod 2 = 0 Then
+          mNumerator = mNumerator / 2
+          mOK = True
+          mDenom = 4
+
+        Else
+          mOK = False
+        End If
+      End If
+
+      If mOK Then
+        If mNumerator Mod 2 = 0 Then
+          mNumerator = mNumerator / 2
+          mOK = True
+          mDenom = 2
+
+        Else
+          mOK = False
+        End If
+      End If
+
+      If mNumerator <> 0 Then
+        If mRetVal <> "" Then mRetVal &= " "
+        mRetVal = mRetVal & mNumerator & "/" & mDenom
+      End If
+
+    Catch ex As Exception
+      mRetVal = ""
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Shared Function DecFromFractString(ByVal vStringFract As String) As Decimal
+    Dim mRetVal As Decimal
+    Dim mWholeNumberString As String = ""
+    Dim mFractNumberString As String = ""
+    Dim mNumeratorString As String = ""
+    Dim mDenominatorStrig As String = ""
+    Dim mIndex As Integer
+    Dim mWholeNumber As Integer
+    Dim mWholeNumerator As Integer
+    Dim mWholeDonominator As Integer
+    Dim mMoreSignalsString As String
+
+    Try
+
+      mIndex = vStringFract.IndexOf(" ")
+      If mIndex > 0 Then
+        vStringFract = vStringFract.Trim
+        mWholeNumberString = vStringFract.Substring(0, mIndex)
+
+
+        If mWholeNumberString <> "" Then
+          mWholeNumber = Math.Truncate(Val(mWholeNumberString))
+        End If
+
+        mFractNumberString = Right(vStringFract, vStringFract.Length - mIndex - 1)
+        mIndex = mFractNumberString.IndexOf("/")
+
+        If mIndex > 0 Then
+
+          mNumeratorString = Left(mFractNumberString, mFractNumberString.Length - mIndex - 1)
+          mDenominatorStrig = Right(mFractNumberString, mFractNumberString.Length - mIndex - 1)
+        End If
+
+        If mNumeratorString <> "" And mDenominatorStrig <> "" Then
+
+
+          mWholeNumerator = Val(mNumeratorString)
+          mWholeDonominator = Val(mDenominatorStrig)
+
+          mRetVal = mWholeNumber + (mWholeNumerator / mWholeDonominator)
+        End If
+
+      ElseIf vStringFract.IndexOf("/") > 0 Then ''It doesnt have space
+        mIndex = vStringFract.IndexOf("/")
+
+        If mIndex > 0 Then
+
+          mNumeratorString = Left(vStringFract, vStringFract.Length - mIndex - 1)
+          mDenominatorStrig = Right(vStringFract, vStringFract.Length - mIndex - 1)
+        End If
+
+        If mNumeratorString <> "" And mDenominatorStrig <> "" Then
+
+
+          mWholeNumerator = Val(mNumeratorString)
+          mWholeDonominator = Val(mDenominatorStrig)
+
+          mRetVal = Math.Round(mWholeNumerator / mWholeDonominator, 4, MidpointRounding.AwayFromZero)
+        End If
+
+      Else
+        mRetVal = Val(vStringFract)
+      End If
+
+
+    Catch ex As Exception
+      mRetVal = 0
+    End Try
+
+    Return mRetVal
+  End Function
+
 End Class

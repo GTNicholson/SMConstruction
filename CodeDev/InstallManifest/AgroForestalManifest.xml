@@ -519,5 +519,11 @@
     <Filename>gvlHouseType.xml</Filename>
   </AuxFiles>
   
+   <AuxFiles>
+    <Filename>BIWoodSalesOrderList.xml</Filename>
+  </AuxFiles>
+     <AuxFiles>
+    <Filename>BIWoodSalesOrderSummary.xml</Filename>
+  </AuxFiles>
   
 </AppUpdateManifest>

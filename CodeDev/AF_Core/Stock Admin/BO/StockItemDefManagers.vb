@@ -10,17 +10,28 @@ Public MustInherit Class clsStockItemDefManagerBspk : Inherits StockItemDefManag
 
   Public Function GetDimsStr() As String
     Dim mRetVal As String = ""
+    Dim mLenthString As String
+    Dim mWidthString As String
+    Dim mThicknessString As String
+
     If pStockItemBspk.Length <> 0 Then
       If mRetVal <> "" Then mRetVal = mRetVal & " x "
-      mRetVal = mRetVal & pStockItemBspk.Length.ToString("#.#")
+      mLenthString = clsSMSharedFuncs.FractStrFromDec(pStockItem.Length)
+
+      mRetVal = mRetVal & mLenthString ''pStockItemBspk.Length.ToString("#.#")
     End If
     If pStockItemBspk.Width <> 0 Then
       If mRetVal <> "" Then mRetVal = mRetVal & " x "
-      mRetVal = mRetVal & pStockItemBspk.Width.ToString("#.#")
+      mWidthString = clsSMSharedFuncs.FractStrFromDec(pStockItem.Width)
+
+      mRetVal = mRetVal & mWidthString ''pStockItemBspk.Width.ToString("#.#")
     End If
     If pStockItemBspk.Thickness <> 0 Then
       If mRetVal <> "" Then mRetVal = mRetVal & " x "
-      mRetVal = mRetVal & pStockItemBspk.Thickness.ToString("#.#")
+      mThicknessString = clsSMSharedFuncs.FractStrFromDec(pStockItem.Thickness)
+
+      mRetVal = mRetVal & mThicknessString ''pStockItemBspk.Width.ToString("#.#")
+
     End If
     Return mRetVal
   End Function
@@ -72,6 +83,10 @@ Public Class clsStockItemDefManagerFixings : Inherits clsStockItemDefManagerBspk
     End If
     If GetDimsStr() <> "" Then
       mRetVal = mRetVal & " " & GetDimsStr()
+    End If
+
+    If pStockItemBspk.HeadTypeID <> 0 Then
+      mRetVal = mRetVal & " de " & clsEnumsConstants.GetEnumDescription(GetType(eHeadType), CType(pStockItemBspk.HeadTypeID, eHeadType))
     End If
     If pStockItemBspk.AuxCode <> "" Then
       mRetVal = mRetVal & " (" & pStockItemBspk.AuxCode & ")"

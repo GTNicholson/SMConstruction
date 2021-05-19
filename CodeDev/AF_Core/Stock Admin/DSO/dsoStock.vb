@@ -698,6 +698,22 @@ Public Class dsoStock
     Return mOK
   End Function
 
+  Public Sub LoadTempPallets(ByRef rTempPallets As colTempPallets, ByVal vWhere As String)
+    Dim mdto As New dtoTempPallet(pDBConn)
+    Try
+      If pDBConn.Connect() Then
+        mdto.LoadTempPalletCollectionByWhere(rTempPallets, vWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+
+
+  End Sub
+
   Public Sub UpdateStockItemAverageCost(ByVal vStockItemID As Integer, ByVal vReceivedQty As Decimal, ByVal vReceivedValue As Decimal, ByVal vStockItemTransactionLogID As Integer)
     Dim mExistingQty As Decimal
     Dim mCurrentAverageCost As Decimal

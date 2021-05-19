@@ -5,25 +5,25 @@
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="Empty" iskey="true" value="Empty">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="GroupPanel" iskey="true" value="GroupPanel">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="HideSelectionRow" iskey="true" value="HideSelectionRow">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="HeaderPanel" iskey="true" value="HeaderPanel">
       <property name="Options" isnull="true" iskey="true">
@@ -47,19 +47,19 @@
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="FocusedRow" iskey="true" value="FocusedRow">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="RowSeparator" iskey="true" value="RowSeparator">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="OddRow" iskey="true" value="OddRow">
       <property name="Options" isnull="true" iskey="true">
@@ -73,103 +73,103 @@
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="DetailTip" iskey="true" value="DetailTip">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="GroupFooter" iskey="true" value="GroupFooter">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="Row" iskey="true" value="Row">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="HorzLine" iskey="true" value="HorzLine">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="ColumnFilterButtonActive" iskey="true" value="ColumnFilterButtonActive">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="SelectedRow" iskey="true" value="SelectedRow">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="VertLine" iskey="true" value="VertLine">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="ColumnFilterButton" iskey="true" value="ColumnFilterButton">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="GroupButton" iskey="true" value="GroupButton">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="FocusedCell" iskey="true" value="FocusedCell">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="GroupRow" iskey="true" value="GroupRow">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="FilterPanel" iskey="true" value="FilterPanel">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="TopNewRow" iskey="true" value="TopNewRow">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="Preview" iskey="true" value="Preview">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="FooterPanel" iskey="true" value="FooterPanel">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt, style=Bold</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
     <property name="FixedLine" iskey="true" value="FixedLine">
       <property name="Options" isnull="true" iskey="true">
         <property name="UseFont">true</property>
       </property>
-      <property name="Font">Arial, 9pt</property>
+      <property name="Font">Arial, 8pt</property>
     </property>
   </property>
   <property name="OptionsView" isnull="true" iskey="true">
@@ -183,7 +183,7 @@
   </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
-  <property name="ColumnPanelRowHeight">40</property>
+  <property name="ColumnPanelRowHeight">-1</property>
   <property name="RowSeparatorHeight">0</property>
   <property name="FooterPanelHeight">-1</property>
   <property name="HorzScrollVisibility">Auto</property>
@@ -210,7 +210,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="14">
+  <property name="Columns" iskey="true" value="16">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -219,6 +219,18 @@
       <property name="Caption">WoodPalletItemID</property>
       <property name="FieldName">CostBookID</property>
       <property name="ColumnEditName" />
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn39</property>
@@ -230,7 +242,19 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">560</property>
+      <property name="Width">462</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
@@ -243,6 +267,18 @@
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">155</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
@@ -255,6 +291,18 @@
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">70</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n1</property>
         <property name="FormatType">Numeric</property>
@@ -271,6 +319,18 @@
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">59</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n0</property>
         <property name="FormatType">Numeric</property>
@@ -287,6 +347,18 @@
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">59</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n0</property>
         <property name="FormatType">Numeric</property>
@@ -299,10 +371,22 @@
       </property>
       <property name="Caption">Ref. Interna</property>
       <property name="FieldName">PalletRef</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">124</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
@@ -314,7 +398,19 @@
       <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">87</property>
+      <property name="Width">73</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -338,7 +434,19 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
-      <property name="Width">113</property>
+      <property name="Width">65</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -362,7 +470,19 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">173</property>
+      <property name="Width">100</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
@@ -375,6 +495,18 @@
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">110</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
@@ -386,7 +518,19 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">85</property>
+      <property name="Width">66</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -401,6 +545,18 @@
       <property name="FieldName">LocationDesc</property>
       <property name="ColumnEditName" />
       <property name="Width">134</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
@@ -412,6 +568,60 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Name">GridColumn14</property>
+      <property name="Caption"># OT</property>
+      <property name="FieldName">WorkOrderNo</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">12</property>
+      <property name="Visible">true</property>
+      <property name="Width">85</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="Name">GridColumn15</property>
+      <property name="Caption">Proyecto</property>
+      <property name="FieldName">ProjectName</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">13</property>
+      <property name="Visible">true</property>
+      <property name="Width">144</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 8.25pt</property>
+      </property>
+      <property name="AppearanceHeader" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseFont">true</property>
+        </property>
+        <property name="Font">Arial, 9pt, style=Bold</property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />

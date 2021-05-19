@@ -48,6 +48,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pCostUoM As Byte
   Private pIsCostingOnly As Boolean
   Private pIsTracked As Boolean
+  Private pHeadTypeID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -141,6 +142,7 @@ Public Class dmStockItem : Inherits dmBase
       .IsCostingOnly = IsCostingOnly
       .AverageCost = AverageCost
       .IsTracked = IsTracked
+      .HeadTypeID = HeadTypeID
 
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
@@ -169,7 +171,7 @@ Public Class dmStockItem : Inherits dmBase
     If mRetVal Then mRetVal = (rStockitem.Finish = Me.Finish)
     If mRetVal Then mRetVal = (rStockitem.SubItemType = Me.SubItemType)
     If mRetVal Then mRetVal = (rStockitem.AuxCode = Me.AuxCode)
-
+    If mRetVal Then mRetVal = (rStockitem.HeadTypeID = Me.HeadTypeID)
 
     Return mRetVal
   End Function
@@ -753,6 +755,16 @@ Public Class dmStockItem : Inherits dmBase
     End Set
   End Property
 
+  Public Property HeadTypeID As Integer
+    Get
+      Return pHeadTypeID
+    End Get
+    Set(value As Integer)
+      If pHeadTypeID <> value Then
+        pHeadTypeID = value
+      End If
+    End Set
+  End Property
   Public Property CostUoM As Byte
     Get
       Return pCostUoM

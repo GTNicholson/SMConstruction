@@ -1,0 +1,38 @@
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('freddy Mobiliato',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('Oscar RMK',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('Doña Vicky',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('petentvest',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('Saborio',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('M Sostenible AGRO',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('Emerson Quintero',1,2)
+go
+
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('APENPROMEX',1,2)
+go
+insert into Customer (CompanyName,CustomerStatusID,CustomerTypeID)
+values ('Emerson quintero 2',1,2)
+go
+
+alter table SalesOrder
+add IsDepatch bit
+go

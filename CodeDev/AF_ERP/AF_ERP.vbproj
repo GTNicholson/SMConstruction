@@ -237,6 +237,7 @@
     <Compile Include="BIReports\BIReportViewPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />
     <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
+    <Compile Include="BIReports\BIReportViewWoodSalesOrderInfo.vb" />
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
     <Compile Include="BIReports\BIReportViewPODeliveryItem.vb" />

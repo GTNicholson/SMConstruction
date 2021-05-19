@@ -1,0 +1,49 @@
+ALTER view [dbo].[vwWoodPalletItemInfo]
+as
+select
+WPI.WoodPalletItemID,
+WPI.Width,
+WPI.Length,
+WPI.Quantity,
+WPI.QuantityUsed,
+WPI.OutstandingQty,
+WPI.VolumeM3,
+wpi.Thickness,
+WPI.StockItemID,
+WPI.StockCode,
+WPI.Description,
+
+
+WP.WoodPalletID,
+WP.PalletRef,
+WP.CreatedDate,
+WP.LocationID,
+WP.RefPalletOutside,
+WP.KilnStartDate,
+WP.KilnEndDate,
+WP.KilnNumber,
+SI.Category,
+SI.ItemType,
+
+SI.Species,
+
+WS.SpanishDescription,
+WS.EnglishDescription,
+
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description 'WODescription',
+SO.ProjectName,
+CU.CompanyName
+
+from WoodPalletItem WPI
+Inner join WoodPallet WP on WP.WoodPalletID = WPI.WoodPalletID
+INNER JOIN StockItem SI ON SI.StockItemID=WPI.StockItemID
+LEFT JOIN WorkOrder WO ON WO.WorkOrderID=WP.WorkOrderID
+LEFT JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON WOA.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+LEFT JOIN WoodSpecie WS ON WS.WoodSpecieID = SI.Species
+
+GO

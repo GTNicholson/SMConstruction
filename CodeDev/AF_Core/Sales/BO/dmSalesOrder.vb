@@ -55,6 +55,7 @@ Public Class dmSalesOrder : Inherits dmBase
 
   Private pWoodPalletID As Integer
   Private pWoodPalletType As Integer
+  Private pIsDepatch As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -177,6 +178,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .SalesOrderStages = SalesOrderStages
       .PaymentTermDesc = PaymentTermDesc
       .WoodPalletID = WoodPalletID
+      .IsDepatch = IsDepatch
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -556,6 +558,16 @@ Public Class dmSalesOrder : Inherits dmBase
     End Get
     Set(value As colPaymentOnAccounts)
       pPaymentAccounts = value
+    End Set
+  End Property
+
+  Public Property IsDepatch As Boolean
+    Get
+      Return pIsDepatch
+    End Get
+    Set(value As Boolean)
+      If pIsDepatch <> value Then IsDirty = True
+      pIsDepatch = value
     End Set
   End Property
 

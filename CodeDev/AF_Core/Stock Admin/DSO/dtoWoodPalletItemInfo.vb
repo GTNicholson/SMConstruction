@@ -96,7 +96,20 @@ Public Class dtoWoodPalletItemInfo : Inherits dtoBase
           .Species = DBReadInt32(rDataReader, "Species")
         End With
 
+        With .WorkOrder
+          .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
+          .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+          .Description = DBReadString(rDataReader, "WODescription")
 
+        End With
+
+        With .Customer
+          .CompanyName = DBReadString(rDataReader, "CompanyName")
+        End With
+
+        With .SalesOrder
+          .ProjectName = DBReadString(rDataReader, "ProjectName")
+        End With
       End With
       mOK = True
     Catch Ex As Exception

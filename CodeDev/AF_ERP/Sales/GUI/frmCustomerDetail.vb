@@ -158,6 +158,7 @@ Public Class frmCustomerDetail
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCountry, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboPaymentTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType))
       RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboSalesTermsType, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.SalesTermType))
+      RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCustomerType, clsEnumsConstants.EnumToVIs(GetType(eCustomerType)))
 
 
     Catch ex As Exception
@@ -235,7 +236,7 @@ Public Class frmCustomerDetail
       Me.btnSaveAndClose.Enabled = False
       Me.bbtnSave.Enabled = False
       Me.gvContacts.OptionsBehavior.ReadOnly = True
-      Me.GridView1.OptionsBehavior.ReadOnly = True
+
     End If
   End Sub
 
@@ -260,6 +261,8 @@ Public Class frmCustomerDetail
       txtMainTown.Text = .MainTown
       txtCustomerReference.Text = .CustomerReference
       txtCustomerNotes.Text = .CustomerNotes
+      RTIS.Elements.clsDEControlLoading.SetDECombo(cboCustomerType, .CustomerTypeID)
+
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboCountry, .SalesAreaID)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboPaymentTermsType, .PaymentTermsType)
       RTIS.Elements.clsDEControlLoading.SetDECombo(cboSalesTermsType, .SalesTermsType)
@@ -293,6 +296,7 @@ Public Class frmCustomerDetail
       .SalesTermsType = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboSalesTermsType)
       .CustomerNotes = txtCustomerNotes.Text
       .CustomerStatusID = rgEstatus.EditValue
+      .CustomerTypeID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCustomerType)
 
       gvContacts.CloseEditor()
       gvContacts.UpdateCurrentRow()

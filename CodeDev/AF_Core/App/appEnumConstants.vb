@@ -17,6 +17,8 @@ Public Enum eActivityCode
   SalesOrder = 102
   TrackingSalesOrder = 103
   WoodSalesOrder = 104
+  WoodSalesOrderBI = 105
+
 
   ProductionGroup = 200
   WorkOrders = 201
@@ -241,6 +243,11 @@ Public Enum eEmployeeRole
   <Description("Ingeniería")> Engineering = 2
   <Description("Producción")> Production = 3
   <Description("Administración")> Admin = 4
+End Enum
+
+Public Enum eCustomerType
+  <Description("Normal")> Normal = 1
+  <Description("Detallista")> Detallista = 2
 End Enum
 
 Public Enum eCustomerStatus
@@ -842,7 +849,9 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tornillos, "Tornillos", "TN")
     MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Wood, "Tornillo de Madera", "TDM"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Wood, "Madera", "TDM"))
+    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Gypsum, "Gypsum", "TDG"))
+
 
     mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Pernos, "Pernos", "PE")
     MyBase.Add(mNailAndBoltType)
@@ -894,6 +903,7 @@ End Enum
 
 Public Enum eScrewTypes
   Wood = 1
+  Gypsum
   Other = 99
 End Enum
 Public Enum eNailsType
@@ -904,6 +914,17 @@ Public Enum eNailsType
   SinCabeza = 5
   Techo = 6
   Other = 99
+End Enum
+Public Enum eHeadType
+  <Description("Cabeza Plana")> CabezaPlana = 1
+  <Description("Phillips")> Phillips = 2
+  <Description("Hexagonal")> Hexagonal = 3
+  <Description("Allen")> Allen = 4
+  <Description("Cuadrado")> Cuadrado = 5
+  <Description("Cap")> Cap = 6
+  <Description("Seguridad")> Seguridad = 7
+
+
 End Enum
 Public Enum eNailsAndBoltsOther
   Grapas = 1

@@ -240,6 +240,7 @@ Public Class frmWoodPalletDetail
       SetDetailsControlsReadonly(True)
     End If
 
+    ckeArchive.Location = New Point(cboFarm.Location.X, ckeArchive.Location.Y)
     pIsActive = mStartActive
   End Sub
 
@@ -537,6 +538,8 @@ Public Class frmWoodPalletDetail
     clsDEControlLoading.FillDEComboVI(cboLocations, clsEnumsConstants.EnumToVIs(GetType(eLocations)))
     clsDEControlLoading.FillDEComboVI(cboWoodPalletType, eStockItemTypeTimberWood.GetInstance.ValueItems)
     clsDEControlLoading.FillDEComboVI(cboFarm, clsEnumsConstants.EnumToVIs(GetType(eFarms)))
+    clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie))
+    clsDEControlLoading.FillDEComboVI(cbothickness, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ThicknessValue))
 
 
   End Sub
@@ -901,5 +904,117 @@ Public Class frmWoodPalletDetail
 
   End Sub
 
+  Private Sub bbtnAdd_Click(sender As Object, e As EventArgs) Handles bbtnAdd.Click
+    Dim mSelectedItem As dmStockItem
+    Dim mGrosor As Decimal
+    Dim mItemType As Integer
+    Dim mCategory As Integer
+    Dim mNewStockItem As dmStockItem
+    Dim mNewWoodPalletItem As dmWoodPalletItem
+    Dim pWoodPalletItemEditor As clsWoodPalletItemEditor
+    Dim mSpecies As Integer
+    Dim mThickessID As Integer
 
+    mThickessID = clsDEControlLoading.GetDEComboValue(cbothickness)
+
+    mItemType = pFormController.CurrentWoodPallet.PalletType
+    mCategory = eStockItemCategory.Timber
+    mSpecies = clsDEControlLoading.GetDEComboValue(cboSpecies)
+
+    If mItemType > 0 And mThickessID > 0 And mSpecies > 0 Then
+
+      mGrosor = Decimal.Parse(AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ThicknessValue).DisplayValueString(mThickessID))
+
+      mSelectedItem = New dmStockItem
+      mSelectedItem.Category = mCategory
+      mSelectedItem.ItemType = mItemType
+      mSelectedItem.Thickness = mGrosor
+      mSelectedItem.Species = mSpecies
+
+      mNewStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromSameSpec(mSelectedItem)
+
+
+      If mNewStockItem Is Nothing Then
+
+        mNewStockItem = New dmStockItem
+        mNewStockItem.Category = mCategory
+        mNewStockItem.ItemType = mItemType
+        mNewStockItem.Thickness = mGrosor
+        mNewStockItem.Species = mSpecies
+
+        mNewStockItem.Description = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mNewStockItem)
+        mNewStockItem.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mNewStockItem, pFormController.DBConn)
+        mNewStockItem.ClearKeys()
+        AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mNewStockItem)
+
+
+      End If
+      mNewWoodPalletItem = pFormController.CurrentWoodPallet.WoodPalletItems.ItemByStockItemID(mNewStockItem.StockItemID)
+      If mNewWoodPalletItem Is Nothing Then
+          mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentWoodPallet)
+        mNewWoodPalletItem.StockItemID = mNewStockItem.StockItemID
+        mNewWoodPalletItem.Description = mNewStockItem.Description
+        mNewWoodPalletItem.StockCode = mNewStockItem.StockCode
+        mNewWoodPalletItem.Thickness = mNewStockItem.Thickness
+
+        pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mNewStockItem)
+        pFormController.WoodPalletItemEditors.Add(pWoodPalletItemEditor)
+        End If
+
+
+        pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+      grdWoodPalletItemInfos.DataSource = pFormController.WoodPalletItemEditors ''pFormController.CurrentWoodPallet.WoodPalletItems
+
+    Else
+      MessageBox.Show("Se requiere una especie o grosor válido")
+    End If
+  End Sub
+
+  Private Sub repoQtyAdjust_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoQtyAdjust.ButtonClick
+    Dim mVal As Integer
+    Dim mInput As String
+    Dim mDifference As Integer
+    Dim mWoodPalletItemEditor As clsWoodPalletItemEditor
+
+    mInput = InputBox("Valor a Ajustar", "Ajuste de Cantidad")
+
+    If Char.IsDigit(mInput) Then
+      mVal = Integer.Parse(mInput)
+
+      mWoodPalletItemEditor = TryCast(gvWoodPalletItemInfo.GetFocusedRow, clsWoodPalletItemEditor)
+
+      If mWoodPalletItemEditor IsNot Nothing Then
+        gvWoodPalletItemInfo.CloseEditor()
+
+
+        mDifference = mVal - mWoodPalletItemEditor.QuantityUI
+
+
+
+        mWoodPalletItemEditor.WoodPalletItem.DifferenceTranQty = mDifference
+        mWoodPalletItemEditor.WoodPalletItem.Quantity = mVal
+
+        pFormController.CreateAmendmentWoodPalletTransaction(pFormController.CurrentWoodPallet.LocationID, pFormController.CurrentWoodPallet, True)
+
+      End If
+    End If
+
+  End Sub
+
+
+
+  Private Sub repoChkIsSelected_EditValueChanged(sender As Object, e As EventArgs) Handles repoChkIsSelected.EditValueChanged
+    Dim mQty
+    Try
+      gvWoodPalletItemInfo.CloseEditor()
+
+      For Each mWPIE In pFormController.WoodPalletItemEditors
+
+      Next
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+  End Sub
 End Class

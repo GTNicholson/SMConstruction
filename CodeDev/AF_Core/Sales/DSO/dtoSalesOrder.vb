@@ -90,6 +90,8 @@ Public Class dtoSalesOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletID", .WoodPalletID)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletType", .WoodPalletType)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsDepatch", .IsDepatch)
+
 
     End With
 
@@ -133,6 +135,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .PaymentTermDesc = DBReadString(rDataReader, "PaymentTermDesc")
         .WoodPalletID = DBReadInt32(rDataReader, "WoodPalletID")
         .WoodPalletType = DBReadInt32(rDataReader, "WoodPalletType")
+        .IsDepatch = DBReadBoolean(rDataReader, "IsDepatch")
 
         pSalesOrder.IsDirty = False
       End With

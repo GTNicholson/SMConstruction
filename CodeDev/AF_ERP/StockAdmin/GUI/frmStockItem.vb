@@ -42,7 +42,7 @@ Public Class frmStockItem
 
     mfrm = GetFormIfLoaded()
     If mfrm Is Nothing Then
-      mfrm = New frmStockItem
+      mfrm = New frmStockItem()
       mfrm.MdiParent = rMDIParent
       mfrm.pFormController = New fccStocktem(rDBConn, rRTISGlobal, rRegistry)
       mfrm.pFormController.Categorys = vCategorys
@@ -279,6 +279,9 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboCategory, .Category)
         clsDEControlLoading.SetDECombo(cboItemType, .ItemType)
         clsDEControlLoading.SetDECombo(cboSpecies, .Species)
+        clsDEControlLoading.SetDECombo(cboHeadType, .HeadTypeID)
+
+
         clsDEControlLoading.SetDECombo(cboUoM, .UoM)
         clsDEControlLoading.SetDECombo(cboCostUoM, .CostUoM)
         clsDEControlLoading.SetDECombo(cboItemSubType, .SubItemType)
@@ -379,6 +382,7 @@ Public Class frmStockItem
         .Category = clsDEControlLoading.GetDEComboValue(cboCategory)
         .ItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
         .Species = clsDEControlLoading.GetDEComboValue(cboSpecies)
+        .HeadTypeID = clsDEControlLoading.GetDEComboValue(cboHeadType)
         .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
         .SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSupplierUoM)
         .IsGeneric = chkIsGeneric.Checked
@@ -420,7 +424,7 @@ Public Class frmStockItem
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.NailsAndBolds
 
@@ -428,13 +432,15 @@ Public Class frmStockItem
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
           cboSpecies.Enabled = True
           clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
+          cboHeadType.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboHeadType, clsEnumsConstants.EnumToVIs(GetType(eHeadType)))
 
         Case eStockItemCategory.EPP
           Dim mEPP As clsStockItemTypeEPP
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeEPP.GetInstance.ValueItems)
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.Herrajes
 
@@ -444,7 +450,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.Herramientas
 
@@ -453,7 +459,7 @@ Public Class frmStockItem
 
           cboItemType.Enabled = True
           cboSpecies.Enabled = False
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.MatElect
 
@@ -462,7 +468,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.MatEmpaque
 
@@ -471,7 +477,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.MatVarios
 
@@ -481,7 +487,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.Metal
 
@@ -490,7 +496,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.PinturaYQuimico
 
@@ -498,7 +504,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
-
+          cboHeadType.Enabled = False
 
         Case eStockItemCategory.Laminas
 
@@ -506,6 +512,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
+          cboHeadType.Enabled = False
 
 
         Case eStockItemCategory.Repuestos
@@ -514,6 +521,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
+          cboHeadType.Enabled = False
 
 
         Case eStockItemCategory.Tapiceria
@@ -522,6 +530,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
+          cboHeadType.Enabled = False
 
 
         Case eStockItemCategory.VidrioYEspejo
@@ -530,6 +539,7 @@ Public Class frmStockItem
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
+          cboHeadType.Enabled = False
 
 
         Case eStockItemCategory.Timber
@@ -539,6 +549,7 @@ Public Class frmStockItem
           gcSpecies.Visible = True
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
+          cboHeadType.Enabled = False
 
 
 
@@ -579,6 +590,7 @@ Public Class frmStockItem
     txtDescriptionShort.ReadOnly = vReadOnly
     txtPartNo.ReadOnly = vReadOnly
     cboSpecies.ReadOnly = vReadOnly
+    cboHeadType.ReadOnly = vReadOnly
     cboUoM.ReadOnly = vReadOnly
     cboSupplierUoM.ReadOnly = vReadOnly
     txtImportCost.ReadOnly = vReadOnly
@@ -591,6 +603,9 @@ Public Class frmStockItem
     txtAuxCode.ReadOnly = vReadOnly
     cboCostUoM.ReadOnly = vReadOnly
     cboItemSubType.ReadOnly = vReadOnly
+    txtThicknessFrac.ReadOnly = vReadOnly
+    txtWidthFrac.ReadOnly = vReadOnly
+    txtLengthFrac.ReadOnly = vReadOnly
     ''    btnedImageFile.ReadOnly = vReadOnly
 
     ''gvAlternateCodes.OptionsBehavior.ReadOnly = vReadOnly
@@ -797,12 +812,126 @@ Public Class frmStockItem
   End Sub
 
   Private Sub txtDescription_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtDescription.ButtonClick
+    UpdateObjects()
+    pFormController.SaveObject()
     pFormController.GenerateDescription()
     txtDescription.Text = pFormController.CurrentStockItem.Description
   End Sub
 
   Private Sub cboItemType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboItemType.SelectedIndexChanged
     RefreshTypeSpecificControls()
+  End Sub
+
+
+  Private Sub spnLength_EditValueChanged(sender As Object, e As EventArgs) Handles spnLength.EditValueChanged
+
+    Try
+      Dim mFracString As String = ""
+      Dim mDec As Decimal
+
+      If pFormController IsNot Nothing Then
+        mDec = spnLength.EditValue
+
+        mFracString = clsSMSharedFuncs.FractStrFromDec(mDec)
+        txtLengthFrac.Text = mFracString
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub txtLengthFrac_EditValueChanged(sender As Object, e As EventArgs) Handles txtLengthFrac.EditValueChanged
+    Try
+      Dim mDec As Decimal = 0
+
+
+      If pFormController IsNot Nothing Then
+        mDec = spnLength.EditValue
+
+        mDec = clsSMSharedFuncs.DecFromFractString(txtLengthFrac.Text)
+        spnLength.EditValue = mDec
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub txtWidthFrac_EditValueChanged(sender As Object, e As EventArgs) Handles txtWidthFrac.EditValueChanged
+    Try
+      Dim mDec As Decimal = 0
+
+
+      If pFormController IsNot Nothing Then
+        mDec = spnWidth.EditValue
+
+        mDec = clsSMSharedFuncs.DecFromFractString(txtWidthFrac.Text)
+        spnWidth.EditValue = mDec
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub spnWidth_EditValueChanged(sender As Object, e As EventArgs) Handles spnWidth.EditValueChanged
+
+    Try
+      Dim mFracString As String = ""
+      Dim mDec As Decimal
+
+      If pFormController IsNot Nothing Then
+        mDec = spnWidth.EditValue
+
+        mFracString = clsSMSharedFuncs.FractStrFromDec(mDec)
+        txtWidthFrac.Text = mFracString
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub spnThickness_EditValueChanged(sender As Object, e As EventArgs) Handles spnThickness.EditValueChanged
+
+    Try
+      Dim mFracString As String = ""
+      Dim mDec As Decimal
+
+      If pFormController IsNot Nothing Then
+        mDec = spnThickness.EditValue
+
+        mFracString = clsSMSharedFuncs.FractStrFromDec(mDec)
+        txtThicknessFrac.Text = mFracString
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub txtThicknessFrac_EditValueChanged(sender As Object, e As EventArgs) Handles txtThicknessFrac.EditValueChanged
+    Try
+      Dim mDec As Decimal = 0
+
+
+      If pFormController IsNot Nothing Then
+        mDec = spnThickness.EditValue
+
+        mDec = clsSMSharedFuncs.DecFromFractString(txtThicknessFrac.Text)
+        spnThickness.EditValue = mDec
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
   End Sub
 End Class
 

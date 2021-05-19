@@ -200,11 +200,11 @@ Public Class fccWoodPallet
       Dim mWhereLoad As String = ""
 
       If pFormMode = eWoodFormMode.WoodInventory Then
-        mWhereLoad = "Archive <> 1 and IntoWIPDate is null and SoldDate is null"
+        mWhereLoad = "Archive <> 1 and (IntoWIPDate is null and SoldDate is null)"
 
       Else
 
-        mWhereLoad = "Archive <> 1 and IntoWIPDate is not null and SoldDate is not null"
+        mWhereLoad = "Archive <> 1 and (IntoWIPDate is not null)"
       End If
       mdsoStock.LoadWoodPalletsDownByWhere(pWoodPallets, mWhereLoad)
 

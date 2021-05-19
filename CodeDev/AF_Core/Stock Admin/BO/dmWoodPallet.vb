@@ -401,7 +401,7 @@ Public Class colWoodPallets : Inherits colBase(Of dmWoodPallet)
     Dim mRetVal As Decimal
     For Each mWP As dmWoodPallet In Me
       If mWP IsNot Nothing Then
-        mRetVal = clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP)
+        mRetVal += clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP)
 
         If mWP.TotalVolume = 0 Then
           mWP.TotalVolume = Math.Round(clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP), 4, MidpointRounding.AwayFromZero)

@@ -445,6 +445,7 @@ Public Class fccStocktem
 
   Public Sub GenerateDescription()
     Dim mSIDM As StockItemDefManagerBase = Nothing
+    SaveObject()
 
     Select Case pCurrentStockItem.Category
       Case eStockItemCategory.NailsAndBolds

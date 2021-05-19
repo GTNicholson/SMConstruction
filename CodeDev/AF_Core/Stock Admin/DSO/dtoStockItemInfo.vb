@@ -118,6 +118,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
         .AverageCost = DBReadDecimal(rDataReader, "AverageCost")
         .IsCostingOnly = DBReadBoolean(rDataReader, "IsCostingOnly")
         .IsTracked = DBReadBoolean(rDataReader, "IsTracked")
+        .HeadTypeID = DBReadInt32(rDataReader, "HeadTypeID")
       End With
 
       mOK = True
