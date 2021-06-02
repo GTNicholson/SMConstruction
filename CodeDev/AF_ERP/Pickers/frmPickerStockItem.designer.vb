@@ -33,6 +33,7 @@ Partial Class frmPickerStockItem
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickerStockItem))
         Me.grdItemList = New DevExpress.XtraGrid.GridControl()
         Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,7 +74,7 @@ Partial Class frmPickerStockItem
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
         Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove})
-        Me.grdItemList.Size = New System.Drawing.Size(990, 423)
+        Me.grdItemList.Size = New System.Drawing.Size(991, 429)
         Me.grdItemList.TabIndex = 98
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '
@@ -199,7 +200,7 @@ Partial Class frmPickerStockItem
         'repoItemRemove
         '
         Me.repoItemRemove.AutoHeight = False
-        Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remove", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remover", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoItemRemove.Name = "repoItemRemove"
         Me.repoItemRemove.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -207,7 +208,7 @@ Partial Class frmPickerStockItem
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 26)
         Me.barDockControlTop.Manager = Nothing
         Me.barDockControlTop.Size = New System.Drawing.Size(1083, 0)
         '
@@ -247,7 +248,7 @@ Partial Class frmPickerStockItem
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1083, 30)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1083, 26)
         '
         'barDockControlBottom
         '
@@ -261,17 +262,17 @@ Partial Class frmPickerStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 26)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 431)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 435)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1083, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1083, 26)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 431)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 435)
         '
         'xtabCategories
         '
@@ -280,10 +281,10 @@ Partial Class frmPickerStockItem
         Me.xtabCategories.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabCategories.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabCategories.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabCategories.Location = New System.Drawing.Point(0, 30)
+        Me.xtabCategories.Location = New System.Drawing.Point(0, 26)
         Me.xtabCategories.Name = "xtabCategories"
         Me.xtabCategories.SelectedTabPage = Me.XtraTabPage1
-        Me.xtabCategories.Size = New System.Drawing.Size(1083, 431)
+        Me.xtabCategories.Size = New System.Drawing.Size(1083, 435)
         Me.xtabCategories.TabIndex = 104
         Me.xtabCategories.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -291,7 +292,7 @@ Partial Class frmPickerStockItem
         '
         Me.XtraTabPage1.Controls.Add(Me.grdItemList)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(990, 423)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(991, 429)
         Me.XtraTabPage1.Text = "XtraTabPage1"
         '
         'frmPickerStockItem
@@ -305,6 +306,7 @@ Partial Class frmPickerStockItem
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.BarDockControl1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmPickerStockItem"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Lista de Artículos de Inventario"

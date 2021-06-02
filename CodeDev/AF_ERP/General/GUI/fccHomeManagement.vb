@@ -53,7 +53,7 @@ Public Class fccHomeManagement
 
 
       pWoodPalletItemInfos = New colWoodPalletItemInfos
-      mdsoStock.LoadWoodPalletItemInfosByStockItemID(mListWoodPalletFileters, "")
+      mdsoStock.LoadWoodPalletItemInfosByWhere(mListWoodPalletFileters, "")
 
       For Each mWPII In mListWoodPalletFileters
 

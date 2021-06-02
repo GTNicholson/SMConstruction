@@ -151,7 +151,7 @@ Public Class fccSalesOrderDetailHouses
     End Set
   End Property
 
-  Public Sub CreateSalesOrderPack(ByRef rReport As repSalesOrder, ByVal vFilePath As String)
+  Public Sub CreateSalesOrderPack(ByRef rReport As DevExpress.XtraReports.UI.XtraReport, ByVal vFilePath As String)
     Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
     Dim mFilePath As String
@@ -854,11 +854,22 @@ Public Class fccSalesOrderDetailHouses
 
     Try
       Dim mSQL As String = ""
+      Dim mSOPI As dmSalesOrderPhaseItem
 
       mSQL &= " Delete from SalesOrderItemProductRequirement where SalesOrderItemProductRequirementID =" & rProductRequirement.SalesOrderItemProductRequirementID
       pDBConn.Connect()
 
       pDBConn.ExecuteNonQuery(mSQL)
+
+      If pSalesOrder IsNot Nothing Then
+        mSOPI = pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.ItemFromSalesItemKey(rProductRequirement.SalesOrderItemID)
+
+        If mSOPI IsNot Nothing Then
+          mSQL = "Delete from WorkOrderAllocation where SalesOrderPhaseItemID = " & mSOPI.SalesOrderPhaseItemID
+          pDBConn.ExecuteNonQuery(mSQL)
+
+        End If
+      End If
 
       pDBConn.Disconnect()
 

@@ -30,10 +30,12 @@ Public Class frmSalesOrderReview
     txtTotalValueSalesOrder.Text = pFormController.SalesOrder.GetTotalValueWithCarriage.ToString("$#,##0.00;;#")
     txtTotalInvoiced.Text = pFormController.SalesOrder.GetTotalInvoiceValue.ToString("$#,##0.00;;#")
 
-    txtSOPIStockItemMatReq.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalStockItemMatReqBudget.ToString("$#,##0.00;;#")
-    txtTotalSOPICurrentCost.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalStockItemMatReqReal.ToString("$#,##0.00;;#")
+    txtSOPIStockItemCost.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalStockItemMatReqBudget.ToString("$#,##0.00;;#")
+    txtTotalSOPISIMatReqCost.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqReal.ToString("$#,##0.00;;#")
 
     txtSOPIWoodMatReq.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalWoodMatReqBudget.ToString("$#,##0.00;;#")
+    txtTotalSOPIMatReqPick.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal.ToString("$#,##0.00;;#")
+
     'txtTotalSOPICurrentWoodCost.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalWoodMatReqReal.ToString("$#,##0.00;;#")
     txtSOPIMO.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget.ToString("$#,##0.00;;#")
 
@@ -46,7 +48,7 @@ Public Class frmSalesOrderReview
     End If
 
     If pFormController.SalesOrder.SalesOrderItems.GetTotalStockItemMatReqBudget > 0 Then
-      txtSIMatReqPercentage.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalStockItemMatReqReal / pFormController.SalesOrder.SalesOrderItems.GetTotalStockItemMatReqBudget
+      txtSIMatReqPercentage.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqReal / pFormController.SalesOrder.SalesOrderItems.GetTotalStockItemMatReqBudget
 
     End If
   End Sub
@@ -55,10 +57,11 @@ Public Class frmSalesOrderReview
     grdCustomerPOs.DataSource = pFormController.CustomerPOInfos
     grdInvoices.DataSource = pFormController.Invoices
     grdPOItemAllocations.DataSource = pFormController.POItemAllocationInfos
-    grdWoodUsage.DataSource = pFormController.WoodRequirementInfos
+    grdOtherCategoriesPOItemAllocations.DataSource = pFormController.OtherCategoriesPOItemAllocationInfos
+    grdWoodUsage.DataSource = pFormController.WoodPalletItemInfosPicked
     grdWorkOrderInfos.DataSource = pFormController.WorkOrderInfos
     grdPaymentAccounts.DataSource = pFormController.PaymentAccounts
-    grdSalesOrderPhaseItemInfo.DataSource = pFormController.SalesOrderPhaseItemInfo
+    grdSalesOrderPhaseItemInfo.DataSource = pFormController.SalesOrderPhaseItemInfos
   End Sub
 
   Private Sub gvPOItemAllocations_RowCellStyle(ByVal sender As Object, ByVal e As RowCellStyleEventArgs) Handles gvPOItemAllocations.RowCellStyle
@@ -116,5 +119,19 @@ Public Class frmSalesOrderReview
     End If
 
 
+  End Sub
+
+  Private Sub grpPOItemInfos_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpPOItemInfos.CustomButtonClick
+    Dim mFileName As String = "Exportar Compras Producción " + pFormController.SalesOrder.ProjectName & ".xlsx"
+    If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+      gvPOItemAllocations.ExportToXlsx(mFileName)
+    End If
+  End Sub
+
+  Private Sub grpOtherCaterogoriesPurchaseOrder_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpOtherCaterogoriesPurchaseOrder.CustomButtonClick
+    Dim mFileName As String = "Exportar Compras Otras Categorías " + pFormController.SalesOrder.ProjectName & ".xlsx"
+    If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+      gvOtherCategoriesPOItemAllocations.ExportToXlsx(mFileName)
+    End If
   End Sub
 End Class

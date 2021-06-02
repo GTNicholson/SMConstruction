@@ -22,6 +22,7 @@ Partial Class frmProductGlobalChange
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProductGlobalChange))
         Me.bbtnApplyChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.cboSpecies = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -106,6 +107,7 @@ Partial Class frmProductGlobalChange
         Me.ClientSize = New System.Drawing.Size(358, 112)
         Me.Controls.Add(Me.bbtnApplyChanges)
         Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmProductGlobalChange"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cambios Globales del Producto"

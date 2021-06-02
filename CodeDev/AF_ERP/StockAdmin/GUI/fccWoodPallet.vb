@@ -204,7 +204,7 @@ Public Class fccWoodPallet
 
       Else
 
-        mWhereLoad = "Archive <> 1 and (IntoWIPDate is not null)"
+        mWhereLoad = "Archive = 1 and (IntoWIPDate is not null)"
       End If
       mdsoStock.LoadWoodPalletsDownByWhere(pWoodPallets, mWhereLoad)
 

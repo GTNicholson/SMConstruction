@@ -24,6 +24,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pKilnNumber As Integer
   Private pTotalVolume As Decimal
   Private pSoldDate As Date
+  Private pIsSelected As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -349,6 +350,15 @@ Public Class dmWoodPallet : Inherits dmBase
     Set(value As Date)
       If pSoldDate <> value Then IsDirty = True
       pSoldDate = value
+    End Set
+  End Property
+
+  Public Property IsSelected As Boolean
+    Get
+      Return pIsSelected
+    End Get
+    Set(value As Boolean)
+      pIsSelected = value
     End Set
   End Property
 End Class

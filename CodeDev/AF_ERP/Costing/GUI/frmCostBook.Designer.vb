@@ -174,7 +174,7 @@ Partial Class frmCostBook
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 602)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 648)
         Me.barDockControlBottom.Manager = Me.BarManager1
         Me.barDockControlBottom.Size = New System.Drawing.Size(1350, 0)
         '
@@ -184,7 +184,7 @@ Partial Class frmCostBook
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 569)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 615)
         '
         'barDockControlRight
         '
@@ -192,7 +192,7 @@ Partial Class frmCostBook
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1350, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 569)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 615)
         '
         'bcboCostBookID
         '
@@ -217,7 +217,7 @@ Partial Class frmCostBook
         'dteDate
         '
         Me.dteDate.EditValue = Nothing
-        Me.dteDate.Location = New System.Drawing.Point(399, 41)
+        Me.dteDate.Location = New System.Drawing.Point(399, 44)
         Me.dteDate.MenuManager = Me.BarManager1
         Me.dteDate.Name = "dteDate"
         Me.dteDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!)
@@ -230,7 +230,7 @@ Partial Class frmCostBook
         '
         'txtCostBookName
         '
-        Me.txtCostBookName.Location = New System.Drawing.Point(73, 40)
+        Me.txtCostBookName.Location = New System.Drawing.Point(73, 43)
         Me.txtCostBookName.MenuManager = Me.BarManager1
         Me.txtCostBookName.Name = "txtCostBookName"
         Me.txtCostBookName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!)
@@ -244,7 +244,7 @@ Partial Class frmCostBook
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl1.Appearance.Options.UseFont = True
         Me.LabelControl1.Appearance.Options.UseForeColor = True
-        Me.LabelControl1.Location = New System.Drawing.Point(17, 44)
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 47)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(50, 16)
         Me.LabelControl1.TabIndex = 128
@@ -256,7 +256,7 @@ Partial Class frmCostBook
         Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Appearance.Options.UseForeColor = True
-        Me.LabelControl2.Location = New System.Drawing.Point(350, 44)
+        Me.LabelControl2.Location = New System.Drawing.Point(350, 47)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(39, 16)
         Me.LabelControl2.TabIndex = 129
@@ -280,13 +280,13 @@ Partial Class frmCostBook
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 33)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1350, 96)
+        Me.GroupControl1.Size = New System.Drawing.Size(1350, 103)
         Me.GroupControl1.TabIndex = 137
         Me.GroupControl1.Text = "Cost Book Detail"
         '
         'cboIsDefault
         '
-        Me.cboIsDefault.Location = New System.Drawing.Point(664, 42)
+        Me.cboIsDefault.Location = New System.Drawing.Point(664, 45)
         Me.cboIsDefault.MenuManager = Me.BarManager1
         Me.cboIsDefault.Name = "cboIsDefault"
         Me.cboIsDefault.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
@@ -339,9 +339,9 @@ Partial Class frmCostBook
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.XtraTabControl1)
-        Me.Panel1.Location = New System.Drawing.Point(0, 150)
+        Me.Panel1.Location = New System.Drawing.Point(0, 162)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1350, 452)
+        Me.Panel1.Size = New System.Drawing.Size(1350, 487)
         Me.Panel1.TabIndex = 143
         '
         'XtraTabControl1
@@ -356,7 +356,7 @@ Partial Class frmCostBook
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage2
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1350, 452)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1350, 487)
         Me.XtraTabControl1.TabIndex = 142
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2})
         '
@@ -367,7 +367,7 @@ Partial Class frmCostBook
         Me.XtraTabPage2.Controls.Add(Me.btnLoadStockItem)
         Me.XtraTabPage2.Controls.Add(Me.grdCostBookEntry)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1344, 418)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1344, 453)
         Me.XtraTabPage2.Text = "Lista de Artículos de Madera"
         '
         'LabelControl4
@@ -376,7 +376,7 @@ Partial Class frmCostBook
         Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl4.Appearance.Options.UseFont = True
         Me.LabelControl4.Appearance.Options.UseForeColor = True
-        Me.LabelControl4.Location = New System.Drawing.Point(18, 26)
+        Me.LabelControl4.Location = New System.Drawing.Point(18, 28)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(109, 16)
         Me.LabelControl4.TabIndex = 131
@@ -384,7 +384,7 @@ Partial Class frmCostBook
         '
         'cboStockItemType
         '
-        Me.cboStockItemType.Location = New System.Drawing.Point(133, 23)
+        Me.cboStockItemType.Location = New System.Drawing.Point(133, 25)
         Me.cboStockItemType.MenuManager = Me.BarManager1
         Me.cboStockItemType.Name = "cboStockItemType"
         Me.cboStockItemType.Properties.Appearance.Font = New System.Drawing.Font("Arial", 10.0!)
@@ -397,9 +397,9 @@ Partial Class frmCostBook
         '
         Me.btnLoadStockItem.Appearance.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnLoadStockItem.Appearance.Options.UseFont = True
-        Me.btnLoadStockItem.Location = New System.Drawing.Point(332, 22)
+        Me.btnLoadStockItem.Location = New System.Drawing.Point(332, 24)
         Me.btnLoadStockItem.Name = "btnLoadStockItem"
-        Me.btnLoadStockItem.Size = New System.Drawing.Size(92, 23)
+        Me.btnLoadStockItem.Size = New System.Drawing.Size(92, 25)
         Me.btnLoadStockItem.TabIndex = 1
         Me.btnLoadStockItem.Text = "Cargar Datos"
         '
@@ -408,12 +408,12 @@ Partial Class frmCostBook
         Me.grdCostBookEntry.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdCostBookEntry.Location = New System.Drawing.Point(4, 65)
+        Me.grdCostBookEntry.Location = New System.Drawing.Point(4, 70)
         Me.grdCostBookEntry.MainView = Me.gvCostBookEntry
         Me.grdCostBookEntry.MenuManager = Me.BarManager1
         Me.grdCostBookEntry.Name = "grdCostBookEntry"
         Me.grdCostBookEntry.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoCostUnit})
-        Me.grdCostBookEntry.Size = New System.Drawing.Size(1334, 355)
+        Me.grdCostBookEntry.Size = New System.Drawing.Size(1334, 382)
         Me.grdCostBookEntry.TabIndex = 0
         Me.grdCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCostBookEntry, Me.GridView2})
         '
@@ -709,15 +709,16 @@ Partial Class frmCostBook
         '
         'frmCostBook
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1350, 602)
+        Me.ClientSize = New System.Drawing.Size(1350, 648)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.Name = "frmCostBook"
         Me.Text = "Libro de Costo de Insumos"
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()

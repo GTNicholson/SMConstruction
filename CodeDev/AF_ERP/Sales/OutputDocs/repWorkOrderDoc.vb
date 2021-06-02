@@ -34,10 +34,33 @@ Public Class repWorkOrderDoc
     xtcProjectName.Text = pProjectName
     xtcDescription.DataBindings.Add("Text", pWorkOrder, "Description")
     xtcEmployee.DataBindings.Add("Text", pWorkOrder, "EmployeeDesc")
-    xtcCreatedDate.DataBindings.Add("Text", pWorkOrder, "DateCreated", "{0:dd/MM/yyyy}")
-    xtcPlannedStartDate.DataBindings.Add("Text", pWorkOrder, "PlannedStartDate", "{0:dd/MM/yyyy}")
-    xtcDueDate.DataBindings.Add("Text", pWorkOrder, "PlannedDeliverDate", "{0:dd/MM/yyyy}")
+    If pWorkOrder.PlannedDeliverDate = Date.MinValue Then
 
+    Else
+      xtcDueDate.DataBindings.Add("Text", pWorkOrder, "PlannedDeliverDate", "{0:dd/MM/yyyy}")
+
+    End If
+
+    If pWorkOrder.DateCreated = Date.MinValue Then
+
+    Else
+      xtcCreatedDate.DataBindings.Add("Text", pWorkOrder, "DateCreated", "{0:dd/MM/yyyy}")
+
+    End If
+
+    If pWorkOrder.PlannedStartDate = Date.MinValue Then
+
+    Else
+      xtcPlannedStartDate.DataBindings.Add("Text", pWorkOrder, "PlannedStartDate", "{0:dd/MM/yyyy}")
+
+    End If
+
+    If pWorkOrder.PurchasingDate = Date.MinValue Then
+
+    Else
+      xtcPurchasingDate.DataBindings.Add("Text", pWorkOrder, "PurchasingDate", "{0:dd/MM/yyyy}")
+
+    End If
 
 
   End Sub
@@ -64,8 +87,8 @@ Public Class repWorkOrderDoc
     mrepStockItemMaterialRequirement.DataSource = pStockItemMatReqs
     xrSubWorkOrderStockItemMatReq.ReportSource = mrepStockItemMaterialRequirement
 
-    mRepSignatures = New srepWorkOrderSignOffs
-    xrsubSigns.ReportSource = mRepSignatures
+    'mRepSignatures = New srepWorkOrderSignOffs
+    'xrsubSigns.ReportSource = mRepSignatures
 
   End Sub
 

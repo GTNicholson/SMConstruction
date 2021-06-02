@@ -363,7 +363,7 @@ Public Class dsoStock
   End Function
 
 
-  Public Function LoadWoodPalletItemInfosByStockItemID(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadWoodPalletItemInfosByWhere(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vWhere As String) As Boolean
 
     Dim mRetVal As Boolean
     Dim mdto As dtoWoodPalletItemInfo

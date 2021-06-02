@@ -401,6 +401,7 @@
     </Compile>
     <Compile Include="ProductAdmin\GUI\brwHouseType.vb" />
     <Compile Include="ProductAdmin\GUI\fccHouseType.vb" />
+    <Compile Include="ProductAdmin\GUI\fccNewStockItemProv.vb" />
     <Compile Include="ProductAdmin\GUI\fccProductAdmin.vb" />
     <Compile Include="ProductAdmin\GUI\fccProductDetaiL_New.vb" />
     <Compile Include="ProductAdmin\GUI\fccProductGlobalChange.vb" />
@@ -408,6 +409,12 @@
       <DependentUpon>frmHouseType.vb</DependentUpon>
     </Compile>
     <Compile Include="ProductAdmin\GUI\frmHouseType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\frmNewStockItemProv.Designer.vb">
+      <DependentUpon>frmNewStockItemProv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAdmin\GUI\frmNewStockItemProv.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductAdmin\GUI\frmProductAdmin.Designer.vb">
@@ -695,10 +702,16 @@
     <Compile Include="Sales\OutputDocs\repWorkOrderMatReqsWood.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder.Designer.vb">
-      <DependentUpon>repSalesOrder.vb</DependentUpon>
+    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.Designer.vb">
+      <DependentUpon>repSalesOrder_English.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder.vb">
+    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_Spanish.Designer.vb">
+      <DependentUpon>repSalesOrder_Spanish.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_Spanish.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\SalesReport\srepOtherMaterialsChange.Designer.vb">
@@ -915,6 +928,9 @@
     <EmbeddedResource Include="ProductAdmin\GUI\frmHouseType.resx">
       <DependentUpon>frmHouseType.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProductAdmin\GUI\frmNewStockItemProv.resx">
+      <DependentUpon>frmNewStockItemProv.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductAdmin\GUI\frmProductAdmin.resx">
       <DependentUpon>frmProductAdmin.vb</DependentUpon>
     </EmbeddedResource>
@@ -1038,8 +1054,11 @@
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderMatReqsWood.resx">
       <DependentUpon>repWorkOrderMatReqsWood.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repSalesOrder.resx">
-      <DependentUpon>repSalesOrder.vb</DependentUpon>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.resx">
+      <DependentUpon>repSalesOrder_English.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repSalesOrder_Spanish.resx">
+      <DependentUpon>repSalesOrder_Spanish.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\SalesReport\srepOtherMaterialsChange.resx">
       <DependentUpon>srepOtherMaterialsChange.vb</DependentUpon>

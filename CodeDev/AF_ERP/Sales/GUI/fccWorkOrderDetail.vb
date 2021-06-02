@@ -277,6 +277,7 @@ Public Class fccWorkOrderDetail
       If mFileTracker.IncludeInPack Then
         mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mFileTracker.FileName)
 
+
         If IO.File.Exists(mFilePath) Then
           mPDFAmalg.ImportPDFDocument(mFilePath)
         End If

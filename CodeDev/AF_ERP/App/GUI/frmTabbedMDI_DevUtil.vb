@@ -494,6 +494,7 @@ Public Class frmTabbedMDI_DevUtil
     ''//Load stockItems except Timber
     mdsoStockItem = New dsoStock(mDBConn)
     mWhere = String.Format("Category not in ({0}) ", CInt(eStockItemCategory.Timber))
+
     mdsoStockItem.LoadStockItemsByWhere(mStockItemsCollection, mWhere)
 
     If mStockItemsCollection IsNot Nothing And mStockItemsCollection.Count > 0 Then
@@ -649,7 +650,7 @@ Public Class frmTabbedMDI_DevUtil
           Dim mNewWoodPallet As New dmWoodPallet
           mNewWoodPallet.CardNumber = mTP.Bulto
           mNewWoodPallet.CreatedDate = Now
-          mNewWoodPallet.LocationID = eLocations.AgroForestal
+          mNewWoodPallet.LocationID = mTP.LocationID
           mNewWoodPallet.PalletType = eStockItemTypeTimberWood.Primera
           mListBultos.Add(mTP.Bulto)
           mNewListWoodPallet.Add(mNewWoodPallet)
@@ -686,15 +687,15 @@ Public Class frmTabbedMDI_DevUtil
               AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mFoundSI)
             End If
             mNewWPI.Description = mFoundSI.Description
-              mNewWPI.Length = mTemPallet.Largo
-              mNewWPI.Thickness = mTemPallet.Grosor
-              mNewWPI.Width = mTemPallet.Ancho
-              mNewWPI.StockItemID = mFoundSI.StockItemID
-              mNewWPI.StockCode = mFoundSI.StockCode
-              mNewWPI.Quantity = mTemPallet.Cantidad
-              mNewWPI.QuantityUsed = 0
-              mNewWPI.OutstandingQty = mNewWPI.Quantity - mNewWPI.QuantityUsed
-              mWP.WoodPalletItems.Add(mNewWPI)
+            mNewWPI.Length = mTemPallet.Largo
+            mNewWPI.Thickness = mTemPallet.Grosor
+            mNewWPI.Width = mTemPallet.Ancho
+            mNewWPI.StockItemID = mFoundSI.StockItemID
+            mNewWPI.StockCode = mFoundSI.StockCode
+            mNewWPI.Quantity = mTemPallet.Cantidad
+            mNewWPI.QuantityUsed = 0
+            mNewWPI.OutstandingQty = mNewWPI.Quantity - mNewWPI.QuantityUsed
+            mWP.WoodPalletItems.Add(mNewWPI)
 
           End If
 
@@ -721,5 +722,24 @@ Public Class frmTabbedMDI_DevUtil
     Finally
       If mDBConn.IsConnected Then mDBConn.Disconnect()
     End Try
+  End Sub
+
+  Private Sub bbtnUpdatePONetValue_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnUpdatePONetValue.LinkClicked
+    Dim mDBConn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mdso As New dsoPurchasing(mDBConn)
+    Dim mColPOs As New colPurchaseOrders
+
+
+    mDBConn.Connect()
+
+    mdso.LoadPurchaseOrderCollectionDown(mColPOs, "")
+
+    For Each mPO As dmPurchaseOrder In mColPOs
+
+      mPO.TotalNetValue = mPO.CalculateNetValue
+      mdso.SavePurchaseOrderDownNEW(mPO)
+    Next
+
+
   End Sub
 End Class

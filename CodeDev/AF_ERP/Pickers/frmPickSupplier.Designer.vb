@@ -23,20 +23,26 @@ Partial Class frmPickSupplier
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Me.grdItemList = New DevExpress.XtraGrid.GridControl()
-    Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcAddress = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.bbtnNewSupplier = New DevExpress.XtraBars.BarButtonItem()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickSupplier))
+        Me.grdItemList = New DevExpress.XtraGrid.GridControl()
+        Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcCompanyName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAddress = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAccountCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repItemSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.bbtnNewSupplier = New DevExpress.XtraBars.BarButtonItem()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repItemSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,7 +123,7 @@ Partial Class frmPickSupplier
         'repItemSelect
         '
         Me.repItemSelect.AutoHeight = False
-        Me.repItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.repItemSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "Seleccionar", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repItemSelect.Name = "repItemSelect"
         '
         'BarManager1
@@ -191,6 +197,7 @@ Partial Class frmPickSupplier
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmPickSupplier"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Seleccionar Proveedor"

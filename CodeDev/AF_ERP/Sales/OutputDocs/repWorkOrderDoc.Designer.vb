@@ -32,7 +32,7 @@ Partial Public Class repWorkOrderDoc
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.xtcTotalBoardFeet = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xtcRequiredDate = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcPurchasingDate = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.xtcDescription = New DevExpress.XtraReports.UI.XRTableCell()
@@ -63,8 +63,9 @@ Partial Public Class repWorkOrderDoc
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.xrsubSigns = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,13 +151,13 @@ Partial Public Class repWorkOrderDoc
         Me.XrTableCell15.StylePriority.UseBackColor = False
         Me.XrTableCell15.StylePriority.UseFont = False
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
-        Me.XrTableCell15.Text = "Fecha Compromiso"
+        Me.XrTableCell15.Text = "Fecha Compra"
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell15.Weight = 0.79823531300964456R
         '
         'XrTableRow10
         '
-        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcTotalBoardFeet, Me.xtcRequiredDate})
+        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcTotalBoardFeet, Me.xtcPurchasingDate})
         Me.XrTableRow10.Name = "XrTableRow10"
         Me.XrTableRow10.Weight = 1.0R
         '
@@ -169,14 +170,15 @@ Partial Public Class repWorkOrderDoc
         Me.xtcTotalBoardFeet.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.xtcTotalBoardFeet.Weight = 0.71508534196675189R
         '
-        'xtcRequiredDate
+        'xtcPurchasingDate
         '
-        Me.xtcRequiredDate.Font = New System.Drawing.Font("Cambria", 8.0!)
-        Me.xtcRequiredDate.Name = "xtcRequiredDate"
-        Me.xtcRequiredDate.StylePriority.UseFont = False
-        Me.xtcRequiredDate.StylePriority.UseTextAlignment = False
-        Me.xtcRequiredDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.xtcRequiredDate.Weight = 0.798234693962616R
+        Me.xtcPurchasingDate.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcPurchasingDate.Name = "xtcPurchasingDate"
+        Me.xtcPurchasingDate.NullValueText = "  "
+        Me.xtcPurchasingDate.StylePriority.UseFont = False
+        Me.xtcPurchasingDate.StylePriority.UseTextAlignment = False
+        Me.xtcPurchasingDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.xtcPurchasingDate.Weight = 0.798234693962616R
         '
         'XrTable4
         '
@@ -462,9 +464,36 @@ Partial Public Class repWorkOrderDoc
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.xrsubSigns})
-        Me.ReportFooter.HeightF = 167.7917!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrPageInfo1, Me.XrLine1})
+        Me.ReportFooter.HeightF = 32.99999!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
+        Me.ReportFooter.PrintAtBottom = True
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(363.3255!, 9.999974!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(233.3662!, 23.00002!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "Impreso el:  "
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrPageInfo1.Format = "{0:dddd, d 'de' MMMM 'de' yyyy HH:mm}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(613.1667!, 9.999974!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(205.8334!, 23.0!)
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLine1
         '
@@ -483,12 +512,6 @@ Partial Public Class repWorkOrderDoc
         Me.XrLine1.StylePriority.UseBorders = False
         Me.XrLine1.StylePriority.UseBorderWidth = False
         Me.XrLine1.StylePriority.UseForeColor = False
-        '
-        'xrsubSigns
-        '
-        Me.xrsubSigns.LocationFloat = New DevExpress.Utils.PointFloat(311.0625!, 28.54606!)
-        Me.xrsubSigns.Name = "xrsubSigns"
-        Me.xrsubSigns.SizeF = New System.Drawing.SizeF(507.9377!, 139.2456!)
         '
         'repWorkOrderDoc
         '
@@ -520,7 +543,7 @@ Partial Public Class repWorkOrderDoc
     Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents xtcTotalBoardFeet As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents xtcRequiredDate As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xtcPurchasingDate As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents xtcDescription As DevExpress.XtraReports.UI.XRTableCell
@@ -548,6 +571,7 @@ Partial Public Class repWorkOrderDoc
     Friend WithEvents XrTableRow6 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents xtcProjectName As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xtcOTNumber As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents xrsubSigns As DevExpress.XtraReports.UI.XRSubreport
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class

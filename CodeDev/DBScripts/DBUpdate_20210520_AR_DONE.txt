@@ -1,0 +1,20 @@
+
+ALTER view [dbo].[vwSalesOrderPhaseItemMatReqSum]
+as
+
+select 
+WOA.SalesOrderPhaseItemID,
+sum(si.AverageCost * isnull(MR.Quantity,0) * (WOA.QuantityRequired/WO.Quantity)) as SOPItemMatReqCost,
+sum(si.AverageCost * isnull(MR.PickedQty,0) * (WOA.QuantityRequired/WO.Quantity)) as SOPItemPickMatReqCost
+
+from WorkorderAllocation WOA
+Inner Join WorkOrder WO on Wo.WorkOrderID = woa.WorkOrderID and WO.Quantity <> 0
+left Join MaterialRequirement MR on WO.WorkOrderID = MR.ObjectID and MR.MaterialRequirementType = 2 And MR.ObjectType = 2
+Inner Join StockItem SI on MR.StockItemID = SI.StockItemID
+
+Group by woa.SalesOrderPhaseItemID
+GO
+
+update StockItem
+set AverageCost=StdCost
+where isnull(AverageCost,0)=0

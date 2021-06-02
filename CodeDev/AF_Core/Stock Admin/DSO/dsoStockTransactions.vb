@@ -1568,7 +1568,7 @@ Public Class dsoStockTransactions
     Dim mExchangeRate As Decimal
     Dim mDefaultCurrencty As Integer
     Dim mAverageCost As Decimal
-
+    Dim mIsConvertedIntoDolla As Boolean = False
     Try
       If pDBConn.Connect() Then
         mTranLogs = New colStockItemTransactionLogInfos
@@ -1628,15 +1628,21 @@ Public Class dsoStockTransactions
 
               Else ''If is USD
                 mTran.TransactionValuationDollar = mTran.TransQuantity * mPODeliveryUnitCost
-                mTran.TransactionValuation = (mTran.TransQuantity * mPODeliveryUnitCost) / mExchangeRate
+                mTran.TransactionValuation = (mTran.TransQuantity * mPODeliveryUnitCost) * mExchangeRate
 
                 '// Now modify the Current Unit Cost
                 mCurrentTotalQty = mCurrentTotalQty + mTran.TransQuantity
-                mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuationDollar
+                mCurrentTotalValue = mCurrentTotalValue + mTran.TransactionValuation
+                mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty)
 
-                If mCurrentTotalQty > 0 Then
-                  mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty) * mExchangeRate
-                End If
+                'If mCurrentTotalQty > 0 Then
+                '  If mIsConvertedIntoDolla = False Then
+                '    mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty) * mExchangeRate
+                '    mIsConvertedIntoDolla = True
+                '  Else
+                '    mCurrentUnitCost = (mCurrentTotalValue / mCurrentTotalQty) * mExchangeRate
+                '  End If
+                'End If
 
               End If
               mCurrentUnitCost = Math.Round(mCurrentUnitCost, 4, MidpointRounding.AwayFromZero)

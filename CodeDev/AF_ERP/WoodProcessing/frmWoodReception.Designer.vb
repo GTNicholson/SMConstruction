@@ -33,6 +33,7 @@ Partial Class frmWoodReception
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWoodReception))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.grpSourcePallet = New DevExpress.XtraEditors.GroupControl()
@@ -654,6 +655,7 @@ Partial Class frmWoodReception
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.BarDockControl1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWoodReception"
         Me.Text = "Recepción de Madera"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

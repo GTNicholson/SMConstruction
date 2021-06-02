@@ -555,6 +555,25 @@ Public Class dsoSalesOrder : Inherits dsoBase
     End Try
   End Function
 
+  Public Function GetSalesOrderIDBySalesOrderPhaseItemID(ByVal vSalesOrderPhaseItemID As Integer) As Integer
+    Dim mRetVal As Integer
+    Dim mSQL As String = ""
+    Try
+      If pDBConn.Connect Then
+
+        mSQL = "select distinct SalesOrderID from SalesOrderPhase where SalesOrderPhaseID=" & vSalesOrderPhaseItemID
+
+        mRetVal = pDBConn.ExecuteScalar(mSQL)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
 
   Public Function SaveCustomerDown(ByRef rCustomer As dmCustomer) As Boolean
     Dim mRetVal As Boolean

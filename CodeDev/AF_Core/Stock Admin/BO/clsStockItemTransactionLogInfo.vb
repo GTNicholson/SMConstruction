@@ -544,6 +544,11 @@ Public Class clsStockItemTransactionLogInfo
 
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''Supplier
+
+        Case eObjectType.WoodPallet
+          mRetVal = pSalesOrder.ProjectName
+
+
       End Select
       Return mRetVal
     End Get

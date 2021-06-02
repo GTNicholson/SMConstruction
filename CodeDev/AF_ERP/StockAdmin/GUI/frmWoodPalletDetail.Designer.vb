@@ -69,6 +69,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcFarm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoSelectWoodPallet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.grpWoodPallet = New DevExpress.XtraEditors.GroupControl()
         Me.bbtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -105,13 +107,12 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.repoChkIsSelected = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.dteDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.lblDate = New DevExpress.XtraEditors.LabelControl()
         Me.txtWoodRef = New DevExpress.XtraEditors.TextEdit()
         Me.lblWoodPalletID = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.repoChkIsSelected = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +121,7 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPalletGeneral.SuspendLayout()
         CType(Me.grdWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoSelectWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpWoodPallet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpWoodPallet.SuspendLayout()
         CType(Me.cbothickness.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,10 +138,10 @@ Partial Class frmWoodPalletDetail
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoChkIsSelected, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.repoChkIsSelected, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -174,7 +176,7 @@ Partial Class frmWoodPalletDetail
         'bbtnPickWoodPallet
         '
         Me.bbtnPickWoodPallet.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.bbtnPickWoodPallet.Caption = "Despachar Pallet"
+        Me.bbtnPickWoodPallet.Caption = "Enviar Bulto a Producción"
         Me.bbtnPickWoodPallet.Id = 4
         Me.bbtnPickWoodPallet.Name = "bbtnPickWoodPallet"
         '
@@ -198,7 +200,7 @@ Partial Class frmWoodPalletDetail
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1484, 30)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1484, 33)
         '
         'barDockControlBottom
         '
@@ -212,17 +214,17 @@ Partial Class frmWoodPalletDetail
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 812)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 809)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1484, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1484, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 812)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 809)
         '
         'bbtnAddNew
         '
@@ -243,7 +245,7 @@ Partial Class frmWoodPalletDetail
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlTop.Manager = Nothing
         Me.barDockControlTop.Size = New System.Drawing.Size(1484, 0)
         '
@@ -251,13 +253,13 @@ Partial Class frmWoodPalletDetail
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 30)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 33)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.grpWoodPalletGeneral)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpWoodPallet)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1484, 812)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1484, 809)
         Me.SplitContainerControl1.SplitterPosition = 251
         Me.SplitContainerControl1.TabIndex = 23
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -287,10 +289,11 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletInfo.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodPalletInfo.EmbeddedNavigator.Buttons.Remove.Visible = False
         Me.grdWoodPalletInfo.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 24)
+        Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodPalletInfo.MainView = Me.gvWoodPalletInfo
         Me.grdWoodPalletInfo.Name = "grdWoodPalletInfo"
-        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1480, 225)
+        Me.grdWoodPalletInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectWoodPallet})
+        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1480, 223)
         Me.grdWoodPalletInfo.TabIndex = 12
         Me.grdWoodPalletInfo.UseEmbeddedNavigator = True
         Me.grdWoodPalletInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletInfo})
@@ -309,10 +312,9 @@ Partial Class frmWoodPalletDetail
         Me.gvWoodPalletInfo.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvWoodPalletInfo.Appearance.OddRow.Options.UseBackColor = True
         Me.gvWoodPalletInfo.Appearance.OddRow.Options.UseFont = True
-        Me.gvWoodPalletInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn6, Me.gcFarm, Me.GridColumn7})
+        Me.gvWoodPalletInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn6, Me.gcFarm, Me.GridColumn7, Me.GridColumn8})
         Me.gvWoodPalletInfo.GridControl = Me.grdWoodPalletInfo
         Me.gvWoodPalletInfo.Name = "gvWoodPalletInfo"
-        Me.gvWoodPalletInfo.OptionsBehavior.ReadOnly = True
         Me.gvWoodPalletInfo.OptionsView.EnableAppearanceEvenRow = True
         Me.gvWoodPalletInfo.OptionsView.EnableAppearanceOddRow = True
         Me.gvWoodPalletInfo.OptionsView.ShowAutoFilterRow = True
@@ -325,8 +327,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 51
+        Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.Width = 110
         '
         'GridColumn2
         '
@@ -335,8 +337,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 72
+        Me.GridColumn2.VisibleIndex = 5
+        Me.GridColumn2.Width = 156
         '
         'GridColumn12
         '
@@ -345,8 +347,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 3
-        Me.GridColumn12.Width = 74
+        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.Width = 161
         '
         'GridColumn13
         '
@@ -355,8 +357,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 152
+        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.Width = 332
         '
         'GridColumn14
         '
@@ -365,8 +367,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
-        Me.GridColumn14.Width = 69
+        Me.GridColumn14.VisibleIndex = 6
+        Me.GridColumn14.Width = 150
         '
         'GridColumn6
         '
@@ -375,7 +377,8 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.Width = 163
         '
         'gcFarm
         '
@@ -384,7 +387,8 @@ Partial Class frmWoodPalletDetail
         Me.gcFarm.Name = "gcFarm"
         Me.gcFarm.OptionsColumn.ReadOnly = True
         Me.gcFarm.Visible = True
-        Me.gcFarm.VisibleIndex = 6
+        Me.gcFarm.VisibleIndex = 7
+        Me.gcFarm.Width = 163
         '
         'GridColumn7
         '
@@ -395,7 +399,24 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.Width = 181
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Selec."
+        Me.GridColumn8.ColumnEdit = Me.repoSelectWoodPallet
+        Me.GridColumn8.FieldName = "IsSelected"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 47
+        '
+        'repoSelectWoodPallet
+        '
+        Me.repoSelectWoodPallet.AutoHeight = False
+        Me.repoSelectWoodPallet.Name = "repoSelectWoodPallet"
         '
         'grpWoodPallet
         '
@@ -617,7 +638,7 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletItemInfos.MainView = Me.gvWoodPalletItemInfo
         Me.grdWoodPalletItemInfos.Name = "grdWoodPalletItemInfos"
         Me.grdWoodPalletItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.repoQtyAdjust, Me.repoChkIsSelected})
-        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1475, 470)
+        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1475, 464)
         Me.grdWoodPalletItemInfos.TabIndex = 9
         Me.grdWoodPalletItemInfos.UseEmbeddedNavigator = True
         Me.grdWoodPalletItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletItemInfo})
@@ -637,7 +658,7 @@ Partial Class frmWoodPalletDetail
         Me.gvWoodPalletItemInfo.Appearance.OddRow.Options.UseBackColor = True
         Me.gvWoodPalletItemInfo.Appearance.OddRow.Options.UseFont = True
         Me.gvWoodPalletItemInfo.ColumnPanelRowHeight = 34
-        Me.gvWoodPalletItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.gcThickness, Me.gcWidth, Me.gcLength, Me.gcQuantity, Me.GridColumn10, Me.GridColumn11, Me.gcM3, Me.gcPT, Me.gcToProcessQty, Me.GridColumn9, Me.GridColumn8})
+        Me.gvWoodPalletItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.gcThickness, Me.gcWidth, Me.gcLength, Me.gcQuantity, Me.GridColumn10, Me.GridColumn11, Me.gcM3, Me.gcPT, Me.gcToProcessQty, Me.GridColumn9})
         Me.gvWoodPalletItemInfo.GridControl = Me.grdWoodPalletItemInfos
         Me.gvWoodPalletItemInfo.Name = "gvWoodPalletItemInfo"
         Me.gvWoodPalletItemInfo.OptionsView.EnableAppearanceEvenRow = True
@@ -655,7 +676,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 107
         '
         'GridColumn4
@@ -667,7 +688,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 372
         '
         'GridColumn5
@@ -691,7 +712,7 @@ Partial Class frmWoodPalletDetail
         Me.gcThickness.Name = "gcThickness"
         Me.gcThickness.OptionsColumn.ReadOnly = True
         Me.gcThickness.Visible = True
-        Me.gcThickness.VisibleIndex = 4
+        Me.gcThickness.VisibleIndex = 3
         Me.gcThickness.Width = 67
         '
         'gcWidth
@@ -703,7 +724,7 @@ Partial Class frmWoodPalletDetail
         Me.gcWidth.Name = "gcWidth"
         Me.gcWidth.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcWidth.Visible = True
-        Me.gcWidth.VisibleIndex = 5
+        Me.gcWidth.VisibleIndex = 4
         Me.gcWidth.Width = 60
         '
         'gcLength
@@ -715,7 +736,7 @@ Partial Class frmWoodPalletDetail
         Me.gcLength.Name = "gcLength"
         Me.gcLength.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcLength.Visible = True
-        Me.gcLength.VisibleIndex = 6
+        Me.gcLength.VisibleIndex = 5
         Me.gcLength.Width = 52
         '
         'gcQuantity
@@ -732,7 +753,7 @@ Partial Class frmWoodPalletDetail
         Me.gcQuantity.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcQuantity.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityUI", "{0:n0}")})
         Me.gcQuantity.Visible = True
-        Me.gcQuantity.VisibleIndex = 7
+        Me.gcQuantity.VisibleIndex = 6
         Me.gcQuantity.Width = 78
         '
         'repoQtyAdjust
@@ -754,7 +775,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityUsedUI", "{0:n0}")})
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 8
+        Me.GridColumn10.VisibleIndex = 7
         Me.GridColumn10.Width = 73
         '
         'GridColumn11
@@ -764,7 +785,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.VisibleIndex = 0
         Me.GridColumn11.Width = 113
         '
         'repoAddDuplicated
@@ -788,7 +809,7 @@ Partial Class frmWoodPalletDetail
         Me.gcM3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcM3", "{0:n2}")})
         Me.gcM3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcM3.Visible = True
-        Me.gcM3.VisibleIndex = 10
+        Me.gcM3.VisibleIndex = 9
         Me.gcM3.Width = 107
         '
         'gcPT
@@ -806,7 +827,7 @@ Partial Class frmWoodPalletDetail
         Me.gcPT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcPT", "{0:n2}")})
         Me.gcPT.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcPT.Visible = True
-        Me.gcPT.VisibleIndex = 11
+        Me.gcPT.VisibleIndex = 10
         Me.gcPT.Width = 107
         '
         'gcToProcessQty
@@ -818,7 +839,7 @@ Partial Class frmWoodPalletDetail
         Me.gcToProcessQty.Name = "gcToProcessQty"
         Me.gcToProcessQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcToProcessQty.Visible = True
-        Me.gcToProcessQty.VisibleIndex = 12
+        Me.gcToProcessQty.VisibleIndex = 11
         Me.gcToProcessQty.Width = 165
         '
         'GridColumn9
@@ -832,7 +853,7 @@ Partial Class frmWoodPalletDetail
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.VisibleIndex = 8
         Me.GridColumn9.Width = 120
         '
         'RepositoryItemTextEdit1
@@ -852,6 +873,11 @@ Partial Class frmWoodPalletDetail
         Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "#.##"
         Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'repoChkIsSelected
+        '
+        Me.repoChkIsSelected.AutoHeight = False
+        Me.repoChkIsSelected.Name = "repoChkIsSelected"
         '
         'dteDateCreated
         '
@@ -906,22 +932,6 @@ Partial Class frmWoodPalletDetail
         Me.LabelControl2.TabIndex = 2
         Me.LabelControl2.Text = "Referencia"
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Selec."
-        Me.GridColumn8.ColumnEdit = Me.repoChkIsSelected
-        Me.GridColumn8.FieldName = "IsSelected"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        Me.GridColumn8.Width = 35
-        '
-        'repoChkIsSelected
-        '
-        Me.repoChkIsSelected.AutoHeight = False
-        Me.repoChkIsSelected.Name = "repoChkIsSelected"
-        '
         'frmWoodPalletDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -934,8 +944,9 @@ Partial Class frmWoodPalletDetail
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.BarDockControl1)
         Me.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWoodPalletDetail"
-        Me.Text = "Pallets de Madera"
+        Me.Text = "Bultos de Madera"
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -944,6 +955,7 @@ Partial Class frmWoodPalletDetail
         Me.grpWoodPalletGeneral.ResumeLayout(False)
         CType(Me.grdWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWoodPalletInfo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoSelectWoodPallet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpWoodPallet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpWoodPallet.ResumeLayout(False)
         Me.grpWoodPallet.PerformLayout()
@@ -961,10 +973,10 @@ Partial Class frmWoodPalletDetail
         CType(Me.repoAddDuplicated, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoChkIsSelected, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.repoChkIsSelected, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1035,6 +1047,7 @@ Partial Class frmWoodPalletDetail
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboSpecies As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents repoQtyAdjust As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents repoChkIsSelected As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoSelectWoodPallet As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

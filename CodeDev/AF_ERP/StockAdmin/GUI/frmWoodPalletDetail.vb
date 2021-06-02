@@ -741,12 +741,52 @@ Public Class frmWoodPalletDetail
   End Sub
 
   Private Sub bbtnPickWoodPallet_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnPickWoodPallet.ItemClick
+    Dim mQty As Integer
+
     UpdateObjects()
     pFormController.SaveObject()
-    frmPickWoodMaterial.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.CurrentWoodPallet, eFormMode.eFMFormModeAdd)
+
+    For Each mWP As dmWoodPallet In pFormController.WoodPallets
+      If mWP.IsSelected Then
+        mQty += 1
+      End If
+    Next
+
+    If mQty = 0 Then
+      frmPickWoodMaterial.OpenAsModal(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.CurrentWoodPallet, eFormMode.eFMFormModeAdd, False)
+
+    Else
+      frmPickWoodMaterial.OpenAsModalSelectedWoodPallets(Me, pFormController.DBConn, pFormController.RTISGlobal, 0, pFormController.WoodPallets, eFormMode.eFMFormModeAdd, True)
+
+    End If
+
+    For Each mWP In pFormController.WoodPallets
+      mWP.IsSelected = False
+    Next
     pFormController.LoadObject()
     grdWoodPalletInfo.DataSource = pFormController.WoodPallets
     grdWoodPalletInfo.RefreshDataSource()
+    RefreshButtonCaption()
+  End Sub
+
+  Private Sub RefreshButtonCaption()
+    Dim mQty As Integer
+    If pFormController.WoodPallets IsNot Nothing Then
+
+      For Each mWP In pFormController.WoodPallets
+        If mWP.IsSelected Then
+          mQty += 1
+
+        End If
+      Next
+      If mQty = 0 Then
+        bbtnPickWoodPallet.Caption = "Enviar Bulto a Producción"
+      Else
+        bbtnPickWoodPallet.Caption = String.Format("Enviar {0} Bulto a Producción", mQty)
+
+      End If
+    End If
+
   End Sub
 
   Private Sub grpWoodPalletGeneral_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodPalletGeneral.CustomButtonClick
@@ -794,7 +834,7 @@ Public Class frmWoodPalletDetail
 
       For Each mWoodPalletItemEditor As clsWoodPalletItemEditor In pFormController.WoodPalletItemEditors
 
-        If mWoodPalletItemEditor.WoodPalletItem.Quantity > 0 Then
+        If (mWoodPalletItemEditor.WoodPalletItem.Quantity - mWoodPalletItemEditor.WoodPalletItem.QuantityUsed) > 0 Then
           MessageBox.Show("No puedes archivar este Pallet porque hay madera en uso", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
           ckeArchive.Checked = False
           Exit Sub
@@ -1003,18 +1043,27 @@ Public Class frmWoodPalletDetail
 
 
 
-  Private Sub repoChkIsSelected_EditValueChanged(sender As Object, e As EventArgs) Handles repoChkIsSelected.EditValueChanged
-    Dim mQty
+
+  Private Sub repoSelectWoodPallet_EditValueChanged(sender As Object, e As EventArgs) Handles repoSelectWoodPallet.EditValueChanged
+    Dim mQty As Integer = 0
     Try
-      gvWoodPalletItemInfo.CloseEditor()
+      gvWoodPalletInfo.CloseEditor()
 
-      For Each mWPIE In pFormController.WoodPalletItemEditors
+      For Each mWP In pFormController.WoodPallets
+        If mWP.IsSelected Then
+          mQty += 1
 
+        End If
       Next
+      If mQty = 0 Then
+        bbtnPickWoodPallet.Caption = "Enviar Bulto a Producción"
+      Else
+        bbtnPickWoodPallet.Caption = String.Format("Enviar {0} Bulto a Producción", mQty)
+
+      End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 
     End Try
-
   End Sub
 End Class

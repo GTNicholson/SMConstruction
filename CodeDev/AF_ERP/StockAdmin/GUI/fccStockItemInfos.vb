@@ -223,7 +223,7 @@ Public Class fccStockItemInfos
     Dim mdso As dsoStock
     Dim mWhere As String = "StockItemID = " & vStockItemID & " and Quantity<>0 and locationID<>0 and WoodPalletID = " & vWoodPalletID
     mdso = New dsoStock(pDBConn)
-    mdso.LoadWoodPalletItemInfosByStockItemID(rWoodPalletItemInfos, mWhere)
+    mdso.LoadWoodPalletItemInfosByWhere(rWoodPalletItemInfos, mWhere)
   End Sub
 
   Public Function LoadWoodPalletItemContentByWhere(ByRef rWoodPalletItemContents As colWoodPalletItemContents, ByVal vWhere As String) As Boolean

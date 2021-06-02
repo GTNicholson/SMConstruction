@@ -149,7 +149,7 @@ Partial Class uctFileControl
         '
         'gcIncludeInPack
         '
-        Me.gcIncludeInPack.Caption = "Pub."
+        Me.gcIncludeInPack.Caption = "Impr."
         Me.gcIncludeInPack.FieldName = "IncludeInPack"
         Me.gcIncludeInPack.Name = "gcIncludeInPack"
         Me.gcIncludeInPack.Visible = True

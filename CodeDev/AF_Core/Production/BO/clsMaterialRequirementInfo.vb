@@ -575,6 +575,16 @@ Public Class clsMaterialRequirementInfo
     End Get
   End Property
 
+  Public ReadOnly Property QuantityFraction As String
+    Get
+      Dim mRetVal As String
+
+      mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+
+      Return mRetVal
+    End Get
+  End Property
+
   Public ReadOnly Property TransactionValuationDollar As Decimal
     Get
       Dim mRetval As Decimal = 0

@@ -23,6 +23,7 @@ Partial Class frmWoodSalesOrder
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWoodSalesOrder))
         Me.grpnlOrderDetails = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.cboOrderTypeID = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -265,7 +266,7 @@ Partial Class frmWoodSalesOrder
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(879, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(879, 33)
         '
         'barDockControlBottom
         '
@@ -279,17 +280,17 @@ Partial Class frmWoodSalesOrder
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 711)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 708)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(879, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(879, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 711)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 708)
         '
         'barbtnAddCustomerPurchaseOrder
         '
@@ -874,6 +875,7 @@ Partial Class frmWoodSalesOrder
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWoodSalesOrder"
         Me.Text = "Venta de Madera"
         CType(Me.grpnlOrderDetails, System.ComponentModel.ISupportInitialize).EndInit()

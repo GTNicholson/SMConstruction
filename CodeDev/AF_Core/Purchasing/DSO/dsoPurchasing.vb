@@ -7,6 +7,24 @@ Public Class dsoPurchasing
     pDBConn = vDBConn
   End Sub
 
+  Public Function LoadPurchaseOrderInfosOnly(ByRef rPurchaseOrderInfos As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
+    Dim mdtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
+
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = mdtoPurchaseOrderInfo.LoadPurchaseOrderInfoCollection(rPurchaseOrderInfos, vWhere)
+
+
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
 
 
   Public Function LoadPurchaseOrderInfosDown(ByRef rPurchaseOrderInfos As colPurchaseOrderInfos, ByVal vWhere As String) As Boolean
@@ -627,7 +645,7 @@ Public Class dsoPurchasing
     Return mInvoiceNo
   End Function
 
-  Public Function LoadPurchaseOrderCollection(ByRef rPurchaseOrders As colPurchaseOrders, ByVal vWhere As String) As Boolean
+  Public Function LoadPurchaseOrderCollectionDown(ByRef rPurchaseOrders As colPurchaseOrders, ByVal vWhere As String) As Boolean
     Dim mdtoPurchaseOrder As New dtoPurchaseOrder(pDBConn)
     Dim mdtoPurchaseORderItem As New dtoPurchaseOrderItem(pDBConn)
     Dim mdtoPurchaseOrderItemAllocation As New dtoPurchaseOrderItemAllocation(pDBConn)
@@ -635,6 +653,24 @@ Public Class dsoPurchasing
     Try
       pDBConn.Connect()
       mOK = mdtoPurchaseOrder.LoadPurchaseOrderCollection(rPurchaseOrders, vWhere)
+
+      If mOK Then
+        For Each mPO As dmPurchaseOrder In rPurchaseOrders
+
+          mOK = mdtoPurchaseORderItem.LoadPurchaseOrderItemCollection(mPO.PurchaseOrderItems, mPO.PurchaseOrderID)
+
+          For Each mPOI As dmPurchaseOrderItem In mPO.PurchaseOrderItems
+
+            If mPOI IsNot Nothing Then
+
+              mdtoPurchaseOrderItemAllocation.LoadPurchaseOrderItemAllocationCollection(mPOI.PurchaseOrderItemAllocations, mPOI.PurchaseOrderItemID)
+            End If
+          Next
+
+        Next
+      End If
+
+
 
     Catch ex As Exception
       mOK = False

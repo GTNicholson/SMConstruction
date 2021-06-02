@@ -4,6 +4,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Views.Base
 Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 Imports RTIS.Elements
 
 Public Class frmSalesOrderDetailHouses
@@ -30,7 +31,10 @@ Public Class frmSalesOrderDetailHouses
     Add = 1
     Delete = 2
   End Enum
-
+  Private Enum eLanguageReportOption
+    Spanish = 1
+    English = 2
+  End Enum
   Public Sub New()
 
     ' Esta llamada es exigida por el diseñador.
@@ -102,14 +106,14 @@ Public Class frmSalesOrderDetailHouses
 
 
       pFormController.LoadObjects()
+      SetupPermissions()
       LoadGrids()
-
+      rgLanguageOptions.SelectedIndex = 0
       RefreshHouseTabs()
       xtcOrderType.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
       LoadCombos()
       RefreshControls()
 
-      If mOK Then RefreshControls()
       If pFormController.SalesOrder.OrderNo <> "" Then
         Me.Text = "Detalle de Venta - " & pFormController.SalesOrder.OrderNo
 
@@ -135,6 +139,11 @@ Public Class frmSalesOrderDetailHouses
 
 
 
+
+  End Sub
+
+  Private Sub SetupPermissions()
+    Dim mStockItemManagerPermission As ePermissionCode = My.Application.RTISUserSession.ActivityPermission(eActivityCode.StructureWorkOrder)
 
   End Sub
 
@@ -430,15 +439,12 @@ Public Class frmSalesOrderDetailHouses
     Try
       With pFormController.SalesOrder
         btnedCustomer.Text = .Customer.CompanyName
-        txtAccountRef.Text = .Customer.AccountRef
+
         txtMainTown.Text = .Customer.MainTown
-        txtPaymentTermsType.Text = .Customer.PaymentTermsType
         'txtSalesAreaID.Text = .Customer.SalesAreaID
         txtSalesAreaID.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Country).ItemValueToDisplayValue(.Customer.SalesAreaID)
-        txtPaymentTermsType.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.PaymentTermsType).ItemValueToDisplayValue(.Customer.PaymentTermsType)
 
         'CustomerStatusID.Text = clsEnumsConstants.EnumToVIs(GetType(eCustomerStatus)).ItemValueToDisplayValue(.Customer.CustomerStatusID)
-        CustomerStatusID.Text = clsEnumsConstants.GetEnumDescription(GetType(eCustomerStatus), CType(.Customer.CustomerStatusID, eCustomerStatus))
 
         'CustomerStatusID.Text = .Customer.CustomerStatusID
 
@@ -481,8 +487,8 @@ Public Class frmSalesOrderDetailHouses
     Try
 
 
-      Select Case e.Button.Kind
-        Case ButtonPredefines.Ellipsis
+      Select Case e.Button.Tag
+        Case "EditOT"
           mProductReqProc = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
           gvProductsRequired.CloseEditor()
           If mProductReqProc IsNot Nothing Then
@@ -501,7 +507,7 @@ Public Class frmSalesOrderDetailHouses
 
           End If
 
-        Case ButtonPredefines.Plus
+        Case "Create"
           Dim mTotalQuantityToProcess As Integer
 
           gvProductsRequired.CloseEditor()
@@ -542,7 +548,7 @@ Public Class frmSalesOrderDetailHouses
         Case ButtonPredefines.Delete
 
 
-        Case ButtonPredefines.Search
+        Case "Search"
 
           mPRP = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
           gvProductsRequired.CloseEditor()
@@ -701,6 +707,8 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub btneSalesOrderDocument_Click(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btneSalesOrderDocument.ButtonClick
+    Dim mLanguageOption As Integer
+
     If IsNothing(pFormController.SalesOrder.Customer) Then
       MessageBox.Show("Un cliente debe de estar enlazado a la Orden de Venta", "Error al ingresar la información")
       Return
@@ -708,10 +716,11 @@ Public Class frmSalesOrderDetailHouses
 
     Try
       Dim mFilePath As String = String.Empty
+      mLanguageOption = rgLanguageOptions.EditValue
       UpdateObjects()
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
-          AddSalesOrderDocument()
+          AddSalesOrderDocument(mLanguageOption)
           ViewSalesOrderDocument()
           RefreshControls()
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Delete
@@ -726,9 +735,9 @@ Public Class frmSalesOrderDetailHouses
     End Try
   End Sub
 
-  Public Sub AddSalesOrderDocument()
+  Public Sub AddSalesOrderDocument(ByVal vLanguageOption As Integer)
     Dim mValidate As clsValidate
-    Dim mReport As repSalesOrder
+    Dim mReport As DevExpress.XtraReports.UI.XtraReport = Nothing
     Dim mFilePath As String
 
     mValidate = pFormController.ValidateObject()
@@ -736,7 +745,7 @@ Public Class frmSalesOrderDetailHouses
 
       CheckSave(False)
 
-      mReport = GetReport(eDocumentType.SalesOrder)
+      mReport = GetReport(eDocumentType.SalesOrder, vLanguageOption)
 
       CreateReportPDF(eParentType.SalesOrder, eDocumentType.SalesOrder, True, mReport)
 
@@ -748,7 +757,7 @@ Public Class frmSalesOrderDetailHouses
       If IO.File.Exists(mFilePath) Then
         frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
       End If
-      mReport.ClearImages()
+
       mReport.Dispose()
     Else
       MsgBox(mValidate.Msg, MsgBoxStyle.Exclamation, "Problema de Validación")
@@ -773,7 +782,7 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
-  Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
+  Public Function GetReport(ByVal vDocType As eDocumentType, ByVal vLanguageOption As Integer) As DevExpress.XtraReports.UI.XtraReport
     Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
     Dim mWOs As New colSalesOrders
 
@@ -782,7 +791,15 @@ Public Class frmSalesOrderDetailHouses
 
         If pFormController.SalesOrder IsNot Nothing Then
           pFormController.IsVAT = cheIsVAT.EditValue
-          mRetVal = repSalesOrder.GenerateReport(pFormController.SalesOrder, pFormController.IsVAT)
+
+          Select Case vLanguageOption
+            Case eLanguageReportOption.Spanish
+              mRetVal = repSalesOrder_Spanish.GenerateReport(pFormController.SalesOrder, pFormController.IsVAT, vLanguageOption)
+
+            Case eLanguageReportOption.English
+              mRetVal = repSalesOrder_English.GenerateReport(pFormController.SalesOrder, pFormController.IsVAT, vLanguageOption)
+
+          End Select
         End If
 
     End Select
@@ -1382,9 +1399,9 @@ Public Class frmSalesOrderDetailHouses
 
     Try
 
-      Select Case e.Button.Kind
+      Select Case e.Button.Tag
 
-        Case ButtonPredefines.Search
+        Case "Search"
           mProducts = pFormController.GetProductInfos()
 
           mProductPicker = New clsPickerProductItem(mProducts, pFormController.DBConn, pFormController.RTISGlobal)
@@ -1413,7 +1430,7 @@ Public Class frmSalesOrderDetailHouses
           gvProductsRequired.RefreshData()
           RefreshControls()
 
-        Case ButtonPredefines.Ellipsis
+        Case "EditProduct"
           Dim mDialogResult As DialogResult
 
 
@@ -1448,7 +1465,7 @@ Public Class frmSalesOrderDetailHouses
             End If
           End If
 
-        Case ButtonPredefines.Plus
+        Case "Create"
           Dim mDialogResult As DialogResult
 
           mDialogResult = MessageBox.Show("¿Desea crear un nuevo producto?", "Creación de Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Information)

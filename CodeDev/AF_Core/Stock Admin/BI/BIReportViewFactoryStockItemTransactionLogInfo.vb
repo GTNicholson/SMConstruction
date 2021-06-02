@@ -1,7 +1,9 @@
 ﻿Imports RTIS.BIReport
 Imports RTIS.DataLayer
+Imports RTIS.Elements
 
 Public Class BIReportViewStockItemTransactionLogInfo
+  Public Shared IsWood As Boolean
 
   Private Enum eBIStockItemTransactionLogID
     StockTransList = 1
@@ -23,10 +25,13 @@ Public Class BIReportViewStockItemTransactionLogInfo
   End Enum
 
   Public Shared Function CreateBIReportViewStockTransactionLog(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWoodReport As Boolean) As clsBIReportView
+
     Dim mBIReportView As New clsBIReportView
     Dim mLayoutLoader As New clsBILayoutLoaderFromFile
     Dim mConditionSetterList As clsBIConditionSetterList
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
+
+    IsWood = vIsWoodReport
 
     mBIReportView.BIReportSource = StockItemTransactionLogReportSource()
     mBIReportView.DataSourceLoader = New dsoStockTransactionLogItemReportSource(rDBConn, rRTISGlobal, mBIReportView, vIsWoodReport)
@@ -94,40 +99,44 @@ Public Class BIReportViewStockItemTransactionLogInfo
     Dim mRepDDLayout As New dmBIGridLayout
     Dim mRepLayout As New dmBIGridLayout
 
-    mRepDDLayout = New dmBIGridLayout
-    mRepDDLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransList
-    mRepDDLayout.InterfaceType = 1
-    mRepDDLayout.ParentLayoutID = 0
-    mRepDDLayout.LayoutFileName = "BIStockTransactionItemList.xml"
-    mRepDDLayout.LayoutName = "Kardex de Inventario"
-    vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
-    'mRepLayout = New dmBIGridLayout
-    'mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransSummary
-    'mRepLayout.InterfaceType = 0
-    'mRepLayout.ParentLayoutID = 0
-    'mRepLayout.LayoutFileName = "BIStockTransactionItemSummary.xml"
-    'mRepLayout.LayoutName = "Stock Transaction Items Summary"
-    '''mRepLayout.DrillDownLayoutID = eBIStockItemTransactionLogID.StockTransList
-    'mRepLayout.DrillDownLayout = mRepDDLayout
-    'vReportSource.BIGridLayouts.Add(mRepLayout)
 
-    'mRepDDLayout = New dmBIGridLayout
-    'mRepDDLayout.BIGridLayoutID = eBIStockItemTransactionLogID.PickingList
-    'mRepDDLayout.InterfaceType = 1
-    'mRepDDLayout.ParentLayoutID = 0
-    'mRepDDLayout.LayoutFileName = "BIStockTransactionItemList.xml"
-    'mRepDDLayout.LayoutName = "Lista de Salidas de Productos"
-    'vReportSource.BIGridLayouts.Add(mRepDDLayout)
+    If IsWood = True Then
+      mRepDDLayout = New dmBIGridLayout
+      mRepDDLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransList
+      mRepDDLayout.InterfaceType = 1
+      mRepDDLayout.ParentLayoutID = 0
+      mRepDDLayout.LayoutFileName = "BIWoodStockTransactionItemList.xml"
+      mRepDDLayout.LayoutName = "Kardex de Inventario"
+      vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
-    mRepLayout = New dmBIGridLayout
-    mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.PickingSummary
-    mRepLayout.InterfaceType = 0
-    mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BIStockTransactionItemByCategoryAndCustomerSummary.xml"
-    mRepLayout.LayoutName = "Resumen de Salidas por OT"
-    mRepLayout.DrillDownLayout = mRepDDLayout
-    vReportSource.BIGridLayouts.Add(mRepLayout)
+      mRepLayout = New dmBIGridLayout
+      mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.PickingSummary
+      mRepLayout.InterfaceType = 0
+      mRepLayout.ParentLayoutID = 0
+      mRepLayout.LayoutFileName = "BIStockTransactionItemByCategoryAndCustomerSummary.xml"
+      mRepLayout.LayoutName = "Resumen de Salidas por OT"
+      mRepLayout.DrillDownLayout = mRepDDLayout
+      vReportSource.BIGridLayouts.Add(mRepLayout)
+    Else
+      mRepDDLayout = New dmBIGridLayout
+      mRepDDLayout.BIGridLayoutID = eBIStockItemTransactionLogID.StockTransList
+      mRepDDLayout.InterfaceType = 1
+      mRepDDLayout.ParentLayoutID = 0
+      mRepDDLayout.LayoutFileName = "BIStockTransactionItemList.xml"
+      mRepDDLayout.LayoutName = "Kardex de Inventario"
+      vReportSource.BIGridLayouts.Add(mRepDDLayout)
+
+      mRepLayout = New dmBIGridLayout
+      mRepLayout.BIGridLayoutID = eBIStockItemTransactionLogID.PickingSummary
+      mRepLayout.InterfaceType = 0
+      mRepLayout.ParentLayoutID = 0
+      mRepLayout.LayoutFileName = "BIStockTransactionItemByCategoryAndCustomerSummary.xml"
+      mRepLayout.LayoutName = "Resumen de Salidas por OT"
+      mRepLayout.DrillDownLayout = mRepDDLayout
+      vReportSource.BIGridLayouts.Add(mRepLayout)
+    End If
+
 
   End Sub
 
@@ -196,4 +205,6 @@ Public Class BIReportViewStockItemTransactionLogInfo
 
     Return mRepDef
   End Function
+
+
 End Class

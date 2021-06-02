@@ -19,6 +19,7 @@ Public Class frmPickWoodMaterial
   Private pLoadError As Boolean
   Private pForceExit As Boolean = False
 
+
   Private Enum eCurrentDetailMode
     eView = 1
     eEdit = 2
@@ -58,7 +59,7 @@ Public Class frmPickWoodMaterial
 
   End Sub
 
-  Public Shared Sub OpenAsModal(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vPickWoodMaterialID As Integer, ByRef rWoodPallet As dmWoodPallet, ByVal vMode As eFormMode)
+  Public Shared Sub OpenAsModal(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vPickWoodMaterialID As Integer, ByRef rWoodPallet As dmWoodPallet, ByVal vMode As eFormMode, ByVal vIsMultiSelected As Boolean)
     Dim mfrm As frmPickWoodMaterial = Nothing
 
     '' mfrm = GetFormIfLoaded()
@@ -68,13 +69,31 @@ Public Class frmPickWoodMaterial
     '' mfrm.MdiParent = rMDIParent
     mfrm.pFormController = New fccPickWoodMaterial(rDBConn)
     mfrm.pFormController.WoodPallet = rWoodPallet
+    mfrm.pFormController.IsMultiSelected = vIsMultiSelected
+
 
     mfrm.ShowDialog()
     ''Else
     ''mfrm.Focus()
     ''End If
   End Sub
+  Public Shared Sub OpenAsModalSelectedWoodPallets(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vPickWoodMaterialID As Integer, ByRef rWoodPallets As colWoodPallets, ByVal vMode As eFormMode, ByVal vIsMultiSelected As Boolean)
+    Dim mfrm As frmPickWoodMaterial = Nothing
 
+    '' mfrm = GetFormIfLoaded()
+    ''If mfrm Is Nothing Then
+    mfrm = New frmPickWoodMaterial
+    mfrm.FormMode = vMode
+    '' mfrm.MdiParent = rMDIParent
+    mfrm.pFormController = New fccPickWoodMaterial(rDBConn)
+    mfrm.pFormController.WoodPallets = rWoodPallets
+    mfrm.FormController.IsMultiSelected = vIsMultiSelected
+
+    mfrm.ShowDialog()
+    ''Else
+    ''mfrm.Focus()
+    ''End If
+  End Sub
   Private Shared Function GetFormIfLoaded() As frmPickWoodMaterial
 
 
@@ -234,19 +253,48 @@ Public Class frmPickWoodMaterial
     If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
       If pFormController.CurrentWorkOrderInfo.WorkOrderID > 0 Then
         gvWoodPalletItems.CloseEditor()
-        pFormController.WoodPallet.IntoWIPDate = Now
-        pFormController.WoodPallet.WorkOrderID = pFormController.CurrentWorkOrderInfo.WorkOrderID
-        pFormController.WoodPallet.Archive = True
 
-        pFormController.CreateNegativeTransaction()
+        If pFormController.IsMultiSelected Then
 
-        For Each mWPI As dmWoodPalletItem In pFormController.WoodPallet.WoodPalletItems
-          mWPI.QuantityUsed = mWPI.QuantityUsed + mWPI.Quantity
-          mWPI.OutstandingQty = mWPI.Quantity - mWPI.QuantityUsed
-        Next
+          For Each mWP As dmWoodPallet In pFormController.WoodPallets
 
-        pFormController.SaveWoodPallet()
+            If mWP.IsSelected Then
+
+
+              mWP.IntoWIPDate = Now
+              mWP.WorkOrderID = pFormController.CurrentWorkOrderInfo.WorkOrderID
+              mWP.Archive = True
+
+              For Each mWPI As dmWoodPalletItem In mWP.WoodPalletItems
+                mWPI.QuantityUsed = mWPI.QuantityUsed + mWPI.Quantity
+                mWPI.OutstandingQty = mWPI.Quantity - mWPI.QuantityUsed
+              Next
+            End If
+          Next
+          pFormController.CreateNegativeTransactionWoodPallets()
+
+
+
+          pFormController.SaveWoodPalletCollection()
+
+        Else
+          pFormController.WoodPallet.IntoWIPDate = Now
+          pFormController.WoodPallet.WorkOrderID = pFormController.CurrentWorkOrderInfo.WorkOrderID
+          pFormController.WoodPallet.Archive = True
+
+          pFormController.CreateNegativeTransaction()
+
+          For Each mWPI As dmWoodPalletItem In pFormController.WoodPallet.WoodPalletItems
+            mWPI.QuantityUsed = mWPI.QuantityUsed + mWPI.Quantity
+            mWPI.OutstandingQty = mWPI.Quantity - mWPI.QuantityUsed
+          Next
+
+          pFormController.SaveWoodPallet()
+        End If
+
+
       End If
+
     End If
 
     Me.Dispose()

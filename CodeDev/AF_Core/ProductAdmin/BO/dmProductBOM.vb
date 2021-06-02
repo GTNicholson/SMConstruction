@@ -205,7 +205,7 @@ Public Class dmProductBOM : Inherits dmBase
     Get
       Dim mRetVal As Decimal
 
-      mRetVal = clsSMSharedFuncs.CMToInches_AFNew(NetWidth)
+      mRetVal = clsSMSharedFuncs.CMToQuaterInches(pNetWidth)
 
       Return mRetVal
     End Get
@@ -225,7 +225,17 @@ Public Class dmProductBOM : Inherits dmBase
     Get
       Dim mRetVal As Decimal
 
-      mRetVal = clsSMSharedFuncs.CMToInches_AFNew(NetLenght)
+      mRetVal = clsSMSharedFuncs.CMToHalfInchesLength(NetLenght)
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property GrossInchThickness() As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = clsSMSharedFuncs.GrosWoodThickness(NetThickness)
 
       Return mRetVal
     End Get
@@ -429,6 +439,23 @@ Public Class dmProductBOM : Inherits dmBase
       If pWoodItemType <> value Then IsDirty = True
       pWoodItemType = value
     End Set
+  End Property
+
+  Public ReadOnly Property InitialThicknessFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.GrosWoodThickness(pNetThickness))
+    End Get
+  End Property
+  Public ReadOnly Property InitialWidthFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToQuaterInches(NetWidth))
+    End Get
+  End Property
+
+  Public ReadOnly Property InitialLenghtFraction As String
+    Get
+      Return clsSMSharedFuncs.DecToFraction(clsSMSharedFuncs.CMToHalfInchesLength(NetLenght))
+    End Get
   End Property
 End Class
 

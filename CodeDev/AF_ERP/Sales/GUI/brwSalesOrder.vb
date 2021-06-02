@@ -243,8 +243,15 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
     Try
-      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-      ListTitle = "Lista de Ventas"
+      If pIsWoodSalesOrder Then
+        LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWoodSalesOrder.xml")
+        ListTitle = "Lista de Ventas de Madera"
+
+      Else
+        LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
+        ListTitle = "Lista de Ventas"
+
+      End If
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 
@@ -369,8 +376,15 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
   Private Sub PrintOptionExecute(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
-    LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-    ListTitle = "Lista de Ventas"
+
+    If pIsWoodSalesOrder Then
+      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWoodSalesOrder.xml")
+      ListTitle = "Lista de Ventas de Madera"
+    Else
+      LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
+      ListTitle = "Lista de Ventas"
+    End If
+
     GridEditable = False
     'PrimaryKeyColumnName = "PrimaryID"
 

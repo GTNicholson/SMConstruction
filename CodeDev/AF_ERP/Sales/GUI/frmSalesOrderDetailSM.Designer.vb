@@ -454,7 +454,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpOrderItem.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpOrderItem.Location = New System.Drawing.Point(7, 6)
         Me.grpOrderItem.Name = "grpOrderItem"
-        Me.grpOrderItem.Size = New System.Drawing.Size(785, 373)
+        Me.grpOrderItem.Size = New System.Drawing.Size(785, 372)
         Me.grpOrderItem.TabIndex = 0
         Me.grpOrderItem.Text = "Articulos"
         '
@@ -466,7 +466,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grdOrderItem.MenuManager = Me.BarManager1
         Me.grdOrderItem.Name = "grdOrderItem"
         Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1})
-        Me.grdOrderItem.Size = New System.Drawing.Size(781, 347)
+        Me.grdOrderItem.Size = New System.Drawing.Size(781, 346)
         Me.grdOrderItem.TabIndex = 0
         Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem, Me.GridView7})
         '
@@ -648,7 +648,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpWorkOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpWorkOrders.Location = New System.Drawing.Point(798, 6)
         Me.grpWorkOrders.Name = "grpWorkOrders"
-        Me.grpWorkOrders.Size = New System.Drawing.Size(598, 375)
+        Me.grpWorkOrders.Size = New System.Drawing.Size(596, 374)
         Me.grpWorkOrders.TabIndex = 1
         Me.grpWorkOrders.Text = "Órdenes de Trabajo"
         '
@@ -660,7 +660,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grdWorkOrders.MenuManager = Me.BarManager1
         Me.grdWorkOrders.Name = "grdWorkOrders"
         Me.grdWorkOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder})
-        Me.grdWorkOrders.Size = New System.Drawing.Size(594, 349)
+        Me.grdWorkOrders.Size = New System.Drawing.Size(592, 348)
         Me.grdWorkOrders.TabIndex = 0
         Me.grdWorkOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrders, Me.GridView6})
         '
@@ -981,7 +981,7 @@ Partial Class frmSalesOrderDetailSM
         '
         Me.XtraTabPage3.Controls.Add(Me.grpMaterialRequirementOthers)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(1280, 381)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(1280, 384)
         Me.XtraTabPage3.Text = "Estimación de Insumos"
         '
         'grpMaterialRequirementOthers
@@ -996,7 +996,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirementOthers.Name = "grpMaterialRequirementOthers"
-        Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1280, 381)
+        Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1280, 384)
         Me.grpMaterialRequirementOthers.TabIndex = 148
         Me.grpMaterialRequirementOthers.Text = "Lista de Materiales Requeridos (LMR)"
         '
@@ -1012,7 +1012,7 @@ Partial Class frmSalesOrderDetailSM
         Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
         Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
         Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
-        Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1276, 353)
+        Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1276, 356)
         Me.grdMaterialRequirementOthers.TabIndex = 41
         Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
         Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers, Me.GridView4})

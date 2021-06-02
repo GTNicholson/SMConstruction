@@ -25,6 +25,9 @@ Partial Public Class repCheckPaymentOrder
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrTable13 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow17 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.xrtcIsBigTaxPayer = New DevExpress.XtraReports.UI.XRTableCell()
         Me.txtComment = New DevExpress.XtraReports.UI.XRRichText()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
@@ -82,7 +85,6 @@ Partial Public Class repCheckPaymentOrder
         Me.XrTable12 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow25 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.FilteringUIContext1 = New DevExpress.Utils.Filtering.FilteringUIContext(Me.components)
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable11 = New DevExpress.XtraReports.UI.XRTable()
@@ -105,9 +107,8 @@ Partial Public Class repCheckPaymentOrder
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.XrTable13 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow17 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.xrtcIsBigTaxPayer = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        CType(Me.XrTable13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,7 +123,6 @@ Partial Public Class repCheckPaymentOrder
         CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -134,7 +134,7 @@ Partial Public Class repCheckPaymentOrder
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 10.1593!
+        Me.TopMargin.HeightF = 23.70097!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -148,9 +148,42 @@ Partial Public Class repCheckPaymentOrder
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable13, Me.txtComment, Me.XrLabel2, Me.XrPanel1, Me.XrTable8, Me.XrTable3, Me.XrTable9, Me.XrTable7, Me.XrTable1, Me.XrTable2, Me.XrTable6, Me.XrTable12, Me.XrPictureBox1})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrTable13, Me.txtComment, Me.XrLabel2, Me.XrPanel1, Me.XrTable8, Me.XrTable3, Me.XrTable9, Me.XrTable7, Me.XrTable1, Me.XrTable2, Me.XrTable6, Me.XrTable12})
         Me.ReportHeader.HeightF = 814.9618!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrTable13
+        '
+        Me.XrTable13.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable13.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.XrTable13.LocationFloat = New DevExpress.Utils.PointFloat(538.6195!, 117.4755!)
+        Me.XrTable13.Name = "XrTable13"
+        Me.XrTable13.Padding = New DevExpress.XtraPrinting.PaddingInfo(3, 3, 3, 3, 100.0!)
+        Me.XrTable13.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow17})
+        Me.XrTable13.SizeF = New System.Drawing.SizeF(239.3806!, 29.99998!)
+        Me.XrTable13.StylePriority.UseBorders = False
+        Me.XrTable13.StylePriority.UseFont = False
+        Me.XrTable13.StylePriority.UsePadding = False
+        Me.XrTable13.StylePriority.UseTextAlignment = False
+        Me.XrTable13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrTableRow17
+        '
+        Me.XrTableRow17.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtcIsBigTaxPayer})
+        Me.XrTableRow17.Name = "XrTableRow17"
+        Me.XrTableRow17.Weight = 1.2R
+        '
+        'xrtcIsBigTaxPayer
+        '
+        Me.xrtcIsBigTaxPayer.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.xrtcIsBigTaxPayer.ForeColor = System.Drawing.Color.Black
+        Me.xrtcIsBigTaxPayer.Name = "xrtcIsBigTaxPayer"
+        Me.xrtcIsBigTaxPayer.StylePriority.UseFont = False
+        Me.xrtcIsBigTaxPayer.StylePriority.UseForeColor = False
+        Me.xrtcIsBigTaxPayer.Text = "GRANDE CONTRIBUYENTE"
+        Me.xrtcIsBigTaxPayer.Weight = 0.86897300385155474R
         '
         'txtComment
         '
@@ -767,7 +800,7 @@ Partial Public Class repCheckPaymentOrder
         '
         Me.XrTable12.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTable12.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.XrTable12.LocationFloat = New DevExpress.Utils.PointFloat(0.0002635152!, 66.91667!)
+        Me.XrTable12.LocationFloat = New DevExpress.Utils.PointFloat(0.0002622604!, 77.05885!)
         Me.XrTable12.Name = "XrTable12"
         Me.XrTable12.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow25})
         Me.XrTable12.SizeF = New System.Drawing.SizeF(777.9999!, 29.99999!)
@@ -799,16 +832,6 @@ Partial Public Class repCheckPaymentOrder
         Me.XrTableCell5.Text = "SOLICITUD DE PAGO"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell5.Weight = 0.92348521218732R
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.BorderWidth = 0!
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(472.9453!, 0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(305.0548!, 54.66177!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        Me.XrPictureBox1.StylePriority.UseBorderWidth = False
         '
         'ReportFooter
         '
@@ -1027,45 +1050,23 @@ Partial Public Class repCheckPaymentOrder
         Me.XrPageInfo2.StylePriority.UseTextAlignment = False
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'XrTable13
+        'XrPictureBox1
         '
-        Me.XrTable13.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable13.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.XrTable13.LocationFloat = New DevExpress.Utils.PointFloat(538.6195!, 117.4755!)
-        Me.XrTable13.Name = "XrTable13"
-        Me.XrTable13.Padding = New DevExpress.XtraPrinting.PaddingInfo(3, 3, 3, 3, 100.0!)
-        Me.XrTable13.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow17})
-        Me.XrTable13.SizeF = New System.Drawing.SizeF(239.3806!, 29.99998!)
-        Me.XrTable13.StylePriority.UseBorders = False
-        Me.XrTable13.StylePriority.UseFont = False
-        Me.XrTable13.StylePriority.UsePadding = False
-        Me.XrTable13.StylePriority.UseTextAlignment = False
-        Me.XrTable13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrTableRow17
-        '
-        Me.XrTableRow17.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrtcIsBigTaxPayer})
-        Me.XrTableRow17.Name = "XrTableRow17"
-        Me.XrTableRow17.Weight = 1.2R
-        '
-        'xrtcIsBigTaxPayer
-        '
-        Me.xrtcIsBigTaxPayer.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.xrtcIsBigTaxPayer.ForeColor = System.Drawing.Color.Black
-        Me.xrtcIsBigTaxPayer.Name = "xrtcIsBigTaxPayer"
-        Me.xrtcIsBigTaxPayer.StylePriority.UseFont = False
-        Me.xrtcIsBigTaxPayer.StylePriority.UseForeColor = False
-        Me.xrtcIsBigTaxPayer.Text = "GRANDE CONTRIBUYENTE"
-        Me.xrtcIsBigTaxPayer.Weight = 0.86897300385155474R
+        Me.XrPictureBox1.BorderWidth = 0!
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(421.6146!, 0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(356.3853!, 66.91667!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        Me.XrPictureBox1.StylePriority.UseBorderWidth = False
         '
         'repCheckPaymentOrder
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(25, 47, 10, 25)
+        Me.Margins = New System.Drawing.Printing.Margins(25, 47, 24, 25)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "17.1"
+        CType(Me.XrTable13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1080,7 +1081,6 @@ Partial Public Class repCheckPaymentOrder
         CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -1088,7 +1088,6 @@ Partial Public Class repCheckPaymentOrder
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents FilteringUIContext1 As DevExpress.Utils.Filtering.FilteringUIContext
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
@@ -1171,4 +1170,5 @@ Partial Public Class repCheckPaymentOrder
     Friend WithEvents XrTable13 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow17 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents xrtcIsBigTaxPayer As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
 End Class

@@ -21,6 +21,7 @@ Public Class fccPurchaseOrder
   Private pcolPOIEditor As colPOItemEditors
   Private pSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
   Private pCurrentDefaultCurrency As eCurrency
+  Private pSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -42,6 +43,7 @@ Public Class fccPurchaseOrder
     pcolPOIEditor = New colPOItemEditors
     pPODeliveryInfos = New colPODeliveryInfos
     pSalesOrderPhaseInfo = New clsSalesOrderPhaseInfo
+    pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
   End Sub
 
   Public Property SalesOrderPhaseInfo() As clsSalesOrderPhaseInfo
@@ -550,6 +552,15 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
+  Public Property SalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
+    Get
+      Return pSalesOrderPhaseItemInfos
+    End Get
+    Set(value As colSalesOrderPhaseItemInfos)
+      pSalesOrderPhaseItemInfos = value
+    End Set
+  End Property
+
   Public Function GetTotalNetValue() As Decimal
     Dim mRetVal As Decimal = 0
 
@@ -757,5 +768,18 @@ Public Class fccPurchaseOrder
 
     mdsoPurchasing.SavePODelivery(rNewPODeliveryManualItem)
 
+  End Sub
+
+  Public Sub LoadSalesOrderPhaseItemInfos()
+    Dim mWhere As String = ""
+    Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
+
+    If pSalesOrderPhaseInfo IsNot Nothing Then
+
+
+      mWhere = "SalesOrderID =" & SalesOrderPhaseInfo.SalesOrderID
+      mdsoSalesOrder.LoadSalesOrderPhaseItemsMatReqByWhere(pSalesOrderPhaseItemInfos, mWhere)
+
+    End If
   End Sub
 End Class

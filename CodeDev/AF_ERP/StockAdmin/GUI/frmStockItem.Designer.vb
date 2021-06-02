@@ -59,13 +59,13 @@ Partial Class frmStockItem
         Dim SerializableAppearanceObject27 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject28 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim EditorButtonImageOptions8 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockItem))
         Dim SerializableAppearanceObject29 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject30 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject31 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject32 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockItem))
         Me.chkIsObsolete = New System.Windows.Forms.CheckBox()
         Me.chkIsGeneric = New System.Windows.Forms.CheckBox()
         Me.lblStockItemID = New DevExpress.XtraEditors.LabelControl()
@@ -79,7 +79,7 @@ Partial Class frmStockItem
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
-        Me.txtLengthFrac = New DevExpress.XtraEditors.TextEdit()
+        Me.txtThicknessFrac = New DevExpress.XtraEditors.TextEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.barRGObsoleteItems = New DevExpress.XtraBars.BarEditItem()
@@ -111,6 +111,8 @@ Partial Class frmStockItem
         Me.BarEditItem7 = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+        Me.txtWidthFrac = New DevExpress.XtraEditors.TextEdit()
+        Me.txtLengthFrac = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
@@ -181,12 +183,10 @@ Partial Class frmStockItem
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.txtWidthFrac = New DevExpress.XtraEditors.TextEdit()
-        Me.txtThicknessFrac = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGroupF8.SuspendLayout()
-        CType(Me.txtLengthFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtThicknessFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,6 +197,8 @@ Partial Class frmStockItem
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtWidthFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtLengthFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboHeadType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -235,8 +237,6 @@ Partial Class frmStockItem
         Me.grpCurrentStockItem.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.txtWidthFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtThicknessFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkIsObsolete
@@ -454,16 +454,16 @@ Partial Class frmStockItem
         Me.grpGroupF8.TabIndex = 94
         Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
         '
-        'txtLengthFrac
+        'txtThicknessFrac
         '
-        Me.txtLengthFrac.Location = New System.Drawing.Point(75, 124)
-        Me.txtLengthFrac.MenuManager = Me.BarManager1
-        Me.txtLengthFrac.Name = "txtLengthFrac"
-        Me.txtLengthFrac.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtLengthFrac.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.txtLengthFrac.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtLengthFrac.Size = New System.Drawing.Size(56, 20)
-        Me.txtLengthFrac.TabIndex = 150
+        Me.txtThicknessFrac.Location = New System.Drawing.Point(250, 124)
+        Me.txtThicknessFrac.MenuManager = Me.BarManager1
+        Me.txtThicknessFrac.Name = "txtThicknessFrac"
+        Me.txtThicknessFrac.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtThicknessFrac.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.txtThicknessFrac.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtThicknessFrac.Size = New System.Drawing.Size(42, 20)
+        Me.txtThicknessFrac.TabIndex = 152
         '
         'BarManager1
         '
@@ -525,7 +525,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 33)
         '
         'barDockControlBottom
         '
@@ -539,17 +539,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 726)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 723)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 726)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 723)
         '
         'BarButtonItem1
         '
@@ -689,6 +689,28 @@ Partial Class frmStockItem
         Me.RepoItemRadioGroupCategory.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
         Me.RepoItemRadioGroupCategory.Name = "RepoItemRadioGroupCategory"
         '
+        'txtWidthFrac
+        '
+        Me.txtWidthFrac.Location = New System.Drawing.Point(161, 124)
+        Me.txtWidthFrac.MenuManager = Me.BarManager1
+        Me.txtWidthFrac.Name = "txtWidthFrac"
+        Me.txtWidthFrac.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtWidthFrac.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.txtWidthFrac.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtWidthFrac.Size = New System.Drawing.Size(54, 20)
+        Me.txtWidthFrac.TabIndex = 151
+        '
+        'txtLengthFrac
+        '
+        Me.txtLengthFrac.Location = New System.Drawing.Point(75, 124)
+        Me.txtLengthFrac.MenuManager = Me.BarManager1
+        Me.txtLengthFrac.Name = "txtLengthFrac"
+        Me.txtLengthFrac.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtLengthFrac.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.txtLengthFrac.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtLengthFrac.Size = New System.Drawing.Size(56, 20)
+        Me.txtLengthFrac.TabIndex = 150
+        '
         'LabelControl27
         '
         Me.LabelControl27.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -777,7 +799,7 @@ Partial Class frmStockItem
         '
         Me.xtabInfAddFixings.Controls.Add(Me.PanelControl2)
         Me.xtabInfAddFixings.Name = "xtabInfAddFixings"
-        Me.xtabInfAddFixings.Size = New System.Drawing.Size(352, 229)
+        Me.xtabInfAddFixings.Size = New System.Drawing.Size(354, 230)
         Me.xtabInfAddFixings.Text = "Informacion Addicional"
         '
         'PanelControl2
@@ -786,7 +808,7 @@ Partial Class frmStockItem
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(352, 229)
+        Me.PanelControl2.Size = New System.Drawing.Size(354, 230)
         Me.PanelControl2.TabIndex = 0
         '
         'chkWasherIncluded
@@ -1502,7 +1524,7 @@ Partial Class frmStockItem
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 722)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 719)
         Me.SplitContainerControl1.SplitterPosition = 363
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1527,32 +1549,10 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1492, 726)
+        Me.PanelControl1.Size = New System.Drawing.Size(1492, 723)
         Me.PanelControl1.TabIndex = 4
-        '
-        'txtWidthFrac
-        '
-        Me.txtWidthFrac.Location = New System.Drawing.Point(161, 124)
-        Me.txtWidthFrac.MenuManager = Me.BarManager1
-        Me.txtWidthFrac.Name = "txtWidthFrac"
-        Me.txtWidthFrac.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtWidthFrac.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.txtWidthFrac.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtWidthFrac.Size = New System.Drawing.Size(54, 20)
-        Me.txtWidthFrac.TabIndex = 151
-        '
-        'txtThicknessFrac
-        '
-        Me.txtThicknessFrac.Location = New System.Drawing.Point(250, 124)
-        Me.txtThicknessFrac.MenuManager = Me.BarManager1
-        Me.txtThicknessFrac.Name = "txtThicknessFrac"
-        Me.txtThicknessFrac.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtThicknessFrac.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.txtThicknessFrac.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtThicknessFrac.Size = New System.Drawing.Size(42, 20)
-        Me.txtThicknessFrac.TabIndex = 152
         '
         'frmStockItem
         '
@@ -1564,13 +1564,14 @@ Partial Class frmStockItem
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmStockItem"
         Me.Text = "Artículo de Inventario"
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGroupF8.ResumeLayout(False)
         Me.grpGroupF8.PerformLayout()
-        CType(Me.txtLengthFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtThicknessFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repRGObsoleteItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1581,6 +1582,8 @@ Partial Class frmStockItem
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtWidthFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtLengthFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboHeadType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
@@ -1619,8 +1622,6 @@ Partial Class frmStockItem
         Me.grpCurrentStockItem.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.txtWidthFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtThicknessFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -22,14 +22,15 @@ Partial Class frmSalesOrderPicker
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.repbtnSelectOt = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.grdSalesOrder = New DevExpress.XtraGrid.GridControl()
-    Me.gvSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesOrderPicker))
+        Me.repbtnSelectOt = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.grdSalesOrder = New DevExpress.XtraGrid.GridControl()
+        Me.gvSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -158,6 +159,7 @@ Partial Class frmSalesOrderPicker
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(876, 358)
         Me.Controls.Add(Me.grdSalesOrder)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSalesOrderPicker"
         Me.Text = "Seleccionador de Orden de Venta"
         CType(Me.repbtnSelectOt, System.ComponentModel.ISupportInitialize).EndInit()

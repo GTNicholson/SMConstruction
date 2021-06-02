@@ -254,6 +254,7 @@
 
   Public Property SOPItemMatReqCost As Decimal
     Get
+
       Return pSOPItemMatReqCost
     End Get
     Set(value As Decimal)
@@ -407,6 +408,21 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
       If mItem IsNot Nothing Then
 
         mRetVal += mItem.SOPIStockItemMatReqDollarValue
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalStockItemMatReqPickReal() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIPickDollarValue
 
       End If
     Next

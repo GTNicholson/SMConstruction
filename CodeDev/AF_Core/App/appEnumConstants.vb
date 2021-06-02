@@ -110,6 +110,7 @@ Public Enum ePOStage
   <Description("Logística y Transporte")> LogisticaTransporte = 22
   <Description("Honorarios")> Honorarios = 23
   <Description("DB MAN")> DBMan = 24
+  <Description("Muebles")> Furniture = 25
 
 
 End Enum
@@ -145,6 +146,7 @@ Public Enum eLocations
   <Description("AgroForestal")> AgroForestal = 2
   <Description("MillWorks")> MillWorks = 3
   <Description("SawMills")> SawMills = 4
+  <Description("NicaFrance")> NicaFrance = 5
 
 End Enum
 
@@ -219,7 +221,7 @@ Public Enum ePurchaseCategories
   <Description("Atención a Proyectos")> AtencionProyectos = 13
   <Description("EcoForestal")> EcoForestal = 14
   <Description("Finca El Edén")> FincaEden = 15
-
+  <Description("Mano de Obra")> ManoObra = 16
 
   <Description("Otras")> Otro = 99
 End Enum
@@ -1412,6 +1414,7 @@ Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockI
     CepilladoPrimera = 11
     CepilladoSegunda = 12
     CepilladoTercera = 13
+    MASSegunda = 14
 
     Otros = 99
 
@@ -1432,6 +1435,7 @@ Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockI
   Public Const CepilladoPrimera = 11
   Public Const CepilladoSegunda = 12
   Public Const CepilladoTercera = 13
+  Public Const MASSegunda = 14
   Public Const Otros = 99
 
   Private Shared mSharedInstance As eStockItemTypeTimberWood
@@ -1451,7 +1455,8 @@ Public Class eStockItemTypeTimberWood : Inherits colPropertyENUMOfT(Of clsStockI
     Dim mMAS As New clsStockItemType(MAS, "MAS", "MAS")
     MyBase.Add(mMAS)
 
-
+    Dim mMASSegunda As New clsStockItemType(MASSegunda, "MAS Segunda", "MAS2")
+    MyBase.Add(mMASSegunda)
 
     Dim mMAV As New clsStockItemType(MAV, "MAV", "MAV")
     MyBase.Add(mMAV)

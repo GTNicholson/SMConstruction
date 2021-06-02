@@ -127,6 +127,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.lblWorkOrderID = New System.Windows.Forms.Label()
+        Me.dtePurchasingDate = New DevExpress.XtraEditors.DateEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,6 +179,8 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoChangeSpecie, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtePurchasingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtePurchasingDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -269,7 +273,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.StandaloneBarDockControl1.CausesValidation = False
         Me.StandaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.StandaloneBarDockControl1.Location = New System.Drawing.Point(2, 23)
+        Me.StandaloneBarDockControl1.Location = New System.Drawing.Point(2, 22)
         Me.StandaloneBarDockControl1.Manager = Me.BarManager1
         Me.StandaloneBarDockControl1.Name = "StandaloneBarDockControl1"
         Me.StandaloneBarDockControl1.Size = New System.Drawing.Size(1470, 29)
@@ -281,7 +285,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 33)
         '
         'barDockControlBottom
         '
@@ -295,17 +299,17 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 841)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 838)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 841)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 838)
         '
         'StandaloneBarDockControl2
         '
@@ -337,17 +341,17 @@ Partial Class frmWorkOrderDetailConstruction
         Me.TableLayoutPanel1.Controls.Add(Me.grpProduct, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 333.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 841)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 838)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'grpProduct
         '
-        Me.grpProduct.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.grpProduct.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.grpProduct.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.grpProduct.AppearanceCaption.Options.UseFont = True
         Me.grpProduct.AppearanceCaption.Options.UseForeColor = True
@@ -356,7 +360,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpProduct.Location = New System.Drawing.Point(3, 336)
         Me.grpProduct.Name = "grpProduct"
-        Me.grpProduct.Size = New System.Drawing.Size(1474, 502)
+        Me.grpProduct.Size = New System.Drawing.Size(1474, 499)
         Me.grpProduct.TabIndex = 166
         Me.grpProduct.Text = "Detalles del Producto"
         '
@@ -364,9 +368,9 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.Panel1.Controls.Add(Me.uctProductDetail)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(2, 52)
+        Me.Panel1.Location = New System.Drawing.Point(2, 51)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1470, 448)
+        Me.Panel1.Size = New System.Drawing.Size(1470, 446)
         Me.Panel1.TabIndex = 171
         '
         'uctProductDetail
@@ -378,7 +382,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(3, 6)
         Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 442)
+        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 440)
         Me.uctProductDetail.TabIndex = 0
         Me.uctProductDetail.TempInWoodStock = 0
         Me.uctProductDetail.WoodItemsSelected = 0
@@ -417,7 +421,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage1.Appearance.Header.Options.UseForeColor = True
         Me.XtraTabPage1.Controls.Add(Me.GroupControl6)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1464, 272)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1466, 273)
         Me.XtraTabPage1.Text = "Información General"
         '
         'GroupControl6
@@ -426,6 +430,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl6.AppearanceCaption.Options.UseFont = True
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl6.Controls.Add(Me.dtePurchasingDate)
+        Me.GroupControl6.Controls.Add(Me.Label4)
         Me.GroupControl6.Controls.Add(Me.cboStatus)
         Me.GroupControl6.Controls.Add(Me.Label3)
         Me.GroupControl6.Controls.Add(Me.btnGenerateMatReq)
@@ -452,13 +458,13 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1464, 272)
+        Me.GroupControl6.Size = New System.Drawing.Size(1466, 273)
         Me.GroupControl6.TabIndex = 165
         Me.GroupControl6.Text = "Detalle General de OT"
         '
         'cboStatus
         '
-        Me.cboStatus.Location = New System.Drawing.Point(649, 80)
+        Me.cboStatus.Location = New System.Drawing.Point(649, 106)
         Me.cboStatus.MenuManager = Me.BarManager1
         Me.cboStatus.Name = "cboStatus"
         Me.cboStatus.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -472,7 +478,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(576, 83)
+        Me.Label3.Location = New System.Drawing.Point(576, 109)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(44, 14)
         Me.Label3.TabIndex = 178
@@ -480,7 +486,9 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'btnGenerateMatReq
         '
-        Me.btnGenerateMatReq.Location = New System.Drawing.Point(579, 127)
+        Me.btnGenerateMatReq.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.btnGenerateMatReq.Appearance.Options.UseFont = True
+        Me.btnGenerateMatReq.Location = New System.Drawing.Point(649, 132)
         Me.btnGenerateMatReq.Name = "btnGenerateMatReq"
         Me.btnGenerateMatReq.Size = New System.Drawing.Size(125, 23)
         Me.btnGenerateMatReq.TabIndex = 177
@@ -492,6 +500,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.dteDueDate.Location = New System.Drawing.Point(649, 54)
         Me.dteDueDate.MenuManager = Me.BarManager1
         Me.dteDueDate.Name = "dteDueDate"
+        Me.dteDueDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.dteDueDate.Properties.Appearance.Options.UseFont = True
         Me.dteDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Properties.NullDate = New Date(CType(0, Long))
@@ -512,9 +522,11 @@ Partial Class frmWorkOrderDetailConstruction
         'dtePlannedStartDate
         '
         Me.dtePlannedStartDate.EditValue = Nothing
-        Me.dtePlannedStartDate.Location = New System.Drawing.Point(649, 28)
+        Me.dtePlannedStartDate.Location = New System.Drawing.Point(649, 27)
         Me.dtePlannedStartDate.MenuManager = Me.BarManager1
         Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
+        Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.dtePlannedStartDate.Properties.Appearance.Options.UseFont = True
         Me.dtePlannedStartDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePlannedStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePlannedStartDate.Size = New System.Drawing.Size(125, 20)
@@ -525,7 +537,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(576, 31)
+        Me.Label5.Location = New System.Drawing.Point(576, 30)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(68, 14)
         Me.Label5.TabIndex = 173
@@ -537,6 +549,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.dteCreatedDate.Location = New System.Drawing.Point(97, 54)
         Me.dteCreatedDate.MenuManager = Me.BarManager1
         Me.dteCreatedDate.Name = "dteCreatedDate"
+        Me.dteCreatedDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.dteCreatedDate.Properties.Appearance.Options.UseFont = True
         Me.dteCreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteCreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteCreatedDate.Size = New System.Drawing.Size(125, 20)
@@ -590,19 +604,19 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 25)
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
-        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(679, 208)
+        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(681, 208)
         Me.grpWorkOrderAllocations.TabIndex = 167
         Me.grpWorkOrderAllocations.Text = "Distribución de OT"
         '
         'grdWorkOrderAllocationsInfos
         '
         Me.grdWorkOrderAllocationsInfos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 24)
+        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 26)
         Me.grdWorkOrderAllocationsInfos.MainView = Me.gvWorkOrderAllocationsInfos
         Me.grdWorkOrderAllocationsInfos.MenuManager = Me.BarManager1
         Me.grdWorkOrderAllocationsInfos.Name = "grdWorkOrderAllocationsInfos"
         Me.grdWorkOrderAllocationsInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit4})
-        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(675, 182)
+        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(677, 180)
         Me.grdWorkOrderAllocationsInfos.TabIndex = 157
         Me.grdWorkOrderAllocationsInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderAllocationsInfos, Me.GridView3})
         '
@@ -784,6 +798,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.memPFNotes.Location = New System.Drawing.Point(96, 107)
         Me.memPFNotes.MenuManager = Me.BarManager1
         Me.memPFNotes.Name = "memPFNotes"
+        Me.memPFNotes.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.memPFNotes.Properties.Appearance.Options.UseFont = True
         Me.memPFNotes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.memPFNotes.Size = New System.Drawing.Size(468, 124)
         Me.memPFNotes.TabIndex = 17
@@ -856,7 +872,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Controls.Add(Me.GroupControl3)
         Me.XtraTabPage2.Controls.Add(Me.GroupControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 272)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1466, 273)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
         '
         'GroupControl9
@@ -1235,6 +1251,31 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblWorkOrderID.Text = "ID:00000"
         Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'dtePurchasingDate
+        '
+        Me.dtePurchasingDate.EditValue = Nothing
+        Me.dtePurchasingDate.Location = New System.Drawing.Point(660, 80)
+        Me.dtePurchasingDate.MenuManager = Me.BarManager1
+        Me.dtePurchasingDate.Name = "dtePurchasingDate"
+        Me.dtePurchasingDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.dtePurchasingDate.Properties.Appearance.Options.UseFont = True
+        Me.dtePurchasingDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtePurchasingDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtePurchasingDate.Properties.NullDate = New Date(CType(0, Long))
+        Me.dtePurchasingDate.Size = New System.Drawing.Size(114, 20)
+        Me.dtePurchasingDate.TabIndex = 181
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(576, 83)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(78, 14)
+        Me.Label4.TabIndex = 180
+        Me.Label4.Text = "Compra Req."
+        '
         'frmWorkOrderDetailConstruction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1245,6 +1286,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWorkOrderDetailConstruction"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Orden de Trabajo"
@@ -1300,6 +1342,8 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoChangeSpecie, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtePurchasingDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtePurchasingDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1401,4 +1445,6 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents repoChangeSpecie As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents bbtnCreateCopy As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents cboStatus As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents dtePurchasingDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label4 As Label
 End Class

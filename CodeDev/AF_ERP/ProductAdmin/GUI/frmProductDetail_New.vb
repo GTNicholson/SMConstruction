@@ -159,6 +159,8 @@ Public Class frmProductDetail_New
 
   Private Sub frmProductDetail_New_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
     pForceExit = True
+    uctProductDetail.UpdateObject()
+    pFormController.SaveObjects()
   End Sub
 
   Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick

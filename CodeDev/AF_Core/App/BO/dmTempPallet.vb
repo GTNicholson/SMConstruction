@@ -10,6 +10,7 @@ Public Class dmTempPallet : Inherits dmBase
   Private pLargo As Decimal
   Private pItemTypeID As Int32
   Private pCantidad As Int32
+  Private pLocationID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -140,7 +141,15 @@ Public Class dmTempPallet : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property LocationID As Integer
+    Get
+      Return pLocationID
+    End Get
+    Set(value As Integer)
+      If pLocationID <> value Then IsDirty = True
+      pLocationID = value
+    End Set
+  End Property
 End Class
 
 

@@ -60,6 +60,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pWoodMaterialRequirements As colMaterialRequirements
   Private pStockItemMaterialRequirements As colMaterialRequirements
   Private pStatus As Byte
+  Private pPurchasingDate As Date
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -152,6 +154,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .WorkOrderTargetWoodType = WorkOrderTargetWoodType
       .Comments = Comments
       .Status = Status
+      .PurchasingDate = PurchasingDate
       .StockItemMaterialRequirements = StockItemMaterialRequirements.Clone
       .WoodMaterialRequirements = WoodMaterialRequirements.Clone
       'Add entries here for each collection and class property
@@ -652,6 +655,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As Byte)
       If pStatus <> value Then IsDirty = True
       pStatus = value
+    End Set
+  End Property
+
+  Public Property PurchasingDate As Date
+    Get
+      Return pPurchasingDate
+    End Get
+    Set(value As Date)
+      If pPurchasingDate <> value Then IsDirty = True
+      pPurchasingDate = value
     End Set
   End Property
 End Class

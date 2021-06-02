@@ -79,7 +79,7 @@
       </property>
       <property name="Caption">PurchaseOrderID</property>
       <property name="FieldName">PurchaseOrderID</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit2</property>
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
@@ -104,6 +104,10 @@
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">183</property>
+      <property name="GroupFormat" isnull="true" iskey="true">
+        <property name="FormatString">0</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
@@ -160,12 +164,16 @@
       </property>
       <property name="Caption">Monto Total</property>
       <property name="FieldName">TotalNetValueInfo</property>
-      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
+      <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">89</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="GroupFormat" isnull="true" iskey="true">
+        <property name="FormatString" />
         <property name="FormatType">Numeric</property>
       </property>
     </property>
@@ -188,7 +196,7 @@
       </property>
       <property name="Caption">Flete</property>
       <property name="FieldName">CarriageUSD</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
       <property name="Width">74</property>
@@ -212,7 +220,7 @@
       </property>
       <property name="Caption">Estado del Pago</property>
       <property name="FieldName">PaymentStatus</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
       <property name="Width">96</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">

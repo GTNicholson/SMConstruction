@@ -387,11 +387,11 @@ Public Class clsPurchaseOrderItemAllocationInfo
       Select Case DefaultCurrency
         Case eCurrency.Dollar
 
-          mRetVal = pPurchaseOrderItem.UnitPrice * pPurchaseOrderItem.QtyRequired
+          mRetVal = pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.Quantity
 
         Case eCurrency.Cordobas
           If ExchangeRateValue > 0 Then
-            mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItem.QtyRequired) / ExchangeRateValue
+            mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.Quantity) / ExchangeRateValue
           Else
             mRetVal = 0
           End If

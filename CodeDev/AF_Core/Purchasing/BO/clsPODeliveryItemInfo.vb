@@ -9,6 +9,8 @@ Public Class clsPODeliveryItemInfo
   Private pSalesOrderPhase As dmSalesOrderPhase
   Private pSalesOrder As dmSalesOrder
   Private pStockItem As dmStockItem
+  Private pRefSupplierDoc As String
+  Private pCompanyName As String
 
   Public Sub New()
     pPODeliveryItem = New dmPODeliveryItem
@@ -447,8 +449,22 @@ Public Class clsPODeliveryItemInfo
 
   End Property
 
-
-
+  Public Property CompanyName As String
+    Get
+      Return pCompanyName
+    End Get
+    Set(value As String)
+      pCompanyName = value
+    End Set
+  End Property
+  Public Property RefSupplierDoc As String
+    Get
+      Return pRefSupplierDoc
+    End Get
+    Set(value As String)
+      pRefSupplierDoc = value
+    End Set
+  End Property
 End Class
 
 Public Class colPODeliveryItemInfos : Inherits List(Of clsPODeliveryItemInfo)

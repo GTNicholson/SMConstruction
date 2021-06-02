@@ -22,74 +22,76 @@ Partial Class frmMovementTransaction
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboLocations = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.btnProcessMovement = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnAccept = New DevExpress.XtraEditors.SimpleButton()
-    CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.SuspendLayout()
-    '
-    'LabelControl1
-    '
-    Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.LabelControl1.Appearance.Options.UseFont = True
-    Me.LabelControl1.Location = New System.Drawing.Point(23, 22)
-    Me.LabelControl1.Name = "LabelControl1"
-    Me.LabelControl1.Size = New System.Drawing.Size(72, 14)
-    Me.LabelControl1.TabIndex = 0
-    Me.LabelControl1.Text = "Mover Hacia: "
-    '
-    'cboLocations
-    '
-    Me.cboLocations.Location = New System.Drawing.Point(113, 19)
-    Me.cboLocations.Name = "cboLocations"
-    Me.cboLocations.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-    Me.cboLocations.Properties.Appearance.Options.UseFont = True
-    Me.cboLocations.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-    Me.cboLocations.Size = New System.Drawing.Size(178, 20)
-    Me.cboLocations.TabIndex = 1
-    '
-    'btnProcessMovement
-    '
-    Me.btnProcessMovement.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.btnProcessMovement.Appearance.Options.UseFont = True
-    Me.btnProcessMovement.Location = New System.Drawing.Point(23, 51)
-    Me.btnProcessMovement.Name = "btnProcessMovement"
-    Me.btnProcessMovement.Size = New System.Drawing.Size(75, 23)
-    Me.btnProcessMovement.TabIndex = 11
-    Me.btnProcessMovement.Text = "Procesar"
-    '
-    'btnAccept
-    '
-    Me.btnAccept.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-    Me.btnAccept.Appearance.Options.UseFont = True
-    Me.btnAccept.Location = New System.Drawing.Point(23, 51)
-    Me.btnAccept.Name = "btnAccept"
-    Me.btnAccept.Size = New System.Drawing.Size(75, 23)
-    Me.btnAccept.TabIndex = 12
-    Me.btnAccept.Text = "Aceptar"
-    '
-    'frmMovementTransaction
-    '
-    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-    Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(329, 86)
-    Me.Controls.Add(Me.btnAccept)
-    Me.Controls.Add(Me.btnProcessMovement)
-    Me.Controls.Add(Me.cboLocations)
-    Me.Controls.Add(Me.LabelControl1)
-    Me.MaximizeBox = False
-    Me.MinimizeBox = False
-    Me.Name = "frmMovementTransaction"
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "Movimiento de Inventario de Madera"
-    CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.ResumeLayout(False)
-    Me.PerformLayout()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMovementTransaction))
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboLocations = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.btnProcessMovement = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnAccept = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl1.Appearance.Options.UseFont = True
+        Me.LabelControl1.Location = New System.Drawing.Point(23, 22)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(72, 14)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Mover Hacia: "
+        '
+        'cboLocations
+        '
+        Me.cboLocations.Location = New System.Drawing.Point(113, 19)
+        Me.cboLocations.Name = "cboLocations"
+        Me.cboLocations.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.cboLocations.Properties.Appearance.Options.UseFont = True
+        Me.cboLocations.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboLocations.Size = New System.Drawing.Size(178, 20)
+        Me.cboLocations.TabIndex = 1
+        '
+        'btnProcessMovement
+        '
+        Me.btnProcessMovement.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btnProcessMovement.Appearance.Options.UseFont = True
+        Me.btnProcessMovement.Location = New System.Drawing.Point(23, 51)
+        Me.btnProcessMovement.Name = "btnProcessMovement"
+        Me.btnProcessMovement.Size = New System.Drawing.Size(75, 23)
+        Me.btnProcessMovement.TabIndex = 11
+        Me.btnProcessMovement.Text = "Procesar"
+        '
+        'btnAccept
+        '
+        Me.btnAccept.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btnAccept.Appearance.Options.UseFont = True
+        Me.btnAccept.Location = New System.Drawing.Point(23, 51)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(75, 23)
+        Me.btnAccept.TabIndex = 12
+        Me.btnAccept.Text = "Aceptar"
+        '
+        'frmMovementTransaction
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(329, 86)
+        Me.Controls.Add(Me.btnAccept)
+        Me.Controls.Add(Me.btnProcessMovement)
+        Me.Controls.Add(Me.cboLocations)
+        Me.Controls.Add(Me.LabelControl1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "frmMovementTransaction"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Movimiento de Inventario de Madera"
+        CType(Me.cboLocations.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-  End Sub
+    End Sub
 
-  Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboLocations As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents btnProcessMovement As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnAccept As DevExpress.XtraEditors.SimpleButton

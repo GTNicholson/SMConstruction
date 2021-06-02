@@ -26,6 +26,7 @@ Partial Class frmProductAdmin
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProductAdmin))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grdProductBase = New DevExpress.XtraGrid.GridControl()
@@ -582,10 +583,13 @@ Partial Class frmProductAdmin
         '
         Me.uctProductDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.uctProductDetail.FormController = Nothing
+        Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(2, 26)
         Me.uctProductDetail.Name = "uctProductDetail"
         Me.uctProductDetail.Size = New System.Drawing.Size(1477, 617)
         Me.uctProductDetail.TabIndex = 0
+        Me.uctProductDetail.TempInWoodStock = 0
+        Me.uctProductDetail.WoodItemsSelected = 0
         '
         'GridView1
         '
@@ -613,6 +617,7 @@ Partial Class frmProductAdmin
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmProductAdmin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Lista de Productos"

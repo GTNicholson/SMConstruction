@@ -14,7 +14,7 @@ Public Class clsSMSharedFuncs
     ElseIf mInches <= 2 Then
       mRetVal = 2
     Else
-      mRetVal = CMToQuaterInches(vCM)
+      mRetVal = CMToQuaterInches(vCM) + 0.25
     End If
     Return mRetVal
   End Function
@@ -37,6 +37,18 @@ Public Class clsSMSharedFuncs
     mRetVal = Math.Truncate(mTempVal * 4) / 4
     If mRetVal <> (mTempVal * 4) / 4 Then
       mRetVal += 0.25
+    End If
+    Return mRetVal
+  End Function
+
+  Public Shared Function CMToHalfInches(ByVal vCM As Decimal) As Decimal
+    Dim mRetVal As Decimal
+    Dim mTempVal As Decimal
+
+    mTempVal = (vCM / 2.54) + 0.5
+    mRetVal = Math.Truncate(mTempVal * 2) / 2
+    If mRetVal <> (mTempVal * 2) / 2 Then
+      mRetVal += 0.5
     End If
     Return mRetVal
   End Function
@@ -161,26 +173,6 @@ Public Class clsSMSharedFuncs
     Return mRetVal
   End Function
 
-  Public Shared Function BoardFeetFromCMAndQty_NewAF(ByVal vQty As Integer, ByVal vLength As Decimal, ByVal vWidth As Decimal, ByVal vThickness As Decimal) As Decimal
-    Dim mLengthInInches As Decimal
-    Dim mWidthInInches As Decimal
-    Dim mThicknessInInches As Decimal
-    Dim mRetVal As Decimal
-
-    'mLengthInInches = vLength / 12
-    mLengthInInches = Math.Ceiling(vLength / clsConstants.CMToInches)
-    mWidthInInches = Math.Ceiling(vWidth / clsConstants.CMToInches)
-    'mWidthInInches = vWidth
-    mThicknessInInches = Math.Ceiling(vThickness / clsConstants.CMToInches)
-
-    mRetVal = vQty * (mLengthInInches * mWidthInInches * mThicknessInInches)
-
-    mRetVal = mRetVal / 144
-
-    mRetVal = Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
-
-    Return mRetVal
-  End Function
 
 
   Public Shared Function GetDefaultBreakMins(ByVal vStartTime As DateTime, ByVal vEndTime As DateTime) As Integer
@@ -204,7 +196,15 @@ Public Class clsSMSharedFuncs
 
   End Function
 
+  Public Shared Function InchesToCM_AFNew(ByVal vInch As Decimal) As Decimal
+    Dim mRetVal As Decimal
 
+
+    mRetVal = Math.Truncate((vInch * clsConstants.CMToInches) - 0.5)
+
+    Return mRetVal
+
+  End Function
 
   Public Shared Function GetPrinterName(ByVal vPrinterName As String) As String
     Dim mRetVal As String = ""

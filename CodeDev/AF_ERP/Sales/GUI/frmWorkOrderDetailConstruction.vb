@@ -326,6 +326,7 @@ Public Class frmWorkOrderDetailConstruction
         txtDescription.Text = .Description
         dteCreatedDate.EditValue = .DateCreated
         dteDueDate.EditValue = .PlannedDeliverDate
+        dtePurchasingDate.EditValue = .PurchasingDate
         dtePlannedStartDate.EditValue = .PlannedStartDate
         memPFNotes.EditValue = .Comments
 
@@ -394,6 +395,7 @@ Public Class frmWorkOrderDetailConstruction
         .Description = txtDescription.Text.ToUpper
         .DateCreated = dteCreatedDate.EditValue
         .Comments = memPFNotes.EditValue
+        .PurchasingDate = dtePurchasingDate.EditValue
 
         .PlannedStartDate = dtePlannedStartDate.EditValue
         .PlannedDeliverDate = dteDueDate.EditValue
@@ -643,6 +645,9 @@ Public Class frmWorkOrderDetailConstruction
     Dim mFilePath As String
     Dim mFileName As String
     Dim mExportDirectory As String = String.Empty
+    Dim mProductFiles As colFileTrackers = Nothing
+    Dim mProductStruscture As dmProductStructure
+
     ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
 
     mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.WorkOrder.WorkOrderID
@@ -673,7 +678,22 @@ Public Class frmWorkOrderDetailConstruction
 
 
       ''vReport.ExportToPdf(mFilePath, mExportOptions)
-      pFormController.CreateWorkOrderPack(vReport, mFilePath)
+
+      If uctProductDetail IsNot Nothing Then
+
+        If uctProductDetail.FormController IsNot Nothing Then
+          If uctProductDetail.FormController.CurrentProductInfo IsNot Nothing Then
+            mProductStruscture = TryCast(uctProductDetail.FormController.CurrentProductInfo.Product, dmProductStructure)
+
+            If mProductStruscture IsNot Nothing Then
+
+              mProductFiles = mProductStruscture.POFiles
+            End If
+          End If
+        End If
+      End If
+
+      pFormController.CreateWorkOrderPack(vReport, mFilePath, mProductFiles)
 
       vReport.Dispose()
       'vReport = Nothing
@@ -917,8 +937,16 @@ Public Class frmWorkOrderDetailConstruction
 
           mSelectedSalesOrderPhaseInfos = frmSalesOrderPhasePicker.OpenPickerMulti(mPicker, True)
 
+          If pFormController.SalesOrder Is Nothing Then ''check if the SO doest exists, this is a solution for the old OTs
+            If mSelectedSalesOrderPhaseInfos IsNot Nothing Then
 
-          If mSelectedSalesOrderPhaseInfos.Count > 0 Then
+              If mSelectedSalesOrderPhaseInfos.Count > 0 Then
+                pFormController.LoadSalesOrderDown(mSelectedSalesOrderPhaseInfos(0).SalesOrderID)
+
+              End If
+            End If
+            End If
+            If mSelectedSalesOrderPhaseInfos.Count > 0 Then
             For Each mSelectedSOPI In mPicker.SelectedObjects
               If mSelectedSOPI IsNot Nothing Then
                 mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations.ItemFromSalesOrderPhaseItemID(mSelectedSOPI.SalesOrderPhaseID)
@@ -1070,6 +1098,7 @@ Public Class frmWorkOrderDetailConstruction
     txtDescription.ReadOnly = vReadOnly
     btnWorkOrderNumber.ReadOnly = vReadOnly
     dteCreatedDate.ReadOnly = vReadOnly
+    dtePurchasingDate.ReadOnly = vReadOnly
     dteDueDate.ReadOnly = vReadOnly
     dtePlannedStartDate.ReadOnly = vReadOnly
     cboElaboratedBy.ReadOnly = vReadOnly

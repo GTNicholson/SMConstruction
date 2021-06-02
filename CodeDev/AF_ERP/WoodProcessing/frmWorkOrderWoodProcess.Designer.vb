@@ -50,13 +50,11 @@ Partial Class frmWorkOrderWoodProcess
         Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderWoodProcess))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.grpGeneralInformation = New DevExpress.XtraEditors.GroupControl()
-        Me.xtcProcessOptions = New DevExpress.XtraTab.XtraTabControl()
-        Me.xtpKiln = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.cboKilnNumber = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btnSave = New DevExpress.XtraBars.BarButtonItem()
@@ -67,6 +65,11 @@ Partial Class frmWorkOrderWoodProcess
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.bbtnAddNew = New DevExpress.XtraBars.BarButtonItem()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.xtcProcessOptions = New DevExpress.XtraTab.XtraTabControl()
+        Me.xtpKiln = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.cboKilnNumber = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.btnEndKiln = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -130,20 +133,19 @@ Partial Class frmWorkOrderWoodProcess
         Me.gcM3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.gcToProcessQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpGeneralInformation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGeneralInformation.SuspendLayout()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.xtcProcessOptions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtcProcessOptions.SuspendLayout()
         Me.xtpKiln.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.cboKilnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteKilnEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteKilnEndDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteKilnStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,7 +180,6 @@ Partial Class frmWorkOrderWoodProcess
         CType(Me.gvOutputWoodPaleltItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoOutputAddButton, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -230,48 +231,14 @@ Partial Class frmWorkOrderWoodProcess
         Me.grpGeneralInformation.TabIndex = 0
         Me.grpGeneralInformation.Text = "Detalles de Registro de Proceso"
         '
-        'xtcProcessOptions
+        'cboStatus
         '
-        Me.xtcProcessOptions.Location = New System.Drawing.Point(7, 76)
-        Me.xtcProcessOptions.Name = "xtcProcessOptions"
-        Me.xtcProcessOptions.SelectedTabPage = Me.xtpKiln
-        Me.xtcProcessOptions.Size = New System.Drawing.Size(629, 107)
-        Me.xtcProcessOptions.TabIndex = 18
-        Me.xtcProcessOptions.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpKiln})
-        '
-        'xtpKiln
-        '
-        Me.xtpKiln.Controls.Add(Me.PanelControl3)
-        Me.xtpKiln.Name = "xtpKiln"
-        Me.xtpKiln.Size = New System.Drawing.Size(623, 79)
-        Me.xtpKiln.Text = "Horno"
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.cboKilnNumber)
-        Me.PanelControl3.Controls.Add(Me.LabelControl5)
-        Me.PanelControl3.Controls.Add(Me.btnEndKiln)
-        Me.PanelControl3.Controls.Add(Me.LabelControl4)
-        Me.PanelControl3.Controls.Add(Me.dteKilnEndDate)
-        Me.PanelControl3.Controls.Add(Me.btnStartKiln)
-        Me.PanelControl3.Controls.Add(Me.LabelControl3)
-        Me.PanelControl3.Controls.Add(Me.dteKilnStartDate)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(623, 79)
-        Me.PanelControl3.TabIndex = 0
-        '
-        'cboKilnNumber
-        '
-        Me.cboKilnNumber.Location = New System.Drawing.Point(517, 6)
-        Me.cboKilnNumber.MenuManager = Me.BarManager1
-        Me.cboKilnNumber.Name = "cboKilnNumber"
-        Me.cboKilnNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboKilnNumber.Properties.Appearance.Options.UseFont = True
-        Me.cboKilnNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboKilnNumber.Size = New System.Drawing.Size(100, 20)
-        Me.cboKilnNumber.TabIndex = 25
+        Me.cboStatus.Location = New System.Drawing.Point(492, 36)
+        Me.cboStatus.MenuManager = Me.BarManager1
+        Me.cboStatus.Name = "cboStatus"
+        Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboStatus.Size = New System.Drawing.Size(100, 20)
+        Me.cboStatus.TabIndex = 20
         '
         'BarManager1
         '
@@ -352,6 +319,61 @@ Partial Class frmWorkOrderWoodProcess
         Me.bbtnAddNew.Caption = "Agregar Nuevo"
         Me.bbtnAddNew.Id = 3
         Me.bbtnAddNew.Name = "bbtnAddNew"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl6.Appearance.Options.UseFont = True
+        Me.LabelControl6.Appearance.Options.UseForeColor = True
+        Me.LabelControl6.Location = New System.Drawing.Point(447, 38)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(39, 15)
+        Me.LabelControl6.TabIndex = 19
+        Me.LabelControl6.Text = "Estado"
+        '
+        'xtcProcessOptions
+        '
+        Me.xtcProcessOptions.Location = New System.Drawing.Point(7, 76)
+        Me.xtcProcessOptions.Name = "xtcProcessOptions"
+        Me.xtcProcessOptions.SelectedTabPage = Me.xtpKiln
+        Me.xtcProcessOptions.Size = New System.Drawing.Size(629, 107)
+        Me.xtcProcessOptions.TabIndex = 18
+        Me.xtcProcessOptions.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpKiln})
+        '
+        'xtpKiln
+        '
+        Me.xtpKiln.Controls.Add(Me.PanelControl3)
+        Me.xtpKiln.Name = "xtpKiln"
+        Me.xtpKiln.Size = New System.Drawing.Size(623, 79)
+        Me.xtpKiln.Text = "Horno"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.cboKilnNumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl5)
+        Me.PanelControl3.Controls.Add(Me.btnEndKiln)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.dteKilnEndDate)
+        Me.PanelControl3.Controls.Add(Me.btnStartKiln)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Controls.Add(Me.dteKilnStartDate)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(623, 79)
+        Me.PanelControl3.TabIndex = 0
+        '
+        'cboKilnNumber
+        '
+        Me.cboKilnNumber.Location = New System.Drawing.Point(517, 6)
+        Me.cboKilnNumber.MenuManager = Me.BarManager1
+        Me.cboKilnNumber.Name = "cboKilnNumber"
+        Me.cboKilnNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboKilnNumber.Properties.Appearance.Options.UseFont = True
+        Me.cboKilnNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboKilnNumber.Size = New System.Drawing.Size(100, 20)
+        Me.cboKilnNumber.TabIndex = 25
         '
         'LabelControl5
         '
@@ -1145,27 +1167,6 @@ Partial Class frmWorkOrderWoodProcess
         Me.gcToProcessQty.FieldName = "ToProcessQty"
         Me.gcToProcessQty.Name = "gcToProcessQty"
         '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl6.Appearance.Options.UseFont = True
-        Me.LabelControl6.Appearance.Options.UseForeColor = True
-        Me.LabelControl6.Location = New System.Drawing.Point(447, 38)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(39, 15)
-        Me.LabelControl6.TabIndex = 19
-        Me.LabelControl6.Text = "Estado"
-        '
-        'cboStatus
-        '
-        Me.cboStatus.Location = New System.Drawing.Point(492, 36)
-        Me.cboStatus.MenuManager = Me.BarManager1
-        Me.cboStatus.Name = "cboStatus"
-        Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboStatus.Size = New System.Drawing.Size(100, 20)
-        Me.cboStatus.TabIndex = 20
-        '
         'frmWorkOrderWoodProcess
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1176,6 +1177,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.BarDockControl1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWorkOrderWoodProcess"
         Me.Text = "Proceso de Madera"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1184,6 +1186,8 @@ Partial Class frmWorkOrderWoodProcess
         CType(Me.grpGeneralInformation, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGeneralInformation.ResumeLayout(False)
         Me.grpGeneralInformation.PerformLayout()
+        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.xtcProcessOptions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtcProcessOptions.ResumeLayout(False)
         Me.xtpKiln.ResumeLayout(False)
@@ -1191,7 +1195,6 @@ Partial Class frmWorkOrderWoodProcess
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.cboKilnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteKilnEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteKilnEndDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteKilnStartDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1226,7 +1229,6 @@ Partial Class frmWorkOrderWoodProcess
         CType(Me.gvOutputWoodPaleltItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoOutputAddButton, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

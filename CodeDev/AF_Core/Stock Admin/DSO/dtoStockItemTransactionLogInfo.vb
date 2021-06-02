@@ -149,6 +149,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
             .TransactionValuationDollar = DBReadDecimal(rDataReader, "TransactionValuationDollar")
 
 
+
           End With
           With pStockItemTransactionLogInfo.CurrentStockItem
             .StockItemID = DBReadInt32(rDataReader, "StockItemID")

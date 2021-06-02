@@ -23,69 +23,74 @@ Partial Class frmCustomerDetail
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.Label1 = New System.Windows.Forms.Label()
-    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.txtMainPostCode = New DevExpress.XtraEditors.TextEdit()
-    Me.Label15 = New System.Windows.Forms.Label()
-    Me.txtCustomerReference = New DevExpress.XtraEditors.TextEdit()
-    Me.Label12 = New System.Windows.Forms.Label()
-    Me.txtMainTown = New DevExpress.XtraEditors.TextEdit()
-    Me.Label5 = New System.Windows.Forms.Label()
-    Me.rgEstatus = New DevExpress.XtraEditors.RadioGroup()
-    Me.Label11 = New System.Windows.Forms.Label()
-    Me.txtWebUrl = New DevExpress.XtraEditors.TextEdit()
-    Me.Label9 = New System.Windows.Forms.Label()
-    Me.txtMainAddress1 = New DevExpress.XtraEditors.TextEdit()
-    Me.Label8 = New System.Windows.Forms.Label()
-    Me.cboCountry = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.Label7 = New System.Windows.Forms.Label()
-    Me.txtRucNumber = New DevExpress.XtraEditors.TextEdit()
-    Me.Label6 = New System.Windows.Forms.Label()
-    Me.txtRazonSocial = New DevExpress.XtraEditors.TextEdit()
-    Me.Label4 = New System.Windows.Forms.Label()
-    Me.txtEmail = New DevExpress.XtraEditors.TextEdit()
-    Me.Label2 = New System.Windows.Forms.Label()
-    Me.txtTelNo = New DevExpress.XtraEditors.TextEdit()
-    Me.Label3 = New System.Windows.Forms.Label()
-    Me.gvContacts = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.grdContacts = New DevExpress.XtraGrid.GridControl()
-    Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-    Me.cboSalesTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.Label10 = New System.Windows.Forms.Label()
-    Me.lblCustomerID = New System.Windows.Forms.Label()
-    Me.cboPaymentTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.Label13 = New System.Windows.Forms.Label()
-    Me.txtABA = New DevExpress.XtraEditors.TextEdit()
-    Me.Label14 = New System.Windows.Forms.Label()
-    Me.txtSwift = New DevExpress.XtraEditors.TextEdit()
-    Me.Label16 = New System.Windows.Forms.Label()
-    Me.txtBancoIntermediario = New DevExpress.XtraEditors.TextEdit()
-    Me.Label17 = New System.Windows.Forms.Label()
-    Me.txtAcountRef = New DevExpress.XtraEditors.TextEdit()
-    Me.Label20 = New System.Windows.Forms.Label()
-    Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-    Me.txtCustomerNotes = New DevExpress.XtraEditors.MemoEdit()
-        Me.cboCustomerType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCustomerDetail))
+        Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.txtCustomerNotes = New DevExpress.XtraEditors.MemoEdit()
+        Me.cboCustomerType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtMainPostCode = New DevExpress.XtraEditors.TextEdit()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.txtCustomerReference = New DevExpress.XtraEditors.TextEdit()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtMainTown = New DevExpress.XtraEditors.TextEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.rgEstatus = New DevExpress.XtraEditors.RadioGroup()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtWebUrl = New DevExpress.XtraEditors.TextEdit()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtMainAddress1 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.cboCountry = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtRucNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtRazonSocial = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtEmail = New DevExpress.XtraEditors.TextEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtTelNo = New DevExpress.XtraEditors.TextEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.gvContacts = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.grdContacts = New DevExpress.XtraGrid.GridControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.cboSalesTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lblCustomerID = New System.Windows.Forms.Label()
+        Me.cboPaymentTermsType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtABA = New DevExpress.XtraEditors.TextEdit()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtSwift = New DevExpress.XtraEditors.TextEdit()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.txtBancoIntermediario = New DevExpress.XtraEditors.TextEdit()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtAcountRef = New DevExpress.XtraEditors.TextEdit()
+        Me.Label20 = New System.Windows.Forms.Label()
         CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
+        CType(Me.txtCustomerNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCustomerType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomerReference.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMainTown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,10 +112,6 @@ Partial Class frmCustomerDetail
         CType(Me.txtSwift.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtBancoIntermediario.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAcountRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl3.SuspendLayout()
-        CType(Me.txtCustomerNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboCustomerType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtCustomerName
@@ -243,6 +244,48 @@ Partial Class frmCustomerDetail
         Me.GroupControl1.Size = New System.Drawing.Size(575, 272)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Detalles del Cliente"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label18.Location = New System.Drawing.Point(5, 139)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(90, 14)
+        Me.Label18.TabIndex = 27
+        Me.Label18.Text = "Tipo de Cliente"
+        '
+        'GroupControl3
+        '
+        Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.GroupControl3.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl3.Controls.Add(Me.txtCustomerNotes)
+        Me.GroupControl3.Location = New System.Drawing.Point(314, 180)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(256, 82)
+        Me.GroupControl3.TabIndex = 3
+        Me.GroupControl3.Text = "Notas del Cliente"
+        '
+        'txtCustomerNotes
+        '
+        Me.txtCustomerNotes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtCustomerNotes.Location = New System.Drawing.Point(2, 23)
+        Me.txtCustomerNotes.MenuManager = Me.BarManager1
+        Me.txtCustomerNotes.Name = "txtCustomerNotes"
+        Me.txtCustomerNotes.Size = New System.Drawing.Size(252, 57)
+        Me.txtCustomerNotes.TabIndex = 0
+        '
+        'cboCustomerType
+        '
+        Me.cboCustomerType.Location = New System.Drawing.Point(141, 136)
+        Me.cboCustomerType.MenuManager = Me.BarManager1
+        Me.cboCustomerType.Name = "cboCustomerType"
+        Me.cboCustomerType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboCustomerType.Size = New System.Drawing.Size(155, 20)
+        Me.cboCustomerType.TabIndex = 26
         '
         'txtMainPostCode
         '
@@ -689,48 +732,6 @@ Partial Class frmCustomerDetail
         Me.Label20.TabIndex = 11
         Me.Label20.Text = "Número de Cuenta"
         '
-        'GroupControl3
-        '
-        Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupControl3.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl3.Controls.Add(Me.txtCustomerNotes)
-        Me.GroupControl3.Location = New System.Drawing.Point(314, 180)
-        Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(256, 82)
-        Me.GroupControl3.TabIndex = 3
-        Me.GroupControl3.Text = "Notas del Cliente"
-        '
-        'txtCustomerNotes
-        '
-        Me.txtCustomerNotes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCustomerNotes.Location = New System.Drawing.Point(2, 23)
-        Me.txtCustomerNotes.MenuManager = Me.BarManager1
-        Me.txtCustomerNotes.Name = "txtCustomerNotes"
-        Me.txtCustomerNotes.Size = New System.Drawing.Size(252, 57)
-        Me.txtCustomerNotes.TabIndex = 0
-        '
-        'cboCustomerType
-        '
-        Me.cboCustomerType.Location = New System.Drawing.Point(141, 136)
-        Me.cboCustomerType.MenuManager = Me.BarManager1
-        Me.cboCustomerType.Name = "cboCustomerType"
-        Me.cboCustomerType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboCustomerType.Size = New System.Drawing.Size(155, 20)
-        Me.cboCustomerType.TabIndex = 26
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(5, 139)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(90, 14)
-        Me.Label18.TabIndex = 27
-        Me.Label18.Text = "Tipo de Cliente"
-        '
         'frmCustomerDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -744,6 +745,7 @@ Partial Class frmCustomerDetail
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.DoubleBuffered = True
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmCustomerDetail"
         Me.Text = "Detalles de Cliente"
         CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -751,6 +753,10 @@ Partial Class frmCustomerDetail
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        CType(Me.txtCustomerNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCustomerType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMainPostCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomerReference.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMainTown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -773,10 +779,6 @@ Partial Class frmCustomerDetail
         CType(Me.txtSwift.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtBancoIntermediario.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAcountRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(False)
-        CType(Me.txtCustomerNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboCustomerType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

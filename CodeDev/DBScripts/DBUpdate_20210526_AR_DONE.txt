@@ -1,0 +1,83 @@
+ALTER VIEW [dbo].[vwPODeliveryItemInfo]
+AS
+
+select  
+PODI.PODeliveryItemID,
+PODI.QtyReceived,
+POI.Description,
+POI.PartNo,
+POI.UoM,
+POI.StockCode,
+poi.QtyRequired,
+POI.UnitPrice,
+POD.GRNumber,
+POD.DateCreated,
+pod.RefSupplierDoc,
+SOP.JobNo,
+PO.PONum,
+PO.PaymentStatus,
+PO.Category,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+PO.POStage,
+PO.AccoutingCategoryID,
+PO.PurchaseCategory,
+PO.RefMatType,
+SO.ProjectName,
+SI.Category 'StockItemCategory',
+SI.ItemType
+
+from PODeliveryItem PODI
+INNER JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID= POIA.PurchaseOrderItemID
+LEFT JOIN StockItem SI on SI.StockItemID = poi.StockItemID
+INNER JOIN PODelivery POD ON POD.PODeliveryID=PODI.PODeliveryID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+
+
+GO
+
+ALTER VIEW [dbo].[vwPODeliveryItemInfo]
+AS
+
+select  
+PODI.PODeliveryItemID,
+PODI.QtyReceived,
+POI.Description,
+POI.PartNo,
+POI.UoM,
+POI.StockCode,
+poi.QtyRequired,
+POI.UnitPrice,
+POD.GRNumber,
+POD.DateCreated,
+pod.RefSupplierDoc,
+SOP.JobNo,
+PO.PONum,
+PO.PaymentStatus,
+PO.Category,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+PO.POStage,
+PO.AccoutingCategoryID,
+PO.PurchaseCategory,
+PO.RefMatType,
+SO.ProjectName,
+SI.Category 'StockItemCategory',
+SI.ItemType,
+SU.CompanyName
+
+from PODeliveryItem PODI
+INNER JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID= POIA.PurchaseOrderItemID
+LEFT JOIN StockItem SI on SI.StockItemID = poi.StockItemID
+INNER JOIN PODelivery POD ON POD.PODeliveryID=PODI.PODeliveryID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=POIA.CallOffID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID
+left join Supplier SU ON SU.SupplierID=PO.SupplierID
+
+GO
+

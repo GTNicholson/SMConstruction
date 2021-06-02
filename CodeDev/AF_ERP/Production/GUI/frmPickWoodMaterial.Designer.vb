@@ -27,6 +27,7 @@ Partial Class frmPickWoodMaterial
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickWoodMaterial))
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.btnSelectWorkOrder = New DevExpress.XtraEditors.ButtonEdit()
         Me.gcPurchaseOrderItemAllocationID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -311,10 +312,10 @@ Partial Class frmPickWoodMaterial
         'grdPurchaseOrderItemInfo
         '
         Me.grdPurchaseOrderItemInfo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdPurchaseOrderItemInfo.Location = New System.Drawing.Point(2, 26)
+        Me.grdPurchaseOrderItemInfo.Location = New System.Drawing.Point(2, 25)
         Me.grdPurchaseOrderItemInfo.MainView = Me.gvWoodPalletItems
         Me.grdPurchaseOrderItemInfo.Name = "grdPurchaseOrderItemInfo"
-        Me.grdPurchaseOrderItemInfo.Size = New System.Drawing.Size(1281, 417)
+        Me.grdPurchaseOrderItemInfo.Size = New System.Drawing.Size(1281, 418)
         Me.grdPurchaseOrderItemInfo.TabIndex = 0
         Me.grdPurchaseOrderItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletItems})
         '
@@ -521,7 +522,7 @@ Partial Class frmPickWoodMaterial
         Me.GridColumn16.Caption = "Pies Tablas"
         Me.GridColumn16.DisplayFormat.FormatString = "n2"
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "TotalBoardFeetFromInches"
+        Me.GridColumn16.FieldName = "TotalBoardFeet"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
@@ -647,6 +648,7 @@ Partial Class frmPickWoodMaterial
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.grdWoodPalletItems)
         Me.Controls.Add(Me.grpPOPicking)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmPickWoodMaterial"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Despacho de Madera para Producción"

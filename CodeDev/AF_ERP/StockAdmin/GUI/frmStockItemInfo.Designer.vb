@@ -24,6 +24,7 @@ Partial Class frmStockItemInfo
     Private Sub InitializeComponent()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockItemInfo))
         Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
         Me.popupWoodPalletInfo = New DevExpress.XtraEditors.PopupContainerControl()
         Me.grdWoodPalletInfo = New DevExpress.XtraGrid.GridControl()
@@ -837,6 +838,7 @@ Partial Class frmStockItemInfo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1370, 733)
         Me.Controls.Add(Me.grpItemDetail)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmStockItemInfo"
         Me.Text = "Información de Inventario"
         CType(Me.grpItemDetail, System.ComponentModel.ISupportInitialize).EndInit()

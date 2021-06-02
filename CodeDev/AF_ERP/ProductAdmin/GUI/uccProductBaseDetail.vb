@@ -122,10 +122,10 @@ Public Class uccProductBaseDetail
           mProductBOM.StockCode = mSI.StockCode
           mProductBOM.NetLenght = mSI.Length
           mProductBOM.NetWidth = mSI.Width
-          mProductBOM.NetThickness = mSI.Thickness
+          mProductBOM.NetThickness = mSI.Thickness * clsConstants.CMToInches
           mProductBOM.DateChange = Now
           mProductBOM.SupplierStockCode = mSI.PartNo
-
+          mProductBOM.WoodItemType = eStockItemTypeTimberWood.Primera
           mProductStructure.ProductWoodBOMs.Add(mProductBOM)
         End If
       Next
@@ -148,7 +148,34 @@ Public Class uccProductBaseDetail
 
     End If
   End Sub
+  Public Sub CreateStockItemProductBoMProvisional(ByRef rStockItem As dmStockItem)
+    Dim mProductBOM As dmProductBOM
+    Dim mProductStructure As dmProductStructure
+    Dim mFound As Boolean
 
+    mProductStructure = TryCast(pCurrentProductInfo.Product, dmProductStructure)
+
+    If mProductStructure IsNot Nothing Then
+
+      If mProductStructure.ProductStockItemBOMs.IndexFromStockItemID(rStockItem.StockItemID) = -1 Then
+        mProductBOM = New dmProductBOM
+        mProductBOM.ObjectType = eProductBOMObjectType.StockItems
+
+        mProductBOM.StockItemID = rStockItem.StockItemID
+        mProductBOM.Description = rStockItem.Description
+        mProductBOM.UoM = rStockItem.UoM
+        mProductBOM.WoodSpecie = rStockItem.Species
+        mProductBOM.StockCode = rStockItem.StockCode
+        mProductBOM.NetLenght = rStockItem.Length
+        mProductBOM.NetWidth = rStockItem.Width
+        mProductBOM.NetThickness = rStockItem.Thickness
+        mProductBOM.DateChange = Now
+        mProductBOM.SupplierStockCode = rStockItem.PartNo
+        mProductStructure.ProductStockItemBOMs.Add(mProductBOM)
+      End If
+
+    End If
+  End Sub
 
   Public Sub CreateStockItemProductBoM(ByRef rStockItems As List(Of dmStockItem))
     Dim mProductBOM As dmProductBOM
@@ -247,7 +274,7 @@ Public Class uccProductBaseDetail
     Return mRetVal
   End Function
 
-  Public Sub ChangeSpeciesForSelectedWoodItems(ByVal vNewSpecies As Integer, ByVal vThickness As Decimal, ByRef rProductBOM As dmProductBOM)
+  Public Sub ChangeSpeciesForSelectedWoodItems(ByVal vNewSpecies As Integer, ByVal vThickness As Decimal, ByRef rProductBOM As dmProductBOM, ByVal vWoodItemType As Integer)
     Dim mSIOrig As dmStockItem
     Dim mSITemp As dmStockItem
     Dim mSINew As dmStockItem
@@ -256,6 +283,7 @@ Public Class uccProductBaseDetail
     mSITemp = mSIOrig.Clone
     mSITemp.Species = vNewSpecies
     mSITemp.Thickness = vThickness
+    mSITemp.ItemType = vWoodItemType
 
     mSINew = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromSameSpec(mSITemp)
 
@@ -272,7 +300,8 @@ Public Class uccProductBaseDetail
     rProductBOM.StockItemID = mSINew.StockItemID
     rProductBOM.StockCode = mSINew.StockCode
     rProductBOM.WoodSpecie = mSINew.Species
-    rProductBOM.NetThickness = Math.Round(vThickness / clsConstants.CMToInches, 0, MidpointRounding.AwayFromZero)
+    rProductBOM.WoodItemType = vWoodItemType
+    rProductBOM.NetThickness = rProductBOM.NetThickness
     rProductBOM.UoM = mSINew.UoM
 
 

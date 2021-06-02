@@ -49,6 +49,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pIsCostingOnly As Boolean
   Private pIsTracked As Boolean
   Private pHeadTypeID As Integer
+  Private pIsProvisional As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -143,7 +144,7 @@ Public Class dmStockItem : Inherits dmBase
       .AverageCost = AverageCost
       .IsTracked = IsTracked
       .HeadTypeID = HeadTypeID
-
+      .IsProvisional = IsProvisional
       Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
@@ -675,10 +676,11 @@ Public Class dmStockItem : Inherits dmBase
 
   Public Property IsProvisional As Boolean Implements intStockItemDef.IsProvisional
     Get
-      ''Throw New NotImplementedException()
+      Return pIsProvisional
     End Get
     Set(value As Boolean)
-      Throw New NotImplementedException()
+      If pIsProvisional <> value Then IsDirty = True
+      pIsProvisional = value
     End Set
   End Property
 

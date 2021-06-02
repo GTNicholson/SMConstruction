@@ -55,7 +55,7 @@ Public Class fccSupplierDetail
 
       mWhere = "SupplierID = " & pSupplier.SupplierID & " and (Status <> 6 and Status <>4) and SubmissionDate between '" & mSubmissionDate.ToShortDateString & "' and '" & Today.ToShortDateString & "'"
 
-      mdso.LoadPurchaseOrderCollection(pPurchaseOrders, mWhere)
+      mdso.LoadPurchaseOrderCollectionDown(pPurchaseOrders, mWhere)
 
     Else
       pSupplier.PrintAccountOption = eSupplirPrintOption.MainAccount

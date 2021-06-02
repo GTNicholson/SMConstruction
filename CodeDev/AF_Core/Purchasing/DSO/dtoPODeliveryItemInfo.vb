@@ -60,6 +60,8 @@ Public Class dtoPODeliveryItemInfo : Inherits dtoBase
     Try
       If pPODeliveryItemInfo Is Nothing Then SetObjectToNew()
       With pPODeliveryItemInfo
+        .CompanyName = DBReadString(rDataReader, "CompanyName")
+        .RefSupplierDoc = DBReadString(rDataReader, "RefSupplierDoc")
 
         With .PODeliveryItem
 

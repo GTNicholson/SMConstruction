@@ -117,7 +117,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
         ''  mdoPurchasing.LoadPurchaseOrderInfos(mPOInfos, mWhere)
 
         Case eListOption.All
-          mdoPurchasing.LoadPurchaseOrderInfosDown(mPOInfos, "")
+          mdoPurchasing.LoadPurchaseOrderInfosOnly(mPOInfos, "")
       End Select
 
 

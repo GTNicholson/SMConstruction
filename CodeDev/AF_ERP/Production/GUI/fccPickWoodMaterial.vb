@@ -7,13 +7,23 @@ Public Class fccPickWoodMaterial
   Private pWoodPallet As dmWoodPallet
   Private pWoodPalletItemEditors As colWoodPalletItemEditors
   Private pCurrentWorkOrderInfo As clsWorkOrderInfo
-
+  Private pWoodPallets As colWoodPallets
+  Private pIsMultiSelected As Boolean
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pWoodPallet = New dmWoodPallet
     pWoodPalletItemEditors = New colWoodPalletItemEditors
-
+    pWoodPallets = New colWoodPallets
   End Sub
+
+  Public Property IsMultiSelected As Boolean
+    Get
+      Return pIsMultiSelected
+    End Get
+    Set(value As Boolean)
+      pIsMultiSelected = value
+    End Set
+  End Property
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -31,6 +41,14 @@ Public Class fccPickWoodMaterial
     End Get
     Set(value As dmWoodPallet)
       pWoodPallet = value
+    End Set
+  End Property
+  Public Property WoodPallets As colWoodPallets
+    Get
+      Return pWoodPallets
+    End Get
+    Set(value As colWoodPallets)
+      pWoodPallets = value
     End Set
   End Property
   Public Property WoodPalletItemEditors() As colWoodPalletItemEditors
@@ -72,21 +90,47 @@ Public Class fccPickWoodMaterial
     Dim mdso As New dsoStock(pDBConn)
     pWoodPalletItemEditors.Clear()
 
-    If pWoodPallet IsNot Nothing Then
+    If pIsMultiSelected Then
 
-      If pWoodPallet.WoodPalletItems IsNot Nothing Then
+      If pWoodPallets IsNot Nothing Then
 
-        For Each mWoodPalletItem As dmWoodPalletItem In pWoodPallet.WoodPalletItems
-          mWoodPalletItemEditor = New clsWoodPalletItemEditor
-          mTempStockItem = mdso.GetStockItemByStockItemID(mWoodPalletItem.StockItemID)
+        For Each mWP As dmWoodPallet In pWoodPallets
 
-          mWoodPalletItemEditor.WoodPalletItem = mWoodPalletItem
-          mWoodPalletItemEditor.StockItem = mTempStockItem
+          If mWP.IsSelected Then
 
-          pWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+            For Each mWoodPalletItem As dmWoodPalletItem In mWP.WoodPalletItems
+              mWoodPalletItemEditor = New clsWoodPalletItemEditor
+              mTempStockItem = mdso.GetStockItemByStockItemID(mWoodPalletItem.StockItemID)
 
+              mWoodPalletItemEditor.WoodPalletItem = mWoodPalletItem
+              mWoodPalletItemEditor.StockItem = mTempStockItem
+
+              pWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+
+            Next
+
+          End If
         Next
       End If
+
+    Else
+      If pWoodPallet IsNot Nothing Then
+
+        If pWoodPallet.WoodPalletItems IsNot Nothing Then
+
+          For Each mWoodPalletItem As dmWoodPalletItem In pWoodPallet.WoodPalletItems
+            mWoodPalletItemEditor = New clsWoodPalletItemEditor
+            mTempStockItem = mdso.GetStockItemByStockItemID(mWoodPalletItem.StockItemID)
+
+            mWoodPalletItemEditor.WoodPalletItem = mWoodPalletItem
+            mWoodPalletItemEditor.StockItem = mTempStockItem
+
+            pWoodPalletItemEditors.Add(mWoodPalletItemEditor)
+
+          Next
+        End If
+      End If
+
     End If
 
 
@@ -258,11 +302,37 @@ Public Class fccPickWoodMaterial
     End Try
   End Sub
 
+
+  Public Sub CreateNegativeTransactionWoodPallets()
+    Dim mdso As New dsoStockTransactions(pDBConn)
+
+    Try
+      For Each mWP As dmWoodPallet In pWoodPallets
+        If mWP.IsSelected Then
+          mdso.CreateNegativeTransaction(eTransactionType.IntoWIP, mWP, mWP.LocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, False)
+        End If
+      Next
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
   Public Sub SaveWoodPallet()
     Dim mdso As New dsoStock(pDBConn)
 
     Try
       mdso.SaveWoodPalletDown(pWoodPallet)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
+
+  Public Sub SaveWoodPalletCollection()
+    Dim mdso As New dsoStock(pDBConn)
+
+    Try
+      mdso.SaveWoodPalletCollectionDown(pWoodPallets)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
 

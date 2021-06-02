@@ -98,7 +98,7 @@ Public Class fccSalesOrderDetailSM
     End Get
   End Property
 
-  Public Sub CreateSalesOrderPack(ByRef rReport As repSalesOrder, ByVal vFilePath As String)
+  Public Sub CreateSalesOrderPack(ByRef rReport As repSalesOrder_Spanish, ByVal vFilePath As String)
     Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
     Dim mFilePath As String

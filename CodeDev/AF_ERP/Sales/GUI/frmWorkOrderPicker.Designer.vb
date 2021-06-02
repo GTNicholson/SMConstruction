@@ -22,14 +22,15 @@ Partial Class frmWorkOrderPicker
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.repbtnSelectOt = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.grdWorkOrder = New DevExpress.XtraGrid.GridControl()
-    Me.gvWorkOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderPicker))
+        Me.repbtnSelectOt = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.grdWorkOrder = New DevExpress.XtraGrid.GridControl()
+        Me.gvWorkOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.repbtnSelectOt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +104,15 @@ Partial Class frmWorkOrderPicker
         Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 228
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Proyecto"
+        Me.GridColumn2.FieldName = "ProjectName"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 466
+        '
         'RepbtnSelect
         '
         Me.RepbtnSelect.AutoHeight = False
@@ -116,21 +126,13 @@ Partial Class frmWorkOrderPicker
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Proyecto"
-        Me.GridColumn2.FieldName = "ProjectName"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 466
-        '
         'frmWorkOrderPicker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(876, 358)
         Me.Controls.Add(Me.grdWorkOrder)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWorkOrderPicker"
         Me.Text = "Seleccionador de OT"
         CType(Me.repbtnSelectOt, System.ComponentModel.ISupportInitialize).EndInit()

@@ -67,14 +67,7 @@ Public Class fccWorkOrderDetailConstruction
     End Set
   End Property
 
-  Public Property SalesOrderPhaseItems As colSalesOrderPhaseItems
-    Get
-      Return pSalesOrderPhaseItems
-    End Get
-    Set(value As colSalesOrderPhaseItems)
-      pSalesOrderPhaseItems = value
-    End Set
-  End Property
+
 
 
   Public Property WorkOrder As dmWorkOrder
@@ -261,7 +254,7 @@ Public Class fccWorkOrderDetailConstruction
     End Try
   End Sub
 
-  Public Sub CreateWorkOrderPack(ByRef rReport As DevExpress.XtraReports.UI.XtraReport, ByVal vFilePath As String)
+  Public Sub CreateWorkOrderPack(ByRef rReport As DevExpress.XtraReports.UI.XtraReport, ByVal vFilePath As String, ByRef rFilesTrackers As colFileTrackers)
     Dim mExportOptions As DevExpress.XtraPrinting.PdfExportOptions
     Dim mPDFAmalg As New RTIS.PDFUtils.PDFAmal
     Dim mFilePath As String
@@ -279,16 +272,20 @@ Public Class fccWorkOrderDetailConstruction
     End If
 
 
+    If rFilesTrackers IsNot Nothing Then
+      For Each mFileTracker In rFilesTrackers
+        If mFileTracker.IncludeInPack Then
 
-    'For Each mFileTracker In pWorkOrder.WOFiles
-    '  If mFileTracker.IncludeInPack Then
-    '    mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.WorkOrderFileFolderUsr, pSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pWorkOrder.WorkOrderID.ToString("00000")), mFileTracker.FileName)
+          mFilePath = IO.Path.Combine(RTISGlobal.DefaultExportPath, clsConstants.cProductFiles, clsGeneralA.GetFileSafeName(pWorkOrder.ProductID.ToString("00000")), mFileTracker.FileName)
 
-    '    If IO.File.Exists(mFilePath) Then
-    '      mPDFAmalg.ImportPDFDocument(mFilePath)
-    '    End If
-    '  End If
-    'Next
+
+          If IO.File.Exists(mFilePath) Then
+            mPDFAmalg.ImportPDFDocument(mFilePath)
+          End If
+        End If
+      Next
+
+    End If
 
     mPDFAmalg.SavePDFDocument()
 
@@ -524,12 +521,26 @@ Public Class fccWorkOrderDetailConstruction
               mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
             Next
 
-            If pSalesOrder Is Nothing Then
-              mSOID = mdsoSales.GetSalesOrderIDBySalesOrderItemID(pWorkOrder.SalesOrderItemID)
+          If pSalesOrder Is Nothing Then
+            mSOID = mdsoSales.GetSalesOrderIDBySalesOrderItemID(pWorkOrder.SalesOrderItemID)
 
+            If mSOID = 0 Then
+              If pWorkOrderAllocationEditors IsNot Nothing Then
+                If pWorkOrderAllocationEditors.Count > 0 Then
+                  Dim mSOPIID As Integer
+
+                  mSOPIID = pWorkOrderAllocationEditors(0).SalesOrderPhaseItemID
+                  mSOID = mdsoSales.GetSalesOrderIDBySalesOrderPhaseItemID(mSOPIID)
+                  mdsoSales.LoadSalesOrderDown(pSalesOrder, mSOID)
+
+                End If
+              End If
+            Else
               mdsoSales.LoadSalesOrderDown(pSalesOrder, mSOID)
+
             End If
-            mWhere = "SalesOrderPhaseID = " & pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+          End If
+          mWhere = "SalesOrderPhaseID = " & pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
 
 
             mdsoSales.LoadSalesOrderPhaseInfos(mSOPs, mWhere)
@@ -701,5 +712,16 @@ Public Class fccWorkOrderDetailConstruction
 
   End Sub
 
+  Public Sub LoadSalesOrderDown(ByVal vSalesOrderID As Integer)
 
+    Dim mdso As New dsoSalesOrder(pDBConn)
+    Try
+      mdso.LoadSalesOrderDown(pSalesOrder, vSalesOrderID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+  End Sub
 End Class

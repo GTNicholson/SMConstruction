@@ -606,7 +606,7 @@ Public Class frmSalesOrderDetailSM
 
   Public Sub AddSalesOrderDocument()
     Dim mValidate As clsValidate
-    Dim mReport As repSalesOrder
+    Dim mReport As repSalesOrder_Spanish
     Dim mFilePath As String
 
     mValidate = pFormController.ValidateObject()
@@ -659,7 +659,7 @@ Public Class frmSalesOrderDetailSM
       Case eDocumentType.SalesOrder
 
         If pFormController.SalesOrder IsNot Nothing Then
-          mRetVal = repSalesOrder.GenerateReport(pFormController.SalesOrder, True)
+          mRetVal = repSalesOrder_Spanish.GenerateReport(pFormController.SalesOrder, True, 1)
         End If
 
     End Select

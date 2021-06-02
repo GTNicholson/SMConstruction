@@ -64,7 +64,7 @@ Public Class fccProductGlobalChange
 
       mMatReq.UoM = mSINew.UoM
       mMatReq.TmpSelectedItem = False
-
+      mMatReq.NetThickness = Math.Round((mSINew.Thickness * clsConstants.CMToInches), 0, MidpointRounding.AwayFromZero)
     Next
   End Sub
 

@@ -151,7 +151,11 @@ Public Class clsWorkOrderInfo
     End Get
   End Property
 
-
+  Public ReadOnly Property PurchasingDate As Date
+    Get
+      Return pWorkOrder.PurchasingDate
+    End Get
+  End Property
 
   Public ReadOnly Property CompanyName As String
     Get

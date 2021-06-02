@@ -23,6 +23,7 @@ Partial Class frmProductDetail_New
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProductDetail_New))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.uctProductDetail = New AgroForestal.uctProductBaseDetail()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -32,12 +33,12 @@ Partial Class frmProductDetail_New
         Me.bbtnClose = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnCreateCopy = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnCreateCopySelected = New DevExpress.XtraBars.BarButtonItem()
-        Me.bbtnChangeSpecies = New DevExpress.XtraBars.BarButtonItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.bbtnChangeSpecies = New DevExpress.XtraBars.BarButtonItem()
         Me.Panel1.SuspendLayout()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -119,13 +120,6 @@ Partial Class frmProductDetail_New
         Me.bbtnCreateCopySelected.Id = 4
         Me.bbtnCreateCopySelected.Name = "bbtnCreateCopySelected"
         '
-        'bbtnChangeSpecies
-        '
-        Me.bbtnChangeSpecies.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.bbtnChangeSpecies.Caption = "Cambiar Especie de Selección"
-        Me.bbtnChangeSpecies.Id = 5
-        Me.bbtnChangeSpecies.Name = "bbtnChangeSpecies"
-        '
         'Bar3
         '
         Me.Bar3.BarName = "Status bar"
@@ -170,6 +164,13 @@ Partial Class frmProductDetail_New
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 598)
         '
+        'bbtnChangeSpecies
+        '
+        Me.bbtnChangeSpecies.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnChangeSpecies.Caption = "Cambiar Especie de Selección"
+        Me.bbtnChangeSpecies.Id = 5
+        Me.bbtnChangeSpecies.Name = "bbtnChangeSpecies"
+        '
         'frmProductDetail_New
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -180,6 +181,7 @@ Partial Class frmProductDetail_New
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmProductDetail_New"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Administración de Productos"

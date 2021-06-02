@@ -32,6 +32,7 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesOrderPhaseItemPickerMulti))
         Me.grdSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.GridControl()
         Me.gvSalesOrderPhaseItem = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,10 +48,10 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcItemNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,6 +198,15 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Select", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.RepbtnSelect.Name = "RepbtnSelect"
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Casa"
+        Me.GridColumn10.FieldName = "AssemblyRef"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 116
+        '
         'repbtnUnSelect
         '
         Me.repbtnUnSelect.AutoHeight = False
@@ -218,15 +228,6 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.btnConfirmSelection.TabIndex = 3
         Me.btnConfirmSelection.Text = "Aceptar Selección"
         '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Casa"
-        Me.GridColumn10.FieldName = "AssemblyRef"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 116
-        '
         'frmSalesOrderPhaseItemPickerMulti
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -235,6 +236,7 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.Controls.Add(Me.btnConfirmSelection)
         Me.Controls.Add(Me.grdSalesOrderPhaseItemInfo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSalesOrderPhaseItemPickerMulti"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Lista de Artículos de Ventas"

@@ -67,7 +67,12 @@ Public Class clsWoodPalletItemEditor : Inherits dmWoodPalletItem
         mSpecies = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.WoodSpecie), colWoodSpecies).ItemFromKey(StockItem.Species)
 
         If mSpecies IsNot Nothing Then
-          mRetVal = mSpecies.SpanishDescription
+          If mSpecies.SpanishDescription = "" Then
+            mRetVal = mSpecies.EnglishDescription.Trim
+          Else
+            mRetVal = mSpecies.SpanishDescription.Trim
+
+          End If
 
         End If
 

@@ -628,7 +628,16 @@ Public Class dmPurchaseOrder : Inherits dmBase
   End Function
 
   Public Function CalculateNetValue() As Decimal
+    Dim mRetVal As Decimal
 
+    If pPurchaseOrderItems IsNot Nothing Then
+      For Each mPOI As dmPurchaseOrderItem In pPurchaseOrderItems
+        mRetVal += mPOI.QtyRequired * mPOI.UnitPrice
+      Next
+
+    End If
+
+    Return mRetVal
   End Function
 
   Public Property PaymentDate As Date
@@ -712,6 +721,8 @@ Public Class dmPurchaseOrder : Inherits dmBase
       pValuationMode = value
     End Set
   End Property
+
+  Public Property DateCreated As Date
 End Class
 
 

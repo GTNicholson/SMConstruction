@@ -22,9 +22,10 @@ Partial Class frmHomeManagement
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim XyDiagram2 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
-        Dim StackedBarSeriesLabel2 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
-        Dim StackedBarSeriesView2 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim XyDiagram1 As DevExpress.XtraCharts.XYDiagram = New DevExpress.XtraCharts.XYDiagram()
+        Dim StackedBarSeriesLabel1 As DevExpress.XtraCharts.StackedBarSeriesLabel = New DevExpress.XtraCharts.StackedBarSeriesLabel()
+        Dim StackedBarSeriesView1 As DevExpress.XtraCharts.StackedBarSeriesView = New DevExpress.XtraCharts.StackedBarSeriesView()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmHomeManagement))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -72,9 +73,9 @@ Partial Class frmHomeManagement
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.chtWoodInventorySpecieChart, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(StackedBarSeriesView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.grdPODeliveryItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,9 +279,9 @@ Partial Class frmHomeManagement
         'chtWoodInventorySpecieChart
         '
         Me.chtWoodInventorySpecieChart.DataBindings = Nothing
-        XyDiagram2.AxisX.VisibleInPanesSerializable = "-1"
-        XyDiagram2.AxisY.VisibleInPanesSerializable = "-1"
-        Me.chtWoodInventorySpecieChart.Diagram = XyDiagram2
+        XyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
+        XyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
+        Me.chtWoodInventorySpecieChart.Diagram = XyDiagram1
         Me.chtWoodInventorySpecieChart.Dock = System.Windows.Forms.DockStyle.Fill
         Me.chtWoodInventorySpecieChart.Legend.Name = "Default Legend"
         Me.chtWoodInventorySpecieChart.Location = New System.Drawing.Point(2, 2)
@@ -289,14 +290,14 @@ Partial Class frmHomeManagement
         Me.chtWoodInventorySpecieChart.SeriesSerializable = New DevExpress.XtraCharts.Series(-1) {}
         Me.chtWoodInventorySpecieChart.SeriesTemplate.ArgumentDataMember = "SpeciesDesc"
         Me.chtWoodInventorySpecieChart.SeriesTemplate.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative
-        StackedBarSeriesLabel2.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
-        StackedBarSeriesLabel2.TextPattern = "{V:#.00}"
-        Me.chtWoodInventorySpecieChart.SeriesTemplate.Label = StackedBarSeriesLabel2
+        StackedBarSeriesLabel1.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
+        StackedBarSeriesLabel1.TextPattern = "{V:#.00}"
+        Me.chtWoodInventorySpecieChart.SeriesTemplate.Label = StackedBarSeriesLabel1
         Me.chtWoodInventorySpecieChart.SeriesTemplate.LegendTextPattern = "{V:#.00}"
         Me.chtWoodInventorySpecieChart.SeriesTemplate.SummaryFunction = "SUM([TotalBoardFeet])"
         Me.chtWoodInventorySpecieChart.SeriesTemplate.ToolTipPointPattern = "{V:#.00}"
         Me.chtWoodInventorySpecieChart.SeriesTemplate.ToolTipSeriesPattern = "{S:#.00}"
-        Me.chtWoodInventorySpecieChart.SeriesTemplate.View = StackedBarSeriesView2
+        Me.chtWoodInventorySpecieChart.SeriesTemplate.View = StackedBarSeriesView1
         Me.chtWoodInventorySpecieChart.Size = New System.Drawing.Size(472, 345)
         Me.chtWoodInventorySpecieChart.TabIndex = 0
         '
@@ -530,6 +531,7 @@ Partial Class frmHomeManagement
         Me.ClientSize = New System.Drawing.Size(1197, 671)
         Me.ControlBox = False
         Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmHomeManagement"
         Me.Text = "Pantalla Principal"
         Me.TableLayoutPanel1.ResumeLayout(False)
@@ -542,9 +544,9 @@ Partial Class frmHomeManagement
         CType(Me.repoDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(XyDiagram2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesLabel2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(StackedBarSeriesView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(XyDiagram1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesLabel1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(StackedBarSeriesView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chtWoodInventorySpecieChart, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)

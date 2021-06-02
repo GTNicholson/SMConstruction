@@ -193,6 +193,7 @@ Public Class clsPODeliveryInfo
 
   Public ReadOnly Property TotalNetValue As Decimal
     Get
+
       Return pPurchaseOrder.TotalNetValue
     End Get
   End Property

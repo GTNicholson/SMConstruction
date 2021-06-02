@@ -526,4 +526,13 @@
     <Filename>BIWoodSalesOrderSummary.xml</Filename>
   </AuxFiles>
   
+       <AuxFiles>
+    <Filename>gvlWoodSalesOrder.xml</Filename>
+  </AuxFiles>
+  
+   <AuxFiles>
+    <Filename>BIWoodStockTransactionItemList.xml</Filename>
+  </AuxFiles>
+  
+  
 </AppUpdateManifest>
