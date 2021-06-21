@@ -12,6 +12,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Ventas", 0, eActivityCode.SalesGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Clientes", eMenuIconType.Grid, AddressOf clsMenuFunctions.CustomerBrowse, eActivityCode.Customer)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Casas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.SalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Muebles", eMenuIconType.Grid, AddressOf clsMenuFunctions.FurnitureSalesOrderBrowse, eActivityCode.FurnitureSalesOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSalesOrder, eActivityCode.WoodSalesOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Ventas por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderProgress, eActivityCode.TrackingSalesOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
@@ -37,7 +38,9 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.PurchasingGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Suppliers)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
-    '' mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. O.C.", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
+    mLastGroup.ChildGroupMenuEntries.AddNewItem("Consola de Compras", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. de Compras", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Procurement, eActivityCode.PurchasingManagement)
+
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Compras", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.PurchasingGroup)
     'mLastItem.ChildGroupMenuEntries.AddNewItem("Compras vrs Recepciones", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchasingBalance, eActivityCode.PODeliveryItemReport)
@@ -122,6 +125,11 @@ Class clsMenuFunctions
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 
+  Public Shared Sub FurnitureSalesOrderBrowse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBrw As New brwFurnitureSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.FurnitureSalesOrders)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+  End Sub
+
   Public Shared Sub SalesOrderProgress(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     frmSalesOrderProgress.OpenFormMDI(rParentForm, My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
 
@@ -154,7 +162,8 @@ Class clsMenuFunctions
   Public Shared Sub InventoryAdmin(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As AppRTISGlobal)
     Dim mCategories As New List(Of eStockItemCategory)
     mCategories.Add(eStockItemCategory.Abrasivos)
-    mCategories.Add(eStockItemCategory.NailsAndBolds)
+    mCategories.Add(eStockItemCategory.BrickWork)
+    mCategories.Add(eStockItemCategory.Fixings)
     mCategories.Add(eStockItemCategory.EPP)
     mCategories.Add(eStockItemCategory.Herramientas)
     mCategories.Add(eStockItemCategory.MatElect)
@@ -164,6 +173,7 @@ Class clsMenuFunctions
     mCategories.Add(eStockItemCategory.PinturaYQuimico)
     mCategories.Add(eStockItemCategory.Laminas)
     mCategories.Add(eStockItemCategory.Repuestos)
+    mCategories.Add(eStockItemCategory.Plumbing)
     mCategories.Add(eStockItemCategory.Tapiceria)
     mCategories.Add(eStockItemCategory.VidrioYEspejo)
     mCategories.Add(eStockItemCategory.Herrajes)
@@ -197,7 +207,7 @@ Class clsMenuFunctions
     End If
   End Sub
   Public Shared Sub PurchaseOrderconsole(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    ''frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
   End Sub
   Public Shared Sub PickingPurchaseOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mfrm As RTIS.Elements.frmBrowseList
@@ -401,6 +411,10 @@ Class clsMenuFunctions
   Public Shared Sub WoodSalesOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBrw As New brwSalesOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.SalesOrders, True)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
+  End Sub
+
+  Public Shared Sub Procurement(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmPurchaseManagement.OpenForm(AppRTISGlobal.GetInstance, rRTISUserSession.CreateMainDBConn, rParentForm)
   End Sub
 
 End Class

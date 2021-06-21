@@ -123,7 +123,7 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
     gridBrowseList.MainView.BeginDataUpdate()
     Try
       Dim mWhere As String
-      mWhere = String.Format("(Status <> {0} or Status is null) and  ProductTypeID = {1}", CInt(eWorkOrderStatus.Cancelled), CInt(eProductType.StructureAF))
+      mWhere = String.Format("(Status not in ({0},{1}) or Status is null) and  ProductTypeID = {2}", CInt(eWorkOrderStatus.Cancelled), CInt(eWorkOrderStatus.Complete), CInt(eProductType.StructureAF))
 
       mDSO.LoadInternalWorkOrderInfos(mWOIs, mWhere)
 

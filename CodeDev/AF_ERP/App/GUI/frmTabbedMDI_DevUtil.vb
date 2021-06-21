@@ -5,6 +5,7 @@ Imports RTIS.DeveloperUtilities
 Imports System.IO
 Imports System.Environment
 Imports DevExpress.XtraNavBar
+Imports RTIS.ERPCore
 
 Public Class frmTabbedMDI_DevUtil
   '' Private pDepartments As colValueItems
@@ -712,7 +713,7 @@ Public Class frmTabbedMDI_DevUtil
       For Each mWP As dmWoodPallet In mNewListWoodPallet
 
 
-        mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, eLocations.AgroForestal, Now, eCurrency.Dollar, 1, False)
+        mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, mWP.LocationID, Now, eCurrency.Dollar, 1, False)
 
 
       Next
@@ -742,4 +743,58 @@ Public Class frmTabbedMDI_DevUtil
 
 
   End Sub
+
+  Private Sub bbtnNewEmail_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnNewEmail.LinkClicked
+
+    Try
+      Dim mEmail As New RTIS.EmailLib.clsEmailManager
+      Dim mSubject As String = "Testing axel"
+      Dim mEmployees As New colEmployees
+      Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+      Dim mdso As New dsoAdminEmployee(mdbconn)
+
+      mdso.LoadEmployees(mEmployees)
+
+      mEmail.EmailSettings.DelMethod = AppRTISGlobal.GetInstance.EmailSettings.DelMethod
+      mEmail.EmailSettings.Domain = AppRTISGlobal.GetInstance.EmailSettings.Domain
+      mEmail.EmailSettings.Password = AppRTISGlobal.GetInstance.EmailSettings.Password
+      mEmail.EmailSettings.Port = AppRTISGlobal.GetInstance.EmailSettings.Port
+      mEmail.EmailSettings.SMTP = AppRTISGlobal.GetInstance.EmailSettings.SMTP
+      mEmail.EmailSettings.UseDefaultCredentials = AppRTISGlobal.GetInstance.EmailSettings.UseDefaultCredentials
+      mEmail.EmailSettings.UserName = AppRTISGlobal.GetInstance.EmailSettings.UserName
+      mEmail.EmailSettings.EnableSSL = AppRTISGlobal.GetInstance.EmailSettings.EnableSSL
+
+
+      mEmail.EmailMessage.SendFrom = "testing@agroforestal.co"
+
+
+      mEmail.EmailMessage.SendTo = "axelroman1992@gmail.com"
+
+      mSubject = "testing agroforestal subject"
+
+      mEmail.EmailMessage.Subject = mSubject
+
+      mEmail.EmailMessage.BodyHtml = "<p>Nuew body</>"
+      mEmail.EmailMessage.IsBodyHtml = True
+
+      Dim mfrm As New frmRichTextEmail(mEmail, mdbconn, AppRTISGlobal.GetInstance)
+
+      mfrm.Employees = mEmployees
+
+      mfrm.EmailSettings = mEmail.EmailSettings
+
+      mfrm.PopulateMail()
+
+      If mfrm.ShowDialog() = DialogResult.OK OrElse mdbconn.RTISUser.IsSecurityAllowAll Then
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+
+
 End Class

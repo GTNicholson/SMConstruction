@@ -14,14 +14,12 @@ Public Class frmStockItemPurchasing
   Private pMySharedIndex As Integer
   Private pIsActive As Boolean
   Private pSpinEnter As Boolean
-  Private pViewOnly As Boolean
+
 
   Public Sub New()
 
-    ' This call is required by the designer.
     InitializeComponent()
 
-    ' Add any initialization after the InitializeComponent() call.
     sFormIndex = sFormIndex + 1
     Me.pMySharedIndex = sFormIndex
     If sActiveForms Is Nothing Then sActiveForms = New Collection
@@ -29,7 +27,7 @@ Public Class frmStockItemPurchasing
 
   End Sub
 
-  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsViewOnly As Boolean, ByVal vIsBulkOrdering As Boolean)
+  Public Shared Sub OpenAsMDI(ByRef rMDIParent As Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsBulkOrdering As Boolean)
     Dim mfrm As frmStockItemPurchasing = Nothing
 
     mfrm = GetFormIfLoaded(vIsBulkOrdering, rMDIParent)
@@ -38,7 +36,7 @@ Public Class frmStockItemPurchasing
       mfrm.MdiParent = rMDIParent
       mfrm.pFormController = New fccStockItemPurchasing(rDBConn, rRTISGlobal)
       mfrm.pFormController.IsBulkOrdering = vIsBulkOrdering
-      mfrm.pViewOnly = vIsViewOnly
+
       mfrm.Show()
     Else
       mfrm.Focus()
@@ -53,13 +51,19 @@ Public Class frmStockItemPurchasing
 
   Private Sub frmStockItemPurchasing_Load(sender As Object, e As EventArgs) Handles Me.Load
     pIsActive = False
+
+    repProdStartDate.NullDate = DateTime.MinValue
+    repProdStartDate.NullText = String.Empty
+
+    repoETA.NullDate = DateTime.MinValue
+    repoETA.NullText = String.Empty
+
     LoadCombos()
     pFormController.LoadObject()
     LoadGrids()
-    ''RefreshCurrentCategory()
-    ''RefreshCategoryRadioButton()
+
     SplitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
-    ''RefreshControls()
+
     pIsActive = True
   End Sub
 
@@ -67,7 +71,7 @@ Public Class frmStockItemPurchasing
     Dim mfrmWanted As frmStockItemPurchasing = Nothing
     Dim mFound As Boolean = False
     Dim mfrm As frmStockItemPurchasing
-    'Check if exisits already
+
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
       If TypeOf mfrm Is frmStockItemPurchasing Then
@@ -86,20 +90,20 @@ Public Class frmStockItemPurchasing
   End Function
 
   Private Sub LoadCombos()
-    Dim mVIs As colValueItems
-    mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, mVIs)
 
-    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Supplier)
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcSupplier, mVIs)
+    Dim mVIs As colValueItems
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.StockItemType)
+    clsDEControlLoading.FillDERepComboVI(repCategory, mVIs)
+
+
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItems, gcCategory, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.StockItemCategory))
 
   End Sub
 
   Private Sub LoadGrids()
     grdStockItems.DataSource = pFormController.StockItemProcessors
   End Sub
-
-
 
   Private Sub barbtnLoad_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnLoad.ItemClick
     Dim mStartActiveState As Boolean = pIsActive
@@ -109,9 +113,9 @@ Public Class frmStockItemPurchasing
     pIsActive = False
     gvStockItems.BeginDataUpdate()
     ''UpdateObject()
-
-    pFormController.LoadStockItems()
-
+    If mVI IsNot Nothing Then
+      pFormController.LoadStockItems(mVI.ItemValue)
+    End If
 
     gvStockItems.EndDataUpdate()
     LoadGrids()
@@ -120,5 +124,65 @@ Public Class frmStockItemPurchasing
     pIsActive = mStartActiveState
   End Sub
 
+  Private Sub repitpucAllocations_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repitpucAllocations.QueryPopUp
+    Dim mAllocations As New colMaterialRequirementInfos
+
+    Dim mStockItemID As Integer
+    Dim mSIP As clsStockItemProcessor
+
+    mSIP = gvStockItems.GetFocusedRow
+    mStockItemID = mSIP.StockItemID
+
+    pFormController.LoadMatReqInfos(mAllocations, mStockItemID)
+    grdStockItemAllocations.DataSource = mAllocations
+
+
+
+  End Sub
+
+  Private Sub repitpucOrders_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repitpucOrders.QueryPopUp
+    Dim mPOIAInfos As New colPurchaseOrderItemAllocationInfos
+    Dim mStockItemID As Integer
+    Dim mSIP As clsStockItemProcessor
+
+    mSIP = gvStockItems.GetFocusedRow
+    mStockItemID = mSIP.StockItemID
+    pFormController.LoadPurchaseOrderItemAllocationInfos(mPOIAInfos, mStockItemID)
+    grdOrders.DataSource = mPOIAInfos
+  End Sub
+
+  Private Sub bsubitProcessToPO_Popup(sender As Object, e As EventArgs) Handles bsubitProcessToPO.Popup
+    Dim mPO As dmPurchaseOrder
+
+    gvStockItems.CloseEditor()
+
+    For Each mItem As DevExpress.XtraBars.BarButtonItemLink In bsubitProcessToPO.ItemLinks
+      mPO = TryCast(mItem.Item.Tag, dmPurchaseOrder)
+      If mPO IsNot Nothing Then
+        If mPO.Status <> ePurchaseOrderDueDateStatus.Confirmed Or mPO.PurchaseOrderID = 0 Then
+          mItem.Item.Enabled = False
+        End If
+      End If
+    Next
+  End Sub
+
+  Private Sub gvStockItems_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvStockItems.CustomDrawCell
+    If gvStockItems.IsDataRow(e.RowHandle) AndAlso (e.Column.Name <> gcToOrder.Name) Then
+      Dim mFocusedRow As clsStockItemProcessor
+      Dim mCurrentRow As clsStockItemProcessor
+      mFocusedRow = TryCast(gvStockItems.GetFocusedRow, clsStockItemProcessor)
+      mCurrentRow = TryCast(gvStockItems.GetRow(e.RowHandle), clsStockItemProcessor)
+      If mCurrentRow IsNot Nothing AndAlso mFocusedRow IsNot Nothing Then
+        If gvStockItems.FocusedRowHandle <> e.RowHandle Then
+          If mCurrentRow.StockItemID = mFocusedRow.StockItemID Then
+            e.Appearance.BackColor = Color.LightSteelBlue
+            e.Appearance.ForeColor = Color.Black
+          Else
+            e.Appearance.BackColor = Color.Empty
+          End If
+        End If
+      End If
+    End If
+  End Sub
 
 End Class

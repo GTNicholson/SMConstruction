@@ -192,7 +192,7 @@ Public Class fccPODelivery
     Dim mWhere As String
     mWhere = "Status<> " & ePurchaseOrderDueDateStatus.Cancelled
     mdso = New dsoPurchasing(pDBConn)
-    mdso.LoadPurchaseOrderInfosDown(mRetVal, mWhere)
+    mdso.LoadPurchaseOrderInfosOnly(mRetVal, mWhere)
     Return mRetVal
   End Function
 

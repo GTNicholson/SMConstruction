@@ -250,6 +250,7 @@ Public Class fccPurchaseOrder
         pPurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
         pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Confirmed
         pPurchaseOrder.ValuationMode = eValuationMode.ForAdvanced
+        pPurchaseOrder.BuyerID = 1
         GetNextPONo()
         SaveObject()
         mOK = True
@@ -294,7 +295,12 @@ Public Class fccPurchaseOrder
 
     Try
       If pPurchaseOrder.SupplierID > 0 Then
+
+        For Each mPOI As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
+          CreateUpdatePOItemAllocation(mPOI, False)
+        Next
         mOK = mdsoPurchaseOrder.SavePurchaseOrderDownNEW(Me.PurchaseOrder)
+
       End If
 
 
@@ -594,7 +600,7 @@ Public Class fccPurchaseOrder
     Return mRetVal
   End Function
 
-  Public Sub CreateUpdatePOItemAllocation(ByRef rPOItem As dmPurchaseOrderItem)
+  Public Sub CreateUpdatePOItemAllocation(ByRef rPOItem As dmPurchaseOrderItem, ByVal vWithSaving As Boolean)
     Dim mPOIA As dmPurchaseOrderItemAllocation
 
     If rPOItem.PurchaseOrderItemAllocations.Count <= 1 Then
@@ -618,8 +624,12 @@ Public Class fccPurchaseOrder
         rPOItem.PurchaseOrderItemAllocations(0).CallOffID = 0
         rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
       End If
-      '// Update the qty ot the neew value
-      SaveObject()
+
+      If vWithSaving Then
+        '// Update the qty ot the neew value
+        SaveObject()
+      End If
+
     End If
   End Sub
 
@@ -680,7 +690,7 @@ Public Class fccPurchaseOrder
 
 
         For Each mPOI As dmPurchaseOrderItem In pPurchaseOrder.PurchaseOrderItems
-          CreateUpdatePOItemAllocation(mPOI)
+          CreateUpdatePOItemAllocation(mPOI, True)
 
           For Each mPOIA As dmPurchaseOrderItemAllocation In mPOI.PurchaseOrderItemAllocations
 

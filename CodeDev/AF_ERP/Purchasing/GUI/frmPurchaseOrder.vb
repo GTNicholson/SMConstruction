@@ -336,11 +336,12 @@ Public Class frmPurchaseOrder
 
   End Function
 
-  Private Sub RefreshControls()
+  Public Sub RefreshControls()
     Try
 
 
       With pFormController.PurchaseOrder
+        Me.Text = "OC: " & .PONum
         UctFileControl1.LoadControls()
         UctFileControl1.RefreshControls()
         uctDeliveryAddress.Address = .DeliveryAddress
@@ -377,7 +378,7 @@ Public Class frmPurchaseOrder
 
         btnEditPurchaseOrderPDF.Text = .FileName
 
-        txtNetValue.Text = pFormController.GetTotalNetValue()
+        txtNetValue.Text = pFormController.GetTotalNetValue().ToString("n2")
 
         If pSupplier IsNot Nothing Then
           btedSupplier.Text = pSupplier.CompanyName
@@ -417,6 +418,7 @@ Public Class frmPurchaseOrder
             grpPOMaterialType.CustomHeaderButtons(0).Properties.Checked = False
             grpPOMaterialType.CustomHeaderButtons(1).Properties.Checked = False
             grpPOMaterialType.CustomHeaderButtons(2).Properties.Checked = True
+
         End Select
 
       End With
@@ -711,7 +713,7 @@ Public Class frmPurchaseOrder
 
       UpdateObject()
       For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
-        pFormController.CreateUpdatePOItemAllocation(mPOI)
+        pFormController.CreateUpdatePOItemAllocation(mPOI, True)
 
       Next
 
@@ -1212,7 +1214,7 @@ Public Class frmPurchaseOrder
 
         For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
 
-          pFormController.CreateUpdatePOItemAllocation(mPOItem)
+          pFormController.CreateUpdatePOItemAllocation(mPOItem, True)
         Next
 
       End If
@@ -1445,7 +1447,7 @@ Public Class frmPurchaseOrder
       End If
 
       For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
-        pFormController.CreateUpdatePOItemAllocation(mPOI)
+        pFormController.CreateUpdatePOItemAllocation(mPOI, True)
       Next
       pFormController.SalesOrderPhaseInfo = mSalesOrderPhaseInfo
       LoadPOItemAllocationCombo()
@@ -1503,7 +1505,7 @@ Public Class frmPurchaseOrder
           mPOItem = TryCast(gvPurchaseOrderItems.GetFocusedRow, dmPurchaseOrderItem)
 
           If mPOItem IsNot Nothing Then
-            pFormController.CreateUpdatePOItemAllocation(mPOItem)
+            pFormController.CreateUpdatePOItemAllocation(mPOItem, True)
 
           End If
       End Select
@@ -1554,7 +1556,7 @@ Public Class frmPurchaseOrder
 
           For Each mPOItem As dmPurchaseOrderItem In pFormController.PurchaseOrder.PurchaseOrderItems
 
-            pFormController.CreateUpdatePOItemAllocation(mPOItem)
+            pFormController.CreateUpdatePOItemAllocation(mPOItem, True)
           Next
 
         End If

@@ -84,7 +84,14 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
       Select Case pMode
         Case eMode.Info, eMode.Processor
 
+
           pMaterialRequirment.OSQty = DBReadDecimal(rDataReader, "OSQty")
+          pMaterialRequirment.WorkOrderAllocationID = DBReadInt32(rDataReader, "WorkOrderAllocationID")
+          pMaterialRequirment.SalesOrderPhaseID = DBReadInt32(rDataReader, "SalesOrderPhaseID")
+          pMaterialRequirment.SalesOrderPhaseItemID = DBReadInt32(rDataReader, "SalesOrderPhaseItemID")
+          pMaterialRequirment.SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
+
+
           With pMaterialRequirment.MaterialRequirement
 
             .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
@@ -99,6 +106,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
             .ObjectID = DBReadInt32(rDataReader, "WorkOrderID")
             .Description = DBReadString(rDataReader, "Description")
+            .FromStockQty = DBReadDecimal(rDataReader, "FromStockQty")
           End With
 
 
@@ -127,6 +135,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
 
           With pMaterialRequirment.SalesOrder
             .ProjectName = DBReadString(rDataReader, "ProjectName")
+            .OrderNo = DBReadString(rDataReader, "OrderNo")
           End With
 
           'With pMaterialRequirment.StockItemTransactionLog
@@ -188,6 +197,12 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
     Finally
 
     End Try
+    Return mOK
+  End Function
+  Public Function LoadWorkOrderPhaseMatReqInfosByWhere(ByRef rSalesOrderPhaseMatReqInfos As colMaterialRequirementInfos, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rSalesOrderPhaseMatReqInfos, mParams, "MaterialRequirementID", vWhere)
     Return mOK
   End Function
 

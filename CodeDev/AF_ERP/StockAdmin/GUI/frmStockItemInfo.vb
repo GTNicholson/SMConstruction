@@ -220,17 +220,20 @@ Public Class frmStockItemInfo
                 e.Value = mText
 
 
-              Case eStockItemCategory.NailsAndBolds
-                mText = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(mRow.ItemType)
+              Case eStockItemCategory.Fixings
+                mText = eStockItemTypeFixings.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
+              Case eStockItemCategory.BrickWork
+                mText = eStockItemTypeBrickWork.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
 
               Case eStockItemCategory.EPP
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeEPP), CType(mRow.ItemType, eStockItemTypeEPP.eStockItemMaterialEPP))
                 e.Value = mText
 
               Case eStockItemCategory.Herrajes
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+                mText = eStockItemTypeHerrajes.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Herramientas
@@ -247,7 +250,7 @@ Public Class frmStockItemInfo
                 e.Value = mText
 
               Case eStockItemCategory.MatVarios
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMatVarios), CType(mRow.ItemType, eStockItemTypeMatVarios.eStockItemMaterialMatVarios))
+                mText = eStockItemTypeMatVarioss.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
 
@@ -257,7 +260,7 @@ Public Class frmStockItemInfo
 
 
               Case eStockItemCategory.PinturaYQuimico
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypePintura), CType(mRow.ItemType, eStockItemTypePintura.eStockItemPintura))
+                mText = eStockItemTypePintura.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Laminas
@@ -266,7 +269,7 @@ Public Class frmStockItemInfo
 
 
               Case eStockItemCategory.Repuestos
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
+                mText = eStockItemTypeRepuestosYPartes.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Tapiceria
@@ -274,7 +277,7 @@ Public Class frmStockItemInfo
                 e.Value = mText
 
               Case eStockItemCategory.VidrioYEspejo
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
+                mText = eStockItemTypeVidrioYEspejo.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Timber

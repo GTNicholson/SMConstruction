@@ -107,7 +107,71 @@ Public Class dsoStock
 
   End Function
 
+  Public Sub LoadMaterialRequirementInfosByWhere(ByRef rMaterialRequirementsInfos As colMaterialRequirementInfos, ByVal vWhere As String, ByVal vMode As dtoMaterialRequirementInfo.eMode)
+    Dim mdto As dtoMaterialRequirementInfo
+    Try
 
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+      mdto.LoadMaterialRequirementCollection(rMaterialRequirementsInfos, vWhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+  End Sub
+
+  Public Function GetPhaseMatReqRequiredQtyConnected(ByVal vSalesOrderPhaseID As Integer, ByVal vStockItemID As Integer) As Integer
+    Dim mRetVal As Decimal = 0
+    Dim mHT As New Hashtable
+    Try
+      pDBConn.Connect()
+      'mSQL = String.Format("Select Sum(PickedQty) as TotalPicked from ProductionBatchMatReq PBMR Inner Join ProductionBatch PB on PBMR.ProductionBatchID = PB.ProductionBatchID Where SalesOrderPhaseID = {0} And StockItemID = {1}", vSalesOrderPhaseID, vStockItemID)
+      'mRetVal = DBValueToDecimal(pDBConn.ExecuteScalar(mSQL))
+      mHT.Add("@SalesOrderPhaseID", vSalesOrderPhaseID)
+      mHT.Add("@StockItemID", vStockItemID)
+
+      Dim mReader As IDataReader = pDBConn.LoadReaderSP("spPhaseMatReqRequiredQtySum", mHT)
+      If mReader.Read Then
+        mRetVal = clsDBConnBase.DBReadDecimal(mReader, "RequiredQty")
+      End If
+
+      mReader.Close()
+      mReader = Nothing
+      pDBConn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function GetPhaseMatReqOrderedQtyConnected(ByVal vSalesOrderPhaseID As Integer, ByVal vStockItemID As Integer) As Integer
+    Dim mRetVal As Decimal = 0
+    Dim mHT As New Hashtable
+    Try
+      pDBConn.Connect()
+      'mSQL = String.Format("Select Sum(PickedQty) as TotalPicked from ProductionBatchMatReq PBMR Inner Join ProductionBatch PB on PBMR.ProductionBatchID = PB.ProductionBatchID Where SalesOrderPhaseID = {0} And StockItemID = {1}", vSalesOrderPhaseID, vStockItemID)
+      'mRetVal = DBValueToDecimal(pDBConn.ExecuteScalar(mSQL))
+      mHT.Add("@SalesOrderPhaseID", vSalesOrderPhaseID)
+      mHT.Add("@StockItemID", vStockItemID)
+
+      Dim mReader As IDataReader = pDBConn.LoadReaderSP("spPhasePOIAQtyOrderedSum", mHT)
+      If mReader.Read Then
+        mRetVal = clsDBConnBase.DBReadDecimal(mReader, "OrderedQty")
+      End If
+
+      mReader.Close()
+      mReader = Nothing
+      pDBConn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+    Return mRetVal
+  End Function
 
   Public Function SaveWoodPalletDown(ByRef rWoodPallet As dmWoodPallet) As Boolean
     Dim mRetVal As Boolean
@@ -190,7 +254,6 @@ Public Class dsoStock
 
 
         Next
-
 
 
 
@@ -630,7 +693,7 @@ Public Class dsoStock
     Dim mRetVal As Decimal = 0
     Try
       pDBConn.Connect()
-      mSQL = "Select Sum(Qty) from StockItemLocation Where StockItemID = " & vStockItemID
+      mSQL = "Select IsNull(Sum(isnull(Qty,0)),0) Qty from StockItemLocation Where StockItemID = " & vStockItemID
       mRetVal = pDBConn.ExecuteScalar(mSQL)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

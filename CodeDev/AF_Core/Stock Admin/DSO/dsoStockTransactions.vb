@@ -240,9 +240,27 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
-  Public Sub LoadStockItemTransactionsByWhere(stockItemTransactions As Object, mWhere As String)
-    Throw New NotImplementedException()
-  End Sub
+  Public Function LoadStockItemTransactionsByWhere(ByRef rtockItemTransactions As colStockItemTransactionLogInfos, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdto As New dtoStockItemTransactionLogInfo(pDBConn, dtoStockItemTransactionLogInfo.eMode.StockItemTransactionLogInfo)
+    Try
+      pDBConn.Connect()
+      mOK = mdto.LoadStockItemTransactionLogInfoCollection(rtockItemTransactions, vWhere)
+    Catch ex As Exception
+
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+
+      If pDBConn.IsConnected Then
+        pDBConn.Disconnect()
+      End If
+
+
+    End Try
+
+    Return mOK
+  End Function
 
   Public Function UpdateDeliveryStockItemLocationQty(ByVal vStockItemID As Integer, ByVal vLocationID As Integer, ByVal vRecievedQty As Decimal, ByVal vPOItemRecievedValue As Decimal, ByVal vPackQuantity As Decimal, ByVal vDeliveryItem As dmPODeliveryItem, ByVal vTransDate As DateTime, ByVal vPOItemAllocation As dmPurchaseOrderItemAllocation, ByVal vItemRef As String, ByVal vCreateTimberPack As Boolean, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True

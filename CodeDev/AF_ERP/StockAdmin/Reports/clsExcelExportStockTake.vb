@@ -113,7 +113,7 @@ Public Class clsExcelExportStockTake
     AddHeader()
     AddHeadings(cColumnRowPos)
     pFirstRow = cColumnRowPos
-    AddItems(eStockItemCategory.NailsAndBolds, pFirstRow)
+    AddItems(eStockItemCategory.Fixings, pFirstRow)
     AddItems(eStockItemCategory.Abrasivos, pFirstRow)
     AddItems(eStockItemCategory.Herrajes, pFirstRow)
     AddItems(eStockItemCategory.Herramientas, pFirstRow)

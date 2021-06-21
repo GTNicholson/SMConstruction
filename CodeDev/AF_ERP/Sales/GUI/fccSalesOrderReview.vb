@@ -139,8 +139,9 @@ Public Class fccSalesOrderReview
 
 
     ''Load WoodPalletItem picked
-    mdsoStock.LoadWoodPalletItemInfosByWhere(pWoodPalletItemInfosPicked, mWhere)
-
+    If mWhere <> "" Then
+      mdsoStock.LoadWoodPalletItemInfosByWhere(pWoodPalletItemInfosPicked, mWhere)
+    End If
 
 
 

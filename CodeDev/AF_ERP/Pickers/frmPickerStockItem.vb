@@ -203,8 +203,9 @@ Public Class frmPickerStockItem
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeAbrasivos), CType(mRow.ItemType, eStockItemTypeAbrasivos.eStockItemAbrasivos))
                 e.Value = mText
               Case eStockItemCategory.Herrajes
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+                mText = eStockItemTypeHerrajes.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
+
 
               Case eStockItemCategory.MatElect
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialElectrico), CType(mRow.ItemType, eStockItemTypeMaterialElectrico.eStockItemMaterialElectrico))
@@ -219,12 +220,31 @@ Public Class frmPickerStockItem
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
                 e.Value = mText
 
-              Case eStockItemCategory.NailsAndBolds
-                mText = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(mRow.ItemType)
+
+              Case eStockItemCategory.BrickWork
+                mText = eStockItemTypeBrickWork.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
+
+
+              Case eStockItemCategory.Fixings
+                mText = eStockItemTypeFixings.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
+
+              Case eStockItemCategory.Plumbing
+                mText = eStockItemTypePlumbings.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Repuestos
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
+                mText = eStockItemTypeRepuestosYPartes.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
+
+              Case eStockItemCategory.PinturaYQuimico
+                mText = eStockItemTypePintura.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
+
+
+              Case eStockItemCategory.MatVarios
+                mText = eStockItemTypeMatVarioss.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Tapiceria
@@ -232,7 +252,7 @@ Public Class frmPickerStockItem
                 e.Value = mText
 
               Case eStockItemCategory.VidrioYEspejo
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
+                mText = eStockItemTypeVidrioYEspejo.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Metal
@@ -330,6 +350,7 @@ Public Class frmPickerStockItem
     Dim mTabPage As DevExpress.XtraTab.XtraTabPage
 
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+
     Do While xtabCategories.TabPages.Count > 1
       xtabCategories.TabPages.RemoveAt(xtabCategories.TabPages.Count - 1)
     Loop
@@ -338,14 +359,15 @@ Public Class frmPickerStockItem
 
       If Not pShowWoodCat Then
         mTabPage = New DevExpress.XtraTab.XtraTabPage
-        mTabPage.Text = mVI.DisplayValue
-        mTabPage.Tag = mVI.ItemValue
-        xtabCategories.TabPages.Add(mTabPage)
-        gvItemList.Columns("Thickness").Visible = False
-        bbtnNewStockItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
-
+        If mVI.ItemValue <> CInt(eStockItemCategory.Timber) Then
+          mTabPage.Text = mVI.DisplayValue
+          mTabPage.Tag = mVI.ItemValue
+          xtabCategories.TabPages.Add(mTabPage)
+          gvItemList.Columns("Thickness").Visible = False
+          bbtnNewStockItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
       Else
-        If mVI.ItemValue = eStockItemCategory.Timber Then
+          If mVI.ItemValue = eStockItemCategory.Timber Then
           mTabPage = New DevExpress.XtraTab.XtraTabPage
           mTabPage.Text = mVI.DisplayValue
           mTabPage.Tag = mVI.ItemValue

@@ -129,6 +129,11 @@ Partial Class frmPurchaseOrder
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.xtpSingle = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+        Me.grdSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.GridControl()
+        Me.gvSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.dteDateRequired = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
@@ -174,11 +179,6 @@ Partial Class frmPurchaseOrder
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.grdSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.GridControl()
-        Me.gvSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gpnlPOItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -231,6 +231,8 @@ Partial Class frmPurchaseOrder
         Me.xtpSingle.SuspendLayout()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
+        CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateRequired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDateRequired.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,8 +262,6 @@ Partial Class frmPurchaseOrder
         CType(Me.dteDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupplierRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Bar1
@@ -1093,7 +1093,7 @@ Partial Class frmPurchaseOrder
         Me.xtratabPODelivery.Appearance.Header.Options.UseForeColor = True
         Me.xtratabPODelivery.Controls.Add(Me.GroupControl7)
         Me.xtratabPODelivery.Name = "xtratabPODelivery"
-        Me.xtratabPODelivery.Size = New System.Drawing.Size(383, 275)
+        Me.xtratabPODelivery.Size = New System.Drawing.Size(383, 290)
         Me.xtratabPODelivery.Text = "Detalles de Recepción"
         '
         'GroupControl7
@@ -1109,7 +1109,7 @@ Partial Class frmPurchaseOrder
         Me.GroupControl7.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl7.Name = "GroupControl7"
         Me.GroupControl7.ShowCaption = False
-        Me.GroupControl7.Size = New System.Drawing.Size(383, 275)
+        Me.GroupControl7.Size = New System.Drawing.Size(383, 290)
         Me.GroupControl7.TabIndex = 278
         '
         'grdPODeliveryInfos
@@ -1120,7 +1120,7 @@ Partial Class frmPurchaseOrder
         Me.grdPODeliveryInfos.MenuManager = Me.BarManager1
         Me.grdPODeliveryInfos.Name = "grdPODeliveryInfos"
         Me.grdPODeliveryInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.repoPODelivery})
-        Me.grdPODeliveryInfos.Size = New System.Drawing.Size(379, 271)
+        Me.grdPODeliveryInfos.Size = New System.Drawing.Size(379, 286)
         Me.grdPODeliveryInfos.TabIndex = 268
         Me.grdPODeliveryInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPODeliveryInfos})
         '
@@ -1309,7 +1309,7 @@ Partial Class frmPurchaseOrder
         '
         Me.xtpInventory.Controls.Add(Me.PanelControl1)
         Me.xtpInventory.Name = "xtpInventory"
-        Me.xtpInventory.Size = New System.Drawing.Size(238, 272)
+        Me.xtpInventory.Size = New System.Drawing.Size(295, 285)
         Me.xtpInventory.Text = "Inv."
         '
         'PanelControl1
@@ -1318,7 +1318,7 @@ Partial Class frmPurchaseOrder
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(238, 272)
+        Me.PanelControl1.Size = New System.Drawing.Size(295, 285)
         Me.PanelControl1.TabIndex = 0
         '
         'LabelControl6
@@ -1360,6 +1360,90 @@ Partial Class frmPurchaseOrder
         Me.GroupControl5.Size = New System.Drawing.Size(295, 285)
         Me.GroupControl5.TabIndex = 268
         Me.GroupControl5.Text = "Admon. OTs"
+        '
+        'grdSalesOrderPhaseItemInfo
+        '
+        Me.grdSalesOrderPhaseItemInfo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdSalesOrderPhaseItemInfo.Location = New System.Drawing.Point(5, 117)
+        Me.grdSalesOrderPhaseItemInfo.MainView = Me.gvSalesOrderPhaseItemInfo
+        Me.grdSalesOrderPhaseItemInfo.Name = "grdSalesOrderPhaseItemInfo"
+        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(285, 163)
+        Me.grdSalesOrderPhaseItemInfo.TabIndex = 282
+        Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItemInfo})
+        Me.grdSalesOrderPhaseItemInfo.Visible = False
+        '
+        'gvSalesOrderPhaseItemInfo
+        '
+        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.FooterPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.FooterPanel.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupFooter.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupFooter.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupPanel.Options.UseTextOptions = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.BackColor = System.Drawing.Color.White
+        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.Row.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvSalesOrderPhaseItemInfo.Appearance.ViewCaption.Options.UseFont = True
+        Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gvSalesOrderPhaseItemInfo.ColumnPanelRowHeight = 40
+        Me.gvSalesOrderPhaseItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn17, Me.GridColumn20})
+        Me.gvSalesOrderPhaseItemInfo.GridControl = Me.grdSalesOrderPhaseItemInfo
+        Me.gvSalesOrderPhaseItemInfo.GroupRowHeight = 40
+        Me.gvSalesOrderPhaseItemInfo.Name = "gvSalesOrderPhaseItemInfo"
+        Me.gvSalesOrderPhaseItemInfo.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvSalesOrderPhaseItemInfo.OptionsView.EnableAppearanceOddRow = True
+        Me.gvSalesOrderPhaseItemInfo.OptionsView.ShowFooter = True
+        Me.gvSalesOrderPhaseItemInfo.OptionsView.ShowGroupPanel = False
+        Me.gvSalesOrderPhaseItemInfo.OptionsView.ShowViewCaption = True
+        Me.gvSalesOrderPhaseItemInfo.ViewCaption = "Presupuesto de Insumos"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "#"
+        Me.GridColumn11.FieldName = "ItemNumber"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 265
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Descripción"
+        Me.GridColumn17.FieldName = "Description"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        Me.GridColumn17.Width = 650
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Costo Ins. Est."
+        Me.GridColumn20.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "StockItemCost"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "StockItemCost", "{0:$#,##0.00;;#}")})
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 2
+        Me.GridColumn20.Width = 706
         '
         'dteDateRequired
         '
@@ -1465,7 +1549,7 @@ Partial Class frmPurchaseOrder
         '
         Me.xtpMultiple.Controls.Add(Me.GroupControl4)
         Me.xtpMultiple.Name = "xtpMultiple"
-        Me.xtpMultiple.Size = New System.Drawing.Size(238, 272)
+        Me.xtpMultiple.Size = New System.Drawing.Size(295, 285)
         Me.xtpMultiple.Text = "Mult."
         '
         'GroupControl4
@@ -1480,7 +1564,7 @@ Partial Class frmPurchaseOrder
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.ShowCaption = False
-        Me.GroupControl4.Size = New System.Drawing.Size(238, 272)
+        Me.GroupControl4.Size = New System.Drawing.Size(295, 285)
         Me.GroupControl4.TabIndex = 267
         Me.GroupControl4.Text = "Admon. OTs"
         '
@@ -1500,7 +1584,7 @@ Partial Class frmPurchaseOrder
         Me.grdSalesOrderPhases.MainView = Me.gvSalesOrderPhases
         Me.grdSalesOrderPhases.MenuManager = Me.BarManager1
         Me.grdSalesOrderPhases.Name = "grdSalesOrderPhases"
-        Me.grdSalesOrderPhases.Size = New System.Drawing.Size(228, 206)
+        Me.grdSalesOrderPhases.Size = New System.Drawing.Size(285, 206)
         Me.grdSalesOrderPhases.TabIndex = 266
         Me.grdSalesOrderPhases.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhases})
         '
@@ -1588,6 +1672,8 @@ Partial Class frmPurchaseOrder
         Me.txtNetValue.Name = "txtNetValue"
         Me.txtNetValue.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.txtNetValue.Properties.Appearance.Options.UseFont = True
+        Me.txtNetValue.Properties.DisplayFormat.FormatString = "n2"
+        Me.txtNetValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtNetValue.Properties.ReadOnly = True
         Me.txtNetValue.Size = New System.Drawing.Size(98, 20)
         Me.txtNetValue.TabIndex = 275
@@ -1884,89 +1970,6 @@ Partial Class frmPurchaseOrder
         Me.LabelControl5.TabIndex = 254
         Me.LabelControl5.Text = "Fecha de Órden"
         '
-        'grdSalesOrderPhaseItemInfo
-        '
-        Me.grdSalesOrderPhaseItemInfo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grdSalesOrderPhaseItemInfo.Location = New System.Drawing.Point(5, 117)
-        Me.grdSalesOrderPhaseItemInfo.MainView = Me.gvSalesOrderPhaseItemInfo
-        Me.grdSalesOrderPhaseItemInfo.Name = "grdSalesOrderPhaseItemInfo"
-        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(285, 163)
-        Me.grdSalesOrderPhaseItemInfo.TabIndex = 282
-        Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItemInfo})
-        '
-        'gvSalesOrderPhaseItemInfo
-        '
-        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.EvenRow.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.FooterPanel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.FooterPanel.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupFooter.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupFooter.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupPanel.Options.UseTextOptions = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.GroupPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.Options.UseTextOptions = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.BackColor = System.Drawing.Color.White
-        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.OddRow.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.Row.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gvSalesOrderPhaseItemInfo.Appearance.ViewCaption.Options.UseFont = True
-        Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
-        Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gvSalesOrderPhaseItemInfo.ColumnPanelRowHeight = 40
-        Me.gvSalesOrderPhaseItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn17, Me.GridColumn20})
-        Me.gvSalesOrderPhaseItemInfo.GridControl = Me.grdSalesOrderPhaseItemInfo
-        Me.gvSalesOrderPhaseItemInfo.GroupRowHeight = 40
-        Me.gvSalesOrderPhaseItemInfo.Name = "gvSalesOrderPhaseItemInfo"
-        Me.gvSalesOrderPhaseItemInfo.OptionsView.EnableAppearanceEvenRow = True
-        Me.gvSalesOrderPhaseItemInfo.OptionsView.EnableAppearanceOddRow = True
-        Me.gvSalesOrderPhaseItemInfo.OptionsView.ShowFooter = True
-        Me.gvSalesOrderPhaseItemInfo.OptionsView.ShowGroupPanel = False
-        Me.gvSalesOrderPhaseItemInfo.OptionsView.ShowViewCaption = True
-        Me.gvSalesOrderPhaseItemInfo.ViewCaption = "Presupuesto de Insumos"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "#"
-        Me.GridColumn11.FieldName = "ItemNumber"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.ReadOnly = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 265
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Descripción"
-        Me.GridColumn17.FieldName = "Description"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.ReadOnly = True
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 1
-        Me.GridColumn17.Width = 650
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Costo Ins. Est."
-        Me.GridColumn20.DisplayFormat.FormatString = "$#,##0.00;;#"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "StockItemCost"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.ReadOnly = True
-        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "StockItemCost", "{0:$#,##0.00;;#}")})
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 2
-        Me.GridColumn20.Width = 706
-        '
         'frmPurchaseOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2038,6 +2041,8 @@ Partial Class frmPurchaseOrder
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
         Me.GroupControl5.PerformLayout()
+        CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateRequired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDateRequired.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomerName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2067,8 +2072,6 @@ Partial Class frmPurchaseOrder
         CType(Me.dteDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSupplierRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

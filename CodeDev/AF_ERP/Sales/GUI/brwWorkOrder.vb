@@ -98,7 +98,7 @@ Public Class brwWorkOrder : Inherits brwBrowserListBase
     gridBrowseList.MainView.BeginDataUpdate()
     Try
       Dim mWhere As String
-      mWhere = String.Format("Status <> {0} or Status is null", CInt(eWorkOrderStatus.Cancelled))
+      mWhere = String.Format("Status not in ({0},{0}) or Status is null", CInt(eWorkOrderStatus.Cancelled), CInt(eWorkOrderStatus.Complete))
       mDSO.LoadWorkOrderInfos(mWOIs, mWhere, dtoWorkOrderInfo.eMode.WorkOrderInfo)
 
       gridBrowseList.DataSource = mWOIs

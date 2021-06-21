@@ -125,16 +125,20 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.xtcBoardFeet.BackColor = System.Drawing.Color.LightGray
         Me.xtcBoardFeet.CanGrow = False
+        Me.xtcBoardFeet.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcBoardFeet.Name = "xtcBoardFeet"
         Me.xtcBoardFeet.StylePriority.UseBackColor = False
+        Me.xtcBoardFeet.StylePriority.UseFont = False
         Me.xtcBoardFeet.Weight = 1.1185942098532884R
         '
         'xtcSpecieDesc
         '
         Me.xtcSpecieDesc.BackColor = System.Drawing.Color.LightGray
         Me.xtcSpecieDesc.CanGrow = False
+        Me.xtcSpecieDesc.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcSpecieDesc.Name = "xtcSpecieDesc"
         Me.xtcSpecieDesc.StylePriority.UseBackColor = False
+        Me.xtcSpecieDesc.StylePriority.UseFont = False
         Me.xtcSpecieDesc.Weight = 1.9282041822832152R
         '
         'XrTable9
@@ -171,7 +175,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.xtcLengthInch.BackColor = System.Drawing.Color.LightGray
         Me.xtcLengthInch.CanGrow = False
-        Me.xtcLengthInch.Font = New System.Drawing.Font("Cambria", 7.0!)
+        Me.xtcLengthInch.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcLengthInch.Name = "xtcLengthInch"
         Me.xtcLengthInch.StylePriority.UseBackColor = False
         Me.xtcLengthInch.StylePriority.UseFont = False
@@ -180,7 +184,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         'xtcNetLength
         '
         Me.xtcNetLength.CanGrow = False
-        Me.xtcNetLength.Font = New System.Drawing.Font("Cambria", 7.0!)
+        Me.xtcNetLength.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcNetLength.Name = "xtcNetLength"
         Me.xtcNetLength.StylePriority.UseFont = False
         Me.xtcNetLength.Weight = 0.37423814161062285R
@@ -221,14 +225,18 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.xtcThicknessInch.BackColor = System.Drawing.Color.LightGray
         Me.xtcThicknessInch.CanGrow = False
+        Me.xtcThicknessInch.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcThicknessInch.Name = "xtcThicknessInch"
         Me.xtcThicknessInch.StylePriority.UseBackColor = False
+        Me.xtcThicknessInch.StylePriority.UseFont = False
         Me.xtcThicknessInch.Weight = 0.40087738762433478R
         '
         'xtcThicknessCM
         '
         Me.xtcThicknessCM.CanGrow = False
+        Me.xtcThicknessCM.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcThicknessCM.Name = "xtcThicknessCM"
+        Me.xtcThicknessCM.StylePriority.UseFont = False
         Me.xtcThicknessCM.Weight = 0.30859586538323347R
         '
         'XrTable4
@@ -267,14 +275,18 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.xtcWidthInch.BackColor = System.Drawing.Color.LightGray
         Me.xtcWidthInch.CanGrow = False
+        Me.xtcWidthInch.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcWidthInch.Name = "xtcWidthInch"
         Me.xtcWidthInch.StylePriority.UseBackColor = False
+        Me.xtcWidthInch.StylePriority.UseFont = False
         Me.xtcWidthInch.Weight = 0.37300740186729009R
         '
         'xtcNetWidth
         '
         Me.xtcNetWidth.CanGrow = False
+        Me.xtcNetWidth.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcNetWidth.Name = "xtcNetWidth"
+        Me.xtcNetWidth.StylePriority.UseFont = False
         Me.xtcNetWidth.Weight = 0.26250727843083466R
         '
         'XrTable1
@@ -312,24 +324,24 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         'xtcDescription
         '
         Me.xtcDescription.CanGrow = False
-        Me.xtcDescription.Font = New System.Drawing.Font("Cambria", 7.0!)
+        Me.xtcDescription.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcDescription.Name = "xtcDescription"
         Me.xtcDescription.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100.0!)
         Me.xtcDescription.StylePriority.UseFont = False
         Me.xtcDescription.StylePriority.UsePadding = False
         Me.xtcDescription.StylePriority.UseTextAlignment = False
         Me.xtcDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.xtcDescription.Weight = 3.043367957285203R
+        Me.xtcDescription.Weight = 2.9271032149864924R
         '
         'xtcOriginalQty
         '
         Me.xtcOriginalQty.CanGrow = False
-        Me.xtcOriginalQty.Font = New System.Drawing.Font("Cambria", 7.0!)
+        Me.xtcOriginalQty.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcOriginalQty.Name = "xtcOriginalQty"
         Me.xtcOriginalQty.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100.0!)
         Me.xtcOriginalQty.StylePriority.UseFont = False
         Me.xtcOriginalQty.StylePriority.UsePadding = False
-        Me.xtcOriginalQty.Weight = 0.67490474908113252R
+        Me.xtcOriginalQty.Weight = 0.79116949137984338R
         '
         'TopMargin
         '
@@ -401,7 +413,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell1.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell1.CanGrow = False
-        Me.XrTableCell1.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell1.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell1.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell1.Name = "XrTableCell1"
         Me.XrTableCell1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100.0!)
@@ -412,13 +424,13 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "Descripion de pieza"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell1.Weight = 3.6899356434849513R
+        Me.XrTableCell1.Weight = 3.5489702940795116R
         '
         'XrTableCell2
         '
         Me.XrTableCell2.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell2.CanGrow = False
-        Me.XrTableCell2.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell2.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell2.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100.0!)
@@ -427,7 +439,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         Me.XrTableCell2.StylePriority.UseForeColor = False
         Me.XrTableCell2.StylePriority.UsePadding = False
         Me.XrTableCell2.Text = "Cant.Piezas"
-        Me.XrTableCell2.Weight = 0.81828929964513986R
+        Me.XrTableCell2.Weight = 0.95925464905057956R
         '
         'GroupHeader1
         '
@@ -438,7 +450,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         'XrLabel4
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel4.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(536.7019!, 24.87507!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -480,7 +492,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell9.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell9.CanGrow = False
-        Me.XrTableCell9.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell9.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell9.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell9.Name = "XrTableCell9"
         Me.XrTableCell9.StylePriority.UseBackColor = False
@@ -493,7 +505,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell10.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell10.CanGrow = False
-        Me.XrTableCell10.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell10.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell10.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StylePriority.UseBackColor = False
@@ -534,7 +546,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell7.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell7.CanGrow = False
-        Me.XrTableCell7.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell7.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell7.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell7.Name = "XrTableCell7"
         Me.XrTableCell7.StylePriority.UseBackColor = False
@@ -547,7 +559,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell8.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell8.CanGrow = False
-        Me.XrTableCell8.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell8.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell8.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell8.Name = "XrTableCell8"
         Me.XrTableCell8.StylePriority.UseBackColor = False
@@ -588,7 +600,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell11.CanGrow = False
-        Me.XrTableCell11.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell11.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell11.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.StylePriority.UseBackColor = False
@@ -601,7 +613,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell13.CanGrow = False
-        Me.XrTableCell13.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell13.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell13.Name = "XrTableCell13"
         Me.XrTableCell13.StylePriority.UseBackColor = False
@@ -612,7 +624,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(429.8146!, 24.87501!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -624,7 +636,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(343.9093!, 24.87504!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -666,7 +678,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell3.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell3.CanGrow = False
-        Me.XrTableCell3.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell3.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell3.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell3.Name = "XrTableCell3"
         Me.XrTableCell3.StylePriority.UseBackColor = False
@@ -679,7 +691,7 @@ Partial Public Class repWorkOrderWoodMaterialRequirement
         '
         Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
         Me.XrTableCell4.CanGrow = False
-        Me.XrTableCell4.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell4.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell4.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell4.Name = "XrTableCell4"
         Me.XrTableCell4.StylePriority.UseBackColor = False

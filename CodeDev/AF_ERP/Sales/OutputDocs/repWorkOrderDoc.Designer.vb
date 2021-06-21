@@ -134,7 +134,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell14
         '
         Me.XrTableCell14.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell14.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell14.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.StylePriority.UseBackColor = False
         Me.XrTableCell14.StylePriority.UseFont = False
@@ -146,7 +146,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell15
         '
         Me.XrTableCell15.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell15.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell15.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell15.Name = "XrTableCell15"
         Me.XrTableCell15.StylePriority.UseBackColor = False
         Me.XrTableCell15.StylePriority.UseFont = False
@@ -163,7 +163,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcTotalBoardFeet
         '
-        Me.xtcTotalBoardFeet.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.xtcTotalBoardFeet.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcTotalBoardFeet.Name = "xtcTotalBoardFeet"
         Me.xtcTotalBoardFeet.StylePriority.UseFont = False
         Me.xtcTotalBoardFeet.StylePriority.UseTextAlignment = False
@@ -172,7 +172,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcPurchasingDate
         '
-        Me.xtcPurchasingDate.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcPurchasingDate.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcPurchasingDate.Name = "xtcPurchasingDate"
         Me.xtcPurchasingDate.NullValueText = "  "
         Me.xtcPurchasingDate.StylePriority.UseFont = False
@@ -203,7 +203,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcDescription
         '
-        Me.xtcDescription.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcDescription.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcDescription.Multiline = True
         Me.xtcDescription.Name = "xtcDescription"
         Me.xtcDescription.StylePriority.UseFont = False
@@ -231,7 +231,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell13
         '
         Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell13.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell13.Name = "XrTableCell13"
         Me.XrTableCell13.StylePriority.UseBackColor = False
         Me.XrTableCell13.StylePriority.UseFont = False
@@ -262,7 +262,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell9
         '
         Me.XrTableCell9.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell9.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell9.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell9.Name = "XrTableCell9"
         Me.XrTableCell9.StylePriority.UseBackColor = False
         Me.XrTableCell9.StylePriority.UseFont = False
@@ -274,7 +274,7 @@ Partial Public Class repWorkOrderDoc
         'xtcPlannedStartDate
         '
         Me.xtcPlannedStartDate.BackColor = System.Drawing.Color.Transparent
-        Me.xtcPlannedStartDate.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcPlannedStartDate.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcPlannedStartDate.Name = "xtcPlannedStartDate"
         Me.xtcPlannedStartDate.StylePriority.UseBackColor = False
         Me.xtcPlannedStartDate.StylePriority.UseFont = False
@@ -291,7 +291,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell11
         '
         Me.XrTableCell11.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell11.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell11.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.StylePriority.UseBackColor = False
         Me.XrTableCell11.StylePriority.UseFont = False
@@ -302,7 +302,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcDueDate
         '
-        Me.xtcDueDate.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcDueDate.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcDueDate.Name = "xtcDueDate"
         Me.xtcDueDate.StylePriority.UseFont = False
         Me.xtcDueDate.StylePriority.UseTextAlignment = False
@@ -329,7 +329,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell5
         '
         Me.XrTableCell5.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell5.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell5.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell5.Name = "XrTableCell5"
         Me.XrTableCell5.StylePriority.UseBackColor = False
         Me.XrTableCell5.StylePriority.UseFont = False
@@ -341,7 +341,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell6
         '
         Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell6.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell6.Name = "XrTableCell6"
         Me.XrTableCell6.StylePriority.UseBackColor = False
         Me.XrTableCell6.StylePriority.UseFont = False
@@ -358,7 +358,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcEmployee
         '
-        Me.xtcEmployee.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcEmployee.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcEmployee.Name = "xtcEmployee"
         Me.xtcEmployee.StylePriority.UseFont = False
         Me.xtcEmployee.StylePriority.UseTextAlignment = False
@@ -367,7 +367,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcCreatedDate
         '
-        Me.xtcCreatedDate.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcCreatedDate.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcCreatedDate.Name = "xtcCreatedDate"
         Me.xtcCreatedDate.StylePriority.UseFont = False
         Me.xtcCreatedDate.StylePriority.UseTextAlignment = False
@@ -396,7 +396,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell1
         '
         Me.XrTableCell1.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell1.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell1.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell1.Name = "XrTableCell1"
         Me.XrTableCell1.StylePriority.UseBackColor = False
         Me.XrTableCell1.StylePriority.UseFont = False
@@ -408,7 +408,7 @@ Partial Public Class repWorkOrderDoc
         'XrTableCell2
         '
         Me.XrTableCell2.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell2.Font = New System.Drawing.Font("Cambria", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell2.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.StylePriority.UseBackColor = False
         Me.XrTableCell2.StylePriority.UseFont = False
@@ -425,7 +425,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcProjectName
         '
-        Me.xtcProjectName.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcProjectName.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcProjectName.Name = "xtcProjectName"
         Me.xtcProjectName.StylePriority.UseFont = False
         Me.xtcProjectName.StylePriority.UseTextAlignment = False
@@ -434,7 +434,7 @@ Partial Public Class repWorkOrderDoc
         '
         'xtcOTNumber
         '
-        Me.xtcOTNumber.Font = New System.Drawing.Font("Cambria", 8.0!)
+        Me.xtcOTNumber.Font = New System.Drawing.Font("Arial", 7.25!)
         Me.xtcOTNumber.Name = "xtcOTNumber"
         Me.xtcOTNumber.StylePriority.UseFont = False
         Me.xtcOTNumber.StylePriority.UseTextAlignment = False
@@ -447,12 +447,12 @@ Partial Public Class repWorkOrderDoc
         Me.XrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.TopLeft
         Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(2.05663!, 0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(180.9585!, 26.9584!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(192.6136!, 26.9584!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(194.6702!, 0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -472,7 +472,7 @@ Partial Public Class repWorkOrderDoc
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(363.3255!, 9.999974!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -484,7 +484,7 @@ Partial Public Class repWorkOrderDoc
         '
         'XrPageInfo1
         '
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrPageInfo1.Format = "{0:dddd, d 'de' MMMM 'de' yyyy HH:mm}"
         Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(613.1667!, 9.999974!)
         Me.XrPageInfo1.Name = "XrPageInfo1"

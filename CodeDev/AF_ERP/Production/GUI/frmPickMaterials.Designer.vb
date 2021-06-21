@@ -57,6 +57,9 @@ Partial Class frmPickMaterials
         Me.gcMaterialRequirementID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTotalAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoExEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.txtFinishDate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -75,6 +78,8 @@ Partial Class frmPickMaterials
         Me.grpMaterialRequirements.SuspendLayout()
         CType(Me.grdMaterialRequirementInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoExEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.txtFinishDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -221,6 +226,7 @@ Partial Class frmPickMaterials
         Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdMaterialRequirementInfo.MainView = Me.gvMaterialRequirementInfos
         Me.grdMaterialRequirementInfo.Name = "grdMaterialRequirementInfo"
+        Me.grdMaterialRequirementInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1})
         Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1583, 396)
         Me.grdMaterialRequirementInfo.TabIndex = 0
         Me.grdMaterialRequirementInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementInfos})
@@ -231,7 +237,7 @@ Partial Class frmPickMaterials
         Me.gvMaterialRequirementInfos.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvMaterialRequirementInfos.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.75!)
         Me.gvMaterialRequirementInfos.Appearance.Row.Options.UseFont = True
-        Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.StockCode, Me.gcCategory, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.gcMaterialRequirementID, Me.gcStdCost, Me.gcTotalAmount})
+        Me.gvMaterialRequirementInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.StockCode, Me.gcCategory, Me.GridColumn2, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.gcAreaID, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.gcMaterialRequirementID, Me.gcStdCost, Me.gcTotalAmount, Me.GridColumn1})
         Me.gvMaterialRequirementInfos.GridControl = Me.grdMaterialRequirementInfo
         Me.gvMaterialRequirementInfos.Name = "gvMaterialRequirementInfos"
         Me.gvMaterialRequirementInfos.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
@@ -248,6 +254,7 @@ Partial Class frmPickMaterials
         Me.StockCode.OptionsColumn.ReadOnly = True
         Me.StockCode.Visible = True
         Me.StockCode.VisibleIndex = 0
+        Me.StockCode.Width = 90
         '
         'gcCategory
         '
@@ -259,7 +266,7 @@ Partial Class frmPickMaterials
         Me.gcCategory.OptionsColumn.ReadOnly = True
         Me.gcCategory.Visible = True
         Me.gcCategory.VisibleIndex = 2
-        Me.gcCategory.Width = 136
+        Me.gcCategory.Width = 95
         '
         'GridColumn2
         '
@@ -271,7 +278,7 @@ Partial Class frmPickMaterials
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 216
+        Me.GridColumn2.Width = 263
         '
         'GridColumn8
         '
@@ -283,7 +290,7 @@ Partial Class frmPickMaterials
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 103
+        Me.GridColumn8.Width = 133
         '
         'GridColumn6
         '
@@ -297,7 +304,7 @@ Partial Class frmPickMaterials
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 83
+        Me.GridColumn6.Width = 106
         '
         'GridColumn7
         '
@@ -311,7 +318,7 @@ Partial Class frmPickMaterials
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 8
-        Me.GridColumn7.Width = 109
+        Me.GridColumn7.Width = 119
         '
         'gcAreaID
         '
@@ -323,7 +330,7 @@ Partial Class frmPickMaterials
         Me.gcAreaID.OptionsColumn.ReadOnly = True
         Me.gcAreaID.Visible = True
         Me.gcAreaID.VisibleIndex = 4
-        Me.gcAreaID.Width = 91
+        Me.gcAreaID.Width = 117
         '
         'GridColumn4
         '
@@ -335,7 +342,7 @@ Partial Class frmPickMaterials
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 91
+        Me.GridColumn4.Width = 117
         '
         'GridColumn9
         '
@@ -349,7 +356,7 @@ Partial Class frmPickMaterials
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 9
-        Me.GridColumn9.Width = 88
+        Me.GridColumn9.Width = 111
         '
         'GridColumn5
         '
@@ -359,8 +366,8 @@ Partial Class frmPickMaterials
         Me.GridColumn5.FieldName = "ToProcessQty"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 10
-        Me.GridColumn5.Width = 123
+        Me.GridColumn5.VisibleIndex = 11
+        Me.GridColumn5.Width = 149
         '
         'gcMaterialRequirementID
         '
@@ -379,6 +386,7 @@ Partial Class frmPickMaterials
         Me.gcStdCost.Name = "gcStdCost"
         Me.gcStdCost.Visible = True
         Me.gcStdCost.VisibleIndex = 6
+        Me.gcStdCost.Width = 96
         '
         'gcTotalAmount
         '
@@ -392,7 +400,31 @@ Partial Class frmPickMaterials
         Me.gcTotalAmount.OptionsColumn.ReadOnly = True
         Me.gcTotalAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAmount", "{0:C$#,##0.00;;#}")})
         Me.gcTotalAmount.Visible = True
-        Me.gcTotalAmount.VisibleIndex = 11
+        Me.gcTotalAmount.VisibleIndex = 12
+        Me.gcTotalAmount.Width = 113
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn1.Caption = "Comentarios"
+        Me.GridColumn1.ColumnEdit = Me.RepositoryItemMemoExEdit1
+        Me.GridColumn1.FieldName = "Comments"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 10
+        Me.GridColumn1.Width = 113
+        '
+        'RepositoryItemMemoExEdit1
+        '
+        Me.RepositoryItemMemoExEdit1.AutoHeight = False
+        Me.RepositoryItemMemoExEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemMemoExEdit1.Name = "RepositoryItemMemoExEdit1"
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GroupControl3
         '
@@ -493,6 +525,8 @@ Partial Class frmPickMaterials
         Me.grpMaterialRequirements.ResumeLayout(False)
         CType(Me.grdMaterialRequirementInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvMaterialRequirementInfos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoExEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
@@ -537,4 +571,7 @@ Partial Class frmPickMaterials
   Friend WithEvents gcMaterialRequirementID As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcStdCost As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcTotalAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoExEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit
 End Class

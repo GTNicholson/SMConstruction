@@ -71,7 +71,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="22">
+  <property name="Columns" iskey="true" value="29">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -88,10 +88,10 @@
       </property>
       <property name="Caption"># O.C.</property>
       <property name="FieldName">PONum</property>
-      <property name="ColumnEditName">RepositoryItemDateEdit1</property>
+      <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">101</property>
+      <property name="Width">59</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
@@ -101,9 +101,9 @@
       <property name="Caption">Nombre del Proveedor</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">157</property>
+      <property name="Width">104</property>
       <property name="GroupFormat" isnull="true" iskey="true">
         <property name="FormatString">0</property>
         <property name="FormatType">Numeric</property>
@@ -126,10 +126,10 @@
       </property>
       <property name="Caption">Categoría</property>
       <property name="FieldName">CategoryDesc</property>
-      <property name="ColumnEditName">RepositoryItemDateEdit5</property>
-      <property name="VisibleIndex">4</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
-      <property name="Width">144</property>
+      <property name="Width">86</property>
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">gcRequiredDate</property>
@@ -141,7 +141,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">122</property>
+      <property name="Width">68</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
@@ -150,10 +150,10 @@
       </property>
       <property name="Caption">Fecha del Pedido</property>
       <property name="FieldName">SubmissionDate</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="ColumnEditName">repitDateDefault</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">124</property>
+      <property name="Width">65</property>
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
@@ -165,21 +165,25 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
-      <property name="Width">120</property>
+      <property name="Width">58</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Monto Neto</property>
+      <property name="Caption">Sub Total</property>
       <property name="FieldName">TotalNetValueInfo</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">89</property>
+      <property name="Width">64</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="GroupFormat" isnull="true" iskey="true">
+        <property name="FormatString" />
         <property name="FormatType">Numeric</property>
       </property>
     </property>
@@ -191,8 +195,6 @@
       <property name="Caption">Enc. Compras</property>
       <property name="FieldName">BuyerName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">15</property>
-      <property name="Visible">true</property>
       <property name="Width">163</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
@@ -203,9 +205,13 @@
       <property name="Caption">Flete</property>
       <property name="FieldName">Carriage</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">14</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
-      <property name="Width">99</property>
+      <property name="Width">62</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
@@ -237,19 +243,19 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
-      <property name="Width">90</property>
+      <property name="Width">61</property>
     </property>
     <property name="Item15" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Monto Neto (USD)</property>
+      <property name="Caption">Sub Total (USD)</property>
       <property name="FieldName">TotalReceivedAmountUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">14</property>
       <property name="Visible">true</property>
-      <property name="Width">88</property>
+      <property name="Width">77</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Custom</property>
@@ -270,6 +276,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
+      <property name="Width">72</property>
     </property>
     <property name="Item17" isnull="true" iskey="true">
       <property name="Name">GridColumn16</property>
@@ -278,25 +285,25 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
-      <property name="Width">129</property>
+      <property name="Width">208</property>
     </property>
     <property name="Item18" isnull="true" iskey="true">
       <property name="Name">GridColumn17</property>
       <property name="Caption">Cat. Contabilidad</property>
       <property name="FieldName">AccoutingCategoryDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">109</property>
+      <property name="Width">82</property>
     </property>
     <property name="Item19" isnull="true" iskey="true">
       <property name="Name">GridColumn18</property>
-      <property name="Caption">IVA Total</property>
+      <property name="Caption">IVA</property>
       <property name="FieldName">TotalVAT</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
-      <property name="Width">87</property>
+      <property name="Width">53</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">n2</property>
         <property name="FormatType">Numeric</property>
@@ -307,8 +314,9 @@
       <property name="Caption">IVA (USD)</property>
       <property name="FieldName">TotalVATUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">13</property>
+      <property name="VisibleIndex">16</property>
       <property name="Visible">true</property>
+      <property name="Width">64</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Numeric</property>
@@ -324,10 +332,10 @@
     </property>
     <property name="Item21" isnull="true" iskey="true">
       <property name="Name">GridColumn20</property>
-      <property name="Caption">Valor Total USD</property>
+      <property name="Caption">Valor Total (USD)</property>
       <property name="FieldName">TotalGrossValueUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">16</property>
+      <property name="VisibleIndex">18</property>
       <property name="Visible">true</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
@@ -344,13 +352,56 @@
     </property>
     <property name="Item22" isnull="true" iskey="true">
       <property name="Name">GridColumn21</property>
-      <property name="Caption">TotalGrossValueCordobas</property>
+      <property name="Caption">Sub Total (C$)</property>
+      <property name="FieldName">TotalReceivedAmountCordobas</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">19</property>
+      <property name="Visible">true</property>
+      <property name="Width">76</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalReceivedAmountCordobas</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item23" isnull="true" iskey="true">
+      <property name="Name">GridColumn22</property>
+      <property name="Caption">IVA (C$)</property>
+      <property name="FieldName">TotalVATCordobas</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">21</property>
+      <property name="Visible">true</property>
+      <property name="Width">63</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalVATCordobas</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item24" isnull="true" iskey="true">
+      <property name="Name">GridColumn23</property>
+      <property name="Caption">Valor Total (C$)</property>
       <property name="FieldName">TotalGrossValueCordobas</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">17</property>
+      <property name="VisibleIndex">23</property>
       <property name="Visible">true</property>
+      <property name="Width">119</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatString">C$###,##0.00</property>
         <property name="FormatType">Numeric</property>
       </property>
       <property name="Summary" iskey="true" value="1">
@@ -358,7 +409,104 @@
           <property name="Tag" isnull="true" />
           <property name="FieldName">TotalGrossValueCordobas</property>
           <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="Name">GridColumn24</property>
+      <property name="Caption">Flete (USD)</property>
+      <property name="FieldName">CarriageUSD</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">15</property>
+      <property name="Visible">true</property>
+      <property name="Width">61</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">CarriageUSD</property>
+          <property name="SummaryType">Sum</property>
           <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="Name">GridColumn25</property>
+      <property name="Caption">Flete (C$)</property>
+      <property name="FieldName">CarriageCordobas</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">20</property>
+      <property name="Visible">true</property>
+      <property name="Width">60</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">CarriageCordobas</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item27" isnull="true" iskey="true">
+      <property name="Name">GridColumn26</property>
+      <property name="Caption">Retención</property>
+      <property name="FieldName">TotalRetention</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">13</property>
+      <property name="Visible">true</property>
+      <property name="Width">64</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+    </property>
+    <property name="Item28" isnull="true" iskey="true">
+      <property name="Name">GridColumn27</property>
+      <property name="Caption">Retención (USD)</property>
+      <property name="FieldName">TotalRetentionUSD</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">17</property>
+      <property name="Visible">true</property>
+      <property name="Width">76</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalRetentionUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item29" isnull="true" iskey="true">
+      <property name="Name">GridColumn28</property>
+      <property name="Caption">Retención (C$)</property>
+      <property name="FieldName">TotalRetentionCordobas</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">22</property>
+      <property name="Visible">true</property>
+      <property name="Width">68</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$###,##0.00</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalRetentionCordobas</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$###,##0.00}</property>
         </property>
       </property>
     </property>

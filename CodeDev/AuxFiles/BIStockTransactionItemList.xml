@@ -35,7 +35,7 @@
     </property>
   </property>
   <property name="OptionsBehavior" isnull="true" iskey="true">
-    <property name="Editable">false</property>
+    <property name="ReadOnly">true</property>
   </property>
   <property name="OptionsView" isnull="true" iskey="true">
     <property name="ShowAutoFilterRow">true</property>
@@ -373,7 +373,7 @@
       </property>
       <property name="Caption">Valor Total (USD)</property>
       <property name="FieldName">TransactionValuationDollar</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">126</property>

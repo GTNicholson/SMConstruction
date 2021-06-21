@@ -50,6 +50,8 @@ Public Class dsoRTISGlobal
     Dim mSQL As String
     Dim mTempRead As String
     Dim mReadOK As Boolean = False
+    Dim mdtoEmail As dtoEmailSettings
+
     ''TODO - Extend to load different defaults for different datasets, e.g. LIVE, UAT, TRAINING, STANDBY, DEVELOPMENT
     Try
       If pDBConn.Connect(mIsNewConnection) Then
@@ -79,6 +81,17 @@ Public Class dsoRTISGlobal
           mTempRead = clsDBConnBase.DBReadString(mReader, "PodioPath")
           ''If mTempRead.Length > 0 Then rRTISGlobal.DefaultExportPath = mTempRead.Trim
           rRTISGlobal.PodioPath = mTempRead
+
+
+          If rRTISGlobal.EmailSettingsID <> 0 Then
+            mdtoEmail = New dtoEmailSettings(pDBConn)
+            rRTISGlobal.EmailSettings = New RTIS.EmailLib.clsEmailSettings
+            If pDBConn.IsConnected Then
+              pDBConn.Disconnect()
+            End If
+            pDBConn.Connect()
+            mdtoEmail.LoadEmailSettings(rRTISGlobal.EmailSettings, rRTISGlobal.EmailSettingsID)
+          End If
 
           mReadOK = True
         End If

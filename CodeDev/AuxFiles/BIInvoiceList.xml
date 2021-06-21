@@ -51,6 +51,7 @@
     </property>
   </property>
   <property name="OptionsView" isnull="true" iskey="true">
+    <property name="ShowAutoFilterRow">true</property>
     <property name="ShowFooter">true</property>
   </property>
   <property name="FixedLineWidth">2</property>

@@ -1,0 +1,7 @@
+insert into FixingSpecies (EnglishDescription,SpanishDescription,DisplayOrder)
+values ('Plastic', 'Plástico',10)
+go
+
+insert into FixingSpecies (EnglishDescription,SpanishDescription,DisplayOrder)
+values ('Teflon', 'Teflón',11)
+go

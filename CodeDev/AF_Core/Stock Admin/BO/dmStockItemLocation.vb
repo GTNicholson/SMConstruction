@@ -168,8 +168,19 @@ Public Class colStockItemLocations : Inherits colBase(Of dmStockItemLocation)
     MyBase.New(vList)
   End Sub
 
-  Public Function ItemsFromStockItemID(stockItemID As Integer) As Object
-    Throw New NotImplementedException()
+  Public Function ItemsFromStockItemID(ByVal vStockItemID As Integer) As dmStockItemLocation
+    Dim mItem As dmStockItemLocation
+    Dim mRetVal As dmStockItemLocation = Nothing
+
+
+    For Each mItem In MyBase.Items
+
+      If mItem.StockItemID = vStockItemID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
   End Function
 End Class
 

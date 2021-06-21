@@ -167,6 +167,19 @@ Public Class colPurchaseOrderAllocations : Inherits colBase(Of dmPurchaseOrderAl
     Return mIndex
   End Function
 
+  Public Function ItemFromSalesOrderPhaseID(ByVal vSalesOrderPhaseID As Integer) As dmPurchaseOrderAllocation
+    Dim mItem As dmPurchaseOrderAllocation
+    Dim mRetVal As dmPurchaseOrderAllocation = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.CallOffID = vSalesOrderPhaseID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 

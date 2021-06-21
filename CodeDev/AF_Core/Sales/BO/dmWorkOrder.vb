@@ -61,6 +61,8 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pStockItemMaterialRequirements As colMaterialRequirements
   Private pStatus As Byte
   Private pPurchasingDate As Date
+  Private pDrawingStatus As Integer
+  Private pWorkOrderMatReqCategoryStatuss As colWorkOrderMatReqCategoryStatuss
 
   Public Sub New()
     MyBase.New()
@@ -76,6 +78,7 @@ Public Class dmWorkOrder : Inherits dmBase
     pOutputPallets = New colOutputPallets
     pStockItemMaterialRequirements = New colMaterialRequirements
     pWoodMaterialRequirements = New colMaterialRequirements
+    pWorkOrderMatReqCategoryStatuss = New colWorkOrderMatReqCategoryStatuss
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -90,6 +93,7 @@ Public Class dmWorkOrder : Inherits dmBase
     pSourcePallets = Nothing
     pStockItemMaterialRequirements = Nothing
     pWoodMaterialRequirements = Nothing
+    pWorkOrderMatReqCategoryStatuss = Nothing
     MyBase.Finalize()
   End Sub
 
@@ -100,11 +104,13 @@ Public Class dmWorkOrder : Inherits dmBase
 
       If mAnyDirty = False Then mAnyDirty = pWOFiles.IsDirty
       If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
-        If mAnyDirty = False Then mAnyDirty = pWorkOrderAllocations.IsDirty
-        If mAnyDirty = False Then mAnyDirty = pSourcePallets.IsDirty
-        If mAnyDirty = False Then mAnyDirty = pOutputPallets.IsDirty
-        If mAnyDirty = False Then mAnyDirty = pStockItemMaterialRequirements.IsDirty
-        If mAnyDirty = False Then mAnyDirty = pWoodMaterialRequirements.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pWorkOrderAllocations.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pSourcePallets.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pOutputPallets.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pStockItemMaterialRequirements.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pWoodMaterialRequirements.IsDirty
+
+      If mAnyDirty = False Then mAnyDirty = pWorkOrderMatReqCategoryStatuss.IsDirty
 
       IsAnyDirty = mAnyDirty
     End Get
@@ -155,6 +161,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .Comments = Comments
       .Status = Status
       .PurchasingDate = PurchasingDate
+      .DrawingStatus = DrawingStatus
       .StockItemMaterialRequirements = StockItemMaterialRequirements.Clone
       .WoodMaterialRequirements = WoodMaterialRequirements.Clone
       'Add entries here for each collection and class property
@@ -164,8 +171,9 @@ Public Class dmWorkOrder : Inherits dmBase
       .WorkOrderAllocations = WorkOrderAllocations.Clone
       'Entries for object management
       .Product = Product.Clone
-      .OutputPallets = OutputPallets.clone
-      .SourcePallets = SourcePallets.clone
+      .OutputPallets = OutputPallets.Clone
+      .SourcePallets = SourcePallets.Clone
+      .WorkOrderMatReqCategoryStatuss = WorkOrderMatReqCategoryStatuss.Clone
       .IsDirty = IsDirty
     End With
 
@@ -611,7 +619,15 @@ Public Class dmWorkOrder : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property DrawingStatus As Integer
+    Get
+      Return pDrawingStatus
+    End Get
+    Set(value As Integer)
+      If pDrawingStatus <> value Then IsDirty = True
+      pDrawingStatus = value
+    End Set
+  End Property
   Public Property OutputPallets As colOutputPallets
     Get
       Return pOutputPallets
@@ -665,6 +681,15 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As Date)
       If pPurchasingDate <> value Then IsDirty = True
       pPurchasingDate = value
+    End Set
+  End Property
+
+  Public Property WorkOrderMatReqCategoryStatuss As colWorkOrderMatReqCategoryStatuss
+    Get
+      Return pWorkOrderMatReqCategoryStatuss
+    End Get
+    Set(value As colWorkOrderMatReqCategoryStatuss)
+      pWorkOrderMatReqCategoryStatuss = value
     End Set
   End Property
 End Class

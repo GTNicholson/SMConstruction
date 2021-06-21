@@ -1,5 +1,4 @@
 Imports System.ComponentModel
-Imports RTIS.ERPCore
 Imports RTIS.CommonVB
 
 Public Enum eActivityCode
@@ -18,7 +17,7 @@ Public Enum eActivityCode
   TrackingSalesOrder = 103
   WoodSalesOrder = 104
   WoodSalesOrderBI = 105
-
+  FurnitureSalesOrder = 106
 
   ProductionGroup = 200
   WorkOrders = 201
@@ -44,6 +43,7 @@ Public Enum eActivityCode
   PODeliveryItemReport = 405
   PurchasingBalance = 406
   SetFromStockQty = 407
+  PurchasingManagement = 408 ''DO this activities
 
   InventoryGroup = 500
   StockItem = 501
@@ -146,8 +146,8 @@ Public Enum eLocations
   <Description("AgroForestal")> AgroForestal = 2
   <Description("MillWorks")> MillWorks = 3
   <Description("SawMills")> SawMills = 4
-  <Description("NicaFrance")> NicaFrance = 5
-
+  <Description("NicaFrance-AgroForestal")> NicaFranceAgro = 5
+  <Description("NicaFrance-SMM")> NicaFranceSMM = 6
 End Enum
 
 Public Enum eTaxRate
@@ -288,6 +288,7 @@ Public Enum eBrowseList
   WorkOrderWoodProcess = 16
   WoodCostBook = 17
   WoodReception = 18
+  FurnitureSalesOrders = 19
 End Enum
 
 
@@ -428,9 +429,11 @@ Public Enum eProductType
 End Enum
 
 Public Enum eOrderType
-  <Description("Venta")> Sales = 2
+  <Description("Venta de Casas")> Sales = 2
   <Description("Consumo Interno")> Interno = 1
   <Description("Madera")> WoodSales = 3
+  <Description("Muebles")> Furnitures = 4
+  <Description("Consumo Interno Muebles")> InternalFurniture = 5
 
 
 End Enum
@@ -440,7 +443,7 @@ End Enum
 Public Enum eStockItemCategory
   <Description("Ninguno")> None = 0
   <Description("Abrasivos")> Abrasivos = 1
-  <Description("Clavos y Tornillos")> NailsAndBolds = 2
+  <Description("Sistemas de Fijación")> Fixings = 2
   <Description("Equipos de Proteccion")> EPP = 3
   <Description("Herrajes")> Herrajes = 4
   <Description("Herramientas")> Herramientas = 5
@@ -454,6 +457,8 @@ Public Enum eStockItemCategory
   <Description("Tapiceria")> Tapiceria = 13
   <Description("Vidrios y Espejos")> VidrioYEspejo = 14
   <Description("Madera en Timber")> Timber = 15
+  <Description("Plomería")> Plumbing = 16
+  <Description("Albañilería")> BrickWork = 17
   ' <Description("Madera Dimensionada")> DimensionWood = 16
   '<Description("Madera Secada")> DriedWood = 17
 End Enum
@@ -472,7 +477,8 @@ End Enum
 
 Public Enum eWorkOrderStatus
   <Description("En Proceso")> InProcess = 1
-  <Description("Entregada")> Complete = 2
+  <Description("Dibujos Liberados")> Raised = 4
+  <Description("Completado")> Complete = 2
   <Description("Cancelada")> Cancelled = 3
 
 End Enum
@@ -762,15 +768,15 @@ Public Class eStockItemTypeAbrasivos : Inherits colPropertyENUMOfT(Of clsStockIt
 
 End Class
 
-Public Class clsStockItemTypeNailsAndBolts : Inherits clsPropertyENUM
-  Private pStockSubItemTypeNailsAndBolts As colStockSubItemTypeNailsAndBolts
+Public Class clsStockItemTypeFixings : Inherits clsPropertyENUM
+  Private pStockSubItemTypeFixings As colStockSubItemTypeFixings
   Private pStockCodeStr As String
-  Public Property StockSubItemTypeNailsAndBolts As colStockSubItemTypeNailsAndBolts
+  Public Property StockSubItemTypeFixings As colStockSubItemTypeFixings
     Get
-      Return pStockSubItemTypeNailsAndBolts
+      Return pStockSubItemTypeFixings
     End Get
-    Set(value As colStockSubItemTypeNailsAndBolts)
-      pStockSubItemTypeNailsAndBolts = value
+    Set(value As colStockSubItemTypeFixings)
+      pStockSubItemTypeFixings = value
     End Set
   End Property
   Public Property StockCodeStr As String
@@ -784,13 +790,13 @@ Public Class clsStockItemTypeNailsAndBolts : Inherits clsPropertyENUM
 
   Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
     MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeNailsAndBolts = New colStockSubItemTypeNailsAndBolts
+    pStockSubItemTypeFixings = New colStockSubItemTypeFixings
     pStockCodeStr = vStockCodeStr
   End Sub
 
 End Class
 
-Public Class clsStockSubItemTypeNailsAndBolts : Inherits clsPropertyENUM
+Public Class clsStockSubItemTypeFixings : Inherits clsPropertyENUM
   Private pStockCodeStr As String
   Public Property StockCodeStr As String
     Get
@@ -807,10 +813,10 @@ Public Class clsStockSubItemTypeNailsAndBolts : Inherits clsPropertyENUM
 
 End Class
 
-Public Class colStockSubItemTypeNailsAndBolts : Inherits List(Of clsStockSubItemTypeNailsAndBolts)
+Public Class colStockSubItemTypeFixings : Inherits List(Of clsStockSubItemTypeFixings)
 
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeNailsAndBolts
-    For Each mItem As clsStockSubItemTypeNailsAndBolts In Me
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeFixings
+    For Each mItem As clsStockSubItemTypeFixings In Me
       If mItem.PropertyENUM = vKey Then
         Return mItem
       End If
@@ -821,7 +827,7 @@ Public Class colStockSubItemTypeNailsAndBolts : Inherits List(Of clsStockSubItem
 
 End Class
 
-Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsStockItemTypeNailsAndBolts)
+Public Class eStockItemTypeFixings : Inherits colPropertyENUMOfT(Of clsStockItemTypeFixings)
 
   Public Const Clavos = 1
   Public Const Tornillos = 2
@@ -829,69 +835,76 @@ Public Class eStockItemTypeNailsAndBolts : Inherits colPropertyENUMOfT(Of clsSto
   Public Const Golosos = 4
   Public Const Tuercas = 5
   Public Const Arandelas = 6
+  Public Const Tachuelas = 7
+  Public Const Espiches = 8
   Public Const Otros = 99
 
-  Private Shared mSharedInstance As eStockItemTypeNailsAndBolts
+  Private Shared mSharedInstance As eStockItemTypeFixings
 
   Public Sub New()
     MyBase.New()
-    Dim mNailAndBoltType As clsStockItemTypeNailsAndBolts
+    Dim mFixingType As clsStockItemTypeFixings
 
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Clavos, "Clavos", "CL")
-    MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.PuntaFina, "Punta Fina", "P/F"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Estandar, "Estándar", "STD"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Pistolas, "Para Pistolas", "PTL"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Presion, "Para Presión", "PRS"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.SinCabeza, "Sin Cabeza", "PRS"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Techo, "Para Techo", "TCH"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsType.Other, "Otros", "OTR"))
-
-
-
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tornillos, "Tornillos", "TN")
-    MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Wood, "Madera", "TDM"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eScrewTypes.Gypsum, "Gypsum", "TDG"))
-
-
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Pernos, "Pernos", "PE")
-    MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eCapScrewType.Hexagonal, "Perno Hexagonal", "PHX"))
-
-
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Golosos, "Golosos", "GO")
-    MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.Estandar, "Estándar", "STD"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.Hexagonal, "Hexagonal", "HXG"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.HexagonalPuntaFina, "Hexagonal Punta Fina", "HPF"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.PuntaFina, "Punta Fina", "P/F"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eGolososType.Other, "Otros", "OTR"))
+    mFixingType = New clsStockItemTypeFixings(Clavos, "Clavos", "CL")
+    MyBase.Add(mFixingType)
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.PuntaFina, "Punta Fina", "P/F"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.Estandar, "Estándar", "STD"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.Pistolas, "Para Pistolas", "PTL"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.Presion, "Para Presión", "PRS"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.SinCabeza, "Sin Cabeza", "PRS"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.Techo, "Para Techo", "TCH"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eNailsType.Other, "Otros", "OTR"))
 
 
 
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Tuercas, "Tuercas", "TU")
-    MyBase.Add(mNailAndBoltType)
+    mFixingType = New clsStockItemTypeFixings(Tornillos, "Tornillos", "TN")
+    MyBase.Add(mFixingType)
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eScrewTypes.Wood, "Madera", "TDM"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eScrewTypes.Gypsum, "Gypsum", "TDG"))
+
+
+    mFixingType = New clsStockItemTypeFixings(Pernos, "Pernos", "PE")
+    MyBase.Add(mFixingType)
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eCapScrewType.Hexagonal, "Perno Hexagonal", "PHX"))
+
+
+    mFixingType = New clsStockItemTypeFixings(Golosos, "Golosos", "GO")
+    MyBase.Add(mFixingType)
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eGolososType.Estandar, "Estándar", "STD"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eGolososType.Hexagonal, "Hexagonal", "HXG"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eGolososType.HexagonalPuntaFina, "Hexagonal Punta Fina", "HPF"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eGolososType.PuntaFina, "Punta Fina", "P/F"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eGolososType.Other, "Otros", "OTR"))
 
 
 
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Arandelas, "Arandelas", "AR")
-    MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eWhasherType.Presion, "Presión", "PRS"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eWhasherType.Plana, "Plana", "PLN"))
+    mFixingType = New clsStockItemTypeFixings(Tuercas, "Tuercas", "TUE")
+    MyBase.Add(mFixingType)
 
-    mNailAndBoltType = New clsStockItemTypeNailsAndBolts(Otros, "Los demás", "OTR")
-    MyBase.Add(mNailAndBoltType)
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.Grapas, "Grapas", "GRP"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.Alcayata, "Alcayata", "ACT"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.VarillaRoscada, "Varilla Roscada", "VRR"))
-    mNailAndBoltType.StockSubItemTypeNailsAndBolts.Add(New clsStockSubItemTypeNailsAndBolts(eNailsAndBoltsOther.Other, "Otros", "OTR"))
+    mFixingType = New clsStockItemTypeFixings(Espiches, "Espiches", "ESP")
+    MyBase.Add(mFixingType)
+
+    mFixingType = New clsStockItemTypeFixings(Tachuelas, "Tachuelas", "TAC")
+    MyBase.Add(mFixingType)
+
+
+    mFixingType = New clsStockItemTypeFixings(Arandelas, "Arandelas", "AR")
+    MyBase.Add(mFixingType)
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eWhasherType.Presion, "Presión", "PRS"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eWhasherType.Plana, "Plana", "PLN"))
+
+    mFixingType = New clsStockItemTypeFixings(Otros, "Los demás", "OTR")
+    MyBase.Add(mFixingType)
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eFixingsOther.Grapas, "Grapas", "GRP"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eFixingsOther.Alcayata, "Alcayata", "ACT"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eFixingsOther.VarillaRoscada, "Varilla Roscada", "VRR"))
+    mFixingType.StockSubItemTypeFixings.Add(New clsStockSubItemTypeFixings(eFixingsOther.Other, "Otros", "OTR"))
 
   End Sub
 
-  Public Shared Function GetInstance() As eStockItemTypeNailsAndBolts
+  Public Shared Function GetInstance() As eStockItemTypeFixings
     If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypeNailsAndBolts
+      mSharedInstance = New eStockItemTypeFixings
     End If
     Return mSharedInstance
   End Function
@@ -928,7 +941,7 @@ Public Enum eHeadType
 
 
 End Enum
-Public Enum eNailsAndBoltsOther
+Public Enum eFixingsOther
   Grapas = 1
   VarillaRoscada = 2
   Alcayata = 3
@@ -947,111 +960,6 @@ Public Enum eGolososType
 End Enum
 
 
-Public Class clsStockItemTypeHerrajes : Inherits clsPropertyENUM
-  Private pStockSubItemTypeHerrajes As colStockSubItemTypeHerrajes
-
-  Public Property StockSubItemTypeHerrajes As colStockSubItemTypeHerrajes
-    Get
-      Return pStockSubItemTypeHerrajes
-    End Get
-    Set(value As colStockSubItemTypeHerrajes)
-      pStockSubItemTypeHerrajes = value
-    End Set
-  End Property
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeHerrajes = New colStockSubItemTypeHerrajes
-  End Sub
-
-End Class
-
-Public Class clsStockSubItemTypeHerrajes : Inherits clsPropertyENUM
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
-
-End Class
-
-Public Class colStockSubItemTypeHerrajes : Inherits List(Of clsStockSubItemTypeHerrajes)
-
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeHerrajes
-    For Each mItem As clsStockSubItemTypeHerrajes In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
-
-    Return Nothing
-  End Function
-
-End Class
-
-Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockItemType)
-
-  Public Enum eStockItemHerrajes
-    Riel = 1
-    Bisagras = 4
-    ResbalonesYNiveladores = 5
-    Rodos = 6
-    HerrajesEspeciales = 7
-    Portatiles = 8
-    Otros = 99
-  End Enum
-
-  Public Const Riel = 1
-  Public Const Tuercas = 2
-  Public Const Arandelas = 3
-  Public Const Bisagras = 4
-  Public Const ResbalonesYNiveladores = 5
-  Public Const Rodos = 6
-  Public Const HerrajesEspeciales = 7
-  Public Const Portatiles = 8
-  Public Const Otros = 99
-
-  Private Shared mSharedInstance As eStockItemTypeHerrajes
-
-  Public Sub New()
-    MyBase.New()
-
-    Dim mRiel As New clsStockItemType(Riel, "Riel", "RL")
-    MyBase.Add(mRiel)
-
-    Dim mTuercas As New clsStockItemType(Tuercas, "Tuercas", "TU")
-    MyBase.Add(mTuercas)
-
-    Dim mArandelas As New clsStockItemType(Arandelas, "Arandelas", "AR")
-    MyBase.Add(mArandelas)
-
-    Dim mBisagras As New clsStockItemType(Bisagras, "Bisagras", "BI")
-    MyBase.Add(mBisagras)
-
-    Dim mResbYNiv As New clsStockItemType(ResbalonesYNiveladores, "Resbalones Y Niveladores", "RN")
-    MyBase.Add(mResbYNiv)
-
-    Dim mRodos As New clsStockItemType(Rodos, "Rodos", "RO")
-    MyBase.Add(mRodos)
-
-    Dim mHerrajesEspeciales As New clsStockItemType(HerrajesEspeciales, "Herrajes Especiales", "HE")
-    MyBase.Add(mHerrajesEspeciales)
-
-    Dim mPortatiles As New clsStockItemType(Portatiles, "Portatiles", "PT")
-    MyBase.Add(mPortatiles)
-
-    Dim mOtros As New clsStockItemType(Otros, "Los demás", "OTR")
-    MyBase.Add(mOtros)
-
-  End Sub
-
-  Public Shared Function GetInstance() As eStockItemTypeHerrajes
-    If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypeHerrajes
-    End If
-    Return mSharedInstance
-  End Function
-
-End Class
 
 Public Class clsStockItemTypeMaterialElectrico : Inherits clsPropertyENUM
   Private pStockSubItemTypeMaterialElectrico As colStockSubItemTypeMaterialElectrico
@@ -1127,157 +1035,9 @@ Public Class eStockItemTypeMaterialElectrico : Inherits colPropertyENUMOfT(Of cl
 End Class
 
 
-''empiezo aca
-Public Class clsStockItemTypeMatVarios : Inherits clsPropertyENUM
-  Private pStockSubItemTypeMatVarios As colStockSubItemTypeMatVarios
-
-  Public Property StockSubItemTypeMatVarios As colStockSubItemTypeMatVarios
-    Get
-      Return pStockSubItemTypeMatVarios
-    End Get
-    Set(value As colStockSubItemTypeMatVarios)
-      pStockSubItemTypeMatVarios = value
-    End Set
-  End Property
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeMatVarios = New colStockSubItemTypeMatVarios
-  End Sub
-
-End Class
-
-Public Class clsStockSubItemTypeMatVarios : Inherits clsPropertyENUM
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
-
-End Class
-
-Public Class colStockSubItemTypeMatVarios : Inherits List(Of clsStockSubItemTypeMatVarios)
-
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeMatVarios
-    For Each mItem As clsStockSubItemTypeMatVarios In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
-
-    Return Nothing
-  End Function
-
-End Class
-
-Public Class eStockItemTypeMatVarios : Inherits colPropertyENUMOfT(Of clsStockItemType)
-
-  Public Enum eStockItemMaterialMatVarios
-    General = 1
-    Otros = 99
-  End Enum
-
-  Public Const General = 1
-  Public Const Otros = 99
-
-  Private Shared mSharedInstance As eStockItemTypeMatVarios
-
-  Public Sub New()
-    MyBase.New()
-
-    Dim mGeneral As New clsStockItemType(General, "General", "GN")
-    MyBase.Add(mGeneral)
 
 
-    Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
-    MyBase.Add(mOther)
-  End Sub
 
-  Public Shared Function GetInstance() As eStockItemTypeMatVarios
-    If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypeMatVarios
-    End If
-    Return mSharedInstance
-  End Function
-
-End Class
-''termino aca
-
-Public Class clsStockItemTypeVidrioYEspejo : Inherits clsPropertyENUM
-  Private pStockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
-
-  Public Property StockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
-    Get
-      Return pStockSubItemTypeVidrioYEspejo
-    End Get
-    Set(value As colStockSubItemTypeVidrioYEspejo)
-      pStockSubItemTypeVidrioYEspejo = value
-    End Set
-  End Property
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-    pStockSubItemTypeVidrioYEspejo = New colStockSubItemTypeVidrioYEspejo
-  End Sub
-
-End Class
-
-Public Class clsStockSubItemTypeVidrioYEspejo : Inherits clsPropertyENUM
-
-  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
-    MyBase.New(vPropertyENUM, vDescription)
-  End Sub
-
-End Class
-
-Public Class colStockSubItemTypeVidrioYEspejo : Inherits List(Of clsStockSubItemTypeVidrioYEspejo)
-
-  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeVidrioYEspejo
-    For Each mItem As clsStockSubItemTypeVidrioYEspejo In Me
-      If mItem.PropertyENUM = vKey Then
-        Return mItem
-      End If
-    Next
-
-    Return Nothing
-  End Function
-
-End Class
-
-Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsStockItemType)
-
-  Public Enum eStockItemVidrioYEspejo
-    Vidrios = 1
-    Espejos = 2
-    Otros = 99
-  End Enum
-
-  Public Const Vidrios = 1
-  Public Const Espejos = 2
-  Public Const Otros = 99
-
-  Private Shared mSharedInstance As eStockItemTypeVidrioYEspejo
-
-  Public Sub New()
-    MyBase.New()
-
-    Dim mVidrios As New clsStockItemType(Vidrios, "Vidrios Dúplex", "VD")
-    MyBase.Add(mVidrios)
-
-    Dim mEspejos As New clsStockItemType(Espejos, "Espejos", "EPJ")
-    MyBase.Add(mEspejos)
-
-    Dim mOther As New clsStockItemType(Otros, "Los demás", "OTR")
-    MyBase.Add(mOther)
-  End Sub
-
-  Public Shared Function GetInstance() As eStockItemTypeVidrioYEspejo
-    If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypeVidrioYEspejo
-    End If
-    Return mSharedInstance
-  End Function
-
-End Class
 
 
 ''termino aca
@@ -1781,52 +1541,6 @@ End Class
 
 ''End Class
 
-Public Class eStockItemTypeRepuestosYPartes : Inherits colPropertyENUMOfT(Of clsStockItemType)
-
-  Public Enum eStockItemRepuestosYPartes
-    CuchillosYCabezales = 1
-    Bandas = 2
-    Balinera = 3
-    BrocasYFresas = 4
-    Otros = 99
-  End Enum
-
-  Public Const CuchillosYCabezales = 1
-  Public Const Bandas = 2
-  Public Const Balinera = 3
-  Public Const BrocasYFresas = 4
-  Public Const Otros = 99
-
-  Private Shared mSharedInstance As eStockItemTypeRepuestosYPartes
-
-  Public Sub New()
-    MyBase.New()
-
-    Dim mCuchillosYCabezales As New clsStockItemType(CuchillosYCabezales, "Cuchillos y Cabezales", "CC")
-    MyBase.Add(mCuchillosYCabezales)
-
-    Dim mBandas As New clsStockItemType(Bandas, "Bandas", "BN")
-    MyBase.Add(mBandas)
-
-    Dim mBalinera As New clsStockItemType(Balinera, "Balinera", "BL")
-    MyBase.Add(mBalinera)
-
-    Dim mBrocayFresas As New clsStockItemType(BrocasYFresas, "Brocas y Fresas", "BF")
-    MyBase.Add(mBrocayFresas)
-
-    Dim mOtros As New clsStockItemType(Otros, "Los demás", "OTR")
-    MyBase.Add(mOtros)
-
-  End Sub
-
-  Public Shared Function GetInstance() As eStockItemTypeRepuestosYPartes
-    If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypeRepuestosYPartes
-    End If
-    Return mSharedInstance
-  End Function
-
-End Class
 
 ''Public Class clsStockItemTypeTapiceria : Inherits clsPropertyENUM
 ''  Private pStockSubItemTypeTapiceria As colStockSubItemTypeTapiceria
@@ -1901,72 +1615,6 @@ Public Class eStockItemTypeTapiceria : Inherits colPropertyENUMOfT(Of clsStockIt
   Public Shared Function GetInstance() As eStockItemTypeTapiceria
     If mSharedInstance Is Nothing Then
       mSharedInstance = New eStockItemTypeTapiceria
-    End If
-    Return mSharedInstance
-  End Function
-
-End Class
-
-
-Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItemType)
-
-  Public Const Recubrimiento = 1
-  Public Const Diluyente = 2
-  Public Const Barniz = 3
-  Public Const Componentes = 4
-  Public Const Tintes = 5
-  Public Const Combustibles = 6
-  Public Const Pegamento = 7
-  Public Const Otros = 99
-
-  Public Enum eStockItemPintura
-    Recubrimiento = 1
-    Diluyente = 2
-    Barniz = 3
-    Componentes = 4
-    Tintes = 5
-    Combustibles = 6
-    Pegamento = 7
-    Otros = 99
-  End Enum
-
-  Private Shared mSharedInstance As eStockItemTypePintura
-
-  Public Sub New()
-
-    MyBase.New()
-
-    Dim mType As clsStockItemType
-
-    mType = New clsStockItemType(Recubrimiento, "Recubrimiento para Madera", "RM")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Diluyente, "Diluyente", "DI")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Barniz, "Barniz", "BZ")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Componentes, "Componentes", "CP")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Tintes, "Tintes", "TN")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Combustibles, "Combustibles", "CB")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Pegamento, "Pegamento para Madera", "PG")
-    MyBase.Add(mType)
-
-    mType = New clsStockItemType(Otros, "Los demás", "OTR")
-    MyBase.Add(mType)
-
-  End Sub
-
-  Public Shared Function GetInstance() As eStockItemTypePintura
-    If mSharedInstance Is Nothing Then
-      mSharedInstance = New eStockItemTypePintura
     End If
     Return mSharedInstance
   End Function
@@ -2090,4 +1738,784 @@ End Enum
 Public Enum eWoodFormMode
   WoodInventory = 1
   ProductionDespatch = 2
+End Enum
+
+
+
+Public Class clsStockItemTypePlumbings : Inherits clsPropertyENUM
+  Private pStockSubItemTypePlumbings As colStockSubItemTypePlumbings
+  Private pStockCodeStr As String
+  Public Property StockSubItemTypePlumbings As colStockSubItemTypePlumbings
+    Get
+      Return pStockSubItemTypePlumbings
+    End Get
+    Set(value As colStockSubItemTypePlumbings)
+      pStockSubItemTypePlumbings = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypePlumbings = New colStockSubItemTypePlumbings
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypePlumbings : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypePlumbings : Inherits List(Of clsStockSubItemTypePlumbings)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypePlumbings
+    For Each mItem As clsStockSubItemTypePlumbings In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+Public Class eStockItemTypePlumbings : Inherits colPropertyENUMOfT(Of clsStockItemTypePlumbings)
+
+  Public Const Tubos = 1
+  Public Const Uniones = 2
+  Public Const Codos = 3
+  Public Const Conectores = 4
+  Public Const Inodoros = 5
+  Public Const Lavamanos = 6
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypePlumbings
+
+  Public Sub New()
+    MyBase.New()
+    Dim mPlumbingType As clsStockItemTypePlumbings
+
+    mPlumbingType = New clsStockItemTypePlumbings(Tubos, "Tubos", "TUB")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypePlumbings(Uniones, "Uniones", "UNI")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypePlumbings(Conectores, "Conectores", "CON")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypePlumbings(Codos, "Codos", "COD")
+    MyBase.Add(mPlumbingType)
+
+
+    mPlumbingType = New clsStockItemTypePlumbings(Inodoros, "Inodores", "IND")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypePlumbings(Lavamanos, "Lavamanos", "LVM")
+    MyBase.Add(mPlumbingType)
+
+
+
+    mPlumbingType = New clsStockItemTypePlumbings(Otros, "Los demás", "OTR")
+    MyBase.Add(mPlumbingType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypePlumbings
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypePlumbings
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+
+Public Class clsStockItemTypeMatVarios : Inherits clsPropertyENUM
+  Private pStockSubItemMatVarioss As colStockSubItemMatVarioss
+  Private pStockCodeStr As String
+  Public Property StockSubItemMatVarioss As colStockSubItemMatVarioss
+    Get
+      Return pStockSubItemMatVarioss
+    End Get
+    Set(value As colStockSubItemMatVarioss)
+      pStockSubItemMatVarioss = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemMatVarioss = New colStockSubItemMatVarioss
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemMatVarios : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemMatVarioss : Inherits List(Of clsStockSubItemMatVarios)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemMatVarios
+    For Each mItem As clsStockSubItemMatVarios In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+Public Class eStockItemTypeMatVarioss : Inherits colPropertyENUMOfT(Of clsStockItemTypeMatVarios)
+
+  Public Const General = 1
+  Public Const CleaningAccesories = 2
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypeMatVarioss
+
+  Public Sub New()
+    MyBase.New()
+    Dim mStockItemTypeMatVarios As clsStockItemTypeMatVarios
+
+    mStockItemTypeMatVarios = New clsStockItemTypeMatVarios(General, "General", "GEN")
+    MyBase.Add(mStockItemTypeMatVarios)
+
+
+    mStockItemTypeMatVarios = New clsStockItemTypeMatVarios(CleaningAccesories, "Accesorios de Limpieza", "ADL")
+    MyBase.Add(mStockItemTypeMatVarios)
+
+
+
+    mStockItemTypeMatVarios = New clsStockItemTypeMatVarios(Otros, "Los demás", "OTR")
+    MyBase.Add(mStockItemTypeMatVarios)
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeMatVarioss
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeMatVarioss
+    End If
+    Return mSharedInstance
+  End Function
+End Class
+
+
+Public Class clsStockItemTypeBrickWork : Inherits clsPropertyENUM
+  Private pStockSubItemTypeBrickWork As colStockSubItemTypeBrickWork
+  Private pStockCodeStr As String
+  Public Property StockSubItemTypeBrickWork As colStockSubItemTypeBrickWork
+    Get
+      Return pStockSubItemTypeBrickWork
+    End Get
+    Set(value As colStockSubItemTypeBrickWork)
+      pStockSubItemTypeBrickWork = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeBrickWork = New colStockSubItemTypeBrickWork
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypeBrickWork : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypeBrickWork : Inherits List(Of clsStockSubItemTypeBrickWork)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeBrickWork
+    For Each mItem As clsStockSubItemTypeBrickWork In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+
+Public Class eStockItemTypeBrickWork : Inherits colPropertyENUMOfT(Of clsStockItemTypeBrickWork)
+
+  Public Const Piedrin = 1
+  Public Const Arena = 2
+  Public Const Cemento = 3
+  Public Const LadrilloYBloque = 4
+  Public Const Hormigon = 5
+  Public Const Cal = 6
+  Public Const Alambre = 7
+
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypeBrickWork
+
+  Public Sub New()
+    MyBase.New()
+    Dim mPlumbingType As clsStockItemTypeBrickWork
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Piedrin, "Piedrin", "PIE")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Arena, "Arena", "ARE")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Cemento, "Cemento", "CEM")
+    MyBase.Add(mPlumbingType)
+
+
+    mPlumbingType = New clsStockItemTypeBrickWork(LadrilloYBloque, "Ladrillos y Bloque", "LYB")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Hormigon, "Hormigón", "HOR")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Cal, "Cal", "CAL")
+    MyBase.Add(mPlumbingType)
+
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Alambre, "Alambre", "ALA")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeBrickWork(Otros, "Los demás", "OTR")
+    MyBase.Add(mPlumbingType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeBrickWork
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeBrickWork
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+
+Public Class clsStockItemTypeRepuestosYPartes : Inherits clsPropertyENUM
+  Private pStockSubItemTypeRepuestosYPartes As colStockSubItemTypeRepuestosYPartes
+  Private pStockCodeStr As String
+  Public Property StockSubItemTypeRepuestosYPartes As colStockSubItemTypeRepuestosYPartes
+    Get
+      Return pStockSubItemTypeRepuestosYPartes
+    End Get
+    Set(value As colStockSubItemTypeRepuestosYPartes)
+      pStockSubItemTypeRepuestosYPartes = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeRepuestosYPartes = New colStockSubItemTypeRepuestosYPartes
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypeRepuestosYPartes : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypeRepuestosYPartes : Inherits List(Of clsStockSubItemTypeRepuestosYPartes)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeRepuestosYPartes
+    For Each mItem As clsStockSubItemTypeRepuestosYPartes In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+
+Public Class eStockItemTypeRepuestosYPartes : Inherits colPropertyENUMOfT(Of clsStockItemTypeRepuestosYPartes)
+
+  Public Const CuchillosYCabezales = 1
+  Public Const Bandas = 2
+  Public Const Balinera = 3
+  Public Const BrocasYFresas = 4
+
+
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypeRepuestosYPartes
+
+  Public Sub New()
+    MyBase.New()
+    Dim mPlumbingType As clsStockItemTypeRepuestosYPartes
+
+    mPlumbingType = New clsStockItemTypeRepuestosYPartes(CuchillosYCabezales, "Cuchillos y Cabezales", "CYC")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeRepuestosYPartes(Bandas, "Bandas", "BAN")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeRepuestosYPartes(Balinera, "Balineras", "BAL")
+    MyBase.Add(mPlumbingType)
+
+
+    mPlumbingType = New clsStockItemTypeRepuestosYPartes(BrocasYFresas, "Brocas y Fresas", "BYF")
+    MyBase.Add(mPlumbingType)
+
+
+    mPlumbingType = New clsStockItemTypeRepuestosYPartes(Otros, "Los demás", "OTR")
+    MyBase.Add(mPlumbingType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeRepuestosYPartes
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeRepuestosYPartes
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+
+Public Class clsStockItemTypePintura : Inherits clsPropertyENUM
+  Private pStockSubItemTypePintura As colStockSubItemTypePintura
+  Private pStockCodeStr As String
+  Public Property StockSubItemTypePintura As colStockSubItemTypePintura
+    Get
+      Return pStockSubItemTypePintura
+    End Get
+    Set(value As colStockSubItemTypePintura)
+      pStockSubItemTypePintura = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypePintura = New colStockSubItemTypePintura
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypePintura : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypePintura : Inherits List(Of clsStockSubItemTypePintura)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypePintura
+    For Each mItem As clsStockSubItemTypePintura In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+
+Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItemTypePintura)
+
+  Public Const Recubrimiento = 1
+  Public Const Diluyente = 2
+  Public Const Barniz = 3
+  Public Const Componentes = 4
+  Public Const Tintes = 5
+  Public Const Combustibles = 6
+  Public Const Pegamento = 7
+  Public Const AccesoriosPintura = 8
+
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypePintura
+
+  Public Sub New()
+    MyBase.New()
+    Dim mType As clsStockItemTypePintura
+
+    mType = New clsStockItemTypePintura(Recubrimiento, "Recubrimiento para Madera", "RMA")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Diluyente, "Diluyente", "DIL")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Barniz, "Barniz", "BAR")
+    MyBase.Add(mType)
+
+
+    mType = New clsStockItemTypePintura(Componentes, "Componentes", "COM")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Tintes, "Tintes", "TIN")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Combustibles, "Combustibles", "COM")
+    MyBase.Add(mType)
+
+
+    mType = New clsStockItemTypePintura(Pegamento, "Pegamento para Madera", "PEG")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(AccesoriosPintura, "Accesorios para Pintar", "ACP")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Otros, "Los demás", "OTR")
+    MyBase.Add(mType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypePintura
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypePintura
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+
+
+Public Class clsStockItemTypeHerrajes : Inherits clsPropertyENUM
+  Private pStockSubItemTypeHerrajes As colStockSubItemTypeHerrajes
+  Private pStockCodeStr As String
+  Public Property StockSubItemTypeHerrajes As colStockSubItemTypeHerrajes
+    Get
+      Return pStockSubItemTypeHerrajes
+    End Get
+    Set(value As colStockSubItemTypeHerrajes)
+      pStockSubItemTypeHerrajes = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeHerrajes = New colStockSubItemTypeHerrajes
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypeHerrajes : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypeHerrajes : Inherits List(Of clsStockSubItemTypeHerrajes)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeHerrajes
+    For Each mItem As clsStockSubItemTypeHerrajes In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+
+Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockItemTypeHerrajes)
+
+  Public Const Riel = 1
+  Public Const Bisagras = 4
+  Public Const ResbalonesYNiveladores = 5
+  Public Const Rodos = 6
+  Public Const Jaladeras = 7
+  Public Const Portatiles = 8
+  Public Const Cerraduras = 9
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypeHerrajes
+
+  Public Sub New()
+    MyBase.New()
+    Dim mType As clsStockItemTypeHerrajes
+
+    mType = New clsStockItemTypeHerrajes(Riel, "Riel", "RIE")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypeHerrajes(Bisagras, "Bisagras", "BIS")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypeHerrajes(ResbalonesYNiveladores, "Resbalones y Niveladores", "RYN")
+    MyBase.Add(mType)
+
+
+    mType = New clsStockItemTypeHerrajes(Rodos, "Rodos", "ROD")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypeHerrajes(Jaladeras, "Jaladeras", "JAL")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypeHerrajes(Cerraduras, "Cerraduras", "CER")
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypeHerrajes(Otros, "Los demás", "OTR")
+    MyBase.Add(mType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeHerrajes
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeHerrajes
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+
+
+Public Class clsStockItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+  Private pStockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
+  Private pStockCodeStr As String
+  Public Property StockSubItemTypeVidrioYEspejo As colStockSubItemTypeVidrioYEspejo
+    Get
+      Return pStockSubItemTypeVidrioYEspejo
+    End Get
+    Set(value As colStockSubItemTypeVidrioYEspejo)
+      pStockSubItemTypeVidrioYEspejo = value
+    End Set
+  End Property
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockSubItemTypeVidrioYEspejo = New colStockSubItemTypeVidrioYEspejo
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class clsStockSubItemTypeVidrioYEspejo : Inherits clsPropertyENUM
+  Private pStockCodeStr As String
+  Public Property StockCodeStr As String
+    Get
+      Return pStockCodeStr
+    End Get
+    Set(value As String)
+      pStockCodeStr = value
+    End Set
+  End Property
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String, ByVal vStockCodeStr As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pStockCodeStr = vStockCodeStr
+  End Sub
+
+End Class
+
+Public Class colStockSubItemTypeVidrioYEspejo : Inherits List(Of clsStockSubItemTypeVidrioYEspejo)
+
+  Public Function ItemFromKey(ByVal vKey As Integer) As clsStockSubItemTypeVidrioYEspejo
+    For Each mItem As clsStockSubItemTypeVidrioYEspejo In Me
+      If mItem.PropertyENUM = vKey Then
+        Return mItem
+      End If
+    Next
+
+    Return Nothing
+  End Function
+
+End Class
+
+
+Public Class eStockItemTypeVidrioYEspejo : Inherits colPropertyENUMOfT(Of clsStockItemTypeVidrioYEspejo)
+
+  Public Const Vidrios = 1
+  Public Const Espejos = 2
+  Public Const Accesorios = 3
+  Public Const Otros = 99
+
+  Private Shared mSharedInstance As eStockItemTypeVidrioYEspejo
+
+  Public Sub New()
+    MyBase.New()
+    Dim mPlumbingType As clsStockItemTypeVidrioYEspejo
+
+    mPlumbingType = New clsStockItemTypeVidrioYEspejo(Vidrios, "Vidrios", "VID")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeVidrioYEspejo(Espejos, "Espejos", "ESP")
+    MyBase.Add(mPlumbingType)
+
+    mPlumbingType = New clsStockItemTypeVidrioYEspejo(Accesorios, "Accesorios", "ACC")
+    MyBase.Add(mPlumbingType)
+
+
+    mPlumbingType = New clsStockItemTypeVidrioYEspejo(Otros, "Los demás", "OTR")
+    MyBase.Add(mPlumbingType)
+
+  End Sub
+
+  Public Shared Function GetInstance() As eStockItemTypeVidrioYEspejo
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eStockItemTypeVidrioYEspejo
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class
+
+Public Enum eReceivedEmailStatus
+  Pending = 1
+  Downloaded = 2
+  Classified = 3
+  Ignored = 4
+End Enum
+
+Public Enum eMatReqCategoryStatus
+  Pending = 0
+  NotRequired = 1
+  Stock = 2
+  ToPlace = 3
+  Ordered = 4
+  Received = 5
+End Enum
+
+Public Enum eStatusNonePartComplete
+  None = 0
+  Part = 1
+  Complete = 2
+  NotRequired = 3
 End Enum

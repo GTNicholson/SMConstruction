@@ -541,7 +541,6 @@ Partial Class frmWoodPalletDetail
         Me.cboFarm.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboFarm.Properties.Appearance.Options.UseFont = True
         Me.cboFarm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboFarm.Properties.ReadOnly = True
         Me.cboFarm.Size = New System.Drawing.Size(99, 20)
         Me.cboFarm.TabIndex = 21
         '
@@ -605,7 +604,6 @@ Partial Class frmWoodPalletDetail
         Me.cboLocations.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboLocations.Properties.Appearance.Options.UseFont = True
         Me.cboLocations.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboLocations.Properties.ReadOnly = True
         Me.cboLocations.Size = New System.Drawing.Size(85, 20)
         Me.cboLocations.TabIndex = 12
         '

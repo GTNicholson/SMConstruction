@@ -1,0 +1,163 @@
+
+CREATE TABLE [dbo].[WorkOrderMatReqCategoryStatus](
+	[WorkOrderMatReqCategoryStatusID] [int] IDENTITY(1,1) NOT NULL,
+	[WorkOrderID] [int] NULL,
+	[MatReqCategory] [tinyint] NULL,
+	[Status] [tinyint] NULL,
+	[TargetDate] [datetime] NULL,
+	[LastDate] [datetime] NULL,
+	[Notes] [varchar](1000) NULL,
+	[PickStatus] [tinyint] NULL,
+ CONSTRAINT [pk_WorkOrderMatReqCategoryStatus] PRIMARY KEY CLUSTERED 
+(
+	[WorkOrderMatReqCategoryStatusID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[WorkOrderPickStatus](
+	[WorkOrderPickStatusID] [int] IDENTITY(1,1) NOT NULL,
+	[WorkOrderID] [int] NULL,
+	[MatReqCategory] [tinyint] NULL,
+	[TargetDate] [datetime] NULL,
+	[LastDate] [datetime] NULL,
+	[Notes] [varchar](1000) NULL,
+	[PickStatus] [tinyint] NULL,
+ CONSTRAINT [pk_WorkOrderPickStatus] PRIMARY KEY CLUSTERED 
+(
+	[WorkOrderPickStatusID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER view [dbo].[vwWorkOrderTracking]
+as
+SELECT
+WO.WorkOrderID, 
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate,
+Wo.PlannedDeliverDate, 
+WO.UnitPrice,
+WO.WorkOrderType, 
+WO.EmployeeID,
+WO.ProductID,
+WO.Status,
+WO.PurchasingDate,
+SO.SalesOrderID,
+SO.ProjectName, 
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+SO.DueTime, 
+SO.FinishDate,
+
+C.CompanyName, 
+C.SalesAreaID, 
+ 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName  
+
+FROM            
+dbo.WorkOrder AS WO
+left JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = SOPI.SalesOrderID 
+LEFT JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE WO.Status<>3
+
+
+GO
+
+
+CREATE VIEW [dbo].[vwWorkOrderDatePlanned]
+AS
+
+Select WorkOrderID, 
+Min(PlannedStartDate) As PhaseDatePlanned 
+From WorkOrder
+Group By WorkOrderID
+
+GO
+
+
+ALTER VIEW [dbo].[vwSalesOrderPhaseItemTrackingInfo]
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+ISNULL(SOPIMRS.SOPItemPickMatReqCost,0) as 'SOPItemPickMatReqCost',
+ISNULL(SOI.WoodCost,0) AS 'WoodCost',
+ISNULL(SOI.ManpowerCost,0) AS 'ManpowerCost',
+ISNULL(SOI.SubContractCost,0) AS 'SubContractCost',
+ISNULL(SOI.TransportationCost,0) AS 'TransportationCost',
+
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.DateEntered,
+SOP.DateCommitted,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+WOA.WorkOrderID
+from 
+SalesOrderPhaseItem SOPI
+LEFT join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+INNER JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+left join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=SOPIMRS.SalesOrderPhaseItemID
+GO
+
+
+
+ALTER VIEW [dbo].[vwSalesOrderPhaseItemTrackingInfo]
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+ISNULL(SOPIMRS.SOPItemPickMatReqCost,0) as 'SOPItemPickMatReqCost',
+ISNULL(SOI.WoodCost,0) AS 'WoodCost',
+ISNULL(SOI.ManpowerCost,0) AS 'ManpowerCost',
+ISNULL(SOI.SubContractCost,0) AS 'SubContractCost',
+ISNULL(SOI.TransportationCost,0) AS 'TransportationCost',
+
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.DateEntered,
+SOP.DateCommitted,
+SOP.SalesOrderPhaseID,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+WOA.WorkOrderID
+from 
+SalesOrderPhaseItem SOPI
+LEFT join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+INNER JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+left join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=SOPIMRS.SalesOrderPhaseItemID
+GO
+
+

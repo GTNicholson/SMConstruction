@@ -164,7 +164,7 @@
       </property>
       <property name="Caption">Monto Total</property>
       <property name="FieldName">TotalNetValueInfo</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">89</property>
@@ -185,9 +185,9 @@
       <property name="Caption">Enc. Compras</property>
       <property name="FieldName">BuyerName</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">14</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
-      <property name="Width">120</property>
+      <property name="Width">160</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
@@ -199,7 +199,7 @@
       <property name="ColumnEditName">repitDateDefault</property>
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
-      <property name="Width">74</property>
+      <property name="Width">83</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Custom</property>
@@ -255,7 +255,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
-      <property name="Width">88</property>
+      <property name="Width">110</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
         <property name="FormatType">Custom</property>
@@ -277,8 +277,6 @@
       <property name="Caption">Valor IVA (USD)</property>
       <property name="FieldName">TotalVATUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
-      <property name="Visible">true</property>
       <property name="Width">108</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>
@@ -301,8 +299,6 @@
       <property name="Caption">Valor Total (USD)</property>
       <property name="FieldName">TotalGrossValueUSD</property>
       <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
-      <property name="VisibleIndex">13</property>
-      <property name="Visible">true</property>
       <property name="Width">117</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">$###,##0.00</property>

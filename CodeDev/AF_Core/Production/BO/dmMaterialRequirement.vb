@@ -30,6 +30,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pPickedQty As Decimal
   Private pTempAllocatedQty As Decimal
   Private pThicknessInch As Decimal
+  Private pFromStockQty As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -236,10 +237,11 @@ Public Class dmMaterialRequirement : Inherits dmBase
 
   Public Property FromStockQty() As Decimal
     Get
-      Return FromStockQty
+      Return pFromStockQty
     End Get
     Set(value As Decimal)
-
+      If pFromStockQty <> value Then IsDirty = True
+      pFromStockQty = value
     End Set
   End Property
 

@@ -83,6 +83,9 @@
     <Reference Include="DevExpress.XtraSpreadsheet.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RTIS.BIReport.V17.1, Version=17.1.16.14, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -155,6 +158,11 @@
     <Compile Include="App\appLockEntitys.vb" />
     <Compile Include="App\appXtraGridPrintExport.vb" />
     <Compile Include="App\BO\appRefLists.vb" />
+    <Compile Include="App\BO\colRTISUsers.vb" />
+    <Compile Include="App\BO\clsRecipientFinderFactory.vb" />
+    <Compile Include="App\BO\clsContextConverterFactory.vb" />
+    <Compile Include="App\BO\clsWorkflowEventHandler.vb" />
+    <Compile Include="App\BO\dmReceivedEmail.vb" />
     <Compile Include="App\BO\dmTempPallet.vb" />
     <Compile Include="App\BO\dmWoodTypeValue.vb" />
     <Compile Include="App\BO\dmThicknessValue.vb" />
@@ -210,6 +218,8 @@
     <Compile Include="DespatchInvoice\DSO\dtoInvoiceInfo.vb" />
     <Compile Include="DespatchInvoice\DSO\dtoInvoiceItem.vb" />
     <Compile Include="Email\BO\dmEmailTemplate.vb" />
+    <Compile Include="Email\DTO\dtoEmailSettings.vb" />
+    <Compile Include="Email\DTO\dsoEmailSettings.vb" />
     <Compile Include="Email\DTO\dtoEmailTemplate.vb" />
     <Compile Include="ERPStock\clsDecValueTracker.vb" />
     <Compile Include="ERPStock\clsProductRegistry.vb" />
@@ -251,6 +261,8 @@
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
+    <Compile Include="Production\BO\dmWorkOrderPickStatus.vb" />
+    <Compile Include="Production\BO\dmWorkOrderMatReqCategoryStatus.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementProcessor.vb" />
     <Compile Include="ProductAdmin\BO\clsProductSharedFuncs.vb" />
@@ -263,7 +275,9 @@
     <Compile Include="Production\BO\dmShiftDetails.vb" />
     <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
     <Compile Include="Production\BO\dmWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Production\DSO\dtoWorkOrderPickStatus.vb" />
     <Compile Include="Production\DSO\dsoProduction.vb" />
+    <Compile Include="Production\DSO\dtoWorkOrderMatReqCategoryStatus.vb" />
     <Compile Include="Production\DSO\dtoMaterialRequirement.vb" />
     <Compile Include="ProductAdmin\DSO\dtoProductBase.vb" />
     <Compile Include="Production\DSO\dtoSalesOrderItemProductRequirement.vb" />
@@ -465,6 +479,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Despatching\BO\" />

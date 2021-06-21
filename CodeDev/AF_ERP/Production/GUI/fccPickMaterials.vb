@@ -63,12 +63,13 @@ Public Class fccPickMaterials
   Public Sub LoadWorkOrderInfos(ByRef rcolWorkOrderInfos As colWorkOrderInfos)
 
     Dim mdto As dtoWorkOrderInfo
-    Dim mwhere As String
-    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-    mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
-    '' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
-    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo)) and ProductTypeID<>" & eProductType.WoodWorkOrder
-    mwhere &= " and Description<>''"
+    Dim mwhere As String = ""
+    'mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
+    'mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
+    ''' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
+    'mwhere += " WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo)) and ProductTypeID<>" & eProductType.WoodWorkOrder
+    mwhere += String.Format("Status in (0,{0},{1})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised))
+    mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
     Try
 
       pDBConn.Connect()
@@ -117,7 +118,7 @@ Public Class fccPickMaterials
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID
+    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems)
     pMaterialRequirementProcessors.Clear()
     Try
 

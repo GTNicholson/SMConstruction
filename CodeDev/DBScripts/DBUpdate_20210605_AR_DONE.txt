@@ -1,0 +1,12 @@
+insert into FixingSpecies (EnglishDescription,SpanishDescription,DisplayOrder)
+values ('PVC','PVC',6)
+go
+
+insert into FixingSpecies (EnglishDescription,SpanishDescription,DisplayOrder)
+values ('Porcelain','Porcelana',7)
+go
+ 
+insert into FixingSpecies (EnglishDescription,SpanishDescription,DisplayOrder)
+values ('Metal','Metal',8)
+go
+ 

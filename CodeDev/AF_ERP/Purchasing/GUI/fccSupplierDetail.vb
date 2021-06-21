@@ -67,7 +67,9 @@ Public Class fccSupplierDetail
   Public Sub SaveObjects()
     Dim mdso As dsoPurchasing
     mdso = New dsoPurchasing(pDBConn)
-    mdso.SaveSupplierDown(pSupplier)
+    If pSupplier.CompanyName <> "" Then
+      mdso.SaveSupplierDown(pSupplier)
+    End If
   End Sub
   Public Function ValidateObject() As RTIS.CommonVB.clsValWarn
     Dim mRetVal As New clsValWarn

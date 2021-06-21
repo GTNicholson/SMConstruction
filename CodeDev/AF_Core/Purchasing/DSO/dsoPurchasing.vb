@@ -134,6 +134,34 @@ Public Class dsoPurchasing
     End Try
   End Sub
 
+  Public Function LoadWorkOrderPurchaseOrdersDownByWorkOrderIDAndCategory(ByRef rPurchaseOrders As colPurchaseOrders, ByVal vWorkOrderID As Integer, ByVal vCategory As eMatReqCategoryStatus) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoPurchaseOrder
+    Dim mSQL As String
+    Try
+      mdto = New dtoPurchaseOrder(pDBConn)
+      pDBConn.Connect()
+
+      mSQL = "PurchaseOrderID In (Select Distinct PO.PurchaseOrderID "
+      mSQL &= "From PurchaseOrder PO Inner Join PurchaseOrderAllocation POA on POA.PurchaseOrderID = PO.PurchaseOrderID "
+      mSQL &= " inner Join SalesOrderPhaseItem SOPI on SOPI.SalesOrderPhaseID=POA.CallOffID "
+      mSQL &= "inner Join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=sopi.SalesOrderPhaseItemID "
+      mSQL = mSQL & " Where WOA.WorkOrderID = " & vWorkOrderID
+      mSQL = mSQL & " And PO.Category = " & vCategory
+      mSQL = mSQL & ")"
+
+      mdto.LoadPurchaseOrderCollection(rPurchaseOrders, mSQL)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
   Public Function LoadSuppliersByWhere(ByRef rSuppliers As colSuppliers, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSupplier
@@ -153,6 +181,33 @@ Public Class dsoPurchasing
     End Try
 
     Return mRetVal
+  End Function
+
+  Public Function UpdateWorkOrderPickStatusNotRequireds(ByVal vWorkOrderID As Integer, ByVal vMatReqCategory As Byte, ByVal vMatCatStatus As eMatReqCategoryStatus) As Boolean
+    Dim mSQL As String
+    Dim mOK As Boolean
+
+    Try
+      mOK = True
+
+      pDBConn.Connect()
+
+      If vMatCatStatus = eMatReqCategoryStatus.NotRequired Then
+        '// update the production batches that are on pending to Not Required
+        mSQL = String.Format("UPDATE WorkOrderPickStatus SET PickStatus = {0} WHERE PickStatus = {1} And MatReqCategory = {2} AND WorkOrderID IN (SELECT WorkOrderID FROM WorkOrder WHERE WorkOrderID = {3})", CInt(eStatusNonePartComplete.NotRequired), CInt(eStatusNonePartComplete.None), vMatReqCategory, vWorkOrderID)
+        pDBConn.ExecuteCommand(mSQL)
+      Else
+        '// Update the production batches that are on Not Required to pending
+        mSQL = String.Format("UPDATE WorkOrderPickStatus SET PickStatus = {0} WHERE PickStatus = {1} And MatReqCategory = {2} AND WorkOrderID IN (SELECT WorkOrderID FROM WorkOrder WHERE WorkOrderID = {3})", CInt(eStatusNonePartComplete.None), CInt(eStatusNonePartComplete.NotRequired), vMatReqCategory, vWorkOrderID)
+        pDBConn.ExecuteCommand(mSQL)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+      mOK = False
+    End Try
+
+    Return mOK
   End Function
 
 
@@ -510,19 +565,19 @@ Public Class dsoPurchasing
       pDBConn.Connect()
       mdtoPurchaseOrderItem.LoadPurchaseOrderItemCollection(mPurchaseOrderItems, rPurchaseOrder.PurchaseOrderID)
       If rPOItemInfos IsNot Nothing Then
-      For Each mPOItem As dmPurchaseOrderItem In mPurchaseOrderItems
-        If String.IsNullOrEmpty(mPOItem.Description) = False Then
+        For Each mPOItem As dmPurchaseOrderItem In mPurchaseOrderItems
+          If String.IsNullOrEmpty(mPOItem.Description) = False Then
 
-          rPOItemInfos.Add(New clsPOItemInfo(mPOItem, Nothing))
-        End If
-      Next
-    End If
+            rPOItemInfos.Add(New clsPOItemInfo(mPOItem, Nothing))
+          End If
+        Next
+      End If
 
     Catch ex As Exception
 
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
-    If pDBConn.IsConnected Then pDBConn.Disconnect()
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
   End Sub
 
@@ -628,13 +683,30 @@ Public Class dsoPurchasing
 
   End Function
 
+  Public Function SaveWorkOrderPhaseMatReqCategoryStatus(ByRef rSalesOrderPhaseMatReqCategoryStatus As dmWorkOrderMatReqCategoryStatus) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoWorkOrderMatReqCategoryStatus
+    Try
+      mdto = New dtoWorkOrderMatReqCategoryStatus(pDBConn)
+      pDBConn.Connect()
+      mdto.SaveWorkOrderMatReqCategoryStatus(rSalesOrderPhaseMatReqCategoryStatus)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
 
   Public Function GetNextPurchaseOrderNo() As String
-    Dim mInvoiceNo As String = String.Empty
+    Dim mPONum As String = String.Empty
     Dim mNewConnection As Boolean
     Try
       If pDBConn.Connect(mNewConnection) Then
-        mInvoiceNo = pDBConn.NextTally(eTallyIDs.PurchaseOrderNo)
+        mPONum = pDBConn.NextTally(eTallyIDs.PurchaseOrderNo).ToString("00000")
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -642,7 +714,7 @@ Public Class dsoPurchasing
       If pDBConn.IsConnected And mNewConnection Then pDBConn.Disconnect()
     End Try
 
-    Return mInvoiceNo
+    Return mPONum
   End Function
 
   Public Function LoadPurchaseOrderCollectionDown(ByRef rPurchaseOrders As colPurchaseOrders, ByVal vWhere As String) As Boolean

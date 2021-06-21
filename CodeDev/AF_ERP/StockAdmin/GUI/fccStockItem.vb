@@ -448,7 +448,7 @@ Public Class fccStocktem
     SaveObject()
 
     Select Case pCurrentStockItem.Category
-      Case eStockItemCategory.NailsAndBolds
+      Case eStockItemCategory.Fixings
         mSIDM = New clsStockItemDefManagerFixings(pCurrentStockItem)
     End Select
     If mSIDM IsNot Nothing Then

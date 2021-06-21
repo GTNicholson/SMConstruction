@@ -83,7 +83,7 @@ Public Class frmWoodPalletDetail
       If mTimberType.ItemValue <> eStockItemTypeTimberWood.Otros And mTimberType.ItemValue <> eStockItemTypeTimberWood.Arbol Then
 
         mItem = New DevExpress.XtraBars.BarButtonItem
-        mItem.Caption = "Pallet de " & mTimberType.DisplayValue
+        mItem.Caption = "Bulto de " & mTimberType.DisplayValue
         mItem.Tag = mTimberType.ItemValue
         AddHandler mItem.ItemClick, AddressOf AddPalletAddingOptions
         bbtnAddPallet.AddItem(mItem)
@@ -259,7 +259,7 @@ Public Class frmWoodPalletDetail
         ''Hide Traslada, Consume and Movement for Roberto's Screen
         grpWoodPallet.CustomHeaderButtons.Item(5).Properties.Visible = False
         grpWoodPallet.CustomHeaderButtons.Item(6).Properties.Visible = False
-        grpWoodPallet.CustomHeaderButtons.Item(7).Properties.Visible = False
+        'grpWoodPallet.CustomHeaderButtons.Item(7).Properties.Visible = False
     End Select
   End Sub
 
@@ -304,10 +304,12 @@ Public Class frmWoodPalletDetail
   Private Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
 
     txtCardNumber.ReadOnly = vReadOnly
-    cboWoodPalletType.ReadOnly = vReadOnly
+    'cboWoodPalletType.ReadOnly = vReadOnly
     txtWoodDescription.Enabled = Not vReadOnly
     cboFarm.Properties.ReadOnly = vReadOnly
     ckeArchive.Properties.ReadOnly = vReadOnly
+    cboLocations.Properties.ReadOnly = vReadOnly
+
     If pFormController.CurrentWoodPallet.WoodPalletItems.Count > 0 Then bbtnPickWoodPallet.Enabled = vReadOnly
     repoAddDuplicated.Buttons(0).Enabled = Not vReadOnly
     gvWoodPalletItemInfo.OptionsBehavior.ReadOnly = vReadOnly
@@ -448,10 +450,11 @@ Public Class frmWoodPalletDetail
         Try
 
           If pFormController.CurrentWoodPallet IsNot Nothing Then
-            CheckSave(False)
+            UpdateObjects()
+            pFormController.SaveObject()
             pFormController.toPurge()
             RefreshControls()
-            CheckSave(False)
+            pFormController.SaveObject()
             pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
             gvWoodPalletItemInfo.RefreshData()
 
@@ -475,8 +478,8 @@ Public Class frmWoodPalletDetail
         Try
 
           If pFormController.CurrentWoodPallet IsNot Nothing Then
-
-            CheckSave(False)
+            UpdateObjects()
+            pFormController.SaveObject()
             gvWoodPalletItemInfo.CloseEditor()
             pFormController.ToConsumeQty()
             RefreshControls()
@@ -668,17 +671,17 @@ Public Class frmWoodPalletDetail
     Dim mSelectedWoodPalletItem As dmWoodPalletItem
     Dim mDuplicatedWoodPalletItem As dmWoodPalletItem
     Dim mListWidths As New List(Of Integer)
-    mListWidths.Add(2)
-    mListWidths.Add(3)
-    mListWidths.Add(4)
-    mListWidths.Add(5)
-    mListWidths.Add(6)
-    mListWidths.Add(7)
-    mListWidths.Add(8)
-    mListWidths.Add(9)
-    mListWidths.Add(10)
-    mListWidths.Add(11)
-    mListWidths.Add(12)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
+    mListWidths.Add(0)
 
     If vPredItems Then
       Dim mindex As Integer = gvWoodPalletItemInfo.GetFocusedDataSourceRowIndex
@@ -989,9 +992,8 @@ Public Class frmWoodPalletDetail
 
 
       End If
-      mNewWoodPalletItem = pFormController.CurrentWoodPallet.WoodPalletItems.ItemByStockItemID(mNewStockItem.StockItemID)
-      If mNewWoodPalletItem Is Nothing Then
-          mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentWoodPallet)
+
+      mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentWoodPallet)
         mNewWoodPalletItem.StockItemID = mNewStockItem.StockItemID
         mNewWoodPalletItem.Description = mNewStockItem.Description
         mNewWoodPalletItem.StockCode = mNewStockItem.StockCode
@@ -999,10 +1001,10 @@ Public Class frmWoodPalletDetail
 
         pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mNewStockItem)
         pFormController.WoodPalletItemEditors.Add(pWoodPalletItemEditor)
-        End If
 
 
-        pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
+
+      pFormController.RefreshWoodPalletItemEditor(pFormController.CurrentWoodPallet)
       grdWoodPalletItemInfos.DataSource = pFormController.WoodPalletItemEditors ''pFormController.CurrentWoodPallet.WoodPalletItems
 
     Else
@@ -1065,5 +1067,51 @@ Public Class frmWoodPalletDetail
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 
     End Try
+  End Sub
+
+  Private Sub cboWoodPalletType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboWoodPalletType.SelectedIndexChanged
+    Dim mItemType As Integer
+
+    If pFormController IsNot Nothing Then
+
+      If pFormController.WoodPalletItemEditors IsNot Nothing Then
+
+        mItemType = clsDEControlLoading.GetDEComboValue(cboWoodPalletType)
+
+        If mItemType > 0 Then
+
+          For Each mWPIE As clsWoodPalletItemEditor In pFormController.WoodPalletItemEditors
+            Dim mStockItem As New dmStockItem
+            Dim mNewStockItem As dmStockItem
+
+            mStockItem = mWPIE.StockItem.Clone
+            mStockItem.ClearKeys()
+            mStockItem.ItemType = mItemType
+
+            mNewStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromSameSpec(mStockItem)
+
+            If mNewStockItem Is Nothing Then
+              mNewStockItem = mStockItem
+              mNewStockItem.Description = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mNewStockItem)
+              mNewStockItem.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mNewStockItem, pFormController.DBConn)
+              mNewStockItem.ClearKeys()
+              AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mNewStockItem)
+
+            End If
+
+
+            mWPIE.StockItem = mNewStockItem
+            mWPIE.WoodPalletItem.StockCode = mNewStockItem.StockCode
+            mWPIE.WoodPalletItem.StockItemID = mNewStockItem.StockItemID
+            mWPIE.WoodPalletItem.Description = mNewStockItem.Description
+
+          Next
+        End If
+
+        grdWoodPalletItemInfos.RefreshDataSource()
+
+      End If
+
+    End If
   End Sub
 End Class

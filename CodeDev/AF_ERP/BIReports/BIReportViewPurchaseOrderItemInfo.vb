@@ -6,6 +6,7 @@ Public Class BIReportViewPurchaseOrderItemInfo
   Private Enum eBIPurchaseOrderItemsLayout
     POIList = 1
     POISummary = 2
+    POIListStage = 3
   End Enum
 
   Private Enum eBIReportDefs
@@ -88,6 +89,14 @@ Public Class BIReportViewPurchaseOrderItemInfo
     mRepDDLayout.ParentLayoutID = 0
     mRepDDLayout.LayoutFileName = "BIPurchaseOrderItemList.xml"
     mRepDDLayout.LayoutName = "Orden de Compra por Artículos"
+    vReportSource.BIGridLayouts.Add(mRepDDLayout)
+
+    mRepDDLayout = New dmBIGridLayout
+    mRepDDLayout.BIGridLayoutID = eBIPurchaseOrderItemsLayout.POIListStage
+    mRepDDLayout.InterfaceType = 1
+    mRepDDLayout.ParentLayoutID = 0
+    mRepDDLayout.LayoutFileName = "BIPurchaseOrderItemListByStageAndPOCategory.xml"
+    mRepDDLayout.LayoutName = "Orden de Compra por Etapa"
     vReportSource.BIGridLayouts.Add(mRepDDLayout)
 
     mRepLayout = New dmBIGridLayout

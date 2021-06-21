@@ -425,15 +425,26 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
-
-        Case eStockItemCategory.NailsAndBolds
+          cboItemSubType.Enabled = False
+        Case eStockItemCategory.Fixings
+          Dim mSITNandB As clsStockItemTypeFixings
 
           cboItemType.Enabled = True
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeFixings.GetInstance.ValueItems)
           cboSpecies.Enabled = True
           clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
           cboHeadType.Enabled = True
           clsDEControlLoading.FillDEComboVI(cboHeadType, clsEnumsConstants.EnumToVIs(GetType(eHeadType)))
+          cboItemSubType.Enabled = True
+
+          mSITNandB = eStockItemTypeFixings.GetInstance.ItemFromKey(clsDEControlLoading.GetDEComboValue(cboItemType))
+
+          If mSITNandB IsNot Nothing Then
+            clsDEControlLoading.FillDEComboVIi(cboItemSubType, mSITNandB.StockSubItemTypeFixings)
+
+          End If
+
+
 
         Case eStockItemCategory.EPP
           Dim mEPP As clsStockItemTypeEPP
@@ -441,6 +452,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.Herrajes
 
@@ -451,6 +463,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.Herramientas
 
@@ -460,6 +473,7 @@ Public Class frmStockItem
           cboItemType.Enabled = True
           cboSpecies.Enabled = False
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.MatElect
 
@@ -469,6 +483,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.MatEmpaque
 
@@ -478,16 +493,39 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
+
+        Case eStockItemCategory.BrickWork
+
+          cboItemType.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeBrickWork.GetInstance.ValueItems)
+          cboSpecies.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
+          cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
+
 
         Case eStockItemCategory.MatVarios
 
-          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarios.GetInstance.ValueItems)
-
+          cboItemType.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarioss.GetInstance.ValueItems)
 
 
           cboSpecies.Enabled = False
-          cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
+
+
+        Case eStockItemCategory.Plumbing
+
+          cboItemType.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePlumbings.GetInstance.ValueItems)
+          cboSpecies.Enabled = True
+          clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
+
+          cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
+
 
         Case eStockItemCategory.Metal
 
@@ -497,6 +535,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.PinturaYQuimico
 
@@ -505,6 +544,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.Laminas
 
@@ -513,6 +553,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
 
         Case eStockItemCategory.Repuestos
@@ -522,6 +563,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
 
         Case eStockItemCategory.Tapiceria
@@ -531,6 +573,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
 
         Case eStockItemCategory.VidrioYEspejo
@@ -540,6 +583,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
 
         Case eStockItemCategory.Timber
@@ -550,6 +594,7 @@ Public Class frmStockItem
           cboSpecies.Enabled = True
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
+          cboItemSubType.Enabled = False
 
 
 
@@ -564,16 +609,16 @@ Public Class frmStockItem
     Dim mVIs As New colValueItems
     Dim mVI As clsValueItem
     Select Case pFormController.CurrentStockItem.Category
-      Case eStockItemCategory.NailsAndBolds
-        Dim mSITNandB As clsStockItemTypeNailsAndBolts
-        mSITNandB = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(clsDEControlLoading.GetDEComboValue(cboItemType))
-        For Each mItem As clsStockSubItemTypeNailsAndBolts In mSITNandB.StockSubItemTypeNailsAndBolts
+      Case eStockItemCategory.Fixings
+        Dim mSITNandB As clsStockItemTypeFixings
+        mSITNandB = eStockItemTypeFixings.GetInstance.ItemFromKey(clsDEControlLoading.GetDEComboValue(cboItemType))
+        For Each mItem As clsStockSubItemTypeFixings In mSITNandB.StockSubItemTypeFixings
           mVI = New clsValueItem
           mVI.ItemValue = mItem.ItemValue
           mVI.DisplayValue = mItem.DisplayValue
           mVIs.Add(mVI)
         Next
-        clsDEControlLoading.FillDEComboVIi(cboItemSubType, mSITNandB.StockSubItemTypeNailsAndBolts)
+        clsDEControlLoading.FillDEComboVIi(cboItemSubType, mSITNandB.StockSubItemTypeFixings)
     End Select
   End Sub
 
@@ -655,8 +700,8 @@ Public Class frmStockItem
                 e.Value = mText
 
 
-              Case eStockItemCategory.NailsAndBolds
-                mText = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(mRow.ItemType)
+              Case eStockItemCategory.Fixings
+                mText = eStockItemTypeFixings.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
 
@@ -665,8 +710,9 @@ Public Class frmStockItem
                 e.Value = mText
 
               Case eStockItemCategory.Herrajes
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerrajes), CType(mRow.ItemType, eStockItemTypeHerrajes.eStockItemHerrajes))
+                mText = eStockItemTypeHerrajes.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
+
 
               Case eStockItemCategory.Herramientas
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeHerramientas), CType(mRow.ItemType, eStockItemTypeHerramientas.eStockItemMaterialHerramientas))
@@ -681,10 +727,18 @@ Public Class frmStockItem
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMaterialEmpaque), CType(mRow.ItemType, eStockItemTypeMaterialEmpaque.StockItemMaterialEmpaque))
                 e.Value = mText
 
-              Case eStockItemCategory.MatVarios
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMatVarios), CType(mRow.ItemType, eStockItemTypeMatVarios.eStockItemMaterialMatVarios))
+              Case eStockItemCategory.BrickWork
+                mText = eStockItemTypeBrickWork.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
+
+              Case eStockItemCategory.Plumbing
+                mText = eStockItemTypePlumbings.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
+
+              Case eStockItemCategory.MatVarios
+                mText = eStockItemTypeMatVarioss.GetInstance.DisplayValueFromKey(mRow.ItemType)
+                e.Value = mText
 
               Case eStockItemCategory.Metal
                 mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeMetales), CType(mRow.ItemType, eStockItemTypeMetales.eStockItemMetales))
@@ -692,7 +746,7 @@ Public Class frmStockItem
 
 
               Case eStockItemCategory.PinturaYQuimico
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypePintura), CType(mRow.ItemType, eStockItemTypePintura.eStockItemPintura))
+                mText = eStockItemTypePintura.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Laminas
@@ -701,7 +755,7 @@ Public Class frmStockItem
 
 
               Case eStockItemCategory.Repuestos
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeRepuestosYPartes), CType(mRow.ItemType, eStockItemTypeRepuestosYPartes.eStockItemRepuestosYPartes))
+                mText = eStockItemTypeRepuestosYPartes.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
 
               Case eStockItemCategory.Tapiceria
@@ -710,8 +764,9 @@ Public Class frmStockItem
 
               Case eStockItemCategory.VidrioYEspejo
 
-                mText = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eStockItemTypeVidrioYEspejo), CType(mRow.ItemType, eStockItemTypeVidrioYEspejo.eStockItemVidrioYEspejo))
+                mText = eStockItemTypeVidrioYEspejo.GetInstance.DisplayValueFromKey(mRow.ItemType)
                 e.Value = mText
+
 
               Case eStockItemCategory.Timber
 
@@ -932,6 +987,12 @@ Public Class frmStockItem
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 
     End Try
+  End Sub
+
+  Private Sub bbtnChangeCategory_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnChangeCategory.ItemClick
+
+    gvStockItems.CloseEditor()
+    frmGlobalStockItemChanges.OpenForm(pFormController.DBConn, pFormController.StockItems)
   End Sub
 End Class
 

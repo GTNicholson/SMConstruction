@@ -86,6 +86,7 @@ Partial Class frmStockItem
         Me.repRGObsoleteItems = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
         Me.btnExport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnAddStockItemCat = New DevExpress.XtraBars.BarSubItem()
+        Me.bbtnChangeCategory = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -110,6 +111,8 @@ Partial Class frmStockItem
         Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
         Me.BarEditItem7 = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.bbtnChangeUoM = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnChangeSpecies = New DevExpress.XtraBars.BarButtonItem()
         Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
         Me.txtWidthFrac = New DevExpress.XtraEditors.TextEdit()
         Me.txtLengthFrac = New DevExpress.XtraEditors.TextEdit()
@@ -179,7 +182,9 @@ Partial Class frmStockItem
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSpecies = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grdStockItems = New DevExpress.XtraGrid.GridControl()
+        Me.repoIsSelected = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -231,6 +236,7 @@ Partial Class frmStockItem
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdStockItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoIsSelected, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.grpCurrentStockItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -473,8 +479,8 @@ Partial Class frmStockItem
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.barbtnAddBasicItem, Me.barbtnAddLockItem, Me.barbtnAddStockItem, Me.btnExport, Me.barRGObsoleteItems, Me.bcboCategory, Me.barbtnAddStockItemCat, Me.BarButtonItem2, Me.BarEditItem2, Me.BarEditItem3, Me.BarEditItem4, Me.BarEditItem5, Me.BarEditItem6, Me.BarStaticItem1, Me.BarEditItem7})
-        Me.BarManager1.MaxItemId = 18
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.barbtnAddBasicItem, Me.barbtnAddLockItem, Me.barbtnAddStockItem, Me.btnExport, Me.barRGObsoleteItems, Me.bcboCategory, Me.barbtnAddStockItemCat, Me.BarButtonItem2, Me.BarEditItem2, Me.BarEditItem3, Me.BarEditItem4, Me.BarEditItem5, Me.BarEditItem6, Me.BarStaticItem1, Me.BarEditItem7, Me.bbtnChangeCategory, Me.bbtnChangeUoM, Me.bbtnChangeSpecies})
+        Me.BarManager1.MaxItemId = 21
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemRadioGroupCategory, Me.repRGObsoleteItems, Me.repitcboCategory, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemButtonEdit1, Me.RepositoryItemBreadCrumbEdit1, Me.RepositoryItemRadioGroup1, Me.RepositoryItemComboBox1})
         '
         'Bar1
@@ -485,7 +491,7 @@ Partial Class frmStockItem
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(CType((DevExpress.XtraBars.BarLinkUserDefines.PaintStyle Or DevExpress.XtraBars.BarLinkUserDefines.Width), DevExpress.XtraBars.BarLinkUserDefines), Me.barRGObsoleteItems, "", False, True, True, 321, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnExport, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnAddStockItemCat)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(CType((DevExpress.XtraBars.BarLinkUserDefines.PaintStyle Or DevExpress.XtraBars.BarLinkUserDefines.Width), DevExpress.XtraBars.BarLinkUserDefines), Me.barRGObsoleteItems, "", False, True, True, 321, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnExport, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnAddStockItemCat), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnChangeCategory)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -518,6 +524,13 @@ Partial Class frmStockItem
         Me.barbtnAddStockItemCat.Caption = "Agregar Item"
         Me.barbtnAddStockItemCat.Id = 9
         Me.barbtnAddStockItemCat.Name = "barbtnAddStockItemCat"
+        '
+        'bbtnChangeCategory
+        '
+        Me.bbtnChangeCategory.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnChangeCategory.Caption = "Cambios Globales"
+        Me.bbtnChangeCategory.Id = 18
+        Me.bbtnChangeCategory.Name = "bbtnChangeCategory"
         '
         'barDockControlTop
         '
@@ -680,6 +693,20 @@ Partial Class frmStockItem
         Me.RepositoryItemComboBox1.AutoHeight = False
         Me.RepositoryItemComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemComboBox1.Name = "RepositoryItemComboBox1"
+        '
+        'bbtnChangeUoM
+        '
+        Me.bbtnChangeUoM.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnChangeUoM.Caption = "Cambiar UdM"
+        Me.bbtnChangeUoM.Id = 19
+        Me.bbtnChangeUoM.Name = "bbtnChangeUoM"
+        '
+        'bbtnChangeSpecies
+        '
+        Me.bbtnChangeSpecies.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.bbtnChangeSpecies.Caption = "Cambiar Material"
+        Me.bbtnChangeSpecies.Id = 20
+        Me.bbtnChangeSpecies.Name = "bbtnChangeSpecies"
         '
         'RepoItemRadioGroupCategory
         '
@@ -1368,6 +1395,7 @@ Partial Class frmStockItem
         Me.GridColumn8.Caption = "DSet Ref"
         Me.GridColumn8.FieldName = "DSetDescription"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Width = 143
         '
         'gcSubItemType
@@ -1375,29 +1403,32 @@ Partial Class frmStockItem
         Me.gcSubItemType.Caption = "Tipo de Sub ítem"
         Me.gcSubItemType.FieldName = "UBSubItemType"
         Me.gcSubItemType.Name = "gcSubItemType"
+        Me.gcSubItemType.OptionsColumn.ReadOnly = True
         Me.gcSubItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcSubItemType.Visible = True
-        Me.gcSubItemType.VisibleIndex = 5
-        Me.gcSubItemType.Width = 113
+        Me.gcSubItemType.VisibleIndex = 6
+        Me.gcSubItemType.Width = 170
         '
         'gcItemType
         '
         Me.gcItemType.Caption = "Tipo de Ítem"
         Me.gcItemType.FieldName = "UBItemType"
         Me.gcItemType.Name = "gcItemType"
+        Me.gcItemType.OptionsColumn.ReadOnly = True
         Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcItemType.Visible = True
-        Me.gcItemType.VisibleIndex = 4
-        Me.gcItemType.Width = 89
+        Me.gcItemType.VisibleIndex = 5
+        Me.gcItemType.Width = 134
         '
         'gcCategory
         '
         Me.gcCategory.Caption = "Categoría"
         Me.gcCategory.FieldName = "Category"
         Me.gcCategory.Name = "gcCategory"
+        Me.gcCategory.OptionsColumn.ReadOnly = True
         Me.gcCategory.Visible = True
-        Me.gcCategory.VisibleIndex = 2
-        Me.gcCategory.Width = 89
+        Me.gcCategory.VisibleIndex = 3
+        Me.gcCategory.Width = 134
         '
         'gcStdCost
         '
@@ -1406,9 +1437,10 @@ Partial Class frmStockItem
         Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcStdCost.FieldName = "StdCost"
         Me.gcStdCost.Name = "gcStdCost"
+        Me.gcStdCost.OptionsColumn.ReadOnly = True
         Me.gcStdCost.Visible = True
-        Me.gcStdCost.VisibleIndex = 6
-        Me.gcStdCost.Width = 89
+        Me.gcStdCost.VisibleIndex = 7
+        Me.gcStdCost.Width = 134
         '
         'gcStdImportCost
         '
@@ -1417,9 +1449,10 @@ Partial Class frmStockItem
         Me.gcStdImportCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcStdImportCost.FieldName = "StdImportCost"
         Me.gcStdImportCost.Name = "gcStdImportCost"
+        Me.gcStdImportCost.OptionsColumn.ReadOnly = True
         Me.gcStdImportCost.Visible = True
-        Me.gcStdImportCost.VisibleIndex = 7
-        Me.gcStdImportCost.Width = 78
+        Me.gcStdImportCost.VisibleIndex = 8
+        Me.gcStdImportCost.Width = 123
         '
         'GridColumn2
         '
@@ -1428,8 +1461,8 @@ Partial Class frmStockItem
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 111
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 167
         '
         'GridColumn1
         '
@@ -1438,8 +1471,8 @@ Partial Class frmStockItem
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 382
+        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.Width = 576
         '
         'gvStockItems
         '
@@ -1455,11 +1488,9 @@ Partial Class frmStockItem
         Me.gvStockItems.Appearance.OddRow.Options.UseFont = True
         Me.gvStockItems.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
         Me.gvStockItems.Appearance.Row.Options.UseBackColor = True
-        Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8, Me.gcSpecies})
+        Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8, Me.gcSpecies, Me.GridColumn5})
         Me.gvStockItems.GridControl = Me.grdStockItems
         Me.gvStockItems.Name = "gvStockItems"
-        Me.gvStockItems.OptionsBehavior.Editable = False
-        Me.gvStockItems.OptionsBehavior.ReadOnly = True
         Me.gvStockItems.OptionsView.EnableAppearanceEvenRow = True
         Me.gvStockItems.OptionsView.EnableAppearanceOddRow = True
         Me.gvStockItems.OptionsView.ShowAutoFilterRow = True
@@ -1472,12 +1503,14 @@ Partial Class frmStockItem
         Me.gcStockItemID.Caption = "GridColumn3"
         Me.gcStockItemID.FieldName = "StockItemID"
         Me.gcStockItemID.Name = "gcStockItemID"
+        Me.gcStockItemID.OptionsColumn.ReadOnly = True
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "ASIS ID"
         Me.GridColumn3.FieldName = "ASISID"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Width = 48
         '
         'GridColumn4
@@ -1487,13 +1520,23 @@ Partial Class frmStockItem
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.Width = 112
         '
         'gcSpecies
         '
         Me.gcSpecies.Caption = "Especie"
         Me.gcSpecies.FieldName = "SpeciesDesc"
         Me.gcSpecies.Name = "gcSpecies"
+        Me.gcSpecies.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.FieldName = "IsSelected"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 72
         '
         'grdStockItems
         '
@@ -1508,10 +1551,16 @@ Partial Class frmStockItem
         Me.grdStockItems.MainView = Me.gvStockItems
         Me.grdStockItems.MenuManager = Me.BarManager1
         Me.grdStockItems.Name = "grdStockItems"
+        Me.grdStockItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoIsSelected})
         Me.grdStockItems.Size = New System.Drawing.Size(1488, 351)
         Me.grdStockItems.TabIndex = 0
         Me.grdStockItems.UseEmbeddedNavigator = True
         Me.grdStockItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItems})
+        '
+        'repoIsSelected
+        '
+        Me.repoIsSelected.AutoHeight = False
+        Me.repoIsSelected.Name = "repoIsSelected"
         '
         'SplitContainerControl1
         '
@@ -1616,6 +1665,7 @@ Partial Class frmStockItem
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdStockItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoIsSelected, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.grpCurrentStockItem, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1744,4 +1794,9 @@ Partial Class frmStockItem
     Friend WithEvents txtLengthFrac As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtThicknessFrac As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtWidthFrac As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoIsSelected As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents bbtnChangeCategory As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnChangeUoM As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnChangeSpecies As DevExpress.XtraBars.BarButtonItem
 End Class

@@ -17,14 +17,25 @@ Public Class clsStockItemSharedFuncs
           mRetVal = mStockItemType.Description
 
         End If
-      Case eStockItemCategory.NailsAndBolds
-        Dim mSIType As clsStockItemTypeNailsAndBolts
-        mSIType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
+      Case eStockItemCategory.Fixings
+        Dim mSIType As clsStockItemTypeFixings
+        mSIType = eStockItemTypeFixings.GetInstance.ItemFromKey(rStockItem.ItemType)
 
         If mSIType IsNot Nothing Then
           mRetVal = mSIType.Description
 
         End If
+
+      Case eStockItemCategory.BrickWork
+        Dim mSIType As clsStockItemTypeBrickWork
+        mSIType = eStockItemTypeBrickWork.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
+
+        End If
+
+
       Case eStockItemCategory.EPP
         mStockItemType = eStockItemTypeEPP.GetInstance.ItemFromKey(rStockItem.ItemType)
 
@@ -34,13 +45,13 @@ Public Class clsStockItemSharedFuncs
         End If
 
       Case eStockItemCategory.Herrajes
-        mStockItemType = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeHerrajes
+        mSIType = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
 
         End If
-
       Case eStockItemCategory.Herramientas
         mStockItemType = eStockItemTypeHerramientas.GetInstance.ItemFromKey(rStockItem.ItemType)
 
@@ -67,10 +78,11 @@ Public Class clsStockItemSharedFuncs
         End If
 
       Case eStockItemCategory.MatVarios
-        mStockItemType = eStockItemTypeMatVarios.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeMatVarios
+        mSIType = eStockItemTypeMatVarioss.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
 
         End If
 
@@ -84,10 +96,11 @@ Public Class clsStockItemSharedFuncs
         End If
 
       Case eStockItemCategory.PinturaYQuimico
-        mStockItemType = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypePintura
+        mSIType = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
 
         End If
 
@@ -101,10 +114,11 @@ Public Class clsStockItemSharedFuncs
 
 
       Case eStockItemCategory.Repuestos
-        mStockItemType = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeRepuestosYPartes
+        mSIType = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
 
         End If
       Case eStockItemCategory.Tapiceria
@@ -117,9 +131,11 @@ Public Class clsStockItemSharedFuncs
 
 
       Case eStockItemCategory.VidrioYEspejo
-        mStockItemType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType)
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Description
+        Dim mSIType As clsStockItemTypeVidrioYEspejo
+        mSIType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
 
         End If
 
@@ -136,6 +152,15 @@ Public Class clsStockItemSharedFuncs
 
         End If
 
+
+      Case eStockItemCategory.Plumbing
+        Dim mSIType As clsStockItemTypePlumbings
+        mSIType = eStockItemTypePlumbings.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.Description
+
+        End If
     End Select
     Return mRetVal
   End Function
@@ -154,13 +179,22 @@ Public Class clsStockItemSharedFuncs
         If mStockItemType IsNot Nothing Then
           mRetVal = mStockItemType.Abreviation
         End If
-      Case eStockItemCategory.NailsAndBolds
-        Dim mSIType As clsStockItemTypeNailsAndBolts
-        mSIType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(rStockItem.ItemType)
+      Case eStockItemCategory.Fixings
+        Dim mSIType As clsStockItemTypeFixings
+        mSIType = eStockItemTypeFixings.GetInstance.ItemFromKey(rStockItem.ItemType)
 
         If mSIType IsNot Nothing Then
           mRetVal = mSIType.StockCodeStr
         End If
+
+      Case eStockItemCategory.BrickWork
+        Dim mSIType As clsStockItemTypeBrickWork
+        mSIType = eStockItemTypeBrickWork.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
+        End If
+
 
       Case eStockItemCategory.EPP
         mStockItemType = eStockItemTypeEPP.GetInstance.ItemFromKey(rStockItem.ItemType)
@@ -170,11 +204,14 @@ Public Class clsStockItemSharedFuncs
         End If
 
       Case eStockItemCategory.Herrajes
-        mStockItemType = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Abreviation
+        Dim mSIType As clsStockItemTypeHerrajes
+        mSIType = eStockItemTypeHerrajes.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
         End If
+
       Case eStockItemCategory.Herramientas
         mStockItemType = eStockItemTypeHerramientas.GetInstance.ItemFromKey(rStockItem.ItemType)
 
@@ -199,11 +236,11 @@ Public Class clsStockItemSharedFuncs
         End If
 
       Case eStockItemCategory.MatVarios
-        mStockItemType = eStockItemTypeMatVarios.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeMatVarios
+        mSIType = eStockItemTypeMatVarioss.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Abreviation
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
         End If
 
 
@@ -216,10 +253,11 @@ Public Class clsStockItemSharedFuncs
 
 
       Case eStockItemCategory.PinturaYQuimico
-        mStockItemType = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypePintura
+        mSIType = eStockItemTypePintura.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Abreviation
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
         End If
 
 
@@ -234,10 +272,11 @@ Public Class clsStockItemSharedFuncs
 
 
       Case eStockItemCategory.Repuestos
-        mStockItemType = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeRepuestosYPartes
+        mSIType = eStockItemTypeRepuestosYPartes.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Abreviation
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
         End If
 
       Case eStockItemCategory.Tapiceria
@@ -247,10 +286,11 @@ Public Class clsStockItemSharedFuncs
         End If
 
       Case eStockItemCategory.VidrioYEspejo
-        mStockItemType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType)
+        Dim mSIType As clsStockItemTypeVidrioYEspejo
+        mSIType = eStockItemTypeVidrioYEspejo.GetInstance.ItemFromKey(rStockItem.ItemType)
 
-        If mStockItemType IsNot Nothing Then
-          mRetVal = mStockItemType.Abreviation
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
         End If
 
       Case eStockItemCategory.Timber
@@ -266,6 +306,16 @@ Public Class clsStockItemSharedFuncs
           End If
 
         End If
+
+
+      Case eStockItemCategory.Plumbing
+        Dim mSIType As clsStockItemTypePlumbings
+        mSIType = eStockItemTypePlumbings.GetInstance.ItemFromKey(rStockItem.ItemType)
+
+        If mSIType IsNot Nothing Then
+          mRetVal = mSIType.StockCodeStr
+        End If
+
 
     End Select
     Return mRetVal
@@ -325,8 +375,13 @@ Public Class clsStockItemSharedFuncs
     Select Case rStockItem.Category
       Case eStockItemCategory.Abrasivos
         mRetVal = "ABR."
-      Case eStockItemCategory.NailsAndBolds
+      Case eStockItemCategory.Fixings
         mRetVal = "CYT."
+      Case eStockItemCategory.Plumbing
+        mRetVal = "PLO."
+      Case eStockItemCategory.BrickWork
+        mRetVal = "ALB."
+
       Case eStockItemCategory.EPP
         mRetVal = "EPP."
       Case eStockItemCategory.Herrajes

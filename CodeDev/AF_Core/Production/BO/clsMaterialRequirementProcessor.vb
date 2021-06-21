@@ -1,6 +1,6 @@
 ﻿Public Class clsMaterialRequirementProcessor : Inherits clsMaterialRequirementInfo
 
-  Public StockItemTransactions As Object
+  Private pStockItemTransactions As colStockItemTransactionLogInfos
   Private pToProcessQty As Decimal
   Private pReferenceNo As String
   Private pPOItemAllocationInfos As colPurchaseOrderItemAllocationInfos
@@ -8,8 +8,17 @@
     MyBase.New(rMaterialRequirement)
 
     pPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
+    pStockItemTransactions = New colStockItemTransactionLogInfos
   End Sub
 
+  Public Property StockItemTransactionInfoss As colStockItemTransactionLogInfos
+    Get
+      Return pStockItemTransactions
+    End Get
+    Set(value As colStockItemTransactionLogInfos)
+      pStockItemTransactions = value
+    End Set
+  End Property
   Public Property ToProcessQty As Decimal
     Get
       Return pToProcessQty
@@ -37,13 +46,18 @@
     End Set
   End Property
 
+
+
   Public Property QtyReceived As Decimal
   Public Property FromStock As Decimal
-  Public Property StockItemLocations As Object
+  Public Property StockItemLocations As dmStockItemLocation
   Public Property ToOrder As Integer
   Public Property QuantityRequired As Integer
   Public Property QtyOrdered As Integer
-  Public Property POCOItemAllocationInfos As Object
+
+
+  Public Property StockItemLocationsQty As Decimal
+
 End Class
 
 Public Class colMaterialRequirementProcessors : Inherits List(Of clsMaterialRequirementProcessor)

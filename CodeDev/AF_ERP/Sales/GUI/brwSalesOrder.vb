@@ -6,8 +6,10 @@ Imports RTIS.Elements
 Public Class brwSalesOrder : Inherits brwBrowserListBase
   Private pIsWoodSalesOrder As Boolean
   Public Enum eListOption
-    DefaultListOption = 1
-
+    LiveAndActive = 1
+    Completed = 2
+    All = 3
+    Cancelled = 4
   End Enum
 
   Public Enum eAddEditDeleteView
@@ -16,7 +18,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
   End Enum
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, ByVal vIsWoodSalesOrder As Boolean, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, ByVal vIsWoodSalesOrder As Boolean, Optional ByVal vListOption As Integer = eListOption.LiveAndActive)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
     pIsWoodSalesOrder = vIsWoodSalesOrder
   End Sub
@@ -75,37 +77,69 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
   End Function
 
-  ''Public Overrides Function ListChangeLoadData() As Boolean
-  ''  Static sDataOption As Integer = -1
-  ''  Dim mNewGroup As Integer = 0
-  ''  Dim mOK As Boolean
-  ''  Select Case Me.ListOptionID
-  ''    Case eListOption.DefaultListOption
-  ''      mNewGroup = 1
-  ''    Case Else
-  ''      mNewGroup = 0
-  ''  End Select
-  ''  If mNewGroup <> sDataOption Then
-  ''    mNewGroup = sDataOption
-  ''    mOK = LoadData()
-  ''  Else
-  ''    mOK = True
-  ''  End If
-  ''  Return mOK
-  ''End Function
+  Public Overrides Function ListChangeLoadData() As Boolean
+    Static sDataOption As Integer = -1
+    Dim mNewGroup As Integer = 0
+    Dim mOK As Boolean
+    Select Case Me.ListOptionID
+      Case eListOption.LiveAndActive
+        mNewGroup = 1
+      Case eListOption.Completed
+        mNewGroup = 2
+      Case eListOption.All
+        mNewGroup = 3
+      Case eListOption.Cancelled
+        mNewGroup = 4
+      Case Else
+        mNewGroup = 0
+    End Select
+    If mNewGroup <> sDataOption Then
+      mNewGroup = sDataOption
+      mOK = LoadData()
+    Else
+      mOK = True
+    End If
+    Return mOK
+  End Function
 
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
     Dim mDataTable As DataTable
     Dim mOK As Boolean
+    Dim mWhere As String = ""
     '' Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     gridBrowseList.MainView.BeginDataUpdate()
     Try
 
       DBConn.Connect()
 
+
+      Select Case Me.ListOptionID
+        Case eListOption.LiveAndActive
+          mWhere = String.Format("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID in ({0},{1},0) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+          mWhere &= String.Format(" and OrderStatusENUM not in ({0},{1}) ", CInt(eSalesOrderstatus.Completed), CInt(eSalesOrderstatus.Cancelada))
+          mWhere &= " Order By SalesOrderID desc"
+        Case eListOption.Cancelled
+          mWhere = String.Format("Select * From vwSalesOrderInfo where  OrderTypeID in ({0},{1},0) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+          mWhere &= String.Format(" and OrderStatusENUM in ({0}) ", CInt(eSalesOrderstatus.Cancelada))
+          mWhere &= " Order By SalesOrderID desc"
+
+        Case eListOption.All
+          mWhere = String.Format("Select * From vwSalesOrderInfo where OrderTypeID in ({0},{1},0) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+          mWhere &= " Order By SalesOrderID desc"
+
+        Case eListOption.Completed
+          mWhere = String.Format("Select * From vwSalesOrderInfo where OrderTypeID in ({0},{1},0) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+          mWhere &= String.Format(" and OrderStatusENUM in ({0}) ", CInt(eSalesOrderstatus.Completed))
+
+          mWhere &= " Order By SalesOrderID desc"
+      End Select
+
+
+
       If pIsWoodSalesOrder = False Then
-        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID <> " & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
+
+        mDataTable = Me.DBConn.CreateDataTable(mWhere)
       Else
         mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID=" & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
 
@@ -193,9 +227,11 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
         .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        .AddListOption("Activar Órden de Venta", eListOption.DefaultListOption)
-        .AddListOption("Nueva Órden de Venta", eListOption.DefaultListOption)
-        .AddListOption("Orden de Venta caducada", eListOption.DefaultListOption)
+        .AddListOption("Orden de Venta: Activas", eListOption.LiveAndActive)
+        .AddListOption("Orden de Venta: Completadas", eListOption.Completed)
+        .AddListOption("Orden de Venta: Todas", eListOption.All)
+        .AddListOption("Orden de Venta: Canceladas", eListOption.Cancelled)
+
 
 
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
@@ -243,13 +279,32 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
     Dim mOK As Boolean = True
     Try
+
+      Select Case Me.ListOptionID
+        Case eListOption.LiveAndActive
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
+          ListTitle = "Orden de Venta: Activas"
+
+        Case eListOption.All
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
+          ListTitle = "Orden de Venta: Todas"
+
+
+        Case eListOption.Cancelled
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
+          ListTitle = "Orden de Venta: Canceladas"
+
+        Case eListOption.Completed
+          LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
+          ListTitle = "Orden de Venta: Completadas"
+
+      End Select
+
+
       If pIsWoodSalesOrder Then
         LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlWoodSalesOrder.xml")
         ListTitle = "Lista de Ventas de Madera"
 
-      Else
-        LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlSalesOrder.xml")
-        ListTitle = "Lista de Ventas"
 
       End If
       GridEditable = False

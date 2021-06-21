@@ -140,6 +140,27 @@ Public Class clsPurchaseOrderInfo
     End Get
 
   End Property
+  Public ReadOnly Property TotalReceivedAmountCordobas As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Cordobas
+
+          mRetVal = pTotalNetValueInfo
+
+        Case eCurrency.Dollar
+          If ExchangeRateValue > 0 Then
+            mRetVal = pTotalNetValueInfo * ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
 
   Public ReadOnly Property TotalReceivedAmountUSD As Decimal
     Get
@@ -174,6 +195,28 @@ Public Class clsPurchaseOrderInfo
         Case eCurrency.Cordobas
           If ExchangeRateValue > 0 Then
             mRetVal = Carriage / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+  Public ReadOnly Property CarriageCordobas As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Cordobas
+
+          mRetVal = Carriage
+
+        Case eCurrency.Dollar
+          If ExchangeRateValue > 0 Then
+            mRetVal = Carriage * ExchangeRateValue
           Else
             mRetVal = 0
           End If
@@ -386,13 +429,76 @@ Public Class clsPurchaseOrderInfo
     Get
       Dim mRetVal As Decimal
       For Each mPOItemInfo As clsPOItemInfo In pPOItemInfos
-        mRetVal += mPOItemInfo.RetentionValue
+        mRetVal += (mPOItemInfo.Qty * mPOItemInfo.UnitPrice) * PurchaseOrder.RetentionPercentage
       Next
       Return mRetVal
     End Get
   End Property
 
+  Public ReadOnly Property TotalRetentionCordobas As Decimal
 
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Cordobas
+
+          mRetVal = TotalRetention
+
+        Case eCurrency.Dollar
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalRetention * ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalRetentionUSD As Decimal
+
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalRetention
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalRetention / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalVATCordobas As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Cordobas
+
+          mRetVal = TotalVAT
+
+        Case eCurrency.Dollar
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalVAT * ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+  End Property
   Public ReadOnly Property TotalVATUSD As Decimal
     Get
       Dim mRetVal As Decimal = 0
@@ -435,9 +541,9 @@ Public Class clsPurchaseOrderInfo
     Get
       Dim mRetVal As Decimal
       For Each mPOItemInfo As clsPOItemInfo In pPOItemInfos
-        mRetVal += mPOItemInfo.GrossPrice * (1 - RetentionPercentage)
+        mRetVal += mPOItemInfo.GrossPrice  '* (1 - RetentionPercentage)
       Next
-      mRetVal += (pPurchaseOrder.Carriage + pPurchaseOrder.CarriageVAT)
+      mRetVal = mRetVal - TotalRetention
       Return mRetVal
     End Get
   End Property
@@ -478,13 +584,13 @@ Public Class clsPurchaseOrderInfo
     Get
       Dim mRetVal As Decimal = 0
       Select Case DefaultCurrency
-        Case eCurrency.Dollar
-
-          mRetVal = TotalGrossValueGUI * ExchangeRateValue
-
         Case eCurrency.Cordobas
+
+          mRetVal = TotalGrossValueGUI
+
+        Case eCurrency.Dollar
           If ExchangeRateValue > 0 Then
-            mRetVal = TotalGrossValueGUI
+            mRetVal = TotalGrossValueGUI * ExchangeRateValue
           Else
             mRetVal = 0
           End If

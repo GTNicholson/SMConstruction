@@ -68,13 +68,13 @@ Public Class clsStockItemDefManagerFixings : Inherits clsStockItemDefManagerBspk
 
   Public Overrides Function GenerateDescription() As String
     Dim mRetVal As String = ""
-    Dim mType As clsStockItemTypeNailsAndBolts
-    Dim mSubType As clsStockSubItemTypeNailsAndBolts = Nothing
+    Dim mType As clsStockItemTypeFixings
+    Dim mSubType As clsStockSubItemTypeFixings = Nothing
 
-    mType = eStockItemTypeNailsAndBolts.GetInstance.ItemFromKey(pStockItemBspk.ItemType)
-    mSubType = mType.StockSubItemTypeNailsAndBolts.ItemFromKey(pStockItemBspk.SubItemType)
+    mType = eStockItemTypeFixings.GetInstance.ItemFromKey(pStockItemBspk.ItemType)
+    mSubType = mType.StockSubItemTypeFixings.ItemFromKey(pStockItemBspk.SubItemType)
 
-    mRetVal = eStockItemTypeNailsAndBolts.GetInstance.DisplayValueFromKey(pStockItem.StockItemType)
+    mRetVal = eStockItemTypeFixings.GetInstance.DisplayValueFromKey(pStockItem.StockItemType)
     If pStockItem.MaterialID <> 0 Then
       mRetVal = mRetVal & " de " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies).ItemValueToDisplayValue(pStockItem.MaterialID)
     End If

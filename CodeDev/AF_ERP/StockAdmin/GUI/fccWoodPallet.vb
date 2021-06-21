@@ -382,22 +382,22 @@ Public Class fccWoodPallet
 
       For Each mWPIE As clsWoodPalletItemEditor In pWoodPalletItemEditors
 
-        If mWPIE.ToProcessQty <> 0 Then
-          mTempWoodPalletItem = New dmWoodPalletItem
+        'If mWPIE.ToProcessQty <> 0 Then
+        mTempWoodPalletItem = New dmWoodPalletItem
 
           mCurrentQtyUsed = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
-          pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed = mCurrentQtyUsed + mWPIE.ToProcessQty
+        pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed = mCurrentQtyUsed + mWPIE.QuantityUI
+        pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).OutstandingQty = pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).Quantity - pCurrentWoodPallet.WoodPalletItems.ItemFromKey(mWPIE.WoodPalletItem.WoodPalletItemID).QuantityUsed
 
-
-          mTempWoodPalletItem.Quantity = mWPIE.ToProcessQty
-          mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
+        mTempWoodPalletItem.Quantity = mWPIE.QuantityUI
+        mTempWoodPalletItem.StockItemID = mWPIE.StockItem.StockItemID
           mTempWoodPalletItem.Thickness = mWPIE.StockItem.Thickness
           mTempWoodPalletItem.Width = mWPIE.WoodPalletItem.Width
           mTempWoodPalletItem.Length = mWPIE.WoodPalletItem.Length
           mTempWoodPallet.WoodPalletItems.Add(mTempWoodPalletItem)
 
-        End If
-        mWPIE.ToProcessQty = 0
+        'End If
+        'mWPIE.ToProcessQty = 0
 
       Next
 
@@ -407,7 +407,7 @@ Public Class fccWoodPallet
 
       If mTempWoodPallet IsNot Nothing Then
         If mTempWoodPallet.WoodPalletItems.Count > 0 Then
-          CreatePickWoodTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet, True)
+          CreatePickWoodTransaction(pCurrentWoodPallet.LocationID, mTempWoodPallet, False)
         End If
       End If
 
@@ -433,11 +433,16 @@ Public Class fccWoodPallet
 
     mdsoStock = New dsoStock(pDBConn)
 
-    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodPicking, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, vWithDifferenceValue)
+    mdsoTran.CreateNegativeTransaction(eTransactionType.WoodAmendment, vWoodPallet, vSourceLocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, vWithDifferenceValue)
 
 
-
-
+    ''Archive the Pallet
+    If pCurrentWoodPallet IsNot Nothing Then
+      pCurrentWoodPallet.Archive = True
+      SaveObject()
+      toPurge()
+      SaveObject()
+    End If
 
 
   End Sub

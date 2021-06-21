@@ -218,7 +218,7 @@ Public Class frmSupplierDetail
         mRetVal = False
       End If
     End If
-    CheckSave = mRetVal
+    Return mRetVal
   End Function
 
   'Here put the fields

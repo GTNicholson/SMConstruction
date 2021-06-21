@@ -4,7 +4,8 @@ Public Class clsWorkOrderInfo
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
-
+  Private pDatePlanned As Date
+  Private pProcurementGroupDate As Date
   Public Sub New()
     pWorkOrder = New dmWorkOrder
     pSalesOrder = New dmSalesOrder
@@ -63,6 +64,15 @@ Public Class clsWorkOrderInfo
     End Get
   End Property
 
+  Public Property DatePlanned As Date
+    Get
+      Return pDatePlanned
+    End Get
+    Set(value As Date)
+      pDatePlanned = value
+    End Set
+  End Property
+
   Public ReadOnly Property Quantity As Integer
     Get
       Return pWorkOrder.Quantity
@@ -104,7 +114,7 @@ Public Class clsWorkOrderInfo
 
   Public ReadOnly Property PlannedStartDateWC As DateTime
     Get
-      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pSalesOrder.FinishDate)
+      Return RTIS.CommonVB.libDateTime.MondayOfWeek(pWorkOrder.PlannedStartDate)
     End Get
   End Property
 
@@ -142,6 +152,16 @@ Public Class clsWorkOrderInfo
   Public ReadOnly Property ContractManagerID As Integer
     Get
       Return pSalesOrder.ContractManagerID
+    End Get
+  End Property
+
+  Public ReadOnly Property ContractManagerDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).DisplayValueString(ContractManagerID)
+
+      Return mRetVal
     End Get
   End Property
 
@@ -218,6 +238,30 @@ Public Class clsWorkOrderInfo
       Return pWorkOrder.WorkOrderTargetWoodType
     End Get
   End Property
+
+  Public ReadOnly Property ProcurementGroupDate As Date
+    Get
+      Dim mRetVal As Date
+
+      If RTIS.CommonVB.clsGeneralA.IsBlankDate(pDatePlanned) Then
+        If RTIS.CommonVB.clsGeneralA.IsBlankDate(PlannedStartDate) Then
+
+        Else
+          mRetVal = DateAdd(DateInterval.WeekOfYear, -3, PlannedStartDate)
+        End If
+      Else
+        mRetVal = pDatePlanned
+      End If
+
+      If RTIS.CommonVB.clsGeneralA.IsBlankDate(mRetVal) Then
+        Return Nothing
+      Else
+        Return RTIS.CommonVB.libDateTime.MondayOfWeek(mRetVal).Date
+      End If
+    End Get
+
+  End Property
+
 End Class
 
 

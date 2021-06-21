@@ -232,6 +232,11 @@ Public Class dsoAppRefLists
           mItem.IList = mValueItems
           mOK = True
 
+        Case appRefLists.StockItemCategory
+          mValueItems = clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+          mItem.IList = mValueItems
+          mOK = True
+
         Case appRefLists.AccoutingCategory
           mItem.IList = LoadAccoutingCategory()
           mOK = True

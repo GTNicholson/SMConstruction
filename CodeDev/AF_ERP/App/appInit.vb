@@ -140,26 +140,26 @@ Public Class appInit
 
         Dim mESettings As New RTIS.EmailLib.clsEmailSettings
 
-        mESettings.DelMethod = 0
-        mESettings.Domain = ""
-        mESettings.Password = "M6jrYk#23"
-        mESettings.Port = "25"
-        mESettings.SMTP = "smtp.123-reg.co.uk"
-        mESettings.UseDefaultCredentials = False
-        mESettings.UserName = "support@activeview.co.uk"
-        mESettings.EnableSSL = False
-        mESettings.SecurityProtocol = 0
-        mESettings.DefaultToSpooler = False
-        mESettings.SendAllToTest = True
-        mESettings.AlwaysSendAsPlainText = False
-        mESettings.DefaultEmailFromAddress = "support@activeview.co.uk"
+        'mESettings.DelMethod = 0
+        'mESettings.Domain = ""
+        'mESettings.Password = "M6jrYk#23"
+        'mESettings.Port = "25"
+        'mESettings.SMTP = "smtp.123-reg.co.uk"
+        'mESettings.UseDefaultCredentials = False
+        'mESettings.UserName = "support@activeview.co.uk"
+        'mESettings.EnableSSL = False
+        'mESettings.SecurityProtocol = 0
+        'mESettings.DefaultToSpooler = False
+        'mESettings.SendAllToTest = True
+        'mESettings.AlwaysSendAsPlainText = False
+        'mESettings.DefaultEmailFromAddress = "support@activeview.co.uk"
 
         Dim mTestSendTo As String = "grahamn@rtis.co.uk"
 
         ''If rRTISGlobal.SessionDataSet = AppRTISGlobal.eSessionDataSet.Live Then
         ''  RTIS.WorkflowCore.clsMessageHandler.InitNoticiationHandler(rRTISGlobal.EmailSettings, rRTISUserSession, False, "DefaultTestEmail@Domain.co.uk")
         ''Else
-        RTIS.WorkflowCore.clsMessageHandler.InitNoticiationHandler(mESettings, rRTISUserSession, True, "johns@rtis.co.uk")
+        'AXEL RTIS.WorkflowCore.clsMessageHandler.InitNoticiationHandler(mESettings, rRTISUserSession, True, "johns@rtis.co.uk")
         ''End If
         ''If rRTISUserSession.EmployeeID <> 0 Then
         ''  '' Look-up current users email address

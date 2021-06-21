@@ -23,8 +23,8 @@ Public Class repWorkOrderStockItemMaterialRequirement
     xtcQuantity.DataBindings.Add("Text", Me.DataSource, "QuantityFraction")
     xtcUoM.DataBindings.Add("Text", Me.DataSource, "UoMDesc")
 
-    xtcComments.DataBindings.Add("Text", DataSource, "Comment")
-    xtcCurrentInventory.DataBindings.Add("Text", DataSource, "TempAllocatedQty", "{0:#.#}")
+    xtcComments.DataBindings.Add("Text", DataSource, "Comments")
+    ' xtcCurrentInventory.DataBindings.Add("Text", DataSource, "TempAllocatedQty", "{0:#.#}")
 
   End Sub
 

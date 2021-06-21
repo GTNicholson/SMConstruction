@@ -11,6 +11,10 @@ Public Class clsMaterialRequirementInfo
   Private pOSQty As Decimal
   Private pStockItemTransactionLog As dmStockItemTransactionLog
   Private pExchangeRate As Decimal
+  Private pSalesOrderPhaseID As Integer
+  Private pSalesOrderID As Integer
+  Private pSalesOrderPhaseItemID As Integer
+  Private pWorkOrderAllocationID As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -51,7 +55,11 @@ Public Class clsMaterialRequirementInfo
       pMaterialRequirement.MaterialRequirementID = value
     End Set
   End Property
-
+  Public ReadOnly Property OrderNo As String
+    Get
+      Return pSalesOrder.OrderNo
+    End Get
+  End Property
 
 
   Public Property WorkOrder As dmWorkOrder
@@ -72,7 +80,14 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
-
+  Public Property FromStockQty As Decimal
+    Get
+      Return pMaterialRequirement.FromStockQty
+    End Get
+    Set(value As Decimal)
+      pMaterialRequirement.FromStockQty = value
+    End Set
+  End Property
   Public Property WODescription As String
     Get
       Return pWorkOrder.Description
@@ -81,6 +96,7 @@ Public Class clsMaterialRequirementInfo
       pWorkOrder.Description = value
     End Set
   End Property
+
 
   Public Property WoodSpecie As Int32
     Get
@@ -597,6 +613,39 @@ Public Class clsMaterialRequirementInfo
 
       Return mRetval
     End Get
+  End Property
+
+  Public Property WorkOrderAllocationID As Decimal
+    Get
+      Return pWorkOrderAllocationID
+    End Get
+    Set(value As Decimal)
+      pWorkOrderAllocationID = value
+    End Set
+  End Property
+  Public Property SalesOrderPhaseItemID As Integer
+    Get
+      Return SalesOrderPhaseItemID
+    End Get
+    Set(value As Integer)
+      pSalesOrderPhaseItemID = value
+    End Set
+  End Property
+  Public Property SalesOrderID As Integer
+    Get
+      Return pSalesOrderID
+    End Get
+    Set(value As Integer)
+      pSalesOrderID = value
+    End Set
+  End Property
+  Public Property SalesOrderPhaseID As Integer
+    Get
+      Return pSalesOrderPhaseID
+    End Get
+    Set(value As Integer)
+      pSalesOrderPhaseID = value
+    End Set
   End Property
 End Class
 

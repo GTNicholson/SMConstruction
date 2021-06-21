@@ -69,7 +69,7 @@ Partial Class frmProductPicker
         '
         Me.XtraTabPage1.Controls.Add(Me.grdItemList)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(708, 424)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(707, 418)
         Me.XtraTabPage1.Text = "XtraTabPage1"
         '
         'grdItemList
@@ -79,7 +79,7 @@ Partial Class frmProductPicker
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
         Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove})
-        Me.grdItemList.Size = New System.Drawing.Size(708, 424)
+        Me.grdItemList.Size = New System.Drawing.Size(707, 418)
         Me.grdItemList.TabIndex = 98
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '
@@ -191,9 +191,9 @@ Partial Class frmProductPicker
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 20)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 24)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 430)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 426)
         '
         'BarManager1
         '
@@ -223,7 +223,7 @@ Partial Class frmProductPicker
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(800, 20)
+        Me.BarDockControl1.Size = New System.Drawing.Size(800, 24)
         '
         'barDockControlBottom
         '
@@ -237,9 +237,9 @@ Partial Class frmProductPicker
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(800, 20)
+        Me.barDockControlRight.Location = New System.Drawing.Point(800, 24)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 430)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 426)
         '
         'bbtnNewStockItem
         '
@@ -255,10 +255,10 @@ Partial Class frmProductPicker
         Me.xtabCategories.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabCategories.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabCategories.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabCategories.Location = New System.Drawing.Point(0, 20)
+        Me.xtabCategories.Location = New System.Drawing.Point(0, 24)
         Me.xtabCategories.Name = "xtabCategories"
         Me.xtabCategories.SelectedTabPage = Me.XtraTabPage1
-        Me.xtabCategories.Size = New System.Drawing.Size(800, 430)
+        Me.xtabCategories.Size = New System.Drawing.Size(800, 426)
         Me.xtabCategories.TabIndex = 106
         Me.xtabCategories.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -266,7 +266,7 @@ Partial Class frmProductPicker
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 20)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 24)
         Me.barDockControlTop.Manager = Nothing
         Me.barDockControlTop.Size = New System.Drawing.Size(800, 0)
         '

@@ -106,9 +106,9 @@ Public Class frmListToStockTake
 
         clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
 
-      Case eStockItemCategory.NailsAndBolds
+      Case eStockItemCategory.Fixings
 
-        clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeNailsAndBolts.GetInstance.ValueItems)
+        clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeFixings.GetInstance.ValueItems)
 
 
       Case eStockItemCategory.EPP
@@ -137,10 +137,13 @@ Public Class frmListToStockTake
         clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialEmpaque.GetInstance.ValueItems)
 
 
+      Case eStockItemCategory.Plumbing
+
+        clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePlumbings.GetInstance.ValueItems)
+
       Case eStockItemCategory.MatVarios
 
-        clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarios.GetInstance.ValueItems)
-
+        clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarioss.GetInstance.ValueItems)
 
       Case eStockItemCategory.Metal
 

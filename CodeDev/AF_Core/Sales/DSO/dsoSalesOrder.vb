@@ -148,6 +148,23 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function LoadWorkOrderMatReqInfosByWhere(ByRef rMatReqInfos As colMaterialRequirementInfos, ByVal vWhere As String) As Boolean
+    Dim mRetVal As Boolean = True
+    Dim mdto As dtoMaterialRequirementInfo
+    Try
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Info)
+      mdto.LoadWorkOrderPhaseMatReqInfosByWhere(rMatReqInfos, vWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+
   Public Function GetDefaultCostBook() As Integer
     Dim mRetval As Integer
     Dim mWhere As String = "Select CostBookID from CostBook where IsDefault = 1"
@@ -179,8 +196,23 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mRetVal
   End Function
 
-  Public Function UpdateMaterialRequirementFromStockQty(vMatReq As dmMaterialRequirement) As Boolean
-    Throw New NotImplementedException()
+  Public Function UpdateMaterialRequirementFromStockQty(ByRef rMaterRequirement As dmMaterialRequirement) As Boolean
+    Dim mSQL As String
+    Dim mRetVal As Integer
+    Try
+      If pDBConn.Connect() Then
+        mSQL = "UPDATE dbo.MaterialRequirement"
+        mSQL &= " SET FromStockQty = " & rMaterRequirement.FromStockQty
+        mSQL &= " WHERE MaterialRequirementID = " & rMaterRequirement.MaterialRequirementID
+        mRetVal = pDBConn.ExecuteNonQuery(mSQL)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
   End Function
 
   Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
@@ -890,89 +922,90 @@ Public Class dsoSalesOrder : Inherits dsoBase
     mdto = New dtoSalesOrder(pDBConn)
     mdto.LoadSalesOrder(rSalesOrder, vID)
 
-    mdtoInvoice = New dtoInvoice(pDBConn)
-    mdtoInvoice.LoadInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
+    If rSalesOrder IsNot Nothing Then
+      mdtoInvoice = New dtoInvoice(pDBConn)
+      mdtoInvoice.LoadInvoiceCollection(rSalesOrder.Invoices, rSalesOrder.SalesOrderID)
 
-    mdtoPaymentAccount = New dtoPaymentOnAccount(pDBConn)
-    mdtoPaymentAccount.LoadPaymentOnAccountCollection(rSalesOrder.PaymentAccounts, rSalesOrder.SalesOrderID)
+      mdtoPaymentAccount = New dtoPaymentOnAccount(pDBConn)
+      mdtoPaymentAccount.LoadPaymentOnAccountCollection(rSalesOrder.PaymentAccounts, rSalesOrder.SalesOrderID)
 
-    mdtoCust = New dtoCustomer(pDBConn)
-    mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
+      mdtoCust = New dtoCustomer(pDBConn)
+      mdtoCust.LoadCustomer(rSalesOrder.Customer, rSalesOrder.CustomerID)
 
-    mdtoCustContacts = New dtoCustomerContact(pDBConn)
-    If rSalesOrder.Customer IsNot Nothing Then
-      mdtoCustContacts.LoadCustomerContactCollection(rSalesOrder.Customer.CustomerContacts, rSalesOrder.Customer.CustomerID)
-    End If
+      mdtoCustContacts = New dtoCustomerContact(pDBConn)
+      If rSalesOrder.Customer IsNot Nothing Then
+        mdtoCustContacts.LoadCustomerContactCollection(rSalesOrder.Customer.CustomerContacts, rSalesOrder.Customer.CustomerID)
+      End If
 
-    mdtoSOIs = New dtoSalesOrderItem(pDBConn)
-    mdtoSOIs.LoadSalesOrderItemCollection(rSalesOrder.SalesOrderItems, rSalesOrder.SalesOrderID)
+      mdtoSOIs = New dtoSalesOrderItem(pDBConn)
+      mdtoSOIs.LoadSalesOrderItemCollection(rSalesOrder.SalesOrderItems, rSalesOrder.SalesOrderID)
 
-    mdtoCustomerPurchaseOrder = New dtoCustomerPurchaseOrder(pDBConn)
-    mdtoCustomerPurchaseOrder.LoadCustomerPurchaseOrderCollection(rSalesOrder.CustomerPurchaseOrder, rSalesOrder.SalesOrderID)
+      mdtoCustomerPurchaseOrder = New dtoCustomerPurchaseOrder(pDBConn)
+      mdtoCustomerPurchaseOrder.LoadCustomerPurchaseOrderCollection(rSalesOrder.CustomerPurchaseOrder, rSalesOrder.SalesOrderID)
 
-    mdtoSalesOrderPhase = New dtoSalesOrderPhase(pDBConn)
-    mdtoSalesOrderPhase.LoadSalesOrderPhaseCollection(rSalesOrder.SalesOrderPhases, rSalesOrder.SalesOrderID)
+      mdtoSalesOrderPhase = New dtoSalesOrderPhase(pDBConn)
+      mdtoSalesOrderPhase.LoadSalesOrderPhaseCollection(rSalesOrder.SalesOrderPhases, rSalesOrder.SalesOrderID)
 
-    mdtoSalesOrderStage = New dtoSalesOrderStage(pDBConn)
-    mdtoSalesOrderStage.LoadSalesOrderStageCollection(rSalesOrder.SalesOrderStages, rSalesOrder.SalesOrderID)
+      mdtoSalesOrderStage = New dtoSalesOrderStage(pDBConn)
+      mdtoSalesOrderStage.LoadSalesOrderStageCollection(rSalesOrder.SalesOrderStages, rSalesOrder.SalesOrderID)
 
-    If rSalesOrder.SalesOrderPhases IsNot Nothing Then
-      mdtoSalesOrderPhaseItem = New dtoSalesOrderPhaseItem(pDBConn)
-      mdtoPhaseItemComponent = New dtoPhaseItemComponent(pDBConn)
-
-
-      For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
-        mdtoSalesOrderPhaseItem.LoadSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
+      If rSalesOrder.SalesOrderPhases IsNot Nothing Then
+        mdtoSalesOrderPhaseItem = New dtoSalesOrderPhaseItem(pDBConn)
+        mdtoPhaseItemComponent = New dtoPhaseItemComponent(pDBConn)
 
 
-
-        mdtoPhaseItemComponent.LoadPhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
-      Next
-
-    End If
-
-    mdtoSalesOrderHouse = New dtoSalesOrderHouse(pDBConn)
-    mdtoSalesOrderHouse.LoadSalesOrderHouseCollection(rSalesOrder.SalesOrderHouses, rSalesOrder.SalesOrderID)
-
-    mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
-    mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
-
-    For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
-      mdtoWOs = New dtoWorkOrder(pDBConn)
-      mdtoWOs.LoadWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
+        For Each mSOP As dmSalesOrderPhase In rSalesOrder.SalesOrderPhases
+          mdtoSalesOrderPhaseItem.LoadSalesOrderPhaseItemCollection(mSOP.SalesOrderPhaseItems, mSOP.SalesOrderPhaseID)
 
 
 
-      For Each mWO As dmWorkOrder In mSOI.WorkOrders
-        '// Instantiate and Load up the details for the specific product type
-        mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
-        If mWO.Product IsNot Nothing Then
-          mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
-          mdtoProduct.LoadProduct(mWO.Product, mWO.ProductID)
-          mProductStructure = TryCast(mWO.Product, dmProductStructure)
-          If mProductStructure IsNot Nothing Then
-            mdtodtoProductBOM = New dtoProductBOM(pDBConn)
-            mdtodtoProductBOM.LoadProductBOMCollection(mProductStructure.ProductStockItemBOMs, mProductStructure.ID, eProductBOMObjectType.StockItems)
-            mdtodtoProductBOM.LoadProductBOMCollection(mProductStructure.ProductWoodBOMs, mProductStructure.ID, eProductBOMObjectType.Wood)
+          mdtoPhaseItemComponent.LoadPhaseItemComponentCollection(mSOP.PhaseItemComponents, mSOP.SalesOrderPhaseID)
+        Next
+
+      End If
+
+      mdtoSalesOrderHouse = New dtoSalesOrderHouse(pDBConn)
+      mdtoSalesOrderHouse.LoadSalesOrderHouseCollection(rSalesOrder.SalesOrderHouses, rSalesOrder.SalesOrderID)
+
+      mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
+      mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
+
+      For Each mSOI As dmSalesOrderItem In rSalesOrder.SalesOrderItems
+        mdtoWOs = New dtoWorkOrder(pDBConn)
+        mdtoWOs.LoadWorkOrderCollection(mSOI.WorkOrders, mSOI.SalesOrderItemID)
+
+
+
+        For Each mWO As dmWorkOrder In mSOI.WorkOrders
+          '// Instantiate and Load up the details for the specific product type
+          mWO.Product = clsProductSharedFuncs.NewProductInstance(mWO.ProductTypeID)
+          If mWO.Product IsNot Nothing Then
+            mdtoProduct = dtoProductBase.GetNewInstance(mWO.ProductTypeID, pDBConn)
+            mdtoProduct.LoadProduct(mWO.Product, mWO.ProductID)
+            mProductStructure = TryCast(mWO.Product, dmProductStructure)
+            If mProductStructure IsNot Nothing Then
+              mdtodtoProductBOM = New dtoProductBOM(pDBConn)
+              mdtodtoProductBOM.LoadProductBOMCollection(mProductStructure.ProductStockItemBOMs, mProductStructure.ID, eProductBOMObjectType.StockItems)
+              mdtodtoProductBOM.LoadProductBOMCollection(mProductStructure.ProductWoodBOMs, mProductStructure.ID, eProductBOMObjectType.Wood)
+            End If
+            mdtoWOFiles = New dtoFileTracker(pDBConn)
+            mdtoWOFiles.LoadFileTrackerCollection(mWO.WOFiles, eObjectType.WorkOrder, mWO.WorkOrderID)
+            mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+            mdtoOutputDocs.LoadOutputDocumentCollection(mWO.OutputDocuments, mWO.WorkOrderID, eParentType.WorkOrder)
+
           End If
-          mdtoWOFiles = New dtoFileTracker(pDBConn)
-          mdtoWOFiles.LoadFileTrackerCollection(mWO.WOFiles, eObjectType.WorkOrder, mWO.WorkOrderID)
-          mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-          mdtoOutputDocs.LoadOutputDocumentCollection(mWO.OutputDocuments, mWO.WorkOrderID, eParentType.WorkOrder)
+        Next
 
-        End If
       Next
 
-    Next
 
 
-
-    mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-    mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
-
+      mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+      mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
+    End If
     pDBConn.Disconnect()
 
-    mRetVal = True
+      mRetVal = True
 
     Return mRetVal
   End Function

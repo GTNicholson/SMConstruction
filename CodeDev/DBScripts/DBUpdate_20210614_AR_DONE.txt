@@ -1,0 +1,13 @@
+ALTER Proc [dbo].[spPhasePOIAQtyOrderedSum]
+(
+@SalesOrderPhaseID Int,
+@StockItemID Int
+)
+As
+Select Sum(Quantity-ReceivedQty) as OrderedQty 
+from vwPurchaseOrderItemAllocationInfo vwPOIAI
+Where vwPOIAI.CallOffID = @SalesOrderPhaseID And StockItemID = @StockItemID and (vwPOIAI.BalanceQty<>0)
+ and vwPOIAI.POStatus not in (4,6)
+GO
+
+

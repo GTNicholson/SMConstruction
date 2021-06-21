@@ -87,6 +87,7 @@ Partial Class frmTabbedMDI_DevUtil
         Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
         Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
         Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
+        Me.bbtnNewEmail = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositorybarComboMDITabImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -328,7 +329,7 @@ Partial Class frmTabbedMDI_DevUtil
         Me.navbar.ContentButtonHint = Nothing
         Me.navbar.Dock = System.Windows.Forms.DockStyle.Left
         Me.navbar.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup_Utilities, Me.NavBarGroup2, Me.NavBarGroup3, Me.NavBarGroup1})
-        Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime, Me.navbaritAssignStockCodes, Me.btnGeneratePalletRefs, Me.btnGenerateWoodDesc, Me.btnSIWoodDesc, Me.btnGenerateStockTransaction, Me.nbiUpdateStockItemLocationMonetaryValue, Me.btnResetTransactionValuation, Me.nbiSalesOrderReview, Me.bbtnDeleteSI, Me.bbtnDecToFrac, Me.bbtnStringToDec, Me.bbtnImportWoodPalletFromTemplate, Me.bbtnUpdatePONetValue})
+        Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime, Me.navbaritAssignStockCodes, Me.btnGeneratePalletRefs, Me.btnGenerateWoodDesc, Me.btnSIWoodDesc, Me.btnGenerateStockTransaction, Me.nbiUpdateStockItemLocationMonetaryValue, Me.btnResetTransactionValuation, Me.nbiSalesOrderReview, Me.bbtnDeleteSI, Me.bbtnDecToFrac, Me.bbtnStringToDec, Me.bbtnImportWoodPalletFromTemplate, Me.bbtnUpdatePONetValue, Me.bbtnNewEmail})
         Me.navbar.Location = New System.Drawing.Point(0, 45)
         Me.navbar.Name = "navbar"
         Me.navbar.OptionsNavPane.ExpandedWidth = 231
@@ -399,7 +400,7 @@ Partial Class frmTabbedMDI_DevUtil
         '
         Me.NavBarGroup3.Caption = "Communications"
         Me.NavBarGroup3.Expanded = True
-        Me.NavBarGroup3.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarEmailTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarSerialComTest)})
+        Me.NavBarGroup3.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarEmailTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarSerialComTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnNewEmail)})
         Me.NavBarGroup3.Name = "NavBarGroup3"
         '
         'navbarEmailTest
@@ -517,6 +518,11 @@ Partial Class frmTabbedMDI_DevUtil
         '
         Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
         '
+        'bbtnNewEmail
+        '
+        Me.bbtnNewEmail.Caption = "Email"
+        Me.bbtnNewEmail.Name = "bbtnNewEmail"
+        '
         'frmTabbedMDI_DevUtil
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -617,4 +623,5 @@ Partial Class frmTabbedMDI_DevUtil
     Friend WithEvents bbtnStringToDec As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents bbtnImportWoodPalletFromTemplate As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents bbtnUpdatePONetValue As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents bbtnNewEmail As DevExpress.XtraNavBar.NavBarItem
 End Class

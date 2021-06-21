@@ -79,7 +79,7 @@
       </property>
       <property name="Caption">PurchaseOrderItemID</property>
       <property name="FieldName">PurchaseOrderItemID</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemDateEdit2</property>
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
@@ -91,7 +91,11 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">298</property>
+      <property name="Width">275</property>
+      <property name="GroupFormat" isnull="true" iskey="true">
+        <property name="FormatString">0</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
@@ -113,7 +117,7 @@
       <property name="ColumnEditName" />
       <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
-      <property name="Width">77</property>
+      <property name="Width">57</property>
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
@@ -130,13 +134,13 @@
       <property name="ColumnEditName">RepositoryItemDateEdit5</property>
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
-      <property name="Width">111</property>
+      <property name="Width">85</property>
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
       <property name="Caption">Precio Unit.</property>
       <property name="FieldName">UnitPrice</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
     </property>
@@ -144,22 +148,26 @@
       <property name="Name">GridColumn6</property>
       <property name="Caption">PurchaseOrderItemAllocationID</property>
       <property name="FieldName">PurchaseOrderItemAllocationID</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
       <property name="Caption">Cant. Rec.</property>
       <property name="FieldName">ReceivedQty</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">95</property>
+      <property name="GroupFormat" isnull="true" iskey="true">
+        <property name="FormatString" />
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
       <property name="Caption">PurchaseOrderID</property>
       <property name="FieldName">PurchaseOrderID</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">repitDateDefault</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
@@ -183,11 +191,11 @@
       <property name="Name">GridColumn13</property>
       <property name="Caption">DefaultCurrency</property>
       <property name="FieldName">DefaultCurrency</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
-      <property name="Caption">ExchangeRateValue</property>
+      <property name="Caption">Tasa de Cambio</property>
       <property name="FieldName">ExchangeRateValue</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">12</property>
@@ -198,7 +206,7 @@
       <property name="Name">GridColumn15</property>
       <property name="Caption">MaterialRequirementTypeID</property>
       <property name="FieldName">MaterialRequirementTypeID</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
     </property>
     <property name="Item16" isnull="true" iskey="true">
       <property name="Name">GridColumn16</property>
@@ -250,12 +258,12 @@
     </property>
     <property name="Item23" isnull="true" iskey="true">
       <property name="Name">GridColumn23</property>
-      <property name="Caption">Category</property>
+      <property name="Caption">Categoría Item</property>
       <property name="FieldName">StockitemCategoryDesc</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">144</property>
+      <property name="Width">97</property>
     </property>
     <property name="Item24" isnull="true" iskey="true">
       <property name="Name">GridColumn24</property>

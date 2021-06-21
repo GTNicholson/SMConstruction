@@ -118,6 +118,7 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
         .TotalPieces = DBReadDecimal(rDataReader, "TotalPieces")
         .DateChange = DBReadDate(rDataReader, "DateChange")
+        .FromStockQty = DBReadDecimal(rDataReader, "FromStockQty")
 
         .DateOtherMaterial = DBReadDate(rDataReader, "DateOtherMaterial")
         .UoM = DBReadInt32(rDataReader, "UoM")

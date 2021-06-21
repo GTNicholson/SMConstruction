@@ -14,6 +14,9 @@ Public Class dmStockItem : Inherits dmBase
   Private pPartNo As String
   Private pLength As Decimal
   Private pWidth As Decimal
+
+
+
   Private pThickness As Decimal
   Private pDescription As String
   Private pStockQuantity As Decimal
@@ -50,6 +53,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pIsTracked As Boolean
   Private pHeadTypeID As Integer
   Private pIsProvisional As Boolean
+  Private pIsSelected As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -786,7 +790,14 @@ Public Class dmStockItem : Inherits dmBase
       pIsTracked = value
     End Set
   End Property
-
+  Public Property IsSelected() As Boolean
+    Get
+      Return pIsSelected
+    End Get
+    Set(value As Boolean)
+      pIsSelected = value
+    End Set
+  End Property
 End Class
 
 
