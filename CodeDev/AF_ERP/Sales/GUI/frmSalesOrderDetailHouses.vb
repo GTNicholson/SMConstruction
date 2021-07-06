@@ -148,7 +148,7 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub LoadGrids()
-    grdOrderItem.DataSource = pFormController.SalesOrder.SalesOrderItems
+    grdOrderItem.DataSource = pFormController.SalesItemEditors ' SalesOrder.SalesOrderItems
     grdInvoices.DataSource = pFormController.Invoices
     grdPaymentAccounts.DataSource = pFormController.PaymentAccounts
 
@@ -237,10 +237,9 @@ Public Class frmSalesOrderDetailHouses
 
         txtVisibleNotes.Text = .VisibleNotes
         txtDelAddress1.Text = .DelAddress1
-        btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
         txtDelAddress2.Text = .DelAddress2
         txtCustomerContact.Text = .CustomerContactID
-        txtShippingCost.Text = .ShippingCost
+        ' txtShippingCost.Text = .ShippingCost
         txtVersion.Text = .Version
         btnePodio.EditValue = .PodioPath
         dteDateRequiredSO.EditValue = clsGeneralA.DateToDBValue(.FinishDate)
@@ -294,9 +293,10 @@ Public Class frmSalesOrderDetailHouses
   Private Sub bbtnSave_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSave.ItemClick
     Try
 
-      UpdateObjects()
-      UpdateSalesItemAssembly()
-      UpdateSalesOrderHouse()
+      'UpdateObjects()
+      'UpdateSalesItemAssembly()
+      'UpdateSalesOrderHouse()
+      CheckSave(False)
       pFormController.SaveObjects()
       RefreshHouseTabs()
     Catch ex As Exception
@@ -342,7 +342,7 @@ Public Class frmSalesOrderDetailHouses
         .ContractManagerID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboProjectOwner)
 
         .PaymentTermDesc = txtPaymentTerm.Text
-        .ShippingCost = txtShippingCost.Text
+        '.ShippingCost = txtShippingCost.Text
         .Version = txtVersion.Text
         .PodioPath = btnePodio.EditValue
         .ProductCostBookID = RTIS.Elements.clsDEControlLoading.GetDEComboValue(cboCostBook)
@@ -359,11 +359,32 @@ Public Class frmSalesOrderDetailHouses
         gvCustomerPurchaseOrder.CloseEditor()
         gvCustomerPurchaseOrder.UpdateCurrentRow()
 
+        UpdateSalesItemEditorSalesOrderItems()
         UpdateSalesOrderItemProductRequirement()
 
       End With
 
     End If
+  End Sub
+
+  Private Sub UpdateSalesItemEditorSalesOrderItems()
+
+    For Each mSIE As clsSalesItemEditor In pFormController.SalesItemEditors
+
+      Dim mSalesItem As dmSalesOrderItem
+
+      mSalesItem = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSIE.SalesOrderItem.SalesOrderItemID)
+
+      If mSalesItem IsNot Nothing Then
+        mSalesItem.MaterialCost = mSIE.MaterialCost
+        mSalesItem.ManpowerCost = mSIE.ManpowerCost
+        mSalesItem.SubContractCost = mSIE.SubContractCost
+        mSalesItem.TransportationCost = mSIE.TransportationCost
+        mSalesItem.LineValue = mSIE.Quantity * mSIE.UnitPrice
+      End If
+
+    Next
+
   End Sub
 
   Private Sub UpdateSalesOrderItemProductRequirement()
@@ -545,7 +566,7 @@ Public Class frmSalesOrderDetailHouses
             gvProductsRequired.RefreshData()
             RefreshControls()
           End If
-        Case ButtonPredefines.Delete
+        Case "Delete"
 
 
         Case "Search"
@@ -605,7 +626,7 @@ Public Class frmSalesOrderDetailHouses
     Dim mSaveRequired As Boolean
     Dim mResponse As MsgBoxResult
     Dim mRetVal As Boolean
-    RefreshControls()
+    'RefreshControls()
 
     UpdateObjects()
     UpdateSalesItemAssembly()
@@ -717,7 +738,9 @@ Public Class frmSalesOrderDetailHouses
     Try
       Dim mFilePath As String = String.Empty
       mLanguageOption = rgLanguageOptions.EditValue
-      UpdateObjects()
+      'UpdateObjects()
+      'UpdateSalesOrderHouse()
+
       Select Case e.Button.Kind
         Case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus
           AddSalesOrderDocument(mLanguageOption)
@@ -730,6 +753,7 @@ Public Class frmSalesOrderDetailHouses
           ViewSalesOrderDocument()
           RefreshControls()
       End Select
+      RefreshSalesOrderHouse()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -749,9 +773,10 @@ Public Class frmSalesOrderDetailHouses
 
       CreateReportPDF(eParentType.SalesOrder, eDocumentType.SalesOrder, True, mReport)
 
-      CheckSave(False)
+      'CheckSave(False)
 
-      mFilePath = pFormController.SalesOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
+      'mFilePath = pFormController.SalesOrder.OutputDocuments.GetFilePath(eParentType.PurchaseOrder, eDocumentType.PurchaseOrder, eFileType.PDF)
+      mFilePath = pFormController.CurrentSalesOrderHouse.OutputDocuments.GetFilePath(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
 
       RefreshControls()
       If IO.File.Exists(mFilePath) Then
@@ -794,10 +819,10 @@ Public Class frmSalesOrderDetailHouses
 
           Select Case vLanguageOption
             Case eLanguageReportOption.Spanish
-              mRetVal = repSalesOrder_Spanish.GenerateReport(pFormController.SalesOrder, pFormController.IsVAT, vLanguageOption)
+              mRetVal = repSalesOrder_Spanish.GenerateReport(pFormController.SalesOrder, pFormController.SalesItemEditors, pFormController.IsVAT, vLanguageOption, pFormController.CurrentSalesOrderHouse.SalesOrderHouseID)
 
             Case eLanguageReportOption.English
-              mRetVal = repSalesOrder_English.GenerateReport(pFormController.SalesOrder, pFormController.IsVAT, vLanguageOption)
+              mRetVal = repSalesOrder_English.GenerateReport(pFormController.SalesOrder, pFormController.SalesItemEditors, pFormController.IsVAT, vLanguageOption, pFormController.CurrentSalesOrderHouse.SalesOrderHouseID)
 
           End Select
         End If
@@ -813,7 +838,7 @@ Public Class frmSalesOrderDetailHouses
     Dim mExportDirectory As String = String.Empty
     ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
 
-    mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.SalesOrder.SalesOrderID
+    mFileName = clsEnumsConstants.GetEnumDescription(GetType(eDocumentType), vDocumentType) & "_" & pFormController.CurrentSalesOrderHouse.SalesOrderID & "_" & pFormController.CurrentSalesOrderHouse.Ref
 
     mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.SalesOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.SalesOrder.SalesOrderID.ToString("00000")))
 
@@ -840,8 +865,8 @@ Public Class frmSalesOrderDetailHouses
       vReport.Dispose()
       'vReport = Nothing
 
-      pFormController.SalesOrder.OutputDocuments.SetFilePath(eParentType.SalesOrder, vDocumentType, eFileType.PDF, mFilePath)
-
+      'pFormController.SalesOrder.OutputDocuments.SetFilePath(eParentType.SalesOrder, vDocumentType, eFileType.PDF, mFilePath)
+      pFormController.CurrentSalesOrderHouse.OutputDocuments.SetFilePath(eParentType.SalesOrder, vDocumentType, eFileType.PDF, mFilePath)
     End If
 
   End Sub
@@ -851,7 +876,8 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub grpOrderItem_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpOrderItem.CustomButtonClick
-    Dim mSOI As dmSalesOrderItem
+    Dim mSOI As clsSalesItemEditor
+    Dim mOTCount As Integer
     Try
 
 
@@ -859,18 +885,32 @@ Public Class frmSalesOrderDetailHouses
         Case eOrderItemGroupButtonTags.Add
           UpdateObjects()
 
-          pFormController.AddSalesOrderItem(eProductType.ProductFurniture)
 
+          pFormController.AddSalesOrderItem(pFormController.CurrentSalesOrderHouse.SalesOrderHouseID)
+          pFormController.RefreshCurrentSalesItemEditors()
           gvProductsRequired.RefreshData()
           RefreshControls()
         Case eOrderItemGroupButtonTags.Delete
-          mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+          mSOI = TryCast(gvOrderItem.GetFocusedRow, clsSalesItemEditor)
           If mSOI IsNot Nothing Then
             If MsgBox("Eliminar este Articulo?", vbYesNo) = vbYes Then
-              UpdateObjects()
-              pFormController.DeleteSalesOrderItem(mSOI)
-              gvProductsRequired.RefreshData()
-              RefreshControls()
+
+              mOTCount = pFormController.GetWOsInSalesItemCount(mSOI.SalesOrderItem.SalesOrderItemID)
+
+              If mOTCount > 0 Then
+                MessageBox.Show("No es posible eliminar este artículo de venta por que ya existe una O.T. relacionado a este")
+
+              Else
+                UpdateObjects()
+                Dim mSalesItemToDelete As dmSalesOrderItem
+                mSalesItemToDelete = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOI.SalesOrderItem.SalesOrderItemID)
+                pFormController.DeleteSalesOrderItem(mSalesItemToDelete)
+
+                RefreshControls()
+                pFormController.RefreshCurrentSalesItemEditors()
+                gvProductsRequired.RefreshData()
+              End If
+
             End If
           End If
       End Select
@@ -1155,7 +1195,13 @@ Public Class frmSalesOrderDetailHouses
         Case ButtonPredefines.Delete
           If xtraTabHouseType.SelectedTabPage.Tag IsNot Nothing Then
 
-            pFormController.RemoveSalesOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)
+            If pFormController.ProductRequirementProcessors.Count > 0 Then
+              MessageBox.Show("No es posible eliminar esta casa porque existen elementos relacionados a este")
+            Else
+              pFormController.RemoveSalesOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)
+
+            End If
+
 
             RefreshHouseTabs()
           End If
@@ -1199,9 +1245,9 @@ Public Class frmSalesOrderDetailHouses
 
       If xtraTabHouseType.TabPages.Count >= 1 Then
         xtraTabHouseType.SelectedTabPageIndex = 0
-        pFormController.SetCurrentSalemOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)
+        pFormController.SetCurrentSalesOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)
       Else
-        pFormController.SetCurrentSalemOrderHouse(Nothing)
+        pFormController.SetCurrentSalesOrderHouse(Nothing)
       End If
 
 
@@ -1224,12 +1270,12 @@ Public Class frmSalesOrderDetailHouses
       If e.Page IsNot Nothing Then
         If e.Page.Tag IsNot Nothing Then
           pnlHouseDetail.Parent = e.Page
-          pFormController.SetCurrentSalemOrderHouse(e.Page.Tag)
+          pFormController.SetCurrentSalesOrderHouse(e.Page.Tag)
         Else
-          pFormController.SetCurrentSalemOrderHouse(Nothing)
+          pFormController.SetCurrentSalesOrderHouse(Nothing)
         End If
       Else
-        pFormController.SetCurrentSalemOrderHouse(Nothing)
+        pFormController.SetCurrentSalesOrderHouse(Nothing)
       End If
 
 
@@ -1251,11 +1297,13 @@ Public Class frmSalesOrderDetailHouses
         With pFormController.CurrentSalesOrderHouse
 
           txtSOARef.Text = .Ref
-
+          txtShippingCost.Text = .ShippingCost
+          btneSalesOrderDocument.Text = .OutputDocuments.GetFileName(eParentType.SalesOrder, eDocumentType.SalesOrder, eFileType.PDF)
 
           txtSalesItemAssemblyDescription.Text = .Description
           spnHouseQuantity.EditValue = .Quantity
-          txtTotalPrice.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalValue * .Quantity)
+
+          txtTotalPrice.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalValueByHouseTypeID(.SalesOrderHouseID) * .Quantity)
           grdOrderItem.RefreshDataSource()
 
         End With
@@ -1313,10 +1361,12 @@ Public Class frmSalesOrderDetailHouses
       With pFormController.CurrentSalesOrderHouse
 
         .Ref = txtSOARef.Text
-        .TotalPrice = Val(txtTotalPrice.Text)
-
+        .ShippingCost = Decimal.Parse(txtShippingCost.Text)
+        .TotalPrice = pFormController.SalesOrder.SalesOrderItems.GetTotalValueByHouseTypeID(.HouseTypeID)
+        .Filename = btneSalesOrderDocument.Text
         .Quantity = spnHouseQuantity.EditValue
         .Description = txtSalesItemAssemblyDescription.Text
+
 
 
       End With
@@ -1328,17 +1378,19 @@ Public Class frmSalesOrderDetailHouses
   Private Sub UpdateSalesItemAssembly()
 
 
-    If pFormController.CurrentSalesItemAssembly IsNot Nothing Then
+    If pFormController.CurrentSalesItemAssembly IsNot Nothing AndAlso pFormController.CurrentSalesOrderHouse IsNot Nothing Then
 
 
       With pFormController.CurrentSalesItemAssembly
 
         .Ref = txtSOARef.Text
+
         If pFormController.CurrentSalesOrderHouse IsNot Nothing Then
           .HouseTypeID = pFormController.CurrentSalesOrderHouse.SalesOrderHouseID
 
         End If
-        .TotalPrice = Val(txtTotalPrice.Text)
+
+        .TotalPrice = pFormController.SalesOrder.SalesOrderItems.GetTotalValueByHouseTypeID(pFormController.CurrentSalesOrderHouse.SalesOrderHouseID)
 
         .Quantity = spnHouseQuantity.EditValue
         .Description = txtSalesItemAssemblyDescription.Text
@@ -1367,18 +1419,18 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub repoAddProduct_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoAddProduct.ButtonClick
     Dim mProductStructure As dmProductStructure = Nothing
-    Dim mSOI As dmSalesOrderItem
+    Dim mSIE As clsSalesItemEditor
 
 
     If MsgBox("Agregar un Producto para este articulo?", vbYesNo) = vbYes Then
 
       CheckSave(False)
 
-      mSOI = TryCast(gvOrderItem.GetFocusedRow, dmSalesOrderItem)
+      mSIE = TryCast(gvOrderItem.GetFocusedRow, clsSalesItemEditor)
 
       mProductStructure = clsProductSharedFuncs.NewProductInstance(eProductType.StructureAF)
       If mProductStructure IsNot Nothing Then
-        pFormController.AddProductRequirement(mProductStructure, mSOI)
+        pFormController.AddProductRequirement(mProductStructure, mSIE.SalesOrderItem)
 
         gvProductsRequired.RefreshData()
       End If

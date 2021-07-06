@@ -91,7 +91,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
             .StockItemCost = DBReadDecimal(rDataReader, "StockItemCost")
             .SOPItemMatReqCost = DBReadDecimal(rDataReader, "SOPItemMatReqCost")
             .SOPItemPickMatReqCost = DBReadDecimal(rDataReader, "SOPItemPickMatReqCost")
-
+            .MaterialCost = DBReadDecimal(rDataReader, "MaterialCost")
             .WoodCost = DBReadDecimal(rDataReader, "WoodCost")
             .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
             .DateEntered = DBReadDate(rDataReader, "DateEntered")

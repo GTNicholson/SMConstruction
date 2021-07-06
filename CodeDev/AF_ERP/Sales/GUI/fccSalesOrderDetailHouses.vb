@@ -230,12 +230,12 @@ Public Class fccSalesOrderDetailHouses
 
   End Sub
 
-  Public Sub AddSalesOrderItem(ByVal vProductType As eProductType)
+  Public Sub AddSalesOrderItem(ByVal vSalesHouseID As Integer)
     Dim mdso As dsoSalesOrder
     Dim mSOI As dmSalesOrderItem
     Try
       SaveObjects()
-      mSOI = pSalesOrderHandler.AddSalesOrderItem(vProductType)
+      mSOI = pSalesOrderHandler.AddSalesOrderItem(vSalesHouseID)
       mdso = New dsoSalesOrder(pDBConn)
       mdso.SaveSalesOrderDown(pSalesOrder)
       CreateSalesOrderPhaseItem(pSalesOrder.SalesOrderPhases(0), SalesOrder.SalesOrderID) ''//Because for the moment AF is using just one phase always
@@ -490,7 +490,7 @@ Public Class fccSalesOrderDetailHouses
   ''End Sub
 
 
-  Public Sub SetCurrentSalemOrderHouse(ByRef rSalesOrderHouse As dmSalesOrderHouse)
+  Public Sub SetCurrentSalesOrderHouse(ByRef rSalesOrderHouse As dmSalesOrderHouse)
     pCurrentSalesOrderHouse = rSalesOrderHouse
 
     '// this is where you need to refresh the CurrentSalesItemAssemblySalesitemEditors
@@ -511,17 +511,13 @@ Public Class fccSalesOrderDetailHouses
       mPIs = GetProductInfos()
 
       For Each mSalesItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-        If mSalesItem.HouseTypeID = pCurrentSalesOrderHouse.SalesOrderHouseID Then
-
-          mSIA = pSalesOrder.SalesItemAssemblys.ItemFromKey(mSalesItem.SalesItemAssemblyID)
+        If mSalesItem.SalesHouseID = pCurrentSalesOrderHouse.SalesOrderHouseID Then
 
           '// create a new editor based on this salesitem and add to collection
-          mProductInfo = mPIs.ItemFromProductTypeAndID(mSalesItem.ProductTypeID, mSalesItem.ProductID)
-          mSIAE = New clsSalesItemEditor(pSalesOrder, mSIA, mSalesItem, mProductInfo.Product)
+          mSIAE = New clsSalesItemEditor(pSalesOrder, mSalesItem)
           pSalesItemEditors.Add(mSIAE)
 
           mSalesItem.Description = mSIAE.Description
-
         End If
       Next
     End If
@@ -575,6 +571,7 @@ Public Class fccSalesOrderDetailHouses
       .SalesOrderID = rSalsesOrder.SalesOrderID
       If CurrentSalesItemAssembly IsNot Nothing Then
         .SalesItemAssemblyID = CurrentSalesItemAssembly.SalesItemAssemblyID
+        .SalesHouseID = pCurrentSalesOrderHouse.HouseTypeID
       End If
 
     End With
@@ -650,7 +647,7 @@ Public Class fccSalesOrderDetailHouses
 
 
     For Each msi As dmSalesOrderItem In pSalesOrder.SalesOrderItems
-      If msi.HouseTypeID = vSalesOrderHouseID Then
+      If msi.SalesHouseID = vSalesOrderHouseID Then
         mProduct = pRTISGlobal.ProductRegistry.GetProductFromTypeAndID(msi.ProductTypeID, msi.ProductID)
         mProductType = mProductTypes.ItemFromKey(msi.SalesItemType)
         If mProductType IsNot Nothing Then
@@ -670,7 +667,7 @@ Public Class fccSalesOrderDetailHouses
         If mMatchingSIs.Count > 1 Then
           mCount = 97
           For Each mSI As dmSalesOrderItem In mMatchingSIs
-            If mSI.HouseTypeID = vSalesOrderHouseID Then
+            If mSI.SalesHouseID = vSalesOrderHouseID Then
 
               mSI.ItemNumber = mSI.ItemNumber & Chr(mCount)
               mCount += 1
@@ -904,4 +901,36 @@ Public Class fccSalesOrderDetailHouses
 
 
   End Sub
+
+  Public Function GetWOsInSalesItemCount(ByVal vSalesOrderItemID As Integer) As Integer
+
+    Dim mWhere As String = ""
+    Dim mSalesOrderPhaseItem As dmSalesOrderPhaseItem
+    Dim mRetVal As Integer
+
+    Try
+
+      pDBConn.Connect()
+
+
+      mSalesOrderPhaseItem = SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.ItemFromSalesItemKey(vSalesOrderItemID)
+
+      If mSalesOrderPhaseItem IsNot Nothing Then
+        mWhere = "select count (workorderid) from  "
+        mWhere &= " WorkOrder where WorkOrderID in ("
+        mWhere &= " select WorkOrderID from WorkOrderAllocation"
+        mWhere &= String.Format(" where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from SalesOrderPhaseItem where SalesItemID={0} ))", vSalesOrderItemID)
+
+        mRetVal = pDBConn.ExecuteScalar(mWhere)
+
+      End If
+
+      pDBConn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+    Return mRetVal
+  End Function
 End Class

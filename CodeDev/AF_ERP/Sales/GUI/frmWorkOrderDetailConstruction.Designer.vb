@@ -129,6 +129,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.lblWorkOrderID = New System.Windows.Forms.Label()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -663,7 +665,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.ForeColor = System.Drawing.Color.Maroon
         Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.Options.UseFont = True
         Me.gvWorkOrderAllocationsInfos.Appearance.ViewCaption.Options.UseForeColor = True
-        Me.gvWorkOrderAllocationsInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn30, Me.GridColumn26, Me.GridColumn8, Me.GridColumn20, Me.GridColumn22, Me.GridColumn28, Me.GridColumn23})
+        Me.gvWorkOrderAllocationsInfos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn30, Me.GridColumn26, Me.GridColumn8, Me.GridColumn20, Me.GridColumn22, Me.GridColumn28, Me.GridColumn23, Me.GridColumn10, Me.GridColumn17})
         Me.gvWorkOrderAllocationsInfos.GridControl = Me.grdWorkOrderAllocationsInfos
         Me.gvWorkOrderAllocationsInfos.Name = "gvWorkOrderAllocationsInfos"
         Me.gvWorkOrderAllocationsInfos.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -683,9 +685,10 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn7.Caption = "# Orden"
         Me.GridColumn7.FieldName = "SalesOrderNo"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
-        Me.GridColumn7.Width = 62
+        Me.GridColumn7.Width = 63
         '
         'GridColumn30
         '
@@ -706,18 +709,20 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn8.Caption = "Proyecto"
         Me.GridColumn8.FieldName = "ProjectName"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 1
-        Me.GridColumn8.Width = 166
+        Me.GridColumn8.Width = 115
         '
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Cliente"
         Me.GridColumn20.FieldName = "ClientName"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 2
-        Me.GridColumn20.Width = 120
+        Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.Width = 105
         '
         'GridColumn22
         '
@@ -725,9 +730,10 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn22.ColumnEdit = Me.RepositoryItemDateEdit4
         Me.GridColumn22.FieldName = "RequiredDate"
         Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.ReadOnly = True
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 3
-        Me.GridColumn22.Width = 97
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 84
         '
         'RepositoryItemDateEdit4
         '
@@ -743,8 +749,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn28.FieldName = "QuantityRequired"
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 4
-        Me.GridColumn28.Width = 61
+        Me.GridColumn28.VisibleIndex = 6
+        Me.GridColumn28.Width = 52
         '
         'GridColumn23
         '
@@ -752,8 +758,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn23.FieldName = "QuantityDone"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 5
-        Me.GridColumn23.Width = 90
+        Me.GridColumn23.VisibleIndex = 7
+        Me.GridColumn23.Width = 87
         '
         'GridView3
         '
@@ -1276,6 +1282,26 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblWorkOrderID.Text = "ID:00000"
         Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "# Ref."
+        Me.GridColumn10.FieldName = "ItemNumber"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 69
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Etapa"
+        Me.GridColumn17.FieldName = "DescriptionItem"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 3
+        Me.GridColumn17.Width = 83
+        '
         'frmWorkOrderDetailConstruction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1447,4 +1473,6 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents cboStatus As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents dtePurchasingDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

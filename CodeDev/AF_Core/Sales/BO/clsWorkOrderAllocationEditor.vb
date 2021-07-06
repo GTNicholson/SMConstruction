@@ -13,6 +13,7 @@ Public Class clsWorkOrderAllocationEditor
   Private pRequiredDate As Date
   Private pAssemblyRef As String
   Private pSalesItemType As Int32
+  Private pDescriptionItem As String
 
   Public Sub New(ByRef rWorkOrder As dmWorkOrder, ByRef rWorkOrderAllocation As dmWorkOrderAllocation)
     pWorkOrder = rWorkOrder
@@ -24,16 +25,16 @@ Public Class clsWorkOrderAllocationEditor
     pWorkOrderAllocation = New dmWorkOrderAllocation
   End Sub
 
-  Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseInfo As clsSalesOrderPhaseInfo)
-
-    If rSalesOrderPhaseInfo IsNot Nothing Then
-      pSalesOrderNo = rSalesOrderPhaseInfo.OrderNo
-      If rSalesOrderPhaseInfo.PhaseRef.ToString <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseInfo.PhaseRef.ToString
-      pItemNumber = rSalesOrderPhaseInfo.OrderNo
-      pClientName = rSalesOrderPhaseInfo.CompanyName
-      pProjectName = rSalesOrderPhaseInfo.ProjectName
-      pRequiredDate = rSalesOrderPhaseInfo.DateRequired
-
+  'Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseInfo As clsSalesOrderPhaseInfo)
+  Public Sub PopulateSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo)
+    If rSalesOrderPhaseItemInfo IsNot Nothing Then
+      pSalesOrderNo = rSalesOrderPhaseItemInfo.OrderNo
+      If rSalesOrderPhaseItemInfo.PhaseRef.ToString <> "" Then pSalesOrderNo = pSalesOrderNo & "-" & rSalesOrderPhaseItemInfo.PhaseRef.ToString
+      pItemNumber = rSalesOrderPhaseItemInfo.ItemNumber
+      pClientName = rSalesOrderPhaseItemInfo.CompanyName
+      pProjectName = rSalesOrderPhaseItemInfo.ProjectName
+      pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
+      pDescriptionItem = rSalesOrderPhaseItemInfo.Description
 
     End If
   End Sub
@@ -131,7 +132,14 @@ Public Class clsWorkOrderAllocationEditor
 
   End Property
 
-
+  Public Property DescriptionItem As String
+    Get
+      Return pDescriptionItem
+    End Get
+    Set(value As String)
+      pDescriptionItem = value
+    End Set
+  End Property
   Public Property ClientName As String
     Get
       Return pClientName

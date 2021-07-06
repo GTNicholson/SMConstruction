@@ -22,8 +22,8 @@ Partial Class frmSalesOrderReview
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesOrderReview))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.grdCustomerPOs = New DevExpress.XtraGrid.GridControl()
@@ -32,9 +32,23 @@ Partial Class frmSalesOrderReview
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtTotalSOPIMatReqPick = New DevExpress.XtraEditors.TextEdit()
+        Me.txtWoodPick = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit10 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtWoodMatReqCost = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtStockItemPickMatCost = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtStockItemMatReqCost = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtTotalSOPIMaterialsPick = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
@@ -48,17 +62,11 @@ Partial Class frmSalesOrderReview
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSOPIMO = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtWoodMatReqPercentage = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtTotalSOPICurrentWoodCost = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtSOPIWoodMatReq = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSIMatReqPercentage = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtTotalSOPISIMatReqCost = New DevExpress.XtraEditors.TextEdit()
+        Me.txtEngineeringMaterialCost = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtSOPIStockItemCost = New DevExpress.XtraEditors.TextEdit()
+        Me.txtSOPIMaterialCost = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -120,6 +128,9 @@ Partial Class frmSalesOrderReview
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
         Me.grdPaymentAccounts = New DevExpress.XtraGrid.GridControl()
@@ -151,20 +162,24 @@ Partial Class frmSalesOrderReview
         CType(Me.gvCustomerPOs, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtWoodPick.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtWoodMatReqCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtStockItemPickMatCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalSOPIMatReqPick.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtStockItemMatReqCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalSOPIMaterialsPick.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSOPIOutsourcing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSOPIMO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtWoodMatReqPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalSOPICurrentWoodCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtSOPIWoodMatReq.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSIMatReqPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalSOPISIMatReqCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtSOPIStockItemCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtEngineeringMaterialCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSOPIMaterialCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPercentageInvoiced.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalInvoiced.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -221,7 +236,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl1.Controls.Add(Me.grdCustomerPOs)
         Me.GroupControl1.Location = New System.Drawing.Point(3, 144)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(265, 121)
+        Me.GroupControl1.Size = New System.Drawing.Size(457, 121)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Ordenes de Compras del Cliente"
         '
@@ -231,7 +246,7 @@ Partial Class frmSalesOrderReview
         Me.grdCustomerPOs.Location = New System.Drawing.Point(2, 23)
         Me.grdCustomerPOs.MainView = Me.gvCustomerPOs
         Me.grdCustomerPOs.Name = "grdCustomerPOs"
-        Me.grdCustomerPOs.Size = New System.Drawing.Size(261, 96)
+        Me.grdCustomerPOs.Size = New System.Drawing.Size(453, 96)
         Me.grdCustomerPOs.TabIndex = 1
         Me.grdCustomerPOs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPOs})
         '
@@ -303,9 +318,23 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl2.Controls.Add(Me.TextEdit6)
+        Me.GroupControl2.Controls.Add(Me.TextEdit7)
+        Me.GroupControl2.Controls.Add(Me.LabelControl23)
+        Me.GroupControl2.Controls.Add(Me.TextEdit4)
         Me.GroupControl2.Controls.Add(Me.LabelControl19)
-        Me.GroupControl2.Controls.Add(Me.txtTotalSOPIMatReqPick)
+        Me.GroupControl2.Controls.Add(Me.txtWoodPick)
+        Me.GroupControl2.Controls.Add(Me.LabelControl20)
+        Me.GroupControl2.Controls.Add(Me.TextEdit10)
+        Me.GroupControl2.Controls.Add(Me.LabelControl21)
+        Me.GroupControl2.Controls.Add(Me.txtWoodMatReqCost)
+        Me.GroupControl2.Controls.Add(Me.LabelControl22)
+        Me.GroupControl2.Controls.Add(Me.txtStockItemPickMatCost)
+        Me.GroupControl2.Controls.Add(Me.LabelControl9)
+        Me.GroupControl2.Controls.Add(Me.TextEdit6)
+        Me.GroupControl2.Controls.Add(Me.LabelControl10)
+        Me.GroupControl2.Controls.Add(Me.txtStockItemMatReqCost)
+        Me.GroupControl2.Controls.Add(Me.LabelControl11)
+        Me.GroupControl2.Controls.Add(Me.txtTotalSOPIMaterialsPick)
         Me.GroupControl2.Controls.Add(Me.LabelControl18)
         Me.GroupControl2.Controls.Add(Me.TextEdit1)
         Me.GroupControl2.Controls.Add(Me.LabelControl15)
@@ -319,17 +348,11 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.Controls.Add(Me.LabelControl13)
         Me.GroupControl2.Controls.Add(Me.txtSOPIMO)
         Me.GroupControl2.Controls.Add(Me.LabelControl14)
-        Me.GroupControl2.Controls.Add(Me.txtWoodMatReqPercentage)
-        Me.GroupControl2.Controls.Add(Me.LabelControl9)
-        Me.GroupControl2.Controls.Add(Me.txtTotalSOPICurrentWoodCost)
-        Me.GroupControl2.Controls.Add(Me.LabelControl10)
-        Me.GroupControl2.Controls.Add(Me.txtSOPIWoodMatReq)
-        Me.GroupControl2.Controls.Add(Me.LabelControl11)
         Me.GroupControl2.Controls.Add(Me.txtSIMatReqPercentage)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
-        Me.GroupControl2.Controls.Add(Me.txtTotalSOPISIMatReqCost)
+        Me.GroupControl2.Controls.Add(Me.txtEngineeringMaterialCost)
         Me.GroupControl2.Controls.Add(Me.LabelControl7)
-        Me.GroupControl2.Controls.Add(Me.txtSOPIStockItemCost)
+        Me.GroupControl2.Controls.Add(Me.txtSOPIMaterialCost)
         Me.GroupControl2.Controls.Add(Me.LabelControl6)
         Me.GroupControl2.Controls.Add(Me.TextEdit5)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
@@ -343,23 +366,49 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.Controls.Add(Me.LabelControl1)
         Me.GroupControl2.Location = New System.Drawing.Point(1, 2)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1586, 136)
+        Me.GroupControl2.Size = New System.Drawing.Size(1778, 136)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Resumen de Gastos y Progreso del Proyecto"
         '
-        'TextEdit6
+        'TextEdit7
         '
-        Me.TextEdit6.Location = New System.Drawing.Point(847, 81)
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextEdit6.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit6.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit6.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit6.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.TextEdit6.Properties.NullText = "0"
-        Me.TextEdit6.Properties.ReadOnly = True
-        Me.TextEdit6.Size = New System.Drawing.Size(72, 22)
-        Me.TextEdit6.TabIndex = 37
+        Me.TextEdit7.Location = New System.Drawing.Point(832, 29)
+        Me.TextEdit7.Name = "TextEdit7"
+        Me.TextEdit7.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextEdit7.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit7.Properties.Appearance.Options.UseTextOptions = True
+        Me.TextEdit7.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TextEdit7.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.TextEdit7.Properties.NullText = "0"
+        Me.TextEdit7.Properties.ReadOnly = True
+        Me.TextEdit7.Size = New System.Drawing.Size(72, 22)
+        Me.TextEdit7.TabIndex = 55
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl23.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl23.Appearance.Options.UseFont = True
+        Me.LabelControl23.Appearance.Options.UseForeColor = True
+        Me.LabelControl23.Location = New System.Drawing.Point(739, 33)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(67, 15)
+        Me.LabelControl23.TabIndex = 54
+        Me.LabelControl23.Text = "Madera Est."
+        '
+        'TextEdit4
+        '
+        Me.TextEdit4.Location = New System.Drawing.Point(644, 29)
+        Me.TextEdit4.Name = "TextEdit4"
+        Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextEdit4.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit4.Properties.Appearance.Options.UseTextOptions = True
+        Me.TextEdit4.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TextEdit4.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.TextEdit4.Properties.NullText = "0"
+        Me.TextEdit4.Properties.ReadOnly = True
+        Me.TextEdit4.Size = New System.Drawing.Size(72, 22)
+        Me.TextEdit4.TabIndex = 53
         '
         'LabelControl19
         '
@@ -367,25 +416,179 @@ Partial Class frmSalesOrderReview
         Me.LabelControl19.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl19.Appearance.Options.UseFont = True
         Me.LabelControl19.Appearance.Options.UseForeColor = True
-        Me.LabelControl19.Location = New System.Drawing.Point(710, 84)
+        Me.LabelControl19.Location = New System.Drawing.Point(549, 33)
         Me.LabelControl19.Name = "LabelControl19"
-        Me.LabelControl19.Size = New System.Drawing.Size(135, 15)
-        Me.LabelControl19.TabIndex = 36
-        Me.LabelControl19.Text = "Costo de Madera Actual"
+        Me.LabelControl19.Size = New System.Drawing.Size(73, 15)
+        Me.LabelControl19.TabIndex = 52
+        Me.LabelControl19.Text = "Insumos Est."
         '
-        'txtTotalSOPIMatReqPick
+        'txtWoodPick
         '
-        Me.txtTotalSOPIMatReqPick.Location = New System.Drawing.Point(622, 81)
-        Me.txtTotalSOPIMatReqPick.Name = "txtTotalSOPIMatReqPick"
-        Me.txtTotalSOPIMatReqPick.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtTotalSOPIMatReqPick.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalSOPIMatReqPick.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtTotalSOPIMatReqPick.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtTotalSOPIMatReqPick.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtTotalSOPIMatReqPick.Properties.NullText = "0"
-        Me.txtTotalSOPIMatReqPick.Properties.ReadOnly = True
-        Me.txtTotalSOPIMatReqPick.Size = New System.Drawing.Size(72, 22)
-        Me.txtTotalSOPIMatReqPick.TabIndex = 35
+        Me.txtWoodPick.Location = New System.Drawing.Point(833, 79)
+        Me.txtWoodPick.Name = "txtWoodPick"
+        Me.txtWoodPick.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtWoodPick.Properties.Appearance.Options.UseFont = True
+        Me.txtWoodPick.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtWoodPick.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtWoodPick.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtWoodPick.Properties.NullText = "0"
+        Me.txtWoodPick.Properties.ReadOnly = True
+        Me.txtWoodPick.Size = New System.Drawing.Size(72, 22)
+        Me.txtWoodPick.TabIndex = 51
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl20.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl20.Appearance.Options.UseFont = True
+        Me.LabelControl20.Appearance.Options.UseForeColor = True
+        Me.LabelControl20.Location = New System.Drawing.Point(739, 83)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(71, 15)
+        Me.LabelControl20.TabIndex = 50
+        Me.LabelControl20.Text = "Madera Real"
+        '
+        'TextEdit10
+        '
+        Me.TextEdit10.Location = New System.Drawing.Point(833, 104)
+        Me.TextEdit10.Name = "TextEdit10"
+        Me.TextEdit10.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextEdit10.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit10.Properties.Mask.EditMask = "p"
+        Me.TextEdit10.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TextEdit10.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TextEdit10.Properties.ReadOnly = True
+        Me.TextEdit10.Size = New System.Drawing.Size(72, 22)
+        Me.TextEdit10.TabIndex = 49
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl21.Appearance.Options.UseFont = True
+        Me.LabelControl21.Appearance.Options.UseForeColor = True
+        Me.LabelControl21.Location = New System.Drawing.Point(739, 108)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(62, 15)
+        Me.LabelControl21.TabIndex = 48
+        Me.LabelControl21.Text = "Porcentaje"
+        '
+        'txtWoodMatReqCost
+        '
+        Me.txtWoodMatReqCost.Location = New System.Drawing.Point(833, 54)
+        Me.txtWoodMatReqCost.Name = "txtWoodMatReqCost"
+        Me.txtWoodMatReqCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtWoodMatReqCost.Properties.Appearance.Options.UseFont = True
+        Me.txtWoodMatReqCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtWoodMatReqCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtWoodMatReqCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtWoodMatReqCost.Properties.NullText = "0"
+        Me.txtWoodMatReqCost.Properties.ReadOnly = True
+        Me.txtWoodMatReqCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtWoodMatReqCost.TabIndex = 47
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl22.Appearance.Options.UseFont = True
+        Me.LabelControl22.Appearance.Options.UseForeColor = True
+        Me.LabelControl22.Location = New System.Drawing.Point(739, 58)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(84, 15)
+        Me.LabelControl22.TabIndex = 46
+        Me.LabelControl22.Text = "Madera Espec."
+        '
+        'txtStockItemPickMatCost
+        '
+        Me.txtStockItemPickMatCost.Location = New System.Drawing.Point(644, 79)
+        Me.txtStockItemPickMatCost.Name = "txtStockItemPickMatCost"
+        Me.txtStockItemPickMatCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtStockItemPickMatCost.Properties.Appearance.Options.UseFont = True
+        Me.txtStockItemPickMatCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtStockItemPickMatCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtStockItemPickMatCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtStockItemPickMatCost.Properties.NullText = "0"
+        Me.txtStockItemPickMatCost.Properties.ReadOnly = True
+        Me.txtStockItemPickMatCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtStockItemPickMatCost.TabIndex = 43
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl9.Appearance.Options.UseFont = True
+        Me.LabelControl9.Appearance.Options.UseForeColor = True
+        Me.LabelControl9.Location = New System.Drawing.Point(549, 83)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(88, 15)
+        Me.LabelControl9.TabIndex = 42
+        Me.LabelControl9.Text = "Insumos Actual"
+        '
+        'TextEdit6
+        '
+        Me.TextEdit6.Location = New System.Drawing.Point(644, 104)
+        Me.TextEdit6.Name = "TextEdit6"
+        Me.TextEdit6.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextEdit6.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit6.Properties.Mask.EditMask = "p"
+        Me.TextEdit6.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TextEdit6.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TextEdit6.Properties.ReadOnly = True
+        Me.TextEdit6.Size = New System.Drawing.Size(72, 22)
+        Me.TextEdit6.TabIndex = 41
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl10.Appearance.Options.UseFont = True
+        Me.LabelControl10.Appearance.Options.UseForeColor = True
+        Me.LabelControl10.Location = New System.Drawing.Point(549, 108)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(62, 15)
+        Me.LabelControl10.TabIndex = 40
+        Me.LabelControl10.Text = "Porcentaje"
+        '
+        'txtStockItemMatReqCost
+        '
+        Me.txtStockItemMatReqCost.Location = New System.Drawing.Point(644, 54)
+        Me.txtStockItemMatReqCost.Name = "txtStockItemMatReqCost"
+        Me.txtStockItemMatReqCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtStockItemMatReqCost.Properties.Appearance.Options.UseFont = True
+        Me.txtStockItemMatReqCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtStockItemMatReqCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtStockItemMatReqCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtStockItemMatReqCost.Properties.NullText = "0"
+        Me.txtStockItemMatReqCost.Properties.ReadOnly = True
+        Me.txtStockItemMatReqCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtStockItemMatReqCost.TabIndex = 39
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl11.Appearance.Options.UseFont = True
+        Me.LabelControl11.Appearance.Options.UseForeColor = True
+        Me.LabelControl11.Location = New System.Drawing.Point(549, 58)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(90, 15)
+        Me.LabelControl11.TabIndex = 38
+        Me.LabelControl11.Text = "Insumos Espec."
+        '
+        'txtTotalSOPIMaterialsPick
+        '
+        Me.txtTotalSOPIMaterialsPick.Location = New System.Drawing.Point(1086, 79)
+        Me.txtTotalSOPIMaterialsPick.Name = "txtTotalSOPIMaterialsPick"
+        Me.txtTotalSOPIMaterialsPick.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtTotalSOPIMaterialsPick.Properties.Appearance.Options.UseFont = True
+        Me.txtTotalSOPIMaterialsPick.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtTotalSOPIMaterialsPick.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtTotalSOPIMaterialsPick.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtTotalSOPIMaterialsPick.Properties.NullText = "0"
+        Me.txtTotalSOPIMaterialsPick.Properties.ReadOnly = True
+        Me.txtTotalSOPIMaterialsPick.Size = New System.Drawing.Size(72, 22)
+        Me.txtTotalSOPIMaterialsPick.TabIndex = 35
         '
         'LabelControl18
         '
@@ -393,15 +596,15 @@ Partial Class frmSalesOrderReview
         Me.LabelControl18.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl18.Appearance.Options.UseFont = True
         Me.LabelControl18.Appearance.Options.UseForeColor = True
-        Me.LabelControl18.Location = New System.Drawing.Point(475, 84)
+        Me.LabelControl18.Location = New System.Drawing.Point(921, 83)
         Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(141, 15)
+        Me.LabelControl18.Size = New System.Drawing.Size(130, 15)
         Me.LabelControl18.TabIndex = 34
-        Me.LabelControl18.Text = "Costo de Insumos Actual"
+        Me.LabelControl18.Text = "Total Materiales Actual"
         '
         'TextEdit1
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(1269, 81)
+        Me.TextEdit1.Location = New System.Drawing.Point(1541, 79)
         Me.TextEdit1.Name = "TextEdit1"
         Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextEdit1.Properties.Appearance.Options.UseFont = True
@@ -419,7 +622,7 @@ Partial Class frmSalesOrderReview
         Me.LabelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl15.Appearance.Options.UseFont = True
         Me.LabelControl15.Appearance.Options.UseForeColor = True
-        Me.LabelControl15.Location = New System.Drawing.Point(1138, 84)
+        Me.LabelControl15.Location = New System.Drawing.Point(1410, 83)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl15.TabIndex = 32
@@ -427,7 +630,7 @@ Partial Class frmSalesOrderReview
         '
         'TextEdit3
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(1269, 55)
+        Me.TextEdit3.Location = New System.Drawing.Point(1541, 54)
         Me.TextEdit3.Name = "TextEdit3"
         Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextEdit3.Properties.Appearance.Options.UseFont = True
@@ -445,15 +648,15 @@ Partial Class frmSalesOrderReview
         Me.LabelControl16.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl16.Appearance.Options.UseFont = True
         Me.LabelControl16.Appearance.Options.UseForeColor = True
-        Me.LabelControl16.Location = New System.Drawing.Point(1138, 58)
+        Me.LabelControl16.Location = New System.Drawing.Point(1410, 58)
         Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(124, 15)
+        Me.LabelControl16.Size = New System.Drawing.Size(79, 15)
         Me.LabelControl16.TabIndex = 30
-        Me.LabelControl16.Text = "Costo de Subcon Real"
+        Me.LabelControl16.Text = "SubCont. Real"
         '
         'txtSOPIOutsourcing
         '
-        Me.txtSOPIOutsourcing.Location = New System.Drawing.Point(1269, 29)
+        Me.txtSOPIOutsourcing.Location = New System.Drawing.Point(1541, 29)
         Me.txtSOPIOutsourcing.Name = "txtSOPIOutsourcing"
         Me.txtSOPIOutsourcing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSOPIOutsourcing.Properties.Appearance.Options.UseFont = True
@@ -471,15 +674,15 @@ Partial Class frmSalesOrderReview
         Me.LabelControl17.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl17.Appearance.Options.UseFont = True
         Me.LabelControl17.Appearance.Options.UseForeColor = True
-        Me.LabelControl17.Location = New System.Drawing.Point(1138, 32)
+        Me.LabelControl17.Location = New System.Drawing.Point(1410, 33)
         Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(96, 15)
+        Me.LabelControl17.Size = New System.Drawing.Size(75, 15)
         Me.LabelControl17.TabIndex = 28
-        Me.LabelControl17.Text = "Costo de Subcon"
+        Me.LabelControl17.Text = "SubCont. Est."
         '
         'TextEdit12
         '
-        Me.TextEdit12.Location = New System.Drawing.Point(1043, 81)
+        Me.TextEdit12.Location = New System.Drawing.Point(1317, 79)
         Me.TextEdit12.Name = "TextEdit12"
         Me.TextEdit12.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextEdit12.Properties.Appearance.Options.UseFont = True
@@ -497,7 +700,7 @@ Partial Class frmSalesOrderReview
         Me.LabelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl12.Appearance.Options.UseFont = True
         Me.LabelControl12.Appearance.Options.UseForeColor = True
-        Me.LabelControl12.Location = New System.Drawing.Point(937, 84)
+        Me.LabelControl12.Location = New System.Drawing.Point(1211, 83)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl12.TabIndex = 26
@@ -505,7 +708,7 @@ Partial Class frmSalesOrderReview
         '
         'TextEdit13
         '
-        Me.TextEdit13.Location = New System.Drawing.Point(1043, 55)
+        Me.TextEdit13.Location = New System.Drawing.Point(1317, 54)
         Me.TextEdit13.Name = "TextEdit13"
         Me.TextEdit13.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextEdit13.Properties.Appearance.Options.UseFont = True
@@ -523,15 +726,15 @@ Partial Class frmSalesOrderReview
         Me.LabelControl13.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl13.Appearance.Options.UseFont = True
         Me.LabelControl13.Appearance.Options.UseForeColor = True
-        Me.LabelControl13.Location = New System.Drawing.Point(937, 58)
+        Me.LabelControl13.Location = New System.Drawing.Point(1211, 58)
         Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(100, 15)
+        Me.LabelControl13.Size = New System.Drawing.Size(53, 15)
         Me.LabelControl13.TabIndex = 24
-        Me.LabelControl13.Text = "Costo de MO Real"
+        Me.LabelControl13.Text = "M.O. Real"
         '
         'txtSOPIMO
         '
-        Me.txtSOPIMO.Location = New System.Drawing.Point(1043, 29)
+        Me.txtSOPIMO.Location = New System.Drawing.Point(1317, 29)
         Me.txtSOPIMO.Name = "txtSOPIMO"
         Me.txtSOPIMO.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSOPIMO.Properties.Appearance.Options.UseFont = True
@@ -549,93 +752,15 @@ Partial Class frmSalesOrderReview
         Me.LabelControl14.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl14.Appearance.Options.UseFont = True
         Me.LabelControl14.Appearance.Options.UseForeColor = True
-        Me.LabelControl14.Location = New System.Drawing.Point(937, 32)
+        Me.LabelControl14.Location = New System.Drawing.Point(1211, 33)
         Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(78, 15)
+        Me.LabelControl14.Size = New System.Drawing.Size(49, 15)
         Me.LabelControl14.TabIndex = 22
-        Me.LabelControl14.Text = "Costo de M.O."
-        '
-        'txtWoodMatReqPercentage
-        '
-        Me.txtWoodMatReqPercentage.Location = New System.Drawing.Point(847, 107)
-        Me.txtWoodMatReqPercentage.Name = "txtWoodMatReqPercentage"
-        Me.txtWoodMatReqPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtWoodMatReqPercentage.Properties.Appearance.Options.UseFont = True
-        Me.txtWoodMatReqPercentage.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtWoodMatReqPercentage.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtWoodMatReqPercentage.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtWoodMatReqPercentage.Properties.NullText = "0"
-        Me.txtWoodMatReqPercentage.Properties.ReadOnly = True
-        Me.txtWoodMatReqPercentage.Size = New System.Drawing.Size(72, 22)
-        Me.txtWoodMatReqPercentage.TabIndex = 21
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl9.Appearance.Options.UseFont = True
-        Me.LabelControl9.Appearance.Options.UseForeColor = True
-        Me.LabelControl9.Location = New System.Drawing.Point(710, 110)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(62, 15)
-        Me.LabelControl9.TabIndex = 20
-        Me.LabelControl9.Text = "Porcentaje"
-        '
-        'txtTotalSOPICurrentWoodCost
-        '
-        Me.txtTotalSOPICurrentWoodCost.Location = New System.Drawing.Point(847, 55)
-        Me.txtTotalSOPICurrentWoodCost.Name = "txtTotalSOPICurrentWoodCost"
-        Me.txtTotalSOPICurrentWoodCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtTotalSOPICurrentWoodCost.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalSOPICurrentWoodCost.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtTotalSOPICurrentWoodCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtTotalSOPICurrentWoodCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtTotalSOPICurrentWoodCost.Properties.NullText = "0"
-        Me.txtTotalSOPICurrentWoodCost.Properties.ReadOnly = True
-        Me.txtTotalSOPICurrentWoodCost.Size = New System.Drawing.Size(72, 22)
-        Me.txtTotalSOPICurrentWoodCost.TabIndex = 19
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Appearance.Options.UseForeColor = True
-        Me.LabelControl10.Location = New System.Drawing.Point(710, 58)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(130, 15)
-        Me.LabelControl10.TabIndex = 18
-        Me.LabelControl10.Text = "Costo de Madera Espc."
-        '
-        'txtSOPIWoodMatReq
-        '
-        Me.txtSOPIWoodMatReq.Location = New System.Drawing.Point(847, 29)
-        Me.txtSOPIWoodMatReq.Name = "txtSOPIWoodMatReq"
-        Me.txtSOPIWoodMatReq.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtSOPIWoodMatReq.Properties.Appearance.Options.UseFont = True
-        Me.txtSOPIWoodMatReq.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtSOPIWoodMatReq.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtSOPIWoodMatReq.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtSOPIWoodMatReq.Properties.NullText = "0"
-        Me.txtSOPIWoodMatReq.Properties.ReadOnly = True
-        Me.txtSOPIWoodMatReq.Size = New System.Drawing.Size(72, 22)
-        Me.txtSOPIWoodMatReq.TabIndex = 17
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LabelControl11.Appearance.Options.UseFont = True
-        Me.LabelControl11.Appearance.Options.UseForeColor = True
-        Me.LabelControl11.Location = New System.Drawing.Point(710, 32)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(120, 15)
-        Me.LabelControl11.TabIndex = 16
-        Me.LabelControl11.Text = "Costo de Madera Est."
+        Me.LabelControl14.Text = "M.O. Est."
         '
         'txtSIMatReqPercentage
         '
-        Me.txtSIMatReqPercentage.Location = New System.Drawing.Point(622, 107)
+        Me.txtSIMatReqPercentage.Location = New System.Drawing.Point(1086, 104)
         Me.txtSIMatReqPercentage.Name = "txtSIMatReqPercentage"
         Me.txtSIMatReqPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSIMatReqPercentage.Properties.Appearance.Options.UseFont = True
@@ -652,25 +777,25 @@ Partial Class frmSalesOrderReview
         Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl8.Appearance.Options.UseFont = True
         Me.LabelControl8.Appearance.Options.UseForeColor = True
-        Me.LabelControl8.Location = New System.Drawing.Point(475, 110)
+        Me.LabelControl8.Location = New System.Drawing.Point(921, 108)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl8.TabIndex = 14
         Me.LabelControl8.Text = "Porcentaje"
         '
-        'txtTotalSOPISIMatReqCost
+        'txtEngineeringMaterialCost
         '
-        Me.txtTotalSOPISIMatReqCost.Location = New System.Drawing.Point(622, 55)
-        Me.txtTotalSOPISIMatReqCost.Name = "txtTotalSOPISIMatReqCost"
-        Me.txtTotalSOPISIMatReqCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtTotalSOPISIMatReqCost.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalSOPISIMatReqCost.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtTotalSOPISIMatReqCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtTotalSOPISIMatReqCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtTotalSOPISIMatReqCost.Properties.NullText = "0"
-        Me.txtTotalSOPISIMatReqCost.Properties.ReadOnly = True
-        Me.txtTotalSOPISIMatReqCost.Size = New System.Drawing.Size(72, 22)
-        Me.txtTotalSOPISIMatReqCost.TabIndex = 13
+        Me.txtEngineeringMaterialCost.Location = New System.Drawing.Point(1086, 54)
+        Me.txtEngineeringMaterialCost.Name = "txtEngineeringMaterialCost"
+        Me.txtEngineeringMaterialCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtEngineeringMaterialCost.Properties.Appearance.Options.UseFont = True
+        Me.txtEngineeringMaterialCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtEngineeringMaterialCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtEngineeringMaterialCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtEngineeringMaterialCost.Properties.NullText = "0"
+        Me.txtEngineeringMaterialCost.Properties.ReadOnly = True
+        Me.txtEngineeringMaterialCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtEngineeringMaterialCost.TabIndex = 13
         '
         'LabelControl7
         '
@@ -678,25 +803,25 @@ Partial Class frmSalesOrderReview
         Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl7.Appearance.Options.UseFont = True
         Me.LabelControl7.Appearance.Options.UseForeColor = True
-        Me.LabelControl7.Location = New System.Drawing.Point(475, 58)
+        Me.LabelControl7.Location = New System.Drawing.Point(921, 58)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(136, 15)
+        Me.LabelControl7.Size = New System.Drawing.Size(132, 15)
         Me.LabelControl7.TabIndex = 12
-        Me.LabelControl7.Text = "Costo de Insumos Espc."
+        Me.LabelControl7.Text = "Total Materiales Espec."
         '
-        'txtSOPIStockItemCost
+        'txtSOPIMaterialCost
         '
-        Me.txtSOPIStockItemCost.Location = New System.Drawing.Point(622, 29)
-        Me.txtSOPIStockItemCost.Name = "txtSOPIStockItemCost"
-        Me.txtSOPIStockItemCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtSOPIStockItemCost.Properties.Appearance.Options.UseFont = True
-        Me.txtSOPIStockItemCost.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtSOPIStockItemCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtSOPIStockItemCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtSOPIStockItemCost.Properties.NullText = "0"
-        Me.txtSOPIStockItemCost.Properties.ReadOnly = True
-        Me.txtSOPIStockItemCost.Size = New System.Drawing.Size(72, 22)
-        Me.txtSOPIStockItemCost.TabIndex = 11
+        Me.txtSOPIMaterialCost.Location = New System.Drawing.Point(1086, 29)
+        Me.txtSOPIMaterialCost.Name = "txtSOPIMaterialCost"
+        Me.txtSOPIMaterialCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtSOPIMaterialCost.Properties.Appearance.Options.UseFont = True
+        Me.txtSOPIMaterialCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtSOPIMaterialCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtSOPIMaterialCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtSOPIMaterialCost.Properties.NullText = "0"
+        Me.txtSOPIMaterialCost.Properties.ReadOnly = True
+        Me.txtSOPIMaterialCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtSOPIMaterialCost.TabIndex = 11
         '
         'LabelControl6
         '
@@ -704,15 +829,15 @@ Partial Class frmSalesOrderReview
         Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl6.Appearance.Options.UseFont = True
         Me.LabelControl6.Appearance.Options.UseForeColor = True
-        Me.LabelControl6.Location = New System.Drawing.Point(475, 32)
+        Me.LabelControl6.Location = New System.Drawing.Point(921, 33)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(126, 15)
+        Me.LabelControl6.Size = New System.Drawing.Size(115, 15)
         Me.LabelControl6.TabIndex = 10
-        Me.LabelControl6.Text = "Costo de Insumos Est."
+        Me.LabelControl6.Text = "Total Materiales Est."
         '
         'TextEdit5
         '
-        Me.TextEdit5.Location = New System.Drawing.Point(388, 105)
+        Me.TextEdit5.Location = New System.Drawing.Point(387, 69)
         Me.TextEdit5.Name = "TextEdit5"
         Me.TextEdit5.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextEdit5.Properties.Appearance.Options.UseFont = True
@@ -730,7 +855,7 @@ Partial Class frmSalesOrderReview
         Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl5.Appearance.Options.UseFont = True
         Me.LabelControl5.Appearance.Options.UseForeColor = True
-        Me.LabelControl5.Location = New System.Drawing.Point(231, 106)
+        Me.LabelControl5.Location = New System.Drawing.Point(232, 73)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl5.TabIndex = 8
@@ -763,7 +888,7 @@ Partial Class frmSalesOrderReview
         '
         'txtTotalInvoiced
         '
-        Me.txtTotalInvoiced.Location = New System.Drawing.Point(123, 72)
+        Me.txtTotalInvoiced.Location = New System.Drawing.Point(123, 69)
         Me.txtTotalInvoiced.Name = "txtTotalInvoiced"
         Me.txtTotalInvoiced.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTotalInvoiced.Properties.Appearance.Options.UseFont = True
@@ -789,7 +914,7 @@ Partial Class frmSalesOrderReview
         '
         'TextEdit2
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(388, 72)
+        Me.TextEdit2.Location = New System.Drawing.Point(387, 29)
         Me.TextEdit2.Name = "TextEdit2"
         Me.TextEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.TextEdit2.Properties.Appearance.Options.UseFont = True
@@ -807,7 +932,7 @@ Partial Class frmSalesOrderReview
         Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Appearance.Options.UseForeColor = True
-        Me.LabelControl2.Location = New System.Drawing.Point(231, 73)
+        Me.LabelControl2.Location = New System.Drawing.Point(232, 33)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(134, 15)
         Me.LabelControl2.TabIndex = 2
@@ -815,7 +940,7 @@ Partial Class frmSalesOrderReview
         '
         'txtTotalValueSalesOrder
         '
-        Me.txtTotalValueSalesOrder.Location = New System.Drawing.Point(123, 37)
+        Me.txtTotalValueSalesOrder.Location = New System.Drawing.Point(123, 29)
         Me.txtTotalValueSalesOrder.Name = "txtTotalValueSalesOrder"
         Me.txtTotalValueSalesOrder.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTotalValueSalesOrder.Properties.Appearance.Options.UseFont = True
@@ -833,7 +958,7 @@ Partial Class frmSalesOrderReview
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl1.Appearance.Options.UseFont = True
         Me.LabelControl1.Appearance.Options.UseForeColor = True
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 38)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 33)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(61, 15)
         Me.LabelControl1.TabIndex = 0
@@ -850,7 +975,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl3.Controls.Add(Me.grdInvoices)
         Me.GroupControl3.Location = New System.Drawing.Point(5, 393)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(265, 146)
+        Me.GroupControl3.Size = New System.Drawing.Size(457, 146)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "Facturas"
         '
@@ -860,7 +985,7 @@ Partial Class frmSalesOrderReview
         Me.grdInvoices.Location = New System.Drawing.Point(2, 23)
         Me.grdInvoices.MainView = Me.gvInvoices
         Me.grdInvoices.Name = "grdInvoices"
-        Me.grdInvoices.Size = New System.Drawing.Size(261, 121)
+        Me.grdInvoices.Size = New System.Drawing.Size(453, 121)
         Me.grdInvoices.TabIndex = 1
         Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices})
         '
@@ -949,22 +1074,22 @@ Partial Class frmSalesOrderReview
         Me.grpPOItemInfos.AppearanceCaption.Options.UseFont = True
         Me.grpPOItemInfos.AppearanceCaption.Options.UseForeColor = True
         Me.grpPOItemInfos.Controls.Add(Me.grdPOItemAllocations)
-        Me.grpPOItemInfos.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar a Excel", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        Me.grpPOItemInfos.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar a Excel", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
         Me.grpPOItemInfos.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpPOItemInfos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpPOItemInfos.Location = New System.Drawing.Point(0, 0)
         Me.grpPOItemInfos.Name = "grpPOItemInfos"
-        Me.grpPOItemInfos.Size = New System.Drawing.Size(596, 336)
+        Me.grpPOItemInfos.Size = New System.Drawing.Size(786, 335)
         Me.grpPOItemInfos.TabIndex = 3
         '
         'grdPOItemAllocations
         '
         Me.grdPOItemAllocations.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdPOItemAllocations.Location = New System.Drawing.Point(2, 26)
+        Me.grdPOItemAllocations.Location = New System.Drawing.Point(2, 24)
         Me.grdPOItemAllocations.MainView = Me.gvPOItemAllocations
         Me.grdPOItemAllocations.Name = "grdPOItemAllocations"
         Me.grdPOItemAllocations.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
-        Me.grdPOItemAllocations.Size = New System.Drawing.Size(592, 308)
+        Me.grdPOItemAllocations.Size = New System.Drawing.Size(782, 309)
         Me.grdPOItemAllocations.TabIndex = 1
         Me.grdPOItemAllocations.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPOItemAllocations})
         '
@@ -1128,7 +1253,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl5.AppearanceCaption.Options.UseFont = True
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdWoodUsage)
-        Me.GroupControl5.Location = New System.Drawing.Point(613, 543)
+        Me.GroupControl5.Location = New System.Drawing.Point(805, 543)
         Me.GroupControl5.Name = "GroupControl5"
         Me.GroupControl5.Size = New System.Drawing.Size(556, 363)
         Me.GroupControl5.TabIndex = 4
@@ -1221,7 +1346,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl6.AppearanceCaption.Options.UseFont = True
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl6.Controls.Add(Me.grdWorkOrderInfos)
-        Me.GroupControl6.Location = New System.Drawing.Point(1175, 543)
+        Me.GroupControl6.Location = New System.Drawing.Point(1367, 543)
         Me.GroupControl6.Name = "GroupControl6"
         Me.GroupControl6.Size = New System.Drawing.Size(412, 363)
         Me.GroupControl6.TabIndex = 5
@@ -1338,7 +1463,7 @@ Partial Class frmSalesOrderReview
         Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gvSalesOrderPhaseItemInfo.ColumnPanelRowHeight = 40
-        Me.gvSalesOrderPhaseItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn13, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
+        Me.gvSalesOrderPhaseItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn13, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52})
         Me.gvSalesOrderPhaseItemInfo.GridControl = Me.grdSalesOrderPhaseItemInfo
         Me.gvSalesOrderPhaseItemInfo.GroupRowHeight = 40
         Me.gvSalesOrderPhaseItemInfo.Name = "gvSalesOrderPhaseItemInfo"
@@ -1357,7 +1482,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
-        Me.GridColumn16.Width = 59
+        Me.GridColumn16.Width = 84
         '
         'GridColumn17
         '
@@ -1367,7 +1492,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 1
-        Me.GridColumn17.Width = 239
+        Me.GridColumn17.Width = 341
         '
         'GridColumn18
         '
@@ -1379,7 +1504,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
-        Me.GridColumn18.Width = 98
+        Me.GridColumn18.Width = 140
         '
         'GridColumn19
         '
@@ -1395,8 +1520,6 @@ Partial Class frmSalesOrderReview
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "StockItemCost", "{0:$#,##0.00;;#}")})
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
         Me.GridColumn20.Width = 68
         '
         'GridColumn21
@@ -1408,8 +1531,6 @@ Partial Class frmSalesOrderReview
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.ReadOnly = True
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SOPIStockItemMatReqDollarValue", "{0:$#,##0.00;;#}")})
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 4
         Me.GridColumn21.Width = 77
         '
         'GridColumn13
@@ -1421,8 +1542,6 @@ Partial Class frmSalesOrderReview
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SOPIPickDollarValue", "{0:$#,##0.00;;#}")})
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 5
         Me.GridColumn13.Width = 73
         '
         'GridColumn22
@@ -1434,8 +1553,6 @@ Partial Class frmSalesOrderReview
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.ReadOnly = True
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WoodCost", "{0:$#,##0.00;;#}")})
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
         Me.GridColumn22.Width = 78
         '
         'GridColumn23
@@ -1447,8 +1564,6 @@ Partial Class frmSalesOrderReview
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.ReadOnly = True
         Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SpecifiedWoodCost", "{0:$#,##0.00;;#}")})
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 7
         Me.GridColumn23.Width = 86
         '
         'GridColumn24
@@ -1460,8 +1575,8 @@ Partial Class frmSalesOrderReview
         Me.GridColumn24.OptionsColumn.ReadOnly = True
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:$#,##0.00;;#}")})
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
-        Me.GridColumn24.Width = 105
+        Me.GridColumn24.VisibleIndex = 6
+        Me.GridColumn24.Width = 148
         '
         'GridColumn25
         '
@@ -1472,8 +1587,8 @@ Partial Class frmSalesOrderReview
         Me.GridColumn25.OptionsColumn.ReadOnly = True
         Me.GridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:$#,##0.00;;#}")})
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 9
-        Me.GridColumn25.Width = 102
+        Me.GridColumn25.VisibleIndex = 7
+        Me.GridColumn25.Width = 144
         '
         'GridColumn26
         '
@@ -1484,8 +1599,8 @@ Partial Class frmSalesOrderReview
         Me.GridColumn26.OptionsColumn.ReadOnly = True
         Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:$#,##0.00;;#}")})
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 10
-        Me.GridColumn26.Width = 97
+        Me.GridColumn26.VisibleIndex = 8
+        Me.GridColumn26.Width = 137
         '
         'GridColumn27
         '
@@ -1494,8 +1609,47 @@ Partial Class frmSalesOrderReview
         Me.GridColumn27.OptionsColumn.ReadOnly = True
         Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:$#,##0.00;;#}")})
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 11
-        Me.GridColumn27.Width = 210
+        Me.GridColumn27.VisibleIndex = 9
+        Me.GridColumn27.Width = 302
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Costo Mat.  Est."
+        Me.GridColumn50.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.GridColumn50.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn50.FieldName = "MaterialCost"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.OptionsColumn.ReadOnly = True
+        Me.GridColumn50.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MaterialCost", "{0:$#,##0.00;;#}")})
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 3
+        Me.GridColumn50.Width = 107
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "Costo Mat. Espec."
+        Me.GridColumn51.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.GridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn51.FieldName = "MaterialEngineeringCost"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.OptionsColumn.ReadOnly = True
+        Me.GridColumn51.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MaterialEngineeringCost", "{0:$#,##0.00;;#}")})
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 4
+        Me.GridColumn51.Width = 107
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Costo Mat. Actual."
+        Me.GridColumn52.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.GridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn52.FieldName = "MaterialPickedCost"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.OptionsColumn.ReadOnly = True
+        Me.GridColumn52.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MaterialPickedCost", "{0:$#,##0.00;;#}")})
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 5
+        Me.GridColumn52.Width = 112
         '
         'GroupControl7
         '
@@ -1505,7 +1659,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl7.AppearanceCaption.Options.UseFont = True
         Me.GroupControl7.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl7.Controls.Add(Me.grdSalesOrderPhaseItemInfo)
-        Me.GroupControl7.Location = New System.Drawing.Point(274, 144)
+        Me.GroupControl7.Location = New System.Drawing.Point(466, 144)
         Me.GroupControl7.Name = "GroupControl7"
         Me.GroupControl7.Size = New System.Drawing.Size(1313, 395)
         Me.GroupControl7.TabIndex = 6
@@ -1522,7 +1676,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl8.Controls.Add(Me.grdPaymentAccounts)
         Me.GroupControl8.Location = New System.Drawing.Point(5, 269)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(265, 120)
+        Me.GroupControl8.Size = New System.Drawing.Size(457, 120)
         Me.GroupControl8.TabIndex = 7
         Me.GroupControl8.Text = "Adelantos de Clientes"
         '
@@ -1532,7 +1686,7 @@ Partial Class frmSalesOrderReview
         Me.grdPaymentAccounts.Location = New System.Drawing.Point(2, 23)
         Me.grdPaymentAccounts.MainView = Me.gvPaymentAccounts
         Me.grdPaymentAccounts.Name = "grdPaymentAccounts"
-        Me.grdPaymentAccounts.Size = New System.Drawing.Size(261, 95)
+        Me.grdPaymentAccounts.Size = New System.Drawing.Size(453, 95)
         Me.grdPaymentAccounts.TabIndex = 1
         Me.grdPaymentAccounts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPaymentAccounts})
         '
@@ -1612,7 +1766,7 @@ Partial Class frmSalesOrderReview
         Me.xtcPurchaseOrders.Location = New System.Drawing.Point(5, 545)
         Me.xtcPurchaseOrders.Name = "xtcPurchaseOrders"
         Me.xtcPurchaseOrders.SelectedTabPage = Me.XtraTabPage1
-        Me.xtcPurchaseOrders.Size = New System.Drawing.Size(602, 366)
+        Me.xtcPurchaseOrders.Size = New System.Drawing.Size(794, 366)
         Me.xtcPurchaseOrders.TabIndex = 2
         Me.xtcPurchaseOrders.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -1626,14 +1780,14 @@ Partial Class frmSalesOrderReview
         Me.XtraTabPage1.Appearance.PageClient.Options.UseBackColor = True
         Me.XtraTabPage1.Controls.Add(Me.grpPOItemInfos)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(596, 336)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(786, 335)
         Me.XtraTabPage1.Text = "Compra de Insumos"
         '
         'XtraTabPage2
         '
         Me.XtraTabPage2.Controls.Add(Me.grpOtherCaterogoriesPurchaseOrder)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(596, 336)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(788, 336)
         Me.XtraTabPage2.Text = "Otras Compras"
         '
         'grpOtherCaterogoriesPurchaseOrder
@@ -1643,12 +1797,12 @@ Partial Class frmSalesOrderReview
         Me.grpOtherCaterogoriesPurchaseOrder.AppearanceCaption.Options.UseFont = True
         Me.grpOtherCaterogoriesPurchaseOrder.AppearanceCaption.Options.UseForeColor = True
         Me.grpOtherCaterogoriesPurchaseOrder.Controls.Add(Me.grdOtherCategoriesPOItemAllocations)
-        Me.grpOtherCaterogoriesPurchaseOrder.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar a Excel", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        Me.grpOtherCaterogoriesPurchaseOrder.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar a Excel", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
         Me.grpOtherCaterogoriesPurchaseOrder.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpOtherCaterogoriesPurchaseOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpOtherCaterogoriesPurchaseOrder.Location = New System.Drawing.Point(0, 0)
         Me.grpOtherCaterogoriesPurchaseOrder.Name = "grpOtherCaterogoriesPurchaseOrder"
-        Me.grpOtherCaterogoriesPurchaseOrder.Size = New System.Drawing.Size(596, 336)
+        Me.grpOtherCaterogoriesPurchaseOrder.Size = New System.Drawing.Size(788, 336)
         Me.grpOtherCaterogoriesPurchaseOrder.TabIndex = 4
         '
         'grdOtherCategoriesPOItemAllocations
@@ -1658,7 +1812,7 @@ Partial Class frmSalesOrderReview
         Me.grdOtherCategoriesPOItemAllocations.MainView = Me.gvOtherCategoriesPOItemAllocations
         Me.grdOtherCategoriesPOItemAllocations.Name = "grdOtherCategoriesPOItemAllocations"
         Me.grdOtherCategoriesPOItemAllocations.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit3})
-        Me.grdOtherCategoriesPOItemAllocations.Size = New System.Drawing.Size(592, 308)
+        Me.grdOtherCategoriesPOItemAllocations.Size = New System.Drawing.Size(784, 308)
         Me.grdOtherCategoriesPOItemAllocations.TabIndex = 1
         Me.grdOtherCategoriesPOItemAllocations.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOtherCategoriesPOItemAllocations})
         '
@@ -1816,7 +1970,7 @@ Partial Class frmSalesOrderReview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1599, 910)
+        Me.ClientSize = New System.Drawing.Size(1791, 910)
         Me.Controls.Add(Me.xtcPurchaseOrders)
         Me.Controls.Add(Me.GroupControl8)
         Me.Controls.Add(Me.GroupControl7)
@@ -1837,20 +1991,24 @@ Partial Class frmSalesOrderReview
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtWoodPick.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtWoodMatReqCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtStockItemPickMatCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalSOPIMatReqPick.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtStockItemMatReqCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalSOPIMaterialsPick.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSOPIOutsourcing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSOPIMO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtWoodMatReqPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalSOPICurrentWoodCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtSOPIWoodMatReq.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSIMatReqPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalSOPISIMatReqCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtSOPIStockItemCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtEngineeringMaterialCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSOPIMaterialCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPercentageInvoiced.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotalInvoiced.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1958,20 +2116,14 @@ Partial Class frmSalesOrderReview
   Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents txtSOPIMO As DevExpress.XtraEditors.TextEdit
   Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtWoodMatReqPercentage As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtTotalSOPICurrentWoodCost As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtSOPIWoodMatReq As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtSIMatReqPercentage As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtTotalSOPISIMatReqCost As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents txtSOPIStockItemCost As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
-  Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtSIMatReqPercentage As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtEngineeringMaterialCost As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtSOPIMaterialCost As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1995,10 +2147,8 @@ Partial Class frmSalesOrderReview
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtSOPIOutsourcing As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtTotalSOPIMatReqPick As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalSOPIMaterialsPick As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit6 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents xtcPurchaseOrders As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
@@ -2018,4 +2168,23 @@ Partial Class frmSalesOrderReview
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtWoodPick As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit10 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtWoodMatReqCost As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtStockItemPickMatCost As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtStockItemMatReqCost As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TextEdit7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
 End Class

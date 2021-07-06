@@ -38,7 +38,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pVatRateCode As Integer
   Private pVatValue As Decimal
   Private pLineValue As Decimal
-
+  Private pMaterialCost As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -92,7 +92,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .WoodSpecieID = WoodSpecieID
       .QtyInvoiced = QtyInvoiced
       .SalesItemAssemblyID = SalesItemAssemblyID
-      .HouseTypeID = HouseTypeID
+      .SalesHouseID = SalesHouseID
       .ProductID = ProductID
       .SalesItemType = SalesItemType
       .SalesSubItemType = SalesSubItemType
@@ -108,6 +108,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .VatRateCode = VatRateCode
       .VatValue = VatValue
       .LineValue = LineValue
+      .MaterialCost = MaterialCost
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -337,7 +338,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
     End Set
   End Property
 
-  Public Property HouseTypeID As Integer
+  Public Property SalesHouseID As Integer
     Get
       Return pHouseTypeID
     End Get
@@ -422,6 +423,17 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Set(value As Integer)
       If pVatRateCode <> value Then IsDirty = True
       pVatRateCode = value
+    End Set
+  End Property
+
+
+  Public Property MaterialCost As Decimal
+    Get
+      Return pMaterialCost
+    End Get
+    Set(value As Decimal)
+      If pMaterialCost <> value Then IsDirty = True
+      pMaterialCost = value
     End Set
   End Property
 
@@ -584,6 +596,43 @@ Public Class colSalesOrderItems : Inherits colBase(Of dmSalesOrderItem)
     For Each mItem As dmSalesOrderItem In Me.Items
 
       mRetVal += mItem.SubContractCost * mItem.Quantity
+
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalValueByHouseTypeID(ByVal vHouseTypeID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem In Me.Items
+
+      If mItem.SalesHouseID = vHouseTypeID Then
+        mRetVal += mItem.Quantity * mItem.UnitPrice
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalMaterialsMatReqBudget() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.MaterialCost * mItem.Quantity
+
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalMaterialReqiredCost() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem As dmSalesOrderItem In Me.Items
+
+      mRetVal += mItem.MaterialCost * mItem.Quantity
 
     Next
 

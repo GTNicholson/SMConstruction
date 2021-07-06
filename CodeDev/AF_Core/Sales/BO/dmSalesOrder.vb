@@ -116,7 +116,7 @@ Public Class dmSalesOrder : Inherits dmBase
       If mAnyDirty = False Then mAnyDirty = pSalesOrderItems.IsDirty
       If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
 
-      If mAnyDirty = False Then mAnyDirty = pSalesOrderItems.IsDirty
+
 
       If mAnyDirty = False Then mAnyDirty = pInvoices.IsDirty
 

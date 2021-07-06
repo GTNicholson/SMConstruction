@@ -9,7 +9,7 @@ Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.Utils.Menu
 
 Public Class frmPurchaseManagement
-  Private pController As fccPurchaseManagement
+  Private pFormController As fccPurchaseManagement
   Private Shared sActiveForms As Collection
   Private Shared sFormIndex As Integer
   Private pMySharedIndex As Integer
@@ -42,7 +42,7 @@ Public Class frmPurchaseManagement
 
     If mfrm Is Nothing Then
       mfrm = New frmPurchaseManagement
-      mfrm.pController = New fccPurchaseManagement(vDBConn)
+      mfrm.pFormController = New fccPurchaseManagement(vDBConn)
       mfrm.MdiParent = vMDIForm
       mfrm.Show()
     Else
@@ -76,8 +76,8 @@ Public Class frmPurchaseManagement
 
     Create_GridMenu()
 
-    pController.LoadObject()
-    grdSOPMatReqStatuses.DataSource = pController.WorkOrderInfos
+    pFormController.LoadObject()
+    grdSOPMatReqStatuses.DataSource = pFormController.WorkOrderInfos
 
 
     Me.XtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
@@ -145,9 +145,9 @@ Public Class frmPurchaseManagement
 
   Private Sub barbtnRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barbtnRefresh.ItemClick
     Try
-      pController.LoadObject()
+      pFormController.LoadObject()
 
-      grdSOPMatReqStatuses.DataSource = pController.WorkOrderInfos
+      grdSOPMatReqStatuses.DataSource = pFormController.WorkOrderInfos
       gvSOPMatReqStatuses.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -270,6 +270,8 @@ Public Class frmPurchaseManagement
   End Sub
 
   Private Sub gvProductionBatch_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvSOPMatReqStatuses.RowCellStyle
+    Dim mPOCountRealsed As Integer
+
     Try
       Select Case e.Column.Name
         Case gcVidrioEspejos.Name, gcDoorBlanks.Name, gcMatVarios.Name, gcMatEmpa.Name, gcAbrasivos.Name,
@@ -280,6 +282,7 @@ Public Class frmPurchaseManagement
           Dim mStatusID As Integer
           If mRow IsNot Nothing Then
 
+            'mPOCountRealsed = pFormController.PurchaseOrderInfos.GetLivePOCountByCategory(e.Column.Tag, mRow.sale)
             mStatus = mRow.WorkOrder.WorkOrderMatReqCategoryStatuss.ItemFromCategory(e.Column.Tag)
 
             If mStatus Is Nothing Then
@@ -337,7 +340,7 @@ Public Class frmPurchaseManagement
 
           mSalesOrderPhaseMatReqCategoryStatus = mWorkOrderInfo.WorkOrder.WorkOrderMatReqCategoryStatuss.ItemFromCategory(mCategory)
           If mSalesOrderPhaseMatReqCategoryStatus Is Nothing Then
-            mSalesOrderPhaseMatReqCategoryStatus = pController.GetSOPMatReqCategoryStatus(mworkOrderID, mCategory)
+            mSalesOrderPhaseMatReqCategoryStatus = pFormController.GetSOPMatReqCategoryStatus(mworkOrderID, mCategory)
             If mSalesOrderPhaseMatReqCategoryStatus Is Nothing Then
               mSalesOrderPhaseMatReqCategoryStatus = New dmWorkOrderMatReqCategoryStatus
             End If
@@ -347,12 +350,12 @@ Public Class frmPurchaseManagement
             mWorkOrderInfo.WorkOrder.WorkOrderMatReqCategoryStatuss.Add(mSalesOrderPhaseMatReqCategoryStatus)
           End If
 
-          If mWorkOrderInfo.PlannedDeliverDate = Date.MinValue Then
-            frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadWriteForm)
+          If mWorkOrderInfo.FinishDate = Date.MinValue Then
+            frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pFormController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadWriteForm)
 
           Else
 
-            frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadOnlyForm)
+            frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pFormController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadOnlyForm)
 
           End If
 
@@ -550,7 +553,7 @@ Public Class frmPurchaseManagement
 
       mSalesOrderPhaseMatReqCategoryStatus = mWorkOrderInfo.WorkOrder.WorkOrderMatReqCategoryStatuss.ItemFromCategory(mCategory)
       If mSalesOrderPhaseMatReqCategoryStatus Is Nothing Then
-        mSalesOrderPhaseMatReqCategoryStatus = pController.GetSOPMatReqCategoryStatus(mworkOrderID, mCategory)
+        mSalesOrderPhaseMatReqCategoryStatus = pFormController.GetSOPMatReqCategoryStatus(mworkOrderID, mCategory)
         If mSalesOrderPhaseMatReqCategoryStatus Is Nothing Then
           mSalesOrderPhaseMatReqCategoryStatus = New dmWorkOrderMatReqCategoryStatus
         End If
@@ -563,7 +566,7 @@ Public Class frmPurchaseManagement
       End If
 
 
-      mdso = New dsoPurchasing(pController.DBConn)
+      mdso = New dsoPurchasing(pFormController.DBConn)
       mdso.SaveWorkOrderPhaseMatReqCategoryStatus(mSalesOrderPhaseMatReqCategoryStatus)
 
       gvSOPMatReqStatuses.RefreshRow(gvSOPMatReqStatuses.FocusedRowHandle)
@@ -578,11 +581,11 @@ Public Class frmPurchaseManagement
 
     Try
       mItem = CType(sender, BarToggleSwitchItem)
-      pController.IncludeRecentlyCompleted = mItem.Checked
+      pFormController.IncludeRecentlyCompleted = mItem.Checked
 
-      pController.LoadObject()
+      pFormController.LoadObject()
 
-      grdSOPMatReqStatuses.DataSource = pController.WorkOrderInfos
+      grdSOPMatReqStatuses.DataSource = pFormController.WorkOrderInfos
       gvSOPMatReqStatuses.RefreshData()
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

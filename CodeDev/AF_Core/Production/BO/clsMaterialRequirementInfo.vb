@@ -15,6 +15,8 @@ Public Class clsMaterialRequirementInfo
   Private pSalesOrderID As Integer
   Private pSalesOrderPhaseItemID As Integer
   Private pWorkOrderAllocationID As Decimal
+  Private pItemNumber As String
+  Private pSOIDescription As String
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -71,6 +73,22 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
+  Public Property PurchasingDate As Date
+    Get
+      Return pWorkOrder.PurchasingDate
+    End Get
+    Set(ByVal value As Date)
+      pWorkOrder.PurchasingDate = value
+    End Set
+  End Property
+  Public Property DateCreated As Date
+    Get
+      Return pWorkOrder.DateCreated
+    End Get
+    Set(ByVal value As Date)
+      pWorkOrder.DateCreated = value
+    End Set
+  End Property
   Public Property WorkOrderNo As String
     Get
       Return pWorkOrder.WorkOrderNo
@@ -126,7 +144,7 @@ Public Class clsMaterialRequirementInfo
 
   Public Property ProjectName As String
     Get
-      Return pSalesOrder.ProjectName
+      Return pSalesOrder.ProjectName & "/ " & CompanyName
     End Get
     Set(ByVal value As String)
       pSalesOrder.ProjectName = value
@@ -645,6 +663,24 @@ Public Class clsMaterialRequirementInfo
     End Get
     Set(value As Integer)
       pSalesOrderPhaseID = value
+    End Set
+  End Property
+
+  Public Property ItemNumber As String
+    Get
+      Return pItemNumber
+    End Get
+    Set(value As String)
+      pItemNumber = value
+    End Set
+  End Property
+
+  Public Property SOIDescription As String
+    Get
+      Return pSOIDescription
+    End Get
+    Set(value As String)
+      pSOIDescription = value
     End Set
   End Property
 End Class

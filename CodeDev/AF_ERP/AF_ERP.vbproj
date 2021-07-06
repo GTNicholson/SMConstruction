@@ -458,6 +458,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
+    <Compile Include="Production\GUI\fccWoodWorkOrderMilestoneStatus.vb" />
     <Compile Include="Production\GUI\fccPaySlipDetails.vb" />
     <Compile Include="Production\GUI\fccPickMaterials.vb" />
     <Compile Include="Production\GUI\fccPickWoodMaterial.vb" />
@@ -488,6 +489,12 @@
       <DependentUpon>frmTimeSheetEntry.vb</DependentUpon>
     </Compile>
     <Compile Include="Production\GUI\frmTimeSheetEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmWoodWorkOrderMilestoneStatus.Designer.vb">
+      <DependentUpon>frmWoodWorkOrderMilestoneStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmWoodWorkOrderMilestoneStatus.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Production\GUI\frmWorkOrderMilestoneStatus.Designer.vb">
@@ -850,8 +857,15 @@
     <Compile Include="StockAdmin\Reports\repoListToStockTake.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WoodProcessing\fccWoodMaterialRequirement.vb" />
     <Compile Include="WoodProcessing\fccWoodReception.vb" />
     <Compile Include="WoodProcessing\fccWorkOrderWoodProcess.vb" />
+    <Compile Include="WoodProcessing\frmWoodMaterialRequirement.Designer.vb">
+      <DependentUpon>frmWoodMaterialRequirement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWoodMaterialRequirement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WoodProcessing\frmWoodReception.Designer.vb">
       <DependentUpon>frmWoodReception.vb</DependentUpon>
     </Compile>
@@ -988,6 +1002,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmTimeSheetEntry.resx">
       <DependentUpon>frmTimeSheetEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmWoodWorkOrderMilestoneStatus.resx">
+      <DependentUpon>frmWoodWorkOrderMilestoneStatus.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmWorkOrderMilestoneStatus.resx">
       <DependentUpon>frmWorkOrderMilestoneStatus.vb</DependentUpon>

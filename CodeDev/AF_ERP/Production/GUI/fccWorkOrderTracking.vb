@@ -36,11 +36,12 @@ Public Class fccWorkOrderTracking
     Dim mdso As dsoProduction
     Dim mwhere As String
     Try
+      mwhere = String.Format("ProductTypeID = {0} and OrderTypeID in ({1},{2}) and OrderStatusENUM not in  ({3},{4}) and Status <> {5}", CInt(eProductType.StructureAF),
+                             CInt(eOrderType.Sales), CInt(eOrderType.Interno), CInt(eSalesOrderstatus.Cancelada), CInt(eSalesOrderstatus.Completed), CInt(eWorkOrderStatus.Cancelled))
       If pHideDespatched Then
-        mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-        mwhere += " and (WorkOrderID in (select WorkOrderID from vwWorkOrderInfo) or WorkOrderId in (select WorkOrderID from vwWorkOrderInternalInfo))"
+        mwhere &= ""
       Else
-        mwhere = ""
+        mwhere &= ""
       End If
 
       mdso = New dsoProduction(pDBConn)
@@ -51,4 +52,8 @@ Public Class fccWorkOrderTracking
     End Try
 
   End Sub
+
+  Public Function GetCurrentInsumosDisplayText(ByVal vWorkOrderID As Integer) As String
+
+  End Function
 End Class

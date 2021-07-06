@@ -1,4 +1,6 @@
-﻿Public Class fccWorkOrderMilestoneStatus
+﻿Imports RTIS.CommonVB
+
+Public Class fccWorkOrderMilestoneStatus
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pWorkOrderMilestoneStatus As dmWorkOrderMilestoneStatus
 
@@ -18,5 +20,6 @@
     mdso = New dsoProduction(pDBConn)
     mdso.SaveWorkOrderTracking(pWorkOrderMilestoneStatus)
   End Sub
+
 
 End Class

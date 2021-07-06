@@ -90,7 +90,8 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           pMaterialRequirment.SalesOrderPhaseID = DBReadInt32(rDataReader, "SalesOrderPhaseID")
           pMaterialRequirment.SalesOrderPhaseItemID = DBReadInt32(rDataReader, "SalesOrderPhaseItemID")
           pMaterialRequirment.SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
-
+          pMaterialRequirment.ItemNumber = DBReadString(rDataReader, "ItemNumber")
+          pMaterialRequirment.SOIDescription = DBReadString(rDataReader, "SOIDescription")
 
           With pMaterialRequirment.MaterialRequirement
 
@@ -127,6 +128,9 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .Description = DBReadString(rDataReader, "WODESCRIPTION")
             .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
             .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
+            .DateCreated = DBReadDate(rDataReader, "DateCreated")
+            .PurchasingDate = DBReadDate(rDataReader, "PurchasingDate")
+
           End With
 
           With pMaterialRequirment.Customer

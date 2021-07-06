@@ -10,13 +10,16 @@ Public Class dmSalesOrderHouse : Inherits dmBase
   Private pQuantity As Int32
   Private pPricePerUnit As Decimal
   Private pTotalPrice As Decimal
-
+  Private pFilename As String
+  Private pOutputDocuments As colOutputDocuments
+  Private pShippingCost As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
 
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
+    pOutputDocuments = New colOutputDocuments
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -26,12 +29,15 @@ Public Class dmSalesOrderHouse : Inherits dmBase
 
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
+    pOutputDocuments = Nothing
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
     Get
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
+
+      If mAnyDirty = False Then mAnyDirty = pOutputDocuments.IsDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -51,6 +57,9 @@ Public Class dmSalesOrderHouse : Inherits dmBase
       .Quantity = Quantity
       .PricePerUnit = PricePerUnit
       .TotalPrice = TotalPrice
+      .Filename = Filename
+      .ShippingCost = ShippingCost
+      .OutputDocuments = OutputDocuments.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -140,7 +149,34 @@ Public Class dmSalesOrderHouse : Inherits dmBase
     End Set
   End Property
 
+  Public Property Filename As String
+    Get
+      Return pFilename
+    End Get
+    Set(value As String)
+      If pFilename <> value Then IsDirty = True
+      pFilename = value
+    End Set
+  End Property
 
+  Public Property OutputDocuments As colOutputDocuments
+    Get
+      Return pOutputDocuments
+    End Get
+    Set(value As colOutputDocuments)
+      pOutputDocuments = value
+    End Set
+  End Property
+
+  Public Property ShippingCost As Decimal
+    Get
+      Return pShippingCost
+    End Get
+    Set(value As Decimal)
+      If pShippingCost <> value Then IsDirty = True
+      pShippingCost = value
+    End Set
+  End Property
 End Class
 
 

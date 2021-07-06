@@ -400,23 +400,17 @@ Public Enum eCurrency
 End Enum
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
-  <Description("Dimensionado")> Dimensionado = 1
-  <Description("Maquinado")> Machining = 2
-  <Description("Ensamble")> Assembly = 3
-  <Description("Lija")> Sanding = 4
-  <Description("Acabado")> Painting = 5
-  <Description("Metal")> MetalWork = 6
-  <Description("Tapizado")> Upholstery = 7
-  <Description("SubContratación")> SubContract = 8
-  <Description("Empaque")> Packaging = 9
-  <Description("Despacho")> Dispatching = 10
-  <Description("Instalación")> Installing = 11
-  <Description("Ingeniería")> Engineering = 12
-  <Description("Selección")> Selection = 13
-  <Description("Afilado")> Afilado = 14
-  <Description("Patio")> Patio = 15
-  <Description("Mantenimiento")> Mantenimiento = 16
-
+  <Description("Madera")> Wood = 1
+  <Description("Insumos")> Insumos = 2
+  <Description("Ingeniería")> Engineering = 3
+  <Description("Compras")> Purchasing = 4
+  <Description("Selección")> Selection = 5
+  <Description("Dimensionado")> Dimensionado = 6
+  <Description("Carpintería")> Carpentry = 7
+  <Description("Lija")> Sanding = 8
+  <Description("Acabado")> Finishing = 9
+  <Description("Metales")> MetalWork = 10
+  <Description("Acabado Metal")> MetalFinising = 11
 End Enum
 
 Public Enum eProductType

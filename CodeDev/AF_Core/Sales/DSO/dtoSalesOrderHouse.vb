@@ -61,6 +61,10 @@ Public Class dtoSalesOrderHouse : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PricePerUnit", .PricePerUnit)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TotalPrice", .TotalPrice)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Filename", StringToDBValue(.Filename))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ShippingCost", .ShippingCost)
+
+
     End With
 
   End Sub
@@ -79,6 +83,8 @@ Public Class dtoSalesOrderHouse : Inherits dtoBase
         .Quantity = DBReadInt32(rDataReader, "Quantity")
         .PricePerUnit = DBReadDecimal(rDataReader, "PricePerUnit")
         .TotalPrice = DBReadDecimal(rDataReader, "TotalPrice")
+        .Filename = DBReadString(rDataReader, "Filename")
+        .ShippingCost = DBReadDecimal(rDataReader, "ShippingCost")
         pSalesOrderHouse.IsDirty = False
       End With
       mOK = True

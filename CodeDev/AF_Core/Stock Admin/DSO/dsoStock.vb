@@ -149,6 +149,21 @@ Public Class dsoStock
     Return mRetVal
   End Function
 
+  Public Function GetSumFromStockInventory(ByVal vStockItemID As Integer) As Decimal
+    Dim mSQL As String
+    Dim mRetVal As Decimal = 0
+    Try
+      pDBConn.Connect()
+      mSQL = String.Format("select sum(isnull(FromStockQty,0)) FromStockQty, StockItemID from vwMaterialRequirementPicking where StockItemID = {0} group by StockItemID ", vStockItemID)
+      mRetVal = pDBConn.ExecuteScalar(mSQL)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
   Public Function GetPhaseMatReqOrderedQtyConnected(ByVal vSalesOrderPhaseID As Integer, ByVal vStockItemID As Integer) As Integer
     Dim mRetVal As Decimal = 0
     Dim mHT As New Hashtable

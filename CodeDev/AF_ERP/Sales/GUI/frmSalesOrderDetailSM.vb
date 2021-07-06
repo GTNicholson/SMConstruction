@@ -659,7 +659,7 @@ Public Class frmSalesOrderDetailSM
       Case eDocumentType.SalesOrder
 
         If pFormController.SalesOrder IsNot Nothing Then
-          mRetVal = repSalesOrder_Spanish.GenerateReport(pFormController.SalesOrder, True, 1)
+          'mRetVal = repSalesOrder_Spanish.GenerateReport(pFormController.SalesOrder, New colSalesItemEditors, True, 1, 0)
         End If
 
     End Select

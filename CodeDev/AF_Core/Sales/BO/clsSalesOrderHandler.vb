@@ -47,13 +47,14 @@ Public Class clsSalesOrderHandler
     Return mNewInvoiceSOI
   End Function
 
-  Public Function AddSalesOrderItem(ByVal vProductType As eProductType) As dmSalesOrderItem
+  Public Function AddSalesOrderItem(ByVal vHouseTypeID As Integer) As dmSalesOrderItem
     Dim mNewSOI As dmSalesOrderItem = Nothing
     Try
       mNewSOI = New dmSalesOrderItem
       mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
       mNewSOI.UoM = eUoM.GLB
       mNewSOI.Quantity = 1
+      mNewSOI.SalesHouseID = vHouseTypeID
       ''mNewSOI.ItemNumber = pSalesOrder.SalesOrderItems.GetNextItemNumber
 
       'AddWorkOrder(mNewSOI, vProductType)
@@ -112,8 +113,8 @@ Public Class clsSalesOrderHandler
     Try
 
       mNewSOI = New dmSalesOrderItem
-        mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
-        mNewSOI.UoM = eUoM.PT
+      mNewSOI.SalesOrderID = pSalesOrder.SalesOrderID
+      mNewSOI.UoM = eUoM.PT
       mNewSOI.Quantity = rWoodPallet.GetTotalTrozas
       mNewSOI.ProductID = rWoodPallet.WoodPalletID
       mNewSOI.ProductTypeID = eProductType.WoodSalesOrder
@@ -139,17 +140,34 @@ Public Class clsSalesOrderHandler
     End Try
   End Sub
 
-  Public Function GetTotalValue() As Decimal
-    Dim mRetVal As Decimal
+  Public Function GetTotalValueBySalesHouseID(ByVal vSalesHouseID As Integer) As Decimal
+    Dim mRetVal As Decimal = 0
     For Each mSalesOrderOrderItem In pSalesOrder.SalesOrderItems
-      mRetVal = mRetVal + (mSalesOrderOrderItem.Quantity * mSalesOrderOrderItem.UnitPrice)
-
+      If mSalesOrderOrderItem.SalesHouseID = vSalesHouseID Then
+        mRetVal = mRetVal + (mSalesOrderOrderItem.Quantity * mSalesOrderOrderItem.UnitPrice)
+      End If
     Next
     Return mRetVal
   End Function
 
-  Public Function GetCostShipping() As Decimal
-    Return pSalesOrder.ShippingCost
+  Public Function GetCostShippingBySalesHouseID(ByVal vSalesHouseID As Integer) As Decimal
+    Dim mRetVal As Decimal
+    Dim mHouseTypeFound As dmSalesOrderHouse
+
+    If pSalesOrder.SalesOrderHouses IsNot Nothing Then
+      If pSalesOrder.SalesOrderHouses.Count > 0 Then
+        mHouseTypeFound = pSalesOrder.SalesOrderHouses.ItemFromKey(vSalesHouseID)
+
+        If mHouseTypeFound IsNot Nothing Then
+          mRetVal = mHouseTypeFound.ShippingCost
+
+        Else
+          mRetVal = 0
+        End If
+      End If
+    End If
+
+      Return mRetVal
   End Function
 
 
@@ -214,7 +232,7 @@ Public Class clsSalesOrderHandler
 
       mSalesItem = New dmSalesOrderItem
       mSalesItem.Description = mHouseTypeSalesItem.Description
-      mSalesItem.HouseTypeID = rTargetSalesOrderHouse.SalesOrderHouseID
+      mSalesItem.SalesHouseID = rTargetSalesOrderHouse.SalesOrderHouseID
       mSalesItem.ProductID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductID
       mSalesItem.ProductTypeID = mHouseTypeSalesItem.HouseTypeSalesItem.ProductTypeID
       mSalesItem.Quantity = mHouseTypeSalesItem.Quantity
@@ -236,7 +254,7 @@ Public Class clsSalesOrderHandler
 
     For Each mSalesOrderItem As dmSalesOrderItem In pSalesOrder.SalesOrderItems
 
-      If mSalesOrderItem.HouseTypeID = rTargetSalesOrderHouse.SalesOrderHouseID Then
+      If mSalesOrderItem.SalesHouseID = rTargetSalesOrderHouse.SalesOrderHouseID Then
         mSOPI = New dmSalesOrderPhaseItem
 
         mSOPI.Qty = mSalesOrderItem.Quantity
@@ -262,7 +280,7 @@ Public Class clsSalesOrderHandler
 
     For Each mSI As dmSalesOrderItem In pSalesOrder.SalesOrderItems
 
-      If mSI.HouseTypeID = vSalesOrderHouseID Then
+      If mSI.SalesHouseID = vSalesOrderHouseID Then
         If mSI.SalesItemType = vPCT And mSI.SalesSubItemType = vPCTST Then
 
           mRetVal.Add(mSI)

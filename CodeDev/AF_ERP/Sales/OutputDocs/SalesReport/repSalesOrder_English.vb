@@ -2,12 +2,12 @@
 
 Public Class repSalesOrder_English
 
-  Private i As Integer = 0
   Private pSalesOrder As dmSalesOrder
   Private pImageList As List(Of Image)
   Private pTotalAmount As Decimal
   Private pHandler As clsSalesOrderHandler
   Private pIsVat As Boolean
+  Private pSalesHouseID As Integer
 
   Public Sub New()
 
@@ -20,13 +20,13 @@ Public Class repSalesOrder_English
 
   End Sub
 
-  Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByVal vIsVAT As Boolean, ByVal vLanguageOption As Integer) As repSalesOrder_English
+  Public Shared Function GenerateReport(ByRef rSalesOrder As dmSalesOrder, ByRef rSalesItemEditors As colSalesItemEditors, ByVal vIsVAT As Boolean, ByVal vLanguageOption As Integer, ByVal vSalesHouseID As Integer) As repSalesOrder_English
     Dim mRep As New repSalesOrder_English
     mRep.pSalesOrder = rSalesOrder
     mRep.pHandler = New clsSalesOrderHandler(rSalesOrder)
     mRep.pIsVat = vIsVAT
-    mRep.DataSource = mRep.pSalesOrder.SalesOrderItems
-
+    mRep.DataSource = rSalesItemEditors
+    mRep.pSalesHouseID = vSalesHouseID
     mRep.CreateDocument()
 
     ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
@@ -56,7 +56,7 @@ Public Class repSalesOrder_English
 
     '// Head informatio from pWorkOrder
     'XrSalesNo.DataBindings.Add("Text", pSalesOrder, "SalesOrderID")
-    xrlSalesOrderNo.DataBindings.Add("Text", pSalesOrder, "OrderNo")
+    xrlSalesOrderNo.DataBindings.Add("Text", pSalesOrder.SalesOrderHouses.ItemFromKey(pSalesHouseID), "Ref")
 
 
     xrtcWODescription.DataBindings.Add("Text", DataSource, "Description")
@@ -86,7 +86,7 @@ Public Class repSalesOrder_English
     xtcSalesPerson.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pSalesOrder.ContractManagerID)
     xtcDeliveryToCompany.Text = pSalesOrder.Customer.CompanyName
     'xtcProjectRef.Text = pSalesOrder.ProjectName
-    xtcNumQuotation.Text = pSalesOrder.OrderNo
+    xtcNumQuotation.Text = pSalesOrder.SalesOrderHouses(pSalesHouseID).Ref
     xtcCustAccountRef.Text = pSalesOrder.Customer.AccountRef
     xtcClientName.Text = pSalesOrder.Customer.CompanyName
     xtcCustomerName.Text = pSalesOrder.Customer.CompanyName
@@ -120,7 +120,7 @@ Public Class repSalesOrder_English
     'xtcDeliveryToCompany.Text = pSalesOrder.Customer.CompanyName
     xtcDeliveryAddress.Text = pSalesOrder.DelAddress1 & vbCrLf
     xtcDeliveryCity.Text = pSalesOrder.DelAddress2
-    xrlSalesOrderNo.Text = pSalesOrder.OrderNo
+    xrlSalesOrderNo.Text = pSalesOrder.SalesOrderHouses.ItemFromKey(pSalesHouseID).Ref
 
 
     SetupValues()
@@ -130,18 +130,18 @@ Public Class repSalesOrder_English
   Private Sub SetupValues()
     Dim pVAT As Decimal = 0
 
-    xrtSubTotalAmount.Text = pHandler.GetTotalValue.ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-    xtcShipping.Text = (pHandler.GetCostShipping).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtSubTotalAmount.Text = pHandler.GetTotalValueBySalesHouseID(pSalesHouseID).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xtcShipping.Text = (pHandler.GetCostShippingBySalesHouseID(pSalesHouseID)).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
 
 
     If pIsVat Then
-      pVAT = pHandler.GetTotalValue * clsConstants.VATRATE
+      pVAT = pHandler.GetTotalValueBySalesHouseID(pSalesHouseID) * clsConstants.VATRATE
     End If
 
     xtcVAT.Text = (pVAT).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-    xtcNetValueWithVAT.Text = (pHandler.GetTotalValue + pVAT).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xtcNetValueWithVAT.Text = (pHandler.GetTotalValueBySalesHouseID(pSalesHouseID) + pVAT).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
 
-    xrtGrandTotal.Text = (pHandler.GetTotalValue + pVAT + pHandler.GetCostShipping).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    xrtGrandTotal.Text = (pHandler.GetTotalValueBySalesHouseID(pSalesHouseID) + pVAT + pHandler.GetCostShippingBySalesHouseID(pSalesHouseID)).ToString("$#,##0.00;;#") '"C", Globalization.CultureInfo.CreateSpecificCulture("en-US"))
 
   End Sub
 

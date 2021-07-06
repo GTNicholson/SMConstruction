@@ -65,7 +65,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodSpecieID", .WoodSpecieID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "QtyInvoiced", .QtyInvoiced)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesItemAssemblyID", .SalesItemAssemblyID)
-      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .HouseTypeID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HouseTypeID", .SalesHouseID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductTypeID", .ProductTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProductID", .ProductID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesItemType", .SalesItemType)
@@ -80,6 +80,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "TransportationCost", .TransportationCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ManpowerCost", .ManpowerCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SubContractCost", .SubContractCost)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialCost", .MaterialCost)
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VatRateCode", .VatRateCode)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VatValue", .VatValue)
@@ -107,7 +108,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .WoodSpecieID = DBReadInt32(rDataReader, "WoodSpecieID")
         .QtyInvoiced = DBReadInt32(rDataReader, "QtyInvoiced")
         .SalesItemAssemblyID = DBReadInt32(rDataReader, "SalesItemAssemblyID")
-        .HouseTypeID = DBReadInt32(rDataReader, "HouseTypeID")
+        .SalesHouseID = DBReadInt32(rDataReader, "HouseTypeID")
         .ProductTypeID = DBReadByte(rDataReader, "ProductTypeID")
         .ProductID = DBReadInt32(rDataReader, "ProductID")
         .SalesSubItemType = DBReadInt32(rDataReader, "SalesSubItemType")
@@ -124,7 +125,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .VatValue = DBReadDecimal(rDataReader, "VatValue")
         .VatRateCode = DBReadInt32(rDataReader, "VatRateCode")
         .LineValue = DBReadDecimal(rDataReader, "LineValue")
-
+        .MaterialCost = DBReadDecimal(rDataReader, "MaterialCost")
         pSalesOrderItem.IsDirty = False
       End With
       mOK = True

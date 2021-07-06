@@ -19,7 +19,8 @@
   Private pSOPIPickDollarValue As Decimal
   Private pSpecifiedWoodCost As Decimal
   Private pWoodCost As Decimal
-
+  Private pMaterialCost As Decimal
+  Private pPickedWoodCost As Decimal
   Public Sub New()
     pSalesOrderPhaseItem = New dmSalesOrderPhaseItem
     pSalesOrder = New dmSalesOrder
@@ -252,6 +253,14 @@
     End Set
   End Property
 
+  Public Property MaterialCost As Decimal
+    Get
+      Return pMaterialCost
+    End Get
+    Set(value As Decimal)
+      pMaterialCost = value
+    End Set
+  End Property
   Public Property SOPItemMatReqCost As Decimal
     Get
 
@@ -270,6 +279,8 @@
       pSOPItemPickMatReqCost = value
     End Set
   End Property
+
+
 
   Public Property UnitPrice As Decimal
     Get
@@ -341,6 +352,45 @@
       pSpecifiedWoodCost = value
     End Set
   End Property
+
+  Public Property PickedWoodCost As Decimal
+    Get
+      Return pPickedWoodCost
+    End Get
+    Set(value As Decimal)
+      pPickedWoodCost = value
+    End Set
+  End Property
+
+  Public ReadOnly Property MaterialEngineeringCost As Decimal
+    Get
+
+      Dim mRetVal As Decimal
+
+
+      mRetVal += SOPIStockItemMatReqDollarValue + SpecifiedWoodCost
+
+
+
+      Return mRetVal
+    End Get
+
+  End Property
+  Public ReadOnly Property MaterialPickedCost As Decimal
+    Get
+
+      Dim mRetVal As Decimal
+
+
+      mRetVal += SOPIPickDollarValue + PickedWoodCost
+
+
+
+      Return mRetVal
+    End Get
+
+  End Property
+
 End Class
 
 
@@ -353,6 +403,8 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
   Public Sub New(ByVal vList As List(Of clsSalesOrderPhaseItemInfo))
     MyBase.New(vList)
   End Sub
+
+
 
   Public Function IndexFromSOPhaseID(ByVal vSalesOrderPhaseID As Integer) As Integer
     Dim mRetVal As Integer = -1
@@ -400,20 +452,37 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
     Return mRetVal
   End Function
 
-  Public Function GetTotalWoodMatReqReal() As Decimal
+  Public Function GetTotalWoodMatReq() As Decimal
     Dim mRetVal As Decimal
 
     For Each mItem In Me
 
       If mItem IsNot Nothing Then
 
-        mRetVal += mItem.SOPIStockItemMatReqDollarValue
+        mRetVal += mItem.SpecifiedWoodCost
 
       End If
     Next
 
     Return mRetVal
   End Function
+
+  Public Function GetTotalWoodMatReqPicked() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.PickedWoodCost
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+
 
   Public Function GetTotalStockItemMatReqPickReal() As Decimal
     Dim mRetVal As Decimal
@@ -428,5 +497,52 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
     Next
 
     Return mRetVal
+  End Function
+
+  Public Function GetTotalMaterialMatReqReal() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIStockItemMatReqDollarValue + mItem.SOPIPickDollarValue
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalMaterialEngineeringCost() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIStockItemMatReqDollarValue + mItem.SpecifiedWoodCost
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalMaterialPickReal() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIPickDollarValue + mItem.PickedWoodCost
+
+      End If
+    Next
+
+    Return mRetVal
+
+
   End Function
 End Class

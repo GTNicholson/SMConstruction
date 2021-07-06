@@ -22,6 +22,8 @@ Public Class MenuFactory
 
 
     mLastGroup = mMenuList.AddNewGroup("Producción", 0, eActivityCode.ProductionGroup, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Seguimiento de OTs", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderTracking, eActivityCode.TrackingWorkOrders)
+
     '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.WorkOrders)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Estructuras", eMenuIconType.Grid, AddressOf clsMenuFunctions.StructureWorksOrderBrowse, eActivityCode.StructureWorkOrder)
     '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de los O.T.s", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderTracking, eActivityCode.TrackingWorkOrders)
@@ -39,7 +41,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Suppliers)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
     mLastGroup.ChildGroupMenuEntries.AddNewItem("Consola de Compras", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Admon. de Compras", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Procurement, eActivityCode.PurchasingManagement)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Gestión. de Compras", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Procurement, eActivityCode.PurchasingManagement)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Compras", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.PurchasingGroup)
@@ -72,6 +74,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodReception, eActivityCode.WoodReception)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Proceso de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderWoodProcessBrowse, eActivityCode.WorkOrderWoodProcess)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.WoodInventory)
+
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Madera", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodStockItemTransactionInfoBI, eActivityCode.TransactionReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Volumen de Madera por Especie", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodPalletItemVolumeReport, eActivityCode.WoodPalletItemReport)
@@ -415,6 +418,10 @@ Class clsMenuFunctions
 
   Public Shared Sub Procurement(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     frmPurchaseManagement.OpenForm(AppRTISGlobal.GetInstance, rRTISUserSession.CreateMainDBConn, rParentForm)
+  End Sub
+
+  Public Shared Sub WoodMaterialRequirement(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmWoodMaterialRequirement.OpenFormAsMDIChild(rParentForm, rRTISGlobal, rRTISUserSession.CreateMainDBConn, 0)
   End Sub
 
 End Class

@@ -593,7 +593,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Try
       If pDBConn.Connect Then
 
-        mSQL = "select distinct SalesOrderID from SalesOrderPhase where SalesOrderPhaseID=" & vSalesOrderPhaseItemID
+        mSQL = "select distinct SalesOrderID from SalesOrderPhaseItem where SalesOrderPhaseItemID=" & vSalesOrderPhaseItemID
 
         mRetVal = pDBConn.ExecuteScalar(mSQL)
 
@@ -734,6 +734,16 @@ Public Class dsoSalesOrder : Inherits dsoBase
       mdtoSalesOrderHouse = New dtoSalesOrderHouse(pDBConn)
       mdtoSalesOrderHouse.SaveSalesOrderHouseCollection(rSalesOrder.SalesOrderHouses, rSalesOrder.SalesOrderID)
 
+      ''Save the documents for each salesorderhouses
+
+      For Each mSOH As dmSalesOrderHouse In rSalesOrder.SalesOrderHouses
+
+        mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+        mdtoOutputDocs.SaveOutputDocumentCollection(mSOH.OutputDocuments, mSOH.SalesOrderHouseID)
+
+      Next
+
+
       mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
       mdtodtoSalesItemAssembly.SaveSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
 
@@ -764,8 +774,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
 
       ''mdtoSOFiles = New dtoFileTracker(pDBConn)
       ''mdtoSOFiles.SaveFileTrackerCollection(rSalesOrder.SOFiles, eObjectType.SalesOrder, rSalesOrder.SalesOrderID)
-      mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-      mdtoOutputDocs.SaveOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID)
+
 
 
       pDBConn.Disconnect()
@@ -967,6 +976,13 @@ Public Class dsoSalesOrder : Inherits dsoBase
       mdtoSalesOrderHouse = New dtoSalesOrderHouse(pDBConn)
       mdtoSalesOrderHouse.LoadSalesOrderHouseCollection(rSalesOrder.SalesOrderHouses, rSalesOrder.SalesOrderID)
 
+      ''load all salesorderhouses
+      For Each mSOH As dmSalesOrderHouse In rSalesOrder.SalesOrderHouses
+        mdtoOutputDocs = New dtoOutputDocument(pDBConn)
+        mdtoOutputDocs.LoadOutputDocumentCollection(mSOH.OutputDocuments, mSOH.SalesOrderHouseID, eParentType.SalesOrder)
+
+      Next
+
       mdtodtoSalesItemAssembly = New dtoSalesItemAssembly(pDBConn, dtoSalesItemAssembly.eMode.SalesOrderItemAssembly)
       mdtodtoSalesItemAssembly.LoadSalesItemAssemblyCollection(rSalesOrder.SalesItemAssemblys, rSalesOrder.SalesOrderID)
 
@@ -1000,8 +1016,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
 
 
 
-      mdtoOutputDocs = New dtoOutputDocument(pDBConn)
-      mdtoOutputDocs.LoadOutputDocumentCollection(rSalesOrder.OutputDocuments, rSalesOrder.SalesOrderID, eParentType.SalesOrder)
+
     End If
     pDBConn.Disconnect()
 
@@ -1102,7 +1117,9 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Dim mCBEntry As dmCostBookEntry
     Dim mQty As Decimal
     Dim mWhere As String
-
+    Dim mWoodPalletItemInfos As colWoodPalletItemInfos
+    Dim mTotalPickedWoodCost As Decimal
+    Dim mStockItem As dmStockItem
 
     For Each mSOPII As clsSalesOrderPhaseItemInfo In rSalesOrderPhaseItemInfos
       If mSOPIIIDList <> "" Then mSOPIIIDList = mSOPIIIDList & ", "
@@ -1158,7 +1175,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
                 End If
               End If
 
-              End If
+            End If
           Next
         End If
       Next
@@ -1166,7 +1183,65 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Next
 
 
+
+    '// Load the Pallets by where using ObjectID in (mwoidlist)
+    mWoodPalletItemInfos = New colWoodPalletItemInfos
+    If mWOIDList <> "" Then
+      mWhere = String.Format("WorkOrderID in ({0})", mWOIDList)
+      LoadWoodPalletItemInfos(mWoodPalletItemInfos, mWhere)
+    End If
+    '// Now calculated the total cost for each SalesOrderPhaseItemInfo
+    For Each mSOPII In rSalesOrderPhaseItemInfos
+      mTotalPickedWoodCost = 0
+      For Each mWOA As dmWorkOrderAllocation In mWOAs
+        If mWOA.SalesOrderPhaseItemID = mSOPII.SalesOrderPhaseItemID Then
+          For Each mWPII As clsWoodPalletItemInfo In mWoodPalletItemInfos
+            mQty = 0
+            If mWPII.WorkOrderID = mWOA.WorkOrderID Then
+              '// Need to allocated the quantity based on proportion of Work Order in this allocation
+              mWO = mWOs.ItemFromKey(mWOA.WorkOrderID)
+              If mWO.Quantity > 0 Then
+                mQty = mWPII.Quantity * (mWOA.QuantityRequired / mWO.Quantity)
+                mCBEntry = rCostBookEntries.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID)
+                If mCBEntry IsNot Nothing Then
+                  mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPII.WoodPalletItem.StockItemID)
+                  If mStockItem IsNot Nothing Then
+                    mTotalPickedWoodCost = mTotalPickedWoodCost + (mCBEntry.Cost * clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPII.WoodPalletItem, mStockItem))
+
+                  End If
+                End If
+              End If
+
+            End If
+          Next
+        End If
+      Next
+      mSOPII.PickedWoodCost = mTotalPickedWoodCost
+    Next
   End Sub
+
+  Private Function LoadWoodPalletItemInfos(ByRef rWoodPalletItemInfos As colWoodPalletItemInfos, ByVal vWhere As String) As Boolean
+    Dim mOk As Boolean
+
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoWoodPalletItemInfo(pDBConn)
+
+        mOk = mdto.LoadWoodPalletItemInfoCollectionByWhere(rWoodPalletItemInfos, vWhere)
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+      mOk = False
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
 
   Public Function LoadMaterialRequirementByWhere(ByRef rMRs As colMaterialRequirements, ByVal vWhere As String) As Boolean
     Dim mOk As Boolean
@@ -1282,7 +1357,28 @@ Public Class dsoSalesOrder : Inherits dsoBase
       If pDBConn.IsConnected Then pDBConn.Disconnect()
     End Try
   End Function
+  Public Function LoadSalesOrderPhaseItemsInfosByWhere(ByRef rSalesOrderPhaseItems As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
+    Dim mOk As Boolean
 
+    Try
+
+      If pDBConn.Connect Then
+        Dim mdto As New dtoSalesOrderPhaseItemInfo(pDBConn, dtoSalesOrderPhaseItemInfo.eMode.SalesOrderPhaseItemInfo)
+
+        mOk = mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItems, vWhere)
+
+
+        mdto = Nothing
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOk
+  End Function
   Public Function LoadWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos, ByVal vWhere As String, ByVal vMode As dtoWorkOrderInfo.eMode) As Boolean
     Dim mdto As dtoWorkOrderInfo
     Dim mRetVal As Boolean

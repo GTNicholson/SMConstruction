@@ -501,10 +501,10 @@ Public Class fccWorkOrderDetailConstruction
     Dim mWOAE As clsWorkOrderAllocationEditor
     Dim mdsoSales As dsoSalesOrder
     Dim mSOPs As New colSalesOrderPhaseInfos
-    Dim mSOPI As clsSalesOrderPhaseInfo
+    Dim mSOPIInfos As colSalesOrderPhaseItemInfos
     Dim mWhere As String = ""
     Dim mSOID As Integer
-
+    Dim mSOPIInfo As clsSalesOrderPhaseItemInfo
     If pWorkOrder IsNot Nothing Then
       If pWorkOrder.WorkOrderAllocations IsNot Nothing Then 'And pWorkOrder.WorkOrderAllocations.Count
         mdsoSales = New dsoSalesOrder(pDBConn)
@@ -513,16 +513,16 @@ Public Class fccWorkOrderDetailConstruction
 
         pWorkOrderAllocationEditors.Clear()
 
-          If pWorkOrder.WorkOrderAllocations.Count > 0 Then
-            For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
-              '// create a new editor based on this salesitem and add to collection
-              mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
-              pWorkOrderAllocationEditors.Add(mWOAE)
-              mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
-            Next
+        If pWorkOrder.WorkOrderAllocations.Count > 0 Then
+          For Each mWorkOrderAllocation As dmWorkOrderAllocation In pWorkOrder.WorkOrderAllocations
+            '// create a new editor based on this salesitem and add to collection
+            mWOAE = New clsWorkOrderAllocationEditor(pWorkOrder, mWorkOrderAllocation)
+            pWorkOrderAllocationEditors.Add(mWOAE)
+            mWorkOrderAllocation.QuantityDone = mWOAE.QuantityDone
+          Next
 
           If pSalesOrder Is Nothing Then
-            mSOID = mdsoSales.GetSalesOrderIDBySalesOrderItemID(pWorkOrder.SalesOrderItemID)
+            mSOID = mdsoSales.GetSalesOrderIDBySalesOrderPhaseItemID(pWorkOrder.WorkOrderAllocations(0).SalesOrderPhaseItemID)
 
             If mSOID = 0 Then
               If pWorkOrderAllocationEditors IsNot Nothing Then
@@ -542,14 +542,16 @@ Public Class fccWorkOrderDetailConstruction
           End If
           mWhere = "SalesOrderPhaseID = " & pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
 
+          mSOPIInfos = New colSalesOrderPhaseItemInfos
+          mdsoSales.LoadSalesOrderPhaseItemsInfosByWhere(mSOPIInfos, mWhere)
 
-            mdsoSales.LoadSalesOrderPhaseInfos(mSOPs, mWhere)
 
-
-            For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
-              mSOPI = mSOPs.ItemFromSalesOrderPhaseID(pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID)
-              mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPI)
-            Next
+          For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
+            mSOPIInfo = mSOPIInfos.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
+            If mSOPIInfo IsNot Nothing Then
+              mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPIInfo)
+            End If
+          Next
           End If
         End If
 

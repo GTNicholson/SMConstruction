@@ -514,7 +514,7 @@ Partial Class frmStockItem
         '
         Me.btnExport.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
         Me.btnExport.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.btnExport.Caption = "Export Selection"
+        Me.btnExport.Caption = "Exportar Selección"
         Me.btnExport.Id = 6
         Me.btnExport.Name = "btnExport"
         '
@@ -538,7 +538,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 30)
         '
         'barDockControlBottom
         '
@@ -552,17 +552,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 723)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 726)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 723)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 726)
         '
         'BarButtonItem1
         '
@@ -826,7 +826,7 @@ Partial Class frmStockItem
         '
         Me.xtabInfAddFixings.Controls.Add(Me.PanelControl2)
         Me.xtabInfAddFixings.Name = "xtabInfAddFixings"
-        Me.xtabInfAddFixings.Size = New System.Drawing.Size(354, 230)
+        Me.xtabInfAddFixings.Size = New System.Drawing.Size(352, 229)
         Me.xtabInfAddFixings.Text = "Informacion Addicional"
         '
         'PanelControl2
@@ -835,7 +835,7 @@ Partial Class frmStockItem
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(354, 230)
+        Me.PanelControl2.Size = New System.Drawing.Size(352, 229)
         Me.PanelControl2.TabIndex = 0
         '
         'chkWasherIncluded
@@ -1435,7 +1435,7 @@ Partial Class frmStockItem
         Me.gcStdCost.Caption = "Costo Unitario"
         Me.gcStdCost.DisplayFormat.FormatString = "N2"
         Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcStdCost.FieldName = "StdCost"
+        Me.gcStdCost.FieldName = "AverageCost"
         Me.gcStdCost.Name = "gcStdCost"
         Me.gcStdCost.OptionsColumn.ReadOnly = True
         Me.gcStdCost.Visible = True
@@ -1573,7 +1573,7 @@ Partial Class frmStockItem
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 719)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 722)
         Me.SplitContainerControl1.SplitterPosition = 363
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1598,9 +1598,9 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1492, 723)
+        Me.PanelControl1.Size = New System.Drawing.Size(1492, 726)
         Me.PanelControl1.TabIndex = 4
         '
         'frmStockItem

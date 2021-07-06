@@ -117,7 +117,7 @@ Public Class fccMaterialRequirements
 
 
           mMatReqProc.PickedQty = mMatReqProc.PickedQty 'mdsoStock.GetPhaseMatReqPickedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-          mMatReqProc.StockItemLocationsQty = mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID)
+          mMatReqProc.StockItemLocationsQty = mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID) - mdsoStock.GetSumFromStockInventory(mMatReqProc.StockItem.StockItemID)
           mMatReqProc.QuantityRequired = mMatReqProc.Quantity 'mdsoStock.GetPhaseMatReqRequiredQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
           mMatReqProc.QtyOrdered = mdsoStock.GetPhaseMatReqOrderedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
 
@@ -134,11 +134,11 @@ Public Class fccMaterialRequirements
         Dim mMatReqProc As clsMaterialRequirementProcessor = pMatReqItemProcessors(mIndex)
 
 
-        If mMatReqProc.QuantityRequired - mMatReqProc.QtyReceived - mMatReqProc.FromStock <= 0 Then
+        If mMatReqProc.MaterialRequirement.Quantity - mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.FromStock <= 0 Then
           mRemove = True
         End If
 
-        If mMatReqProc.QuantityRequired - mMatReqProc.PickedQty - mMatReqProc.FromStock <= 0 Then
+        If mMatReqProc.MaterialRequirement.Quantity - mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.FromStock <= 0 Then
           mRemove = True
         End If
 

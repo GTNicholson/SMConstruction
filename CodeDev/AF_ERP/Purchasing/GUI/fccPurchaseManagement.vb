@@ -4,6 +4,7 @@ Public Class fccPurchaseManagement
   Private pDBConn As RTIS.DataLayer.clsDBConnBase
   Private pWorkOrderInfos As colWorkOrderInfos
   Private pIncludeRecentlyCompleted As Boolean
+  Private pPurchaseOrderInfos As colPurchaseOrderInfos
 
   Public ReadOnly Property WorkOrderInfos As colWorkOrderInfos
     Get
@@ -14,6 +15,7 @@ Public Class fccPurchaseManagement
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pWorkOrderInfos = New colWorkOrderInfos
+    pPurchaseOrderInfos = New colPurchaseOrderInfos
   End Sub
 
 
@@ -35,6 +37,15 @@ Public Class fccPurchaseManagement
     End Set
   End Property
 
+  Public Property PurchaseOrderInfos As colPurchaseOrderInfos
+    Get
+      Return pPurchaseOrderInfos
+    End Get
+    Set(value As colPurchaseOrderInfos)
+      pPurchaseOrderInfos = value
+    End Set
+  End Property
+
   Public Sub LoadObject()
     Try
       Dim mdtoWorkOrderInfo As New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderTracking)
@@ -47,7 +58,7 @@ Public Class fccPurchaseManagement
       Dim mWorkOrderID As Int32
       Dim mDatePlanned As Date
       Dim mCutOffDate As Date
-
+      Dim mdso As dsoPurchasing
       pWorkOrderInfos = New colWorkOrderInfos
 
       If pIncludeRecentlyCompleted = True Then
@@ -74,7 +85,7 @@ Public Class fccPurchaseManagement
           mWorkOrderInfo.WorkOrder.WorkOrderMatReqCategoryStatuss.Add(mSOPMRCS)
         Next
 
-        mDataTable = pDBConn.CreateDataTable("Select * From vwWorkOrderDatePlanned Order By WorkOrderID")
+        mDataTable = pDBConn.CreateDataTable("Select * From vwWorkOrderDatePlanned")
         If mDataTable IsNot Nothing AndAlso mDataTable.Rows.Count > 0 Then
           For Each mDataRow As DataRow In mDataTable.Rows
             mWorkOrderID = RTIS.CommonVB.clsGeneralA.DBValueToInteger(mDataRow.Item("WorkOrderID"))
@@ -85,6 +96,14 @@ Public Class fccPurchaseManagement
             End If
           Next
         End If
+
+
+      End If
+      mWhere = String.Format("Status not in ({0},{1})", CInt(ePurchaseOrderDueDateStatus.Cancelled), CInt(ePurchaseOrderDueDateStatus.Received))
+      mdso = New dsoPurchasing(pDBConn)
+      mdso.LoadPurchaseOrderInfosOnly(pPurchaseOrderInfos, mWhere)
+      If DBConn.IsConnected Then
+        DBConn.Disconnect()
       End If
 
       mdtoWorkOrderInfo = Nothing

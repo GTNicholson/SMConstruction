@@ -675,6 +675,11 @@ End Class
 
 Public Class colPurchaseOrderInfos : Inherits List(Of clsPurchaseOrderInfo)
 
+  Public Function GetLivePOCountByCategory(ByVal vCategory As Integer) As Integer
+
+
+
+  End Function
 End Class
 
 Public Class clsPOItemInfo

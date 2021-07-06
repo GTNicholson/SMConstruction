@@ -69,7 +69,14 @@ Public Class frmWorkOrderTracking
             mWorkOrderTracking.MileStones.Add(mWorkOrderMileStoneStatus)
           End If
 
-          frmWorkOrderMilestoneStatus.OpenForm(Me, pController.DBConn, mWorkOrderMileStoneStatus)
+          Select Case mCategory
+            Case eWorkCentre.Wood
+              frmWoodWorkOrderMilestoneStatus.OpenForm(Me, pController.DBConn, mWorkOrderMileStoneStatus)
+
+            Case Else
+              frmWorkOrderMilestoneStatus.OpenForm(Me, pController.DBConn, mWorkOrderMileStoneStatus)
+
+          End Select
 
           gvWorksOrders.RefreshRow(gvWorksOrders.FocusedRowHandle)
         End If
@@ -116,12 +123,18 @@ Public Class frmWorkOrderTracking
               Case eMilestoneStatus.Complete
                 mText = mWorkOrderMileStoneStatus.ActualDate.ToString("dd-MMM")
                 If clsGeneralA.IsBlankDate(mWorkOrderMileStoneStatus.TargetDate) = False Then
-                  ''mText &= DateDiff(DateInterval.Day, mWorkOrderMileStoneStatus.TargetDate, mWorkOrderMileStoneStatus.ActualDate).ToString("+0;-#")
+                  mText &= DateDiff(DateInterval.Day, mWorkOrderMileStoneStatus.TargetDate, mWorkOrderMileStoneStatus.ActualDate).ToString("+0;-#")
                 Else
                   mText = ""
 
                 End If
             End Select
+
+            If mWorkOrderMileStoneStatus.MilestoneENUM = eWorkCentre.Insumos Then
+              mText = pController.GetCurrentInsumosDisplayText(mWorkOrderMileStoneStatus.WorkOrderID)
+
+            End If
+
             If Not String.IsNullOrWhiteSpace(mWorkOrderMileStoneStatus.Notes) Then
               mText &= " (*)"
             End If
@@ -142,7 +155,8 @@ Public Class frmWorkOrderTracking
   Private Sub gvWorksOrders_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvWorksOrders.RowCellStyle
     Try
       Select Case e.Column.Name
-        Case gcDiseno.Name, gcInginiero.Name, gcMachining.Name, gcAssembly.Name, gcMetalWork.Name, gcPainting.Name, gcSanding.Name, gcUpholstery.Name, gcPackaging.Name, gcDispatch.Name
+        Case gcWood.Name, gcInsumos.Name, gcEngineering.Name, gcPurchasing.Name,
+             gcCarpitry.Name, gcDimensionado.Name, gcSelection.Name, gcSanding.Name, gcFinishing.Name, gcMetalWork.Name, gcMetalFinishing.Name
           Dim mRow As clsWorkOrderTracking = gvWorksOrders.GetRow(e.RowHandle)
           Dim mStatus As dmWorkOrderMilestoneStatus
           Dim mStatusID As Integer
@@ -156,7 +170,7 @@ Public Class frmWorkOrderTracking
               mStatusID = mStatus.Status
             End If
             Select Case mStatusID
-              Case eMilestoneStatus.Pending, eMilestoneStatus.PartComplete
+              Case eMilestoneStatus.Pending
                 If mStatus Is Nothing Then
                   If RTIS.CommonVB.clsGeneralA.IsBlankDate(mRow.FinishDate) Then
                     e.Appearance.BackColor = Color.White
@@ -180,8 +194,8 @@ Public Class frmWorkOrderTracking
                 End If
               Case eMilestoneStatus.NotRequired
                 e.Appearance.BackColor = Color.Lavender
-              'Case eMilestoneStatus.PartComplete
-              '  e.Appearance.BackColor = Color.Gold
+              Case eMilestoneStatus.PartComplete
+                e.Appearance.BackColor = Color.Gold
               Case eMilestoneStatus.Complete
                 e.Appearance.BackColor = Color.YellowGreen
             End Select

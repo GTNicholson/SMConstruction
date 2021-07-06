@@ -549,11 +549,11 @@ Partial Class frmStockItemInfo
         'grdStockItemInfos
         '
         Me.grdStockItemInfos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemInfos.MainView = Me.gvStockItemInfos
         Me.grdStockItemInfos.Name = "grdStockItemInfos"
         Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory, Me.repoPopupPOAllocationItems, Me.repoPopuMaterialRequirement, Me.repoPopUpWoodPalletItemInfo})
-        Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 681)
+        Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 683)
         Me.grdStockItemInfos.TabIndex = 6
         Me.grdStockItemInfos.UseEmbeddedNavigator = True
         Me.grdStockItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemInfos})
@@ -745,7 +745,7 @@ Partial Class frmStockItemInfo
         Me.gcStdCost.Caption = "Costo Unitario"
         Me.gcStdCost.DisplayFormat.FormatString = "C$#,##0.00;;#"
         Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcStdCost.FieldName = "StdCost"
+        Me.gcStdCost.FieldName = "AverageCost"
         Me.gcStdCost.Name = "gcStdCost"
         Me.gcStdCost.OptionsColumn.ReadOnly = True
         Me.gcStdCost.Visible = True

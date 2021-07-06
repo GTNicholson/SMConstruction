@@ -5,14 +5,13 @@ Public Class clsSalesItemEditor
   Private pSalesOrder As dmSalesOrder
   Private pSalesItemAssembly As dmSalesItemAssembly
   Private pSalesOrderItem As dmSalesOrderItem
-  Private pProduct As dmProductBase
   Private Shared sProductConstructionTypes As RTIS.CommonVB.colValueItems
 
-  Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rCurrentSalesItemAssembly As dmSalesItemAssembly, ByRef rSalesOrderItem As dmSalesOrderItem, ByRef rProductBase As dmProductBase)
+  Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rSalesOrderItem As dmSalesOrderItem)
     pSalesOrder = rSalesOrder
-    pSalesItemAssembly = rCurrentSalesItemAssembly
+
     pSalesOrderItem = rSalesOrderItem
-    pProduct = rProductBase
+
   End Sub
 
   Public Sub New()
@@ -27,11 +26,7 @@ Public Class clsSalesItemEditor
 
   End Sub
 
-  Public ReadOnly Property SalesItemAssembly As dmSalesItemAssembly
-    Get
-      Return pSalesItemAssembly
-    End Get
-  End Property
+
 
   Public ReadOnly Property SalesOrderItem As dmSalesOrderItem
     Get
@@ -79,10 +74,10 @@ Public Class clsSalesItemEditor
 
   Public Property HouseTypeID As Int32
     Get
-      Return pSalesOrderItem.HouseTypeID
+      Return pSalesOrderItem.SalesHouseID
     End Get
     Set(value As Int32)
-      pSalesOrderItem.HouseTypeID = value
+      pSalesOrderItem.SalesHouseID = value
     End Set
   End Property
 
@@ -100,6 +95,69 @@ Public Class clsSalesItemEditor
     End Get
     Set(value As Int32)
       pSalesOrderItem.SalesSubItemType = value
+    End Set
+  End Property
+
+  Public Property ManpowerCost As Decimal
+    Get
+      Return pSalesOrderItem.ManpowerCost
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.ManpowerCost = value
+    End Set
+  End Property
+  Public Property MaterialCost As Decimal
+    Get
+      Return pSalesOrderItem.MaterialCost
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.MaterialCost = value
+    End Set
+  End Property
+
+  Public Property TransportationCost As Decimal
+    Get
+      Return pSalesOrderItem.TransportationCost
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.TransportationCost = value
+    End Set
+  End Property
+
+  Public Property SubContractCost As Decimal
+    Get
+      Return pSalesOrderItem.SubContractCost
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.SubContractCost = value
+    End Set
+  End Property
+
+  Public Property Comments As String
+    Get
+      Return pSalesOrderItem.Comments
+    End Get
+    Set(value As String)
+      pSalesOrderItem.Comments = value
+    End Set
+  End Property
+
+  Public Property ImageFile As String
+    Get
+      Return pSalesOrderItem.ImageFile
+    End Get
+    Set(value As String)
+      pSalesOrderItem.ImageFile = value
+    End Set
+  End Property
+
+
+  Public Property UnitPrice As Decimal
+    Get
+      Return pSalesOrderItem.UnitPrice
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.UnitPrice = value
     End Set
   End Property
 
@@ -121,29 +179,15 @@ Public Class clsSalesItemEditor
     End Set
   End Property
 
-  Public ReadOnly Property ProductTypeDesc As String
+
+  Public Property UoM As Integer
     Get
-      Dim mRetVal As String
-      mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eProductType), CType(pProduct.ProductTypeID, eProductType))
-      Return mRetVal
+      Return pSalesOrderItem.UoM
     End Get
+    Set(value As Integer)
+      pSalesOrderItem.UoM = value
+    End Set
   End Property
-
-  Public ReadOnly Property ProductConstructionTypeDesc As String
-    Get
-      Dim mRetVal As String
-      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType).DisplayValueString(pSalesOrderItem.SalesItemType)
-      Return mRetVal
-    End Get
-  End Property
-
-  Public ReadOnly Property ProductCode As String
-    Get
-      Return pProduct.Code
-    End Get
-  End Property
-
-
 
   Public ReadOnly Property SalesItemTypeSequence As Integer
     Get
@@ -162,6 +206,11 @@ Public Class clsSalesItemEditor
       End If
 
       Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property TotalAmount() As Decimal
+    Get
+      Return UnitPrice * Quantity
     End Get
   End Property
 
