@@ -1390,6 +1390,8 @@ Public Class frmPurchaseOrder
         Case Else
           xtabPOReqType.SelectedTabPage = xtpInventory
           ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
+          'xtabPOReqType.SelectedTabPage = xtpWorkOrder
+          ''ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
 
       End Select
     End If

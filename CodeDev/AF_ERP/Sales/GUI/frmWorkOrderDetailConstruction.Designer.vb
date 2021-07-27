@@ -83,6 +83,8 @@ Partial Class frmWorkOrderDetailConstruction
         Me.RepositoryItemDateEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.btnWorkOrderNumber = New DevExpress.XtraEditors.ButtonEdit()
@@ -129,8 +131,6 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.lblWorkOrderID = New System.Windows.Forms.Label()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -761,6 +761,26 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn23.VisibleIndex = 7
         Me.GridColumn23.Width = 87
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "# Ref."
+        Me.GridColumn10.FieldName = "ItemNumber"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 69
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Etapa"
+        Me.GridColumn17.FieldName = "DescriptionItem"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 3
+        Me.GridColumn17.Width = 83
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.grdWorkOrderAllocationsInfos
@@ -1281,26 +1301,6 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblWorkOrderID.TabIndex = 145
         Me.lblWorkOrderID.Text = "ID:00000"
         Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "# Ref."
-        Me.GridColumn10.FieldName = "ItemNumber"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 69
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Etapa"
-        Me.GridColumn17.FieldName = "DescriptionItem"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.ReadOnly = True
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 3
-        Me.GridColumn17.Width = 83
         '
         'frmWorkOrderDetailConstruction
         '

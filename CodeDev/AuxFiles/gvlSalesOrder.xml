@@ -106,8 +106,6 @@
       <property name="Caption"># Referencia</property>
       <property name="FieldName">OrderNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
       <property name="Width">124</property>
     </property>
     <property name="Item3" isnull="true" iskey="true">
@@ -118,7 +116,7 @@
       <property name="Caption">Nombre de Cliente</property>
       <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">259</property>
     </property>
@@ -130,7 +128,7 @@
       <property name="Caption">Nombre de Proyecto</property>
       <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">1</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">422</property>
     </property>
@@ -142,7 +140,7 @@
       <property name="Caption">Estado de Orden</property>
       <property name="FieldName">OrderStatusENUM</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">89</property>
     </property>
@@ -154,7 +152,7 @@
       <property name="Caption">Tipo de Venta</property>
       <property name="FieldName">OrderTypeID</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">70</property>
     </property>
@@ -166,7 +164,7 @@
       <property name="Caption">Fecha de Ingreso</property>
       <property name="FieldName">DateEntered</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">111</property>
     </property>
@@ -178,7 +176,7 @@
       <property name="Caption">Fecha Requerida</property>
       <property name="FieldName">FinishDate</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">108</property>
     </property>
@@ -190,7 +188,7 @@
       <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">71</property>
     </property>
@@ -222,7 +220,7 @@
       <property name="Caption">Empleado</property>
       <property name="FieldName">FirstName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">140</property>
     </property>
@@ -231,7 +229,7 @@
       <property name="Caption">Costo de Envío</property>
       <property name="FieldName">ShippingCost</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">122</property>
     </property>

@@ -355,7 +355,7 @@ Public Class frmPurchaseManagement
 
           Else
 
-            frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pFormController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadOnlyForm)
+            frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pFormController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadWriteForm)
 
           End If
 

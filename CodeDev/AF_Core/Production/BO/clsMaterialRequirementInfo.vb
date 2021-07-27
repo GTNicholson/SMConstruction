@@ -339,6 +339,12 @@ Public Class clsMaterialRequirementInfo
     End Get
   End Property
 
+  Public ReadOnly Property UoMDescUI As String
+    Get
+      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(UoM, eUoM))
+    End Get
+  End Property
+
   Public ReadOnly Property UoMDesc As String
     Get
       Return pMaterialRequirement.UoMDesc
@@ -677,7 +683,7 @@ Public Class clsMaterialRequirementInfo
 
   Public Property SOIDescription As String
     Get
-      Return pSOIDescription
+      Return pSOIDescription.ToUpper
     End Get
     Set(value As String)
       pSOIDescription = value

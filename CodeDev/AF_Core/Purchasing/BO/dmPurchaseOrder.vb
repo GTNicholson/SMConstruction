@@ -61,6 +61,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pValuationMode As Integer
 
   Private pPaymentDate As Date
+  Private pPurchaseOrderWOAllocations As colPurchaseOrderWOAllocations
 
   Public Sub New()
     MyBase.New()
@@ -77,6 +78,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
     pSupplier = New dmSupplier
     pOutputDocuments = New colOutputDocuments
     pPOFiles = New colFileTrackers
+    pPurchaseOrderWOAllocations = New colPurchaseOrderWOAllocations
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -723,6 +725,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
   End Property
 
   Public Property DateCreated As Date
+
+  Public Property PurchaseOrderWOAllocations As colPurchaseOrderWOAllocations
+    Get
+      Return pPurchaseOrderWOAllocations
+    End Get
+    Set(value As colPurchaseOrderWOAllocations)
+      pPurchaseOrderWOAllocations = value
+    End Set
+  End Property
 End Class
 
 

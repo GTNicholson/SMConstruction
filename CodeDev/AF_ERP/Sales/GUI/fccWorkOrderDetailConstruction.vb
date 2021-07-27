@@ -608,78 +608,122 @@ Public Class fccWorkOrderDetailConstruction
     Dim mNewMatReq As dmMaterialRequirement
     Dim mWoodProductBOMs As colProductBOMs
     Dim mStockItemProductBOMs As colProductBOMs
+    Dim mOldWorkOrderStockItemBOMs As colMaterialRequirements
+    Dim mOldWorkOrderWoodBOMs As colMaterialRequirements
+
     Dim mQty As Decimal
+    Dim mFoundMR As dmMaterialRequirement
 
-    If rProductStructure IsNot Nothing Then
+    If pWorkOrder.Quantity > 0 Then
 
-      ''//Create Wood MatReq from WoodBOM
+      If rProductStructure IsNot Nothing Then
 
-      mWoodProductBOMs = rProductStructure.ProductWoodBOMs
-      mStockItemProductBOMs = rProductStructure.ProductStockItemBOMs
+        ''//Create Wood MatReq from WoodBOM
 
-      pWorkOrder.WoodMaterialRequirements.Clear()
-      pWorkOrder.StockItemMaterialRequirements.Clear()
-
-      For Each mPBOM As dmProductBOM In mWoodProductBOMs
+        mWoodProductBOMs = rProductStructure.ProductWoodBOMs
+        mStockItemProductBOMs = rProductStructure.ProductStockItemBOMs
 
 
-        mNewMatReq = New dmMaterialRequirement
-        mNewMatReq.Description = mPBOM.Description
-        mNewMatReq.ComponentDescription = mPBOM.ComponentDescription
-        mNewMatReq.MaterialRequirementType = eMaterialRequirementType.Wood
-        mNewMatReq.MaterialTypeID = mPBOM.MaterialTypeID
-        mNewMatReq.NetLenght = mPBOM.NetLenght
-        mNewMatReq.NetThickness = mPBOM.NetThickness
-        mNewMatReq.NetWidth = mPBOM.NetWidth
-        mNewMatReq.ObjectID = pWorkOrder.WorkOrderID
-        mNewMatReq.ObjectType = eObjectType.WorkOrder
-        mNewMatReq.UnitPiece = mPBOM.UnitPiece * pWorkOrder.Quantity
-        mNewMatReq.StockCode = mPBOM.StockCode
-        mNewMatReq.StockItemID = mPBOM.StockItemID
-        mNewMatReq.SupplierStockCode = mPBOM.SupplierStockCode
-        mNewMatReq.TotalPieces = mPBOM.TotalPieces
-        mNewMatReq.UoM = mPBOM.UoM
-        mNewMatReq.WoodSpecie = mPBOM.WoodSpecie
-        mNewMatReq.Comments = mPBOM.Comments
+        pWorkOrder.WoodMaterialRequirements.Clear()
+        'pWorkOrder.StockItemMaterialRequirements.Clear()
 
-        mNewMatReq.Quantity = clsSMSharedFuncs.BoardFeetFromCMAndQty(mNewMatReq.UnitPiece, mNewMatReq.NetLenght, mNewMatReq.NetWidth, mNewMatReq.NetThickness)
-        pWorkOrder.WoodMaterialRequirements.Add(mNewMatReq)
-      Next
+        ' pWorkOrder.WoodMaterialRequirements.SetQuantitysToZero()
+        pWorkOrder.StockItemMaterialRequirements.SetQuantitysToZero()
+
+        For Each mPBOM As dmProductBOM In mWoodProductBOMs
 
 
-
-      For Each mPBOM As dmProductBOM In mStockItemProductBOMs
-
-
-        mNewMatReq = New dmMaterialRequirement
+          mNewMatReq = New dmMaterialRequirement
           mNewMatReq.Description = mPBOM.Description
           mNewMatReq.ComponentDescription = mPBOM.ComponentDescription
-          mNewMatReq.MaterialRequirementType = eMaterialRequirementType.StockItems
+          mNewMatReq.MaterialRequirementType = eMaterialRequirementType.Wood
           mNewMatReq.MaterialTypeID = mPBOM.MaterialTypeID
           mNewMatReq.NetLenght = mPBOM.NetLenght
           mNewMatReq.NetThickness = mPBOM.NetThickness
           mNewMatReq.NetWidth = mPBOM.NetWidth
           mNewMatReq.ObjectID = pWorkOrder.WorkOrderID
           mNewMatReq.ObjectType = eObjectType.WorkOrder
-          mNewMatReq.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
+          mNewMatReq.UnitPiece = mPBOM.UnitPiece * pWorkOrder.Quantity
           mNewMatReq.StockCode = mPBOM.StockCode
           mNewMatReq.StockItemID = mPBOM.StockItemID
           mNewMatReq.SupplierStockCode = mPBOM.SupplierStockCode
           mNewMatReq.TotalPieces = mPBOM.TotalPieces
           mNewMatReq.UoM = mPBOM.UoM
           mNewMatReq.WoodSpecie = mPBOM.WoodSpecie
-        mNewMatReq.Comments = mPBOM.Comments
+          mNewMatReq.Comments = mPBOM.Comments
 
-        pWorkOrder.StockItemMaterialRequirements.Add(mNewMatReq)
+          mNewMatReq.Quantity = clsSMSharedFuncs.BoardFeetFromCMAndQty(mNewMatReq.UnitPiece, mNewMatReq.NetLenght, mNewMatReq.NetWidth, mNewMatReq.NetThickness)
+          pWorkOrder.WoodMaterialRequirements.Add(mNewMatReq)
+        Next
 
-      Next
 
 
+        For Each mPBOM As dmProductBOM In mStockItemProductBOMs
+          Dim mProductStockItemFound As dmMaterialRequirement
+
+          mProductStockItemFound = pWorkOrder.StockItemMaterialRequirements.ItemFromStockItemID(mPBOM.StockItemID)
+
+          If mProductStockItemFound Is Nothing Then
+            mNewMatReq = New dmMaterialRequirement
+            mNewMatReq.Description = mPBOM.Description
+            mNewMatReq.ComponentDescription = mPBOM.ComponentDescription
+            mNewMatReq.MaterialRequirementType = eMaterialRequirementType.StockItems
+            mNewMatReq.MaterialTypeID = mPBOM.MaterialTypeID
+            mNewMatReq.NetLenght = mPBOM.NetLenght
+            mNewMatReq.NetThickness = mPBOM.NetThickness
+            mNewMatReq.NetWidth = mPBOM.NetWidth
+            mNewMatReq.ObjectID = pWorkOrder.WorkOrderID
+            mNewMatReq.ObjectType = eObjectType.WorkOrder
+            mNewMatReq.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
+            mNewMatReq.StockCode = mPBOM.StockCode
+            mNewMatReq.StockItemID = mPBOM.StockItemID
+            mNewMatReq.SupplierStockCode = mPBOM.SupplierStockCode
+            mNewMatReq.TotalPieces = mPBOM.TotalPieces
+            mNewMatReq.UoM = mPBOM.UoM
+            mNewMatReq.WoodSpecie = mPBOM.WoodSpecie
+            mNewMatReq.Comments = mPBOM.Comments
+            mNewMatReq.FromStockQty = 0
+
+
+            pWorkOrder.StockItemMaterialRequirements.Add(mNewMatReq)
+          Else
+            mProductStockItemFound.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
+            mProductStockItemFound.Comments = mPBOM.Comments
+          End If
+
+        Next
+
+
+      End If
+
+
+      DeleteNoRequiredMatReqs()
+
+    Else
+      MessageBox.Show("La cantidad de la O.T. es 0, revise las cantidades en la distribución de la O.T.")
     End If
 
+  End Sub
+
+  Private Sub DeleteNoRequiredMatReqs()
+    Dim mIndex As Integer = 0
+    Dim mCount As Integer = pWorkOrder.StockItemMaterialRequirements.Count
+    Dim mListIndexCollection As New List(Of Integer)
+    Dim mRequiredQty As Decimal
+
+    While mIndex < mCount - 1
+      mRequiredQty = pWorkOrder.StockItemMaterialRequirements(mIndex).Quantity
+
+      If mRequiredQty = 0 Then
+        mListIndexCollection.Add(mIndex)
+      End If
+      mIndex = mIndex + 1
+    End While
 
 
-
+    For Each mListIndex In mListIndexCollection
+      pWorkOrder.StockItemMaterialRequirements.RemoveAt(mListIndex)
+    Next
 
   End Sub
 

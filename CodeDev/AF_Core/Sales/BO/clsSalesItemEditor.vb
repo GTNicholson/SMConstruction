@@ -179,6 +179,11 @@ Public Class clsSalesItemEditor
     End Set
   End Property
 
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Return RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(UoM, eUoM))
+    End Get
+  End Property
 
   Public Property UoM As Integer
     Get

@@ -287,6 +287,7 @@
     <Compile Include="Production\DSO\dtoTimeSheetEntryInfo.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderAllocation.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Purchasing\BO\dmPurchaseOrderWOAllocation.vb" />
     <Compile Include="Purchasing\BO\dmAccoutingCategory.vb" />
     <Compile Include="Purchasing\BO\clsPODeliveryItemInfo.vb" />
     <Compile Include="Purchasing\BO\clsPODeliveryInfo.vb" />
@@ -307,6 +308,7 @@
     <Compile Include="Purchasing\BO\dmPurchaseOrderItemAllocation.vb" />
     <Compile Include="Purchasing\BO\dmSupplier.vb" />
     <Compile Include="Purchasing\BO\dmSupplierContact.vb" />
+    <Compile Include="Purchasing\DSO\dtoPurchaseOrderWOAllocation.vb" />
     <Compile Include="Purchasing\DSO\dtoAccoutingCategory.vb" />
     <Compile Include="Purchasing\DSO\dtoPODeliveryItemInfo.vb" />
     <Compile Include="Purchasing\DSO\dsoPurchasing.vb" />

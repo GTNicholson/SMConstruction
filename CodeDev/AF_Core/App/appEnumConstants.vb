@@ -111,7 +111,7 @@ Public Enum ePOStage
   <Description("Honorarios")> Honorarios = 23
   <Description("DB MAN")> DBMan = 24
   <Description("Muebles")> Furniture = 25
-
+  <Description("Pergolas")> Pergolas = 26
 
 End Enum
 Public Enum eMode

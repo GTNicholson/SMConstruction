@@ -51,9 +51,9 @@
   Public Property QtyReceived As Decimal
   Public Property FromStock As Decimal
   Public Property StockItemLocations As dmStockItemLocation
-  Public Property ToOrder As Integer
-  Public Property QuantityRequired As Integer
-  Public Property QtyOrdered As Integer
+  Public Property ToOrder As Decimal
+  Public Property QuantityRequired As Decimal
+  Public Property QtyOrdered As Decimal
 
 
   Public Property StockItemLocationsQty As Decimal

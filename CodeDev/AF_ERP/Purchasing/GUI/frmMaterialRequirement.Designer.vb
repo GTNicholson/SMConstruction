@@ -99,10 +99,10 @@ Partial Class frmMaterialRequirement
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcComments = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoExEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grpMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -879,6 +879,15 @@ Partial Class frmMaterialRequirement
         Me.RepositoryItemMemoExEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemMemoExEdit1.Name = "RepositoryItemMemoExEdit1"
         '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Ref. Item"
+        Me.GridColumn37.FieldName = "ItemNumber"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.ReadOnly = True
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 1
+        '
         'grpMaterialRequirements
         '
         Me.grpMaterialRequirements.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -921,15 +930,6 @@ Partial Class frmMaterialRequirement
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 2
         Me.GridColumn30.Width = 74
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "Ref. Item"
-        Me.GridColumn37.FieldName = "ItemNumber"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.OptionsColumn.ReadOnly = True
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 1
         '
         'frmMaterialRequirement
         '

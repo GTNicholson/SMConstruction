@@ -223,6 +223,15 @@ Public Class colSalesOrderHouses : Inherits colBase(Of dmSalesOrderHouse)
     MyBase.New(vList)
   End Sub
 
+  Public Function GetTotalShippingCost() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem In Me.Items
+      mRetVal += mItem.ShippingCost
+    Next
+
+    Return mRetVal
+  End Function
 End Class
 
 

@@ -86,7 +86,7 @@ Public Class repSalesOrder_English
     xtcSalesPerson.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pSalesOrder.ContractManagerID)
     xtcDeliveryToCompany.Text = pSalesOrder.Customer.CompanyName
     'xtcProjectRef.Text = pSalesOrder.ProjectName
-    xtcNumQuotation.Text = pSalesOrder.SalesOrderHouses(pSalesHouseID).Ref
+    'xtcNumQuotation.Text = pSalesOrder.SalesOrderHouses(pSalesHouseID).Ref
     xtcCustAccountRef.Text = pSalesOrder.Customer.AccountRef
     xtcClientName.Text = pSalesOrder.Customer.CompanyName
     xtcCustomerName.Text = pSalesOrder.Customer.CompanyName

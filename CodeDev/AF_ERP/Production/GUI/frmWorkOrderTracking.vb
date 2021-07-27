@@ -131,7 +131,7 @@ Public Class frmWorkOrderTracking
             End Select
 
             If mWorkOrderMileStoneStatus.MilestoneENUM = eWorkCentre.Insumos Then
-              mText = pController.GetCurrentInsumosDisplayText(mWorkOrderMileStoneStatus.WorkOrderID)
+              'mText = pController.GetCurrentInsumosDisplayText(mWorkOrderMileStoneStatus.WorkOrderID)
 
             End If
 

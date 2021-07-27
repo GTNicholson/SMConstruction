@@ -89,7 +89,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .AreaID = AreaID
       .SupplierStockCode = SupplierStockCode
       .Comments = Comments
-
+      .FromStockQty = FromStockQty
 
       'Add entries here for each collection and class property
 
@@ -572,6 +572,13 @@ Public Class colMaterialRequirements : Inherits colBase(Of dmMaterialRequirement
     Next
     Return mRetVal
   End Function
+
+  Public Sub SetQuantitysToZero()
+    For Each mItem As dmMaterialRequirement In Me.Items
+      mItem.Quantity = 0
+      mItem.UnitPiece = 0
+    Next
+  End Sub
 End Class
 
 

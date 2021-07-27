@@ -330,7 +330,7 @@ Public Class frmSalesOrderDetailHouses
         .ProjectName = txtProjectName.Text
         .DateEntered = dteDateEntered.DateTime
         .FinishDate = dteDateRequiredSO.DateTime
-
+        .ShippingCost = pFormController.SalesOrder.SalesOrderHouses.GetTotalShippingCost
         .VisibleNotes = txtVisibleNotes.Text
         .DelAddress1 = txtDelAddress1.Text
         .DelAddress2 = txtDelAddress2.Text
@@ -396,7 +396,7 @@ Public Class frmSalesOrderDetailHouses
 
   Public Sub UpdateSalesOrderPhaseItem(ByRef rSalesOrderPhase As dmSalesOrderPhase)
     Dim mSOI As dmSalesOrderItem
-
+    Dim mSOPI As dmSalesOrderPhaseItem
     If pFormController.SalesOrder.SalesOrderItems IsNot Nothing Then
 
       If pFormController.SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.Count = 0 Then
@@ -406,12 +406,15 @@ Public Class frmSalesOrderDetailHouses
 
         Next
       Else
-        For Each mSOPI As dmSalesOrderPhaseItem In rSalesOrderPhase.SalesOrderPhaseItems
+        For Each mSalesItem As dmSalesOrderItem In pFormController.SalesOrder.SalesOrderItems
 
-          mSOI = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOPI.SalesItemID)
+          mSOPI = rSalesOrderPhase.SalesOrderPhaseItems.ItemFromSalesItemKey(mSalesItem.SalesOrderItemID)
 
-          If mSOI IsNot Nothing Then
-            mSOPI.Qty = mSOI.Quantity
+          If mSOPI IsNot Nothing Then
+            mSOPI.Qty = mSalesItem.Quantity
+          Else
+            pFormController.CreateSalesOrderPhaseItem(pFormController.SalesOrder.SalesOrderPhases(0), pFormController.SalesOrder.SalesOrderID)
+
           End If
 
         Next
@@ -590,6 +593,7 @@ Public Class frmSalesOrderDetailHouses
                 pFormController.LoadWorkOrderByWorkOrderID(mWorkOrder, mWOInfo.WorkOrderID)
 
                 If mWorkOrder IsNot Nothing Then
+                  UpdateSalesOrderPhaseItem(pFormController.SalesOrder.SalesOrderPhases(0))
                   pFormController.CreateWorkOrderAllocation(mPRP.ProductRequirement.SalesOrderItemID, mWorkOrder, mPRP.ProductRequirement.ProductID, mPRP.ToProcessQty)
 
 
