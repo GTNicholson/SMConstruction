@@ -933,4 +933,24 @@ Public Class fccSalesOrderDetailHouses
 
     Return mRetVal
   End Function
+
+  Public Function GetTotalItemsRelatedWithSalesHouse(ByVal vSalesHouse As dmSalesOrderHouse) As Integer
+    Dim mWhere As String = ""
+    Dim mRetVal As Integer
+    Try
+      pDBConn.Connect()
+
+      If vSalesHouse IsNot Nothing Then
+        mWhere = "Select count(SalesOrderItemID) from SalesOrderItem where HouseTypeID = " & vSalesHouse.SalesOrderHouseID
+
+        mRetVal = pDBConn.ExecuteScalar(mWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    Finally
+      pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
 End Class

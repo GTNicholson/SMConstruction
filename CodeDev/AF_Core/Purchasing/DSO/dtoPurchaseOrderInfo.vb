@@ -71,7 +71,8 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
 
         .BuyerName = DBReadString(rDataReader, "BuyerName")
         .TotalNetValueInfo = DBReadDecimal(rDataReader, "TotalNetValue")
-
+        .TotalVatValueReport = DBReadDecimal(rDataReader, "TotalVAT")
+        .TotalRetentionValueReport = DBReadDecimal(rDataReader, "TotalRetentionValue")
         With .PurchaseOrder
           .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
           .PaymentMethod = DBReadInt32(rDataReader, "PaymentMethod")

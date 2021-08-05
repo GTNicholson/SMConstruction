@@ -153,7 +153,21 @@ Public Class dmProductBOM : Inherits dmBase
 
   Public Property Description() As String
     Get
-      Return pDescription
+      Dim mRetVal As String = ""
+
+      Select Case ObjectType
+        Case eProductBOMObjectType.Wood
+          mRetVal = pDescription
+        Case eProductBOMObjectType.StockItems
+          If pStockItemID > 0 Then
+            mRetVal = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItemID).Description
+          Else
+            mRetVal = ""
+          End If
+      End Select
+
+      Return mRetVal
+
     End Get
     Set(ByVal value As String)
       If pDescription <> value Then IsDirty = True

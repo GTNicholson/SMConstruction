@@ -10,6 +10,10 @@ Public Class clsPurchaseOrderInfo
   Private pSupplierContactName As String
   Private pTotalNetValueInfo As Decimal
   Private pSalesOrderPhaseInfos As colSalesOrderPhaseInfos
+  Private pTotalVatValue As Decimal
+  Private pTotalRetentionValue As Decimal
+  Private pTotalValue As Decimal
+
   Public Sub New()
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
@@ -435,6 +439,80 @@ Public Class clsPurchaseOrderInfo
     End Get
   End Property
 
+  Public Property TotalVatValueReport As Decimal
+    Get
+      Return pTotalVatValue
+    End Get
+    Set(value As Decimal)
+      pTotalVatValue = value
+    End Set
+  End Property
+
+  Public ReadOnly Property TotalVatValueReportUSD As Decimal
+
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalVatValueReport
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalVatValueReport / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
+
+
+  Public Property TotalRetentionValueReport As Decimal
+    Get
+      Return pTotalRetentionValue
+    End Get
+    Set(value As Decimal)
+      pTotalRetentionValue = value
+    End Set
+  End Property
+
+  Public ReadOnly Property TotalValueReport As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+
+
+      mRetVal = TotalReceivedAmountUSD - TotalRetentionValueReportUSD + TotalVatValueReportUSD + CarriageUSD
+
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property TotalRetentionValueReportUSD As Decimal
+
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = TotalRetentionValueReport
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = TotalRetentionValueReport / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return mRetVal
+    End Get
+
+  End Property
   Public ReadOnly Property TotalRetentionCordobas As Decimal
 
     Get

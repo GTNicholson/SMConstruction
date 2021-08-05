@@ -71,7 +71,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="18">
+  <property name="Columns" iskey="true" value="17">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -162,7 +162,7 @@
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Monto Total</property>
+      <property name="Caption">Valor Neto</property>
       <property name="FieldName">TotalNetValueInfo</property>
       <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
       <property name="VisibleIndex">9</property>
@@ -185,8 +185,6 @@
       <property name="Caption">Enc. Compras</property>
       <property name="FieldName">BuyerName</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">12</property>
-      <property name="Visible">true</property>
       <property name="Width">160</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
@@ -214,26 +212,6 @@
       </property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
-      <property name="Name">GridColumn11</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Estado del Pago</property>
-      <property name="FieldName">PaymentStatus</property>
-      <property name="ColumnEditName">repitDateDefault</property>
-      <property name="Width">96</property>
-    </property>
-    <property name="Item12" isnull="true" iskey="true">
-      <property name="Name">GridColumn12</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Ref. Material</property>
-      <property name="FieldName">RefMatType</property>
-      <property name="ColumnEditName" />
-      <property name="Width">112</property>
-    </property>
-    <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
@@ -245,12 +223,12 @@
       <property name="Visible">true</property>
       <property name="Width">90</property>
     </property>
-    <property name="Item14" isnull="true" iskey="true">
+    <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Monto Neto (USD)</property>
+      <property name="Caption">Valor Neto (USD)</property>
       <property name="FieldName">TotalReceivedAmountUSD</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
@@ -269,51 +247,7 @@
         </property>
       </property>
     </property>
-    <property name="Item15" isnull="true" iskey="true">
-      <property name="Name">GridColumn8</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Valor IVA (USD)</property>
-      <property name="FieldName">TotalVATUSD</property>
-      <property name="ColumnEditName" />
-      <property name="Width">108</property>
-      <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">$###,##0.00</property>
-        <property name="FormatType">Custom</property>
-      </property>
-      <property name="Summary" iskey="true" value="1">
-        <property name="Item1" isnull="true" iskey="true">
-          <property name="Tag" isnull="true" />
-          <property name="FieldName">TotalVATUSD</property>
-          <property name="SummaryType">Sum</property>
-          <property name="DisplayFormat">{0:$###,##0.00}</property>
-        </property>
-      </property>
-    </property>
-    <property name="Item16" isnull="true" iskey="true">
-      <property name="Name">GridColumn15</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Valor Total (USD)</property>
-      <property name="FieldName">TotalGrossValueUSD</property>
-      <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
-      <property name="Width">117</property>
-      <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">$###,##0.00</property>
-        <property name="FormatType">Custom</property>
-      </property>
-      <property name="Summary" iskey="true" value="1">
-        <property name="Item1" isnull="true" iskey="true">
-          <property name="Tag" isnull="true" />
-          <property name="FieldName">TotalGrossValueUSD</property>
-          <property name="SummaryType">Sum</property>
-          <property name="DisplayFormat">{0:$###,##0.00}</property>
-        </property>
-      </property>
-    </property>
-    <property name="Item17" isnull="true" iskey="true">
+    <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn16</property>
       <property name="Caption">Etapa</property>
       <property name="FieldName">POStageDesc</property>
@@ -321,7 +255,7 @@
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item18" isnull="true" iskey="true">
+    <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn17</property>
       <property name="Caption">Proyecto</property>
       <property name="FieldName">ProjectName</property>
@@ -329,6 +263,69 @@
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">134</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Name">GridColumn18</property>
+      <property name="Caption">Retención Total (USD)</property>
+      <property name="FieldName">TotalRetentionValueReportUSD</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">13</property>
+      <property name="Visible">true</property>
+      <property name="Width">111</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Custom</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalRetentionUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="Name">GridColumn19</property>
+      <property name="Caption">IVA Total (USD)</property>
+      <property name="FieldName">TotalVatValueReportUSD</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">12</property>
+      <property name="Visible">true</property>
+      <property name="Width">91</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Custom</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalVatValueReportUSD</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="Name">GridColumn8</property>
+      <property name="Caption">Valor Total (USD)</property>
+      <property name="FieldName">TotalValueReport</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">14</property>
+      <property name="Visible">true</property>
+      <property name="Width">116</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">$###,##0.00</property>
+        <property name="FormatType">Custom</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalValueReport</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:$###,##0.00}</property>
+        </property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />

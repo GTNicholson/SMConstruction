@@ -735,7 +735,7 @@ Partial Class uctProductBaseDetail
         '
         'gcStockCode
         '
-        Me.gcStockCode.Caption = "Código SMM"
+        Me.gcStockCode.Caption = "Código Interno"
         Me.gcStockCode.ColumnEdit = Me.repbtnSubstituteMatReq
         Me.gcStockCode.FieldName = "StockCode"
         Me.gcStockCode.Name = "gcStockCode"

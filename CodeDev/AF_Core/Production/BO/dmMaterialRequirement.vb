@@ -579,6 +579,17 @@ Public Class colMaterialRequirements : Inherits colBase(Of dmMaterialRequirement
       mItem.UnitPiece = 0
     Next
   End Sub
+
+  Public Function GetItemByIDAndStockItemID(ByVal vMaterialRequirementID As Integer, ByVal vStockItemID As Integer) As dmMaterialRequirement
+    Dim mRetVal As dmMaterialRequirement = Nothing
+
+    For Each mItem As dmMaterialRequirement In Me.Items
+      If mItem.MaterialRequirementID = vMaterialRequirementID And mItem.StockItemID = vStockItemID Then
+        mRetVal = mItem
+      End If
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 

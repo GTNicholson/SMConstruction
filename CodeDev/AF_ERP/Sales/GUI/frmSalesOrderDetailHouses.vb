@@ -1199,7 +1199,7 @@ Public Class frmSalesOrderDetailHouses
         Case ButtonPredefines.Delete
           If xtraTabHouseType.SelectedTabPage.Tag IsNot Nothing Then
 
-            If pFormController.ProductRequirementProcessors.Count > 0 Then
+            If pFormController.GetTotalItemsRelatedWithSalesHouse(xtraTabHouseType.SelectedTabPage.Tag) > 0 Then
               MessageBox.Show("No es posible eliminar esta casa porque existen elementos relacionados a este")
             Else
               pFormController.RemoveSalesOrderHouse(xtraTabHouseType.SelectedTabPage.Tag)

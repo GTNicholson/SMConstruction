@@ -665,7 +665,7 @@ Public Class fccWorkOrderDetailConstruction
 
           If mProductStockItemFound Is Nothing Then
             mNewMatReq = New dmMaterialRequirement
-            mNewMatReq.Description = mPBOM.Description
+            mNewMatReq.Description = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPBOM.StockItemID).Description
             mNewMatReq.ComponentDescription = mPBOM.ComponentDescription
             mNewMatReq.MaterialRequirementType = eMaterialRequirementType.StockItems
             mNewMatReq.MaterialTypeID = mPBOM.MaterialTypeID
@@ -675,7 +675,7 @@ Public Class fccWorkOrderDetailConstruction
             mNewMatReq.ObjectID = pWorkOrder.WorkOrderID
             mNewMatReq.ObjectType = eObjectType.WorkOrder
             mNewMatReq.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
-            mNewMatReq.StockCode = mPBOM.StockCode
+            mNewMatReq.StockCode = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPBOM.StockItemID).StockCode
             mNewMatReq.StockItemID = mPBOM.StockItemID
             mNewMatReq.SupplierStockCode = mPBOM.SupplierStockCode
             mNewMatReq.TotalPieces = mPBOM.TotalPieces
@@ -689,6 +689,7 @@ Public Class fccWorkOrderDetailConstruction
           Else
             mProductStockItemFound.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
             mProductStockItemFound.Comments = mPBOM.Comments
+            mProductStockItemFound.Description = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPBOM.StockItemID).Description
           End If
 
         Next
@@ -708,21 +709,30 @@ Public Class fccWorkOrderDetailConstruction
   Private Sub DeleteNoRequiredMatReqs()
     Dim mIndex As Integer = 0
     Dim mCount As Integer = pWorkOrder.StockItemMaterialRequirements.Count
-    Dim mListIndexCollection As New List(Of Integer)
+    Dim mListIndexCollection As New List(Of Tuple(Of Integer, Integer))
     Dim mRequiredQty As Decimal
+    Dim mTuple As Tuple(Of Integer, Integer)
+    Dim mMaterialRequirementID As Integer
+    Dim mStockItemID As Integer
+    Dim mMaterialRequirement As dmMaterialRequirement
 
     While mIndex < mCount - 1
       mRequiredQty = pWorkOrder.StockItemMaterialRequirements(mIndex).Quantity
+      mMaterialRequirementID = pWorkOrder.StockItemMaterialRequirements(mIndex).MaterialRequirementID
+      mStockItemID = pWorkOrder.StockItemMaterialRequirements(mIndex).StockItemID
 
       If mRequiredQty = 0 Then
-        mListIndexCollection.Add(mIndex)
+        mTuple = New Tuple(Of Integer, Integer)(mMaterialRequirementID, mStockItemID)
+        mListIndexCollection.Add(mTuple)
       End If
       mIndex = mIndex + 1
     End While
 
 
-    For Each mListIndex In mListIndexCollection
-      pWorkOrder.StockItemMaterialRequirements.RemoveAt(mListIndex)
+    For mListIndex As Integer = 0 To mListIndexCollection.Count - 1 Step 1
+
+      mMaterialRequirement = pWorkOrder.StockItemMaterialRequirements.GetItemByIDAndStockItemID(mListIndexCollection(mListIndex).Item1, mListIndexCollection(mListIndex).Item2)
+      pWorkOrder.StockItemMaterialRequirements.Remove(mMaterialRequirement)
     Next
 
   End Sub
