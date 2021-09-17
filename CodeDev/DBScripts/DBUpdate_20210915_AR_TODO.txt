@@ -1,0 +1,171 @@
+alter table SalesOrderPhaseItem
+add SOPIStep int
+go
+
+ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
+as
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POIA.CallOffID,
+POIA.ItemRef2,
+POIA.ItemRef,
+POIA.ProjectRef,
+POIA.SalesorderPhaseItemID,
+POIA.WorkOrderID,
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+POI.RetentionValue,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+po.AccoutingCategoryID,
+po.Category as PO_CATEGORY,
+PO.Status AS 'POStatus',
+S.CompanyName,
+SOP.JobNo,
+SO.ProjectName,
+SO.SalesOrderID,
+isnull(POIA.Quantity,0)-isnull(POIA.ReceivedQty,0) AS 'BalanceQty'
+
+from PurchaseOrderItemAllocation as POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=POIA.SalesorderPhaseItemID 
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+INNER join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join SalesOrderPhase SOP on SOP.SalesOrderPhaseID =SOPI.SalesOrderPhaseID
+left join SalesOrder SO on SO.SalesOrderID = sop.SalesOrderID
+GO
+
+create view vwPOIASOPIOutsourcingCostSUM
+as
+select
+POIA.SalesorderPhaseItemID,
+SUM(POIA.Quantity*POI.UnitPrice) 'POIAOutsourcingSum'
+
+from PurchaseOrderItemAllocation POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+inner join PurchaseOrder PO on po.PurchaseOrderID=poi.PurchaseOrderID
+where IsNull(POIA.SalesorderPhaseItemID,0)<>0 and PO.AccoutingCategoryID=1 --1 IS HONORARIOS
+GROUP BY POIA.SalesorderPhaseItemID
+
+GO
+ALTER VIEW [dbo].[vwSalesOrderPhaseItemTrackingInfo]
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+ISNULL(SOPIMRS.SOPItemPickMatReqCost,0) as 'SOPItemPickMatReqCost',
+ISNULL(SOI.WoodCost,0) AS 'WoodCost',
+ISNULL(SOI.ManpowerCost,0) AS 'ManpowerCost',
+ISNULL(SOI.SubContractCost,0) AS 'SubContractCost',
+ISNULL(SOI.TransportationCost,0) AS 'TransportationCost',
+ISNULL(SOI.MaterialCost,0) AS 'MaterialCost',
+ISNULL(SOPIPOIA.POIAOutsourcingSum,0) AS 'SOPIItemOutsourcingCost',
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.DateEntered,
+SOP.DateCommitted,
+SOP.SalesOrderPhaseID,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+WOA.WorkOrderID,
+WOA.QuantityRequired
+from 
+SalesOrderPhaseItem SOPI
+LEFT join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+left join vwPOIASOPIOutsourcingCostSUM SOPIPOIA ON SOPIPOIA.SalesorderPhaseItemID=SOPI.SalesOrderPhaseItemID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+INNER JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+left join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=SOPIMRS.SalesOrderPhaseItemID
+
+GO
+
+
+create view vwPurcahseOrderItemAllocationWorkOrderInfo
+as
+select
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POIA.SalesorderPhaseItemID,
+POIA.WorkOrderID,
+
+WO.Description WODescription,
+WO.PurchasingDate,
+WO.PlannedDeliverDate,
+WO.WorkOrderNo,
+
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+POI.RetentionValue,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+po.AccoutingCategoryID,
+po.Category as PO_CATEGORY,
+PO.Status AS 'POStatus',
+
+S.CompanyName,
+
+SO.ProjectName,
+SO.SalesOrderID,
+isnull(POIA.Quantity,0)-isnull(POIA.ReceivedQty,0) AS 'BalanceQty'
+from PurchaseOrderItemAllocation POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=POIA.WorkOrderID
+INNER JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+INNER join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+left join SalesOrder SO on SO.SalesOrderID = SOPI.SalesOrderID
+
+
+GO

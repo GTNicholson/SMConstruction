@@ -21,6 +21,12 @@
   Private pWoodCost As Decimal
   Private pMaterialCost As Decimal
   Private pPickedWoodCost As Decimal
+  Private pWOQuantity As Integer
+  Private pManpowerCost As Decimal
+  Private pSubContractCost As Decimal
+  Private pTransportationCost As Decimal
+  Private pSOPIItemOutsourcingCost As Decimal
+
   Public Sub New()
     pSalesOrderPhaseItem = New dmSalesOrderPhaseItem
     pSalesOrder = New dmSalesOrder
@@ -244,6 +250,17 @@
       pWoodCost = value
     End Set
   End Property
+
+  Public Property ManpowerCost As Decimal
+    Get
+      Return pManpowerCost
+    End Get
+    Set(value As Decimal)
+      pManpowerCost = value
+    End Set
+  End Property
+
+
   Public Property StockItemCost As Decimal
     Get
       Return pStockItemCost
@@ -391,6 +408,40 @@
 
   End Property
 
+  Public Property WOAQuantity As Integer
+    Get
+      Return pWOQuantity
+    End Get
+    Set(value As Integer)
+      pWOQuantity = value
+    End Set
+  End Property
+
+  Public Property SubContractCost As Decimal
+    Get
+      Return pSubContractCost
+    End Get
+    Set(value As Decimal)
+      pSubContractCost = value
+    End Set
+  End Property
+  Public Property TransportationCost As Decimal
+    Get
+      Return pTransportationCost
+    End Get
+    Set(value As Decimal)
+      pTransportationCost = value
+    End Set
+  End Property
+
+  Public Property SOPIItemOutsourcingCost As Decimal
+    Get
+      Return pSOPIItemOutsourcingCost
+    End Get
+    Set(value As Decimal)
+      pSOPIItemOutsourcingCost = value
+    End Set
+  End Property
 End Class
 
 
@@ -406,12 +457,12 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
 
 
 
-  Public Function IndexFromSOPhaseID(ByVal vSalesOrderPhaseID As Integer) As Integer
+  Public Function IndexFromSOPhaseItemID(ByVal vSalesOrderPhaseItemID As Integer) As Integer
     Dim mRetVal As Integer = -1
     Dim mIndex As Integer = -1
     For Each mSOPI As clsSalesOrderPhaseItemInfo In Me
       mIndex += 1
-      If mSOPI.SalesOrderPhase.SalesOrderPhaseID = vSalesOrderPhaseID Then
+      If mSOPI.SalesOrderPhaseItem.SalesOrderPhaseItemID = vSalesOrderPhaseItemID Then
         mRetVal = mIndex
       End If
     Next
@@ -427,7 +478,7 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
       If mItem IsNot Nothing Then
 
 
-        If mItem.SalesOrderPhaseItemID = vPhaseItemComponentID Then
+        If mItem.SalesOrderPhaseItem.SalesOrderPhaseItemID = vPhaseItemComponentID Then
           mRetVal = mItem
           Exit For
         End If

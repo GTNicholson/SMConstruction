@@ -275,6 +275,7 @@
     <Compile Include="Production\BO\dmShiftDetails.vb" />
     <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
     <Compile Include="Production\BO\dmWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Production\DSO\dtoWorkOrderAllocationInfo.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderPickStatus.vb" />
     <Compile Include="Production\DSO\dsoProduction.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderMatReqCategoryStatus.vb" />
@@ -335,6 +336,7 @@
     <Compile Include="Sales\BO\clsSalesOrderInfo.vb" />
     <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationEditor.vb" />
+    <Compile Include="Sales\BO\clsWorkOrderAllocationInfo.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />
     <Compile Include="Sales\BO\dmModel.vb" />
     <Compile Include="Sales\BO\clsHouseTypeInfo.vb" />

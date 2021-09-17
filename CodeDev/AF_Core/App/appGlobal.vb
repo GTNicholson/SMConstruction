@@ -32,6 +32,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   Private pProductRegistry As clsProductRegistry
 
   Private pDefaultCostBook As dmCostBook
+  Private pUsersIDWithSmallScreen As List(Of Integer)
 
   Public Sub ProcessUnhandledException(ByRef rException As Exception, ByVal rLogError As Boolean, ByVal rDisplayError As Boolean)
     If rDisplayError Then
@@ -69,9 +70,17 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
 
   Private Sub New()
     MyBase.New()
+    pUsersIDWithSmallScreen = New List(Of Integer)
     pRefLists = New appRefLists 'Need project sub class defined
     pSessionDataSet = eSessionDataSet.Live
     pClipBoard = New clsClipBoard
+
+    ''--List of all the users with sall screens
+    pUsersIDWithSmallScreen.Add(1013)
+    pUsersIDWithSmallScreen.Add(1025)
+    pUsersIDWithSmallScreen.Add(1024)
+    pUsersIDWithSmallScreen.Add(1028)
+    pUsersIDWithSmallScreen.Add(3029)
   End Sub
 
   Public Property SessionDataSet() As eSessionDataSet
@@ -96,6 +105,12 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
   Public ReadOnly Property StockItemRegistry As clsStockItemRegistryComp
     Get
       Return pStockItemRegistry
+    End Get
+  End Property
+
+  Public ReadOnly Property UsersIDWithSmallScreen As List(Of Integer)
+    Get
+      Return pUsersIDWithSmallScreen
     End Get
   End Property
 

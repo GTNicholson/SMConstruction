@@ -62,6 +62,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
 
   Private pPaymentDate As Date
   Private pPurchaseOrderWOAllocations As colPurchaseOrderWOAllocations
+  Private pMaterialRequirementTypeWorkOrderID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -163,6 +164,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .TotalNetValue = TotalNetValue
       .RefMatType = RefMatType
       .MaterialRequirementTypeID = MaterialRequirementTypeID
+      .MaterialRequirementTypeWorkOrderID = MaterialRequirementTypeWorkOrderID
       .PaymentMethod = PaymentMethod
       .AccoutingCategoryID = AccoutingCategoryID
       .POStage = POStage
@@ -734,6 +736,17 @@ Public Class dmPurchaseOrder : Inherits dmBase
       pPurchaseOrderWOAllocations = value
     End Set
   End Property
+
+  Public Property MaterialRequirementTypeWorkOrderID As Integer
+    Get
+      Return pMaterialRequirementTypeWorkOrderID
+    End Get
+    Set(value As Integer)
+      If pMaterialRequirementTypeWorkOrderID <> value Then IsDirty = True
+      pMaterialRequirementTypeWorkOrderID = value
+    End Set
+  End Property
+
 End Class
 
 

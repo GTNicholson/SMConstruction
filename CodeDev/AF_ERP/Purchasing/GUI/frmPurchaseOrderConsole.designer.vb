@@ -23,18 +23,19 @@ Partial Class frmPurchaseOrderConsole
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.bbtnExit = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnCreateNewPurchaseOrder = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnOpenExistingPO = New DevExpress.XtraBars.BarButtonItem()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.barEditMaterialGroup = New DevExpress.XtraBars.BarEditItem()
-    Me.repcboMaterialGroup = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-    Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPurchaseOrderConsole))
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.bbtnExit = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnCreateNewPurchaseOrder = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnOpenExistingPO = New DevExpress.XtraBars.BarButtonItem()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.barEditMaterialGroup = New DevExpress.XtraBars.BarEditItem()
+        Me.repcboMaterialGroup = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repcboMaterialGroup, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +97,7 @@ Partial Class frmPurchaseOrderConsole
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1577, 32)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1577, 30)
         '
         'barDockControlBottom
         '
@@ -110,17 +111,17 @@ Partial Class frmPurchaseOrderConsole
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 802)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 804)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1577, 32)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1577, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 802)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 804)
         '
         'barEditMaterialGroup
         '
@@ -156,6 +157,7 @@ Partial Class frmPurchaseOrderConsole
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.Name = "frmPurchaseOrderConsole"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -68,29 +68,6 @@ Public Class frmPickerStockItem
 
 
   Public Shared Function OpenPickerMulti(ByVal vPickerStockItem As clsPickerStockItem, ByVal vRemainOpen As Boolean, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vIsWood As Boolean, ByVal vWoodStockItemType As Integer) As List(Of intStockItemDef)
-    'Dim mfrm As New frmPickerStockItem
-    'Dim mRetVal As New List(Of intStockItemDef)
-
-
-    'mfrm.pPickerStockItem = vPickerStockItem
-    'mfrm.pRemainOpen = vRemainOpen
-    'mfrm.pShowWoodCat = vIsWood
-    'mfrm.ShowDialog()
-
-    'If mfrm.pPickerStockItem.SelectedObjects IsNot Nothing AndAlso mfrm.pPickerStockItem.SelectedObjects.Count > 0 Then
-    '  For Each mItem As intStockItemDef In mfrm.pPickerStockItem.SelectedObjects
-    '    mRetVal.Add(mItem)
-    '  Next
-    'End If
-
-    'With mfrm.StockItem
-
-
-    'End With
-
-    'Return mRetVal
-
-
     Dim mfrm As New frmPickerStockItem
     Dim mRetVal As New List(Of intStockItemDef)
 

@@ -1264,5 +1264,29 @@ Public Class frmWorkOrderDetailConstruction
     End Try
   End Sub
 
+  Private Sub grpMaterialRequirementInsumos_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaterialRequirementInsumos.CustomButtonClick
+    Dim mPicker As clsPickerStockItem
+    Dim mStockItemsForPickers As New colStockItems
+    Dim mdso As New dsoStock(pFormController.DBConn)
+    Dim mSI As dmStockItem
+    Dim mStockItemMatReq As dmMaterialRequirement
 
+    Try
+      mdso.LoadStockItemsByWhere(mStockItemsForPickers, "IsNull(Inactive,0) = 0")
+      mPicker = New clsPickerStockItem(mStockItemsForPickers, pFormController.DBConn, pFormController.RTISGlobal)
+      mSI = frmPickerStockItem.OpenPickerSingle(mPicker, False)
+
+      If mSI IsNot Nothing Then
+        gvStockItemMatReq.CloseEditor()
+
+        mStockItemMatReq = pFormController.GetNewStockitemMatReq(mSI)
+        pFormController.WorkOrder.StockItemMaterialRequirements.Add(mStockItemMatReq)
+
+        gvStockItemMatReq.RefreshData()
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
 End Class

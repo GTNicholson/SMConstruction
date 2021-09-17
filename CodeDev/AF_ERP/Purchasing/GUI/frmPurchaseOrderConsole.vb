@@ -128,7 +128,9 @@ Public Class frmPurchaseOrderConsole
 
   Private Sub bbtnCreateNewPurchaseOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnCreateNewPurchaseOrder.ItemClick
     Try
-      frmPurchaseOrder.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, 0, eFormMode.eFMFormModeAdd)
+      frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, 0, eFormMode.eFMFormModeAdd, ePODetailOption.ManPO)
+      'frmManPurchaseOrderDetail.OpenFormMDI(0, pFormController.DBConn, pFormController.RTISGlobal, Me., ePODetailOption.ManPO)
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -287,7 +289,7 @@ Public Class frmPurchaseOrderConsole
     Try
       mPOInfo = frmPickerPurchaseOrder.OpenPickerSingle(mPicker)
       If mPOInfo IsNot Nothing Then
-        frmPurchaseOrder.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit)
+        frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit, ePODetailOption.ManPO)
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -297,7 +299,7 @@ Public Class frmPurchaseOrderConsole
 
 
   Public Sub RefreshPOs()
-    Dim mfrmPO As frmPurchaseOrder
+    Dim mfrmPO As frmManPurchaseOrderDetail
     'Dim mfrmSIPurchasing As frmStockItemPurchasing = Nothing
     Dim mfrmMR As frmMaterialRequirement = Nothing
     Dim mCaptionText As String
@@ -319,8 +321,8 @@ Public Class frmPurchaseOrderConsole
           mfrmMR = CType(mForm, frmMaterialRequirement)
         End If
       End If
-      If mForm.GetType() = GetType(frmPurchaseOrder) Then
-        mfrmPO = CType(mForm, frmPurchaseOrder)
+      If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
+        mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
         mfrmPO.lblTitle.Focus()
 
         If mfrmPO IsNot Nothing AndAlso mfrmPO.FormController IsNot Nothing AndAlso mfrmPO.FormController.PurchaseOrder IsNot Nothing Then
@@ -369,12 +371,12 @@ Public Class frmPurchaseOrderConsole
 
   End Sub
 
-  Private Function GetfrmPurchaseOrderByPOID(ByVal vPOID As Integer) As frmPurchaseOrder
-    Dim mRetVal As frmPurchaseOrder = Nothing
-    Dim mfrmPO As frmPurchaseOrder
+  Private Function GetfrmManPurchaseOrderDetailByPOID(ByVal vPOID As Integer) As frmManPurchaseOrderDetail
+    Dim mRetVal As frmManPurchaseOrderDetail = Nothing
+    Dim mfrmPO As frmManPurchaseOrderDetail
     For Each mForm As Windows.Forms.Form In MdiChildren
-      If mForm.GetType() = GetType(frmPurchaseOrder) Then
-        mfrmPO = CType(mForm, frmPurchaseOrder)
+      If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
+        mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
         If mfrmPO.FormController.PurchaseOrder.PurchaseOrderID = vPOID Then
           mRetVal = mForm
           Exit For
@@ -386,7 +388,7 @@ Public Class frmPurchaseOrderConsole
 
   Private Sub ProcessToPOFromMatReq(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Try
-      Dim mfrmPO As frmPurchaseOrder
+      Dim mfrmPO As frmManPurchaseOrderDetail
       Dim mfrmMR As frmMaterialRequirement
       Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
       Dim mCountProcessed As Integer
@@ -410,10 +412,10 @@ Public Class frmPurchaseOrderConsole
         End If
       End If
 
-      '// Find the relevent source form (frmPurchaseOrder)
+      '// Find the relevent source form (frmManPurchaseOrderDetail)
       For Each mForm As Windows.Forms.Form In MdiChildren
-        If mForm.GetType() = GetType(frmPurchaseOrder) Then
-          mfrmPO = CType(mForm, frmPurchaseOrder)
+        If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
+          mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
           Exit For
         End If
       Next
@@ -437,12 +439,18 @@ Public Class frmPurchaseOrderConsole
 
         mfrmPO.Refresh()
         mfrmPO.FormController.LoadObject()
+        mfrmPO.FormController.LoadRefData()
+
 
         mfrmPO.RefreshControls()
         mfrmPO.Refresh()
-        mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems.POItemsMinusAllocatedItem
+        mfrmPO.LoadPOItemAllocationCombo()
+        mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
         mfrmPO.gvPurchaseOrderItems.RefreshData()
-
+        mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
+        mfrmPO.gvPOIWorkOrderInfos.RefreshData()
+        mfrmPO.gvWorkOrderInfos.RefreshData()
+        mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
         MsgBox("Procesamiento completo, " & mCountProcessed & " Item(s) agregados a la O.C.: " & mPO.PONum, MsgBoxStyle.OkOnly, "Procesamiento a Orden de Compra")
 
       End If
@@ -454,7 +462,7 @@ Public Class frmPurchaseOrderConsole
   Private Sub ProcessToPOFromSI(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Try
       Try
-        Dim mfrmPO As frmPurchaseOrder
+        Dim mfrmPO As frmManPurchaseOrderDetail
         'Dim mfrmSI As frmStockItemPurchasing
         Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
         Dim mCountProcessed As Integer
@@ -483,7 +491,7 @@ Public Class frmPurchaseOrderConsole
 
           If mCountProcessed <> 0 Then
 
-            mfrmPO = GetfrmPurchaseOrderByPOID(mPO.PurchaseOrderID)
+            mfrmPO = GetfrmManPurchaseOrderDetailByPOID(mPO.PurchaseOrderID)
             If mfrmPO IsNot Nothing Then
               If mfrmPO.CheckSave(False) Then
                 'mfrmPO.FormController.LoadObject()

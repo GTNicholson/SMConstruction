@@ -27,6 +27,8 @@ Public Class frmPurchaseOrder
   Private pPOIEditor As clsPOItemEditor
   Private pcolPOIEditor As colPOItemEditors
   Private pSupplier As dmSupplier
+  Dim pActiveEditor As DevExpress.XtraEditors.PopupContainerEdit
+
   Private Enum eWorkOrder
     PickWO = 1
 
@@ -188,6 +190,7 @@ Public Class frmPurchaseOrder
       pFormController.LoadSuppliers()
 
       xtabPOReqType.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
+      'xtabPOReqTypeWO.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
 
       LoadCombos()
       RefreshControls()
@@ -236,7 +239,6 @@ Public Class frmPurchaseOrder
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcCoCType, clsEnumsConstants.EnumToVIs(GetType(eCOCType)))
     clsDEControlLoading.FillDEComboVI(cboBuyer, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcVATRateCode, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.VATRate))
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdPurchaseOrderItems, gcSubStage, pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.ProductConstructionSubType))
 
     clsDEControlLoading.FillDEComboVI(cboPaymentMethod, clsEnumsConstants.EnumToVIs(GetType(ePaymentMethod)))
     clsDEControlLoading.LoadGridLookUpEdit(grdPurchaseOrderItems, gcUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
@@ -244,34 +246,45 @@ Public Class frmPurchaseOrder
     dteDateOfOrder.Properties.NullDate = Date.MinValue
     dteDueDate.Properties.NullDate = Date.MinValue
     dtePaymentDate.Properties.NullDate = Date.MinValue
-    grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+    grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhaseItems
     grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems ''.POItemsMinusAllocatedItem
     LoadPOItemAllocationCombo()
   End Sub
 
   Private Sub LoadPOItemAllocationCombo()
-    Dim mSalesOrderPhaseInv As New colValueItems
-    mSalesOrderPhaseInv.AddNewItem(0, "A Inventario")
+    'Dim mSalesOrderPhaseInv As New colValueItems
+    'mSalesOrderPhaseInv.AddNewItem(0, "A Inventario")
 
-    For Each mSOP As dmSalesOrderPhase In pFormController.SalesOrderPhases
-      If mSOP IsNot Nothing Then
-        Dim mSOPIs As New colSalesOrderPhaseInfos
-        Dim mWhere As String = "SalesOrderID = " & mSOP.SalesOrderID
+    'For Each mSOP As dmSalesOrderPhase In pFormController.SalesOrderPhases
+    '  If mSOP IsNot Nothing Then
+    '    Dim mSOPIs As New colSalesOrderPhaseInfos
+    '    Dim mWhere As String = "SalesOrderID = " & mSOP.SalesOrderID
 
-        pFormController.LoadSalesOrderPhaseInfo(mSOPIs, mWhere)
+    '    pFormController.LoadSalesOrderPhaseInfo(mSOPIs, mWhere)
 
-        If mSOPIs IsNot Nothing Then
-          If mSOPIs.Count > 0 Then
-            mSOP.PhaseRef = mSOPIs(0).ProjectName
-          End If
-        End If
+    '    If mSOPIs IsNot Nothing Then
+    '      If mSOPIs.Count > 0 Then
+    '        mSOP.PhaseRef = mSOPIs(0).ProjectName
+    '      End If
+    '    End If
 
-        mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.PhaseRef)
+    '    mSalesOrderPhaseInv.AddNewItem(mSOP.SalesOrderPhaseID, mSOP.PhaseRef)
 
-      End If
-    Next
+    '  End If
+    'Next
 
-    clsDEControlLoading.LoadGridLookUpEdit(grdSalesOrderPhaseItem, gvSalesOrderPhaseItem.Columns("CallOffID"), mSalesOrderPhaseInv)
+    'clsDEControlLoading.LoadGridLookUpEdit(grdSalesOrderPhaseItem, gvSalesOrderPhaseItem.Columns("CallOffID"), mSalesOrderPhaseInv)
+
+
+    'Dim mCallOffVIs As New colValueItems
+    'mCallOffVIs.AddNewItem(0, "To Stock")
+
+    'For Each mWOAInfo As clsWorkOrderAllocationInfo In pFormController.WorkOrderAllocationInfos
+    '  mCallOffVIs.AddNewItem(mWOAInfo.WorkOrderID, mWOAInfo.WorkOrderNo & "/" & mWOAInfo.Description)
+    'Next
+
+    'clsDEControlLoading.LoadGridLookUpEdit(grdPOIWorkOrderAllocation, gvPOIWorkOrderAllocations.Columns("WorkOrderID"), mCallOffVIs)
+
   End Sub
 
   Private Sub SetupUserPermissions()
@@ -337,9 +350,12 @@ Public Class frmPurchaseOrder
   End Function
 
   Public Sub RefreshControls()
+    Dim mStartActive As Boolean = pIsActive
+
     Try
 
 
+      pIsActive = False
       With pFormController.PurchaseOrder
         Me.Text = "OC: " & .PONum
         UctFileControl1.LoadControls()
@@ -409,7 +425,6 @@ Public Class frmPurchaseOrder
               txtCustomerName.Text = pFormController.SalesOrderPhaseInfo.CustomerName
               dteDateRequired.EditValue = pFormController.SalesOrderPhaseInfo.DateRequired
               LoadSalesItemGrid()
-
             End If
 
 
@@ -421,12 +436,39 @@ Public Class frmPurchaseOrder
 
         End Select
 
+        ''//this is the new version using WorkOrderID
+
+        '// Set the purchasereqtype mode buttons
+        Select Case .MaterialRequirementTypeWorkOrderID
+          Case ePOMaterialRequirementType.Inventario
+            'grpWorkOrderType.CustomHeaderButtons(0).Properties.Checked = True
+            'grpWorkOrderType.CustomHeaderButtons(1).Properties.Checked = False
+            'grpWorkOrderType.CustomHeaderButtons(2).Properties.Checked = False
+
+
+
+          Case ePOMaterialRequirementType.Sencillo
+            'grpWorkOrderType.CustomHeaderButtons(0).Properties.Checked = False
+            'grpWorkOrderType.CustomHeaderButtons(1).Properties.Checked = True
+            'grpWorkOrderType.CustomHeaderButtons(2).Properties.Checked = False
+
+
+
+
+          Case ePOMaterialRequirementType.Multiple
+            'grpWorkOrderType.CustomHeaderButtons(0).Properties.Checked = False
+            'grpWorkOrderType.CustomHeaderButtons(1).Properties.Checked = False
+            'grpWorkOrderType.CustomHeaderButtons(2).Properties.Checked = True
+
+        End Select
+
       End With
 
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
+    pIsActive = mStartActive
   End Sub
 
   Private Sub FillSupplierDetail()
@@ -531,6 +573,9 @@ Public Class frmPurchaseOrder
 
       gvSalesOrderPhaseItem.CloseEditor()
       grdSalesOrderPhaseItem.Update()
+
+      gvPOIWorkOrderAllocations.CloseEditor()
+      grdPOIWorkOrderAllocation.Update()
     End With
 
 
@@ -872,31 +917,31 @@ Public Class frmPurchaseOrder
 
           frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal, False, -1)
           For Each mSelectedItem In mPicker.SelectedObjects
-              If mSelectedItem IsNot Nothing Then
-                mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
-                If mPOItem Is Nothing Then
-                  mPOItem = clsPurchaseHandler.AddPOItem(pFormController.PurchaseOrder)
-                  mPOItem.StockItemID = mSelectedItem.StockItemID
-                  mPOItem.Description = mSelectedItem.Description
-                  mPOItem.PartNo = mSelectedItem.PartNo
-                  mPOItem.StockCode = mSelectedItem.StockCode
+            If mSelectedItem IsNot Nothing Then
+              mPOItem = pFormController.PurchaseOrder.PurchaseOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
+              If mPOItem Is Nothing Then
+                mPOItem = clsPurchaseHandler.AddPOItem(pFormController.PurchaseOrder)
+                mPOItem.StockItemID = mSelectedItem.StockItemID
+                mPOItem.Description = mSelectedItem.Description
+                mPOItem.PartNo = mSelectedItem.PartNo
+                mPOItem.StockCode = mSelectedItem.StockCode
 
-                  ''Set the UnitPrice as per DefaultCuurency
-                  If pFormController.CurrentDefaultCurrency = eCurrency.Cordobas Then
-                    mPOItem.UnitPrice = mSelectedItem.AverageCost
+                ''Set the UnitPrice as per DefaultCuurency
+                If pFormController.CurrentDefaultCurrency = eCurrency.Cordobas Then
+                  mPOItem.UnitPrice = mSelectedItem.AverageCost
 
-                  Else
-                    mExchangeRate = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
-                    mPOItem.UnitPrice = mSelectedItem.AverageCost / mExchangeRate
+                Else
+                  mExchangeRate = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
+                  mPOItem.UnitPrice = mSelectedItem.AverageCost / mExchangeRate
 
-                  End If
-                  mPOItem.UoM = mSelectedItem.SupplierUoM
-                  mPOItem.SupplierCode = mSelectedItem.AuxCode
-                  pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
-                  pFormController.POIEditors.Add(pPOIEditor)
                 End If
+                mPOItem.UoM = mSelectedItem.SupplierUoM
+                mPOItem.SupplierCode = mSelectedItem.AuxCode
+                pPOIEditor = New clsPOItemEditor(pFormController.PurchaseOrder, mPOItem)
+                pFormController.POIEditors.Add(pPOIEditor)
               End If
-            Next
+            End If
+          Next
 
           mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
@@ -937,7 +982,7 @@ Public Class frmPurchaseOrder
 
           pFormController.SaveObject()
 
-          pFormController.ProcessManualItem
+          pFormController.ProcessManualItem()
           pFormController.ReloadPODeliveryInfos()
           grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
           grdPODeliveryInfos.RefreshDataSource()
@@ -981,6 +1026,31 @@ Public Class frmPurchaseOrder
   End Sub
 
   Private Sub repoPopPutWorkOrderQty_CloseUp(sender As Object, e As CloseUpEventArgs) Handles repoPopupWorkOrder.CloseUp
+    Dim mRow As dmPurchaseOrderItem
+    'gvPurchaseOrderItems.CloseEditor()
+    mRow = gvPurchaseOrderItems.GetFocusedRow
+    If mRow IsNot Nothing Then
+
+      gvSalesOrderPhaseItem.CloseEditor()
+      UpdateObject()
+      mRow.QtyRequired = mRow.TotalQuantityAllocated
+      gvPurchaseOrderItems.RefreshData()
+
+      RefreshControls()
+
+    End If
+  End Sub
+
+  Private Sub repoPopupWorkOrderAllocation_QueryPopUp(sender As Object, e As CancelEventArgs) Handles repoPopupWorkOrderAllocation.QueryPopUp
+    Dim mRow As dmPurchaseOrderItem
+    'gvPurchaseOrderItems.CloseEditor()
+    mRow = gvPurchaseOrderItems.GetFocusedRow
+    If mRow IsNot Nothing Then
+      grdSalesOrderPhaseItem.DataSource = mRow.PurchaseOrderItemAllocations
+    End If
+  End Sub
+
+  Private Sub repoPopupWorkOrderAllocation_CloseUp(sender As Object, e As CloseUpEventArgs) Handles repoPopupWorkOrderAllocation.CloseUp
     Dim mRow As dmPurchaseOrderItem
     'gvPurchaseOrderItems.CloseEditor()
     mRow = gvPurchaseOrderItems.GetFocusedRow
@@ -1051,7 +1121,7 @@ Public Class frmPurchaseOrder
         pFormController.LoadRefData()
         LoadPOItemAllocationCombo()
         gvPurchaseOrderItems.RefreshData()
-        grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+        grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhaseItems
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -1280,6 +1350,13 @@ Public Class frmPurchaseOrder
           'gvPurchaseOrderItems.RefreshRow(gvPurchaseOrderItems.FocusedRowHandle)
         End If
       End If
+
+      If e.Column Is gcRequiredQuantityMultipleWO Then
+        If e.IsGetData Then
+          e.Value = pFormController.GetTotalAllocatedQty(mPOItem.PurchaseOrderItemID)
+
+        End If
+      End If
     End If
   End Sub
 
@@ -1316,7 +1393,7 @@ Public Class frmPurchaseOrder
 
 
             ''pFormController.SalesOrderPhases.Clear()
-            grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+            grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhaseItems
             grdSalesOrderPhases.RefreshDataSource()
             pFormController.SalesOrderPhaseInfo = Nothing
 
@@ -1340,7 +1417,7 @@ Public Class frmPurchaseOrder
           grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
           grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = True
           grpPOMaterialType.CustomHeaderButtons.Item(2).Properties.Checked = False
-          grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+          grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhaseItems
           grdSalesOrderPhases.RefreshDataSource()
           gvPurchaseOrderItems.RefreshData()
           'pFormController.CreateUpdatePOItemAllocation(mPOItem)
@@ -1361,7 +1438,7 @@ Public Class frmPurchaseOrder
 
       RefreshControls()
       ShowHideTabs()
-      grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhases
+      grdSalesOrderPhases.DataSource = pFormController.SalesOrderPhaseItems
       grdSalesOrderPhases.RefreshDataSource()
 
     Catch ex As Exception
@@ -1369,6 +1446,76 @@ Public Class frmPurchaseOrder
     End Try
   End Sub
 
+
+  'Private Sub 'grpWorkOrderType_CustomButtonChecked(sender As Object, e As BaseButtonEventArgs) Handles 'grpWorkOrderType.CustomButtonChecked
+  '  Try
+  '    gvWorkOrderAllocations.CloseEditor()
+  '    gvWorkOrderAllocations.UpdateCurrentRow()
+  '    UpdateObject()
+  '    CheckSave(False)
+
+  '    Select Case e.Button.Properties.Tag
+
+
+  '      Case ePOMaterialRequirementType.Inventario
+  '        If e.Button.Properties.IsChecked Then
+  '          pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
+  '          pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
+
+
+  '          ''pFormController.SalesOrderPhases.Clear()
+  '          grdWorkOrderAllocations.DataSource = pFormController.WorkOrders
+  '          grdWorkOrderAllocations.RefreshDataSource()
+  '          pFormController.WorkOrderAllocationInfo = Nothing
+
+  '          'grpWorkOrderType.CustomHeaderButtons.Item(0).Properties.Checked = True
+  '          'grpWorkOrderType.CustomHeaderButtons.Item(1).Properties.Checked = False
+  '          'grpWorkOrderType.CustomHeaderButtons.Item(2).Properties.Checked = False
+  '        End If
+
+
+
+  '      Case ePOMaterialRequirementType.Sencillo
+
+  '        If pFormController.WorkOrderAllocationInfo Is Nothing Then
+  '          pFormController.WorkOrderAllocationInfo = New clsWorkOrderAllocationInfo
+  '        End If
+  '        pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
+  '        For mLoop = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 1 Step -1
+  '          pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mLoop)
+  '        Next
+
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(0).Properties.Checked = False
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(1).Properties.Checked = True
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(2).Properties.Checked = False
+  '        grdWorkOrderAllocations.DataSource = pFormController.WorkOrders
+  '        grdWorkOrderAllocations.RefreshDataSource()
+  '        gvPurchaseOrderItems.RefreshData()
+  '        'pFormController.CreateUpdatePOItemAllocation(mPOItem)
+  '      Case ePOMaterialRequirementType.Multiple
+  '        pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Multiple
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(0).Properties.Checked = False
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(1).Properties.Checked = False
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(2).Properties.Checked = True
+
+  '      Case Else
+  '        pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
+  '        'grpWorkOrderType.CustomHeaderButtons.Item(0).Properties.Checked = True
+  '        ''pFormController.SalesOrderPhases.Clear()
+  '    End Select
+
+  '    pFormController.LoadRefData()
+  '    LoadPOItemAllocationCombo()
+
+  '    RefreshControls()
+  '    ShowHideTabs()
+  '    grdWorkOrderAllocations.DataSource = pFormController.WorkOrders
+  '    grdWorkOrderAllocations.RefreshDataSource()
+
+  '  Catch ex As Exception
+  '    If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+  '  End Try
+  'End Sub
 
   Private Sub ShowHideTabs()
     ''Dim mCurrentTabPage As DevExpress.XtraTab.XtraTabPage
@@ -1394,6 +1541,9 @@ Public Class frmPurchaseOrder
           ''ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
 
       End Select
+
+
+
     End If
 
 
@@ -1407,7 +1557,7 @@ Public Class frmPurchaseOrder
       Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
       Dim mSalesOrderPhase As dmSalesOrderPhase
       Dim mPOAllocation As dmPurchaseOrderAllocation
-      pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateRequired is not null and OrderTypeID<>" & CInt(eOrderType.WoodSales))
+      'pFormController.LoadSalesOrderPhaseInfo(mSalesOrderPhaseInfos, "DateRequired is not null and OrderTypeID<>" & CInt(eOrderType.WoodSales))
 
 
       mPicker = New clsPickerSalesOrderPhase(mSalesOrderPhaseInfos, pFormController.DBConn)
@@ -1431,10 +1581,10 @@ Public Class frmPurchaseOrder
         mSalesOrderPhase.SalesOrderID = mSalesOrderPhaseInfo.SalesOrderID
         mSalesOrderPhase.TotalPrice = mSalesOrderPhaseInfo.TotalPrice
         mSalesOrderPhase.SalesOrderPhaseID = mSalesOrderPhaseInfo.SalesOrderPhaseID
-        pFormController.SalesOrderPhases.Clear()
+        pFormController.SalesOrderPhaseItems.Clear()
         pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 
-        pFormController.SalesOrderPhases.Add(mSalesOrderPhase)
+        pFormController.SalesOrderPhaseItems.Add(mSalesOrderPhase)
         pFormController.SalesOrderPhaseInfo = mSalesOrderPhaseInfo
 
         If pFormController.PurchaseOrder.PurchaseOrderAllocations.IndexFromCallOffID(mSalesOrderPhaseInfo.SalesOrderPhaseID) = -1 Then
@@ -1464,9 +1614,9 @@ Public Class frmPurchaseOrder
 
   Private Sub LoadSalesItemGrid()
 
-
+    'pFormController.WorkOrderAllocationInfos.Clear()
     pFormController.SalesOrderPhaseItemInfos.Clear()
-    pFormController.LoadSalesOrderPhaseItemInfos
+    pFormController.LoadSalesOrderPhaseItemInfos()
 
     grdSalesOrderPhaseItemInfo.DataSource = pFormController.SalesOrderPhaseItemInfos
     grdSalesOrderPhaseItemInfo.RefreshDataSource()
@@ -1606,6 +1756,162 @@ Public Class frmPurchaseOrder
         Next
         gvPurchaseOrderItems.RefreshData()
       End If
+    End If
+  End Sub
+
+  Private Sub btnSelectWorkOrder_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnSelectWorkOrder.ButtonClick
+    'Try
+    '  Dim mPicker As clsPickerWorkOrderAllocation
+    '  Dim mWorkOrderAllocationInfos As New colWorkOrderAllocationInfos
+    '  Dim mWorkOrderAllocationInfo As clsWorkOrderAllocationInfo
+    '  Dim mPOAllocation As dmPurchaseOrderAllocation
+    '  pFormController.LoadWorkOrderAllocationInfos(mWorkOrderAllocationInfos)
+
+
+    '  mPicker = New clsPickerWorkOrderAllocation(mWorkOrderAllocationInfos, pFormController.DBConn)
+
+    '  mWorkOrderAllocationInfo = frmPickerWorkOrderAllocation.OpenPickerSingle(mPicker)
+
+    '  If mWorkOrderAllocationInfo IsNot Nothing Then
+
+
+    '    ' pFormController.WorkOrderAllocationInfos.Clear()
+    '    pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
+
+    '    'pFormController.WorkOrderAllocationInfos.Add(mWorkOrderAllocationInfo)
+    '    'pFormController.WorkOrderAllocationInfo = mWorkOrderAllocationInfo
+
+    '    If pFormController.PurchaseOrder.PurchaseOrderAllocations.IndexFromWorkOrderID(mWorkOrderAllocationInfo.WorkOrderID) = -1 Then
+    '      mPOAllocation = New dmPurchaseOrderAllocation
+    '      mPOAllocation.CallOffID = mWorkOrderAllocationInfo.SalesOrderPhase.SalesOrderPhaseID
+    '      mPOAllocation.WorkOrderID = mWorkOrderAllocationInfo.WorkOrderID
+    '      mPOAllocation.PurchaseOrderID = pFormController.PurchaseOrder.PurchaseOrderID
+    '      mPOAllocation.WorkOrderID = mWorkOrderAllocationInfo.WorkOrderID
+
+    '      pFormController.PurchaseOrder.PurchaseOrderAllocations.Add(mPOAllocation)
+    '    End If
+    '    '// create a new poallocatio
+    '    '// add to collection
+    '  End If
+
+    '  For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
+    '    pFormController.CreateUpdatePOItemAllocation(mPOI, True)
+    '  Next
+    '  'pFormController.WorkOrderAllocationInfo = mWorkOrderAllocationInfo
+    '  LoadPOItemAllocationCombo()
+    '  LoadSalesItemGrid()
+    '  RefreshControls()
+
+    '  pFormController.SaveObject()
+    'Catch ex As Exception
+    '  If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    'End Try
+  End Sub
+
+
+
+  Private Sub repoPopupPOItem_Popup(sender As Object, e As EventArgs) Handles repoPopupPOItem.Popup
+    Dim mRow As dmPurchaseOrderItem
+    'gvPurchaseOrderItems.CloseEditor()
+    mRow = gvPurchaseOrderItems.GetFocusedRow
+    If mRow IsNot Nothing Then
+      grdPOIWorkOrderAllocation.DataSource = mRow.PurchaseOrderItemAllocations
+    End If
+  End Sub
+
+  Private Sub repoPopupPOItem_CloseUp(sender As Object, e As CloseUpEventArgs) Handles repoPopupPOItem.CloseUp
+    Dim mRow As dmPurchaseOrderItem
+    'gvPurchaseOrderItems.CloseEditor()
+    mRow = gvPurchaseOrderItems.GetFocusedRow
+    If mRow IsNot Nothing Then
+
+      gvPOIWorkOrderAllocations.CloseEditor()
+      UpdateObject()
+      mRow.QtyRequired = mRow.TotalQuantityAllocated
+      gvPurchaseOrderItems.RefreshData()
+
+      RefreshControls()
+
+    End If
+  End Sub
+
+
+  Private Sub gvPOIWorkOrderAllocations_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvPOIWorkOrderAllocations.CustomUnboundColumnData
+    Dim mRow As dmPurchaseOrderItemAllocation
+
+    Try
+      mRow = TryCast(e.Row, dmPurchaseOrderItemAllocation)
+
+      If mRow IsNot Nothing Then
+
+        Select Case e.Column.Name
+          Case gcWorkOrderID.Name
+
+            If e.IsGetData Then
+
+              If mRow.WorkOrderID > 0 Then
+                e.Value = mRow.ItemRef
+              Else
+                e.Value = "Para Inventario"
+              End If
+            End If
+
+
+
+        End Select
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+
+  Private Sub repoSelectSOP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoSelectWOAllocation.ButtonClick
+    Dim mRow As dmPurchaseOrderItemAllocation
+    Dim mPicker As clsPickerWorkOrderAllocation
+    Dim mSelectedItem As clsWorkOrderAllocationInfo
+
+
+    Try
+      mRow = TryCast(gvPOIWorkOrderAllocations.GetFocusedRow, dmPurchaseOrderItemAllocation)
+      If mRow IsNot Nothing Then
+
+        'If gvPurchaseOrderItems.ActiveEditor IsNot Nothing Then pActiveEditor = gvPurchaseOrderItems.ActiveEditor
+
+        pActiveEditor = popupPOI.OwnerEdit
+        'pFormController.WorkOrderAllocationInfos = pFormController.GetWorkOrderAllocationInfos()
+        'mPicker = New clsPickerWorkOrderAllocation(pFormController.WorkOrderAllocationInfos, pFormController.DBConn)
+        mSelectedItem = frmPickerWorkOrderAllocation.OpenPickerSingle(mPicker)
+
+        If mSelectedItem IsNot Nothing Then
+
+          mRow.CallOffID = mSelectedItem.SalesOrderPhase.SalesOrderPhaseID
+          mRow.ItemRef = mSelectedItem.WorkOrder.WorkOrderNo
+          mRow.WorkOrderID = mSelectedItem.WorkOrder.WorkOrderID
+          mRow.ItemRef2 = mSelectedItem.WorkOrder.Description
+          mRow.ProjectRef = mSelectedItem.ProjectName
+        End If
+
+        pActiveEditor.ShowPopup()
+
+      End If
+
+      pFormController.SaveObject()
+      'LoadPOItemAllocationCombo()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+
+  End Sub
+
+  Private Sub grdPurchaseOrderItems_Click(sender As Object, e As EventArgs) Handles grdPurchaseOrderItems.Click
+    If pActiveEditor IsNot Nothing Then
+
+      'gvPOIWorkOrderAllocations.CloseEditor()
+      'gvPurchaseOrderItems.CloseEditor()
+      'pActiveEditor.ClosePopup()
     End If
   End Sub
 End Class

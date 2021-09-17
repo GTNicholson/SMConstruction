@@ -1,10 +1,7 @@
-Imports RTIS.CommonVB
-Imports RTIS.DataLayer
-Imports RTIS.DeveloperUtilities
-
-Imports System.IO
 Imports System.Environment
 Imports DevExpress.XtraNavBar
+Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 Imports RTIS.ERPCore
 
 Public Class frmTabbedMDI_DevUtil
@@ -795,6 +792,456 @@ Public Class frmTabbedMDI_DevUtil
 
   End Sub
 
+  Public Sub SetPOAllocationWorkOrderIDs()
+    Dim mdso As dsoPurchasing
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mPOIAs As New colPurchaseOrderItemAllocations
+    Dim mPOAs As New colPurchaseOrderAllocations
+    Dim mPOStageID As Integer
+    Dim mWorkOrderID As Integer
+    Dim mFilterDesc As String = ""
+    Dim mWhere As String = ""
 
+
+    Try
+
+      mdso = New dsoPurchasing(mdbconn)
+      mWhere = "IsNull(WorkOrderID,0)=0"
+      mdso.LoadPurchaseOrderItemAllocationsByWheres(mPOIAs, mWhere)
+      mdso.LoadPurchaseOrderAllocationsByWhere(mPOAs, mWhere)
+
+
+      For Each mPOIA As dmPurchaseOrderItemAllocation In mPOIAs
+        mWorkOrderID = 0
+        mPOStageID = 0
+        If Not mdbconn.IsConnected Then mdbconn.Connect()
+
+
+        mPOStageID = mdbconn.ExecuteScalar(String.Format("Select IsNull(POStage,0) from PurchaseOrder where PurchaseOrderID in (select PurchaseOrderID from PurchaseOrderItem where PurchaseOrderItemID={0})", mPOIA.PurchaseOrderItemID))
+
+
+        mWhere = "Select IsNull(WOA.WorkOrderID,0) from WorkOrderAllocation WOA"
+        mWhere &= " inner join WorkOrder WO ON WO.WorkOrderID=WOA.WorkOrderID"
+        mWhere &= " INNER JOIN SalesOrderPhaseItem SOPI ON sopi.SalesOrderPhaseItemID = WOA.SalesOrderPhaseItemID"
+
+        Select Case mPOStageID
+          Case ePOStage.Fundaciones
+            mFilterDesc = "%funda%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Bathroom
+            mFilterDesc = "%bathrom%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.CieloRaso
+            mFilterDesc = "%cielo%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.InstalacionesElectricas
+            mFilterDesc = "%electrica%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Paredes
+            mFilterDesc = "%parede%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Pisos
+            mFilterDesc = "%piso%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.PuertasVentanas
+            mFilterDesc = "%puerta%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Techo
+            mFilterDesc = "%techo%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOIA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+        End Select
+
+
+        If mWorkOrderID > 0 Then ''WO found
+          mWhere = String.Format("Update PurchaseOrderItemAllocation set WorkOrderID = {0} where PurchaseOrderItemAllocationID = {1} ", mWorkOrderID, mPOIA.PurchaseOrderItemAllocationID)
+          mdbconn.ExecuteNonQuery(mWhere)
+
+
+
+
+
+        End If
+
+      Next
+
+
+
+      For Each mPOA As dmPurchaseOrderAllocation In mPOAs
+        mWorkOrderID = 0
+        mPOStageID = 0
+        If Not mdbconn.IsConnected Then mdbconn.Connect()
+
+
+        mPOStageID = mdbconn.ExecuteScalar(String.Format("Select IsNull(POStage,0) from PurchaseOrder where PurchaseOrderID ={0}", mPOA.PurchaseOrderID))
+
+
+        mWhere = "Select IsNull(WOA.WorkOrderID,0) from WorkOrderAllocation WOA"
+        mWhere &= " inner join WorkOrder WO ON WO.WorkOrderID=WOA.WorkOrderID"
+        mWhere &= " INNER JOIN SalesOrderPhaseItem SOPI ON sopi.SalesOrderPhaseItemID = WOA.SalesOrderPhaseItemID"
+
+        Select Case mPOStageID
+          Case ePOStage.Fundaciones
+            mFilterDesc = "%funda%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Bathroom
+            mFilterDesc = "%bathrom%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.CieloRaso
+            mFilterDesc = "%cielo%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.InstalacionesElectricas
+            mFilterDesc = "%electrica%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Paredes
+            mFilterDesc = "%parede%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Pisos
+            mFilterDesc = "%piso%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.PuertasVentanas
+            mFilterDesc = "%puerta%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+          Case ePOStage.Techo
+            mFilterDesc = "%techo%"
+            mWhere &= String.Format(" Where Wo.Description like '{0}' and SOPI.SalesOrderPhaseID={1}", mFilterDesc, mPOA.CallOffID)
+
+            mWorkOrderID = mdbconn.ExecuteScalar(mWhere)
+
+        End Select
+
+
+        If mWorkOrderID > 0 Then ''WO found
+          mWhere = String.Format("Update PurchaseOrderAllocation set WorkOrderID = {0} where PurchaseOrderAllocationID = {1} ", mWorkOrderID, mPOA.PurchaseOrderAllocationID)
+          mdbconn.ExecuteNonQuery(mWhere)
+
+          mWhere = String.Format("Update PurchaseOrder set MaterialRequirementTypeWorkOrderID = 3,MaterialRequirementTypeID=null where PurchaseOrderID = {0} ", mPOA.PurchaseOrderID)
+          mdbconn.ExecuteNonQuery(mWhere)
+
+        Else ''Create a WO,WOA
+        End If
+
+      Next
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If mdbconn.IsConnected Then mdbconn.Disconnect()
+      mdso = Nothing
+    End Try
+    '// Get a list of the PurchaseOrderItemAllocations with a 0 in WorkOrderID
+
+    '// For each POIA
+    '// Find the POStage for the PurchaseOrder
+    '// mPOStage =  pdbconn.ExecuteScaler("Select POStage form urchaseOrder where purchaseorderid = )
+    '// return the workdorderid from a suitable Workorderallocation inner join workorder inner join salesrderphaseitem by a like '%Fund%' and a SOPI.SalesOrderPhaseID = POA CallOffID
+
+    '// if we find a workorderid
+    '// pbconn.executenonquery("Update")
+
+    '// else
+    '// If we didn't find a salesorderphaseitem then we need to create a new worksorder with workorderallocation and use that ID
+
+
+  End Sub
+
+  Private Function CreateWOA(ByRef rdbconn As clsDBConnBase, ByVal vPOIA As dmPurchaseOrderItemAllocation) As dmWorkOrderAllocation
+    Dim mWOA As New dmWorkOrderAllocation
+
+    mWOA.QuantityRequired = 1
+
+    If vPOIA.CallOffID > 0 Then
+
+
+
+
+    End If
+
+    mWOA.SalesOrderPhaseItemID = 1
+
+    Return mWOA
+  End Function
+
+  Private Function CreateWorkOrder(ByRef rdbconn As clsDBConnBase, ByVal vPOIA As dmPurchaseOrderItemAllocation, ByVal vPOStageID As Integer) As dmWorkOrder
+    Dim mdsoGeneral As dsoGeneral
+    Dim mWO As New dmWorkOrder
+
+    mdsoGeneral = New dsoGeneral(rdbconn)
+    mWO.WorkOrderNo = "OT-" & mdsoGeneral.GetNextTallyWONo().ToString("00000")
+
+
+    mWO.DateCreated = Now
+    mWO.ProductTypeID = eProductType.StructureAF
+    mWO.Quantity = 1
+    mWO.ProductID = 61 ''Global Product
+    mWO.PlannedStartDate = Now
+    mWO.Description = GetDescriptionOT(rdbconn, vPOIA, vPOStageID)
+    mWO.isInternal = True
+    mWO.Status = eWorkOrderStatus.InProcess
+
+    Return mWO
+  End Function
+
+  Private Function GetDescriptionOT(ByRef rDBConn As clsDBConnBase, ByVal vPOIA As dmPurchaseOrderItemAllocation, vPOStageID As Integer) As String
+    Dim mWhere As String = ""
+    Dim mProjectRef As String = ""
+
+    If vPOIA.CallOffID > 0 Then ''//Not To Stock
+      mWhere = "select Distinct ProjectName from SalesOrder"
+      mWhere &= String.Format(" where SalesOrderID in (select salesorderid from SalesOrderPhase where SalesOrderPhaseID={0})", vPOIA.CallOffID)
+
+      mProjectRef = rDBConn.ExecuteScalar(mWhere)
+
+      If mProjectRef <> "" Then
+        mProjectRef = clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(vPOStageID, ePOStage)) & " - " & mProjectRef
+
+      Else
+        mProjectRef = clsEnumsConstants.GetEnumDescription(GetType(ePOStage), CType(vPOStageID, ePOStage))
+      End If
+    End If
+
+    Return mProjectRef
+
+  End Function
+
+  Private Sub bbtnUpdatePOIA_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnUpdatePOIA.LinkClicked
+    SetPOAllocationWorkOrderIDs()
+  End Sub
+
+  Private Sub btnUpdateWoodTransaction_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdateWoodTransaction.LinkClicked
+    Dim mdsoCostBook As dsoCostBook
+    Dim mdsoTransactions As dsoStockTransactions
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mCOEntrys As New colCostBookEntrys
+    Dim mStockItemTransactionLogInfos As New colStockItemTransactionLogInfos
+    Dim mCostBookEntryFound As dmCostBookEntry
+    Dim mWhere As String
+    Dim mNewTransactionValue As Decimal
+
+    Try
+      mdsoTransactions = New dsoStockTransactions(mdbconn)
+      mdsoCostBook = New dsoCostBook(mdbconn)
+      mWhere = " RefObjectID in (select WoodPalletID from WoodPallet where WorkOrderID>0)"
+
+      mdsoTransactions.LoadStockItemTransactionsWoodByWhere(mStockItemTransactionLogInfos, mWhere)
+
+      mWhere = " StockItemID in (select StockItemID from StockItemLocation where StockItemLocationID in (select ObjectID from StockItemTransactionLog"
+      mWhere &= " where RefObjectID in (select WoodPalletID from WoodPallet where WorkOrderID>0)))"
+
+      mdsoCostBook.LoadCostBookEntryByWhere(mCOEntrys, mWhere)
+      For Each mSITLI As clsStockItemTransactionLogInfo In mStockItemTransactionLogInfos
+        mWhere = ""
+        If mSITLI.TransactionValuation = 0 Then
+
+          If Not mdbconn.IsConnected Then mdbconn.Connect()
+          If mSITLI.CurrentStockItem IsNot Nothing Then
+
+            If mSITLI.CurrentStockItem.StockItemID > 0 Then
+              mCostBookEntryFound = mCOEntrys.ItemFromStockItemID(mSITLI.CurrentStockItem.StockItemID)
+
+              If mCostBookEntryFound IsNot Nothing Then
+                mNewTransactionValue = mSITLI.TransQuantity * mCostBookEntryFound.Cost
+
+                mWhere = String.Format("Update StockItemTransactionLog set TransactionValuation ={0}, TransactionValuationDollar ={0} where StockItemTransactionLogID={1}", mNewTransactionValue, mSITLI.StockItemTransactionLogID)
+
+                mdbconn.ExecuteScalar(mWhere)
+
+              End If
+
+            End If
+
+          End If
+
+        End If
+
+      Next
+      If mdbconn.IsConnected Then mdbconn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If mdbconn.IsConnected Then mdbconn.Disconnect()
+      mdsoCostBook = Nothing
+      mdsoTransactions = Nothing
+
+    End Try
+  End Sub
+
+  Private Sub btnUpdatePOItemSOPI_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdatePOItemSOPI.LinkClicked
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mDataTable As New DataTable
+    Dim mSQL As String = ""
+    Dim mRow As DataRow
+    Dim mPurchaseOrderAllocationID As Object
+    Dim mCallOffID As Object
+    Dim mPOStage As Object
+    Dim mSalesOrderPhaseItemID As Object
+    Dim mPurchaseOrderItemAllocationID As Object
+    Dim mPurchaseOrderID As Object
+
+    Try
+      mdbconn.Connect()
+      mSQL = "Select PurchaseOrderAllocationID, IsNull(CallOffID,0) CallOffID,IsNull(POStage,0) POStage,PO.PurchaseOrderID "
+      mSQL &= " from PurchaseOrderAllocation POA"
+      mSQL &= " INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POA.PurchaseOrderID"
+      mSQL &= " where POA.WorkOrderID=0"
+
+      mDataTable = mdbconn.CreateDataTable(mSQL)
+
+      For Each mRow In mDataTable.Rows
+        mSQL = ""
+        mPurchaseOrderAllocationID = mRow("PurchaseOrderAllocationID")
+        mCallOffID = mRow("CallOffID")
+        mPOStage = mRow("POStage")
+        mPurchaseOrderID = mRow("PurchaseOrderID")
+        If mCallOffID IsNot Nothing And mPOStage IsNot Nothing Then
+          mSQL = "select SalesOrderPhaseItemID from SalesOrderPhaseItem SOPI "
+          mSQL &= " inner join SalesOrderItem SOI on SOI.SalesOrderItemID=SOPI.SalesItemID "
+
+          mSQL &= String.Format(" where SalesOrderPhaseID={0} and SOPIStep={1}", mCallOffID, mPOStage)
+          mSalesOrderPhaseItemID = mdbconn.ExecuteScalar(mSQL)
+
+          If mSalesOrderPhaseItemID IsNot Nothing And mPurchaseOrderAllocationID IsNot Nothing Then
+            mSQL = "Update PurchaseOrderAllocation"
+            mSQL &= String.Format(" set SalesorderPhaseItemID = {0} where PurchaseOrderAllocationID= {1}", mSalesOrderPhaseItemID, mPurchaseOrderAllocationID)
+            mdbconn.ExecuteNonQuery(mSQL)
+
+            If mPurchaseOrderID IsNot Nothing Then
+              mSQL = String.Format("Update PurchaseOrder set MaterialRequirementTypeWorkOrderID = null,MaterialRequirementTypeID=3 where PurchaseOrderID = {0} ", mPurchaseOrderID)
+              mdbconn.ExecuteNonQuery(mSQL)
+
+            End If
+          Else
+              If mCallOffID IsNot Nothing Then
+              mSQL = "select top 1 SalesOrderPhaseItemID from SalesOrderPhaseItem SOPI "
+              mSQL &= " inner join SalesOrderItem SOI on SOI.SalesOrderItemID = SOPI.SALESITEMID"
+              mSQL &= String.Format(" where SalesOrderPhaseID={0}", mCallOffID)
+
+              mSalesOrderPhaseItemID = mdbconn.ExecuteScalar(mSQL)
+              If mSalesOrderPhaseItemID IsNot Nothing Then
+                mSQL = "Update PurchaseOrderAllocation"
+                mSQL &= String.Format(" set SalesorderPhaseItemID = {0} where PurchaseOrderAllocationID= {1}", mSalesOrderPhaseItemID, mPurchaseOrderAllocationID)
+                mdbconn.ExecuteNonQuery(mSQL)
+
+                If mPurchaseOrderID IsNot Nothing Then
+                  mSQL = String.Format("Update PurchaseOrder set MaterialRequirementTypeWorkOrderID = null,MaterialRequirementTypeID=3 where PurchaseOrderID = {0} ", mPurchaseOrderID)
+                  mdbconn.ExecuteNonQuery(mSQL)
+
+                End If
+
+              End If
+            End If
+
+
+          End If
+
+          End If
+
+      Next
+
+
+
+      ''Update PurchaseOrderItemAllocatoin
+
+      mSQL = "Select PurchaseOrderItemAllocationID, IsNull(CallOffID,0) CallOffID,IsNull(POStage,0) POStage "
+      mSQL &= " from PurchaseOrderItemAllocation POIA"
+      mSQL &= " INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID"
+      mSQL &= " INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID"
+      mSQL &= " where POIA.WorkOrderID=0 "
+
+      mDataTable = New DataTable
+      mDataTable = mdbconn.CreateDataTable(mSQL)
+
+      For Each mRow In mDataTable.Rows
+        mSQL = ""
+        mPurchaseOrderItemAllocationID = mRow("PurchaseOrderItemAllocationID")
+        mCallOffID = mRow("CallOffID")
+        mPOStage = mRow("POStage")
+
+        If mCallOffID IsNot Nothing And mPOStage IsNot Nothing Then
+          mSQL = "select SalesOrderPhaseItemID from SalesOrderPhaseItem SOPI "
+          mSQL &= " inner join SalesOrderItem SOI on SOI.SalesOrderItemID=SOPI.SalesItemID "
+
+          mSQL &= String.Format(" where SalesOrderPhaseID={0} and SOPIStep={1}", mCallOffID, mPOStage)
+          mSalesOrderPhaseItemID = mdbconn.ExecuteScalar(mSQL)
+
+          If mSalesOrderPhaseItemID IsNot Nothing And mPurchaseOrderItemAllocationID IsNot Nothing Then
+            mSQL = "Update PurchaseOrderItemAllocation"
+            mSQL &= String.Format(" set SalesorderPhaseItemID = {0} where PurchaseOrderItemAllocationID= {1}", mSalesOrderPhaseItemID, mPurchaseOrderItemAllocationID)
+            mdbconn.ExecuteNonQuery(mSQL)
+
+          Else
+            If mCallOffID IsNot Nothing Then
+              mSQL = "select top 1 SalesOrderPhaseItemID from SalesOrderPhaseItem SOPI "
+              mSQL &= " inner join SalesOrderItem SOI on SOI.SalesOrderItemID = SOPI.SALESITEMID"
+              mSQL &= String.Format(" where SalesOrderPhaseID={0}", mCallOffID)
+
+              mSalesOrderPhaseItemID = mdbconn.ExecuteScalar(mSQL)
+              If mSalesOrderPhaseItemID IsNot Nothing Then
+                mSQL = "Update PurchaseOrderItemAllocation"
+                mSQL &= String.Format(" set SalesorderPhaseItemID = {0} where PurchaseOrderItemAllocationID= {1}", mSalesOrderPhaseItemID, mPurchaseOrderItemAllocationID)
+                mdbconn.ExecuteNonQuery(mSQL)
+              End If
+            End If
+
+
+          End If
+
+        End If
+
+      Next
+
+      mdbconn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+
+  End Sub
 
 End Class

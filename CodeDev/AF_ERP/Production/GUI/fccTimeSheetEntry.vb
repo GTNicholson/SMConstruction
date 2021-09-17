@@ -37,12 +37,16 @@ Public Class fccTimeSheetEntry
 
   Public Sub LoadRefs()
     Dim mdso As dsoSalesOrder
-
+    Dim mwhere As String = ""
     pEmployees = pRTISGlobal.RefLists.RefIList(appRefLists.Employees)
 
     mdso = New dsoSalesOrder(pDBConn)
     pWorkOrderInfos = New colWorkOrderInfos
-    mdso.LoadWorkOrderInfos(pWorkOrderInfos, "", dtoWorkOrderInfo.eMode.WorkOrderTracking)
+
+    mwhere += String.Format("Status in (0,{0},{1})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised))
+    mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
+
+    mdso.LoadWorkOrderInfos(pWorkOrderInfos, mwhere, dtoWorkOrderInfo.eMode.WorkOrderTracking)
   End Sub
   Public Function IsDirty() As Boolean
     Dim mIsDirty As Boolean = True

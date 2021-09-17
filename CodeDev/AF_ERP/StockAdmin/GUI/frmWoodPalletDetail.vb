@@ -784,9 +784,10 @@ Public Class frmWoodPalletDetail
       Next
       If mQty = 0 Then
         bbtnPickWoodPallet.Caption = "Enviar Bulto a Producción"
+        bbtnPickWoodPallet.Enabled = False
       Else
         bbtnPickWoodPallet.Caption = String.Format("Enviar {0} Bulto a Producción", mQty)
-
+        bbtnPickWoodPallet.Enabled = True
       End If
     End If
 
@@ -987,6 +988,16 @@ Public Class frmWoodPalletDetail
 
         mNewStockItem.Description = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mNewStockItem)
         mNewStockItem.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mNewStockItem, pFormController.DBConn)
+        Select Case mNewStockItem.Category
+          Case eStockItemCategory.Timber
+          Case mNewStockItem.ItemType
+          Case eStockItemTypeTimberWood.Arbol, eStockItemTypeTimberWood.Rollo
+            mNewStockItem.UoM = eUoM.MT3
+
+          Case Else
+            mNewStockItem.UoM = eUoM.PT
+        End Select
+        pFormController.CreateCostBookEntry(mNewStockItem)
         mNewStockItem.ClearKeys()
         AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mNewStockItem)
 

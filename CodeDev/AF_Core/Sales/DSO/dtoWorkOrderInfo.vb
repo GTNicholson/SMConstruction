@@ -26,7 +26,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         pTableName = "vwWorkOrderInfo"
         pKeyFieldName = "WorkOrderID"
       Case eMode.WorkOrderInfoInternal
-        pTableName = "vwWorkOrderInternalInfo"   '// Axel this is a new query
+        pTableName = "vwWorkOrderTracking" '"vwWorkOrderInternalInfo"   '// Axel this is a new query
         pKeyFieldName = "WorkOrderID"
       Case eMode.WorkOrderTracking
         pTableName = "vwWorkOrderTracking"
@@ -92,7 +92,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
       End With
 
       Select Case pMode
-        Case eMode.WorkOrderInfo, eMode.WorkOrderTracking
+        Case eMode.WorkOrderInfo, eMode.WorkOrderTracking, eMode.WorkOrderInfoInternal
 
           With pWorkOrderInfo.SalesOrder
             .OrderNo = DBReadString(rDataReader, "OrderNo")
@@ -106,7 +106,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .CompanyName = DBReadString(rDataReader, "CompanyName")
           End With
 
-        Case eMode.WorkOrderInfoInternal
+          'Case eMode.WorkOrderInfoInternal
 
           With pWorkOrderInfo.WorkOrder
 
@@ -118,7 +118,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .WorkOrderTargetWoodType = DBReadInt32(rDataReader, "WorkOrderTargetWoodType")
             .ProductID = DBReadInt32(rDataReader, "ProductID")
           End With
-        Case Else
+          'Case Else
           With pWorkOrderInfo.WorkOrder
             .SalesOrderItemWOIndex = DBReadInteger(rDataReader, "SalesOrderItemWOIndex")
           End With

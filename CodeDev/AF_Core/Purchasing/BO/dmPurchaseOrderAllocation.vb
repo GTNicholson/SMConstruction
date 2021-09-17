@@ -6,7 +6,7 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
   Private pPurchaseOrderID As Int32
   Private pCallOffID As Int32
   Private pWorkOrderID As Int32
-
+  Private pSalesorderPhaseItemID As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -43,6 +43,7 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
       .PurchaseOrderID = PurchaseOrderID
       .CallOffID = CallOffID
       .WorkOrderID = WorkOrderID
+      .SalesorderPhaseItemID = SalesorderPhaseItemID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -92,7 +93,15 @@ Public Class dmPurchaseOrderAllocation : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property SalesorderPhaseItemID As Integer
+    Get
+      Return pSalesorderPhaseItemID
+    End Get
+    Set(value As Integer)
+      If pSalesorderPhaseItemID <> value Then IsDirty = True
+      pSalesorderPhaseItemID = value
+    End Set
+  End Property
 End Class
 
 
@@ -139,19 +148,7 @@ Public Class colPurchaseOrderAllocations : Inherits colBase(Of dmPurchaseOrderAl
     MyBase.New(vList)
   End Sub
 
-  Public Function IndexFromWorkOrderID(ByVal vWorkOrderID As Integer) As Integer
-    Dim mItem As dmPurchaseOrderAllocation
-    Dim mIndex As Integer = -1
-    Dim mCount As Integer = -1
-    For Each mItem In MyBase.Items
-      mCount += 1
-      If mItem.WorkOrderID = vWorkOrderID Then
-        mIndex = mCount
-        Exit For
-      End If
-    Next
-    Return mIndex
-  End Function
+
 
   Public Function IndexFromCallOffID(ByVal vCallOffID As Integer) As Integer
     Dim mItem As dmPurchaseOrderAllocation
@@ -166,19 +163,73 @@ Public Class colPurchaseOrderAllocations : Inherits colBase(Of dmPurchaseOrderAl
     Next
     Return mIndex
   End Function
-
-  Public Function ItemFromSalesOrderPhaseID(ByVal vSalesOrderPhaseID As Integer) As dmPurchaseOrderAllocation
+  Public Function IndexFromWorkOrderID(ByVal vWorkOrderID As Integer) As Integer
+    Dim mItem As dmPurchaseOrderAllocation
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.WorkOrderID = vWorkOrderID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+  Public Function ItemFromSalesOrderPhaseItemID(ByVal vSalesOrderPhaseItemID As Integer) As dmPurchaseOrderAllocation
     Dim mItem As dmPurchaseOrderAllocation
     Dim mRetVal As dmPurchaseOrderAllocation = Nothing
 
     For Each mItem In MyBase.Items
 
-      If mItem.CallOffID = vSalesOrderPhaseID Then
+      If mItem.SalesorderPhaseItemID = vSalesOrderPhaseItemID Then
         mRetVal = mItem
         Exit For
       End If
     Next
     Return mRetVal
+  End Function
+
+  Public Function ItemFromWorkOrderID(ByVal vWorkOrderId As Integer) As dmPurchaseOrderAllocation
+    Dim mItem As dmPurchaseOrderAllocation
+    Dim mRetVal As dmPurchaseOrderAllocation = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.WorkOrderID = vWorkOrderId Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromWorkOrderIDAndSalesOrderPhaseItemID(ByVal vWorkOrderId As Integer, ByVal vSalesOrderPhaseItemID As Integer) As dmPurchaseOrderAllocation
+    Dim mItem As dmPurchaseOrderAllocation
+    Dim mRetVal As dmPurchaseOrderAllocation = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.WorkOrderID = vWorkOrderId Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function IndexFromSalesOrderPhaseItemID(ByVal vSalesOrderPhaseItemID As Integer) As Integer
+    Dim mItem As dmPurchaseOrderAllocation
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.SalesorderPhaseItemID = vSalesOrderPhaseItemID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
   End Function
 End Class
 

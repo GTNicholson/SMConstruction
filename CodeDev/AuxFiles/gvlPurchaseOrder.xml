@@ -71,7 +71,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="17">
+  <property name="Columns" iskey="true" value="19">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -100,7 +100,7 @@
       </property>
       <property name="Caption">Nombre del Proveedor</property>
       <property name="FieldName">CompanyName</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">183</property>
@@ -152,7 +152,7 @@
       </property>
       <property name="Caption">Estado</property>
       <property name="FieldName">Status</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">105</property>
@@ -251,7 +251,7 @@
       <property name="Name">GridColumn16</property>
       <property name="Caption">Etapa</property>
       <property name="FieldName">POStageDesc</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
       <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
     </property>
@@ -259,7 +259,7 @@
       <property name="Name">GridColumn17</property>
       <property name="Caption">Proyecto</property>
       <property name="FieldName">ProjectName</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
       <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">134</property>
@@ -268,7 +268,7 @@
       <property name="Name">GridColumn18</property>
       <property name="Caption">Retención Total (USD)</property>
       <property name="FieldName">TotalRetentionValueReportUSD</property>
-      <property name="ColumnEditName" />
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
       <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
       <property name="Width">111</property>
@@ -279,7 +279,7 @@
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
-          <property name="FieldName">TotalRetentionUSD</property>
+          <property name="FieldName">TotalRetentionValueReportUSD</property>
           <property name="SummaryType">Sum</property>
           <property name="DisplayFormat">{0:$###,##0.00}</property>
         </property>
@@ -326,6 +326,18 @@
           <property name="DisplayFormat">{0:$###,##0.00}</property>
         </property>
       </property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="Name">GridColumn11</property>
+      <property name="Caption">GridColumn11</property>
+      <property name="FieldName">MaterialRequirementTypeID</property>
+      <property name="ColumnEditName" />
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="Name">GridColumn12</property>
+      <property name="Caption">GridColumn12</property>
+      <property name="FieldName">MaterialRequirementTypeWorkOrderID</property>
+      <property name="ColumnEditName" />
     </property>
   </property>
   <property name="ViewCaption" />

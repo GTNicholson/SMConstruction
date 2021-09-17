@@ -3,8 +3,9 @@
 Public Class fccSalesOrderReview
   Private pInvoiceInfos As colInvoiceInfos
   Private pCustomerPOInfos As colCustomerPurchaseOrders
-  Private pPOItemAllocationInfos As colPurchaseOrderItemAllocationInfos
+  Private pPOItemWOAllocationInfos As colPurchaseOrderItemAllocationInfos
   Private pOtherCategoriesPOItemAllocationInfos As colPurchaseOrderItemAllocationInfos
+  Private pHonorariosPOIAllocationInfos As colPurchaseOrderItemAllocationInfos
 
   Private pWoodPalletItemInfosPicked As colWoodPalletItemInfos
   Private pSOPItemInfos As colSalesOrderPhaseItemInfos
@@ -32,8 +33,9 @@ Public Class fccSalesOrderReview
     Dim mStockItem As dmStockItem
     Dim mExchangeRate As Decimal
     Dim mWherePOCategories As String = ""
-    pPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
+    pPOItemWOAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pOtherCategoriesPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
+    pHonorariosPOIAllocationInfos = New colPurchaseOrderItemAllocationInfos
 
     pWoodPalletItemInfosPicked = New colWoodPalletItemInfos
     pWorkOrderInfos = New colWorkOrderInfos
@@ -57,9 +59,9 @@ Public Class fccSalesOrderReview
 
 
 
-    mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(pPOItemAllocationInfos, mWhere)
+    mdsoPurchasing.LoadPurchaseOrderItemAllocationWorkOrderInfos(pPOItemWOAllocationInfos, mWhere)
 
-    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In pPOItemAllocationInfos
+    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In pPOItemWOAllocationInfos
 
       mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPOIAI.StockItemID)
 
@@ -92,6 +94,7 @@ Public Class fccSalesOrderReview
 
     mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
 
+    mWhere &= " and AccoutingCategoryID<>1" ''1-- this is honorarios in the AccoutingCategory table
 
 
     mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(pOtherCategoriesPOItemAllocationInfos, mWhere)
@@ -113,6 +116,43 @@ Public Class fccSalesOrderReview
     Next
 
 
+    ''Load Honorarios Purchasings
+
+    mWhere = String.Format("SalesOrderID = {0} and  POStatus not in ({1})", pSalesOrder.SalesOrderID, CInt(ePurchaseOrderDueDateStatus.Cancelled))
+    mWherePOCategories = ""
+    For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
+      Select Case mVI.ItemValue
+        Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
+        ePurchaseCategories.PatioYAserrio
+
+        Case Else
+          If mWherePOCategories <> "" Then mWherePOCategories &= ","
+          mWherePOCategories &= mVI.ItemValue
+      End Select
+    Next
+
+    mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
+
+    mWhere &= " and AccoutingCategoryID=1" ''1-- this is honorarios in the AccoutingCategory table
+
+
+    mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(pHonorariosPOIAllocationInfos, mWhere)
+
+    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In pHonorariosPOIAllocationInfos
+
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPOIAI.StockItemID)
+
+      If mStockItem IsNot Nothing Then
+
+
+        If mPOIAI.ExchangeRateValue > 0 Then
+          mPOIAI.StdCost = (mPOIAI.Quantity * mStockItem.AverageCost) / mPOIAI.ExchangeRateValue
+
+
+        End If
+
+      End If
+    Next
 
 
     ''Load SalesItems
@@ -173,6 +213,16 @@ Public Class fccSalesOrderReview
     mdsoCostBook.LoadCostBookEntry(mCostBookEntrys, pSalesOrder.ProductCostBookID)
     mdsoSalesOrder.LoadSalesOrderPhaseItemInfoWoodCosts(pSalesOrderPhaseItemInfos, mCostBookEntrys)
 
+    ''Update cost in Wood Consume
+    For Each mWPII As clsWoodPalletItemInfo In WoodPalletItemInfosPicked
+
+      If mCostBookEntrys.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID) IsNot Nothing Then
+
+        mWPII.UnitCost = mCostBookEntrys.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID).Cost
+
+      End If
+
+    Next
 
     Return mOK
   End Function
@@ -210,15 +260,21 @@ Public Class fccSalesOrderReview
     End Get
   End Property
 
+  Public ReadOnly Property HonorariosPOIAllocationInfos As colPurchaseOrderItemAllocationInfos
+    Get
+      Return pHonorariosPOIAllocationInfos
+    End Get
+  End Property
+
   Public ReadOnly Property CustomerPOInfos As colCustomerPurchaseOrders
     Get
       Return pSalesOrder.CustomerPurchaseOrder
     End Get
   End Property
 
-  Public ReadOnly Property POItemAllocationInfos As colPurchaseOrderItemAllocationInfos
+  Public ReadOnly Property POItemWOAllocationInfos As colPurchaseOrderItemAllocationInfos
     Get
-      Return pPOItemAllocationInfos
+      Return pPOItemWOAllocationInfos
     End Get
   End Property
 

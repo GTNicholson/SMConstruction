@@ -1,0 +1,46 @@
+ALTER TABLE WORKORDER
+ADD TempSalesOrderPhaseItemID int
+go
+
+alter table SalesOrderPhaseItem
+add TempWorkOrderID int
+go
+
+
+alter table WorkOrder
+add TempWorkOrderAllocationID int
+go
+
+update WO
+set WO.TempSalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+FROM WorkOrder WO
+LEFT JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+GO
+
+update SOP
+set SOP.TempWorkOrderID=WOA.WorkOrderID
+FROM SalesOrderPhaseItem SOP
+LEFT JOIN WorkOrderAllocation WOA ON WOA.SalesOrderPhaseItemID=SOP.SalesOrderPhaseItemID
+GO
+
+INSERT INTO WorkOrder (TempWorkOrderAllocationID) SELECT WorkOrderAllocationID FROM WorkOrderAllocation WHERE ISNULL(WorkOrderID,0)=0
+
+INSERT INTO WorkOrderAllocation (SalesOrderPhaseItemID,QuantityRequired) SELECT SALESORDERPHASEITEMID,1 FROM SalesOrderPhaseItem WHERE ISNULL(TempWorkOrderID,0)=0
+
+update WOA
+set WOA.WorkOrderID=WO.WORKORDERID
+from WorkOrderAllocation WOA
+INNER JOIN WorkOrder WO ON WO.TempWorkOrderAllocationID=WOA.WorkOrderAllocationID
+GO
+
+update WO
+set WO.TempSalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+FROM WorkOrder WO
+LEFT JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+GO
+
+update SOP
+set SOP.TempWorkOrderID=WOA.WorkOrderID
+FROM SalesOrderPhaseItem SOP
+LEFT JOIN WorkOrderAllocation WOA ON WOA.SalesOrderPhaseItemID=SOP.SalesOrderPhaseItemID
+GO

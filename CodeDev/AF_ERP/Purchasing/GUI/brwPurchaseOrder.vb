@@ -17,7 +17,11 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
     AlternateForm = 1
 
   End Enum
-
+  Public Enum ePurchaseOrderAddingOption
+    ManufacturingPO = 0
+    NonManufacturingPO = 1
+    GeneralPO = 2
+  End Enum
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.LivePO)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
 
@@ -26,7 +30,17 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
 
-    frmPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+    Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
+      Case ePurchaseOrderAddingOption.ManufacturingPO
+        frmManPurchaseOrderDetail.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.ManPO)
+
+
+      Case ePurchaseOrderAddingOption.NonManufacturingPO
+        frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
+    End Select
+
+
+
 
     'frmCustomerDetail.OpenFormAsMDIChild(rForm.ParentForm, Me.DBConn.RTISUser, Me.RTISGlobal, 0, BrowseRefreshTracker,eFormMode.eFMFormModeAdd)
     'frmCustomerDetail.OpenFormAsModal((rForm, Me.DBConn, Me.RTISGlobal)
@@ -36,15 +50,32 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
   Public Overrides Function EditButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.EditButtonClicked
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
     Dim mReloadData As Boolean = False
+    Dim mOption As ePODetailOption
+    Dim mRow As clsPurchaseOrderInfo
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+      mRow = TryCast(mGridView.GetFocusedRow, clsPurchaseOrderInfo)
+
+      If mRow IsNot Nothing Then
+
+        If mRow.MaterialRequirementTypeWorkOrderID <> 0 Then
+          frmManPurchaseOrderDetail.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.ManPO)
+        ElseIf mRow.MaterialRequirementTypeID <> 0 Then
+
+          frmNonManPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
+
+
+        End If
+
+      End If
+
+
 
       'End Select
     End If
-    Return mReloadData
+        Return mReloadData
   End Function
 
   Public Overrides Sub ViewButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) ''Implements intBrowseList.ViewButtonClicked
@@ -244,14 +275,18 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Órden de Compras: Activas", eListOption.LivePO)
         ''.AddListOption("Órden de Compras: Pagadas", eListOption.Paid)
         .AddListOption("Órden de Compras: Canceladas", eListOption.Cancelled)
         .AddListOption("Órden de Compras: Todas", eListOption.All)
 
+        .AddAddOption("Compras para O.T./Inventario", ePurchaseOrderAddingOption.ManufacturingPO)
+        .AddAddOption("Compras Administrativas", ePurchaseOrderAddingOption.NonManufacturingPO)
+        .AddAddOption("Otras Compras", ePurchaseOrderAddingOption.GeneralPO)
 
+        .RemoveAddOption(0)
         '.AddEditOption("Edit Option2", eAddEditDeleteView.AlternateForm)
         '.AddAddOption("Add Option2", eAddEditDeleteView.AlternateForm)
         '.AddDeleteOption("Delete Option2", eAddEditDeleteView.AlternateForm)

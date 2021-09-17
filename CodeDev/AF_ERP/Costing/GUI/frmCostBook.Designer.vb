@@ -168,7 +168,7 @@ Partial Class frmCostBook
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1350, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1350, 30)
         '
         'barDockControlBottom
         '
@@ -182,17 +182,17 @@ Partial Class frmCostBook
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 615)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 618)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1350, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1350, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 615)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 618)
         '
         'bcboCostBookID
         '
@@ -278,7 +278,7 @@ Partial Class frmCostBook
         Me.GroupControl1.Controls.Add(Me.txtCostBookName)
         Me.GroupControl1.Controls.Add(Me.dteDate)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 33)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 30)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(1350, 103)
         Me.GroupControl1.TabIndex = 137
@@ -367,7 +367,7 @@ Partial Class frmCostBook
         Me.XtraTabPage2.Controls.Add(Me.btnLoadStockItem)
         Me.XtraTabPage2.Controls.Add(Me.grdCostBookEntry)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1344, 453)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1342, 452)
         Me.XtraTabPage2.Text = "Lista de Artículos de Madera"
         '
         'LabelControl4
@@ -679,7 +679,7 @@ Partial Class frmCostBook
         'GridColumn26
         '
         Me.GridColumn26.Caption = "Grosor"
-        Me.GridColumn26.DisplayFormat.FormatString = "N0"
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
         Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn26.FieldName = "Thickness"
         Me.GridColumn26.Name = "GridColumn26"

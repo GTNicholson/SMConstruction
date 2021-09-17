@@ -380,17 +380,17 @@ Public Class dsoStockTransactions
           End If
           '// podeliveryitem qty via sql statement.
           If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PODeliveryItem SET QtyReceived=" & vDeliveryItem.QtyReceived + vRecievedQty & " WHERE PODeliveryItemID =" & vDeliveryItem.PODeliveryItemID) > 0 Then mOK = True
-            '// Update the POCO allocation
-            If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PurchaseOrderItemAllocation SET ReceivedQty=" & vPOItemAllocation.ReceivedQty + vRecievedQty & " WHERE PurchaseOrderItemAllocationID =" & vPOItemAllocation.PurchaseOrderItemAllocationID) > 0 Then mOK = True
+          '// Update the POCO allocation
+          If mOK Then If pDBConn.ExecuteCommand("UPDATE dbo.PurchaseOrderItemAllocation SET ReceivedQty=" & vPOItemAllocation.ReceivedQty + vRecievedQty & " WHERE PurchaseOrderItemAllocationID =" & vPOItemAllocation.PurchaseOrderItemAllocationID) > 0 Then mOK = True
 
-            If mOK Then
-              vDeliveryItem.SetQtyReceived(vDeliveryItem.QtyReceived + vRecievedQty)
-              vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vRecievedQty)
-              '// If it is not Timber category then update the Average Cost of the Stock Item
-              If mStockItem IsNot Nothing Then
-                Select Case mStockItem.Category
-                  Case eStockItemCategory.Timber
-                  Case Else
+          If mOK Then
+            vDeliveryItem.SetQtyReceived(vDeliveryItem.QtyReceived + vRecievedQty)
+            vPOItemAllocation.SetReceivedQty(vPOItemAllocation.ReceivedQty + vRecievedQty)
+            '// If it is not Timber category then update the Average Cost of the Stock Item
+            If mStockItem IsNot Nothing Then
+              Select Case mStockItem.Category
+                Case eStockItemCategory.Timber
+                Case Else
 
                   ''//Update AverageCost in Cordobas currency
                   If vDefaultCurrency = eCurrency.Dollar Then
@@ -402,12 +402,12 @@ Public Class dsoStockTransactions
                     mdsoStock.UpdateStockItemAverageCost(mStockItem.StockItemID, vRecievedQty, vPOItemRecievedValue, mSILTranLog.StockItemTransactionLogID)
                   End If
               End Select
-              End If
             End If
-
-
           End If
+
+
         End If
+      End If
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
@@ -808,6 +808,28 @@ Public Class dsoStockTransactions
 
   End Function
 
+  Public Function LoadStockItemTransactionsWoodByWhere(ByRef rtockItemTransactionInfos As colStockItemTransactionLogInfos, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdto As New dtoStockItemTransactionLogInfo(pDBConn, dtoStockItemTransactionLogInfo.eMode.WoodStockItemTransactionLogInfo)
+    Try
+      pDBConn.Connect()
+      mOK = mdto.LoadStockItemTransactionLogInfoCollection(rtockItemTransactionInfos, vWhere)
+    Catch ex As Exception
+
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+
+      If pDBConn.IsConnected Then
+        pDBConn.Disconnect()
+      End If
+
+
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function GetLastTransactionBefore(ByVal vDateTime As DateTime, vID As Integer, vExcludeID As Integer) As dmStockItemTransactionLog
     Dim mRetVal As New dmStockItemTransactionLog
 
@@ -917,6 +939,116 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
+  Public Function ReturnFromProductionMatReqStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vMatReq As dmMaterialRequirement, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
+    Dim mSILTranLog As dmStockItemTransactionLog
+    Dim mTranType As eTransactionType
+    Dim mPrevTran As dmStockItemTransactionLog
+    Dim mPrevValue As Decimal = 0
+    Dim mSILTranLogRollForward As New colStockItemTransactionLogs
+    Dim mSubsequentStockCheckTran As dmStockItemTransactionLog
+    Dim mNewStockLevel As Decimal
+    Dim mdso As dsoSalesOrder
+    Dim mWorkOrderID As Integer
+
+    Try
+      pDBConn.Connect()
+
+      pDBConn.ConnectionBeginTrans()
+
+      If vMatReq IsNot Nothing Then
+
+        If vPickedQty <> 0 Then
+          If vStockitemLocation IsNot Nothing Then
+            mTranType = eTransactionType.ProductionReturn
+
+            '// Get the previous Transaction
+            mPrevTran = GetLastTransactionBeforeConnected(vTransDate, vStockitemLocation.StockItemLocationID, 0)
+            If mPrevTran IsNot Nothing Then mPrevValue = mPrevTran.NewValue
+
+            '// Get any stock check after the insert date
+            mSubsequentStockCheckTran = GetFirstStockCheckTransactionAfterConnected(vTransDate, vStockitemLocation.StockItemLocationID)
+
+            '// Get transactions after this date that need to have their prev and new changed
+            If mSubsequentStockCheckTran IsNot Nothing Then
+              mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, mSubsequentStockCheckTran.TransactionDate, vStockitemLocation.StockItemLocationID)
+            Else
+              mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
+            End If
+
+            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, vPickedQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, 0, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.MaterialRequirement, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
+
+
+            mNewStockLevel = mPrevValue + vPickedQty
+
+            For Each mTran As dmStockItemTransactionLog In mSILTranLogRollForward
+              Select Case mTran.TransactionType
+                Case eTransactionType.StockCheck, eTransactionType.Amendment
+                  '//This should not happen as we have the subsequent stock check transaction as a seperate transaction
+                  mTran.PrevValue -= vPickedQty
+                Case Else
+                  mTran.PrevValue -= vPickedQty
+                  mTran.NewValue -= vPickedQty
+                  mNewStockLevel = mTran.NewValue
+              End Select
+            Next
+
+            If mSubsequentStockCheckTran Is Nothing Then
+              If pDBConn.ExecuteCommand("UPDATE dbo.StockItemLocation SET Qty=" & mNewStockLevel & " WHERE StockItemLocationID =" & vStockitemLocation.StockItemLocationID) > 0 Then
+              Else
+                mOK = False
+              End If
+            Else
+              '//Change the PrevValue of the Stock Check Transaction
+              mSubsequentStockCheckTran.PrevValue -= vPickedQty
+              If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSubsequentStockCheckTran)
+            End If
+
+            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLog(mSILTranLog)
+            If pDBConn.ExecuteCommand("UPDATE dbo.StockItem SET LastUsedDate = '" & Format(vTransDate, "yyyyMMdd HH:mm:ss") & "' WHERE StockItemID =" & vStockitemLocation.StockItemID) > 0 Then
+            Else
+              mOK = False
+            End If
+
+            If mOK Then mOK = mdtoStockitemTranLog.SaveStockItemTransactionLogCollection(mSILTranLogRollForward)
+
+          End If
+
+          '// even if there is no StockItem, we still need to update the material requirement picked qty
+          If mOK Then
+            If pDBConn.ExecuteCommand("UPDATE dbo.MaterialRequirement SET ReturnQty=" & vMatReq.ReturnQty + vPickedQty & "WHERE MaterialRequirementID =" & vMatReq.MaterialRequirementID) > 0 Then
+              mOK = True
+            Else
+              mOK = False
+            End If
+          End If
+          If mOK = True Then vMatReq.SetReturndQty(vMatReq.PickedQty + vPickedQty)
+
+          If mOK = True Then
+            '//Update the denormalised vale in the CallOff
+            mdso = New dsoSalesOrder(pDBConn)
+            mdso.SynchroniseWOMatReqReturnedConnected(vStockitemLocation.StockItemID, vMatReq.ObjectID)
+
+          End If
+
+        End If
+      End If
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If mOK Then
+        pDBConn.ConnectionCommitTrans()
+      Else
+        pDBConn.ConnectionRollBackTrans()
+      End If
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
 
   Public Function PickMatReqStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vMatReq As dmMaterialRequirement, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As Boolean
     Dim mOK As Boolean = True

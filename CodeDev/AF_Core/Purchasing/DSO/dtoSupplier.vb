@@ -212,7 +212,9 @@ Public Class dtoSupplier : Inherits dtoBase
   Public Function SaveSupplier(ByRef rSupplier As dmSupplier) As Boolean
     Dim mOK As Boolean
     pSupplier = rSupplier
-    mOK = SaveObject()
+    If rSupplier.CompanyName <> "" Then
+      mOK = SaveObject()
+    End If
     pSupplier = Nothing
     Return mOK
   End Function

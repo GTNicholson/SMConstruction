@@ -87,6 +87,10 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StockItemID", .StockItemID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ComponentDescription", StringToDBValue(.ComponentDescription))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "FromStockQty", .FromStockQty)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "GeneratedQty", .GeneratedQty)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReturnQty", .ReturnQty)
+
+
 
 
       '// this can only be changed in transactions DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PickedQty", .PickedQty)
@@ -129,6 +133,8 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
         .StockItemID = DBReadInt32(rDataReader, "StockItemID")
         .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
         .ComponentDescription = DBReadString(rDataReader, "ComponentDescription")
+        .GeneratedQty = DBReadDecimal(rDataReader, "GeneratedQty")
+        .SetReturndQty(DBReadDecimal(rDataReader, "ReturnQty"))
         pMaterialRequirement.IsDirty = False
       End With
       mOK = True

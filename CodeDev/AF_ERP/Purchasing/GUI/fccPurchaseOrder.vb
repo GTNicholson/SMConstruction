@@ -14,14 +14,28 @@ Public Class fccPurchaseOrder
   Private pSuppliers As colSuppliers
 
   Private pUsedItems As List(Of Integer)
+  Private pUsedItemsWO As List(Of Integer)
+  Private pPOOption As ePODetailOption
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
   Private pPODeliveryInfos As colPODeliveryInfos
-  Private pSalesOrderPhases As colSalesOrderPhases
   Private pPOIEditor As clsPOItemEditor
   Private pcolPOIEditor As colPOItemEditors
-  Private pSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
+  Private pSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo
   Private pCurrentDefaultCurrency As eCurrency
   Private pSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
+  Private pWorkOrderInfo As clsWorkOrderInfo
+  Private pWorkOrderInfos As colWorkOrderInfos
+
+
+  Public Property POOption As ePODetailOption
+    Get
+      Return pPOOption
+    End Get
+    Set(value As ePODetailOption)
+      pPOOption = value
+    End Set
+  End Property
+
 
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
@@ -36,22 +50,24 @@ Public Class fccPurchaseOrder
     pDBConn = rDBConn
     pPurchaseOrder = New dmPurchaseOrder
     pRTISGlobal = rRTISGlobal
-    pSalesOrderPhases = New colSalesOrderPhases
     pUsedItems = New List(Of Integer)
+    pUsedItemsWO = New List(Of Integer)
+
     pSuppliers = New colSuppliers
     pPOIEditor = New clsPOItemEditor
     pcolPOIEditor = New colPOItemEditors
     pPODeliveryInfos = New colPODeliveryInfos
-    pSalesOrderPhaseInfo = New clsSalesOrderPhaseInfo
+    pSalesOrderPhaseItemInfo = New clsSalesOrderPhaseItemInfo
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
+    pWorkOrderInfos = New colWorkOrderInfos
   End Sub
 
-  Public Property SalesOrderPhaseInfo() As clsSalesOrderPhaseInfo
+  Public Property SalesOrderPhaseItemInfo() As clsSalesOrderPhaseItemInfo
     Get
-      Return pSalesOrderPhaseInfo
+      Return pSalesOrderPhaseItemInfo
     End Get
-    Set(value As clsSalesOrderPhaseInfo)
-      pSalesOrderPhaseInfo = value
+    Set(value As clsSalesOrderPhaseItemInfo)
+      pSalesOrderPhaseItemInfo = value
     End Set
   End Property
 
@@ -73,14 +89,6 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
-  Public Property SalesOrderPhases As colSalesOrderPhases
-    Get
-      Return pSalesOrderPhases
-    End Get
-    Set(value As colSalesOrderPhases)
-      pSalesOrderPhases = value
-    End Set
-  End Property
 
   Public Property POIEditor As clsPOItemEditor
     Get
@@ -108,8 +116,23 @@ Public Class fccPurchaseOrder
 
     End Set
   End Property
+  Public Property WorkOrderInfos As colWorkOrderInfos
+    Get
+      Return pWorkOrderInfos
+    End Get
+    Set(value As colWorkOrderInfos)
+      pWorkOrderInfos = value
+    End Set
+  End Property
 
-
+  Public Property WorkOrderInfo As clsWorkOrderInfo
+    Get
+      Return pWorkOrderInfo
+    End Get
+    Set(value As clsWorkOrderInfo)
+      pWorkOrderInfo = value
+    End Set
+  End Property
   Public Property PurchaseOrder As dmPurchaseOrder
     Get
       Return pPurchaseOrder
@@ -149,7 +172,14 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
-
+  Public Property UsedItemsWO As List(Of Integer)
+    Get
+      Return pUsedItemsWO
+    End Get
+    Set(value As List(Of Integer))
+      pUsedItemsWO = value
+    End Set
+  End Property
   Public Property UsedItems As List(Of Integer)
     Get
       Return pUsedItems
@@ -173,28 +203,80 @@ Public Class fccPurchaseOrder
 
     Dim mOK As Boolean
     Dim mdsoSales As New dsoSalesOrder(pDBConn)
-    Dim mSalesOrderPhase As dmSalesOrderPhase
+    Dim mSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo
+    Dim mWorkOrderInfo As clsWorkOrderInfo
+    Dim mSalesOrderPhaseItemInfos As New colSalesOrderPhaseItemInfos
+    Dim mWhere As String
+
     Try
 
       mOK = True
-      pSalesOrderPhases = New colSalesOrderPhases
+      pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
+      pWorkOrderInfos = New colWorkOrderInfos
 
-      For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
-        If pSalesOrderPhases.IndexFromKey(mPOAllocation.CallOffID) = -1 Then
-          mSalesOrderPhase = New dmSalesOrderPhase
-          mdsoSales.LoadSalesOrderPhase(mSalesOrderPhase, mPOAllocation.CallOffID)
-          pSalesOrderPhases.Add(mSalesOrderPhase)
-        End If
+      Select Case pPOOption
+        Case ePODetailOption.ManPO
 
-        If pUsedItems.Contains(mPOAllocation.CallOffID) = False Then
-          pUsedItems.Add(mPOAllocation.CallOffID)
-        End If
-      Next
+          For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
+            If pWorkOrderInfos.IndexFromWorkOrderID(mPOAllocation.WorkOrderID) = -1 Then
+              mWorkOrderInfo = New clsWorkOrderInfo
+              mdsoSales.LoadWorkOrderInfo(mWorkOrderInfo, "WorkOrderID=" & mPOAllocation.WorkOrderID)
+              pWorkOrderInfos.Add(mWorkOrderInfo)
+            End If
+
+            If pUsedItemsWO.Contains(mPOAllocation.WorkOrderID) = False Then
+              pUsedItemsWO.Add(mPOAllocation.WorkOrderID)
+            End If
+          Next
+
+
+
+        Case ePODetailOption.NonManPO
+          For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
+            If pSalesOrderPhaseItemInfos.IndexFromSOPhaseItemID(mPOAllocation.SalesorderPhaseItemID) = -1 Then
+              mSalesOrderPhaseItemInfo = New clsSalesOrderPhaseItemInfo
+              mSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
+
+              mWhere = String.Format("DateRequired is not null AND OrderStatusENUM not in ({0})", CInt(eSalesOrderstatus.Cancelada), CInt(eSalesOrderstatus.Completed))
+
+              mWhere &= " and SalesOrderPhaseItemID = " & mPOAllocation.SalesorderPhaseItemID
+
+              mdsoSales.LoadSalesOrderPhaseItemsInfosByWhere(mSalesOrderPhaseItemInfos, mWhere)
+
+              If mSalesOrderPhaseItemInfos.Count > 0 Then
+                mSalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfos(0)
+                pSalesOrderPhaseItemInfos.Add(mSalesOrderPhaseItemInfo)
+
+              End If
+
+            End If
+
+
+            If pUsedItems.Contains(mPOAllocation.SalesorderPhaseItemID) = False Then
+              pUsedItems.Add(mPOAllocation.SalesorderPhaseItemID)
+            End If
+
+            If pUsedItemsWO.Contains(mPOAllocation.WorkOrderID) = False Then
+              pUsedItemsWO.Add(mPOAllocation.WorkOrderID)
+            End If
+          Next
+
+      End Select
+
 
       If pPurchaseOrder.PurchaseOrderAllocations.Count > 0 Then
 
         If pPurchaseOrder.PurchaseOrderAllocations.Count = 1 Then
-          mdsoSales.LoadSalesOrderPhaseInfo(Me.SalesOrderPhaseInfo, "SalesOrderPhaseID = " & pPurchaseOrder.PurchaseOrderAllocations(0).CallOffID)
+          mWhere = String.Format("DateRequired is not null AND OrderStatusENUM not in ({0})", CInt(eSalesOrderstatus.Cancelada), CInt(eSalesOrderstatus.Completed))
+
+          mWhere &= " and SalesOrderPhaseItemID = " & pPurchaseOrder.PurchaseOrderAllocations(0).SalesorderPhaseItemID
+          mSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
+          mdsoSales.LoadSalesOrderPhaseItemsInfosByWhere(mSalesOrderPhaseItemInfos, mWhere)
+          If mSalesOrderPhaseItemInfos.Count > 0 Then
+            Me.SalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfos(0)
+            ''This is new for the WOAllocation
+          End If
+          mdsoSales.LoadWorkOrderInfo(Me.pWorkOrderInfo, "WorkOrderID = " & pPurchaseOrder.PurchaseOrderAllocations(0).WorkOrderID)
 
         End If
 
@@ -203,20 +285,23 @@ Public Class fccPurchaseOrder
     Catch ex As Exception
       mOK = False
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      mdsoSales = Nothing
     End Try
     Return mOK
   End Function
 
 
   Public Sub LoadSuppliers()
-    Dim mdtoSupplier As New dtoSupplier(pDBConn)
+    Dim mdso As New dsoPurchasing(pDBConn)
     pSuppliers = New colSuppliers
 
     If pDBConn.Connect Then
-      mdtoSupplier.LoadSupplierCollection(pSuppliers)
+      mdso.LoadSuppliersByWhere(pSuppliers, "SupplierStatusID <>" & CInt(eSupplierStatus.Inactive))
+
 
     End If
-    pDBConn.Disconnect()
+    If pDBConn.IsConnected Then pDBConn.Disconnect()
   End Sub
   Public Sub ReloadPODeliveryInfos()
     Dim mdsoPurchaseOrder As New dsoPurchasing(DBConn)
@@ -237,26 +322,38 @@ Public Class fccPurchaseOrder
       pPurchaseOrder = New dmPurchaseOrder
 
       pUsedItems = New List(Of Integer)
+      pUsedItemsWO = New List(Of Integer)
+
       If pPrimaryKeyID > 0 Then
 
 
         mOK = mdsoPurchaseOrder.LoadPurchaseOrderDown(Me.PurchaseOrder, Me.PrimaryKeyID)
 
-
       Else
         pPurchaseOrder.SubmissionDate = Today
         pPurchaseOrder.DefaultCurrency = pPurchaseOrder.Supplier.DefaultCurrency
         pPurchaseOrder.ExchangeRateValue = GetExchangeRate(Today, eCurrency.Cordobas)
-        pPurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
+
+        Select Case pPOOption
+          Case ePODetailOption.ManPO
+            pPurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
+
+          Case ePODetailOption.NonManPO
+            pPurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
+
+        End Select
+
         pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Confirmed
         pPurchaseOrder.ValuationMode = eValuationMode.ForAdvanced
         pPurchaseOrder.BuyerID = 1
+
+
         GetNextPONo()
         SaveObject()
         mOK = True
       End If
       pCurrentDefaultCurrency = pPurchaseOrder.DefaultCurrency
-
+      'pWorkOrderAllocationInfos = GetWorkOrderAllocationInfos()
       ''mdsoPurchaseOrder = Nothing
     Catch ex As Exception
       mOK = False
@@ -409,29 +506,18 @@ Public Class fccPurchaseOrder
 
       mRep.ExportToPdf(mExportFilename)
 
-      Dim mProjectName As String = ""
-      If pSalesOrderPhaseInfo IsNot Nothing Then
-        If pSalesOrderPhaseInfo.ProjectName <> "" Then
-          mProjectName = pSalesOrderPhaseInfo.ProjectName
-        Else
-          mProjectName = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
-        End If
-      Else
-        mProjectName = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).DisplayValueString(pPurchaseOrder.AccoutingCategoryID)
-
-      End If
 
       If vIsPaymentOrder Then
 
         Select Case vAccountOption
           Case eSupplirPrintOption.MainAccount
-            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountCode)
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountCode)
 
           Case eSupplirPrintOption.SecondaryAccount
-            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountSecondaryNumber)
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountSecondaryNumber)
 
           Case Else
-            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, mProjectName, pPurchaseOrder.Supplier.AccountCode)
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountCode)
 
         End Select
 
@@ -567,6 +653,8 @@ Public Class fccPurchaseOrder
     End Set
   End Property
 
+
+
   Public Function GetTotalNetValue() As Decimal
     Dim mRetVal As Decimal = 0
 
@@ -577,16 +665,15 @@ Public Class fccPurchaseOrder
     Return mRetVal
   End Function
 
-
-  Public Function LoadSalesOrderPhaseInfo(ByRef rSalesOrderPhaseInfos As colSalesOrderPhaseInfos, ByVal vWhere As String) As Boolean
+  Public Function LoadSalesOrderPhaseItemInfo(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
-    Dim mdto As dtoSalesOrderPhaseInfo
+    Dim mdto As dtoSalesOrderPhaseItemInfo
 
     Try
 
       pDBConn.Connect()
-      mdto = New dtoSalesOrderPhaseInfo(pDBConn)
-      mdto.LoadSOPCollectionByWhere(rSalesOrderPhaseInfos, vWhere)
+      mdto = New dtoSalesOrderPhaseItemInfo(pDBConn, dtoSalesOrderPhaseItemInfo.eMode.SalesOrderPhaseItemInfo)
+      mdto.LoadSOPICollectionByWhere(rSalesOrderPhaseItemInfos, vWhere)
 
 
       pDBConn.Disconnect()
@@ -609,21 +696,46 @@ Public Class fccPurchaseOrder
         '// Create one
         mPOIA = New dmPurchaseOrderItemAllocation
         mPOIA.PurchaseOrderItemID = rPOItem.PurchaseOrderItemID
-
-
-
-
         rPOItem.PurchaseOrderItemAllocations.Add(mPOIA)
       End If
       '// if 0 then create one for Stock, or for the only phase that is in 
       rPOItem.PurchaseOrderItemAllocations(0).Quantity = rPOItem.QtyRequired
-      If pSalesOrderPhaseInfo IsNot Nothing Then
-        rPOItem.PurchaseOrderItemAllocations(0).CallOffID = pSalesOrderPhaseInfo.SalesOrderPhaseID
-        rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = pSalesOrderPhaseInfo.ProjectName
-      Else
-        rPOItem.PurchaseOrderItemAllocations(0).CallOffID = 0
-        rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
-      End If
+
+      Select Case pPOOption
+        Case ePODetailOption.ManPO
+
+          If pWorkOrderInfo IsNot Nothing Then
+            rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = pWorkOrderInfo.WorkOrderID
+            rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = String.Format("{0}", pWorkOrderInfo.Description)
+            rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = pWorkOrderInfo.WorkOrderID 'pSalesOrderPhaseInfo.SalesOrderPhaseID
+
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pWorkOrderInfo.WorkOrder.WorkOrderNo
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = pWorkOrderInfo.WorkOrder.Description
+            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pWorkOrderInfo.ProjectName
+
+          End If
+
+        Case ePODetailOption.NonManPO
+          If pSalesOrderPhaseItemInfo IsNot Nothing Then
+            rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = pSalesOrderPhaseItemInfo.SalesOrderPhaseItemID
+            rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = pSalesOrderPhaseItemInfo.ProjectName
+
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pSalesOrderPhaseItemInfo.ItemNumberRef
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = pSalesOrderPhaseItemInfo.Description
+            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pSalesOrderPhaseItemInfo.ProjectName
+
+
+          Else
+            rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0
+            rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
+
+
+          End If
+      End Select
+
+
+      '''//Done for the new wo allocation changes
+
 
       If vWithSaving Then
         '// Update the qty ot the neew value
@@ -780,16 +892,50 @@ Public Class fccPurchaseOrder
 
   End Sub
 
-  Public Sub LoadSalesOrderPhaseItemInfos()
-    Dim mWhere As String = ""
-    Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
 
-    If pSalesOrderPhaseInfo IsNot Nothing Then
+  Public Sub LoadWorkOrderInfos(ByRef rWorkOrderInfos As colWorkOrderInfos)
+
+    Dim mdso As New dsoSalesOrder(pDBConn)
+    Dim mwhere As String = ""
+
+    mwhere += String.Format("Status not in ({0},{1})", CInt(eWorkOrderStatus.Cancelled), CInt(eWorkOrderStatus.Complete))
+    mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
+    Try
+
+      pDBConn.Connect()
+      mdso.LoadWorkOrderInfoCollectionByWhere(rWorkOrderInfos, mwhere)
 
 
-      mWhere = "SalesOrderID =" & SalesOrderPhaseInfo.SalesOrderID
-      mdsoSalesOrder.LoadSalesOrderPhaseItemsMatReqByWhere(pSalesOrderPhaseItemInfos, mWhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
 
-    End If
+
+
   End Sub
+
+
+
+  Public Function GetTotalAllocatedQty(ByVal vPurchaseOrderItemID As Integer) As Object
+    Dim mRetVal As Decimal
+    Dim mPOI As dmPurchaseOrderItem
+    Try
+      mPOI = PurchaseOrder.PurchaseOrderItems.ItemFromKey(vPurchaseOrderItemID)
+
+      If mPOI IsNot Nothing Then
+
+        mRetVal = mPOI.PurchaseOrderItemAllocations.TotalQuantityAllocated
+
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+    Return mRetVal
+  End Function
 End Class

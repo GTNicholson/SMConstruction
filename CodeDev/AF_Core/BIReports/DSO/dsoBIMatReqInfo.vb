@@ -59,8 +59,6 @@ Public Class dsoBIMatReqInfo
     Dim dtoMatReqInfo As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Info)
 
 
-
-
     Try
 
       pMatReqInfos = New colMaterialRequirementInfos()
@@ -71,7 +69,8 @@ Public Class dsoBIMatReqInfo
       mSQLWhere1 = pBIReportView.ConditionSetters(0).FilterSQL
       mSQLWhere2 = pBIReportView.ConditionSetters(1).FilterSQL
 
-      mSQLWhere = mSQLWhere1
+      mSQLWhere = "MaterialRequirementType=" & CInt(eMaterialRequirementType.StockItems)
+      If mSQLWhere1 <> "" Then mSQLWhere &= " and " & mSQLWhere1
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
       mSQLWhere = mSQLWhere & mSQLWhere2
 
@@ -81,12 +80,13 @@ Public Class dsoBIMatReqInfo
       '  mSQLWhere = " and status <> " & ePurchaseOrderDueDateStatus.Cancelled
 
       'End If
+
       dtoMatReqInfo.LoadMaterialRequirementCollection(pMatReqInfos, mSQLWhere)
 
       If pMatReqInfos IsNot Nothing Then
 
         For Each mMatReqInfo As clsMaterialRequirementInfo In pMatReqInfos
-          mMatReqInfo.ExchangeRate = GetExchangeRate(mMatReqInfo.TransactionDate, eCurrency.Cordobas)
+          'mMatReqInfo.ExchangeRate = GetExchangeRate(mMatReqInfo.TransactionDate, eCurrency.Cordobas)
         Next
 
       End If

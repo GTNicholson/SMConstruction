@@ -1,4 +1,6 @@
-﻿Imports DevExpress.XtraGrid.Views.Grid
+﻿Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Views.Grid
+Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
 Public Class frmSalesOrderReview
@@ -72,12 +74,13 @@ Public Class frmSalesOrderReview
   Private Sub LoadGrids()
     grdCustomerPOs.DataSource = pFormController.CustomerPOInfos
     grdInvoices.DataSource = pFormController.Invoices
-    grdPOItemAllocations.DataSource = pFormController.POItemAllocationInfos
+    grdPOItemAllocations.DataSource = pFormController.POItemWOAllocationInfos
     grdOtherCategoriesPOItemAllocations.DataSource = pFormController.OtherCategoriesPOItemAllocationInfos
     grdWoodUsage.DataSource = pFormController.WoodPalletItemInfosPicked
     grdWorkOrderInfos.DataSource = pFormController.WorkOrderInfos
     grdPaymentAccounts.DataSource = pFormController.PaymentAccounts
     grdSalesOrderPhaseItemInfo.DataSource = pFormController.SalesOrderPhaseItemInfos
+    grdHonorarios.DataSource = pFormController.HonorariosPOIAllocationInfos
   End Sub
 
   Private Sub gvPOItemAllocations_RowCellStyle(ByVal sender As Object, ByVal e As RowCellStyleEventArgs) Handles gvPOItemAllocations.RowCellStyle
@@ -151,5 +154,30 @@ Public Class frmSalesOrderReview
     End If
   End Sub
 
+  Private Sub gvSalesOrderPhaseItemInfo_DoubleClick(sender As Object, e As EventArgs) Handles gvSalesOrderPhaseItemInfo.DoubleClick
+    Dim mSelectedColumn As GridColumn
+    Dim mCurrentRow As clsSalesOrderPhaseItemInfo
+    Try
 
+      mSelectedColumn = gvSalesOrderPhaseItemInfo.FocusedColumn
+
+      gvSalesOrderPhaseItemInfo.CloseEditor()
+      mCurrentRow = TryCast(gvSalesOrderPhaseItemInfo.GetFocusedRow, clsSalesOrderPhaseItemInfo)
+
+      If mCurrentRow IsNot Nothing Then
+        Select Case mSelectedColumn.Name
+          Case gcMatEsp.Name
+
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.MatEspecificados)
+
+          Case gcMatActual.Name
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.MatActual)
+
+        End Select
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
 End Class

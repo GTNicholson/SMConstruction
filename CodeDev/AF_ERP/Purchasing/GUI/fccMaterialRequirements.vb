@@ -90,12 +90,12 @@ Public Class fccMaterialRequirements
           mdsoSalesOrder.LoadSalesOrderDown(pSalesOrder, mSalesOrderID)
 
         End If
-        mWhere = "OSQty<>0 and SalesOrderPhaseID = " & pSalesOrderPhaseID & "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems)
+        mWhere = "SalesOrderPhaseID = " & pSalesOrderPhaseID & "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems)
         mdsoSalesOrder.LoadPhaseMatReqProcessors(pMatReqItemProcessors, mWhere)
 
       Else
 
-        mWhere &= "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and OSQty<>0"
+        mWhere &= "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & ""
         mWhere &= " and WorkOrderID in (Select WorkOrderID from WorkOrder where Status = " & CInt(eWorkOrderStatus.Raised) & ")"
 
         mdsoSalesOrder.LoadPhaseMatReqProcessors(pMatReqItemProcessors, mWhere)
@@ -110,18 +110,18 @@ Public Class fccMaterialRequirements
           mStockItemIDs.Add(mMatReqProc.StockItem.StockItemID)
         End If
         '// Load allocations
-        mWhere = "StockItemID = " & mMatReqProc.StockItem.StockItemID & " and CallOffID = " & mMatReqProc.SalesOrderPhaseID & " and (POstatus <>" & CInt(ePurchaseOrderDueDateStatus.Cancelled) & " and POstatus <> " & CInt(ePurchaseOrderDueDateStatus.Received) & ")"
-        mWhere &= " and BalanceQty<>0"
-        If mMatReqProc.SalesOrderPhaseID > 0 Then
-          mdsoPurchaseOrder.LoadPurchaseOrderItemAllocationInfos(mMatReqProc.POItemAllocationInfos, mWhere)
+        'mWhere = "StockItemID = " & mMatReqProc.StockItem.StockItemID & " and CallOffID = " & mMatReqProc.SalesOrderPhaseID & " and (POstatus <>" & CInt(ePurchaseOrderDueDateStatus.Cancelled) & " and POstatus <> " & CInt(ePurchaseOrderDueDateStatus.Received) & ")"
+        'mWhere &= " and BalanceQty<>0"
+        'If mMatReqProc.SalesOrderPhaseID > 0 Then
+        '  'mdsoPurchaseOrder.LoadPurchaseOrderItemAllocationInfos(mMatReqProc.POItemAllocationInfos, mWhere)
 
 
-          mMatReqProc.PickedQty = mMatReqProc.PickedQty 'mdsoStock.GetPhaseMatReqPickedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-          mMatReqProc.StockItemLocationsQty = mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID) - mdsoStock.GetSumFromStockInventory(mMatReqProc.StockItem.StockItemID)
-          mMatReqProc.QuantityRequired = mMatReqProc.Quantity 'mdsoStock.GetPhaseMatReqRequiredQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-          mMatReqProc.QtyOrdered = mdsoStock.GetPhaseMatReqOrderedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
+        '  'mMatReqProc.PickedQty = mMatReqProc.PickedQty 'mdsoStock.GetPhaseMatReqPickedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
+        '  'mMatReqProc.StockItemLocationsQty = mMatReqProc.INVE 'mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID) - mdsoStock.GetSumFromStockInventory(mMatReqProc.StockItem.StockItemID)
+        '  'mMatReqProc.QuantityRequired = mMatReqProc.Quantity 'mdsoStock.GetPhaseMatReqRequiredQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
+        '  ' mMatReqProc.QtyOrdered = mdsoStock.GetPhaseMatReqOrderedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
 
-        End If
+        'End If
       Next
 
       If pDBConn.IsConnected Then
@@ -134,13 +134,10 @@ Public Class fccMaterialRequirements
         Dim mMatReqProc As clsMaterialRequirementProcessor = pMatReqItemProcessors(mIndex)
 
 
-        If mMatReqProc.MaterialRequirement.Quantity - mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.FromStock <= 0 Then
+        If mMatReqProc.MaterialRequirement.Quantity = 0 And mMatReqProc.MaterialRequirement.PickedQty = 0 And mMatReqProc.FromStockQty = 0 And mMatReqProc.OrderedQty = 0 Then
           mRemove = True
         End If
 
-        If mMatReqProc.MaterialRequirement.Quantity - mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.FromStock <= 0 Then
-          mRemove = True
-        End If
 
         If mRemove = True Then
           pMatReqItemProcessors.RemoveAt(mIndex)
@@ -203,7 +200,7 @@ Public Class fccMaterialRequirements
 
   Public Sub SetQtyFromStock(rMatReqItemProcessor As clsMaterialRequirementProcessor)
     rMatReqItemProcessor.ToOrder = 0
-    rMatReqItemProcessor.FromStock = Math.Max(0.0, rMatReqItemProcessor.QuantityRequired - rMatReqItemProcessor.QtyOrdered - rMatReqItemProcessor.MaterialRequirement.FromStockQty)
+    rMatReqItemProcessor.FromStock = Math.Max(0.0, rMatReqItemProcessor.Quantity - rMatReqItemProcessor.OrderedQty - rMatReqItemProcessor.MaterialRequirement.FromStockQty)
   End Sub
 
   Public Sub ClearMatReqProcs()
@@ -214,7 +211,7 @@ Public Class fccMaterialRequirements
   End Sub
 
   Public Sub SetBalQtyToOrder(ByRef rMatReqItemProcessor As clsMaterialRequirementProcessor)
-    rMatReqItemProcessor.ToOrder = Math.Max(0.0, rMatReqItemProcessor.QuantityRequired - rMatReqItemProcessor.QtyOrdered - rMatReqItemProcessor.FromStock)
+    rMatReqItemProcessor.ToOrder = Math.Max(0.0, rMatReqItemProcessor.Quantity - rMatReqItemProcessor.OrderedQty - rMatReqItemProcessor.FromStock)
   End Sub
 
   Public Sub LoadTransactions(ByVal vMatReqProc As clsMaterialRequirementProcessor)

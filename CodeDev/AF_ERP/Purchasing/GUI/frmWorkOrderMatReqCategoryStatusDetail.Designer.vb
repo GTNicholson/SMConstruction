@@ -22,9 +22,9 @@ Partial Class frmWorkOrderMatReqCategoryStatusDetail
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.grdMaterialRequirements = New DevExpress.XtraGrid.GridControl()
         Me.gvMaterialRequirements = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -278,11 +278,11 @@ Partial Class frmWorkOrderMatReqCategoryStatusDetail
         Me.grdPOs.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdPOs.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdPOs.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdPOs.Location = New System.Drawing.Point(2, 24)
+        Me.grdPOs.Location = New System.Drawing.Point(2, 26)
         Me.grdPOs.MainView = Me.gvPOs
         Me.grdPOs.Name = "grdPOs"
         Me.grdPOs.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.repbtnSupplierPicker, Me.RepositoryItemMemoExEdit1})
-        Me.grdPOs.Size = New System.Drawing.Size(720, 138)
+        Me.grdPOs.Size = New System.Drawing.Size(720, 136)
         Me.grdPOs.TabIndex = 103
         Me.grdPOs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPOs})
         '
@@ -450,7 +450,7 @@ Partial Class frmWorkOrderMatReqCategoryStatusDetail
         Me.grpRelatedPurchaseOrders.AppearanceCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpRelatedPurchaseOrders.AppearanceCaption.Options.UseFont = True
         Me.grpRelatedPurchaseOrders.Controls.Add(Me.grdPOs)
-        Me.grpRelatedPurchaseOrders.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar O.C.", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Nueva O.C.", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Recibir O.C. Existente", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
+        Me.grpRelatedPurchaseOrders.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Eliminar O.C.", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Nueva O.C.", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Recibir O.C. Existente", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1)})
         Me.grpRelatedPurchaseOrders.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpRelatedPurchaseOrders.Location = New System.Drawing.Point(591, 61)
         Me.grpRelatedPurchaseOrders.Name = "grpRelatedPurchaseOrders"

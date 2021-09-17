@@ -215,6 +215,47 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mRetVal
   End Function
 
+  Public Function LoadWorkOrderInfo(ByRef rWorkOrderInfo As clsWorkOrderInfo, ByVal vWhere As String) As Boolean
+    Dim mRetVal As Boolean = True
+    Dim mdto As dtoWorkOrderInfo
+    Dim mWorkOrderInfos As New colWorkOrderInfos
+    Try
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderInfoInternal)
+      mRetVal = mdto.LoadWorkOrderInfoCollectionByWhere(mWorkOrderInfos, vWhere)
+
+      If mWorkOrderInfos.Count > 0 Then
+        rWorkOrderInfo = mWorkOrderInfos(0)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function LoadSalesOrderPhaseItem(ByRef SalesOrderPhaseItem As dmSalesOrderPhaseItem, ByVal vSalesorderPhaseItemID As Integer) As Boolean
+    Dim mRetVal As Boolean = True
+    Dim mdto As dtoSalesOrderPhaseItem
+
+
+    Try
+      pDBConn.Connect()
+      mdto = New dtoSalesOrderPhaseItem(pDBConn)
+      mRetVal = mdto.LoadSalesOrderPhaseItem(SalesOrderPhaseItem, vSalesorderPhaseItemID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+
+    End Try
+    Return mRetVal
+
+  End Function
+
   Public Function UnlockCustomerDisconnected(ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mOK As Boolean
     Try
@@ -1020,11 +1061,30 @@ Public Class dsoSalesOrder : Inherits dsoBase
     End If
     pDBConn.Disconnect()
 
-      mRetVal = True
+    mRetVal = True
 
     Return mRetVal
   End Function
 
+  Public Sub LoadWorkOrderInfoCollectionByWhere(ByRef rWorkOrderInfos As colWorkOrderInfos, ByVal vWhere As String)
+    Dim mdto As dtoWorkOrderInfo
+    Dim mWorkOrderTracking As New colWorkOrderInfos
+    Dim mWOI As clsWorkOrderInfo
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderInfo(DBConn, dtoWorkOrderInfo.eMode.WorkOrderInfoInternal)
+      mdto.LoadWorkOrderInfoCollectionByWhere(rWorkOrderInfos, vWhere)
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+
+  End Sub
 
   Public Function LoadWorkOrderDown(ByRef rWorkOrder As dmWorkOrder, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
@@ -1536,7 +1596,24 @@ Public Class dsoSalesOrder : Inherits dsoBase
   End Sub
 
 
+  Friend Sub SynchroniseWOMatReqReturnedConnected(ByVal vStockItemID As Integer, ByVal vWorkOrderID As Integer)
+    Dim mSQL As String
+    Dim mSQLUpdate As String
+    Dim mReturnQty As Decimal
 
+    mSQL = "Select SUM(ReturnQty) as ReturnQty"
+    mSQL = mSQL & " from MaterialRequirement MR"
+    mSQL = mSQL & " Inner Join WorkOrder WO on WO.WorkOrderID = MR.ObjectID"
+    mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And Wo.WorkOrderID = " & vWorkOrderID
+
+
+    mReturnQty = pDBConn.ExecuteScalar(mSQL)
+
+    mSQLUpdate = "Update MaterialRequirement Set ReturnQty = " & mReturnQty
+    mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vWorkOrderID
+
+    pDBConn.ExecuteNonQuery(mSQLUpdate)
+  End Sub
   Public Function WorkOrderNoFromID(ByVal vID As Integer) As String
     Dim mRetVal As String = ""
     Dim mSQL As String

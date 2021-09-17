@@ -47,17 +47,16 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcItemNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepbtnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.repoSelectItem = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.repbtnUnSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.RepoItemButtonEditRemove = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repitTextOnly = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.btnConfirmSelection = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.grdSalesOrderPhaseItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.repbtnUnSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoSelectItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoItemButtonEditRemove, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repitTextOnly, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -74,8 +73,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.grdSalesOrderPhaseItemInfo.Location = New System.Drawing.Point(-1, 1)
         Me.grdSalesOrderPhaseItemInfo.MainView = Me.gvSalesOrderPhaseItem
         Me.grdSalesOrderPhaseItemInfo.Name = "grdSalesOrderPhaseItemInfo"
-        Me.grdSalesOrderPhaseItemInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepbtnSelect, Me.RepositoryItemDateEdit1, Me.repbtnUnSelect, Me.repitTextOnly})
-        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1271, 534)
+        Me.grdSalesOrderPhaseItemInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectItem, Me.RepositoryItemDateEdit1, Me.RepoItemButtonEditRemove, Me.repitTextOnly})
+        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1271, 493)
         Me.grdSalesOrderPhaseItemInfo.TabIndex = 2
         Me.grdSalesOrderPhaseItemInfo.UseEmbeddedNavigator = True
         Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItem})
@@ -99,7 +98,7 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.gcOrderNo.Name = "gcOrderNo"
         Me.gcOrderNo.Visible = True
         Me.gcOrderNo.VisibleIndex = 0
-        Me.gcOrderNo.Width = 89
+        Me.gcOrderNo.Width = 98
         '
         'GridColumn1
         '
@@ -107,8 +106,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn1.FieldName = "ProjectName"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
-        Me.GridColumn1.Width = 186
+        Me.GridColumn1.VisibleIndex = 3
+        Me.GridColumn1.Width = 204
         '
         'GridColumn2
         '
@@ -124,8 +123,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn4.FieldName = "DateRequired"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 6
-        Me.GridColumn4.Width = 73
+        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.Width = 103
         '
         'RepositoryItemDateEdit1
         '
@@ -154,8 +153,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn3.FieldName = "CompanyName"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
-        Me.GridColumn3.Width = 230
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 196
         '
         'GridColumn7
         '
@@ -169,49 +168,45 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.GridColumn8.FieldName = "Description"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 379
+        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.Width = 417
         '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "# OT"
         Me.GridColumn9.FieldName = "WorkOrderNo"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
-        Me.GridColumn9.Width = 100
+        Me.GridColumn9.Width = 146
         '
         'gcItemNumber
         '
         Me.gcItemNumber.Caption = "Núm. Item"
-        Me.gcItemNumber.ColumnEdit = Me.RepbtnSelect
+        Me.gcItemNumber.ColumnEdit = Me.repoSelectItem
         Me.gcItemNumber.FieldName = "ItemNumberRef"
         Me.gcItemNumber.Name = "gcItemNumber"
         Me.gcItemNumber.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcItemNumber.Visible = True
         Me.gcItemNumber.VisibleIndex = 1
-        Me.gcItemNumber.Width = 80
+        Me.gcItemNumber.Width = 88
         '
-        'RepbtnSelect
+        'repoSelectItem
         '
-        Me.RepbtnSelect.AutoHeight = False
-        Me.RepbtnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Select", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.RepbtnSelect.Name = "RepbtnSelect"
+        Me.repoSelectItem.AutoHeight = False
+        Me.repoSelectItem.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Select", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoSelectItem.Name = "repoSelectItem"
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Casa"
         Me.GridColumn10.FieldName = "AssemblyRef"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
         Me.GridColumn10.Width = 116
         '
-        'repbtnUnSelect
+        'RepoItemButtonEditRemove
         '
-        Me.repbtnUnSelect.AutoHeight = False
-        Me.repbtnUnSelect.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Unselect", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.repbtnUnSelect.Name = "repbtnUnSelect"
+        Me.RepoItemButtonEditRemove.AutoHeight = False
+        Me.RepoItemButtonEditRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Unselect", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.RepoItemButtonEditRemove.Name = "RepoItemButtonEditRemove"
         '
         'repitTextOnly
         '
@@ -219,21 +214,11 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         Me.repitTextOnly.Name = "repitTextOnly"
         Me.repitTextOnly.ReadOnly = True
         '
-        'btnConfirmSelection
-        '
-        Me.btnConfirmSelection.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnConfirmSelection.Location = New System.Drawing.Point(1126, 541)
-        Me.btnConfirmSelection.Name = "btnConfirmSelection"
-        Me.btnConfirmSelection.Size = New System.Drawing.Size(133, 23)
-        Me.btnConfirmSelection.TabIndex = 3
-        Me.btnConfirmSelection.Text = "Aceptar Selección"
-        '
         'frmSalesOrderPhaseItemPickerMulti
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1271, 576)
-        Me.Controls.Add(Me.btnConfirmSelection)
+        Me.ClientSize = New System.Drawing.Size(1271, 496)
         Me.Controls.Add(Me.grdSalesOrderPhaseItemInfo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -244,8 +229,8 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
         CType(Me.gvSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepbtnSelect, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.repbtnUnSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoSelectItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoItemButtonEditRemove, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repitTextOnly, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -253,16 +238,15 @@ Partial Class frmSalesOrderPhaseItemPickerMulti
     Friend WithEvents grdSalesOrderPhaseItemInfo As DevExpress.XtraGrid.GridControl
   Friend WithEvents gvSalesOrderPhaseItem As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents RepbtnSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+  Friend WithEvents repoSelectItem As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
   Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
   Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcOrderNo As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents btnConfirmSelection As DevExpress.XtraEditors.SimpleButton
-  Friend WithEvents repbtnUnSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-  Friend WithEvents repitTextOnly As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoItemButtonEditRemove As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents repitTextOnly As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
   Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn

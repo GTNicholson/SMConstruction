@@ -80,6 +80,15 @@ Public Class clsWorkOrderInfo
   End Property
 
 
+  Public ReadOnly Property ProjectNameAndCustomer As String
+    Get
+      Dim mRetVal As String
+
+      mRetVal = ProjectName & "-" & CustomerName
+      Return mRetVal
+    End Get
+  End Property
+
 
   Public ReadOnly Property QtyPerSalesItem As Integer
     Get
@@ -296,21 +305,27 @@ Public Class colWorkOrderInfos : Inherits List(Of clsWorkOrderInfo)
       mIndex += 1
       If mWO.WorkOrderNo.Length > 2 Then
         If mWO.WorkOrder.WorkOrderNo.Contains("-") = False Then
-          If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
+          If Val(mWO.WorkOrder.WorkOrderNo.Substring(3)) = Val(vWorkOrderNo) Then
             mRetVal = mIndex
             Exit For
           End If
         Else
           If vWorkOrderNo.Contains("-") = True Then
-            If Val(mWO.WorkOrder.WorkOrderNo.Substring(2)) = Val(vWorkOrderNo) Then
+            If Val(mWO.WorkOrder.WorkOrderNo.Substring(3)) = Val(vWorkOrderNo.Substring(3)) Then
               If mWO.WorkOrder.WorkOrderNo.Substring(mWO.WorkOrder.WorkOrderNo.IndexOf("-")) = vWorkOrderNo.Substring(vWorkOrderNo.IndexOf("-")) Then
                 mRetVal = mIndex
                 Exit For
               End If
             End If
+          Else ''User entered just the figures
+            If Val(mWO.WorkOrder.WorkOrderNo.Substring(3)) = Val(vWorkOrderNo) Then
+              mRetVal = mIndex
+              Exit For
+            End If
+          End If
           End If
         End If
-      End If
+
     Next
     Return mRetVal
   End Function

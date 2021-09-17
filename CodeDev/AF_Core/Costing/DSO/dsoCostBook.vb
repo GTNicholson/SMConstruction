@@ -74,6 +74,19 @@ Public Class dsoCostBook : Inherits dsoBase
 
   End Sub
 
+  Public Sub LoadCostBookEntryByWhere(pCostBookEntrys As colCostBookEntrys, ByVal vWhere As String)
+    Dim mdtoCostBookEntry As dtoCostBookEntry = New dtoCostBookEntry(pDBConn)
+    Try
+      If pDBConn.Connect() Then
+        mdtoCostBookEntry.LoadCostBookEntryCollectionByWhere(pCostBookEntrys, vWhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+  End Sub
 
 
 

@@ -236,6 +236,9 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
     Dim mPersistentRepository1 As New PersistentRepository
 
     Dim mRepButton As New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickMaterials))
+
+
     Try
 
 
@@ -274,8 +277,10 @@ Public Class brwPODelivery : Inherits brwBrowserListBase
 
       mRepButton.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default
       mRepButton.Buttons.Item(0).Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph
+      mRepButton.Buttons.Item(0).ImageOptions.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
       mRepButton.Buttons.Item(0).Caption = "Ver"
-
+      mRepButton.Buttons.Item(0).IsLeft = True
+      mRepButton.Buttons.Item(0).ToolTip = "Imprimir Recepción"
       mGridView.Columns("FileExport").ColumnEdit = mRepButton
 
 

@@ -57,6 +57,8 @@ Public Class dtoPurchaseOrderAllocation : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PurchaseOrderID", .PurchaseOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CallOffID", .CallOffID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesorderPhaseItemID", .SalesorderPhaseItemID)
+
     End With
 
   End Sub
@@ -71,6 +73,7 @@ Public Class dtoPurchaseOrderAllocation : Inherits dtoBase
         .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
         .CallOffID = DBReadInt32(rDataReader, "CallOffID")
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
+        .SalesorderPhaseItemID = DBReadInt32(rDataReader, "SalesorderPhaseItemID")
         pPurchaseOrderAllocation.IsDirty = False
       End With
       mOK = True
@@ -173,4 +176,12 @@ Public Class dtoPurchaseOrderAllocation : Inherits dtoBase
     Return mAllOK
   End Function
 
+  Public Function LoadPurchaseOrderAllocationCollectionByWhere(ByRef rPurchaseOrderAllocations As colPurchaseOrderAllocations, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rPurchaseOrderAllocations, mParams, "PurchaseOrderAllocationID", vWhere)
+    rPurchaseOrderAllocations.TrackDeleted = True
+    If mOK Then rPurchaseOrderAllocations.IsDirty = False
+    Return mOK
+  End Function
 End Class

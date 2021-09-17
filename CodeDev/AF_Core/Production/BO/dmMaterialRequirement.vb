@@ -31,6 +31,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pTempAllocatedQty As Decimal
   Private pThicknessInch As Decimal
   Private pFromStockQty As Decimal
+  Private pGeneratedQty As Decimal
+  Private pReturnQty As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -90,6 +92,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .SupplierStockCode = SupplierStockCode
       .Comments = Comments
       .FromStockQty = FromStockQty
+      .GeneratedQty = GeneratedQty
+      .SetReturndQty(ReturnQty)
 
       'Add entries here for each collection and class property
 
@@ -108,6 +112,9 @@ Public Class dmMaterialRequirement : Inherits dmBase
 
   Public Sub SetPickedQty(ByVal vNewValue As Decimal)
     pPickedQty = vNewValue
+  End Sub
+  Public Sub SetReturndQty(ByVal vNewValue As Decimal)
+    pReturnQty = vNewValue
   End Sub
 
   Public Property UoM() As Integer
@@ -494,6 +501,25 @@ Public Class dmMaterialRequirement : Inherits dmBase
   End Property
 
 
+  Public Property GeneratedQty As Decimal
+    Get
+      Return pGeneratedQty
+    End Get
+    Set(value As Decimal)
+      If pGeneratedQty <> value Then IsDirty = True
+      pGeneratedQty = value
+    End Set
+  End Property
+
+  Public Property ReturnQty As Decimal
+    Get
+      Return pReturnQty
+    End Get
+    Set(value As Decimal)
+      If pReturnQty <> value Then IsDirty = True
+      pReturnQty = value
+    End Set
+  End Property
 End Class
 
 

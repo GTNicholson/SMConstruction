@@ -25,27 +25,53 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
   Public Overrides Function AddButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.AddButtonClicked
     Dim mReloadData As Boolean = False
+    Dim mUserIDCollection As New List(Of Integer)
 
     If pIsWoodSalesOrder = False Then
-      frmSalesOrderDetailHouses.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+
+      If AppRTISGlobal.GetInstance.UsersIDWithSmallScreen.Contains(pDBConn.RTISUser.UserID) = True Then ''--Open small screen
+
+        frmSalesOrderDetailHousesSmallScreen.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+      Else
+        frmSalesOrderDetailHouses.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+      End If
+
     Else
+
+
       frmWoodSalesOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
 
-    End If
+      End If
+
+
     Return mReloadData
   End Function
 
   Public Overrides Function EditButtonClicked(ByVal sender As Object, ByVal e As System.EventArgs, ByRef rForm As Windows.Forms.Form) As Boolean ''Implements intBrowseList.EditButtonClicked
     Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView = gridBrowseList.MainView
     Dim mReloadData As Boolean = False
+
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
 
       If pIsWoodSalesOrder = False Then
-        frmSalesOrderDetailHouses.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+        If AppRTISGlobal.GetInstance.UsersIDWithSmallScreen.Contains(pDBConn.RTISUser.UserID) = True Then
+          frmSalesOrderDetailHousesSmallScreen.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+        Else
+          frmSalesOrderDetailHouses.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
+
+        End If
+
       Else
+
+
         frmWoodSalesOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("SalesOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm)
 
       End If

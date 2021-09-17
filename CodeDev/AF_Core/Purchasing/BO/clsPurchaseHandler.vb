@@ -15,10 +15,8 @@
     Return mRetVal
   End Function
 
-  Public Function CreateSOPMatReqCatDefaultPO(ByVal vSalesOrderPhaseID As Integer, ByVal vSupplierID As Integer, ByVal vCategory As eStockItemCategory) As dmPurchaseOrder
+  Public Function CreateSOPMatReqCatDefaultPO(ByVal vWorkOrderID As Integer, ByVal vSupplierID As Integer, ByVal vCategory As eStockItemCategory) As dmPurchaseOrder
     Dim mPurchaseOrder As New dmPurchaseOrder
-    Dim mPOItem As dmPurchaseOrderItem
-    Dim mPOItemAllocation As dmPurchaseOrderItemAllocation
     Dim mPOA As dmPurchaseOrderAllocation
 
     mPurchaseOrder.SupplierID = vSupplierID
@@ -26,7 +24,8 @@
 
 
     mPOA = New dmPurchaseOrderAllocation
-    mPOA.CallOffID = vSalesOrderPhaseID
+    mPOA.WorkOrderID = vWorkOrderID
+
     mPurchaseOrder.PurchaseOrderAllocations.Add(mPOA)
     Return mPurchaseOrder
   End Function

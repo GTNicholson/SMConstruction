@@ -60,6 +60,11 @@ Public Class dtoPurchaseOrderItemAllocation : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Quantity", .Quantity)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceivedQty", .ReceivedQty)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemRef", StringToDBValue(.ItemRef))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemRef2", StringToDBValue(.ItemRef2))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ProjectRef", StringToDBValue(.ProjectRef))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesorderPhaseItemID", .SalesorderPhaseItemID)
+
     End With
 
   End Sub
@@ -76,6 +81,11 @@ Public Class dtoPurchaseOrderItemAllocation : Inherits dtoBase
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .Quantity = DBReadDecimal(rDataReader, "Quantity")
         .ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
+        .ItemRef = DBReadString(rDataReader, "ItemRef")
+        .ItemRef2 = DBReadString(rDataReader, "ItemRef2")
+        .ProjectRef = DBReadString(rDataReader, "ProjectRef")
+        .SalesorderPhaseItemID = DBReadInt32(rDataReader, "SalesorderPhaseItemID")
+
         pPurchaseOrderItemAllocation.IsDirty = False
       End With
       mOK = True
@@ -178,6 +188,14 @@ Public Class dtoPurchaseOrderItemAllocation : Inherits dtoBase
     Return mAllOK
   End Function
 
+  Public Function LoadPurchaseOrderItemAllocationCollectionByWhere(ByRef rPurchaseOrderItemAllocations As colPurchaseOrderItemAllocations, vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rPurchaseOrderItemAllocations, mParams, "PurchaseOrderItemAllocationID", vWhere)
+    rPurchaseOrderItemAllocations.TrackDeleted = True
+    If mOK Then rPurchaseOrderItemAllocations.IsDirty = False
+    Return mOK
+  End Function
 End Class
 
 

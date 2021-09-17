@@ -13,17 +13,26 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
   Public Enum eMode
     Info = 1
     Processor = 2
+    WO = 3
   End Enum
 
 
   Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
     MyBase.New(rDBSource)
-    SetTableDetails()
+
     pMode = vMode
+    SetTableDetails()
   End Sub
 
   Protected Overrides Sub SetTableDetails()
-    pTableName = "vwPurchaseOrderItemAllocationInfo"
+    Select Case pMode
+      Case eMode.Info, eMode.Processor
+        pTableName = "vwPurchaseOrderItemAllocationInfo"
+
+      Case eMode.WO
+        pTableName = "vwPurcahseOrderItemAllocationWorkOrderInfo"
+
+    End Select
     pKeyFieldName = "PurchaseOrderItemAllocationID"
     pUseSoftDelete = False
     pRowVersionColName = "rowversion"
@@ -67,11 +76,24 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
     Try
       If pPurchaseOrderItemAllocationInfo Is Nothing Then SetObjectToNew()
 
+
+
       With pPurchaseOrderItemAllocationInfo
         .SUPPLIERCOMPANYNAME = DBReadString(rDataReader, "CompanyName")
         .PONum = DBReadString(rDataReader, "PONum")
         .RequiredDate = DBReadDate(rDataReader, "RequiredDate")
         .PurchaseOrderID = DBReadInt32(rDataReader, "PurchaseOrderID")
+
+        Select Case pMode
+          Case eMode.WO
+            .WorkOrder.WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
+            .WorkOrder.WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            .WorkOrder.Description = DBReadString(rDataReader, "WODescription")
+            .WorkOrder.PurchasingDate = DBReadDate(rDataReader, "PurchasingDate")
+            .WorkOrder.PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
+
+        End Select
+
 
       End With
 
@@ -80,7 +102,17 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .PurchaseOrderItemAllocationID = DBReadInt32(rDataReader, "PurchaseOrderItemAllocationID")
         .Quantity = DBReadDecimal(rDataReader, "Quantity")
         .ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
-        .CallOffID = DBReadInt32(rDataReader, "CallOffID")
+
+        Select Case pMode
+          Case eMode.Processor, eMode.Info
+            .CallOffID = DBReadInt32(rDataReader, "CallOffID")
+            .ItemRef2 = DBReadString(rDataReader, "ItemRef2")
+            .ItemRef = DBReadString(rDataReader, "ItemRef")
+            .ProjectRef = DBReadString(rDataReader, "ProjectRef")
+            .SalesorderPhaseItemID = DBReadInt32(rDataReader, "SalesorderPhaseItemID")
+
+        End Select
+
       End With
 
 
@@ -123,10 +155,14 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         ''.Description = DBReadString(rDataReader, "WODESCRIPTION")
       End With
 
-      With pPurchaseOrderItemAllocationInfo.SalesOrderPhase
-        .JobNo = DBReadString(rDataReader, "JobNo")
+      Select Case pMode
+        Case eMode.Info, eMode.Processor
+          With pPurchaseOrderItemAllocationInfo.SalesOrderPhase
+            .JobNo = DBReadString(rDataReader, "JobNo")
 
-      End With
+          End With
+      End Select
+
       mOK = True
     Catch Ex As Exception
       mOK = False
@@ -142,7 +178,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
 
   Protected Overrides Function SetObjectToNew() As Object
     Select Case pMode
-      Case eMode.Info
+      Case eMode.Info, eMode.WO
         pPurchaseOrderItemAllocationInfo = New clsPurchaseOrderItemAllocationInfo
       Case eMode.Processor
         pPurchaseOrderItemAllocationInfo = New clsPurchaseOrderItemAllocationProcessor(New dmPurchaseOrderItemAllocation)

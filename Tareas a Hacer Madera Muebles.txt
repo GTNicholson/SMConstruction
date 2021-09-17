@@ -1,0 +1,15 @@
+agregar CIF en la venta
+separar Madera - Insumos - CIF- Labour
+
+Clasificación de Productos
+Madera: Dimension-Ensamble-Lija-Acabado-EMpaque-Despacho
+Metales:Cortes-Doblez-Soldadura-Lija-Acabado
+Cojinería: Foam, Tela, Ensamble, EMpaque, empaque
+Tejido
+
+Proponer codificación de madera
+
+Agregar el ratio de porcentaje completado
+con el valor real y el estimado original
+
+Revisar el formato de OT con Oscar para cambios

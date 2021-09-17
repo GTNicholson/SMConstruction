@@ -144,17 +144,25 @@ Partial Public Class repPurchaseOrder
         '
         'XrTableRow5
         '
+        Me.XrTableRow5.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xrQuantity, Me.xrtcStockCode, Me.xrtcRefCodes, Me.xrDescription, Me.xrtcUoM, Me.xrUnitPrice, Me.xrNetTotal})
         Me.XrTableRow5.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableRow5.Name = "XrTableRow5"
+        Me.XrTableRow5.StylePriority.UseBorders = False
         Me.XrTableRow5.StylePriority.UseFont = False
         Me.XrTableRow5.Weight = 1.60000101725325R
         '
         'xrQuantity
         '
+        Me.xrQuantity.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrQuantity.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrQuantity.ForeColor = System.Drawing.Color.Black
         Me.xrQuantity.Name = "xrQuantity"
+        Me.xrQuantity.StylePriority.UseBorders = False
         Me.xrQuantity.StylePriority.UseFont = False
         Me.xrQuantity.StylePriority.UseForeColor = False
         Me.xrQuantity.StylePriority.UseTextAlignment = False
@@ -176,7 +184,8 @@ Partial Public Class repPurchaseOrder
         '
         'xrtcRefCodes
         '
-        Me.xrtcRefCodes.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.xrtcRefCodes.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrtcRefCodes.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrtcRefCodes.ForeColor = System.Drawing.Color.Black
@@ -192,7 +201,8 @@ Partial Public Class repPurchaseOrder
         '
         'xrDescription
         '
-        Me.xrDescription.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.xrDescription.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrDescription.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrDescription.ForeColor = System.Drawing.Color.Black
@@ -207,7 +217,8 @@ Partial Public Class repPurchaseOrder
         '
         'xrtcUoM
         '
-        Me.xrtcUoM.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.xrtcUoM.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrtcUoM.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrtcUoM.ForeColor = System.Drawing.Color.Black
@@ -221,7 +232,8 @@ Partial Public Class repPurchaseOrder
         '
         'xrUnitPrice
         '
-        Me.xrUnitPrice.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.xrUnitPrice.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrUnitPrice.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrUnitPrice.ForeColor = System.Drawing.Color.Black
@@ -236,7 +248,8 @@ Partial Public Class repPurchaseOrder
         '
         'xrNetTotal
         '
-        Me.xrNetTotal.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.xrNetTotal.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrNetTotal.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrNetTotal.ForeColor = System.Drawing.Color.Black
@@ -889,14 +902,17 @@ Partial Public Class repPurchaseOrder
         '
         'XrTableRow13
         '
+        Me.XrTableRow13.BackColor = System.Drawing.Color.WhiteSmoke
         Me.XrTableRow13.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19, Me.XrTableCell4, Me.XrTableCell6, Me.xrDescriptionHeader, Me.XrTableCell1, Me.XrTableCell21, Me.XrTableCell22})
         Me.XrTableRow13.Name = "XrTableRow13"
+        Me.XrTableRow13.StylePriority.UseBackColor = False
         Me.XrTableRow13.Weight = 1.42222297143736R
         '
         'XrTableCell19
         '
         Me.XrTableCell19.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XrTableCell19.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.XrTableCell19.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell19.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell19.ForeColor = System.Drawing.Color.Black
@@ -911,12 +927,15 @@ Partial Public Class repPurchaseOrder
         'XrTableCell4
         '
         Me.XrTableCell4.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XrTableCell4.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.XrTableCell4.BorderColor = System.Drawing.Color.DimGray
+        Me.XrTableCell4.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell4.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell4.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell4.Name = "XrTableCell4"
         Me.XrTableCell4.StylePriority.UseBackColor = False
+        Me.XrTableCell4.StylePriority.UseBorderColor = False
         Me.XrTableCell4.StylePriority.UseBorders = False
         Me.XrTableCell4.StylePriority.UseFont = False
         Me.XrTableCell4.StylePriority.UseForeColor = False
@@ -926,7 +945,9 @@ Partial Public Class repPurchaseOrder
         'XrTableCell6
         '
         Me.XrTableCell6.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XrTableCell6.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell6.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell6.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell6.Name = "XrTableCell6"
@@ -940,7 +961,9 @@ Partial Public Class repPurchaseOrder
         'xrDescriptionHeader
         '
         Me.xrDescriptionHeader.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.xrDescriptionHeader.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xrDescriptionHeader.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.xrDescriptionHeader.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.xrDescriptionHeader.ForeColor = System.Drawing.Color.Black
         Me.xrDescriptionHeader.Name = "xrDescriptionHeader"
@@ -954,7 +977,9 @@ Partial Public Class repPurchaseOrder
         'XrTableCell1
         '
         Me.XrTableCell1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XrTableCell1.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell1.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell1.Name = "XrTableCell1"
@@ -968,7 +993,9 @@ Partial Public Class repPurchaseOrder
         'XrTableCell21
         '
         Me.XrTableCell21.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XrTableCell21.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell21.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell21.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell21.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell21.Name = "XrTableCell21"
@@ -984,7 +1011,8 @@ Partial Public Class repPurchaseOrder
         'XrTableCell22
         '
         Me.XrTableCell22.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XrTableCell22.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.XrTableCell22.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell22.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell22.ForeColor = System.Drawing.Color.Black

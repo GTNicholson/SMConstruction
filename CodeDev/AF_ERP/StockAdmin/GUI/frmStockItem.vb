@@ -295,7 +295,7 @@ Public Class frmStockItem
         chkIsGeneric.Checked = .IsGeneric
         chkIsTracked.Checked = .IsTracked
         chkIsObsolete.Checked = .Inactive
-        txtCostQty.EditValue = .CostQty
+        txtQuantity.EditValue = .StockQuantity
         ckbIsCostingOnly.Checked = .IsCostingOnly
         txtAuxCode.Text = .AuxCode
       End With

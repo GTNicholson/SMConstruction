@@ -92,6 +92,8 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           pMaterialRequirment.SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
           pMaterialRequirment.ItemNumber = DBReadString(rDataReader, "ItemNumber")
           pMaterialRequirment.SOIDescription = DBReadString(rDataReader, "SOIDescription")
+          pMaterialRequirment.StockItemLocationsQty = DBReadDecimal(rDataReader, "StockItemLocationsQty")
+          pMaterialRequirment.OrderedQty = DBReadDecimal(rDataReader, "OrderedQty")
 
           With pMaterialRequirment.MaterialRequirement
 
@@ -108,6 +110,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .ObjectID = DBReadInt32(rDataReader, "WorkOrderID")
             .Description = DBReadString(rDataReader, "Description")
             .FromStockQty = DBReadDecimal(rDataReader, "FromStockQty")
+            .SetReturndQty(DBReadDecimal(rDataReader, "ReturnQty"))
           End With
 
 
@@ -160,6 +163,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .WoodSpecie = DBReadInt32(rDataReader, "WoodSpecie")
             .PiecesPerComponent = DBReadDecimal(rDataReader, "PiecesPerComponent")
             .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
+            .SetReturndQty(DBReadDecimal(rDataReader, "ReturnQty"))
 
           End With
 

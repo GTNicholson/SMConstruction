@@ -17,6 +17,8 @@ Public Class clsMaterialRequirementInfo
   Private pWorkOrderAllocationID As Decimal
   Private pItemNumber As String
   Private pSOIDescription As String
+  Private pStockItemLocationsQty As Decimal
+  Private pOrderedQty As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -115,7 +117,14 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
-
+  Public Property OrderedQty As Decimal
+    Get
+      Return pOrderedQty
+    End Get
+    Set(value As Decimal)
+      pOrderedQty = value
+    End Set
+  End Property
   Public Property WoodSpecie As Int32
     Get
       Return pWorkOrder.WoodSpecieID
@@ -219,6 +228,11 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
+  Public ReadOnly Property WorkOrderNoAndDescription As String
+    Get
+      Return pWorkOrder.WorkOrderNo.Substring(3) & "/" & pWorkOrder.Description
+    End Get
+  End Property
   Public Property AverageCost As Decimal
     Get
       If pStockItem.AverageCost = 0 Then
@@ -229,9 +243,20 @@ Public Class clsMaterialRequirementInfo
       End If
     End Get
     Set(value As Decimal)
-
+      pStockItem.AverageCost = value
     End Set
   End Property
+
+  Public ReadOnly Property AverageCostUSDInsumos As Decimal
+    Get
+      If ExchangeRate > 0 Then
+        Return AverageCost / ExchangeRate
+      Else
+        Return 0
+      End If
+    End Get
+  End Property
+
   Public Property ProductStructureID As Int32
     Get
       Return pWorkOrder.ProductID
@@ -270,7 +295,7 @@ Public Class clsMaterialRequirementInfo
   Public ReadOnly Property WoodSpecieDesc As String
     Get
       Dim mRetVal As String
-      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(WoodSpecieID)
+      mRetVal = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).DisplayValueString(WoodSpecieID).Trim
       Return mRetVal
     End Get
   End Property
@@ -683,12 +708,64 @@ Public Class clsMaterialRequirementInfo
 
   Public Property SOIDescription As String
     Get
-      Return pSOIDescription.ToUpper
+      If pSOIDescription IsNot Nothing Then
+        Return pSOIDescription.ToUpper
+      Else
+        Return ""
+      End If
     End Get
     Set(value As String)
       pSOIDescription = value
     End Set
   End Property
+  Public Property StockItemLocationsQty As Decimal
+    Get
+      Return pStockItemLocationsQty
+    End Get
+    Set(value As Decimal)
+      pStockItemLocationsQty = value
+    End Set
+  End Property
+
+  Public Property ReturnQty As Decimal
+    Get
+      Return pMaterialRequirement.ReturnQty
+    End Get
+    Set(value As Decimal)
+      pMaterialRequirement.SetReturndQty(value)
+    End Set
+  End Property
+
+  Public ReadOnly Property ValueEstimatedBought As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = clsStockItemSharedFuncs.getStockItemValue(pStockItem, OrderedQty)
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property ValueOSPurchased As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = TotalAmount - clsStockItemSharedFuncs.getStockItemValue(pStockItem, OrderedQty)
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property OSQtyPurchased As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = Quantity - OrderedQty
+
+      Return mRetVal
+    End Get
+  End Property
+
 End Class
 
 

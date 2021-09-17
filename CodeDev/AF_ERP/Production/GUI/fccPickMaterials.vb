@@ -68,7 +68,7 @@ Public Class fccPickMaterials
     'mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
     ''' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
     'mwhere += " WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo)) and ProductTypeID<>" & eProductType.WoodWorkOrder
-    mwhere += String.Format("Status in (0,{0},{1})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised))
+    mwhere += String.Format("Status in (0,{0},{1},{2})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised), CInt(eWorkOrderStatus.Complete))
     mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
     Try
 
@@ -118,7 +118,7 @@ Public Class fccPickMaterials
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems)
+    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and isnull(Quantity,0)<>0"
     pMaterialRequirementProcessors.Clear()
     Try
 
@@ -200,5 +200,35 @@ Public Class fccPickMaterials
 
   End Sub
 
+  Public Sub ProcessReturnProduction()
+    Try
+      Dim mdsoTran As dsoStockTransactions
+      Dim mMatReq As dtoMaterialRequirement
+      Dim mExchangeValue As Decimal
 
+      Dim mdsoStock As dsoStock
+      Dim mSIL As New dmStockItemLocation
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+
+      mdsoStock = New dsoStock(pDBConn)
+
+      For Each mMRP As clsMaterialRequirementProcessor In pMaterialRequirementProcessors
+        If mMRP.ToProcessQty <> 0 Then
+          If mMRP.StockItem.StockItemID <> 0 Then
+            mSIL = mdsoStock.GetOrCreateStockItemLocation(mMRP.StockItem.StockItemID, 1)
+          Else
+            mSIL = Nothing
+          End If
+          mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas)
+          mdsoTran.ReturnFromProductionMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue)
+          mMRP.ToProcessQty = 0
+        End If
+
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 End Class

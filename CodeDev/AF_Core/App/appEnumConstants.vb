@@ -28,6 +28,7 @@ Public Enum eActivityCode
   InstallationWorkOrder = 206
   WoodPicking = 207
 
+
   HumanResourcesGroup = 300
   EmployeeSalaries = 301
   Employees = 302
@@ -333,6 +334,7 @@ Public Enum eReportSource
   PODeliveryItem = 8
   PurchaseOrderItem = 9
   WoodPalletItemInfo = 10
+  MaterialRequirement = 11
 End Enum
 
 Public Enum eParentType
@@ -411,6 +413,10 @@ Public Enum eWorkCentre
   <Description("Acabado")> Finishing = 9
   <Description("Metales")> MetalWork = 10
   <Description("Acabado Metal")> MetalFinising = 11
+  <Description("Empaque")> Packaging = 12
+  <Description("Despacho")> Despatch = 13
+
+
 End Enum
 
 Public Enum eProductType
@@ -553,18 +559,18 @@ Public Class colTimeSheetCodes : Inherits RTIS.CommonVB.colPropertyENUMOfT(Of cl
 
   Private Sub New()
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cUnDefined, "Sin Def", " ", System.Drawing.Color.White))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkOrder, "OT", "", System.Drawing.Color.Green))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Ausencia", "A", System.Drawing.Color.Gray))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vacaciones", "V", System.Drawing.Color.Gray))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.Tomato))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfermo", "E", System.Drawing.Color.Gray))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Demora", "D", System.Drawing.Color.Tomato))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkAllowance, "Subsidio", "S", System.Drawing.Color.Gray))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaterialTransportation, "Traslado", "T", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cInventory, "Inventario", "I", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPrototype, "Prototipo", "P", System.Drawing.Color.PaleGreen))
-    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPermission, "Consentimiento", "C", System.Drawing.Color.Gray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkOrder, "OT", "", System.Drawing.Color.PaleGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAbsent, "Ausencia", "A", System.Drawing.Color.DarkGray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cHoliday, "Vacaciones", "V", System.Drawing.Color.Tomato))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaintenance, "Mantenimiento", "M", System.Drawing.Color.Yellow))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSick, "Enfermo", "E", System.Drawing.Color.DimGray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cCleaning, "Limpieza", "L", System.Drawing.Color.LightSalmon))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cStop, "Demora", "D", System.Drawing.Color.Red))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cWorkAllowance, "Subsidio", "S", System.Drawing.Color.LightGray))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cMaterialTransportation, "Traslado", "T", System.Drawing.Color.PowderBlue))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cInventory, "Inventario", "I", System.Drawing.Color.SkyBlue))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPrototype, "Prototipo", "P", System.Drawing.Color.DodgerBlue))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPermission, "Consentimiento", "C", System.Drawing.Color.Gainsboro))
 
 
   End Sub
@@ -1708,6 +1714,7 @@ Public Enum eTransactionType
   <Description("Movimiento de MAV")> MAVMovement = 20
   <Description("Despacho Madera a Producción")> IntoWIP = 21
   <Description("Venta de Madera")> WoodSalesOrder = 22
+  <Description("Devolución de Producción")> ProductionReturn = 23
 
 
 
@@ -2512,4 +2519,16 @@ Public Enum eStatusNonePartComplete
   Part = 1
   Complete = 2
   NotRequired = 3
+End Enum
+
+Public Enum eOptionMaterialesView
+  MatEspecificados = 1
+  MatActual = 2
+  MatEstimado = 3
+End Enum
+
+Public Enum ePODetailOption
+  ManPO = 1
+  NonManPO = 2
+  General = 3
 End Enum

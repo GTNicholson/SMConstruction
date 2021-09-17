@@ -124,7 +124,12 @@ Public Class clsPurchaseOrderInfo
     End Get
 
   End Property
+  Public ReadOnly Property MaterialRequirementTypeWorkOrderID() As Int32
+    Get
+      Return pPurchaseOrder.MaterialRequirementTypeWorkOrderID
+    End Get
 
+  End Property
   Public ReadOnly Property DefaultCurrency() As Int32
     Get
       Return pPurchaseOrder.DefaultCurrency
@@ -183,7 +188,7 @@ Public Class clsPurchaseOrderInfo
 
       End Select
 
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
 
   End Property
@@ -466,7 +471,7 @@ Public Class clsPurchaseOrderInfo
 
       End Select
 
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
 
   End Property
@@ -488,7 +493,7 @@ Public Class clsPurchaseOrderInfo
 
       mRetVal = TotalReceivedAmountUSD - TotalRetentionValueReportUSD + TotalVatValueReportUSD + CarriageUSD
 
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
   End Property
   Public ReadOnly Property TotalRetentionValueReportUSD As Decimal
@@ -509,7 +514,7 @@ Public Class clsPurchaseOrderInfo
 
       End Select
 
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
 
   End Property
@@ -763,11 +768,12 @@ End Class
 Public Class clsPOItemInfo
   Private pPOItem As dmPurchaseOrderItem
   Private pStockItem As dmStockItem
-
+  Private pPOItemAllocations As colPurchaseOrderItemAllocations
 
   Public Sub New(ByRef rPOItem As dmPurchaseOrderItem, ByRef rStockItem As dmStockItem)
     pPOItem = rPOItem
     pStockItem = rStockItem
+    pPOItemAllocations = rPOItem.PurchaseOrderItemAllocations
   End Sub
 
 
@@ -783,10 +789,29 @@ Public Class clsPOItemInfo
     End Get
   End Property
 
+  Public Property PurchaseOrderItemAllocations As colPurchaseOrderItemAllocations
+    Get
+      Return pPOItemAllocations
+    End Get
+    Set(value As colPurchaseOrderItemAllocations)
+      pPOItemAllocations = value
+    End Set
+  End Property
 
   Public Property StockCode As String
     Get
-      Return pPOItem.StockCode
+      Dim mRetVal As String
+      Dim mSI As dmStockItem
+
+      mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pPOItem.StockItemID)
+
+      If mSI IsNot Nothing Then
+        mRetVal = mSI.StockCode
+      Else
+        mRetVal = ""
+      End If
+
+      Return mRetVal
     End Get
     Set(value As String)
       pPOItem.StockCode = value
@@ -882,12 +907,36 @@ Public Class clsPOItemInfo
   End Property
 
 
+  Public ReadOnly Property DisplayReportPOIDesc As String
+    Get
+      Dim mRetVal As String
 
+      mRetVal = String.Format("{0} {1} de {2}", clsSMSharedFuncs.FractStrFromDec(Qty), UoMDesc, Description)
 
+      Return mRetVal
+    End Get
+  End Property
 
+  Public ReadOnly Property PurchaseOrderItemID As Integer
+    Get
+      Return pPOItem.PurchaseOrderID
+    End Get
+  End Property
 
 End Class
 
 Public Class colPOItemInfos : Inherits List(Of clsPOItemInfo)
 
+  Public Function GetItemFromKey(ByVal vPurchaseOrderItemID As Integer) As clsPOItemInfo
+    Dim mRetVal As clsPOItemInfo = Nothing
+
+    For Each mItem In Me
+      If mItem.PurchaseOrderItemID = vPurchaseOrderItemID Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+
+    Return mRetVal
+  End Function
 End Class

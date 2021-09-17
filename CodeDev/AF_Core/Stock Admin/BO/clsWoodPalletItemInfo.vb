@@ -349,6 +349,11 @@ Public Class clsWoodPalletItemInfo
       Return pWorkOrder.Description
     End Get
   End Property
+  Public ReadOnly Property WODescriptionRef As String
+    Get
+      Return pWorkOrder.WorkOrderNo.Substring(3) & "-" & pWorkOrder.Description
+    End Get
+  End Property
 
   Public ReadOnly Property ProjectName As String
     Get

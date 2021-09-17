@@ -77,7 +77,7 @@ Public Class frmHomePurchasing
 
       If mPOInfo IsNot Nothing Then
 
-        frmPurchaseOrder.OpenFormMDI(mPOInfo.PurchaseOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance, Me.ParentForm)
+        'frmPurchaseOrder.OpenFormMDI(mPOInfo.PurchaseOrderID, pFormController.DBConn, AppRTISGlobal.GetInstance, Me.ParentForm)
 
 
       End If

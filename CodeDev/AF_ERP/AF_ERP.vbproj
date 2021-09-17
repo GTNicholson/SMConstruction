@@ -354,6 +354,7 @@
     <Compile Include="Pickers\clsPickerSupplier.vb" />
     <Compile Include="Pickers\clsPickerWoodPallet.vb" />
     <Compile Include="Pickers\clsPickerWorkOrder.vb" />
+    <Compile Include="Pickers\clsPickerWorkOrderAllocation.vb" />
     <Compile Include="Pickers\frmPickerCustomer.Designer.vb">
       <DependentUpon>frmPickerCustomer.vb</DependentUpon>
     </Compile>
@@ -364,6 +365,12 @@
       <DependentUpon>frmPickerStockItem.vb</DependentUpon>
     </Compile>
     <Compile Include="Pickers\frmPickerStockItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmPickerWorkOrderAllocation.Designer.vb">
+      <DependentUpon>frmPickerWorkOrderAllocation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmPickerWorkOrderAllocation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pickers\frmPickSupplier.Designer.vb">
@@ -527,6 +534,18 @@
     <Compile Include="Purchasing\GUI\fccPODelivery.vb" />
     <Compile Include="Purchasing\GUI\fccStockItemPurchasing.vb" />
     <Compile Include="Purchasing\GUI\fccSupplierDetail.vb" />
+    <Compile Include="Purchasing\GUI\frmManPurchaseOrderDetail.Designer.vb">
+      <DependentUpon>frmManPurchaseOrderDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmManPurchaseOrderDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmNonManPurchaseOrder.Designer.vb">
+      <DependentUpon>frmNonManPurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmNonManPurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Purchasing\GUI\frmWorkOrderMatReqCategoryStatusDetail.Designer.vb">
       <DependentUpon>frmWorkOrderMatReqCategoryStatusDetail.vb</DependentUpon>
     </Compile>
@@ -555,12 +574,6 @@
       <DependentUpon>frmPurchaseManagement.vb</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\GUI\frmPurchaseManagement.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchasing\GUI\frmPurchaseOrder.Designer.vb">
-      <DependentUpon>frmPurchaseOrder.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Purchasing\GUI\frmPurchaseOrder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Purchasing\GUI\frmPurchaseOrderConsole.designer.vb">
@@ -599,6 +612,12 @@
     <Compile Include="Purchasing\GUI\repPurchaseOrder.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Purchasing\GUI\subPaymentReportDetail.Designer.vb">
+      <DependentUpon>subPaymentReportDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\subPaymentReportDetail.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\brwCustomers.vb" />
     <Compile Include="Sales\GUI\brwFurnitureSalesOrder.vb" />
     <Compile Include="Sales\GUI\brwInstallationWorkOrder.vb" />
@@ -613,6 +632,7 @@
     <Compile Include="Sales\GUI\fccWoodSalesOrder.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetailConstruction.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetail.vb" />
+    <Compile Include="Sales\GUI\fccWorkOrderSalesItemDetails.vb" />
     <Compile Include="Sales\GUI\frmCustomerDetail.Designer.vb">
       <DependentUpon>frmCustomerDetail.vb</DependentUpon>
     </Compile>
@@ -635,6 +655,12 @@
       <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderDetailHouses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderDetailHousesSmallScreen.Designer.vb">
+      <DependentUpon>frmSalesOrderDetailHousesSmallScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderDetailHousesSmallScreen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderDetailSM.Designer.vb">
@@ -667,6 +693,12 @@
     <Compile Include="Sales\GUI\frmSalesOrderReview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReviewSmallScreen.Designer.vb">
+      <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReviewSmallScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmWoodSalesOrder.Designer.vb">
       <DependentUpon>frmWoodSalesOrder.vb</DependentUpon>
     </Compile>
@@ -689,6 +721,12 @@
       <DependentUpon>frmWorkOrderPicker.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmWorkOrderPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderSalesItemDetails.Designer.vb">
+      <DependentUpon>frmWorkOrderSalesItemDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmWorkOrderSalesItemDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\Label\repFGLabel.Designer.vb">
@@ -731,6 +769,12 @@
       <DependentUpon>repWorkOrderMatReqsWood.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\OutputDocs\repWorkOrderMatReqsWood.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail.Designer.vb">
+      <DependentUpon>repPOIADetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.Designer.vb">
@@ -890,6 +934,9 @@
     <EmbeddedResource Include="App\GUI\frmReportDesigner.resx">
       <DependentUpon>frmReportDesigner.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmRichTextEmail.resx">
+      <DependentUpon>frmRichTextEmail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="App\GUI\frmTabbedMDI.resx">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>
     </EmbeddedResource>
@@ -948,6 +995,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmPickerStockItem.resx">
       <DependentUpon>frmPickerStockItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmPickerWorkOrderAllocation.resx">
+      <DependentUpon>frmPickerWorkOrderAllocation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmPickSupplier.resx">
       <DependentUpon>frmPickSupplier.vb</DependentUpon>
@@ -1015,8 +1065,14 @@
     <EmbeddedResource Include="Production\GUI\repPaySlip.resx">
       <DependentUpon>repPaySlip.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmManPurchaseOrderDetail.resx">
+      <DependentUpon>frmManPurchaseOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmMaterialRequirement.resx">
       <DependentUpon>frmMaterialRequirement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmNonManPurchaseOrder.resx">
+      <DependentUpon>frmNonManPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmPickerPurchaseOrder.resx">
       <DependentUpon>frmPickerPurchaseOrder.vb</DependentUpon>
@@ -1026,9 +1082,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmPurchaseManagement.resx">
       <DependentUpon>frmPurchaseManagement.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Purchasing\GUI\frmPurchaseOrder.resx">
-      <DependentUpon>frmPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmPurchaseOrderConsole.resx">
       <DependentUpon>frmPurchaseOrderConsole.vb</DependentUpon>
@@ -1051,6 +1104,9 @@
     <EmbeddedResource Include="Purchasing\GUI\repPurchaseOrder.resx">
       <DependentUpon>repPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\subPaymentReportDetail.resx">
+      <DependentUpon>subPaymentReportDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmCustomerDetail.resx">
       <DependentUpon>frmCustomerDetail.vb</DependentUpon>
     </EmbeddedResource>
@@ -1062,6 +1118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailHouses.resx">
       <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailHousesSmallScreen.resx">
+      <DependentUpon>frmSalesOrderDetailHousesSmallScreen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailSM.resx">
       <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
@@ -1078,6 +1137,9 @@
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderReview.resx">
       <DependentUpon>frmSalesOrderReview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderReviewSmallScreen.resx">
+      <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWoodSalesOrder.resx">
       <DependentUpon>frmWoodSalesOrder.vb</DependentUpon>
     </EmbeddedResource>
@@ -1089,6 +1151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWorkOrderPicker.resx">
       <DependentUpon>frmWorkOrderPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmWorkOrderSalesItemDetails.resx">
+      <DependentUpon>frmWorkOrderSalesItemDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\Label\repFGLabel.resx">
       <DependentUpon>repFGLabel.vb</DependentUpon>
@@ -1110,6 +1175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderMatReqsWood.resx">
       <DependentUpon>repWorkOrderMatReqsWood.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repPOIADetail.resx">
+      <DependentUpon>repPOIADetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.resx">
       <DependentUpon>repSalesOrder_English.vb</DependentUpon>

@@ -25,6 +25,7 @@ Partial Class frmMaterialRequirement
     Me.components = New System.ComponentModel.Container()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaterialRequirement))
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.barbtnClose = New DevExpress.XtraBars.BarButtonItem()
@@ -347,7 +348,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn13.Caption = "Cant. Req."
         Me.GridColumn13.DisplayFormat.FormatString = "#.###"
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn13.FieldName = "QuantityRequired"
+        Me.GridColumn13.FieldName = "Quantity"
         Me.GridColumn13.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.ReadOnly = True
@@ -545,7 +546,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn15.ColumnEdit = Me.RepositoryItemPopupContainerEditOrderedQty
         Me.GridColumn15.DisplayFormat.FormatString = "#.###"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn15.FieldName = "QtyOrdered"
+        Me.GridColumn15.FieldName = "OrderedQty"
         Me.GridColumn15.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
@@ -878,6 +879,7 @@ Partial Class frmMaterialRequirement
         Me.RepositoryItemMemoExEdit1.AutoHeight = False
         Me.RepositoryItemMemoExEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemMemoExEdit1.Name = "RepositoryItemMemoExEdit1"
+        Me.RepositoryItemMemoExEdit1.ShowIcon = False
         '
         'GridColumn37
         '
@@ -941,6 +943,7 @@ Partial Class frmMaterialRequirement
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMaterialRequirement"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Requerimientos de Proyectos"

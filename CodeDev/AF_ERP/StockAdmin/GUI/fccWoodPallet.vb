@@ -551,4 +551,37 @@ Public Class fccWoodPallet
 
 
   End Sub
+
+  Public Sub CreateCostBookEntry(ByVal vNewStockItem As dmStockItem)
+    Dim mCostSpecie As Decimal
+    Dim mCostBookID As Integer
+    Dim mColCostBookEntrys As New colCostBookEntrys
+    Dim mdsoCostBook As dsoCostBook
+    Dim mWhere As String = "select IsNull(Max(Cost),0) from CostBookEntry where "
+    mWhere &= String.Format(" StockItemID in  (Select StockItemID from StockItem where Category={0} and itemtype={1} and Species={2})", vNewStockItem.Category, vNewStockItem.ItemType, vNewStockItem.Species)
+
+
+    If Not pDBConn.IsConnected Then pDBConn.Connect()
+
+    mCostSpecie = pDBConn.ExecuteScalar(mWhere)
+
+    mdsoCostBook = New dsoCostBook(pDBConn)
+    mCostBookID = mdsoCostBook.GetDefaultCostBookID
+
+    If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+
+    If mCostBookID > 0 Then ''Exists a costbook
+      Dim mCostBookEntry As New dmCostBookEntry
+
+      mCostBookEntry.CostBookID = mCostBookID
+      mCostBookEntry.StockItemID = vNewStockItem.StockItemID
+      mCostBookEntry.CostUnit = vNewStockItem.UoM
+      mCostBookEntry.Cost = mCostSpecie
+      mColCostBookEntrys.Add(mCostBookEntry)
+      mdsoCostBook.SaveCostBookEntryCollection(mColCostBookEntrys, mCostBookID)
+    End If
+
+
+  End Sub
 End Class

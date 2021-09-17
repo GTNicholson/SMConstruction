@@ -278,7 +278,11 @@ Public Class uccProductBaseDetail
     Dim mSIOrig As dmStockItem
     Dim mSITemp As dmStockItem
     Dim mSINew As dmStockItem
-
+    Dim mdsoCostBook As dsoCostBook
+    Dim mCostBookID As Integer
+    Dim mCostSpecie As Decimal
+    Dim mStockItemCosting As dmStockItem
+    Dim mColCostBookEntrys As New colCostBookEntrys
     mSIOrig = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(rProductBOM.StockItemID)
     mSITemp = mSIOrig.Clone
     mSITemp.Species = vNewSpecies
@@ -292,12 +296,43 @@ Public Class uccProductBaseDetail
       mSINew = mSITemp
       mSINew.Description = clsStockItemSharedFuncs.GetWoodStockItemProposedDescription(mSINew)
       mSINew.StockCode = clsStockItemSharedFuncs.GetStockCodeStem_New(mSINew, DBConn)
+      mSINew.UoM = eUoM.PT
+      mSINew.CostUoM = eUoM.PT
+      mSINew.SupplierUoM = eUoM.PT
       mSINew.ClearKeys()
       AppRTISGlobal.GetInstance.StockItemRegistry.CreateNewStockItem(mSINew)
 
-    End If
+      ''//Update CostBookEntry with the current cost if the specie exists
+      mdsoCostBook = New dsoCostBook(pDBConn)
 
-    rProductBOM.StockItemID = mSINew.StockItemID
+      mCostBookID = mdsoCostBook.GetDefaultCostBookID()
+
+
+      If Not pDBConn.IsConnected Then pDBConn.Connect()
+
+      Dim mWhere As String = "select Max(IsNull(Cost,0)) from CostBookEntry where "
+      mWhere &= String.Format(" StockItemID in  (Select StockItemID from StockItem where Category={0} and itemtype={1} and Species={2})", mSINew.Category, mSINew.ItemType, mSINew.Species)
+      mCostSpecie = pDBConn.ExecuteScalar(mWhere)
+
+
+
+        If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+
+      If mCostBookID > 0 Then ''Exists a costbook
+          Dim mCostBookEntry As New dmCostBookEntry
+
+          mCostBookEntry.CostBookID = mCostBookID
+          mCostBookEntry.StockItemID = mSINew.StockItemID
+          mCostBookEntry.CostUnit = mSINew.UoM
+          mCostBookEntry.Cost = mCostSpecie
+        mColCostBookEntrys.Add(mCostBookEntry)
+        mdsoCostBook.SaveCostBookEntryCollection(mColCostBookEntrys, mCostBookID)
+      End If
+
+      End If
+
+      rProductBOM.StockItemID = mSINew.StockItemID
     rProductBOM.StockCode = mSINew.StockCode
     rProductBOM.WoodSpecie = mSINew.Species
     rProductBOM.WoodItemType = vWoodItemType

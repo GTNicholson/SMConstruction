@@ -64,8 +64,8 @@ Public Class BIReportViewMaterialRequirementInfo
 
 
     mRepSource = New dmBIReportSource
-    mRepSource.BIReportSourceID = eReportSource.PurchaseOrderItem
-    mRepSource.Name = "Despachos Realizados por Artículos"
+    mRepSource.BIReportSourceID = eReportSource.MaterialRequirement
+    mRepSource.Name = "Materiales Requeridos por proyecto"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -73,7 +73,7 @@ Public Class BIReportViewMaterialRequirementInfo
     mRepSource.BIReportDefs.Add(CreateRepDefGeneral)
 
     AddLayouts(mRepSource)
-    AddParams(mRepSource)
+    'AddParams(mRepSource)
 
     Return mRepSource
   End Function
@@ -87,7 +87,7 @@ Public Class BIReportViewMaterialRequirementInfo
     mRepLayout.InterfaceType = 1
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIMaterialRequirementList.xml"
-    mRepLayout.LayoutName = "Despachos Realizados  por Artículos"
+    mRepLayout.LayoutName = "Lista de Materiales Requeridos"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
     mRepLayout = New dmBIGridLayout
@@ -95,7 +95,7 @@ Public Class BIReportViewMaterialRequirementInfo
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BIMaterialRequirementSummary.xml"
-    mRepLayout.LayoutName = "Resumen Despachos Realizados por Artículos"
+    mRepLayout.LayoutName = "Resumen Materiales Requeridos"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 

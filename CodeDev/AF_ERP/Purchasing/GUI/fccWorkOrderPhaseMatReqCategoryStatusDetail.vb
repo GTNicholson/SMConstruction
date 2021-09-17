@@ -154,28 +154,21 @@ Public Class fccWorkOrderPhaseMatReqCategoryStatusDetail
     Dim mHandler As clsPurchaseHandler
     Dim mPO As dmPurchaseOrder
     Dim mdso As dsoPurchasing
-    Dim mSalesOrderPhaseID As Integer
     Dim mRetVal As Integer = -1
 
     mHandler = New clsPurchaseHandler()
 
-    mSalesOrderPhaseID = GetSalesOrderPhaseIDByWorkOrderID(pWorkOrderID)
-    If mSalesOrderPhaseID > 0 Then
-
-
-
-
-      mPO = mHandler.CreateSOPMatReqCatDefaultPO(mSalesOrderPhaseID, 0, pWorkOrderMatReqCategoryStatus.MatReqCategory)
-      GetNextPONo(mPO)
+    mPO = mHandler.CreateSOPMatReqCatDefaultPO(pWorkOrderID, 0, pWorkOrderMatReqCategoryStatus.MatReqCategory)
+    GetNextPONo(mPO)
 
       mdso = New dsoPurchasing(pDBConn)
       mdso.SavePurchaseOrderDownNEW(mPO)
 
       pPurchaseOrders.Add(mPO)
       mRetVal = mPO.PurchaseOrderID
-    End If
 
-    Return mRetVal
+
+      Return mRetVal
   End Function
 
   Public Sub GetNextPONo(ByRef rPO As dmPurchaseOrder)
@@ -184,28 +177,6 @@ Public Class fccWorkOrderPhaseMatReqCategoryStatusDetail
       rPO.PONum = mdsoGeneral.GetNextTallyPONo().ToString("00000")
     End If
   End Sub
-
-  Private Function GetSalesOrderPhaseIDByWorkOrderID(ByVal vWorkOrderID As Integer) As Integer
-    Dim mRetVal As Integer = 0
-    Dim mWhere As String = ""
-    Try
-      pDBConn.Connect()
-
-      mWhere = "select distinct("
-      mWhere &= "SOPI.SalesOrderPhaseID) "
-      mWhere &= "from SalesOrderPhaseItem SOPI "
-      mWhere &= "inner join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID "
-      mWhere &= "where WorkOrderID = " & vWorkOrderID
-      mRetVal = pDBConn.ExecuteScalar(mWhere)
-
-      pDBConn.Disconnect()
-    Catch ex As Exception
-      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-      mRetVal = 0
-    End Try
-
-    Return mRetVal
-  End Function
 
   Public Sub RemovePurchaseOrder(ByRef rPO As dmPurchaseOrder)
     Dim mdso As dsoPurchasing

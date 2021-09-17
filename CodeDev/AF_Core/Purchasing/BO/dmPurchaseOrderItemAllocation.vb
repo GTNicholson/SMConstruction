@@ -12,6 +12,9 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   Private pQtyRejected As Decimal
   Private pItemRef As String
   Private pJobNoTmp As String
+  Private pItemRef2 As String
+  Private pProjectRef As String
+  Private pSalesorderPhaseItemID As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -54,6 +57,9 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
       .ReplacementQty = ReplacementQty
       .QtyRejected = QtyRejected
       .ItemRef = ItemRef
+      .ItemRef2 = ItemRef2
+      .ProjectRef = ProjectRef
+      .SalesorderPhaseItemID = SalesorderPhaseItemID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -161,6 +167,57 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
     Set(value As String)
       pJobNoTmp = value
     End Set
+  End Property
+
+  Public Property ItemRef2 As String
+    Get
+      Return pItemRef2
+    End Get
+    Set(value As String)
+      If pItemRef2 <> value Then IsDirty = True
+      pItemRef2 = value
+    End Set
+  End Property
+  Public Property ProjectRef As String
+    Get
+      Return pProjectRef
+    End Get
+    Set(value As String)
+      If pProjectRef <> value Then IsDirty = True
+      pProjectRef = value
+    End Set
+  End Property
+
+  Public Property SalesorderPhaseItemID As Integer
+    Get
+      Return pSalesorderPhaseItemID
+    End Get
+    Set(value As Integer)
+      If pSalesorderPhaseItemID <> value Then IsDirty = True
+      pSalesorderPhaseItemID = value
+    End Set
+  End Property
+
+  Public ReadOnly Property DisplayReportUI As String
+    Get
+      Dim mRetVal As String = ""
+
+      If pWorkOrderID = 0 And pSalesorderPhaseItemID = 0 Then
+        ''De inventario
+        mRetVal = String.Format("{0} con cargo a la categoría contable {1}", clsSMSharedFuncs.FractStrFromDec(Quantity), ItemRef)
+
+      ElseIf pWorkOrderID <> 0 And pSalesorderPhaseItemID = 0 Then
+        ''WO PO
+        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3} ", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
+
+      ElseIf pWorkOrderID = 0 And pSalesorderPhaseItemID <> 0 Then ''SOP Non Man PO
+        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3} ", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
+
+
+      End If
+
+      Return mRetVal
+    End Get
   End Property
 End Class
 

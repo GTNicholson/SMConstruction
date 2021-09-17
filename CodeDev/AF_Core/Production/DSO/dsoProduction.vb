@@ -73,5 +73,46 @@ Public Class dsoProduction
     Return mRetVal
   End Function
 
+  Public Function LoadWorkOrderAllocationInfos(ByRef rWorkOrderAllocationInfos As colWorkOrderAllocationInfos, ByVal vwhere As String)
+    Dim mdto As dtoWorkOrderAllocationInfo
+    Dim mRetVal As Boolean
 
+    Try
+      If pDBConn.Connect Then
+        mdto = New dtoWorkOrderAllocationInfo(pDBConn, dtoWorkOrderAllocationInfo.eMode.WorkOrderAllocationInfo)
+
+        mRetVal = mdto.LoadWorkOrderAllocationInfoCollectionByWhere(rWorkOrderAllocationInfos, vwhere)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Sub LoadWorkOrderAllocationInfo(ByRef rWorkOrderAllocationInfo As clsWorkOrderAllocationInfo, ByVal vWhere As String)
+
+    Dim mdto As dtoWorkOrderAllocationInfo
+    Dim mRetVal As Boolean
+    Dim mWorkOrderAllocationInfos As New colWorkOrderAllocationInfos
+    Try
+      pDBConn.Connect()
+      mdto = New dtoWorkOrderAllocationInfo(pDBConn, dtoWorkOrderAllocationInfo.eMode.WorkOrderAllocationInfo)
+
+      mRetVal = mdto.LoadWorkOrderAllocationInfoCollectionByWhere(mWorkOrderAllocationInfos, vWhere)
+
+      If mWorkOrderAllocationInfos.Count > 0 Then
+        rWorkOrderAllocationInfo = mWorkOrderAllocationInfos(0)
+      Else
+        rWorkOrderAllocationInfo = Nothing
+      End If
+      pDBConn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+
+  End Sub
 End Class

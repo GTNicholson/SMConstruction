@@ -175,6 +175,8 @@ Public Class fccStocktem
     Dim mdsoStock As New dsoStock(pDBConn)
     Dim mWhere As String = ""
     Dim mCatString As String = ""
+    Dim mStockItemLocations As New colStockItemLocations
+    Dim mStockItemLocationFound As dmStockItemLocation
     Try
       pStockItems = New colStockItems
       mWhere = "(ProjectID is null or ProjectID = 0)"
@@ -199,6 +201,18 @@ Public Class fccStocktem
       End If
       mdsoStock.LoadStockItemsByWhere(pStockItems, mWhere)
 
+
+      ''//Load stockitemlocations
+      mdsoStock.LoadStockItemLocationsByWhere(mStockItemLocations, "")
+
+      For Each mStockItem In pStockItems
+        mStockItemLocationFound = mStockItemLocations.ItemsFromStockItemID(mStockItem.StockItemID)
+
+        If mStockItemLocationFound IsNot Nothing Then
+          mStockItem.StockQuantity = mStockItemLocationFound.Qty
+        End If
+
+      Next
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     Finally

@@ -27,10 +27,20 @@
       <property name="BackColor">White</property>
       <property name="Font">Arial, 8.25pt</property>
     </property>
-    <property name="Row" iskey="true" value="Row">
+    <property name="GroupFooter" iskey="true" value="GroupFooter">
       <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
         <property name="UseFont">true</property>
       </property>
+      <property name="BackColor">LightCyan</property>
+      <property name="Font">Arial, 9.25pt, style=Bold</property>
+    </property>
+    <property name="Row" iskey="true" value="Row">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
       <property name="Font">Arial, 8.25pt</property>
     </property>
   </property>
@@ -38,7 +48,6 @@
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
     <property name="ShowFooter">true</property>
-    <property name="ShowGroupPanel">false</property>
     <property name="EnableAppearanceOddRow">true</property>
     <property name="EnableAppearanceEvenRow">true</property>
   </property>
@@ -71,9 +80,9 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="13">
+  <property name="Columns" iskey="true" value="21">
     <property name="Item1" isnull="true" iskey="true">
-      <property name="Name">GridColumn5</property>
+      <property name="Name">GridColumn1</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
@@ -82,166 +91,290 @@
       <property name="ColumnEditName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
-      <property name="Name">GridColumn9</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Cant. Despachada</property>
-      <property name="FieldName">PickedQty</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
-      <property name="Visible">true</property>
-      <property name="Width">112</property>
-    </property>
-    <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Categoría</property>
-      <property name="FieldName">CategoryDesc</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
-      <property name="Visible">true</property>
-      <property name="Width">200</property>
-    </property>
-    <property name="Item4" isnull="true" iskey="true">
-      <property name="Name">GridColumn4</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">StockItemID</property>
-      <property name="FieldName">StockItemID</property>
-      <property name="ColumnEditName" />
-      <property name="Width">105</property>
-    </property>
-    <property name="Item5" isnull="true" iskey="true">
-      <property name="Name">GridColumn7</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Monto Total</property>
-      <property name="FieldName">TotalNetValueInfo</property>
-      <property name="ColumnEditName" />
-      <property name="Width">89</property>
-      <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">n2</property>
-        <property name="FormatType">Numeric</property>
-      </property>
-    </property>
-    <property name="Item6" isnull="true" iskey="true">
-      <property name="Name">GridColumn10</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="Caption">Enc. Compras</property>
-      <property name="FieldName">BuyerName</property>
-      <property name="ColumnEditName" />
-      <property name="Width">120</property>
-    </property>
-    <property name="Item7" isnull="true" iskey="true">
-      <property name="Name">GridColumn11</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Código</property>
       <property name="FieldName">StockCode</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
-      <property name="Width">96</property>
+      <property name="Width">94</property>
     </property>
-    <property name="Item8" isnull="true" iskey="true">
-      <property name="Name">GridColumn12</property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Name">GridColumn3</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Descripción</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
-      <property name="Width">346</property>
+      <property name="Width">291</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Name">GridColumn4</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Cant. Req.</property>
+      <property name="FieldName">Quantity</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">7</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Name">GridColumn5</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Cant. Desp.</property>
+      <property name="FieldName">PickedQty</property>
+      <property name="ColumnEditName" />
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Name">GridColumn6</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Cant. Devuelta</property>
+      <property name="FieldName">ReturnQty</property>
+      <property name="ColumnEditName" />
+      <property name="Width">78</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Name">GridColumn16</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Cant. Pendiente Compras</property>
+      <property name="FieldName">OSQtyPurchased</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">10</property>
+      <property name="Visible">true</property>
+      <property name="Width">96</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Name">GridColumn17</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Cant. Inventario (Hoy)</property>
+      <property name="FieldName">StockItemLocationsQty</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+      <property name="Width">96</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
+      <property name="Name">GridColumn18</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Cantidad Comprada</property>
+      <property name="FieldName">OrderedQty</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">9</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Name">GridColumn7</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">UdM</property>
+      <property name="FieldName">UoMDesc</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">6</property>
+      <property name="Visible">true</property>
+      <property name="Width">54</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="Name">GridColumn8</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Comentarios</property>
+      <property name="FieldName">Comments</property>
+      <property name="ColumnEditName" />
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Name">GridColumn9</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Costo Unitario</property>
+      <property name="FieldName">AverageCost</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">8</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Name">gcWorkOrderAndDescription</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">OT</property>
+      <property name="FieldName">WorkOrderNoAndDescription</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">13</property>
+      <property name="Visible">true</property>
+      <property name="Width">83</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Name">GridColumn11</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Desc. O.T.</property>
+      <property name="FieldName">WODescription</property>
+      <property name="ColumnEditName" />
+      <property name="Width">278</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Name">gcDate</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Fecha Inic. Prod</property>
+      <property name="FieldName">PlannedStartDate</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit3</property>
+      <property name="VisibleIndex">1</property>
+      <property name="Visible">true</property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Costo</property>
-      <property name="FieldName">StdCost</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="Caption">Fecha Req. Compra</property>
+      <property name="FieldName">PurchasingDate</property>
+      <property name="ColumnEditName">RepositoryItemDateEdit3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
-      <property name="Width">139</property>
-      <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">$###,##0.00</property>
-        <property name="FormatType">Custom</property>
-      </property>
     </property>
-    <property name="Item10" isnull="true" iskey="true">
-      <property name="Name">GridColumn14</property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="Name">gcProyectRef</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Valor (USD)</property>
-      <property name="FieldName">TransactionValuationDollar</property>
+      <property name="Caption">Proyecto</property>
+      <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
-      <property name="Width">167</property>
-      <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">$###,##0.00</property>
-        <property name="FormatType">Custom</property>
-      </property>
-      <property name="Summary" iskey="true" value="1">
-        <property name="Item1" isnull="true" iskey="true">
-          <property name="Tag" isnull="true" />
-          <property name="FieldName">TransactionValuationDollar</property>
-          <property name="SummaryType">Sum</property>
-          <property name="DisplayFormat">{0:$###,##0.00}</property>
-        </property>
-      </property>
+      <property name="Width">250</property>
     </property>
-    <property name="Item11" isnull="true" iskey="true">
+    <property name="Item18" isnull="true" iskey="true">
       <property name="Name">GridColumn15</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="Caption">Valor Total (USD)</property>
-      <property name="FieldName">TotalGrossValueUSD</property>
+      <property name="Caption">Ref. Item Venta</property>
+      <property name="FieldName">ItemNumber</property>
       <property name="ColumnEditName" />
-      <property name="Width">117</property>
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="Name">gcTotalAmount</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Valor Total</property>
+      <property name="FieldName">TotalAmount</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">11</property>
+      <property name="Visible">true</property>
+      <property name="Width">134</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseTextOptions">true</property>
+        </property>
+      </property>
       <property name="DisplayFormat" isnull="true" iskey="true">
-        <property name="FormatString">$###,##0.00</property>
-        <property name="FormatType">Custom</property>
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
       </property>
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
-          <property name="FieldName">TotalGrossValueUSD</property>
+          <property name="FieldName">TotalAmount</property>
           <property name="SummaryType">Sum</property>
-          <property name="DisplayFormat">{0:$###,##0.00}</property>
+          <property name="DisplayFormat">{0:C$#,##0.00;;#}</property>
         </property>
       </property>
     </property>
-    <property name="Item12" isnull="true" iskey="true">
-      <property name="Name">GridColumn1</property>
-      <property name="Caption"># O.T.</property>
-      <property name="FieldName">WorkOrderNo</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
-      <property name="Width">64</property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="Name">GridColumn20</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Valor Est. Compra</property>
+      <property name="FieldName">ValueEstimatedBought</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="Width">99</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">ValueEstimatedBought</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$#,##0.00;;#}</property>
+        </property>
+      </property>
     </property>
-    <property name="Item13" isnull="true" iskey="true">
-      <property name="Name">GridColumn3</property>
-      <property name="Caption">Descripción de OT</property>
-      <property name="FieldName">WODescription</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="Name">gcValueOSPurchased</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Valor Pendiente Compras</property>
+      <property name="FieldName">ValueOSPurchased</property>
+      <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
-      <property name="Width">401</property>
+      <property name="Width">122</property>
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseTextOptions">true</property>
+        </property>
+      </property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">C$#,##0.00;;#</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">ValueOSPurchased</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:C$#,##0.00;;#}</property>
+        </property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />
@@ -251,9 +384,25 @@
   <property name="Name">GridView1</property>
   <property name="DetailHeight">350</property>
   <property name="Tag" isnull="true" />
-  <property name="GroupSummary" iskey="true" value="0" />
+  <property name="GroupSummary" iskey="true" value="2">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="ShowInGroupColumnFooterName">gcValueOSPurchased</property>
+      <property name="Tag" isnull="true" />
+      <property name="FieldName">ValueOSPurchased</property>
+      <property name="SummaryType">Sum</property>
+      <property name="DisplayFormat">{0:C$#,##0.00;;#}</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="ShowInGroupColumnFooterName">gcTotalAmount</property>
+      <property name="Tag" isnull="true" />
+      <property name="FieldName">TotalAmount</property>
+      <property name="SummaryType">Sum</property>
+      <property name="DisplayFormat">{0:C$#,##0.00;;#}</property>
+    </property>
+  </property>
   <property name="ActiveFilterString" />
   <property name="FormatRules" iskey="true" value="0" />
+  <property name="SortInfo">~Xtra#Base64AAEAAAD/////AQAAAAAAAAAMAgAAAF5EZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xLCBWZXJzaW9uPTE3LjEuMTYuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhBQEAAAA4RGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb0NvbGxlY3Rpb24EAAAACmdyb3VwQ291bnQFY2xvbmUPY2xvbmVHcm91cENvdW50E0NvbGxlY3Rpb25CYXNlK2xpc3QAAwADCLMBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tEZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvLCBEZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xLCBWZXJzaW9uPTE3LjEuMTYuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlhXV0IHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QCAAAAAQAAAAkDAAAAAAAAAAkEAAAABAMAAACzAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbywgRGV2RXhwcmVzcy5YdHJhR3JpZC52MTcuMSwgVmVyc2lvbj0xNy4xLjE2LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAwRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb1tdAgAAAAgICQUAAAAAAAAAAAAAAAQEAAAAHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QDAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgUAAAgICQYAAAABAAAABAAAAAcFAAAAAAEAAAAAAAAABC5EZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvAgAAABAGAAAABAAAAAkHAAAADQMMCAAAABlEZXZFeHByZXNzLlh0cmFHcmlkLnYxNy4xBQcAAAAuRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mbwIAAAAJU29ydE9yZGVyCkNvbHVtbk5hbWUAAQgIAAAAAQAAAAYJAAAAGWdjV29ya09yZGVyQW5kRGVzY3JpcHRpb24L</property>
   <property name="FormatConditions" iskey="true" value="0" />
   <property name="GroupSummarySortInfoState" />
   <property name="FindFilterText" />

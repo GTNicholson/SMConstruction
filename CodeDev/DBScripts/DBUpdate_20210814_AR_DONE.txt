@@ -1,0 +1,41 @@
+
+CREATE VIEW vwWorkOrderAllocationInfo
+as
+select
+WOA.WorkOrderAllocationID,
+WOA.WorkOrderID,
+WOA.QuantityRequired,
+WOA.QuantityDone,
+WOA.SalesOrderPhaseItemID,
+
+
+WO.Description,
+WO.WorkOrderNo,
+WO.ProductID,
+WO.PlannedStartDate,
+WO.SalesOrderItemID,
+WO.DateCreated,
+WO.Comments,
+WO.Status,
+WO.ProductTypeID,
+
+SOI.ItemNumber,
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+CUS.CustomerID,
+CUS.CompanyName
+
+
+from WorkOrderAllocation WOA
+inner join WorkOrder WO on wo.WorkOrderID=woa.WorkOrderID and WO.Status NOT IN (3,2,0)
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+LEFT JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN Customer CUS ON CUS.CustomerID=SO.CustomerID
+go
+
+alter table PurchaseOrder
+add MaterialRequirementTypeWorkOrderID int
+go

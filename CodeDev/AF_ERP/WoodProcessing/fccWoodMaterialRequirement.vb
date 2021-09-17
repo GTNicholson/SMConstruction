@@ -117,9 +117,9 @@ Public Class fccWoodMaterialRequirement
 
 
           mMatReqProc.PickedQty = mMatReqProc.PickedQty 'mdsoStock.GetPhaseMatReqPickedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-          mMatReqProc.StockItemLocationsQty = mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID)
-          mMatReqProc.QuantityRequired = mMatReqProc.Quantity 'mdsoStock.GetPhaseMatReqRequiredQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-          mMatReqProc.QtyOrdered = mdsoStock.GetPhaseMatReqOrderedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
+          'mMatReqProc.StockItemLocationsQty = mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID)
+          'mMatReqProc.QuantityRequired = mMatReqProc.Quantity 'mdsoStock.GetPhaseMatReqRequiredQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
+          'mMatReqProc.OrderedQty = mdsoStock.GetPhaseMatReqOrderedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
 
         End If
       Next
@@ -134,13 +134,13 @@ Public Class fccWoodMaterialRequirement
         Dim mMatReqProc As clsMaterialRequirementProcessor = pMatReqItemProcessors(mIndex)
 
 
-        If mMatReqProc.QuantityRequired - mMatReqProc.QtyReceived - mMatReqProc.FromStock <= 0 Then
-          mRemove = True
-        End If
+        'If mMatReqProc.QuantityRequired - mMatReqProc.QtyReceived - mMatReqProc.FromStock <= 0 Then
+        '  mRemove = True
+        'End If
 
-        If mMatReqProc.QuantityRequired - mMatReqProc.PickedQty - mMatReqProc.FromStock <= 0 Then
-          mRemove = True
-        End If
+        'If mMatReqProc.QuantityRequired - mMatReqProc.PickedQty - mMatReqProc.FromStock <= 0 Then
+        '  mRemove = True
+        'End If
 
         If mRemove = True Then
           pMatReqItemProcessors.RemoveAt(mIndex)
@@ -203,7 +203,7 @@ Public Class fccWoodMaterialRequirement
 
   Public Sub SetQtyFromStock(rMatReqItemProcessor As clsMaterialRequirementProcessor)
     rMatReqItemProcessor.ToOrder = 0
-    rMatReqItemProcessor.FromStock = Math.Max(0.0, rMatReqItemProcessor.QuantityRequired - rMatReqItemProcessor.QtyOrdered - rMatReqItemProcessor.MaterialRequirement.FromStockQty)
+    'rMatReqItemProcessor.FromStock = Math.Max(0.0, rMatReqItemProcessor.QuantityRequired - rMatReqItemProcessor.QtyOrdered - rMatReqItemProcessor.MaterialRequirement.FromStockQty)
   End Sub
 
   Public Sub ClearMatReqProcs()
@@ -214,7 +214,7 @@ Public Class fccWoodMaterialRequirement
   End Sub
 
   Public Sub SetBalQtyToOrder(ByRef rMatReqItemProcessor As clsMaterialRequirementProcessor)
-    rMatReqItemProcessor.ToOrder = Math.Max(0.0, rMatReqItemProcessor.QuantityRequired - rMatReqItemProcessor.QtyOrdered - rMatReqItemProcessor.FromStock)
+    ' rMatReqItemProcessor.ToOrder = Math.Max(0.0, rMatReqItemProcessor.QuantityRequired - rMatReqItemProcessor.QtyOrdered - rMatReqItemProcessor.FromStock)
   End Sub
 
   Public Sub LoadTransactions(ByVal vMatReqProc As clsMaterialRequirementProcessor)

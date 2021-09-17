@@ -1,0 +1,484 @@
+ALTER VIEW [dbo].[vwSalesOrderPhaseItemTrackingInfo]
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+ISNULL(SOPIMRS.SOPItemPickMatReqCost,0) as 'SOPItemPickMatReqCost',
+ISNULL(SOI.WoodCost,0) AS 'WoodCost',
+ISNULL(SOI.ManpowerCost,0) AS 'ManpowerCost',
+ISNULL(SOI.SubContractCost,0) AS 'SubContractCost',
+ISNULL(SOI.TransportationCost,0) AS 'TransportationCost',
+ISNULL(SOI.MaterialCost,0) AS 'MaterialCost',
+
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.DateEntered,
+SOP.DateCommitted,
+SOP.SalesOrderPhaseID,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+WOA.WorkOrderID,
+WOA.QuantityRequired
+from 
+SalesOrderPhaseItem SOPI
+LEFT join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+INNER JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+left join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=SOPIMRS.SalesOrderPhaseItemID
+
+GO
+
+
+
+
+
+
+ALTER view [dbo].[vwSalesOrderPhaseItemInfo]
+as
+
+select
+SOPI.SalesOrderPhaseItemID,
+SOPI.Qty,
+
+
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+
+SOP.SalesOrderPhaseID,
+SOP.DateRequired,
+SOP.PhaseNumber,
+SOP.PhaseRef,
+SOP.JobNo,
+
+SOI.SalesOrderItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.ProductTypeID,
+SOI.ProductID,
+SOI.ProductConstructionType,
+SOI.SalesItemType,
+
+SOIA.Ref,
+
+CU.CompanyName,
+
+WO.WorkOrderNo,
+WO.Quantity WOQuantity,
+WO.WorkOrderID,
+WOA.QuantityRequired
+
+
+from SalesOrderPhaseItem SOPI
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO on SO.SalesOrderID=SOI.SalesOrderID
+inner Join SalesOrderHouse SOIA on SOIA.SalesOrderHouseID = SOI.HouseTypeID
+left JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+LEFT JOIN WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID = SOPI.SalesOrderPhaseItemID
+Left Join WorkOrder WO on WOA.WorkOrderID = WO.WorkOrderID
+
+
+
+GO
+
+alter table PurchaseOrderAllocation
+add SalesorderPhaseItemID int
+go
+
+alter table PurchaseOrderItemAllocation
+add SalesorderPhaseItemID int
+go
+
+
+ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
+as
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POIA.CallOffID,
+POIA.ItemRef2,
+POIA.ItemRef,
+POIA.ProjectRef,
+POIA.SalesorderPhaseItemID,
+POIA.WorkOrderID,
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+POI.RetentionValue,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+po.AccoutingCategoryID,
+po.Category as PO_CATEGORY,
+PO.Status AS 'POStatus',
+S.CompanyName,
+SOP.JobNo,
+SO.ProjectName,
+SO.SalesOrderID,
+isnull(POIA.Quantity,0)-isnull(POIA.ReceivedQty,0) AS 'BalanceQty'
+
+from PurchaseOrderItemAllocation as POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+INNER join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join SalesOrderPhase SOP on SOP.SalesOrderPhaseID =POIA.CallOffID
+left join SalesOrder SO on SO.SalesOrderID = sop.SalesOrderID
+GO
+
+alter table SalesOrderItem
+add POStageID int
+go
+
+
+ALTER VIEW [dbo].[vwWorkOrderAllocationInfo]
+as
+select
+WOA.WorkOrderAllocationID,
+WOA.WorkOrderID,
+WOA.QuantityRequired,
+WOA.QuantityDone,
+WOA.SalesOrderPhaseItemID,
+
+
+WO.Description,
+WO.WorkOrderNo,
+WO.ProductID,
+WO.PlannedStartDate,
+WO.SalesOrderItemID,
+WO.DateCreated,
+WO.Comments,
+WO.Status,
+WO.ProductTypeID,
+WO.PurchasingDate,
+
+SOI.ItemNumber,
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+CUS.CustomerID,
+CUS.CompanyName
+
+
+from WorkOrderAllocation WOA
+inner join WorkOrder WO on wo.WorkOrderID=woa.WorkOrderID and WO.Status NOT IN (3,2,0)
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+LEFT JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+LEFT JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN Customer CUS ON CUS.CustomerID=SO.CustomerID
+GO
+
+
+ALTER view [dbo].[vwWorkOrderTracking]
+as
+SELECT
+WO.*,
+SO.ProjectName, 
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+SO.DueTime, 
+SO.FinishDate,
+
+C.CompanyName, 
+C.SalesAreaID, 
+ 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName  
+
+FROM            
+dbo.WorkOrder AS WO
+left JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = SOPI.SalesOrderID 
+LEFT JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE WO.Status<>3
+
+
+GO
+
+
+ALTER view [dbo].[vwOrderedQuantityWOSummary]
+as
+Select 
+POIA.WorkOrderID,
+POI.StockItemID, 
+Sum(Quantity-ReceivedQty) as OrderedQty 
+from PurchaseOrderItemAllocation POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+group by POIA.WorkOrderID,POI.StockItemID
+GO
+
+alter table MaterialRequirement
+add ReturnQty decimal (10,4)
+go
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.ReturnQty,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.NetLenght,
+MR.NetWidth,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+MR.FromStockQty,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+WO.DateCreated,
+WO.PurchasingDate,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+SOPI.SalesOrderPhaseID,
+SOPI.SalesOrderPhaseItemID,
+SOPI.SalesOrderID,
+SOI.ItemNumber,
+SOI.Description 'SOIDescription',
+SOI.SalesOrderItemID,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty',
+isnull(sil.Qty,0) StockItemLocationsQty,
+isnull(vwOQWOSum.OrderedQty,0) OrderedQty
+
+
+
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID AND WO.Status not in (3)
+LEFT join WorkOrderAllocation WOA on WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN StockItemLocation SIL ON SIL.StockItemID=SI.StockItemID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID --IT'S INNER JOIN HERE
+left join vwOrderedQuantityWOSummary vwOQWOSum on vwOQWOSum.WorkOrderID=WO.WorkOrderID and vwOQWOSum.StockItemID=si.StockItemID
+LEFT JOIN SalesOrderItem SOI on SOI.SalesOrderItemID=SOPI.SalesItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,1)
+
+GO
+
+
+
+ALTER VIEW [dbo].[vwWoodMatReqInfo]
+as
+
+select 
+MR.MaterialRequirementID,
+MR.Description,
+MR.UnitPiece,
+MR.PiecesPerComponent,
+MR.NetLenght,
+MR.NetWidth,
+MR.NetThickness,
+MR.ReturnQty,
+MR.QualityType,
+MR.WoodSpecie,
+MR.PickedQty,
+MR.MaterialRequirementType,
+MR.ObjectID,
+MR.StockItemID,
+PS.ProductStructureID,
+WO.Description 'WODescription',
+WO.PlannedStartDate,
+WO.WorkOrderNo,
+Wo.Quantity,
+SO.ProjectName,
+SO.SalesOrderID,
+CU.CompanyName,
+SOPI.SalesItemID,
+SOPI.SalesOrderPhaseID,
+SOPI.SalesOrderPhaseItemID
+
+from MaterialRequirement as MR 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+INNER JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+INNER JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN ProductStructure PS ON PS.ProductStructureID=WO.ProductID
+INNER JOIN CUSTOMER CU ON CU.CustomerID=SO.CustomerID
+WHERE MaterialRequirementType=1
+
+
+
+GO
+
+alter table PurchaseOrderItem
+alter column PickedQty decimal (10,4)
+go
+alter table PurchaseOrderItemAllocation
+alter column Quantity decimal (10,4)
+go
+
+alter table PurchaseOrderItemAllocation
+alter column ReceivedQty decimal (10,4)
+go
+
+ALTER view [dbo].[vwSalesOrderPhaseItemInfo]
+as
+
+select
+SOPI.SalesOrderPhaseItemID,
+SOPI.Qty,
+
+
+SO.SalesOrderID,
+SO.OrderNo,
+SO.ProjectName,
+SO.OrderStatusENUM,
+
+SOP.SalesOrderPhaseID,
+SOP.DateRequired,
+SOP.PhaseNumber,
+SOP.PhaseRef,
+SOP.JobNo,
+
+SOI.SalesOrderItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.ProductTypeID,
+SOI.ProductID,
+SOI.ProductConstructionType,
+SOI.SalesItemType,
+
+SOIA.Ref,
+
+CU.CompanyName,
+
+WO.WorkOrderNo,
+WO.Quantity WOQuantity,
+WO.WorkOrderID,
+WOA.QuantityRequired
+
+
+from SalesOrderPhaseItem SOPI
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO on SO.SalesOrderID=SOI.SalesOrderID
+inner Join SalesOrderHouse SOIA on SOIA.SalesOrderHouseID = SOI.HouseTypeID
+left JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+LEFT JOIN WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID = SOPI.SalesOrderPhaseItemID
+Left Join WorkOrder WO on WOA.WorkOrderID = WO.WorkOrderID
+
+GO
+
+
+ALTER TABLE PURCHASEORDER
+ALTER COLUMN RefMatType VARCHAR (50)
+GO
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+PO.AccoutingCategoryID,
+po.ValuationMode,
+PO.PaymentDate,
+SupplierContactTel,
+MaterialRequirementTypeID,
+MaterialRequirementTypeWorkOrderID,
+PO.DefaultCurrency,
+PO.POStage,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+RetentionPercentage,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+S.isBigTaxPayer,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName,
+
+vwPOTVAT.TotalVAT,
+vwPOTRetention.TotalRetentionValue
+
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left join vwPurchaseOrderTotalVAT vwPOTVAT on vwPOTVAT.PurchaseOrderID=PO.PurchaseOrderID
+LEFT JOIN vwPurchaseOrderTotalRetention vwPOTRetention on vwPOTRetention.PurchaseOrderID=po.PurchaseOrderID
+GO

@@ -650,7 +650,7 @@ Partial Class frmPickWoodMaterial
         Me.Controls.Add(Me.grpPOPicking)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmPickWoodMaterial"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Despacho de Madera para Producción"
         CType(Me.btnSelectWorkOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpPOPicking, System.ComponentModel.ISupportInitialize).EndInit()

@@ -262,9 +262,16 @@ Public Class frmMaterialRequirement
 
   Private Sub RepositoryItemPopupContainerEditOrderedQty_Popup(sender As Object, e As EventArgs) Handles RepositoryItemPopupContainerEditOrderedQty.ButtonClick
     Dim mRow As clsMaterialRequirementProcessor
+    Dim mdso As New dsoPurchasing(pFormController.DBConn)
+    Dim mwhere As String
+
     mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
 
     If mRow IsNot Nothing Then
+      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1}", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
+
+      mdso.LoadPurchaseOrderItemAllocationInfos(mRow.POItemAllocationInfos, mwhere)
+
       grdOnOrderOSQty.DataSource = mRow.POItemAllocationInfos
     Else
       grdOnOrderOSQty.DataSource = Nothing

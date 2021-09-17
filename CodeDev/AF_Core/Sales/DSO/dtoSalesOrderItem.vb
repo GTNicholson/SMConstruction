@@ -85,6 +85,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VatRateCode", .VatRateCode)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "VatValue", .VatValue)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LineValue", .LineValue)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "POStageID", .POStageID)
 
 
     End With
@@ -126,6 +127,7 @@ Public Class dtoSalesOrderItem : Inherits dtoBase
         .VatRateCode = DBReadInt32(rDataReader, "VatRateCode")
         .LineValue = DBReadDecimal(rDataReader, "LineValue")
         .MaterialCost = DBReadDecimal(rDataReader, "MaterialCost")
+        .POStageID = DBReadInt32(rDataReader, "POStageID")
         pSalesOrderItem.IsDirty = False
       End With
       mOK = True

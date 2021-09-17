@@ -27,9 +27,11 @@ Public Class MenuFactory
     '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorksOrderBrowse, eActivityCode.WorkOrders)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Estructuras", eMenuIconType.Grid, AddressOf clsMenuFunctions.StructureWorksOrderBrowse, eActivityCode.StructureWorkOrder)
     '' mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de los O.T.s", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderTracking, eActivityCode.TrackingWorkOrders)
-    ''mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Horas Laborales", eMenuIconType.Console, AddressOf clsMenuFunctions.TimeSheetEntry, eActivityCode.TimeSheetEntry)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Horas Laborales", eMenuIconType.Console, AddressOf clsMenuFunctions.TimeSheetEntry, eActivityCode.TimeSheetEntry)
     'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Instalación", eMenuIconType.Grid, AddressOf clsMenuFunctions.InstallationWorkOrderBrowse, eActivityCode.InstallationWorkOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickWood, eActivityCode.WoodPicking)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Producción", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Informe de Materiales", eMenuIconType.Report, AddressOf clsMenuFunctions.MaterialRequirementInfoBI, eActivityCode.ProductionReport)
 
 
     'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
@@ -354,6 +356,13 @@ Class clsMenuFunctions
     mBIReport = BIReportViewWoodSalesOrderInfo.CreateBIReportViewWoodSalesOrder(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
+
+  Public Shared Sub MaterialRequirementInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewMaterialRequirementInfo.CreateBIReportViewFactoryMatReqInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
 
   Public Shared Sub InvoiceInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView

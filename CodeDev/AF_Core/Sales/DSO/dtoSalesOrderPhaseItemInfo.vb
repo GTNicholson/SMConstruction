@@ -84,6 +84,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
         .CompanyName = DBReadString(rDataReader, "CompanyName")
       End With
 
+
       Select Case pMode
 
         Case eMode.SalesOrderPhaseItemTracking
@@ -96,9 +97,16 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
             .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
             .DateEntered = DBReadDate(rDataReader, "DateEntered")
             .DateCommitted = DBReadDate(rDataReader, "DateCommitted")
+            .ManpowerCost = DBReadDecimal(rDataReader, "ManpowerCost")
+            .SubContractCost = DBReadDecimal(rDataReader, "SubContractCost")
+            .TransportationCost = DBReadDecimal(rDataReader, "TransportationCost")
+            .SOPIItemOutsourcingCost = DBReadDecimal(rDataReader, "SOPIItemOutsourcingCost")
           End With
 
 
+          With pSalesOrderPhaseItemInfo
+            .WOAQuantity = DBReadInt32(rDataReader, "QuantityRequired")
+          End With
         Case eMode.SalesOrderPhaseItemInfo
           With pSalesOrderPhaseItemInfo.SalesOrderPhaseItem
             .Qty = DBReadInt32(rDataReader, "Qty")
@@ -131,7 +139,10 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
 
           With pSalesOrderPhaseItemInfo.WorkOrder
             .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            '.Quantity = DBReadDouble(rDataReader, "QuantityRequired")
           End With
+
+
       End Select
 
 

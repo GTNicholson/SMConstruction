@@ -102,27 +102,38 @@ Public Class fccPurchaseOrderConsole
           mPOItem.QtyRequired = mMatReqProc.ToOrder
 
           mPOIAllocation = New dmPurchaseOrderItemAllocation
-          mPOIAllocation.CallOffID = mMatReqProc.SalesOrderPhaseID
-          mPOIAllocation.Quantity = mMatReqProc.ToOrder
+
+
+          mPOIAllocation.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+            mPOIAllocation.Quantity = mMatReqProc.ToOrder
+            mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
+            mPOIAllocation.ItemRef = mMatReqProc.WorkOrder.WorkOrderNo
+            mPOIAllocation.ItemRef2 = mMatReqProc.WorkOrder.Description
+            mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
 
           mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
 
 
 
-          rPO.PurchaseOrderItems.Add(mPOItem)
-        Else
+            rPO.PurchaseOrderItems.Add(mPOItem)
+
+
+          Else
           '// There is an existing POItem for this stock code
           '// look for an allocation for this call off
           For Each mAlloc As dmPurchaseOrderItemAllocation In mPOItem.PurchaseOrderItemAllocations
-            If mAlloc.CallOffID = mMatReqProc.SalesOrderPhaseID Then
+            If mAlloc.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID Then
               mExistingAllocation = mAlloc
               Exit For
             End If
           Next
           If mExistingAllocation Is Nothing Then '//add a new allocation to the exiting po item
             mPOIAllocation = New dmPurchaseOrderItemAllocation
-            mPOIAllocation.CallOffID = mMatReqProc.SalesOrderPhaseID
             mPOIAllocation.Quantity = mMatReqProc.ToOrder
+            mPOIAllocation.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+            mPOIAllocation.ItemRef = mMatReqProc.WorkOrder.WorkOrderNo
+            mPOIAllocation.ItemRef2 = mMatReqProc.WorkOrder.Description
+            mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
 
             mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
 
@@ -133,11 +144,11 @@ Public Class fccPurchaseOrderConsole
         mCount += 1
         Dim mPOA As dmPurchaseOrderAllocation
 
-        mPOA = rPO.PurchaseOrderAllocations.ItemFromSalesOrderPhaseID(mMatReqProc.SalesOrderPhaseID)
+        mPOA = rPO.PurchaseOrderAllocations.ItemFromWorkOrderID(mMatReqProc.MaterialRequirement.ObjectID)
         If mPOA Is Nothing Then
           mPOA = New dmPurchaseOrderAllocation
-          mPOA.CallOffID = mMatReqProc.SalesOrderPhaseID
           mPOA.PurchaseOrderID = rPO.PurchaseOrderID
+          mPOA.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
 
           rPO.PurchaseOrderAllocations.Add(mPOA)
         End If
@@ -148,13 +159,13 @@ Public Class fccPurchaseOrderConsole
 
     If mCount > 0 Then
       If rPO.PurchaseOrderAllocations.Count = 1 Then
-        rPO.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
+        rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
 
       ElseIf rPO.PurchaseOrderAllocations.Count > 1 Then
-        rPO.MaterialRequirementTypeID = ePOMaterialRequirementType.Multiple
+        rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Multiple
       Else
         If rPO.PurchaseOrderAllocations.Count = 0 Then
-          rPO.MaterialRequirementTypeID = ePOMaterialRequirementType.Inventario
+          rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
         End If
       End If
 
@@ -194,7 +205,7 @@ Public Class fccPurchaseOrderConsole
           mPOIAllocation = New dmPurchaseOrderItemAllocation
           mPOIAllocation.CallOffID = 0 ''this 0 is for Stock
           mPOIAllocation.Quantity = mStockItemProcessor.ToProcessQty
-
+          mPOIAllocation.WorkOrderID = 0
           mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
 
           rPO.PurchaseOrderItems.Add(mPOItem)
@@ -202,7 +213,7 @@ Public Class fccPurchaseOrderConsole
           '// There is an existing POItem for this stock code
           '// look for an allocation for this call off
           For Each mAlloc As dmPurchaseOrderItemAllocation In mPOItem.PurchaseOrderItemAllocations
-            If mAlloc.CallOffID = 0 Then
+            If mAlloc.WorkOrderID = 0 Then
               mExistingAllocation = mAlloc
               Exit For
             End If
@@ -211,6 +222,7 @@ Public Class fccPurchaseOrderConsole
             mPOIAllocation = New dmPurchaseOrderItemAllocation
             mPOIAllocation.CallOffID = 0
             mPOIAllocation.Quantity = mStockItemProcessor.ToProcessQty
+            mPOIAllocation.WorkOrderID = 0
 
             mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
 

@@ -140,7 +140,7 @@ Partial Class frmStockItem
         Me.cboUoM = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtAuxCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtCostQty = New DevExpress.XtraEditors.SpinEdit()
+        Me.txtQuantity = New DevExpress.XtraEditors.SpinEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.cboSupplier = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -188,6 +188,7 @@ Partial Class frmStockItem
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGroupF8.SuspendLayout()
@@ -216,7 +217,7 @@ Partial Class frmStockItem
         CType(Me.cboSupplierUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAuxCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtCostQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.peImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -253,7 +254,7 @@ Partial Class frmStockItem
         Me.chkIsObsolete.Name = "chkIsObsolete"
         Me.chkIsObsolete.Size = New System.Drawing.Size(111, 18)
         Me.chkIsObsolete.TabIndex = 21
-        Me.chkIsObsolete.Text = "está Obsoleto"
+        Me.chkIsObsolete.Text = "Obsoleto"
         Me.chkIsObsolete.UseVisualStyleBackColor = True
         '
         'chkIsGeneric
@@ -417,7 +418,7 @@ Partial Class frmStockItem
         Me.grpGroupF8.Controls.Add(Me.cboUoM)
         Me.grpGroupF8.Controls.Add(Me.txtAuxCode)
         Me.grpGroupF8.Controls.Add(Me.LabelControl17)
-        Me.grpGroupF8.Controls.Add(Me.txtCostQty)
+        Me.grpGroupF8.Controls.Add(Me.txtQuantity)
         Me.grpGroupF8.Controls.Add(Me.LabelControl23)
         Me.grpGroupF8.Controls.Add(Me.cboSupplier)
         Me.grpGroupF8.Controls.Add(Me.LabelControl21)
@@ -1019,22 +1020,22 @@ Partial Class frmStockItem
         Me.LabelControl17.TabIndex = 128
         Me.LabelControl17.Text = "Referencia"
         '
-        'txtCostQty
+        'txtQuantity
         '
-        Me.txtCostQty.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.txtCostQty.Location = New System.Drawing.Point(415, 78)
-        Me.txtCostQty.Name = "txtCostQty"
-        Me.txtCostQty.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCostQty.Properties.Appearance.Options.UseFont = True
-        Me.txtCostQty.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.txtCostQty.Properties.DisplayFormat.FormatString = "#0.00"
-        Me.txtCostQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtCostQty.Properties.EditFormat.FormatString = "#0.00"
-        Me.txtCostQty.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtCostQty.Properties.Mask.EditMask = "N2"
-        Me.txtCostQty.Properties.ReadOnly = True
-        Me.txtCostQty.Size = New System.Drawing.Size(52, 20)
-        Me.txtCostQty.TabIndex = 12
+        Me.txtQuantity.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txtQuantity.Location = New System.Drawing.Point(415, 78)
+        Me.txtQuantity.Name = "txtQuantity"
+        Me.txtQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtQuantity.Properties.Appearance.Options.UseFont = True
+        Me.txtQuantity.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.txtQuantity.Properties.DisplayFormat.FormatString = "#0.00"
+        Me.txtQuantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtQuantity.Properties.EditFormat.FormatString = "#0.00"
+        Me.txtQuantity.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtQuantity.Properties.Mask.EditMask = "N2"
+        Me.txtQuantity.Properties.ReadOnly = True
+        Me.txtQuantity.Size = New System.Drawing.Size(52, 20)
+        Me.txtQuantity.TabIndex = 12
         '
         'LabelControl23
         '
@@ -1488,7 +1489,7 @@ Partial Class frmStockItem
         Me.gvStockItems.Appearance.OddRow.Options.UseFont = True
         Me.gvStockItems.Appearance.Row.BackColor = System.Drawing.Color.WhiteSmoke
         Me.gvStockItems.Appearance.Row.Options.UseBackColor = True
-        Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8, Me.gcSpecies, Me.GridColumn5})
+        Me.gvStockItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockItemID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcStdImportCost, Me.gcStdCost, Me.gcCategory, Me.gcItemType, Me.gcSubItemType, Me.GridColumn8, Me.gcSpecies, Me.GridColumn5, Me.GridColumn6})
         Me.gvStockItems.GridControl = Me.grdStockItems
         Me.gvStockItems.Name = "gvStockItems"
         Me.gvStockItems.OptionsView.EnableAppearanceEvenRow = True
@@ -1496,7 +1497,7 @@ Partial Class frmStockItem
         Me.gvStockItems.OptionsView.ShowAutoFilterRow = True
         Me.gvStockItems.OptionsView.ShowDetailButtons = False
         Me.gvStockItems.OptionsView.ShowGroupPanel = False
-        Me.gvStockItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.gvStockItems.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcCategory, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.gcItemType, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'gcStockItemID
         '
@@ -1534,6 +1535,7 @@ Partial Class frmStockItem
         '
         Me.GridColumn5.FieldName = "IsSelected"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
         Me.GridColumn5.Width = 72
@@ -1603,6 +1605,17 @@ Partial Class frmStockItem
         Me.PanelControl1.Size = New System.Drawing.Size(1492, 726)
         Me.PanelControl1.TabIndex = 4
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Cantidad"
+        Me.GridColumn6.DisplayFormat.FormatString = "n2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "StockQuantity"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 9
+        '
         'frmStockItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1645,7 +1658,7 @@ Partial Class frmStockItem
         CType(Me.cboSupplierUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboUoM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAuxCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtCostQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtQuantity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bteImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.peImage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1762,7 +1775,7 @@ Partial Class frmStockItem
     Friend WithEvents bteImage As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cboSupplier As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents txtCostQty As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents txtQuantity As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtAuxCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
@@ -1799,4 +1812,5 @@ Partial Class frmStockItem
     Friend WithEvents bbtnChangeCategory As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbtnChangeUoM As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbtnChangeSpecies As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

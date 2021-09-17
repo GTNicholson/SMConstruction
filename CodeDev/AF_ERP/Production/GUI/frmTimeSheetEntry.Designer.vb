@@ -23,35 +23,49 @@ Partial Class frmTimeSheetEntry
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-    Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-    Me.radgrpWorkCentreID = New DevExpress.XtraEditors.RadioGroup()
-    Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnReload = New DevExpress.XtraEditors.SimpleButton()
-    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-    Me.timTimeEnd = New DevExpress.XtraEditors.TimeEdit()
-    Me.timTimeStart = New DevExpress.XtraEditors.TimeEdit()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.datWeekCommencing = New DevExpress.XtraEditors.DateEdit()
-    Me.cboEmployee = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-    Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-    Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-    Me.grdTimeSheet = New DevExpress.XtraGrid.GridControl()
-    Me.gvTimeSheet = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repitmemTSEntry = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-    Me.gpTimeSheetEntries = New DevExpress.XtraEditors.GroupControl()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTimeSheetEntry))
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.radgrpWorkCentreID = New DevExpress.XtraEditors.RadioGroup()
+        Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnReload = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.timTimeEnd = New DevExpress.XtraEditors.TimeEdit()
+        Me.timTimeStart = New DevExpress.XtraEditors.TimeEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.datWeekCommencing = New DevExpress.XtraEditors.DateEdit()
+        Me.cboEmployee = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.grdTimeSheet = New DevExpress.XtraGrid.GridControl()
+        Me.gvTimeSheet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repitmemTSEntry = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.gpTimeSheetEntries = New DevExpress.XtraEditors.GroupControl()
         Me.grdTimeSheetEntries = New DevExpress.XtraGrid.GridControl()
         Me.gvTimeSheetEntries = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,6 +84,8 @@ Partial Class frmTimeSheetEntry
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
         CType(Me.radgrpWorkCentreID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.timTimeEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.timTimeStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,13 +117,14 @@ Partial Class frmTimeSheetEntry
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1164, 521)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1442, 647)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.GroupControl1)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.radgrpWorkCentreID)
         Me.PanelControl2.Controls.Add(Me.btnSave)
@@ -122,8 +139,228 @@ Partial Class frmTimeSheetEntry
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(3, 3)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1158, 80)
+        Me.PanelControl2.Size = New System.Drawing.Size(1436, 109)
         Me.PanelControl2.TabIndex = 1
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl1.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl1.AppearanceCaption.Options.UseTextOptions = True
+        Me.GroupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.LabelControl16)
+        Me.GroupControl1.Controls.Add(Me.LabelControl15)
+        Me.GroupControl1.Controls.Add(Me.LabelControl14)
+        Me.GroupControl1.Controls.Add(Me.LabelControl13)
+        Me.GroupControl1.Controls.Add(Me.LabelControl12)
+        Me.GroupControl1.Controls.Add(Me.LabelControl11)
+        Me.GroupControl1.Controls.Add(Me.LabelControl9)
+        Me.GroupControl1.Controls.Add(Me.LabelControl26)
+        Me.GroupControl1.Controls.Add(Me.LabelControl6)
+        Me.GroupControl1.Controls.Add(Me.LabelControl5)
+        Me.GroupControl1.Controls.Add(Me.LabelControl10)
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
+        Me.GroupControl1.Location = New System.Drawing.Point(983, 5)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(448, 98)
+        Me.GroupControl1.TabIndex = 11
+        Me.GroupControl1.Text = "LEYENDA"
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Appearance.BackColor = System.Drawing.Color.DodgerBlue
+        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl16.Appearance.Options.UseBackColor = True
+        Me.LabelControl16.Appearance.Options.UseFont = True
+        Me.LabelControl16.Appearance.Options.UseTextOptions = True
+        Me.LabelControl16.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl16.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl16.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl16.Location = New System.Drawing.Point(345, 66)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(98, 21)
+        Me.LabelControl16.TabIndex = 15
+        Me.LabelControl16.Text = "Prototipo"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.BackColor = System.Drawing.Color.Gainsboro
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Appearance.Options.UseBackColor = True
+        Me.LabelControl15.Appearance.Options.UseFont = True
+        Me.LabelControl15.Appearance.Options.UseTextOptions = True
+        Me.LabelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl15.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl15.Location = New System.Drawing.Point(238, 13)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(98, 21)
+        Me.LabelControl15.TabIndex = 14
+        Me.LabelControl15.Text = "Consentimiento"
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Appearance.BackColor = System.Drawing.Color.PowderBlue
+        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl14.Appearance.Options.UseBackColor = True
+        Me.LabelControl14.Appearance.Options.UseFont = True
+        Me.LabelControl14.Appearance.Options.UseTextOptions = True
+        Me.LabelControl14.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl14.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl14.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl14.Location = New System.Drawing.Point(343, 13)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(98, 21)
+        Me.LabelControl14.TabIndex = 13
+        Me.LabelControl14.Text = "Traslado"
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.BackColor = System.Drawing.Color.SkyBlue
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Appearance.Options.UseBackColor = True
+        Me.LabelControl13.Appearance.Options.UseFont = True
+        Me.LabelControl13.Appearance.Options.UseTextOptions = True
+        Me.LabelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl13.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl13.Location = New System.Drawing.Point(345, 39)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(98, 21)
+        Me.LabelControl13.TabIndex = 12
+        Me.LabelControl13.Text = "Inventario"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.BackColor = System.Drawing.Color.LightGray
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Appearance.Options.UseBackColor = True
+        Me.LabelControl12.Appearance.Options.UseFont = True
+        Me.LabelControl12.Appearance.Options.UseTextOptions = True
+        Me.LabelControl12.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl12.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl12.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl12.Location = New System.Drawing.Point(132, 66)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(98, 21)
+        Me.LabelControl12.TabIndex = 11
+        Me.LabelControl12.Text = "Subsidio"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.BackColor = System.Drawing.Color.Red
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Appearance.Options.UseBackColor = True
+        Me.LabelControl11.Appearance.Options.UseFont = True
+        Me.LabelControl11.Appearance.Options.UseTextOptions = True
+        Me.LabelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl11.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl11.Location = New System.Drawing.Point(28, 39)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(98, 21)
+        Me.LabelControl11.TabIndex = 10
+        Me.LabelControl11.Text = "Demora"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.BackColor = System.Drawing.Color.LightSalmon
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Appearance.Options.UseBackColor = True
+        Me.LabelControl9.Appearance.Options.UseFont = True
+        Me.LabelControl9.Appearance.Options.UseTextOptions = True
+        Me.LabelControl9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl9.Location = New System.Drawing.Point(236, 65)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(98, 22)
+        Me.LabelControl9.TabIndex = 9
+        Me.LabelControl9.Text = "Limpieza"
+        '
+        'LabelControl26
+        '
+        Me.LabelControl26.Appearance.BackColor = System.Drawing.Color.DarkGray
+        Me.LabelControl26.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl26.Appearance.Options.UseBackColor = True
+        Me.LabelControl26.Appearance.Options.UseFont = True
+        Me.LabelControl26.Appearance.Options.UseTextOptions = True
+        Me.LabelControl26.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl26.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl26.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl26.Location = New System.Drawing.Point(132, 38)
+        Me.LabelControl26.Name = "LabelControl26"
+        Me.LabelControl26.Size = New System.Drawing.Size(98, 22)
+        Me.LabelControl26.TabIndex = 7
+        Me.LabelControl26.Text = "Ausencia"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.BackColor = System.Drawing.Color.PaleGreen
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.LabelControl6.Appearance.Options.UseBackColor = True
+        Me.LabelControl6.Appearance.Options.UseFont = True
+        Me.LabelControl6.Appearance.Options.UseForeColor = True
+        Me.LabelControl6.Appearance.Options.UseTextOptions = True
+        Me.LabelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl6.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(98, 22)
+        Me.LabelControl6.TabIndex = 6
+        Me.LabelControl6.Text = "Núm. O.T."
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.BackColor = System.Drawing.Color.Tomato
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Appearance.Options.UseBackColor = True
+        Me.LabelControl5.Appearance.Options.UseFont = True
+        Me.LabelControl5.Appearance.Options.UseTextOptions = True
+        Me.LabelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl5.Location = New System.Drawing.Point(236, 38)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(98, 22)
+        Me.LabelControl5.TabIndex = 8
+        Me.LabelControl5.Text = "Vacaciones"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.BackColor = System.Drawing.Color.DimGray
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Appearance.Options.UseBackColor = True
+        Me.LabelControl10.Appearance.Options.UseFont = True
+        Me.LabelControl10.Appearance.Options.UseTextOptions = True
+        Me.LabelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl10.Location = New System.Drawing.Point(133, 12)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(98, 22)
+        Me.LabelControl10.TabIndex = 5
+        Me.LabelControl10.Text = "Enfermo"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.BackColor = System.Drawing.Color.Yellow
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Appearance.Options.UseBackColor = True
+        Me.LabelControl7.Appearance.Options.UseFont = True
+        Me.LabelControl7.Appearance.Options.UseTextOptions = True
+        Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LabelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
+        Me.LabelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl7.Location = New System.Drawing.Point(28, 65)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(98, 22)
+        Me.LabelControl7.TabIndex = 3
+        Me.LabelControl7.Text = "Mantenimiento"
         '
         'LabelControl4
         '
@@ -143,7 +380,7 @@ Partial Class frmTimeSheetEntry
         Me.radgrpWorkCentreID.Name = "radgrpWorkCentreID"
         Me.radgrpWorkCentreID.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.radgrpWorkCentreID.Properties.Appearance.Options.UseFont = True
-        Me.radgrpWorkCentreID.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(13, "Selección"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Dimensionado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Maquinado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Ensamble"), New DevExpress.XtraEditors.Controls.RadioGroupItem(4, "Lija"), New DevExpress.XtraEditors.Controls.RadioGroupItem(5, "Pintura"), New DevExpress.XtraEditors.Controls.RadioGroupItem(6, "Metal"), New DevExpress.XtraEditors.Controls.RadioGroupItem(7, "Tapizado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(9, "Empaque"), New DevExpress.XtraEditors.Controls.RadioGroupItem(10, "Despacho")})
+        Me.radgrpWorkCentreID.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(5, "Selección"), New DevExpress.XtraEditors.Controls.RadioGroupItem(6, "Dimensionado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(7, "Carpintería"), New DevExpress.XtraEditors.Controls.RadioGroupItem(8, "Lija"), New DevExpress.XtraEditors.Controls.RadioGroupItem(9, "Acabado"), New DevExpress.XtraEditors.Controls.RadioGroupItem(10, "Metales"), New DevExpress.XtraEditors.Controls.RadioGroupItem(11, "Acabado Metales"), New DevExpress.XtraEditors.Controls.RadioGroupItem(12, "Empaque"), New DevExpress.XtraEditors.Controls.RadioGroupItem(13, "Despacho")})
         Me.radgrpWorkCentreID.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
         Me.radgrpWorkCentreID.Size = New System.Drawing.Size(695, 26)
         Me.radgrpWorkCentreID.TabIndex = 9
@@ -256,18 +493,22 @@ Partial Class frmTimeSheetEntry
         '
         Me.PanelControl1.Controls.Add(Me.XtraTabControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(3, 89)
+        Me.PanelControl1.Location = New System.Drawing.Point(3, 118)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1158, 429)
+        Me.PanelControl1.Size = New System.Drawing.Size(1436, 526)
         Me.PanelControl1.TabIndex = 0
         '
         'XtraTabControl1
         '
+        Me.XtraTabControl1.AppearancePage.Header.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.XtraTabControl1.AppearancePage.Header.ForeColor = System.Drawing.Color.Maroon
+        Me.XtraTabControl1.AppearancePage.Header.Options.UseFont = True
+        Me.XtraTabControl1.AppearancePage.Header.Options.UseForeColor = True
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1154, 425)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1432, 522)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -275,7 +516,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.XtraTabPage1.Controls.Add(Me.grdTimeSheet)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1148, 397)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1424, 488)
         Me.XtraTabPage1.Text = "Hoja de Tiempo"
         '
         'grdTimeSheet
@@ -285,13 +526,13 @@ Partial Class frmTimeSheetEntry
         Me.grdTimeSheet.MainView = Me.gvTimeSheet
         Me.grdTimeSheet.Name = "grdTimeSheet"
         Me.grdTimeSheet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitmemTSEntry})
-        Me.grdTimeSheet.Size = New System.Drawing.Size(1148, 397)
+        Me.grdTimeSheet.Size = New System.Drawing.Size(1424, 488)
         Me.grdTimeSheet.TabIndex = 0
         Me.grdTimeSheet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheet})
         '
         'gvTimeSheet
         '
-        Me.gvTimeSheet.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gvTimeSheet.Appearance.HeaderPanel.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gvTimeSheet.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvTimeSheet.Appearance.Row.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gvTimeSheet.Appearance.Row.Options.UseFont = True
@@ -433,7 +674,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.XtraTabPage2.Controls.Add(Me.gpTimeSheetEntries)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1148, 397)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1424, 488)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'gpTimeSheetEntries
@@ -444,17 +685,17 @@ Partial Class frmTimeSheetEntry
         Me.gpTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
         Me.gpTimeSheetEntries.Name = "gpTimeSheetEntries"
-        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1148, 397)
+        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1424, 488)
         Me.gpTimeSheetEntries.TabIndex = 1
         Me.gpTimeSheetEntries.Text = "GroupControl1"
         '
         'grdTimeSheetEntries
         '
         Me.grdTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 26)
+        Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 24)
         Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
         Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1144, 369)
+        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1420, 462)
         Me.grdTimeSheetEntries.TabIndex = 0
         Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
         '
@@ -569,7 +810,7 @@ Partial Class frmTimeSheetEntry
         'GridColumn17
         '
         Me.GridColumn17.Caption = "WorkcentreID"
-        Me.GridColumn17.FieldName = "WorkcentreID"
+        Me.GridColumn17.FieldName = "WorkCentreID"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 4
@@ -597,15 +838,18 @@ Partial Class frmTimeSheetEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1164, 521)
+        Me.ClientSize = New System.Drawing.Size(1442, 647)
         Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmTimeSheetEntry"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Entrada de Horas Laborales"
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
         CType(Me.radgrpWorkCentreID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.timTimeEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.timTimeStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -673,4 +917,17 @@ Partial Class frmTimeSheetEntry
   Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
 End Class

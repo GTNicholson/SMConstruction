@@ -23,6 +23,8 @@ Public Class frmPickMaterials
   Private Enum eGroupItemButtons
     Process = 1
     AddItems = 2
+    Export = 3
+    ReturnFromProd = 4
   End Enum
 
 
@@ -194,6 +196,18 @@ Public Class frmPickMaterials
           If mSIList.Count > 0 Then
             pFormController.CreateAdditionalMatReqs(mSIList)
           End If
+        Case eGroupItemButtons.Export
+          Dim mFileName As String = "Exportar Salida de Producción de OT_ " + pFormController.CurrentWorkOrderInfo.Description & ".xlsx"
+          If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+            gvMaterialRequirementInfos.ExportToXlsx(mFileName)
+          End If
+
+        Case eGroupItemButtons.ReturnFromProd
+          gvMaterialRequirementInfos.CloseEditor()
+          gvMaterialRequirementInfos.UpdateCurrentRow()
+          pFormController.ProcessReturnProduction()
+          gvMaterialRequirementInfos.RefreshData()
+
       End Select
       pFormController.LoadMaterialRequirementProcessorss()
       grdMaterialRequirementInfo.RefreshDataSource()

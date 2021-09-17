@@ -86,8 +86,24 @@ Public Class dsoPurchasing
     Return mOK
   End Function
 
+  Public Function LoadPurchaseOrderItemAllocationWorkOrderInfos(ByRef rPOItemWOAllocationInfos As colPurchaseOrderItemAllocationInfos, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean = True
+    Dim mdto As New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.WO)
+    Try
 
+      pDBConn.Connect()
 
+      mOK = mdto.LoadPurchaseOrderItemAllocationInfos(rPOItemWOAllocationInfos, vWhere)
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+    Return mOK
+  End Function
 
   Public Function LoadSupplierDown(ByRef rSupplier As dmSupplier, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
@@ -97,13 +113,17 @@ Public Class dsoPurchasing
     Try
 
       pDBConn.Connect()
-      mdto = New dtoSupplier(pDBConn)
-      mdto.LoadSupplier(rSupplier, vID)
-      mdtoSC = New dtoSupplierContact(pDBConn)
-      mdtoSC.LoadSupplierContactCollection(rSupplier.SupplierContacts, rSupplier.SupplierID)
+      If vID <> 0 Then
+        mdto = New dtoSupplier(pDBConn)
+        mdto.LoadSupplier(rSupplier, vID)
+        mdtoSC = New dtoSupplierContact(pDBConn)
+        mdtoSC.LoadSupplierContactCollection(rSupplier.SupplierContacts, rSupplier.SupplierID)
 
-      pDBConn.Disconnect()
-      mRetVal = True
+        pDBConn.Disconnect()
+        mRetVal = True
+      Else
+        mRetVal = False
+      End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
@@ -143,9 +163,10 @@ Public Class dsoPurchasing
       pDBConn.Connect()
 
       mSQL = "PurchaseOrderID In (Select Distinct PO.PurchaseOrderID "
-      mSQL &= "From PurchaseOrder PO Inner Join PurchaseOrderAllocation POA on POA.PurchaseOrderID = PO.PurchaseOrderID "
-      mSQL &= " inner Join SalesOrderPhaseItem SOPI on SOPI.SalesOrderPhaseID=POA.CallOffID "
-      mSQL &= "inner Join WorkOrderAllocation WOA on WOA.SalesOrderPhaseItemID=sopi.SalesOrderPhaseItemID "
+      mSQL &= "From PurchaseOrder PO Inner Join PurchaseOrderItem POI on POI.PurchaseOrderID = PO.PurchaseOrderID "
+      mSQL &= " INNER JOIN PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemID=POI.PurchaseOrderItemID "
+      mSQL &= " inner Join WorkOrderAllocation WOA on WOA.WorkOrderID=POIA.WorkOrderID "
+
       mSQL = mSQL & " Where WOA.WorkOrderID = " & vWorkOrderID
       mSQL = mSQL & " And PO.Category = " & vCategory
       mSQL = mSQL & ")"
@@ -165,12 +186,15 @@ Public Class dsoPurchasing
   Public Function LoadSuppliersByWhere(ByRef rSuppliers As colSuppliers, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoSupplier
+    Dim mdtoSC As dtoSupplierContact
 
     Try
 
       pDBConn.Connect()
       mdto = New dtoSupplier(pDBConn)
       mdto.LoadSupplierCollectionByWhere(rSuppliers, vWhere)
+
+      mdtoSC = New dtoSupplierContact(pDBConn)
 
       pDBConn.Disconnect()
       mRetVal = True
@@ -181,6 +205,8 @@ Public Class dsoPurchasing
     End Try
 
     Return mRetVal
+
+
   End Function
 
   Public Function UpdateWorkOrderPickStatusNotRequireds(ByVal vWorkOrderID As Integer, ByVal vMatReqCategory As Byte, ByVal vMatCatStatus As eMatReqCategoryStatus) As Boolean
@@ -273,7 +299,7 @@ Public Class dsoPurchasing
           If mOK Then mOK = mdtoPOAllocation.SavePurchaseOrderAllocationCollection(rPurchaseOrder.PurchaseOrderAllocations, rPurchaseOrder.PurchaseOrderID)
 
           mdtoPOFiles = New dtoFileTracker(pDBConn)
-          mdtoPOFiles.LoadFileTrackerCollection(rPurchaseOrder.POFiles, eObjectType.StockItemAmmendmentLog, rPurchaseOrder.PurchaseOrderID)
+          mdtoPOFiles.LoadFileTrackerCollection(rPurchaseOrder.POFiles, eObjectType.PurchaseOrder, rPurchaseOrder.PurchaseOrderID)
 
 
         Catch ex As Exception
@@ -476,7 +502,20 @@ Public Class dsoPurchasing
 
     Return mRetVal
   End Function
-
+  Public Function LoadPurchaseOrderItemAllocationsByWheres(ByRef rPOIA As colPurchaseOrderItemAllocations, ByVal vWhere As String) As Boolean
+    Dim mdto As New dtoPurchaseOrderItemAllocation(pDBConn)
+    Dim mOK As Boolean
+    Try
+      pDBConn.Connect()
+      mOK = mdto.LoadPurchaseOrderItemAllocationCollectionByWhere(rPOIA, vWhere)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+  End Function
   Public Function LoadPurchaseOrderItemAllocationInfos(ByRef rPOIA As colPurchaseOrderItemAllocationInfos, ByVal vWhere As String) As Boolean
     Dim mdto As New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Info)
     Dim mOK As Boolean
@@ -753,4 +792,24 @@ Public Class dsoPurchasing
     Return mOK
   End Function
 
+  Public Function LoadPurchaseOrderAllocationsByWhere(ByRef rPOAs As colPurchaseOrderAllocations, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean
+    Dim mdto As New dtoPurchaseOrderAllocation(pDBConn)
+
+    Try
+      pDBConn.Connect()
+
+      mdto.LoadPurchaseOrderAllocationCollectionByWhere(rPOAs, vWhere)
+
+
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mOK
+
+  End Function
 End Class

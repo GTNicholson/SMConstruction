@@ -91,6 +91,15 @@ Public Class dtoCostBookEntry : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadCostBookEntryCollectionByWhere(ByRef rCostBookEntrys As colCostBookEntrys, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rCostBookEntrys, mParams, "CostBookEntryID", vWhere)
+    rCostBookEntrys.TrackDeleted = True
+    If mOK Then rCostBookEntrys.IsDirty = False
+    Return mOK
+
+  End Function
 
   Protected Overrides Function SetObjectToNew() As Object
     pCostBookEntry = New dmCostBookEntry ' Or .NewBlankCostBookEntry

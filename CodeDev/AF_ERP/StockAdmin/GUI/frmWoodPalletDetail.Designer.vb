@@ -200,7 +200,7 @@ Partial Class frmWoodPalletDetail
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1484, 33)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1484, 30)
         '
         'barDockControlBottom
         '
@@ -214,17 +214,17 @@ Partial Class frmWoodPalletDetail
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 809)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 812)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1484, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1484, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 809)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 812)
         '
         'bbtnAddNew
         '
@@ -245,7 +245,7 @@ Partial Class frmWoodPalletDetail
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlTop.Manager = Nothing
         Me.barDockControlTop.Size = New System.Drawing.Size(1484, 0)
         '
@@ -253,13 +253,13 @@ Partial Class frmWoodPalletDetail
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 33)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 30)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.grpWoodPalletGeneral)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpWoodPallet)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1484, 809)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1484, 812)
         Me.SplitContainerControl1.SplitterPosition = 251
         Me.SplitContainerControl1.TabIndex = 23
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -289,11 +289,11 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletInfo.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodPalletInfo.EmbeddedNavigator.Buttons.Remove.Visible = False
         Me.grdWoodPalletInfo.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 26)
+        Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 24)
         Me.grdWoodPalletInfo.MainView = Me.gvWoodPalletInfo
         Me.grdWoodPalletInfo.Name = "grdWoodPalletInfo"
         Me.grdWoodPalletInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectWoodPallet})
-        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1480, 223)
+        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1480, 225)
         Me.grdWoodPalletInfo.TabIndex = 12
         Me.grdWoodPalletInfo.UseEmbeddedNavigator = True
         Me.grdWoodPalletInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletInfo})

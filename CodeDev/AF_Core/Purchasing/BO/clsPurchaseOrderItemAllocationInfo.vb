@@ -341,11 +341,19 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   Public ReadOnly Property WODESCRIPTION As String
     Get
-      Return pWorkOrder.WorkOrderNo & ": " & pWorkOrder.Description
+      Return pWorkOrder.Description
     End Get
   End Property
-
-
+  Public ReadOnly Property PlannedDeliverDate As Date
+    Get
+      Return pWorkOrder.PlannedDeliverDate
+    End Get
+  End Property
+  Public ReadOnly Property PurchasingDate As Date
+    Get
+      Return pWorkOrder.PurchasingDate
+    End Get
+  End Property
   Public ReadOnly Property WorkOrderNo() As String
     Get
       Return pWorkOrder.WorkOrderNo
@@ -469,6 +477,13 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
       Return mRetVal
     End Get
+  End Property
+
+  Public ReadOnly Property WorkOrderID As Integer
+    Get
+      Return pWorkOrder.WorkOrderID
+    End Get
+
   End Property
 End Class
 

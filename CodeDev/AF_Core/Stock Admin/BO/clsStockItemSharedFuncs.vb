@@ -327,6 +327,8 @@ Public Class clsStockItemSharedFuncs
     Dim mRetVal As String = ""
     Dim mInteger As Integer
     Dim mDecimal As Decimal
+    Dim mDecimal2 As Decimal
+    Dim mInteger2 As Integer
     mDescription = "Madera " & GetStockItemTypeDescription(rStockItem)
 
     mDescription &= " de " & GetSpeciesDescription(rStockItem).Trim
@@ -342,12 +344,20 @@ Public Class clsStockItemSharedFuncs
         mDescription &= String.Format(" de {0}", mInteger) & "''"
 
       Else
-        mDescription &= String.Format(" de {0}_{1}", mInteger, mDecimal.ToString("n0")) & "''"
+        ''//Check if it's thickens of o.25, 0.50, 0.75 etc
+        mInteger2 = Int(mDecimal)
+        mDecimal2 = (mDecimal - mInteger2)
+        If rStockItem.Thickness >= 1 Then
+          mDescription &= String.Format(" de {0}_{1}", mInteger, mDecimal.ToString("n0")) & "''"
+
+        Else
+          mDescription &= String.Format(" de {0}_{1}", mInteger, (mDecimal * 10).ToString("n0")) & "''"
+
+        End If
+        End If
+
 
       End If
-
-    End If
-
 
 
     Return mDescription
@@ -455,11 +465,16 @@ Public Class clsStockItemSharedFuncs
           mThicknessDecimal = Math.Abs(mThicknessDecimal - mThicknessInteger)
           mThicknessInteger = rStockItem.Thickness - mThicknessDecimal
           If mThicknessDecimal > 0 Then
-            mThicknessDecimal = mThicknessDecimal * 10
-            mSICode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+            If rStockItem.Thickness >= 1 Then
+              mThicknessDecimal = mThicknessDecimal * 10
+              mSICode = mSICode & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
+            Else
+              mSICode = mSICode & "_" & rStockItem.Thickness.ToString("n2")
+
+            End If
 
           Else
-            mSICode = mSICode & "_" & mThicknessInteger.ToString("n1")
+              mSICode = mSICode & "_" & mThicknessInteger.ToString("n1")
 
           End If
 

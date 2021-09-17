@@ -18,6 +18,7 @@ Public Class repCheckPaymentOrder
   Private pProjectName As String
   Private pAccountCode As String
   Private pDBConn As clsDBConnBase
+  Private pPurchaseOrderInfos As colPurchaseOrderInfos
   Public Sub New()
 
     InitializeComponent()
@@ -50,7 +51,9 @@ Public Class repCheckPaymentOrder
     pCurrency = vCurrency
     pPOInfo = rPOInfo
     pBuyer = rBuyer
-    DataSource = rPOInfo.POItemInfos
+    pPurchaseOrderInfos = New colPurchaseOrderInfos
+    pPurchaseOrderInfos.Add(rPOInfo)
+    DataSource = pPurchaseOrderInfos 'rPOInfo.POItemInfos
     pProjectName = vProjectName
     pAccountCode = vAccountCode
     pDBConn = rDBConn
@@ -67,6 +70,8 @@ Public Class repCheckPaymentOrder
     Dim mNumalet As New Numalet
     Dim mPOAII As New colPurchaseOrderItemAllocationInfos
     Dim mdso As New dsoPurchasing(pDBConn)
+
+
     Dim mWhere As String
 
     xrtSupplierName.Text = pPOInfo.CompanyName
@@ -90,9 +95,7 @@ Public Class repCheckPaymentOrder
     xrtPaymentMethod.Text = pPOInfo.PaymentMethodDes
     xrtBankName.Text = pPOInfo.BankName
     xrtPONo.Text = pPOInfo.PONum
-    ''xrCarriage.Text = pPOInfo.Carriage.ToString(mToString)
 
-    ''xrTotalVAT.Text = pPOInfo.TotalVAT.ToString(mToString)
     mNumalet.MascaraSalidaDecimal = "centavos"
     mNumalet.LetraCapital = True
 
@@ -112,60 +115,111 @@ Public Class repCheckPaymentOrder
     mdso.LoadPurchaseOrderItemAllocationInfos(mPOAII, mWhere)
 
 
-    If mPOAII IsNot Nothing Then
-      Dim mString As String = ""
-
-      If mPOAII.Count = 1 Then
-        For Each mPOI As clsPOItemInfo In pPOInfo.POItemInfos
-          mText &= " " & vbCrLf
-          mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.UoMDesc & " de " & mPOI.Description
-
-          If mPOAII(0).ProjectName = "" Then
-            mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
-
-          Else
-
-            mText &= vbCrLf & "Con cargo al proyecto " & mPOAII(0).ProjectName
-          End If
-          xrtDescriptionPOItem.Text = mText
-        Next
 
 
+    'Select Case pPOInfo.MaterialRequirementTypeWorkOrderID
+    '  Case ePOMaterialRequirementType.Multiple
+
+    '    For Each mPOI As clsPOItemInfo In pPOInfo.POItemInfos
+
+    '      mText &= String.Format("Compra de {0} {1} de {2} con cargo al centro de costo: {3} / Categoría Contable: {4}", mPOI.Qty, mPOI.UoMDesc,
+    '                             mPOI.Description, pPOInfo.CategoryDesc, pPOInfo.AccoutingCategoryDesc) & vbCrLf
+
+    '      For Each mPOIA As dmPurchaseOrderItemAllocation In mPOI.PurchaseOrderItemAllocations
+    '        mText &= String.Format("{0} {1} ")
+    '      Next
+
+
+    '    Next
+
+
+    'End Select
 
 
 
-      Else
-        If mPOAII.Count > 0 Then
-          For Each mPOAI In mPOAII
-            'mString &= "Cantidad : " & mPOAI.Quantity.ToString("n2") & mPOAI.UoMDescription & " Destinado al proyecto : " & mPOAI.ProjectName & vbCrLf
-            mText &= " " & vbCrLf
-            mText &= " " & mPOAI.Quantity.ToString("N2") & " " & mPOAI.UoMDesc & " de " & mPOAI.Description
 
-            If mPOAI.ProjectName = "" Then
-              mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
+    'If mPOAII IsNot Nothing Then
+    '  Dim mString As String = ""
 
-            Else
+    '  If mPOAII.Count = 1 Then
+    '    For Each mPOI As clsPOItemInfo In pPOInfo.POItemInfos
+    '      mText &= " " & vbCrLf
+    '      mText &= " " & mPOI.Qty.ToString("N2") & " " & mPOI.UoMDesc & " de " & mPOI.Description
 
-              mText &= vbCrLf & "Con cargo al proyecto " & mPOAI.ProjectName
-            End If
+    '      'If mPOAII(0).ProjectName = "" Then
+    '      '  mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
 
-            xrtDescriptionPOItem.Text = mText
+    '      'Else
 
-          Next
+    '      '  If mPOI.PurchaseOrderItemAllocations.Count > 0 Then
+    '      '    mText &= vbCrLf & "Con cargo al proyecto " & mPOI.
+    '      '  End If
+    '      '  xrtDescriptionPOItem.Text = mText
+    '    Next
 
-        Else
-          mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
-          xrtDescriptionPOItem.Text = mText
 
-        End If
 
-      End If
 
-      End If
+
+    '  Else
+    '    If mPOAII.Count > 0 Then
+
+
+
+    '      For Each mPOAI In mPOAII
+    '        'mString &= "Cantidad : " & mPOAI.Quantity.ToString("n2") & mPOAI.UoMDescription & " Destinado al proyecto : " & mPOAI.ProjectName & vbCrLf
+    '        mText &= " " & vbCrLf
+    '        mText &= " " & mPOAI.Quantity.ToString("N2") & " " & mPOAI.UoMDesc & " de " & mPOAI.Description
+
+    '        If mPOAI.ProjectName = "" Then
+    '          mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
+
+    '        Else
+
+    '          mText &= vbCrLf & "Con cargo al proyecto " & mPOAI.ProjectName
+    '        End If
+
+    '        xrtDescriptionPOItem.Text = mText
+
+    '      Next
+
+    '    Else
+    '      mText &= vbCrLf & "Con cargo al centro de costo: " & pPOInfo.CategoryDesc & " / Categoría Contable: " & pPOInfo.AccoutingCategoryDesc
+    '      xrtDescriptionPOItem.Text = mText
+
+    '    End If
+
+    '  End If
+
+    '  End If
+    Dim mPaymentReportDetail As subPaymentReportDetail
+
+    mPaymentReportDetail = New subPaymentReportDetail
+    Dim mNew As New colPurchaseOrderInfos
+    mNew.Add(pPOInfo)
+    mPaymentReportDetail.PurchaseOrderInfo = pPOInfo
+    mPaymentReportDetail.PurchaseOrderInfos = pPOInfo.POItemInfos
+
+    XrSubreport1.ReportSource = mPaymentReportDetail
+  End Sub
+
+  Private Sub repCheckPaymentOrder_AfterPrint(sender As Object, e As EventArgs) Handles Me.AfterPrint
 
   End Sub
 
+  Private Sub ReportHeader_BeforePrint(sender As Object, e As PrintEventArgs) Handles ReportHeader.BeforePrint
 
+  End Sub
 
+  Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
 
+  End Sub
+
+  Private Sub XrSubreport1_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrSubreport1.BeforePrint
+
+  End Sub
+
+  Private Sub ReportHeader_AfterPrint(sender As Object, e As EventArgs) Handles ReportHeader.AfterPrint
+
+  End Sub
 End Class

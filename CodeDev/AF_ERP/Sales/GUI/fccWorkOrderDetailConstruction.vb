@@ -540,20 +540,22 @@ Public Class fccWorkOrderDetailConstruction
 
             End If
           End If
-          mWhere = "SalesOrderPhaseID = " & pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
+          If pSalesOrder IsNot Nothing Then
+            mWhere = "SalesOrderPhaseID = " & pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseID
 
-          mSOPIInfos = New colSalesOrderPhaseItemInfos
-          mdsoSales.LoadSalesOrderPhaseItemsInfosByWhere(mSOPIInfos, mWhere)
+            mSOPIInfos = New colSalesOrderPhaseItemInfos
+            mdsoSales.LoadSalesOrderPhaseItemsInfosByWhere(mSOPIInfos, mWhere)
 
 
-          For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
-            mSOPIInfo = mSOPIInfos.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
-            If mSOPIInfo IsNot Nothing Then
-              mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPIInfo)
-            End If
-          Next
+            For Each mWorkOrderAllocationEditor As clsWorkOrderAllocationEditor In pWorkOrderAllocationEditors
+              mSOPIInfo = mSOPIInfos.ItemFromKey(mWorkOrderAllocationEditor.SalesOrderPhaseItemID)
+              If mSOPIInfo IsNot Nothing Then
+                mWorkOrderAllocationEditor.PopulateSalesOrderPhaseItemInfo(mSOPIInfo)
+              End If
+            Next
           End If
         End If
+      End If
 
 
     End If
@@ -683,13 +685,15 @@ Public Class fccWorkOrderDetailConstruction
             mNewMatReq.WoodSpecie = mPBOM.WoodSpecie
             mNewMatReq.Comments = mPBOM.Comments
             mNewMatReq.FromStockQty = 0
-
+            mNewMatReq.GeneratedQty = mPBOM.Quantity * pWorkOrder.Quantity
 
             pWorkOrder.StockItemMaterialRequirements.Add(mNewMatReq)
           Else
             mProductStockItemFound.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
             mProductStockItemFound.Comments = mPBOM.Comments
             mProductStockItemFound.Description = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPBOM.StockItemID).Description
+            mProductStockItemFound.GeneratedQty = mPBOM.Quantity * pWorkOrder.Quantity
+
           End If
 
         Next
@@ -780,4 +784,25 @@ Public Class fccWorkOrderDetailConstruction
     End Try
 
   End Sub
+
+  Public Function GetNewStockitemMatReq(ByVal vStockitem As dmStockItem) As dmMaterialRequirement
+    Dim mRetVal As dmMaterialRequirement
+
+    mRetVal = New dmMaterialRequirement
+
+    mRetVal.ObjectID = pWorkOrder.WorkOrderID
+    mRetVal.StockItemID = vStockitem.StockItemID
+    mRetVal.DateChange = Now
+    mRetVal.Description = vStockitem.Description
+    mRetVal.NetLenght = vStockitem.Length
+    mRetVal.NetWidth = vStockitem.Width
+    mRetVal.NetThickness = vStockitem.Thickness
+    mRetVal.ObjectType = eObjectType.WorkOrder
+    mRetVal.StockCode = vStockitem.StockCode
+    mRetVal.UoM = vStockitem.UoM
+    mRetVal.WoodSpecie = vStockitem.Species
+    mRetVal.MaterialRequirementType = eMaterialRequirementType.StockItems
+    mRetVal.GeneratedQty = 0
+    Return mRetVal
+  End Function
 End Class

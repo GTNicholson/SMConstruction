@@ -39,6 +39,8 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pVatValue As Decimal
   Private pLineValue As Decimal
   Private pMaterialCost As Decimal
+  Private pPOStageID As Integer
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -109,6 +111,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .VatValue = VatValue
       .LineValue = LineValue
       .MaterialCost = MaterialCost
+      .POStageID = POStageID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -471,6 +474,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
 
     Return mRetVal
   End Function
+
+  Public Property POStageID As Integer
+    Get
+      Return pPOStageID
+    End Get
+    Set(value As Integer)
+      If pPOStageID <> value Then IsDirty = True
+      pPOStageID = value
+    End Set
+  End Property
 End Class
 
 

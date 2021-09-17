@@ -165,7 +165,7 @@ Public Class frmWorkOrderMatReqCategoryStatusDetail
           mPONewID = pFormController.AddNewPurchaseOrder()
 
 
-          frmPurchaseOrder.OpenFormAsModal(Me, pFormController.DBConn, AppRTISGlobal.GetInstance, mPONewID, eFormMode.eFMFormModeAdd)
+          'frmPurchaseOrder.OpenFormAsModal(Me, pFormController.DBConn, AppRTISGlobal.GetInstance, mPONewID, eFormMode.eFMFormModeAdd)
           pFormController.LoadPurchaseOrders()
           grdPOs.DataSource = pFormController.PurchaseOrders
           gvPOs.RefreshData()

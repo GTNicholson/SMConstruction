@@ -1,0 +1,33 @@
+delete from StockItemLocation where StockItemLocationID in (
+
+select ObjectID from StockItemTransactionLog where RefObjectID in (
+select WoodPalletID from WoodPalletItem
+where WoodPalletID in (Select WoodPalletID from WoodPallet where isnull(workOrderID,0)=0)
+)
+
+)
+go
+
+
+delete from StockItemTransactionLog where RefObjectID in (
+select WoodPalletID from WoodPalletItem
+where WoodPalletID in (Select WoodPalletID from WoodPallet where isnull(workOrderID,0)=0)
+)
+go
+
+
+delete from WoodPalletItem
+where WoodPalletID in (Select WoodPalletID from WoodPallet where isnull(workOrderID,0)=0)
+
+go
+
+delete from WoodPallet
+where Isnull(WorkOrderID,0)=0
+go
+
+
+delete from Reception
+go
+
+delete from WorkOrder
+where ProductTypeID = 4
