@@ -1,6 +1,7 @@
 ALTER VIEW [dbo].[vwSalesOrderPhaseItemTrackingInfo]
 as
 
+
 select 
 SOPI.SalesOrderPhaseItemID,
 SOI.Description,
