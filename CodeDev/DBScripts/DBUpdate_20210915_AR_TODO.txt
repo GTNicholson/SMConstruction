@@ -5,6 +5,10 @@ go
 ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
 as
 
+
+
+
+
 select 
 POIA.PurchaseOrderItemAllocationID,
 POIA.Quantity,
