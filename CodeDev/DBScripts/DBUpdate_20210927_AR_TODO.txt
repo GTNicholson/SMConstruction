@@ -1,0 +1,7 @@
+alter table CostBookEntry
+add CostIncludeRecovery decimal (10,4)
+go
+
+update CostBookEntry
+set CostIncludeRecovery=1.65
+go

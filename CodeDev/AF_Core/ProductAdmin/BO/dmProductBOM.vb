@@ -143,6 +143,11 @@ Public Class dmProductBOM : Inherits dmBase
 
   Public Property StockCode() As String
     Get
+      Dim mRetVal As String
+      If pStockItemID > 0 Then
+        mRetVal = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItemID).StockCode
+        pStockCode = pStockCode
+      End If
       Return pStockCode
     End Get
     Set(ByVal value As String)
@@ -305,6 +310,12 @@ Public Class dmProductBOM : Inherits dmBase
 
   Public Property UoM() As Integer
     Get
+      Dim mStockItem As dmStockItem
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItemID)
+
+      If mStockItem IsNot Nothing Then
+        pUoM = mStockItem.UoM
+      End If
       Return pUoM
     End Get
     Set(ByVal value As Integer)

@@ -22,15 +22,26 @@ Public Class frmSalesOrderReview
   End Sub
 
   Private Sub frmSalesOrderReview_Load(sender As Object, e As EventArgs) Handles Me.Load
+    tgsCosting.IsOn = True
+    pFormController.CostingMethod = tgsCosting.IsOn
     pFormController.LoadDataRef()
+
+
     LoadGrids()
     RefreshControls()
     Me.Text = "Revisión de Venta # " & pFormController.SalesOrder.OrderNo
   End Sub
 
   Private Sub RefreshControls()
+    Dim mPercentage As Decimal = 0
+
+    txtEstimatedInsumosTotalValue.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemEstimatedValue.ToString("$#,##0.00;;#")
+    txtWoodTotalEstimatedValue.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalWoodStockItemEstimatedValue.ToString("$#,##0.00;;#")
+
+
     txtTotalValueSalesOrder.Text = pFormController.SalesOrder.GetTotalValueWithCarriage.ToString("$#,##0.00;;#")
-    txtTotalInvoiced.Text = pFormController.SalesOrder.GetTotalInvoiceValue.ToString("$#,##0.00;;#")
+    txtTotalCostValue.Text = (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue).ToString("$#,##0.00;;#")
+
 
 
     txtStockItemMatReqCost.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqReal.ToString("$#,##0.00;;#")
@@ -40,35 +51,107 @@ Public Class frmSalesOrderReview
     txtWoodMatReqCost.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReq.ToString("$#,##0.00;;#")
     txtWoodPick.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked.ToString("$#,##0.00;;#")
 
-    txtSOPIMaterialCost.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalMaterialReqiredCost.ToString("$#,##0.00;;#")
+    txtSOPIMaterialCost.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStimatedValue.ToString("$#,##0.00;;#")
     txtEngineeringMaterialCost.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalMaterialEngineeringCost.ToString("$#,##0.00;;#")
     txtTotalSOPIMaterialsPick.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalMaterialPickReal.ToString("$#,##0.00;;#")
 
     'txtTotalSOPICurrentWoodCost.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalWoodMatReqReal.ToString("$#,##0.00;;#")
-    txtSOPIMO.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget.ToString("$#,##0.00;;#")
+    txtSOPIMO.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget + pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget).ToString("$#,##0.00;;#")
+    txtTotalSOPISubMOValue.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalSubconMOValue.ToString("$#,##0.00;;#")
 
-    txtSOPIOutsourcing.Text = pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget.ToString("$#,##0.00;;#")
 
 
-    If pFormController.SalesOrder.GetTotalValueWithCarriage > 0 Then
-      txtPercentageInvoiced.Text = pFormController.SalesOrder.GetTotalInvoiceValue / pFormController.SalesOrder.GetTotalValueWithCarriage
+    If (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue) > 0 Then
+      txtPercentageInvoiced.Text = pFormController.SalesOrder.GetTotalValueWithCarriage / (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue)
 
     End If
 
-    If pFormController.SalesOrder.SalesOrderItems.GetTotalMaterialReqiredCost > 0 Then
-      Dim mPercentage As Decimal = 0
-      mPercentage = (pFormController.SalesOrderPhaseItemInfos.GetTotalMaterialEngineeringCost / pFormController.SalesOrder.SalesOrderItems.GetTotalMaterialReqiredCost)
+    If pFormController.SalesOrderPhaseItemInfos.GetTotalStimatedValue > 0 Then
 
-      If mPercentage > 0 Then
+      mPercentage = (pFormController.SalesOrderPhaseItemInfos.GetTotalMaterialPickReal / pFormController.SalesOrderPhaseItemInfos.GetTotalStimatedValue)
+
+      If mPercentage > 1 Then
         txtSIMatReqPercentage.ForeColor = Color.Red
-      ElseIf mPercentage < 0 Then
+      ElseIf mPercentage < 1 Then
         txtSIMatReqPercentage.ForeColor = Color.Green
+
       Else
         txtSIMatReqPercentage.ForeColor = Color.Black
       End If
       txtSIMatReqPercentage.Text = mPercentage
 
     End If
+
+    If pFormController.SalesOrder.GetTotalValueWithCarriage > 0 Then
+
+      mPercentage = ((pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue) / pFormController.SalesOrder.GetTotalValueWithCarriage)
+
+      If mPercentage > 1 Then
+        txtPercentageInvoiced.ForeColor = Color.Red
+      ElseIf mPercentage < 1 Then
+        txtPercentageInvoiced.ForeColor = Color.Green
+
+      Else
+        txtPercentageInvoiced.ForeColor = Color.Black
+
+      End If
+      txtPercentageInvoiced.Text = mPercentage
+
+    End If
+
+
+    If pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemEstimatedValue > 0 Then
+      mPercentage = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal / pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemEstimatedValue
+
+      If mPercentage > 1 Then
+        txtInumosPercentage.ForeColor = Color.Red
+      ElseIf mPercentage < 1 Then
+        txtInumosPercentage.ForeColor = Color.Green
+
+      Else
+        txtInumosPercentage.ForeColor = Color.Black
+      End If
+      txtInumosPercentage.Text = mPercentage
+
+    End If
+
+    If pFormController.SalesOrderPhaseItemInfos.GetTotalWoodStockItemEstimatedValue > 0 Then
+
+      mPercentage = pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked / pFormController.SalesOrderPhaseItemInfos.GetTotalWoodStockItemEstimatedValue
+
+      If mPercentage > 1 Then
+        txtWoodPercentage.ForeColor = Color.Red
+      ElseIf mPercentage < 1 Then
+        txtWoodPercentage.ForeColor = Color.Green
+
+      Else
+        txtWoodPercentage.ForeColor = Color.Black
+      End If
+      txtWoodPercentage.Text = mPercentage
+
+    End If
+
+
+
+    If (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget + pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget) > 0 Then
+      mPercentage = pFormController.SalesOrderPhaseItemInfos.GetTotalSubconMOValue / (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget + pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget)
+
+      If mPercentage > 1 Then
+        txtOutsourcingMOPercetange.ForeColor = Color.Red
+      ElseIf mPercentage < 1 Then
+        txtOutsourcingMOPercetange.ForeColor = Color.Green
+
+      Else
+        txtOutsourcingMOPercetange.ForeColor = Color.Black
+      End If
+      txtOutsourcingMOPercetange.Text = mPercentage
+
+    End If
+
+
+    'txtTotalWOCompleteValue.Text = pFormController.GetTotalWOCompleteValue().ToString("$#,##0.00;;#")
+    'txtTotalWOValueInProcess.Text = pFormController.GetTotalWOInProcessValue().ToString("$#,##0.00;;#")
+
   End Sub
 
   Private Sub LoadGrids()
@@ -165,18 +248,49 @@ Public Class frmSalesOrderReview
       mCurrentRow = TryCast(gvSalesOrderPhaseItemInfo.GetFocusedRow, clsSalesOrderPhaseItemInfo)
 
       If mCurrentRow IsNot Nothing Then
-        Select Case mSelectedColumn.Name
-          Case gcMatEsp.Name
+        Select Case mSelectedColumn.FieldName
+          Case "SOPIStockItemMatReqDollarValue"
 
-            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.MatEspecificados)
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.InsumosSpecified)
 
-          Case gcMatActual.Name
-            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.MatActual)
+          Case "SpecifiedWoodCost"
+
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.WoodSpecified)
+
+
+
+          Case "SOPIPickDollarValue"
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.InsumosActual)
+
+            'Case "PickedWoodCost"
+            '  frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.WoodActual)
+
 
         End Select
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub GroupControl4_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles GroupControl4.CustomButtonClick
+    Dim mFileName As String = "Exportar Compras Producción " + pFormController.SalesOrder.ProjectName & ".xlsx"
+    If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+      gvPOHonorarios.ExportToXlsx(mFileName)
+    End If
+  End Sub
+
+  Private Sub tgsCosting_Toggled(sender As Object, e As EventArgs) Handles tgsCosting.Toggled
+
+    Try
+      If pFormController IsNot Nothing Then
+        pFormController.CostingMethod = tgsCosting.IsOn
+        pFormController.LoadDataRef()
+        RefreshControls()
+        LoadGrids()
+      End If
+    Catch ex As Exception
 
     End Try
   End Sub

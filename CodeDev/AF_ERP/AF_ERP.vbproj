@@ -191,6 +191,7 @@
     <Compile Include="App\GUI\brwCurrentUsersLoggedOn.vb" />
     <Compile Include="App\GUI\brwTemplateList.vb" />
     <Compile Include="App\GUI\clsHomeScreenFactory.vb" />
+    <Compile Include="App\GUI\fccUpdatePOManToPONonMan.vb" />
     <Compile Include="App\GUI\frmDisplayError.designer.vb">
       <DependentUpon>frmDisplayError.vb</DependentUpon>
     </Compile>
@@ -225,6 +226,12 @@
       <DependentUpon>frmTabbedMDI_DevUtil.vb</DependentUpon>
     </Compile>
     <Compile Include="App\GUI\frmTabbedMDI_DevUtil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\GUI\frmUpdatePOManToPONonMan.Designer.vb">
+      <DependentUpon>frmUpdatePOManToPONonMan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="App\GUI\frmUpdatePOManToPONonMan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="App\GUI\uccFileControl.vb" />
@@ -534,6 +541,12 @@
     <Compile Include="Purchasing\GUI\fccPODelivery.vb" />
     <Compile Include="Purchasing\GUI\fccStockItemPurchasing.vb" />
     <Compile Include="Purchasing\GUI\fccSupplierDetail.vb" />
+    <Compile Include="Purchasing\GUI\frmGeneralPurchaseOrder.Designer.vb">
+      <DependentUpon>frmGeneralPurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmGeneralPurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Purchasing\GUI\frmManPurchaseOrderDetail.Designer.vb">
       <DependentUpon>frmManPurchaseOrderDetail.vb</DependentUpon>
     </Compile>
@@ -943,6 +956,9 @@
     <EmbeddedResource Include="App\GUI\frmTabbedMDI_DevUtil.resx">
       <DependentUpon>frmTabbedMDI_DevUtil.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="App\GUI\frmUpdatePOManToPONonMan.resx">
+      <DependentUpon>frmUpdatePOManToPONonMan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="App\GUI\uctAddress.resx">
       <DependentUpon>uctAddress.vb</DependentUpon>
     </EmbeddedResource>
@@ -1064,6 +1080,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\repPaySlip.resx">
       <DependentUpon>repPaySlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmGeneralPurchaseOrder.resx">
+      <DependentUpon>frmGeneralPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmManPurchaseOrderDetail.resx">
       <DependentUpon>frmManPurchaseOrderDetail.vb</DependentUpon>

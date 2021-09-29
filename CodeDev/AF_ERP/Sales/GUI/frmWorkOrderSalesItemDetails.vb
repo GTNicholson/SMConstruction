@@ -18,11 +18,18 @@ Public Class frmWorkOrderSalesItemDetails
     RefreshControls()
 
     Select Case pFormController.OptionMaterialesView
-      Case eOptionMaterialesView.MatEspecificados
-        Me.Text = "Revisión de Materiales Específicados de " & pFormController.SalesOrderPhaseItemInfo.Description
+      Case eOptionMaterialesView.InsumosSpecified
+        Me.Text = "Revisión de Insumos Específicados de " & pFormController.SalesOrderPhaseItemInfo.Description
 
-      Case eOptionMaterialesView.MatActual
-        Me.Text = "Revisión de Materiales Despachados de " & pFormController.SalesOrderPhaseItemInfo.Description
+      Case eOptionMaterialesView.InsumosActual
+        Me.Text = "Revisión de Insumos Despachados de " & pFormController.SalesOrderPhaseItemInfo.Description
+
+      Case eOptionMaterialesView.WoodSpecified
+        Me.Text = "Revisión de Madera Específicada de " & pFormController.SalesOrderPhaseItemInfo.Description
+
+      Case eOptionMaterialesView.InsumosActual
+        Me.Text = "Revisión de Madera Despachada de " & pFormController.SalesOrderPhaseItemInfo.Description
+
 
     End Select
   End Sub
@@ -30,16 +37,16 @@ Public Class frmWorkOrderSalesItemDetails
   Private Sub RefreshControls()
 
     Select Case pFormController.OptionMaterialesView
-      Case eOptionMaterialesView.MatEspecificados
+      Case eOptionMaterialesView.InsumosSpecified
         xtpInsumos.Visible = True
-        xtpWood.Visible = True
+        xtpWood.Visible = False
         gcDespatchQty.Visible = False
         gcReqQty.Visible = False
         gcDespatchTotalCost.Visible = False
         gcTotalCost.Visible = True
-        xtcMaterials.TabPages(0).PageVisible = True
+        xtcMaterials.TabPages(0).PageVisible = False
 
-      Case eOptionMaterialesView.MatActual
+      Case eOptionMaterialesView.InsumosActual
         xtpInsumos.Visible = True
         xtpWood.Visible = False
         xtcMaterials.TabPages(0).PageVisible = False
@@ -47,6 +54,26 @@ Public Class frmWorkOrderSalesItemDetails
         gcReqQty.Visible = False
         gcDespatchTotalCost.Visible = True
         gcTotalCost.Visible = False
+
+      Case eOptionMaterialesView.WoodSpecified
+        xtpInsumos.Visible = False
+        xtpWood.Visible = True
+        gcDespatchQty.Visible = False
+        gcReqQty.Visible = False
+        gcDespatchTotalCost.Visible = False
+        gcTotalCost.Visible = True
+        xtcMaterials.TabPages(1).PageVisible = False
+
+
+      Case eOptionMaterialesView.WoodActual
+        'xtpInsumos.Visible = True
+        'xtpWood.Visible = False
+        'xtcMaterials.TabPages(0).PageVisible = False
+        'gcDespatchQty.Visible = True
+        'gcReqQty.Visible = False
+        'gcDespatchTotalCost.Visible = True
+        'gcTotalCost.Visible = False
+
     End Select
   End Sub
 
@@ -123,7 +150,7 @@ Public Class frmWorkOrderSalesItemDetails
 
         Case gcDespatchTotalCost.Name
           If e.IsGetData Then
-            e.Value = (mMatReq.AverageCostUSDInsumos * (pFormController.SalesOrderPhaseItemInfo.WOAQuantity * mMatReq.PickedQty))
+            e.Value = (mMatReq.AverageCostUSDInsumos * (pFormController.SalesOrderPhaseItemInfo.WOAQuantity * (mMatReq.PickedQty - mMatReq.ReturnQty)))
 
           End If
 

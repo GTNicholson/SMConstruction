@@ -9,7 +9,7 @@ Public Class dmCostBookEntry : Inherits dmBase
   Private pCostUnit As Int32
   Private pMinCost As Decimal
   Private pRetailPrice As Decimal
-
+  Private pCostIncludeRecovery As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -49,6 +49,7 @@ Public Class dmCostBookEntry : Inherits dmBase
       .CostUnit = CostUnit
       .MinCost = MinCost
       .RetailPrice = RetailPrice
+      .CostIncludeRecovery = CostIncludeRecovery
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -128,6 +129,15 @@ Public Class dmCostBookEntry : Inherits dmBase
     End Set
   End Property
 
+  Public Property CostIncludeRecovery As Decimal
+    Get
+      Return pCostIncludeRecovery
+    End Get
+    Set(value As Decimal)
+      If pCostIncludeRecovery <> value Then IsDirty = True
+      pCostIncludeRecovery = value
+    End Set
+  End Property
 
 End Class
 

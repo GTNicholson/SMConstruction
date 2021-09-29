@@ -167,10 +167,10 @@ Public Class frmSalesOrderReviewSmallScreen
         Select Case mSelectedColumn.Name
           Case gcMatEsp.Name
 
-            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.MatEspecificados)
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.InsumosSpecified)
 
           Case gcMatActual.Name
-            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.MatActual)
+            frmWorkOrderSalesItemDetails.OpenModal(mCurrentRow, pFormController.DBConn, eOptionMaterialesView.InsumosActual)
 
         End Select
       End If

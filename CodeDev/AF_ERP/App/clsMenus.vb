@@ -42,7 +42,12 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.PurchasingGroup, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Proveedores", eMenuIconType.Grid, AddressOf clsMenuFunctions.SupplierBrowse, eActivityCode.Suppliers)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Ordenes de Compras", eMenuIconType.Grid, AddressOf clsMenuFunctions.PurchaseOrder, eActivityCode.PurchaseOrder)
-    mLastGroup.ChildGroupMenuEntries.AddNewItem("Consola de Compras", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsole, eActivityCode.POConsole)
+
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Consola de Compras", eMenuIconType.FolderOpen, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.POConsole)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Casas", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsoleHouse, eActivityCode.POConsole)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Muebles", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsoleFurniture, eActivityCode.POConsole)
+
+
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Gestión. de Compras", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Procurement, eActivityCode.PurchasingManagement)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Inv. por OC", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickingPurchaseOrder, eActivityCode.PODelivery)
@@ -211,8 +216,13 @@ Class clsMenuFunctions
       mfrm.Focus()
     End If
   End Sub
-  Public Shared Sub PurchaseOrderconsole(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+
+  Public Shared Sub PurchaseOrderconsoleFurniture(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal, ePOConsoleOption.Furniture)
+  End Sub
+
+  Public Shared Sub PurchaseOrderconsoleHouse(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal, ePOConsoleOption.Housing)
   End Sub
   Public Shared Sub PickingPurchaseOrder(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mfrm As RTIS.Elements.frmBrowseList

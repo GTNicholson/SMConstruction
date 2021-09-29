@@ -51,7 +51,6 @@ Public Class dsoRTISGlobal
     Dim mTempRead As String
     Dim mReadOK As Boolean = False
     Dim mdtoEmail As dtoEmailSettings
-
     ''TODO - Extend to load different defaults for different datasets, e.g. LIVE, UAT, TRAINING, STANDBY, DEVELOPMENT
     Try
       If pDBConn.Connect(mIsNewConnection) Then

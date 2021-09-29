@@ -499,7 +499,10 @@ Public Class uctProductBaseDetail
           Dim mSelectedSI As dmStockItem
 
           For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-            mSIs.Add(mItem.Value)
+            If TryCast(mItem.Value, dmStockItem).Inactive = False Then
+              mSIs.Add(mItem.Value)
+            End If
+
           Next
 
           mPicker = New clsPickerStockItem(mSIs, pFormController.DBConn, pFormController.RTISGlobal)

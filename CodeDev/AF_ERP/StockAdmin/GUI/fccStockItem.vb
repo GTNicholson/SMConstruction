@@ -470,5 +470,19 @@ Public Class fccStocktem
     End If
   End Sub
 
+  Public Sub LoadMainCollectionByStockOptionFilter(ByVal vWhere As String)
+    Dim mdsoStock As New dsoStock(pDBConn)
+    Try
+      pStockItems.Clear()
+
+      mdsoStock.LoadStockItemsByWhere(pStockItems, vWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    Finally
+      mdsoStock = Nothing
+    End Try
+
+  End Sub
 End Class
 

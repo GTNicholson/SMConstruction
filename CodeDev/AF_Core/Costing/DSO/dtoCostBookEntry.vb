@@ -60,6 +60,9 @@ Public Class dtoCostBookEntry : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostUnit", .CostUnit)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MinCost", .MinCost)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RetailPrice", .RetailPrice)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CostIncludeRecovery", .CostIncludeRecovery)
+
+
     End With
 
   End Sub
@@ -77,6 +80,7 @@ Public Class dtoCostBookEntry : Inherits dtoBase
         .CostUnit = DBReadInt32(rDataReader, "CostUnit")
         .MinCost = DBReadDecimal(rDataReader, "MinCost")
         .RetailPrice = DBReadDecimal(rDataReader, "RetailPrice")
+        .CostIncludeRecovery = DBReadDecimal(rDataReader, "CostIncludeRecovery")
         pCostBookEntry.IsDirty = False
       End With
       mOK = True

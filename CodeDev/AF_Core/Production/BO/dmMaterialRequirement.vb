@@ -129,7 +129,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
 
   Public ReadOnly Property UoMDesc As String
     Get
-      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(pUoM, eUoM))
+      Dim mRetVal As String = ""
+      Dim mStockItem As dmStockItem
+
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItemID)
+
+      If mStockItem IsNot Nothing Then
+        mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(mStockItem.UoM, eUoM))
+      End If
+
+      Return mRetVal
     End Get
   End Property
 

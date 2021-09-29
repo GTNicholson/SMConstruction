@@ -839,7 +839,9 @@ Public Class frmNonManPurchaseOrder
 
 
           For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-            mStockItems.Add(mItem.Value)
+            If TryCast(mItem.Value, dmStockItem).Inactive = False Then
+              mStockItems.Add(mItem.Value)
+            End If
           Next
 
           mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, pFormController.RTISGlobal)
@@ -1051,6 +1053,8 @@ Public Class frmNonManPurchaseOrder
 
         If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseItemInfo) Then
           pFormController.PurchaseOrder.PurchaseOrderAllocations.Remove(pFormController.PurchaseOrder.PurchaseOrderAllocations(mindex))
+        Else
+          pFormController.SalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfo
         End If
 
       Next

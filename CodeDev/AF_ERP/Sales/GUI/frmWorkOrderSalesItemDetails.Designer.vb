@@ -49,6 +49,9 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemRichTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit()
+        Me.gcTotalCostWood = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoChangeSpecie = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.xtpInsumos = New DevExpress.XtraTab.XtraTabPage()
         Me.grdStockItemMatReq = New DevExpress.XtraGrid.GridControl()
@@ -65,13 +68,11 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.gcTotalCostWood = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemRichTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDespatchQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDespatchTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Panel1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
@@ -82,6 +83,7 @@ Partial Class frmWorkOrderSalesItemDetails
         CType(Me.gvWoodMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemRichTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoChangeSpecie, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtpInsumos.SuspendLayout()
         CType(Me.grdStockItemMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +92,6 @@ Partial Class frmWorkOrderSalesItemDetails
         CType(Me.RepositoryItemMemoExEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemRichTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -130,7 +131,7 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         Me.xtpWood.Controls.Add(Me.grdMaterialRequirementWood)
         Me.xtpWood.Name = "xtpWood"
-        Me.xtpWood.Size = New System.Drawing.Size(1240, 466)
+        Me.xtpWood.Size = New System.Drawing.Size(1420, 466)
         Me.xtpWood.Text = "Madera"
         '
         'grdMaterialRequirementWood
@@ -145,7 +146,7 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.grdMaterialRequirementWood.MainView = Me.gvWoodMatReq
         Me.grdMaterialRequirementWood.Name = "grdMaterialRequirementWood"
         Me.grdMaterialRequirementWood.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoChangeSpecie, Me.RepositoryItemRichTextEdit1})
-        Me.grdMaterialRequirementWood.Size = New System.Drawing.Size(1240, 466)
+        Me.grdMaterialRequirementWood.Size = New System.Drawing.Size(1420, 466)
         Me.grdMaterialRequirementWood.TabIndex = 15
         Me.grdMaterialRequirementWood.UseEmbeddedNavigator = True
         Me.grdMaterialRequirementWood.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMatReq})
@@ -185,6 +186,10 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'gcWoodUoM
         '
+        Me.gcWoodUoM.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcWoodUoM.AppearanceCell.Options.UseFont = True
+        Me.gcWoodUoM.AppearanceCell.Options.UseTextOptions = True
+        Me.gcWoodUoM.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gcWoodUoM.Caption = "Componente"
         Me.gcWoodUoM.FieldName = "Description"
         Me.gcWoodUoM.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
@@ -196,6 +201,11 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn9
         '
+        Me.GridColumn9.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn9.AppearanceCell.Options.UseFont = True
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn9.Caption = "Piezas unit."
         Me.GridColumn9.ColumnEdit = Me.RepositoryItemSpinEdit2
         Me.GridColumn9.FieldName = "UnitPiece"
@@ -214,6 +224,11 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'gcTotalQuantity
         '
+        Me.gcTotalQuantity.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcTotalQuantity.AppearanceCell.Options.UseFont = True
+        Me.gcTotalQuantity.AppearanceCell.Options.UseTextOptions = True
+        Me.gcTotalQuantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcTotalQuantity.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gcTotalQuantity.Caption = "Piezas Total"
         Me.gcTotalQuantity.ColumnEdit = Me.RepositoryItemSpinEdit2
         Me.gcTotalQuantity.FieldName = "ub_TotalQuantity"
@@ -233,6 +248,10 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn12
         '
+        Me.GridColumn12.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn12.AppearanceCell.Options.UseFont = True
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn12.Caption = "Grosor (cm)"
         Me.GridColumn12.ColumnEdit = Me.RepositoryItemSpinEdit2
         Me.GridColumn12.FieldName = "NetThickness"
@@ -244,6 +263,10 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn13
         '
+        Me.GridColumn13.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn13.AppearanceCell.Options.UseFont = True
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn13.Caption = "Ancho (cm)"
         Me.GridColumn13.ColumnEdit = Me.RepositoryItemSpinEdit2
         Me.GridColumn13.FieldName = "NetWidth"
@@ -269,6 +292,10 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn16
         '
+        Me.GridColumn16.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn16.AppearanceCell.Options.UseFont = True
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn16.Caption = "Largo (cm)"
         Me.GridColumn16.ColumnEdit = Me.RepositoryItemSpinEdit2
         Me.GridColumn16.FieldName = "NetLenght"
@@ -300,6 +327,8 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'gcQtyBoardFeet
         '
+        Me.gcQtyBoardFeet.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcQtyBoardFeet.AppearanceCell.Options.UseFont = True
         Me.gcQtyBoardFeet.AppearanceCell.Options.UseTextOptions = True
         Me.gcQtyBoardFeet.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.gcQtyBoardFeet.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
@@ -330,8 +359,11 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn1
         '
+        Me.GridColumn1.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn1.AppearanceCell.Options.UseFont = True
         Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn1.Caption = "Costo Unitario"
         Me.GridColumn1.ColumnEdit = Me.RepositoryItemRichTextEdit1
         Me.GridColumn1.DisplayFormat.FormatString = "$#,##0.000;;#"
@@ -342,6 +374,39 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 6
         Me.GridColumn1.Width = 86
+        '
+        'RepositoryItemRichTextEdit1
+        '
+        Me.RepositoryItemRichTextEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemRichTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemRichTextEdit1.Name = "RepositoryItemRichTextEdit1"
+        Me.RepositoryItemRichTextEdit1.ShowCaretInReadOnly = False
+        '
+        'gcTotalCostWood
+        '
+        Me.gcTotalCostWood.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcTotalCostWood.AppearanceCell.Options.UseFont = True
+        Me.gcTotalCostWood.AppearanceCell.Options.UseTextOptions = True
+        Me.gcTotalCostWood.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcTotalCostWood.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcTotalCostWood.Caption = "Costo Total"
+        Me.gcTotalCostWood.ColumnEdit = Me.RepositoryItemRichTextEdit1
+        Me.gcTotalCostWood.DisplayFormat.FormatString = "$#,##0.000;;#"
+        Me.gcTotalCostWood.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcTotalCostWood.FieldName = "gcTotalCostWood"
+        Me.gcTotalCostWood.Name = "gcTotalCostWood"
+        Me.gcTotalCostWood.OptionsColumn.ReadOnly = True
+        Me.gcTotalCostWood.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcTotalCostWood", "{0:$#,##0.000;;#}")})
+        Me.gcTotalCostWood.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcTotalCostWood.Visible = True
+        Me.gcTotalCostWood.VisibleIndex = 8
+        Me.gcTotalCostWood.Width = 82
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Cant. Desp."
+        Me.GridColumn8.FieldName = "PickedQty"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'repoChangeSpecie
         '
@@ -387,7 +452,7 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.gvStockItemMatReq.Appearance.ViewCaption.Options.UseFont = True
         Me.gvStockItemMatReq.Appearance.ViewCaption.Options.UseForeColor = True
         Me.gvStockItemMatReq.ColumnPanelRowHeight = 35
-        Me.gvStockItemMatReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcSIUoM, Me.gcReqQty, Me.GridColumn6, Me.GridColumn18, Me.GridColumn19, Me.GridColumn7, Me.gcTotalCost, Me.gcDespatchQty, Me.gcDespatchTotalCost})
+        Me.gvStockItemMatReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.gcSIUoM, Me.gcReqQty, Me.GridColumn6, Me.GridColumn18, Me.GridColumn19, Me.GridColumn7, Me.gcTotalCost, Me.gcDespatchQty, Me.gcDespatchTotalCost, Me.GridColumn5})
         Me.gvStockItemMatReq.GridControl = Me.grdStockItemMatReq
         Me.gvStockItemMatReq.Name = "gvStockItemMatReq"
         Me.gvStockItemMatReq.OptionsView.EnableAppearanceEvenRow = True
@@ -397,13 +462,17 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn2
         '
+        Me.GridColumn2.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn2.AppearanceCell.Options.UseFont = True
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn2.Caption = "Cód. Interno"
         Me.GridColumn2.FieldName = "StockCode"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 198
+        Me.GridColumn2.Width = 215
         '
         'GridColumn3
         '
@@ -417,26 +486,39 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn4
         '
+        Me.GridColumn4.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn4.AppearanceCell.Options.UseFont = True
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn4.Caption = "Descripción"
         Me.GridColumn4.FieldName = "Description"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 397
+        Me.GridColumn4.Width = 431
         '
         'gcSIUoM
         '
+        Me.gcSIUoM.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcSIUoM.AppearanceCell.Options.UseFont = True
+        Me.gcSIUoM.AppearanceCell.Options.UseTextOptions = True
+        Me.gcSIUoM.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gcSIUoM.Caption = "UdM"
         Me.gcSIUoM.FieldName = "UoMDesc"
         Me.gcSIUoM.Name = "gcSIUoM"
         Me.gcSIUoM.OptionsColumn.ReadOnly = True
         Me.gcSIUoM.Visible = True
         Me.gcSIUoM.VisibleIndex = 2
-        Me.gcSIUoM.Width = 145
+        Me.gcSIUoM.Width = 157
         '
         'gcReqQty
         '
+        Me.gcReqQty.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcReqQty.AppearanceCell.Options.UseFont = True
+        Me.gcReqQty.AppearanceCell.Options.UseTextOptions = True
+        Me.gcReqQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcReqQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gcReqQty.Caption = "Cantidad Req."
         Me.gcReqQty.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.gcReqQty.DisplayFormat.FormatString = "n2"
@@ -444,8 +526,8 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.gcReqQty.FieldName = "Quantity"
         Me.gcReqQty.Name = "gcReqQty"
         Me.gcReqQty.Visible = True
-        Me.gcReqQty.VisibleIndex = 3
-        Me.gcReqQty.Width = 170
+        Me.gcReqQty.VisibleIndex = 4
+        Me.gcReqQty.Width = 196
         '
         'RepositoryItemTextEdit1
         '
@@ -490,6 +572,11 @@ Partial Class frmWorkOrderSalesItemDetails
         '
         'GridColumn7
         '
+        Me.GridColumn7.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn7.AppearanceCell.Options.UseFont = True
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn7.Caption = "Costo Unitario"
         Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn7.DisplayFormat.FormatString = "$#,##0.000;;#"
@@ -497,11 +584,16 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.GridColumn7.FieldName = "AverageCostUSDInsumos"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        Me.GridColumn7.Width = 153
+        Me.GridColumn7.VisibleIndex = 3
+        Me.GridColumn7.Width = 122
         '
         'gcTotalCost
         '
+        Me.gcTotalCost.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcTotalCost.AppearanceCell.Options.UseFont = True
+        Me.gcTotalCost.AppearanceCell.Options.UseTextOptions = True
+        Me.gcTotalCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcTotalCost.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gcTotalCost.Caption = "Costo Total"
         Me.gcTotalCost.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.gcTotalCost.DisplayFormat.FormatString = "$#,##0.00;;#"
@@ -511,8 +603,62 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.gcTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcTotalCost", "{0:$#,##0.00;;#}")})
         Me.gcTotalCost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcTotalCost.Visible = True
-        Me.gcTotalCost.VisibleIndex = 6
-        Me.gcTotalCost.Width = 79
+        Me.gcTotalCost.VisibleIndex = 7
+        Me.gcTotalCost.Width = 112
+        '
+        'gcDespatchQty
+        '
+        Me.gcDespatchQty.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcDespatchQty.AppearanceCell.Options.UseFont = True
+        Me.gcDespatchQty.AppearanceCell.Options.UseTextOptions = True
+        Me.gcDespatchQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcDespatchQty.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcDespatchQty.Caption = "Cant. Desp."
+        Me.gcDespatchQty.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.gcDespatchQty.DisplayFormat.FormatString = "N2"
+        Me.gcDespatchQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcDespatchQty.FieldName = "PickedQty"
+        Me.gcDespatchQty.Name = "gcDespatchQty"
+        Me.gcDespatchQty.Visible = True
+        Me.gcDespatchQty.VisibleIndex = 5
+        Me.gcDespatchQty.Width = 124
+        '
+        'gcDespatchTotalCost
+        '
+        Me.gcDespatchTotalCost.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcDespatchTotalCost.AppearanceCell.Options.UseFont = True
+        Me.gcDespatchTotalCost.AppearanceCell.Options.UseTextOptions = True
+        Me.gcDespatchTotalCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcDespatchTotalCost.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcDespatchTotalCost.Caption = "Costo Total"
+        Me.gcDespatchTotalCost.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.gcDespatchTotalCost.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.gcDespatchTotalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcDespatchTotalCost.FieldName = "gcDespatchTotalCost"
+        Me.gcDespatchTotalCost.Name = "gcDespatchTotalCost"
+        Me.gcDespatchTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcDespatchTotalCost", "{0:$#,##0.00;;#}")})
+        Me.gcDespatchTotalCost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.gcDespatchTotalCost.Visible = True
+        Me.gcDespatchTotalCost.VisibleIndex = 8
+        Me.gcDespatchTotalCost.Width = 141
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.GridColumn5.AppearanceCell.Options.UseFont = True
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.GridColumn5.Caption = "Cant. Devol."
+        Me.GridColumn5.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn5.DisplayFormat.FormatString = "n2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "ReturnQty"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.Width = 107
         '
         'RepositoryItemMemoEdit1
         '
@@ -524,60 +670,6 @@ Partial Class frmWorkOrderSalesItemDetails
         Me.RepositoryItemSpinEdit3.Mask.EditMask = "f"
         Me.RepositoryItemSpinEdit3.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
-        '
-        'gcTotalCostWood
-        '
-        Me.gcTotalCostWood.Caption = "Costo Total"
-        Me.gcTotalCostWood.ColumnEdit = Me.RepositoryItemRichTextEdit1
-        Me.gcTotalCostWood.DisplayFormat.FormatString = "$#,##0.000;;#"
-        Me.gcTotalCostWood.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcTotalCostWood.FieldName = "gcTotalCostWood"
-        Me.gcTotalCostWood.Name = "gcTotalCostWood"
-        Me.gcTotalCostWood.OptionsColumn.ReadOnly = True
-        Me.gcTotalCostWood.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcTotalCostWood", "{0:$#,##0.000;;#}")})
-        Me.gcTotalCostWood.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.gcTotalCostWood.Visible = True
-        Me.gcTotalCostWood.VisibleIndex = 8
-        Me.gcTotalCostWood.Width = 82
-        '
-        'RepositoryItemRichTextEdit1
-        '
-        Me.RepositoryItemRichTextEdit1.EditFormat.FormatString = "n2"
-        Me.RepositoryItemRichTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemRichTextEdit1.Name = "RepositoryItemRichTextEdit1"
-        Me.RepositoryItemRichTextEdit1.ShowCaretInReadOnly = False
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Cant. Desp."
-        Me.GridColumn8.FieldName = "PickedQty"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'gcDespatchQty
-        '
-        Me.gcDespatchQty.Caption = "Cant. Desp."
-        Me.gcDespatchQty.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.gcDespatchQty.DisplayFormat.FormatString = "N2"
-        Me.gcDespatchQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcDespatchQty.FieldName = "PickedQty"
-        Me.gcDespatchQty.Name = "gcDespatchQty"
-        Me.gcDespatchQty.Visible = True
-        Me.gcDespatchQty.VisibleIndex = 4
-        Me.gcDespatchQty.Width = 170
-        '
-        'gcDespatchTotalCost
-        '
-        Me.gcDespatchTotalCost.Caption = "Costo Total"
-        Me.gcDespatchTotalCost.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.gcDespatchTotalCost.DisplayFormat.FormatString = "$#,##0.00;;#"
-        Me.gcDespatchTotalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcDespatchTotalCost.FieldName = "gcDespatchTotalCost"
-        Me.gcDespatchTotalCost.Name = "gcDespatchTotalCost"
-        Me.gcDespatchTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gcDespatchTotalCost", "{0:$#,##0.00;;#}")})
-        Me.gcDespatchTotalCost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.gcDespatchTotalCost.Visible = True
-        Me.gcDespatchTotalCost.VisibleIndex = 7
-        Me.gcDespatchTotalCost.Width = 89
         '
         'frmWorkOrderSalesItemDetails
         '
@@ -599,6 +691,7 @@ Partial Class frmWorkOrderSalesItemDetails
         CType(Me.gvWoodMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemRichTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoChangeSpecie, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtpInsumos.ResumeLayout(False)
         CType(Me.grdStockItemMatReq, System.ComponentModel.ISupportInitialize).EndInit()
@@ -607,7 +700,6 @@ Partial Class frmWorkOrderSalesItemDetails
         CType(Me.RepositoryItemMemoExEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemRichTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -656,4 +748,5 @@ Partial Class frmWorkOrderSalesItemDetails
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcDespatchQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcDespatchTotalCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

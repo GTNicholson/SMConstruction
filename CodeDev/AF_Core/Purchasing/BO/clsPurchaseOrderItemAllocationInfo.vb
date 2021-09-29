@@ -491,4 +491,71 @@ End Class
 
 Public Class colPurchaseOrderItemAllocationInfos : Inherits List(Of clsPurchaseOrderItemAllocationInfo)
 
+  Public Function GetTotalPurchaseOrderItemAmountUSDBySOPItemID(ByVal vSalesOrderPhaseItemID As Integer) As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem.PurchaseOrderItemAllocation.SalesorderPhaseItemID = vSalesOrderPhaseItemID Then
+
+        Select Case mItem.PurchaseOrder.AccoutingCategoryID
+          Case 1
+          Case Else
+            Select Case mItem.PurchaseOrder.Category
+
+
+              Case ePurchaseCategories.InsumosProduccion, ePurchaseCategories.ConsumibleProduccion
+
+              Case Else
+                mRetVal = mRetVal + mItem.TotalPurchaseOrderItemAmountUSD
+
+
+            End Select
+        End Select
+
+      End If
+
+    Next
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalPurchaseOrderItemOutsourcingValueUSDBySOPItemID(ByVal vSalesOrderPhaseItemID As Integer, ByVal vExchangeRate As Decimal) As Decimal
+    Dim mRetVal As Decimal = 0
+    Dim mCordobasValue As Decimal = 0
+    For Each mItem In Me
+
+      If mItem.PurchaseOrderItemAllocation.SalesorderPhaseItemID = vSalesOrderPhaseItemID Then
+        Select Case mItem.DefaultCurrency
+          Case eCurrency.Dollar
+
+            If mItem.PurchaseOrder.AccoutingCategoryID = 1 Then '' honorarios
+              mRetVal = mRetVal + mItem.Quantity * mItem.UnitPrice
+            End If
+
+          Case eCurrency.Cordobas
+
+            mCordobasValue = 0
+
+            If vExchangeRate > 0 Then
+              If mItem.PurchaseOrder.AccoutingCategoryID = 1 Then '' honorarios
+                mCordobasValue = mItem.Quantity * mItem.UnitPrice
+
+                mCordobasValue = mCordobasValue / vExchangeRate
+
+                mRetVal = mRetVal + mCordobasValue
+              End If
+
+            Else
+              mRetVal = 0
+            End If
+
+        End Select
+
+      End If
+    Next
+
+
+    Return mRetVal
+
+  End Function
 End Class

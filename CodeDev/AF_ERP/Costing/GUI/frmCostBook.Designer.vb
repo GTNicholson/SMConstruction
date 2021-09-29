@@ -73,6 +73,7 @@ Partial Class frmCostBook
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCostBook, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -413,7 +414,7 @@ Partial Class frmCostBook
         Me.grdCostBookEntry.MenuManager = Me.BarManager1
         Me.grdCostBookEntry.Name = "grdCostBookEntry"
         Me.grdCostBookEntry.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoCostUnit})
-        Me.grdCostBookEntry.Size = New System.Drawing.Size(1334, 382)
+        Me.grdCostBookEntry.Size = New System.Drawing.Size(1332, 381)
         Me.grdCostBookEntry.TabIndex = 0
         Me.grdCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCostBookEntry, Me.GridView2})
         '
@@ -528,7 +529,7 @@ Partial Class frmCostBook
         Me.gvCostBookEntry.Appearance.ViewCaption.Options.UseBackColor = True
         Me.gvCostBookEntry.Appearance.ViewCaption.Options.UseFont = True
         Me.gvCostBookEntry.ColumnPanelRowHeight = 30
-        Me.gvCostBookEntry.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.gcCostUnit, Me.GridColumn9, Me.gcSpecies, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
+        Me.gvCostBookEntry.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.gcCostUnit, Me.GridColumn9, Me.gcSpecies, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn8})
         Me.gvCostBookEntry.DetailHeight = 380
         Me.gvCostBookEntry.GridControl = Me.grdCostBookEntry
         Me.gvCostBookEntry.Name = "gvCostBookEntry"
@@ -580,7 +581,7 @@ Partial Class frmCostBook
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 6
-        Me.GridColumn4.Width = 85
+        Me.GridColumn4.Width = 88
         '
         'GridColumn5
         '
@@ -594,7 +595,7 @@ Partial Class frmCostBook
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 1
-        Me.GridColumn5.Width = 236
+        Me.GridColumn5.Width = 245
         '
         'GridColumn6
         '
@@ -608,7 +609,7 @@ Partial Class frmCostBook
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 118
+        Me.GridColumn6.Width = 122
         '
         'GridColumn7
         '
@@ -622,7 +623,7 @@ Partial Class frmCostBook
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 313
+        Me.GridColumn7.Width = 325
         '
         'gcCostUnit
         '
@@ -632,7 +633,7 @@ Partial Class frmCostBook
         Me.gcCostUnit.OptionsColumn.ReadOnly = True
         Me.gcCostUnit.Visible = True
         Me.gcCostUnit.VisibleIndex = 5
-        Me.gcCostUnit.Width = 112
+        Me.gcCostUnit.Width = 116
         '
         'GridColumn9
         '
@@ -642,8 +643,8 @@ Partial Class frmCostBook
         Me.GridColumn9.FieldName = "MinCost"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
-        Me.GridColumn9.Width = 106
+        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.Width = 93
         '
         'gcSpecies
         '
@@ -654,7 +655,7 @@ Partial Class frmCostBook
         Me.gcSpecies.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcSpecies.Visible = True
         Me.gcSpecies.VisibleIndex = 3
-        Me.gcSpecies.Width = 172
+        Me.gcSpecies.Width = 178
         '
         'GridColumn24
         '
@@ -686,7 +687,7 @@ Partial Class frmCostBook
         Me.GridColumn26.OptionsColumn.ReadOnly = True
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 4
-        Me.GridColumn26.Width = 48
+        Me.GridColumn26.Width = 49
         '
         'repoCostUnit
         '
@@ -706,6 +707,16 @@ Partial Class frmCostBook
         'GridView3
         '
         Me.GridView3.Name = "GridView3"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Costo Gerencia"
+        Me.GridColumn8.DisplayFormat.FormatString = "n2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 100
         '
         'frmCostBook
         '
@@ -798,4 +809,5 @@ Partial Class frmCostBook
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
   Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -37,6 +37,10 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
       Case ePurchaseOrderAddingOption.NonManufacturingPO
         frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
+
+      Case ePurchaseOrderAddingOption.GeneralPO
+        frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
+
     End Select
 
 

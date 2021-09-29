@@ -535,6 +535,8 @@ Public Enum eUoM
   <Description("GLB")> GLB = 19
 
   <Description("Lb")> Lb = 20
+  <Description("Bls")> BLS = 21
+
 End Enum
 
 ''Public Enum eWorkOrderMilestone
@@ -2522,13 +2524,20 @@ Public Enum eStatusNonePartComplete
 End Enum
 
 Public Enum eOptionMaterialesView
-  MatEspecificados = 1
-  MatActual = 2
+  InsumosSpecified = 1
+  InsumosActual = 2
   MatEstimado = 3
+  WoodSpecified = 4
+  WoodActual = 5
 End Enum
 
 Public Enum ePODetailOption
   ManPO = 1
   NonManPO = 2
   General = 3
+End Enum
+
+Public Enum ePOConsoleOption
+  Housing = 1
+  Furniture = 2
 End Enum

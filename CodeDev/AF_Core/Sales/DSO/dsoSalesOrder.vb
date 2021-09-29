@@ -1166,7 +1166,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mOk
   End Function
 
-  Public Sub LoadSalesOrderPhaseItemInfoWoodCosts(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByRef rCostBookEntries As colCostBookEntrys)
+  Public Sub LoadSalesOrderPhaseItemInfoWoodCosts(ByRef rSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos, ByRef rCostBookEntries As colCostBookEntrys, ByVal vCostingMethod As Boolean)
     Dim mWOAs As colWorkOrderAllocations
     Dim mWOs As New colWorkOrders
     Dim mWO As dmWorkOrder
@@ -1231,7 +1231,15 @@ Public Class dsoSalesOrder : Inherits dsoBase
                 mQty = mMR.Quantity * (mWOA.QuantityRequired / mWO.Quantity)
                 mCBEntry = rCostBookEntries.ItemFromStockItemID(mMR.StockItemID)
                 If mCBEntry IsNot Nothing Then
-                  mTotalWoodCost = mTotalWoodCost + (mCBEntry.Cost * mMR.BoardFeetPerLine)
+
+                  If vCostingMethod Then
+                    mTotalWoodCost = mTotalWoodCost + (mCBEntry.CostIncludeRecovery * mMR.BoardFeetPerLine)
+
+                  Else
+                    mTotalWoodCost = mTotalWoodCost + (mCBEntry.Cost * mMR.BoardFeetPerLine)
+
+                  End If
+
                 End If
               End If
 
@@ -1266,7 +1274,16 @@ Public Class dsoSalesOrder : Inherits dsoBase
                 If mCBEntry IsNot Nothing Then
                   mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPII.WoodPalletItem.StockItemID)
                   If mStockItem IsNot Nothing Then
-                    mTotalPickedWoodCost = mTotalPickedWoodCost + (mCBEntry.Cost * clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPII.WoodPalletItem, mStockItem))
+
+
+                    If vCostingMethod Then
+                      mTotalPickedWoodCost = mTotalPickedWoodCost + (mCBEntry.CostIncludeRecovery * clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPII.WoodPalletItem, mStockItem))
+
+                    Else
+                      mTotalPickedWoodCost = mTotalPickedWoodCost + (mCBEntry.Cost * clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPII.WoodPalletItem, mStockItem))
+
+                    End If
+
 
                   End If
                 End If

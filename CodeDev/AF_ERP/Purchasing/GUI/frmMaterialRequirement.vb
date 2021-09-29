@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
@@ -27,7 +28,7 @@ Public Class frmMaterialRequirement
 
   End Sub
 
-  Public Shared Sub OpenFormAsMDIChild(ByRef rMDI As Windows.Forms.Form, ByRef rRTISGlobal As AppRTISGlobal, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vSalesOrderPhaseID As Integer)
+  Public Shared Sub OpenFormAsMDIChild(ByRef rMDI As Windows.Forms.Form, ByRef rRTISGlobal As AppRTISGlobal, ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByVal vSalesOrderPhaseID As Integer, ByVal vConsoleOptionView As ePOConsoleOption)
     Dim mfrm As frmMaterialRequirement = Nothing
 
     mfrm = GetFormIfLoaded(rMDI)
@@ -37,6 +38,7 @@ Public Class frmMaterialRequirement
       mfrm.pFormController.RTISGlobal = rRTISGlobal
       mfrm.pFormController.DBConn = rDBConn
       mfrm.pFormController.SalesOrderPhaseID = vSalesOrderPhaseID
+      mfrm.pFormController.pConsoleOptionView = vConsoleOptionView
       mfrm.MdiParent = rMDI
       mfrm.Show()
     Else
@@ -104,6 +106,19 @@ Public Class frmMaterialRequirement
 
       '  gcFromStock.Visible = False
       'End If
+      pFormController.OptionView = fccMaterialRequirements.eMatReqOptionView.Hide
+      cheOptionViews.EditValue = CType(pFormController.OptionView, System.Int32)
+
+      Select Case pFormController.pConsoleOptionView
+        Case ePOConsoleOption.Furniture
+          gcWODescription.Visible = True
+          gcWODescription.GroupIndex = 1
+          gcSOIDescription.Visible = False
+        Case ePOConsoleOption.Housing
+          gcSOIDescription.Visible = True
+          gcSOIDescription.GroupIndex = 1
+          gcWODescription.Visible = False
+      End Select
 
       SetPermissions()
       LoadCombos()
@@ -268,7 +283,7 @@ Public Class frmMaterialRequirement
     mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
 
     If mRow IsNot Nothing Then
-      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1}", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
+      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1} and (Quantity-ReceivedQty)>0", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
 
       mdso.LoadPurchaseOrderItemAllocationInfos(mRow.POItemAllocationInfos, mwhere)
 
@@ -310,7 +325,7 @@ Public Class frmMaterialRequirement
 
 
 
-          End If
+        End If
 
 
       End If
@@ -389,5 +404,31 @@ Public Class frmMaterialRequirement
     End If
   End Sub
 
+  Private Sub repoMatReqOptionView_EditValueChanged(sender As Object, e As EventArgs) Handles repoMatReqOptionView.EditValueChanged
 
+
+  End Sub
+
+  Private Sub repoMatReqOptionView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles repoMatReqOptionView.SelectedIndexChanged
+    Try
+      Dim mviewOption As Integer
+      Dim mItem As RadioGroup = TryCast(sender, RadioGroup)
+
+      If pFormController IsNot Nothing Then
+
+        mviewOption = mItem.EditValue
+        pFormController.OptionView = mviewOption
+        ReloadRequirements()
+
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub bbtnPickOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnPickOrder.ItemClick
+
+  End Sub
 End Class

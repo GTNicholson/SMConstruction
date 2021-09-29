@@ -1,4 +1,5 @@
-﻿Imports RTIS.DataLayer
+﻿Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class fccSalesOrderReview
   Private pInvoiceInfos As colInvoiceInfos
@@ -33,6 +34,8 @@ Public Class fccSalesOrderReview
     Dim mStockItem As dmStockItem
     Dim mExchangeRate As Decimal
     Dim mWherePOCategories As String = ""
+    Dim mAllPOAllocationInfos As New colPurchaseOrderItemAllocationInfos
+
     pPOItemWOAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pOtherCategoriesPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pHonorariosPOIAllocationInfos = New colPurchaseOrderItemAllocationInfos
@@ -41,65 +44,33 @@ Public Class fccSalesOrderReview
     pWorkOrderInfos = New colWorkOrderInfos
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
 
-    ''Load Insumos Purchasing
+
+
+    ''Load all Purchasing
     mWhere = String.Format("SalesOrderID = {0} and  POStatus not in ({1})", pSalesOrder.SalesOrderID, CInt(ePurchaseOrderDueDateStatus.Cancelled))
-
-    For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
-      Select Case mVI.ItemValue
-        Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
-        ePurchaseCategories.PatioYAserrio
-
-
-          If mWherePOCategories <> "" Then mWherePOCategories &= ","
-          mWherePOCategories &= mVI.ItemValue
-      End Select
-    Next
-
-    mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
-
-
-
-    mdsoPurchasing.LoadPurchaseOrderItemAllocationWorkOrderInfos(pPOItemWOAllocationInfos, mWhere)
-
-    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In pPOItemWOAllocationInfos
-
-      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPOIAI.StockItemID)
-
-      If mStockItem IsNot Nothing Then
-
-
-        If mPOIAI.ExchangeRateValue > 0 Then
-          mPOIAI.StdCost = (mPOIAI.Quantity * mStockItem.AverageCost) / mPOIAI.ExchangeRateValue
-
-
-        End If
-
-      End If
-    Next
+    mdsoPurchasing.LoadPurchaseOrderItemAllocationWorkOrderInfos(mAllPOAllocationInfos, mWhere)
 
 
     ''Load other categories for the Purchase Orders
-    mWhere = String.Format("SalesOrderID = {0} and  POStatus not in ({1})", pSalesOrder.SalesOrderID, CInt(ePurchaseOrderDueDateStatus.Cancelled))
-    mWherePOCategories = ""
-    For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
-      Select Case mVI.ItemValue
-        Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
-        ePurchaseCategories.PatioYAserrio
+    'For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
+    '  Select Case mVI.ItemValue
+    '    'Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
+    '    'ePurchaseCategories.PatioYAserrio
 
-        Case Else
-          If mWherePOCategories <> "" Then mWherePOCategories &= ","
-          mWherePOCategories &= mVI.ItemValue
-      End Select
-    Next
+    '    'Case Else
+    '    '  If mWherePOCategories <> "" Then mWherePOCategories &= ","
+    '    '  mWherePOCategories &= mVI.ItemValue
+    '  End Select
+    'Next
 
-    mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
+    'mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
 
-    mWhere &= " and AccoutingCategoryID<>1" ''1-- this is honorarios in the AccoutingCategory table
+    'mWhere &= " and AccoutingCategoryID<>1" ''1-- this is honorarios in the AccoutingCategory table
 
 
-    mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(pOtherCategoriesPOItemAllocationInfos, mWhere)
+    mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(mAllPOAllocationInfos, mWhere)
 
-    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In pOtherCategoriesPOItemAllocationInfos
+    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In mAllPOAllocationInfos
 
       mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPOIAI.StockItemID)
 
@@ -116,43 +87,31 @@ Public Class fccSalesOrderReview
     Next
 
 
-    ''Load Honorarios Purchasings
+    For Each mPOIA In mAllPOAllocationInfos
 
-    mWhere = String.Format("SalesOrderID = {0} and  POStatus not in ({1})", pSalesOrder.SalesOrderID, CInt(ePurchaseOrderDueDateStatus.Cancelled))
-    mWherePOCategories = ""
-    For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
-      Select Case mVI.ItemValue
-        Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
-        ePurchaseCategories.PatioYAserrio
-
+      Select Case mPOIA.PurchaseOrder.AccoutingCategoryID
+        Case 1
+          pHonorariosPOIAllocationInfos.Add(mPOIA)
         Case Else
-          If mWherePOCategories <> "" Then mWherePOCategories &= ","
-          mWherePOCategories &= mVI.ItemValue
+          Select Case mPOIA.PurchaseOrder.Category
+
+
+            Case ePurchaseCategories.InsumosProduccion, ePurchaseCategories.ConsumibleProduccion
+
+              pPOItemWOAllocationInfos.Add(mPOIA)
+            Case Else
+              pOtherCategoriesPOItemAllocationInfos.Add(mPOIA)
+
+          End Select
       End Select
+
+
+
     Next
 
-    mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
 
-    mWhere &= " and AccoutingCategoryID=1" ''1-- this is honorarios in the AccoutingCategory table
+    'pPOItemWOAllocationInfos = mAllPOAllocationInfos
 
-
-    mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(pHonorariosPOIAllocationInfos, mWhere)
-
-    For Each mPOIAI As clsPurchaseOrderItemAllocationInfo In pHonorariosPOIAllocationInfos
-
-      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPOIAI.StockItemID)
-
-      If mStockItem IsNot Nothing Then
-
-
-        If mPOIAI.ExchangeRateValue > 0 Then
-          mPOIAI.StdCost = (mPOIAI.Quantity * mStockItem.AverageCost) / mPOIAI.ExchangeRateValue
-
-
-        End If
-
-      End If
-    Next
 
 
     ''Load SalesItems
@@ -190,7 +149,9 @@ Public Class fccSalesOrderReview
 
     ''Update SOPII value Cordobas to Dollar
 
+
     For Each mSOPII As clsSalesOrderPhaseItemInfo In pSalesOrderPhaseItemInfos
+
 
       If mSOPII.DateCommitted = Date.MinValue Then
         mSOPII.TempDateExchange = mSOPII.DateEntered
@@ -203,7 +164,16 @@ Public Class fccSalesOrderReview
         mSOPII.SOPIStockItemMatReqDollarValue = mSOPII.SOPItemMatReqCost / mSOPII.ExchangeRate
         mSOPII.SOPIPickDollarValue = mSOPII.SOPItemPickMatReqCost / mSOPII.ExchangeRate
 
+        mSOPII.SOPIItemOutsourcingCost = mAllPOAllocationInfos.GetTotalPurchaseOrderItemOutsourcingValueUSDBySOPItemID(mSOPII.SalesOrderPhaseItemID, mSOPII.ExchangeRate)
+
       End If
+
+      If mSOPII.Description = "ARTÍCULO GENERAL" Then
+        mSOPII.SOPIPickDollarValue = mAllPOAllocationInfos.GetTotalPurchaseOrderItemAmountUSDBySOPItemID(mSOPII.SalesOrderPhaseItemID)
+      End If
+
+
+
     Next
 
 
@@ -211,14 +181,22 @@ Public Class fccSalesOrderReview
 
     ''Load the WoodCost per SOPIinfo
     mdsoCostBook.LoadCostBookEntry(mCostBookEntrys, pSalesOrder.ProductCostBookID)
-    mdsoSalesOrder.LoadSalesOrderPhaseItemInfoWoodCosts(pSalesOrderPhaseItemInfos, mCostBookEntrys)
+    mdsoSalesOrder.LoadSalesOrderPhaseItemInfoWoodCosts(pSalesOrderPhaseItemInfos, mCostBookEntrys, CostingMethod)
 
     ''Update cost in Wood Consume
     For Each mWPII As clsWoodPalletItemInfo In WoodPalletItemInfosPicked
 
       If mCostBookEntrys.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID) IsNot Nothing Then
 
-        mWPII.UnitCost = mCostBookEntrys.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID).Cost
+
+        If CostingMethod Then
+
+          mWPII.UnitCost = mCostBookEntrys.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID).CostIncludeRecovery
+
+        Else
+          mWPII.UnitCost = mCostBookEntrys.ItemFromStockItemID(mWPII.WoodPalletItem.StockItemID).Cost
+
+        End If
 
       End If
 
@@ -226,6 +204,65 @@ Public Class fccSalesOrderReview
 
     Return mOK
   End Function
+
+  Public Function GetTotalWOCompleteValue() As Decimal
+    Dim mRetVal As Object
+    Dim mSql As String = ""
+    Dim mRetValDecimal As Decimal
+    Dim mExchangeRateToday As Decimal
+    Try
+
+
+
+      mExchangeRateToday = GetExchangeRate(Now, eCurrency.Cordobas)
+
+      pDBConn.Connect()
+      mSql = "Select TotalWOCompleteValue from vwTotalWOCompleteValue where SalesOrderID = " & pSalesOrder.SalesOrderID
+      mRetVal = pDBConn.ExecuteScalar(mSql)
+
+      If mRetVal IsNot Nothing Then
+        mRetValDecimal = mRetVal / mExchangeRateToday
+      Else
+        mRetValDecimal = 0
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetValDecimal
+  End Function
+
+  Public Function GetTotalWOInProcessValue() As Decimal
+    Dim mRetVal As Object
+    Dim mSql As String = ""
+    Dim mRetValDecimal As Decimal
+    Dim mExchangeRateToday As Decimal
+
+
+    Try
+
+      mExchangeRateToday = GetExchangeRate(Now, eCurrency.Cordobas)
+      pDBConn.Connect()
+
+      mSql = "Select TotalWOCompleteValue from vwTotalWOInProcessValue where SalesOrderID = " & pSalesOrder.SalesOrderID
+      mRetVal = pDBConn.ExecuteScalar(mSql)
+
+      If mRetVal IsNot Nothing Then
+        mRetValDecimal = mRetVal
+        mRetValDecimal = mRetVal / mExchangeRateToday
+
+      Else
+        mRetValDecimal = 0
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetValDecimal
+  End Function
+
 
   Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
     Dim mdsoGeneral As New dsoGeneral(DBConn)
@@ -320,6 +357,5 @@ Public Class fccSalesOrderReview
     End Set
   End Property
 
-
-
+  Public Property CostingMethod As Boolean
 End Class

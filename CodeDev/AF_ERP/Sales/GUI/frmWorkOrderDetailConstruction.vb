@@ -1272,21 +1272,40 @@ Public Class frmWorkOrderDetailConstruction
     Dim mStockItemMatReq As dmMaterialRequirement
 
     Try
-      mdso.LoadStockItemsByWhere(mStockItemsForPickers, "IsNull(Inactive,0) = 0")
-      mPicker = New clsPickerStockItem(mStockItemsForPickers, pFormController.DBConn, pFormController.RTISGlobal)
-      mSI = frmPickerStockItem.OpenPickerSingle(mPicker, False)
 
-      If mSI IsNot Nothing Then
-        gvStockItemMatReq.CloseEditor()
+      Select Case e.Button.Properties.Tag
+        Case "AddItem"
+          mdso.LoadStockItemsByWhere(mStockItemsForPickers, "IsNull(Inactive,0) = 0")
+          mPicker = New clsPickerStockItem(mStockItemsForPickers, pFormController.DBConn, pFormController.RTISGlobal)
+          mSI = frmPickerStockItem.OpenPickerSingle(mPicker, False)
 
-        mStockItemMatReq = pFormController.GetNewStockitemMatReq(mSI)
-        pFormController.WorkOrder.StockItemMaterialRequirements.Add(mStockItemMatReq)
+          If mSI IsNot Nothing Then
+            gvStockItemMatReq.CloseEditor()
 
-        gvStockItemMatReq.RefreshData()
-      End If
+            mStockItemMatReq = pFormController.GetNewStockitemMatReq(mSI)
+            pFormController.WorkOrder.StockItemMaterialRequirements.Add(mStockItemMatReq)
+
+            gvStockItemMatReq.RefreshData()
+          End If
+
+        Case "Export"
+          Dim mFileName As String = "Exportar Lista de Insumos de " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
+          If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+            gvStockItemMatReq.ExportToXlsx(mFileName)
+          End If
+      End Select
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 
     End Try
+  End Sub
+
+  Private Sub grpWOMatReqWood_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWOMatReqWood.CustomButtonClick
+    Dim mFileName As String = "Exportar Lista de Madera de " + pFormController.WorkOrder.WorkOrderNo & ".xlsx"
+    If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
+      gvWoodMatReq.ExportToXlsx(mFileName)
+    End If
   End Sub
 End Class

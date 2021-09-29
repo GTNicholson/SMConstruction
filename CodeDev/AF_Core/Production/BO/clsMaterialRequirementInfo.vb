@@ -19,6 +19,8 @@ Public Class clsMaterialRequirementInfo
   Private pSOIDescription As String
   Private pStockItemLocationsQty As Decimal
   Private pOrderedQty As Decimal
+  Private pReceivedQty As Decimal
+  Private pCurrentOrderQty As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -123,6 +125,24 @@ Public Class clsMaterialRequirementInfo
     End Get
     Set(value As Decimal)
       pOrderedQty = value
+    End Set
+  End Property
+
+  Public Property ReceivedQty As Decimal
+    Get
+      Return pReceivedQty
+    End Get
+    Set(value As Decimal)
+      pReceivedQty = value
+    End Set
+  End Property
+
+  Public Property CurrentOrderQty As Decimal
+    Get
+      Return pCurrentOrderQty
+    End Get
+    Set(value As Decimal)
+      pCurrentOrderQty = value
     End Set
   End Property
   Public Property WoodSpecie As Int32
@@ -366,13 +386,22 @@ Public Class clsMaterialRequirementInfo
 
   Public ReadOnly Property UoMDescUI As String
     Get
-      Return clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(UoM, eUoM))
+      Dim mRetVal As String = ""
+      Dim mStockItem As dmStockItem
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pMaterialRequirement.StockItemID)
+
+      If mStockItem IsNot Nothing Then
+        mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eUoM), CType(mStockItem.UoM, eUoM))
+      Else
+        mRetVal = ""
+      End If
+      Return mRetVal
     End Get
   End Property
 
   Public ReadOnly Property UoMDesc As String
     Get
-      Return pMaterialRequirement.UoMDesc
+      Return UoMDescUI 'pMaterialRequirement.UoMDesc
     End Get
   End Property
 

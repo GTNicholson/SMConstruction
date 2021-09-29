@@ -1244,4 +1244,17 @@ Public Class frmTabbedMDI_DevUtil
 
   End Sub
 
+  Private Sub bbtnUpdatePOManToNoMan_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnUpdatePOManToNoMan.LinkClicked
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+
+
+    frmUpdatePOManToPONonMan.OpenModal(mdbconn, "ToNonMan")
+  End Sub
+
+  Private Sub bbtnUpdatePONonManToMan_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles bbtnUpdatePONonManToMan.LinkClicked
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+
+
+    frmUpdatePOManToPONonMan.OpenModal(mdbconn, "ToMan")
+  End Sub
 End Class

@@ -863,8 +863,14 @@ Public Class frmManPurchaseOrderDetail
 
 
           For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
-            mStockItems.Add(mItem.Value)
+
+            If TryCast(mItem.Value, dmStockItem).Inactive = False Then
+              mStockItems.Add(mItem.Value)
+            End If
+
           Next
+
+
 
           mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, pFormController.RTISGlobal)
 
@@ -1489,7 +1495,7 @@ Public Class frmManPurchaseOrderDetail
 
       If mWorkOrderInfo IsNot Nothing Then
 
-
+        pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
         pFormController.WorkOrderInfos.Clear()
         pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 

@@ -235,4 +235,20 @@ Public Class fccStockItemInfos
     Return mOK
   End Function
 
+  Public Sub UpdateAverageCost(ByVal vStockItemID As Integer, ByVal vAverageCost As Decimal)
+
+    Try
+      Dim mWhere As String = ""
+      pDBConn.Connect()
+
+      mWhere = String.Format("Update StockItem set AverageCost = {0} where StockItemID = {1}", vAverageCost, vStockItemID)
+
+      pDBConn.ExecuteNonQuery(mWhere)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 End Class

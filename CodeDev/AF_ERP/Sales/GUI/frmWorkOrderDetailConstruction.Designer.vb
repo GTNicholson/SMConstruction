@@ -26,6 +26,8 @@ Partial Class frmWorkOrderDetailConstruction
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderDetailConstruction))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -112,7 +114,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.grpWOMatReqWood = New DevExpress.XtraEditors.GroupControl()
         Me.grdWoodMatReq = New DevExpress.XtraGrid.GridControl()
         Me.gvWoodMatReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcWoodUoM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -172,8 +174,8 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.gvStockItemMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoExEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
+        CType(Me.grpWOMatReqWood, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpWOMatReqWood.SuspendLayout()
         CType(Me.grdWoodMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWoodMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -916,7 +918,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Appearance.Header.Options.UseFont = True
         Me.XtraTabPage2.Appearance.Header.Options.UseForeColor = True
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirementInsumos)
-        Me.XtraTabPage2.Controls.Add(Me.GroupControl2)
+        Me.XtraTabPage2.Controls.Add(Me.grpWOMatReqWood)
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 272)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
@@ -930,7 +932,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpMaterialRequirementInsumos.AppearanceCaption.Options.UseFont = True
         Me.grpMaterialRequirementInsumos.AppearanceCaption.Options.UseForeColor = True
         Me.grpMaterialRequirementInsumos.Controls.Add(Me.grdStockItemMatReq)
-        Me.grpMaterialRequirementInsumos.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        Me.grpMaterialRequirementInsumos.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Artículo", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "AddItem", -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Export", -1)})
         Me.grpMaterialRequirementInsumos.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpMaterialRequirementInsumos.Location = New System.Drawing.Point(875, 0)
         Me.grpMaterialRequirementInsumos.Name = "grpMaterialRequirementInsumos"
@@ -1078,18 +1080,20 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
-        'GroupControl2
+        'grpWOMatReqWood
         '
-        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
-        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl2.Controls.Add(Me.grdWoodMatReq)
-        Me.GroupControl2.Location = New System.Drawing.Point(3, 0)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(868, 273)
-        Me.GroupControl2.TabIndex = 168
-        Me.GroupControl2.Text = "Madera"
+        Me.grpWOMatReqWood.AppearanceCaption.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.grpWOMatReqWood.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
+        Me.grpWOMatReqWood.AppearanceCaption.Options.UseFont = True
+        Me.grpWOMatReqWood.AppearanceCaption.Options.UseForeColor = True
+        Me.grpWOMatReqWood.Controls.Add(Me.grdWoodMatReq)
+        Me.grpWOMatReqWood.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar a Excel", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        Me.grpWOMatReqWood.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
+        Me.grpWOMatReqWood.Location = New System.Drawing.Point(3, 0)
+        Me.grpWOMatReqWood.Name = "grpWOMatReqWood"
+        Me.grpWOMatReqWood.Size = New System.Drawing.Size(868, 273)
+        Me.grpWOMatReqWood.TabIndex = 168
+        Me.grpWOMatReqWood.Text = "Madera"
         '
         'grdWoodMatReq
         '
@@ -1350,8 +1354,8 @@ Partial Class frmWorkOrderDetailConstruction
         CType(Me.gvStockItemMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoExEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.grpWOMatReqWood, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpWOMatReqWood.ResumeLayout(False)
         CType(Me.grdWoodMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvWoodMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1404,7 +1408,7 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents grpWOMatReqWood As DevExpress.XtraEditors.GroupControl
     Friend WithEvents grdWoodMatReq As DevExpress.XtraGrid.GridControl
     Friend WithEvents gvWoodMatReq As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents grpMaterialRequirementInsumos As DevExpress.XtraEditors.GroupControl

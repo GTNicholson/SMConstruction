@@ -341,6 +341,11 @@ Public Class fccPurchaseOrder
           Case ePODetailOption.NonManPO
             pPurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
 
+          Case ePODetailOption.General
+            pPurchaseOrder.MaterialRequirementTypeID = 0
+            pPurchaseOrder.MaterialRequirementTypeWorkOrderID = 0
+
+
         End Select
 
         pPurchaseOrder.Status = ePurchaseOrderDueDateStatus.Confirmed

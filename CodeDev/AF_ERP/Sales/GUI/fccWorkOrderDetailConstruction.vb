@@ -715,6 +715,8 @@ Public Class fccWorkOrderDetailConstruction
     Dim mCount As Integer = pWorkOrder.StockItemMaterialRequirements.Count
     Dim mListIndexCollection As New List(Of Tuple(Of Integer, Integer))
     Dim mRequiredQty As Decimal
+    Dim mPickedQty As Decimal
+    Dim mReturnQty As Decimal
     Dim mTuple As Tuple(Of Integer, Integer)
     Dim mMaterialRequirementID As Integer
     Dim mStockItemID As Integer
@@ -722,10 +724,12 @@ Public Class fccWorkOrderDetailConstruction
 
     While mIndex < mCount - 1
       mRequiredQty = pWorkOrder.StockItemMaterialRequirements(mIndex).Quantity
+      mPickedQty = pWorkOrder.StockItemMaterialRequirements(mIndex).PickedQty
+      mReturnQty = pWorkOrder.StockItemMaterialRequirements(mIndex).ReturnQty
       mMaterialRequirementID = pWorkOrder.StockItemMaterialRequirements(mIndex).MaterialRequirementID
       mStockItemID = pWorkOrder.StockItemMaterialRequirements(mIndex).StockItemID
 
-      If mRequiredQty = 0 Then
+      If mRequiredQty = 0 And mPickedQty = 0 And mReturnQty = 0 Then
         mTuple = New Tuple(Of Integer, Integer)(mMaterialRequirementID, mStockItemID)
         mListIndexCollection.Add(mTuple)
       End If

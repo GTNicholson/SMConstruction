@@ -83,7 +83,12 @@
 
   End Property
 
+  Public ReadOnly Property CostIncludeRecovery As Integer
+    Get
+      Return pCostBookEntry.CostIncludeRecovery
+    End Get
 
+  End Property
 
   Public Property CategoryID As Byte
     Get

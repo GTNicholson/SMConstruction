@@ -94,6 +94,9 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           pMaterialRequirment.SOIDescription = DBReadString(rDataReader, "SOIDescription")
           pMaterialRequirment.StockItemLocationsQty = DBReadDecimal(rDataReader, "StockItemLocationsQty")
           pMaterialRequirment.OrderedQty = DBReadDecimal(rDataReader, "OrderedQty")
+          pMaterialRequirment.ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
+          pMaterialRequirment.CurrentOrderQty = DBReadDecimal(rDataReader, "CurrentOrderQty")
+
 
           With pMaterialRequirment.MaterialRequirement
 

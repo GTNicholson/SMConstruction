@@ -24,7 +24,12 @@ Partial Class frmStockItemInfo
     Private Sub InitializeComponent()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockItemInfo))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
         Me.popupWoodPalletInfo = New DevExpress.XtraEditors.PopupContainerControl()
         Me.grdWoodPalletInfo = New DevExpress.XtraGrid.GridControl()
@@ -77,6 +82,7 @@ Partial Class frmStockItemInfo
         Me.repoPopupPOAllocationItems = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStdCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoUpdateCost = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.gcActualValueInventory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcThickness = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcWidth = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,6 +117,7 @@ Partial Class frmStockItemInfo
         CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoPopuMaterialRequirement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoPopupPOAllocationItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoUpdateCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoPopUpWoodPalletItemInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -552,7 +559,7 @@ Partial Class frmStockItemInfo
         Me.grdStockItemInfos.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemInfos.MainView = Me.gvStockItemInfos
         Me.grdStockItemInfos.Name = "grdStockItemInfos"
-        Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory, Me.repoPopupPOAllocationItems, Me.repoPopuMaterialRequirement, Me.repoPopUpWoodPalletItemInfo})
+        Me.grdStockItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtCurrentInventory, Me.repoPopupPOAllocationItems, Me.repoPopuMaterialRequirement, Me.repoPopUpWoodPalletItemInfo, Me.repoUpdateCost})
         Me.grdStockItemInfos.Size = New System.Drawing.Size(1358, 683)
         Me.grdStockItemInfos.TabIndex = 6
         Me.grdStockItemInfos.UseEmbeddedNavigator = True
@@ -743,14 +750,23 @@ Partial Class frmStockItemInfo
         'gcStdCost
         '
         Me.gcStdCost.Caption = "Costo Unitario"
+        Me.gcStdCost.ColumnEdit = Me.repoUpdateCost
         Me.gcStdCost.DisplayFormat.FormatString = "C$#,##0.00;;#"
         Me.gcStdCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcStdCost.FieldName = "AverageCost"
         Me.gcStdCost.Name = "gcStdCost"
         Me.gcStdCost.OptionsColumn.ReadOnly = True
+        Me.gcStdCost.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcStdCost.Visible = True
         Me.gcStdCost.VisibleIndex = 5
         Me.gcStdCost.Width = 84
+        '
+        'repoUpdateCost
+        '
+        Me.repoUpdateCost.AutoHeight = False
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.repoUpdateCost.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoUpdateCost.Name = "repoUpdateCost"
         '
         'gcActualValueInventory
         '
@@ -866,6 +882,7 @@ Partial Class frmStockItemInfo
         CType(Me.repitbtCurrentInventory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoPopuMaterialRequirement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoPopupPOAllocationItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoUpdateCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoPopUpWoodPalletItemInfo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -932,4 +949,5 @@ Partial Class frmStockItemInfo
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcActualWoodValueInventory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcCostWoodCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoUpdateCost As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

@@ -8,14 +8,27 @@ Public Class fccMaterialRequirements
   Private pStockItemRegister As colStockItems
   Private pSalesOrder As dmSalesOrder
   Private pMatRequirements As colMaterialRequirements
+  Private pOptionView As eMatReqOptionView
+  Public Property pConsoleOptionView As ePOConsoleOption
 
 
+  Public Enum eMatReqOptionView
+    Hide = 0
+    Show = 1
+  End Enum
   Public Enum eItemSelectedType
     NoneDirectDel = 1
     DirectDel = 2
     Mixed = 3
   End Enum
-
+  Public Property OptionView As eMatReqOptionView
+    Get
+      Return pOptionView
+    End Get
+    Set(value As eMatReqOptionView)
+      pOptionView = value
+    End Set
+  End Property
 
   Public Property DBConn As RTIS.DataLayer.clsDBConnBase
     Get
@@ -65,6 +78,7 @@ Public Class fccMaterialRequirements
     End Get
   End Property
 
+
   Public Sub LoadMatReqs()
     Dim mWhere As String = String.Empty
     Dim mdsoSalesOrder As New dsoSalesOrder(pDBConn)
@@ -98,6 +112,18 @@ Public Class fccMaterialRequirements
         mWhere &= "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & ""
         mWhere &= " and WorkOrderID in (Select WorkOrderID from WorkOrder where Status = " & CInt(eWorkOrderStatus.Raised) & ")"
 
+        Select Case pConsoleOptionView
+          Case ePOConsoleOption.Housing
+            mWhere &= String.Format(" and OrderTypeID in({0},{1}) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+
+          Case ePOConsoleOption.Furniture
+            mWhere &= String.Format(" and OrderTypeID in({0},{1}) ", CInt(eOrderType.Furnitures), CInt(eOrderType.InternalFurniture))
+
+
+        End Select
+
+
+
         mdsoSalesOrder.LoadPhaseMatReqProcessors(pMatReqItemProcessors, mWhere)
 
       End If
@@ -109,19 +135,7 @@ Public Class fccMaterialRequirements
         If mMatReqProc.StockItem.StockItemID <> 0 AndAlso mStockItemIDs.Contains(mMatReqProc.StockItem.StockItemID) = False AndAlso pStockItemRegister.ItemFromKey(mMatReqProc.StockItem.StockItemID) Is Nothing Then
           mStockItemIDs.Add(mMatReqProc.StockItem.StockItemID)
         End If
-        '// Load allocations
-        'mWhere = "StockItemID = " & mMatReqProc.StockItem.StockItemID & " and CallOffID = " & mMatReqProc.SalesOrderPhaseID & " and (POstatus <>" & CInt(ePurchaseOrderDueDateStatus.Cancelled) & " and POstatus <> " & CInt(ePurchaseOrderDueDateStatus.Received) & ")"
-        'mWhere &= " and BalanceQty<>0"
-        'If mMatReqProc.SalesOrderPhaseID > 0 Then
-        '  'mdsoPurchaseOrder.LoadPurchaseOrderItemAllocationInfos(mMatReqProc.POItemAllocationInfos, mWhere)
 
-
-        '  'mMatReqProc.PickedQty = mMatReqProc.PickedQty 'mdsoStock.GetPhaseMatReqPickedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-        '  'mMatReqProc.StockItemLocationsQty = mMatReqProc.INVE 'mdsoStock.GetCurrentInventory(mMatReqProc.StockItem.StockItemID) - mdsoStock.GetSumFromStockInventory(mMatReqProc.StockItem.StockItemID)
-        '  'mMatReqProc.QuantityRequired = mMatReqProc.Quantity 'mdsoStock.GetPhaseMatReqRequiredQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-        '  ' mMatReqProc.QtyOrdered = mdsoStock.GetPhaseMatReqOrderedQtyConnected(mMatReqProc.SalesOrderPhaseID, mMatReqProc.MaterialRequirement.StockItemID)
-
-        'End If
       Next
 
       If pDBConn.IsConnected Then
@@ -138,6 +152,18 @@ Public Class fccMaterialRequirements
           mRemove = True
         End If
 
+        If Not mRemove Then
+
+          Select Case pOptionView
+            Case eMatReqOptionView.Hide
+              If mMatReqProc.ReceivedQty > 0 And (mMatReqProc.CurrentOrderQty = mMatReqProc.ReceivedQty) Then
+                mRemove = True
+
+              End If
+          End Select
+
+
+        End If
 
         If mRemove = True Then
           pMatReqItemProcessors.RemoveAt(mIndex)

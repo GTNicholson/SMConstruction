@@ -249,6 +249,8 @@ Public Class fccPurchaseOrderConsole
     End Set
   End Property
 
+  Public Property OptionConsole As ePOConsoleOption
+
   Public Function LoadPurchaseOrderInfos() As colPurchaseOrderInfos
     Dim mPOInfos As New colPurchaseOrderInfos
     Dim mdsoPurchaseOrder As New dsoPurchasing(pDBConn)

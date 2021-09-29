@@ -87,10 +87,12 @@ Partial Class frmTabbedMDI_DevUtil
         Me.bbtnUpdatePONetValue = New DevExpress.XtraNavBar.NavBarItem()
         Me.bbtnUpdatePOIA = New DevExpress.XtraNavBar.NavBarItem()
         Me.btnUpdateWoodTransaction = New DevExpress.XtraNavBar.NavBarItem()
+        Me.btnUpdatePOItemSOPI = New DevExpress.XtraNavBar.NavBarItem()
+        Me.bbtnUpdatePOManToNoMan = New DevExpress.XtraNavBar.NavBarItem()
         Me.NavBarItem_Connection = New DevExpress.XtraNavBar.NavBarItem()
         Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
         Me.DefaultLookAndFeelMDI = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
-        Me.btnUpdatePOItemSOPI = New DevExpress.XtraNavBar.NavBarItem()
+        Me.bbtnUpdatePONonManToMan = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositorybarComboMDITabLocation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositorybarComboMDITabImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,7 +334,7 @@ Partial Class frmTabbedMDI_DevUtil
         Me.navbar.ContentButtonHint = Nothing
         Me.navbar.Dock = System.Windows.Forms.DockStyle.Left
         Me.navbar.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup_Utilities, Me.NavBarGroup2, Me.NavBarGroup3, Me.NavBarGroup1})
-        Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime, Me.navbaritAssignStockCodes, Me.btnGeneratePalletRefs, Me.btnGenerateWoodDesc, Me.btnSIWoodDesc, Me.btnGenerateStockTransaction, Me.nbiUpdateStockItemLocationMonetaryValue, Me.btnResetTransactionValuation, Me.nbiSalesOrderReview, Me.bbtnDeleteSI, Me.bbtnDecToFrac, Me.bbtnStringToDec, Me.bbtnImportWoodPalletFromTemplate, Me.bbtnUpdatePONetValue, Me.bbtnNewEmail, Me.bbtnUpdatePOIA, Me.btnUpdateWoodTransaction, Me.btnUpdatePOItemSOPI})
+        Me.navbar.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItem_Connection, Me.NavBarItem_ManReportDesigner, Me.NavBarItem_CodeGenerator, Me.navbarUpdateManifest, Me.navbarEmailTest, Me.navbaritemCodeGendmBase, Me.navbarDataTransferUtility, Me.navbarSerialComTest, Me.navbarSQLiteUtil, Me.navbarConnLockTest, Me.NavBarDataCompare, Me.navbaritLookUpConfig, Me.navbarPodioTest, Me.navbarPrinterTest, Me.navbaritBackDateOverTime, Me.navbaritAssignStockCodes, Me.btnGeneratePalletRefs, Me.btnGenerateWoodDesc, Me.btnSIWoodDesc, Me.btnGenerateStockTransaction, Me.nbiUpdateStockItemLocationMonetaryValue, Me.btnResetTransactionValuation, Me.nbiSalesOrderReview, Me.bbtnDeleteSI, Me.bbtnDecToFrac, Me.bbtnStringToDec, Me.bbtnImportWoodPalletFromTemplate, Me.bbtnUpdatePONetValue, Me.bbtnNewEmail, Me.bbtnUpdatePOIA, Me.btnUpdateWoodTransaction, Me.btnUpdatePOItemSOPI, Me.bbtnUpdatePOManToNoMan, Me.bbtnUpdatePONonManToMan})
         Me.navbar.Location = New System.Drawing.Point(0, 45)
         Me.navbar.Name = "navbar"
         Me.navbar.OptionsNavPane.ExpandedWidth = 231
@@ -425,7 +427,7 @@ Partial Class frmTabbedMDI_DevUtil
         '
         Me.NavBarGroup1.Caption = "Application Tests & Utilities"
         Me.NavBarGroup1.Expanded = True
-        Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritBackDateOverTime), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritAssignStockCodes), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGeneratePalletRefs), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGenerateWoodDesc), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnSIWoodDesc), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGenerateStockTransaction), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbiUpdateStockItemLocationMonetaryValue), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnResetTransactionValuation), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbiSalesOrderReview), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnDeleteSI), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnDecToFrac), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnStringToDec), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnImportWoodPalletFromTemplate), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnUpdatePONetValue), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnUpdatePOIA), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnUpdateWoodTransaction), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnUpdatePOItemSOPI)})
+        Me.NavBarGroup1.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPodioTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbarPrinterTest), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritBackDateOverTime), New DevExpress.XtraNavBar.NavBarItemLink(Me.navbaritAssignStockCodes), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGeneratePalletRefs), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGenerateWoodDesc), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnSIWoodDesc), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnGenerateStockTransaction), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbiUpdateStockItemLocationMonetaryValue), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnResetTransactionValuation), New DevExpress.XtraNavBar.NavBarItemLink(Me.nbiSalesOrderReview), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnDeleteSI), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnDecToFrac), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnStringToDec), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnImportWoodPalletFromTemplate), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnUpdatePONetValue), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnUpdatePOIA), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnUpdateWoodTransaction), New DevExpress.XtraNavBar.NavBarItemLink(Me.btnUpdatePOItemSOPI), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnUpdatePOManToNoMan), New DevExpress.XtraNavBar.NavBarItemLink(Me.bbtnUpdatePONonManToMan)})
         Me.NavBarGroup1.Name = "NavBarGroup1"
         '
         'navbarPodioTest
@@ -518,6 +520,16 @@ Partial Class frmTabbedMDI_DevUtil
         Me.btnUpdateWoodTransaction.Caption = "Update Wood Transaction Costs"
         Me.btnUpdateWoodTransaction.Name = "btnUpdateWoodTransaction"
         '
+        'btnUpdatePOItemSOPI
+        '
+        Me.btnUpdatePOItemSOPI.Caption = "Update PO Item SOPI"
+        Me.btnUpdatePOItemSOPI.Name = "btnUpdatePOItemSOPI"
+        '
+        'bbtnUpdatePOManToNoMan
+        '
+        Me.bbtnUpdatePOManToNoMan.Caption = "Convert PO Man To Non Man"
+        Me.bbtnUpdatePOManToNoMan.Name = "bbtnUpdatePOManToNoMan"
+        '
         'NavBarItem_Connection
         '
         Me.NavBarItem_Connection.Caption = "Connection Set-up"
@@ -536,10 +548,10 @@ Partial Class frmTabbedMDI_DevUtil
         '
         Me.DefaultLookAndFeelMDI.LookAndFeel.SkinName = "Lilian"
         '
-        'btnUpdatePOItemSOPI
+        'bbtnUpdatePONonManToMan
         '
-        Me.btnUpdatePOItemSOPI.Caption = "Update PO Item SOPI"
-        Me.btnUpdatePOItemSOPI.Name = "btnUpdatePOItemSOPI"
+        Me.bbtnUpdatePONonManToMan.Caption = "Convert PO Non Man to Man"
+        Me.bbtnUpdatePONonManToMan.Name = "bbtnUpdatePONonManToMan"
         '
         'frmTabbedMDI_DevUtil
         '
@@ -645,4 +657,6 @@ Partial Class frmTabbedMDI_DevUtil
     Friend WithEvents bbtnUpdatePOIA As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents btnUpdateWoodTransaction As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents btnUpdatePOItemSOPI As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents bbtnUpdatePOManToNoMan As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents bbtnUpdatePONonManToMan As DevExpress.XtraNavBar.NavBarItem
 End Class

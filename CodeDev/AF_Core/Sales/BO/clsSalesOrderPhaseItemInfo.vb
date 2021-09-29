@@ -260,6 +260,36 @@
     End Set
   End Property
 
+  Public ReadOnly Property StockItemStimatedCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      Dim mRate As Decimal
+
+      If (SOPIStockItemMatReqDollarValue + SpecifiedWoodCost) > 0 Then
+        mRate = SOPIStockItemMatReqDollarValue / (SOPIStockItemMatReqDollarValue + SpecifiedWoodCost)
+
+        mRate = Math.Round(mRate, 2, MidpointRounding.AwayFromZero)
+        mRetVal = mRate * MaterialCost
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property WoodStockItemStimatedCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      Dim mRate As Decimal
+
+      If (SOPIStockItemMatReqDollarValue + SpecifiedWoodCost) > 0 Then
+        mRate = SpecifiedWoodCost / (SOPIStockItemMatReqDollarValue + SpecifiedWoodCost)
+        mRate = Math.Round(mRate, 2, MidpointRounding.AwayFromZero)
+
+        mRetVal = mRate * MaterialCost
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
 
   Public Property StockItemCost As Decimal
     Get
@@ -417,6 +447,14 @@
     End Set
   End Property
 
+  Public ReadOnly Property SubContractCostMO As Decimal
+    Get
+      Dim mRetVal As Decimal
+      mRetVal = SubContractCost + ManpowerCost
+      Return mRetVal
+    End Get
+  End Property
+
   Public Property SubContractCost As Decimal
     Get
       Return pSubContractCost
@@ -441,6 +479,23 @@
     Set(value As Decimal)
       pSOPIItemOutsourcingCost = value
     End Set
+  End Property
+
+  Public ReadOnly Property LineValue As Decimal
+    Get
+      Dim mRetVal As Decimal
+      mRetVal = SOPIPickDollarValue + PickedWoodCost + SOPIItemOutsourcingCost
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property Profit As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = UnitPrice - LineValue
+      Return mRetVal
+    End Get
   End Property
 End Class
 
@@ -595,5 +650,81 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
     Return mRetVal
 
 
+  End Function
+
+  Public Function GetTotalOutsourcingRealValue() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIItemOutsourcingCost
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalSubconMOValue() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.SOPIItemOutsourcingCost
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalStockItemEstimatedValue() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.StockItemStimatedCost
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalWoodStockItemEstimatedValue() As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.WoodStockItemStimatedCost
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalStimatedValue() As Decimal
+
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        mRetVal += mItem.StockItemStimatedCost + mItem.WoodStockItemStimatedCost
+
+      End If
+    Next
+
+    Return mRetVal
   End Function
 End Class

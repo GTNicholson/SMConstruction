@@ -457,4 +457,40 @@ Public Class frmStockItemInfo
 
 
   End Sub
+
+  Private Sub repoUpdateCost_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoUpdateCost.ButtonClick
+    Try
+
+      Dim mRow As clsStockItemInfo
+      Dim mAverageCostString As String
+      Dim mAverageCost As Decimal
+      Dim mCurrentRowIndex As Integer
+
+      mRow = gvStockItemInfos.GetFocusedRow
+
+      If mRow IsNot Nothing Then
+        mCurrentRowIndex = gvStockItemInfos.FocusedRowHandle
+        mAverageCostString = InputBox("Ingrese el nuevo costo promedio")
+
+        If mAverageCostString <> "" Then
+
+          If IsNumeric(mAverageCostString) Then
+            mAverageCost = Decimal.Parse(mAverageCostString)
+            pFormController.UpdateAverageCost(mRow.StockItem.StockItemID, mAverageCost)
+            pFormController.LoadObjects()
+            grdStockItemInfos.DataSource = pFormController.StockItemInfos
+            gvStockItemInfos.RefreshData()
+
+          End If
+        End If
+
+        gvStockItemInfos.SelectRow(mCurrentRowIndex)
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
 End Class

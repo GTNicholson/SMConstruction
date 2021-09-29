@@ -4,6 +4,7 @@ Imports RTIS.Elements
 Imports DevExpress.XtraBars.Docking2010
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraEditors
 
 Public Class frmStockItem
 
@@ -262,6 +263,7 @@ Public Class frmStockItem
     pIsActive = False
 
     If pFormController.CurrentStockItem IsNot Nothing Then
+      rgbStockItemOptions.EditValue = CType(pFormController.ShowItemsMode, System.Int32)
 
 
 
@@ -394,6 +396,7 @@ Public Class frmStockItem
         .DefaultSupplier = clsDEControlLoading.GetDEComboValue(cboSupplier)
         .AuxCode = txtAuxCode.Text
         .CostUoM = clsDEControlLoading.GetDEComboValue(cboCostUoM)
+
         If Val(spnQuantity.EditValue) > 0 Then
           .CostQty = Val(txtAverageCost.Text) / Val(spnQuantity.EditValue)
         Else
@@ -994,5 +997,53 @@ Public Class frmStockItem
     gvStockItems.CloseEditor()
     frmGlobalStockItemChanges.OpenForm(pFormController.DBConn, pFormController.StockItems)
   End Sub
+
+  Private Sub repoStockItemOption_SelectedIndexChanged(sender As Object, e As EventArgs) Handles repoStockItemOption.SelectedIndexChanged
+    Dim mIndex As Integer
+    Dim mItem As RadioGroup = TryCast(sender, RadioGroup)
+    Dim mWhere As String = ""
+
+    If pIsActive Then
+      pFormController.ShowItemsMode = mItem.EditValue
+
+      Select Case repoStockItemOption.Items.Item(mItem.SelectedIndex).Tag
+        Case "All"
+          If pFormController.CurrentCategory = eStockItemCategory.None Then
+            pFormController.LoadMainCollectionByStockOptionFilter("")
+          Else
+            mWhere = "Category =" & pFormController.CurrentCategory
+            pFormController.LoadMainCollectionByStockOptionFilter(mWhere)
+          End If
+        Case "Active"
+          If pFormController.CurrentCategory = eStockItemCategory.None Then
+            mWhere = "IsNull(Inactive,0) = 0 "
+            pFormController.LoadMainCollectionByStockOptionFilter(mWhere)
+          Else
+            mWhere = "IsNull(Inactive,0) = 0  and Category =" & pFormController.CurrentCategory
+            pFormController.LoadMainCollectionByStockOptionFilter(mWhere)
+
+          End If
+
+        Case "Obsolete"
+
+          If pFormController.CurrentCategory = eStockItemCategory.None Then
+
+            mWhere = "IsNull(Inactive,0) = 1"
+            pFormController.LoadMainCollectionByStockOptionFilter(mWhere)
+
+          Else
+            mWhere = "IsNull(Inactive,0) = 1  and Category =" & pFormController.CurrentCategory
+            pFormController.LoadMainCollectionByStockOptionFilter(mWhere)
+
+          End If
+
+
+      End Select
+      grdStockItems.DataSource = pFormController.StockItems
+      grdStockItems.RefreshDataSource()
+    End If
+  End Sub
+
+
 End Class
 

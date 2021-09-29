@@ -64,10 +64,6 @@ Public Class fccPickMaterials
 
     Dim mdto As dtoWorkOrderInfo
     Dim mwhere As String = ""
-    'mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-    'mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
-    ''' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
-    'mwhere += " WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo)) and ProductTypeID<>" & eProductType.WoodWorkOrder
     mwhere += String.Format("Status in (0,{0},{1},{2})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised), CInt(eWorkOrderStatus.Complete))
     mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
     Try
@@ -118,7 +114,7 @@ Public Class fccPickMaterials
   Public Sub LoadMaterialRequirementProcessorss()
 
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and isnull(Quantity,0)<>0"
+    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
     pMaterialRequirementProcessors.Clear()
     Try
 

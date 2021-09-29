@@ -48,7 +48,6 @@
 
 
 
-  Public Property QtyReceived As Decimal
   Public Property FromStock As Decimal
   Public Property StockItemLocations As dmStockItemLocation
   Public Property ToOrder As Decimal

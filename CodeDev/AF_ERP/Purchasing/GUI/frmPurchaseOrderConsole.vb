@@ -19,12 +19,13 @@ Public Class frmPurchaseOrderConsole
 
 
 
-  Public Shared Sub OpenFormAsModal(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As clsRTISGlobal)
+  Public Shared Sub OpenFormAsModal(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As clsRTISGlobal, ByVal vOptionConsole As ePOConsoleOption)
     Dim mfrm As New frmPurchaseOrderConsole
     If sSingleInstance Is Nothing Then
       mfrm.FormController = New fccPurchaseOrderConsole
       mfrm.FormController.DBConn = rDBConn
       mfrm.FormController.RTISGlobal = rRTISGlobal
+      mfrm.FormController.OptionConsole = vOptionConsole
       mfrm.Owner = rParentForm
       sSingleInstance = mfrm
     End If
@@ -192,7 +193,14 @@ Public Class frmPurchaseOrderConsole
 
 
     'frmStockItemPurchasing.OpenAsMDI(Me, pFormController.DBConn, pFormController.RTISGlobal, True)
-    frmMaterialRequirement.OpenFormAsMDIChild(Me, pFormController.RTISGlobal, pFormController.DBConn, 0)
+    Select Case pFormController.OptionConsole
+      Case ePOConsoleOption.Housing
+        frmMaterialRequirement.OpenFormAsMDIChild(Me, pFormController.RTISGlobal, pFormController.DBConn, 0, ePOConsoleOption.Housing)
+
+      Case ePOConsoleOption.Furniture
+        frmMaterialRequirement.OpenFormAsMDIChild(Me, pFormController.RTISGlobal, pFormController.DBConn, 0, ePOConsoleOption.Furniture)
+
+    End Select
 
     XtraTabbedMdiManager1.Pages(0).ShowCloseButton = DevExpress.Utils.DefaultBoolean.False
     ''XtraTabbedMdiManager1.Pages(1).ShowCloseButton = DevExpress.Utils.DefaultBoolean.False
