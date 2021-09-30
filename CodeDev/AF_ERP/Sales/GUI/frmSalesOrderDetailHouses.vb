@@ -905,14 +905,25 @@ Public Class frmSalesOrderDetailHouses
                 MessageBox.Show("No es posible eliminar este artículo de venta por que ya existe una O.T. relacionado a este")
 
               Else
-                UpdateObjects()
-                Dim mSalesItemToDelete As dmSalesOrderItem
-                mSalesItemToDelete = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOI.SalesOrderItem.SalesOrderItemID)
-                pFormController.DeleteSalesOrderItem(mSalesItemToDelete)
 
-                RefreshControls()
-                pFormController.RefreshCurrentSalesItemEditors()
-                gvProductsRequired.RefreshData()
+                mOTCount = pFormController.GetPOAIInSalesItemCount(mSOI.SalesOrderItem.SalesOrderItemID)
+
+                If mOTCount > 0 Then
+                  MessageBox.Show("No es posible eliminar este artículo de venta por que ya existe una compra relacionada a este")
+
+                Else
+                  UpdateObjects()
+                  Dim mSalesItemToDelete As dmSalesOrderItem
+                  mSalesItemToDelete = pFormController.SalesOrder.SalesOrderItems.ItemFromKey(mSOI.SalesOrderItem.SalesOrderItemID)
+                  pFormController.RemoveSalesOrderPhaseItemDown(mSalesItemToDelete.SalesOrderItemID)
+                  pFormController.DeleteSalesOrderItem(mSalesItemToDelete)
+
+                  RefreshControls()
+                  pFormController.RefreshCurrentSalesItemEditors()
+                  gvProductsRequired.RefreshData()
+                End If
+
+
               End If
 
             End If

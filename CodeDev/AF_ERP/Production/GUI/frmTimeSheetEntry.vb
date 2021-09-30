@@ -52,7 +52,21 @@ Public Class frmTimeSheetEntry
   End Sub
 
   Private Sub LoadCombos()
-    clsDEControlLoading.FillDEComboVI(cboEmployee, pController.RTISGlobal.RefLists.RefListVI(appRefLists.Employees))
+    Dim mValueItems As New colValueItems
+    Dim mValueItem As clsValueItem
+
+    For Each mEmployee As dmEmployeeSM In AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Employees)
+      If mEmployee.MainRoleID = eEmployeeRole.Production Then
+        mValueItem = New clsValueItem
+        mValueItem.ItemValue = mEmployee.EmployeeID
+        mValueItem.DisplayValue = mEmployee.FullName
+        mValueItems.Add(mValueItem)
+
+      End If
+    Next
+
+
+    clsDEControlLoading.FillDEComboVI(cboEmployee, mValueItems)
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first

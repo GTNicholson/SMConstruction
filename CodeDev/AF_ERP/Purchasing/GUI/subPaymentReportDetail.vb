@@ -30,13 +30,14 @@ Public Class subPaymentReportDetail
 
   Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
     Dim mPOItemInfo As clsPOItemInfo
-    Dim m As New repPOIADetail
+    Dim mPOIADetailReport As New repPOIADetail
     mPOItemInfo = TryCast(GetCurrentRow(), clsPOItemInfo)
     If mPOItemInfo IsNot Nothing Then
-      m.PurchaseOrderItemAllocations = mPOItemInfo.PurchaseOrderItemAllocations
-      m.DataSource = mPOItemInfo.PurchaseOrderItemAllocations
+
+      mPOIADetailReport.PurchaseOrderItemAllocations = mPOItemInfo.PurchaseOrderItemAllocations
+      mPOIADetailReport.DataSource = mPOItemInfo.PurchaseOrderItemAllocations
       'm.DataAdapter = "PurchaseOrderItemAllocations"
-      XrSubreport1.ReportSource = m
+      XrSubreport1.ReportSource = mPOIADetailReport
     End If
   End Sub
 

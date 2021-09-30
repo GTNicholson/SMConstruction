@@ -15,6 +15,8 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   Private pItemRef2 As String
   Private pProjectRef As String
   Private pSalesorderPhaseItemID As Integer
+  Private pTempCustomerName As String
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -198,6 +200,15 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
     End Set
   End Property
 
+  Public Property TempCustomerName As String
+    Get
+      Return pTempCustomerName
+    End Get
+    Set(value As String)
+      pTempCustomerName = value
+    End Set
+  End Property
+
   Public ReadOnly Property DisplayReportUI As String
     Get
       Dim mRetVal As String = ""
@@ -208,10 +219,10 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
 
       ElseIf pWorkOrderID <> 0 And pSalesorderPhaseItemID = 0 Then
         ''WO PO
-        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3} ", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
+        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3}", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
 
       ElseIf pWorkOrderID = 0 And pSalesorderPhaseItemID <> 0 Then ''SOP Non Man PO
-        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3} ", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
+        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3}", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
 
 
       End If

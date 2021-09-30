@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraTab
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
@@ -242,6 +243,7 @@ Public Class frmPickerStockItem
             End Select
 
 
+
         End Select
 
 
@@ -344,7 +346,7 @@ Public Class frmPickerStockItem
           bbtnNewStockItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
       Else
-          If mVI.ItemValue = eStockItemCategory.Timber Then
+        If mVI.ItemValue = eStockItemCategory.Timber Then
           mTabPage = New DevExpress.XtraTab.XtraTabPage
           mTabPage.Text = mVI.DisplayValue
           mTabPage.Tag = mVI.ItemValue
@@ -406,5 +408,26 @@ Public Class frmPickerStockItem
     SetCurrentTab(e.Page.Tag)
   End Sub
 
+  Private Sub repoViewImage_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoViewImage.ButtonClick
+    Dim mFileName As String
+    Dim mImage As Image = Nothing
+    Dim mRow As dmStockItem
 
+    mRow = gvItemList.GetFocusedRow
+
+    If mRow IsNot Nothing Then
+
+      mFileName = clsSMSharedFuncs.GetStockItemImageFileName(mRow)
+
+
+      If IO.File.Exists(mFileName) Then
+        mImage = Image.FromStream(New IO.MemoryStream(IO.File.ReadAllBytes(mFileName)))
+        frmViewImage.ShowImage(mImage)
+        'Process.Start(mFileName)
+      Else
+        mImage = Nothing
+
+      End If
+    End If
+  End Sub
 End Class

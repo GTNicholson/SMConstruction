@@ -895,6 +895,12 @@
     <Compile Include="StockAdmin\GUI\frmStockTake.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StockAdmin\GUI\frmViewImage.Designer.vb">
+      <DependentUpon>frmViewImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmViewImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="StockAdmin\GUI\frmWoodPalletDetail.Designer.vb">
       <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>
     </Compile>
@@ -1242,6 +1248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmStockTake.resx">
       <DependentUpon>frmStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmViewImage.resx">
+      <DependentUpon>frmViewImage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmWoodPalletDetail.resx">
       <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>

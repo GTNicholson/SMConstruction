@@ -716,7 +716,7 @@ Public Class fccPurchaseOrder
 
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pWorkOrderInfo.WorkOrder.WorkOrderNo
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = pWorkOrderInfo.WorkOrder.Description
-            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pWorkOrderInfo.ProjectName
+            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pWorkOrderInfo.ProjectNameAndCustomer
 
           End If
 
@@ -727,7 +727,7 @@ Public Class fccPurchaseOrder
 
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pSalesOrderPhaseItemInfo.ItemNumberRef
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = pSalesOrderPhaseItemInfo.Description
-            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pSalesOrderPhaseItemInfo.ProjectName
+            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pSalesOrderPhaseItemInfo.ProjectName & "-" & pSalesOrderPhaseItemInfo.CompanyName
 
 
           Else

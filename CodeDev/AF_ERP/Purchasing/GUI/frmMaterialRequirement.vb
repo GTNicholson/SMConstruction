@@ -295,11 +295,13 @@ Public Class frmMaterialRequirement
 
 
   Private Sub gvMaterialRequirements_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvMaterialRequirements.CustomDrawCell
+    Dim mFocusedRow As clsMaterialRequirementProcessor
+    Dim mCurrentRow As clsMaterialRequirementProcessor
+
+
     If gvMaterialRequirements.IsDataRow(e.RowHandle) Then
 
       If (e.Column.Name <> gcFromStock.Name Or e.Column.Name <> gcMatReqToOrder.Name) Then
-        Dim mFocusedRow As clsMaterialRequirementProcessor
-        Dim mCurrentRow As clsMaterialRequirementProcessor
         mFocusedRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
         mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
         If mCurrentRow IsNot Nothing AndAlso mFocusedRow IsNot Nothing Then
@@ -336,7 +338,21 @@ Public Class frmMaterialRequirement
         e.Appearance.ForeColor = Color.Black
       End If
 
+      If (e.Column.Name = gcIsFromStockValidated.Name) Then
+        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
 
+        If mCurrentRow IsNot Nothing Then
+
+          If mCurrentRow.IsFromStockValidated Then
+
+            e.Appearance.BackColor = Color.LightGreen
+
+          Else
+            e.Appearance.BackColor = Color.LightYellow
+          End If
+        End If
+
+      End If
 
     End If
   End Sub
@@ -431,4 +447,28 @@ Public Class frmMaterialRequirement
   Private Sub bbtnPickOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnPickOrder.ItemClick
 
   End Sub
+
+  Private Sub repoChkIsFromStockValidated_CheckedChanged(sender As Object, e As EventArgs) Handles repoChkIsFromStockValidated.CheckedChanged
+    Dim mRow As clsMaterialRequirementProcessor
+    Dim mCheckedValue As Boolean
+
+    If pIsActive Then
+
+      If pFormController IsNot Nothing Then
+        gvMaterialRequirements.CloseEditor()
+
+        mRow = gvMaterialRequirements.GetFocusedRow
+
+        If mRow IsNot Nothing Then
+          mCheckedValue = repoChkIsFromStockValidated.ValueChecked
+          pFormController.UpdateMaterialRequirementValidatedFromStock(mCheckedValue, mRow.MaterialRequirementID)
+
+        End If
+
+      End If
+
+    End If
+  End Sub
+
+
 End Class

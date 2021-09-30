@@ -53,6 +53,14 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
+  Public Property IsFromStockValidated As Boolean
+    Get
+      Return pMaterialRequirement.IsFromStockValidated
+    End Get
+    Set(value As Boolean)
+      pMaterialRequirement.IsFromStockValidated = value
+    End Set
+  End Property
   Public Property MaterialRequirementID As Int32
     Get
       Return pMaterialRequirement.MaterialRequirementID

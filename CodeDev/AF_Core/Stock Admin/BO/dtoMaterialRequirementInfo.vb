@@ -114,6 +114,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .Description = DBReadString(rDataReader, "Description")
             .FromStockQty = DBReadDecimal(rDataReader, "FromStockQty")
             .SetReturndQty(DBReadDecimal(rDataReader, "ReturnQty"))
+            .IsFromStockValidated = DBReadBoolean(rDataReader, "IsFromStockValidated")
           End With
 
 

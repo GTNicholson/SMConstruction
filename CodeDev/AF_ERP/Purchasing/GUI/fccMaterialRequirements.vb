@@ -256,6 +256,22 @@ Public Class fccMaterialRequirements
     End Try
   End Sub
 
+  Public Sub UpdateMaterialRequirementValidatedFromStock(ByVal vCheckedValue As Boolean, ByVal vMaterialRequirementID As Integer)
 
+    Dim mWhere As String
 
+    Try
+
+      pDBConn.Connect()
+
+      mWhere = "Update MaterialRequirement set IsFromStockValidated=" & CInt(vCheckedValue) & " where MaterialRequirementID = " & vMaterialRequirementID
+
+      pDBConn.ExecuteNonQuery(mWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 End Class

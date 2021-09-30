@@ -128,8 +128,8 @@ Public Class uctEmployeeDetailsReplacement
         gvEmployeeRoles.RefreshData()
       End If
 
-      radEmployeeGrouop.EditValue = 0
-      radPaymentType.EditValue = 0
+      'radEmployeeGrouop.EditValue = 0
+      'radPaymentType.EditValue = 0
 
       cboSalesArea.SelectedIndex = -1
 

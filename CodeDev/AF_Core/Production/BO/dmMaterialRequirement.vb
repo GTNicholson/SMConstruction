@@ -33,6 +33,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pFromStockQty As Decimal
   Private pGeneratedQty As Decimal
   Private pReturnQty As Decimal
+  Private pIsFromStockValidated As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -93,6 +94,7 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .Comments = Comments
       .FromStockQty = FromStockQty
       .GeneratedQty = GeneratedQty
+      .IsFromStockValidated = IsFromStockValidated
       .SetReturndQty(ReturnQty)
 
       'Add entries here for each collection and class property
@@ -527,6 +529,16 @@ Public Class dmMaterialRequirement : Inherits dmBase
     Set(value As Decimal)
       If pReturnQty <> value Then IsDirty = True
       pReturnQty = value
+    End Set
+  End Property
+
+  Public Property IsFromStockValidated As Boolean
+    Get
+      Return pIsFromStockValidated
+    End Get
+    Set(value As Boolean)
+      If pIsFromStockValidated <> value Then IsDirty = True
+      pIsFromStockValidated = value
     End Set
   End Property
 End Class

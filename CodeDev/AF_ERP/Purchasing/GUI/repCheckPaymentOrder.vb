@@ -211,15 +211,5 @@ Public Class repCheckPaymentOrder
 
   End Sub
 
-  Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
 
-  End Sub
-
-  Private Sub XrSubreport1_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrSubreport1.BeforePrint
-
-  End Sub
-
-  Private Sub ReportHeader_AfterPrint(sender As Object, e As EventArgs) Handles ReportHeader.AfterPrint
-
-  End Sub
 End Class

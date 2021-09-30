@@ -953,4 +953,51 @@ Public Class fccSalesOrderDetailHouses
     End Try
     Return mRetVal
   End Function
+
+  Public Sub RemoveSalesOrderPhaseItemDown(ByVal vSalesOrderItemID As Integer)
+    Try
+      Dim mSOPItemID As Integer
+      pDBConn.Connect()
+
+      mSOPItemID = pDBConn.ExecuteScalar("Select Distinct SalesOrderPhaseItemID from SalesOrderPhaseItem where SalesItemID = " & vSalesOrderItemID)
+
+      pDBConn.ExecuteNonQuery("Delete from SalesOrderPhaseItem where SalesOrderPhaseItemID = " & mSOPItemID)
+      pDBConn.ExecuteNonQuery("Delete from WorkOrderAllocation where SalesOrderPhaseItemID = " & mSOPItemID)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    Finally
+      pDBConn.Disconnect()
+
+    End Try
+  End Sub
+
+  Public Function GetPOAIInSalesItemCount(ByVal vSalesOrderItemID As Integer) As Integer
+    Dim mWhere As String = ""
+    Dim mSalesOrderPhaseItem As dmSalesOrderPhaseItem
+    Dim mRetVal As Integer
+
+    Try
+
+      pDBConn.Connect()
+
+
+      mSalesOrderPhaseItem = SalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems.ItemFromSalesItemKey(vSalesOrderItemID)
+
+      If mSalesOrderPhaseItem IsNot Nothing Then
+        mWhere = "select count (PurchaseOrderItemAllocationID) from  "
+        mWhere &= " PurchaseOrderItemAllocation where SalesOrderPhaseItemID =" & mSalesOrderPhaseItem.SalesOrderPhaseItemID
+        mRetVal = pDBConn.ExecuteScalar(mWhere)
+
+      End If
+
+      pDBConn.Disconnect()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+    Return mRetVal
+  End Function
 End Class

@@ -1419,6 +1419,7 @@ Public Class frmGeneralPurchaseOrder
   Private Sub txtRetentionPercentage_EditValueChanged(sender As Object, e As EventArgs) Handles txtRetentionPercentage.TextChanged
 
     If pFormController IsNot Nothing Then
+      UpdateObject()
       If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
         pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
         'CheckSave(False)
