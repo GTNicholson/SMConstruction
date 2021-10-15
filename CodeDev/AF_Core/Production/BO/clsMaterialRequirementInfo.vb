@@ -22,6 +22,7 @@ Public Class clsMaterialRequirementInfo
   Private pReceivedQty As Decimal
   Private pCurrentOrderQty As Decimal
 
+
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
     pWorkOrder = New dmWorkOrder
@@ -189,7 +190,15 @@ Public Class clsMaterialRequirementInfo
   End Property
 
 
+  Public ReadOnly Property OrderedOutstandingQty As Decimal
+    Get
+      Dim mRetVal As Decimal
 
+      mRetVal = Quantity - CurrentOrderQty - FromStockQty
+
+      Return mRetVal
+    End Get
+  End Property
   Public Property CompanyName As String
     Get
       Return pCustomer.CompanyName
@@ -294,13 +303,16 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
-  Public ReadOnly Property StockCode As String
+  Public Property StockCode As String
     Get
       If StockItem IsNot Nothing Then
         Return pStockItem.StockCode
       End If
       Return ""
     End Get
+    Set(value As String)
+
+    End Set
   End Property
 
   Public ReadOnly Property TotalAmount As Decimal
@@ -541,7 +553,14 @@ Public Class clsMaterialRequirementInfo
     End Get
   End Property
 
-
+  Public Property PickedQtyMinusReturn As Decimal
+    Get
+      Return pMaterialRequirement.PickedQty - pMaterialRequirement.ReturnQty
+    End Get
+    Set(value As Decimal)
+      pMaterialRequirement.SetPickedQty(value)
+    End Set
+  End Property
 
   Public Property PickedQty As Decimal
     Get
@@ -554,7 +573,7 @@ Public Class clsMaterialRequirementInfo
 
   Public ReadOnly Property QtyOS As Decimal
     Get
-      Return pMaterialRequirement.Quantity - pMaterialRequirement.PickedQty
+      Return pMaterialRequirement.Quantity - pMaterialRequirement.PickedQty + pMaterialRequirement.ReturnQty
     End Get
   End Property
 

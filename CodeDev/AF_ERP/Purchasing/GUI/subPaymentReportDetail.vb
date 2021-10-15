@@ -3,12 +3,12 @@ Imports DevExpress.XtraReports.UI
 
 Public Class subPaymentReportDetail
   Public Property PurchaseOrderInfo As clsPurchaseOrderInfo
-  Public Property PurchaseOrderInfos As colPOItemInfos
+  Public Property PurchaseItemInfos As colPOItemInfos
 
   Private Sub subPaymentReportDetail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
 
 
-    DataSource = PurchaseOrderInfos
+    DataSource = PurchaseItemInfos
 
     xrtPOItemUI.DataBindings.Add("Text", Me.DataSource, "DisplayReportPOIDesc")
 
@@ -34,10 +34,11 @@ Public Class subPaymentReportDetail
     mPOItemInfo = TryCast(GetCurrentRow(), clsPOItemInfo)
     If mPOItemInfo IsNot Nothing Then
 
+
       mPOIADetailReport.PurchaseOrderItemAllocations = mPOItemInfo.PurchaseOrderItemAllocations
       mPOIADetailReport.DataSource = mPOItemInfo.PurchaseOrderItemAllocations
       'm.DataAdapter = "PurchaseOrderItemAllocations"
-      XrSubreport1.ReportSource = mPOIADetailReport
+      xrsubrepPOItemBreakdown.ReportSource = mPOIADetailReport
     End If
   End Sub
 
@@ -46,7 +47,7 @@ Public Class subPaymentReportDetail
 
   End Sub
 
-  Private Sub XrSubreport1_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrSubreport1.BeforePrint
+  Private Sub XrSubreport1_BeforePrint(sender As Object, e As PrintEventArgs) Handles xrsubrepPOItemBreakdown.BeforePrint
 
 
 

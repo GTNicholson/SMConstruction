@@ -69,11 +69,11 @@ Partial Class frmCostBook
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoCostUnit = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoCostBook, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -689,6 +689,16 @@ Partial Class frmCostBook
         Me.GridColumn26.VisibleIndex = 4
         Me.GridColumn26.Width = 49
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Costo Gerencia"
+        Me.GridColumn8.DisplayFormat.FormatString = "n2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 100
+        '
         'repoCostUnit
         '
         Me.repoCostUnit.AutoHeight = False
@@ -707,16 +717,6 @@ Partial Class frmCostBook
         'GridView3
         '
         Me.GridView3.Name = "GridView3"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Costo Gerencia"
-        Me.GridColumn8.DisplayFormat.FormatString = "n2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 100
         '
         'frmCostBook
         '

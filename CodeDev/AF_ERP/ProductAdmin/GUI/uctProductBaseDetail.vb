@@ -19,38 +19,38 @@ Public Class uctProductBaseDetail
 
   Public Event OnCheckChanged As EventHandler
 
-    Private Sub checkbox_CheckedChanged(sender As Object, e As EventArgs)
-        RaiseEvent OnCheckChanged(Me, e)
-    End Sub
+  Private Sub checkbox_CheckedChanged(sender As Object, e As EventArgs)
+    RaiseEvent OnCheckChanged(Me, e)
+  End Sub
 
 
-    Public Property WoodItemsSelected As Integer
-        Get
-            Return pWoodItemsSelected
-        End Get
-        Set(value As Integer)
-            pWoodItemsSelected = value
-        End Set
-    End Property
+  Public Property WoodItemsSelected As Integer
+    Get
+      Return pWoodItemsSelected
+    End Get
+    Set(value As Integer)
+      pWoodItemsSelected = value
+    End Set
+  End Property
 
-    Public Property ItemsSelected As Integer
-        Get
-            Return pItemsSelected
-        End Get
-        Set(value As Integer)
-            pItemsSelected = value
-        End Set
-    End Property
+  Public Property ItemsSelected As Integer
+    Get
+      Return pItemsSelected
+    End Get
+    Set(value As Integer)
+      pItemsSelected = value
+    End Set
+  End Property
 
-    Public Property TempInWoodStock As Integer
-        Get
-            Return pTempInWoodStock
-        End Get
-        Set(value As Integer)
-            pTempInWoodStock = value
-        End Set
-    End Property
-    Private Enum eMaterialRequirementsButtons
+  Public Property TempInWoodStock As Integer
+    Get
+      Return pTempInWoodStock
+    End Get
+    Set(value As Integer)
+      pTempInWoodStock = value
+    End Set
+  End Property
+  Private Enum eMaterialRequirementsButtons
     Copy = 1
     Paste = 2
     ExportList = 3
@@ -59,130 +59,130 @@ Public Class uctProductBaseDetail
     AddProvInv = 6
   End Enum
 
-    Public Sub ConfigureBrowseFilesControl(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
-        Dim mFileDirectory As String
+  Public Sub ConfigureBrowseFilesControl(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+    Dim mFileDirectory As String
 
-        ''//Setup file browse
-        If pFormController.CurrentProductInfo.Product IsNot Nothing Then
-            mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.cProductFiles, clsGeneralA.GetFileSafeName(pFormController.CurrentProductInfo.Product.ID.ToString("00000")))
+    ''//Setup file browse
+    If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+      mFileDirectory = IO.Path.Combine(pFormController.RTISGlobal.DefaultExportPath, clsConstants.cProductFiles, clsGeneralA.GetFileSafeName(pFormController.CurrentProductInfo.Product.ID.ToString("00000")))
 
-            UctFileControl1.UserController = New uccFileControl(Me)
-            UctFileControl1.UserController.Directory = mFileDirectory
-            UctFileControl1.UserController.FileTrackers = pFormController.CurrentProductInfo.Product.POFiles
-            UctFileControl1.UserController.ConfigSystemWatcher()
+      UctFileControl1.UserController = New uccFileControl(Me)
+      UctFileControl1.UserController.Directory = mFileDirectory
+      UctFileControl1.UserController.FileTrackers = pFormController.CurrentProductInfo.Product.POFiles
+      UctFileControl1.UserController.ConfigSystemWatcher()
 
+    End If
+  End Sub
+  Public Sub ConfigureControl(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+
+    pFormController = New uccProductBaseDetail
+    pFormController.DBConn = rDBConn
+    pFormController.RTISGlobal = rRTISGlobal
+
+
+
+  End Sub
+
+  Public Property FormController As uccProductBaseDetail
+    Get
+      Return pFormController
+    End Get
+    Set(value As uccProductBaseDetail)
+      pFormController = value
+    End Set
+  End Property
+
+  Public Sub LoadCombos()
+    Dim mVIs As colValueItems
+    Dim mSuppliers As colSuppliers
+
+    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType)
+
+    clsDEControlLoading.FillDEComboVI(cboProductItemType, mVIs)
+    mSuppliers = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Supplier)
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcMaterialTypeID, mVIs)
+
+
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Quality)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcQuality, mVIs)
+
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcStockItemUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
+
+
+
+    mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodTypeValue)
+    RTIS.Elements.clsDEControlLoading.LoadRepItemLookUpEditiVI(repoWoodItemTypeLK, mVIs)
+  End Sub
+
+  Public Sub RefreshControls()
+    Dim mProductStructure As dmProductStructure
+
+    If pFormController.CurrentProductInfo IsNot Nothing Then
+      If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+        With pFormController.CurrentProductInfo.Product
+          txtDescription.Text = .Description
+          txtStockCode.Text = .Code
+          lblStockItemID.Text = "ID: " & .ID
+          cheStatus.EditValue = .Status
+          clsDEControlLoading.SetDECombo(cboProductItemType, .ItemType)
+
+          mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
+          If mProductStructure IsNot Nothing Then
+            grdStockItemsMaterialRequirement.DataSource = mProductStructure.ProductStockItemBOMs
+            grdWoodMaterialRequirements.DataSource = mProductStructure.ProductWoodBOMs
+          End If
+        End With
+        If UctFileControl1.UserController Is Nothing Then
+          UctFileControl1.UserController = New uccFileControl()
         End If
-    End Sub
-    Public Sub ConfigureControl(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
-
-        pFormController = New uccProductBaseDetail
-        pFormController.DBConn = rDBConn
-        pFormController.RTISGlobal = rRTISGlobal
+        UctFileControl1.UserController.FileTrackers = mProductStructure.POFiles
+        UctFileControl1.LoadControls()
+        UctFileControl1.RefreshControls()
+      End If
 
 
+    End If
+  End Sub
 
-    End Sub
+  Public Sub UpdateObject()
 
-    Public Property FormController As uccProductBaseDetail
-        Get
-            Return pFormController
-        End Get
-        Set(value As uccProductBaseDetail)
-            pFormController = value
-        End Set
-    End Property
+    If pFormController.CurrentProductInfo IsNot Nothing Then
+      If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+        With pFormController.CurrentProductInfo.Product
+          .Description = txtDescription.Text
+          .Code = txtStockCode.Text
+          .ItemType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
+          .Status = cheStatus.EditValue
 
-    Public Sub LoadCombos()
-        Dim mVIs As colValueItems
-        Dim mSuppliers As colSuppliers
+          gvWoodMaterialRequirements.CloseEditor()
+          gvStockItemMaterialRequirements.CloseEditor()
+          UctFileControl1.UpdateObject()
+        End With
+      End If
 
-        mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.ProductConstructionType)
-
-        clsDEControlLoading.FillDEComboVI(cboProductItemType, mVIs)
-        mSuppliers = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Supplier)
-
-        mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
-        clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcMaterialTypeID, mVIs)
+    End If
 
 
 
-        mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Quality)
-        clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMaterialRequirements, gcQuality, mVIs)
-
-        clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcStockItemUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
-
-
-
-        mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodTypeValue)
-        RTIS.Elements.clsDEControlLoading.LoadRepItemLookUpEditiVI(repoWoodItemTypeLK, mVIs)
-    End Sub
-
-    Public Sub RefreshControls()
-        Dim mProductStructure As dmProductStructure
-
-        If pFormController.CurrentProductInfo IsNot Nothing Then
-            If pFormController.CurrentProductInfo.Product IsNot Nothing Then
-                With pFormController.CurrentProductInfo.Product
-                    txtDescription.Text = .Description
-                    txtStockCode.Text = .Code
-                    lblStockItemID.Text = "ID: " & .ID
-                    cheStatus.EditValue = .Status
-                    clsDEControlLoading.SetDECombo(cboProductItemType, .ItemType)
-
-                    mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
-                    If mProductStructure IsNot Nothing Then
-                        grdStockItemsMaterialRequirement.DataSource = mProductStructure.ProductStockItemBOMs
-                        grdWoodMaterialRequirements.DataSource = mProductStructure.ProductWoodBOMs
-                    End If
-                End With
-                If UctFileControl1.UserController Is Nothing Then
-                    UctFileControl1.UserController = New uccFileControl()
-                End If
-                UctFileControl1.UserController.FileTrackers = mProductStructure.POFiles
-                UctFileControl1.LoadControls()
-                UctFileControl1.RefreshControls()
-            End If
-
-
-        End If
-    End Sub
-
-    Public Sub UpdateObject()
-
-        If pFormController.CurrentProductInfo IsNot Nothing Then
-            If pFormController.CurrentProductInfo.Product IsNot Nothing Then
-                With pFormController.CurrentProductInfo.Product
-                    .Description = txtDescription.Text
-                    .Code = txtStockCode.Text
-                    .ItemType = clsDEControlLoading.GetDEComboValue(cboProductItemType)
-                    .Status = cheStatus.EditValue
-
-                    gvWoodMaterialRequirements.CloseEditor()
-                    gvStockItemMaterialRequirements.CloseEditor()
-                    UctFileControl1.UpdateObject()
-                End With
-            End If
-
-        End If
-
-
-
-    End Sub
+  End Sub
 
 
 
 
-    Public Function GetCurrentEmodeProductType() As eProductType
-        Return CType(clsDEControlLoading.GetDEComboValue(cboProductItemType), eProductType)
-    End Function
+  Public Function GetCurrentEmodeProductType() As eProductType
+    Return CType(clsDEControlLoading.GetDEComboValue(cboProductItemType), eProductType)
+  End Function
 
 
 
   Private Sub gvStockItemMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItemMaterialRequirements.CustomUnboundColumnData
-    Dim mMatReq As dmMaterialRequirement
+    Dim mMatReq As dmProductBOM
     Dim mSI As dmStockItem
 
-    mMatReq = CType(e.Row, dmMaterialRequirement)
+    mMatReq = CType(e.Row, dmProductBOM)
 
     If mMatReq.StockItemID = 0 Then
 
@@ -251,112 +251,113 @@ Public Class uctProductBaseDetail
   End Sub
 
   Private Sub gvMaterialRequirements_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles gvWoodMaterialRequirements.InitNewRow
-    Dim mMatReq As dmMaterialRequirement
+    Dim mMatReq As dmProductBOM
     mMatReq = gvWoodMaterialRequirements.GetRow(e.RowHandle)
     mMatReq.PiecesPerComponent = 1
   End Sub
   Public Sub FocusDescription()
-        txtDescription.Focus()
-    End Sub
+    txtDescription.Focus()
+  End Sub
 
 
 
 
 
-    Public Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
+  Public Sub SetDetailsControlsReadonly(ByVal vReadOnly As Boolean)
 
-        txtDescription.ReadOnly = vReadOnly
-        cboProductItemType.ReadOnly = vReadOnly
-        txtStockCode.ReadOnly = vReadOnly
-        btnGenerateCode.Enabled = Not vReadOnly
-        cheStatus.ReadOnly = vReadOnly
-        gvWoodMaterialRequirements.OptionsBehavior.ReadOnly = vReadOnly
-        gvStockItemMaterialRequirements.OptionsBehavior.ReadOnly = vReadOnly
-
-
-        grpStockItemMaterialRequirement.CustomHeaderButtons.Item(0).Properties.Visible = Not vReadOnly
-        grpWoodMaterialRequirements.CustomHeaderButtons.Item(0).Properties.Visible = Not vReadOnly
-
-        UctFileControl1.Enabled = Not vReadOnly
+    txtDescription.ReadOnly = vReadOnly
+    cboProductItemType.ReadOnly = vReadOnly
+    txtStockCode.ReadOnly = vReadOnly
+    btnGenerateCode.Enabled = Not vReadOnly
+    cheStatus.ReadOnly = vReadOnly
+    gvWoodMaterialRequirements.OptionsBehavior.ReadOnly = vReadOnly
+    gvStockItemMaterialRequirements.OptionsBehavior.ReadOnly = vReadOnly
 
 
-
-    End Sub
-
-
-    Public Function CreateDrawingPDF(ByVal vFileName As String) As Boolean
-        Dim mFilePath As String
-        Dim mFileName As String
-        Dim mExportDirectory As String = String.Empty
-        Dim mRetVal As Boolean = False
-
-        Try
-            If IO.File.Exists(vFileName) Then
-                mFileName = "DRAWING_" & pFormController.CurrentProductInfo.Product.ID
-
-                mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.ProductFileFolderSys, clsGeneralA.GetFileSafeName(pFormController.CurrentProductInfo.Product.ID.ToString("00000")))
-
-                mFileName &= IO.Path.GetExtension(vFileName)
-                mFileName = clsGeneralA.GetFileSafeName(mFileName)
-
-                mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
-                If IO.Directory.Exists(mExportDirectory) = False Then
-                    IO.Directory.CreateDirectory(mExportDirectory)
-
-                End If
-
-                mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
-
-                IO.File.Copy(vFileName, mFilePath, True)
-                pFormController.CurrentProductInfo.Product.DrawingFileName = mFilePath
-
-                If pFormController.CurrentProductInfo.Product.DrawingFileName <> "" Then
-                    mRetVal = True
-
-                Else
-
-                    pFormController.CurrentProductInfo.Product.DrawingFileName = ""
-                    mRetVal = False
-                End If
-            End If
-
-        Catch ex As Exception
+    grpStockItemMaterialRequirement.CustomHeaderButtons.Item(0).Properties.Visible = Not vReadOnly
+    grpWoodMaterialRequirements.CustomHeaderButtons.Item(0).Properties.Visible = Not vReadOnly
+    grpStockItemMaterialRequirement.CustomHeaderButtons.Item(1).Properties.Visible = Not vReadOnly
+    grpWoodMaterialRequirements.CustomHeaderButtons.Item(1).Properties.Visible = Not vReadOnly
+    UctFileControl1.Enabled = Not vReadOnly
 
 
-            If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
-        End Try
 
-        Return mRetVal
-    End Function
-
-    Private Sub btnGenerateCode_Click(sender As Object, e As EventArgs) Handles btnGenerateCode.Click
-        UpdateObject()
-
-        pFormController.CheckCreateStockCodeSave()
-        RefreshControls()
-
-    End Sub
+  End Sub
 
 
-    Public Function GetProductInfos() As colProductBaseInfos
-        Dim mRetVal As New colProductBaseInfos
-        Dim mdso As New dsoProductAdmin(pFormController.DBConn)
-        mdso.LoadProductInfosStructureOnly(mRetVal)
-        Return mRetVal
-    End Function
+  Public Function CreateDrawingPDF(ByVal vFileName As String) As Boolean
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    Dim mRetVal As Boolean = False
 
-    Public Sub SetCurrentProductBaseInfo(ByRef rCurrentProductBaseInfo As clsProductBaseInfo)
-        pFormController.CurrentProductInfo = rCurrentProductBaseInfo
+    Try
+      If IO.File.Exists(vFileName) Then
+        mFileName = "DRAWING_" & pFormController.CurrentProductInfo.Product.ID
 
-        If UctFileControl1.UserController IsNot Nothing Then
-            If rCurrentProductBaseInfo.Product IsNot Nothing Then
-                UctFileControl1.UserController.FileTrackers = rCurrentProductBaseInfo.Product.POFiles
-                UctFileControl1.RefreshControls()
+        mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.ProductFileFolderSys, clsGeneralA.GetFileSafeName(pFormController.CurrentProductInfo.Product.ID.ToString("00000")))
 
-            End If
+        mFileName &= IO.Path.GetExtension(vFileName)
+        mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+        mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+        If IO.Directory.Exists(mExportDirectory) = False Then
+          IO.Directory.CreateDirectory(mExportDirectory)
 
         End If
-    End Sub
+
+        mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+
+        IO.File.Copy(vFileName, mFilePath, True)
+        pFormController.CurrentProductInfo.Product.DrawingFileName = mFilePath
+
+        If pFormController.CurrentProductInfo.Product.DrawingFileName <> "" Then
+          mRetVal = True
+
+        Else
+
+          pFormController.CurrentProductInfo.Product.DrawingFileName = ""
+          mRetVal = False
+        End If
+      End If
+
+    Catch ex As Exception
+
+
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Private Sub btnGenerateCode_Click(sender As Object, e As EventArgs) Handles btnGenerateCode.Click
+    UpdateObject()
+
+    pFormController.CheckCreateStockCodeSave()
+    RefreshControls()
+
+  End Sub
+
+
+  Public Function GetProductInfos() As colProductBaseInfos
+    Dim mRetVal As New colProductBaseInfos
+    Dim mdso As New dsoProductAdmin(pFormController.DBConn)
+    mdso.LoadProductInfosStructureOnly(mRetVal)
+    Return mRetVal
+  End Function
+
+  Public Sub SetCurrentProductBaseInfo(ByRef rCurrentProductBaseInfo As clsProductBaseInfo)
+    pFormController.CurrentProductInfo = rCurrentProductBaseInfo
+
+    If UctFileControl1.UserController IsNot Nothing Then
+      If rCurrentProductBaseInfo.Product IsNot Nothing Then
+        UctFileControl1.UserController.FileTrackers = rCurrentProductBaseInfo.Product.POFiles
+        UctFileControl1.RefreshControls()
+
+      End If
+
+    End If
+  End Sub
 
   Private Sub grpWoodMaterialRequirements_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpWoodMaterialRequirements.CustomButtonClick
     Dim mProductStructure As dmProductStructure
@@ -379,8 +380,8 @@ Public Class uctProductBaseDetail
           For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
 
             If mItem.Value.StockItemType = eStockItemTypeTimberWood.Aserrado Or mItem.Value.StockItemType = eStockItemTypeTimberWood.MAS Or
-              mItem.Value.StockItemType = eStockItemTypeTimberWood.Primera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.Segunda Or
-              mItem.Value.StockItemType = eStockItemTypeTimberWood.Tercera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.ClasificadoZ Then
+                mItem.Value.StockItemType = eStockItemTypeTimberWood.Primera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.Segunda Or
+                mItem.Value.StockItemType = eStockItemTypeTimberWood.Tercera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.ClasificadoZ Then
               mStockItems.Add(mItem.Value)
 
             End If
@@ -463,8 +464,8 @@ Public Class uctProductBaseDetail
         For Each mItem As KeyValuePair(Of Integer, RTIS.ERPStock.intStockItemDef) In pFormController.RTISGlobal.StockItemRegistry.StockItemsDict
 
           If mItem.Value.StockItemType = eStockItemTypeTimberWood.Aserrado Or mItem.Value.StockItemType = eStockItemTypeTimberWood.MAS Or
-              mItem.Value.StockItemType = eStockItemTypeTimberWood.Primera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.Segunda Or
-              mItem.Value.StockItemType = eStockItemTypeTimberWood.Tercera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.ClasificadoZ Then
+                mItem.Value.StockItemType = eStockItemTypeTimberWood.Primera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.Segunda Or
+                mItem.Value.StockItemType = eStockItemTypeTimberWood.Tercera Or mItem.Value.StockItemType = eStockItemTypeTimberWood.ClasificadoZ Then
             mStockItemsForPickers.Add(mItem.Value)
 
           End If
@@ -566,16 +567,16 @@ Public Class uctProductBaseDetail
 
       If mProductBOM IsNot Nothing Then
         Select Case e.Column.Name
-          'Case gcThicknessInch.Name
-          '  If e.IsGetData Then
-          '    mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mProductBOM.StockItemID)
+            'Case gcThicknessInch.Name
+            '  If e.IsGetData Then
+            '    mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mProductBOM.StockItemID)
 
-          '    If mStockItem IsNot Nothing Then
-          '      e.Value = mStockItem.Thickness
+            '    If mStockItem IsNot Nothing Then
+            '      e.Value = mStockItem.Thickness
 
-          '    End If
+            '    End If
 
-          '  End If
+            '  End If
 
           Case gcQtyBoardFeet.Name
             Dim mValue As Decimal
@@ -701,35 +702,35 @@ Public Class uctProductBaseDetail
   End Sub
 
   Private Sub repoChkSelectedSI_CheckedChanged(sender As Object, e As EventArgs) Handles repoChkSelectedSI.CheckedChanged
-        Dim mProductStructure As dmProductStructure
+    Dim mProductStructure As dmProductStructure
 
-        gvStockItemMaterialRequirements.CloseEditor()
-        ItemsSelected = 0
-        If pFormController IsNot Nothing Then
+    gvStockItemMaterialRequirements.CloseEditor()
+    ItemsSelected = 0
+    If pFormController IsNot Nothing Then
 
-            If pFormController.CurrentProductInfo IsNot Nothing Then
+      If pFormController.CurrentProductInfo IsNot Nothing Then
 
-                If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+        If pFormController.CurrentProductInfo.Product IsNot Nothing Then
 
-                    mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
+          mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
 
-                    If mProductStructure IsNot Nothing Then
-                        For Each mPWBOM As dmProductBOM In gvStockItemMaterialRequirements.DataSource
+          If mProductStructure IsNot Nothing Then
+            For Each mPWBOM As dmProductBOM In gvStockItemMaterialRequirements.DataSource
 
-                            If mPWBOM.TmpSelectedItem Then
-                                ItemsSelected += 1
-                            End If
+              If mPWBOM.TmpSelectedItem Then
+                ItemsSelected += 1
+              End If
 
-                        Next
+            Next
 
-                    End If
-
-                End If
-
-            End If
+          End If
 
         End If
-    End Sub
+
+      End If
+
+    End If
+  End Sub
 
 
 
@@ -858,5 +859,12 @@ Public Class uctProductBaseDetail
     End If
   End Sub
 
+  Private Sub cboProductItemType_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cboProductItemType.KeyPress
 
+
+    If e.KeyChar = Convert.ToChar(Keys.Back) Then
+      clsDEControlLoading.SetDECombo(cboProductItemType, 0)
+
+    End If
+  End Sub
 End Class

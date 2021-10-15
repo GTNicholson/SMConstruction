@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
@@ -238,6 +239,7 @@ Public Class frmMaterialRequirement
     Try
       UpdateObject()
       mCount = pFormController.ProcessFromStock()
+      ReloadRequirements()
       gvMaterialRequirements.RefreshData()
       MsgBox(mCount & " Artículos de cantidad de inventario actualizados.")
     Catch ex As Exception
@@ -283,7 +285,7 @@ Public Class frmMaterialRequirement
     mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
 
     If mRow IsNot Nothing Then
-      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1} and (Quantity-ReceivedQty)>0", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
+      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1}", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
 
       mdso.LoadPurchaseOrderItemAllocationInfos(mRow.POItemAllocationInfos, mwhere)
 
@@ -420,6 +422,44 @@ Public Class frmMaterialRequirement
     End If
   End Sub
 
+  Private Sub repoItemPopupImage_Popup(sender As Object, e As EventArgs) Handles repoItemPopupImage.Popup
+    Dim mRow As clsMaterialRequirementProcessor
+    Dim mFileName As String
+    Dim mSelectedStockItem As dmStockItem
+    Dim mImage As Image = Nothing
+
+    mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
+
+    If mRow IsNot Nothing Then
+      If mRow.StockItem.StockItemID > 0 Then
+
+        mSelectedStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mRow.StockItem.StockItemID)
+
+        If mSelectedStockItem IsNot Nothing Then
+          If Not String.IsNullOrEmpty(mSelectedStockItem.ImageFile) Then
+
+            mFileName = clsSMSharedFuncs.GetStockItemImageFileName(mSelectedStockItem)
+            If IO.File.Exists(mFileName) Then
+              mImage = Image.FromStream(New IO.MemoryStream(IO.File.ReadAllBytes(mFileName)))
+              ''  mImage = Drawing.Image.FromFile(mFileName)
+
+            Else
+              mImage = Nothing
+
+            End If
+
+          End If
+        End If
+
+      End If
+      peImage.Image = mImage
+    Else
+
+
+    End If
+  End Sub
+
+
   Private Sub repoMatReqOptionView_EditValueChanged(sender As Object, e As EventArgs) Handles repoMatReqOptionView.EditValueChanged
 
 
@@ -470,5 +510,64 @@ Public Class frmMaterialRequirement
     End If
   End Sub
 
+  Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirements.CustomUnboundColumnData
+    Dim mRow As clsMaterialRequirementProcessor
+    Try
 
+      mRow = e.Row
+      Select Case e.Column.Name
+        Case gcStockItemLocationsQty.Name
+
+          If mRow IsNot Nothing Then
+            If e.IsGetData Then
+
+              e.Value = mRow.StockItemLocationsQty - pFormController.MatReqItemProcessors.GetFromStockQty(mRow.MaterialRequirement.StockItemID)
+
+            End If
+          End If
+
+        Case gcTotalFromStock.Name
+
+          If mRow IsNot Nothing Then
+            If e.IsGetData Then
+
+              e.Value = pFormController.MatReqItemProcessors.GetFromStockQty(mRow.MaterialRequirement.StockItemID)
+
+            End If
+          End If
+      End Select
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+
+  End Sub
+
+  Private Sub repoOpenPO_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoOpenPO.ButtonClick
+    Dim mRow As clsPurchaseOrderItemAllocationInfo
+
+    Try
+      mRow = TryCast(gvOnOrderOSQty.GetFocusedRow, clsPurchaseOrderItemAllocationInfo)
+
+      If mRow IsNot Nothing Then
+        'Me.Hide()
+
+        If mRow.PurchaseOrder.MaterialRequirementTypeWorkOrderID <> 0 Then
+          frmManPurchaseOrderDetail.OpenFormMDI(gvOnOrderOSQty.GetFocusedRowCellValue(gvOnOrderOSQty.Columns("PurchaseOrderID")), pFormController.DBConn, AppRTISGlobal.GetInstance, ParentForm, ePODetailOption.ManPO)
+        ElseIf mRow.PurchaseOrder.MaterialRequirementTypeID <> 0 Then
+
+          frmNonManPurchaseOrder.OpenFormMDI(gvOnOrderOSQty.GetFocusedRowCellValue(gvOnOrderOSQty.Columns("PurchaseOrderID")), pFormController.DBConn, AppRTISGlobal.GetInstance, ParentForm, ePODetailOption.NonManPO)
+
+
+        End If
+
+        'Me.Show()
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
 End Class

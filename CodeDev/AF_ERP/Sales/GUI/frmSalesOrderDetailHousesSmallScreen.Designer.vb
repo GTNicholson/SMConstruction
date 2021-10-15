@@ -209,6 +209,12 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.xtcOrderType = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpSingle = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label37 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.dteDueTime = New DevExpress.XtraEditors.DateEdit()
         Me.dteFinishDate = New DevExpress.XtraEditors.DateEdit()
@@ -281,12 +287,6 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -375,6 +375,9 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.xtpSingle.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDueTime.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteDueTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dteFinishDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -426,9 +429,6 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -1135,7 +1135,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         '
         Me.xtbDespatchesAndInvoices.Controls.Add(Me.TableLayoutPanel2)
         Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
-        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1317, 342)
+        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1030, 291)
         Me.xtbDespatchesAndInvoices.Text = "Adelantos, Facturas y Despachos"
         '
         'TableLayoutPanel2
@@ -1153,7 +1153,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1317, 342)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1030, 291)
         Me.TableLayoutPanel2.TabIndex = 13
         '
         'GroupControl6
@@ -1166,7 +1166,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl6.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(652, 165)
+        Me.GroupControl6.Size = New System.Drawing.Size(509, 139)
         Me.GroupControl6.TabIndex = 11
         Me.GroupControl6.Text = "Orden de Compra del Cliente"
         '
@@ -1188,7 +1188,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.grdCustomerPurchaseOrder.MenuManager = Me.BarManager1
         Me.grdCustomerPurchaseOrder.Name = "grdCustomerPurchaseOrder"
         Me.grdCustomerPurchaseOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2, Me.RepositoryItemDateEdit3, Me.repOrderDate})
-        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(648, 140)
+        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(505, 114)
         Me.grdCustomerPurchaseOrder.TabIndex = 8
         Me.grdCustomerPurchaseOrder.UseEmbeddedNavigator = True
         Me.grdCustomerPurchaseOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPurchaseOrder, Me.GridView5})
@@ -1298,9 +1298,9 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GroupControl7.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl7.Controls.Add(Me.grdInvoices)
         Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl7.Location = New System.Drawing.Point(661, 174)
+        Me.GroupControl7.Location = New System.Drawing.Point(518, 148)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(653, 165)
+        Me.GroupControl7.Size = New System.Drawing.Size(509, 140)
         Me.GroupControl7.TabIndex = 10
         Me.GroupControl7.Text = "Facturas"
         '
@@ -1322,7 +1322,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.grdInvoices.MenuManager = Me.BarManager1
         Me.grdInvoices.Name = "grdInvoices"
         Me.grdInvoices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repInvoiceDate, Me.repCreatedDate})
-        Me.grdInvoices.Size = New System.Drawing.Size(649, 140)
+        Me.grdInvoices.Size = New System.Drawing.Size(505, 115)
         Me.grdInvoices.TabIndex = 7
         Me.grdInvoices.UseEmbeddedNavigator = True
         Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices, Me.GridView4})
@@ -1454,9 +1454,9 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GroupControl10.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl10.Controls.Add(Me.GridControl2)
         Me.GroupControl10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl10.Location = New System.Drawing.Point(661, 3)
+        Me.GroupControl10.Location = New System.Drawing.Point(518, 3)
         Me.GroupControl10.Name = "GroupControl10"
-        Me.GroupControl10.Size = New System.Drawing.Size(653, 165)
+        Me.GroupControl10.Size = New System.Drawing.Size(509, 139)
         Me.GroupControl10.TabIndex = 9
         Me.GroupControl10.Text = "Despachos"
         '
@@ -1467,7 +1467,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.MenuManager = Me.BarManager1
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(649, 140)
+        Me.GridControl2.Size = New System.Drawing.Size(505, 114)
         Me.GridControl2.TabIndex = 2
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -1537,9 +1537,9 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GroupControl11.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl11.Controls.Add(Me.grdPaymentAccounts)
         Me.GroupControl11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl11.Location = New System.Drawing.Point(3, 174)
+        Me.GroupControl11.Location = New System.Drawing.Point(3, 148)
         Me.GroupControl11.Name = "GroupControl11"
-        Me.GroupControl11.Size = New System.Drawing.Size(652, 165)
+        Me.GroupControl11.Size = New System.Drawing.Size(509, 140)
         Me.GroupControl11.TabIndex = 12
         Me.GroupControl11.Text = "Adelantos del Cliente"
         '
@@ -1561,7 +1561,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.grdPaymentAccounts.MenuManager = Me.BarManager1
         Me.grdPaymentAccounts.Name = "grdPaymentAccounts"
         Me.grdPaymentAccounts.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit5, Me.RepositoryItemDateEdit6, Me.RepositoryItemDateEdit4})
-        Me.grdPaymentAccounts.Size = New System.Drawing.Size(648, 140)
+        Me.grdPaymentAccounts.Size = New System.Drawing.Size(505, 115)
         Me.grdPaymentAccounts.TabIndex = 8
         Me.grdPaymentAccounts.UseEmbeddedNavigator = True
         Me.grdPaymentAccounts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPaymentAccounts})
@@ -1863,6 +1863,78 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.PanelControl2.Size = New System.Drawing.Size(540, 78)
         Me.PanelControl2.TabIndex = 0
         '
+        'TextEdit2
+        '
+        Me.TextEdit2.Location = New System.Drawing.Point(110, 52)
+        Me.TextEdit2.MenuManager = Me.BarManager1
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit2.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit2.Properties.ReadOnly = True
+        Me.TextEdit2.Size = New System.Drawing.Size(103, 20)
+        Me.TextEdit2.TabIndex = 4
+        Me.TextEdit2.Tag = "c"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label35.Location = New System.Drawing.Point(8, 53)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(48, 14)
+        Me.Label35.TabIndex = 16
+        Me.Label35.Tag = "c"
+        Me.Label35.Text = "Estatus"
+        '
+        'TextEdit3
+        '
+        Me.TextEdit3.Location = New System.Drawing.Point(323, 30)
+        Me.TextEdit3.MenuManager = Me.BarManager1
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit3.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit3.Properties.ReadOnly = True
+        Me.TextEdit3.Size = New System.Drawing.Size(90, 20)
+        Me.TextEdit3.TabIndex = 3
+        Me.TextEdit3.Tag = "c"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label36.Location = New System.Drawing.Point(223, 32)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(90, 14)
+        Me.Label36.TabIndex = 14
+        Me.Label36.Tag = "c"
+        Me.Label36.Text = "Valor Realizado"
+        '
+        'TextEdit8
+        '
+        Me.TextEdit8.Location = New System.Drawing.Point(110, 30)
+        Me.TextEdit8.MenuManager = Me.BarManager1
+        Me.TextEdit8.Name = "TextEdit8"
+        Me.TextEdit8.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit8.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit8.Properties.ReadOnly = True
+        Me.TextEdit8.Size = New System.Drawing.Size(103, 20)
+        Me.TextEdit8.TabIndex = 1
+        Me.TextEdit8.Tag = "c"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label37.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label37.Location = New System.Drawing.Point(8, 33)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(64, 14)
+        Me.Label37.TabIndex = 12
+        Me.Label37.Tag = "c"
+        Me.Label37.Text = "Valor Total"
+        '
         'Label38
         '
         Me.Label38.AutoSize = True
@@ -1916,7 +1988,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         '
         Me.xtpMultiple.Controls.Add(Me.PanelControl5)
         Me.xtpMultiple.Name = "xtpMultiple"
-        Me.xtpMultiple.Size = New System.Drawing.Size(540, 122)
+        Me.xtpMultiple.Size = New System.Drawing.Size(540, 78)
         Me.xtpMultiple.Text = "Muiti"
         '
         'PanelControl5
@@ -1925,7 +1997,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(540, 122)
+        Me.PanelControl5.Size = New System.Drawing.Size(540, 78)
         Me.PanelControl5.TabIndex = 0
         '
         'grdSalesOrderPhases
@@ -1943,7 +2015,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.grdSalesOrderPhases.MenuManager = Me.BarManager1
         Me.grdSalesOrderPhases.Name = "grdSalesOrderPhases"
         Me.grdSalesOrderPhases.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit7})
-        Me.grdSalesOrderPhases.Size = New System.Drawing.Size(536, 118)
+        Me.grdSalesOrderPhases.Size = New System.Drawing.Size(536, 74)
         Me.grdSalesOrderPhases.TabIndex = 0
         Me.grdSalesOrderPhases.UseEmbeddedNavigator = True
         Me.grdSalesOrderPhases.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhases})
@@ -2026,7 +2098,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         '
         Me.XtraTabPage4.Controls.Add(Me.GroupControl3)
         Me.XtraTabPage4.Name = "XtraTabPage4"
-        Me.XtraTabPage4.Size = New System.Drawing.Size(605, 246)
+        Me.XtraTabPage4.Size = New System.Drawing.Size(605, 206)
         Me.XtraTabPage4.Text = "Detalles del Envío"
         '
         'GroupControl3
@@ -2046,7 +2118,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(605, 246)
+        Me.GroupControl3.Size = New System.Drawing.Size(605, 206)
         Me.GroupControl3.TabIndex = 51
         Me.GroupControl3.Text = "Detalles de Envio"
         '
@@ -2537,7 +2609,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.XtraTabPage2.Appearance.Header.Options.UseForeColor = True
         Me.XtraTabPage2.Controls.Add(Me.grpProductsRequired)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1336, 655)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1036, 567)
         Me.XtraTabPage2.Text = "Ordenes de Trabajo"
         '
         'grpProductsRequired
@@ -2552,7 +2624,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.grpProductsRequired.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpProductsRequired.Location = New System.Drawing.Point(0, 0)
         Me.grpProductsRequired.Name = "grpProductsRequired"
-        Me.grpProductsRequired.Size = New System.Drawing.Size(1336, 655)
+        Me.grpProductsRequired.Size = New System.Drawing.Size(1036, 567)
         Me.grpProductsRequired.TabIndex = 1
         Me.grpProductsRequired.Text = "Productos Requeridos"
         '
@@ -2564,7 +2636,7 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.grdProductsRequired.MenuManager = Me.BarManager1
         Me.grdProductsRequired.Name = "grdProductsRequired"
         Me.grdProductsRequired.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder, Me.repoProductOption, Me.RepositoryItemSpinEdit1})
-        Me.grdProductsRequired.Size = New System.Drawing.Size(1332, 629)
+        Me.grdProductsRequired.Size = New System.Drawing.Size(1032, 541)
         Me.grdProductsRequired.TabIndex = 0
         Me.grdProductsRequired.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvProductsRequired, Me.GridView6, Me.GridView1})
         '
@@ -2718,78 +2790,6 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         Me.GridView1.GridControl = Me.grdProductsRequired
         Me.GridView1.Name = "GridView1"
         '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label37.Location = New System.Drawing.Point(8, 33)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(64, 14)
-        Me.Label37.TabIndex = 12
-        Me.Label37.Tag = "c"
-        Me.Label37.Text = "Valor Total"
-        '
-        'TextEdit8
-        '
-        Me.TextEdit8.Location = New System.Drawing.Point(110, 30)
-        Me.TextEdit8.MenuManager = Me.BarManager1
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit8.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit8.Properties.ReadOnly = True
-        Me.TextEdit8.Size = New System.Drawing.Size(103, 20)
-        Me.TextEdit8.TabIndex = 1
-        Me.TextEdit8.Tag = "c"
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label36.Location = New System.Drawing.Point(223, 32)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(90, 14)
-        Me.Label36.TabIndex = 14
-        Me.Label36.Tag = "c"
-        Me.Label36.Text = "Valor Realizado"
-        '
-        'TextEdit3
-        '
-        Me.TextEdit3.Location = New System.Drawing.Point(323, 30)
-        Me.TextEdit3.MenuManager = Me.BarManager1
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit3.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(90, 20)
-        Me.TextEdit3.TabIndex = 3
-        Me.TextEdit3.Tag = "c"
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label35.Location = New System.Drawing.Point(8, 53)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(48, 14)
-        Me.Label35.TabIndex = 16
-        Me.Label35.Tag = "c"
-        Me.Label35.Text = "Estatus"
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.Location = New System.Drawing.Point(110, 52)
-        Me.TextEdit2.MenuManager = Me.BarManager1
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit2.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(103, 20)
-        Me.TextEdit2.TabIndex = 4
-        Me.TextEdit2.Tag = "c"
-        '
         'frmSalesOrderDetailHousesSmallScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -2895,6 +2895,9 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDueTime.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteDueTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dteFinishDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2949,9 +2952,6 @@ Partial Class frmSalesOrderDetailHousesSmallScreen
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -6,15 +6,17 @@ Public Class repWorkOrderDoc
   Private pStockItemMatReqs As colMaterialRequirements
   Private pFurniture As dmProductFurniture
   Private pProjectName As String
+  Private pCustomerName As String
+  Private pOrderNo As String
 
-
-  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String) As repWorkOrderDoc
+  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String, ByVal vCustomerName As String, ByVal vOrderNo As String) As repWorkOrderDoc
     Dim mRep As New repWorkOrderDoc
     mRep.pWorkOrder = rWorkOrder
     mRep.pProjectName = vProjectName
     mRep.pWoodMatReqs = rWorkOrder.WoodMaterialRequirements
     mRep.pStockItemMatReqs = rWorkOrder.StockItemMaterialRequirements
-
+    mRep.pCustomerName = vCustomerName
+    mRep.pOrderNo = vOrderNo
     mRep.CreateDocument()
 
     ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
@@ -32,6 +34,8 @@ Public Class repWorkOrderDoc
     '// Head informatio from pWorkOrder
     xtcOTNumber.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xtcProjectName.Text = pProjectName
+    xtcOrderNo.Text = pOrderNo
+    xtcCustomerName.Text = pCustomerName
     xtcDescription.DataBindings.Add("Text", pWorkOrder, "Description")
     xtcEmployee.DataBindings.Add("Text", pWorkOrder, "EmployeeDesc")
     If pWorkOrder.PlannedDeliverDate = Date.MinValue Then

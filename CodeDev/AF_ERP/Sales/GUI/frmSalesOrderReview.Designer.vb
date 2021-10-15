@@ -35,7 +35,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.tgsCosting = New DevExpress.XtraEditors.ToggleSwitch()
         Me.txtOutsourcingMOPercetange = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtIndirectCost = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.txtWoodTotalEstimatedValue = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
@@ -182,7 +182,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.SuspendLayout()
         CType(Me.tgsCosting.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOutsourcingMOPercetange.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtIndirectCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodTotalEstimatedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtEstimatedInsumosTotalValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodPick.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -348,7 +348,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl2.Controls.Add(Me.tgsCosting)
         Me.GroupControl2.Controls.Add(Me.txtOutsourcingMOPercetange)
-        Me.GroupControl2.Controls.Add(Me.TextEdit8)
+        Me.GroupControl2.Controls.Add(Me.txtIndirectCost)
         Me.GroupControl2.Controls.Add(Me.LabelControl24)
         Me.GroupControl2.Controls.Add(Me.txtWoodTotalEstimatedValue)
         Me.GroupControl2.Controls.Add(Me.LabelControl23)
@@ -393,7 +393,6 @@ Partial Class frmSalesOrderReview
         '
         'tgsCosting
         '
-        Me.tgsCosting.EditValue = True
         Me.tgsCosting.Location = New System.Drawing.Point(1099, 26)
         Me.tgsCosting.Name = "tgsCosting"
         Me.tgsCosting.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
@@ -419,19 +418,23 @@ Partial Class frmSalesOrderReview
         Me.txtOutsourcingMOPercetange.Size = New System.Drawing.Size(72, 22)
         Me.txtOutsourcingMOPercetange.TabIndex = 58
         '
-        'TextEdit8
+        'txtIndirectCost
         '
-        Me.TextEdit8.Location = New System.Drawing.Point(1139, 79)
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextEdit8.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit8.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit8.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit8.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.TextEdit8.Properties.NullText = "0"
-        Me.TextEdit8.Properties.ReadOnly = True
-        Me.TextEdit8.Size = New System.Drawing.Size(72, 22)
-        Me.TextEdit8.TabIndex = 57
+        Me.txtIndirectCost.Location = New System.Drawing.Point(1139, 79)
+        Me.txtIndirectCost.Name = "txtIndirectCost"
+        Me.txtIndirectCost.Properties.Appearance.BackColor = System.Drawing.Color.LightCyan
+        Me.txtIndirectCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtIndirectCost.Properties.Appearance.Options.UseBackColor = True
+        Me.txtIndirectCost.Properties.Appearance.Options.UseFont = True
+        Me.txtIndirectCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtIndirectCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtIndirectCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtIndirectCost.Properties.Mask.EditMask = "N2"
+        Me.txtIndirectCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtIndirectCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtIndirectCost.Properties.NullText = "0"
+        Me.txtIndirectCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtIndirectCost.TabIndex = 57
         '
         'LabelControl24
         '
@@ -2320,7 +2323,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.PerformLayout()
         CType(Me.tgsCosting.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOutsourcingMOPercetange.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtIndirectCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodTotalEstimatedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtEstimatedInsumosTotalValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodPick.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2517,7 +2520,7 @@ Partial Class frmSalesOrderReview
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents xtpHonorarios As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents TextEdit8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtIndirectCost As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents repoNumberFormat As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit

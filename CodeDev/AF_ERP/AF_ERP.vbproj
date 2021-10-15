@@ -790,6 +790,12 @@
     <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail_bk.Designer.vb">
+      <DependentUpon>repPOIADetail_bk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail_bk.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.Designer.vb">
       <DependentUpon>repSalesOrder_English.vb</DependentUpon>
     </Compile>
@@ -1260,6 +1266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
       <DependentUpon>repSelectedItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoodProcessing\frmWoodMaterialRequirement.resx">
+      <DependentUpon>frmWoodMaterialRequirement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WoodProcessing\frmWoodReception.resx">
       <DependentUpon>frmWoodReception.vb</DependentUpon>

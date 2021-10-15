@@ -230,8 +230,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       Return pUnitPrice
     End Get
     Set(ByVal value As Decimal)
-      If pUnitPrice <> Math.Round(value, 4, MidpointRounding.AwayFromZero) Then IsDirty = True
-      pUnitPrice = Math.Round(value, 4, MidpointRounding.AwayFromZero)
+      If pUnitPrice <> Math.Round(value, 2, MidpointRounding.AwayFromZero) Then IsDirty = True
+      pUnitPrice = Math.Round(value, 2, MidpointRounding.AwayFromZero)
     End Set
   End Property
 
@@ -271,8 +271,9 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       Return NetAmount * TempPercentageRetention
     End Get
     Set(ByVal value As Decimal)
-      If pRetentionValue <> value Then IsDirty = True
-      pRetentionValue = value
+      If pRetentionValue <> Math.Round(value, 2, MidpointRounding.AwayFromZero) Then IsDirty = True
+      pRetentionValue = Math.Round(value, 2, MidpointRounding.AwayFromZero)
+
     End Set
   End Property
 
@@ -400,7 +401,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
 
   Public Function CalculateVATValue(ByVal vPercent As Decimal) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = Math.Round(UnitPrice * (vPercent / 100), 4, MidpointRounding.AwayFromZero)
+    mRetVal = Math.Round(UnitPrice * (vPercent / 100), 2, MidpointRounding.AwayFromZero)
     Return mRetVal
   End Function
 
@@ -409,7 +410,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       Return pVatValue
     End Get
     Set(ByVal value As Decimal)
-      Dim mValue As Decimal = Math.Round(value, 4, MidpointRounding.AwayFromZero)
+      Dim mValue As Decimal = Math.Round(value, 2, MidpointRounding.AwayFromZero)
       If pVatValue <> mValue Then IsDirty = True
       pVatValue = mValue
     End Set

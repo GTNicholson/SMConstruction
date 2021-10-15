@@ -608,7 +608,7 @@ Public Class clsPurchaseOrderInfo
     Get
       Dim mRetVal As Decimal
       For Each mPOItemInfo As clsPOItemInfo In pPOItemInfos
-        mRetVal += mPOItemInfo.Price
+        mRetVal += Math.Round(mPOItemInfo.Price, 2, MidpointRounding.AwayFromZero)
       Next
       'mRetVal += pPurchaseOrder.Carriage
       Return mRetVal

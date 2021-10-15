@@ -57,6 +57,19 @@ End Class
 
 Public Class colMaterialRequirementProcessors : Inherits List(Of clsMaterialRequirementProcessor)
 
+  Public Function GetFromStockQty(ByVal vStockItemID As Integer) As Decimal
+
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem.MaterialRequirement.StockItemID = vStockItemID Then
+        mRetVal = mRetVal + mItem.MaterialRequirement.FromStockQty
+      End If
+    Next
+
+    Return mRetVal
+  End Function
 End Class
 
 

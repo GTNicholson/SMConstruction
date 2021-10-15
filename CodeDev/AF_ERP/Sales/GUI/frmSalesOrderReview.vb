@@ -22,7 +22,7 @@ Public Class frmSalesOrderReview
   End Sub
 
   Private Sub frmSalesOrderReview_Load(sender As Object, e As EventArgs) Handles Me.Load
-    tgsCosting.IsOn = True
+    tgsCosting.IsOn = False
     pFormController.CostingMethod = tgsCosting.IsOn
     pFormController.LoadDataRef()
 
@@ -40,7 +40,7 @@ Public Class frmSalesOrderReview
 
 
     txtTotalValueSalesOrder.Text = pFormController.SalesOrder.GetTotalValueWithCarriage.ToString("$#,##0.00;;#")
-    txtTotalCostValue.Text = (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue).ToString("$#,##0.00;;#")
+    txtTotalCostValue.Text = (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue + pFormController.TotalIndirectCost).ToString("$#,##0.00;;#")
 
 
 
@@ -62,7 +62,7 @@ Public Class frmSalesOrderReview
 
 
     If (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue) > 0 Then
-      txtPercentageInvoiced.Text = pFormController.SalesOrder.GetTotalValueWithCarriage / (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue)
+      txtPercentageInvoiced.Text = pFormController.SalesOrder.GetTotalValueWithCarriage / (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue + pFormController.TotalIndirectCost)
 
     End If
 
@@ -84,7 +84,7 @@ Public Class frmSalesOrderReview
 
     If pFormController.SalesOrder.GetTotalValueWithCarriage > 0 Then
 
-      mPercentage = ((pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue) / pFormController.SalesOrder.GetTotalValueWithCarriage)
+      mPercentage = ((pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue + pFormController.TotalIndirectCost) / pFormController.SalesOrder.GetTotalValueWithCarriage)
 
       If mPercentage > 1 Then
         txtPercentageInvoiced.ForeColor = Color.Red
@@ -293,5 +293,21 @@ Public Class frmSalesOrderReview
     Catch ex As Exception
 
     End Try
+  End Sub
+
+  Private Sub txtIndirectCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtIndirectCost.EditValueChanged
+    Dim mIndirectCost As Decimal
+
+    If pFormController IsNot Nothing Then
+
+      If IsNumeric(txtIndirectCost.Text) Then
+        mIndirectCost = Decimal.Parse(txtIndirectCost.Text)
+
+        pFormController.TotalIndirectCost = mIndirectCost
+        RefreshControls()
+      End If
+
+
+    End If
   End Sub
 End Class

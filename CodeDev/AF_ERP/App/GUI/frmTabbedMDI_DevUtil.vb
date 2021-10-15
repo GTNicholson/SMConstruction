@@ -1257,4 +1257,43 @@ Public Class frmTabbedMDI_DevUtil
 
     frmUpdatePOManToPONonMan.OpenModal(mdbconn, "ToMan")
   End Sub
+
+  Private Sub btnUpdatePrices2DecimalPlaces_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdatePrices2DecimalPlaces.LinkClicked
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mdso As New dsoPurchasing(mdbconn)
+    Dim mPurchaseOrder As New colPurchaseOrders
+    Dim mVatRates As AF_Core.colVATRates
+    mVatRates = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.VATRate)
+    Dim msql As String = ""
+
+    mdso.LoadPurchaseOrderCollectionDown(mPurchaseOrder, "")
+
+    For Each mPO As dmPurchaseOrder In mPurchaseOrder
+
+      For Each mPOItem As dmPurchaseOrderItem In mPO.PurchaseOrderItems
+
+        mPOItem.UnitPrice = Math.Round(mPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero)
+        mPOItem.VatValue = Math.Round(mPOItem.VatValue, 2, MidpointRounding.AwayFromZero)
+
+        mPOItem.TempPercentageRetention = mPO.RetentionPercentage
+
+        mPOItem.RetentionValue = Math.Round(mPOItem.RetentionValue, 2, MidpointRounding.AwayFromZero)
+
+        If Not mdbconn.IsConnected Then mdbconn.Connect()
+
+        msql = String.Format("Update PurchaseOrderItem set UnitPrice = {0}, VATValue = {1}, RetentionValue = {2} where PurchaseOrderItemID = {3}", mPOItem.UnitPrice, mPOItem.VatValue, mPOItem.RetentionValue, mPOItem.PurchaseOrderItemID)
+
+        mdbconn.ExecuteNonQuery(msql)
+
+      Next
+      mPO.TotalNetValue = Math.Round(mPO.TotalNetValue, 2, MidpointRounding.AwayFromZero)
+      msql = String.Format("Update PurchaseOrder set TotalNetValue= {0} where PurchaseOrderID = {1}", mPO.TotalNetValue, mPO.PurchaseOrderID)
+
+      mdbconn.ExecuteNonQuery(msql)
+
+    Next
+
+
+
+  End Sub
 End Class

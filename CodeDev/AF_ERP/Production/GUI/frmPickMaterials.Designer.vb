@@ -229,11 +229,11 @@ Partial Class frmPickMaterials
         'grdMaterialRequirementInfo
         '
         Me.grdMaterialRequirementInfo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 25)
         Me.grdMaterialRequirementInfo.MainView = Me.gvMaterialRequirementInfos
         Me.grdMaterialRequirementInfo.Name = "grdMaterialRequirementInfo"
         Me.grdMaterialRequirementInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1, Me.repoFormatNumber})
-        Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1583, 396)
+        Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1583, 397)
         Me.grdMaterialRequirementInfo.TabIndex = 0
         Me.grdMaterialRequirementInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementInfos})
         '

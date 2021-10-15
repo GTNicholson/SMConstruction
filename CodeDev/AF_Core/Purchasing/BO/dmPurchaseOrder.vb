@@ -13,7 +13,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pDelStatus As Byte
   Private pInstructions As String
   Private pComments As String
-  Private pBuyerID As Byte
+  Private pBuyerID As Integer
   Private pAcknowledgementNo As String
   Private pOrderType As Byte
   Private pCarriage As Double
@@ -354,11 +354,11 @@ Public Class dmPurchaseOrder : Inherits dmBase
     End Set
   End Property
 
-  Public Property BuyerID() As Byte
+  Public Property BuyerID() As Integer
     Get
       BuyerID = pBuyerID
     End Get
-    Set(ByVal value As Byte)
+    Set(ByVal value As Integer)
       If pBuyerID <> value Then IsDirty = True
       pBuyerID = value
     End Set

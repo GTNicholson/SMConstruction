@@ -568,14 +568,19 @@ Public Class frmWorkOrderDetailConstruction
           mProductStructure = pFormController.GetCurrentProduct
           If mProductStructure IsNot Nothing Then
             Dim mProjectName As String = ""
+            Dim mCustomerName As String = ""
+            Dim mOrderNo As String = ""
 
             If pFormController.WorkOrderAllocationEditors.Count > 0 Then
               mProjectName = pFormController.WorkOrderAllocationEditors(0).ProjectName
+              mCustomerName = pFormController.WorkOrderAllocationEditors(0).ClientName
+              mOrderNo = pFormController.WorkOrderAllocationEditors(0).SalesOrderNo
+
             End If
             UpdateTempInStockQty()
             UpdateTempThickness()
 
-            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName)
+            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName, mCustomerName, mOrderNo)
 
           End If
         End If

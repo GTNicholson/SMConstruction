@@ -37,15 +37,6 @@ Public Class fccPurchaseManagement
     End Set
   End Property
 
-  Public Property PurchaseOrderInfos As colPurchaseOrderInfos
-    Get
-      Return pPurchaseOrderInfos
-    End Get
-    Set(value As colPurchaseOrderInfos)
-      pPurchaseOrderInfos = value
-    End Set
-  End Property
-
   Public Sub LoadObject()
     Try
       Dim mdtoWorkOrderInfo As New dtoWorkOrderInfo(pDBConn, dtoWorkOrderInfo.eMode.WorkOrderTracking)
@@ -68,14 +59,13 @@ Public Class fccPurchaseManagement
       End If
 
 
-      mWhere = String.Format("OrderTypeID = {4} and (IsNull(SalesOrderID,0)<>0 and PlannedStartDate Is Null Or PlannedStartDate >= '{0}') And isnull(Status,0) not in ({1}) And isnull(OrderStatusENUM,0) not in ( {2},{5} ) and Isnull(ProductTypeID,0)={3}", mCutOffDate.ToString("yyyyMMdd"), CInt(eWorkOrderStatus.Cancelled), CInt(eSalesOrderstatus.Cancelada), CInt(eProductType.StructureAF), CInt(eOrderType.Sales), CInt(eSalesOrderstatus.Completed))
-
+      mWhere = String.Format("Status in (0,{0},{1})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised))
+      mWhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
 
       If pDBConn.Connect Then
         mdtoWorkOrderInfo.LoadWorkOrderInfoCollectionByWhere(pWorkOrderInfos, mWhere)
 
-        '' mWhere = "(WorkOrder.CompletionDate Is Null Or WorkOrder.CompletionDate > DATEADD(day, -14,GETDATE())) And WorkOrder.SpecStatus <> 6  And SalesOrder.OrderStatusENUM <> 3"
-        mWhere = String.Format("OrderTypeID = {4} and (IsNull(SalesOrderID,0)<>0 and PlannedStartDate Is Null Or PlannedStartDate > '{0}') And IsNull(Status,0)  not in ({1}) And isnull(OrderStatusENUM,0) not in ( {2},{5} ) and Isnull(ProductTypeID,0)={3}", mCutOffDate.ToString("yyyyMMdd"), CInt(eWorkOrderStatus.Cancelled), CInt(eSalesOrderstatus.Cancelada), CInt(eProductType.StructureAF), CInt(eOrderType.Sales), CInt(eSalesOrderstatus.Completed))
+        'mWhere = String.Format("OrderTypeID = {4} and (IsNull(SalesOrderID,0)<>0 and PlannedStartDate Is Null Or PlannedStartDate > '{0}') And IsNull(Status,0)  not in ({1}) And isnull(OrderStatusENUM,0) not in ( {2},{5} ) and Isnull(ProductTypeID,0)={3}", mCutOffDate.ToString("yyyyMMdd"), CInt(eWorkOrderStatus.Cancelled), CInt(eSalesOrderstatus.Cancelada), CInt(eProductType.StructureAF), CInt(eOrderType.Sales), CInt(eSalesOrderstatus.Completed))
 
         mWhere2 = "WorkOrderID in (Select WorkOrderID from vwWorkOrderTracking where " & mWhere & ")"
         mdtoWorkOrderMatReqCategoryStatus.LoadWorkOrderMatReqCategoryStatusCollectionByWhere(mSOPMRCSs, mWhere2)
@@ -99,9 +89,7 @@ Public Class fccPurchaseManagement
 
 
       End If
-      mWhere = String.Format("Status not in ({0},{1})", CInt(ePurchaseOrderDueDateStatus.Cancelled), CInt(ePurchaseOrderDueDateStatus.Received))
-      mdso = New dsoPurchasing(pDBConn)
-      mdso.LoadPurchaseOrderInfosOnly(pPurchaseOrderInfos, mWhere)
+
       If DBConn.IsConnected Then
         DBConn.Disconnect()
       End If

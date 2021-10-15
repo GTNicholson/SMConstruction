@@ -495,7 +495,7 @@ Public Class clsStockItemTransactionLogInfo
         Case eObjectType.MaterialRequirement
           mRetVal = pWorkOrder.WorkOrderNo
         Case eObjectType.PODeliveryItem
-          mRetVal = "" ''GRN Number
+          mRetVal = "#Recepción: " & GRNumber
         Case eObjectType.WoodPallet
           mRetVal = PalletRef
 
@@ -524,7 +524,7 @@ Public Class clsStockItemTransactionLogInfo
         Case eObjectType.MaterialRequirement
           mRetVal = pSalesOrder.ProjectName
         Case eObjectType.PODeliveryItem
-          mRetVal = "" ''PO Num
+          mRetVal = "#O.C. " & PONum
         Case eObjectType.WoodPallet
           mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eLocations), CType(LocationID, eLocations))
 

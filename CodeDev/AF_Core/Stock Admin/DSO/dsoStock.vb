@@ -803,7 +803,7 @@ Public Class dsoStock
     Try
       If pDBConn.Connect() Then
         '// The Qty has already been updated so the current total qty in stock item locations includes the recently arrived.
-        mSQL = String.Format("Select Sum(Qty) as TotalQty From StockItemLocation Where StockItemID = {0}", vStockItemID)
+        mSQL = String.Format("Select Sum(IsNull(Qty,0)) as TotalQty From StockItemLocation Where StockItemID = {0}", vStockItemID)
         mNewTotalQty = pDBConn.ExecuteScalar(mSQL)
         mExistingQty = mNewTotalQty - vReceivedQty
 
@@ -811,7 +811,13 @@ Public Class dsoStock
         mSQL = String.Format("Select IsNull(AverageCost,0) From StockItem Where StockItemID = {0}", vStockItemID)
         mCurrentAverageCost = pDBConn.ExecuteScalar(mSQL)
 
-        mNewAverageCost = ((mExistingQty * mCurrentAverageCost) + vReceivedValue) / mNewTotalQty
+        If mNewTotalQty > 0 Then
+          mNewAverageCost = ((mExistingQty * mCurrentAverageCost) + vReceivedValue) / mNewTotalQty
+
+        Else
+          mNewAverageCost = mCurrentAverageCost
+
+        End If
 
         '// Set the new value
         mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mNewAverageCost, vStockItemID)

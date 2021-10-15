@@ -39,7 +39,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
         frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
 
       Case ePurchaseOrderAddingOption.GeneralPO
-        frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
+        frmGeneralPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.General)
 
     End Select
 
@@ -70,6 +70,8 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
           frmNonManPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
 
+        Else
+          frmGeneralPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.General)
 
         End If
 

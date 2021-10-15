@@ -94,6 +94,8 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
             .ReferenceNo = DBReadString(rDataReader, "ReferenceNo")
             .TransactionValuationDollar = DBReadDecimal(rDataReader, "TransactionValuationDollar")
             .POIDescription = DBReadString(rDataReader, "POIDescription")
+            .PONum = DBReadString(rDataReader, "PONum")
+            .GRNumber = DBReadString(rDataReader, "GRNumber")
 
           End With
           With pStockItemTransactionLogInfo.CurrentStockItem
@@ -126,6 +128,8 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
             .CompanyName = DBReadString(rDataReader, "CompanyName")
 
           End With
+
+
 
         Case eMode.WoodStockItemTransactionLogInfo
           With pStockItemTransactionLogInfo

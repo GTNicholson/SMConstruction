@@ -142,7 +142,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .DelStatus = DBReadByte(rDataReader, "DelStatus")
         .Instructions = DBReadString(rDataReader, "Instructions")
         .Comments = DBReadString(rDataReader, "Comments")
-        .BuyerID = DBReadByte(rDataReader, "BuyerID")
+        .BuyerID = DBReadInt32(rDataReader, "BuyerID")
         .AcknowledgementNo = DBReadString(rDataReader, "AcknowledgementNo")
         .OrderType = DBReadByte(rDataReader, "OrderType")
         .Carriage = DBReadDouble(rDataReader, "Carriage")

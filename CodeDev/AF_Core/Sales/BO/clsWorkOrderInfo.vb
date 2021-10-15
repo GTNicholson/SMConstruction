@@ -84,7 +84,7 @@ Public Class clsWorkOrderInfo
     Get
       Dim mRetVal As String
 
-      mRetVal = ProjectName & "-" & CustomerName
+      mRetVal = ProjectName & "/" & CustomerName
       Return mRetVal
     End Get
   End Property

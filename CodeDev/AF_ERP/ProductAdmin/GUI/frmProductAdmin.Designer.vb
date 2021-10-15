@@ -120,9 +120,9 @@ Partial Class frmProductAdmin
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1485, 895)
+        Me.PanelControl1.Size = New System.Drawing.Size(1485, 898)
         Me.PanelControl1.TabIndex = 0
         '
         'SplitContainerControl1
@@ -136,7 +136,7 @@ Partial Class frmProductAdmin
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpStockItemDetail)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1481, 891)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1481, 894)
         Me.SplitContainerControl1.SplitterPosition = 645
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -304,7 +304,7 @@ Partial Class frmProductAdmin
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1485, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1485, 30)
         '
         'barDockControlBottom
         '
@@ -318,17 +318,17 @@ Partial Class frmProductAdmin
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 895)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 898)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1485, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1485, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 895)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 898)
         '
         'BarButtonItem1
         '
@@ -584,9 +584,9 @@ Partial Class frmProductAdmin
         Me.uctProductDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.uctProductDetail.FormController = Nothing
         Me.uctProductDetail.ItemsSelected = 0
-        Me.uctProductDetail.Location = New System.Drawing.Point(2, 26)
+        Me.uctProductDetail.Location = New System.Drawing.Point(2, 24)
         Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1477, 617)
+        Me.uctProductDetail.Size = New System.Drawing.Size(1477, 619)
         Me.uctProductDetail.TabIndex = 0
         Me.uctProductDetail.TempInWoodStock = 0
         Me.uctProductDetail.WoodItemsSelected = 0

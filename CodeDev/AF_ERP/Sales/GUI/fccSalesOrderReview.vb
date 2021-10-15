@@ -358,4 +358,5 @@ Public Class fccSalesOrderReview
   End Property
 
   Public Property CostingMethod As Boolean
+  Public Property TotalIndirectCost As Decimal
 End Class

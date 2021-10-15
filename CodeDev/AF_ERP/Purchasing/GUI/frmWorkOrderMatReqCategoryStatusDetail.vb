@@ -126,6 +126,9 @@ Public Class frmWorkOrderMatReqCategoryStatusDetail
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first
+
+    'mdsoPurchasing.UpdateProductionBatchPickStatusAll(pCurrentProductionBatchInfo.ProductionBatchID, pManufacturingFacilityID)
+
     Me.Close()
   End Sub
 

@@ -278,11 +278,11 @@ Partial Class frmWorkOrderMatReqCategoryStatusDetail
         Me.grdPOs.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdPOs.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdPOs.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdPOs.Location = New System.Drawing.Point(2, 26)
+        Me.grdPOs.Location = New System.Drawing.Point(2, 24)
         Me.grdPOs.MainView = Me.gvPOs
         Me.grdPOs.Name = "grdPOs"
         Me.grdPOs.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.repbtnSupplierPicker, Me.RepositoryItemMemoExEdit1})
-        Me.grdPOs.Size = New System.Drawing.Size(720, 136)
+        Me.grdPOs.Size = New System.Drawing.Size(720, 138)
         Me.grdPOs.TabIndex = 103
         Me.grdPOs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPOs})
         '

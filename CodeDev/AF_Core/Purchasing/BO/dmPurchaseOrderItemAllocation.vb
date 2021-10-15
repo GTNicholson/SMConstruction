@@ -15,7 +15,7 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   Private pItemRef2 As String
   Private pProjectRef As String
   Private pSalesorderPhaseItemID As Integer
-  Private pTempCustomerName As String
+  Private pTempTotalValue As String
 
   Public Sub New()
     MyBase.New()
@@ -170,7 +170,21 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
       pJobNoTmp = value
     End Set
   End Property
+  Public ReadOnly Property OTAndDescription As String
+    Get
+      Dim mRetVal As String = ""
 
+      If pWorkOrderID = 0 And pSalesorderPhaseItemID = 0 Then
+        mRetVal = ""
+
+      Else
+        mRetVal = ItemRef & " / " & ItemRef2
+
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
   Public Property ItemRef2 As String
     Get
       Return pItemRef2
@@ -182,6 +196,12 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   End Property
   Public Property ProjectRef As String
     Get
+
+      If pWorkOrderID = 0 And pSalesorderPhaseItemID = 0 Then
+        pProjectRef = ItemRef & " / " & ItemRef2
+      Else
+
+      End If
       Return pProjectRef
     End Get
     Set(value As String)
@@ -200,12 +220,12 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
     End Set
   End Property
 
-  Public Property TempCustomerName As String
+  Public Property TempTotalValue As String
     Get
-      Return pTempCustomerName
+      Return pTempTotalValue
     End Get
     Set(value As String)
-      pTempCustomerName = value
+      pTempTotalValue = value
     End Set
   End Property
 
@@ -215,14 +235,14 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
 
       If pWorkOrderID = 0 And pSalesorderPhaseItemID = 0 Then
         ''De inventario
-        mRetVal = String.Format("{0} con cargo a la categoría contable {1}", clsSMSharedFuncs.FractStrFromDec(Quantity), ItemRef)
+        mRetVal = String.Format("{0} con cargo a la categoría contable {1} con Costo Total de: {2}", clsSMSharedFuncs.FractStrFromDec(Quantity), ItemRef, TempTotalValue)
 
       ElseIf pWorkOrderID <> 0 And pSalesorderPhaseItemID = 0 Then
         ''WO PO
-        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3}", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
+        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3} con Costo Total de: {4}", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2, TempTotalValue)
 
       ElseIf pWorkOrderID = 0 And pSalesorderPhaseItemID <> 0 Then ''SOP Non Man PO
-        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3}", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2)
+        mRetVal = String.Format("{0} con cargo al proyecto {1} : {2} {3} con Costo Total de: {4}", clsSMSharedFuncs.FractStrFromDec(Quantity), ProjectRef, ItemRef, ItemRef2, TempTotalValue)
 
 
       End If
