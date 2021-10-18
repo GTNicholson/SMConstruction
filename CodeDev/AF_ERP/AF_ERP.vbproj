@@ -754,6 +754,12 @@
     <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaWorkOrder.Designer.vb">
+      <DependentUpon>repRequisaWorkOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaWorkOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.Designer.vb">
       <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>
     </Compile>
@@ -1194,6 +1200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
       <DependentUpon>repProductFurniture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repRequisaWorkOrder.resx">
+      <DependentUpon>repRequisaWorkOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.resx">
       <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>

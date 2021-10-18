@@ -22,35 +22,35 @@ Partial Class frmPickMaterials
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickMaterials))
-    Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtWOQty = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.btnSelectOT = New DevExpress.XtraEditors.ButtonEdit()
-    Me.txtWODescription = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtCompanyName = New DevExpress.XtraEditors.TextEdit()
-    Me.grpMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
-    Me.grdMaterialRequirementInfo = New DevExpress.XtraGrid.GridControl()
-    Me.gvMaterialRequirementInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.StockCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickMaterials))
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions8 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtWOQty = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.btnSelectOT = New DevExpress.XtraEditors.ButtonEdit()
+        Me.txtWODescription = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtCompanyName = New DevExpress.XtraEditors.TextEdit()
+        Me.grpMaterialRequirements = New DevExpress.XtraEditors.GroupControl()
+        Me.grdMaterialRequirementInfo = New DevExpress.XtraGrid.GridControl()
+        Me.gvMaterialRequirementInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.StockCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoFormatNumber = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +72,7 @@ Partial Class frmPickMaterials
         Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.txtReference = New DevExpress.XtraEditors.TextEdit()
+        Me.btnPrintRequisa = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,8 +178,8 @@ Partial Class frmPickMaterials
         Me.btnSelectOT.Name = "btnSelectOT"
         Me.btnSelectOT.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.btnSelectOT.Properties.Appearance.Options.UseFont = True
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.btnSelectOT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.btnSelectOT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.btnSelectOT.Size = New System.Drawing.Size(140, 22)
         Me.btnSelectOT.TabIndex = 0
         '
@@ -218,22 +219,22 @@ Partial Class frmPickMaterials
         Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
         Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
         Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirementInfo)
-        Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Articulos", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Despachar a Producción", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Devolver de Producción", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1)})
+        Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Articulos", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Despachar a Producción", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Devolver de Producción", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar", True, ButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1)})
         Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.grpMaterialRequirements.Location = New System.Drawing.Point(2, 142)
+        Me.grpMaterialRequirements.Location = New System.Drawing.Point(2, 148)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1587, 424)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1587, 418)
         Me.grpMaterialRequirements.TabIndex = 1
         Me.grpMaterialRequirements.Text = "Materiales"
         '
         'grdMaterialRequirementInfo
         '
         Me.grdMaterialRequirementInfo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 25)
+        Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdMaterialRequirementInfo.MainView = Me.gvMaterialRequirementInfos
         Me.grdMaterialRequirementInfo.Name = "grdMaterialRequirementInfo"
         Me.grdMaterialRequirementInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1, Me.repoFormatNumber})
-        Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1583, 397)
+        Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1583, 390)
         Me.grdMaterialRequirementInfo.TabIndex = 0
         Me.grdMaterialRequirementInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementInfos})
         '
@@ -552,11 +553,24 @@ Partial Class frmPickMaterials
         Me.txtReference.Size = New System.Drawing.Size(217, 20)
         Me.txtReference.TabIndex = 4
         '
+        'btnPrintRequisa
+        '
+        Me.btnPrintRequisa.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btnPrintRequisa.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
+        Me.btnPrintRequisa.Appearance.Options.UseFont = True
+        Me.btnPrintRequisa.Appearance.Options.UseForeColor = True
+        Me.btnPrintRequisa.Location = New System.Drawing.Point(1477, 123)
+        Me.btnPrintRequisa.Name = "btnPrintRequisa"
+        Me.btnPrintRequisa.Size = New System.Drawing.Size(110, 23)
+        Me.btnPrintRequisa.TabIndex = 8
+        Me.btnPrintRequisa.Text = "Imprimir Requisa"
+        '
         'frmPickMaterials
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1601, 578)
+        Me.Controls.Add(Me.btnPrintRequisa)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.grpMaterialRequirements)
         Me.Controls.Add(Me.GroupControl1)
@@ -628,4 +642,5 @@ Partial Class frmPickMaterials
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repoFormatNumber As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnPrintRequisa As DevExpress.XtraEditors.SimpleButton
 End Class

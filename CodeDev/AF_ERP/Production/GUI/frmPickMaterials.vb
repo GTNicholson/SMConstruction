@@ -219,4 +219,11 @@ Public Class frmPickMaterials
 
 
   End Sub
+
+  Private Sub btnPrintRequisa_Click(sender As Object, e As EventArgs) Handles btnPrintRequisa.Click
+    Dim mReportPath As String
+
+    mReportPath = pFormController.CreatePODeliveryReport()
+    pFormController.CurrentWorkOrderInfo.WorkOrder.RequisaDocumentPath = mReportPath
+  End Sub
 End Class

@@ -227,4 +227,35 @@ Public Class fccPickMaterials
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
   End Sub
+
+  Public Function CreatePODeliveryReport() As String
+    Dim mFileName As String
+    Dim mDirectory As String
+    Dim mExportFilename As String = ""
+    Dim mRep As repPODelivery
+
+    Try
+      mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys)
+      If System.IO.Directory.Exists(mDirectory) = False Then
+        System.IO.Directory.CreateDirectory(mDirectory)
+      End If
+      mFileName = String.Format("Requisa_{0}_{1}.pdf", GetRequisaNumber(), pCurrentWorkOrderInfo.WorkOrderNo)
+      mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+
+      mRep = repRequisaWorkOrder.CreatePODeliveryReport(pCurrentWorkOrderInfo, pMaterialRequirementProcessors)
+
+      mRep.ExportToPdf(mExportFilename)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    Return mExportFilename
+
+  End Function
+
+  Private Function GetRequisaNumber() As Object
+    Throw New NotImplementedException()
+  End Function
 End Class

@@ -111,6 +111,8 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PurchasingDate", DateToDBValue(.PurchasingDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingStatus", .DrawingStatus)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RequisaDocumentPath", StringToDBValue(.RequisaDocumentPath))
+
 
     End With
 
@@ -167,6 +169,7 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .Status = DBReadByte(rDataReader, "Status")
         .PurchasingDate = DBReadDate(rDataReader, "PurchasingDate")
         .DrawingStatus = DBReadInt32(rDataReader, "DrawingStatus")
+        .RequisaDocumentPath = DBReadString(rDataReader, "RequisaDocumentPath")
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False
       End With
