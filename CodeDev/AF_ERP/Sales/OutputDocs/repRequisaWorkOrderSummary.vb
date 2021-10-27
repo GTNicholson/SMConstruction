@@ -2,7 +2,7 @@
 Imports DevExpress.XtraReports.UI
 Imports RTIS.ERPCore
 
-Public Class repRequisaWorkOrder
+Public Class repRequisaWorkOrderSummary
 
   Private pWorkOrderInfo As clsWorkOrderInfo
   Private pFormatCordobas As String = "{0:C$#,##0.00;;#}"
@@ -19,8 +19,8 @@ Public Class repRequisaWorkOrder
 
 
 
-  Public Shared Function CreatePODeliveryReport(ByRef rWorkOrderInfo As clsWorkOrderInfo, ByRef rMaterialRequirementProcessors As colMaterialRequirementProcessors) As XtraReport
-    Dim mRep As New repRequisaWorkOrder(rWorkOrderInfo, rMaterialRequirementProcessors)
+  Public Shared Function CreateRequisaSummaryReport(ByRef rWorkOrderInfo As clsWorkOrderInfo, ByRef rMaterialRequirementProcessors As colMaterialRequirementProcessors) As XtraReport
+    Dim mRep As New repRequisaWorkOrderSummary(rWorkOrderInfo, rMaterialRequirementProcessors)
     Dim mPrintTool As ReportPrintTool
     mRep.CreateDocument()
 
@@ -53,27 +53,23 @@ Public Class repRequisaWorkOrder
     Dim mCurrentFormat As String = "N2"
     Dim mToString As String = "N2"
 
-    xrUnitPrice.DataBindings.Add("Text", DataSource, "UnitPrice", mCurrentFormat)
-    xrtVATAmount.DataBindings.Add("Text", DataSource, "VATAmount", mCurrentFormat)
+    xtcWorkOrderNo.Text = pWorkOrderInfo.WorkOrderNo
+    xtcProyectName.Text = pWorkOrderInfo.ProjectNameAndCustomer
+
+    xtcStockCode.DataBindings.Add("Text", DataSource, "StockCode")
+    xtcDescription.DataBindings.Add("Text", DataSource, "Description")
+
+    xtcRequiredQty.DataBindings.Add("Text", DataSource, "Quantity", "{0:0.###}")
+
+    xtcRequiredQty.DataBindings.Add("Text", DataSource, "Quantity", "{0:0.###}")
+
+    xtcPickedQty.DataBindings.Add("Text", DataSource, "PickedQty", "{0:0.###}")
+    xtcReturnQty.DataBindings.Add("Text", DataSource, "ReturnQty", "{0:0.###}")
 
 
+    xtcUoM.DataBindings.Add("Text", DataSource, "UoMDescUI")
 
-    xrQuantity.DataBindings.Add("Text", DataSource, "DelItemQty", "{0:0.###}")
-
-    xrNetTotal.DataBindings.Add("Text", DataSource, "TotalPriceByDelItemQty", mCurrentFormat)
-
-
-    xrtcStockCode.DataBindings.Add("Text", DataSource, "StockCode")
-    xrtcRefCodes.DataBindings.Add("Text", DataSource, "PurchaseRefCodes")
-    xrUoM.DataBindings.Add("Text", DataSource, "UoMDescription")
-
-
-
-
-    xrtcDescription.DataBindings.Add("Text", DataSource, "Description")
-
-
-
+    xtcArea.DataBindings.Add("Text", DataSource, "AreaDesc")
   End Sub
 
 

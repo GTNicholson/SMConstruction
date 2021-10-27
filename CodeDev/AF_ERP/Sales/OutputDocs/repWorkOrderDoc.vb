@@ -32,10 +32,11 @@ Public Class repWorkOrderDoc
     ''m.StockCode
 
     '// Head informatio from pWorkOrder
-    xtcOTNumber.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
+    xtcWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xtcProjectName.Text = pProjectName
     xtcOrderNo.Text = pOrderNo
     xtcCustomerName.Text = pCustomerName
+    xtcQuantity.Text = pWorkOrder.Quantity
     xtcDescription.DataBindings.Add("Text", pWorkOrder, "Description")
     xtcEmployee.DataBindings.Add("Text", pWorkOrder, "EmployeeDesc")
     If pWorkOrder.PlannedDeliverDate = Date.MinValue Then
@@ -74,8 +75,9 @@ Public Class repWorkOrderDoc
     'Dim mPicHeight As Single
     Dim mrepWorkOrderWoodMaterialRequirementInfo As repWorkOrderWoodMaterialRequirement
     Dim mrepStockItemMaterialRequirement As repWorkOrderStockItemMaterialRequirement
-    Dim mRepSignatures As srepWorkOrderSignOffs
 
+    Dim mFileName As String
+    Dim mImage As Image
 
 
     SetUpDataBindings()
@@ -88,11 +90,18 @@ Public Class repWorkOrderDoc
 
     mrepStockItemMaterialRequirement = New repWorkOrderStockItemMaterialRequirement()
 
-    mrepStockItemMaterialRequirement.DataSource = pStockItemMatReqs
+    mrepStockItemMaterialRequirement.DataSource = pStockItemMatReqs.OrderBy(Function(x) x.AreaDesc)
     xrSubWorkOrderStockItemMatReq.ReportSource = mrepStockItemMaterialRequirement
 
-    'mRepSignatures = New srepWorkOrderSignOffs
-    'xrsubSigns.ReportSource = mRepSignatures
+
+    'mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrderPhaseItemInfos, pWorkOrder)
+
+    'If IO.File.Exists(mFileName) Then
+    '  mImage = Drawing.Image.FromFile(mFileName)
+    'End If
+
+    'xrPic.Image = mImage
+
 
   End Sub
 

@@ -289,6 +289,9 @@ Public Class frmWorkOrderDetailConstruction
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcSIUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcArea, clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)))
+
+
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMatReq, gcMaterialType, mVIs)
@@ -1180,7 +1183,7 @@ Public Class frmWorkOrderDetailConstruction
     CheckSave(False)
     pFormController.GenerateMatReq(mProductStructure)
 
-    pFormController.SaveObjects()
+
 
     grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
     gvStockItemMatReq.RefreshData()
@@ -1188,7 +1191,7 @@ Public Class frmWorkOrderDetailConstruction
     grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
     gvWoodMatReq.RefreshData()
 
-
+    pFormController.SaveObjects()
   End Sub
 
   Private Sub gvStockItemMatReq_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodMatReq.CustomUnboundColumnData
@@ -1312,5 +1315,38 @@ Public Class frmWorkOrderDetailConstruction
     If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
       gvWoodMatReq.ExportToXlsx(mFileName)
     End If
+  End Sub
+
+  Private Sub gvStockItemMatReq_CustomUnboundColumnData_1(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItemMatReq.CustomUnboundColumnData
+
+    Dim mMatReq As dmMaterialRequirement
+    Dim mSI As dmStockItem
+
+    mMatReq = TryCast(e.Row, dmMaterialRequirement)
+    If mMatReq IsNot Nothing Then
+      Select Case e.Column.Name
+        Case gcSIStockCode.Name
+          If e.IsGetData Then
+            mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
+
+            If mSI IsNot Nothing Then
+              e.Value = mSI.StockCode
+            End If
+
+          End If
+
+        Case gcSIDescription.Name
+          If e.IsGetData Then
+            mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
+
+            If mSI IsNot Nothing Then
+              e.Value = mSI.Description
+            End If
+
+          End If
+
+      End Select
+    End If
+
   End Sub
 End Class

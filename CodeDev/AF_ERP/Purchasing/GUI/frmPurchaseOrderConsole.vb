@@ -420,21 +420,8 @@ Public Class frmPurchaseOrderConsole
         End If
       End If
 
-      '// Find the relevent source form (frmManPurchaseOrderDetail)
-      For Each mForm As Windows.Forms.Form In MdiChildren
-        If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
-          mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
-          Exit For
-        End If
-      Next
 
-      '//Force any un written updates
-      If mfrmPO IsNot Nothing Then
-        mGridView = mfrmPO.grdPurchaseOrderItems.MainView
-        If mGridView IsNot Nothing Then
-          mGridView.CloseEditor()
-        End If
-      End If
+
 
 
 
@@ -445,23 +432,58 @@ Public Class frmPurchaseOrderConsole
         mfrmMR.grdMaterialRequirements.DataSource = mfrmMR.FormController.MatReqItemProcessors
         mfrmMR.gvMaterialRequirements.RefreshData()
 
-        mfrmPO.Refresh()
-        mfrmPO.FormController.LoadObject()
-        mfrmPO.FormController.LoadRefData()
+        'mfrmPO.Refresh()
+        'mfrmPO.FormController.LoadObject()
+        'mfrmPO.FormController.LoadRefData()
 
 
-        mfrmPO.RefreshControls()
-        mfrmPO.Refresh()
-        mfrmPO.LoadPOItemAllocationCombo()
-        mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
-        mfrmPO.gvPurchaseOrderItems.RefreshData()
-        mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
-        mfrmPO.gvPOIWorkOrderInfos.RefreshData()
-        mfrmPO.gvWorkOrderInfos.RefreshData()
-        mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
+        'mfrmPO.RefreshControls()
+        'mfrmPO.Refresh()
+        'mfrmPO.LoadPOItemAllocationCombo()
+        'mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
+        'mfrmPO.gvPurchaseOrderItems.RefreshData()
+        'mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
+        'mfrmPO.gvPOIWorkOrderInfos.RefreshData()
+        'mfrmPO.gvWorkOrderInfos.RefreshData()
+        'mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
         MsgBox("Procesamiento completo, " & mCountProcessed & " Item(s) agregados a la O.C.: " & mPO.PONum, MsgBoxStyle.OkOnly, "Procesamiento a Orden de Compra")
 
       End If
+
+      '// Find the relevent source form (frmManPurchaseOrderDetail)
+      For Each mForm As Windows.Forms.Form In MdiChildren
+        If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
+          mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
+
+          '//Force any un written updates
+          If mfrmPO IsNot Nothing Then
+            mGridView = mfrmPO.grdPurchaseOrderItems.MainView
+            If mGridView IsNot Nothing Then
+              mGridView.CloseEditor()
+            End If
+            mfrmPO.Refresh()
+            mfrmPO.FormController.LoadObject()
+            mfrmPO.FormController.LoadRefData()
+
+
+            mfrmPO.RefreshControls()
+            mfrmPO.Refresh()
+            mfrmPO.LoadPOItemAllocationCombo()
+            mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
+            mfrmPO.gvPurchaseOrderItems.RefreshData()
+            mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
+            mfrmPO.gvPOIWorkOrderInfos.RefreshData()
+            mfrmPO.gvWorkOrderInfos.RefreshData()
+            mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
+
+          End If
+
+
+
+          'Exit For
+        End If
+      Next
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try

@@ -111,10 +111,22 @@ Public Class uctProductBaseDetail
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcStockItemUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
+    mVIs = New colValueItems
+    For Each mVI As clsValueItem In clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
+
+      Select Case mVI.ItemValue
+        Case eWorkCentre.Engineering, eWorkCentre.Insumos, eWorkCentre.Purchasing, eWorkCentre.Wood
+
+        Case Else
+          mVIs.Add(mVI)
+      End Select
+    Next
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcAreaID, mVIs)
 
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodTypeValue)
     RTIS.Elements.clsDEControlLoading.LoadRepItemLookUpEditiVI(repoWoodItemTypeLK, mVIs)
+
   End Sub
 
   Public Sub RefreshControls()
@@ -201,7 +213,7 @@ Public Class uctProductBaseDetail
             mMatReq.StockCode = e.Value
           End If
 
-        Case gcPartNo.Name
+        Case gcDuplicateSI.Name
           If e.IsGetData Then
             e.Value = mMatReq.SupplierStockCode
           ElseIf e.IsSetData Then
@@ -229,7 +241,7 @@ Public Class uctProductBaseDetail
 
             End If
 
-          Case gcPartNo.Name
+          Case gcDuplicateSI.Name
             If e.IsGetData Then
               e.Value = mSI.PartNo
 
@@ -867,4 +879,53 @@ Public Class uctProductBaseDetail
 
     End If
   End Sub
+
+  Private Sub repoDuplicateSI_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoDuplicateSI.ButtonClick
+    Dim mSelectedProductBOM As dmProductBOM
+    Dim mDuplicatedProductBOM As dmProductBOM
+    Dim mProductStructure As dmProductStructure
+
+    If pFormController.CurrentProductInfo.Product IsNot Nothing Then
+
+      mSelectedProductBOM = TryCast(gvStockItemMaterialRequirements.GetFocusedRow, dmProductBOM)
+
+      If mSelectedProductBOM IsNot Nothing Then
+        mDuplicatedProductBOM = New dmProductBOM
+        mDuplicatedProductBOM.ObjectType = eProductBOMObjectType.StockItems
+        mDuplicatedProductBOM.StockItemID = mSelectedProductBOM.StockItemID
+        mDuplicatedProductBOM.Description = mSelectedProductBOM.Description
+        mDuplicatedProductBOM.UoM = mSelectedProductBOM.UoM
+        mDuplicatedProductBOM.WoodSpecie = mSelectedProductBOM.WoodSpecie
+        mDuplicatedProductBOM.StockCode = mSelectedProductBOM.StockCode
+        mDuplicatedProductBOM.NetLenght = mSelectedProductBOM.NetLenght
+        mDuplicatedProductBOM.NetWidth = mSelectedProductBOM.NetWidth
+        mDuplicatedProductBOM.NetThickness = mSelectedProductBOM.NetThickness
+        mDuplicatedProductBOM.DateChange = Now
+        mDuplicatedProductBOM.SupplierStockCode = mSelectedProductBOM.SupplierStockCode
+        mDuplicatedProductBOM.WoodItemType = mSelectedProductBOM.WoodItemType
+        mDuplicatedProductBOM.DateChange = Now
+
+
+
+        mProductStructure = TryCast(pFormController.CurrentProductInfo.Product, dmProductStructure)
+
+        If mProductStructure IsNot Nothing Then
+
+          mProductStructure.ProductStockItemBOMs.Add(mDuplicatedProductBOM)
+
+          gvStockItemMaterialRequirements.RefreshData()
+
+        End If
+
+      End If
+
+
+    End If
+
+
+    gvStockItemMaterialRequirements.CloseEditor()
+
+  End Sub
+
+
 End Class

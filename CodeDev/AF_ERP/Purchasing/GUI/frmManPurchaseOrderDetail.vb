@@ -1587,11 +1587,9 @@ Public Class frmManPurchaseOrderDetail
   Private Sub gvPOIWorkOrderInfos_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvPOIWorkOrderInfos.CustomUnboundColumnData
     Dim mRow As dmPurchaseOrderItemAllocation
     Dim mWOInfo As clsWorkOrderInfo
-    Dim mSelectedPOI As dmPurchaseOrderItem
 
     Try
       mRow = TryCast(e.Row, dmPurchaseOrderItemAllocation)
-      mSelectedPOI = TryCast(gvPurchaseOrderItems.GetFocusedRow, dmPurchaseOrderItem)
 
       If mRow IsNot Nothing Then
 
@@ -1609,30 +1607,33 @@ Public Class frmManPurchaseOrderDetail
 
           Case gcItemQuantity.Name
 
-            If e.IsGetData Then
-              mWOInfo = pFormController.WorkOrderInfos.ItemFromWorkOrderID(mRow.WorkOrderID)
-              e.Value = mRow.Quantity
-              If mWOInfo IsNot Nothing Then
+            If pFormController.WorkOrderInfos IsNot Nothing Then
+              If e.IsGetData Then
+                mWOInfo = pFormController.WorkOrderInfos.ItemFromWorkOrderID(mRow.WorkOrderID)
+                e.Value = mRow.Quantity
+                If mWOInfo IsNot Nothing Then
 
 
-                mRow.ItemRef = mWOInfo.WorkOrder.WorkOrderNo
-                mRow.ItemRef2 = mWOInfo.WorkOrder.Description
-                mRow.ProjectRef = mWOInfo.ProjectNameAndCustomer
+                  mRow.ItemRef = mWOInfo.WorkOrder.WorkOrderNo
+                  mRow.ItemRef2 = mWOInfo.WorkOrder.Description
+                  mRow.ProjectRef = mWOInfo.ProjectNameAndCustomer
 
 
 
 
-              Else
-                ''To Inventory
-                mRow.ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pFormController.PurchaseOrder.Category, ePurchaseCategories))
+                Else
+                  ''To Inventory
+                  mRow.ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pFormController.PurchaseOrder.Category, ePurchaseCategories))
+
+                End If
+
+              ElseIf e.IsSetData Then
+                mRow.Quantity = e.Value
+
 
               End If
-
-            ElseIf e.IsSetData Then
-              mRow.Quantity = e.Value
-
-
             End If
+
         End Select
       End If
     Catch ex As Exception

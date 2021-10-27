@@ -90,6 +90,8 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .PurchasingDate = DBReadDate(rDataReader, "PurchasingDate")
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
         .RequisaDocumentPath = DBReadString(rDataReader, "RequisaDocumentPath")
+        .RequisaDate = DBReadDate(rDataReader, "RequisaDate")
+        .RequisaNumber = DBReadString(rDataReader, "RequisaNumber")
       End With
 
       Select Case pMode

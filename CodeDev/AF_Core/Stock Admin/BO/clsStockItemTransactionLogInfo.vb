@@ -522,7 +522,7 @@ Public Class clsStockItemTransactionLogInfo
       Select Case pRefObjectType
 
         Case eObjectType.MaterialRequirement
-          mRetVal = pSalesOrder.ProjectName
+          mRetVal = pSalesOrder.ProjectName & "/" & pCustomer.CompanyName
         Case eObjectType.PODeliveryItem
           mRetVal = "#O.C. " & PONum
         Case eObjectType.WoodPallet
@@ -540,7 +540,7 @@ Public Class clsStockItemTransactionLogInfo
       Select Case pRefObjectType
 
         Case eObjectType.MaterialRequirement
-          mRetVal = pCustomer.CompanyName
+          mRetVal = "Requisa:" & ReferenceNo
 
         Case eObjectType.PODeliveryItem
           mRetVal = "" ''Supplier

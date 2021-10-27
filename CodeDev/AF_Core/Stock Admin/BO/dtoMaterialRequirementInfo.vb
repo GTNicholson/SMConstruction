@@ -96,7 +96,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           pMaterialRequirment.OrderedQty = DBReadDecimal(rDataReader, "OrderedQty")
           pMaterialRequirment.ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
           pMaterialRequirment.CurrentOrderQty = DBReadDecimal(rDataReader, "CurrentOrderQty")
-
+          pMaterialRequirment.TotalOTQuantity = DBReadDecimal(rDataReader, "TotalAreaQuantity")
 
           With pMaterialRequirment.MaterialRequirement
 

@@ -152,7 +152,7 @@ Public Class fccMaterialRequirements
         Select Case pOptionView
           Case eMatReqOptionView.Hide
             If mRemove = False Then
-              If mMatReqProc.ReceivedQty > 0 Or (mMatReqProc.CurrentOrderQty = mMatReqProc.Quantity) Then
+              If ((mMatReqProc.CurrentOrderQty + mMatReqProc.FromStockQty) >= mMatReqProc.TotalOTQuantity) Then 'mMatReqProc.Quantity) Then
                 mRemove = True
                 mShowOTs = False
               End If
@@ -172,9 +172,17 @@ Public Class fccMaterialRequirements
 
         If mRemove = False And mShowOTs = False Then
 
-          If (mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.MaterialRequirement.ReturnQty + mMatReqProc.MaterialRequirement.FromStockQty) >= mMatReqProc.MaterialRequirement.Quantity Then
-            mRemove = True
+          If mMatReqProc.MaterialRequirement.PickedQty >= mMatReqProc.MaterialRequirement.FromStockQty Then
+            If (mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.MaterialRequirement.ReturnQty) >= mMatReqProc.MaterialRequirement.Quantity Then
+              mRemove = True
+            End If
+          Else
+            If (mMatReqProc.MaterialRequirement.FromStockQty - mMatReqProc.MaterialRequirement.ReturnQty) >= mMatReqProc.MaterialRequirement.Quantity Then
+              mRemove = True
+            End If
           End If
+
+
 
         End If
 

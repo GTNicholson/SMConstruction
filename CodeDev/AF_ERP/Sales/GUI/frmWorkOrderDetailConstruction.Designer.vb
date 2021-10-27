@@ -105,14 +105,15 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdStockItemMatReq = New DevExpress.XtraGrid.GridControl()
         Me.gvStockItemMatReq = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSIStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSIDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSIUoM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoExEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcArea = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.grpWOMatReqWood = New DevExpress.XtraEditors.GroupControl()
         Me.grdWoodMatReq = New DevExpress.XtraGrid.GridControl()
@@ -285,7 +286,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 33)
         '
         'barDockControlBottom
         '
@@ -299,17 +300,17 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 841)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 838)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 33)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 841)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 838)
         '
         'StandaloneBarDockControl2
         '
@@ -341,12 +342,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.TableLayoutPanel1.Controls.Add(Me.grpProduct, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 333.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 841)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 838)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'grpProduct
@@ -360,7 +361,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpProduct.Location = New System.Drawing.Point(3, 336)
         Me.grpProduct.Name = "grpProduct"
-        Me.grpProduct.Size = New System.Drawing.Size(1474, 502)
+        Me.grpProduct.Size = New System.Drawing.Size(1474, 499)
         Me.grpProduct.TabIndex = 166
         Me.grpProduct.Text = "Detalles del Producto"
         '
@@ -370,7 +371,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(2, 51)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1470, 449)
+        Me.Panel1.Size = New System.Drawing.Size(1470, 446)
         Me.Panel1.TabIndex = 171
         '
         'uctProductDetail
@@ -382,7 +383,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(3, 6)
         Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 443)
+        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 440)
         Me.uctProductDetail.TabIndex = 0
         Me.uctProductDetail.TempInWoodStock = 0
         Me.uctProductDetail.WoodItemsSelected = 0
@@ -421,7 +422,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage1.Appearance.Header.Options.UseForeColor = True
         Me.XtraTabPage1.Controls.Add(Me.GroupControl6)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1464, 272)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1466, 273)
         Me.XtraTabPage1.Text = "Información General"
         '
         'GroupControl6
@@ -458,7 +459,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1464, 272)
+        Me.GroupControl6.Size = New System.Drawing.Size(1466, 273)
         Me.GroupControl6.TabIndex = 165
         Me.GroupControl6.Text = "Detalle General de OT"
         '
@@ -629,19 +630,19 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 25)
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
-        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(679, 208)
+        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(681, 208)
         Me.grpWorkOrderAllocations.TabIndex = 167
         Me.grpWorkOrderAllocations.Text = "Distribución de OT"
         '
         'grdWorkOrderAllocationsInfos
         '
         Me.grdWorkOrderAllocationsInfos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 24)
+        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 26)
         Me.grdWorkOrderAllocationsInfos.MainView = Me.gvWorkOrderAllocationsInfos
         Me.grdWorkOrderAllocationsInfos.MenuManager = Me.BarManager1
         Me.grdWorkOrderAllocationsInfos.Name = "grdWorkOrderAllocationsInfos"
         Me.grdWorkOrderAllocationsInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit4})
-        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(675, 182)
+        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(677, 180)
         Me.grdWorkOrderAllocationsInfos.TabIndex = 157
         Me.grdWorkOrderAllocationsInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderAllocationsInfos, Me.GridView3})
         '
@@ -920,7 +921,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirementInsumos)
         Me.XtraTabPage2.Controls.Add(Me.grpWOMatReqWood)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 272)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1466, 273)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
         '
         'grpMaterialRequirementInsumos
@@ -943,12 +944,12 @@ Partial Class frmWorkOrderDetailConstruction
         'grdStockItemMatReq
         '
         Me.grdStockItemMatReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 24)
+        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 26)
         Me.grdStockItemMatReq.MainView = Me.gvStockItemMatReq
         Me.grdStockItemMatReq.MenuManager = Me.BarManager1
         Me.grdStockItemMatReq.Name = "grdStockItemMatReq"
         Me.grdStockItemMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1})
-        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 247)
+        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 245)
         Me.grdStockItemMatReq.TabIndex = 14
         Me.grdStockItemMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMatReq})
         '
@@ -971,7 +972,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gvStockItemMatReq.Appearance.ViewCaption.Options.UseFont = True
         Me.gvStockItemMatReq.Appearance.ViewCaption.Options.UseForeColor = True
         Me.gvStockItemMatReq.ColumnPanelRowHeight = 35
-        Me.gvStockItemMatReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.gcSIUoM, Me.GridColumn5, Me.GridColumn4, Me.GridColumn18, Me.GridColumn19})
+        Me.gvStockItemMatReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.gcSIStockCode, Me.gcSIDescription, Me.gcSIUoM, Me.GridColumn5, Me.GridColumn4, Me.GridColumn18, Me.GridColumn19, Me.gcArea})
         Me.gvStockItemMatReq.GridControl = Me.grdStockItemMatReq
         Me.gvStockItemMatReq.Name = "gvStockItemMatReq"
         Me.gvStockItemMatReq.OptionsView.EnableAppearanceEvenRow = True
@@ -990,29 +991,31 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 66
         '
-        'GridColumn2
+        'gcSIStockCode
         '
-        Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn2.Caption = "Código Interno"
-        Me.GridColumn2.FieldName = "StockCode"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 62
+        Me.gcSIStockCode.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.gcSIStockCode.AppearanceCell.Options.UseBackColor = True
+        Me.gcSIStockCode.Caption = "Código Interno"
+        Me.gcSIStockCode.FieldName = "gcSIStockCode"
+        Me.gcSIStockCode.Name = "gcSIStockCode"
+        Me.gcSIStockCode.OptionsColumn.ReadOnly = True
+        Me.gcSIStockCode.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcSIStockCode.Visible = True
+        Me.gcSIStockCode.VisibleIndex = 1
+        Me.gcSIStockCode.Width = 62
         '
-        'GridColumn3
+        'gcSIDescription
         '
-        Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Lavender
-        Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn3.Caption = "Descripción"
-        Me.GridColumn3.FieldName = "Description"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.ReadOnly = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 132
+        Me.gcSIDescription.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.gcSIDescription.AppearanceCell.Options.UseBackColor = True
+        Me.gcSIDescription.Caption = "Descripción"
+        Me.gcSIDescription.FieldName = "gcSIDescription"
+        Me.gcSIDescription.Name = "gcSIDescription"
+        Me.gcSIDescription.OptionsColumn.ReadOnly = True
+        Me.gcSIDescription.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcSIDescription.Visible = True
+        Me.gcSIDescription.VisibleIndex = 2
+        Me.gcSIDescription.Width = 132
         '
         'gcSIUoM
         '
@@ -1034,7 +1037,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn5.FieldName = "Quantity"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         Me.GridColumn5.Width = 82
         '
         'GridColumn4
@@ -1044,7 +1047,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn4.FieldName = "Comments"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.VisibleIndex = 8
         Me.GridColumn4.Width = 104
         '
         'RepositoryItemMemoExEdit1
@@ -1063,7 +1066,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 7
         '
         'GridColumn19
         '
@@ -1075,6 +1078,17 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 4
+        '
+        'gcArea
+        '
+        Me.gcArea.AppearanceCell.BackColor = System.Drawing.Color.Lavender
+        Me.gcArea.AppearanceCell.Options.UseBackColor = True
+        Me.gcArea.Caption = "Área"
+        Me.gcArea.FieldName = "AreaID"
+        Me.gcArea.Name = "gcArea"
+        Me.gcArea.OptionsColumn.ReadOnly = True
+        Me.gcArea.Visible = True
+        Me.gcArea.VisibleIndex = 5
         '
         'RepositoryItemMemoEdit1
         '
@@ -1103,12 +1117,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 24)
+        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodMatReq.MainView = Me.gvWoodMatReq
         Me.grdWoodMatReq.MenuManager = Me.BarManager1
         Me.grdWoodMatReq.Name = "grdWoodMatReq"
         Me.grdWoodMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoChangeSpecie})
-        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 247)
+        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 245)
         Me.grdWoodMatReq.TabIndex = 14
         Me.grdWoodMatReq.UseEmbeddedNavigator = True
         Me.grdWoodMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMatReq})
@@ -1432,8 +1446,8 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents Label3 As Label
     Friend WithEvents btnGenerateMatReq As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcSIStockCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcSIDescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcSIUoM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents StandaloneBarDockControl2 As DevExpress.XtraBars.StandaloneBarDockControl
@@ -1465,4 +1479,5 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcArea As DevExpress.XtraGrid.Columns.GridColumn
 End Class

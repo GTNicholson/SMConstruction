@@ -70,6 +70,17 @@ Public Class colMaterialRequirementProcessors : Inherits List(Of clsMaterialRequ
 
     Return mRetVal
   End Function
+
+  Public Function GetTotalItemsToProcess() As Integer
+    Dim mRetVal As Integer
+    For Each mItem In Me
+
+      If mItem.ToProcessQty > 0 Then
+        mRetVal = mRetVal + 1
+      End If
+    Next
+    Return mRetVal
+  End Function
 End Class
 
 

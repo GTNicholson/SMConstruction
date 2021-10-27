@@ -83,6 +83,27 @@ Public Class fccPickMaterials
 
   End Sub
 
+  Public Sub GetSITLInfos(ByRef rSITLI As colStockItemTransactionLogInfos)
+    Try
+      Dim mWhere As String = ""
+      Dim mdso As New dsoStockTransactions(pDBConn)
+
+      If pCurrentWorkOrderInfo IsNot Nothing Then
+        If pCurrentWorkOrderInfo.WorkOrder IsNot Nothing Then
+          mWhere = String.Format("WorkOrderNo = '{0}'", pCurrentWorkOrderInfo.WorkOrder.WorkOrderNo)
+          mdso.LoadStockItemTransactionsByWhere(rSITLI, mWhere)
+        End If
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
+
   Public Sub LoadSalesOrderPhaseInfos(ByRef rSOPInfos As colSalesOrderPhaseInfos)
 
     Dim mdto As dtoSalesOrderPhaseInfo
@@ -111,7 +132,7 @@ Public Class fccPickMaterials
     Return mDT
   End Function
 
-  Public Sub LoadMaterialRequirementProcessorss()
+  Public Sub LoadMaterialRequirementProcessorss(ByVal vAreaID As Integer)
 
     Dim mdto As dtoMaterialRequirementInfo
     Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
@@ -120,6 +141,12 @@ Public Class fccPickMaterials
 
       pDBConn.Connect()
       mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+      Select Case vAreaID
+        Case 0 '' TODOs
+        Case Else
+          mWhere = mWhere & " and AreaID = " & vAreaID
+      End Select
 
       mdto.LoadMaterialRequirementProcessorsByWhere(pMaterialRequirementProcessors, mWhere)
 
@@ -135,15 +162,18 @@ Public Class fccPickMaterials
   Public Sub ProcessPicks()
     Try
       Dim mdsoTran As dsoStockTransactions
-      Dim mMatReq As dtoMaterialRequirement
       Dim mExchangeValue As Decimal
-
+      Dim mTranDate As DateTime
       Dim mdsoStock As dsoStock
       Dim mSIL As New dmStockItemLocation
+      Dim mRequisaNo As String
+      Dim mMatReqProcessorsToRequisa As New colMaterialRequirementProcessors
 
       mdsoTran = New dsoStockTransactions(pDBConn)
 
       mdsoStock = New dsoStock(pDBConn)
+      mTranDate = Now
+      mRequisaNo = GetRequisaNumber()
 
       For Each mMRP As clsMaterialRequirementProcessor In pMaterialRequirementProcessors
         If mMRP.ToProcessQty <> 0 Then
@@ -153,16 +183,55 @@ Public Class fccPickMaterials
             mSIL = Nothing
           End If
           mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas)
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo)
+          mMatReqProcessorsToRequisa.Add(mMRP)
           mMRP.ToProcessQty = 0
         End If
 
       Next
+      PrintRequisaPicking(mMatReqProcessorsToRequisa, mRequisaNo, Now)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
   End Sub
+
+  Private Sub PrintRequisaPicking(ByVal vMatReqProcessorsToRequisa As colMaterialRequirementProcessors, ByVal vRequisaNo As String, ByVal vTranDate As Date)
+
+    Try
+      Dim mFileName As String
+      Dim mDirectory As String
+      Dim mExportFilename As String = ""
+      Dim mRep As repRequisaPicking
+      Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+
+      Try
+        mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, clsConstants.OTRequisas, vRequisaNo)
+        If System.IO.Directory.Exists(mDirectory) = False Then
+          System.IO.Directory.CreateDirectory(mDirectory)
+        End If
+
+        mFileName = String.Format("Requisa_{0}_{1}.pdf", vRequisaNo, pCurrentWorkOrderInfo.WorkOrderNo)
+        mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+        pDBConn.Connect()
+        mRep = repRequisaPicking.CreateReport(pCurrentWorkOrderInfo, vMatReqProcessorsToRequisa, vRequisaNo, vTranDate)
+
+        mRep.ExportToPdf(mExportFilename)
+
+        If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+
+      Catch ex As Exception
+        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+      End Try
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+  End Sub
+
   Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
     Dim mdsoGeneral As New dsoGeneral(DBConn)
     Dim mExchangeRate As Decimal = 0
@@ -190,6 +259,37 @@ Public Class fccPickMaterials
 
       mdso.SaveMaterialRequirementsCollection(mMatReqs, eObjectType.WorkOrder, pCurrentWorkOrderInfo.WorkOrderID, eMaterialRequirementType.StockItems)
 
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub CreateRequisaPicking(ByVal vRequisaNo As String)
+    Dim mSILIS As New colStockItemTransactionLogInfos
+    Dim mWhere As String
+    Dim mdso As New dsoStockTransactions(pDBConn)
+    Dim mMRs As New colMaterialRequirementProcessors
+    Dim mdsoMR As New dsoSalesOrder(pDBConn)
+    Dim mDate As Date
+    Try
+      mWhere = String.Format("ReferenceNo = '{0}'", vRequisaNo)
+      mdso.LoadStockItemTransactionsByWhere(mSILIS, mWhere)
+
+
+      mWhere = ""
+      For Each mSILI In mSILIS
+        mDate = mSILI.TransDate
+        If mWhere <> "" Then mWhere = mWhere & ","
+
+        mWhere = mWhere & mSILI.RefObjectID
+      Next
+
+      mWhere = String.Format("MaterialRequirementID in ({0})", mWhere)
+
+      mdsoMR.LoadPhaseMatReqProcessors(mMRs, mWhere)
+
+      PrintRequisaPicking(mMRs, vRequisaNo, mDate)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
@@ -228,24 +328,34 @@ Public Class fccPickMaterials
     End Try
   End Sub
 
-  Public Function CreatePODeliveryReport() As String
+  Public Function CreateRequisaSummary() As String
     Dim mFileName As String
     Dim mDirectory As String
     Dim mExportFilename As String = ""
-    Dim mRep As repPODelivery
+    Dim mRep As repRequisaWorkOrderSummary
+    Dim mAllMaterialRequirements As New colMaterialRequirementProcessors
+    Dim mdto As dtoMaterialRequirementInfo
+    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
 
     Try
       mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys)
       If System.IO.Directory.Exists(mDirectory) = False Then
         System.IO.Directory.CreateDirectory(mDirectory)
       End If
-      mFileName = String.Format("Requisa_{0}_{1}.pdf", GetRequisaNumber(), pCurrentWorkOrderInfo.WorkOrderNo)
+
+      mFileName = String.Format("RequisaSummary_{0}.pdf", pCurrentWorkOrderInfo.WorkOrderNo)
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
 
-      mRep = repRequisaWorkOrder.CreatePODeliveryReport(pCurrentWorkOrderInfo, pMaterialRequirementProcessors)
+      mdto.LoadMaterialRequirementProcessorsByWhere(mAllMaterialRequirements, mWhere)
+      mRep = repRequisaWorkOrderSummary.CreateRequisaSummaryReport(pCurrentWorkOrderInfo, mAllMaterialRequirements)
 
       mRep.ExportToPdf(mExportFilename)
+
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -255,7 +365,24 @@ Public Class fccPickMaterials
 
   End Function
 
-  Private Function GetRequisaNumber() As Object
-    Throw New NotImplementedException()
+  Private Function GetRequisaNumber() As String
+    Dim mdso As New dsoGeneral(pDBConn)
+    Dim mRetVal As String = ""
+
+    If pCurrentWorkOrderInfo IsNot Nothing Then
+
+      If pCurrentWorkOrderInfo.WorkOrder.WorkOrderID > 0 Then
+        mRetVal = "R-" & mdso.getNextTally(eTallyIDs.RequisaNumber).ToString("D5")
+
+        '  If Not pDBConn.IsConnected Then pDBConn.Connect()
+
+        '  pDBConn.ExecuteNonQuery(String.Format("Update WorkOrder set RequisaNumber = {0} where WorkOrderID = {1}", mRetVal, pCurrentWorkOrderInfo.WorkOrderID))
+
+        '  If pDBConn.IsConnected Then pDBConn.Disconnect()
+      End If
+    End If
+
+    Return mRetVal
+
   End Function
 End Class

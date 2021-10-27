@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
@@ -112,18 +113,18 @@ Public Class frmMaterialRequirement
 
       Select Case pFormController.pConsoleOptionView
         Case ePOConsoleOption.Furniture
-          gcWODescription.Visible = True
-          gcWODescription.GroupIndex = 1
           gcSOIDescription.Visible = False
+          gcWODescription.GroupIndex = 1
+          gcWODescription.Visible = False
         Case ePOConsoleOption.Housing
           gcSOIDescription.Visible = True
           gcSOIDescription.GroupIndex = 1
           gcWODescription.Visible = False
       End Select
 
-      SetPermissions()
       LoadCombos()
       ReloadRequirements()
+      SetPermissions()
 
     Catch ex As Exception
       mMsg = ex.Message
@@ -152,16 +153,39 @@ Public Class frmMaterialRequirement
   End Sub
 
   Private Sub SetPermissions()
-    Dim mPermissionCode As ePermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.SetFromStockQty)
+    Dim mPermissionCode As ePermissionCode
 
+
+    ''Set to process using console
+    mPermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.ProcessConsola)
     If mPermissionCode = ePermissionCode.ePC_Full Then
-    Else
+      bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      bbtnProcessFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      bsubitProcessToPO.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      bbtnSetAllToOrder.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      gcMatReqToOrder.Visible = True
       gcFromStock.Visible = False
-      gcQuantityFromStock.Visible = False
+    Else
 
       bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
       bbtnProcessFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      bsubitProcessToPO.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      bbtnSetAllToOrder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      gcMatReqToOrder.Visible = False
+      gcFromStock.Visible = False
+
+
     End If
+
+    mPermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.SetFromStockQty)
+    If mPermissionCode = ePermissionCode.ePC_Full Then
+      gcFromStock.Visible = True
+      bbtnProcessFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      gcFromStock.VisibleIndex = gcInvReserved.VisibleIndex + 1
+
+    End If
+
 
   End Sub
 
@@ -494,20 +518,26 @@ Public Class frmMaterialRequirement
 
     If pIsActive Then
 
+
       If pFormController IsNot Nothing Then
         gvMaterialRequirements.CloseEditor()
 
         mRow = gvMaterialRequirements.GetFocusedRow
 
         If mRow IsNot Nothing Then
-          mCheckedValue = repoChkIsFromStockValidated.ValueChecked
+          mCheckedValue = mRow.IsFromStockValidated
           pFormController.UpdateMaterialRequirementValidatedFromStock(mCheckedValue, mRow.MaterialRequirementID)
 
         End If
 
       End If
 
+
+
+
     End If
+
+
   End Sub
 
   Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirements.CustomUnboundColumnData
@@ -569,5 +599,16 @@ Public Class frmMaterialRequirement
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
 
     End Try
+  End Sub
+
+  Private Sub repoChkIsFromStockValidated_Validating(sender As Object, e As CancelEventArgs) Handles repoChkIsFromStockValidated.Validating
+    Dim mPermissionCode As ePermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.ValidateConsole)
+
+    If mPermissionCode = ePermissionCode.ePC_Full Then
+
+    Else
+      e.Cancel = True
+    End If
+
   End Sub
 End Class

@@ -21,7 +21,7 @@ Public Class clsMaterialRequirementInfo
   Private pOrderedQty As Decimal
   Private pReceivedQty As Decimal
   Private pCurrentOrderQty As Decimal
-
+  Private pTotalAreaQuantity As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -194,7 +194,7 @@ Public Class clsMaterialRequirementInfo
     Get
       Dim mRetVal As Decimal
 
-      mRetVal = Quantity - CurrentOrderQty - FromStockQty
+      mRetVal = TotalOTQuantity - CurrentOrderQty - FromStockQty 'Quantity - CurrentOrderQty - FromStockQty
 
       Return mRetVal
     End Get
@@ -253,7 +253,7 @@ Public Class clsMaterialRequirementInfo
         mRetval = (pStockItem.AverageCost) / ExchangeRate
 
       Else
-        mRetVal = 0
+        mRetval = 0
       End If
 
       Return mRetval
@@ -428,6 +428,16 @@ Public Class clsMaterialRequirementInfo
   Public ReadOnly Property AreaID As Int32
     Get
       Return pMaterialRequirement.AreaID
+    End Get
+  End Property
+
+  Public ReadOnly Property AreaDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eWorkCentre), CType(AreaID, eWorkCentre))
+
+      Return mRetVal
     End Get
   End Property
 
@@ -610,6 +620,15 @@ Public Class clsMaterialRequirementInfo
     End Get
 
   End Property
+
+  Public Property TotalOTQuantity As Decimal
+    Get
+      Return pTotalAreaQuantity
+    End Get
+    Set(value As Decimal)
+      pTotalAreaQuantity = value
+    End Set
+  End Property
   Public ReadOnly Property TotalPieces_SMM As Decimal
     Get
       Return pMaterialRequirement.TotalPieces
@@ -713,7 +732,7 @@ Public Class clsMaterialRequirementInfo
       If ExchangeRate > 0 Then
         mRetval = (pStockItemTransactionLog.TransactionValuationDollar) / ExchangeRate * (-1)
       Else
-        mRetVal = 0
+        mRetval = 0
       End If
 
       Return mRetval

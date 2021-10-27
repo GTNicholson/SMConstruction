@@ -754,10 +754,16 @@
     <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sales\OutputDocs\repRequisaWorkOrder.Designer.vb">
-      <DependentUpon>repRequisaWorkOrder.vb</DependentUpon>
+    <Compile Include="Sales\OutputDocs\repRequisaPicking.Designer.vb">
+      <DependentUpon>repRequisaPicking.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sales\OutputDocs\repRequisaWorkOrder.vb">
+    <Compile Include="Sales\OutputDocs\repRequisaPicking.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaWorkOrderSummary.Designer.vb">
+      <DependentUpon>repRequisaWorkOrderSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaWorkOrderSummary.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.Designer.vb">
@@ -1201,8 +1207,11 @@
     <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
       <DependentUpon>repProductFurniture.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\OutputDocs\repRequisaWorkOrder.resx">
-      <DependentUpon>repRequisaWorkOrder.vb</DependentUpon>
+    <EmbeddedResource Include="Sales\OutputDocs\repRequisaPicking.resx">
+      <DependentUpon>repRequisaPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repRequisaWorkOrderSummary.resx">
+      <DependentUpon>repRequisaWorkOrderSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.resx">
       <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>

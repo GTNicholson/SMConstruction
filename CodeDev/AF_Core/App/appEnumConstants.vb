@@ -45,6 +45,8 @@ Public Enum eActivityCode
   PurchasingBalance = 406
   SetFromStockQty = 407
   PurchasingManagement = 408 ''DO this activities
+  ValidateConsole = 409
+  ProcessConsola = 410
 
   InventoryGroup = 500
   StockItem = 501
@@ -378,6 +380,7 @@ Public Enum eTallyIDs
   AserradoWoodOT = 1007
   ClassifiedWoodOT = 1008
   WoodReception = 1009
+  RequisaNumber = 1010
 End Enum
 
 Public Enum ePaymentStatus
@@ -408,14 +411,17 @@ Public Enum eWorkCentre
   <Description("Compras")> Purchasing = 4
   <Description("Selección")> Selection = 5
   <Description("Dimensionado")> Dimensionado = 6
-  <Description("Carpintería")> Carpentry = 7
+  <Description("Carpintería")> Maquinado = 7
   <Description("Lija")> Sanding = 8
   <Description("Acabado")> Finishing = 9
   <Description("Metales")> MetalWork = 10
   <Description("Acabado Metal")> MetalFinising = 11
   <Description("Empaque")> Packaging = 12
   <Description("Despacho")> Despatch = 13
-
+  <Description("Laminado")> Laminated = 14
+  <Description("Ensamble")> Assembly = 15
+  <Description("Tapizado")> Upholstery = 16
+  <Description("Carga Contenedor")> ChargeContainer = 17
 
 End Enum
 
@@ -642,6 +648,8 @@ Public Class clsConstants
 
   Public Const WorkOrderFileFolderSys As String = "OTArchivosSys"
   Public Const WorkOrderFileFolderUsr As String = "OTArchivosUsr"
+  Public Const OTRequisas As String = "OTRequisas"
+
   Public Const StockItemFileFolderSys As String = "SIArchivosSys"
   Public Const ProductFileFolderSys As String = "ProductArchivosSys"
 
