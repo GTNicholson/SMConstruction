@@ -1,0 +1,195 @@
+update SalesOrder
+set OrderStatusENUM=3
+where ProjectName is null and IsNull(CustomerID,0)=0
+go
+
+
+
+
+CREATE TABLE [dbo].[SalesOrderPhaseMilestoneStatus](
+	[SalesOrderPhaseMilestoneStatusID] [int] IDENTITY(1,1) NOT NULL,
+	[SalesOrderPhaseID] [int] NULL,
+	[MilestoneENUM] [tinyint] NULL,
+	[Status] [tinyint] NULL,
+	[TargetDate] [datetime] NULL,
+	[ActualDate] [datetime] NULL,
+	[Notes] [varchar](1000) NULL,
+ CONSTRAINT [pk_SalesOrderPhaseMilestoneStatus] PRIMARY KEY CLUSTERED 
+(
+	[SalesOrderPhaseMilestoneStatusID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[Holiday](
+	[HolidayID] [int] IDENTITY(1,1) NOT NULL,
+	[HolidayDate] [datetime] NULL,
+ CONSTRAINT [aaaaaHoliday_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[HolidayID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+alter table SalesOrderPhase
+add ManReqDays int
+go
+
+alter table SalesOrderPhase
+add OrderReceivedDate date
+go
+
+ALTER VIEW [dbo].[vwSalesOrderPhaseInfo]
+AS
+SELECT
+	SOP.SalesOrderPhaseID,
+	SOP.DateRequired,
+	SOP.QuantityItems,
+
+	SOP.TotalPrice,
+	SOP.PhaseNumber,
+	SOP.DespatchStatus,
+                         
+	SOP.InvoiceStatus,
+	SOP.ProductionStatus,
+	SOP.MatReqStatus,
+	SOP.ManReqDays,
+    	SOP.OrderReceivedDate,
+	SOP.DateCreated,
+  	SOP.DateCommitted,
+   	SOP.CommittedBy,
+   	SOP.JobNo As SOPJobNo,
+	SOP.PhaseRef,
+ 
+	SO.SalesOrderID,
+	SO.OrderNo,
+	SO.ContractManagerID,
+
+	SO.DateEntered,
+
+	SO.OrderStatusENUM,
+   	SO.OrderTypeID,
+
+  	SO.ProjectName,
+	SO.FinishDate,
+  
+	C.CompanyName
+ 
+FROM
+	SalesOrderPhase SOP 
+	inner JOIN SalesOrder SO ON SO.SalesOrderID = SOP.SalesOrderID 
+	left JOIN Customer C ON C.CustomerID = SO.CustomerID 
+
+
+GO
+
+CREATE VIEW vwSOPTotalPriceSummary
+as
+select
+SOP.SalesOrderPhaseID,
+SUM(soi.UnitPrice*soi.Quantity) TotalPrice
+from SalesOrderItem SOI
+INNER JOIN SalesOrder SO ON SO.SalesOrderID=SOI.SalesOrderID and SO.OrderStatusENUM<>3
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+group by SOP.SalesOrderPhaseID
+go
+
+
+
+CREATE VIEW vwWOPlannedDateSOP
+as
+select
+SOP.SalesOrderPhaseID,
+MIN(WO.PlannedStartDate) PlannedStartDate
+from WorkOrder WO
+INNER JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+INNER JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID and SO.OrderStatusENUM<>3
+where WO.Status <>3
+group by SOP.SalesOrderPhaseID
+go
+
+
+CREATE VIEW vwQtyOTSOPSummary
+as
+select
+SOP.SalesOrderPhaseID,
+count(WO.WorkOrderID) QtyOT
+from WorkOrder WO
+INNER JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+INNER JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderPhaseID=SOPI.SalesOrderPhaseID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID=SOP.SalesOrderID and SO.OrderStatusENUM<>3
+where WO.Status not in (2,3)
+group by SOP.SalesOrderPhaseID
+go
+
+
+ALTER VIEW [dbo].[vwSalesOrderPhaseInfo]
+AS
+SELECT
+	SOP.SalesOrderPhaseID,
+	SOP.DateRequired,
+	SOP.QuantityItems,
+
+	SOP.PhaseNumber,
+	SOP.DespatchStatus,
+                         
+	SOP.InvoiceStatus,
+	SOP.ProductionStatus,
+	SOP.MatReqStatus,
+	SOP.ManReqDays,
+    	SOP.OrderReceivedDate,
+	SOP.DateCreated,
+  	SOP.DateCommitted,
+   	SOP.CommittedBy,
+   	SOP.JobNo As SOPJobNo,
+	SOP.PhaseRef,
+ 
+	SO.SalesOrderID,
+	SO.OrderNo,
+	SO.ContractManagerID,
+
+	SO.DateEntered,
+
+	SO.OrderStatusENUM,
+   	SO.OrderTypeID,
+
+  	SO.ProjectName,
+	SO.FinishDate,
+  
+	C.CompanyName,
+
+	vwWOPSOP.PlannedStartDate,
+	vwSOPTPS.TotalPrice,
+	VWQTYSOPS.QtyOT
+ 
+FROM
+	SalesOrderPhase SOP 
+	inner JOIN SalesOrder SO ON SO.SalesOrderID = SOP.SalesOrderID 
+	left JOIN Customer C ON C.CustomerID = SO.CustomerID 
+	left join vwWOPlannedDateSOP vwWOPSOP on vwWOPSOP.SalesOrderPhaseID = sop.SalesOrderPhaseID
+	left join vwSOPTotalPriceSummary vwSOPTPS on vwSOPTPS.SalesOrderPhaseID=SOP.SalesOrderPhaseID
+	left join vwQtyOTSOPSummary VWQTYSOPS on VWQTYSOPS.SalesOrderPhaseID=Sop.SalesOrderPhaseID
+
+GO
+
+alter table SalesOrderPhaseMilestoneStatus
+add StartDate date
+go
+
+alter table SalesOrderPhaseMilestoneStatus
+add ManReqDays int
+go
+
+update SalesOrder
+set OrderTypeID=2
+where OrderTypeID=1
+go
+
+update SalesOrder
+set OrderTypeID=4
+where OrderTypeID=5
+go

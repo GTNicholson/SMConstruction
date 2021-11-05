@@ -111,17 +111,8 @@ Public Class uctProductBaseDetail
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcStockItemUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
-    mVIs = New colValueItems
-    For Each mVI As clsValueItem In clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
 
-      Select Case mVI.ItemValue
-        Case eWorkCentre.Engineering, eWorkCentre.Insumos, eWorkCentre.Purchasing, eWorkCentre.Wood
-
-        Case Else
-          mVIs.Add(mVI)
-      End Select
-    Next
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcAreaID, mVIs)
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemsMaterialRequirement, gcAreaID, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WorkCentre))
 
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.WoodTypeValue)

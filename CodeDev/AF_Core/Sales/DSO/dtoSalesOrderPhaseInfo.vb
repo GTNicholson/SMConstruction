@@ -49,6 +49,10 @@ Public Class dtoSalesOrderPhaseInfo : Inherits dtoBase
     Try
       If pSalesOrderPhaseInfo Is Nothing Then SetObjectToNew()
 
+      With pSalesOrderPhaseInfo
+        .FirstDatePlanned = DBReadDate(rDataReader, "PlannedStartDate")
+        .QtyOT = DBReadInt32(rDataReader, "QtyOT")
+      End With
 
       With pSalesOrderPhaseInfo.SalesOrderPhase
         .SalesOrderPhaseID = DBReadInt32(rDataReader, "SalesOrderPhaseID")
@@ -63,6 +67,9 @@ Public Class dtoSalesOrderPhaseInfo : Inherits dtoBase
         .DateCommitted = DBReadDate(rDataReader, "DateCommitted")
         .CommittedBy = DBReadInt32(rDataReader, "CommittedBy")
         .JobNo = DBReadString(rDataReader, "SOPJobNo")
+        .OrderReceivedDate = DBReadDate(rDataReader, "OrderReceivedDate")
+        .ManReqDays = DBReadInt32(rDataReader, "ManReqDays")
+        .TotalPrice = DBReadDecimal(rDataReader, "TotalPrice")
 
       End With
       With pSalesOrderPhaseInfo.SalesOrder

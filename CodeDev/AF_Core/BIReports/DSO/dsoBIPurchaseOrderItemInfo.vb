@@ -10,7 +10,7 @@ Public Class dsoBIPurchaseOrderItemInfo
   Private pRTISGlobal As AppRTISGlobal
   Private pBIReportView As clsBIReportView
 
-  Private pPurchaseOrderItemInfos As colPurchaseOrderItemInfos
+  Private pPurchaseOrderItemInfos As colPurchaseOrderItemAllocationInfos
 
   Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView)
     pDBConn = rDBConn
@@ -56,14 +56,14 @@ Public Class dsoBIPurchaseOrderItemInfo
     Dim mSQLWhere1 As String
     Dim mSQLWhere2 As String
     Dim mSQLWhere As String = ""
-    Dim dtoPurchaseOrderItemInfo As New dtoPurchaseOrderItemInfo(pDBConn)
+    Dim dtoPurchaseOrderItemInfo As New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.Info)
 
 
 
 
     Try
 
-      pPurchaseOrderItemInfos = New colPurchaseOrderItemInfos()
+      pPurchaseOrderItemInfos = New colPurchaseOrderItemAllocationInfos()
 
       pDBConn.Connect()
 
@@ -81,7 +81,7 @@ Public Class dsoBIPurchaseOrderItemInfo
       '  mSQLWhere &= " and status = " & ePurchaseOrderDueDateStatus.Received '<> " & ePurchaseOrderDueDateStatus.Cancelled
 
       'End If
-      dtoPurchaseOrderItemInfo.LoadPurchaseOrderItemInfoCollectionByWhere(pPurchaseOrderItemInfos, mSQLWhere)
+      dtoPurchaseOrderItemInfo.LoadPurchaseOrderItemAllocationInfos(pPurchaseOrderItemInfos, mSQLWhere)
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

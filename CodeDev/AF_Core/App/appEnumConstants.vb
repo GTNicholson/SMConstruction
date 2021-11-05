@@ -418,10 +418,12 @@ Public Enum eWorkCentre
   <Description("Acabado Metal")> MetalFinising = 11
   <Description("Empaque")> Packaging = 12
   <Description("Despacho")> Despatch = 13
-  <Description("Laminado")> Laminated = 14
-  <Description("Ensamble")> Assembly = 15
-  <Description("Tapizado")> Upholstery = 16
-  <Description("Carga Contenedor")> ChargeContainer = 17
+  '<Description("Laminado")> Laminated = 14
+  '<Description("Ensamble")> Assembly = 15
+  '<Description("Tapizado")> Upholstery = 16
+  '<Description("Carga Contenedor")> ChargeContainer = 17
+  <Description("Tapizado")> Tapizado = 18
+  <Description("Tejido")> Tejido = 19
 
 End Enum
 
@@ -670,6 +672,14 @@ Public Class clsConstants
   Public Const BoardFeetPerM3 = 423.776
 
   Public Const CMToInches = 2.54
+
+
+  Public Const cWorkBeginTimeMT As String = "07:00:00"  ' CSng(CDate("07:00:00"))
+  Public Const cWorkEndTimeMT As String = "17:00:00" 'CSng(CDate("15:15:00"))
+  Public Const cWorkBeginTimeFri As String = "07:00:00" 'CSng(CDate("07:00:00"))
+  Public Const cWorkEndTimeFri As String = "17:00:00" 'CSng(CDate("13:00:00"))
+
+
 
 End Class
 
@@ -2549,3 +2559,88 @@ Public Enum ePOConsoleOption
   Housing = 1
   Furniture = 2
 End Enum
+
+Public Class clsEnumSalesOrderPhaseMilestone : Inherits clsPropertyENUM
+
+  Private pDependencyMilestones As colMilestoneDependentOns
+
+  Public Sub New(ByVal vPropertyENUM As Integer, ByVal vDescription As String)
+    MyBase.New(vPropertyENUM, vDescription)
+    pDependencyMilestones = New colMilestoneDependentOns
+  End Sub
+
+  Public Property DependencyMilestones As colMilestoneDependentOns
+    Get
+      Return pDependencyMilestones
+    End Get
+    Set(value As colMilestoneDependentOns)
+      pDependencyMilestones = value
+    End Set
+  End Property
+End Class
+
+
+
+Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumSalesOrderPhaseMilestone)
+  'Public Const DeliveryToSiteDate = 1
+  Public Const ConfirmationOrder = 2
+  Public Const Handover = 3
+  Public Const Engineering = 4
+  Public Const Compras = 5
+  Public Const Carpinteria = 6
+  Public Const Metales = 7
+  Public Const Tapizado = 8
+  Public Const Empaque = 9
+
+  Private Shared mSharedInstance As eSalesOrderPhaseMileStone
+
+  Public Sub New()
+    MyBase.New()
+    Dim mMileStone As clsEnumSalesOrderPhaseMilestone
+
+
+    'mMileStone = New clsEnumSalesOrderPhaseMilestone(DeliveryToSiteDate, "FechaEntrega")
+    'MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(ConfirmationOrder, "ConfirmationOrder")
+    ' mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(DeliveryToSiteDate, 0, False))
+    MyBase.Add(mMileStone)
+
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Handover, "Handover")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 2, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Engineering, "Engineering")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Compras, "Engineering")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Carpinteria, "Carpinteria")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Metales, "Carpinteria")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Tapizado, "Tapizado")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Empaque, "Tapizado")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+  End Sub
+  Public Shared Function GetInstance() As eSalesOrderPhaseMileStone
+    If mSharedInstance Is Nothing Then
+      mSharedInstance = New eSalesOrderPhaseMileStone
+    End If
+    Return mSharedInstance
+  End Function
+
+End Class

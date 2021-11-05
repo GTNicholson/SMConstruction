@@ -76,6 +76,30 @@ Public Class dsoGeneral
     Return mRetVal
   End Function
 
+  Public Function LoadHolidays(ByRef rHolidays As colHolidays) As Boolean
+    Dim mdtoHoliday As New dtoHoliday(pDBConn)
+    Dim mOK As Boolean
+
+    Try
+      If pDBConn.Connect() Then
+
+        mOK = mdtoHoliday.LoadHolidayCollection(rHolidays)
+
+      Else
+        mOK = False
+      End If
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdtoHoliday = Nothing
+    End Try
+
+    Return mOK
+  End Function
+
   Public Function GetNextTallyWoodPalletConnected() As Integer
     Dim mRetVal As Integer
     Try

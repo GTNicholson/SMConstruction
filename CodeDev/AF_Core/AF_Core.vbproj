@@ -172,6 +172,7 @@
     <Compile Include="App\BO\dmOutputDocument.vb" />
     <Compile Include="App\BO\dmVATRate.vb" />
     <Compile Include="App\BO\dmWoodSpecie.vb" />
+    <Compile Include="App\clsMilestoneDependentOn.vb" />
     <Compile Include="App\DSO\dtoTempPallet.vb" />
     <Compile Include="App\DSO\dtoWoodTypeValue.vb" />
     <Compile Include="App\DSO\dtoThicknessValue.vb" />
@@ -227,9 +228,11 @@
     <Compile Include="ERPStock\clsStockItemRegistryComp.vb" />
     <Compile Include="ERPStock\clsStockItemRegistryBase.vb" />
     <Compile Include="ERPStock\intdtoStockItem.vb" />
+    <Compile Include="General\BO\dmHoliday.vb" />
     <Compile Include="General\BO\clsCompanyDay.vb" />
     <Compile Include="General\BO\dmExchangeRate.vb" />
     <Compile Include="General\BO\dmWoodValue.vb" />
+    <Compile Include="General\DSO\dtoHoliday.vb" />
     <Compile Include="General\DSO\dsoBICompanyDay.vb" />
     <Compile Include="General\DSO\dsoCompanyDay.vb" />
     <Compile Include="General\DSO\dtoExchangeRate.vb" />
@@ -360,6 +363,9 @@
     <Compile Include="Sales\BO\dmSalesOrderPhaseItem.vb" />
     <Compile Include="Sales\BO\dmSalesOrderStage.vb" />
     <Compile Include="Sales\BO\dmStageType.vb" />
+    <Compile Include="Sales\clsMilestoneHandler.vb" />
+    <Compile Include="Sales\dmSalesOrderPhaseMilestoneStatus.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderPhaseMilestoneStatus.vb" />
     <Compile Include="Sales\DSO\dsoWoodSalesOrderItemReportSource.vb" />
     <Compile Include="Sales\DSO\dtoModel.vb" />
     <Compile Include="Sales\DSO\dtoCustomerContact.vb" />

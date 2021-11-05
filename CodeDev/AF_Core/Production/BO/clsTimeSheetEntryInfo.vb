@@ -1,4 +1,7 @@
-﻿Public Class clsTimeSheetEntryInfo
+﻿
+Imports System.Globalization
+
+Public Class clsTimeSheetEntryInfo
   Private pTimeSheetEntry As dmTimeSheetEntry
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrder As dmSalesOrder
@@ -73,6 +76,16 @@
     End Get
   End Property
 
+  Public ReadOnly Property OverTimeHour As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = Math.Round(OverTimeMinutes / 60, 2, MidpointRounding.AwayFromZero)
+
+      Return mRetVal
+    End Get
+  End Property
+
   Public ReadOnly Property TimeSheetEntryTypeID As Integer
     Get
       Return pTimeSheetEntry.TimeSheetEntryTypeID
@@ -140,6 +153,14 @@
     Set(value As Decimal)
       pOverTimeRate = value
     End Set
+  End Property
+
+
+  Public ReadOnly Property TotalStandardValueIncludingOverTimeCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      mRetVal = TotalStandardValue + TotalOverTimeValue
+    End Get
   End Property
 
   Public ReadOnly Property TotalStandardValue As Decimal
@@ -213,6 +234,19 @@
     End Get
   End Property
 
+
+  Public ReadOnly Property WeekNumber As String
+    Get
+      Dim mRetVal As String = ""
+      Dim mCultureInfoNica As New CultureInfo("es-NI")
+      Dim mCalendar As Calendar
+      mCalendar = mCultureInfoNica.Calendar
+
+      mRetVal = "Semana #" & mCalendar.GetWeekOfYear(pTimeSheetEntry.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Sunday)
+
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

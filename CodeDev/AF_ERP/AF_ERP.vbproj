@@ -637,7 +637,9 @@
     <Compile Include="Sales\GUI\brwStructureWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwSalesOrder.vb" />
+    <Compile Include="Sales\GUI\fccSalesOrderPhaseMilestoneStatusDetail.vb" />
     <Compile Include="Sales\GUI\fccCustomerDetail.vb" />
+    <Compile Include="Sales\GUI\fccPhaseManagement.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderDetailSM.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderDetailHouses.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderProgress.vb" />
@@ -664,6 +666,12 @@
     <Compile Include="Sales\GUI\frmInternalWorkOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmPhaseManagement.Designer.vb">
+      <DependentUpon>frmPhaseManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmPhaseManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderDetailHouses.Designer.vb">
       <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
     </Compile>
@@ -680,6 +688,18 @@
       <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderDetailSM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail.Designer.vb">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail_Handover.Designer.vb">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail_Handover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail_Handover.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderPhasePicker.Designer.vb">
@@ -1159,6 +1179,9 @@
     <EmbeddedResource Include="Sales\GUI\frmInternalWorkOrderDetail.resx">
       <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmPhaseManagement.resx">
+      <DependentUpon>frmPhaseManagement.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailHouses.resx">
       <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
     </EmbeddedResource>
@@ -1167,6 +1190,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailSM.resx">
       <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail.resx">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail_Handover.resx">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail_Handover.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhasePicker.resx">
       <DependentUpon>frmSalesOrderPhasePicker.vb</DependentUpon>

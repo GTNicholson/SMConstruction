@@ -23,6 +23,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
   Protected Overrides Sub SetTableDetails()
     Select Case pMode
       Case eMode.WorkOrderInfo
+
         pTableName = "vwWorkOrderInfo"
         pKeyFieldName = "WorkOrderID"
       Case eMode.WorkOrderInfoInternal

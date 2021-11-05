@@ -53,6 +53,8 @@ Public Class appRefLists : Inherits colRefLists
 
   Public Const FixingSpecies As Integer = 41
   Public Const StockItemCategory As Integer = 42
+  Public Const WorkCentre As Integer = 43
+
   Public Sub New()
     MyBase.New()
     Me.AddRefList(None, "None", clsRefListItem.eLoadMode.Coded)
@@ -115,6 +117,9 @@ Public Class appRefLists : Inherits colRefLists
 
 
     Me.AddRefList(StockItemCategory, "StockItemCategory", clsRefListItem.eLoadMode.Unloaded)
+
+    Me.AddRefList(WorkCentre, "WorkCentre", clsRefListItem.eLoadMode.Unloaded)
+
 
   End Sub
 

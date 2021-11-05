@@ -38,6 +38,8 @@
 
       If mStartMinutes > 0 Then
         mTotalMinutes1 = mStartMinutes
+      ElseIf mStartMinutes < 0 Then
+        mTotalMinutes1 = Math.Abs(mStartMinutes)
       Else
         mTotalMinutes1 = 0
       End If
@@ -46,6 +48,8 @@
 
       If mEndMinutes > 0 Then
         mTotalMinutes2 = mEndMinutes
+      ElseIf mEndMinutes < 0 Then
+        mTotalMinutes2 = Math.Abs(mEndMinutes)
       Else
         mTotalMinutes2 = 0
       End If

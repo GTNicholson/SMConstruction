@@ -438,14 +438,14 @@
 
   End Property
 
-  Public Property WOAQuantity As Integer
-    Get
-      Return pWOQuantity
-    End Get
-    Set(value As Integer)
-      pWOQuantity = value
-    End Set
-  End Property
+  'Public Property WOAQuantity As Integer
+  '  Get
+  '    Return pWOQuantity
+  '  End Get
+  '  Set(value As Integer)
+  '    pWOQuantity = value
+  '  End Set
+  'End Property
 
   Public ReadOnly Property SubContractCostMO As Decimal
     Get

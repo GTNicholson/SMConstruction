@@ -91,7 +91,7 @@ Public Class frmWorkOrderSalesItemDetails
       Select Case e.Column.Name
         Case gcTotalQuantity.Name
           If e.IsGetData Then
-            e.Value = (mMatReq.UnitPiece * pFormController.SalesOrderPhaseItemInfo.WOAQuantity)
+            e.Value = (mMatReq.UnitPiece * mMatReq.WorkOrder.Quantity) 'pFormController.SalesOrderPhaseItemInfo.WOAQuantity)
 
           End If
           If e.IsSetData Then
@@ -103,7 +103,7 @@ Public Class frmWorkOrderSalesItemDetails
           If e.IsGetData Then
             Try
 
-              mQty = (mMatReq.UnitPiece * pFormController.SalesOrderPhaseItemInfo.WOAQuantity)
+              mQty = (mMatReq.UnitPiece * mMatReq.WorkOrder.Quantity) 'pFormController.SalesOrderPhaseItemInfo.WOAQuantity)
 
               mValue = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
 
@@ -123,7 +123,7 @@ Public Class frmWorkOrderSalesItemDetails
             Dim mTotalBoardFeet As Decimal
             Dim mQty As Integer
 
-            mQty = (mMatReq.UnitPiece * pFormController.SalesOrderPhaseItemInfo.WOAQuantity)
+            mQty = (mMatReq.UnitPiece * mMatReq.WorkOrder.Quantity) 'pFormController.SalesOrderPhaseItemInfo.WOAQuantity)
 
             mTotalBoardFeet = clsSMSharedFuncs.BoardFeetFromCMAndQty(mQty, mMatReq.NetLenght, mMatReq.NetWidth, mMatReq.NetThickness)
 
@@ -141,7 +141,7 @@ Public Class frmWorkOrderSalesItemDetails
       Select Case e.Column.Name
         Case gcTotalCost.Name
           If e.IsGetData Then
-            e.Value = (mMatReq.AverageCostUSDInsumos * (pFormController.SalesOrderPhaseItemInfo.WOAQuantity * mMatReq.Quantity))
+            e.Value = (mMatReq.AverageCostUSDInsumos * (pFormController.WorkOrderInfo.Quantity * mMatReq.Quantity))
 
           End If
           If e.IsSetData Then
@@ -150,7 +150,7 @@ Public Class frmWorkOrderSalesItemDetails
 
         Case gcDespatchTotalCost.Name
           If e.IsGetData Then
-            e.Value = (mMatReq.AverageCostUSDInsumos * (pFormController.SalesOrderPhaseItemInfo.WOAQuantity * (mMatReq.PickedQty - mMatReq.ReturnQty)))
+            e.Value = (mMatReq.AverageCostUSDInsumos * (pFormController.WorkOrderInfo.Quantity * (mMatReq.PickedQty - mMatReq.ReturnQty)))
 
           End If
 

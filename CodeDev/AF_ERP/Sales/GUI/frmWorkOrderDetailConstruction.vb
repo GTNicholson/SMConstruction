@@ -289,7 +289,7 @@ Public Class frmWorkOrderDetailConstruction
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcSIUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
-    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcArea, clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)))
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcArea, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WorkCentre))
 
 
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
@@ -935,7 +935,7 @@ Public Class frmWorkOrderDetailConstruction
 
           For Each mWorkderAllocation In pFormController.WorkOrder.WorkOrderAllocations
             If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
-              mSalesOrderPhaseInfo = pFormController.SalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
+              mSalesOrderPhaseInfo = pFormController.SalesOrderPhaseInfos.ItemBySalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
 
               If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseInfo) Then
                 mPicker.SelectedObjects.Add(mSalesOrderPhaseInfo)
@@ -972,7 +972,7 @@ Public Class frmWorkOrderDetailConstruction
           For mindex As Integer = pFormController.WorkOrder.WorkOrderAllocations.Count - 1 To 0 Step -1
             mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations(mindex)
             If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
-              mSalesOrderPhaseInfo = mSelectedSalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
+              mSalesOrderPhaseInfo = mSelectedSalesOrderPhaseInfos.ItemBySalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
 
               If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseInfo) Then
                 pFormController.WorkOrder.WorkOrderAllocations.Remove(mWorkderAllocation)

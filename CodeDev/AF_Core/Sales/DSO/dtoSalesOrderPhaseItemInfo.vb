@@ -105,7 +105,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
 
 
           With pSalesOrderPhaseItemInfo
-            .WOAQuantity = DBReadInt32(rDataReader, "QuantityRequired")
+            ' .WOAQuantity = DBReadInt32(rDataReader, "QuantityRequired")
           End With
         Case eMode.SalesOrderPhaseItemInfo
           With pSalesOrderPhaseItemInfo.SalesOrderPhaseItem
@@ -138,7 +138,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
 
 
           With pSalesOrderPhaseItemInfo.WorkOrder
-            .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
+            ' .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
             '.Quantity = DBReadDouble(rDataReader, "QuantityRequired")
           End With
 

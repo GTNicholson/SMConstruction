@@ -122,7 +122,7 @@ Public Class fccTimeSheetEntry
     pWCDate = RTIS.CommonVB.libDateTime.MondayOfWeek(Now.Date)
     pStartTime = (New Date).AddHours(6)
     pEndTime = (New Date).AddHours(18)
-    pWorkCentreID = eWorkCentre.Wood
+    pWorkCentreID = eWorkCentre.Dimensionado
     clsTimeSheetEntryUI.SetCurrentWorkCenterID(pWorkCentreID)
   End Sub
 

@@ -156,7 +156,8 @@ Public Class frmWorkOrderTracking
     Try
       Select Case e.Column.Name
         Case gcWood.Name, gcInsumos.Name, gcEngineering.Name, gcPurchasing.Name,
-             gcCarpitry.Name, gcDimensionado.Name, gcSelection.Name, gcSanding.Name, gcFinishing.Name, gcMetalWork.Name, gcMetalFinishing.Name
+             gcCarpitry.Name, gcDimensionado.Name, gcSelection.Name, gcSanding.Name, gcFinishing.Name, gcMetalWork.Name, gcMetalFinishing.Name,
+             gcPackaging.Name, gcDespatch.name
           Dim mRow As clsWorkOrderTracking = gvWorksOrders.GetRow(e.RowHandle)
           Dim mStatus As dmWorkOrderMilestoneStatus
           Dim mStatusID As Integer

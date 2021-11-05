@@ -1,0 +1,39 @@
+DELETE FROM SalesOrder
+WHERE SalesOrderID IN (
+Select SalesOrderID from SalesOrderPhase
+where SalesOrderPhaseID not in (Select CallOffID from PurchaseOrderAllocation)
+
+and SalesOrderPhaseID not in (Select CallOffID from PurchaseOrderItemAllocation)
+
+and SalesOrderPhaseID not in (Select SalesorderPhaseID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from PurchaseOrderAllocation)
+)
+
+and SalesOrderPhaseID not in (Select SalesorderPhaseID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from PurchaseOrderItemAllocation)
+)
+
+and SalesOrderPhaseID not in (Select SalesorderPhaseID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from WorkOrderAllocation)
+)
+
+and SalesOrderID not in (Select SalesOrderID from SalesOrder where isnull(OrderTypeID,0) = 3)
+and SalesOrderID not in (Select SalesOrderID from SalesOrder where isnull(ProjectName,'') <> '')
+)
+
+DELETE FROM SalesOrderPhase
+WHERE SalesOrderPhaseID IN (
+Select SalesOrderPhaseID from SalesOrderPhase
+where SalesOrderPhaseID not in (Select CallOffID from PurchaseOrderAllocation)
+
+and SalesOrderPhaseID not in (Select CallOffID from PurchaseOrderItemAllocation)
+
+and SalesOrderPhaseID not in (Select SalesorderPhaseID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from PurchaseOrderAllocation)
+)
+
+and SalesOrderPhaseID not in (Select SalesorderPhaseID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from PurchaseOrderItemAllocation)
+)
+
+and SalesOrderPhaseID not in (Select SalesorderPhaseID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (Select SalesOrderPhaseItemID from WorkOrderAllocation)
+)
+
+and SalesOrderID not in (Select SalesOrderID from SalesOrder where isnull(OrderTypeID,0) = 3)
+and SalesOrderID not in (Select SalesOrderID from SalesOrder where isnull(ProjectName,'') <> '')
+)

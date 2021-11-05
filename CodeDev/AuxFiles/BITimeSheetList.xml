@@ -1,5 +1,35 @@
 ﻿<XtraSerializer version="1.0" application="View">
   <property name="#LayoutVersion" />
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="HeaderPanel" iskey="true" value="HeaderPanel">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseFont">true</property>
+      </property>
+      <property name="Font">Arial, 9.5pt, style=Bold</property>
+    </property>
+    <property name="EvenRow" iskey="true" value="EvenRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">WhiteSmoke</property>
+      <property name="Font">Arial, 8.5pt</property>
+    </property>
+    <property name="OddRow" iskey="true" value="OddRow">
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+        <property name="UseFont">true</property>
+      </property>
+      <property name="BackColor">White</property>
+      <property name="Font">Arial, 8.5pt</property>
+    </property>
+  </property>
+  <property name="OptionsView" isnull="true" iskey="true">
+    <property name="ShowAutoFilterRow">true</property>
+    <property name="ShowGroupPanel">false</property>
+    <property name="EnableAppearanceOddRow">true</property>
+    <property name="EnableAppearanceEvenRow">true</property>
+  </property>
   <property name="FixedLineWidth">2</property>
   <property name="IndicatorWidth">-1</property>
   <property name="ColumnPanelRowHeight">-1</property>
@@ -22,213 +52,180 @@
   <property name="FocusRectStyle">CellFocus</property>
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
+  <property name="OptionsLayout" isnull="true" iskey="true">
+    <property name="StoreAllOptions">true</property>
+    <property name="Columns" isnull="true" iskey="true">
+      <property name="StoreAllOptions">true</property>
+    </property>
+  </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="21">
+  <property name="Columns" iskey="true" value="15">
     <property name="Item1" isnull="true" iskey="true">
-      <property name="Name">colTimeSheetEntry</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">TimeSheetEntry</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item2" isnull="true" iskey="true">
-      <property name="Name">colWorkOrder</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">WorkOrder</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item3" isnull="true" iskey="true">
       <property name="Name">colTimeSheetEntryID</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
       <property name="FieldName">TimeSheetEntryID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
-      <property name="Visible">true</property>
     </property>
-    <property name="Item4" isnull="true" iskey="true">
-      <property name="Name">colTimeSheetEntryTypeID</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">TimeSheetEntryTypeID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item5" isnull="true" iskey="true">
+    <property name="Item2" isnull="true" iskey="true">
       <property name="Name">colTimeSheetEntryTypeDesc</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Tipo Actividad</property>
       <property name="FieldName">TimeSheetEntryTypeDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item6" isnull="true" iskey="true">
-      <property name="Name">colEmployeeID</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">EmployeeID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item7" isnull="true" iskey="true">
+    <property name="Item3" isnull="true" iskey="true">
       <property name="Name">colEmployeeName</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
+      <property name="Caption">Empleado</property>
       <property name="FieldName">EmployeeName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
     </property>
-    <property name="Item8" isnull="true" iskey="true">
-      <property name="Name">colWorkOrderID</property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Name">colStartTime</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">WorkOrderID</property>
+      <property name="Caption">Hora Inicio</property>
+      <property name="FieldName">StartTime</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">3</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">hh:mm</property>
+        <property name="FormatType">DateTime</property>
+      </property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Name">colEndTime</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Hora Final</property>
+      <property name="FieldName">EndTime</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">4</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">hh:mm</property>
+        <property name="FormatType">DateTime</property>
+      </property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Name">colDuration</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Duración</property>
+      <property name="FieldName">Duration</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Name">colNote</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Notas</property>
+      <property name="FieldName">Note</property>
+      <property name="ColumnEditName" />
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Name">colWorkCentreDesc</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Área</property>
+      <property name="FieldName">WorkCentreDesc</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item9" isnull="true" iskey="true">
-      <property name="Name">colStartTime</property>
+      <property name="Name">colWorkOrderNo</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">StartTime</property>
+      <property name="Caption"># OT</property>
+      <property name="FieldName">WorkOrderNo</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item10" isnull="true" iskey="true">
-      <property name="Name">colTimeSheetDate</property>
+      <property name="Name">colDescription</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
-      <property name="FieldName">TimeSheetDate</property>
+      <property name="Caption">Descripción</property>
+      <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item11" isnull="true" iskey="true">
-      <property name="Name">colTimeSheetDateWC</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">TimeSheetDateWC</property>
+      <property name="Name">colCompanyName</property>
+      <property name="Caption">Cliente</property>
+      <property name="FieldName">CompanyName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item12" isnull="true" iskey="true">
-      <property name="Name">colTimeSheetDateMC</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">TimeSheetDateMC</property>
+      <property name="Name">colProjectName</property>
+      <property name="Caption">Nombre de Proyecto</property>
+      <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
     </property>
     <property name="Item13" isnull="true" iskey="true">
-      <property name="Name">colEndTime</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">EndTime</property>
+      <property name="Name">GridColumn1</property>
+      <property name="Caption">Fecha</property>
+      <property name="FieldName">StartTime</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
-      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item14" isnull="true" iskey="true">
-      <property name="Name">colDuration</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">Duration</property>
+      <property name="Name">GridColumn2</property>
+      <property name="Caption">Fecha</property>
+      <property name="FieldName">StartTime</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">13</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">d</property>
+        <property name="FormatType">DateTime</property>
+      </property>
     </property>
     <property name="Item15" isnull="true" iskey="true">
-      <property name="Name">colNote</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
+      <property name="Name">GridColumn3</property>
+      <property name="Caption">Tiempo Extra (hr)</property>
+      <property name="FieldName">OverTimeHour</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">6</property>
+      <property name="Visible">true</property>
+      <property name="DisplayFormat" isnull="true" iskey="true">
+        <property name="FormatString">n2</property>
+        <property name="FormatType">Numeric</property>
       </property>
-      <property name="FieldName">Note</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">14</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item16" isnull="true" iskey="true">
-      <property name="Name">colWorkCentreID</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">WorkCentreID</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">15</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item17" isnull="true" iskey="true">
-      <property name="Name">colWorkCentreDesc</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">WorkCentreDesc</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">16</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item18" isnull="true" iskey="true">
-      <property name="Name">colWorkOrderNo</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">WorkOrderNo</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">17</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item19" isnull="true" iskey="true">
-      <property name="Name">colDescription</property>
-      <property name="OptionsColumn" isnull="true" iskey="true">
-        <property name="ReadOnly">true</property>
-      </property>
-      <property name="FieldName">Description</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">18</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item20" isnull="true" iskey="true">
-      <property name="Name">colCompanyName</property>
-      <property name="Caption">Cliente</property>
-      <property name="FieldName">CompanyName</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">19</property>
-      <property name="Visible">true</property>
-    </property>
-    <property name="Item21" isnull="true" iskey="true">
-      <property name="Name">colProjectName</property>
-      <property name="Caption">Nombre de Proyecto</property>
-      <property name="FieldName">ProjectName</property>
-      <property name="ColumnEditName" />
-      <property name="VisibleIndex">20</property>
-      <property name="Visible">true</property>
     </property>
   </property>
   <property name="ViewCaption" />

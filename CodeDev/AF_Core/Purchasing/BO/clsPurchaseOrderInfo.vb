@@ -725,7 +725,7 @@ Public Class clsPurchaseOrderInfo
       Dim mRetVal As String = ""
       Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
       For Each mPOA As dmPurchaseOrderAllocation In PurchaseOrder.PurchaseOrderAllocations
-        mSalesOrderPhaseInfo = pSalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mPOA.CallOffID)
+        mSalesOrderPhaseInfo = pSalesOrderPhaseInfos.ItemBySalesOrderPhaseID(mPOA.CallOffID)
 
         If mSalesOrderPhaseInfo IsNot Nothing Then
           If mSalesOrderPhaseInfo.ProjectName <> "" Then

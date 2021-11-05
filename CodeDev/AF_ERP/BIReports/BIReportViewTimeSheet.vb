@@ -26,7 +26,7 @@ Public Class BIReportViewTimeSheet
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
     mBIReportView.BIReportSource = TimeSheetReportSource()
-    mBIReportView.DataSourceLoader = New dsoBITimeSheet(rDBConn, rRTISGlobal, mBIReportView)
+    mBIReportView.DataSourceLoader = New dsoBITimeSheet(rDBConn, rRTISGlobal, mBIReportView, True)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader
@@ -66,7 +66,7 @@ Public Class BIReportViewTimeSheet
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.WorkOrder
-    mRepSource.Name = "Hojas de Trabajo"
+    mRepSource.Name = "Reporte de Horas de tiempo muerto"
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -88,7 +88,7 @@ Public Class BIReportViewTimeSheet
     mRepLayout.InterfaceType = 1
     mRepLayout.ParentLayoutID = 0
     mRepLayout.LayoutFileName = "BITimeSheetList.xml"
-    mRepLayout.LayoutName = "Hoja de Trabajo Lista"
+    mRepLayout.LayoutName = "Lista de Horas de tiempo muerto"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
     ''mRepLayout = New dmBIGridLayout
@@ -103,8 +103,8 @@ Public Class BIReportViewTimeSheet
     mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetByDescription
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BITimeSheetByDescription.xml"
-    mRepLayout.LayoutName = "Hoja de Trabajo Resumen"
+    mRepLayout.LayoutFileName = "BITimeSheetSummary.xml"
+    mRepLayout.LayoutName = "Resumen de Horas de tiempo muerto"
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 
@@ -143,7 +143,7 @@ Public Class BIReportViewTimeSheet
 
     mRepDef = New dmBIReportDef
     mRepDef.ReportName = "General"
-    mRepDef.Description = "Hoja de Trabajo"
+    mRepDef.Description = "Reporte de Horas de tiempo muerto"
     mRepDef.BIReportDefID = eBIReportDefs.General
     mRepDef.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetList
     Return mRepDef

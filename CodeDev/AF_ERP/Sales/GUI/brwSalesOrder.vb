@@ -142,7 +142,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
       Select Case Me.ListOptionID
         Case eListOption.LiveAndActive
-          mWhere = String.Format("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID in ({0},{1},0) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+          mWhere = String.Format("Select * From vwSalesOrderInfo where OrderTypeID in ({0},{1},0) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
           mWhere &= String.Format(" and OrderStatusENUM not in ({0},{1}) ", CInt(eSalesOrderstatus.Completed), CInt(eSalesOrderstatus.Cancelada))
           mWhere &= " Order By SalesOrderID desc"
         Case eListOption.Cancelled
@@ -167,7 +167,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
         mDataTable = Me.DBConn.CreateDataTable(mWhere)
       Else
-        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderNo<>'' and OrderTypeID=" & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
+        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderTypeID=" & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
 
       End If
 

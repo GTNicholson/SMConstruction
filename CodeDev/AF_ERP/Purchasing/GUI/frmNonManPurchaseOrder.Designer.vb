@@ -978,6 +978,7 @@ Partial Class frmNonManPurchaseOrder
         Me.rgCompanyOption.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Agro"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Hyess")})
         Me.rgCompanyOption.Size = New System.Drawing.Size(106, 27)
         Me.rgCompanyOption.TabIndex = 297
+        Me.rgCompanyOption.Visible = False
         '
         'dtePaymentDate
         '

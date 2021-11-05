@@ -1020,8 +1020,8 @@ Public Class fccPurchaseOrder
     Dim mdso As New dsoSalesOrder(pDBConn)
     Dim mwhere As String = ""
 
-    mwhere += String.Format("Status not in ({0},{1})", CInt(eWorkOrderStatus.Cancelled), CInt(eWorkOrderStatus.Complete))
-    mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
+    mwhere += String.Format("Status not in ({0})", CInt(eWorkOrderStatus.Cancelled))
+    mwhere &= "  and ProductTypeID<>" & eProductType.WoodWorkOrder
     Try
 
       pDBConn.Connect()
