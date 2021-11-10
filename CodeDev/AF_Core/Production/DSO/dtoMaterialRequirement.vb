@@ -93,7 +93,6 @@ Public Class dtoMaterialRequirement : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsFromStockValidated", .IsFromStockValidated)
 
 
-
       '// this can only be changed in transactions DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PickedQty", .PickedQty)
 
     End With

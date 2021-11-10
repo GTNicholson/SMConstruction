@@ -198,6 +198,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .ValuationMode = DBReadInt32(rDataReader, "ValuationMode")
         .PaymentDate = DBReadDate(rDataReader, "PaymentDate")
         .MaterialRequirementTypeWorkOrderID = DBReadInt32(rDataReader, "MaterialRequirementTypeWorkOrderID")
+
         pPurchaseOrder.IsDirty = False
         pPurchaseOrder.DeliveryAddress.IsDirty = False
         pPurchaseOrder.SupplierAddress.IsDirty = False

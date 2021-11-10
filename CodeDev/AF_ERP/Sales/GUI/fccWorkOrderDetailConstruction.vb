@@ -696,6 +696,7 @@ Public Class fccWorkOrderDetailConstruction
             mNewMatReq.SetPickedQty(0)
             mNewMatReq.SetReturndQty(0)
             mNewMatReq.IsAlreadyUsed = True
+            mNewMatReq.DateChange = Now
             pWorkOrder.StockItemMaterialRequirements.Add(mNewMatReq)
           Else
             mProductStockItemFound.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
@@ -704,6 +705,8 @@ Public Class fccWorkOrderDetailConstruction
             mProductStockItemFound.GeneratedQty = mPBOM.Quantity * pWorkOrder.Quantity
             mProductStockItemFound.AreaID = mPBOM.AreaID
             mProductStockItemFound.IsAlreadyUsed = True
+            mProductStockItemFound.DateChange = Now
+
           End If
 
         Next

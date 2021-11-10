@@ -270,6 +270,9 @@
 
         mRate = Math.Round(mRate, 2, MidpointRounding.AwayFromZero)
         mRetVal = mRate * MaterialCost
+
+      Else
+        mRetVal = MaterialCost
       End If
       Return mRetVal
     End Get

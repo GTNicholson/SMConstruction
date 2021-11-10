@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Globalization
 
 Public Class clsTimeSheetEntryUI
   Private Shared pCurrentWorkCentreID As Integer
@@ -233,8 +234,10 @@ Public Class clsTimeSheetEntryUI
         pTimeSheetEntrys.Add(vNewTSEntry)
       End If
     Else
+
+      Dim mSameDay As Integer = DateAndTime.Weekday(vNewTSEntry.StartTime, FirstDayOfWeek.Monday)
       '// if no match then check for previous in same day and if it is the same OT / type then extend previous Otherwise extend previous till this start and add new
-      mExistingTSEntry = pTimeSheetEntrys.ItemEarlierSameDay(vNewTSEntry.StartTime)
+      mExistingTSEntry = pTimeSheetEntrys.ItemEarlierSameDay(vNewTSEntry.StartTime, mSameDay)
 
       If mExistingTSEntry IsNot Nothing Then
         '//We have one ealier in the day 
@@ -246,8 +249,10 @@ Public Class clsTimeSheetEntryUI
           pTimeSheetEntrys.Add(vNewTSEntry)
         End If
       Else
+        Dim mLastDay As Integer = DateAndTime.Weekday(vNewTSEntry.EndTime, FirstDayOfWeek.Monday)
+
         '//Check if the later one on the same day is the same type
-        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.EndTime)
+        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.EndTime, mLastDay)
         If mExistingTSEntry Is Nothing Then
           '// just add new entry for this hour
           pTimeSheetEntrys.Add(vNewTSEntry)
@@ -266,7 +271,7 @@ Public Class clsTimeSheetEntryUI
 
     If mExistingTSEntry IsNot Nothing Then
       mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
-      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift)
+      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift, mExistingTSEntry.OverTimeMinutes)
 
     End If
     vNewTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(vNewTSEntry.StartTime, vNewTSEntry.EndTime)
@@ -276,7 +281,10 @@ Public Class clsTimeSheetEntryUI
 
   Private Sub DeleteTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry)
     Dim mExistingTSEntry As dmTimeSheetEntry
-
+    Dim mShift As dmShift
+    Dim mShifts As colShifts
+    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
+    mShift = mShifts(0)
     mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
 
     If mExistingTSEntry IsNot Nothing Then
@@ -300,6 +308,7 @@ Public Class clsTimeSheetEntryUI
       End If
       '// Refresh the break mins for this entry
       mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
+      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift)
     End If
 
 

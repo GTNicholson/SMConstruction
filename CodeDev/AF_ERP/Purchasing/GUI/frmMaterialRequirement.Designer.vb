@@ -124,6 +124,7 @@ Partial Class frmMaterialRequirement
         Me.gcArea = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcChangeDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.repo = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repoOpenImage = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -266,7 +267,7 @@ Partial Class frmMaterialRequirement
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1502, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1502, 30)
         '
         'barDockControlBottom
         '
@@ -280,17 +281,17 @@ Partial Class frmMaterialRequirement
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 650)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 653)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1502, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1502, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 650)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 653)
         '
         'bbtnPickOrder
         '
@@ -333,11 +334,11 @@ Partial Class frmMaterialRequirement
         Me.grdMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
         GridLevelNode1.RelationName = "Level1"
         Me.grdMaterialRequirements.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 21)
+        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 22)
         Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
         Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
         Me.grdMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repItemQty, Me.RepositoryItemPopupContainerEditOrderedQty, Me.ReposItemPopupContainerEditSITrans, Me.RepositoryItemDateEdit2, Me.RepositoryItemMemoExEdit1, Me.RepositoryItemTextEdit1, Me.repo, Me.repoChkIsFromStockValidated, Me.repoFormat, Me.repoOpenImage, Me.repoItemPopupImage})
-        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1498, 627)
+        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1498, 629)
         Me.grdMaterialRequirements.TabIndex = 5
         Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements})
         '
@@ -353,7 +354,7 @@ Partial Class frmMaterialRequirement
         Me.gvMaterialRequirements.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gvMaterialRequirements.Appearance.ViewCaption.Options.UseFont = True
         Me.gvMaterialRequirements.ColumnPanelRowHeight = 40
-        Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.gcMatDescription, Me.GridColumn13, Me.gcInvReserved, Me.GridColumn14, Me.GridColumn23, Me.GridColumn36, Me.GridColumn15, Me.GridColumn16, Me.gcMatReqToOrder, Me.GridColumn1, Me.GridColumn32, Me.GridColumn19, Me.gcStockItemLocationsQty, Me.GridColumn9, Me.gcFromStock, Me.gcQuantityFromStock, Me.GridColumn33, Me.gcSOIDescription, Me.GridColumn12, Me.gcComments, Me.GridColumn37, Me.gcWODescription, Me.gcIsFromStockValidated, Me.gcTotalFromStock, Me.GridColumn17, Me.gcArea, Me.GridColumn6, Me.GridColumn8})
+        Me.gvMaterialRequirements.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.gcMatDescription, Me.GridColumn13, Me.gcInvReserved, Me.GridColumn14, Me.GridColumn23, Me.GridColumn36, Me.GridColumn15, Me.GridColumn16, Me.gcMatReqToOrder, Me.GridColumn1, Me.GridColumn32, Me.GridColumn19, Me.gcStockItemLocationsQty, Me.GridColumn9, Me.gcFromStock, Me.gcQuantityFromStock, Me.GridColumn33, Me.gcSOIDescription, Me.GridColumn12, Me.gcComments, Me.GridColumn37, Me.gcWODescription, Me.gcIsFromStockValidated, Me.gcTotalFromStock, Me.GridColumn17, Me.gcArea, Me.GridColumn6, Me.GridColumn8, Me.gcChangeDate})
         Me.gvMaterialRequirements.GridControl = Me.grdMaterialRequirements
         Me.gvMaterialRequirements.GroupCount = 2
         Me.gvMaterialRequirements.Name = "gvMaterialRequirements"
@@ -375,8 +376,8 @@ Partial Class frmMaterialRequirement
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
-        Me.GridColumn5.Width = 44
+        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.Width = 36
         '
         'repoItemPopupImage
         '
@@ -412,8 +413,8 @@ Partial Class frmMaterialRequirement
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
-        Me.GridColumn7.Width = 45
+        Me.GridColumn7.VisibleIndex = 9
+        Me.GridColumn7.Width = 48
         '
         'gcMatDescription
         '
@@ -422,8 +423,8 @@ Partial Class frmMaterialRequirement
         Me.gcMatDescription.Name = "gcMatDescription"
         Me.gcMatDescription.OptionsColumn.ReadOnly = True
         Me.gcMatDescription.Visible = True
-        Me.gcMatDescription.VisibleIndex = 7
-        Me.gcMatDescription.Width = 111
+        Me.gcMatDescription.VisibleIndex = 8
+        Me.gcMatDescription.Width = 97
         '
         'GridColumn13
         '
@@ -436,7 +437,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 15
+        Me.GridColumn13.VisibleIndex = 16
         Me.GridColumn13.Width = 63
         '
         'repoFormat
@@ -457,7 +458,7 @@ Partial Class frmMaterialRequirement
         Me.gcInvReserved.Name = "gcInvReserved"
         Me.gcInvReserved.OptionsColumn.ReadOnly = True
         Me.gcInvReserved.Visible = True
-        Me.gcInvReserved.VisibleIndex = 20
+        Me.gcInvReserved.VisibleIndex = 21
         Me.gcInvReserved.Width = 61
         '
         'GridColumn14
@@ -474,7 +475,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 19
+        Me.GridColumn14.VisibleIndex = 20
         Me.GridColumn14.Width = 72
         '
         'ReposItemPopupContainerEditSITrans
@@ -618,7 +619,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn23.OptionsColumn.ReadOnly = True
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 4
-        Me.GridColumn23.Width = 38
+        Me.GridColumn23.Width = 31
         '
         'RepositoryItemDateEdit2
         '
@@ -638,7 +639,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn36.OptionsColumn.ReadOnly = True
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 5
-        Me.GridColumn36.Width = 45
+        Me.GridColumn36.Width = 36
         '
         'GridColumn15
         '
@@ -654,7 +655,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 17
+        Me.GridColumn15.VisibleIndex = 18
         Me.GridColumn15.Width = 74
         '
         'RepositoryItemPopupContainerEditOrderedQty
@@ -812,7 +813,7 @@ Partial Class frmMaterialRequirement
         Me.gcMatReqToOrder.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.gcMatReqToOrder.Name = "gcMatReqToOrder"
         Me.gcMatReqToOrder.Visible = True
-        Me.gcMatReqToOrder.VisibleIndex = 21
+        Me.gcMatReqToOrder.VisibleIndex = 22
         Me.gcMatReqToOrder.Width = 86
         '
         'repItemQty
@@ -835,7 +836,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 18
+        Me.GridColumn1.VisibleIndex = 19
         Me.GridColumn1.Width = 86
         '
         'GridColumn32
@@ -856,7 +857,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 2
-        Me.GridColumn19.Width = 35
+        Me.GridColumn19.Width = 43
         '
         'gcStockItemLocationsQty
         '
@@ -869,8 +870,8 @@ Partial Class frmMaterialRequirement
         Me.gcStockItemLocationsQty.OptionsColumn.ReadOnly = True
         Me.gcStockItemLocationsQty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcStockItemLocationsQty.Visible = True
-        Me.gcStockItemLocationsQty.VisibleIndex = 14
-        Me.gcStockItemLocationsQty.Width = 56
+        Me.gcStockItemLocationsQty.VisibleIndex = 15
+        Me.gcStockItemLocationsQty.Width = 69
         '
         'GridColumn9
         '
@@ -879,8 +880,8 @@ Partial Class frmMaterialRequirement
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
-        Me.GridColumn9.Width = 31
+        Me.GridColumn9.VisibleIndex = 10
+        Me.GridColumn9.Width = 25
         '
         'gcFromStock
         '
@@ -894,7 +895,7 @@ Partial Class frmMaterialRequirement
         Me.gcFromStock.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.gcFromStock.Name = "gcFromStock"
         Me.gcFromStock.Visible = True
-        Me.gcFromStock.VisibleIndex = 22
+        Me.gcFromStock.VisibleIndex = 23
         Me.gcFromStock.Width = 74
         '
         'gcQuantityFromStock
@@ -915,7 +916,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn33.OptionsColumn.ReadOnly = True
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 3
-        Me.GridColumn33.Width = 43
+        Me.GridColumn33.Width = 35
         '
         'gcSOIDescription
         '
@@ -934,7 +935,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 0
-        Me.GridColumn12.Width = 85
+        Me.GridColumn12.Width = 77
         '
         'gcComments
         '
@@ -943,8 +944,8 @@ Partial Class frmMaterialRequirement
         Me.gcComments.FieldName = "Comments"
         Me.gcComments.Name = "gcComments"
         Me.gcComments.Visible = True
-        Me.gcComments.VisibleIndex = 10
-        Me.gcComments.Width = 52
+        Me.gcComments.VisibleIndex = 11
+        Me.gcComments.Width = 50
         '
         'RepositoryItemMemoExEdit1
         '
@@ -961,7 +962,7 @@ Partial Class frmMaterialRequirement
         Me.GridColumn37.OptionsColumn.ReadOnly = True
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 1
-        Me.GridColumn37.Width = 24
+        Me.GridColumn37.Width = 51
         '
         'gcWODescription
         '
@@ -980,7 +981,7 @@ Partial Class frmMaterialRequirement
         Me.gcIsFromStockValidated.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.gcIsFromStockValidated.Name = "gcIsFromStockValidated"
         Me.gcIsFromStockValidated.Visible = True
-        Me.gcIsFromStockValidated.VisibleIndex = 23
+        Me.gcIsFromStockValidated.VisibleIndex = 24
         Me.gcIsFromStockValidated.Width = 94
         '
         'repoChkIsFromStockValidated
@@ -999,8 +1000,8 @@ Partial Class frmMaterialRequirement
         Me.gcTotalFromStock.OptionsColumn.ReadOnly = True
         Me.gcTotalFromStock.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcTotalFromStock.Visible = True
-        Me.gcTotalFromStock.VisibleIndex = 13
-        Me.gcTotalFromStock.Width = 62
+        Me.gcTotalFromStock.VisibleIndex = 14
+        Me.gcTotalFromStock.Width = 48
         '
         'GridColumn17
         '
@@ -1012,8 +1013,8 @@ Partial Class frmMaterialRequirement
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 12
-        Me.GridColumn17.Width = 70
+        Me.GridColumn17.VisibleIndex = 13
+        Me.GridColumn17.Width = 55
         '
         'gcArea
         '
@@ -1022,8 +1023,8 @@ Partial Class frmMaterialRequirement
         Me.gcArea.Name = "gcArea"
         Me.gcArea.OptionsColumn.ReadOnly = True
         Me.gcArea.Visible = True
-        Me.gcArea.VisibleIndex = 11
-        Me.gcArea.Width = 60
+        Me.gcArea.VisibleIndex = 12
+        Me.gcArea.Width = 46
         '
         'GridColumn6
         '
@@ -1042,8 +1043,18 @@ Partial Class frmMaterialRequirement
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 16
+        Me.GridColumn8.VisibleIndex = 17
         Me.GridColumn8.Width = 69
+        '
+        'gcChangeDate
+        '
+        Me.gcChangeDate.Caption = "Fecha Generada"
+        Me.gcChangeDate.ColumnEdit = Me.RepositoryItemDateEdit2
+        Me.gcChangeDate.FieldName = "DateChange"
+        Me.gcChangeDate.Name = "gcChangeDate"
+        Me.gcChangeDate.Visible = True
+        Me.gcChangeDate.VisibleIndex = 6
+        Me.gcChangeDate.Width = 54
         '
         'RepositoryItemTextEdit1
         '
@@ -1081,9 +1092,9 @@ Partial Class frmMaterialRequirement
         Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirements)
         Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 33)
+        Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 30)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1502, 650)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1502, 653)
         Me.grpMaterialRequirements.TabIndex = 94
         Me.grpMaterialRequirements.Text = "Artículos Requeridos por Proyecto"
         '
@@ -1250,4 +1261,5 @@ Partial Class frmMaterialRequirement
   Friend WithEvents gcArea As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcChangeDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

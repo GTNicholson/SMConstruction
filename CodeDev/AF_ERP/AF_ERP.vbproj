@@ -644,6 +644,7 @@
     <Compile Include="Sales\GUI\fccSalesOrderDetailHouses.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderProgress.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderReview.vb" />
+    <Compile Include="Sales\GUI\fccShiftDetails.vb" />
     <Compile Include="Sales\GUI\fccWoodSalesOrder.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetailConstruction.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetail.vb" />
@@ -730,6 +731,12 @@
       <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderReviewSmallScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmShiftDetails.Designer.vb">
+      <DependentUpon>frmShiftDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmShiftDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmWoodSalesOrder.Designer.vb">
@@ -1211,6 +1218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderReviewSmallScreen.resx">
       <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmShiftDetails.resx">
+      <DependentUpon>frmShiftDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWoodSalesOrder.resx">
       <DependentUpon>frmWoodSalesOrder.vb</DependentUpon>

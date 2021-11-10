@@ -265,6 +265,8 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
 
+
+
   Public ReadOnly Property WorkOrderNoAndDescription As String
     Get
       Return pWorkOrder.WorkOrderNo.Substring(3) & "/" & pWorkOrder.Description

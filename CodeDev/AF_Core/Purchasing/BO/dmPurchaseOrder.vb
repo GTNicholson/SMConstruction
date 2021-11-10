@@ -63,7 +63,6 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pPaymentDate As Date
   Private pPurchaseOrderWOAllocations As colPurchaseOrderWOAllocations
   Private pMaterialRequirementTypeWorkOrderID As Integer
-
   Public Sub New()
     MyBase.New()
   End Sub
@@ -746,6 +745,8 @@ Public Class dmPurchaseOrder : Inherits dmBase
       pMaterialRequirementTypeWorkOrderID = value
     End Set
   End Property
+
+
 
 End Class
 

@@ -165,6 +165,7 @@ Public Class frmMaterialRequirement
       bbtnSetAllToOrder.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
       gcMatReqToOrder.Visible = True
       gcFromStock.Visible = False
+      gcChangeDate.Visible = True
     Else
 
       bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -173,7 +174,7 @@ Public Class frmMaterialRequirement
       bbtnSetAllToOrder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
       gcMatReqToOrder.Visible = False
       gcFromStock.Visible = False
-
+      gcChangeDate.Visible = False
 
     End If
 
@@ -348,6 +349,21 @@ Public Class frmMaterialRequirement
               End If
 
             End If
+
+
+            If e.Column.Name = gcChangeDate.Name Then
+              Dim mYesterday As Date = Date.Now.AddDays(-1)
+              Dim mDateChange As Date = New Date(mCurrentRow.DateChange.Year, mCurrentRow.DateChange.Month, mCurrentRow.DateChange.Day)
+
+              If mDateChange.Date = mYesterday.Date Or mDateChange.Date = Now.Date Then
+                e.Appearance.BackColor = Color.GreenYellow
+                e.Appearance.ForeColor = Color.Black
+              Else
+                e.Appearance.BackColor = Color.Empty
+              End If
+
+            End If
+
 
           End If
 

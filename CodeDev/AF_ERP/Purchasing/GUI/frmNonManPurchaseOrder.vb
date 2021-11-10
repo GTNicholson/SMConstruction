@@ -1384,10 +1384,10 @@ Public Class frmNonManPurchaseOrder
         LoadPOItemAllocationCombo()
 
         RefreshControls()
-        ShowHideTabs()
         grdSalesOrderPhaseItemsPhases.DataSource = pFormController.SalesOrderPhaseItemInfos
         grdSalesOrderPhaseItemsPhases.RefreshDataSource()
       End If
+      ShowHideTabs()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -1533,7 +1533,7 @@ Public Class frmNonManPurchaseOrder
 
       If mColum.Name = vColumnNameToShow Then
         mColum.Visible = True
-        mColum.VisibleIndex = 3 ''//To force to have The right position of the column in the view
+        mColum.VisibleIndex = 5 ''//To force to have The right position of the column in the view
       End If
 
       If mColum.Name = vColumnNameToHide Then

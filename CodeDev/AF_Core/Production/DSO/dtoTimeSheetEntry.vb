@@ -182,6 +182,41 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
     Return mAllOK
   End Function
 
+
+  Public Function SaveTimeSheetEntryCollection(ByRef rCollection As colTimeSheetEntrys) As Boolean
+    Dim mParams As New Hashtable
+    Dim mAllOK As Boolean
+    Dim mCount As Integer
+    Dim mIDs As String = ""
+    If rCollection.IsDirty Then
+
+
+      ''Alternative Approach - where maintain collection of deleted items
+      If rCollection.SomeDeleted Then
+        mAllOK = True
+        For Each Me.pTimeSheetEntry In rCollection.DeletedItems
+          If pTimeSheetEntry.TimeSheetEntryID <> 0 Then
+            If mAllOK Then mAllOK = MyBase.DeleteDBRecord(pTimeSheetEntry.TimeSheetEntryID)
+          End If
+        Next
+      Else
+        mAllOK = True
+      End If
+
+      For Each Me.pTimeSheetEntry In rCollection
+        If pTimeSheetEntry.IsDirty Or pTimeSheetEntry.TimeSheetEntryID = 0 Then 'Or pTimeSheetEntry.TimeSheetEntryID = 0
+
+          If mAllOK Then mAllOK = SaveObject()
+        End If
+      Next
+      If mAllOK Then rCollection.IsDirty = False
+    Else
+      mAllOK = True
+    End If
+
+    Return mAllOK
+  End Function
+
 End Class
 
 

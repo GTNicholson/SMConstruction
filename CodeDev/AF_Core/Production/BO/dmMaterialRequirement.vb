@@ -564,6 +564,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
       pIsAlreayUsed = value
     End Set
   End Property
+
+
 End Class
 
 

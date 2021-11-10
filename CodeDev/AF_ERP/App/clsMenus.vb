@@ -115,6 +115,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tablas de Configuracion", eMenuIconType.Admin, AddressOf clsMenuFunctions.LookUpLists, eActivityCode.Configuration)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Configuración de Etiquetas de Pallets de Madera", eMenuIconType.Admin, AddressOf clsMenuFunctions.ReportDesignerWoodPallet, eActivityCode.Configuration)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Horas Laborales", eMenuIconType.Admin, AddressOf clsMenuFunctions.ShiftDetails, eActivityCode.Configuration)
 
 
     Return mMenuList
@@ -455,6 +456,11 @@ Class clsMenuFunctions
     mBIReport = BIReportViewTimeSheet.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
+
+  Public Shared Sub ShiftDetails(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    frmShiftDetails.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+  End Sub
+
 
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)

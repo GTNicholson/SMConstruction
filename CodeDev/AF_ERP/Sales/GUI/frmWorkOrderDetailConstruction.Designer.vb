@@ -286,7 +286,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 30)
         '
         'barDockControlBottom
         '
@@ -300,17 +300,17 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 838)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 841)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 838)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 841)
         '
         'StandaloneBarDockControl2
         '
@@ -342,12 +342,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.TableLayoutPanel1.Controls.Add(Me.grpProduct, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 333.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 838)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 841)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'grpProduct
@@ -361,7 +361,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpProduct.Location = New System.Drawing.Point(3, 336)
         Me.grpProduct.Name = "grpProduct"
-        Me.grpProduct.Size = New System.Drawing.Size(1474, 499)
+        Me.grpProduct.Size = New System.Drawing.Size(1474, 502)
         Me.grpProduct.TabIndex = 166
         Me.grpProduct.Text = "Detalles del Producto"
         '
@@ -371,7 +371,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(2, 51)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1470, 446)
+        Me.Panel1.Size = New System.Drawing.Size(1470, 449)
         Me.Panel1.TabIndex = 171
         '
         'uctProductDetail
@@ -383,7 +383,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(3, 6)
         Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 440)
+        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 443)
         Me.uctProductDetail.TabIndex = 0
         Me.uctProductDetail.TempInWoodStock = 0
         Me.uctProductDetail.WoodItemsSelected = 0
@@ -422,7 +422,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage1.Appearance.Header.Options.UseForeColor = True
         Me.XtraTabPage1.Controls.Add(Me.GroupControl6)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1466, 273)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1464, 272)
         Me.XtraTabPage1.Text = "Información General"
         '
         'GroupControl6
@@ -459,7 +459,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1466, 273)
+        Me.GroupControl6.Size = New System.Drawing.Size(1464, 272)
         Me.GroupControl6.TabIndex = 165
         Me.GroupControl6.Text = "Detalle General de OT"
         '
@@ -630,19 +630,19 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 25)
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
-        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(681, 208)
+        Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(679, 208)
         Me.grpWorkOrderAllocations.TabIndex = 167
         Me.grpWorkOrderAllocations.Text = "Distribución de OT"
         '
         'grdWorkOrderAllocationsInfos
         '
         Me.grdWorkOrderAllocationsInfos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 26)
+        Me.grdWorkOrderAllocationsInfos.Location = New System.Drawing.Point(2, 24)
         Me.grdWorkOrderAllocationsInfos.MainView = Me.gvWorkOrderAllocationsInfos
         Me.grdWorkOrderAllocationsInfos.MenuManager = Me.BarManager1
         Me.grdWorkOrderAllocationsInfos.Name = "grdWorkOrderAllocationsInfos"
         Me.grdWorkOrderAllocationsInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit4})
-        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(677, 180)
+        Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(675, 182)
         Me.grdWorkOrderAllocationsInfos.TabIndex = 157
         Me.grdWorkOrderAllocationsInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderAllocationsInfos, Me.GridView3})
         '
@@ -921,7 +921,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirementInsumos)
         Me.XtraTabPage2.Controls.Add(Me.grpWOMatReqWood)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1466, 273)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 272)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
         '
         'grpMaterialRequirementInsumos
@@ -944,12 +944,12 @@ Partial Class frmWorkOrderDetailConstruction
         'grdStockItemMatReq
         '
         Me.grdStockItemMatReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemMatReq.MainView = Me.gvStockItemMatReq
         Me.grdStockItemMatReq.MenuManager = Me.BarManager1
         Me.grdStockItemMatReq.Name = "grdStockItemMatReq"
         Me.grdStockItemMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1})
-        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 245)
+        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 247)
         Me.grdStockItemMatReq.TabIndex = 14
         Me.grdStockItemMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMatReq})
         '
@@ -1117,12 +1117,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 26)
+        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 24)
         Me.grdWoodMatReq.MainView = Me.gvWoodMatReq
         Me.grdWoodMatReq.MenuManager = Me.BarManager1
         Me.grdWoodMatReq.Name = "grdWoodMatReq"
         Me.grdWoodMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoChangeSpecie})
-        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 245)
+        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 247)
         Me.grdWoodMatReq.TabIndex = 14
         Me.grdWoodMatReq.UseEmbeddedNavigator = True
         Me.grdWoodMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMatReq})

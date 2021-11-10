@@ -102,11 +102,11 @@ Partial Class uctProductBaseDetail
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcAreaID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDuplicateSI = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoDuplicateSI = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoChkSelectedSI = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.repoDuplicateSI = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.Panel1.SuspendLayout()
         CType(Me.cheStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,9 +140,9 @@ Partial Class uctProductBaseDetail
         CType(Me.gvStockItemMaterialRequirements, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoDuplicateSI, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoChkSelectedSI, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.repoDuplicateSI, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -357,11 +357,11 @@ Partial Class uctProductBaseDetail
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 26)
+        Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 24)
         Me.grdWoodMaterialRequirements.MainView = Me.gvWoodMaterialRequirements
         Me.grdWoodMaterialRequirements.Name = "grdWoodMaterialRequirements"
         Me.grdWoodMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoCreateDuplicate, Me.repobtnChangeSpecie, Me.repoChkSelectedItem, Me.repoThickness, Me.repoThicknessValueLK, Me.repoWoodClasification, Me.repoWoodItemTypeLK})
-        Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1182, 203)
+        Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1182, 205)
         Me.grdWoodMaterialRequirements.TabIndex = 0
         Me.grdWoodMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdWoodMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMaterialRequirements, Me.GridView1, Me.GridView2})
@@ -706,11 +706,11 @@ Partial Class uctProductBaseDetail
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdStockItemsMaterialRequirement.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemsMaterialRequirement.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemsMaterialRequirement.MainView = Me.gvStockItemMaterialRequirements
         Me.grdStockItemsMaterialRequirement.Name = "grdStockItemsMaterialRequirement"
         Me.grdStockItemsMaterialRequirement.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repbtnSubstituteMatReq, Me.RepositoryItemSpinEdit3, Me.repoChkSelectedSI, Me.repoDuplicateSI})
-        Me.grdStockItemsMaterialRequirement.Size = New System.Drawing.Size(1182, 203)
+        Me.grdStockItemsMaterialRequirement.Size = New System.Drawing.Size(1182, 205)
         Me.grdStockItemsMaterialRequirement.TabIndex = 0
         Me.grdStockItemsMaterialRequirement.UseEmbeddedNavigator = True
         Me.grdStockItemsMaterialRequirement.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMaterialRequirements})
@@ -815,6 +815,13 @@ Partial Class uctProductBaseDetail
         Me.gcDuplicateSI.VisibleIndex = 1
         Me.gcDuplicateSI.Width = 56
         '
+        'repoDuplicateSI
+        '
+        Me.repoDuplicateSI.AutoHeight = False
+        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
+        Me.repoDuplicateSI.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoDuplicateSI.Name = "repoDuplicateSI"
+        '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Comentarios"
@@ -842,13 +849,6 @@ Partial Class uctProductBaseDetail
         'GridView3
         '
         Me.GridView3.Name = "GridView3"
-        '
-        'repoDuplicateSI
-        '
-        Me.repoDuplicateSI.AutoHeight = False
-        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
-        Me.repoDuplicateSI.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.repoDuplicateSI.Name = "repoDuplicateSI"
         '
         'uctProductBaseDetail
         '
@@ -891,9 +891,9 @@ Partial Class uctProductBaseDetail
         CType(Me.gvStockItemMaterialRequirements, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repbtnSubstituteMatReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoDuplicateSI, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoChkSelectedSI, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.repoDuplicateSI, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -27,6 +27,7 @@ Partial Class frmPhaseManagement
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.bbtnReload = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -66,7 +67,6 @@ Partial Class frmPhaseManagement
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
-        Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -101,7 +101,7 @@ Partial Class frmPhaseManagement
         '
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1464, 706)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1462, 705)
         Me.XtraTabPage1.Text = "XtraTabPage1"
         '
         'PanelControl1
@@ -113,13 +113,22 @@ Partial Class frmPhaseManagement
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1464, 706)
+        Me.PanelControl1.Size = New System.Drawing.Size(1462, 705)
         Me.PanelControl1.TabIndex = 0
+        '
+        'btnExport
+        '
+        Me.btnExport.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnExport.Location = New System.Drawing.Point(980, 13)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(62, 23)
+        Me.btnExport.TabIndex = 156
+        Me.btnExport.Text = "Exportar"
         '
         'bbtnReload
         '
         Me.bbtnReload.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bbtnReload.Location = New System.Drawing.Point(914, 13)
+        Me.bbtnReload.Location = New System.Drawing.Point(912, 13)
         Me.bbtnReload.Name = "bbtnReload"
         Me.bbtnReload.Size = New System.Drawing.Size(62, 23)
         Me.bbtnReload.TabIndex = 155
@@ -135,7 +144,7 @@ Partial Class frmPhaseManagement
         Me.GroupControl1.Controls.Add(Me.LabelControl10)
         Me.GroupControl1.Controls.Add(Me.LabelControl6)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
-        Me.GroupControl1.Location = New System.Drawing.Point(1050, 4)
+        Me.GroupControl1.Location = New System.Drawing.Point(1048, 4)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(408, 41)
         Me.GroupControl1.TabIndex = 2
@@ -214,7 +223,7 @@ Partial Class frmPhaseManagement
         Me.grdSOPMilestoneStatuses.MainView = Me.gvSOPMilestoneStatuses
         Me.grdSOPMilestoneStatuses.Name = "grdSOPMilestoneStatuses"
         Me.grdSOPMilestoneStatuses.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2, Me.RepositoryItemMemoEdit1, Me.repitcboColour, Me.RepositoryItemDateEdit1})
-        Me.grdSOPMilestoneStatuses.Size = New System.Drawing.Size(1460, 704)
+        Me.grdSOPMilestoneStatuses.Size = New System.Drawing.Size(1458, 703)
         Me.grdSOPMilestoneStatuses.TabIndex = 85
         Me.grdSOPMilestoneStatuses.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSOPMilestoneStatuses})
         '
@@ -682,21 +691,12 @@ Partial Class frmPhaseManagement
         '
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 706)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1462, 705)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'PopupMenu1
         '
         Me.PopupMenu1.Name = "PopupMenu1"
-        '
-        'btnExport
-        '
-        Me.btnExport.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnExport.Location = New System.Drawing.Point(982, 13)
-        Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(62, 23)
-        Me.btnExport.TabIndex = 156
-        Me.btnExport.Text = "Exportar"
         '
         'frmPhaseManagement
         '

@@ -1177,21 +1177,27 @@ Public Class frmWorkOrderDetailConstruction
 
   Private Sub btnGenerateMatReq_Click(sender As Object, e As EventArgs) Handles btnGenerateMatReq.Click
     Dim mProductStructure As dmProductStructure
+    Dim mDialogResult As DialogResult
 
-    mProductStructure = TryCast(uctProductDetail.FormController.CurrentProductInfo.Product, dmProductStructure)
+    mDialogResult = MessageBox.Show("¿Está seguro que desea generar los requerimientos de materiales para esta O.T.?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2)
 
-    CheckSave(False)
-    pFormController.GenerateMatReq(mProductStructure)
+    If mDialogResult = DialogResult.Yes Then
+      mProductStructure = TryCast(uctProductDetail.FormController.CurrentProductInfo.Product, dmProductStructure)
+
+      CheckSave(False)
+      pFormController.GenerateMatReq(mProductStructure)
 
 
 
-    grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
-    gvStockItemMatReq.RefreshData()
+      grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
+      gvStockItemMatReq.RefreshData()
 
-    grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
-    gvWoodMatReq.RefreshData()
+      grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
+      gvWoodMatReq.RefreshData()
 
-    pFormController.SaveObjects()
+      pFormController.SaveObjects()
+    End If
+
   End Sub
 
   Private Sub gvStockItemMatReq_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvWoodMatReq.CustomUnboundColumnData

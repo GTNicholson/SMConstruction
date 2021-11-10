@@ -401,7 +401,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
 
   Public Function CalculateVATValue(ByVal vPercent As Decimal) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = Math.Round(UnitPrice * (vPercent / 100), 2, MidpointRounding.AwayFromZero)
+    mRetVal = UnitPrice * (vPercent / 100)
     Return mRetVal
   End Function
 
@@ -410,9 +410,8 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
       Return pVatValue
     End Get
     Set(ByVal value As Decimal)
-      Dim mValue As Decimal = Math.Round(value, 2, MidpointRounding.AwayFromZero)
-      If pVatValue <> mValue Then IsDirty = True
-      pVatValue = mValue
+      If pVatValue <> value Then IsDirty = True
+      pVatValue = value
     End Set
   End Property
 
@@ -465,7 +464,7 @@ Public Class dmPurchaseOrderItem : Inherits dmBase
 
   Public ReadOnly Property VATAmount As Decimal
     Get
-      Return pVatValue * pQtyRequired
+      Return Math.Round(pVatValue * pQtyRequired, 2, MidpointRounding.AwayFromZero)
     End Get
   End Property
 

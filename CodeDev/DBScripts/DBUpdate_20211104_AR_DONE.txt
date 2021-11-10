@@ -1,0 +1,107 @@
+
+ALTER view [dbo].[vwTimeSheetEntryInfo]
+as
+
+
+SELECT        
+TS.TimeSheetEntryID, 
+TS.TimeSheetEntryTypeID,
+TS.EmployeeID, 
+TS.WorkOrderID, 
+TS.StartTime, 
+TS.EndTime, 
+TS.Note, 
+TS.WorkcentreID,
+TS.OverTimeMinutes, 
+WO.WorkOrderNo, 
+WO.Description,
+SO.ProjectName,
+C.CompanyName,
+EROP.StandardRate
+FROM dbo.TimeSheetEntry AS TS
+INNER JOIN Employee E ON E.EmployeeID=TS.EmployeeID
+LEFT join EmployeeRateOfPay EROP on EROP.EmployeeID=E.EmployeeID
+LEFT JOIN dbo.WorkOrder AS WO ON WO.WorkOrderID = TS.WorkOrderID
+LEFT JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left Join SalesOrder SO on SO.SalesOrderID = SOPI.SalesOrderID
+Left Join Customer C on C.CustomerId = SO.CustomerID
+
+
+GO
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.ReturnQty,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.NetLenght,
+MR.NetWidth,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+MR.FromStockQty,
+MR.IsFromStockValidated,
+MR.DateChange,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+WO.DateCreated,
+WO.PurchasingDate,
+SO.OrderNo,
+SO.ProjectName,
+SO.OrderTypeID,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+SOPI.SalesOrderPhaseID,
+SOPI.SalesOrderPhaseItemID,
+SOPI.SalesOrderID,
+SOI.ItemNumber,
+SOI.Description 'SOIDescription',
+SOI.SalesOrderItemID,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty',
+isnull(sil.Qty,0) StockItemLocationsQty,
+isnull(vwOQWOSum.OrderedQty,0) OrderedQty,
+isnull(vwOQWOSum.ReceivedQty,0) ReceivedQty,
+isnull(vwOQWOSum.CurrentOrderQty,0) CurrentOrderQty,
+isnull(vwMRAQWO.TotalQuantityRequired,0) TotalAreaQuantity
+
+
+
+
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID AND WO.Status not in (3)
+LEFT join WorkOrderAllocation WOA on WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN StockItemLocation SIL ON SIL.StockItemID=SI.StockItemID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID --IT'S INNER JOIN HERE
+left join vwOrderedQuantityWOSummary vwOQWOSum on vwOQWOSum.WorkOrderID=WO.WorkOrderID and vwOQWOSum.StockItemID=si.StockItemID
+left join vwMRAllQuantityWO vwMRAQWO on vwMRAQWO.StockItemID=si.StockItemID and vwMRAQWO.ObjectID=mr.ObjectID
+LEFT JOIN SalesOrderItem SOI on SOI.SalesOrderItemID=SOPI.SalesItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,1)
+
+GO
+
+
+

@@ -414,7 +414,7 @@ Partial Class frmCostBook
         Me.grdCostBookEntry.MenuManager = Me.BarManager1
         Me.grdCostBookEntry.Name = "grdCostBookEntry"
         Me.grdCostBookEntry.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoCostUnit})
-        Me.grdCostBookEntry.Size = New System.Drawing.Size(1332, 381)
+        Me.grdCostBookEntry.Size = New System.Drawing.Size(1330, 380)
         Me.grdCostBookEntry.TabIndex = 0
         Me.grdCostBookEntry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCostBookEntry, Me.GridView2})
         '

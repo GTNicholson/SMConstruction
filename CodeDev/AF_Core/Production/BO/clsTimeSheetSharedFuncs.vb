@@ -1,6 +1,6 @@
 ﻿Public Class clsTimeSheetSharedFuncs
 
-  Public Shared Function getOverTimeMinutes(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByRef rShift As dmShift) As Integer
+  Public Shared Function getOverTimeMinutes(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByRef rShift As dmShift, ByVal Optional vOverTime As Decimal = 0) As Integer
     Dim mretVal As Integer
     Dim mSD As dmShiftDetails = Nothing
     Dim mStartMinutes As Int32
@@ -37,19 +37,87 @@
       mStartMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(mSD.StartTime.TimeOfDay.ToString))
 
       If mStartMinutes > 0 Then
-        mTotalMinutes1 = mStartMinutes
-      ElseIf mStartMinutes < 0 Then
-        mTotalMinutes1 = Math.Abs(mStartMinutes)
+
+        If rTimeSheetEntry.StartTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" Then
+          mStartMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(mSD.StartTime.TimeOfDay.ToString))
+          mTotalMinutes1 = mStartMinutes
+        ElseIf rTimeSheetEntry.StartTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay < mSD.StartTime.TimeOfDay Then
+          mStartMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.TimeOfDay.ToString))
+
+          If vOverTime > 0 Then
+            mStartMinutes = mStartMinutes
+          End If
+
+          mTotalMinutes1 = mStartMinutes
+        ElseIf rTimeSheetEntry.StartTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay >= mSD.StartTime.TimeOfDay Then
+          mStartMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(mSD.StartTime.TimeOfDay.ToString))
+
+          If vOverTime > 0 Then
+            mStartMinutes = mStartMinutes
+          End If
+          mTotalMinutes1 = mStartMinutes
+
+        ElseIf rTimeSheetEntry.StartTime.TimeOfDay.ToString <> "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay >= mSD.StartTime.TimeOfDay Then
+          mStartMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(mSD.StartTime.TimeOfDay.ToString))
+
+          If vOverTime > 0 Then
+            mStartMinutes = mStartMinutes
+          End If
+          mTotalMinutes1 = mStartMinutes
+
+        ElseIf rTimeSheetEntry.StartTime.TimeOfDay.ToString <> "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" Then
+          mStartMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(mSD.StartTime.TimeOfDay.ToString))
+
+          mTotalMinutes1 = mStartMinutes
+
+        End If
+
       Else
-        mTotalMinutes1 = 0
+          mTotalMinutes1 = 0
       End If
 
       mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(mSD.EndTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.TimeOfDay.ToString))
 
       If mEndMinutes > 0 Then
-        mTotalMinutes2 = mEndMinutes
+
+        If rTimeSheetEntry.EndTime.TimeOfDay.ToString <> "00:00:00" And rTimeSheetEntry.StartTime.TimeOfDay > mSD.EndTime.TimeOfDay Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.TimeOfDay.ToString))
+
+          mTotalMinutes2 = mEndMinutes
+        ElseIf rTimeSheetEntry.EndTime.TimeOfDay.ToString <> "00:00:00" And rTimeSheetEntry.StartTime.TimeOfDay < mSD.EndTime.TimeOfDay Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(mSD.EndTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.TimeOfDay.ToString))
+
+          mTotalMinutes2 = mEndMinutes
+
+
+        End If
+
+
+
+
       ElseIf mEndMinutes < 0 Then
-        mTotalMinutes2 = Math.Abs(mEndMinutes)
+
+        If rTimeSheetEntry.StartTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(mSD.EndTime.TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.AddMinutes(-1).TimeOfDay.ToString))
+          mTotalMinutes2 = mEndMinutes + 1
+        ElseIf rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.StartTime.TimeOfDay >= mSD.EndTime.TimeOfDay Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.AddMinutes(-1).TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.AddMinutes(-1).TimeOfDay.ToString))
+          mTotalMinutes2 = mEndMinutes
+
+        ElseIf rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.StartTime.TimeOfDay <= mSD.StartTime.TimeOfDay Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(mSD.EndTime.AddMinutes(-1).TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.AddMinutes(-1).TimeOfDay.ToString))
+          mTotalMinutes2 = mEndMinutes
+
+        ElseIf rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" And rTimeSheetEntry.StartTime.TimeOfDay <= mSD.EndTime.TimeOfDay Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(mSD.EndTime.AddMinutes(-1).TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.AddMinutes(-1).TimeOfDay.ToString))
+          mTotalMinutes2 = mEndMinutes
+
+        ElseIf rTimeSheetEntry.StartTime.TimeOfDay.ToString <> "00:00:00" And rTimeSheetEntry.EndTime.TimeOfDay.ToString = "00:00:00" Then
+          mEndMinutes = DateDiff(DateInterval.Minute, DateTime.Parse(rTimeSheetEntry.StartTime.AddMinutes(-1).TimeOfDay.ToString), DateTime.Parse(rTimeSheetEntry.EndTime.AddMinutes(-1).TimeOfDay.ToString))
+          mTotalMinutes2 = mEndMinutes
+
+        End If
+
       Else
         mTotalMinutes2 = 0
       End If

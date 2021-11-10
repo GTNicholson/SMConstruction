@@ -49,6 +49,8 @@ Partial Class frmWorkOrderTracking
         Me.gcMetalFinishing = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPackaging = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDespatch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTejido = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.bchkHideDespatched = New DevExpress.XtraBars.BarEditItem()
@@ -64,8 +66,6 @@ Partial Class frmWorkOrderTracking
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcTejido = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvWorksOrders, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,11 +79,11 @@ Partial Class frmWorkOrderTracking
         'grdWorksOrders
         '
         Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdWorksOrders.Location = New System.Drawing.Point(0, 33)
+        Me.grdWorksOrders.Location = New System.Drawing.Point(0, 30)
         Me.grdWorksOrders.MainView = Me.gvWorksOrders
         Me.grdWorksOrders.Name = "grdWorksOrders"
         Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-        Me.grdWorksOrders.Size = New System.Drawing.Size(1924, 593)
+        Me.grdWorksOrders.Size = New System.Drawing.Size(1924, 596)
         Me.grdWorksOrders.TabIndex = 0
         Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
         '
@@ -432,6 +432,31 @@ Partial Class frmWorkOrderTracking
         Me.gcDespatch.Visible = True
         Me.gcDespatch.VisibleIndex = 20
         '
+        'gcTapizado
+        '
+        Me.gcTapizado.Caption = "Tapizado"
+        Me.gcTapizado.FieldName = "gcTapizado"
+        Me.gcTapizado.Name = "gcTapizado"
+        Me.gcTapizado.OptionsColumn.AllowEdit = False
+        Me.gcTapizado.OptionsColumn.ReadOnly = True
+        Me.gcTapizado.Tag = "18"
+        Me.gcTapizado.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcTapizado.Visible = True
+        Me.gcTapizado.VisibleIndex = 17
+        '
+        'gcTejido
+        '
+        Me.gcTejido.Caption = "Tejido"
+        Me.gcTejido.FieldName = "gcTejido"
+        Me.gcTejido.Name = "gcTejido"
+        Me.gcTejido.OptionsColumn.AllowEdit = False
+        Me.gcTejido.OptionsColumn.ReadOnly = True
+        Me.gcTejido.Tag = "19"
+        Me.gcTejido.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcTejido.Visible = True
+        Me.gcTejido.VisibleIndex = 18
+        Me.gcTejido.Width = 100
+        '
         'BarManager1
         '
         Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
@@ -486,7 +511,7 @@ Partial Class frmWorkOrderTracking
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1924, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1924, 30)
         '
         'barDockControlBottom
         '
@@ -500,17 +525,17 @@ Partial Class frmWorkOrderTracking
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 593)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 596)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 593)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 596)
         '
         'GroupControl1
         '
@@ -591,31 +616,6 @@ Partial Class frmWorkOrderTracking
         Me.LabelControl3.Size = New System.Drawing.Size(98, 22)
         Me.LabelControl3.TabIndex = 2
         Me.LabelControl3.Text = "Pendiente"
-        '
-        'gcTapizado
-        '
-        Me.gcTapizado.Caption = "Tapizado"
-        Me.gcTapizado.FieldName = "gcTapizado"
-        Me.gcTapizado.Name = "gcTapizado"
-        Me.gcTapizado.OptionsColumn.AllowEdit = False
-        Me.gcTapizado.OptionsColumn.ReadOnly = True
-        Me.gcTapizado.Tag = "18"
-        Me.gcTapizado.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.gcTapizado.Visible = True
-        Me.gcTapizado.VisibleIndex = 17
-        '
-        'gcTejido
-        '
-        Me.gcTejido.Caption = "Tejido"
-        Me.gcTejido.FieldName = "gcTejido"
-        Me.gcTejido.Name = "gcTejido"
-        Me.gcTejido.OptionsColumn.AllowEdit = False
-        Me.gcTejido.OptionsColumn.ReadOnly = True
-        Me.gcTejido.Tag = "19"
-        Me.gcTejido.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.gcTejido.Visible = True
-        Me.gcTejido.VisibleIndex = 18
-        Me.gcTejido.Width = 100
         '
         'frmWorkOrderTracking
         '

@@ -252,6 +252,9 @@ Public Class frmTabbedMDI_DevUtil
 
     For Each mTSE In mTSEs
       mOTMins = clsTimeSheetSharedFuncs.getOverTimeMinutes(mTSE, mShift)
+      mTSE.OverTimeMinutes = mOTMins
+      mdso.SaveTimeSheetEntry(mTSE)
+
     Next
 
   End Sub
@@ -1296,4 +1299,166 @@ Public Class frmTabbedMDI_DevUtil
 
 
   End Sub
+
+  Private Sub btnUpdateOverTime_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdateOverTime.LinkClicked
+
+
+  End Sub
+
+  Private Sub SetTimeSheetEntryStr(ByVal vDaysOffSet As Byte, ByVal vEnteredString As String, ByVal vWorkCentreID As Integer, ByVal pWeekCommencing As DateTime, ByVal vWOInfos As colWorkOrderInfos, ByRef pTimeSheetEntrys As colTimeSheetEntrys, ByVal vEmployeeID As Integer, ByVal vStartTime As DateTime)
+    Dim mNewTSEntry As dmTimeSheetEntry
+    Dim mStartTime As Date
+
+    '//Create a new proposed one to resolve the detail
+
+    mStartTime = pWeekCommencing.Date.AddDays(vDaysOffSet) ' + vStartTime.TimeOfDay
+    mNewTSEntry = New dmTimeSheetEntry
+    mNewTSEntry.StartTime = mStartTime
+    mNewTSEntry.EndTime = mStartTime.AddHours(1)
+    mNewTSEntry.WorkCentreID = vWorkCentreID
+    If IsNumeric(vEnteredString) Then
+      EditTSEntryWorkOrder(mNewTSEntry, vEnteredString, vWOInfos)
+    ElseIf vEnteredString.Contains("-") Then
+      EditTSEntryWorkOrder(mNewTSEntry, vEnteredString, vWOInfos)
+    Else
+      EditTSEntryNonWorkOrder(mNewTSEntry, vEnteredString)
+    End If
+
+    '// now see if we should be editting existing and/or adding new or deleting
+    If mNewTSEntry.TimeSheetEntryTypeID <> clsTimeSheetCode.cUnDefined Then
+      EditOrAddTSEntry(mNewTSEntry, pTimeSheetEntrys, vEmployeeID)
+    Else
+      DeleteTSEntry(mNewTSEntry, pTimeSheetEntrys)
+    End If
+
+  End Sub
+
+  Private Sub DeleteTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry, ByRef pTimeSheetEntrys As colTimeSheetEntrys)
+    Dim mExistingTSEntry As dmTimeSheetEntry
+    Dim mShift As dmShift
+    Dim mShifts As colShifts
+    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
+    mShift = mShifts(0)
+    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
+
+    If mExistingTSEntry IsNot Nothing Then
+      If mExistingTSEntry.StartTime = vNewTSEntry.StartTime Then
+
+        If mExistingTSEntry.EndTime <= vNewTSEntry.EndTime Then
+          '// if this is the whole entry, remove it
+          pTimeSheetEntrys.Remove(mExistingTSEntry)
+        Else
+          '// move the startime forwards
+          mExistingTSEntry.StartTime = vNewTSEntry.EndTime
+        End If
+      Else
+        '//look for an entry that spans the new entry
+        mExistingTSEntry = pTimeSheetEntrys.ItemSpanning(vNewTSEntry.StartTime)
+        If mExistingTSEntry IsNot Nothing Then
+          If mExistingTSEntry.EndTime > vNewTSEntry.StartTime Then
+            mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+          End If
+        End If
+      End If
+      '// Refresh the break mins for this entry
+      mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
+      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift)
+    End If
+
+
+
+  End Sub
+
+
+
+  Private Sub EditTSEntryNonWorkOrder(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByVal vEnteredString As String)
+    Dim mCode As clsTimeSheetCode
+
+    mCode = colTimeSheetCodes.GetInstance.ItemFromKeyCode(vEnteredString.ToUpper)
+    If mCode IsNot Nothing Then
+      rTimeSheetEntry.TimeSheetEntryTypeID = mCode.PropertyENUM
+    End If
+  End Sub
+
+  Private Sub EditTSEntryWorkOrder(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByVal vEnteredString As String, ByVal pWorkOrderInfos As colWorkOrderInfos)
+    Dim mWOI As clsWorkOrderInfo
+
+    rTimeSheetEntry.TimeSheetEntryTypeID = clsTimeSheetCode.cWorkOrder
+    mWOI = pWorkOrderInfos.ItemFromWorkOrderNo(vEnteredString)
+    If mWOI IsNot Nothing Then
+      rTimeSheetEntry.WorkOrderID = mWOI.WorkOrderID
+    Else
+      rTimeSheetEntry.Note = vEnteredString
+    End If
+
+  End Sub
+
+  Private Sub EditOrAddTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry, ByRef pTimeSheetEntrys As colTimeSheetEntrys, ByVal vEmployeeID As Integer)
+    Dim mExistingTSEntry As dmTimeSheetEntry
+
+    Dim mShift As dmShift
+    Dim mShifts As colShifts
+    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
+    mShift = mShifts(0)
+
+    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
+
+    If mExistingTSEntry IsNot Nothing Then
+      If mExistingTSEntry.StartTime = vNewTSEntry.StartTime Then
+        '// if this is the initial time sheet entry (start times equal) then set this one to the new OT /  type
+        mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID
+        mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID
+        mExistingTSEntry.Note = vNewTSEntry.Note
+      Else
+        '// if this is not the first entry (this time is later than the timesheet entry) we need to curtail the timesheet entry and add a new one till the end of it
+        mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+        pTimeSheetEntrys.Add(vNewTSEntry)
+      End If
+    Else
+
+      Dim mSameDay As Integer = DateAndTime.Weekday(vNewTSEntry.StartTime, FirstDayOfWeek.Monday)
+      '// if no match then check for previous in same day and if it is the same OT / type then extend previous Otherwise extend previous till this start and add new
+      mExistingTSEntry = pTimeSheetEntrys.ItemEarlierSameDay(vNewTSEntry.StartTime, mSameDay)
+
+      If mExistingTSEntry IsNot Nothing Then
+        '//We have one ealier in the day 
+        If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID And mExistingTSEntry.WorkCentreID = vNewTSEntry.WorkCentreID Then
+          '// if types and workorderid match then extend existing
+          mExistingTSEntry.EndTime = vNewTSEntry.EndTime
+        Else
+          mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+          pTimeSheetEntrys.Add(vNewTSEntry)
+        End If
+      Else
+        Dim mLastDay As Integer = DateAndTime.Weekday(vNewTSEntry.EndTime, FirstDayOfWeek.Monday)
+
+        '//Check if the later one on the same day is the same type
+        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.EndTime, mLastDay)
+        If mExistingTSEntry Is Nothing Then
+          '// just add new entry for this hour
+          pTimeSheetEntrys.Add(vNewTSEntry)
+        Else
+          '//We have one later in the day 
+          If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID And mExistingTSEntry.WorkCentreID = vNewTSEntry.WorkCentreID Then
+            '// if types and workorderid match then bring next entry startime forwards existing
+            mExistingTSEntry.StartTime = vNewTSEntry.StartTime
+          Else
+            pTimeSheetEntrys.Add(vNewTSEntry)
+          End If
+        End If
+      End If
+
+    End If
+
+    If mExistingTSEntry IsNot Nothing Then
+      mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
+      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift, mExistingTSEntry.OverTimeMinutes)
+      mExistingTSEntry.EmployeeID = vEmployeeID
+    End If
+    vNewTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(vNewTSEntry.StartTime, vNewTSEntry.EndTime)
+    vNewTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(vNewTSEntry, mShift)
+    vNewTSEntry.EmployeeID = vEmployeeID
+
+  End Sub
+
 End Class

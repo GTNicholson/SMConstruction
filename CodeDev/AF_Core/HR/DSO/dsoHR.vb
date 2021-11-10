@@ -126,6 +126,8 @@ Public Class dsoHR
     Return mOK
   End Function
 
+
+
   Public Function GetEmployeeRateOfPay(ByVal rEmployeeID As Int32, ByVal vCurrentDate As Date) As Decimal
     Dim mRateOfPays As colEmployeeRateOfPays
     Dim mSQL As String = ""
@@ -146,4 +148,18 @@ Public Class dsoHR
     Return mRetVal
   End Function
 
+  Public Sub SaveTimeSheetEntry(ByRef rTSEntry As dmTimeSheetEntry)
+    Dim mdto As New dtoTimeSheetEntry(pDBConn)
+    Try
+
+      pDBConn.Connect()
+
+      mdto.SaveTimeSheetEntry(rTSEntry)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
 End Class
