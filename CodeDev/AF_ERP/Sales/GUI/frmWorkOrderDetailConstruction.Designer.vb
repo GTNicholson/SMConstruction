@@ -362,7 +362,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpProduct.Location = New System.Drawing.Point(3, 336)
         Me.grpProduct.Name = "grpProduct"
         Me.grpProduct.Size = New System.Drawing.Size(1474, 502)
-        Me.grpProduct.TabIndex = 166
+        Me.grpProduct.TabIndex = 1
         Me.grpProduct.Text = "Detalles del Producto"
         '
         'Panel1
@@ -400,7 +400,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(1474, 327)
-        Me.GroupControl1.TabIndex = 13
+        Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Order de Trabajo"
         '
         'XtraTabControl1
@@ -475,7 +475,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.dtePurchasingDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePurchasingDate.Properties.NullDate = New Date(CType(0, Long))
         Me.dtePurchasingDate.Size = New System.Drawing.Size(106, 20)
-        Me.dtePurchasingDate.TabIndex = 181
+        Me.dtePurchasingDate.TabIndex = 8
         '
         'Label4
         '
@@ -497,7 +497,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.cboStatus.Properties.Appearance.Options.UseFont = True
         Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboStatus.Size = New System.Drawing.Size(125, 20)
-        Me.cboStatus.TabIndex = 179
+        Me.cboStatus.TabIndex = 9
         '
         'Label3
         '
@@ -517,7 +517,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.btnGenerateMatReq.Location = New System.Drawing.Point(649, 132)
         Me.btnGenerateMatReq.Name = "btnGenerateMatReq"
         Me.btnGenerateMatReq.Size = New System.Drawing.Size(125, 23)
-        Me.btnGenerateMatReq.TabIndex = 177
+        Me.btnGenerateMatReq.TabIndex = 10
         Me.btnGenerateMatReq.Text = "Generar Req. Mat."
         '
         'dteDueDate
@@ -532,7 +532,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.dteDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Properties.NullDate = New Date(CType(0, Long))
         Me.dteDueDate.Size = New System.Drawing.Size(125, 20)
-        Me.dteDueDate.TabIndex = 176
+        Me.dteDueDate.TabIndex = 7
         '
         'Label7
         '
@@ -556,7 +556,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.dtePlannedStartDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePlannedStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePlannedStartDate.Size = New System.Drawing.Size(125, 20)
-        Me.dtePlannedStartDate.TabIndex = 174
+        Me.dtePlannedStartDate.TabIndex = 6
         '
         'Label5
         '
@@ -580,7 +580,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.dteCreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteCreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteCreatedDate.Size = New System.Drawing.Size(125, 20)
-        Me.dteCreatedDate.TabIndex = 172
+        Me.dteCreatedDate.TabIndex = 0
         '
         'lblUnidad
         '
@@ -603,7 +603,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.txtQuantity.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtQuantity.Properties.MaxLength = 1000
         Me.txtQuantity.Size = New System.Drawing.Size(75, 20)
-        Me.txtQuantity.TabIndex = 170
+        Me.txtQuantity.TabIndex = 1
         Me.txtQuantity.Tag = "c"
         '
         'Label8
@@ -631,7 +631,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 25)
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
         Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(679, 208)
-        Me.grpWorkOrderAllocations.TabIndex = 167
+        Me.grpWorkOrderAllocations.TabIndex = 11
         Me.grpWorkOrderAllocations.Text = "Distribución de OT"
         '
         'grdWorkOrderAllocationsInfos
@@ -643,7 +643,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdWorkOrderAllocationsInfos.Name = "grdWorkOrderAllocationsInfos"
         Me.grdWorkOrderAllocationsInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit4})
         Me.grdWorkOrderAllocationsInfos.Size = New System.Drawing.Size(675, 182)
-        Me.grdWorkOrderAllocationsInfos.TabIndex = 157
+        Me.grdWorkOrderAllocationsInfos.TabIndex = 0
         Me.grdWorkOrderAllocationsInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderAllocationsInfos, Me.GridView3})
         '
         'gvWorkOrderAllocationsInfos
@@ -840,7 +840,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.txtDescription.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescription.Properties.MaxLength = 1000
         Me.txtDescription.Size = New System.Drawing.Size(251, 20)
-        Me.txtDescription.TabIndex = 0
+        Me.txtDescription.TabIndex = 2
         Me.txtDescription.Tag = "c"
         '
         'memPFNotes
@@ -852,7 +852,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.memPFNotes.Properties.Appearance.Options.UseFont = True
         Me.memPFNotes.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.memPFNotes.Size = New System.Drawing.Size(468, 124)
-        Me.memPFNotes.TabIndex = 17
+        Me.memPFNotes.TabIndex = 4
         '
         'Label2
         '
@@ -875,7 +875,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.cboElaboratedBy.Properties.Appearance.Options.UseFont = True
         Me.cboElaboratedBy.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboElaboratedBy.Size = New System.Drawing.Size(236, 20)
-        Me.cboElaboratedBy.TabIndex = 30
+        Me.cboElaboratedBy.TabIndex = 3
         '
         'Label6
         '
@@ -899,7 +899,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.btneWorkOrderDocument.Properties.Appearance.Options.UseFont = True
         Me.btneWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.btneWorkOrderDocument.Size = New System.Drawing.Size(251, 20)
-        Me.btneWorkOrderDocument.TabIndex = 8
+        Me.btneWorkOrderDocument.TabIndex = 5
         '
         'Label11
         '
@@ -921,7 +921,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirementInsumos)
         Me.XtraTabPage2.Controls.Add(Me.grpWOMatReqWood)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 272)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1466, 273)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
         '
         'grpMaterialRequirementInsumos
@@ -944,12 +944,12 @@ Partial Class frmWorkOrderDetailConstruction
         'grdStockItemMatReq
         '
         Me.grdStockItemMatReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 24)
+        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 26)
         Me.grdStockItemMatReq.MainView = Me.gvStockItemMatReq
         Me.grdStockItemMatReq.MenuManager = Me.BarManager1
         Me.grdStockItemMatReq.Name = "grdStockItemMatReq"
         Me.grdStockItemMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1})
-        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 247)
+        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 245)
         Me.grdStockItemMatReq.TabIndex = 14
         Me.grdStockItemMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMatReq})
         '
@@ -1117,12 +1117,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 24)
+        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodMatReq.MainView = Me.gvWoodMatReq
         Me.grdWoodMatReq.MenuManager = Me.BarManager1
         Me.grdWoodMatReq.Name = "grdWoodMatReq"
         Me.grdWoodMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoChangeSpecie})
-        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 247)
+        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 245)
         Me.grdWoodMatReq.TabIndex = 14
         Me.grdWoodMatReq.UseEmbeddedNavigator = True
         Me.grdWoodMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMatReq})

@@ -3,7 +3,7 @@ Imports RTIS.DataLayer
 
 
 
-Public Class BIReportViewTimeSheet
+Public Class BIReportViewTimeSheetOT
   Private Enum eBITimeSheetLayoutID
     TimeSheetList = 1
     TimeSheetSummary = 2
@@ -26,7 +26,7 @@ Public Class BIReportViewTimeSheet
     Dim mConditionSetterfilter As New clsBIConditionSetterFilter
 
     mBIReportView.BIReportSource = TimeSheetReportSource()
-    mBIReportView.DataSourceLoader = New dsoBITimeSheet(rDBConn, rRTISGlobal, mBIReportView, True)
+    mBIReportView.DataSourceLoader = New dsoBITimeSheet(rDBConn, rRTISGlobal, mBIReportView, False)
 
     mLayoutLoader.RootFolder = rRTISGlobal.AuxFilePath
     mBIReportView.LayoutLoader = mLayoutLoader
@@ -66,7 +66,7 @@ Public Class BIReportViewTimeSheet
 
     mRepSource = New dmBIReportSource
     mRepSource.BIReportSourceID = eReportSource.WorkOrder
-    mRepSource.Name = "Reporte de Horas de tiempo muerto"
+    mRepSource.Name = "Reporte de Horas de tiempo x O.T."
     mRepSource.SourceInfo = "Information Only"
     mRepSource.SourceType = 0 'TODO -ENUM ?
 
@@ -87,8 +87,8 @@ Public Class BIReportViewTimeSheet
     mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetList
     mRepLayout.InterfaceType = 1
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BITimeSheetList.xml"
-    mRepLayout.LayoutName = "Lista de Horas de tiempo muerto"
+    mRepLayout.LayoutFileName = "BITimeSheetListOT.xml"
+    mRepLayout.LayoutName = "Lista de Horas de tiempo x O.T."
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
     ''mRepLayout = New dmBIGridLayout
@@ -103,8 +103,8 @@ Public Class BIReportViewTimeSheet
     mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetByDescription
     mRepLayout.InterfaceType = 0
     mRepLayout.ParentLayoutID = 0
-    mRepLayout.LayoutFileName = "BITimeSheetSummary.xml"
-    mRepLayout.LayoutName = "Resumen de Horas de tiempo muerto"
+    mRepLayout.LayoutFileName = "BITimeSheetSummaryOT.xml"
+    mRepLayout.LayoutName = "Resumen de Horas de tiempo muerto x O.T."
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
 
@@ -143,7 +143,7 @@ Public Class BIReportViewTimeSheet
 
     mRepDef = New dmBIReportDef
     mRepDef.ReportName = "General"
-    mRepDef.Description = "Reporte de Horas de tiempo muerto"
+    mRepDef.Description = "Reporte de Horas de tiempo x O.T."
     mRepDef.BIReportDefID = eBIReportDefs.General
     mRepDef.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetList
     Return mRepDef

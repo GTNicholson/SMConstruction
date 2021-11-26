@@ -7,6 +7,7 @@ Public Class dmEmployeeRateOfPay : Inherits dmBase
   Private pPayType As Byte
   Private pStartDate As DateTime
   Private pStandardRate As Decimal
+  Private pOverTimeRate As Decimal
 
   Public Sub New()
     MyBase.New()
@@ -45,6 +46,7 @@ Public Class dmEmployeeRateOfPay : Inherits dmBase
       .PayType = PayType
       .StartDate = StartDate
       .StandardRate = StandardRate
+      .OverTimeRate = OverTimeRate
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -104,7 +106,15 @@ Public Class dmEmployeeRateOfPay : Inherits dmBase
     End Set
   End Property
 
-
+  Public Property OverTimeRate As Decimal
+    Get
+      Return pOverTimeRate
+    End Get
+    Set(value As Decimal)
+      If pOverTimeRate <> value Then IsDirty = True
+      pOverTimeRate = value
+    End Set
+  End Property
 End Class
 
 

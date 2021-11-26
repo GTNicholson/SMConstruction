@@ -22,15 +22,17 @@ Partial Class uctEmployeeDetailsReplacement
     Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
     Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
     Me.grpDetails = New DevExpress.XtraEditors.GroupControl()
-    Me.cboSalesArea = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-    Me.grpRateOfPay = New DevExpress.XtraEditors.GroupControl()
-    Me.grdRateOfPay = New DevExpress.XtraGrid.GridControl()
-    Me.gvRateOfPay = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repitchkcboShiftOptions = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
-    Me.grpRoles = New DevExpress.XtraEditors.GroupControl()
+        Me.chkIsActive = New DevExpress.XtraEditors.CheckEdit()
+        Me.cboSalesArea = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.grpRateOfPay = New DevExpress.XtraEditors.GroupControl()
+        Me.grdRateOfPay = New DevExpress.XtraGrid.GridControl()
+        Me.gvRateOfPay = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repitchkcboShiftOptions = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
+        Me.grpRoles = New DevExpress.XtraEditors.GroupControl()
         Me.grdEmployeeRoles = New DevExpress.XtraGrid.GridControl()
         Me.gvEmployeeRoles = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -63,6 +65,7 @@ Partial Class uctEmployeeDetailsReplacement
         Me.PanelControl1.SuspendLayout()
         CType(Me.grpDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDetails.SuspendLayout()
+        CType(Me.chkIsActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpRateOfPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpRateOfPay.SuspendLayout()
@@ -101,6 +104,7 @@ Partial Class uctEmployeeDetailsReplacement
         '
         Me.grpDetails.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpDetails.AppearanceCaption.Options.UseFont = True
+        Me.grpDetails.Controls.Add(Me.chkIsActive)
         Me.grpDetails.Controls.Add(Me.cboSalesArea)
         Me.grpDetails.Controls.Add(Me.LabelControl8)
         Me.grpDetails.Controls.Add(Me.grpRateOfPay)
@@ -136,6 +140,14 @@ Partial Class uctEmployeeDetailsReplacement
         Me.grpDetails.Size = New System.Drawing.Size(1155, 286)
         Me.grpDetails.TabIndex = 6
         Me.grpDetails.Text = "Detalles de Empleado"
+        '
+        'chkIsActive
+        '
+        Me.chkIsActive.Location = New System.Drawing.Point(322, 167)
+        Me.chkIsActive.Name = "chkIsActive"
+        Me.chkIsActive.Properties.Caption = "Está Activo?"
+        Me.chkIsActive.Size = New System.Drawing.Size(75, 19)
+        Me.chkIsActive.TabIndex = 41
         '
         'cboSalesArea
         '
@@ -173,11 +185,11 @@ Partial Class uctEmployeeDetailsReplacement
         'grdRateOfPay
         '
         Me.grdRateOfPay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdRateOfPay.Location = New System.Drawing.Point(2, 22)
+        Me.grdRateOfPay.Location = New System.Drawing.Point(2, 21)
         Me.grdRateOfPay.MainView = Me.gvRateOfPay
         Me.grdRateOfPay.Name = "grdRateOfPay"
         Me.grdRateOfPay.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitchkcboShiftOptions})
-        Me.grdRateOfPay.Size = New System.Drawing.Size(321, 177)
+        Me.grdRateOfPay.Size = New System.Drawing.Size(321, 178)
         Me.grdRateOfPay.TabIndex = 36
         Me.grdRateOfPay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRateOfPay})
         '
@@ -187,7 +199,7 @@ Partial Class uctEmployeeDetailsReplacement
         Me.gvRateOfPay.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvRateOfPay.Appearance.Row.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.gvRateOfPay.Appearance.Row.Options.UseFont = True
-        Me.gvRateOfPay.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn4})
+        Me.gvRateOfPay.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn4, Me.GridColumn3})
         Me.gvRateOfPay.GridControl = Me.grdRateOfPay
         Me.gvRateOfPay.Name = "gvRateOfPay"
         Me.gvRateOfPay.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top
@@ -201,16 +213,25 @@ Partial Class uctEmployeeDetailsReplacement
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 143
+        Me.GridColumn2.Width = 114
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Salario Mensual"
+        Me.GridColumn4.Caption = "Tasa Std."
         Me.GridColumn4.FieldName = "StandardRate"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 162
+        Me.GridColumn4.Width = 109
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Tasa H.E."
+        Me.GridColumn3.FieldName = "OverTimeRate"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 81
         '
         'repitchkcboShiftOptions
         '
@@ -499,6 +520,7 @@ Partial Class uctEmployeeDetailsReplacement
         CType(Me.grpDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpDetails.ResumeLayout(False)
         Me.grpDetails.PerformLayout()
+        CType(Me.chkIsActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSalesArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grpRateOfPay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpRateOfPay.ResumeLayout(False)
@@ -565,4 +587,6 @@ Partial Class uctEmployeeDetailsReplacement
   Friend WithEvents repitchkcboShiftOptions As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
   Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents cboSalesArea As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents chkIsActive As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

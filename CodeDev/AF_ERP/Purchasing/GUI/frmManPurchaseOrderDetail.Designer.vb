@@ -466,7 +466,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.gpnlPOItems.Location = New System.Drawing.Point(6, 417)
         Me.gpnlPOItems.Name = "gpnlPOItems"
         Me.gpnlPOItems.Size = New System.Drawing.Size(1647, 375)
-        Me.gpnlPOItems.TabIndex = 243
+        Me.gpnlPOItems.TabIndex = 1
         Me.gpnlPOItems.Text = "Artículos de Compra"
         '
         'popupPOI
@@ -602,13 +602,13 @@ Partial Class frmManPurchaseOrderDetail
         Me.grdPurchaseOrderItems.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         GridLevelNode1.RelationName = "Level1"
         Me.grdPurchaseOrderItems.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 24)
+        Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 26)
         Me.grdPurchaseOrderItems.MainView = Me.gvPurchaseOrderItems
         Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1
         Me.grdPurchaseOrderItems.Name = "grdPurchaseOrderItems"
         Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupWorkOrder, Me.repitQtyReqSimp, Me.RepositoryItemTextEdit1, Me.repoPopupWorkOrderAllocation, Me.repoWOAllocationSelect, Me.repoPopupWOAllocationSelect, Me.repoPopupPOItem, Me.RepositoryItemTextEdit2})
-        Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1643, 349)
-        Me.grdPurchaseOrderItems.TabIndex = 86
+        Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1643, 347)
+        Me.grdPurchaseOrderItems.TabIndex = 0
         Me.grdPurchaseOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPurchaseOrderItems})
         '
         'gvPurchaseOrderItems
@@ -1026,7 +1026,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl3.Location = New System.Drawing.Point(6, 39)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(1647, 352)
-        Me.GroupControl3.TabIndex = 248
+        Me.GroupControl3.TabIndex = 0
         Me.GroupControl3.Text = "Detalles del Proveedor"
         '
         'rgCompanyOption
@@ -1054,17 +1054,17 @@ Partial Class frmManPurchaseOrderDetail
         Me.grpWorkOrderType.Location = New System.Drawing.Point(509, 26)
         Me.grpWorkOrderType.Name = "grpWorkOrderType"
         Me.grpWorkOrderType.Size = New System.Drawing.Size(467, 326)
-        Me.grpWorkOrderType.TabIndex = 296
+        Me.grpWorkOrderType.TabIndex = 20
         Me.grpWorkOrderType.Text = "Referencia de O.T."
         '
         'xtabPOReqTypeWO
         '
         Me.xtabPOReqTypeWO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabPOReqTypeWO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.xtabPOReqTypeWO.Location = New System.Drawing.Point(2, 24)
+        Me.xtabPOReqTypeWO.Location = New System.Drawing.Point(2, 26)
         Me.xtabPOReqTypeWO.Name = "xtabPOReqTypeWO"
         Me.xtabPOReqTypeWO.SelectedTabPage = Me.xtpInventoryWO
-        Me.xtabPOReqTypeWO.Size = New System.Drawing.Size(463, 300)
+        Me.xtabPOReqTypeWO.Size = New System.Drawing.Size(463, 298)
         Me.xtabPOReqTypeWO.TabIndex = 272
         Me.xtabPOReqTypeWO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpInventoryWO, Me.xtpSingleWO, Me.xtpMultipleWO})
         '
@@ -1072,7 +1072,7 @@ Partial Class frmManPurchaseOrderDetail
         '
         Me.xtpInventoryWO.Controls.Add(Me.PanelControl3)
         Me.xtpInventoryWO.Name = "xtpInventoryWO"
-        Me.xtpInventoryWO.Size = New System.Drawing.Size(433, 292)
+        Me.xtpInventoryWO.Size = New System.Drawing.Size(433, 290)
         Me.xtpInventoryWO.Text = "Inv."
         '
         'PanelControl3
@@ -1081,7 +1081,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(433, 292)
+        Me.PanelControl3.Size = New System.Drawing.Size(433, 290)
         Me.PanelControl3.TabIndex = 0
         '
         'LabelControl27
@@ -1098,7 +1098,7 @@ Partial Class frmManPurchaseOrderDetail
         '
         Me.xtpSingleWO.Controls.Add(Me.GroupControl8)
         Me.xtpSingleWO.Name = "xtpSingleWO"
-        Me.xtpSingleWO.Size = New System.Drawing.Size(433, 292)
+        Me.xtpSingleWO.Size = New System.Drawing.Size(434, 292)
         Me.xtpSingleWO.Text = "Senc."
         '
         'GroupControl8
@@ -1120,7 +1120,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl8.Name = "GroupControl8"
         Me.GroupControl8.ShowCaption = False
-        Me.GroupControl8.Size = New System.Drawing.Size(433, 292)
+        Me.GroupControl8.Size = New System.Drawing.Size(434, 292)
         Me.GroupControl8.TabIndex = 268
         Me.GroupControl8.Text = "Admon. OTs"
         '
@@ -1132,7 +1132,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.grdPurchaseOrderWorkOrderBudget.Location = New System.Drawing.Point(5, 117)
         Me.grdPurchaseOrderWorkOrderBudget.MainView = Me.GridView2
         Me.grdPurchaseOrderWorkOrderBudget.Name = "grdPurchaseOrderWorkOrderBudget"
-        Me.grdPurchaseOrderWorkOrderBudget.Size = New System.Drawing.Size(423, 170)
+        Me.grdPurchaseOrderWorkOrderBudget.Size = New System.Drawing.Size(424, 170)
         Me.grdPurchaseOrderWorkOrderBudget.TabIndex = 282
         Me.grdPurchaseOrderWorkOrderBudget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         Me.grdPurchaseOrderWorkOrderBudget.Visible = False
@@ -1222,7 +1222,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.dteRequiredDateWO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteRequiredDateWO.Properties.NullDate = New Date(CType(0, Long))
         Me.dteRequiredDateWO.Properties.ReadOnly = True
-        Me.dteRequiredDateWO.Size = New System.Drawing.Size(317, 20)
+        Me.dteRequiredDateWO.Size = New System.Drawing.Size(318, 20)
         Me.dteRequiredDateWO.TabIndex = 281
         '
         'LabelControl28
@@ -1276,7 +1276,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtCustomerNameWO.Properties.Appearance.Options.UseFont = True
         Me.txtCustomerNameWO.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCustomerNameWO.Properties.ReadOnly = True
-        Me.txtCustomerNameWO.Size = New System.Drawing.Size(317, 20)
+        Me.txtCustomerNameWO.Size = New System.Drawing.Size(318, 20)
         Me.txtCustomerNameWO.TabIndex = 263
         '
         'txtProjectNameWO
@@ -1290,7 +1290,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtProjectNameWO.Properties.Appearance.Options.UseFont = True
         Me.txtProjectNameWO.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtProjectNameWO.Properties.ReadOnly = True
-        Me.txtProjectNameWO.Size = New System.Drawing.Size(317, 20)
+        Me.txtProjectNameWO.Size = New System.Drawing.Size(318, 20)
         Me.txtProjectNameWO.TabIndex = 262
         '
         'btnSelectWorkOrder
@@ -1307,14 +1307,14 @@ Partial Class frmManPurchaseOrderDetail
         EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
         Me.btnSelectWorkOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.btnSelectWorkOrder.Properties.ReadOnly = True
-        Me.btnSelectWorkOrder.Size = New System.Drawing.Size(317, 22)
+        Me.btnSelectWorkOrder.Size = New System.Drawing.Size(318, 22)
         Me.btnSelectWorkOrder.TabIndex = 246
         '
         'xtpMultipleWO
         '
         Me.xtpMultipleWO.Controls.Add(Me.GroupControl9)
         Me.xtpMultipleWO.Name = "xtpMultipleWO"
-        Me.xtpMultipleWO.Size = New System.Drawing.Size(433, 292)
+        Me.xtpMultipleWO.Size = New System.Drawing.Size(434, 292)
         Me.xtpMultipleWO.Text = "Mult."
         '
         'GroupControl9
@@ -1329,7 +1329,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl9.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl9.Name = "GroupControl9"
         Me.GroupControl9.ShowCaption = False
-        Me.GroupControl9.Size = New System.Drawing.Size(433, 292)
+        Me.GroupControl9.Size = New System.Drawing.Size(434, 292)
         Me.GroupControl9.TabIndex = 267
         Me.GroupControl9.Text = "Admon. OTs"
         '
@@ -1350,7 +1350,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.grdPOIWorkOrderInfo.MenuManager = Me.BarManager1
         Me.grdPOIWorkOrderInfo.Name = "grdPOIWorkOrderInfo"
         Me.grdPOIWorkOrderInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
-        Me.grdPOIWorkOrderInfo.Size = New System.Drawing.Size(423, 206)
+        Me.grdPOIWorkOrderInfo.Size = New System.Drawing.Size(424, 206)
         Me.grdPOIWorkOrderInfo.TabIndex = 266
         Me.grdPOIWorkOrderInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderInfos})
         '
@@ -1440,7 +1440,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.dtePaymentDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePaymentDate.Properties.NullDate = New Date(CType(0, Long))
         Me.dtePaymentDate.Size = New System.Drawing.Size(98, 20)
-        Me.dtePaymentDate.TabIndex = 294
+        Me.dtePaymentDate.TabIndex = 19
         '
         'LabelControl22
         '
@@ -1471,7 +1471,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboValuationMode.Properties.Appearance.Options.UseFont = True
         Me.cboValuationMode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboValuationMode.Size = New System.Drawing.Size(98, 20)
-        Me.cboValuationMode.TabIndex = 293
+        Me.cboValuationMode.TabIndex = 18
         '
         'txtRetentionPercentage
         '
@@ -1484,7 +1484,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtRetentionPercentage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtRetentionPercentage.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtRetentionPercentage.Size = New System.Drawing.Size(107, 20)
-        Me.txtRetentionPercentage.TabIndex = 291
+        Me.txtRetentionPercentage.TabIndex = 8
         '
         'lblRetention
         '
@@ -1515,7 +1515,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboStage.Properties.Appearance.Options.UseFont = True
         Me.cboStage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboStage.Size = New System.Drawing.Size(98, 20)
-        Me.cboStage.TabIndex = 289
+        Me.cboStage.TabIndex = 16
         '
         'LabelControl19
         '
@@ -1536,7 +1536,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboAccountingCategory.Properties.Appearance.Options.UseFont = True
         Me.cboAccountingCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboAccountingCategory.Size = New System.Drawing.Size(100, 20)
-        Me.cboAccountingCategory.TabIndex = 287
+        Me.cboAccountingCategory.TabIndex = 3
         '
         'ckeAccountOrder
         '
@@ -1556,7 +1556,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.xtratabPODelivery
         Me.XtraTabControl1.Size = New System.Drawing.Size(386, 321)
-        Me.XtraTabControl1.TabIndex = 283
+        Me.XtraTabControl1.TabIndex = 23
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtratabPODelivery, Me.xtraTabAppendDoc})
         '
         'xtratabPODelivery
@@ -1700,7 +1700,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.xtraTabAppendDoc.Appearance.Header.Options.UseForeColor = True
         Me.xtraTabAppendDoc.Controls.Add(Me.UctFileControl1)
         Me.xtraTabAppendDoc.Name = "xtraTabAppendDoc"
-        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(378, 290)
+        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(380, 291)
         Me.xtraTabAppendDoc.Text = "Documentos Adjuntos"
         '
         'UctFileControl1
@@ -1708,7 +1708,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(0, 0)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(378, 290)
+        Me.UctFileControl1.Size = New System.Drawing.Size(380, 291)
         Me.UctFileControl1.TabIndex = 1
         Me.UctFileControl1.UserController = Nothing
         '
@@ -1728,7 +1728,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtComments.MenuManager = Me.BarManager1
         Me.txtComments.Name = "txtComments"
         Me.txtComments.Size = New System.Drawing.Size(406, 66)
-        Me.txtComments.TabIndex = 281
+        Me.txtComments.TabIndex = 9
         '
         'LabelControl14
         '
@@ -1749,7 +1749,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboPaymentMethod.Properties.Appearance.Options.UseFont = True
         Me.cboPaymentMethod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboPaymentMethod.Size = New System.Drawing.Size(107, 20)
-        Me.cboPaymentMethod.TabIndex = 280
+        Me.cboPaymentMethod.TabIndex = 7
         '
         'LabelControl15
         '
@@ -1773,7 +1773,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl1.Location = New System.Drawing.Point(982, 193)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(263, 154)
-        Me.GroupControl1.TabIndex = 254
+        Me.GroupControl1.TabIndex = 22
         Me.GroupControl1.Text = "Datos de Entrega"
         '
         'uctDeliveryAddress
@@ -1799,7 +1799,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtNetValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtNetValue.Properties.ReadOnly = True
         Me.txtNetValue.Size = New System.Drawing.Size(98, 20)
-        Me.txtNetValue.TabIndex = 275
+        Me.txtNetValue.TabIndex = 10
         '
         'GroupControl2
         '
@@ -1813,7 +1813,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl2.Location = New System.Drawing.Point(982, 26)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(263, 164)
-        Me.GroupControl2.TabIndex = 253
+        Me.GroupControl2.TabIndex = 21
         Me.GroupControl2.Text = "Detalles de Ubicación"
         '
         'UctAddress1
@@ -1860,7 +1860,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtExchangeValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtExchangeValue.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtExchangeValue.Size = New System.Drawing.Size(98, 20)
-        Me.txtExchangeValue.TabIndex = 269
+        Me.txtExchangeValue.TabIndex = 17
         Me.txtExchangeValue.Visible = False
         '
         'rgDefaultCurrency
@@ -1871,7 +1871,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.rgDefaultCurrency.Properties.Appearance.Options.UseBackColor = True
         Me.rgDefaultCurrency.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "USD"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "C$")})
         Me.rgDefaultCurrency.Size = New System.Drawing.Size(98, 22)
-        Me.rgDefaultCurrency.TabIndex = 268
+        Me.rgDefaultCurrency.TabIndex = 15
         '
         'btePONum
         '
@@ -1882,7 +1882,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.btePONum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
         Me.btePONum.Properties.ReadOnly = True
         Me.btePONum.Size = New System.Drawing.Size(107, 20)
-        Me.btePONum.TabIndex = 265
+        Me.btePONum.TabIndex = 0
         '
         'lblTitle
         '
@@ -1905,7 +1905,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.btedSupplier.Properties.Appearance.Options.UseFont = True
         Me.btedSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.btedSupplier.Size = New System.Drawing.Size(107, 20)
-        Me.btedSupplier.TabIndex = 245
+        Me.btedSupplier.TabIndex = 1
         '
         'LabelControl13
         '
@@ -1940,7 +1940,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtCarriage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtCarriage.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCarriage.Size = New System.Drawing.Size(98, 20)
-        Me.txtCarriage.TabIndex = 261
+        Me.txtCarriage.TabIndex = 12
         '
         'dteDateOfOrder
         '
@@ -1953,7 +1953,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.dteDateOfOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateOfOrder.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateOfOrder.Size = New System.Drawing.Size(98, 20)
-        Me.dteDateOfOrder.TabIndex = 253
+        Me.dteDateOfOrder.TabIndex = 11
         '
         'LabelControl2
         '
@@ -1984,7 +1984,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboCategory.Properties.Appearance.Options.UseFont = True
         Me.cboCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboCategory.Size = New System.Drawing.Size(107, 20)
-        Me.cboCategory.TabIndex = 248
+        Me.cboCategory.TabIndex = 4
         '
         'btnEditPurchaseOrderPDF
         '
@@ -1995,7 +1995,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.btnEditPurchaseOrderPDF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.btnEditPurchaseOrderPDF.Properties.ReadOnly = True
         Me.btnEditPurchaseOrderPDF.Size = New System.Drawing.Size(107, 20)
-        Me.btnEditPurchaseOrderPDF.TabIndex = 259
+        Me.btnEditPurchaseOrderPDF.TabIndex = 6
         '
         'LabelControl3
         '
@@ -2026,7 +2026,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboStatus.Properties.Appearance.Options.UseFont = True
         Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboStatus.Size = New System.Drawing.Size(107, 20)
-        Me.cboStatus.TabIndex = 250
+        Me.cboStatus.TabIndex = 5
         '
         'cboBuyer
         '
@@ -2037,7 +2037,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.cboBuyer.Properties.Appearance.Options.UseFont = True
         Me.cboBuyer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboBuyer.Size = New System.Drawing.Size(98, 20)
-        Me.cboBuyer.TabIndex = 257
+        Me.cboBuyer.TabIndex = 14
         '
         'dteDueDate
         '
@@ -2050,7 +2050,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.dteDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Size = New System.Drawing.Size(98, 20)
-        Me.dteDueDate.TabIndex = 251
+        Me.dteDueDate.TabIndex = 13
         '
         'LabelControl10
         '
@@ -2081,7 +2081,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtSupplierRef.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.txtSupplierRef.Properties.Appearance.Options.UseFont = True
         Me.txtSupplierRef.Size = New System.Drawing.Size(107, 20)
-        Me.txtSupplierRef.TabIndex = 255
+        Me.txtSupplierRef.TabIndex = 2
         '
         'LabelControl5
         '

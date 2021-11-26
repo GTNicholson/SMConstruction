@@ -252,7 +252,8 @@
     <Compile Include="BIReports\BIReportViewMaterialRequirementInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />
-    <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
+    <Compile Include="BIReports\BIReportViewTimeOutSheet.vb" />
+    <Compile Include="BIReports\BIReportViewTimeSheetOT.vb" />
     <Compile Include="BIReports\BIReportViewWoodSalesOrderInfo.vb" />
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
@@ -733,6 +734,12 @@
     <Compile Include="Sales\GUI\frmSalesOrderReviewSmallScreen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReview_New.Designer.vb">
+      <DependentUpon>frmSalesOrderReview_New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReview_New.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmShiftDetails.Designer.vb">
       <DependentUpon>frmShiftDetails.vb</DependentUpon>
     </Compile>
@@ -972,6 +979,12 @@
       <DependentUpon>frmWoodMaterialRequirement.vb</DependentUpon>
     </Compile>
     <Compile Include="WoodProcessing\frmWoodMaterialRequirement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWoodProcessRollo.Designer.vb">
+      <DependentUpon>frmWoodProcessRollo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWoodProcessRollo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WoodProcessing\frmWoodReception.Designer.vb">
@@ -1219,6 +1232,9 @@
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderReviewSmallScreen.resx">
       <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderReview_New.resx">
+      <DependentUpon>frmSalesOrderReview_New.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmShiftDetails.resx">
       <DependentUpon>frmShiftDetails.vb</DependentUpon>
     </EmbeddedResource>
@@ -1326,6 +1342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WoodProcessing\frmWoodMaterialRequirement.resx">
       <DependentUpon>frmWoodMaterialRequirement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoodProcessing\frmWoodProcessRollo.resx">
+      <DependentUpon>frmWoodProcessRollo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WoodProcessing\frmWoodReception.resx">
       <DependentUpon>frmWoodReception.vb</DependentUpon>

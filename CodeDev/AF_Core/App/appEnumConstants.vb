@@ -418,10 +418,7 @@ Public Enum eWorkCentre
   <Description("Acabado Metal")> MetalFinising = 11
   <Description("Empaque")> Packaging = 12
   <Description("Despacho")> Despatch = 13
-  '<Description("Laminado")> Laminated = 14
-  '<Description("Ensamble")> Assembly = 15
-  '<Description("Tapizado")> Upholstery = 16
-  '<Description("Carga Contenedor")> ChargeContainer = 17
+
   <Description("Tapizado")> Tapizado = 18
   <Description("Tejido")> Tejido = 19
 
@@ -679,8 +676,8 @@ Public Class clsConstants
   Public Const cWorkBeginTimeFri As String = "07:00:00" 'CSng(CDate("07:00:00"))
   Public Const cWorkEndTimeFri As String = "17:00:00" 'CSng(CDate("13:00:00"))
 
-
-
+  Public Const cConstantVolume = 0.7854
+  Public Const cConstantVolumeHubert = 0.00007854
 End Class
 
 Public Class clsStockItemTypeAbrasivos : Inherits clsPropertyENUM
@@ -2591,6 +2588,12 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
   Public Const Metales = 7
   Public Const Tapizado = 8
   Public Const Empaque = 9
+  Public Const Madera = 10
+  Public Const Tejido = 11
+  Public Const Acabado = 12
+  Public Const Lija = 13
+
+
 
   Private Shared mSharedInstance As eSalesOrderPhaseMileStone
 
@@ -2615,7 +2618,7 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 1, True))
     MyBase.Add(mMileStone)
 
-    mMileStone = New clsEnumSalesOrderPhaseMilestone(Compras, "Engineering")
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Compras, "Compras")
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 1, True))
     MyBase.Add(mMileStone)
 
@@ -2623,7 +2626,7 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(ConfirmationOrder, 1, True))
     MyBase.Add(mMileStone)
 
-    mMileStone = New clsEnumSalesOrderPhaseMilestone(Metales, "Carpinteria")
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Metales, "Metales")
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
     MyBase.Add(mMileStone)
 
@@ -2631,7 +2634,23 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
     MyBase.Add(mMileStone)
 
-    mMileStone = New clsEnumSalesOrderPhaseMilestone(Empaque, "Tapizado")
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Empaque, "Empaque")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Madera, "Madera")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Tejido, "Tejido")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Acabado, "Acabado")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Lija, "Lija")
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
     MyBase.Add(mMileStone)
 
@@ -2644,3 +2663,10 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
   End Function
 
 End Class
+
+Public Enum eReceptionStatus
+  <Description("En Proceso")> InProgress = 1
+  <Description("Recibido")> Complete = 2
+  <Description("Cancelado")> Cancelled = 3
+
+End Enum

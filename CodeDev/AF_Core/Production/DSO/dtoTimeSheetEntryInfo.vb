@@ -64,6 +64,8 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
         .EndTime = DBReadDateTime(rDataReader, "EndTime")
         .Note = DBReadString(rDataReader, "Note")
         .OverTimeMinutes = DBReadInt32(rDataReader, "OverTimeMinutes")
+        .BreakMins = DBReadInt32(rDataReader, "BreakMins")
+
       End With
 
       With pTimeSheetEntryInfo.WorkOrder
@@ -82,6 +84,7 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
 
       With pTimeSheetEntryInfo.EmployeeRateOfPay
         .StandardRate = DBReadDecimal(rDataReader, "StandardRate")
+        .OverTimeRate = DBReadDecimal(rDataReader, "OverTimeRate")
       End With
 
       mOK = True

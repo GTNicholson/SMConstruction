@@ -561,7 +561,7 @@ Public Class frmWorkOrderDetailConstruction
   Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
     Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
     Dim mProductStructure As dmProductStructure
-
+    Dim mFinishDate As DateTime
 
     Select Case vDocType
       Case eDocumentType.WorkOrderDoc
@@ -578,12 +578,12 @@ Public Class frmWorkOrderDetailConstruction
               mProjectName = pFormController.WorkOrderAllocationEditors(0).ProjectName
               mCustomerName = pFormController.WorkOrderAllocationEditors(0).ClientName
               mOrderNo = pFormController.WorkOrderAllocationEditors(0).SalesOrderNo
-
+              mFinishDate = pFormController.WorkOrderAllocationEditors(0).FinishDate
             End If
             UpdateTempInStockQty()
             UpdateTempThickness()
 
-            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName, mCustomerName, mOrderNo)
+            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName, mCustomerName, mOrderNo, mFinishDate)
 
           End If
         End If

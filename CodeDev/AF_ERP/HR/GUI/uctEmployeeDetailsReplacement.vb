@@ -90,7 +90,7 @@ Public Class uctEmployeeDetailsReplacement
         memNotes.EditValue = .Notes
         datDateStart.EditValue = .ValidDateRange.DateStart
         datDateEnd.EditValue = .ValidDateRange.DateEnd
-
+        chkIsActive.EditValue = .IsActive
         If puctController.DisplayRoles Then
           clsDEControlLoading.SetDECombo(cboMainRole, .MainRoleID)
           gvEmployeeRoles.RefreshData()
@@ -123,6 +123,8 @@ Public Class uctEmployeeDetailsReplacement
       datDateStart.EditValue = DateTime.MinValue
       datDateEnd.EditValue = DateTime.MinValue
       memNotes.EditValue = String.Empty
+      chkIsActive.EditValue = False
+
       If puctController.DisplayRoles Then
         cboMainRole.SelectedIndex = -1
         gvEmployeeRoles.RefreshData()
@@ -180,6 +182,8 @@ Public Class uctEmployeeDetailsReplacement
         .Notes = memNotes.EditValue
         .ValidDateRange.DateStart = datDateStart.EditValue
         .ValidDateRange.DateEnd = datDateEnd.EditValue
+        .IsActive = chkIsActive.EditValue
+
         If puctController.DisplayRoles Then
           .MainRoleID = clsDEControlLoading.GetDEComboValue(cboMainRole)
         End If

@@ -14,7 +14,7 @@ Public Class clsWorkOrderAllocationEditor
   Private pAssemblyRef As String
   Private pSalesItemType As Int32
   Private pDescriptionItem As String
-
+  Private pFinishDate As Date
   Public Sub New(ByRef rWorkOrder As dmWorkOrder, ByRef rWorkOrderAllocation As dmWorkOrderAllocation)
     pWorkOrder = rWorkOrder
     pWorkOrderAllocation = rWorkOrderAllocation
@@ -35,7 +35,7 @@ Public Class clsWorkOrderAllocationEditor
       pProjectName = rSalesOrderPhaseItemInfo.ProjectName
       pRequiredDate = rSalesOrderPhaseItemInfo.DateRequired
       pDescriptionItem = rSalesOrderPhaseItemInfo.Description
-
+      pFinishDate = rSalesOrderPhaseItemInfo.SalesOrder.FinishDate
     End If
   End Sub
 
@@ -114,6 +114,15 @@ Public Class clsWorkOrderAllocationEditor
     End Get
     Set(value As Int32)
       pSalesItemType = value
+    End Set
+  End Property
+
+  Public Property FinishDate As Date
+    Get
+      Return pFinishDate
+    End Get
+    Set(value As Date)
+      pFinishDate = value
     End Set
   End Property
 

@@ -426,6 +426,7 @@
     <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
     <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\dmWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\BO\clsStockCostingPricing.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
@@ -449,6 +450,7 @@
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
     <Compile Include="Stock Admin\BO\StockItemDefManagers.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\DSO\dsoReception.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />
     <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />

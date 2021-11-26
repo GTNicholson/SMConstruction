@@ -281,7 +281,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Órden de Compras: Activas", eListOption.LivePO)
         ''.AddListOption("Órden de Compras: Pagadas", eListOption.Paid)

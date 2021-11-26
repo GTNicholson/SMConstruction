@@ -142,7 +142,7 @@ Public Class frmWoodSalesOrder
     txtSalesAreaID.ReadOnly = vReadOnly
     txtSalesOrderID.ReadOnly = vReadOnly
     txtVisibleNotes.ReadOnly = vReadOnly
-    cboEstatusENUM.Enabled = Not vReadOnly
+    'cboEstatusENUM.Enabled = Not vReadOnly
     cboOrderTypeID.Enabled = Not vReadOnly
     cboProjectOwner.Enabled = Not vReadOnly
     dteFinishedDate.ReadOnly = vReadOnly

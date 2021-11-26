@@ -34,7 +34,8 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickWood, eActivityCode.WoodPicking)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Producción", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informe de Materiales", eMenuIconType.Report, AddressOf clsMenuFunctions.MaterialRequirementInfoBI, eActivityCode.ProductionReport)
-    mLastItem.ChildGroupMenuEntries.AddNewItem("Reporte de Horas de tiempo muerto", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetBI, eActivityCode.ProductionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Horas de tiempo muerto", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeOutSheetBI, eActivityCode.ProductionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Horas consumidas x O.T.", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetWOBI, eActivityCode.ProductionReport)
 
 
     'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
@@ -451,11 +452,18 @@ Class clsMenuFunctions
     frmPhaseManagement.OpenForm(AppRTISGlobal.GetInstance, rRTISUserSession.CreateMainDBConn, rParentForm)
   End Sub
 
-  Public Shared Sub TimeSheetBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+  Public Shared Sub TimeOutSheetBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
-    mBIReport = BIReportViewTimeSheet.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    mBIReport = BIReportViewTimeOutSheet.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
+
+  Public Shared Sub TimeSheetWOBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewTimeSheetOT.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
 
   Public Shared Sub ShiftDetails(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     frmShiftDetails.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)

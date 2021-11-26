@@ -31,6 +31,7 @@ Public Class frmWoodReception
     Reception = 3
     Edit = 4
     Save = 5
+    DeletePack = 6
   End Enum
 
   Public Sub New()
@@ -107,11 +108,12 @@ Public Class frmWoodReception
       RefreshSourceTabs()
 
       LoadCombos()
-
       RefreshControls()
 
       pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
+      grdWoodPalletGuideItems.DataSource = pFormController.CurrentSourceWoodPallet.WoodPalletGuideItems
+
       RefreshDetailButtons()
 
     Catch ex As Exception
@@ -347,6 +349,10 @@ Public Class frmWoodReception
   Private Sub LoadCombos()
     clsDEControlLoading.FillDEComboVI(cboFarm, clsEnumsConstants.EnumToVIs(GetType(eFarms)))
     clsDEControlLoading.FillDEComboVI(cboWoodType, eStockItemTypeTimberWood.GetInstance.ValueItems)
+    clsDEControlLoading.FillDEComboVI(cboReceptionStatus, clsEnumsConstants.EnumToVIs(GetType(eReceptionStatus)))
+
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodPalletGuideItems, gcSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie))
+
     dteDateCreated.Properties.NullDate = Date.MinValue
   End Sub
 
@@ -376,6 +382,8 @@ Public Class frmWoodReception
 
       UpdateObject()
       pFormController.SaveObjects()
+      gvWoodPalletGuideItem.CloseEditor()
+      RefreshControls()
       If pFormController.CurrentSourceWoodPallet.PalletType > 0 Then
         pFormController.SaveWoodPalletDown(pFormController.CurrentSourceWoodPallet)
 
@@ -385,6 +393,11 @@ Public Class frmWoodReception
       pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
       gvSourceWoodPalletItem.RefreshData()
+
+
+      grdWoodPalletGuideItems.DataSource = pFormController.CurrentSourceWoodPallet.WoodPalletGuideItems
+      gvWoodPalletGuideItem.RefreshData()
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
@@ -447,10 +460,13 @@ Public Class frmWoodReception
       mActiveControl.Focus()
     End If
 
+    gvSourceWoodPalletItem.CloseEditForm()
+    gvWoodPalletGuideItem.CloseEditForm()
 
     With pFormController.CurrentReception
       .ItemType = clsDEControlLoading.GetDEComboValue(cboWoodType)
       .Farm = clsDEControlLoading.GetDEComboValue(cboFarm)
+      .Status = clsDEControlLoading.GetDEComboValue(cboReceptionStatus)
       .CardNumber = txtCardNumber.Text
       .ReceptionDate = dteDateCreated.EditValue
     End With
@@ -483,11 +499,17 @@ Public Class frmWoodReception
         dteDateCreated.EditValue = .ReceptionDate
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboFarm, .Farm)
         RTIS.Elements.clsDEControlLoading.SetDECombo(cboWoodType, .ItemType)
+        RTIS.Elements.clsDEControlLoading.SetDECombo(cboReceptionStatus, .Status)
+
         txtCardNumber.Text = .CardNumber
       End With
 
 
     End If
+
+
+
+
 
     If pCurrentDetailMode = eCurrentDetailMode.eView Then
       SetDetailsControlsReadonly(True)
@@ -510,7 +532,7 @@ Public Class frmWoodReception
     Dim mFarm As Integer
     Dim mPalletType As Integer
     Dim pWoodPalletItemEditor As clsWoodPalletItemEditor
-    mFarm = clsDEControlLoading.GetDEComboValue(cboWoodType)
+    mFarm = clsDEControlLoading.GetDEComboValue(cboFarm)
     mPalletType = clsDEControlLoading.GetDEComboValue(cboWoodType)
 
 
@@ -567,22 +589,22 @@ Public Class frmWoodReception
 
         frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, pFormController.RTISGlobal, True, pFormController.CurrentReception.ItemType)
         For Each mSelectedItem In mPicker.SelectedObjects
-            If mSelectedItem IsNot Nothing Then
-              mNewWoodPalletItem = pFormController.CurrentSourceWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
-              If mNewWoodPalletItem Is Nothing Then
-                mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentSourceWoodPallet)
-                mNewWoodPalletItem.StockItemID = mSelectedItem.StockItemID
-                mNewWoodPalletItem.Description = mSelectedItem.Description
-                mNewWoodPalletItem.StockCode = mSelectedItem.StockCode
-                mNewWoodPalletItem.Thickness = mSelectedItem.Thickness
+          If mSelectedItem IsNot Nothing Then
+            mNewWoodPalletItem = pFormController.CurrentSourceWoodPallet.WoodPalletItems.ItemByStockItemID(mSelectedItem.StockItemID)
+            If mNewWoodPalletItem Is Nothing Then
+              mNewWoodPalletItem = pFormController.AddWoodPalletItem(pFormController.CurrentSourceWoodPallet)
+              mNewWoodPalletItem.StockItemID = mSelectedItem.StockItemID
+              mNewWoodPalletItem.Description = mSelectedItem.Description
+              mNewWoodPalletItem.StockCode = mSelectedItem.StockCode
+              mNewWoodPalletItem.Thickness = mSelectedItem.Thickness
 
-                pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mSelectedItem)
-                pFormController.SourceWoodPalletItemEditors.Add(pWoodPalletItemEditor)
-              End If
+              pWoodPalletItemEditor = New clsWoodPalletItemEditor(mNewWoodPalletItem, mSelectedItem)
+              pFormController.SourceWoodPalletItemEditors.Add(pWoodPalletItemEditor)
             End If
-          Next
+          End If
+        Next
 
-          mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
+        mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
         For mindex As Integer = pFormController.CurrentSourceWoodPallet.WoodPalletItems.Count - 1 To 0 Step -1
           mNewWoodPalletItem = pFormController.CurrentSourceWoodPallet.WoodPalletItems(mindex)
@@ -865,4 +887,44 @@ Public Class frmWoodReception
     End If
 
   End Sub
+
+  Private Sub grpGeneralInformation_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpGeneralInformation.CustomButtonClick
+    Dim mStockItems As New colStockItems
+    Dim mPicker As clsPickerStockItem
+    Dim mStockItem As dmStockItem
+    Dim mNewWoodPalletItem As dmWoodPalletItem
+    Dim mSelectedStockItems As colStockItems
+    Dim mListFilteredSpecieID As New List(Of Integer)
+    Dim mdsoStock As dsoStock
+    Dim mFarm As Integer
+    Dim mPalletType As Integer
+    Dim pWoodPalletItemEditor As clsWoodPalletItemEditor
+    mFarm = clsDEControlLoading.GetDEComboValue(cboFarm)
+    mPalletType = clsDEControlLoading.GetDEComboValue(cboWoodType)
+
+
+    If pFormController.CurrentReception.WoodPallets IsNot Nothing Then
+
+
+    End If
+    Select Case e.Button.Properties.Tag
+
+
+      Case ePalletOptions.AddPack
+
+        UpdateObject()
+        pFormController.SaveObjects()
+        pFormController.CreateNewPallet(mPalletType, mFarm, txtCardNumber.Text)
+        gvSourceWoodPalletItem.RefreshData()
+        pFormController.SaveObjects()
+
+        SetDetailsControlsReadonly(False)
+        pCurrentDetailMode = eCurrentDetailMode.eEdit
+        RefreshDetailButtons()
+        RefreshSourceTabs()
+
+    End Select
+  End Sub
+
+
 End Class

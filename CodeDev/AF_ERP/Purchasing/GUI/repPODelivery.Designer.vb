@@ -88,6 +88,9 @@ Partial Public Class repPODelivery
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcTotalRetention = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -519,11 +522,11 @@ Partial Public Class repPODelivery
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable5.BorderWidth = 1.0!
         Me.XrTable5.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(541.6664!, 10.00002!)
+        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(541.6664!, 0!)
         Me.XrTable5.Name = "XrTable5"
         Me.XrTable5.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 3, 3, 3, 100.0!)
-        Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow12, Me.XrTableRow11, Me.XrTableRow10})
-        Me.XrTable5.SizeF = New System.Drawing.SizeF(236.3333!, 70.74213!)
+        Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow12, Me.XrTableRow1, Me.XrTableRow11, Me.XrTableRow10})
+        Me.XrTable5.SizeF = New System.Drawing.SizeF(236.3333!, 94.32284!)
         Me.XrTable5.StylePriority.UseBorderColor = False
         Me.XrTable5.StylePriority.UseBorders = False
         Me.XrTable5.StylePriority.UseBorderWidth = False
@@ -855,6 +858,35 @@ Partial Public Class repPODelivery
         Me.XrPageInfo2.StylePriority.UseTextAlignment = False
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.xtcTotalRetention})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.2R
+        '
+        'XrTableCell7
+        '
+        Me.XrTableCell7.CanGrow = False
+        Me.XrTableCell7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell7.ForeColor = System.Drawing.Color.Black
+        Me.XrTableCell7.Name = "XrTableCell7"
+        Me.XrTableCell7.StylePriority.UseFont = False
+        Me.XrTableCell7.StylePriority.UseForeColor = False
+        Me.XrTableCell7.Text = "Total Retención"
+        Me.XrTableCell7.Weight = 0.936716359702406R
+        '
+        'xtcTotalRetention
+        '
+        Me.xtcTotalRetention.CanGrow = False
+        Me.xtcTotalRetention.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.xtcTotalRetention.ForeColor = System.Drawing.Color.Black
+        Me.xtcTotalRetention.Name = "xtcTotalRetention"
+        Me.xtcTotalRetention.StylePriority.UseFont = False
+        Me.xtcTotalRetention.StylePriority.UseForeColor = False
+        Me.xtcTotalRetention.StylePriority.UseTextAlignment = False
+        Me.xtcTotalRetention.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.xtcTotalRetention.Weight = 1.21321616297045R
+        '
         'repPODelivery
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.GroupHeader1, Me.PageFooter})
@@ -941,4 +973,7 @@ Partial Public Class repPODelivery
     Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xrGrossTotal As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell7 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xtcTotalRetention As DevExpress.XtraReports.UI.XRTableCell
 End Class

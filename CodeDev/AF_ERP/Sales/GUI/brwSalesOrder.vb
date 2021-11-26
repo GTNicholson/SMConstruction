@@ -167,7 +167,7 @@ Public Class brwSalesOrder : Inherits brwBrowserListBase
 
         mDataTable = Me.DBConn.CreateDataTable(mWhere)
       Else
-        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderTypeID=" & CInt(eOrderType.WoodSales) & " Order By SalesOrderID desc")
+        mDataTable = Me.DBConn.CreateDataTable("Select * From vwSalesOrderInfo where OrderTypeID=" & CInt(eOrderType.WoodSales) & " and OrderStatusENUM not in (2,3) Order By SalesOrderID desc")
 
       End If
 

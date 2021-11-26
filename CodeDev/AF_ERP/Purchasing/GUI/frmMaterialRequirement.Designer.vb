@@ -626,6 +626,8 @@ Partial Class frmMaterialRequirement
         Me.RepositoryItemDateEdit2.AutoHeight = False
         Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.EditFormat.FormatString = "dd/MM/yyyy hh:mm:ss"
+        Me.RepositoryItemDateEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
         Me.RepositoryItemDateEdit2.NullDate = New Date(CType(0, Long))
         Me.RepositoryItemDateEdit2.ReadOnly = True
@@ -1050,6 +1052,8 @@ Partial Class frmMaterialRequirement
         '
         Me.gcChangeDate.Caption = "Fecha Generada"
         Me.gcChangeDate.ColumnEdit = Me.RepositoryItemDateEdit2
+        Me.gcChangeDate.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm"
+        Me.gcChangeDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.gcChangeDate.FieldName = "DateChange"
         Me.gcChangeDate.Name = "gcChangeDate"
         Me.gcChangeDate.Visible = True

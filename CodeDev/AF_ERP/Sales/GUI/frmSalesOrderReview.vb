@@ -40,7 +40,7 @@ Public Class frmSalesOrderReview
 
 
     txtTotalValueSalesOrder.Text = pFormController.SalesOrder.GetTotalValueWithCarriage.ToString("$#,##0.00;;#")
-    txtTotalCostValue.Text = (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue + pFormController.TotalIndirectCost).ToString("$#,##0.00;;#")
+    txtTotalCostValue.Text = (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue + pFormController.TotalIndirectCost + +pFormController.SalesOrderPhaseItemInfos.GetTotalActualManPowerValue).ToString("$#,##0.00;;#")
 
 
 
@@ -56,9 +56,11 @@ Public Class frmSalesOrderReview
     txtTotalSOPIMaterialsPick.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalMaterialPickReal.ToString("$#,##0.00;;#")
 
     'txtTotalSOPICurrentWoodCost.Text = pFormController.SalesOrderPhaseItemInfo.GetTotalWoodMatReqReal.ToString("$#,##0.00;;#")
-    txtSOPIMO.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget + pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget).ToString("$#,##0.00;;#")
-    txtTotalSOPISubMOValue.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalSubconMOValue.ToString("$#,##0.00;;#")
+    txtSOPIOutsourcing.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget).ToString("$#,##0.00;;#")
+    txtTotalSOPIOutsourcing.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalSubconValue.ToString("$#,##0.00;;#")
 
+    txtSOPIManPower.Text = (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget).ToString("$#,##0.00;;#")
+    txtActualSOPIManPower.Text = pFormController.SalesOrderPhaseItemInfos.GetActualMOSOPI.ToString("$#,##0.00;;#")
 
 
     If (pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal + pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked + pFormController.SalesOrderPhaseItemInfos.GetTotalOutsourcingRealValue) > 0 Then
@@ -133,22 +135,40 @@ Public Class frmSalesOrderReview
 
 
 
-    If (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget + pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget) > 0 Then
-      mPercentage = pFormController.SalesOrderPhaseItemInfos.GetTotalSubconMOValue / (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget + pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget)
+    If (pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget) > 0 Then
+      mPercentage = pFormController.SalesOrderPhaseItemInfos.GetTotalSubconValue / (pFormController.SalesOrder.SalesOrderItems.GetTotalOutsourcingBudget)
 
       If mPercentage > 1 Then
-        txtOutsourcingMOPercetange.ForeColor = Color.Red
+        txtOutsourcingPercetange.ForeColor = Color.Red
       ElseIf mPercentage < 1 Then
-        txtOutsourcingMOPercetange.ForeColor = Color.Green
+        txtOutsourcingPercetange.ForeColor = Color.Green
 
       Else
-        txtOutsourcingMOPercetange.ForeColor = Color.Black
+        txtOutsourcingPercetange.ForeColor = Color.Black
       End If
-      txtOutsourcingMOPercetange.Text = mPercentage
+      txtOutsourcingPercetange.Text = mPercentage
 
     End If
 
 
+
+
+    If (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget) > 0 Then
+      mPercentage = pFormController.SalesOrderPhaseItemInfos.GetTotalActualManPowerValue / (pFormController.SalesOrder.SalesOrderItems.GetTotalMOBudget)
+
+      If mPercentage > 1 Then
+        txtManPowerPercentage.ForeColor = Color.Red
+      ElseIf mPercentage < 1 Then
+        txtManPowerPercentage.ForeColor = Color.Green
+
+      Else
+        txtManPowerPercentage.ForeColor = Color.Black
+      End If
+      txtManPowerPercentage.Text = mPercentage
+
+    End If
+
+    txtIndirectCost.Text = pFormController.TotalIndirectCost
     'txtTotalWOCompleteValue.Text = pFormController.GetTotalWOCompleteValue().ToString("$#,##0.00;;#")
     'txtTotalWOValueInProcess.Text = pFormController.GetTotalWOInProcessValue().ToString("$#,##0.00;;#")
 
@@ -309,5 +329,16 @@ Public Class frmSalesOrderReview
 
 
     End If
+  End Sub
+
+  Private Sub frmSalesOrderReview_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
+    If pFormController.TotalIndirectCost > 0 Then
+
+        pFormController.UpdateIndirectCost()
+
+      End If
+
+
   End Sub
 End Class

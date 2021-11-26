@@ -735,7 +735,7 @@ Public Class fccWorkOrderDetailConstruction
     Dim mStockItemID As Integer
     Dim mMaterialRequirement As dmMaterialRequirement
 
-    While mIndex < mCount - 1
+    While mIndex < mCount
       mRequiredQty = pWorkOrder.StockItemMaterialRequirements(mIndex).Quantity
       mPickedQty = pWorkOrder.StockItemMaterialRequirements(mIndex).PickedQty
       mReturnQty = pWorkOrder.StockItemMaterialRequirements(mIndex).ReturnQty

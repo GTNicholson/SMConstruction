@@ -52,6 +52,7 @@ Public Class frmMaterialRequirement
     Dim mfrmWanted As frmMaterialRequirement = Nothing
     Dim mFound As Boolean = False
     Dim mfrm As frmMaterialRequirement
+
     'Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
@@ -321,83 +322,6 @@ Public Class frmMaterialRequirement
   End Sub
 
 
-  Private Sub gvMaterialRequirements_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvMaterialRequirements.CustomDrawCell
-    Dim mFocusedRow As clsMaterialRequirementProcessor
-    Dim mCurrentRow As clsMaterialRequirementProcessor
-
-
-    If gvMaterialRequirements.IsDataRow(e.RowHandle) Then
-
-      If (e.Column.Name <> gcFromStock.Name Or e.Column.Name <> gcMatReqToOrder.Name) Then
-        mFocusedRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
-        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
-        If mCurrentRow IsNot Nothing AndAlso mFocusedRow IsNot Nothing Then
-          If gvMaterialRequirements.FocusedRowHandle <> e.RowHandle Then
-            If mCurrentRow.StockItem.StockItemID = mFocusedRow.StockItem.StockItemID Then
-              e.Appearance.BackColor = Color.LightBlue
-              e.Appearance.ForeColor = Color.Black
-            Else
-              e.Appearance.BackColor = Color.Empty
-            End If
-
-            If e.Column.Name = gcComments.Name Then
-              If mCurrentRow.Comments <> String.Empty Then
-                e.Appearance.BackColor = Color.LightYellow
-                e.Appearance.ForeColor = Color.Black
-              Else
-                e.Appearance.BackColor = Color.Empty
-              End If
-
-            End If
-
-
-            If e.Column.Name = gcChangeDate.Name Then
-              Dim mYesterday As Date = Date.Now.AddDays(-1)
-              Dim mDateChange As Date = New Date(mCurrentRow.DateChange.Year, mCurrentRow.DateChange.Month, mCurrentRow.DateChange.Day)
-
-              If mDateChange.Date = mYesterday.Date Or mDateChange.Date = Now.Date Then
-                e.Appearance.BackColor = Color.GreenYellow
-                e.Appearance.ForeColor = Color.Black
-              Else
-                e.Appearance.BackColor = Color.Empty
-              End If
-
-            End If
-
-
-          End If
-
-
-
-        End If
-
-
-      End If
-
-
-      If (e.Column.Name = gcFromStock.Name Or e.Column.Name = gcMatReqToOrder.Name) Then
-        e.Appearance.BackColor = Color.LightCyan
-        e.Appearance.ForeColor = Color.Black
-      End If
-
-      If (e.Column.Name = gcIsFromStockValidated.Name) Then
-        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
-
-        If mCurrentRow IsNot Nothing Then
-
-          If mCurrentRow.IsFromStockValidated Then
-
-            e.Appearance.BackColor = Color.LightGreen
-
-          Else
-            e.Appearance.BackColor = Color.LightYellow
-          End If
-        End If
-
-      End If
-
-    End If
-  End Sub
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     ReloadRequirements()
@@ -625,6 +549,115 @@ Public Class frmMaterialRequirement
     Else
       e.Cancel = True
     End If
+
+  End Sub
+
+
+
+  Private Sub gvMaterialRequirements_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvMaterialRequirements.CustomDrawCell
+    Dim mFocusedRow As clsMaterialRequirementProcessor
+    Dim mCurrentRow As clsMaterialRequirementProcessor
+
+
+    If gvMaterialRequirements.IsDataRow(e.RowHandle) Then
+
+      If (e.Column.Name <> gcFromStock.Name Or e.Column.Name <> gcMatReqToOrder.Name) Then
+        mFocusedRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
+        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+        If mCurrentRow IsNot Nothing AndAlso mFocusedRow IsNot Nothing Then
+          If gvMaterialRequirements.FocusedRowHandle <> e.RowHandle Then
+            If mCurrentRow.StockItem.StockItemID = mFocusedRow.StockItem.StockItemID Then
+              e.Appearance.BackColor = Color.LightBlue
+              e.Appearance.ForeColor = Color.Black
+            Else
+              e.Appearance.BackColor = Color.Empty
+            End If
+
+            If e.Column.Name = gcComments.Name Then
+              If mCurrentRow.Comments <> String.Empty Then
+                e.Appearance.BackColor = Color.LightYellow
+                e.Appearance.ForeColor = Color.Black
+              Else
+                e.Appearance.BackColor = Color.Empty
+              End If
+
+            End If
+
+
+            If e.Column.Name = gcChangeDate.Name Then
+              Dim mYesterday As Date = Date.Now.AddDays(-1)
+              Dim mDateChange As Date = New Date(mCurrentRow.DateChange.Year, mCurrentRow.DateChange.Month, mCurrentRow.DateChange.Day)
+
+              If mDateChange.Date = mYesterday.Date Or mDateChange.Date = Now.Date Then
+                e.Appearance.BackColor = Color.GreenYellow
+                e.Appearance.ForeColor = Color.Black
+              Else
+                e.Appearance.BackColor = Color.Empty
+              End If
+
+            End If
+
+
+          End If
+
+
+
+        End If
+
+
+      End If
+
+
+      If (e.Column.Name = gcFromStock.Name Or e.Column.Name = gcMatReqToOrder.Name) Then
+        e.Appearance.BackColor = Color.LightCyan
+        e.Appearance.ForeColor = Color.Black
+      End If
+
+      If (e.Column.Name = gcIsFromStockValidated.Name) Then
+        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+
+        If mCurrentRow IsNot Nothing Then
+
+          If mCurrentRow.IsFromStockValidated Then
+
+            e.Appearance.BackColor = Color.LightGreen
+
+          Else
+            e.Appearance.BackColor = Color.LightYellow
+          End If
+        End If
+
+      End If
+
+    End If
+  End Sub
+
+  Private Sub gvMaterialRequirements_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvMaterialRequirements.RowCellStyle
+    Dim mCurrentRow As clsMaterialRequirementProcessor
+
+
+    mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+
+    If mCurrentRow IsNot Nothing Then
+
+      If e.Column.Name = gcChangeDate.Name Then
+        Dim mYesterday As Date = Date.Now.AddDays(-1)
+        Dim mDateChange As Date = New Date(mCurrentRow.DateChange.Year, mCurrentRow.DateChange.Month, mCurrentRow.DateChange.Day)
+
+        If mDateChange.Date = mYesterday.Date Or mDateChange.Date = Now.Date Then
+          e.Appearance.BackColor = Color.GreenYellow
+          e.Appearance.ForeColor = Color.Black
+
+        Else
+          e.Appearance.BackColor = Color.Empty
+        End If
+
+      End If
+    End If
+
+
+
+
 
   End Sub
 End Class

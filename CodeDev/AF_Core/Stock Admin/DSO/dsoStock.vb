@@ -25,15 +25,37 @@ Public Class dsoStock
     Return mStockItemLocation
   End Function
 
+  Public Function LoadWoodPalletGuideItems(ByRef rWoodPalletGuideItems As colWoodPalletGuideItems, ByVal vPalletID As Integer) As Boolean
+    Dim mdto As dtoWoodPalletGuideItem
+    Dim mOK As Boolean
+    Try
+      If pDBConn.Connect Then
+        mdto = New dtoWoodPalletGuideItem(pDBConn)
+
+        mOK = mdto.LoadWoodPalletGuideItemCollection(rWoodPalletGuideItems, vPalletID)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+      mOK = False
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+    Return mOK
+  End Function
+
   Public Function LoadWoodPalletsDownByWhere(ByRef rWoodPallets As colWoodPallets, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet
     Dim mdtoWoodPalletItem As dtoWoodPalletItem
+    Dim mdtoWoodPalletGuideItem As dtoWoodPalletGuideItem
 
     Try
 
       pDBConn.Connect()
       mdtoWoodPallet = New dtoWoodPallet(pDBConn)
+      mdtoWoodPalletGuideItem = New dtoWoodPalletGuideItem(pDBConn)
       mRetVal = mdtoWoodPallet.LoadWoodPalletByWhere(rWoodPallets, vWhere)
 
 
@@ -44,6 +66,7 @@ Public Class dsoStock
         For Each mWoodPallet In rWoodPallets
 
           mRetVal = mdtoWoodPalletItem.LoadWoodPalletItemCollection(mWoodPallet.WoodPalletItems, mWoodPallet.WoodPalletID)
+          mRetVal = mdtoWoodPalletGuideItem.LoadWoodPalletGuideItemCollection(mWoodPallet.WoodPalletGuideItems, mWoodPallet.WoodPalletID)
 
         Next
 
@@ -192,6 +215,7 @@ Public Class dsoStock
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet
     Dim mdtoWoodPalletItem As dtoWoodPalletItem
+    Dim mdtoWoodPalletItemGuide As dtoWoodPalletGuideItem
     Dim mStockItem As dmStockItem
     Try
 
@@ -200,18 +224,22 @@ Public Class dsoStock
       If rWoodPallet IsNot Nothing Then
 
         mdtoWoodPallet = New dtoWoodPallet(pDBConn)
+        mdtoWoodPalletItemGuide = New dtoWoodPalletGuideItem(pDBConn)
 
-        rWoodPallet.Description = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(rWoodPallet.WoodPalletItems)
+        If rWoodPallet.PalletType <> eStockItemTypeTimberWood.Rollo Then
+          rWoodPallet.TotalVolume = clsWoodPalletSharedFuncs.GetTotalBoardFeet(rWoodPallet)
+          rWoodPallet.Description = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(rWoodPallet.WoodPalletItems)
+
+        End If
         clsWoodPalletSharedFuncs.GetNextWoodPalletRefConnected(rWoodPallet, pDBConn)
 
-        rWoodPallet.TotalVolume = clsWoodPalletSharedFuncs.GetTotalBoardFeet(rWoodPallet)
 
         mRetVal = mdtoWoodPallet.SaveWoodPallet(rWoodPallet)
 
         mdtoWoodPalletItem = New dtoWoodPalletItem(pDBConn)
 
         mRetVal = mdtoWoodPalletItem.SaveWoodPalletItemCollection(rWoodPallet.WoodPalletItems, rWoodPallet.WoodPalletID)
-
+        mRetVal = mdtoWoodPalletItemGuide.SaveWoodPalletGuideItemCollection(rWoodPallet.WoodPalletGuideItems, rWoodPallet.WoodPalletID)
 
       End If
       pDBConn.Disconnect()

@@ -570,7 +570,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
       Dim mRetVal As Decimal = 0
 
 
-      mRetVal = TotalReceivedAmountUSD - TotalRetentionValueReportUSD + TotalVatValueReportUSD + CarriageUSD
+      mRetVal = TotalPurchaseOrderItemAmountUSD - TotalRetentionValueReportUSD + TotalVatValueReportUSD + CarriageUSD
 
       Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get

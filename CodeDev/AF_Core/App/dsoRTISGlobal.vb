@@ -13,7 +13,6 @@ Public Class dsoRTISGlobal
   Public Property DBConn() As clsDBConnBase
     Get
       DBConn = pDBConn
-
     End Get
     Set(ByVal value As clsDBConnBase)
       pDBConn = value

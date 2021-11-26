@@ -76,7 +76,7 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
     pClipBoard = New clsClipBoard
 
     ''--List of all the users with sall screens
-    pUsersIDWithSmallScreen.Add(1013)
+
     pUsersIDWithSmallScreen.Add(1025)
     pUsersIDWithSmallScreen.Add(1024)
     pUsersIDWithSmallScreen.Add(1028)

@@ -245,8 +245,8 @@ Public Class frmPhaseManagement
 
       Select Case e.Column.Name
         Case gcOrderReceived.Name, gcHandover.Name, gcConfirmationOrder.Name, gcEngineering.Name,
-              gcCarpinteria.Name, gcTapizado.Name, gcNBCSpec.Name,
-             gcMetal.Name, gcPurchasing.Name,
+              gcCarpinteria.Name, gcTapizado.Name, gcEmpaque.Name, gcMadera.Name, gcTejido.Name, gcAcabado.Name, gcLija.Name,
+          gcMetal.Name, gcPurchasing.Name,
              gcDeliveryToSiteDate.Name
           'gcRFIMeetingArranged.Name,
           mRow = gvSOPMilestoneStatuses.GetRow(e.RowHandle)

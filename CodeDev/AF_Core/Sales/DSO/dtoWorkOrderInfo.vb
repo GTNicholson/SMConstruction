@@ -121,6 +121,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .WorkOrderProcessOption = DBReadInt32(rDataReader, "WorkOrderProcessOption")
             .WorkOrderTargetWoodType = DBReadInt32(rDataReader, "WorkOrderTargetWoodType")
             .ProductID = DBReadInt32(rDataReader, "ProductID")
+
           End With
           'Case Else
           With pWorkOrderInfo.WorkOrder

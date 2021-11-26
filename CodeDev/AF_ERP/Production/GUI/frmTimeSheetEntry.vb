@@ -56,7 +56,7 @@ Public Class frmTimeSheetEntry
     Dim mValueItem As clsValueItem
 
     For Each mEmployee As dmEmployeeSM In AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Employees)
-      If mEmployee.MainRoleID = eEmployeeRole.Production Then
+      If mEmployee.MainRoleID = eEmployeeRole.Production And mEmployee.IsActive Then
         mValueItem = New clsValueItem
         mValueItem.ItemValue = mEmployee.EmployeeID
         mValueItem.DisplayValue = mEmployee.FullName

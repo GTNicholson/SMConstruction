@@ -58,7 +58,7 @@ Partial Class frmPhaseManagement
         Me.gcCarpinteria = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcMetal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcNBCSpec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcEmpaque = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDeliveryUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDeliveryToSiteDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPurchasing = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -67,6 +67,10 @@ Partial Class frmPhaseManagement
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
+        Me.gcMadera = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTejido = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAcabado = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcLija = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -243,7 +247,7 @@ Partial Class frmPhaseManagement
         Me.gvSOPMilestoneStatuses.Appearance.ViewCaption.Options.UseTextOptions = True
         Me.gvSOPMilestoneStatuses.Appearance.ViewCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.gvSOPMilestoneStatuses.ColumnPanelRowHeight = 45
-        Me.gvSOPMilestoneStatuses.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcDueDate, Me.gcPlannedDate, Me.GridColumn1, Me.gcProjectName, Me.gcCustomer, Me.gcValue, Me.gcQtyOT, Me.gcOrderStatus, Me.gcOrderReceivedDate, Me.gcProducyCategory, Me.gcProcurementGroupDate, Me.gcDespatchStatus, Me.gcOrderReceived, Me.gcConfirmationOrder, Me.gcHandover, Me.gcEngineering, Me.gcCarpinteria, Me.gcMetal, Me.gcTapizado, Me.gcNBCSpec, Me.gcDeliveryUpdate, Me.gcDeliveryToSiteDate, Me.gcPurchasing, Me.gcAdvance})
+        Me.gvSOPMilestoneStatuses.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcDueDate, Me.gcPlannedDate, Me.GridColumn1, Me.gcProjectName, Me.gcCustomer, Me.gcValue, Me.gcQtyOT, Me.gcOrderStatus, Me.gcOrderReceivedDate, Me.gcProducyCategory, Me.gcProcurementGroupDate, Me.gcDespatchStatus, Me.gcOrderReceived, Me.gcConfirmationOrder, Me.gcHandover, Me.gcEngineering, Me.gcCarpinteria, Me.gcMetal, Me.gcTapizado, Me.gcEmpaque, Me.gcDeliveryUpdate, Me.gcDeliveryToSiteDate, Me.gcPurchasing, Me.gcAdvance, Me.gcMadera, Me.gcTejido, Me.gcAcabado, Me.gcLija})
         Me.gvSOPMilestoneStatuses.DetailHeight = 400
         Me.gvSOPMilestoneStatuses.GridControl = Me.grdSOPMilestoneStatuses
         Me.gvSOPMilestoneStatuses.GroupCount = 1
@@ -492,7 +496,7 @@ Partial Class frmPhaseManagement
         Me.gcHandover.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcHandover.Visible = True
         Me.gcHandover.VisibleIndex = 8
-        Me.gcHandover.Width = 115
+        Me.gcHandover.Width = 93
         '
         'gcEngineering
         '
@@ -514,7 +518,7 @@ Partial Class frmPhaseManagement
         Me.gcEngineering.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcEngineering.Visible = True
         Me.gcEngineering.VisibleIndex = 9
-        Me.gcEngineering.Width = 107
+        Me.gcEngineering.Width = 83
         '
         'gcCarpinteria
         '
@@ -535,8 +539,8 @@ Partial Class frmPhaseManagement
         Me.gcCarpinteria.Tag = 6
         Me.gcCarpinteria.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcCarpinteria.Visible = True
-        Me.gcCarpinteria.VisibleIndex = 11
-        Me.gcCarpinteria.Width = 103
+        Me.gcCarpinteria.VisibleIndex = 12
+        Me.gcCarpinteria.Width = 87
         '
         'gcMetal
         '
@@ -557,8 +561,8 @@ Partial Class frmPhaseManagement
         Me.gcMetal.Tag = CType(7, Short)
         Me.gcMetal.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcMetal.Visible = True
-        Me.gcMetal.VisibleIndex = 12
-        Me.gcMetal.Width = 112
+        Me.gcMetal.VisibleIndex = 13
+        Me.gcMetal.Width = 89
         '
         'gcTapizado
         '
@@ -579,30 +583,30 @@ Partial Class frmPhaseManagement
         Me.gcTapizado.Tag = CType(8, Short)
         Me.gcTapizado.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcTapizado.Visible = True
-        Me.gcTapizado.VisibleIndex = 13
+        Me.gcTapizado.VisibleIndex = 14
         Me.gcTapizado.Width = 103
         '
-        'gcNBCSpec
+        'gcEmpaque
         '
-        Me.gcNBCSpec.AppearanceCell.BackColor = System.Drawing.Color.White
-        Me.gcNBCSpec.AppearanceCell.Options.UseBackColor = True
-        Me.gcNBCSpec.AppearanceCell.Options.UseTextOptions = True
-        Me.gcNBCSpec.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcNBCSpec.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.gcNBCSpec.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gcNBCSpec.Caption = "Empaque"
-        Me.gcNBCSpec.ColumnEdit = Me.RepositoryItemMemoEdit1
-        Me.gcNBCSpec.DisplayFormat.FormatString = "dd-MM"
-        Me.gcNBCSpec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.gcNBCSpec.FieldName = "ub_NBSSpec"
-        Me.gcNBCSpec.Name = "gcNBCSpec"
-        Me.gcNBCSpec.OptionsColumn.AllowEdit = False
-        Me.gcNBCSpec.OptionsFilter.AllowAutoFilter = False
-        Me.gcNBCSpec.Tag = CType(9, Short)
-        Me.gcNBCSpec.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.gcNBCSpec.Visible = True
-        Me.gcNBCSpec.VisibleIndex = 14
-        Me.gcNBCSpec.Width = 92
+        Me.gcEmpaque.AppearanceCell.BackColor = System.Drawing.Color.White
+        Me.gcEmpaque.AppearanceCell.Options.UseBackColor = True
+        Me.gcEmpaque.AppearanceCell.Options.UseTextOptions = True
+        Me.gcEmpaque.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcEmpaque.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcEmpaque.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gcEmpaque.Caption = "Empaque"
+        Me.gcEmpaque.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.gcEmpaque.DisplayFormat.FormatString = "dd-MM"
+        Me.gcEmpaque.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.gcEmpaque.FieldName = "ub_NBSSpec"
+        Me.gcEmpaque.Name = "gcEmpaque"
+        Me.gcEmpaque.OptionsColumn.AllowEdit = False
+        Me.gcEmpaque.OptionsFilter.AllowAutoFilter = False
+        Me.gcEmpaque.Tag = 9
+        Me.gcEmpaque.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcEmpaque.Visible = True
+        Me.gcEmpaque.VisibleIndex = 18
+        Me.gcEmpaque.Width = 79
         '
         'gcDeliveryUpdate
         '
@@ -663,7 +667,7 @@ Partial Class frmPhaseManagement
         Me.gcPurchasing.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcPurchasing.Visible = True
         Me.gcPurchasing.VisibleIndex = 10
-        Me.gcPurchasing.Width = 96
+        Me.gcPurchasing.Width = 83
         '
         'gcAdvance
         '
@@ -697,6 +701,93 @@ Partial Class frmPhaseManagement
         'PopupMenu1
         '
         Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'gcMadera
+        '
+        Me.gcMadera.AppearanceCell.BackColor = System.Drawing.Color.White
+        Me.gcMadera.AppearanceCell.Options.UseBackColor = True
+        Me.gcMadera.AppearanceCell.Options.UseTextOptions = True
+        Me.gcMadera.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcMadera.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcMadera.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap
+        Me.gcMadera.Caption = "Madera"
+        Me.gcMadera.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.gcMadera.DisplayFormat.FormatString = "dd-MM"
+        Me.gcMadera.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.gcMadera.FieldName = "gcMadera"
+        Me.gcMadera.Name = "gcMadera"
+        Me.gcMadera.OptionsColumn.AllowEdit = False
+        Me.gcMadera.OptionsFilter.AllowAutoFilter = False
+        Me.gcMadera.Tag = 10
+        Me.gcMadera.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcMadera.Visible = True
+        Me.gcMadera.VisibleIndex = 11
+        '
+        'gcTejido
+        '
+        Me.gcTejido.AppearanceCell.BackColor = System.Drawing.Color.White
+        Me.gcTejido.AppearanceCell.Options.UseBackColor = True
+        Me.gcTejido.AppearanceCell.Options.UseTextOptions = True
+        Me.gcTejido.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcTejido.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcTejido.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap
+        Me.gcTejido.Caption = "Tejido"
+        Me.gcTejido.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.gcTejido.DisplayFormat.FormatString = "dd-MM"
+        Me.gcTejido.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.gcTejido.FieldName = "gcTejido"
+        Me.gcTejido.Name = "gcTejido"
+        Me.gcTejido.OptionsColumn.AllowEdit = False
+        Me.gcTejido.OptionsFilter.AllowAutoFilter = False
+        Me.gcTejido.Tag = 11
+        Me.gcTejido.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcTejido.Visible = True
+        Me.gcTejido.VisibleIndex = 15
+        Me.gcTejido.Width = 70
+        '
+        'gcAcabado
+        '
+        Me.gcAcabado.AppearanceCell.BackColor = System.Drawing.Color.White
+        Me.gcAcabado.AppearanceCell.Options.UseBackColor = True
+        Me.gcAcabado.AppearanceCell.Options.UseTextOptions = True
+        Me.gcAcabado.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAcabado.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcAcabado.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap
+        Me.gcAcabado.Caption = "Acabado"
+        Me.gcAcabado.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.gcAcabado.DisplayFormat.FormatString = "dd-MM"
+        Me.gcAcabado.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.gcAcabado.FieldName = "gcAcabado"
+        Me.gcAcabado.Name = "gcAcabado"
+        Me.gcAcabado.OptionsColumn.AllowEdit = False
+        Me.gcAcabado.OptionsFilter.AllowAutoFilter = False
+        Me.gcAcabado.Tag = 12
+        Me.gcAcabado.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcAcabado.Visible = True
+        Me.gcAcabado.VisibleIndex = 17
+        Me.gcAcabado.Width = 65
+        '
+        'gcLija
+        '
+        Me.gcLija.AppearanceCell.BackColor = System.Drawing.Color.White
+        Me.gcLija.AppearanceCell.Options.UseBackColor = True
+        Me.gcLija.AppearanceCell.Options.UseTextOptions = True
+        Me.gcLija.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcLija.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcLija.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap
+        Me.gcLija.Caption = "Lija"
+        Me.gcLija.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.gcLija.DisplayFormat.FormatString = "dd-MM"
+        Me.gcLija.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.gcLija.FieldName = "gcLija"
+        Me.gcLija.Name = "gcLija"
+        Me.gcLija.OptionsColumn.AllowEdit = False
+        Me.gcLija.OptionsFilter.AllowAutoFilter = False
+        Me.gcLija.Tag = 13
+        Me.gcLija.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcLija.Visible = True
+        Me.gcLija.VisibleIndex = 16
+        Me.gcLija.Width = 55
         '
         'frmPhaseManagement
         '
@@ -760,7 +851,7 @@ Partial Class frmPhaseManagement
   Friend WithEvents gcHandover As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcMetal As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcTapizado As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcNBCSpec As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcEmpaque As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcDeliveryUpdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcDeliveryToSiteDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
@@ -772,4 +863,8 @@ Partial Class frmPhaseManagement
     Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
     Friend WithEvents gcAdvance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents btnExport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents gcMadera As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcTejido As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcAcabado As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcLija As DevExpress.XtraGrid.Columns.GridColumn
 End Class

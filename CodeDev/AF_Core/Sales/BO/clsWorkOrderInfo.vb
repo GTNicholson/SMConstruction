@@ -96,6 +96,7 @@ Public Class clsWorkOrderInfo
     End Get
   End Property
 
+
   Public ReadOnly Property ProductTypeID As Integer
     Get
       Return pWorkOrder.ProductTypeID

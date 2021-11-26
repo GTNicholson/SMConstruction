@@ -66,6 +66,7 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pRequisaDocumentPath As String
   Private pRequisaDate As Date
   Private pRequisaNumber As String
+  Private pWoodPalletType As Byte
 
   Public Sub New()
     MyBase.New()
@@ -168,6 +169,7 @@ Public Class dmWorkOrder : Inherits dmBase
       .RequisaDocumentPath = RequisaDocumentPath
       .RequisaDate = RequisaDate
       .RequisaNumber = RequisaNumber
+      .WoodPalletType = WoodPalletType
       .StockItemMaterialRequirements = StockItemMaterialRequirements.Clone
       .WoodMaterialRequirements = WoodMaterialRequirements.Clone
       'Add entries here for each collection and class property
@@ -726,6 +728,16 @@ Public Class dmWorkOrder : Inherits dmBase
     Set(value As String)
       If pRequisaNumber <> value Then IsDirty = True
       pRequisaNumber = value
+    End Set
+  End Property
+
+  Public Property WoodPalletType As Byte
+    Get
+      Return pWoodPalletType
+    End Get
+    Set(value As Byte)
+      If pWoodPalletType <> value Then IsDirty = True
+      pWoodPalletType = value
     End Set
   End Property
 End Class

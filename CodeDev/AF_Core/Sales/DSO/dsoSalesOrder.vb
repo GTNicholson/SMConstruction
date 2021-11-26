@@ -1747,22 +1747,22 @@ Public Class dsoSalesOrder : Inherits dsoBase
   End Sub
 
   Friend Sub SynchroniseWOMatReqPickedConnected(ByVal vStockItemID As Integer, ByVal vWorkOrderID As Integer)
-    Dim mSQL As String
-    Dim mSQLUpdate As String
-    Dim mPickedQty As Decimal
+    'Dim mSQL As String
+    'Dim mSQLUpdate As String
+    'Dim mPickedQty As Decimal
 
-    mSQL = "Select SUM(PickedQty) as PickedQty"
-    mSQL = mSQL & " from MaterialRequirement MR"
-    mSQL = mSQL & " Inner Join WorkOrder WO on WO.WorkOrderID = MR.ObjectID"
-    mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And Wo.WorkOrderID = " & vWorkOrderID
+    'mSQL = "Select SUM(PickedQty) as PickedQty"
+    'mSQL = mSQL & " from MaterialRequirement MR"
+    'mSQL = mSQL & " Inner Join WorkOrder WO on WO.WorkOrderID = MR.ObjectID"
+    'mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And Wo.WorkOrderID = " & vWorkOrderID
 
 
-    mPickedQty = pDBConn.ExecuteScalar(mSQL)
+    'mPickedQty = pDBConn.ExecuteScalar(mSQL)
 
-    mSQLUpdate = "Update MaterialRequirement Set PickedQty = " & mPickedQty
-    mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vWorkOrderID
+    'mSQLUpdate = "Update MaterialRequirement Set PickedQty = " & mPickedQty
+    'mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vWorkOrderID
 
-    pDBConn.ExecuteNonQuery(mSQLUpdate)
+    'pDBConn.ExecuteNonQuery(mSQLUpdate)
   End Sub
 
 

@@ -108,7 +108,18 @@ Public Class clsSalesItemEditor
   End Property
   Public Property MaterialCost As Decimal
     Get
-      Return pSalesOrderItem.MaterialCost
+      Dim mRetVal As Decimal
+
+      If WoodCost = 0 And StockItemCost = 0 Then
+        mRetVal = pSalesOrderItem.MaterialCost ''return the previous value
+
+      ElseIf pSalesOrderItem.MaterialCost = 0 Then
+        mRetVal = WoodCost + StockItemCost ''return the estimated material cost
+      Else
+        mRetVal = pSalesOrderItem.MaterialCost
+      End If
+
+      Return mRetVal
     End Get
     Set(value As Decimal)
       pSalesOrderItem.MaterialCost = value
@@ -217,6 +228,24 @@ Public Class clsSalesItemEditor
     Get
       Return UnitPrice * Quantity
     End Get
+  End Property
+  Public Property WoodCost As Decimal
+    Get
+      Return pSalesOrderItem.WoodCost
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.WoodCost = value
+    End Set
+  End Property
+
+
+  Public Property StockItemCost As Decimal
+    Get
+      Return pSalesOrderItem.StockItemCost
+    End Get
+    Set(value As Decimal)
+      pSalesOrderItem.StockItemCost = value
+    End Set
   End Property
 
 

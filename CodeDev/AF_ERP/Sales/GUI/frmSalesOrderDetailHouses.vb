@@ -878,7 +878,6 @@ Public Class frmSalesOrderDetailHouses
   Private Sub btnedCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles btnedCustomer.EditValueChanged
 
   End Sub
-
   Private Sub grpOrderItem_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpOrderItem.CustomButtonClick
     Dim mSOI As clsSalesItemEditor
     Dim mOTCount As Integer
@@ -1596,7 +1595,15 @@ Public Class frmSalesOrderDetailHouses
   End Sub
 
   Private Sub bbtnViewSummary_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnViewSummary.ItemClick
-    frmSalesOrderReview.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
+
+    If pFormController.DBConn.RTISUser.UserID = 1 Or pFormController.DBConn.RTISUser.UserID = 3031 Then
+      frmSalesOrderReview_New.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
+
+    Else
+      frmSalesOrderReview.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
+
+    End If
+
 
   End Sub
 
@@ -1606,5 +1613,38 @@ Public Class frmSalesOrderDetailHouses
     If pFormController IsNot Nothing Then
       dteFinishDate.EditValue = dteDateRequiredSO.EditValue
     End If
+  End Sub
+
+  Private Sub gvOrderItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvOrderItem.CustomUnboundColumnData
+    Try
+
+      Dim mRow As clsSalesItemEditor
+
+      mRow = e.Row
+
+      If mRow IsNot Nothing Then
+
+        Select Case e.Column.Name
+          Case gcMaterialCost.Name
+
+            If e.IsGetData Then
+
+              Dim mMaterialCost As Decimal
+
+              mMaterialCost = mRow.StockItemCost + mRow.WoodCost
+
+              mRow.MaterialCost = mMaterialCost
+              e.Value = mMaterialCost
+
+            End If
+
+        End Select
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
   End Sub
 End Class

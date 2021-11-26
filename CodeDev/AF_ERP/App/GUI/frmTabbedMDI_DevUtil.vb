@@ -1300,165 +1300,120 @@ Public Class frmTabbedMDI_DevUtil
 
   End Sub
 
-  Private Sub btnUpdateOverTime_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdateOverTime.LinkClicked
 
 
+
+  Private Sub btnInsertGeneralItem_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnInsertGeneralItem.LinkClicked
+    Try
+      Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+
+      Dim mSQL As String = "SELECT DISTINCT SO.SalesOrderID,SOP.SalesOrderPhaseID from SalesOrder SO"
+      mSQL &= " inner join SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID"
+      mSQL &= " LEFT JOIN SalesOrderItem SOI ON SOI.SalesOrderID=SO.SalesOrderID and SOI.Description NOT LIKE '%ARTÍCULO GENERAL%'"
+      mSQL &= " where so.OrderTypeID in (2,4) and ISNULL(so.OrderStatusENUM,0)<>3"
+
+      Dim mDT As New DataTable
+      Dim mList As New List(Of Tuple(Of Integer, Integer))
+      Dim mdtoSOI As New dtoSalesOrderItem(mdbconn)
+      Dim mdtoSOPI As New dtoSalesOrderPhaseItem(mdbconn)
+      Dim mSOIDT As New DataTable
+
+      If mdbconn.Connect Then
+
+        mDT = mdbconn.CreateDataTable(mSQL)
+
+
+        For Each mRow As DataRow In mDT.Rows
+          Dim mNewSOPI As New dmSalesOrderPhaseItem
+          Dim mNewSalesOrderItem As New dmSalesOrderItem
+          Dim mSalesOrderPhaseID As Integer
+          Dim mSalesOrderID As Integer
+          Dim mHouseTypeID As Integer
+
+          mSalesOrderPhaseID = mRow("SalesOrderPhaseID")
+          mSalesOrderID = mRow("SalesOrderID")
+
+          mSOIDT = mdbconn.CreateDataTable(String.Format("select top 1 HouseTypeID from SalesOrderItem where SalesOrderID={0}", mSalesOrderID))
+
+          For Each mRowSOI In mSOIDT.Rows
+            mHouseTypeID = mRowSOI("HouseTypeID")
+          Next
+
+
+          mNewSalesOrderItem.Description = "ARTÍCULO GENERAL"
+          mNewSalesOrderItem.ItemNumber = "AG"
+          mNewSalesOrderItem.Quantity = 1
+          mNewSalesOrderItem.SalesOrderID = mSalesOrderID
+          mNewSalesOrderItem.UoM = eUoM.GLB
+          mNewSalesOrderItem.SalesHouseID = mHouseTypeID
+          mdtoSOI.SaveSalesOrderItem(mNewSalesOrderItem)
+
+          mNewSOPI.SalesOrderID = mSalesOrderID
+          mNewSOPI.SalesOrderPhaseID = mSalesOrderPhaseID
+          mNewSOPI.SalesItemID = mNewSalesOrderItem.SalesOrderItemID
+          mNewSOPI.Qty = 1
+
+          mdtoSOPI.SaveSalesOrderPhaseItem(mNewSOPI)
+
+        Next
+
+        mdbconn.Disconnect()
+      End If
+
+    Catch ex As Exception
+    Finally
+
+    End Try
   End Sub
 
-  Private Sub SetTimeSheetEntryStr(ByVal vDaysOffSet As Byte, ByVal vEnteredString As String, ByVal vWorkCentreID As Integer, ByVal pWeekCommencing As DateTime, ByVal vWOInfos As colWorkOrderInfos, ByRef pTimeSheetEntrys As colTimeSheetEntrys, ByVal vEmployeeID As Integer, ByVal vStartTime As DateTime)
-    Dim mNewTSEntry As dmTimeSheetEntry
-    Dim mStartTime As Date
+  Private Sub btnUpdatePOINonMan_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdatePOINonMan.LinkClicked
+    Dim mWHere As String = ""
 
-    '//Create a new proposed one to resolve the detail
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mDT As New DataTable
 
-    mStartTime = pWeekCommencing.Date.AddDays(vDaysOffSet) ' + vStartTime.TimeOfDay
-    mNewTSEntry = New dmTimeSheetEntry
-    mNewTSEntry.StartTime = mStartTime
-    mNewTSEntry.EndTime = mStartTime.AddHours(1)
-    mNewTSEntry.WorkCentreID = vWorkCentreID
-    If IsNumeric(vEnteredString) Then
-      EditTSEntryWorkOrder(mNewTSEntry, vEnteredString, vWOInfos)
-    ElseIf vEnteredString.Contains("-") Then
-      EditTSEntryWorkOrder(mNewTSEntry, vEnteredString, vWOInfos)
-    Else
-      EditTSEntryNonWorkOrder(mNewTSEntry, vEnteredString)
-    End If
+    Try
+      mWHere = "select poi.PurchaseOrderItemID,"
+      mWHere &= " POA.SalesorderPhaseItemID "
+      mWHere &= " from PurchaseOrderItem POI"
+      mWHere &= " INNER join PurchaseOrder PO on po.PurchaseOrderID=poi.PurchaseOrderID and MaterialRequirementTypeWorkOrderID=0 and MaterialRequirementTypeID=2"
+      mWHere &= " LEFT JOIN PurchaseOrderAllocation POA ON POA.PurchaseOrderID=PO.PurchaseOrderID"
+      mWHere &= " WHERE ISNULL(POA.SalesorderPhaseItemID,0)>0"
 
-    '// now see if we should be editting existing and/or adding new or deleting
-    If mNewTSEntry.TimeSheetEntryTypeID <> clsTimeSheetCode.cUnDefined Then
-      EditOrAddTSEntry(mNewTSEntry, pTimeSheetEntrys, vEmployeeID)
-    Else
-      DeleteTSEntry(mNewTSEntry, pTimeSheetEntrys)
-    End If
+      If mdbconn.Connect Then
 
-  End Sub
+        mDT = mdbconn.CreateDataTable(mWHere)
 
-  Private Sub DeleteTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry, ByRef pTimeSheetEntrys As colTimeSheetEntrys)
-    Dim mExistingTSEntry As dmTimeSheetEntry
-    Dim mShift As dmShift
-    Dim mShifts As colShifts
-    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
-    mShift = mShifts(0)
-    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
+        For Each mRow As DataRow In mDT.Rows
+          Dim mPurchaseOrderItemID As Integer
+          Dim mSalesorderPhaseItemID As Integer
 
-    If mExistingTSEntry IsNot Nothing Then
-      If mExistingTSEntry.StartTime = vNewTSEntry.StartTime Then
+          mPurchaseOrderItemID = mRow("PurchaseOrderItemID")
+          mSalesorderPhaseItemID = mRow("SalesorderPhaseItemID")
 
-        If mExistingTSEntry.EndTime <= vNewTSEntry.EndTime Then
-          '// if this is the whole entry, remove it
-          pTimeSheetEntrys.Remove(mExistingTSEntry)
-        Else
-          '// move the startime forwards
-          mExistingTSEntry.StartTime = vNewTSEntry.EndTime
-        End If
-      Else
-        '//look for an entry that spans the new entry
-        mExistingTSEntry = pTimeSheetEntrys.ItemSpanning(vNewTSEntry.StartTime)
-        If mExistingTSEntry IsNot Nothing Then
-          If mExistingTSEntry.EndTime > vNewTSEntry.StartTime Then
-            mExistingTSEntry.EndTime = vNewTSEntry.StartTime
+
+          If mPurchaseOrderItemID > 0 And mSalesorderPhaseItemID > 0 Then
+
+            Dim mUpdate As String = ""
+
+            mUpdate = String.Format("Update PurchaseOrderItemAllocation set SalesOrderPhaseItemID ={0} where PurchaseOrderItemID ={1}", mSalesorderPhaseItemID, mPurchaseOrderItemID)
+
+            mdbconn.ExecuteNonQuery(mUpdate)
+
+
           End If
-        End If
-      End If
-      '// Refresh the break mins for this entry
-      mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
-      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift)
-    End If
+        Next
 
-
-
-  End Sub
-
-
-
-  Private Sub EditTSEntryNonWorkOrder(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByVal vEnteredString As String)
-    Dim mCode As clsTimeSheetCode
-
-    mCode = colTimeSheetCodes.GetInstance.ItemFromKeyCode(vEnteredString.ToUpper)
-    If mCode IsNot Nothing Then
-      rTimeSheetEntry.TimeSheetEntryTypeID = mCode.PropertyENUM
-    End If
-  End Sub
-
-  Private Sub EditTSEntryWorkOrder(ByRef rTimeSheetEntry As dmTimeSheetEntry, ByVal vEnteredString As String, ByVal pWorkOrderInfos As colWorkOrderInfos)
-    Dim mWOI As clsWorkOrderInfo
-
-    rTimeSheetEntry.TimeSheetEntryTypeID = clsTimeSheetCode.cWorkOrder
-    mWOI = pWorkOrderInfos.ItemFromWorkOrderNo(vEnteredString)
-    If mWOI IsNot Nothing Then
-      rTimeSheetEntry.WorkOrderID = mWOI.WorkOrderID
-    Else
-      rTimeSheetEntry.Note = vEnteredString
-    End If
-
-  End Sub
-
-  Private Sub EditOrAddTSEntry(ByVal vNewTSEntry As dmTimeSheetEntry, ByRef pTimeSheetEntrys As colTimeSheetEntrys, ByVal vEmployeeID As Integer)
-    Dim mExistingTSEntry As dmTimeSheetEntry
-
-    Dim mShift As dmShift
-    Dim mShifts As colShifts
-    mShifts = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Shift)
-    mShift = mShifts(0)
-
-    mExistingTSEntry = pTimeSheetEntrys.ItemFromStartDateTime(vNewTSEntry.StartTime)
-
-    If mExistingTSEntry IsNot Nothing Then
-      If mExistingTSEntry.StartTime = vNewTSEntry.StartTime Then
-        '// if this is the initial time sheet entry (start times equal) then set this one to the new OT /  type
-        mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID
-        mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID
-        mExistingTSEntry.Note = vNewTSEntry.Note
-      Else
-        '// if this is not the first entry (this time is later than the timesheet entry) we need to curtail the timesheet entry and add a new one till the end of it
-        mExistingTSEntry.EndTime = vNewTSEntry.StartTime
-        pTimeSheetEntrys.Add(vNewTSEntry)
-      End If
-    Else
-
-      Dim mSameDay As Integer = DateAndTime.Weekday(vNewTSEntry.StartTime, FirstDayOfWeek.Monday)
-      '// if no match then check for previous in same day and if it is the same OT / type then extend previous Otherwise extend previous till this start and add new
-      mExistingTSEntry = pTimeSheetEntrys.ItemEarlierSameDay(vNewTSEntry.StartTime, mSameDay)
-
-      If mExistingTSEntry IsNot Nothing Then
-        '//We have one ealier in the day 
-        If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID And mExistingTSEntry.WorkCentreID = vNewTSEntry.WorkCentreID Then
-          '// if types and workorderid match then extend existing
-          mExistingTSEntry.EndTime = vNewTSEntry.EndTime
-        Else
-          mExistingTSEntry.EndTime = vNewTSEntry.StartTime
-          pTimeSheetEntrys.Add(vNewTSEntry)
-        End If
-      Else
-        Dim mLastDay As Integer = DateAndTime.Weekday(vNewTSEntry.EndTime, FirstDayOfWeek.Monday)
-
-        '//Check if the later one on the same day is the same type
-        mExistingTSEntry = pTimeSheetEntrys.ItemLaterSameDay(vNewTSEntry.EndTime, mLastDay)
-        If mExistingTSEntry Is Nothing Then
-          '// just add new entry for this hour
-          pTimeSheetEntrys.Add(vNewTSEntry)
-        Else
-          '//We have one later in the day 
-          If mExistingTSEntry.TimeSheetEntryTypeID = vNewTSEntry.TimeSheetEntryTypeID And mExistingTSEntry.WorkOrderID = vNewTSEntry.WorkOrderID And mExistingTSEntry.WorkCentreID = vNewTSEntry.WorkCentreID Then
-            '// if types and workorderid match then bring next entry startime forwards existing
-            mExistingTSEntry.StartTime = vNewTSEntry.StartTime
-          Else
-            pTimeSheetEntrys.Add(vNewTSEntry)
-          End If
-        End If
       End If
 
-    End If
 
-    If mExistingTSEntry IsNot Nothing Then
-      mExistingTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(mExistingTSEntry.StartTime, mExistingTSEntry.EndTime)
-      mExistingTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(mExistingTSEntry, mShift, mExistingTSEntry.OverTimeMinutes)
-      mExistingTSEntry.EmployeeID = vEmployeeID
-    End If
-    vNewTSEntry.BreakMins = clsSMSharedFuncs.GetDefaultBreakMins(vNewTSEntry.StartTime, vNewTSEntry.EndTime)
-    vNewTSEntry.OverTimeMinutes = clsTimeSheetSharedFuncs.getOverTimeMinutes(vNewTSEntry, mShift)
-    vNewTSEntry.EmployeeID = vEmployeeID
+      mdbconn.Disconnect()
+
+
+    Catch ex As Exception
+
+    End Try
+
 
   End Sub
-
 End Class

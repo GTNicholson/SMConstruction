@@ -91,6 +91,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletType", .WoodPalletType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsDepatch", .IsDepatch)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CIFValue", .CIFValue)
 
 
     End With
@@ -136,6 +137,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .WoodPalletID = DBReadInt32(rDataReader, "WoodPalletID")
         .WoodPalletType = DBReadInt32(rDataReader, "WoodPalletType")
         .IsDepatch = DBReadBoolean(rDataReader, "IsDepatch")
+        .CIFValue = DBReadDecimal(rDataReader, "CIFValue")
 
         pSalesOrder.IsDirty = False
       End With

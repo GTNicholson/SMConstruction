@@ -149,4 +149,22 @@ Public Class dsoProduction
     End Try
 
   End Sub
+
+  Public Sub LoadTimeSheetInfosByWhere(ByRef rTimeSheetProject As colTimeSheetEntryInfos, ByVal vWhere As String)
+    Dim mdto As dtoTimeSheetEntryInfo
+
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoTimeSheetEntryInfo(pDBConn)
+
+      mdto.LoadTimeSheetEntryInfoCollectionByWhere(rTimeSheetProject, vWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 End Class

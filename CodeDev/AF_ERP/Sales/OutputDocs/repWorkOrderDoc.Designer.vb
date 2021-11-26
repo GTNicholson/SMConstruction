@@ -26,10 +26,38 @@ Partial Public Class repWorkOrderDoc
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrPictureBox2 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable11 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow19 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow20 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.xtcFinishDate = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable10 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow17 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow18 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.xtcCreatedDate = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable7 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow12 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow16 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable9 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow14 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow15 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.xtcCustomerName = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcOrderNo = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrTable8 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow13 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow11 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.xtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -55,55 +83,27 @@ Partial Public Class repWorkOrderDoc
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.xtcProjectName = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcWorkOrderNo = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.xtcProjectName = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xtcWorkOrderNo = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTable9 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow14 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow15 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.xtcCustomerName = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xtcOrderNo = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow11 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.xtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTable7 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow12 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow16 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTable10 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow17 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow18 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.xtcCreatedDate = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTable11 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow19 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow20 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPictureBox2 = New DevExpress.XtraReports.UI.XRPictureBox()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -146,6 +146,268 @@ Partial Public Class repWorkOrderDoc
         Me.ReportHeader.HeightF = 188.6439!
         Me.ReportHeader.Name = "ReportHeader"
         '
+        'XrPictureBox2
+        '
+        Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(363.3255!, 85.0!)
+        Me.XrPictureBox2.Name = "XrPictureBox2"
+        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(233.3662!, 51.30212!)
+        '
+        'XrTable3
+        '
+        Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable3.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(262.0139!, 129.7687!)
+        Me.XrTable3.Name = "XrTable3"
+        Me.XrTable3.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
+        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(86.32303!, 17.1875!)
+        Me.XrTable3.StylePriority.UseBorders = False
+        Me.XrTable3.StylePriority.UseFont = False
+        Me.XrTable3.StylePriority.UsePadding = False
+        '
+        'XrTableRow4
+        '
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell13})
+        Me.XrTableRow4.Name = "XrTableRow4"
+        Me.XrTableRow4.Weight = 1.0R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrTableCell13.StylePriority.UseBackColor = False
+        Me.XrTableCell13.StylePriority.UseFont = False
+        Me.XrTableCell13.StylePriority.UsePadding = False
+        Me.XrTableCell13.StylePriority.UseTextAlignment = False
+        Me.XrTableCell13.Text = "Descripción"
+        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell13.Weight = 0.96267792126768R
+        '
+        'XrTable11
+        '
+        Me.XrTable11.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable11.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrTable11.LocationFloat = New DevExpress.Utils.PointFloat(613.1668!, 84.99999!)
+        Me.XrTable11.Name = "XrTable11"
+        Me.XrTable11.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19, Me.XrTableRow20})
+        Me.XrTable11.SizeF = New System.Drawing.SizeF(195.8332!, 34.375!)
+        Me.XrTable11.StylePriority.UseBorders = False
+        Me.XrTable11.StylePriority.UseFont = False
+        '
+        'XrTableRow19
+        '
+        Me.XrTableRow19.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21})
+        Me.XrTableRow19.Name = "XrTableRow19"
+        Me.XrTableRow19.Weight = 1.0R
+        '
+        'XrTableCell21
+        '
+        Me.XrTableCell21.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell21.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell21.Name = "XrTableCell21"
+        Me.XrTableCell21.StylePriority.UseBackColor = False
+        Me.XrTableCell21.StylePriority.UseFont = False
+        Me.XrTableCell21.StylePriority.UseTextAlignment = False
+        Me.XrTableCell21.Text = "Fecha de entrega"
+        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell21.Weight = 1.9090907787170304R
+        '
+        'XrTableRow20
+        '
+        Me.XrTableRow20.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcFinishDate})
+        Me.XrTableRow20.Name = "XrTableRow20"
+        Me.XrTableRow20.Weight = 1.0R
+        '
+        'xtcFinishDate
+        '
+        Me.xtcFinishDate.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcFinishDate.Name = "xtcFinishDate"
+        Me.xtcFinishDate.StylePriority.UseFont = False
+        Me.xtcFinishDate.StylePriority.UseTextAlignment = False
+        Me.xtcFinishDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.xtcFinishDate.Weight = 1.9090907787170306R
+        '
+        'XrTable10
+        '
+        Me.XrTable10.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable10.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrTable10.LocationFloat = New DevExpress.Utils.PointFloat(613.1668!, 39.4584!)
+        Me.XrTable10.Name = "XrTable10"
+        Me.XrTable10.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow17, Me.XrTableRow18})
+        Me.XrTable10.SizeF = New System.Drawing.SizeF(193.7764!, 34.375!)
+        Me.XrTable10.StylePriority.UseBorders = False
+        Me.XrTable10.StylePriority.UseFont = False
+        '
+        'XrTableRow17
+        '
+        Me.XrTableRow17.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6})
+        Me.XrTableRow17.Name = "XrTableRow17"
+        Me.XrTableRow17.Weight = 1.0R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseBackColor = False
+        Me.XrTableCell6.StylePriority.UseFont = False
+        Me.XrTableCell6.StylePriority.UseTextAlignment = False
+        Me.XrTableCell6.Text = "Fecha de elaboración"
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell6.Weight = 1.9090907787170304R
+        '
+        'XrTableRow18
+        '
+        Me.XrTableRow18.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcCreatedDate})
+        Me.XrTableRow18.Name = "XrTableRow18"
+        Me.XrTableRow18.Weight = 1.0R
+        '
+        'xtcCreatedDate
+        '
+        Me.xtcCreatedDate.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcCreatedDate.Name = "xtcCreatedDate"
+        Me.xtcCreatedDate.StylePriority.UseFont = False
+        Me.xtcCreatedDate.StylePriority.UseTextAlignment = False
+        Me.xtcCreatedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.xtcCreatedDate.Weight = 1.9090907787170306R
+        '
+        'XrTable7
+        '
+        Me.XrTable7.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable7.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrTable7.LocationFloat = New DevExpress.Utils.PointFloat(262.0139!, 85.00002!)
+        Me.XrTable7.Name = "XrTable7"
+        Me.XrTable7.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
+        Me.XrTable7.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow12, Me.XrTableRow16})
+        Me.XrTable7.SizeF = New System.Drawing.SizeF(86.32303!, 34.375!)
+        Me.XrTable7.StylePriority.UseBorders = False
+        Me.XrTable7.StylePriority.UseFont = False
+        Me.XrTable7.StylePriority.UsePadding = False
+        '
+        'XrTableRow12
+        '
+        Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell4})
+        Me.XrTableRow12.Name = "XrTableRow12"
+        Me.XrTableRow12.Weight = 1.0R
+        '
+        'XrTableCell4
+        '
+        Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell4.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell4.Name = "XrTableCell4"
+        Me.XrTableCell4.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrTableCell4.StylePriority.UseBackColor = False
+        Me.XrTableCell4.StylePriority.UseFont = False
+        Me.XrTableCell4.StylePriority.UsePadding = False
+        Me.XrTableCell4.StylePriority.UseTextAlignment = False
+        Me.XrTableCell4.Text = "Etapa"
+        Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell4.Weight = 0.96267792126768R
+        '
+        'XrTableRow16
+        '
+        Me.XrTableRow16.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19})
+        Me.XrTableRow16.Name = "XrTableRow16"
+        Me.XrTableRow16.Weight = 1.0R
+        '
+        'XrTableCell19
+        '
+        Me.XrTableCell19.BackColor = System.Drawing.Color.White
+        Me.XrTableCell19.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.XrTableCell19.Name = "XrTableCell19"
+        Me.XrTableCell19.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrTableCell19.StylePriority.UseBackColor = False
+        Me.XrTableCell19.StylePriority.UseFont = False
+        Me.XrTableCell19.StylePriority.UsePadding = False
+        Me.XrTableCell19.StylePriority.UseTextAlignment = False
+        Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell19.Weight = 0.96267792126768R
+        '
+        'XrTable9
+        '
+        Me.XrTable9.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTable9.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrTable9.LocationFloat = New DevExpress.Utils.PointFloat(0!, 85.0!)
+        Me.XrTable9.Name = "XrTable9"
+        Me.XrTable9.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
+        Me.XrTable9.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow14, Me.XrTableRow15})
+        Me.XrTable9.SizeF = New System.Drawing.SizeF(251.4641!, 34.375!)
+        Me.XrTable9.StylePriority.UseBorders = False
+        Me.XrTable9.StylePriority.UseFont = False
+        Me.XrTable9.StylePriority.UsePadding = False
+        '
+        'XrTableRow14
+        '
+        Me.XrTableRow14.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell12, Me.XrTableCell16})
+        Me.XrTableRow14.Name = "XrTableRow14"
+        Me.XrTableRow14.Weight = 1.0R
+        '
+        'XrTableCell12
+        '
+        Me.XrTableCell12.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell12.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell12.Name = "XrTableCell12"
+        Me.XrTableCell12.StylePriority.UseBackColor = False
+        Me.XrTableCell12.StylePriority.UseFont = False
+        Me.XrTableCell12.StylePriority.UseTextAlignment = False
+        Me.XrTableCell12.Text = "Cliente"
+        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell12.Weight = 1.0561387172481114R
+        '
+        'XrTableCell16
+        '
+        Me.XrTableCell16.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell16.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell16.Name = "XrTableCell16"
+        Me.XrTableCell16.StylePriority.UseBackColor = False
+        Me.XrTableCell16.StylePriority.UseFont = False
+        Me.XrTableCell16.StylePriority.UseTextAlignment = False
+        Me.XrTableCell16.Text = "Ref. Venta"
+        Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell16.Weight = 0.63201171030422665R
+        '
+        'XrTableRow15
+        '
+        Me.XrTableRow15.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcCustomerName, Me.xtcOrderNo})
+        Me.XrTableRow15.Name = "XrTableRow15"
+        Me.XrTableRow15.Weight = 1.0R
+        '
+        'xtcCustomerName
+        '
+        Me.xtcCustomerName.BackColor = System.Drawing.Color.White
+        Me.xtcCustomerName.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcCustomerName.Multiline = True
+        Me.xtcCustomerName.Name = "xtcCustomerName"
+        Me.xtcCustomerName.StylePriority.UseBackColor = False
+        Me.xtcCustomerName.StylePriority.UseFont = False
+        Me.xtcCustomerName.StylePriority.UseTextAlignment = False
+        Me.xtcCustomerName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xtcCustomerName.Weight = 1.0561387172481114R
+        '
+        'xtcOrderNo
+        '
+        Me.xtcOrderNo.BackColor = System.Drawing.Color.White
+        Me.xtcOrderNo.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcOrderNo.Multiline = True
+        Me.xtcOrderNo.Name = "xtcOrderNo"
+        Me.xtcOrderNo.StylePriority.UseBackColor = False
+        Me.xtcOrderNo.StylePriority.UseFont = False
+        Me.xtcOrderNo.StylePriority.UseTextAlignment = False
+        Me.xtcOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xtcOrderNo.Weight = 0.63201171030422665R
+        '
         'XrPanel1
         '
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 174.9865!)
@@ -186,6 +448,25 @@ Partial Public Class repWorkOrderDoc
         Me.XrTableCell8.Text = "Cantidad"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell8.Weight = 0.96267792126768R
+        '
+        'XrTableRow11
+        '
+        Me.XrTableRow11.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcQuantity})
+        Me.XrTableRow11.Name = "XrTableRow11"
+        Me.XrTableRow11.Weight = 1.0R
+        '
+        'xtcQuantity
+        '
+        Me.xtcQuantity.BackColor = System.Drawing.Color.White
+        Me.xtcQuantity.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcQuantity.Name = "xtcQuantity"
+        Me.xtcQuantity.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.xtcQuantity.StylePriority.UseBackColor = False
+        Me.xtcQuantity.StylePriority.UseFont = False
+        Me.xtcQuantity.StylePriority.UsePadding = False
+        Me.xtcQuantity.StylePriority.UseTextAlignment = False
+        Me.xtcQuantity.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.xtcQuantity.Weight = 0.96267792126768R
         '
         'XrTable5
         '
@@ -436,6 +717,48 @@ Partial Public Class repWorkOrderDoc
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell1.Weight = 1.0561387172481114R
         '
+        'XrTableCell7
+        '
+        Me.XrTableCell7.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell7.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell7.Name = "XrTableCell7"
+        Me.XrTableCell7.StylePriority.UseBackColor = False
+        Me.XrTableCell7.StylePriority.UseFont = False
+        Me.XrTableCell7.StylePriority.UseTextAlignment = False
+        Me.XrTableCell7.Text = "# O.T."
+        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell7.Weight = 0.63201171030422665R
+        '
+        'XrTableRow6
+        '
+        Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcProjectName, Me.xtcWorkOrderNo})
+        Me.XrTableRow6.Name = "XrTableRow6"
+        Me.XrTableRow6.Weight = 1.0R
+        '
+        'xtcProjectName
+        '
+        Me.xtcProjectName.BackColor = System.Drawing.Color.White
+        Me.xtcProjectName.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcProjectName.Multiline = True
+        Me.xtcProjectName.Name = "xtcProjectName"
+        Me.xtcProjectName.StylePriority.UseBackColor = False
+        Me.xtcProjectName.StylePriority.UseFont = False
+        Me.xtcProjectName.StylePriority.UseTextAlignment = False
+        Me.xtcProjectName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xtcProjectName.Weight = 1.0561387172481112R
+        '
+        'xtcWorkOrderNo
+        '
+        Me.xtcWorkOrderNo.BackColor = System.Drawing.Color.White
+        Me.xtcWorkOrderNo.Font = New System.Drawing.Font("Arial", 7.25!)
+        Me.xtcWorkOrderNo.Multiline = True
+        Me.xtcWorkOrderNo.Name = "xtcWorkOrderNo"
+        Me.xtcWorkOrderNo.StylePriority.UseBackColor = False
+        Me.xtcWorkOrderNo.StylePriority.UseFont = False
+        Me.xtcWorkOrderNo.StylePriority.UseTextAlignment = False
+        Me.xtcWorkOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xtcWorkOrderNo.Weight = 0.63201171030422665R
+        '
         'XrPictureBox1
         '
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
@@ -508,346 +831,23 @@ Partial Public Class repWorkOrderDoc
         Me.XrLine1.StylePriority.UseBorderWidth = False
         Me.XrLine1.StylePriority.UseForeColor = False
         '
-        'XrTableRow6
-        '
-        Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcProjectName, Me.xtcWorkOrderNo})
-        Me.XrTableRow6.Name = "XrTableRow6"
-        Me.XrTableRow6.Weight = 1.0R
-        '
-        'xtcProjectName
-        '
-        Me.xtcProjectName.BackColor = System.Drawing.Color.White
-        Me.xtcProjectName.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.xtcProjectName.Multiline = True
-        Me.xtcProjectName.Name = "xtcProjectName"
-        Me.xtcProjectName.StylePriority.UseBackColor = False
-        Me.xtcProjectName.StylePriority.UseFont = False
-        Me.xtcProjectName.StylePriority.UseTextAlignment = False
-        Me.xtcProjectName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.xtcProjectName.Weight = 1.0561387172481112R
-        '
-        'XrTableCell7
-        '
-        Me.XrTableCell7.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell7.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell7.Name = "XrTableCell7"
-        Me.XrTableCell7.StylePriority.UseBackColor = False
-        Me.XrTableCell7.StylePriority.UseFont = False
-        Me.XrTableCell7.StylePriority.UseTextAlignment = False
-        Me.XrTableCell7.Text = "# O.T."
-        Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell7.Weight = 0.63201171030422665R
-        '
-        'xtcWorkOrderNo
-        '
-        Me.xtcWorkOrderNo.BackColor = System.Drawing.Color.White
-        Me.xtcWorkOrderNo.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.xtcWorkOrderNo.Multiline = True
-        Me.xtcWorkOrderNo.Name = "xtcWorkOrderNo"
-        Me.xtcWorkOrderNo.StylePriority.UseBackColor = False
-        Me.xtcWorkOrderNo.StylePriority.UseFont = False
-        Me.xtcWorkOrderNo.StylePriority.UseTextAlignment = False
-        Me.xtcWorkOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.xtcWorkOrderNo.Weight = 0.63201171030422665R
-        '
-        'XrTable9
-        '
-        Me.XrTable9.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable9.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrTable9.LocationFloat = New DevExpress.Utils.PointFloat(0!, 85.0!)
-        Me.XrTable9.Name = "XrTable9"
-        Me.XrTable9.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
-        Me.XrTable9.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow14, Me.XrTableRow15})
-        Me.XrTable9.SizeF = New System.Drawing.SizeF(251.4641!, 34.375!)
-        Me.XrTable9.StylePriority.UseBorders = False
-        Me.XrTable9.StylePriority.UseFont = False
-        Me.XrTable9.StylePriority.UsePadding = False
-        '
-        'XrTableRow14
-        '
-        Me.XrTableRow14.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell12, Me.XrTableCell16})
-        Me.XrTableRow14.Name = "XrTableRow14"
-        Me.XrTableRow14.Weight = 1.0R
-        '
-        'XrTableCell12
-        '
-        Me.XrTableCell12.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell12.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell12.Name = "XrTableCell12"
-        Me.XrTableCell12.StylePriority.UseBackColor = False
-        Me.XrTableCell12.StylePriority.UseFont = False
-        Me.XrTableCell12.StylePriority.UseTextAlignment = False
-        Me.XrTableCell12.Text = "Cliente"
-        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell12.Weight = 1.0561387172481114R
-        '
-        'XrTableCell16
-        '
-        Me.XrTableCell16.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell16.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell16.Name = "XrTableCell16"
-        Me.XrTableCell16.StylePriority.UseBackColor = False
-        Me.XrTableCell16.StylePriority.UseFont = False
-        Me.XrTableCell16.StylePriority.UseTextAlignment = False
-        Me.XrTableCell16.Text = "Ref. Venta"
-        Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell16.Weight = 0.63201171030422665R
-        '
-        'XrTableRow15
-        '
-        Me.XrTableRow15.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcCustomerName, Me.xtcOrderNo})
-        Me.XrTableRow15.Name = "XrTableRow15"
-        Me.XrTableRow15.Weight = 1.0R
-        '
-        'xtcCustomerName
-        '
-        Me.xtcCustomerName.BackColor = System.Drawing.Color.White
-        Me.xtcCustomerName.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.xtcCustomerName.Multiline = True
-        Me.xtcCustomerName.Name = "xtcCustomerName"
-        Me.xtcCustomerName.StylePriority.UseBackColor = False
-        Me.xtcCustomerName.StylePriority.UseFont = False
-        Me.xtcCustomerName.StylePriority.UseTextAlignment = False
-        Me.xtcCustomerName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.xtcCustomerName.Weight = 1.0561387172481114R
-        '
-        'xtcOrderNo
-        '
-        Me.xtcOrderNo.BackColor = System.Drawing.Color.White
-        Me.xtcOrderNo.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.xtcOrderNo.Multiline = True
-        Me.xtcOrderNo.Name = "xtcOrderNo"
-        Me.xtcOrderNo.StylePriority.UseBackColor = False
-        Me.xtcOrderNo.StylePriority.UseFont = False
-        Me.xtcOrderNo.StylePriority.UseTextAlignment = False
-        Me.xtcOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.xtcOrderNo.Weight = 0.63201171030422665R
-        '
-        'XrTableRow11
-        '
-        Me.XrTableRow11.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcQuantity})
-        Me.XrTableRow11.Name = "XrTableRow11"
-        Me.XrTableRow11.Weight = 1.0R
-        '
-        'xtcQuantity
-        '
-        Me.xtcQuantity.BackColor = System.Drawing.Color.White
-        Me.xtcQuantity.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.xtcQuantity.Name = "xtcQuantity"
-        Me.xtcQuantity.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.xtcQuantity.StylePriority.UseBackColor = False
-        Me.xtcQuantity.StylePriority.UseFont = False
-        Me.xtcQuantity.StylePriority.UsePadding = False
-        Me.xtcQuantity.StylePriority.UseTextAlignment = False
-        Me.xtcQuantity.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.xtcQuantity.Weight = 0.96267792126768R
-        '
-        'XrTable7
-        '
-        Me.XrTable7.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable7.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrTable7.LocationFloat = New DevExpress.Utils.PointFloat(262.0139!, 85.00002!)
-        Me.XrTable7.Name = "XrTable7"
-        Me.XrTable7.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
-        Me.XrTable7.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow12, Me.XrTableRow16})
-        Me.XrTable7.SizeF = New System.Drawing.SizeF(86.32303!, 34.375!)
-        Me.XrTable7.StylePriority.UseBorders = False
-        Me.XrTable7.StylePriority.UseFont = False
-        Me.XrTable7.StylePriority.UsePadding = False
-        '
-        'XrTableRow12
-        '
-        Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell4})
-        Me.XrTableRow12.Name = "XrTableRow12"
-        Me.XrTableRow12.Weight = 1.0R
-        '
-        'XrTableCell4
-        '
-        Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell4.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell4.Name = "XrTableCell4"
-        Me.XrTableCell4.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrTableCell4.StylePriority.UseBackColor = False
-        Me.XrTableCell4.StylePriority.UseFont = False
-        Me.XrTableCell4.StylePriority.UsePadding = False
-        Me.XrTableCell4.StylePriority.UseTextAlignment = False
-        Me.XrTableCell4.Text = "Etapa"
-        Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell4.Weight = 0.96267792126768R
-        '
-        'XrTableRow16
-        '
-        Me.XrTableRow16.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell19})
-        Me.XrTableRow16.Name = "XrTableRow16"
-        Me.XrTableRow16.Weight = 1.0R
-        '
-        'XrTableCell19
-        '
-        Me.XrTableCell19.BackColor = System.Drawing.Color.White
-        Me.XrTableCell19.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.XrTableCell19.Name = "XrTableCell19"
-        Me.XrTableCell19.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrTableCell19.StylePriority.UseBackColor = False
-        Me.XrTableCell19.StylePriority.UseFont = False
-        Me.XrTableCell19.StylePriority.UsePadding = False
-        Me.XrTableCell19.StylePriority.UseTextAlignment = False
-        Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell19.Weight = 0.96267792126768R
-        '
-        'XrTable10
-        '
-        Me.XrTable10.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable10.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrTable10.LocationFloat = New DevExpress.Utils.PointFloat(613.1668!, 39.4584!)
-        Me.XrTable10.Name = "XrTable10"
-        Me.XrTable10.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow17, Me.XrTableRow18})
-        Me.XrTable10.SizeF = New System.Drawing.SizeF(193.7764!, 34.375!)
-        Me.XrTable10.StylePriority.UseBorders = False
-        Me.XrTable10.StylePriority.UseFont = False
-        '
-        'XrTableRow17
-        '
-        Me.XrTableRow17.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6})
-        Me.XrTableRow17.Name = "XrTableRow17"
-        Me.XrTableRow17.Weight = 1.0R
-        '
-        'XrTableCell6
-        '
-        Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell6.Name = "XrTableCell6"
-        Me.XrTableCell6.StylePriority.UseBackColor = False
-        Me.XrTableCell6.StylePriority.UseFont = False
-        Me.XrTableCell6.StylePriority.UseTextAlignment = False
-        Me.XrTableCell6.Text = "Fecha de elaboración"
-        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 1.9090907787170304R
-        '
-        'XrTableRow18
-        '
-        Me.XrTableRow18.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcCreatedDate})
-        Me.XrTableRow18.Name = "XrTableRow18"
-        Me.XrTableRow18.Weight = 1.0R
-        '
-        'xtcCreatedDate
-        '
-        Me.xtcCreatedDate.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.xtcCreatedDate.Name = "xtcCreatedDate"
-        Me.xtcCreatedDate.StylePriority.UseFont = False
-        Me.xtcCreatedDate.StylePriority.UseTextAlignment = False
-        Me.xtcCreatedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.xtcCreatedDate.Weight = 1.9090907787170306R
-        '
-        'XrTable11
-        '
-        Me.XrTable11.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable11.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrTable11.LocationFloat = New DevExpress.Utils.PointFloat(613.1668!, 84.99999!)
-        Me.XrTable11.Name = "XrTable11"
-        Me.XrTable11.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19, Me.XrTableRow20})
-        Me.XrTable11.SizeF = New System.Drawing.SizeF(195.8332!, 34.375!)
-        Me.XrTable11.StylePriority.UseBorders = False
-        Me.XrTable11.StylePriority.UseFont = False
-        '
-        'XrTableRow19
-        '
-        Me.XrTableRow19.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell21})
-        Me.XrTableRow19.Name = "XrTableRow19"
-        Me.XrTableRow19.Weight = 1.0R
-        '
-        'XrTableCell21
-        '
-        Me.XrTableCell21.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell21.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell21.Name = "XrTableCell21"
-        Me.XrTableCell21.StylePriority.UseBackColor = False
-        Me.XrTableCell21.StylePriority.UseFont = False
-        Me.XrTableCell21.StylePriority.UseTextAlignment = False
-        Me.XrTableCell21.Text = "Fecha de entrega"
-        Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell21.Weight = 1.9090907787170304R
-        '
-        'XrTableRow20
-        '
-        Me.XrTableRow20.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell22})
-        Me.XrTableRow20.Name = "XrTableRow20"
-        Me.XrTableRow20.Weight = 1.0R
-        '
-        'XrTableCell22
-        '
-        Me.XrTableCell22.Font = New System.Drawing.Font("Arial", 7.25!)
-        Me.XrTableCell22.Name = "XrTableCell22"
-        Me.XrTableCell22.StylePriority.UseFont = False
-        Me.XrTableCell22.StylePriority.UseTextAlignment = False
-        Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell22.Weight = 1.9090907787170306R
-        '
-        'XrTable3
-        '
-        Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable3.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(262.0139!, 129.7687!)
-        Me.XrTable3.Name = "XrTable3"
-        Me.XrTable3.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
-        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(86.32303!, 17.1875!)
-        Me.XrTable3.StylePriority.UseBorders = False
-        Me.XrTable3.StylePriority.UseFont = False
-        Me.XrTable3.StylePriority.UsePadding = False
-        '
-        'XrTableRow4
-        '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell13})
-        Me.XrTableRow4.Name = "XrTableRow4"
-        Me.XrTableRow4.Weight = 1.0R
-        '
-        'XrTableCell13
-        '
-        Me.XrTableCell13.BackColor = System.Drawing.Color.LightGray
-        Me.XrTableCell13.Font = New System.Drawing.Font("Arial", 7.25!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrTableCell13.StylePriority.UseBackColor = False
-        Me.XrTableCell13.StylePriority.UseFont = False
-        Me.XrTableCell13.StylePriority.UsePadding = False
-        Me.XrTableCell13.StylePriority.UseTextAlignment = False
-        Me.XrTableCell13.Text = "Descripción"
-        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell13.Weight = 0.96267792126768R
-        '
-        'XrPictureBox2
-        '
-        Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(363.3255!, 85.0!)
-        Me.XrPictureBox2.Name = "XrPictureBox2"
-        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(233.3662!, 51.30212!)
-        '
         'repWorkOrderDoc
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
         Me.Font = New System.Drawing.Font("Arial", 9.75!)
         Me.Margins = New System.Drawing.Printing.Margins(19, 12, 22, 20)
         Me.Version = "17.1"
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -899,7 +899,7 @@ Partial Public Class repWorkOrderDoc
     Friend WithEvents XrTableRow19 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell21 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow20 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell22 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xtcFinishDate As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable10 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow17 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell

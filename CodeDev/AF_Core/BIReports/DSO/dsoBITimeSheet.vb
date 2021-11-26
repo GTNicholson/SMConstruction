@@ -75,6 +75,8 @@ Public Class dsoBITimeSheet
 
       If pTempExcludeWO Then
         mSQLWhere &= " and IsNull(WorkOrderID,0)=0"
+      Else
+        mSQLWhere &= " and IsNull(WorkOrderID,0)<>0"
       End If
 
       mdto.LoadTimeSheetEntryInfoCollectionByWhere(pTimeSheetInfos, mSQLWhere)

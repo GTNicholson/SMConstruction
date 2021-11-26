@@ -98,10 +98,10 @@ Public Class repPODelivery
 
     xrtcDescription.DataBindings.Add("Text", DataSource, "Description")
 
-    xrGrossTotal.Text = pDataSource.TotalGrossValue.ToString(mToString)
+    xrGrossTotal.Text = (pDataSource.TotalNetValue - pDataSource.TotalRetention + pDataSource.TotalVAT).ToString(mToString)
     xrTotalNetTotal.Text = pDataSource.TotalNetValue.ToString(mToString)
     xrTotalVAT.Text = pDataSource.TotalVAT.ToString(mToString)
-
+    xtcTotalRetention.Text = pDataSource.TotalRetention.ToString(mToString)
   End Sub
 
 

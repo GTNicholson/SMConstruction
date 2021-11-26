@@ -719,6 +719,8 @@ Public Class frmManPurchaseOrderDetail
 
 
       UpdateObject()
+      gvPurchaseOrderItems.CloseEditor()
+
       For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
         pFormController.CreateUpdatePOItemAllocation(mPOI, True)
 
@@ -1168,7 +1170,7 @@ Public Class frmManPurchaseOrderDetail
           grdPODeliveryInfos.RefreshDataSource()
 
           pFormController.ReloadPOItems()
-
+          RefreshRetentionValuePOItems()
           grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
           grdPurchaseOrderItems.RefreshDataSource()
         End If
@@ -1181,7 +1183,9 @@ Public Class frmManPurchaseOrderDetail
         grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
         grdPODeliveryInfos.RefreshDataSource()
 
+
         pFormController.ReloadPOItems()
+        RefreshRetentionValuePOItems()
 
         grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
         grdPurchaseOrderItems.RefreshDataSource()
@@ -1448,6 +1452,7 @@ Public Class frmManPurchaseOrderDetail
       mPODI = TryCast(gvPODeliveryInfos.GetFocusedRow, clsPODeliveryInfo)
 
       If mPODI IsNot Nothing Then
+        pFormController.SaveObject()
 
         If pFormController.PurchaseOrder IsNot Nothing Then
 
@@ -1465,8 +1470,12 @@ Public Class frmManPurchaseOrderDetail
         grdPODeliveryInfos.DataSource = pFormController.PODeliveryInfos
         grdPODeliveryInfos.RefreshDataSource()
 
+        RefreshControls()
+        gvPurchaseOrderItems.CloseEditor()
+
         pFormController.ReloadPOItems()
 
+        RefreshRetentionValuePOItems()
         grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
         grdPurchaseOrderItems.RefreshDataSource()
 
@@ -1489,22 +1498,30 @@ Public Class frmManPurchaseOrderDetail
           pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
           'CheckSave(False)
           'RefreshControls()
-          Dim mPOItem As dmPurchaseOrderItem
-          Dim mVatRates As colVATRates
-          mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
-          For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems
 
-            If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
-              mPOItem.TempPercentageRetention = pFormController.PurchaseOrder.RetentionPercentage
+          RefreshRetentionValuePOItems()
 
-              mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
-
-            End If
-          Next
-          gvPurchaseOrderItems.RefreshData()
         End If
       End If
     End If
+  End Sub
+
+  Private Sub RefreshRetentionValuePOItems()
+    Dim mPOItem As dmPurchaseOrderItem
+    Dim mVatRates As colVATRates
+    mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
+    For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems
+
+      If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
+        mPOItem.TempPercentageRetention = pFormController.PurchaseOrder.RetentionPercentage
+
+        mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+
+      End If
+    Next
+    pFormController.UpdatePercentageValue(pFormController.PurchaseOrder.RetentionPercentage)
+
+    gvPurchaseOrderItems.RefreshData()
   End Sub
 
   Private Sub btnSelectWorkOrder_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnSelectWorkOrder.ButtonClick

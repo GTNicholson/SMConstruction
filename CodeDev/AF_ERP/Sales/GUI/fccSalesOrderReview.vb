@@ -15,6 +15,8 @@ Public Class fccSalesOrderReview
 
   Private pSalesOrder As dmSalesOrder
   Private pDBConn As clsDBConnBase
+  Private pHonorariosAndOtherCategories As colPurchaseOrderItemAllocationInfos
+  Private pTimeSheetProjects As New colTimeSheetEntryInfos
 
   Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As clsDBConnBase)
     pSalesOrder = rSalesOrder
@@ -32,10 +34,11 @@ Public Class fccSalesOrderReview
     Dim mCostBookEntrys As New colCostBookEntrys
     Dim mdsoCostBook As New dsoCostBook(pDBConn)
     Dim mStockItem As dmStockItem
-    Dim mExchangeRate As Decimal
     Dim mWherePOCategories As String = ""
     Dim mAllPOAllocationInfos As New colPurchaseOrderItemAllocationInfos
+    Dim mdsoTimeSheet As New dsoProduction(pDBConn)
 
+    pHonorariosAndOtherCategories = New colPurchaseOrderItemAllocationInfos
     pPOItemWOAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pOtherCategoriesPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pHonorariosPOIAllocationInfos = New colPurchaseOrderItemAllocationInfos
@@ -43,29 +46,12 @@ Public Class fccSalesOrderReview
     pWoodPalletItemInfosPicked = New colWoodPalletItemInfos
     pWorkOrderInfos = New colWorkOrderInfos
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
-
+    pTimeSheetProjects = New colTimeSheetEntryInfos
 
 
     ''Load all Purchasing
     mWhere = String.Format("SalesOrderID = {0} and  POStatus not in ({1})", pSalesOrder.SalesOrderID, CInt(ePurchaseOrderDueDateStatus.Cancelled))
     mdsoPurchasing.LoadPurchaseOrderItemAllocationWorkOrderInfos(mAllPOAllocationInfos, mWhere)
-
-
-    ''Load other categories for the Purchase Orders
-    'For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
-    '  Select Case mVI.ItemValue
-    '    'Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
-    '    'ePurchaseCategories.PatioYAserrio
-
-    '    'Case Else
-    '    '  If mWherePOCategories <> "" Then mWherePOCategories &= ","
-    '    '  mWherePOCategories &= mVI.ItemValue
-    '  End Select
-    'Next
-
-    'mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
-
-    'mWhere &= " and AccoutingCategoryID<>1" ''1-- this is honorarios in the AccoutingCategory table
 
 
     mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(mAllPOAllocationInfos, mWhere)
@@ -109,7 +95,13 @@ Public Class fccSalesOrderReview
 
     Next
 
+    For Each mPOIAI In pHonorariosPOIAllocationInfos
+      pHonorariosAndOtherCategories.Add(mPOIAI)
+    Next
 
+    For Each mPOIAI In pOtherCategoriesPOItemAllocationInfos
+      pHonorariosAndOtherCategories.Add(mPOIAI)
+    Next
     'pPOItemWOAllocationInfos = mAllPOAllocationInfos
 
 
@@ -163,7 +155,7 @@ Public Class fccSalesOrderReview
       If mSOPII.ExchangeRate > 0 Then
         mSOPII.SOPIStockItemMatReqDollarValue = mSOPII.SOPItemMatReqCost / mSOPII.ExchangeRate
         mSOPII.SOPIPickDollarValue = mSOPII.SOPItemPickMatReqCost / mSOPII.ExchangeRate
-
+        mSOPII.ManPowerActualTotalCostUSD = mSOPII.ManPowerActualTotalCost ' / mSOPII.ExchangeRate
         mSOPII.SOPIItemOutsourcingCost = mAllPOAllocationInfos.GetTotalPurchaseOrderItemOutsourcingValueUSDBySOPItemID(mSOPII.SalesOrderPhaseItemID, mSOPII.ExchangeRate)
 
       End If
@@ -201,6 +193,16 @@ Public Class fccSalesOrderReview
       End If
 
     Next
+
+    ''//TimeSheet
+    mWhere = "SalesOrderID = " & pSalesOrder.SalesOrderID & " and IsNull(WorkOrderID,0)<>0"
+    mdsoTimeSheet.LoadTimeSheetInfosByWhere(pTimeSheetProjects, mWhere)
+
+
+
+    ''Load CIF
+    TotalIndirectCost = pSalesOrder.CIFValue
+
 
     Return mOK
   End Function
@@ -279,6 +281,11 @@ Public Class fccSalesOrderReview
     Return mExchangeRate
   End Function
 
+  Public ReadOnly Property TimeSheetProjects As colTimeSheetEntryInfos
+    Get
+      Return pTimeSheetProjects
+    End Get
+  End Property
   Public ReadOnly Property Invoices As colInvoices
     Get
       Return pSalesOrder.Invoices
@@ -303,6 +310,12 @@ Public Class fccSalesOrderReview
     End Get
   End Property
 
+
+  Public ReadOnly Property HonorariosAndOtherCategories As colPurchaseOrderItemAllocationInfos
+    Get
+      Return pHonorariosAndOtherCategories
+    End Get
+  End Property
   Public ReadOnly Property CustomerPOInfos As colCustomerPurchaseOrders
     Get
       Return pSalesOrder.CustomerPurchaseOrder
@@ -359,4 +372,20 @@ Public Class fccSalesOrderReview
 
   Public Property CostingMethod As Boolean
   Public Property TotalIndirectCost As Decimal
+
+  Public Sub UpdateIndirectCost()
+    Try
+      Dim mWhere As String = "Update SalesOrder set CIFValue = " & TotalIndirectCost & " where SalesOrderID = " & pSalesOrder.SalesOrderID
+      pDBConn.Connect()
+
+      pDBConn.ExecuteNonQuery(mWhere)
+
+      pSalesOrder.CIFValue = TotalIndirectCost
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
 End Class

@@ -533,9 +533,17 @@
    <AuxFiles>
     <Filename>BIWoodStockTransactionItemList.xml</Filename>
   </AuxFiles>
-     <AuxFiles>
+   
+   <AuxFiles>
     <Filename>BIPurchaseOrderItemListByStageAndPOCategory.xml</Filename>
   </AuxFiles>
   
+     <AuxFiles>
+    <Filename>BITimeSheetListOT.xml</Filename>
+  </AuxFiles>
+  
+   <AuxFiles>
+    <Filename>BITimeSheetSummaryOT.xml</Filename>
+  </AuxFiles>
 
 </AppUpdateManifest>

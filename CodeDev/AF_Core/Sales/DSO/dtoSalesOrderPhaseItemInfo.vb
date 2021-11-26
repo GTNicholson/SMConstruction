@@ -78,6 +78,7 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
         .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
         .OrderNo = DBReadString(rDataReader, "OrderNo")
         .ProjectName = DBReadString(rDataReader, "ProjectName")
+        .CIFValue = DBReadDecimal(rDataReader, "CIFValue")
       End With
 
       With pSalesOrderPhaseItemInfo.Customer
@@ -101,6 +102,8 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
             .SubContractCost = DBReadDecimal(rDataReader, "SubContractCost")
             .TransportationCost = DBReadDecimal(rDataReader, "TransportationCost")
             .SOPIItemOutsourcingCost = DBReadDecimal(rDataReader, "SOPIItemOutsourcingCost")
+            .ManPowerActualTotalCost = DBReadDecimal(rDataReader, "ManPowerActualTotalCost")
+
           End With
 
 
@@ -135,7 +138,9 @@ Public Class dtoSalesOrderPhaseItemInfo : Inherits dtoBase
           End With
 
 
-
+          With pSalesOrderPhaseItemInfo.SalesOrder
+            .FinishDate = DBReadDate(rDataReader, "FinishDate")
+          End With
 
           With pSalesOrderPhaseItemInfo.WorkOrder
             ' .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")

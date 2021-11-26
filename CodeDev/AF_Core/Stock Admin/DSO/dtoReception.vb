@@ -60,6 +60,8 @@ Public Class dtoReception : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemType", .ItemType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ReceptionNo", .ReceptionNo)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CardNumber", StringToDBValue(.CardNumber))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Status", .Status)
+
 
 
     End With
@@ -78,6 +80,7 @@ Public Class dtoReception : Inherits dtoBase
         .ItemType = DBReadInt32(rDataReader, "ItemType")
         .ReceptionNo = DBReadString(rDataReader, "ReceptionNo")
         .CardNumber = DBReadString(rDataReader, "CardNumber")
+        .Status = DBReadByte(rDataReader, "Status")
         pReception.IsDirty = False
       End With
       mOK = True

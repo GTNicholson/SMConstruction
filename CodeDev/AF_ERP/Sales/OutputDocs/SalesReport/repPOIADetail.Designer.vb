@@ -25,6 +25,7 @@ Partial Public Class repPOIADetail
         Me.xtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xtcProject = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xtcOTNumber = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcPOICost = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrControlStyle1 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -34,9 +35,8 @@ Partial Public Class repPOIADetail
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xtcPOICost = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,6 +131,23 @@ Partial Public Class repPOIADetail
         Me.xtcOTNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xtcOTNumber.Weight = 2.57020487246657R
         '
+        'xtcPOICost
+        '
+        Me.xtcPOICost.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xtcPOICost.Dpi = 254.0!
+        Me.xtcPOICost.Font = New System.Drawing.Font("Times New Roman", 8.75!)
+        Me.xtcPOICost.Name = "xtcPOICost"
+        Me.xtcPOICost.Padding = New DevExpress.XtraPrinting.PaddingInfo(15, 15, 0, 0, 254.0!)
+        Me.xtcPOICost.StylePriority.UseBorders = False
+        Me.xtcPOICost.StylePriority.UseFont = False
+        Me.xtcPOICost.StylePriority.UsePadding = False
+        Me.xtcPOICost.StylePriority.UseTextAlignment = False
+        Me.xtcPOICost.Text = "xtcPOICost"
+        Me.xtcPOICost.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.xtcPOICost.Weight = 1.3354691081115533R
+        '
         'TopMargin
         '
         Me.TopMargin.Dpi = 254.0!
@@ -211,19 +228,6 @@ Partial Public Class repPOIADetail
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell2.Weight = 2.5538056140809546R
         '
-        'XrTableCell5
-        '
-        Me.XrTableCell5.Dpi = 254.0!
-        Me.XrTableCell5.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell5.Name = "XrTableCell5"
-        Me.XrTableCell5.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 254.0!)
-        Me.XrTableCell5.StylePriority.UseFont = False
-        Me.XrTableCell5.StylePriority.UsePadding = False
-        Me.XrTableCell5.StylePriority.UseTextAlignment = False
-        Me.XrTableCell5.Text = "Cost"
-        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell5.Weight = 1.3693530465674215R
-        '
         'XrTableCell3
         '
         Me.XrTableCell3.Dpi = 254.0!
@@ -237,22 +241,18 @@ Partial Public Class repPOIADetail
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell3.Weight = 2.6354168268639278R
         '
-        'xtcPOICost
+        'XrTableCell5
         '
-        Me.xtcPOICost.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.xtcPOICost.Dpi = 254.0!
-        Me.xtcPOICost.Font = New System.Drawing.Font("Times New Roman", 8.75!)
-        Me.xtcPOICost.Name = "xtcPOICost"
-        Me.xtcPOICost.Padding = New DevExpress.XtraPrinting.PaddingInfo(15, 15, 0, 0, 254.0!)
-        Me.xtcPOICost.StylePriority.UseBorders = False
-        Me.xtcPOICost.StylePriority.UseFont = False
-        Me.xtcPOICost.StylePriority.UsePadding = False
-        Me.xtcPOICost.StylePriority.UseTextAlignment = False
-        Me.xtcPOICost.Text = "xtcPOICost"
-        Me.xtcPOICost.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xtcPOICost.Weight = 1.3354691081115533R
+        Me.XrTableCell5.Dpi = 254.0!
+        Me.XrTableCell5.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell5.Name = "XrTableCell5"
+        Me.XrTableCell5.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 254.0!)
+        Me.XrTableCell5.StylePriority.UseFont = False
+        Me.XrTableCell5.StylePriority.UsePadding = False
+        Me.XrTableCell5.StylePriority.UseTextAlignment = False
+        Me.XrTableCell5.Text = "Costo"
+        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.XrTableCell5.Weight = 1.3693530465674215R
         '
         'repPOIADetail
         '
