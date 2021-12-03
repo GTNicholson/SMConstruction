@@ -63,14 +63,15 @@ Partial Class frmPhaseManagement
         Me.gcDeliveryToSiteDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPurchasing = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcAdvance = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.repitcboColour = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.gcMadera = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTejido = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcAcabado = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcLija = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcInstallation = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repitcboColour = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -247,7 +248,7 @@ Partial Class frmPhaseManagement
         Me.gvSOPMilestoneStatuses.Appearance.ViewCaption.Options.UseTextOptions = True
         Me.gvSOPMilestoneStatuses.Appearance.ViewCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.gvSOPMilestoneStatuses.ColumnPanelRowHeight = 45
-        Me.gvSOPMilestoneStatuses.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcDueDate, Me.gcPlannedDate, Me.GridColumn1, Me.gcProjectName, Me.gcCustomer, Me.gcValue, Me.gcQtyOT, Me.gcOrderStatus, Me.gcOrderReceivedDate, Me.gcProducyCategory, Me.gcProcurementGroupDate, Me.gcDespatchStatus, Me.gcOrderReceived, Me.gcConfirmationOrder, Me.gcHandover, Me.gcEngineering, Me.gcCarpinteria, Me.gcMetal, Me.gcTapizado, Me.gcEmpaque, Me.gcDeliveryUpdate, Me.gcDeliveryToSiteDate, Me.gcPurchasing, Me.gcAdvance, Me.gcMadera, Me.gcTejido, Me.gcAcabado, Me.gcLija})
+        Me.gvSOPMilestoneStatuses.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcDueDate, Me.gcPlannedDate, Me.GridColumn1, Me.gcProjectName, Me.gcCustomer, Me.gcValue, Me.gcQtyOT, Me.gcOrderStatus, Me.gcOrderReceivedDate, Me.gcProducyCategory, Me.gcProcurementGroupDate, Me.gcDespatchStatus, Me.gcOrderReceived, Me.gcConfirmationOrder, Me.gcHandover, Me.gcEngineering, Me.gcCarpinteria, Me.gcMetal, Me.gcTapizado, Me.gcEmpaque, Me.gcDeliveryUpdate, Me.gcDeliveryToSiteDate, Me.gcPurchasing, Me.gcAdvance, Me.gcMadera, Me.gcTejido, Me.gcAcabado, Me.gcLija, Me.gcInstallation})
         Me.gvSOPMilestoneStatuses.DetailHeight = 400
         Me.gvSOPMilestoneStatuses.GridControl = Me.grdSOPMilestoneStatuses
         Me.gvSOPMilestoneStatuses.GroupCount = 1
@@ -685,23 +686,6 @@ Partial Class frmPhaseManagement
         Me.gcAdvance.Visible = True
         Me.gcAdvance.VisibleIndex = 6
         '
-        'repitcboColour
-        '
-        Me.repitcboColour.AutoHeight = False
-        Me.repitcboColour.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.repitcboColour.Name = "repitcboColour"
-        '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1462, 705)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
-        '
-        'PopupMenu1
-        '
-        Me.PopupMenu1.Name = "PopupMenu1"
-        '
         'gcMadera
         '
         Me.gcMadera.AppearanceCell.BackColor = System.Drawing.Color.White
@@ -789,6 +773,40 @@ Partial Class frmPhaseManagement
         Me.gcLija.VisibleIndex = 16
         Me.gcLija.Width = 55
         '
+        'gcInstallation
+        '
+        Me.gcInstallation.AppearanceCell.BackColor = System.Drawing.Color.White
+        Me.gcInstallation.AppearanceCell.Options.UseBackColor = True
+        Me.gcInstallation.Caption = "Instalación"
+        Me.gcInstallation.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.gcInstallation.DisplayFormat.FormatString = "dd-MM"
+        Me.gcInstallation.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.gcInstallation.FieldName = "gcInstallation"
+        Me.gcInstallation.Name = "gcInstallation"
+        Me.gcInstallation.OptionsColumn.AllowEdit = False
+        Me.gcInstallation.OptionsFilter.AllowAutoFilter = False
+        Me.gcInstallation.Tag = 14
+        Me.gcInstallation.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcInstallation.Visible = True
+        Me.gcInstallation.VisibleIndex = 19
+        '
+        'repitcboColour
+        '
+        Me.repitcboColour.AutoHeight = False
+        Me.repitcboColour.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.repitcboColour.Name = "repitcboColour"
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.PageVisible = False
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 706)
+        Me.XtraTabPage2.Text = "XtraTabPage2"
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.Name = "PopupMenu1"
+        '
         'frmPhaseManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -867,4 +885,5 @@ Partial Class frmPhaseManagement
     Friend WithEvents gcTejido As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcAcabado As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcLija As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcInstallation As DevExpress.XtraGrid.Columns.GridColumn
 End Class

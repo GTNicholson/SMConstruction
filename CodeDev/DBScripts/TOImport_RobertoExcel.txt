@@ -4,13 +4,14 @@ go
 CREATE TABLE [dbo].TempPallet(
 	TempPalletID [int] IDENTITY(1,1) NOT NULL,
 	SpeciesID int NULL,
-	Bulto varchar(20) NULL,
+	Bulto varchar(200) NULL,
 	Grosor decimal(9,4) NULL,
 	Ancho [decimal](9, 4) NULL,
 	Largo [decimal](9, 4) NULL,
 	ItemTypeID int NULL,
 	Cantidad int NULL,
 	LocationID int NULL,
+	WorkOrderID int NULL,
  CONSTRAINT [pk_TempPallet] PRIMARY KEY CLUSTERED 
 (
 	TempPalletID ASC

@@ -15,7 +15,7 @@ Public Class fccSalesOrderReview
 
   Private pSalesOrder As dmSalesOrder
   Private pDBConn As clsDBConnBase
-  Private pHonorariosAndOtherCategories As colPurchaseOrderItemAllocationInfos
+  Private pMaterialsByCategories As colMaterialRequirementInfos 'colPurchaseOrderItemAllocationInfos
   Private pTimeSheetProjects As New colTimeSheetEntryInfos
 
   Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As clsDBConnBase)
@@ -38,7 +38,7 @@ Public Class fccSalesOrderReview
     Dim mAllPOAllocationInfos As New colPurchaseOrderItemAllocationInfos
     Dim mdsoTimeSheet As New dsoProduction(pDBConn)
 
-    pHonorariosAndOtherCategories = New colPurchaseOrderItemAllocationInfos
+    pMaterialsByCategories = New colMaterialRequirementInfos
     pPOItemWOAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pOtherCategoriesPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pHonorariosPOIAllocationInfos = New colPurchaseOrderItemAllocationInfos
@@ -95,19 +95,77 @@ Public Class fccSalesOrderReview
 
     Next
 
+    ''Load Material Requirements
+    mdsoSalesOrder.LoadWorkOrderMatReqInfosByWhere(pMaterialsByCategories, "SalesOrderID = " & pSalesOrder.SalesOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems))
+
+    ''Update the ExchangeRate
+    For Each mMaterialRequirementInfo In pMaterialsByCategories
+      mMaterialRequirementInfo.ExchangeRate = GetExchangeRate(Now.Date, eCurrency.Cordobas)
+
+
+      If mMaterialRequirementInfo.DateCommitted = Date.MinValue Then
+        mMaterialRequirementInfo.TempDateExchange = mMaterialRequirementInfo.DateEntered
+      Else
+        mMaterialRequirementInfo.TempDateExchange = mMaterialRequirementInfo.DateCommitted
+      End If
+      If mMaterialRequirementInfo.TempDateExchange = Date.MinValue Then mMaterialRequirementInfo.TempDateExchange = Now
+      mMaterialRequirementInfo.ExchangeRate = GetExchangeRate(mMaterialRequirementInfo.TempDateExchange, eCurrency.Cordobas)
+
+    Next
+
+    ''Load Material Requirements Other Expenses
     For Each mPOIAI In pHonorariosPOIAllocationInfos
-      pHonorariosAndOtherCategories.Add(mPOIAI)
+      Dim mOtherExpenses As New clsMaterialRequirementInfo
+      mOtherExpenses.StockItem.Category = 255
+      mOtherExpenses.PickedQty = 1
+      mOtherExpenses.ExchangeRate = mPOIAI.ExchangeRateValue
+
+      Select Case mPOIAI.DefaultCurrency
+        Case eCurrency.Cordobas
+          mOtherExpenses.AverageCost = mPOIAI.Quantity * mPOIAI.UnitPrice
+
+        Case eCurrency.Dollar
+          If mPOIAI.ExchangeRateValue > 0 Then
+            mOtherExpenses.AverageCost = (mPOIAI.Quantity * mPOIAI.UnitPrice) * mPOIAI.ExchangeRateValue
+          Else
+            mOtherExpenses.AverageCost = 0
+          End If
+
+      End Select
+
+      pMaterialsByCategories.Add(mOtherExpenses)
     Next
 
     For Each mPOIAI In pOtherCategoriesPOItemAllocationInfos
-      pHonorariosAndOtherCategories.Add(mPOIAI)
+      Dim mOtherExpenses As New clsMaterialRequirementInfo
+      mOtherExpenses.StockItem.Category = 255
+      mOtherExpenses.PickedQty = 1
+      mOtherExpenses.ExchangeRate = mPOIAI.ExchangeRateValue
+
+      Select Case mPOIAI.DefaultCurrency
+        Case eCurrency.Cordobas
+          mOtherExpenses.AverageCost = mPOIAI.Quantity * mPOIAI.UnitPrice
+
+        Case eCurrency.Dollar
+          If mPOIAI.ExchangeRateValue > 0 Then
+            mOtherExpenses.AverageCost = (mPOIAI.Quantity * mPOIAI.UnitPrice) * mPOIAI.ExchangeRateValue
+          Else
+            mOtherExpenses.AverageCost = 0
+          End If
+
+      End Select
+
+
+
+
+      pMaterialsByCategories.Add(mOtherExpenses)
     Next
     'pPOItemWOAllocationInfos = mAllPOAllocationInfos
 
 
 
     ''Load SalesItems
-    mdsoSalesOrder.LoadWorkOrderAllocationsByWhere(mWOAs, "")
+    mdsoSalesOrder.LoadWorkOrderAllocationsByWhere(mWOAs, " WorkOrderID In (Select WorkOrderID from WorkOrder where Status In(1,2,4))")
     mWhere = ""
 
     For Each mSOPI As dmSalesOrderPhaseItem In pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems
@@ -160,7 +218,7 @@ Public Class fccSalesOrderReview
 
       End If
 
-      If mSOPII.Description = "ARTÍCULO GENERAL" Then
+      If mSOPII.IsGeneral Then
         mSOPII.SOPIPickDollarValue = mAllPOAllocationInfos.GetTotalPurchaseOrderItemAmountUSDBySOPItemID(mSOPII.SalesOrderPhaseItemID)
       End If
 
@@ -311,9 +369,9 @@ Public Class fccSalesOrderReview
   End Property
 
 
-  Public ReadOnly Property HonorariosAndOtherCategories As colPurchaseOrderItemAllocationInfos
+  Public ReadOnly Property MaterialsByCategories As colMaterialRequirementInfos
     Get
-      Return pHonorariosAndOtherCategories
+      Return pMaterialsByCategories
     End Get
   End Property
   Public ReadOnly Property CustomerPOInfos As colCustomerPurchaseOrders

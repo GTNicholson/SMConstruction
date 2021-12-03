@@ -338,6 +338,7 @@
     <Compile Include="Sales\BO\clsProductRequirementProcessor.vb" />
     <Compile Include="Sales\BO\clsSalesOrderInfo.vb" />
     <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
+    <Compile Include="Sales\BO\clsSalesProjectReviewCost.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationEditor.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationInfo.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />

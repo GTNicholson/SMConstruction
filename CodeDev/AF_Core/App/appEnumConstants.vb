@@ -421,7 +421,7 @@ Public Enum eWorkCentre
 
   <Description("Tapizado")> Tapizado = 18
   <Description("Tejido")> Tejido = 19
-
+  <Description("Instalación")> Installation = 20
 End Enum
 
 Public Enum eProductType
@@ -2592,6 +2592,7 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
   Public Const Tejido = 11
   Public Const Acabado = 12
   Public Const Lija = 13
+  Public Const Installation = 14
 
 
 
@@ -2653,6 +2654,12 @@ Public Class eSalesOrderPhaseMileStone : Inherits colPropertyENUMOfT(Of clsEnumS
     mMileStone = New clsEnumSalesOrderPhaseMilestone(Lija, "Lija")
     mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
     MyBase.Add(mMileStone)
+
+
+    mMileStone = New clsEnumSalesOrderPhaseMilestone(Installation, "Instalación")
+    mMileStone.DependencyMilestones.Add(New clsMilestoneDependentOn(Metales, 1, True))
+    MyBase.Add(mMileStone)
+
 
   End Sub
   Public Shared Function GetInstance() As eSalesOrderPhaseMileStone

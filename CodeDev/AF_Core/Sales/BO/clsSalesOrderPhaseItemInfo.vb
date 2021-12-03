@@ -195,6 +195,12 @@
     End Get
   End Property
 
+  Public ReadOnly Property IsGeneral As Boolean
+    Get
+      Return pSalesOrderItem.IsGeneral
+    End Get
+  End Property
+
   Public ReadOnly Property AssemblyRef As String
     Get
       Return pSalesItemAssembly.Ref
@@ -541,6 +547,18 @@
       pManPowerActualTotalCost = value
     End Set
   End Property
+
+  Public ReadOnly Property ProjectNameWithCustomer As String
+    Get
+      Dim mRetVal As String = ""
+
+
+      mRetVal = pCustomer.CompanyName & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
+
 End Class
 
 
@@ -795,6 +813,92 @@ Public Class colSalesOrderPhaseItemInfos : Inherits List(Of clsSalesOrderPhaseIt
       If mItem IsNot Nothing Then
 
         mRetVal += mItem.ManPowerActualTotalCostUSD
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalActualManPowerValueBySalesOrderID(ByVal vSalesOrderID As Integer) As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        If mItem.SalesOrderID = vSalesOrderID Then
+          mRetVal += mItem.ManPowerActualTotalCostUSD
+        End If
+
+      End If
+    Next
+
+    Return mRetVal
+
+  End Function
+
+  Public Function GetTotalOutsourcingRealValueBySalesOrderID(ByVal vSalesOrderID As Integer) As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        If mItem.SalesOrderID = vSalesOrderID Then
+          mRetVal += mItem.SOPIItemOutsourcingCost
+        End If
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalStockItemMatReqPickRealBySalesOrderID(ByVal vSalesOrderID As Integer) As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        If mItem.SalesOrderID = vSalesOrderID Then
+          mRetVal += mItem.SOPIStockItemMatReqDollarValue
+        End If
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalWoodMatReqPickedBySalesOrderID(ByVal vSalesOrderID As Integer) As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        If mItem.SalesOrderID = vSalesOrderID Then
+          mRetVal += mItem.PickedWoodCost
+        End If
+
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function GetTotalLineValueBySalesOrderID(ByVal vSalesOrderID As Integer) As Decimal
+    Dim mRetVal As Decimal
+
+    For Each mItem In Me
+
+      If mItem IsNot Nothing Then
+
+        If mItem.SalesOrderID = vSalesOrderID Then
+          mRetVal += mItem.LineValue
+        End If
 
       End If
     Next

@@ -251,8 +251,23 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Public ReadOnly Property QuantityFraction As String
     Get
       Dim mRetVal As String
+      Dim mStockItem As dmStockItem
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(StockItemID)
 
-      mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+      If mStockItem IsNot Nothing Then
+
+        Select Case mStockItem.Category
+          Case eStockItemCategory.PinturaYQuimico
+            mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+
+          Case Else
+            mRetVal = Quantity.ToString("N2")
+        End Select
+
+      Else
+        mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+
+      End If
 
       Return mRetVal
     End Get

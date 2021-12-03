@@ -491,20 +491,30 @@ Public Class frmMaterialRequirement
           If mRow IsNot Nothing Then
             If e.IsGetData Then
 
-              e.Value = mRow.StockItemLocationsQty - pFormController.MatReqItemProcessors.GetFromStockQty(mRow.MaterialRequirement.StockItemID)
+              e.Value = mRow.StockItemLocationsQty - mRow.OutstandingFromStockQtyHousing
+
+
+              'Select Case pFormController.pConsoleOptionView
+              '  Case ePOConsoleOption.Housing
+              '    e.Value = mRow.StockItemLocationsQty - mRow.OutstandingFromStockQtyHousing
+
+              '  Case ePOConsoleOption.Furniture
+              '    e.Value = mRow.StockItemLocationsQty - mRow.OutstandingFromStockQtyFurniture
+
+              'End Select
 
             End If
           End If
 
-        Case gcTotalFromStock.Name
+          'Case gcTotalFromStock.Name
 
-          If mRow IsNot Nothing Then
-            If e.IsGetData Then
+          '  If mRow IsNot Nothing Then
+          '    If e.IsGetData Then
 
-              e.Value = pFormController.MatReqItemProcessors.GetFromStockQty(mRow.MaterialRequirement.StockItemID)
+          '      e.Value = mRow.OutstandingFromStockQty
 
-            End If
-          End If
+          '    End If
+          '  End If
       End Select
 
     Catch ex As Exception

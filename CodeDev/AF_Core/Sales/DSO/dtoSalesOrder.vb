@@ -193,6 +193,17 @@ Public Class dtoSalesOrder : Inherits dtoBase
     Return mOK
   End Function
 
+  Public Function LoadSalesOrderCollectionByWhere(ByRef rSalesOrders As colSalesOrders, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rSalesOrders, mParams, "SalesOrderID", vWhere)
+    rSalesOrders.TrackDeleted = True
+    If mOK Then rSalesOrders.IsDirty = False
+    Return mOK
+  End Function
+
+
+
   Public Function LoadSalesOrderInfo(ByRef rSalesOrder As colSalesOrders, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable
     Dim mOK As Boolean

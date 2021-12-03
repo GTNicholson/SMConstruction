@@ -432,10 +432,7 @@ Public Class fccPickWoodMaterial
 
     Dim mdto As dtoWorkOrderInfo
     Dim mwhere As String
-    mwhere = "WorkOrderID Not In (select Distinct WorkOrderID from WorkOrderMilestoneStatus Where MilestoneENUM = 10 and Status = 3)"
-    mwhere += " and ( WorkOrderID in (select WorkOrderID from vwWorkOrderInfo)"
-    '' mwhere = "  WorkOrderID In (Select WorkOrderID from vwWorkOrderInfo)" ''borrar todo esto, solo sirve para que se ingrese los datos
-    mwhere += " Or WorkOrderId In (Select WorkOrderID from vwWorkOrderInternalInfo))"
+    mwhere = "ProductTypeID=" & CInt(eProductType.StructureAF) & String.Format(" and Status in ({0},{1})", CInt(eWorkOrderStatus.Raised), CInt(eWorkOrderStatus.InProcess))
     Try
 
       pDBConn.Connect()

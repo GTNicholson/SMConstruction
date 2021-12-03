@@ -51,6 +51,7 @@ Partial Class frmWorkOrderTracking
         Me.gcDespatch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcTejido = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcInstallation = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.bchkHideDespatched = New DevExpress.XtraBars.BarEditItem()
@@ -111,7 +112,7 @@ Partial Class frmWorkOrderTracking
         Me.gvWorksOrders.Appearance.ViewCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.gvWorksOrders.Appearance.ViewCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gvWorksOrders.ColumnPanelRowHeight = 34
-        Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcCustomer, Me.GridColumn6, Me.gcWood, Me.gcInsumos, Me.gcEngineering, Me.gcPurchasing, Me.gcSelection, Me.gcDimensionado, Me.gcCarpitry, Me.gcSanding, Me.gcFinishing, Me.gcMetalWork, Me.gcMetalFinishing, Me.gcPackaging, Me.gcDespatch, Me.gcTapizado, Me.gcTejido})
+        Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcCustomer, Me.GridColumn6, Me.gcWood, Me.gcInsumos, Me.gcEngineering, Me.gcPurchasing, Me.gcSelection, Me.gcDimensionado, Me.gcCarpitry, Me.gcSanding, Me.gcFinishing, Me.gcMetalWork, Me.gcMetalFinishing, Me.gcPackaging, Me.gcDespatch, Me.gcTapizado, Me.gcTejido, Me.gcInstallation})
         Me.gvWorksOrders.GridControl = Me.grdWorksOrders
         Me.gvWorksOrders.GroupCount = 1
         Me.gvWorksOrders.GroupRowHeight = 28
@@ -457,6 +458,18 @@ Partial Class frmWorkOrderTracking
         Me.gcTejido.VisibleIndex = 18
         Me.gcTejido.Width = 100
         '
+        'gcInstallation
+        '
+        Me.gcInstallation.Caption = "Instalación"
+        Me.gcInstallation.FieldName = "gcInstallation"
+        Me.gcInstallation.Name = "gcInstallation"
+        Me.gcInstallation.OptionsColumn.AllowEdit = False
+        Me.gcInstallation.OptionsColumn.ReadOnly = True
+        Me.gcInstallation.Tag = 20
+        Me.gcInstallation.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcInstallation.Visible = True
+        Me.gcInstallation.VisibleIndex = 21
+        '
         'BarManager1
         '
         Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
@@ -686,4 +699,5 @@ Partial Class frmWorkOrderTracking
     Friend WithEvents gcDespatch As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcTapizado As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcTejido As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcInstallation As DevExpress.XtraGrid.Columns.GridColumn
 End Class

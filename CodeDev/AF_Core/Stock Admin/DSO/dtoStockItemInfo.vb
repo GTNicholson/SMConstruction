@@ -7,7 +7,7 @@ Imports System.Windows.Forms
 Public Class dtoStockItemInfo : Inherits dtoBase
 
   Private pStockItemInfo As clsStockItemInfo
-  Private pMode As AutoCompleteMode
+  Private pMode As eMode
   Public Enum eMode
     StockItemAdmin = 1
     StockItemInfos = 2
@@ -17,7 +17,6 @@ Public Class dtoStockItemInfo : Inherits dtoBase
 
   Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
     MyBase.New(rDBSource)
-    SetTableDetails()
     pMode = vMode
     SetTableDetails()
   End Sub

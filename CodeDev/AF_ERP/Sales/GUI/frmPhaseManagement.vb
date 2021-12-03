@@ -244,7 +244,7 @@ Public Class frmPhaseManagement
       Dim mRow As clsSalesOrderPhaseInfo
 
       Select Case e.Column.Name
-        Case gcOrderReceived.Name, gcHandover.Name, gcConfirmationOrder.Name, gcEngineering.Name,
+        Case gcOrderReceived.Name, gcHandover.Name, gcConfirmationOrder.Name, gcEngineering.Name, gcInstallation.Name,
               gcCarpinteria.Name, gcTapizado.Name, gcEmpaque.Name, gcMadera.Name, gcTejido.Name, gcAcabado.Name, gcLija.Name,
           gcMetal.Name, gcPurchasing.Name,
              gcDeliveryToSiteDate.Name

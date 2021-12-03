@@ -111,6 +111,23 @@ Public Class dsoSalesOrder : Inherits dsoBase
     End Try
   End Sub
 
+  Public Sub LoadSalesOrdersCollectionByWhere(ByRef rSalesOrders As colSalesOrders, ByVal vWhere As String)
+    Dim mdtoSalesOrder As New dtoSalesOrder(pDBConn)
+
+    Try
+      If pDBConn.Connect Then
+
+        mdtoSalesOrder.LoadSalesOrderCollectionByWhere(rSalesOrders, vWhere)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
+
   Public Function UpdateOrderReceivedDate(ByVal vSalesOrderPhaseID As Integer, ByVal vOrderReceivedDate As Date) As Boolean
     Dim mOK As Boolean
     Dim mParams As New Hashtable

@@ -289,11 +289,11 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletInfo.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodPalletInfo.EmbeddedNavigator.Buttons.Remove.Visible = False
         Me.grdWoodPalletInfo.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 24)
+        Me.grdWoodPalletInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdWoodPalletInfo.MainView = Me.gvWoodPalletInfo
         Me.grdWoodPalletInfo.Name = "grdWoodPalletInfo"
         Me.grdWoodPalletInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectWoodPallet})
-        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1480, 225)
+        Me.grdWoodPalletInfo.Size = New System.Drawing.Size(1480, 223)
         Me.grdWoodPalletInfo.TabIndex = 12
         Me.grdWoodPalletInfo.UseEmbeddedNavigator = True
         Me.grdWoodPalletInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletInfo})
@@ -636,7 +636,7 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletItemInfos.MainView = Me.gvWoodPalletItemInfo
         Me.grdWoodPalletItemInfos.Name = "grdWoodPalletItemInfos"
         Me.grdWoodPalletItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.repoQtyAdjust, Me.repoChkIsSelected})
-        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1475, 461)
+        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1475, 458)
         Me.grdWoodPalletItemInfos.TabIndex = 9
         Me.grdWoodPalletItemInfos.UseEmbeddedNavigator = True
         Me.grdWoodPalletItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletItemInfo})

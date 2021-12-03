@@ -97,7 +97,11 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           pMaterialRequirment.ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
           pMaterialRequirment.CurrentOrderQty = DBReadDecimal(rDataReader, "CurrentOrderQty")
           pMaterialRequirment.TotalOTQuantity = DBReadDecimal(rDataReader, "TotalAreaQuantity")
+          pMaterialRequirment.OutstandingFromStockQtyHousing = DBReadDecimal(rDataReader, "OutstandingFromStockQty") ' DBReadDecimal(rDataReader, "OutstandingFromStockQtyHousing")
+          'pMaterialRequirment.OutstandingFromStockQtyFurniture = DBReadDecimal(rDataReader, "OutstandingFromStockQtyFurniture")
 
+          pMaterialRequirment.DateCommitted = DBReadDate(rDataReader, "DateCommitted")
+          pMaterialRequirment.DateEntered = DBReadDate(rDataReader, "DateEntered")
           With pMaterialRequirment.MaterialRequirement
 
             .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")

@@ -1596,13 +1596,13 @@ Public Class frmSalesOrderDetailHouses
 
   Private Sub bbtnViewSummary_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnViewSummary.ItemClick
 
-    If pFormController.DBConn.RTISUser.UserID = 1 Or pFormController.DBConn.RTISUser.UserID = 3031 Then
-      frmSalesOrderReview_New.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
+    'If pFormController.DBConn.RTISUser.UserID = 1 Or pFormController.DBConn.RTISUser.UserID = 3031 Then
+    frmSalesOrderReview_New.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
 
-    Else
-      frmSalesOrderReview.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
+    'Else
+    '  frmSalesOrderReview.OpenModal(pFormController.SalesOrder, pFormController.DBConn)
 
-    End If
+    'End If
 
 
   End Sub

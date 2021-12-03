@@ -997,10 +997,9 @@ Partial Class frmMaterialRequirement
         Me.gcTotalFromStock.ColumnEdit = Me.repoFormat
         Me.gcTotalFromStock.DisplayFormat.FormatString = "#.###"
         Me.gcTotalFromStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcTotalFromStock.FieldName = "gcTotalFromStock"
+        Me.gcTotalFromStock.FieldName = "OutstandingFromStockQty"
         Me.gcTotalFromStock.Name = "gcTotalFromStock"
         Me.gcTotalFromStock.OptionsColumn.ReadOnly = True
-        Me.gcTotalFromStock.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.gcTotalFromStock.Visible = True
         Me.gcTotalFromStock.VisibleIndex = 14
         Me.gcTotalFromStock.Width = 48

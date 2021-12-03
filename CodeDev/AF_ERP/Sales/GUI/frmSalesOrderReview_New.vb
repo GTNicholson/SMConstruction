@@ -195,11 +195,11 @@ Public Class frmSalesOrderReview_New
     'grdWorkOrderInfos.DataSource = pFormController.WorkOrderInfos
     'grdPaymentAccounts.DataSource = pFormController.PaymentAccounts
     grdSalesOrderPhaseItemInfo.DataSource = pFormController.SalesOrderPhaseItemInfos
-    grdOtherExpenses.DataSource = pFormController.HonorariosAndOtherCategories
+    grdMaterials.DataSource = pFormController.MaterialsByCategories
     grdTimeSheetEntry.DataSource = pFormController.TimeSheetProjects
     chrTimeSheet.DataSource = pFormController.TimeSheetProjects
     chrWoodPalletItemInfo.DataSource = pFormController.WoodPalletItemInfosPicked
-    chrOtherExpenses.DataSource = pFormController.HonorariosAndOtherCategories
+    chrOtherExpenses.DataSource = pFormController.MaterialsByCategories
   End Sub
 
 

@@ -22,6 +22,8 @@ Public Class clsMaterialRequirementInfo
   Private pReceivedQty As Decimal
   Private pCurrentOrderQty As Decimal
   Private pTotalAreaQuantity As Decimal
+  Private pOutstandingFromStockQtyHousing As Decimal
+  Private pOutstandingFromStockQtyFurniture As Decimal
 
   Public Sub New(ByRef rMaterialRequirement As dmMaterialRequirement)
     pMaterialRequirement = rMaterialRequirement
@@ -110,6 +112,8 @@ Public Class clsMaterialRequirementInfo
       pWorkOrder.WorkOrderNo = value
     End Set
   End Property
+
+
 
   Public Property FromStockQty As Decimal
     Get
@@ -269,7 +273,13 @@ Public Class clsMaterialRequirementInfo
 
   Public ReadOnly Property WorkOrderNoAndDescription As String
     Get
-      Return pWorkOrder.WorkOrderNo.Substring(3) & "/" & pWorkOrder.Description
+      If pWorkOrder IsNot Nothing Then
+        If pWorkOrder.WorkOrderNo <> "" Then
+          Return pWorkOrder.WorkOrderNo.Substring(3) & "/" & pWorkOrder.Description
+        Else
+          Return ""
+        End If
+      End If
     End Get
   End Property
   Public Property AverageCost As Decimal
@@ -284,6 +294,15 @@ Public Class clsMaterialRequirementInfo
     Set(value As Decimal)
       pStockItem.AverageCost = value
     End Set
+  End Property
+
+  Public ReadOnly Property TotalCostPickingUSD As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = AverageCostUSDInsumos * (PickedQty - ReturnQty)
+      Return mRetVal 'Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
+    End Get
   End Property
 
   Public ReadOnly Property AverageCostUSDInsumos As Decimal
@@ -656,9 +675,18 @@ Public Class clsMaterialRequirementInfo
     End Set
   End Property
   Public ReadOnly Property CategoryDesc As String
-    Get
-      Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
 
+    Get
+      Dim mRetVal As String = ""
+
+      If pStockItem.Category = 255 Then ''I did this in the review to show the Expenses as Jon's Request
+        mRetVal = "Sub Contratos/Honorarios"
+      Else
+        mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
+
+      End If
+
+      Return mRetVal
     End Get
 
   End Property
@@ -842,6 +870,41 @@ Public Class clsMaterialRequirementInfo
       Return mRetVal
     End Get
   End Property
+
+  Public Property OutstandingFromStockQtyHousing As Decimal
+    Get
+      Return pOutstandingFromStockQtyHousing
+    End Get
+    Set(value As Decimal)
+      pOutstandingFromStockQtyHousing = value
+    End Set
+  End Property
+
+  Public Property OutstandingFromStockQtyFurniture As Decimal
+    Get
+      Return pOutstandingFromStockQtyFurniture
+    End Get
+    Set(value As Decimal)
+      pOutstandingFromStockQtyFurniture = value
+    End Set
+  End Property
+
+
+  Public Property DateCommitted As Date
+  Public Property DateEntered As Date
+  Public Property TempDateExchange As Date
+
+  Public ReadOnly Property ProjectNameWithCustomer As String
+    Get
+      Dim mRetVal As String = ""
+
+
+      mRetVal = Customer.CompanyName & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
+
 
 End Class
 

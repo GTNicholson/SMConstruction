@@ -16,6 +16,9 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSalesOrder, eActivityCode.WoodSalesOrder)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Proyectos", eMenuIconType.Pivot, AddressOf clsMenuFunctions.ProjectTracker, eActivityCode.SalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Revisión de Proyectos", eMenuIconType.Pivot, AddressOf clsMenuFunctions.ProjectReviewAll, eActivityCode.SalesOrder)
+
+
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Ventas de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodSalesOrderInfoBI, eActivityCode.WoodSalesOrderBI)
@@ -469,7 +472,10 @@ Class clsMenuFunctions
     frmShiftDetails.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
   End Sub
 
+  Public Shared Sub ProjectReviewAll(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    frmProjectReviewAll.OpenModal(rRTISUserSession.CreateMainDBConn)
 
+  End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 

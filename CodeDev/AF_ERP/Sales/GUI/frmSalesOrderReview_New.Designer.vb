@@ -56,15 +56,15 @@ Partial Class frmSalesOrderReview_New
         Dim FormatConditionIconSetIcon1 As DevExpress.XtraEditors.FormatConditionIconSetIcon = New DevExpress.XtraEditors.FormatConditionIconSetIcon()
         Dim FormatConditionIconSetIcon2 As DevExpress.XtraEditors.FormatConditionIconSetIcon = New DevExpress.XtraEditors.FormatConditionIconSetIcon()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalesOrderReview_New))
+        Me.gcMargin = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.grdOtherExpenses = New DevExpress.XtraPivotGrid.PivotGridControl()
+        Me.grdMaterials = New DevExpress.XtraPivotGrid.PivotGridControl()
         Me.PivotGridField12 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField13 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.PivotGridField14 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.gcNetValueMatReq = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField15 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
         Me.grdTimeSheetEntry = New DevExpress.XtraPivotGrid.PivotGridControl()
@@ -101,7 +101,6 @@ Partial Class frmSalesOrderReview_New
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcProfit = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcMargin = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcMatEsp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gcMatActual = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -110,6 +109,8 @@ Partial Class frmSalesOrderReview_New
         Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.txtProfit = New DevExpress.XtraEditors.TextEdit()
+        Me.txtProfitLabel = New DevExpress.XtraEditors.LabelControl()
         Me.txtManPowerPercentage = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.txtActualSOPIManPower = New DevExpress.XtraEditors.TextEdit()
@@ -168,8 +169,6 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField9 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField10 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField11 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.txtProfit = New DevExpress.XtraEditors.TextEdit()
-        Me.txtProfitLabel = New DevExpress.XtraEditors.LabelControl()
         Me.Panel1.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -177,7 +176,7 @@ Partial Class frmSalesOrderReview_New
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
-        CType(Me.grdOtherExpenses, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdMaterials, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
         CType(Me.grdTimeSheetEntry, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,6 +216,7 @@ Partial Class frmSalesOrderReview_New
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.txtProfit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtManPowerPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtActualSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -245,8 +245,28 @@ Partial Class frmSalesOrderReview_New
         CType(Me.txtClientName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOrderNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtProfit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'gcMargin
+        '
+        Me.gcMargin.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.gcMargin.AppearanceCell.Options.UseFont = True
+        Me.gcMargin.AppearanceCell.Options.UseTextOptions = True
+        Me.gcMargin.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcMargin.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcMargin.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcMargin.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.gcMargin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.gcMargin.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gcMargin.Caption = "Margen %"
+        Me.gcMargin.DisplayFormat.FormatString = "P2"
+        Me.gcMargin.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcMargin.FieldName = "Margin"
+        Me.gcMargin.Name = "gcMargin"
+        Me.gcMargin.OptionsColumn.ReadOnly = True
+        Me.gcMargin.Visible = True
+        Me.gcMargin.VisibleIndex = 13
+        Me.gcMargin.Width = 130
         '
         'Panel1
         '
@@ -284,8 +304,8 @@ Partial Class frmSalesOrderReview_New
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl4, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl5, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl3, 0, 0)
@@ -297,7 +317,7 @@ Partial Class frmSalesOrderReview_New
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1766, 463)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1760, 463)
         Me.TableLayoutPanel1.TabIndex = 10
         '
         'GroupControl4
@@ -306,75 +326,67 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl4.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl4.AppearanceCaption.Options.UseFont = True
         Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
-        Me.GroupControl4.Controls.Add(Me.grdOtherExpenses)
+        Me.GroupControl4.Controls.Add(Me.grdMaterials)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(1238, 3)
+        Me.GroupControl4.Location = New System.Drawing.Point(1393, 3)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(525, 225)
+        Me.GroupControl4.Size = New System.Drawing.Size(364, 225)
         Me.GroupControl4.TabIndex = 11
-        Me.GroupControl4.Text = "Detalle de Otros Gastos del Proyecto"
+        Me.GroupControl4.Text = "Detalle de Consumo de Materiales"
         '
-        'grdOtherExpenses
+        'grdMaterials
         '
-        Me.grdOtherExpenses.Appearance.FieldValueGrandTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.grdOtherExpenses.Appearance.FieldValueGrandTotal.Options.UseFont = True
-        Me.grdOtherExpenses.Appearance.GrandTotalCell.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.grdOtherExpenses.Appearance.GrandTotalCell.Options.UseFont = True
-        Me.grdOtherExpenses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdOtherExpenses.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField12, Me.PivotGridField13, Me.PivotGridField14, Me.PivotGridField15})
-        Me.grdOtherExpenses.Location = New System.Drawing.Point(2, 23)
-        Me.grdOtherExpenses.Name = "grdOtherExpenses"
-        Me.grdOtherExpenses.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
-        Me.grdOtherExpenses.Size = New System.Drawing.Size(521, 200)
-        Me.grdOtherExpenses.TabIndex = 3
+        Me.grdMaterials.Appearance.FieldValueGrandTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.grdMaterials.Appearance.FieldValueGrandTotal.Options.UseFont = True
+        Me.grdMaterials.Appearance.GrandTotalCell.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.grdMaterials.Appearance.GrandTotalCell.Options.UseFont = True
+        Me.grdMaterials.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdMaterials.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField12, Me.gcNetValueMatReq, Me.PivotGridField15})
+        Me.grdMaterials.Location = New System.Drawing.Point(2, 23)
+        Me.grdMaterials.Name = "grdMaterials"
+        Me.grdMaterials.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
+        Me.grdMaterials.Size = New System.Drawing.Size(360, 200)
+        Me.grdMaterials.TabIndex = 3
         '
         'PivotGridField12
         '
         Me.PivotGridField12.Appearance.Header.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.PivotGridField12.Appearance.Header.Options.UseFont = True
-        Me.PivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
         Me.PivotGridField12.AreaIndex = 0
-        Me.PivotGridField12.Caption = "# O.C."
-        Me.PivotGridField12.FieldName = "PONum"
+        Me.PivotGridField12.Caption = "# O.T."
+        Me.PivotGridField12.FieldName = "WorkOrderNoAndDescription"
         Me.PivotGridField12.Name = "PivotGridField12"
-        Me.PivotGridField12.Width = 80
+        Me.PivotGridField12.Width = 200
         '
-        'PivotGridField13
+        'gcNetValueMatReq
         '
-        Me.PivotGridField13.Appearance.CellGrandTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.PivotGridField13.Appearance.CellGrandTotal.Options.UseFont = True
-        Me.PivotGridField13.Appearance.CellTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.PivotGridField13.Appearance.CellTotal.Options.UseFont = True
-        Me.PivotGridField13.Appearance.Header.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.PivotGridField13.Appearance.Header.Options.UseFont = True
-        Me.PivotGridField13.Appearance.ValueGrandTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.PivotGridField13.Appearance.ValueGrandTotal.Options.UseFont = True
-        Me.PivotGridField13.Appearance.ValueTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.PivotGridField13.Appearance.ValueTotal.Options.UseFont = True
-        Me.PivotGridField13.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-        Me.PivotGridField13.AreaIndex = 0
-        Me.PivotGridField13.Caption = "Valor Neto"
-        Me.PivotGridField13.CellFormat.FormatString = "$#,##0.00;;#"
-        Me.PivotGridField13.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField13.FieldName = "TotalPurchaseOrderItemAmountUSD"
-        Me.PivotGridField13.GrandTotalCellFormat.FormatString = "$#,##0.00;;#"
-        Me.PivotGridField13.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField13.Name = "PivotGridField13"
-        Me.PivotGridField13.TotalCellFormat.FormatString = "$#,##0.00;;#"
-        Me.PivotGridField13.TotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField13.TotalValueFormat.FormatString = "$#,##0.00;;#"
-        Me.PivotGridField13.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField13.ValueFormat.FormatString = "$#,##0.00;;#"
-        Me.PivotGridField13.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        '
-        'PivotGridField14
-        '
-        Me.PivotGridField14.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
-        Me.PivotGridField14.AreaIndex = 1
-        Me.PivotGridField14.Caption = "Descripción"
-        Me.PivotGridField14.FieldName = "Description"
-        Me.PivotGridField14.Name = "PivotGridField14"
-        Me.PivotGridField14.Width = 260
+        Me.gcNetValueMatReq.Appearance.CellGrandTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gcNetValueMatReq.Appearance.CellGrandTotal.Options.UseFont = True
+        Me.gcNetValueMatReq.Appearance.CellTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gcNetValueMatReq.Appearance.CellTotal.Options.UseFont = True
+        Me.gcNetValueMatReq.Appearance.Header.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gcNetValueMatReq.Appearance.Header.Options.UseFont = True
+        Me.gcNetValueMatReq.Appearance.ValueGrandTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gcNetValueMatReq.Appearance.ValueGrandTotal.Options.UseFont = True
+        Me.gcNetValueMatReq.Appearance.ValueTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gcNetValueMatReq.Appearance.ValueTotal.Options.UseFont = True
+        Me.gcNetValueMatReq.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+        Me.gcNetValueMatReq.AreaIndex = 0
+        Me.gcNetValueMatReq.Caption = "Valor Neto"
+        Me.gcNetValueMatReq.CellFormat.FormatString = "$#,##0.00;;#"
+        Me.gcNetValueMatReq.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcNetValueMatReq.FieldName = "TotalCostPickingUSD"
+        Me.gcNetValueMatReq.GrandTotalCellFormat.FormatString = "$#,##0.00;;#"
+        Me.gcNetValueMatReq.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcNetValueMatReq.Name = "gcNetValueMatReq"
+        Me.gcNetValueMatReq.SortMode = DevExpress.XtraPivotGrid.PivotSortMode.Value
+        Me.gcNetValueMatReq.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending
+        Me.gcNetValueMatReq.TotalCellFormat.FormatString = "$#,##0.00;;#"
+        Me.gcNetValueMatReq.TotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcNetValueMatReq.TotalValueFormat.FormatString = "$#,##0.00;;#"
+        Me.gcNetValueMatReq.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcNetValueMatReq.ValueFormat.FormatString = "$#,##0.00;;#"
+        Me.gcNetValueMatReq.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         '
         'PivotGridField15
         '
@@ -388,11 +400,16 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField15.Appearance.ValueGrandTotal.Options.UseFont = True
         Me.PivotGridField15.Appearance.ValueTotal.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.PivotGridField15.Appearance.ValueTotal.Options.UseFont = True
-        Me.PivotGridField15.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+        Me.PivotGridField15.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
         Me.PivotGridField15.AreaIndex = 0
         Me.PivotGridField15.Caption = "Categoría"
-        Me.PivotGridField15.FieldName = "PurchaseCategory"
+        Me.PivotGridField15.FieldName = "CategoryDesc"
         Me.PivotGridField15.Name = "PivotGridField15"
+        Me.PivotGridField15.Options.AllowSortBySummary = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PivotGridField15.SortBySummaryInfo.Field = Me.gcNetValueMatReq
+        Me.PivotGridField15.SortMode = DevExpress.XtraPivotGrid.PivotSortMode.Value
+        Me.PivotGridField15.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending
+        Me.PivotGridField15.Width = 150
         '
         'GroupControl5
         '
@@ -402,9 +419,9 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdTimeSheetEntry)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(532, 3)
+        Me.GroupControl5.Location = New System.Drawing.Point(531, 3)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(700, 225)
+        Me.GroupControl5.Size = New System.Drawing.Size(856, 225)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Detalle de Mano de Obra por OT"
         '
@@ -437,7 +454,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdTimeSheetEntry.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
         Me.grdTimeSheetEntry.OptionsData.DataFieldUnboundExpressionMode = DevExpress.XtraPivotGrid.DataFieldUnboundExpressionMode.UseSummaryValues
         Me.grdTimeSheetEntry.OptionsView.ShowColumnGrandTotalHeader = False
-        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(696, 200)
+        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(852, 200)
         Me.grdTimeSheetEntry.TabIndex = 3
         '
         'PivotGridField369
@@ -456,11 +473,12 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField369.TotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField369.ValueFormat.FormatString = "n1"
         Me.PivotGridField369.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PivotGridField369.Width = 120
         '
         'PivotGridField370
         '
         Me.PivotGridField370.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
-        Me.PivotGridField370.AreaIndex = 2
+        Me.PivotGridField370.AreaIndex = 4
         Me.PivotGridField370.Caption = "Costo Total"
         Me.PivotGridField370.CellFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField370.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -477,6 +495,7 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField370.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField370.ValueFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField370.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PivotGridField370.Width = 120
         '
         'PivotGridField368
         '
@@ -514,11 +533,12 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField380.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField380.ValueFormat.FormatString = "n1"
         Me.PivotGridField380.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField380.Width = 136
+        Me.PivotGridField380.Width = 120
         '
         'PivotGridField347
         '
-        Me.PivotGridField347.AreaIndex = 1
+        Me.PivotGridField347.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+        Me.PivotGridField347.AreaIndex = 2
         Me.PivotGridField347.Caption = "Costo Stand."
         Me.PivotGridField347.CellFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField347.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -532,10 +552,12 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField347.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField347.ValueFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField347.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PivotGridField347.Width = 120
         '
         'PivotGridField381
         '
-        Me.PivotGridField381.AreaIndex = 2
+        Me.PivotGridField381.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea
+        Me.PivotGridField381.AreaIndex = 3
         Me.PivotGridField381.Caption = "Costo Hr Extra"
         Me.PivotGridField381.CellFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField381.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -549,6 +571,7 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField381.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField381.ValueFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField381.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PivotGridField381.Width = 120
         '
         'GroupControl3
         '
@@ -560,7 +583,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(523, 225)
+        Me.GroupControl3.Size = New System.Drawing.Size(522, 225)
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Detalle de PT Consumido por OT"
         '
@@ -579,7 +602,8 @@ Partial Class frmSalesOrderReview_New
         Me.grdSpeciesByOT.Location = New System.Drawing.Point(2, 23)
         Me.grdSpeciesByOT.Name = "grdSpeciesByOT"
         Me.grdSpeciesByOT.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
-        Me.grdSpeciesByOT.Size = New System.Drawing.Size(519, 200)
+        Me.grdSpeciesByOT.OptionsView.ShowFilterHeaders = False
+        Me.grdSpeciesByOT.Size = New System.Drawing.Size(518, 200)
         Me.grdSpeciesByOT.TabIndex = 3
         '
         'PivotGridField1
@@ -677,7 +701,7 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField5.Caption = "Descripción"
         Me.PivotGridField5.FieldName = "WODescriptionRef"
         Me.PivotGridField5.Name = "PivotGridField5"
-        Me.PivotGridField5.Width = 200
+        Me.PivotGridField5.Width = 250
         '
         'chrTimeSheet
         '
@@ -726,7 +750,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrTimeSheet.Legend.Shadow.Size = 1
         Me.chrTimeSheet.Legend.Shadow.Visible = True
         Me.chrTimeSheet.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrTimeSheet.Location = New System.Drawing.Point(532, 234)
+        Me.chrTimeSheet.Location = New System.Drawing.Point(531, 234)
         Me.chrTimeSheet.Name = "chrTimeSheet"
         Me.chrTimeSheet.Padding.Bottom = 2
         Me.chrTimeSheet.Padding.Left = 2
@@ -777,7 +801,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrTimeSheet.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrTimeSheet.SeriesTemplate.ToolTipSeriesPattern = "{S:#.00}"
         Me.chrTimeSheet.SeriesTemplate.View = StackedBarSeriesView3
-        Me.chrTimeSheet.Size = New System.Drawing.Size(700, 226)
+        Me.chrTimeSheet.Size = New System.Drawing.Size(856, 226)
         Me.chrTimeSheet.TabIndex = 27
         ChartTitle1.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle1.Text = "Costo M.O. por O.T."
@@ -830,27 +854,30 @@ Partial Class frmSalesOrderReview_New
         Me.chrOtherExpenses.Legend.Shadow.Size = 1
         Me.chrOtherExpenses.Legend.Shadow.Visible = True
         Me.chrOtherExpenses.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrOtherExpenses.Location = New System.Drawing.Point(1238, 234)
+        Me.chrOtherExpenses.Location = New System.Drawing.Point(1393, 234)
         Me.chrOtherExpenses.Name = "chrOtherExpenses"
         Me.chrOtherExpenses.Padding.Bottom = 2
         Me.chrOtherExpenses.Padding.Left = 2
         Me.chrOtherExpenses.Padding.Right = 2
         Me.chrOtherExpenses.Padding.Top = 2
         Me.chrOtherExpenses.PaletteName = "Nature Colors"
-        Series3.ArgumentDataMember = "PurchaseCategory"
+        Series3.ArgumentDataMember = "CategoryDesc"
         Series3.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative
+        Series3.CrosshairLabelPattern = "{A},{V:#.00}"
         StackedBarSeriesLabel4.LineVisibility = DevExpress.Utils.DefaultBoolean.[True]
         StackedBarSeriesLabel4.TextPattern = "{A},{V:#.00}"
         Series3.Label = StackedBarSeriesLabel4
         Series3.LegendTextPattern = "{A},{V:#.00}"
         Series3.Name = "Valor Neto"
-        Series3.SummaryFunction = "SUM([TotalPurchaseOrderItemAmountUSD])"
+        Series3.SeriesPointsSorting = DevExpress.XtraCharts.SortingMode.Descending
+        Series3.SeriesPointsSortingKey = DevExpress.XtraCharts.SeriesPointKey.Value_1
+        Series3.SummaryFunction = "SUM([TotalCostPickingUSD])"
         Series3.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
-        Series3.ToolTipPointPattern = "{A},{V:#.00}"
+        Series3.ToolTipPointPattern = "{V:#.00}"
         StackedBarSeriesView4.Border.Color = System.Drawing.Color.Transparent
-        StackedBarSeriesView4.Color = System.Drawing.Color.Tomato
+        StackedBarSeriesView4.Color = System.Drawing.Color.OrangeRed
         StackedBarSeriesView4.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Gradient
-        RectangleGradientFillOptions3.Color2 = System.Drawing.Color.FromArgb(CType(CType(247, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(70, Byte), Integer))
+        RectangleGradientFillOptions3.Color2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         RectangleGradientFillOptions3.GradientMode = DevExpress.XtraCharts.RectangleGradientMode.BottomToTop
         StackedBarSeriesView4.FillStyle.Options = RectangleGradientFillOptions3
         Series3.View = StackedBarSeriesView4
@@ -861,10 +888,10 @@ Partial Class frmSalesOrderReview_New
         Me.chrOtherExpenses.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrOtherExpenses.SeriesTemplate.ToolTipPointPattern = "{V:#.00}"
         Me.chrOtherExpenses.SeriesTemplate.View = StackedBarSeriesView5
-        Me.chrOtherExpenses.Size = New System.Drawing.Size(525, 226)
+        Me.chrOtherExpenses.Size = New System.Drawing.Size(364, 226)
         Me.chrOtherExpenses.TabIndex = 28
         ChartTitle2.Font = New System.Drawing.Font("Arial", 11.0!)
-        ChartTitle2.Text = "Otros Gastos del Proyecto"
+        ChartTitle2.Text = "Costo de Consumo de Materiales"
         Me.chrOtherExpenses.Titles.AddRange(New DevExpress.XtraCharts.ChartTitle() {ChartTitle2})
         Me.chrOtherExpenses.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         '
@@ -899,6 +926,7 @@ Partial Class frmSalesOrderReview_New
         XyDiagram3.Margins.Top = 2
         XyDiagram3.PaneDistance = 8
         Me.chrWoodPalletItemInfo.Diagram = XyDiagram3
+        Me.chrWoodPalletItemInfo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.chrWoodPalletItemInfo.Legend.BackColor = System.Drawing.Color.White
         Me.chrWoodPalletItemInfo.Legend.Border.Color = System.Drawing.Color.Silver
         Me.chrWoodPalletItemInfo.Legend.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid
@@ -926,11 +954,14 @@ Partial Class frmSalesOrderReview_New
         Me.chrWoodPalletItemInfo.PaletteName = "Aspect"
         Series4.ArgumentDataMember = "SpeciesDesc"
         Series4.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative
+        Series4.CrosshairLabelPattern = "{A},{V:#.00}"
         StackedBarSeriesLabel6.TextPattern = "{V:#.00}"
         Series4.Label = StackedBarSeriesLabel6
         Series4.LabelsVisibility = DevExpress.Utils.DefaultBoolean.[False]
         Series4.LegendTextPattern = "{V:#.00}"
         Series4.Name = "Costo por P.T."
+        Series4.SeriesPointsSorting = DevExpress.XtraCharts.SortingMode.Descending
+        Series4.SeriesPointsSortingKey = DevExpress.XtraCharts.SeriesPointKey.Value_1
         Series4.SummaryFunction = "SUM([TotalCostBoardFeet])"
         Series4.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Series4.ToolTipPointPattern = "{A},{V:#.00}"
@@ -948,7 +979,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrWoodPalletItemInfo.SeriesTemplate.View = StackedBarSeriesView7
-        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(523, 216)
+        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(522, 226)
         Me.chrWoodPalletItemInfo.TabIndex = 29
         ChartTitle3.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle3.Text = "Costos P.T. por Especie"
@@ -967,7 +998,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl7.Controls.Add(Me.grdSalesOrderPhaseItemInfo)
         Me.GroupControl7.Location = New System.Drawing.Point(3, 722)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(1766, 308)
+        Me.GroupControl7.Size = New System.Drawing.Size(1760, 305)
         Me.GroupControl7.TabIndex = 7
         Me.GroupControl7.Text = "Costo por línea de artículo de venta"
         '
@@ -978,7 +1009,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdSalesOrderPhaseItemInfo.MainView = Me.gvSalesOrderPhaseItemInfo
         Me.grdSalesOrderPhaseItemInfo.Name = "grdSalesOrderPhaseItemInfo"
         Me.grdSalesOrderPhaseItemInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemTextEdit1, Me.repoNumberFormat})
-        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1762, 280)
+        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1756, 277)
         Me.grdSalesOrderPhaseItemInfo.TabIndex = 1
         Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItemInfo})
         '
@@ -1304,27 +1335,6 @@ Partial Class frmSalesOrderReview_New
         Me.gcProfit.VisibleIndex = 12
         Me.gcProfit.Width = 123
         '
-        'gcMargin
-        '
-        Me.gcMargin.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.gcMargin.AppearanceCell.Options.UseFont = True
-        Me.gcMargin.AppearanceCell.Options.UseTextOptions = True
-        Me.gcMargin.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.gcMargin.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.gcMargin.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcMargin.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.gcMargin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.gcMargin.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gcMargin.Caption = "Margen %"
-        Me.gcMargin.DisplayFormat.FormatString = "P2"
-        Me.gcMargin.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gcMargin.FieldName = "Margin"
-        Me.gcMargin.Name = "gcMargin"
-        Me.gcMargin.OptionsColumn.ReadOnly = True
-        Me.gcMargin.Visible = True
-        Me.gcMargin.VisibleIndex = 13
-        Me.gcMargin.Width = 130
-        '
         'gcMatEsp
         '
         Me.gcMatEsp.AppearanceCell.Font = New System.Drawing.Font("Arial", 8.25!)
@@ -1471,9 +1481,39 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl2.Controls.Add(Me.LabelControl27)
         Me.GroupControl2.Location = New System.Drawing.Point(3, 132)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1766, 115)
+        Me.GroupControl2.Size = New System.Drawing.Size(1760, 115)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Resumen de Costos"
+        '
+        'txtProfit
+        '
+        Me.txtProfit.Location = New System.Drawing.Point(1263, 57)
+        Me.txtProfit.Name = "txtProfit"
+        Me.txtProfit.Properties.Appearance.BackColor = System.Drawing.Color.LightCyan
+        Me.txtProfit.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtProfit.Properties.Appearance.Options.UseBackColor = True
+        Me.txtProfit.Properties.Appearance.Options.UseFont = True
+        Me.txtProfit.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtProfit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtProfit.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtProfit.Properties.Mask.EditMask = "N2"
+        Me.txtProfit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtProfit.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtProfit.Properties.NullText = "0"
+        Me.txtProfit.Size = New System.Drawing.Size(72, 22)
+        Me.txtProfit.TabIndex = 67
+        '
+        'txtProfitLabel
+        '
+        Me.txtProfitLabel.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtProfitLabel.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.txtProfitLabel.Appearance.Options.UseFont = True
+        Me.txtProfitLabel.Appearance.Options.UseForeColor = True
+        Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 60)
+        Me.txtProfitLabel.Name = "txtProfitLabel"
+        Me.txtProfitLabel.Size = New System.Drawing.Size(42, 15)
+        Me.txtProfitLabel.TabIndex = 66
+        Me.txtProfitLabel.Text = "Utilidad"
         '
         'txtManPowerPercentage
         '
@@ -2002,7 +2042,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl1.Controls.Add(Me.LabelControl11)
         Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1766, 123)
+        Me.GroupControl1.Size = New System.Drawing.Size(1760, 123)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Detalle General de la Venta"
         '
@@ -2219,36 +2259,6 @@ Partial Class frmSalesOrderReview_New
         Me.PivotGridField11.Caption = "H.E."
         Me.PivotGridField11.Name = "PivotGridField11"
         '
-        'txtProfit
-        '
-        Me.txtProfit.Location = New System.Drawing.Point(1263, 57)
-        Me.txtProfit.Name = "txtProfit"
-        Me.txtProfit.Properties.Appearance.BackColor = System.Drawing.Color.LightCyan
-        Me.txtProfit.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtProfit.Properties.Appearance.Options.UseBackColor = True
-        Me.txtProfit.Properties.Appearance.Options.UseFont = True
-        Me.txtProfit.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtProfit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtProfit.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtProfit.Properties.Mask.EditMask = "N2"
-        Me.txtProfit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtProfit.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtProfit.Properties.NullText = "0"
-        Me.txtProfit.Size = New System.Drawing.Size(72, 22)
-        Me.txtProfit.TabIndex = 67
-        '
-        'txtProfitLabel
-        '
-        Me.txtProfitLabel.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtProfitLabel.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtProfitLabel.Appearance.Options.UseFont = True
-        Me.txtProfitLabel.Appearance.Options.UseForeColor = True
-        Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 60)
-        Me.txtProfitLabel.Name = "txtProfitLabel"
-        Me.txtProfitLabel.Size = New System.Drawing.Size(42, 15)
-        Me.txtProfitLabel.TabIndex = 66
-        Me.txtProfitLabel.Text = "Utilidad"
-        '
         'frmSalesOrderReview_New
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2266,7 +2276,7 @@ Partial Class frmSalesOrderReview_New
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
-        CType(Me.grdOtherExpenses, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdMaterials, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
         CType(Me.grdTimeSheetEntry, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2307,6 +2317,7 @@ Partial Class frmSalesOrderReview_New
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.txtProfit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtManPowerPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtActualSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2336,7 +2347,6 @@ Partial Class frmSalesOrderReview_New
         CType(Me.txtClientName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOrderNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtProfit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2387,7 +2397,7 @@ Partial Class frmSalesOrderReview_New
     Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents grdOtherExpenses As DevExpress.XtraPivotGrid.PivotGridControl
+    Friend WithEvents grdMaterials As DevExpress.XtraPivotGrid.PivotGridControl
     Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents grdTimeSheetEntry As DevExpress.XtraPivotGrid.PivotGridControl
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
@@ -2433,8 +2443,7 @@ Partial Class frmSalesOrderReview_New
     Friend WithEvents PivotGridField3 As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField5 As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField12 As DevExpress.XtraPivotGrid.PivotGridField
-    Friend WithEvents PivotGridField13 As DevExpress.XtraPivotGrid.PivotGridField
-    Friend WithEvents PivotGridField14 As DevExpress.XtraPivotGrid.PivotGridField
+    Friend WithEvents gcNetValueMatReq As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField15 As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField6 As DevExpress.XtraPivotGrid.PivotGridField
     Friend WithEvents PivotGridField7 As DevExpress.XtraPivotGrid.PivotGridField

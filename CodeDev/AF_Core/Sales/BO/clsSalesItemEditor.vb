@@ -248,7 +248,14 @@ Public Class clsSalesItemEditor
     End Set
   End Property
 
-
+  Public Property IsGeneral As Boolean
+    Get
+      Return pSalesOrderItem.IsGeneral
+    End Get
+    Set(value As Boolean)
+      pSalesOrderItem.IsGeneral = value
+    End Set
+  End Property
 End Class
 
 Public Class colSalesItemEditors : Inherits BindingList(Of clsSalesItemEditor)

@@ -430,7 +430,8 @@ Public Class frmPickWoodMaterial
   Private Sub frmPurchaseOrderDelivery_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
     If Not pForceExit Then
       If e.CloseReason = System.Windows.Forms.CloseReason.FormOwnerClosing Or e.CloseReason = System.Windows.Forms.CloseReason.UserClosing Or e.CloseReason = System.Windows.Forms.CloseReason.MdiFormClosing Then
-        e.Cancel = Not CheckSave(True)
+        CheckSave(True)
+        ' e.Cancel = False
       End If
     End If
   End Sub

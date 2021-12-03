@@ -653,6 +653,10 @@ Public Class frmTabbedMDI_DevUtil
           mNewWoodPallet.CreatedDate = Now
           mNewWoodPallet.LocationID = mTP.LocationID
           mNewWoodPallet.PalletType = eStockItemTypeTimberWood.Primera
+          mNewWoodPallet.WorkOrderID = mTP.WorkOrderID
+          mNewWoodPallet.IntoWIPDate = Now
+          mNewWoodPallet.Archive = True
+          mNewWoodPallet.IsComplete = True
           mListBultos.Add(mTP.Bulto)
           mNewListWoodPallet.Add(mNewWoodPallet)
 
@@ -714,6 +718,7 @@ Public Class frmTabbedMDI_DevUtil
 
 
         mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, mWP.LocationID, Now, eCurrency.Dollar, 1, False)
+        mdsoTran.CreateNegativeTransaction(eTransactionType.IntoWIP, mWP, mWP.LocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, False)
 
 
       Next

@@ -40,6 +40,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
   Private pLineValue As Decimal
   Private pMaterialCost As Decimal
   Private pPOStageID As Integer
+  Private pIsGeneral As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -112,6 +113,7 @@ Public Class dmSalesOrderItem : Inherits dmBase
       .LineValue = LineValue
       .MaterialCost = MaterialCost
       .POStageID = POStageID
+      .IsGeneral = IsGeneral
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -482,6 +484,16 @@ Public Class dmSalesOrderItem : Inherits dmBase
     Set(value As Integer)
       If pPOStageID <> value Then IsDirty = True
       pPOStageID = value
+    End Set
+  End Property
+
+  Public Property IsGeneral As Boolean
+    Get
+      Return pIsGeneral
+    End Get
+    Set(value As Boolean)
+      If pIsGeneral <> value Then IsDirty = True
+      pIsGeneral = value
     End Set
   End Property
 End Class

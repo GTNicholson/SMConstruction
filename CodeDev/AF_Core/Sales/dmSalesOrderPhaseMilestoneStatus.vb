@@ -243,7 +243,7 @@ Public Class colSalesOrderPhaseMilestoneStatuss : Inherits colBase(Of dmSalesOrd
       End If
     Next
 
-    mWeightMilestone = Math.Round(100 / (12 - mTotalItemsMinusRequired), 2, MidpointRounding.AwayFromZero)
+    mWeightMilestone = Math.Round(100 / (13 - mTotalItemsMinusRequired), 2, MidpointRounding.AwayFromZero)
 
 
     For Each mItem In Me.Items
