@@ -14,8 +14,4 @@ Public Class repPOIADetail
   End Sub
 
 
-  Private Sub PageHeader_BeforePrint(sender As Object, e As PrintEventArgs)
-
-
-  End Sub
 End Class

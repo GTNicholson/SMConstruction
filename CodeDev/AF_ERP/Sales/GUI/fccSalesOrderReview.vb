@@ -1,4 +1,5 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.Spreadsheet
+Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
 Public Class fccSalesOrderReview
@@ -323,6 +324,69 @@ Public Class fccSalesOrderReview
     Return mRetValDecimal
   End Function
 
+  Friend Sub CreateExcelProjectReview(ByRef vWorkBook As Workbook)
+    ' Dim mWB As DevExpress.Spreadsheet.Workbook
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String
+
+    mFileName = "Sales Project Review" & "_" & SalesOrder.OrderNo & ".xls"
+
+
+
+    mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+    mExportDirectory = IO.Path.Combine(CType(AppRTISGlobal.GetInstance, AppRTISGlobal).DefaultExportPath, clsConstants.SalesOrderFileFolderUsr, SalesOrder.DateEntered.Year, SalesOrder.SalesOrderID)
+    mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+    If IO.Directory.Exists(mExportDirectory) = False Then
+      IO.Directory.CreateDirectory(mExportDirectory)
+    End If
+
+    PreparePrintSpreadSheet(vWorkBook.Worksheets(0))
+
+    mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+    vWorkBook.SaveDocument(mFilePath, DevExpress.Spreadsheet.DocumentFormat.Xls)
+
+
+    pSalesOrder.OutputDocuments.SetFilePath(eParentType.InternalWorkOrder, eDocumentType.SalesProjectReview, eFileType.Excel, mFilePath)
+
+  End Sub
+
+  Public Sub PreparePrintSpreadSheet(ByRef rWorkSheet As DevExpress.Spreadsheet.Worksheet)
+    Dim mRange As DevExpress.Spreadsheet.Range
+    With rWorkSheet
+      .DefinedNames.Remove("_xlnm.Print_Area")
+      mRange = .GetUsedRange
+      .DefinedNames.Add("_xlnm.Print_Area", mRange.ToString)
+      .DefinedNames(0).Range = mRange
+      .ActiveView.PaperKind = System.Drawing.Printing.PaperKind.A3
+      .ActiveView.Orientation = DevExpress.Spreadsheet.PageOrientation.Landscape
+      .ActiveView.Margins.Top = 70
+      .ActiveView.Margins.Left = 70
+      .ActiveView.Margins.Right = 70
+      .ActiveView.Margins.Bottom = 70
+      .ActiveView.Zoom = 90                 '// MDH 05/11/20
+
+      .PrintOptions.FitToPage = True
+      .PrintOptions.FitToWidth = 1
+      .PrintOptions.FitToHeight = 0
+    End With
+  End Sub
+
+
+  Public Function GetExcelSalesProjectReviewDetail(ByRef rSalesOrder As dmSalesOrder, ByVal vSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos) As Workbook
+    Dim mWB As DevExpress.Spreadsheet.Workbook = Nothing
+    Dim mSOProjectExcelReview As clsExcelSalesOrderReview_Detail
+    Dim mDT As New Data.DataTable
+
+    mSOProjectExcelReview = New clsExcelSalesOrderReview_Detail(rSalesOrder, vSalesOrderPhaseItemInfos, pWoodPalletItemInfosPicked, pMaterialsByCategories, pTimeSheetProjects)
+
+
+    mSOProjectExcelReview.CreateSummarisedExport()
+
+    mWB = mSOProjectExcelReview.WorkBook
+    Return mWB
+  End Function
 
   Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
     Dim mdsoGeneral As New dsoGeneral(DBConn)

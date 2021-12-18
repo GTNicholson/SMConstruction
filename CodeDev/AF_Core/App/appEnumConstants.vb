@@ -346,6 +346,7 @@ Public Enum eParentType
   StockItem = 4
   PurchaseOrder = 5
   Invoice = 6
+  SalesOrderReview = 7
 End Enum
 
 Public Enum eFileType
@@ -363,6 +364,7 @@ Public Enum eDocumentType
   PurchaseOrder = 4
   StockItem = 5
   Invoice = 6
+  SalesProjectReview = 7
 End Enum
 Public Enum eEmailTemplate
   None = 0

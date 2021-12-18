@@ -674,7 +674,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.XtraTabPage2.Controls.Add(Me.gpTimeSheetEntries)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1455, 488)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1545, 489)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'gpTimeSheetEntries
@@ -685,17 +685,17 @@ Partial Class frmTimeSheetEntry
         Me.gpTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
         Me.gpTimeSheetEntries.Name = "gpTimeSheetEntries"
-        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1455, 488)
+        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1545, 489)
         Me.gpTimeSheetEntries.TabIndex = 1
         Me.gpTimeSheetEntries.Text = "GroupControl1"
         '
         'grdTimeSheetEntries
         '
         Me.grdTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 24)
+        Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 26)
         Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
         Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1451, 462)
+        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1541, 461)
         Me.grdTimeSheetEntries.TabIndex = 0
         Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
         '

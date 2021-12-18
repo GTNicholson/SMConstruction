@@ -150,12 +150,13 @@ Partial Class frmSalesOrderReview_New
         Me.txtTotalValueSalesOrder = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.txtRequiredDate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.txtDateCreated = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtProjectOwner = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.txtClientName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -241,7 +242,7 @@ Partial Class frmSalesOrderReview_New
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRequiredDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtProjectOwner.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtClientName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOrderNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -303,8 +304,8 @@ Partial Class frmSalesOrderReview_New
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.TableLayoutPanel1.ColumnCount = 3
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl4, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl5, 0, 0)
@@ -312,12 +313,12 @@ Partial Class frmSalesOrderReview_New
         Me.TableLayoutPanel1.Controls.Add(Me.chrTimeSheet, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.chrOtherExpenses, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.chrWoodPalletItemInfo, 0, 1)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 253)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 223)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1760, 463)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1758, 493)
         Me.TableLayoutPanel1.TabIndex = 10
         '
         'GroupControl4
@@ -328,9 +329,9 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl4.Controls.Add(Me.grdMaterials)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(1393, 3)
+        Me.GroupControl4.Location = New System.Drawing.Point(1391, 3)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(364, 225)
+        Me.GroupControl4.Size = New System.Drawing.Size(364, 240)
         Me.GroupControl4.TabIndex = 11
         Me.GroupControl4.Text = "Detalle de Consumo de Materiales"
         '
@@ -345,7 +346,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdMaterials.Location = New System.Drawing.Point(2, 23)
         Me.grdMaterials.Name = "grdMaterials"
         Me.grdMaterials.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
-        Me.grdMaterials.Size = New System.Drawing.Size(360, 200)
+        Me.grdMaterials.Size = New System.Drawing.Size(360, 215)
         Me.grdMaterials.TabIndex = 3
         '
         'PivotGridField12
@@ -419,9 +420,9 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdTimeSheetEntry)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(531, 3)
+        Me.GroupControl5.Location = New System.Drawing.Point(512, 3)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(856, 225)
+        Me.GroupControl5.Size = New System.Drawing.Size(873, 240)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Detalle de Mano de Obra por OT"
         '
@@ -454,7 +455,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdTimeSheetEntry.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
         Me.grdTimeSheetEntry.OptionsData.DataFieldUnboundExpressionMode = DevExpress.XtraPivotGrid.DataFieldUnboundExpressionMode.UseSummaryValues
         Me.grdTimeSheetEntry.OptionsView.ShowColumnGrandTotalHeader = False
-        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(852, 200)
+        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(869, 215)
         Me.grdTimeSheetEntry.TabIndex = 3
         '
         'PivotGridField369
@@ -583,7 +584,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(522, 225)
+        Me.GroupControl3.Size = New System.Drawing.Size(503, 240)
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Detalle de PT Consumido por OT"
         '
@@ -603,7 +604,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdSpeciesByOT.Name = "grdSpeciesByOT"
         Me.grdSpeciesByOT.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
         Me.grdSpeciesByOT.OptionsView.ShowFilterHeaders = False
-        Me.grdSpeciesByOT.Size = New System.Drawing.Size(518, 200)
+        Me.grdSpeciesByOT.Size = New System.Drawing.Size(499, 215)
         Me.grdSpeciesByOT.TabIndex = 3
         '
         'PivotGridField1
@@ -750,7 +751,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrTimeSheet.Legend.Shadow.Size = 1
         Me.chrTimeSheet.Legend.Shadow.Visible = True
         Me.chrTimeSheet.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrTimeSheet.Location = New System.Drawing.Point(531, 234)
+        Me.chrTimeSheet.Location = New System.Drawing.Point(512, 249)
         Me.chrTimeSheet.Name = "chrTimeSheet"
         Me.chrTimeSheet.Padding.Bottom = 2
         Me.chrTimeSheet.Padding.Left = 2
@@ -801,7 +802,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrTimeSheet.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrTimeSheet.SeriesTemplate.ToolTipSeriesPattern = "{S:#.00}"
         Me.chrTimeSheet.SeriesTemplate.View = StackedBarSeriesView3
-        Me.chrTimeSheet.Size = New System.Drawing.Size(856, 226)
+        Me.chrTimeSheet.Size = New System.Drawing.Size(873, 241)
         Me.chrTimeSheet.TabIndex = 27
         ChartTitle1.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle1.Text = "Costo M.O. por O.T."
@@ -854,7 +855,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrOtherExpenses.Legend.Shadow.Size = 1
         Me.chrOtherExpenses.Legend.Shadow.Visible = True
         Me.chrOtherExpenses.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrOtherExpenses.Location = New System.Drawing.Point(1393, 234)
+        Me.chrOtherExpenses.Location = New System.Drawing.Point(1391, 249)
         Me.chrOtherExpenses.Name = "chrOtherExpenses"
         Me.chrOtherExpenses.Padding.Bottom = 2
         Me.chrOtherExpenses.Padding.Left = 2
@@ -888,7 +889,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrOtherExpenses.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrOtherExpenses.SeriesTemplate.ToolTipPointPattern = "{V:#.00}"
         Me.chrOtherExpenses.SeriesTemplate.View = StackedBarSeriesView5
-        Me.chrOtherExpenses.Size = New System.Drawing.Size(364, 226)
+        Me.chrOtherExpenses.Size = New System.Drawing.Size(364, 241)
         Me.chrOtherExpenses.TabIndex = 28
         ChartTitle2.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle2.Text = "Costo de Consumo de Materiales"
@@ -945,7 +946,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrWoodPalletItemInfo.Legend.Shadow.Size = 1
         Me.chrWoodPalletItemInfo.Legend.Shadow.Visible = True
         Me.chrWoodPalletItemInfo.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrWoodPalletItemInfo.Location = New System.Drawing.Point(3, 234)
+        Me.chrWoodPalletItemInfo.Location = New System.Drawing.Point(3, 249)
         Me.chrWoodPalletItemInfo.Name = "chrWoodPalletItemInfo"
         Me.chrWoodPalletItemInfo.Padding.Bottom = 2
         Me.chrWoodPalletItemInfo.Padding.Left = 2
@@ -979,7 +980,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrWoodPalletItemInfo.SeriesTemplate.View = StackedBarSeriesView7
-        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(522, 226)
+        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(503, 241)
         Me.chrWoodPalletItemInfo.TabIndex = 29
         ChartTitle3.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle3.Text = "Costos P.T. por Especie"
@@ -996,9 +997,9 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl7.AppearanceCaption.Options.UseFont = True
         Me.GroupControl7.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl7.Controls.Add(Me.grdSalesOrderPhaseItemInfo)
-        Me.GroupControl7.Location = New System.Drawing.Point(3, 722)
+        Me.GroupControl7.Location = New System.Drawing.Point(1, 722)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(1760, 305)
+        Me.GroupControl7.Size = New System.Drawing.Size(1760, 298)
         Me.GroupControl7.TabIndex = 7
         Me.GroupControl7.Text = "Costo por línea de artículo de venta"
         '
@@ -1009,7 +1010,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdSalesOrderPhaseItemInfo.MainView = Me.gvSalesOrderPhaseItemInfo
         Me.grdSalesOrderPhaseItemInfo.Name = "grdSalesOrderPhaseItemInfo"
         Me.grdSalesOrderPhaseItemInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemTextEdit1, Me.repoNumberFormat})
-        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1756, 277)
+        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1756, 270)
         Me.grdSalesOrderPhaseItemInfo.TabIndex = 1
         Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItemInfo})
         '
@@ -1479,15 +1480,15 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl2.Controls.Add(Me.LabelControl26)
         Me.GroupControl2.Controls.Add(Me.txtTotalValueSalesOrder)
         Me.GroupControl2.Controls.Add(Me.LabelControl27)
-        Me.GroupControl2.Location = New System.Drawing.Point(3, 132)
+        Me.GroupControl2.Location = New System.Drawing.Point(3, 102)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1760, 115)
+        Me.GroupControl2.Size = New System.Drawing.Size(1758, 115)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Resumen de Costos"
         '
         'txtProfit
         '
-        Me.txtProfit.Location = New System.Drawing.Point(1263, 57)
+        Me.txtProfit.Location = New System.Drawing.Point(1263, 59)
         Me.txtProfit.Name = "txtProfit"
         Me.txtProfit.Properties.Appearance.BackColor = System.Drawing.Color.LightCyan
         Me.txtProfit.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
@@ -1509,7 +1510,7 @@ Partial Class frmSalesOrderReview_New
         Me.txtProfitLabel.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.txtProfitLabel.Appearance.Options.UseFont = True
         Me.txtProfitLabel.Appearance.Options.UseForeColor = True
-        Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 60)
+        Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 62)
         Me.txtProfitLabel.Name = "txtProfitLabel"
         Me.txtProfitLabel.Size = New System.Drawing.Size(42, 15)
         Me.txtProfitLabel.TabIndex = 66
@@ -1517,7 +1518,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtManPowerPercentage
         '
-        Me.txtManPowerPercentage.Location = New System.Drawing.Point(1111, 83)
+        Me.txtManPowerPercentage.Location = New System.Drawing.Point(1111, 85)
         Me.txtManPowerPercentage.Name = "txtManPowerPercentage"
         Me.txtManPowerPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtManPowerPercentage.Properties.Appearance.Options.UseFont = True
@@ -1536,7 +1537,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl4.Appearance.Options.UseFont = True
         Me.LabelControl4.Appearance.Options.UseForeColor = True
-        Me.LabelControl4.Location = New System.Drawing.Point(1040, 87)
+        Me.LabelControl4.Location = New System.Drawing.Point(1040, 89)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl4.TabIndex = 64
@@ -1544,7 +1545,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtActualSOPIManPower
         '
-        Me.txtActualSOPIManPower.Location = New System.Drawing.Point(1111, 55)
+        Me.txtActualSOPIManPower.Location = New System.Drawing.Point(1111, 57)
         Me.txtActualSOPIManPower.Name = "txtActualSOPIManPower"
         Me.txtActualSOPIManPower.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtActualSOPIManPower.Properties.Appearance.Options.UseFont = True
@@ -1562,7 +1563,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl7.Appearance.Options.UseFont = True
         Me.LabelControl7.Appearance.Options.UseForeColor = True
-        Me.LabelControl7.Location = New System.Drawing.Point(1040, 59)
+        Me.LabelControl7.Location = New System.Drawing.Point(1040, 61)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(64, 15)
         Me.LabelControl7.TabIndex = 62
@@ -1570,7 +1571,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtSOPIManPower
         '
-        Me.txtSOPIManPower.Location = New System.Drawing.Point(1111, 27)
+        Me.txtSOPIManPower.Location = New System.Drawing.Point(1111, 29)
         Me.txtSOPIManPower.Name = "txtSOPIManPower"
         Me.txtSOPIManPower.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSOPIManPower.Properties.Appearance.Options.UseFont = True
@@ -1588,7 +1589,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl15.Appearance.Options.UseFont = True
         Me.LabelControl15.Appearance.Options.UseForeColor = True
-        Me.LabelControl15.Location = New System.Drawing.Point(1040, 31)
+        Me.LabelControl15.Location = New System.Drawing.Point(1040, 33)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(49, 15)
         Me.LabelControl15.TabIndex = 60
@@ -1596,7 +1597,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtOutsourcingPercetange
         '
-        Me.txtOutsourcingPercetange.Location = New System.Drawing.Point(944, 83)
+        Me.txtOutsourcingPercetange.Location = New System.Drawing.Point(944, 85)
         Me.txtOutsourcingPercetange.Name = "txtOutsourcingPercetange"
         Me.txtOutsourcingPercetange.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtOutsourcingPercetange.Properties.Appearance.Options.UseFont = True
@@ -1611,7 +1612,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtIndirectCost
         '
-        Me.txtIndirectCost.Location = New System.Drawing.Point(1263, 27)
+        Me.txtIndirectCost.Location = New System.Drawing.Point(1263, 29)
         Me.txtIndirectCost.Name = "txtIndirectCost"
         Me.txtIndirectCost.Properties.Appearance.BackColor = System.Drawing.Color.LightCyan
         Me.txtIndirectCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
@@ -1633,7 +1634,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl24.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl24.Appearance.Options.UseFont = True
         Me.LabelControl24.Appearance.Options.UseForeColor = True
-        Me.LabelControl24.Location = New System.Drawing.Point(1215, 31)
+        Me.LabelControl24.Location = New System.Drawing.Point(1215, 33)
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(17, 15)
         Me.LabelControl24.TabIndex = 56
@@ -1641,7 +1642,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtWoodTotalEstimatedValue
         '
-        Me.txtWoodTotalEstimatedValue.Location = New System.Drawing.Point(510, 27)
+        Me.txtWoodTotalEstimatedValue.Location = New System.Drawing.Point(510, 29)
         Me.txtWoodTotalEstimatedValue.Name = "txtWoodTotalEstimatedValue"
         Me.txtWoodTotalEstimatedValue.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtWoodTotalEstimatedValue.Properties.Appearance.Options.UseFont = True
@@ -1659,7 +1660,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl23.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl23.Appearance.Options.UseFont = True
         Me.LabelControl23.Appearance.Options.UseForeColor = True
-        Me.LabelControl23.Location = New System.Drawing.Point(421, 31)
+        Me.LabelControl23.Location = New System.Drawing.Point(421, 33)
         Me.LabelControl23.Name = "LabelControl23"
         Me.LabelControl23.Size = New System.Drawing.Size(67, 15)
         Me.LabelControl23.TabIndex = 54
@@ -1667,7 +1668,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtEstimatedInsumosTotalValue
         '
-        Me.txtEstimatedInsumosTotalValue.Location = New System.Drawing.Point(314, 27)
+        Me.txtEstimatedInsumosTotalValue.Location = New System.Drawing.Point(314, 29)
         Me.txtEstimatedInsumosTotalValue.Name = "txtEstimatedInsumosTotalValue"
         Me.txtEstimatedInsumosTotalValue.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtEstimatedInsumosTotalValue.Properties.Appearance.Options.UseFont = True
@@ -1685,7 +1686,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl19.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl19.Appearance.Options.UseFont = True
         Me.LabelControl19.Appearance.Options.UseForeColor = True
-        Me.LabelControl19.Location = New System.Drawing.Point(219, 31)
+        Me.LabelControl19.Location = New System.Drawing.Point(219, 33)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(73, 15)
         Me.LabelControl19.TabIndex = 52
@@ -1693,7 +1694,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtWoodPick
         '
-        Me.txtWoodPick.Location = New System.Drawing.Point(510, 55)
+        Me.txtWoodPick.Location = New System.Drawing.Point(510, 57)
         Me.txtWoodPick.Name = "txtWoodPick"
         Me.txtWoodPick.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtWoodPick.Properties.Appearance.Options.UseFont = True
@@ -1711,7 +1712,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl20.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl20.Appearance.Options.UseFont = True
         Me.LabelControl20.Appearance.Options.UseForeColor = True
-        Me.LabelControl20.Location = New System.Drawing.Point(421, 59)
+        Me.LabelControl20.Location = New System.Drawing.Point(421, 61)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(82, 15)
         Me.LabelControl20.TabIndex = 50
@@ -1719,7 +1720,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtWoodPercentage
         '
-        Me.txtWoodPercentage.Location = New System.Drawing.Point(510, 83)
+        Me.txtWoodPercentage.Location = New System.Drawing.Point(510, 85)
         Me.txtWoodPercentage.Name = "txtWoodPercentage"
         Me.txtWoodPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtWoodPercentage.Properties.Appearance.Options.UseFont = True
@@ -1738,7 +1739,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl21.Appearance.Options.UseFont = True
         Me.LabelControl21.Appearance.Options.UseForeColor = True
-        Me.LabelControl21.Location = New System.Drawing.Point(421, 87)
+        Me.LabelControl21.Location = New System.Drawing.Point(421, 89)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl21.TabIndex = 48
@@ -1746,7 +1747,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtStockItemPickMatCost
         '
-        Me.txtStockItemPickMatCost.Location = New System.Drawing.Point(314, 55)
+        Me.txtStockItemPickMatCost.Location = New System.Drawing.Point(314, 57)
         Me.txtStockItemPickMatCost.Name = "txtStockItemPickMatCost"
         Me.txtStockItemPickMatCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtStockItemPickMatCost.Properties.Appearance.Options.UseFont = True
@@ -1764,7 +1765,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl9.Appearance.Options.UseFont = True
         Me.LabelControl9.Appearance.Options.UseForeColor = True
-        Me.LabelControl9.Location = New System.Drawing.Point(219, 59)
+        Me.LabelControl9.Location = New System.Drawing.Point(219, 61)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(88, 15)
         Me.LabelControl9.TabIndex = 42
@@ -1772,7 +1773,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtInumosPercentage
         '
-        Me.txtInumosPercentage.Location = New System.Drawing.Point(314, 83)
+        Me.txtInumosPercentage.Location = New System.Drawing.Point(314, 85)
         Me.txtInumosPercentage.Name = "txtInumosPercentage"
         Me.txtInumosPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtInumosPercentage.Properties.Appearance.Options.UseFont = True
@@ -1791,7 +1792,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl10.Appearance.Options.UseFont = True
         Me.LabelControl10.Appearance.Options.UseForeColor = True
-        Me.LabelControl10.Location = New System.Drawing.Point(219, 87)
+        Me.LabelControl10.Location = New System.Drawing.Point(219, 89)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl10.TabIndex = 40
@@ -1799,7 +1800,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtTotalSOPIMaterialsPick
         '
-        Me.txtTotalSOPIMaterialsPick.Location = New System.Drawing.Point(750, 55)
+        Me.txtTotalSOPIMaterialsPick.Location = New System.Drawing.Point(750, 57)
         Me.txtTotalSOPIMaterialsPick.Name = "txtTotalSOPIMaterialsPick"
         Me.txtTotalSOPIMaterialsPick.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTotalSOPIMaterialsPick.Properties.Appearance.Options.UseFont = True
@@ -1817,7 +1818,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl18.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl18.Appearance.Options.UseFont = True
         Me.LabelControl18.Appearance.Options.UseForeColor = True
-        Me.LabelControl18.Location = New System.Drawing.Point(611, 59)
+        Me.LabelControl18.Location = New System.Drawing.Point(611, 61)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(130, 15)
         Me.LabelControl18.TabIndex = 34
@@ -1829,7 +1830,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl12.Appearance.Options.UseFont = True
         Me.LabelControl12.Appearance.Options.UseForeColor = True
-        Me.LabelControl12.Location = New System.Drawing.Point(856, 87)
+        Me.LabelControl12.Location = New System.Drawing.Point(856, 89)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl12.TabIndex = 26
@@ -1837,7 +1838,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtTotalSOPIOutsourcing
         '
-        Me.txtTotalSOPIOutsourcing.Location = New System.Drawing.Point(944, 55)
+        Me.txtTotalSOPIOutsourcing.Location = New System.Drawing.Point(944, 57)
         Me.txtTotalSOPIOutsourcing.Name = "txtTotalSOPIOutsourcing"
         Me.txtTotalSOPIOutsourcing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTotalSOPIOutsourcing.Properties.Appearance.Options.UseFont = True
@@ -1855,7 +1856,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl13.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl13.Appearance.Options.UseFont = True
         Me.LabelControl13.Appearance.Options.UseForeColor = True
-        Me.LabelControl13.Location = New System.Drawing.Point(856, 59)
+        Me.LabelControl13.Location = New System.Drawing.Point(856, 61)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(82, 15)
         Me.LabelControl13.TabIndex = 24
@@ -1863,7 +1864,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtSOPIOutsourcing
         '
-        Me.txtSOPIOutsourcing.Location = New System.Drawing.Point(944, 27)
+        Me.txtSOPIOutsourcing.Location = New System.Drawing.Point(944, 29)
         Me.txtSOPIOutsourcing.Name = "txtSOPIOutsourcing"
         Me.txtSOPIOutsourcing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSOPIOutsourcing.Properties.Appearance.Options.UseFont = True
@@ -1881,7 +1882,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl14.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl14.Appearance.Options.UseFont = True
         Me.LabelControl14.Appearance.Options.UseForeColor = True
-        Me.LabelControl14.Location = New System.Drawing.Point(856, 31)
+        Me.LabelControl14.Location = New System.Drawing.Point(856, 33)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(67, 15)
         Me.LabelControl14.TabIndex = 22
@@ -1889,7 +1890,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtSIMatReqPercentage
         '
-        Me.txtSIMatReqPercentage.Location = New System.Drawing.Point(750, 83)
+        Me.txtSIMatReqPercentage.Location = New System.Drawing.Point(750, 85)
         Me.txtSIMatReqPercentage.Name = "txtSIMatReqPercentage"
         Me.txtSIMatReqPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSIMatReqPercentage.Properties.Appearance.Options.UseFont = True
@@ -1908,7 +1909,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl8.Appearance.Options.UseFont = True
         Me.LabelControl8.Appearance.Options.UseForeColor = True
-        Me.LabelControl8.Location = New System.Drawing.Point(611, 87)
+        Me.LabelControl8.Location = New System.Drawing.Point(611, 89)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl8.TabIndex = 14
@@ -1916,7 +1917,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtSOPIMaterialCost
         '
-        Me.txtSOPIMaterialCost.Location = New System.Drawing.Point(750, 27)
+        Me.txtSOPIMaterialCost.Location = New System.Drawing.Point(750, 29)
         Me.txtSOPIMaterialCost.Name = "txtSOPIMaterialCost"
         Me.txtSOPIMaterialCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtSOPIMaterialCost.Properties.Appearance.Options.UseFont = True
@@ -1934,7 +1935,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl17.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl17.Appearance.Options.UseFont = True
         Me.LabelControl17.Appearance.Options.UseForeColor = True
-        Me.LabelControl17.Location = New System.Drawing.Point(611, 31)
+        Me.LabelControl17.Location = New System.Drawing.Point(611, 33)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(115, 15)
         Me.LabelControl17.TabIndex = 10
@@ -1942,7 +1943,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtPercentageInvoiced
         '
-        Me.txtPercentageInvoiced.Location = New System.Drawing.Point(123, 83)
+        Me.txtPercentageInvoiced.Location = New System.Drawing.Point(123, 85)
         Me.txtPercentageInvoiced.Name = "txtPercentageInvoiced"
         Me.txtPercentageInvoiced.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtPercentageInvoiced.Properties.Appearance.Options.UseFont = True
@@ -1961,7 +1962,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl25.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl25.Appearance.Options.UseFont = True
         Me.LabelControl25.Appearance.Options.UseForeColor = True
-        Me.LabelControl25.Location = New System.Drawing.Point(13, 87)
+        Me.LabelControl25.Location = New System.Drawing.Point(13, 89)
         Me.LabelControl25.Name = "LabelControl25"
         Me.LabelControl25.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl25.TabIndex = 6
@@ -1969,7 +1970,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtTotalCostValue
         '
-        Me.txtTotalCostValue.Location = New System.Drawing.Point(123, 55)
+        Me.txtTotalCostValue.Location = New System.Drawing.Point(123, 57)
         Me.txtTotalCostValue.Name = "txtTotalCostValue"
         Me.txtTotalCostValue.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTotalCostValue.Properties.Appearance.Options.UseFont = True
@@ -1987,7 +1988,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl26.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl26.Appearance.Options.UseFont = True
         Me.LabelControl26.Appearance.Options.UseForeColor = True
-        Me.LabelControl26.Location = New System.Drawing.Point(13, 59)
+        Me.LabelControl26.Location = New System.Drawing.Point(13, 61)
         Me.LabelControl26.Name = "LabelControl26"
         Me.LabelControl26.Size = New System.Drawing.Size(64, 15)
         Me.LabelControl26.TabIndex = 4
@@ -1995,7 +1996,7 @@ Partial Class frmSalesOrderReview_New
         '
         'txtTotalValueSalesOrder
         '
-        Me.txtTotalValueSalesOrder.Location = New System.Drawing.Point(123, 27)
+        Me.txtTotalValueSalesOrder.Location = New System.Drawing.Point(123, 29)
         Me.txtTotalValueSalesOrder.Name = "txtTotalValueSalesOrder"
         Me.txtTotalValueSalesOrder.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtTotalValueSalesOrder.Properties.Appearance.Options.UseFont = True
@@ -2013,7 +2014,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl27.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl27.Appearance.Options.UseFont = True
         Me.LabelControl27.Appearance.Options.UseForeColor = True
-        Me.LabelControl27.Location = New System.Drawing.Point(13, 31)
+        Me.LabelControl27.Location = New System.Drawing.Point(13, 33)
         Me.LabelControl27.Name = "LabelControl27"
         Me.LabelControl27.Size = New System.Drawing.Size(97, 15)
         Me.LabelControl27.TabIndex = 0
@@ -2027,12 +2028,13 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl1.Controls.Add(Me.btnExport)
         Me.GroupControl1.Controls.Add(Me.PictureBox1)
         Me.GroupControl1.Controls.Add(Me.txtRequiredDate)
         Me.GroupControl1.Controls.Add(Me.LabelControl6)
         Me.GroupControl1.Controls.Add(Me.txtDateCreated)
         Me.GroupControl1.Controls.Add(Me.LabelControl5)
-        Me.GroupControl1.Controls.Add(Me.TextEdit3)
+        Me.GroupControl1.Controls.Add(Me.txtProjectOwner)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
         Me.GroupControl1.Controls.Add(Me.txtClientName)
         Me.GroupControl1.Controls.Add(Me.LabelControl2)
@@ -2042,16 +2044,25 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl1.Controls.Add(Me.LabelControl11)
         Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1760, 123)
+        Me.GroupControl1.Size = New System.Drawing.Size(1758, 93)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Detalle General de la Venta"
+        '
+        'btnExport
+        '
+        Me.btnExport.ImageOptions.Image = CType(resources.GetObject("btnExport.ImageOptions.Image"), System.Drawing.Image)
+        Me.btnExport.Location = New System.Drawing.Point(1263, 29)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(99, 50)
+        Me.btnExport.TabIndex = 25
+        Me.btnExport.Text = "Exportar"
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.AgroForestal.My.Resources.Resources.Logo2AF
-        Me.PictureBox1.Location = New System.Drawing.Point(833, 29)
+        Me.PictureBox1.Location = New System.Drawing.Point(1402, 24)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(372, 78)
+        Me.PictureBox1.Size = New System.Drawing.Size(359, 55)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 24
         Me.PictureBox1.TabStop = False
@@ -2059,7 +2070,7 @@ Partial Class frmSalesOrderReview_New
         'txtRequiredDate
         '
         Me.txtRequiredDate.EditValue = ""
-        Me.txtRequiredDate.Location = New System.Drawing.Point(550, 85)
+        Me.txtRequiredDate.Location = New System.Drawing.Point(976, 60)
         Me.txtRequiredDate.Name = "txtRequiredDate"
         Me.txtRequiredDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtRequiredDate.Properties.Appearance.Options.UseFont = True
@@ -2077,7 +2088,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl6.Appearance.Options.UseFont = True
         Me.LabelControl6.Appearance.Options.UseForeColor = True
-        Me.LabelControl6.Location = New System.Drawing.Point(400, 89)
+        Me.LabelControl6.Location = New System.Drawing.Point(877, 64)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(95, 15)
         Me.LabelControl6.TabIndex = 22
@@ -2086,7 +2097,7 @@ Partial Class frmSalesOrderReview_New
         'txtDateCreated
         '
         Me.txtDateCreated.EditValue = ""
-        Me.txtDateCreated.Location = New System.Drawing.Point(550, 57)
+        Me.txtDateCreated.Location = New System.Drawing.Point(976, 29)
         Me.txtDateCreated.Name = "txtDateCreated"
         Me.txtDateCreated.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtDateCreated.Properties.Appearance.Options.UseFont = True
@@ -2104,26 +2115,26 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl5.Appearance.Options.UseFont = True
         Me.LabelControl5.Appearance.Options.UseForeColor = True
-        Me.LabelControl5.Location = New System.Drawing.Point(400, 61)
+        Me.LabelControl5.Location = New System.Drawing.Point(877, 33)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(80, 15)
         Me.LabelControl5.TabIndex = 20
         Me.LabelControl5.Text = "Fecha Ingreso"
         '
-        'TextEdit3
+        'txtProjectOwner
         '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(550, 29)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextEdit3.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit3.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit3.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.TextEdit3.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.TextEdit3.Properties.NullText = "0"
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(277, 22)
-        Me.TextEdit3.TabIndex = 19
+        Me.txtProjectOwner.EditValue = ""
+        Me.txtProjectOwner.Location = New System.Drawing.Point(155, 60)
+        Me.txtProjectOwner.Name = "txtProjectOwner"
+        Me.txtProjectOwner.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtProjectOwner.Properties.Appearance.Options.UseFont = True
+        Me.txtProjectOwner.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtProjectOwner.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.txtProjectOwner.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtProjectOwner.Properties.NullText = "0"
+        Me.txtProjectOwner.Properties.ReadOnly = True
+        Me.txtProjectOwner.Size = New System.Drawing.Size(260, 22)
+        Me.txtProjectOwner.TabIndex = 19
         '
         'LabelControl3
         '
@@ -2131,7 +2142,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl3.Appearance.Options.UseFont = True
         Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(400, 33)
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 64)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(135, 15)
         Me.LabelControl3.TabIndex = 18
@@ -2140,7 +2151,7 @@ Partial Class frmSalesOrderReview_New
         'txtClientName
         '
         Me.txtClientName.EditValue = ""
-        Me.txtClientName.Location = New System.Drawing.Point(126, 85)
+        Me.txtClientName.Location = New System.Drawing.Point(549, 60)
         Me.txtClientName.Name = "txtClientName"
         Me.txtClientName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtClientName.Properties.Appearance.Options.UseFont = True
@@ -2158,7 +2169,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Appearance.Options.UseForeColor = True
-        Me.LabelControl2.Location = New System.Drawing.Point(14, 89)
+        Me.LabelControl2.Location = New System.Drawing.Point(492, 64)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(39, 15)
         Me.LabelControl2.TabIndex = 16
@@ -2167,7 +2178,7 @@ Partial Class frmSalesOrderReview_New
         'txtProjectName
         '
         Me.txtProjectName.EditValue = ""
-        Me.txtProjectName.Location = New System.Drawing.Point(126, 57)
+        Me.txtProjectName.Location = New System.Drawing.Point(549, 29)
         Me.txtProjectName.Name = "txtProjectName"
         Me.txtProjectName.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtProjectName.Properties.Appearance.Options.UseFont = True
@@ -2185,7 +2196,7 @@ Partial Class frmSalesOrderReview_New
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl1.Appearance.Options.UseFont = True
         Me.LabelControl1.Appearance.Options.UseForeColor = True
-        Me.LabelControl1.Location = New System.Drawing.Point(14, 61)
+        Me.LabelControl1.Location = New System.Drawing.Point(492, 33)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(51, 15)
         Me.LabelControl1.TabIndex = 14
@@ -2194,7 +2205,7 @@ Partial Class frmSalesOrderReview_New
         'txtOrderNo
         '
         Me.txtOrderNo.EditValue = ""
-        Me.txtOrderNo.Location = New System.Drawing.Point(126, 29)
+        Me.txtOrderNo.Location = New System.Drawing.Point(155, 29)
         Me.txtOrderNo.Name = "txtOrderNo"
         Me.txtOrderNo.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
         Me.txtOrderNo.Properties.Appearance.Options.UseFont = True
@@ -2267,7 +2278,7 @@ Partial Class frmSalesOrderReview_New
         Me.Controls.Add(Me.Panel1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSalesOrderReview_New"
-        Me.Text = "frmSalesOrderReview_New"
+        Me.Text = "Revisión de Poryectos"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2343,7 +2354,7 @@ Partial Class frmSalesOrderReview_New
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtRequiredDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtProjectOwner.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtClientName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtProjectName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOrderNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2430,7 +2441,7 @@ Partial Class frmSalesOrderReview_New
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtDateCreated As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtProjectOwner As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtClientName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
@@ -2464,4 +2475,5 @@ Partial Class frmSalesOrderReview_New
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents txtProfit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtProfitLabel As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents btnExport As DevExpress.XtraEditors.SimpleButton
 End Class

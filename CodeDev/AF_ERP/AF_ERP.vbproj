@@ -268,6 +268,12 @@
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
     <Compile Include="BIReports\BIReportViewPODeliveryItem.vb" />
+    <Compile Include="Candidates\frmSpreadSheetControl.Designer.vb">
+      <DependentUpon>frmSpreadSheetControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Candidates\frmSpreadSheetControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Costing\brwCostBook.vb" />
     <Compile Include="Costing\brwProductCost.vb" />
     <Compile Include="Costing\fccProductCostBook.vb" />
@@ -648,6 +654,7 @@
     <Compile Include="Sales\GUI\brwStructureWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwSalesOrder.vb" />
+    <Compile Include="Sales\GUI\Excel\clsExcelSalesOrderReview_Detail.vb" />
     <Compile Include="Sales\GUI\fccProjectReviewAll.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderPhaseMilestoneStatusDetail.vb" />
     <Compile Include="Sales\GUI\fccCustomerDetail.vb" />

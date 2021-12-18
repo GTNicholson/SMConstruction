@@ -1,8 +1,9 @@
 ﻿
+Imports DevExpress.Spreadsheet
 Imports DevExpress.XtraGrid.Columns
-  Imports DevExpress.XtraGrid.Views.Grid
-  Imports RTIS.CommonVB
-  Imports RTIS.DataLayer
+Imports DevExpress.XtraGrid.Views.Grid
+Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class frmSalesOrderReview_New
   Private pFormController As fccSalesOrderReview
@@ -42,10 +43,14 @@ Public Class frmSalesOrderReview_New
 
     txtOrderNo.Text = pFormController.SalesOrder.OrderNo
     txtProjectName.Text = pFormController.SalesOrder.ProjectName
-    txtClientName.Text = pFormController.SalesOrder.Customer.CompanyName
+    If pFormController.SalesOrder.Customer IsNot Nothing Then
+      txtClientName.Text = pFormController.SalesOrder.Customer.CompanyName
+    Else
+      txtClientName.Text = ""
+    End If
     txtRequiredDate.Text = pFormController.SalesOrder.SalesOrderPhases(0).DateRequired
     txtDateCreated.Text = pFormController.SalesOrder.DateEntered.ToShortDateString
-
+    txtProjectOwner.Text = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees).ItemValueToDisplayValue(pFormController.SalesOrder.ContractManagerID)
 
     txtStockItemPickMatCost.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalStockItemMatReqPickReal.ToString("$#,##0.00;;#")
     txtWoodPick.Text = pFormController.SalesOrderPhaseItemInfos.GetTotalWoodMatReqPicked.ToString("$#,##0.00;;#")
@@ -227,6 +232,21 @@ Public Class frmSalesOrderReview_New
 
     End If
 
+
+  End Sub
+
+  Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+
+    Dim mFilePath As String = String.Empty
+    Dim mWorkBook As Workbook
+
+    mWorkBook = pFormController.GetExcelSalesProjectReviewDetail(pFormController.SalesOrder, pFormController.SalesOrderPhaseItemInfos)
+
+    pFormController.CreateExcelProjectReview(mWorkBook)
+    mFilePath = mWorkBook.Path
+    If System.IO.File.Exists(mFilePath) Then
+      frmSpreadSheetControl.OpenFormModal(mFilePath)
+    End If
 
   End Sub
 End Class

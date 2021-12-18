@@ -311,7 +311,7 @@ Public Class frmMaterialRequirement
     mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
 
     If mRow IsNot Nothing Then
-      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1}", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
+      mwhere = String.Format("StockItemID ={0} and POStatus not in (6) and WorkOrderID = {1}", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
 
       mdso.LoadPurchaseOrderItemAllocationInfos(mRow.POItemAllocationInfos, mwhere)
 

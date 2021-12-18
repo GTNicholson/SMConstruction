@@ -636,7 +636,7 @@ Partial Class frmWoodPalletDetail
         Me.grdWoodPalletItemInfos.MainView = Me.gvWoodPalletItemInfo
         Me.grdWoodPalletItemInfos.Name = "grdWoodPalletItemInfos"
         Me.grdWoodPalletItemInfos.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.repoQtyAdjust, Me.repoChkIsSelected})
-        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1475, 458)
+        Me.grdWoodPalletItemInfos.Size = New System.Drawing.Size(1475, 419)
         Me.grdWoodPalletItemInfos.TabIndex = 9
         Me.grdWoodPalletItemInfos.UseEmbeddedNavigator = True
         Me.grdWoodPalletItemInfos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodPalletItemInfo})
