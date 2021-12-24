@@ -9,7 +9,7 @@ Public Class clsPurchaseOrderInfo
   Private pBuyerName As String
   Private pSupplierContactName As String
   Private pTotalNetValueInfo As Decimal
-  Private pSalesOrderPhaseInfos As colSalesOrderPhaseInfos
+  Private pSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
   Private pTotalVatValue As Decimal
   Private pTotalRetentionValue As Decimal
   Private pTotalValue As Decimal
@@ -18,7 +18,7 @@ Public Class clsPurchaseOrderInfo
     pPurchaseOrder = New dmPurchaseOrder
     pPOItem = New dmPurchaseOrderItem
     pPOItemInfos = New colPOItemInfos
-    pSalesOrderPhaseInfos = New colSalesOrderPhaseInfos
+    pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
   End Sub
 
   Public Property BuyerName As String
@@ -237,12 +237,12 @@ Public Class clsPurchaseOrderInfo
 
   End Property
 
-  Public Property SalesOrderPhaseInfos As colSalesOrderPhaseInfos
+  Public Property SalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos
     Get
-      Return pSalesOrderPhaseInfos
+      Return pSalesOrderPhaseItemInfos
     End Get
-    Set(value As colSalesOrderPhaseInfos)
-      pSalesOrderPhaseInfos = value
+    Set(value As colSalesOrderPhaseItemInfos)
+      pSalesOrderPhaseItemInfos = value
     End Set
   End Property
   Public ReadOnly Property DefaultCurrencyDesc() As String
@@ -723,13 +723,13 @@ Public Class clsPurchaseOrderInfo
   Public ReadOnly Property ProjectName As String
     Get
       Dim mRetVal As String = ""
-      Dim mSalesOrderPhaseInfo As clsSalesOrderPhaseInfo
+      Dim mSalesOrderPhaseItemInfo As clsSalesOrderPhaseItemInfo
       For Each mPOA As dmPurchaseOrderAllocation In PurchaseOrder.PurchaseOrderAllocations
-        mSalesOrderPhaseInfo = pSalesOrderPhaseInfos.ItemBySalesOrderPhaseID(mPOA.CallOffID)
+        mSalesOrderPhaseItemInfo = pSalesOrderPhaseItemInfos.ItemFromKey(mPOA.SalesorderPhaseItemID)
 
-        If mSalesOrderPhaseInfo IsNot Nothing Then
-          If mSalesOrderPhaseInfo.ProjectName <> "" Then
-            mRetVal &= mSalesOrderPhaseInfo.ProjectName & " /"
+        If mSalesOrderPhaseItemInfo IsNot Nothing Then
+          If mSalesOrderPhaseItemInfo.ProjectName <> "" Then
+            mRetVal &= mSalesOrderPhaseItemInfo.ProjectName & " /"
 
           Else
             mRetVal = AccoutingCategoryDesc
